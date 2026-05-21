@@ -1,0 +1,64 @@
+import json
+from app.services.openai_service import ask_llm
+
+
+QUIZ_SYSTEM = """
+You generate Grade 9 CBSE and SOF Olympiad quizzes.
+
+Return ONLY valid JSON.
+Do not use markdown.
+
+Schema:
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "...",
+      "options": {
+        "A": "...",
+        "B": "...",
+        "C": "...",
+        "D": "..."
+      },
+      "answer": "A",
+      "explanation": "..."
+    }
+  ]
+}
+"""
+
+
+def generate_quiz(
+    grade: str,
+    subject: str,
+    chapter: str,
+    mode: str,
+    difficulty: str,
+    count: int
+):
+    prompt = f"""
+Generate {count} MCQs.
+
+Grade: {grade}
+Subject: {subject}
+Chapter/Topic: {chapter}
+Mode: {mode}
+Difficulty: {difficulty}
+
+Rules:
+- Do not show answers inside question text.
+- Keep each question clear.
+- Give exactly 4 options: A, B, C, D.
+- Include correct answer key separately.
+- Include short explanation separately.
+
+Return ONLY valid JSON.
+"""
+
+    raw = ask_llm(QUIZ_SYSTEM, prompt)
+
+    try:
+        data = json.loads(raw)
+        return data.get("questions", [])
+    except Exception:
+        return []

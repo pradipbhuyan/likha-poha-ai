@@ -1,5 +1,5 @@
 fastapi
-uvicorn
+uvicorn[standard]
 openai
 python-dotenv
 pydantic
@@ -9,3 +9,6 @@ edge-tts
 python-multipart
 supabase
 passlib[bcrypt]
+truststore
+python-docx
+python-pptx

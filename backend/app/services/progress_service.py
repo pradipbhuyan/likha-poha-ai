@@ -1,0 +1,68 @@
+from app.services.supabase_client import supabase
+
+
+def get_chapter_progress(username, grade, mode, subject, chapter):
+    response = (
+        supabase
+        .table("student_progress")
+        .select("*")
+        .eq("username", username)
+        .eq("grade", grade)
+        .eq("mode", mode)
+        .eq("subject", subject)
+        .eq("chapter", chapter)
+        .execute()
+    )
+
+    if response.data:
+        return response.data[0]
+
+    return {
+        "username": username,
+        "grade": grade,
+        "mode": mode,
+        "subject": subject,
+        "chapter": chapter,
+        "current_step_index": 0,
+        "completed": False,
+        "last_lesson": "",
+        "updated_at": None,
+    }
+
+
+def save_chapter_progress(data):
+    payload = {
+        "username": data.get("username"),
+        "grade": data.get("grade"),
+        "mode": data.get("mode"),
+        "subject": data.get("subject"),
+        "chapter": data.get("chapter"),
+        "current_step_index": data.get("current_step_index", 0),
+        "completed": data.get("completed", False),
+        "last_lesson": data.get("last_lesson", ""),
+    }
+
+    response = (
+        supabase
+        .table("student_progress")
+        .upsert(
+            payload,
+            on_conflict="username,grade,mode,subject,chapter"
+        )
+        .execute()
+    )
+
+    return response.data[0] if response.data else payload
+
+
+def get_user_progress(username):
+    response = (
+        supabase
+        .table("student_progress")
+        .select("*")
+        .eq("username", username)
+        .order("updated_at", desc=True)
+        .execute()
+    )
+
+    return response.data or []
