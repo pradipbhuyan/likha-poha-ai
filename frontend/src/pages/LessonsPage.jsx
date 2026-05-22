@@ -614,59 +614,6 @@ function LessonsPage({ user }) {
                       : "🤖 LLM Generated"}
                   </div>
 
-                  <div className="lesson-followup-box">
-                    <div className="lesson-followup-header">
-                      <h3>💬 Ask a follow-up</h3>
-                      <p>Ask anything about this lesson step.</p>
-                    </div>
-
-                    {followUpMessages.length > 0 && (
-                      <div className="lesson-chat-thread">
-                        {followUpMessages.map((msg, index) => (
-                          <div
-                            key={index}
-                            className={
-                              msg.role === "user"
-                                ? "chat-message user-message"
-                                : "chat-message ai-message"
-                            }
-                          >
-                            <strong>
-                              {msg.role === "user" ? "You" : "AI Tutor"}
-                            </strong>
-
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                              {msg.content}
-                            </ReactMarkdown>
-
-                            {msg.sourceType && (
-                              <span className="chat-source-chip">
-                                {msg.sourceType === "RAG" ? "📚 RAG" : "🤖 LLM"}
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="lesson-followup-input">
-                      <textarea
-                        rows="3"
-                        placeholder="Ask a follow-up question..."
-                        value={followUpQuestion}
-                        onChange={(e) => setFollowUpQuestion(e.target.value)}
-                      />
-
-                      <button
-                        className="primary-btn"
-                        onClick={handleAskFollowUp}
-                        disabled={followUpLoading || !followUpQuestion.trim()}
-                      >
-                        {followUpLoading ? "Thinking..." : "Ask AI Tutor"}
-                      </button>
-                    </div>
-                  </div>
-
                   <button
                     className="primary-btn lesson-audio-btn"
                     onClick={handleReadAloud}
@@ -680,6 +627,82 @@ function LessonsPage({ user }) {
                       <audio controls src={audioUrl} />
                     </div>
                   )}
+                </div>
+
+                <div className="lesson-followup-box">
+                  <div className="lesson-followup-header">
+                    <h3>💬 Ask a follow-up</h3>
+                    <p>Ask anything about this lesson step.</p>
+                  </div>
+
+                  {followUpMessages.length > 0 && (
+                    <div className="lesson-chat-thread">
+                      {followUpMessages.map((msg, index) => (
+                        <div
+                          key={index}
+                          className={
+                            msg.role === "user"
+                              ? "chat-message user-message"
+                              : "chat-message ai-message"
+                          }
+                        >
+                          <strong>
+                            {msg.role === "user" ? "You" : "AI Tutor"}
+                          </strong>
+
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {msg.content}
+                          </ReactMarkdown>
+
+                          {msg.sourceType && (
+                            <span className="chat-source-chip">
+                              {msg.sourceType === "RAG" ? "📚 RAG" : "🤖 LLM"}
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="lesson-followup-input">
+                    <textarea
+                      rows="4"
+                      placeholder="Ask a follow-up question..."
+                      value={followUpQuestion}
+                      onChange={(e) => setFollowUpQuestion(e.target.value)}
+                    />
+
+                    <div className="followup-chip-row">
+                      {[
+                        "Explain in simpler words",
+                        "Give an example",
+                        "Why is this important?",
+                        "Show a diagram",
+                        "Ask more questions",
+                      ].map((chip) => (
+                        <button
+                          key={chip}
+                          type="button"
+                          className="followup-chip"
+                          onClick={() =>
+                            setFollowUpQuestion((prev) =>
+                              prev ? `${prev}\n${chip}` : chip
+                            )
+                          }
+                        >
+                          {chip}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      className="primary-btn followup-submit-btn"
+                      onClick={handleAskFollowUp}
+                      disabled={followUpLoading || !followUpQuestion.trim()}
+                    >
+                      {followUpLoading ? "Thinking..." : "✨ Ask AI Tutor"}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -698,7 +721,6 @@ function LessonsPage({ user }) {
                     sourceInfo.sources.length > 0 &&
                     (() => {
                       const uniqueDocs = [];
-
                       const seen = new Set();
 
                       sourceInfo.sources.forEach((s) => {
@@ -710,7 +732,6 @@ function LessonsPage({ user }) {
                           uniqueDocs.push({
                             title,
                             chapter: s.document?.chapter || chapter,
-                            similarity: s.similarity,
                           });
                         }
                       });
@@ -730,8 +751,7 @@ function LessonsPage({ user }) {
                               </p>
 
                               <p>
-                              <strong>Match:</strong>{" "}
-                              Textbook chapter match
+                                <strong>Match:</strong> Textbook chapter match
                               </p>
                             </div>
                           ))}

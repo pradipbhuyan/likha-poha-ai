@@ -105,7 +105,7 @@ function ResourcesPage() {
   }
 
   return (
-    <div>
+    <div className="resources-page">
       <h2>🎥 Learn More</h2>
 
       <div className="card">

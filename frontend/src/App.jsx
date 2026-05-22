@@ -66,6 +66,9 @@ function App() {
   const [user, setUser] = useState(null);
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("tutor_dark_mode") === "true"
+  );
 
   useEffect(() => {
     const savedUser = localStorage.getItem("tutor_user");
@@ -78,7 +81,19 @@ function App() {
     if (savedPage) {
       setActivePage(savedPage);
     }
+
+    document.body.classList.toggle("dark-mode", darkMode);
+
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", darkMode);
+  
+    localStorage.setItem(
+      "tutor_dark_mode",
+      darkMode
+    );
+  }, [darkMode]);
 
   function handleLogin(userData) {
     setUser(userData);
@@ -156,6 +171,13 @@ function App() {
           </div>
 
           <div className="topbar-actions">
+            <button
+              className="theme-toggle-btn"
+              onClick={() => setDarkMode((prev) => !prev)}
+            >
+              {darkMode ? "☀️ Light" : "🌙 Dark"}
+            </button>
+
             <div className="status-pill">
               <span className="status-dot"></span>
               AI Ready

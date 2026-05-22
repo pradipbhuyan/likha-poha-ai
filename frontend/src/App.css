@@ -2281,3 +2281,418 @@ textarea:focus {
     width: 100%;
   }
 }
+
+/* =========================
+   DARK MODE
+========================= */
+
+.theme-toggle-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+
+  background: #111827;
+  color: white;
+
+  font-weight: 800;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-1px);
+}
+
+body.dark-mode {
+  background: #020617;
+  color: #f8fafc;
+}
+
+body.dark-mode .premium-app-shell {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 35%),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.14), transparent 35%),
+    #020617;
+}
+
+body.dark-mode .card,
+body.dark-mode .dashboard-chart-card,
+body.dark-mode .achievement-section,
+body.dark-mode .question-card,
+body.dark-mode .lesson-section-card,
+body.dark-mode .lesson-followup-box,
+body.dark-mode .dashboard-stat-card,
+body.dark-mode .leaderboard-row,
+body.dark-mode .podium-card {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .topbar {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border-color: #1e293b !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode strong {
+  color: #f8fafc !important;
+}
+
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode label {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .lesson-section-header {
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .markdown-content,
+body.dark-mode .lesson-section-body {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .status-pill,
+body.dark-mode .profile-pill,
+body.dark-mode .lesson-source-badge,
+body.dark-mode .chat-source-chip {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .review-card.correct {
+  background: rgba(34, 197, 94, 0.12) !important;
+}
+
+body.dark-mode .review-card.wrong {
+  background: rgba(239, 68, 68, 0.12) !important;
+}
+
+body.dark-mode .info-box {
+  background: rgba(37, 99, 235, 0.14) !important;
+  border-color: #2563eb !important;
+  color: #dbeafe !important;
+}
+
+body.dark-mode .leader-score,
+body.dark-mode .leader-metric strong,
+body.dark-mode .dashboard-stat-card h3 {
+  color: #93c5fd !important;
+}
+
+body.dark-mode .dashboard-hero,
+body.dark-mode .dashboard-ai-card,
+body.dark-mode .achievement-card,
+body.dark-mode .achievement-card.unlocked {
+  background: linear-gradient(180deg, #0f172a, #111827) !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .dashboard-hero p,
+body.dark-mode .dashboard-ai-card p,
+body.dark-mode .achievement-card p,
+body.dark-mode .achievement-card h4 {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .achievement-card.unlocked {
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+}
+
+body.dark-mode .achievement-card:not(.unlocked) {
+  opacity: 0.55;
+}
+
+body.dark-mode .dashboard-hero .eyebrow {
+  color: #93c5fd !important;
+}
+
+body.dark-mode .dashboard-ai-card {
+  background: rgba(37, 99, 235, 0.12) !important;
+}
+
+body.dark-mode .theme-toggle-btn {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+/* Dark mode cleanup for remaining pages */
+
+body.dark-mode .result-grid div,
+body.dark-mode .option-row,
+body.dark-mode .doubt-composer,
+body.dark-mode .lesson-action-footer,
+body.dark-mode .lesson-followup-box,
+body.dark-mode .progress-box,
+body.dark-mode .mock-test-page .checkbox-row {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .result-grid div strong,
+body.dark-mode .result-grid div p,
+body.dark-mode .option-row span,
+body.dark-mode .option-row strong,
+body.dark-mode .doubt-composer h3,
+body.dark-mode .doubt-composer p,
+body.dark-mode .lesson-followup-box h3,
+body.dark-mode .lesson-followup-box p,
+body.dark-mode .progress-box p,
+body.dark-mode .progress-box strong {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .doubt-composer,
+body.dark-mode .lesson-action-footer {
+  background: linear-gradient(180deg, #0f172a, #111827) !important;
+}
+
+body.dark-mode .prompt-chip,
+body.dark-mode .composer-badge,
+body.dark-mode .quiz-progress-pill {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .option-row:hover {
+  background: #111827 !important;
+  border-color: #60a5fa !important;
+}
+
+body.dark-mode .lesson-output > h3,
+body.dark-mode .doubt-page .card:first-of-type h3,
+body.dark-mode .mock-test-page .card:first-of-type h3 {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode a {
+  color: #93c5fd !important;
+}
+
+body.dark-mode .resources-page .card,
+body.dark-mode .resources-page .question-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+/* Final dark mode cleanup */
+
+body.dark-mode .analytics-page .result-grid div,
+body.dark-mode .mock-progress-box,
+body.dark-mode .resources-page .question-card,
+body.dark-mode .resources-page .card a,
+body.dark-mode .lesson-followup-box,
+body.dark-mode .lesson-action-footer {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mock-progress-box progress,
+body.dark-mode .progress-box progress {
+  background: #334155 !important;
+  accent-color: #60a5fa !important;
+}
+
+body.dark-mode .analytics-page .result-grid div strong,
+body.dark-mode .analytics-page .result-grid div p,
+body.dark-mode .resources-page .question-card *,
+body.dark-mode .mock-progress-box *,
+body.dark-mode .lesson-action-footer *,
+body.dark-mode .lesson-followup-box * {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .resources-page .question-card {
+  min-height: auto !important;
+  padding: 22px !important;
+}
+
+body.dark-mode .resources-page .question-card a {
+  color: #93c5fd !important;
+  font-weight: 900;
+}
+
+body.dark-mode .lesson-source-badge {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .lesson-followup-input textarea {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .lesson-followup-input button:disabled,
+body.dark-mode button:disabled {
+  background: #475569 !important;
+  color: #cbd5e1 !important;
+  opacity: 0.75;
+}
+
+/* Dark mode fix for Doubt/Lesson markdown answer blocks */
+
+body.dark-mode .doubt-page .markdown-content,
+body.dark-mode .doubt-page .markdown-content ul,
+body.dark-mode .doubt-page .markdown-content li,
+body.dark-mode .doubt-page .markdown-content p,
+body.dark-mode .doubt-page .markdown-content div {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .doubt-page .markdown-content ul {
+  border: 1px solid #334155 !important;
+  border-radius: 16px;
+  padding: 18px 24px 18px 42px;
+}
+
+body.dark-mode .doubt-page .markdown-content h1,
+body.dark-mode .doubt-page .markdown-content h2,
+body.dark-mode .doubt-page .markdown-content h3,
+body.dark-mode .doubt-page .markdown-content h4,
+body.dark-mode .doubt-page .markdown-content strong {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .doubt-page .lesson-output h3 {
+  background: #111827 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .doubt-page .lesson-output {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+/* Learn More dark cards */
+
+body.dark-mode .resources-page .card,
+body.dark-mode .resources-page .resource-card,
+body.dark-mode .resources-page .question-card,
+body.dark-mode .resources-page .resource-item {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .resources-page .card *,
+body.dark-mode .resources-page .resource-card *,
+body.dark-mode .resources-page .question-card *,
+body.dark-mode .resources-page .resource-item * {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .resources-page a {
+  color: #93c5fd !important;
+  font-weight: 800;
+}
+
+.lesson-followup-input {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.lesson-followup-input textarea {
+  min-height: 120px;
+  border-radius: 18px;
+}
+
+.followup-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.followup-chip {
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.followup-submit-btn {
+  justify-self: end;
+  min-width: 180px;
+}
+
+body.dark-mode .followup-chip {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .lesson-followup-input textarea {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .lesson-followup-box {
+  background: linear-gradient(180deg, #0f172a, #111827) !important;
+  border-color: #334155 !important;
+}
+
+/* Dark mode follow-up chat message fix */
+
+body.dark-mode .ai-message,
+body.dark-mode .chat-message.ai-message,
+body.dark-mode .lesson-chat-thread .ai-message {
+  background: #111827 !important;
+  border: 1px solid #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .ai-message *,
+body.dark-mode .chat-message.ai-message *,
+body.dark-mode .lesson-chat-thread .ai-message * {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .user-message,
+body.dark-mode .chat-message.user-message {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+body.dark-mode .user-message *,
+body.dark-mode .chat-message.user-message * {
+  color: white !important;
+}
+
+body.dark-mode .lesson-followup-header h3 {
+  background: #111827 !important;
+  color: #93c5fd !important;
+  border: 1px solid #334155 !important;
+}
