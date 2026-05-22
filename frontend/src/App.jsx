@@ -11,6 +11,7 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
 import DashboardPage from "./pages/DashboardPage";
+import { motion, AnimatePresence } from "framer-motion";
 
 import "./App.css";
 
@@ -187,7 +188,18 @@ function App() {
           </div>
         </header>
 
-        <section className="page-surface">{renderPage()}</section>
+        <AnimatePresence mode="wait">
+          <motion.section
+            key={activePage}
+            className="page-surface"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+          >
+            {renderPage()}
+          </motion.section>
+        </AnimatePresence>
       </main>
     </div>
   );

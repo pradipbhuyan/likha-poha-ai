@@ -2696,3 +2696,18 @@ body.dark-mode .lesson-followup-header h3 {
   color: #93c5fd !important;
   border: 1px solid #334155 !important;
 }
+
+.dashboard-stat-card,
+.achievement-card,
+.podium-card,
+.question-card,
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-stat-card:hover,
+.achievement-card:hover,
+.podium-card:hover,
+.question-card:hover {
+  transform: translateY(-3px);
+}
