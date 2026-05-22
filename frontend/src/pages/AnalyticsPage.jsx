@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
 import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+
+import {
   getUserHistory,
   clearUserHistory,
   clearAllHistory,
@@ -56,13 +68,15 @@ function AnalyticsPage({ user }) {
   }
 
   const totalTests = history.length;
+
   const averageScore =
     totalTests > 0
       ? Math.round(
-          (history.reduce((sum, item) => sum + Number(item.percentage || 0), 0) /
-            totalTests) *
-            100
-        ) / 100
+          history.reduce(
+            (sum, item) => sum + Number(item.percentage || 0),
+            0
+          ) / totalTests
+        )
       : 0;
 
   const bestScore =
@@ -75,26 +89,38 @@ function AnalyticsPage({ user }) {
       ? Number(history[history.length - 1].percentage || 0)
       : 0;
 
-  const subjectSummary = {};
+  const scoreTrend = history.map((item, index) => ({
+    name: `Test ${index + 1}`,
+    score: Number(item.percentage || 0),
+  }));
+
+  const subjectMap = {};
 
   history.forEach((item) => {
     const subject = item.subject || "Unknown";
+    const percentage = Number(item.percentage || 0);
 
-    if (!subjectSummary[subject]) {
-      subjectSummary[subject] = {
-        tests: 0,
+    if (!subjectMap[subject]) {
+      subjectMap[subject] = {
         total: 0,
+        tests: 0,
       };
     }
 
-    subjectSummary[subject].tests += 1;
-    subjectSummary[subject].total += Number(item.percentage || 0);
+    subjectMap[subject].total += percentage;
+    subjectMap[subject].tests += 1;
   });
 
-  return (
-    <div>
-      <h2>📊 Analytics</h2>
+  const subjectPerformance = Object.entries(subjectMap).map(
+    ([subject, data]) => ({
+      subject,
+      average: Math.round(data.total / data.tests),
+      tests: data.tests,
+    })
+  );
 
+  return (
+    <div className="analytics-page">
       {message && <div className="info-box">{message}</div>}
 
       {totalTests === 0 ? (
@@ -125,19 +151,48 @@ function AnalyticsPage({ user }) {
             </div>
           </div>
 
-          <div className="card">
-            <h3>Subject-wise Performance</h3>
+          <div className="analytics-chart-grid">
+            <div className="dashboard-chart-card">
+              <div className="section-heading-row">
+                <div>
+                  <h3>📈 Score Trend</h3>
+                  <p>Your mock test performance over time.</p>
+                </div>
+              </div>
 
-            {Object.entries(subjectSummary).map(([subject, data]) => {
-              const avg =
-                Math.round((data.total / data.tests) * 100) / 100;
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={280}>
+                  <LineChart data={scoreTrend}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis domain={[0, 100]} />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="score" strokeWidth={3} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
 
-              return (
-                <p key={subject}>
-                  <strong>{subject}</strong> — Tests: {data.tests} | Average: {avg}%
-                </p>
-              );
-            })}
+            <div className="dashboard-chart-card">
+              <div className="section-heading-row">
+                <div>
+                  <h3>📚 Subject Performance</h3>
+                  <p>Average score by subject.</p>
+                </div>
+              </div>
+
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={280}>
+                  <BarChart data={subjectPerformance}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="subject" />
+                    <YAxis domain={[0, 100]} />
+                    <Tooltip />
+                    <Bar dataKey="average" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
 
           <div className="card">
@@ -148,6 +203,7 @@ function AnalyticsPage({ user }) {
                 <strong>
                   {item.subject} - {item.chapter || item.mockType}
                 </strong>
+
                 <p>
                   {item.difficulty} | {item.percentage}% |{" "}
                   {(item.submittedAt || item.saved_at || "").slice(0, 10)}

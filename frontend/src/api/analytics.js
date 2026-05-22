@@ -59,3 +59,15 @@ export async function clearAllHistory() {
 
   return response.json();
 }
+
+export async function getAnalytics(username) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/analytics/test-history/${username}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to load analytics");
+  }
+
+  return response.json();
+}

@@ -10,10 +10,16 @@ import ResourcesPage from "./pages/ResourcesPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
+import DashboardPage from "./pages/DashboardPage";
 
 import "./App.css";
 
 const PAGE_META = {
+  dashboard: {
+    title: "Dashboard",
+    subtitle: "Your central AI learning hub for lessons, practice, progress, and recommendations.",
+    icon: "🏠",
+  },
   lessons: {
     title: "Lessons",
     subtitle: "Generate step-wise AI lessons with narration, progress, and RAG sources.",
@@ -58,7 +64,8 @@ const PAGE_META = {
 
 function App() {
   const [user, setUser] = useState(null);
-  const [activePage, setActivePage] = useState("lessons");
+  const [activePage, setActivePage] = useState("dashboard");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("tutor_user");
@@ -86,6 +93,7 @@ function App() {
 
   function handlePageChange(page) {
     setActivePage(page);
+    setMobileNavOpen(false);
     localStorage.setItem("tutor_active_page", page);
   }
 
@@ -97,6 +105,8 @@ function App() {
 
   function renderPage() {
     switch (activePage) {
+      case "dashboard":
+        return <DashboardPage user={user} setActivePage={handlePageChange} />;
       case "lessons":
         return <LessonsPage user={user} />;
       case "doubt":
@@ -125,10 +135,18 @@ function App() {
         setActivePage={handlePageChange}
         user={user}
         onLogout={handleLogout}
+        mobileNavOpen={mobileNavOpen}
+        setMobileNavOpen={setMobileNavOpen}
       />
 
       <main className="main-content premium-main">
         <header className="topbar">
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileNavOpen(true)}
+          >
+            ☰
+          </button>
           <div>
             <p className="eyebrow">Grade 9 CBSE + SOF Olympiad</p>
             <h1>
@@ -143,15 +161,11 @@ function App() {
               AI Ready
             </div>
 
-            <div className="profile-pill">
-              {user.username}
-            </div>
+            <div className="profile-pill">{user.username}</div>
           </div>
         </header>
 
-        <section className="page-surface">
-          {renderPage()}
-        </section>
+        <section className="page-surface">{renderPage()}</section>
       </main>
     </div>
   );

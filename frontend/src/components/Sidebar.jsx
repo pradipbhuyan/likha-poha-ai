@@ -1,7 +1,15 @@
-function Sidebar({ activePage, setActivePage, user, onLogout }) {
+function Sidebar({
+  activePage,
+  setActivePage,
+  user,
+  onLogout,
+  mobileNavOpen,
+  setMobileNavOpen,
+}) {
   const isAdmin = ["admin", "pradip"].includes(user?.username);
 
   const pages = [
+    { key: "dashboard", label: "Dashboard", icon: "🏠" },
     { key: "lessons", label: "Lessons", icon: "📖" },
     { key: "doubt", label: "Ask Doubt", icon: "❓" },
     { key: "quiz", label: "Quiz", icon: "📝" },
@@ -12,12 +20,23 @@ function Sidebar({ activePage, setActivePage, user, onLogout }) {
     { key: "ragUpload", label: "RAG Upload", icon: "📤", adminOnly: true },
   ];
 
-  const visiblePages = pages.filter(
-    (page) => !page.adminOnly || isAdmin
-  );
+  const visiblePages = pages.filter((page) => !page.adminOnly || isAdmin);
 
   return (
-    <aside className="sidebar premium-sidebar">
+    <aside
+      className={
+        mobileNavOpen
+          ? "sidebar premium-sidebar mobile-open"
+          : "sidebar premium-sidebar"
+      }
+    >
+      <button
+        className="mobile-close-btn"
+        onClick={() => setMobileNavOpen(false)}
+      >
+        ✕
+      </button>
+
       <div className="sidebar-brand">
         <div className="brand-icon">📚</div>
 

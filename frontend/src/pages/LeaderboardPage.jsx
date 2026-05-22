@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { getLeaderboard } from "../api/analytics";
 
+function getMedal(index) {
+  if (index === 0) return "🥇";
+  if (index === 1) return "🥈";
+  if (index === 2) return "🥉";
+  return `#${index + 1}`;
+}
+
 function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,28 +29,63 @@ function LeaderboardPage() {
     return <p>Loading leaderboard...</p>;
   }
 
-  return (
-    <div>
-      <h2>🏆 Leaderboard</h2>
+  const topThree = leaderboard.slice(0, 3);
+  const rest = leaderboard.slice(3);
 
+  return (
+    <div className="leaderboard-page">
       {leaderboard.length === 0 ? (
         <div className="card">
           <p>No leaderboard data yet.</p>
         </div>
       ) : (
-        <div className="card">
-          {leaderboard.map((item, index) => (
-            <div key={item.username} className="question-card">
-              <h3>
-                #{index + 1} {item.username}
-              </h3>
+        <>
+          <section className="leaderboard-podium">
+            {topThree.map((item, index) => (
+              <div key={item.username} className={`podium-card rank-${index + 1}`}>
+                <div className="podium-medal">{getMedal(index)}</div>
 
-              <p>Average Score: {item.average_score}%</p>
-              <p>Best Score: {item.best_score}%</p>
-              <p>Tests Taken: {item.tests}</p>
-            </div>
-          ))}
-        </div>
+                <div className="leader-avatar">
+                  {item.username?.[0]?.toUpperCase() || "U"}
+                </div>
+
+                <h3>{item.username}</h3>
+
+                <p className="leader-score">{item.average_score}%</p>
+                <span>Average Score</span>
+              </div>
+            ))}
+          </section>
+
+          <section className="card leaderboard-list">
+            <h3>🏁 Full Rankings</h3>
+
+            {leaderboard.map((item, index) => (
+              <div key={item.username} className="leaderboard-row">
+                <div className="leader-rank">{getMedal(index)}</div>
+
+                <div className="leader-avatar small">
+                  {item.username?.[0]?.toUpperCase() || "U"}
+                </div>
+
+                <div className="leader-main">
+                  <strong>{item.username}</strong>
+                  <span>{item.tests} tests taken</span>
+                </div>
+
+                <div className="leader-metric">
+                  <strong>{item.average_score}%</strong>
+                  <span>Average</span>
+                </div>
+
+                <div className="leader-metric">
+                  <strong>{item.best_score}%</strong>
+                  <span>Best</span>
+                </div>
+              </div>
+            ))}
+          </section>
+        </>
       )}
     </div>
   );
