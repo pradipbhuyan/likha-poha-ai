@@ -14,22 +14,28 @@ from app.routes.quiz import router as quiz_router
 from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
 
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
 app = FastAPI(
     title="CBSE Tutor API",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        frontend_url,
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 origins = [
     settings.FRONTEND_URL,
 ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 app.include_router(
     auth_router,
