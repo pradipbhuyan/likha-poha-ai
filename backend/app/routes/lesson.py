@@ -1,7 +1,15 @@
 from fastapi import APIRouter
 
-from app.models.schemas import LessonRequest
-from app.services.tutor_service import generate_step_lesson
+from app.models.schemas import (
+    LessonRequest,
+    LessonFollowUpRequest,
+    LessonFollowUpResponse,
+)
+
+from app.services.tutor_service import (
+    generate_step_lesson,
+    answer_lesson_follow_up,
+)
 
 router = APIRouter()
 
@@ -43,3 +51,34 @@ def generate_lesson(data: LessonRequest):
             "sources": [],
             "message": f"Lesson generation failed: {str(e)}",
         }
+
+@router.post("/follow-up", response_model=LessonFollowUpResponse)
+def lesson_follow_up(data: LessonFollowUpRequest):
+    try:
+        result = answer_lesson_follow_up(
+            grade=data.grade,
+            mode=data.mode,
+            subject=data.subject,
+            chapter=data.chapter,
+            step_title=data.step_title,
+            lesson=data.lesson,
+            question=data.question,
+        )
+
+        return LessonFollowUpResponse(
+            success=True,
+            answer=result["answer"],
+            source_type=result.get("source_type", "LLM"),
+            sources=result.get("sources", []),
+            message="Follow-up answered successfully",
+        )
+
+    except Exception as e:
+        return LessonFollowUpResponse(
+            success=False,
+            answer=None,
+            source_type="LLM",
+            sources=[],
+            message=f"Follow-up failed: {str(e)}",
+        )
+    

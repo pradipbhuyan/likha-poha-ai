@@ -13,6 +13,49 @@ import RagUploadPage from "./pages/RagUploadPage";
 
 import "./App.css";
 
+const PAGE_META = {
+  lessons: {
+    title: "Lessons",
+    subtitle: "Generate step-wise AI lessons with narration, progress, and RAG sources.",
+    icon: "📖",
+  },
+  doubt: {
+    title: "Ask Doubt",
+    subtitle: "Ask chapter-specific doubts and get guided explanations.",
+    icon: "❓",
+  },
+  quiz: {
+    title: "Quiz",
+    subtitle: "Practice instantly with question-by-question feedback.",
+    icon: "📝",
+  },
+  mockTest: {
+    title: "Mock Test",
+    subtitle: "Take timed tests with scoring, review, and difficulty guidance.",
+    icon: "🧪",
+  },
+  resources: {
+    title: "Learn More",
+    subtitle: "Explore free videos and learning resources for each chapter.",
+    icon: "🎥",
+  },
+  analytics: {
+    title: "Analytics",
+    subtitle: "Track progress, scores, history, and subject performance.",
+    icon: "📊",
+  },
+  leaderboard: {
+    title: "Leaderboard",
+    subtitle: "Compare performance across users and test attempts.",
+    icon: "🏆",
+  },
+  ragUpload: {
+    title: "RAG Upload",
+    subtitle: "Admin area for uploading textbook content into the AI knowledge base.",
+    icon: "📤",
+  },
+};
+
 function App() {
   const [user, setUser] = useState(null);
   const [activePage, setActivePage] = useState("lessons");
@@ -50,6 +93,8 @@ function App() {
     return <LoginPage onLogin={handleLogin} />;
   }
 
+  const pageMeta = PAGE_META[activePage] || PAGE_META.lessons;
+
   function renderPage() {
     switch (activePage) {
       case "lessons":
@@ -74,7 +119,7 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell premium-app-shell">
       <Sidebar
         activePage={activePage}
         setActivePage={handlePageChange}
@@ -82,9 +127,31 @@ function App() {
         onLogout={handleLogout}
       />
 
-      <main className="main-content">
-        <h1>📚 Grade 9 CBSE + SOF Olympiad AI Tutor</h1>
-        {renderPage()}
+      <main className="main-content premium-main">
+        <header className="topbar">
+          <div>
+            <p className="eyebrow">Grade 9 CBSE + SOF Olympiad</p>
+            <h1>
+              <span>{pageMeta.icon}</span> {pageMeta.title}
+            </h1>
+            <p className="page-subtitle">{pageMeta.subtitle}</p>
+          </div>
+
+          <div className="topbar-actions">
+            <div className="status-pill">
+              <span className="status-dot"></span>
+              AI Ready
+            </div>
+
+            <div className="profile-pill">
+              {user.username}
+            </div>
+          </div>
+        </header>
+
+        <section className="page-surface">
+          {renderPage()}
+        </section>
       </main>
     </div>
   );

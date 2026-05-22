@@ -116,3 +116,20 @@ class RagSearchResponse(BaseModel):
     success: bool
     results: list[dict] = []
     message: str
+
+class LessonFollowUpRequest(BaseModel):
+    grade: str
+    mode: str
+    subject: str
+    chapter: str
+    step_title: str
+    lesson: str
+    question: str
+
+
+class LessonFollowUpResponse(BaseModel):
+    success: bool
+    answer: str | None = None
+    source_type: str = "LLM"
+    sources: list[dict] = []
+    message: str

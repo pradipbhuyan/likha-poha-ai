@@ -4,6 +4,39 @@ import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory } from "../api/analytics";
 
 function MockTestPage({ user }) {
+  function getPerformanceSummary(percentage) {
+
+    if (percentage >= 90) {
+      return {
+        title: "🌟 Olympiad Ready",
+        message:
+          "Outstanding performance! You have mastered this chapter extremely well.",
+      };
+    }
+  
+    if (percentage >= 75) {
+      return {
+        title: "👏 Strong Foundation",
+        message:
+          "Very good work! Your concepts are strong and improving steadily.",
+      };
+    }
+  
+    if (percentage >= 60) {
+      return {
+        title: "👍 Good Progress",
+        message:
+          "You are improving well. A little more practice can boost your score further.",
+      };
+    }
+  
+    return {
+      title: "💪 Revision Needed",
+      message:
+        "Keep practicing. Revising core concepts and solving more questions will help.",
+    };
+  }
+  
   const [syllabusData, setSyllabusData] = useState(null);
 
   const [grade, setGrade] = useState("Grade 9");
@@ -225,7 +258,7 @@ function MockTestPage({ user }) {
   }
 
   return (
-    <div>
+    <div className="mock-test-page">
       <h2>🧪 Mock Test</h2>
 
       <div className="card">
@@ -234,7 +267,10 @@ function MockTestPage({ user }) {
         <div className="form-grid">
           <label>
             Grade
-            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
+            <select
+              value={grade}
+              onChange={(e) => handleGradeChange(e.target.value)}
+            >
               {grades.map((g) => (
                 <option key={g}>{g}</option>
               ))}
@@ -243,7 +279,10 @@ function MockTestPage({ user }) {
 
           <label>
             Mode
-            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
+            <select
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value)}
+            >
               {modes.map((m) => (
                 <option key={m}>{m}</option>
               ))}
@@ -252,7 +291,10 @@ function MockTestPage({ user }) {
 
           <label>
             Subject / Olympiad
-            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
+            <select
+              value={subject}
+              onChange={(e) => handleSubjectChange(e.target.value)}
+            >
               {subjects.map((s) => (
                 <option key={s}>{s}</option>
               ))}
@@ -261,7 +303,10 @@ function MockTestPage({ user }) {
 
           <label>
             Chapter / Section
-            <select value={chapter} onChange={(e) => setChapter(e.target.value)}>
+            <select
+              value={chapter}
+              onChange={(e) => setChapter(e.target.value)}
+            >
               {chapters.map((c) => (
                 <option key={c}>{c}</option>
               ))}
@@ -270,7 +315,10 @@ function MockTestPage({ user }) {
 
           <label>
             Test Type
-            <select value={mockType} onChange={(e) => setMockType(e.target.value)}>
+            <select
+              value={mockType}
+              onChange={(e) => setMockType(e.target.value)}
+            >
               <option>CBSE Exam Mock Test</option>
               <option>SOF Olympiad Mock Test</option>
             </select>
@@ -291,7 +339,10 @@ function MockTestPage({ user }) {
 
           <label>
             Difficulty
-            <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+            <select
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+            >
               <option>Easy</option>
               <option>Medium</option>
               <option>Hard</option>
@@ -355,7 +406,11 @@ function MockTestPage({ user }) {
           </label>
         </div>
 
-        <button className="primary-btn" onClick={handleGenerateMockTest} disabled={loading}>
+        <button
+          className="primary-btn"
+          onClick={handleGenerateMockTest}
+          disabled={loading}
+        >
           {loading ? "Generating..." : "Generate Mock Test"}
         </button>
 
@@ -366,6 +421,20 @@ function MockTestPage({ user }) {
         <div className="card">
           <h3>Test</h3>
 
+          <div className="mock-progress-box">
+            <div>
+              <strong>
+                {Object.keys(answers).length} / {questions.length}
+              </strong>{" "}
+              questions answered
+            </div>
+
+            <progress
+              value={Object.keys(answers).length}
+              max={questions.length}
+            />
+          </div>
+
           {timerEnabled && (
             <div className={secondsLeft === 0 ? "timer warning" : "timer"}>
               ⏱️ Time Remaining: {formatTime(secondsLeft)}
@@ -373,7 +442,9 @@ function MockTestPage({ user }) {
           )}
 
           {timerEnabled && secondsLeft === 0 && (
-            <div className="error-box">Time is over. Please submit your test.</div>
+            <div className="error-box">
+              Time is over. Please submit your test.
+            </div>
           )}
 
           {questions.map((q) => (
@@ -436,12 +507,25 @@ function MockTestPage({ user }) {
             </div>
           </div>
 
-          <div className="info-box">{getRecommendation(results.percentage)}</div>
+          <div className="info-box">
+            {getRecommendation(results.percentage)}
+          </div>
+
+          <div className="info-box">
+            <strong>{getPerformanceSummary(results.percentage).title}</strong>
+
+            <p>{getPerformanceSummary(results.percentage).message}</p>
+          </div>
 
           <h3>📘 Answer Review</h3>
 
           {results.review.map((r) => (
-            <div key={r.id} className={r.isCorrect ? "review-card correct" : "review-card wrong"}>
+            <div
+              key={r.id}
+              className={
+                r.isCorrect ? "review-card correct" : "review-card wrong"
+              }
+            >
               <h4>
                 Q{r.id}. {r.isCorrect ? "✅ Correct" : "❌ Incorrect"}
               </h4>
@@ -463,9 +547,7 @@ function MockTestPage({ user }) {
                 </strong>
               </p>
 
-              <p>
-                Explanation: {r.explanation}
-              </p>
+              <p>Explanation: {r.explanation}</p>
             </div>
           ))}
         </div>

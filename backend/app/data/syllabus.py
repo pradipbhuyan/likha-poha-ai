@@ -2,36 +2,32 @@ CBSE_9 = {
 
     "Science": [
 
-        "Matter in Our Surroundings",
-        "Is Matter Around Us Pure",
-        "Atoms and Molecules",
-        "Structure of the Atom",
-        "The Fundamental Unit of Life",
-        "Tissues",
-        "Motion",
-        "Force and Laws of Motion",
-        "Gravitation",
-        "Work and Energy",
-        "Sound",
-        "Improvement in Food Resources"
+        "Exploration: Entering the World of Secondary Science",
+        "Cell: The Building Block of Life",
+        "Tissues in Action",
+        "Describing Motion Around Us",
+        "Exploring Mixtures and their Separation",
+        "How Forces Affect Motion",
+        "Work, Energy, and Simple Machines",
+        "Journey Inside the Atom",
+        "Atomic Foundations of Matter",
+        "Sound Waves: Characteristics and Applications",
+        "Reproduction: How Life Continues",
+        "Patterns in Life: Diversity and Classification",
+        "Earth as a System: Energy, Matter, and Life"
     ],
 
     "Maths": [
 
-        "Number Systems",
-        "Polynomials",
-        "Coordinate Geometry",
-        "Linear Equations in Two Variables",
-        "Introduction to Euclid Geometry",
-        "Lines and Angles",
-        "Triangles",
-        "Quadrilaterals",
-        "Areas of Parallelograms and Triangles",
-        "Circles",
-        "Herons Formula",
-        "Surface Areas and Volumes",
-        "Statistics",
-        "Probability"
+        "Orienting Yourself: The Use of Coordinates",
+        "Introduction to Linear Polynomials",
+        "The World of Numbers",
+        "Exploring Algebraic Identities",
+        "I’m Up and Down, and Round and Round",
+        "Measuring Space: Perimeter and Area",
+        "The Mathematics of Maybe: Introduction to Probability",
+        "Predicting What Comes Next: Exploring Sequences and Progressions",
+
     ],
 
     "English": [

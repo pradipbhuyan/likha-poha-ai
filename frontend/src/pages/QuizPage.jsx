@@ -4,6 +4,22 @@ import { getSyllabus } from "../api/syllabus";
 import { generateQuiz } from "../api/quiz";
 
 function QuizPage() {
+  function getQuizEncouragement(scorePercent) {
+    if (scorePercent >= 90) {
+      return "🌟 Outstanding work! You have mastered this concept very well.";
+    }
+
+    if (scorePercent >= 75) {
+      return "👏 Great job! Your understanding is strong.";
+    }
+
+    if (scorePercent >= 60) {
+      return "👍 Good progress! A little more practice will make you even stronger.";
+    }
+
+    return "💪 Keep practicing. Every mistake is a learning opportunity.";
+  }
+
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -97,13 +113,13 @@ function QuizPage() {
   async function handleGenerateQuiz() {
     console.log("Generate quiz clicked");
     console.log("Payload:", {
-        grade,
-        mode,
-        subject,
-        chapter,
-        difficulty,
-        question_count: Number(questionCount),
-      });
+      grade,
+      mode,
+      subject,
+      chapter,
+      difficulty,
+      question_count: Number(questionCount),
+    });
     setGenerating(true);
     setError("");
     resetQuiz();
@@ -125,7 +141,7 @@ function QuizPage() {
 
       setQuestions(result.questions || []);
     } catch (err) {
-        console.error("Quiz error:", err);
+      console.error("Quiz error:", err);
       setError("Could not generate quiz. Check backend.");
     } finally {
       setGenerating(false);
@@ -156,27 +172,42 @@ function QuizPage() {
         <div className="form-grid">
           <label>
             Grade
-            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
+            <select
+              value={grade}
+              onChange={(e) => handleGradeChange(e.target.value)}
+            >
               {grades.map((g) => (
-                <option key={g} value={g}>{g}</option>
+                <option key={g} value={g}>
+                  {g}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Mode
-            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
+            <select
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value)}
+            >
               {modes.map((m) => (
-                <option key={m} value={m}>{m}</option>
+                <option key={m} value={m}>
+                  {m}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Subject
-            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
+            <select
+              value={subject}
+              onChange={(e) => handleSubjectChange(e.target.value)}
+            >
               {subjects.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
             </select>
           </label>
@@ -191,14 +222,19 @@ function QuizPage() {
               }}
             >
               {chapters.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>
+                  {c}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Difficulty
-            <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+            <select
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+            >
               <option>Easy</option>
               <option>Medium</option>
               <option>Hard</option>
@@ -230,9 +266,17 @@ function QuizPage() {
       {error && <div className="error-box">{error}</div>}
 
       {questions.length > 0 && (
-        <div className="card">
-          <h3>Practice Questions</h3>
+        <div className="card quiz-workspace">
+          <div className="quiz-header">
+            <div>
+              <h3>Practice Questions</h3>
+              <p>Answer each question and check instantly.</p>
+            </div>
 
+            <div className="quiz-progress-pill">
+              {Object.keys(checkedAnswers).length} / {questions.length} checked
+            </div>
+          </div>
           {questions.map((q) => {
             const selected = selectedAnswers[q.id];
             const checked = checkedAnswers[q.id];
@@ -269,7 +313,11 @@ function QuizPage() {
                 </button>
 
                 {checked && (
-                  <div className={isCorrect ? "review-card correct" : "review-card wrong"}>
+                  <div
+                    className={
+                      isCorrect ? "review-card correct" : "review-card wrong"
+                    }
+                  >
                     <h4>{isCorrect ? "✅ Correct" : "❌ Incorrect"}</h4>
 
                     <p>
@@ -286,14 +334,16 @@ function QuizPage() {
                       </strong>
                     </p>
 
-                    <p>
-                      Explanation: {q.explanation}
-                    </p>
+                    <p>Explanation: {q.explanation}</p>
+
+                    <div className="info-box">
+                      {getQuizEncouragement(isCorrect ? 100 : 40)}
+                    </div>
                   </div>
                 )}
               </div>
             );
-          })}
+          })}{" "}
         </div>
       )}
     </div>

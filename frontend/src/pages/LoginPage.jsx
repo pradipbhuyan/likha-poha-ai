@@ -28,33 +28,65 @@ function LoginPage({ onLogin }) {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <div className="logo">📚</div>
-        <h1>Grade 9 CBSE Tutor</h1>
-        <p>CBSE + SOF Olympiad AI Learning Platform</p>
+    <div className="login-page-premium">
+      <div className="login-hero">
+        <div className="brand-badge">AI Tutor Platform</div>
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <h1>
+          Learn CBSE + SOF with your personal AI tutor.
+        </h1>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <p>
+          Lessons, doubts, quizzes, mock tests, analytics, narration, and RAG-powered textbook learning in one place.
+        </p>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
+        <div className="feature-grid">
+          <div>📖 AI Lessons</div>
+          <div>❓ Doubt Solver</div>
+          <div>🧪 Mock Tests</div>
+          <div>📊 Analytics</div>
+          <div>🔊 Narration</div>
+          <div>📚 RAG Textbooks</div>
+        </div>
+      </div>
 
-        {error && <div className="error">{error}</div>}
+      <div className="login-panel">
+        <div className="login-card-premium">
+          <div className="logo-orb">📚</div>
+
+          <h2>Welcome back</h2>
+          <p className="login-subtitle">
+            Sign in to continue learning.
+          </p>
+
+          <form onSubmit={handleLogin}>
+            <label>
+              Username
+              <input
+                type="text"
+                placeholder="Enter username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+
+            <button type="submit" disabled={loading}>
+              {loading ? "Signing in..." : "Sign in"}
+            </button>
+          </form>
+
+          {error && <div className="error-box">{error}</div>}
+        </div>
       </div>
     </div>
   );

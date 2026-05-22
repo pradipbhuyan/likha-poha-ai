@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm";
 
 import { getSyllabus } from "../api/syllabus";
 import { answerDoubt } from "../api/doubt";
-
+import MermaidBlock from "../components/MermaidBlock";
 
 function DoubtPage() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ function DoubtPage() {
   const [answer, setAnswer] = useState("");
 
   const [sourceInfo, setSourceInfo] = useState(null);
-  
+
   const [asking, setAsking] = useState(false);
 
   useEffect(() => {
@@ -114,13 +114,60 @@ function DoubtPage() {
         return;
       }
 
-      setAnswer(result.answer);
+      let finalAnswer = result.answer || "";
+
+      if (
+        finalAnswer.includes("graph TD") &&
+        !finalAnswer.includes("```mermaid")
+      ) {
+        const lines = finalAnswer.split("\n");
+        const output = [];
+        let inMermaid = false;
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+
+          if (trimmed.startsWith("graph TD")) {
+            output.push("```mermaid");
+            output.push(line);
+            inMermaid = true;
+            continue;
+          }
+
+          if (inMermaid) {
+            const isMermaidLine =
+              trimmed === "" ||
+              trimmed.includes("-->") ||
+              trimmed.includes("-.->") ||
+              /^[A-Za-z0-9_]+\[.*\]$/.test(trimmed);
+
+            if (isMermaidLine) {
+              output.push(line);
+            } else {
+              output.push("```");
+              output.push(line);
+              inMermaid = false;
+            }
+
+            continue;
+          }
+
+          output.push(line);
+        }
+
+        if (inMermaid) {
+          output.push("```");
+        }
+
+        finalAnswer = output.join("\n");
+      }
+
+      setAnswer(finalAnswer);
 
       setSourceInfo({
         sourceType: result.source_type,
         sources: result.sources || [],
       });
-
     } catch {
       setError("Could not answer doubt. Check backend.");
     } finally {
@@ -129,7 +176,7 @@ function DoubtPage() {
   }
 
   return (
-    <div>
+    <div className="doubt-page">
       <h2>❓ Ask Doubt</h2>
 
       <div className="card">
@@ -138,7 +185,10 @@ function DoubtPage() {
         <div className="form-grid">
           <label>
             Grade
-            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
+            <select
+              value={grade}
+              onChange={(e) => handleGradeChange(e.target.value)}
+            >
               {grades.map((g) => (
                 <option key={g} value={g}>
                   {g}
@@ -149,7 +199,10 @@ function DoubtPage() {
 
           <label>
             Mode
-            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
+            <select
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value)}
+            >
               {modes.map((m) => (
                 <option key={m} value={m}>
                   {m}
@@ -160,7 +213,10 @@ function DoubtPage() {
 
           <label>
             Subject
-            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
+            <select
+              value={subject}
+              onChange={(e) => handleSubjectChange(e.target.value)}
+            >
               {subjects.map((s) => (
                 <option key={s} value={s}>
                   {s}
@@ -187,23 +243,52 @@ function DoubtPage() {
           </label>
         </div>
 
-        <label className="full-width-label">
-          Type your doubt
+        <div className="doubt-composer">
+          <div className="composer-header">
+            <div>
+              <h3>💬 Ask your AI tutor</h3>
+              <p>Type your doubt, or choose a quick prompt below.</p>
+            </div>
+
+            <span className="composer-badge">AI Guided</span>
+          </div>
+
           <textarea
             rows="5"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Example: What is the difference between speed and velocity?"
+            placeholder="Example: What is the difference between frequency and resonance?"
           />
-        </label>
 
-        <button
-          className="primary-btn"
-          onClick={handleAskDoubt}
-          disabled={asking}
-        >
-          {asking ? "Thinking..." : "Explain Doubt"}
-        </button>
+          <div className="prompt-chip-row">
+            {[
+              "Explain simply",
+              "Give real-life example",
+              "Show step-by-step",
+              "Olympiad style",
+              "Add diagram if useful",
+            ].map((chip) => (
+              <button
+                key={chip}
+                type="button"
+                className="prompt-chip"
+                onClick={() =>
+                  setQuestion((prev) => (prev ? `${prev}\n${chip}` : chip))
+                }
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className="primary-btn doubt-submit-btn"
+            onClick={handleAskDoubt}
+            disabled={asking}
+          >
+            {asking ? "Thinking..." : "✨ Ask AI Tutor"}
+          </button>
+        </div>
       </div>
 
       {error && <div className="error-box">{error}</div>}
@@ -213,9 +298,25 @@ function DoubtPage() {
           <h3>Answer</h3>
 
           <div className="markdown-content">
-     
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {answer}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                code({ className, children }) {
+                  const match = /language-mermaid/.exec(className || "");
+
+                  if (match) {
+                    return (
+                      <MermaidBlock
+                        chart={String(children).replace(/\n$/, "")}
+                      />
+                    );
+                  }
+
+                  return <code className={className}>{children}</code>;
+                },
+              }}
+            >
+              {answer}
             </ReactMarkdown>
           </div>
         </div>
@@ -233,34 +334,48 @@ function DoubtPage() {
           </p>
 
           {sourceInfo.sourceType === "RAG" &&
-            sourceInfo.sources.length > 0 && (
-              <>
-                <h4>Matched Documents</h4>
+            sourceInfo.sources.length > 0 &&
+            (() => {
+              const uniqueDocs = [];
+              const seen = new Set();
 
-                {sourceInfo.sources.map((s, index) => (
-                  <div key={index} className="question-card">
-                    <p>
-                      <strong>Document:</strong>{" "}
-                      {s.document?.title || "Unknown"}
-                    </p>
+              sourceInfo.sources.forEach((s) => {
+                const title = s.document?.title || "Unknown";
 
-                    <p>
-                      <strong>Similarity:</strong>{" "}
-                      {(s.similarity * 100).toFixed(1)}%
-                    </p>
+                if (!seen.has(title)) {
+                  seen.add(title);
 
-                    <p>
-                      <strong>Chapter:</strong>{" "}
-                      {s.document?.chapter}
-                    </p>
-                  </div>
-                ))}
-              </>
-            )}
+                  uniqueDocs.push({
+                    title,
+                    chapter: s.document?.chapter || chapter,
+                  });
+                }
+              });
+
+              return (
+                <>
+                  <h4>Matched Sources</h4>
+
+                  {uniqueDocs.map((doc, index) => (
+                    <div key={index} className="question-card">
+                      <p>
+                        <strong>Source:</strong> {doc.title}
+                      </p>
+
+                      <p>
+                        <strong>Chapter:</strong> {doc.chapter}
+                      </p>
+
+                      <p>
+                        <strong>Match:</strong> Textbook chapter match
+                      </p>
+                    </div>
+                  ))}
+                </>
+              );
+            })()}
         </div>
       )}
-
-
     </div>
   );
 }
