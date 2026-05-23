@@ -1,10 +1,9 @@
-
 from app.services.openai_service import ask_llm
 from app.services.rag_service import search_textbook_content
 
 
 TUTOR_SYSTEM = """
-You are a patient GradeCBSE tutor.
+You are a patient Grade 9 CBSE tutor.
 
 Teach only the requested sub-topic.
 Do not give the full chapter at once.
@@ -36,16 +35,28 @@ IMPORTANT FORMATTING RULES:
 
 VISUAL RULES:
 - When useful, include Mermaid diagrams.
+- Use Mermaid especially for:
+  - science processes
+  - systems
+  - cycles
+  - hierarchies
+  - comparisons
+  - step-by-step flows
+  - cause and effect
+  - parts of an object
 - Never output Mermaid code unless it is inside a fenced code block.
-- Use simple Mermaid labels. Avoid parentheses, plus signs, minus signs, and special symbols inside node labels.
+- Keep Mermaid diagrams simple and educational.
+- Use simple Mermaid labels.
+- Avoid parentheses, plus signs, minus signs, slashes, and special symbols inside Mermaid node labels.
 - Example: use Proton positive, not Proton (+).
+- Example: use Electron negative, not Electron (-).
 - Use this exact format:
 
 ```mermaid
 graph TD
 A[Start] --> B[Next Step]
 B --> C[End]
-```text
+```
 
 MATH RULES:
 - Use LaTeX math for formulas.
@@ -57,6 +68,37 @@ $$
 """
 
 
+DIAGRAM_HINT = """
+Diagram instruction:
+If this sub-topic can be understood better visually, include one simple Mermaid diagram.
+
+Good cases for Mermaid:
+- atom structure
+- food chain
+- water cycle
+- digestive system
+- respiratory system
+- electric circuit flow
+- classification
+- comparison
+- process steps
+- cause and effect
+- timeline
+- hierarchy
+
+Rules for Mermaid:
+- Use only simple labels.
+- Avoid special symbols inside node labels.
+- Wrap Mermaid exactly in:
+
+```mermaid
+graph TD
+A[Start] --> B[Next Step]
+B --> C[End]
+```
+"""
+
+
 def generate_step_lesson(
     grade: str,
     subject: str,
@@ -65,20 +107,6 @@ def generate_step_lesson(
     step_title: str,
     teacher_persona: str = "",
 ):
-    """
-    Generate a focused step-wise lesson for a specific sub-topic.
-    
-    Args:
-        grade: Student grade level
-        subject: Subject name
-        chapter: Chapter name
-        mode: Learning mode (standard or olympiad)
-        step_title: Current lesson step/sub-topic
-        teacher_persona: Optional custom teacher persona
-    
-    Returns:
-        Dictionary with lesson, source_type, and sources
-    """
     rag_query = f"""
     Grade 9 {subject} {chapter}
     Current lesson step: {step_title}
@@ -129,6 +157,8 @@ Use uploaded textbook/RAG context when available.
 If RAG context is available, align the explanation with it.
 If RAG context is not available, use standard CBSE/SOF knowledge.
 
+{DIAGRAM_HINT}
+
 End with one small question to check understanding.
 """
 
@@ -147,18 +177,6 @@ def answer_doubt(
     chapter: str,
     question: str,
 ):
-    """
-    Answer a student's doubt about a topic.
-    
-    Args:
-        grade: Student grade level
-        subject: Subject name
-        chapter: Chapter name
-        question: Student's doubt/question
-    
-    Returns:
-        Dictionary with answer, source_type, and sources
-    """
     rag_results = search_textbook_content(
         query=f"{chapter} {question}",
         grade=grade,
@@ -203,10 +221,7 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 Do not use markdown tables.
 Use bullet points instead.
 
-If useful:
-- include Mermaid diagrams
-- include LaTeX formulas
-- include visual reasoning
+{DIAGRAM_HINT}
 
 For formulas use:
 
@@ -233,21 +248,6 @@ def answer_lesson_follow_up(
     lesson: str,
     question: str,
 ):
-    """
-    Answer a follow-up question about the current lesson.
-    
-    Args:
-        grade: Student grade level
-        mode: Learning mode (standard or olympiad)
-        subject: Subject name
-        chapter: Chapter name
-        step_title: Current lesson step
-        lesson: Current lesson content
-        question: Student's follow-up question
-    
-    Returns:
-        Dictionary with answer, source_type, and sources
-    """
     rag_query = f"""
 Grade: {grade}
 Mode: {mode}
@@ -307,7 +307,10 @@ Rules:
 - Explain like a friendly tutor.
 - Use bullets if helpful.
 - Do not repeat the full lesson.
+- If the answer benefits from a visual, include one Mermaid diagram.
 - End with one small check question.
+
+{DIAGRAM_HINT}
 """
 
     answer = ask_llm(TUTOR_SYSTEM, prompt)

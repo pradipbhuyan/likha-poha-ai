@@ -11,6 +11,7 @@ import MermaidBlock from "../components/MermaidBlock";
 import LessonSections from "../components/LessonSections";
 
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
+import { generateEducationalImage } from "../api/images";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -48,6 +49,10 @@ function LessonsPage({ user }) {
   const [mode, setMode] = useState("CBSE");
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
+
+  const [visualImage, setVisualImage] = useState("");
+  const [visualLoading, setVisualLoading] = useState(false);
+  const [visualTopic, setVisualTopic] = useState("");
 
   const lessonSteps = [
     "Concept introduction",
@@ -213,6 +218,7 @@ function LessonsPage({ user }) {
     setGenerating(true);
     setLesson("");
     setAudioUrl("");
+    setVisualImage("");
     setSourceInfo(null);
     setError("");
     setFollowUpQuestion("");
@@ -343,6 +349,32 @@ function LessonsPage({ user }) {
     }
   }
 
+  async function handleGenerateVisual() {
+    const topic = visualTopic.trim();
+
+    if (!lesson && !topic) return;
+
+    setVisualLoading(true);
+    setVisualImage("");
+
+    try {
+      const imagePrompt = topic
+        ? `${subject} - ${chapter}. Create a clear educational visual specifically about: ${topic}`
+        : `${subject} - ${chapter} - ${stepTitle}. Create a visual explanation for this lesson: ${lesson.slice(
+            0,
+            1200
+          )}`;
+
+      const result = await generateEducationalImage(imagePrompt);
+
+      setVisualImage(`data:image/png;base64,${result.image_base64}`);
+    } catch {
+      setError("Could not generate visual explanation.");
+    } finally {
+      setVisualLoading(false);
+    }
+  }
+
   return (
     <div className="lesson-workspace">
       <div className="lesson-layout">
@@ -401,6 +433,7 @@ function LessonsPage({ user }) {
                     setChapter(e.target.value);
                     setLesson("");
                     setAudioUrl("");
+                    setVisualImage("");
                     setSourceInfo(null);
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
@@ -422,6 +455,7 @@ function LessonsPage({ user }) {
                     setCurrentStepIndex(Number(e.target.value));
                     setLesson("");
                     setAudioUrl("");
+                    setVisualImage("");
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
                   }}
@@ -508,6 +542,7 @@ function LessonsPage({ user }) {
                   setCurrentStepIndex(newIndex);
                   setLesson("");
                   setAudioUrl("");
+                  setVisualImage("");
                   setCompleted(false);
 
                   await saveChapterProgress({
@@ -550,6 +585,7 @@ function LessonsPage({ user }) {
 
                     setLesson("");
                     setAudioUrl("");
+                    setVisualImage("");
 
                     await saveChapterProgress({
                       username: user.username,
@@ -574,6 +610,7 @@ function LessonsPage({ user }) {
 
                   setLesson("");
                   setAudioUrl("");
+                  setVisualImage("");
 
                   setCompleted(false);
 
@@ -607,13 +644,7 @@ function LessonsPage({ user }) {
                   <LessonSections lesson={lesson} />
                 </div>
 
-                <div className="lesson-action-footer">
-                  <div className="lesson-source-badge">
-                    {sourceInfo?.sourceType === "RAG"
-                      ? "📚 RAG Powered"
-                      : "🤖 LLM Generated"}
-                  </div>
-
+                <div className="lesson-audio-section">
                   <button
                     className="primary-btn lesson-audio-btn"
                     onClick={handleReadAloud}
@@ -628,6 +659,48 @@ function LessonsPage({ user }) {
                     </div>
                   )}
                 </div>
+
+                <div className="visual-generator-card">
+                  <div className="visual-generator-header">
+                    <h3>🖼 Visual Generator</h3>
+
+                    <p>
+                      Generate a custom educational visual for this lesson or
+                      topic.
+                    </p>
+                  </div>
+
+                  <div className="visual-generator-controls">
+                    <input
+                      className="visual-topic-input"
+                      type="text"
+                      placeholder="Example: structure of atom"
+                      value={visualTopic}
+                      onChange={(e) => setVisualTopic(e.target.value)}
+                    />
+
+                    <button
+                      className="secondary-btn visual-generate-btn"
+                      onClick={handleGenerateVisual}
+                      disabled={visualLoading}
+                    >
+                      {visualLoading ? "Generating..." : "🖼 Generate Visual"}
+                    </button>
+                  </div>
+                </div>
+
+                {visualImage && (
+                  <div className="visual-image-card">
+                    <div className="visual-image-header">
+                      <h3>🖼 Visual Explanation</h3>
+                    </div>
+
+                    <img
+                      src={visualImage}
+                      alt="AI generated educational visual"
+                    />
+                  </div>
+                )}
 
                 <div className="lesson-followup-box">
                   <div className="lesson-followup-header">

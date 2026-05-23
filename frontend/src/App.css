@@ -3760,3 +3760,334 @@ body.dark-mode .login-logo {
   background: rgba(239, 68, 68, 0.18);
   color: #fb7185;
 }
+
+.mermaid-card {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 22px;
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+  overflow-x: auto;
+}
+
+.mermaid-card-header {
+  font-weight: 900;
+  color: #1d4ed8;
+  margin-bottom: 14px;
+}
+
+.mermaid-box {
+  min-width: 320px;
+}
+
+.mermaid-box svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-error {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+body.dark-mode .mermaid-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .mermaid-card-header {
+  color: #93c5fd !important;
+}
+
+body.dark-mode .mermaid-box svg {
+  filter: brightness(1.08);
+}
+
+/* Mermaid dark mode readability fix */
+
+body.dark-mode .mermaid-box svg .node rect,
+body.dark-mode .mermaid-box svg .node polygon,
+body.dark-mode .mermaid-box svg .node circle,
+body.dark-mode .mermaid-box svg .node ellipse {
+  fill: #1e293b !important;
+  stroke: #60a5fa !important;
+}
+
+body.dark-mode .mermaid-box svg .nodeLabel,
+body.dark-mode .mermaid-box svg .label,
+body.dark-mode .mermaid-box svg text,
+body.dark-mode .mermaid-box svg tspan {
+  fill: #f8fafc !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mermaid-box svg .edgePath path {
+  stroke: #60a5fa !important;
+}
+
+body.dark-mode .mermaid-box svg .arrowheadPath {
+  fill: #60a5fa !important;
+  stroke: #60a5fa !important;
+}
+
+body.dark-mode .mermaid-box svg foreignObject div {
+  color: #f8fafc !important;
+  background: transparent !important;
+}
+
+.visual-image-card {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 22px;
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+}
+
+.visual-image-card img {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 18px;
+  display: block;
+}
+
+body.dark-mode .visual-image-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+/* Visual generation layout polish */
+
+.lesson-action-footer {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  flex-wrap: wrap !important;
+}
+
+.lesson-action-footer .secondary-btn,
+.lesson-action-footer .lesson-audio-btn {
+  width: auto !important;
+  min-width: 220px !important;
+  height: 56px !important;
+}
+
+.visual-image-card {
+  width: 100% !important;
+  margin-top: 22px !important;
+  padding: 24px !important;
+  border-radius: 24px !important;
+  background: #f8fbff !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+.visual-image-card h3 {
+  margin-bottom: 18px !important;
+  color: #1d4ed8 !important;
+}
+
+.visual-image-card img {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  border-radius: 20px !important;
+}
+
+body.dark-mode .visual-image-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .visual-image-card h3 {
+  background: transparent !important;
+  color: #93c5fd !important;
+}
+
+body.dark-mode .visual-image-card img {
+  background: white !important;
+}
+
+.visual-topic-input {
+  height: 56px;
+  min-width: 280px;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  padding: 0 16px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* Cleaner lesson actions */
+
+.lesson-audio-section {
+  margin-top: 22px;
+}
+
+.visual-generator-card {
+  margin-top: 28px;
+
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+}
+
+.visual-generator-header h3 {
+  margin-bottom: 8px;
+}
+
+.visual-generator-header p {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.visual-generator-controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.visual-topic-input {
+  flex: 1;
+  min-width: 260px;
+
+  height: 56px;
+
+  border-radius: 16px;
+
+  border: 1px solid #cbd5e1;
+
+  padding: 0 18px;
+
+  font-size: 16px;
+
+  background: white;
+}
+
+.visual-generate-btn {
+  min-width: 220px;
+}
+
+.visual-image-card {
+  margin-top: 28px;
+
+  padding: 28px;
+
+  border-radius: 28px;
+
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+}
+
+.visual-image-header {
+  margin-bottom: 22px;
+}
+
+.visual-image-card img {
+  width: 100%;
+  max-width: 820px;
+
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
+  margin: 0 auto;
+
+  border-radius: 24px;
+
+  background: white;
+
+  padding: 18px;
+}
+
+/* Dark mode */
+
+body.dark-mode .visual-generator-card,
+body.dark-mode .visual-image-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .visual-generator-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .visual-topic-input {
+  background: #111827 !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .visual-image-card img {
+  background: #020617 !important;
+}
+
+/* Audio + Visual generator dark-mode polish */
+
+.lesson-audio-section {
+  width: 100% !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.lesson-audio-section .lesson-audio-btn {
+  width: fit-content !important;
+  min-width: 260px !important;
+}
+
+.lesson-audio-player audio {
+  width: 100% !important;
+}
+
+.visual-generator-card {
+  width: 100% !important;
+}
+
+.visual-generator-header h3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  padding: 12px 18px !important;
+  border-radius: 999px !important;
+
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+body.dark-mode .visual-generator-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .visual-generator-header h3 {
+  background: #111827 !important;
+  color: #93c5fd !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark-mode .visual-generator-header p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .visual-topic-input {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .visual-topic-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.visual-generator-controls {
+  align-items: center !important;
+}
+
+.visual-generate-btn {
+  height: 56px !important;
+  white-space: nowrap !important;
+}
