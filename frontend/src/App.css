@@ -3646,3 +3646,84 @@ body.dark-mode .login-logo {
     grid-template-columns: 1fr;
   }
 }
+
+.sidebar-footer {
+  margin-top: 24px !important;
+  padding-top: 18px !important;
+}
+
+.logout {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+}
+
+.nav-icon svg {
+  display: block;
+}
+
+.sidebar-nav button.active .nav-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .sidebar.mobile-open {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    padding-bottom: 28px !important;
+  }
+
+  .sidebar-nav {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding-bottom: 18px !important;
+  }
+
+  .sidebar-footer {
+    margin-top: 12px !important;
+    padding-bottom: 20px !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background: inherit !important;
+  }
+
+  .logout {
+    min-height: 48px !important;
+  }
+}
+
+.page-title-icon {
+  margin-right: 10px;
+  vertical-align: middle;
+  color: #2563eb;
+}
+
+.ait-feature-list div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  line-height: 1;
+}
+
+.ait-feature-list span {
+  display: inline-flex;
+  align-items: center;
+
+  position: relative;
+  top: 1px;
+}
+
+.ait-feature-list svg {
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  stroke-width: 2.3;
+  color: #60a5fa;
+}

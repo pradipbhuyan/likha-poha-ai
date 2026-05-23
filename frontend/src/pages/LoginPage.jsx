@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../api/auth";
 import logo from "../assets/AITutorLogo.png";
+import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -37,15 +38,30 @@ function LoginPage({ onLogin }) {
           <h1>Learn smarter with AI.</h1>
 
           <p>
-            Personalized CBSE + SOF Olympiad preparation with AI-powered lessons,
-            quizzes, analytics, narration, and doubt solving.
+            Personalized CBSE + SOF Olympiad preparation with AI-powered
+            lessons, quizzes, analytics, narration, and doubt solving.
           </p>
 
           <div className="ait-feature-list">
-            <div>📖 Personalized Lessons</div>
-            <div>❓ Smart Doubt Solving</div>
-            <div>🧪 Practice & Tests</div>
-            <div>📊 Progress Analytics</div>
+            <div>
+              <BookOpen size={24} strokeWidth={2.4} />
+              <span>Personalized Lessons</span>
+            </div>
+
+            <div>
+              <Brain size={24} strokeWidth={2.4} />
+              <span>Smart Doubt Solving</span>
+            </div>
+
+            <div>
+              <ClipboardList size={24} strokeWidth={2.4} />
+              <span>Practice & Tests</span>
+            </div>
+
+            <div>
+              <BarChart3 size={24} strokeWidth={2.4} />
+              <span>Progress Analytics</span>
+            </div>
           </div>
         </div>
 
@@ -85,7 +101,11 @@ function LoginPage({ onLogin }) {
                 <button type="button">Forgot password?</button>
               </div>
 
-              <button className="ait-signin-btn" type="submit" disabled={loading}>
+              <button
+                className="ait-signin-btn"
+                type="submit"
+                disabled={loading}
+              >
                 {loading ? "Signing in..." : "Sign in"}
               </button>
 

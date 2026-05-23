@@ -1,3 +1,16 @@
+import {
+  BarChart3,
+  BookOpen,
+  Brain,
+  ClipboardList,
+  HelpCircle,
+  Home,
+  LogOut,
+  Trophy,
+  UploadCloud,
+  Video,
+} from "lucide-react";
+
 import logo from "../assets/AITutorLogo.png";
 
 function Sidebar({
@@ -11,15 +24,15 @@ function Sidebar({
   const isAdmin = ["admin", "pradip"].includes(user?.username);
 
   const pages = [
-    { key: "dashboard", label: "Dashboard", icon: "🏠" },
-    { key: "lessons", label: "Lessons", icon: "📖" },
-    { key: "doubt", label: "Ask Doubt", icon: "❓" },
-    { key: "quiz", label: "Quiz", icon: "📝" },
-    { key: "mockTest", label: "Mock Test", icon: "🧪" },
-    { key: "resources", label: "Learn More", icon: "🎥" },
-    { key: "analytics", label: "Analytics", icon: "📊" },
-    { key: "leaderboard", label: "Leaderboard", icon: "🏆" },
-    { key: "ragUpload", label: "RAG Upload", icon: "📤", adminOnly: true },
+    { key: "dashboard", label: "Dashboard", icon: Home },
+    { key: "lessons", label: "Lessons", icon: BookOpen },
+    { key: "doubt", label: "Ask Doubt", icon: HelpCircle },
+    { key: "quiz", label: "Quiz", icon: Brain },
+    { key: "mockTest", label: "Mock Test", icon: ClipboardList },
+    { key: "resources", label: "Learn More", icon: Video },
+    { key: "analytics", label: "Analytics", icon: BarChart3 },
+    { key: "leaderboard", label: "Leaderboard", icon: Trophy },
+    { key: "ragUpload", label: "RAG Upload", icon: UploadCloud, adminOnly: true },
   ];
 
   const visiblePages = pages.filter((page) => !page.adminOnly || isAdmin);
@@ -60,25 +73,28 @@ function Sidebar({
       </div>
 
       <nav className="sidebar-nav">
-        {visiblePages.map((page) => (
-          <button
-            key={page.key}
-            className={activePage === page.key ? "active" : ""}
-            onClick={() => setActivePage(page.key)}
-          >
-            <span className="nav-icon">{page.icon}</span>
-            <span>{page.label}</span>
-          </button>
-        ))}
+        {visiblePages.map((page) => {
+          const Icon = page.icon;
+
+          return (
+            <button
+              key={page.key}
+              className={activePage === page.key ? "active" : ""}
+              onClick={() => setActivePage(page.key)}
+            >
+              <span className="nav-icon">
+                <Icon size={19} strokeWidth={2.4} />
+              </span>
+
+              <span>{page.label}</span>
+            </button>
+          );
+        })}
       </nav>
 
       <div className="sidebar-footer">
-        <div className="mini-status">
-          <span className="status-dot"></span>
-          AI Tutor Online
-        </div>
-
         <button className="logout" onClick={onLogout}>
+          <LogOut size={18} strokeWidth={2.4} />
           Logout
         </button>
       </div>

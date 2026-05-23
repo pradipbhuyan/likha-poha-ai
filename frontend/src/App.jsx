@@ -12,18 +12,21 @@ import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
 import DashboardPage from "./pages/DashboardPage";
 import { motion, AnimatePresence } from "framer-motion";
+import { PAGE_ICONS } from "./utils/pageIcons";
 
 import "./App.css";
 
 const PAGE_META = {
   dashboard: {
     title: "Dashboard",
-    subtitle: "Your central AI learning hub for lessons, practice, progress, and recommendations.",
+    subtitle:
+      "Your central AI learning hub for lessons, practice, progress, and recommendations.",
     icon: "🏠",
   },
   lessons: {
     title: "Lessons",
-    subtitle: "Generate step-wise AI lessons with narration, progress, and RAG sources.",
+    subtitle:
+      "Generate step-wise AI lessons with narration, progress, and RAG sources.",
     icon: "📖",
   },
   doubt: {
@@ -58,7 +61,8 @@ const PAGE_META = {
   },
   ragUpload: {
     title: "RAG Upload",
-    subtitle: "Admin area for uploading textbook content into the AI knowledge base.",
+    subtitle:
+      "Admin area for uploading textbook content into the AI knowledge base.",
     icon: "📤",
   },
 };
@@ -84,16 +88,12 @@ function App() {
     }
 
     document.body.classList.toggle("dark-mode", darkMode);
-
   }, []);
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
-  
-    localStorage.setItem(
-      "tutor_dark_mode",
-      darkMode
-    );
+
+    localStorage.setItem("tutor_dark_mode", darkMode);
   }, [darkMode]);
 
   function handleLogin(userData) {
@@ -166,7 +166,23 @@ function App() {
           <div>
             <p className="eyebrow">Grade 9 CBSE + SOF Olympiad</p>
             <h1>
-              <span>{pageMeta.icon}</span> {pageMeta.title}
+              {(() => {
+                const PageIcon = PAGE_ICONS[activePage];
+
+                return (
+                  <>
+                    {PageIcon && (
+                      <PageIcon
+                        size={38}
+                        strokeWidth={2.4}
+                        className="page-title-icon"
+                      />
+                    )}
+
+                    {pageMeta.title}
+                  </>
+                );
+              })()}
             </h1>
             <p className="page-subtitle">{pageMeta.subtitle}</p>
           </div>
