@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
-
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
+
+import {
+  BarChart3,
+  BookOpen,
+  Bot,
+  ClipboardList,
+  Target,
+} from "lucide-react";
 
 import {
   LineChart,
@@ -26,7 +33,6 @@ function DashboardPage({ user, setActivePage }) {
   });
 
   const [scoreTrend, setScoreTrend] = useState([]);
-
   const [subjectPerformance, setSubjectPerformance] = useState([]);
 
   useEffect(() => {
@@ -77,7 +83,6 @@ function DashboardPage({ user, setActivePage }) {
         const percentages = history.map((item) => Number(item.percentage || 0));
 
         const testsTaken = history.length;
-
         const bestScore = percentages.length ? Math.max(...percentages) : 0;
 
         const averageScore = percentages.length
@@ -98,16 +103,11 @@ function DashboardPage({ user, setActivePage }) {
           lastScore,
         });
 
-        const calculated = calculateAchievements({
-          testHistory:
-            result.history ||
-            result.test_history ||
-            result.results ||
-            result.data ||
-            [],
-        });
-
-        setAchievements(calculated);
+        setAchievements(
+          calculateAchievements({
+            testHistory: history,
+          })
+        );
       } catch (err) {
         console.error("Dashboard load failed", err);
 
@@ -153,8 +153,12 @@ function DashboardPage({ user, setActivePage }) {
         </div>
 
         <div className="dashboard-ai-card">
-          <span>🤖</span>
+          <div className="dashboard-stat-icon purple">
+            <Bot size={28} strokeWidth={2.4} />
+          </div>
+
           <h3>AI Tutor Suggestion</h3>
+
           <p>
             Start with your latest chapter, then attempt a quick quiz to check
             understanding.
@@ -164,26 +168,42 @@ function DashboardPage({ user, setActivePage }) {
 
       <section className="dashboard-grid">
         <div className="dashboard-stat-card">
-          <span>🧪</span>
+          <div className="dashboard-stat-icon blue">
+            <ClipboardList size={28} strokeWidth={2.4} />
+          </div>
+
           <h3>{stats.testsTaken}</h3>
+
           <p>Mock tests completed</p>
         </div>
 
         <div className="dashboard-stat-card">
-          <span>🏆</span>
+          <div className="dashboard-stat-icon purple">
+            <Target size={28} strokeWidth={2.4} />
+          </div>
+
           <h3>{stats.bestScore}%</h3>
+
           <p>Best mock test score</p>
         </div>
 
         <div className="dashboard-stat-card">
-          <span>📊</span>
+          <div className="dashboard-stat-icon green">
+            <BarChart3 size={28} strokeWidth={2.4} />
+          </div>
+
           <h3>{stats.averageScore}%</h3>
+
           <p>Average performance</p>
         </div>
 
         <div className="dashboard-stat-card">
-          <span>🎯</span>
+          <div className="dashboard-stat-icon red">
+            <BookOpen size={28} strokeWidth={2.4} />
+          </div>
+
           <h3>{stats.lastScore}%</h3>
+
           <p>Latest test score</p>
         </div>
       </section>
