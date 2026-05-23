@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { login } from "../api/auth";
-
+import logo from "../assets/AITutorLogo.png";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -29,64 +29,75 @@ function LoginPage({ onLogin }) {
   }
 
   return (
-    <div className="login-page-premium">
-      <div className="login-hero">
-        <div className="brand-badge">AI Tutor Platform</div>
+    <div className="ait-login-page">
+      <div className="ait-login-shell">
+        <div className="ait-login-left">
+          <img src={logo} alt="AI Tutor" className="ait-login-logo" />
 
-        <h1>
-          Learn CBSE + SOF with your personal AI tutor.
-        </h1>
+          <h1>Learn smarter with AI.</h1>
 
-        <p>
-          Lessons, doubts, quizzes, mock tests, analytics, narration, and RAG-powered textbook learning in one place.
-        </p>
-
-        <div className="feature-grid">
-          <div>📖 AI Lessons</div>
-          <div>❓ Doubt Solver</div>
-          <div>🧪 Mock Tests</div>
-          <div>📊 Analytics</div>
-          <div>🔊 Narration</div>
-          <div>📚 RAG Textbooks</div>
-        </div>
-      </div>
-
-      <div className="login-panel">
-        <div className="login-card-premium">
-          <div className="logo-orb">📚</div>
-
-          <h2>Welcome back</h2>
-          <p className="login-subtitle">
-            Sign in to continue learning.
+          <p>
+            Personalized CBSE + SOF Olympiad preparation with AI-powered lessons,
+            quizzes, analytics, narration, and doubt solving.
           </p>
 
-          <form onSubmit={handleLogin}>
-            <label>
-              Username
-              <input
-                type="text"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </label>
+          <div className="ait-feature-list">
+            <div>📖 Personalized Lessons</div>
+            <div>❓ Smart Doubt Solving</div>
+            <div>🧪 Practice & Tests</div>
+            <div>📊 Progress Analytics</div>
+          </div>
+        </div>
 
-            <label>
-              Password
-              <input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
+        <div className="ait-login-right">
+          <div className="ait-form-card">
+            <h2>Welcome back</h2>
+            <p>Sign in to continue learning.</p>
 
-            <button type="submit" disabled={loading}>
-              {loading ? "Signing in..." : "Sign in"}
-            </button>
-          </form>
+            <form onSubmit={handleLogin}>
+              <div className="ait-input-row">
+                <span>👤</span>
+                <input
+                  type="text"
+                  placeholder="Enter username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
 
-          {error && <div className="error-box">{error}</div>}
+              <div className="ait-input-row">
+                <span>🔒</span>
+                <input
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span>👁️</span>
+              </div>
+
+              <div className="ait-login-options">
+                <label>
+                  <input type="checkbox" />
+                  Remember me
+                </label>
+
+                <button type="button">Forgot password?</button>
+              </div>
+
+              <button className="ait-signin-btn" type="submit" disabled={loading}>
+                {loading ? "Signing in..." : "Sign in"}
+              </button>
+
+              <div className="ait-divider"></div>
+
+              <div className="ait-create-account">
+                New here? <span>Create an account</span>
+              </div>
+            </form>
+
+            {error && <div className="error-box">{error}</div>}
+          </div>
         </div>
       </div>
     </div>

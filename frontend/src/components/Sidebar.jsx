@@ -1,3 +1,5 @@
+import logo from "../assets/AITutorLogo.png";
+
 function Sidebar({
   activePage,
   setActivePage,
@@ -38,7 +40,7 @@ function Sidebar({
       </button>
 
       <div className="sidebar-brand">
-        <div className="brand-icon">📚</div>
+        <img src={logo} alt="AI Tutor" className="brand-logo" />
 
         <div>
           <h2>AI Tutor</h2>
