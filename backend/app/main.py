@@ -16,6 +16,7 @@ from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
 from app.routes import images
 from app.routes import usage
+from app.routes import recommendations
 
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
@@ -108,6 +109,12 @@ app.include_router(
 
 app.include_router(images.router, prefix="/api/images", tags=["Images"])
 app.include_router(usage.router, prefix="/api/usage", tags=["Usage"])
+
+app.include_router(
+    recommendations.router,
+    prefix="/api/recommendations",
+    tags=["Recommendations"],
+)
 
 @app.get("/")
 def health_check():

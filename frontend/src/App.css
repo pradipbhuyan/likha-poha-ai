@@ -4156,3 +4156,112 @@ body.dark-mode .usage-alert.high {
   border-color: rgba(248, 113, 113, 0.42);
   color: #fecaca;
 }
+
+.recommendation-section {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid #dbeafe;
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 16px 42px rgba(37, 99, 235, 0.07);
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recommendation-card {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid #e2e8f0;
+  background: white;
+}
+
+.recommendation-card.high {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.recommendation-card.medium {
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
+
+.recommendation-card.low {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.recommendation-card h4 {
+  margin-bottom: 10px;
+}
+
+.recommendation-card p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.recommendation-priority {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+body.dark-mode .recommendation-section {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .recommendation-card {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .recommendation-card.high {
+  background: rgba(127, 29, 29, 0.24) !important;
+}
+
+body.dark-mode .recommendation-card.medium {
+  background: rgba(154, 52, 18, 0.24) !important;
+}
+
+body.dark-mode .recommendation-card.low {
+  background: rgba(37, 99, 235, 0.14) !important;
+}
+
+body.dark-mode .recommendation-card p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .recommendation-priority {
+  background: rgba(255,255,255,0.08);
+  color: #e2e8f0;
+}
+
+@media (max-width: 900px) {
+  .recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.selected-files-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  display: grid;
+  gap: 6px;
+}
+
+body.dark-mode .selected-files-box {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}

@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
+import { getRecommendations } from "../api/recommendations";
 
-import {
-  BarChart3,
-  BookOpen,
-  Bot,
-  ClipboardList,
-  Target,
-} from "lucide-react";
+import { BarChart3, BookOpen, Bot, ClipboardList, Target } from "lucide-react";
 
 import {
   LineChart,
@@ -34,11 +29,16 @@ function DashboardPage({ user, setActivePage }) {
 
   const [scoreTrend, setScoreTrend] = useState([]);
   const [subjectPerformance, setSubjectPerformance] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
     async function loadDashboard() {
       try {
         const result = await getAnalytics(user.username);
+
+        const recData = await getRecommendations(user.username);
+
+        setRecommendations(recData.recommendations || []);
 
         const history =
           result.history ||
@@ -205,6 +205,31 @@ function DashboardPage({ user, setActivePage }) {
           <h3>{stats.lastScore}%</h3>
 
           <p>Latest test score</p>
+        </div>
+      </section>
+
+      <section className="recommendation-section">
+        <div className="section-heading-row">
+          <div>
+            <h3>🧠 AI Study Recommendations</h3>
+            <p>
+              Personalized guidance based on performance and learning patterns.
+            </p>
+          </div>
+        </div>
+
+        <div className="recommendation-grid">
+          {recommendations.map((rec, index) => (
+            <div key={index} className={`recommendation-card ${rec.priority}`}>
+              <h4>{rec.title}</h4>
+
+              <p>{rec.message}</p>
+
+              <span className="recommendation-priority">
+                {rec.priority} priority
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
