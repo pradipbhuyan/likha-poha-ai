@@ -3,6 +3,7 @@ from openai import OpenAI
 from app.config import settings
 from app.services.usage_service import log_ai_usage
 from app.services.usage_service import log_ai_usage, enforce_daily_limit
+from app.services.profile_service import update_student_activity
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
@@ -105,6 +106,11 @@ Safety rules:
         image_count=1,
         estimated_cost=0.04,
         metadata={"prompt": prompt},
+    )
+
+    update_student_activity(
+        username=username,
+        activity_type="visual_generated",
     )
 
     return {

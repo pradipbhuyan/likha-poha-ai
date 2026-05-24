@@ -2,8 +2,19 @@ import { useEffect, useState } from "react";
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
 import { getRecommendations } from "../api/recommendations";
+import { getStudentProfile } from "../api/profile";
 
-import { BarChart3, BookOpen, Bot, ClipboardList, Target } from "lucide-react";
+import {
+  BarChart3,
+  BookOpen,
+  Bot,
+  ClipboardList,
+  Flame,
+  Image,
+  Sparkles,
+  Target,
+  Trophy,
+} from "lucide-react";
 
 import {
   LineChart,
@@ -19,6 +30,7 @@ import {
 
 function DashboardPage({ user, setActivePage }) {
   const [achievements, setAchievements] = useState([]);
+  const [profile, setProfile] = useState(null);
 
   const [stats, setStats] = useState({
     testsTaken: 0,
@@ -36,8 +48,10 @@ function DashboardPage({ user, setActivePage }) {
       try {
         const result = await getAnalytics(user.username);
 
-        const recData = await getRecommendations(user.username);
+        const profileData = await getStudentProfile(user.username);
+        setProfile(profileData.profile);
 
+        const recData = await getRecommendations(user.username);
         setRecommendations(recData.recommendations || []);
 
         const history =
@@ -122,89 +136,181 @@ function DashboardPage({ user, setActivePage }) {
     loadDashboard();
   }, [user.username]);
 
+  const profileStats = [
+    {
+      label: "Study streak",
+      value: profile?.study_streak_days || 0,
+      suffix: "days",
+      icon: Flame,
+      hint: "Keep it up!",
+      className: "orange",
+    },
+    {
+      label: "Lessons",
+      value: profile?.lessons_completed || 0,
+      suffix: "completed",
+      icon: BookOpen,
+      hint: "Build your base",
+      className: "green",
+    },
+    {
+      label: "Quiz",
+      value: profile?.quizzes_attempted || 0,
+      suffix: "activities",
+      icon: Target,
+      hint: "Practice daily",
+      className: "purple",
+    },
+    {
+      label: "Visuals",
+      value: profile?.visuals_generated || 0,
+      suffix: "generated",
+      icon: Image,
+      hint: "Learn visually",
+      className: "cyan",
+    },
+  ];
+
   return (
-    <div className="dashboard-page">
-      <section className="dashboard-hero">
-        <div>
+    <div className="dashboard-page premium-dashboard-page">
+      <section className="dashboard-hero premium-dashboard-hero">
+        <div className="premium-hero-copy">
           <p className="eyebrow">AI Learning Dashboard</p>
 
-          <h2>Welcome back, {user.username} 👋</h2>
+          <h2>
+            <span>👋</span> Welcome back, {user.username}!
+          </h2>
 
           <p>
             Continue your CBSE + SOF learning journey with lessons, doubts,
             quizzes, mock tests, and textbook-powered AI support.
           </p>
 
-          <div className="dashboard-actions">
+          <div className="dashboard-actions premium-hero-actions">
             <button
               className="primary-btn"
               onClick={() => setActivePage("lessons")}
             >
-              Continue Learning
+              📘 Continue Learning
             </button>
 
             <button
               className="secondary-btn"
               onClick={() => setActivePage("mockTest")}
             >
-              Take Mock Test
+              🧪 Take Mock Test
             </button>
           </div>
         </div>
 
-        <div className="dashboard-ai-card">
-          <div className="dashboard-stat-icon purple">
-            <Bot size={28} strokeWidth={2.4} />
+        <div className="dashboard-ai-card premium-ai-card">
+          <div className="premium-ai-content">
+            <div className="premium-ai-icon">
+              <Bot size={32} strokeWidth={2.4} />
+            </div>
+
+            <div>
+              <h3>AI Tutor Suggestion</h3>
+
+              <p>
+                Start with your latest chapter, then attempt a quick quiz to
+                check understanding.
+              </p>
+
+              <button
+                className="mini-cta-btn"
+                onClick={() => setActivePage("quiz")}
+              >
+                ✨ Start Quiz
+              </button>
+            </div>
           </div>
 
-          <h3>AI Tutor Suggestion</h3>
-
-          <p>
-            Start with your latest chapter, then attempt a quick quiz to check
-            understanding.
-          </p>
+          <div className="premium-ai-mascot" aria-hidden="true">
+            🤖
+          </div>
         </div>
       </section>
 
-      <section className="dashboard-grid">
-        <div className="dashboard-stat-card">
+      <section className="dashboard-grid premium-stat-grid">
+        <div className="dashboard-stat-card premium-stat-card blue">
           <div className="dashboard-stat-icon blue">
             <ClipboardList size={28} strokeWidth={2.4} />
           </div>
 
-          <h3>{stats.testsTaken}</h3>
+          <div>
+            <h3>{stats.testsTaken}</h3>
+            <p>Mock tests completed</p>
+          </div>
 
-          <p>Mock tests completed</p>
+          <div className="mini-sparkline blue-line" />
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card premium-stat-card purple">
           <div className="dashboard-stat-icon purple">
             <Target size={28} strokeWidth={2.4} />
           </div>
 
-          <h3>{stats.bestScore}%</h3>
+          <div>
+            <h3>{stats.bestScore}%</h3>
+            <p>Best mock test score</p>
+          </div>
 
-          <p>Best mock test score</p>
+          <div className="mini-sparkline purple-line" />
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card premium-stat-card green">
           <div className="dashboard-stat-icon green">
             <BarChart3 size={28} strokeWidth={2.4} />
           </div>
 
-          <h3>{stats.averageScore}%</h3>
+          <div>
+            <h3>{stats.averageScore}%</h3>
+            <p>Average performance</p>
+          </div>
 
-          <p>Average performance</p>
+          <div className="mini-bars" />
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card premium-stat-card red">
           <div className="dashboard-stat-icon red">
             <BookOpen size={28} strokeWidth={2.4} />
           </div>
 
-          <h3>{stats.lastScore}%</h3>
+          <div>
+            <h3>{stats.lastScore}%</h3>
+            <p>Latest test score</p>
+          </div>
 
-          <p>Latest test score</p>
+          <div className="mini-sparkline red-line" />
+        </div>
+      </section>
+
+      <section className="profile-progress-strip">
+        {profileStats.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <div key={item.label} className="profile-progress-item">
+              <div className={`profile-progress-icon ${item.className}`}>
+                <Icon size={26} strokeWidth={2.4} />
+              </div>
+
+              <div>
+                <h3>{item.value}</h3>
+                <p>
+                  {item.label} <span>{item.suffix}</span>
+                </p>
+                <small>{item.hint}</small>
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="profile-trophy">
+          <Trophy size={76} strokeWidth={2.1} />
+          <Sparkles size={22} className="sparkle-one" />
+          <Sparkles size={18} className="sparkle-two" />
         </div>
       </section>
 
@@ -275,11 +381,25 @@ function DashboardPage({ user, setActivePage }) {
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={scoreTrend}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Line type="monotone" dataKey="score" strokeWidth={3} />
+                <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
+                <XAxis dataKey="name" stroke="#94a3b8" />
+                <YAxis domain={[0, 100]} stroke="#94a3b8" />
+                <Tooltip
+                  contentStyle={{
+                    background: "#0f172a",
+                    border: "1px solid #334155",
+                    borderRadius: "14px",
+                    color: "#f8fafc",
+                  }}
+                  labelStyle={{ color: "#f8fafc" }}
+                  itemStyle={{ color: "#93c5fd" }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="#3b82f6"
+                  strokeWidth={3}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -302,11 +422,26 @@ function DashboardPage({ user, setActivePage }) {
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={subjectPerformance}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="subject" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Bar dataKey="average" />
+                <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
+                <XAxis dataKey="subject" stroke="#94a3b8" />
+                <YAxis domain={[0, 100]} stroke="#94a3b8" />
+                <Tooltip
+                  cursor={{ fill: "rgba(59, 130, 246, 0.08)" }}
+                  contentStyle={{
+                    background: "#0f172a",
+                    border: "1px solid #334155",
+                    borderRadius: "14px",
+                    color: "#f8fafc",
+                  }}
+                  labelStyle={{ color: "#f8fafc" }}
+                  itemStyle={{ color: "#93c5fd" }}
+                />
+                <Bar
+                  dataKey="average"
+                  fill="#3b82f6"
+                  radius={[10, 10, 0, 0]}
+                  activeBar={{ fill: "#60a5fa" }}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory } from "../api/analytics";
+import { logStudentActivity } from "../api/profile";
 
 function MockTestPage({ user }) {
   function getPerformanceSummary(percentage) {
@@ -238,8 +239,15 @@ function MockTestPage({ user }) {
       
       setResults(resultPayload);
       
-      saveTestHistory(resultPayload).catch(() => {
-        setError("Test submitted, but history could not be saved.");
+      saveTestHistory(resultPayload)
+      .then(() =>
+        logStudentActivity({
+          username: user.username,
+          activity_type: "mock_test_taken",
+        })
+      )
+      .catch(() => {
+        setError("Test submitted, but history/activity could not be saved.");
       });
 
     setSecondsLeft(0);
