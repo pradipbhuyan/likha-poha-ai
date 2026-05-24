@@ -10,6 +10,7 @@ import {
   UploadCloud,
   Video,
   DollarSign,
+  Users,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo.png";
@@ -35,6 +36,7 @@ function Sidebar({
     { key: "leaderboard", label: "Leaderboard", icon: Trophy },
     { key: "ragUpload", label: "RAG Upload", icon: UploadCloud, adminOnly: true },
     { key: "usage", label: "AI Usage", icon: DollarSign, adminOnly: true },
+    { key: "parentDashboard", label: "Parent Dashboard", icon: Users, adminOnly: true },
   ];
 
   const visiblePages = pages.filter((page) => !page.adminOnly || isAdmin);

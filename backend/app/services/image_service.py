@@ -11,7 +11,7 @@ def generate_educational_image(prompt: str, username: str = "unknown"):
     limit = enforce_daily_limit(
         username=username,
         feature="image_generation",
-        max_requests=10,
+        max_requests=5,
     )
 
     if not limit["allowed"]:

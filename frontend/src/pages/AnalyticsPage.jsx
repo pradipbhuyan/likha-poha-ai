@@ -163,11 +163,23 @@ function AnalyticsPage({ user }) {
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
                   <LineChart data={scoreTrend}>
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis domain={[0, 100]} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="score" strokeWidth={3} />
+                    <YAxis domain={[0, 100]} stroke="#94a3b8" />
+                    <Tooltip
+                      contentStyle={{
+                        background: "#0f172a",
+                        border: "1px solid #334155",
+                        borderRadius: "14px",
+                        color: "#f8fafc",
+                      }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="score"
+                      stroke="#3b82f6"
+                      strokeWidth={3}
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -184,11 +196,15 @@ function AnalyticsPage({ user }) {
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
                   <BarChart data={subjectPerformance}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="subject" />
+                    <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
+                    <XAxis dataKey="subject" stroke="#94a3b8" />
                     <YAxis domain={[0, 100]} />
                     <Tooltip />
-                    <Bar dataKey="average" />
+                    <Bar
+                      dataKey="average"
+                      fill="#3b82f6"
+                      radius={[8, 8, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -198,18 +214,21 @@ function AnalyticsPage({ user }) {
           <div className="card">
             <h3>Recent Test History</h3>
 
-            {[...history].reverse().slice(0, 10).map((item, index) => (
-              <div key={index} className="question-card">
-                <strong>
-                  {item.subject} - {item.chapter || item.mockType}
-                </strong>
+            {[...history]
+              .reverse()
+              .slice(0, 10)
+              .map((item, index) => (
+                <div key={index} className="question-card">
+                  <strong>
+                    {item.subject} - {item.chapter || item.mockType}
+                  </strong>
 
-                <p>
-                  {item.difficulty} | {item.percentage}% |{" "}
-                  {(item.submittedAt || item.saved_at || "").slice(0, 10)}
-                </p>
-              </div>
-            ))}
+                  <p>
+                    {item.difficulty} | {item.percentage}% |{" "}
+                    {(item.submittedAt || item.saved_at || "").slice(0, 10)}
+                  </p>
+                </div>
+              ))}
           </div>
         </>
       )}

@@ -6,9 +6,13 @@ router = APIRouter()
 
 @router.get("/summary")
 def get_usage_summary(username: str | None = Query(default=None)):
-    query = supabase.table("ai_usage_logs").select("*").order(
-        "created_at",
-        desc=True,
+    query = (
+        supabase.table("ai_usage_logs")
+        .select("*")
+        .order(
+            "created_at",
+            desc=True,
+        )
     )
 
     if username:
@@ -21,6 +25,33 @@ def get_usage_summary(username: str | None = Query(default=None)):
     total_tokens = sum(int(item.get("total_tokens") or 0) for item in logs)
     total_images = sum(int(item.get("image_count") or 0) for item in logs)
     total_tts_chars = sum(int(item.get("tts_chars") or 0) for item in logs)
+
+    alerts = []
+
+
+    if total_cost >= 5:
+        alerts.append(
+            {
+                "level": "high",
+                "message": "Total AI cost has crossed $5. Review usage.",
+            }
+        )
+
+    if total_images >= 25:
+        alerts.append(
+            {
+                "level": "medium",
+                "message": "Image generation volume is high.",
+            }
+        )
+
+    if total_tokens >= 100000:
+        alerts.append(
+            {
+                "level": "medium",
+                "message": "Token usage has crossed 100,000 tokens.",
+            }
+        )
 
     by_user = {}
     by_feature = {}
@@ -57,6 +88,7 @@ def get_usage_summary(username: str | None = Query(default=None)):
 
     return {
         "success": True,
+        "alerts": alerts,
         "totals": {
             "total_cost": round(total_cost, 6),
             "total_tokens": total_tokens,
