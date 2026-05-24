@@ -7,8 +7,12 @@ router = APIRouter()
 
 class ImageRequest(BaseModel):
     prompt: str
+    username: str = "unknown"
 
 
 @router.post("/generate")
 def generate_image(data: ImageRequest):
-    return generate_educational_image(data.prompt)
+    return generate_educational_image(
+        prompt=data.prompt,
+        username=data.username,
+    )

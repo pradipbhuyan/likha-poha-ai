@@ -15,6 +15,7 @@ from app.routes.quiz import router as quiz_router
 from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
 from app.routes import images
+from app.routes import usage
 
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
@@ -106,6 +107,7 @@ app.include_router(
 )
 
 app.include_router(images.router, prefix="/api/images", tags=["Images"])
+app.include_router(usage.router, prefix="/api/usage", tags=["Usage"])
 
 @app.get("/")
 def health_check():

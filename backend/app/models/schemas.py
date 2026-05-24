@@ -19,6 +19,7 @@ class LessonRequest(BaseModel):
     chapter: str
     step_title: str
     teacher_persona: str = ""
+    username: str = "unknown"
 
 
 class LessonResponse(BaseModel):
@@ -64,6 +65,7 @@ class DoubtRequest(BaseModel):
     subject: str
     chapter: str
     question: str
+    username: str = "unknown"
 
 
 class DoubtResponse(BaseModel):
@@ -125,6 +127,7 @@ class LessonFollowUpRequest(BaseModel):
     step_title: str
     lesson: str
     question: str
+    username: str = "unknown"
 
 
 class LessonFollowUpResponse(BaseModel):

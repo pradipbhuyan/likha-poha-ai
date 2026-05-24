@@ -6,7 +6,7 @@ import { getSyllabus } from "../api/syllabus";
 import { answerDoubt } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
 
-function DoubtPage() {
+function DoubtPage({ user }) {
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -102,6 +102,7 @@ function DoubtPage() {
 
     try {
       const result = await answerDoubt({
+        username: user.username,
         grade,
         mode,
         subject,
