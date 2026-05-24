@@ -53,6 +53,7 @@ function LessonsPage({ user }) {
   const [visualImage, setVisualImage] = useState("");
   const [visualLoading, setVisualLoading] = useState(false);
   const [visualTopic, setVisualTopic] = useState("");
+  const [visualError, setVisualError] = useState("");
 
   const lessonSteps = [
     "Concept introduction",
@@ -226,6 +227,7 @@ function LessonsPage({ user }) {
 
     try {
       const result = await generateLesson({
+        username: user.username,
         grade,
         mode,
         subject,
@@ -284,6 +286,7 @@ function LessonsPage({ user }) {
 
     try {
       const result = await askLessonFollowUp({
+        username: user.username,
         grade,
         mode,
         subject,
@@ -356,6 +359,7 @@ function LessonsPage({ user }) {
 
     setVisualLoading(true);
     setVisualImage("");
+    setVisualError("");
 
     try {
       const imagePrompt = topic
@@ -365,7 +369,16 @@ function LessonsPage({ user }) {
             1200
           )}`;
 
-      const result = await generateEducationalImage(imagePrompt);
+      const result = await generateEducationalImage(
+        imagePrompt,
+        user.username
+      );
+
+      if (!result.success) {
+        setVisualError(result.message || "Visual generation failed.");
+        return;
+      }
+      
 
       setVisualImage(`data:image/png;base64,${result.image_base64}`);
     } catch {
@@ -678,6 +691,10 @@ function LessonsPage({ user }) {
                       value={visualTopic}
                       onChange={(e) => setVisualTopic(e.target.value)}
                     />
+
+                    {visualError && (
+                      <div className="visual-error-box">{visualError}</div>
+                    )}
 
                     <button
                       className="secondary-btn visual-generate-btn"

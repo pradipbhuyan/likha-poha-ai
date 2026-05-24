@@ -1,6 +1,7 @@
 import API_BASE_URL from "./client";
 
-export async function generateEducationalImage(prompt) {
+
+export async function generateEducationalImage(prompt, username) {
   const response = await fetch(
     `${API_BASE_URL}/api/images/generate`,
     {
@@ -8,7 +9,10 @@ export async function generateEducationalImage(prompt) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({
+        prompt,
+        username,
+      }),
     }
   );
 

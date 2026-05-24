@@ -13,6 +13,7 @@ import RagUploadPage from "./pages/RagUploadPage";
 import DashboardPage from "./pages/DashboardPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
+import UsagePage from "./pages/UsagePage";
 
 import "./App.css";
 
@@ -64,6 +65,11 @@ const PAGE_META = {
     subtitle:
       "Admin area for uploading textbook content into the AI knowledge base.",
     icon: "📤",
+  },
+  usage: {
+    title: "AI Usage",
+    subtitle: "Track token, image, and estimated AI costs by user and feature.",
+    icon: "💰",
   },
 };
 
@@ -139,6 +145,8 @@ function App() {
         return <LeaderboardPage user={user} />;
       case "ragUpload":
         return <RagUploadPage user={user} />;
+      case "usage":
+        return <UsagePage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

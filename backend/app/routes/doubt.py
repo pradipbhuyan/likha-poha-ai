@@ -16,6 +16,7 @@ def answer_student_doubt(data: DoubtRequest):
             subject=data.subject,
             chapter=data.chapter,
             question=data.question,
+            username=data.username,
         )
 
         return {

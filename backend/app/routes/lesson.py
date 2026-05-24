@@ -19,11 +19,12 @@ def generate_lesson(data: LessonRequest):
     try:
         result = generate_step_lesson(
             grade=data.grade,
-            mode=data.mode,
             subject=data.subject,
             chapter=data.chapter,
+            mode=data.mode,
             step_title=data.step_title,
             teacher_persona=data.teacher_persona,
+            username=data.username,
         )
 
         if isinstance(result, dict):
@@ -63,6 +64,7 @@ def lesson_follow_up(data: LessonFollowUpRequest):
             step_title=data.step_title,
             lesson=data.lesson,
             question=data.question,
+            username=data.username,
         )
 
         return LessonFollowUpResponse(

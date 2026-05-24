@@ -4091,3 +4091,19 @@ body.dark-mode .visual-topic-input::placeholder {
   height: 56px !important;
   white-space: nowrap !important;
 }
+
+.visual-error-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+  font-weight: 800;
+}
+
+body.dark-mode .visual-error-box {
+  background: rgba(127, 29, 29, 0.22) !important;
+  border-color: rgba(248, 113, 113, 0.38) !important;
+  color: #fecaca !important;
+}

@@ -106,6 +106,7 @@ def generate_step_lesson(
     mode: str,
     step_title: str,
     teacher_persona: str = "",
+    username: str = "unknown",
 ):
     rag_query = f"""
     Grade 9 {subject} {chapter}
@@ -162,7 +163,12 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 End with one small question to check understanding.
 """
 
-    lesson = ask_llm(TUTOR_SYSTEM, prompt)
+    lesson = ask_llm(
+        TUTOR_SYSTEM,
+        prompt,
+        username=username,
+        feature="lesson",
+    )
 
     return {
         "lesson": lesson,
@@ -176,6 +182,7 @@ def answer_doubt(
     subject: str,
     chapter: str,
     question: str,
+    username: str = "unknown",
 ):
     rag_results = search_textbook_content(
         query=f"{chapter} {question}",
@@ -230,7 +237,12 @@ formula
 $$
 """
 
-    answer = ask_llm(TUTOR_SYSTEM, prompt)
+    answer = ask_llm(
+        TUTOR_SYSTEM,
+        prompt,
+        username=username,
+        feature="doubt",
+    )
 
     return {
         "answer": answer,
@@ -247,6 +259,7 @@ def answer_lesson_follow_up(
     step_title: str,
     lesson: str,
     question: str,
+    username: str = "unknown",
 ):
     rag_query = f"""
 Grade: {grade}
@@ -313,7 +326,12 @@ Rules:
 {DIAGRAM_HINT}
 """
 
-    answer = ask_llm(TUTOR_SYSTEM, prompt)
+    answer = ask_llm(
+        TUTOR_SYSTEM,
+        prompt,
+        username=username,
+        feature="lesson_followup",
+    )
 
     return {
         "answer": answer,
