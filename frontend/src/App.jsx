@@ -14,6 +14,8 @@ import DashboardPage from "./pages/DashboardPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
+import ParentDashboardPage from "./pages/ParentDashboardPage";
+
 
 import "./App.css";
 
@@ -70,6 +72,11 @@ const PAGE_META = {
     title: "AI Usage",
     subtitle: "Track token, image, and estimated AI costs by user and feature.",
     icon: "💰",
+  },
+  parentDashboard: {
+    title: "Parent Dashboard",
+    subtitle: "Track student progress, test performance, and AI usage.",
+    icon: "👨‍👩‍👧",
   },
 };
 
@@ -147,6 +154,8 @@ function App() {
         return <RagUploadPage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
+      case "parentDashboard":
+        return <ParentDashboardPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

@@ -1,6 +1,19 @@
 import { useEffect, useState } from "react";
 import { getUsageSummary } from "../api/usage";
 
+import {
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+
 function UsagePage() {
   const [usage, setUsage] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,6 +32,9 @@ function UsagePage() {
   }, []);
 
   if (loading) return <p>Loading usage...</p>;
+
+  const userCostData = usage?.by_user || [];
+  const featureCostData = usage?.by_feature || [];
 
   return (
     <div className="usage-page">
@@ -41,6 +57,53 @@ function UsagePage() {
         <div>
           <strong>Images</strong>
           <p>{usage?.totals?.total_images || 0}</p>
+        </div>
+      </div>
+
+      {usage?.alerts?.length > 0 && (
+        <div className="usage-alerts">
+          {usage.alerts.map((alert, index) => (
+            <div key={index} className={`usage-alert ${alert.level}`}>
+              ⚠️ {alert.message}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="usage-chart-grid">
+        <div className="dashboard-chart-card">
+          <h3>💰 Cost by User</h3>
+
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart data={userCostData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="username" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="total_cost" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="dashboard-chart-card">
+          <h3>⚙️ Cost by Feature</h3>
+
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={280}>
+              <PieChart>
+                <Pie
+                  data={featureCostData}
+                  dataKey="total_cost"
+                  nameKey="feature"
+                  outerRadius={95}
+                  label
+                />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
