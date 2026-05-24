@@ -30,3 +30,35 @@ export async function uploadRagFile({
 
   return response.json();
 }
+
+export async function uploadRagFilesBatch({
+  username,
+  grade,
+  subject,
+  chapter,
+  titles,
+  files,
+}) {
+  const formData = new FormData();
+
+  formData.append("username", username);
+  formData.append("grade", grade);
+  formData.append("subject", subject);
+  formData.append("chapter", chapter);
+  formData.append("titles", titles);
+
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/upload-files`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Batch upload failed");
+  }
+
+  return response.json();
+}

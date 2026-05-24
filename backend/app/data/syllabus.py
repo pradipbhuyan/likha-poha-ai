@@ -1,7 +1,5 @@
 CBSE_9 = {
-
     "Science": [
-
         "Exploration: Entering the World of Secondary Science",
         "Cell: The Building Block of Life",
         "Tissues in Action",
@@ -14,11 +12,9 @@ CBSE_9 = {
         "Sound Waves: Characteristics and Applications",
         "Reproduction: How Life Continues",
         "Patterns in Life: Diversity and Classification",
-        "Earth as a System: Energy, Matter, and Life"
+        "Earth as a System: Energy, Matter, and Life",
     ],
-
     "Maths": [
-
         "Orienting Yourself: The Use of Coordinates",
         "Introduction to Linear Polynomials",
         "The World of Numbers",
@@ -27,11 +23,8 @@ CBSE_9 = {
         "Measuring Space: Perimeter and Area",
         "The Mathematics of Maybe: Introduction to Probability",
         "Predicting What Comes Next: Exploring Sequences and Progressions",
-
     ],
-
     "English": [
-
         "The Fun They Had",
         "The Sound of Music",
         "The Little Girl",
@@ -43,7 +36,6 @@ CBSE_9 = {
         "The Bond of Love",
         "Kathmandu",
         "If I Were You",
-
         "The Road Not Taken",
         "Wind",
         "Rain on the Roof",
@@ -53,7 +45,6 @@ CBSE_9 = {
         "On Killing a Tree",
         "The Snake Trying",
         "A Slumber Did My Spirit Seal",
-
         "The Lost Child",
         "The Adventures of Toto",
         "Iswaran the Storyteller",
@@ -63,41 +54,33 @@ CBSE_9 = {
         "The Last Leaf",
         "A House is Not a Home",
         "The Beggar",
-
         "Grammar",
         "Writing Skills",
-        "Reading Comprehension"
+        "Reading Comprehension",
     ],
-
     "Social Science": [
-
         "The French Revolution",
         "Socialism in Europe and the Russian Revolution",
         "Nazism and the Rise of Hitler",
         "Forest Society and Colonialism",
         "Pastoralists in the Modern World",
-
         "India Size and Location",
         "Physical Features of India",
         "Drainage",
         "Climate",
         "Natural Vegetation and Wildlife",
         "Population",
-
         "What is Democracy Why Democracy",
         "Constitutional Design",
         "Electoral Politics",
         "Working of Institutions",
         "Democratic Rights",
-
         "The Story of Village Palampur",
         "People as Resource",
         "Poverty as a Challenge",
-        "Food Security in India"
+        "Food Security in India",
     ],
-
     "Hindi": [
-
         "दो बैलों की कथा",
         "ल्हासा की ओर",
         "उपभोक्तावाद की संस्कृति",
@@ -106,7 +89,6 @@ CBSE_9 = {
         "प्रेमचंद के फटे जूते",
         "मेरे बचपन के दिन",
         "एक कुत्ता और एक मैना",
-
         "साखियाँ एवं सबद",
         "वाख",
         "सवैये",
@@ -115,18 +97,29 @@ CBSE_9 = {
         "चंद्र गहना से लौटती बेर",
         "मेघ आए",
         "बच्चे काम पर जा रहे हैं",
-
         "गिल्लू",
         "स्मृति",
         "कल्लू कुम्हार की उनाकोटी",
         "मेरा छोटा सा निजी पुस्तकालय",
         "हमिद खाँ",
         "दिए जल उठे",
-
         "व्याकरण",
         "लेखन कौशल",
-        "अपठित गद्यांश"
-    ]
+        "अपठित गद्यांश",
+    ],
+    "Sanskrit": [
+        "प्रथमः पाठः — सत्यं शिवं सुन्दरं संस्कृतम्",
+        "द्वितीयः पाठः — सुखस्य मूलं धर्मः धर्मस्य मूलम् अर्थः",
+        "तृतीयः पाठः — आत्मवलस्य भूतिṣu यः पश्यति सः पण्डितः",
+        "चतुर्थः पाठः — न खलु वयस तेजसो हेतुः",
+        "पञ्चमः पाठः — एका सा कृतकबुद्धिः मानवबुद्धिः सहकरी",
+        "षष्ठः पाठः — मनः पूतं समाचरेत्",
+        "सप्तमः पाठः — उपायं चिन्तयेत् प्राज्ञः तथापायं च चिन्तयेत्",
+        "अष्टमः पाठः — अनाद आनन्दं प्राति",
+        "नवमः पाठः — कृतं प्रतिकृतं भूयादेष धर्मः सनातनः",
+        "दशमः पाठः — गङ्गा अहितगणम्",
+        "एकादशः पाठः — वर्णोच्चारण-शिक्षा",
+    ],
 }
 
 
