@@ -116,6 +116,13 @@ app.include_router(
     tags=["Recommendations"],
 )
 
+@app.get("/api/health")
+def health_check():
+    return {
+        "status": "ok",
+        "message": "Backend is healthy"
+    }
+
 @app.get("/")
 def health_check():
     return {
