@@ -17,6 +17,7 @@ from app.routes.rag import router as rag_router
 from app.routes import images
 from app.routes import usage
 from app.routes import recommendations
+from app.routes import profile
 
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
@@ -114,6 +115,12 @@ app.include_router(
     recommendations.router,
     prefix="/api/recommendations",
     tags=["Recommendations"],
+)
+
+app.include_router(
+    profile.router,
+    prefix="/api/profile",
+    tags=["Profile"],
 )
 
 @app.get("/api/health")

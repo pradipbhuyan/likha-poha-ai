@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { getSyllabus } from "../api/syllabus";
 import { generateQuiz } from "../api/quiz";
+import { logStudentActivity } from "../api/profile";
 
 function QuizPage() {
   function getQuizEncouragement(scorePercent) {
@@ -155,11 +156,20 @@ function QuizPage() {
     }));
   }
 
-  function handleCheckAnswer(questionId) {
+  async function handleCheckAnswer(questionId) {
     setCheckedAnswers((prev) => ({
       ...prev,
       [questionId]: true,
     }));
+  
+    try {
+      await logStudentActivity({
+        username: user.username,
+        activity_type: "quiz_attempted",
+      });
+    } catch {
+      console.error("Could not log quiz activity");
+    }
   }
 
   return (
