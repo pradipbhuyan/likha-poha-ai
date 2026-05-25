@@ -138,6 +138,22 @@ function DashboardPage({ user, setActivePage }) {
 
   const profileStats = [
     {
+      label: "Level",
+      value: profile?.student_level || 1,
+      suffix: profile?.rank_title || "Beginner",
+      icon: Trophy,
+      hint: "Learning rank",
+      className: "purple",
+    },
+    {
+      label: "XP",
+      value: profile?.xp_points || 0,
+      suffix: "points",
+      icon: Sparkles,
+      hint: "Keep earning",
+      className: "cyan",
+    },
+    {
       label: "Study streak",
       value: profile?.study_streak_days || 0,
       suffix: "days",

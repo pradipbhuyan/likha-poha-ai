@@ -31,15 +31,39 @@ def get_chapter_progress(username, grade, mode, subject, chapter):
 
 
 def save_chapter_progress(data):
+    username = data.get("username")
+    grade = data.get("grade")
+    mode = data.get("mode")
+    subject = data.get("subject")
+    chapter = data.get("chapter")
+
+    step_index = int(data.get("current_step_index", 0))
+
+    last_lesson = data.get("last_lesson", "")
+
+    existing = get_chapter_progress(
+        username=username,
+        grade=grade,
+        mode=mode,
+        subject=subject,
+        chapter=chapter,
+    )
+
+    step_lessons = existing.get("step_lessons") or {}
+
+    if last_lesson:
+        step_lessons[str(step_index)] = last_lesson
+
     payload = {
-        "username": data.get("username"),
-        "grade": data.get("grade"),
-        "mode": data.get("mode"),
-        "subject": data.get("subject"),
-        "chapter": data.get("chapter"),
-        "current_step_index": data.get("current_step_index", 0),
+        "username": username,
+        "grade": grade,
+        "mode": mode,
+        "subject": subject,
+        "chapter": chapter,
+        "current_step_index": step_index,
         "completed": data.get("completed", False),
-        "last_lesson": data.get("last_lesson", ""),
+        "last_lesson": last_lesson,
+        "step_lessons": step_lessons,
     }
 
     response = (
@@ -53,7 +77,6 @@ def save_chapter_progress(data):
     )
 
     return response.data[0] if response.data else payload
-
 
 def get_user_progress(username):
     response = (
