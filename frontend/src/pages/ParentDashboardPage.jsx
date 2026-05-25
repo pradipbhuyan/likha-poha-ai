@@ -77,29 +77,36 @@ function ParentDashboardPage() {
     })
   );
 
+  const parentInsight =
+    latestScore >= 85
+      ? "Akshita is performing strongly. Encourage harder practice and Olympiad-style questions."
+      : latestScore >= 60
+      ? "Akshita is progressing well. Weekly revision and mistake review will help improve consistency."
+      : "Akshita may need guided revision. Start with weak chapters, then use short tests to rebuild confidence.";
+
   return (
-    <div className="parent-dashboard-page">
-      <section className="dashboard-hero">
-        <div>
-          <p className="eyebrow">Parent Dashboard</p>
+    <div className="parent-dashboard-page premium-page premium-parent-page">
+      <section className="premium-section premium-parent-hero">
+        <div className="premium-header">
+          <p className="eyebrow">Parent Insights Center</p>
           <h2>Akshita&apos;s Learning Overview</h2>
           <p>
             Track learning progress, test performance, AI usage, and suggested
-            next steps.
+            next steps in one parent-friendly view.
           </p>
         </div>
 
-        <div className="dashboard-ai-card">
-          <h3>Parent Suggestion</h3>
-          <p>
-            Review weak chapters weekly and encourage one short quiz after every
-            lesson.
-          </p>
+        <div className="premium-parent-insight-card">
+          <span>👨‍👩‍👧</span>
+          <div>
+            <strong>Parent Suggestion</strong>
+            <p>{parentInsight}</p>
+          </div>
         </div>
       </section>
 
-      <section className="dashboard-grid">
-        <div className="dashboard-stat-card">
+      <section className="premium-grid premium-grid-4 premium-parent-stats">
+        <div className="premium-card premium-glow-card glow-blue">
           <div className="dashboard-stat-icon blue">
             <ClipboardList size={28} strokeWidth={2.4} />
           </div>
@@ -107,7 +114,7 @@ function ParentDashboardPage() {
           <p>Mock tests completed</p>
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="premium-card premium-glow-card glow-green">
           <div className="dashboard-stat-icon green">
             <BarChart3 size={28} strokeWidth={2.4} />
           </div>
@@ -115,7 +122,7 @@ function ParentDashboardPage() {
           <p>Average score</p>
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="premium-card premium-glow-card glow-purple">
           <div className="dashboard-stat-icon purple">
             <Trophy size={28} strokeWidth={2.4} />
           </div>
@@ -123,7 +130,7 @@ function ParentDashboardPage() {
           <p>Best score</p>
         </div>
 
-        <div className="dashboard-stat-card">
+        <div className="premium-card premium-glow-card glow-red">
           <div className="dashboard-stat-icon red">
             <Target size={28} strokeWidth={2.4} />
           </div>
@@ -132,8 +139,8 @@ function ParentDashboardPage() {
         </div>
       </section>
 
-      <section className="analytics-chart-grid">
-        <div className="dashboard-chart-card">
+      <section className="analytics-chart-grid premium-parent-chart-grid">
+        <div className="dashboard-chart-card premium-card premium-chart-card">
           <div className="section-heading-row">
             <div>
               <h3>📈 Score Trend</h3>
@@ -144,17 +151,31 @@ function ParentDashboardPage() {
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={scoreTrend}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis domain={[0, 100]} />
-                <Tooltip />
-                <Line type="monotone" dataKey="score" strokeWidth={3} />
+                <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
+                <XAxis dataKey="name" stroke="#94a3b8" />
+                <YAxis domain={[0, 100]} stroke="#94a3b8" />
+                <Tooltip
+                  contentStyle={{
+                    background: "#0f172a",
+                    border: "1px solid #334155",
+                    borderRadius: "14px",
+                    color: "#f8fafc",
+                  }}
+                  labelStyle={{ color: "#f8fafc" }}
+                  itemStyle={{ color: "#93c5fd" }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="#3b82f6"
+                  strokeWidth={3}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="dashboard-chart-card">
+        <div className="dashboard-chart-card premium-card premium-chart-card">
           <div className="section-heading-row">
             <div>
               <h3>📚 Subject Performance</h3>
@@ -166,11 +187,8 @@ function ParentDashboardPage() {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={subjectPerformance}>
                 <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-
                 <XAxis dataKey="subject" stroke="#94a3b8" />
-
                 <YAxis domain={[0, 100]} stroke="#94a3b8" />
-
                 <Tooltip
                   cursor={{ fill: "rgba(59, 130, 246, 0.08)" }}
                   contentStyle={{
@@ -182,7 +200,6 @@ function ParentDashboardPage() {
                   labelStyle={{ color: "#f8fafc" }}
                   itemStyle={{ color: "#93c5fd" }}
                 />
-
                 <Bar
                   dataKey="average"
                   fill="#3b82f6"
@@ -195,33 +212,61 @@ function ParentDashboardPage() {
         </div>
       </section>
 
-      <section className="dashboard-bottom-grid">
-        <div className="card">
-          <h3>Recent Test Activity</h3>
+      <section className="dashboard-bottom-grid premium-parent-bottom-grid">
+        <div className="premium-section premium-parent-activity">
+          <div className="premium-header">
+            <h3>🕘 Recent Test Activity</h3>
+            <p>Latest mock tests completed by Akshita.</p>
+          </div>
 
           {history.length === 0 ? (
-            <p>No test history yet.</p>
+            <div className="premium-parent-empty">
+              <h3>No test history yet</h3>
+              <p>Ask Akshita to complete a mock test to unlock insights.</p>
+            </div>
           ) : (
-            [...history]
-              .reverse()
-              .slice(0, 5)
-              .map((item, index) => (
-                <div key={index} className="question-card">
-                  <strong>{item.subject}</strong>
-                  <p>{item.chapter || item.mockType}</p>
-                  <p>{item.percentage}%</p>
-                </div>
-              ))
+            <div className="premium-parent-activity-list">
+              {[...history]
+                .reverse()
+                .slice(0, 5)
+                .map((item, index) => (
+                  <div key={index} className="premium-parent-activity-row">
+                    <div>
+                      <strong>{item.subject}</strong>
+                      <p>{item.chapter || item.mockType}</p>
+                    </div>
+
+                    <span>{item.percentage}%</span>
+                  </div>
+                ))}
+            </div>
           )}
         </div>
 
-        <div className="card">
-          <h3>AI Usage</h3>
-          <p>
-            Estimated cost: ${Number(usage?.totals?.total_cost || 0).toFixed(6)}
-          </p>
-          <p>Total tokens: {usage?.totals?.total_tokens || 0}</p>
-          <p>Requests: {usage?.totals?.requests || 0}</p>
+        <div className="premium-section premium-parent-usage">
+          <div className="premium-header">
+            <h3>🤖 AI Usage</h3>
+            <p>Estimated AI usage and cost visibility for this student.</p>
+          </div>
+
+          <div className="premium-parent-usage-grid">
+            <div>
+              <strong>
+                ${Number(usage?.totals?.total_cost || 0).toFixed(6)}
+              </strong>
+              <span>Estimated cost</span>
+            </div>
+
+            <div>
+              <strong>{usage?.totals?.total_tokens || 0}</strong>
+              <span>Total tokens</span>
+            </div>
+
+            <div>
+              <strong>{usage?.totals?.requests || 0}</strong>
+              <span>Requests</span>
+            </div>
+          </div>
         </div>
       </section>
     </div>
