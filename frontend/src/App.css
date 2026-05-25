@@ -5625,3 +5625,208 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
     }
   }
   
+  /* Premium Analytics Page polish
+   Paste this at the bottom of frontend/src/App.css */
+
+.premium-analytics-page {
+  gap: 28px;
+}
+
+.premium-analytics-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 26px;
+  align-items: center;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.14), transparent 30%),
+    linear-gradient(135deg, #ffffff, #f8fbff 58%, #eef4ff) !important;
+}
+
+.premium-analytics-hero h2 {
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.premium-analytics-insight-card {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+  border: 1px solid #dbeafe;
+  box-shadow: 0 20px 44px rgba(37, 99, 235, 0.12);
+}
+
+.premium-analytics-insight-card span {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  font-size: 38px;
+  background: white;
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.12);
+}
+
+.premium-analytics-insight-card strong {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.premium-analytics-insight-card p {
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.premium-empty-analytics {
+  min-height: 430px;
+  display: grid;
+  align-content: center;
+  gap: 26px;
+}
+
+.premium-empty-analytics h2 {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.05;
+}
+
+.premium-analytics-stats .premium-card {
+  min-height: 150px;
+}
+
+.premium-analytics-stats .premium-card strong {
+  color: #64748b;
+}
+
+.premium-analytics-stats .premium-card p {
+  margin: 14px 0 0;
+  font-size: 36px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.premium-chart-card {
+  padding: 26px !important;
+}
+
+.premium-history-section {
+  display: grid;
+  gap: 22px;
+}
+
+.premium-history-list {
+  display: grid;
+  gap: 14px;
+}
+
+.premium-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.premium-history-row strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.premium-history-row p {
+  margin: 0;
+  color: #64748b;
+}
+
+.premium-history-row span {
+  flex-shrink: 0;
+  min-width: 76px;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.premium-admin-danger-section {
+  border-color: #fecaca !important;
+  background:
+    radial-gradient(circle at top left, rgba(239, 68, 68, 0.10), transparent 30%),
+    #fffafa !important;
+}
+
+.premium-danger-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+body.dark-mode .premium-analytics-hero {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+    #0f172a !important;
+}
+
+body.dark-mode .premium-analytics-insight-card,
+body.dark-mode .premium-history-row {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .premium-analytics-insight-card span {
+  background: #0f172a !important;
+}
+
+body.dark-mode .premium-analytics-insight-card p,
+body.dark-mode .premium-history-row p,
+body.dark-mode .premium-analytics-stats .premium-card strong {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .premium-analytics-stats .premium-card p {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .premium-history-row span {
+  background: rgba(37, 99, 235, 0.18);
+  color: #93c5fd;
+}
+
+body.dark-mode .premium-admin-danger-section {
+  background:
+    radial-gradient(circle at top left, rgba(239, 68, 68, 0.12), transparent 30%),
+    #0f172a !important;
+  border-color: rgba(248, 113, 113, 0.3) !important;
+}
+
+@media (max-width: 1100px) {
+  .premium-analytics-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .premium-history-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .premium-history-row span {
+    min-width: 0;
+  }
+
+  .premium-danger-actions .danger-btn {
+    width: 100%;
+  }
+}

@@ -119,40 +119,90 @@ function AnalyticsPage({ user }) {
     })
   );
 
+  const insightText =
+    averageScore >= 85
+      ? "Excellent consistency. You are ready for harder questions and Olympiad-level practice."
+      : averageScore >= 65
+      ? "Good progress. Focus on weaker subjects and review mistakes after every mock test."
+      : "Revision needed. Start with concept review, then attempt short quizzes before mock tests.";
+
   return (
-    <div className="analytics-page">
+    <div className="analytics-page premium-page premium-analytics-page">
       {message && <div className="info-box">{message}</div>}
 
-      {totalTests === 0 ? (
-        <div className="card">
-          <p>No test history yet. Submit a mock test to see analytics.</p>
+      <section className="premium-section premium-analytics-hero">
+        <div className="premium-header">
+          <p className="eyebrow">Learning Intelligence</p>
+          <h2>📊 Analytics Dashboard</h2>
+          <p>
+            Track mock test performance, subject strength, score trends, and
+            learning patterns over time.
+          </p>
         </div>
+
+        <div className="premium-analytics-insight-card">
+          <span>🧠</span>
+          <div>
+            <strong>AI Insight</strong>
+            <p>{insightText}</p>
+          </div>
+        </div>
+      </section>
+
+      {totalTests === 0 ? (
+        <section className="premium-section premium-empty-analytics">
+          <div className="premium-header">
+            <p className="eyebrow">No data yet</p>
+            <h2>Submit a mock test to unlock analytics</h2>
+            <p>
+              Once you complete mock tests, this page will show score trends,
+              subject performance, recent history, and AI learning insights.
+            </p>
+          </div>
+
+          <div className="premium-grid premium-grid-3">
+            <div className="premium-card premium-glow-card glow-blue">
+              <h3>📈 Score Trends</h3>
+              <p>See whether performance is improving over time.</p>
+            </div>
+
+            <div className="premium-card premium-glow-card glow-purple">
+              <h3>📚 Subject Strength</h3>
+              <p>Identify strong and weak subjects from test history.</p>
+            </div>
+
+            <div className="premium-card premium-glow-card glow-green">
+              <h3>🧠 Smart Insights</h3>
+              <p>Use analytics to guide revision and practice.</p>
+            </div>
+          </div>
+        </section>
       ) : (
         <>
-          <div className="result-grid">
-            <div>
+          <section className="premium-grid premium-grid-4 premium-analytics-stats">
+            <div className="premium-card premium-glow-card glow-blue">
               <strong>Tests Taken</strong>
               <p>{totalTests}</p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-green">
               <strong>Average Score</strong>
               <p>{averageScore}%</p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-purple">
               <strong>Best Score</strong>
               <p>{bestScore}%</p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-red">
               <strong>Latest Score</strong>
               <p>{latestScore}%</p>
             </div>
-          </div>
+          </section>
 
-          <div className="analytics-chart-grid">
-            <div className="dashboard-chart-card">
+          <section className="analytics-chart-grid premium-analytics-chart-grid">
+            <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📈 Score Trend</h3>
@@ -164,7 +214,7 @@ function AnalyticsPage({ user }) {
                 <ResponsiveContainer width="100%" height={280}>
                   <LineChart data={scoreTrend}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="name" stroke="#94a3b8" />
                     <YAxis domain={[0, 100]} stroke="#94a3b8" />
                     <Tooltip
                       contentStyle={{
@@ -173,6 +223,8 @@ function AnalyticsPage({ user }) {
                         borderRadius: "14px",
                         color: "#f8fafc",
                       }}
+                      labelStyle={{ color: "#f8fafc" }}
+                      itemStyle={{ color: "#93c5fd" }}
                     />
                     <Line
                       type="monotone"
@@ -185,7 +237,7 @@ function AnalyticsPage({ user }) {
               </div>
             </div>
 
-            <div className="dashboard-chart-card">
+            <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📚 Subject Performance</h3>
@@ -198,57 +250,82 @@ function AnalyticsPage({ user }) {
                   <BarChart data={subjectPerformance}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
                     <XAxis dataKey="subject" stroke="#94a3b8" />
-                    <YAxis domain={[0, 100]} />
-                    <Tooltip />
+                    <YAxis domain={[0, 100]} stroke="#94a3b8" />
+                    <Tooltip
+                      cursor={{ fill: "rgba(59, 130, 246, 0.08)" }}
+                      contentStyle={{
+                        background: "#0f172a",
+                        border: "1px solid #334155",
+                        borderRadius: "14px",
+                        color: "#f8fafc",
+                      }}
+                      labelStyle={{ color: "#f8fafc" }}
+                      itemStyle={{ color: "#93c5fd" }}
+                    />
                     <Bar
                       dataKey="average"
                       fill="#3b82f6"
-                      radius={[8, 8, 0, 0]}
+                      radius={[10, 10, 0, 0]}
+                      activeBar={{ fill: "#60a5fa" }}
                     />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div className="card">
-            <h3>Recent Test History</h3>
+          <section className="premium-section premium-history-section">
+            <div className="premium-header">
+              <h3>🕘 Recent Test History</h3>
+              <p>Your latest mock test attempts and performance snapshots.</p>
+            </div>
 
-            {[...history]
-              .reverse()
-              .slice(0, 10)
-              .map((item, index) => (
-                <div key={index} className="question-card">
-                  <strong>
-                    {item.subject} - {item.chapter || item.mockType}
-                  </strong>
+            <div className="premium-history-list">
+              {[...history]
+                .reverse()
+                .slice(0, 10)
+                .map((item, index) => (
+                  <div key={index} className="premium-history-row">
+                    <div>
+                      <strong>
+                        {item.subject} - {item.chapter || item.mockType}
+                      </strong>
 
-                  <p>
-                    {item.difficulty} | {item.percentage}% |{" "}
-                    {(item.submittedAt || item.saved_at || "").slice(0, 10)}
-                  </p>
-                </div>
-              ))}
-          </div>
+                      <p>
+                        {item.difficulty} |{" "}
+                        {(item.submittedAt || item.saved_at || "").slice(0, 10)}
+                      </p>
+                    </div>
+
+                    <span>{item.percentage}%</span>
+                  </div>
+                ))}
+            </div>
+          </section>
         </>
       )}
 
       {(user.username === "pradip" || user.username === "admin") && (
-        <div className="card">
-          <h3>🧹 Admin: Clear Test History</h3>
+        <section className="premium-section premium-admin-danger-section">
+          <div className="premium-header">
+            <h3>🧹 Admin: Clear Test History</h3>
+            <p>Use carefully. These actions remove analytics history.</p>
+          </div>
 
-          <button className="danger-btn" onClick={handleClearMyHistory}>
-            Clear My History
-          </button>
+          <div className="premium-danger-actions">
+            <button className="danger-btn" onClick={handleClearMyHistory}>
+              Clear My History
+            </button>
 
-          <button className="danger-btn" onClick={handleClearAkshitaHistory}>
-            Clear Akshita History
-          </button>
+            <button className="danger-btn" onClick={handleClearAkshitaHistory}>
+              Clear Akshita History
+            </button>
 
-          <button className="danger-btn" onClick={handleClearAllHistory}>
-            Clear All History
-          </button>
-        </div>
+            <button className="danger-btn" onClick={handleClearAllHistory}>
+              Clear All History
+            </button>
+          </div>
+        </section>
       )}
     </div>
   );
