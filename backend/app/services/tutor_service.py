@@ -1,5 +1,11 @@
+
 from app.services.openai_service import ask_llm
 from app.services.rag_service import search_textbook_content
+from app.services.mentor_memory_service import (
+    get_recent_mentor_memory,
+    build_memory_context,
+    save_mentor_memory,
+)
 
 
 TUTOR_SYSTEM = """
@@ -208,10 +214,22 @@ def answer_doubt(
         for item in rag_results
     ) if rag_results else ""
 
+    memories = get_recent_mentor_memory(
+        username=username,
+        subject=subject,
+        chapter=chapter,
+        limit=5,
+    )
+
+    memory_context = build_memory_context(memories)
+
     prompt = f"""
 Grade: {grade}
 Subject: {subject}
 Chapter: {chapter}
+
+Student mentor memory:
+{memory_context}
 
 Student doubt:
 {question}
@@ -220,6 +238,13 @@ Relevant textbook/RAG context:
 {textbook_context if textbook_context else "No uploaded textbook context found."}
 
 Explain step by step.
+
+Personalization rules:
+- Use the student mentor memory to adapt your explanation.
+- If the student previously seemed confused, explain more slowly.
+- If the student prefers examples, include examples.
+- If the student prefers step-by-step help, break the answer into smaller steps.
+- Do not explicitly say "based on your memory" unless useful.
 
 Use uploaded textbook/RAG context when available.
 If RAG context is available, align the answer with it.
@@ -244,12 +269,21 @@ $$
         feature="doubt",
     )
 
+    save_mentor_memory(
+        username=username,
+        grade=grade,
+        mode="CBSE",
+        subject=subject,
+        chapter=chapter,
+        question=question,
+        answer=answer,
+    )
+
     return {
         "answer": answer,
         "source_type": source_type,
         "sources": rag_results,
     }
-
 
 def answer_lesson_follow_up(
     grade: str,

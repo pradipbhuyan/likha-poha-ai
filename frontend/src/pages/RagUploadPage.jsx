@@ -53,9 +53,14 @@ function RagUploadPage({ user }) {
 
   if (!allowedUsers.includes(user.username)) {
     return (
-      <div className="card">
-        <h2>🔒 RAG Upload</h2>
-        <p>Only admin/pradip can upload textbook content.</p>
+      <div className="premium-page">
+        <section className="premium-section premium-rag-locked">
+          <div className="premium-header">
+            <p className="eyebrow">Restricted Access</p>
+            <h2>🔒 RAG Upload</h2>
+            <p>Only admin/pradip can upload textbook content.</p>
+          </div>
+        </section>
       </div>
     );
   }
@@ -144,24 +149,24 @@ function RagUploadPage({ user }) {
     setMessage("");
     setError("");
     setBatchResults([]);
-  
+
     if (!title.trim()) {
       setError("Please enter comma-separated document titles.");
       return;
     }
-  
+
     if (files.length === 0) {
       setError("Please select files.");
       return;
     }
-  
+
     if (files.length > 10) {
       setError("You can upload a maximum of 10 files.");
       return;
     }
-  
+
     setUploading(true);
-  
+
     try {
       const result = await uploadRagFilesBatch({
         username: user.username,
@@ -171,16 +176,15 @@ function RagUploadPage({ user }) {
         titles: title,
         files,
       });
-  
+
       if (!result.success) {
         setError(result.message || "Batch upload failed.");
         return;
       }
-  
+
       setMessage(result.message);
-  
       setBatchResults(result.results || []);
-  
+
       setTitle("");
       setFiles([]);
     } catch {
@@ -190,17 +194,34 @@ function RagUploadPage({ user }) {
     }
   }
 
-
   return (
-    <div>
-      <h2>📤 RAG Upload</h2>
+    <div className="rag-upload-page premium-page premium-rag-page">
+      <section className="premium-section premium-rag-hero">
+        <div className="premium-header">
+          <p className="eyebrow">Admin Knowledge Base</p>
+          <h2>📤 RAG Upload</h2>
+          <p>
+            Upload textbook chapters, notes, worksheets, PDFs, DOCX, PPTX, and
+            image-based content into the AI tutor knowledge base.
+          </p>
+        </div>
 
-      <div className="card">
-        <h3>Upload Textbook / Notes / Worksheet</h3>
+        <div className="premium-rag-info-card">
+          <span>📚</span>
+          <div>
+            <strong>Batch Upload Ready</strong>
+            <p>Upload up to 10 documents in one batch with comma-separated titles.</p>
+          </div>
+        </div>
+      </section>
 
-        <p>Supported files: txt, jpg, jpeg, png, webp, pdf, docx, pptx.</p>
+      <section className="premium-section premium-rag-upload-panel">
+        <div className="premium-header">
+          <h3>Upload Textbook / Notes / Worksheet</h3>
+          <p>Supported files: txt, jpg, jpeg, png, webp, pdf, docx, pptx.</p>
+        </div>
 
-        <div className="form-grid">
+        <div className="form-grid premium-rag-form-grid">
           <label>
             Grade
             <select
@@ -258,7 +279,7 @@ function RagUploadPage({ user }) {
           </label>
         </div>
 
-        <label className="full-width-label">
+        <label className="full-width-label premium-rag-title-input">
           Document Titles
           <input
             type="text"
@@ -268,7 +289,7 @@ function RagUploadPage({ user }) {
           />
         </label>
 
-        <label className="full-width-label">
+        <label className="full-width-label premium-rag-file-input">
           Upload Files
           <input
             type="file"
@@ -279,7 +300,7 @@ function RagUploadPage({ user }) {
         </label>
 
         {files.length > 0 && (
-          <div className="selected-files-box">
+          <div className="selected-files-box premium-selected-files-box">
             <strong>Selected files:</strong>
 
             {files.map((selectedFile, index) => (
@@ -291,35 +312,48 @@ function RagUploadPage({ user }) {
         )}
 
         <button
-          className="primary-btn"
+          className="primary-btn premium-rag-upload-btn"
           onClick={handleBatchUpload}
           disabled={uploading}
         >
-          {uploading ? "Uploading..." : "Upload Batch to RAG"}
+          {uploading ? "Uploading..." : "✨ Upload Batch to RAG"}
         </button>
-      </div>
+      </section>
 
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
 
       {batchResults.length > 0 && (
-        <div className="card">
-          <h3>Batch Upload Results</h3>
+        <section className="premium-section premium-rag-results">
+          <div className="premium-header">
+            <h3>Batch Upload Results</h3>
+            <p>Each document title is mapped to the selected file order.</p>
+          </div>
 
-          {batchResults.map((item, index) => (
-            <div key={index} className="question-card">
-              <strong>{item.title}</strong>
+          <div className="premium-rag-result-list">
+            {batchResults.map((item, index) => (
+              <div
+                key={index}
+                className={
+                  item.success
+                    ? "premium-rag-result-row success"
+                    : "premium-rag-result-row failed"
+                }
+              >
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>File: {item.filename}</p>
+                  <p>{item.message}</p>
+                </div>
 
-              <p>File: {item.filename}</p>
-
-              <p>Status: {item.success ? "Success" : "Failed"}</p>
-
-              <p>{item.message}</p>
-
-              <p>Chunks: {item.chunks_created}</p>
-            </div>
-          ))}
-        </div>
+                <div>
+                  <span>{item.success ? "Success" : "Failed"}</span>
+                  <small>{item.chunks_created} chunks</small>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );
