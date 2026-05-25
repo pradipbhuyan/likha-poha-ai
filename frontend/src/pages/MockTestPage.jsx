@@ -6,7 +6,6 @@ import { logStudentActivity } from "../api/profile";
 
 function MockTestPage({ user }) {
   function getPerformanceSummary(percentage) {
-
     if (percentage >= 90) {
       return {
         title: "🌟 Olympiad Ready",
@@ -14,7 +13,7 @@ function MockTestPage({ user }) {
           "Outstanding performance! You have mastered this chapter extremely well.",
       };
     }
-  
+
     if (percentage >= 75) {
       return {
         title: "👏 Strong Foundation",
@@ -22,7 +21,7 @@ function MockTestPage({ user }) {
           "Very good work! Your concepts are strong and improving steadily.",
       };
     }
-  
+
     if (percentage >= 60) {
       return {
         title: "👍 Good Progress",
@@ -30,14 +29,14 @@ function MockTestPage({ user }) {
           "You are improving well. A little more practice can boost your score further.",
       };
     }
-  
+
     return {
       title: "💪 Revision Needed",
       message:
         "Keep practicing. Revising core concepts and solving more questions will help.",
     };
   }
-  
+
   const [syllabusData, setSyllabusData] = useState(null);
 
   const [grade, setGrade] = useState("Grade 9");
@@ -71,7 +70,8 @@ function MockTestPage({ user }) {
         setSyllabusData(data.syllabus);
 
         const defaultSubject = Object.keys(data.syllabus["Grade 9"]["CBSE"])[0];
-        const defaultChapter = data.syllabus["Grade 9"]["CBSE"][defaultSubject][0];
+        const defaultChapter =
+          data.syllabus["Grade 9"]["CBSE"][defaultSubject][0];
 
         setSubject(defaultSubject);
         setChapter(defaultChapter);
@@ -103,6 +103,11 @@ function MockTestPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
+
+  const answeredCount = Object.keys(answers).length;
+  const progressPercent = questions.length
+    ? Math.round((answeredCount / questions.length) * 100)
+    : 0;
 
   function resetSelections(newGrade, newMode) {
     const firstSubject = Object.keys(syllabusData[newGrade][newMode])[0];
@@ -216,30 +221,32 @@ function MockTestPage({ user }) {
 
     const penalty = negativeMarking ? wrongCount * Number(negativeMarks) : 0;
     const finalScore = Math.max(0, rawScore - penalty);
-    const percentage = maxScore ? Math.round((finalScore / maxScore) * 10000) / 100 : 0;
+    const percentage = maxScore
+      ? Math.round((finalScore / maxScore) * 10000) / 100
+      : 0;
 
     const resultPayload = {
-        username: user?.username,
-        grade,
-        mode,
-        subject,
-        chapter,
-        mockType,
-        examType,
-        difficulty,
-        rawScore,
-        finalScore,
-        maxScore,
-        wrongCount,
-        penalty,
-        percentage,
-        submittedAt: new Date().toISOString(),
-        review,
-      };
-      
-      setResults(resultPayload);
-      
-      saveTestHistory(resultPayload)
+      username: user?.username,
+      grade,
+      mode,
+      subject,
+      chapter,
+      mockType,
+      examType,
+      difficulty,
+      rawScore,
+      finalScore,
+      maxScore,
+      wrongCount,
+      penalty,
+      percentage,
+      submittedAt: new Date().toISOString(),
+      review,
+    };
+
+    setResults(resultPayload);
+
+    saveTestHistory(resultPayload)
       .then(() =>
         logStudentActivity({
           username: user.username,
@@ -266,13 +273,35 @@ function MockTestPage({ user }) {
   }
 
   return (
-    <div className="mock-test-page">
-      <h2>🧪 Mock Test</h2>
+    <div className="mock-test-page premium-page premium-mock-page">
+      <section className="premium-section premium-mock-hero">
+        <div className="premium-header">
+          <p className="eyebrow">Exam Practice</p>
+          <h2>🧪 Mock Test Studio</h2>
+          <p>
+            Generate exam-style practice tests, track your answers, review mistakes,
+            and build confidence for CBSE and SOF preparation.
+          </p>
+        </div>
 
-      <div className="card">
-        <h3>Test Setup</h3>
+        <div className="premium-mock-hero-card">
+          <span>🎯</span>
+          <div>
+            <strong>{difficulty}</strong>
+            <p>
+              {mockType} • {questionCount} questions • {durationMinutes} minutes
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <div className="form-grid">
+      <section className="premium-section premium-mock-setup">
+        <div className="premium-header">
+          <h3>Test Setup</h3>
+          <p>Customize the paper before generating your mock test.</p>
+        </div>
+
+        <div className="form-grid premium-mock-form-grid">
           <label>
             Grade
             <select
@@ -394,7 +423,7 @@ function MockTestPage({ user }) {
           </label>
         </div>
 
-        <div className="checkbox-row">
+        <div className="checkbox-row premium-test-options">
           <label>
             <input
               type="checkbox"
@@ -415,39 +444,43 @@ function MockTestPage({ user }) {
         </div>
 
         <button
-          className="primary-btn"
+          className="primary-btn premium-mock-generate-btn"
           onClick={handleGenerateMockTest}
           disabled={loading}
         >
-          {loading ? "Generating..." : "Generate Mock Test"}
+          {loading ? "Generating..." : "✨ Generate Mock Test"}
         </button>
 
         {error && <div className="error-box">{error}</div>}
-      </div>
+      </section>
 
       {questions.length > 0 && !results && (
-        <div className="card">
-          <h3>Test</h3>
+        <section className="premium-section premium-test-area">
+          <div className="premium-test-sticky-header">
+            <div>
+              <p className="eyebrow">Live Test</p>
+              <h3>Answer the questions</h3>
+            </div>
 
-          <div className="mock-progress-box">
+            {timerEnabled && (
+              <div className={secondsLeft === 0 ? "timer warning" : "timer"}>
+                ⏱️ {formatTime(secondsLeft)}
+              </div>
+            )}
+          </div>
+
+          <div className="mock-progress-box premium-mock-progress">
             <div>
               <strong>
-                {Object.keys(answers).length} / {questions.length}
+                {answeredCount} / {questions.length}
               </strong>{" "}
               questions answered
             </div>
 
-            <progress
-              value={Object.keys(answers).length}
-              max={questions.length}
-            />
-          </div>
+            <span>{progressPercent}% complete</span>
 
-          {timerEnabled && (
-            <div className={secondsLeft === 0 ? "timer warning" : "timer"}>
-              ⏱️ Time Remaining: {formatTime(secondsLeft)}
-            </div>
-          )}
+            <progress value={answeredCount} max={questions.length} />
+          </div>
 
           {timerEnabled && secondsLeft === 0 && (
             <div className="error-box">
@@ -455,110 +488,135 @@ function MockTestPage({ user }) {
             </div>
           )}
 
-          {questions.map((q) => (
-            <div key={q.id} className="question-card">
-              <h4>
-                Q{q.id}. {q.question}
-              </h4>
+          <div className="premium-question-list">
+            {questions.map((q) => (
+              <div key={q.id} className="question-card premium-question-card">
+                <div className="premium-question-header">
+                  <h4>
+                    Q{q.id}. {q.question}
+                  </h4>
 
-              <p className="muted">
-                Section: {q.section} | Marks: {q.marks}
-              </p>
+                  <span>{q.marks} mark{Number(q.marks || 1) > 1 ? "s" : ""}</span>
+                </div>
 
-              {Object.entries(q.options || {}).map(([key, value]) => (
-                <label key={key} className="option-row">
-                  <input
-                    type="radio"
-                    name={`question-${q.id}`}
-                    checked={answers[q.id] === key}
-                    onChange={() => handleAnswerChange(q.id, key)}
-                  />
-                  <span>
-                    <strong>{key}.</strong> {value}
-                  </span>
-                </label>
-              ))}
-            </div>
-          ))}
+                <p className="muted">Section: {q.section}</p>
 
-          <button className="primary-btn" onClick={handleSubmitTest}>
+                <div className="premium-option-list">
+                  {Object.entries(q.options || {}).map(([key, value]) => (
+                    <label
+                      key={key}
+                      className={
+                        answers[q.id] === key
+                          ? "option-row premium-option-row selected"
+                          : "option-row premium-option-row"
+                      }
+                    >
+                      <input
+                        type="radio"
+                        name={`question-${q.id}`}
+                        checked={answers[q.id] === key}
+                        onChange={() => handleAnswerChange(q.id, key)}
+                      />
+                      <span>
+                        <strong>{key}.</strong> {value}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button className="primary-btn premium-submit-test-btn" onClick={handleSubmitTest}>
             Submit Test
           </button>
-        </div>
+        </section>
       )}
 
       {results && (
-        <div className="card">
-          <h3>📊 Results</h3>
-
-          <div className="result-grid">
+        <section className="premium-section premium-results-section">
+          <div className="premium-results-hero">
             <div>
+              <p className="eyebrow">Results</p>
+              <h2>{getPerformanceSummary(results.percentage).title}</h2>
+              <p>{getPerformanceSummary(results.percentage).message}</p>
+            </div>
+
+            <div className="premium-score-orb">
+              <strong>{results.percentage}%</strong>
+              <span>Score</span>
+            </div>
+          </div>
+
+          <div className="result-grid premium-result-grid">
+            <div className="premium-card premium-glow-card glow-blue">
               <strong>Score</strong>
               <p>
                 {results.finalScore} / {results.maxScore}
               </p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-green">
               <strong>Percentage</strong>
               <p>{results.percentage}%</p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-red">
               <strong>Wrong Answers</strong>
               <p>{results.wrongCount}</p>
             </div>
 
-            <div>
+            <div className="premium-card premium-glow-card glow-purple">
               <strong>Penalty</strong>
               <p>-{results.penalty}</p>
             </div>
           </div>
 
-          <div className="info-box">
+          <div className="info-box premium-next-step-box">
             {getRecommendation(results.percentage)}
           </div>
 
-          <div className="info-box">
-            <strong>{getPerformanceSummary(results.percentage).title}</strong>
-
-            <p>{getPerformanceSummary(results.percentage).message}</p>
+          <div className="premium-header">
+            <h3>📘 Answer Review</h3>
+            <p>Review each question to understand mistakes and strengthen concepts.</p>
           </div>
 
-          <h3>📘 Answer Review</h3>
+          <div className="premium-review-list">
+            {results.review.map((r) => (
+              <div
+                key={r.id}
+                className={
+                  r.isCorrect
+                    ? "review-card correct premium-review-card"
+                    : "review-card wrong premium-review-card"
+                }
+              >
+                <h4>
+                  Q{r.id}. {r.isCorrect ? "✅ Correct" : "❌ Incorrect"}
+                </h4>
 
-          {results.review.map((r) => (
-            <div
-              key={r.id}
-              className={
-                r.isCorrect ? "review-card correct" : "review-card wrong"
-              }
-            >
-              <h4>
-                Q{r.id}. {r.isCorrect ? "✅ Correct" : "❌ Incorrect"}
-              </h4>
+                <p>{r.question}</p>
 
-              <p>{r.question}</p>
+                <p>
+                  Your Answer:{" "}
+                  <strong>
+                    {r.selected || "Not answered"}
+                    {r.selected ? `. ${r.options?.[r.selected] || ""}` : ""}
+                  </strong>
+                </p>
 
-              <p>
-                Your Answer:{" "}
-                <strong>
-                  {r.selected || "Not answered"}
-                  {r.selected ? `. ${r.options?.[r.selected] || ""}` : ""}
-                </strong>
-              </p>
+                <p>
+                  Correct Answer:{" "}
+                  <strong>
+                    {r.correct}. {r.options?.[r.correct]}
+                  </strong>
+                </p>
 
-              <p>
-                Correct Answer:{" "}
-                <strong>
-                  {r.correct}. {r.options?.[r.correct]}
-                </strong>
-              </p>
-
-              <p>Explanation: {r.explanation}</p>
-            </div>
-          ))}
-        </div>
+                <p>Explanation: {r.explanation}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );
