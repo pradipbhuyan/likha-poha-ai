@@ -3,28 +3,21 @@ import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 
 import { getSyllabus } from "../api/syllabus";
-
 import { generateLesson, askLessonFollowUp } from "../api/lesson";
-
 import { generateSpeech } from "../api/tts";
-import MermaidBlock from "../components/MermaidBlock";
-import LessonSections from "../components/LessonSections";
-
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
 
+import LessonSections from "../components/LessonSections";
+
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
-
   "Strict Exam Coach":
     "Focus on exam preparation, accuracy, common mistakes, and scoring.",
-
   "Slow Step-by-Step Teacher":
     "Explain slowly, with very small steps and simple examples.",
-
   "Olympiad Coach":
     "Focus on reasoning, HOTS, shortcuts, and tricky question patterns.",
-
   "Storytelling Teacher":
     "Explain concepts using stories, analogies, and real-life examples.",
 };
@@ -71,6 +64,7 @@ function LessonsPage({ user }) {
   const [teacherPersona, setTeacherPersona] = useState("Friendly Teacher");
 
   const [lesson, setLesson] = useState("");
+  const [stepLessons, setStepLessons] = useState({});
   const [sourceInfo, setSourceInfo] = useState(null);
   const [generating, setGenerating] = useState(false);
 
@@ -78,18 +72,11 @@ function LessonsPage({ user }) {
   const [followUpMessages, setFollowUpMessages] = useState([]);
   const [followUpLoading, setFollowUpLoading] = useState(false);
 
-  // -----------------------------
-  // TTS STATES
-  // -----------------------------
   const [voiceName, setVoiceName] = useState("English India Female (Neerja)");
-
   const [speechRate, setSpeechRate] = useState("+0%");
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
 
-  // -----------------------------
-  // LOAD SYLLABUS
-  // -----------------------------
   useEffect(() => {
     async function loadSyllabus() {
       try {
@@ -128,7 +115,7 @@ function LessonsPage({ user }) {
       if (!grade || !mode || !subject || !chapter) {
         return;
       }
-
+    
       try {
         const result = await getChapterProgress({
           username: user.username,
@@ -137,18 +124,28 @@ function LessonsPage({ user }) {
           subject,
           chapter,
         });
-
-        const progress = result.progress;
-
-        setCurrentStepIndex(progress.current_step_index || 0);
-
+    
+        const progress = result.progress || {};
+    
+        const savedStepIndex = progress.current_step_index || 0;
+        const savedStepLessons = progress.step_lessons || {};
+    
+        setCurrentStepIndex(savedStepIndex);
         setCompleted(progress.completed || false);
-
-        if (progress.last_lesson) {
-          setLesson(progress.last_lesson);
-        } else {
-          setLesson("");
-        }
+        setStepLessons(savedStepLessons);
+    
+        setLesson(
+          savedStepLessons[String(savedStepIndex)] ||
+            progress.last_lesson ||
+            ""
+        );
+    
+        setAudioUrl("");
+        setVisualImage("");
+        setVisualError("");
+        setSourceInfo(null);
+        setFollowUpQuestion("");
+        setFollowUpMessages([]);
       } catch {
         console.error("Could not load progress");
       }
@@ -161,46 +158,45 @@ function LessonsPage({ user }) {
     return <p>Loading syllabus...</p>;
   }
 
-  if (error) {
+  if (error && !lesson) {
     return <p className="error">{error}</p>;
   }
 
   const grades = Object.keys(syllabusData);
-
   const modes = Object.keys(syllabusData[grade]);
-
   const subjects = Object.keys(syllabusData[grade][mode]);
-
   const chapters = syllabusData[grade][mode][subject] || [];
 
-  // -----------------------------
-  // DROPDOWN HANDLERS
-  // -----------------------------
+  function resetLessonState() {
+    setLesson("");
+    setAudioUrl("");
+    setVisualImage("");
+    setVisualError("");
+    setSourceInfo(null);
+    setFollowUpQuestion("");
+    setFollowUpMessages([]);
+  }
+
   function handleGradeChange(value) {
     const newMode = Object.keys(syllabusData[value])[0];
-
     const newSubject = Object.keys(syllabusData[value][newMode])[0];
-
     const newChapter = syllabusData[value][newMode][newSubject][0];
 
     setGrade(value);
     setMode(newMode);
     setSubject(newSubject);
     setChapter(newChapter);
-
-    setLesson("");
+    resetLessonState();
   }
 
   function handleModeChange(value) {
     const newSubject = Object.keys(syllabusData[grade][value])[0];
-
     const newChapter = syllabusData[grade][value][newSubject][0];
 
     setMode(value);
     setSubject(newSubject);
     setChapter(newChapter);
-
-    setLesson("");
+    resetLessonState();
   }
 
   function handleSubjectChange(value) {
@@ -208,18 +204,15 @@ function LessonsPage({ user }) {
 
     setSubject(value);
     setChapter(newChapter);
-
-    setLesson("");
+    resetLessonState();
   }
 
-  // -----------------------------
-  // GENERATE LESSON
-  // -----------------------------
   async function handleGenerateLesson() {
     setGenerating(true);
     setLesson("");
     setAudioUrl("");
     setVisualImage("");
+    setVisualError("");
     setSourceInfo(null);
     setError("");
     setFollowUpQuestion("");
@@ -238,11 +231,15 @@ function LessonsPage({ user }) {
 
       if (!result.success) {
         setError(result.message || "Lesson generation failed");
-
         return;
       }
 
       setLesson(result.lesson);
+
+      setStepLessons((prev) => ({
+        ...prev,
+        [String(currentStepIndex)]: result.lesson,
+      }));
 
       setSourceInfo({
         sourceType: result.source_type || "LLM",
@@ -328,9 +325,7 @@ function LessonsPage({ user }) {
       setFollowUpLoading(false);
     }
   }
-  // -----------------------------
-  // READ ALOUD
-  // -----------------------------
+
   async function handleReadAloud() {
     if (!lesson) return;
 
@@ -369,31 +364,35 @@ function LessonsPage({ user }) {
             1200
           )}`;
 
-      const result = await generateEducationalImage(
-        imagePrompt,
-        user.username
-      );
+      const result = await generateEducationalImage(imagePrompt, user.username);
 
       if (!result.success) {
         setVisualError(result.message || "Visual generation failed.");
         return;
       }
-      
 
       setVisualImage(`data:image/png;base64,${result.image_base64}`);
     } catch {
-      setError("Could not generate visual explanation.");
+      setVisualError("Could not generate visual explanation.");
     } finally {
       setVisualLoading(false);
     }
   }
 
+  const hasSavedLesson = Boolean(
+    stepLessons[String(currentStepIndex)]
+  );
+
   return (
-    <div className="lesson-workspace">
-      <div className="lesson-layout">
+    <div className="lesson-workspace premium-page premium-lessons-page">
+      <div className="lesson-layout premium-lesson-layout">
         <aside className="lesson-control-panel">
-          <div className="card lesson-controls-card">
-            <h3>Select Learning Path</h3>
+          <div className="premium-section premium-lesson-controls">
+            <div className="premium-header">
+              <p className="eyebrow">Learning Path</p>
+              <h3>📚 Select Lesson Setup</h3>
+              <p>Choose grade, subject, step, persona, and narration style.</p>
+            </div>
 
             <div className="form-grid">
               <label>
@@ -444,12 +443,7 @@ function LessonsPage({ user }) {
                   value={chapter}
                   onChange={(e) => {
                     setChapter(e.target.value);
-                    setLesson("");
-                    setAudioUrl("");
-                    setVisualImage("");
-                    setSourceInfo(null);
-                    setFollowUpQuestion("");
-                    setFollowUpMessages([]);
+                    resetLessonState();
                   }}
                 >
                   {chapters.map((c) => (
@@ -465,10 +459,13 @@ function LessonsPage({ user }) {
                 <select
                   value={currentStepIndex}
                   onChange={(e) => {
-                    setCurrentStepIndex(Number(e.target.value));
-                    setLesson("");
+                    const newIndex = Number(e.target.value);
+
+                    setCurrentStepIndex(newIndex);
+                    setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
                     setVisualImage("");
+                    setVisualError("");
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
                   }}
@@ -524,7 +521,7 @@ function LessonsPage({ user }) {
               </label>
             </div>
 
-            <div className="progress-box">
+            <div className="progress-box premium-progress-box">
               <p>
                 Step {currentStepIndex + 1} of {lessonSteps.length}:{" "}
                 <strong>{stepTitle}</strong>
@@ -538,14 +535,18 @@ function LessonsPage({ user }) {
             </div>
 
             <button
-              className="primary-btn"
+              className="primary-btn premium-generate-btn"
               onClick={handleGenerateLesson}
-              disabled={generating}
+              disabled={generating || hasSavedLesson}
             >
-              {generating ? "Generating..." : "Generate Lesson"}
+              {hasSavedLesson
+                ? "Lesson Already Generated"
+                : generating
+                ? "Generating..."
+                : "✨ Generate Lesson"}
             </button>
 
-            <div className="button-row">
+            <div className="button-row premium-lesson-button-row">
               <button
                 className="secondary-btn"
                 disabled={currentStepIndex === 0}
@@ -553,9 +554,10 @@ function LessonsPage({ user }) {
                   const newIndex = currentStepIndex - 1;
 
                   setCurrentStepIndex(newIndex);
-                  setLesson("");
+                  setLesson(stepLessons[String(newIndex)] || "");
                   setAudioUrl("");
                   setVisualImage("");
+                  setVisualError("");
                   setCompleted(false);
 
                   await saveChapterProgress({
@@ -596,9 +598,10 @@ function LessonsPage({ user }) {
 
                     setCurrentStepIndex(newIndex);
 
-                    setLesson("");
+                    setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
                     setVisualImage("");
+                    setVisualError("");
 
                     await saveChapterProgress({
                       username: user.username,
@@ -620,11 +623,9 @@ function LessonsPage({ user }) {
                 className="secondary-btn"
                 onClick={async () => {
                   setCurrentStepIndex(0);
-
                   setLesson("");
                   setAudioUrl("");
                   setVisualImage("");
-
                   setCompleted(false);
 
                   await saveChapterProgress({
@@ -645,19 +646,60 @@ function LessonsPage({ user }) {
           </div>
         </aside>
 
-        <section className="lesson-content-panel">
+        <section className="lesson-content-panel premium-lesson-content">
           {error && <div className="error-box">{error}</div>}
+
+          {!lesson && !generating && (
+            <div className="premium-section premium-empty-lesson">
+              <div className="premium-header">
+                <p className="eyebrow">Ready when you are</p>
+                <h2>Start your next AI-guided lesson</h2>
+                <p>
+                  Pick a lesson step from the left panel and generate a focused,
+                  step-wise explanation with narration, visuals, and follow-up
+                  support.
+                </p>
+              </div>
+
+              <div className="premium-grid premium-grid-3">
+                <div className="premium-card premium-glow-card glow-blue">
+                  <h3>📘 Focused Lessons</h3>
+                  <p>Learn one sub-topic at a time without chapter overload.</p>
+                </div>
+
+                <div className="premium-card premium-glow-card glow-purple">
+                  <h3>🔊 Narration</h3>
+                  <p>Listen to lessons aloud using your selected voice.</p>
+                </div>
+
+                <div className="premium-card premium-glow-card glow-green">
+                  <h3>🖼 AI Visuals</h3>
+                  <p>Create custom educational visuals for any topic.</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {lesson && (
             <>
-              <div className="card lesson-output">
-                <h3>Generated Lesson</h3>
+              <div className="premium-section lesson-output premium-lesson-output">
+                <div className="premium-header lesson-output-header">
+                  <p className="eyebrow">
+                    {sourceInfo?.sourceType === "RAG"
+                      ? "Textbook aligned"
+                      : "AI generated"}
+                  </p>
+                  <h3>Generated Lesson</h3>
+                  <p>
+                    Step {currentStepIndex + 1}: {stepTitle}
+                  </p>
+                </div>
 
                 <div className="markdown-content">
                   <LessonSections lesson={lesson} />
                 </div>
 
-                <div className="lesson-audio-section">
+                <div className="lesson-audio-section premium-card">
                   <button
                     className="primary-btn lesson-audio-btn"
                     onClick={handleReadAloud}
@@ -673,7 +715,7 @@ function LessonsPage({ user }) {
                   )}
                 </div>
 
-                <div className="visual-generator-card">
+                <div className="visual-generator-card premium-card premium-glow-card glow-purple">
                   <div className="visual-generator-header">
                     <h3>🖼 Visual Generator</h3>
 
@@ -692,10 +734,6 @@ function LessonsPage({ user }) {
                       onChange={(e) => setVisualTopic(e.target.value)}
                     />
 
-                    {visualError && (
-                      <div className="visual-error-box">{visualError}</div>
-                    )}
-
                     <button
                       className="secondary-btn visual-generate-btn"
                       onClick={handleGenerateVisual}
@@ -704,10 +742,14 @@ function LessonsPage({ user }) {
                       {visualLoading ? "Generating..." : "🖼 Generate Visual"}
                     </button>
                   </div>
+
+                  {visualError && (
+                    <div className="visual-error-box">{visualError}</div>
+                  )}
                 </div>
 
                 {visualImage && (
-                  <div className="visual-image-card">
+                  <div className="visual-image-card premium-card">
                     <div className="visual-image-header">
                       <h3>🖼 Visual Explanation</h3>
                     </div>
@@ -719,7 +761,7 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                <div className="lesson-followup-box">
+                <div className="lesson-followup-box premium-card">
                   <div className="lesson-followup-header">
                     <h3>💬 Ask a follow-up</h3>
                     <p>Ask anything about this lesson step.</p>
@@ -797,15 +839,17 @@ function LessonsPage({ user }) {
               </div>
 
               {sourceInfo && (
-                <div className="card">
-                  <h3>📚 Source Information</h3>
+                <div className="premium-section">
+                  <div className="premium-header">
+                    <h3>📚 Source Information</h3>
 
-                  <p>
-                    <strong>Lesson Source:</strong>{" "}
-                    {sourceInfo.sourceType === "RAG"
-                      ? "Uploaded Textbook / RAG Content"
-                      : "General LLM Knowledge"}
-                  </p>
+                    <p>
+                      <strong>Lesson Source:</strong>{" "}
+                      {sourceInfo.sourceType === "RAG"
+                        ? "Uploaded Textbook / RAG Content"
+                        : "General LLM Knowledge"}
+                    </p>
+                  </div>
 
                   {sourceInfo.sourceType === "RAG" &&
                     sourceInfo.sources.length > 0 &&
@@ -857,4 +901,5 @@ function LessonsPage({ user }) {
     </div>
   );
 }
+
 export default LessonsPage;
