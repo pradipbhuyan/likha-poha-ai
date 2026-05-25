@@ -235,7 +235,7 @@ function DashboardPage({ user, setActivePage }) {
 
               <button
                 className="mini-cta-btn"
-                onClick={() => setActivePage("quiz")}
+                onClick={() => setActivePage("lessons")}
               >
                 ✨ Start Quiz
               </button>
