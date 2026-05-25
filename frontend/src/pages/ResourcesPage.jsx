@@ -105,81 +105,153 @@ function ResourcesPage() {
   }
 
   return (
-    <div className="resources-page">
-      <h2>🎥 Learn More</h2>
+    <div className="resources-page premium-page premium-resources-page">
+      <section className="premium-section premium-resources-hero">
+        <div className="premium-header">
+          <p className="eyebrow">Learning Library</p>
+          <h2>🎥 Learn More</h2>
+          <p>
+            Explore curated free resources for the selected chapter. Watch videos,
+            open references, and strengthen concepts beyond the AI lesson.
+          </p>
+        </div>
 
-      <div className="card">
-        <h3>Select Topic</h3>
+        <div className="premium-resources-spotlight">
+          <span>📚</span>
+          <div>
+            <strong>{subject}</strong>
+            <p>{chapter}</p>
+          </div>
+        </div>
+      </section>
 
-        <div className="form-grid">
+      <section className="premium-section premium-resource-topic-panel">
+        <div className="premium-header">
+          <h3>🎯 Select Topic</h3>
+          <p>Choose the exact context for resource discovery.</p>
+        </div>
+
+        <div className="form-grid premium-resource-form-grid">
           <label>
             Grade
-            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
+            <select
+              value={grade}
+              onChange={(e) => handleGradeChange(e.target.value)}
+            >
               {grades.map((g) => (
-                <option key={g} value={g}>{g}</option>
+                <option key={g} value={g}>
+                  {g}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Mode
-            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
+            <select
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value)}
+            >
               {modes.map((m) => (
-                <option key={m} value={m}>{m}</option>
+                <option key={m} value={m}>
+                  {m}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Subject
-            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
+            <select
+              value={subject}
+              onChange={(e) => handleSubjectChange(e.target.value)}
+            >
               {subjects.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Chapter / Section
-            <select value={chapter} onChange={(e) => setChapter(e.target.value)}>
+            <select
+              value={chapter}
+              onChange={(e) => setChapter(e.target.value)}
+            >
               {chapters.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>
+                  {c}
+                </option>
               ))}
             </select>
           </label>
         </div>
-      </div>
+      </section>
 
-      <div className="card">
-        <h3>Free Learning Resources</h3>
+      <section className="premium-section premium-resource-results">
+        <div className="premium-header">
+          <h3>🌐 Free Learning Resources</h3>
+          <p>
+            Videos and references matched to your selected subject and chapter.
+          </p>
+        </div>
 
-        {resourcesLoading && <p>Loading resources...</p>}
-
-        {!resourcesLoading && resources.length === 0 && (
-          <p>No resources found.</p>
+        {resourcesLoading && (
+          <div className="premium-resource-loading">
+            <span>⏳</span>
+            <p>Loading resources...</p>
+          </div>
         )}
 
-        {!resourcesLoading &&
-          resources.map((resource, index) => (
-            <div key={index} className="resource-card">
-              <h4>{resource.title}</h4>
+        {!resourcesLoading && resources.length === 0 && (
+          <div className="premium-resource-empty">
+            <h3>🔎 No resources found</h3>
+            <p>
+              Try another chapter or subject. You can still use Lessons and Ask
+              Doubt for AI-guided explanations.
+            </p>
+          </div>
+        )}
 
-              {resource.type === "youtube" && isEmbeddableYoutube(resource.url) ? (
-                <iframe
-                  width="100%"
-                  height="360"
-                  src={resource.url.replace("watch?v=", "embed/")}
-                  title={resource.title}
-                  allowFullScreen
-                />
-              ) : (
-                <a href={resource.url} target="_blank" rel="noreferrer">
-                  Open Free Resource
-                </a>
-              )}
-            </div>
-          ))}
-      </div>
+        {!resourcesLoading && resources.length > 0 && (
+          <div className="premium-resource-grid">
+            {resources.map((resource, index) => (
+              <div key={index} className="resource-card premium-resource-card">
+                <div className="premium-resource-card-header">
+                  <span>{resource.type === "youtube" ? "▶️" : "🔗"}</span>
+                  <div>
+                    <h4>{resource.title}</h4>
+                    <p>{resource.type === "youtube" ? "Video resource" : "External resource"}</p>
+                  </div>
+                </div>
+
+                {resource.type === "youtube" && isEmbeddableYoutube(resource.url) ? (
+                  <div className="premium-video-frame">
+                    <iframe
+                      width="100%"
+                      height="360"
+                      src={resource.url.replace("watch?v=", "embed/")}
+                      title={resource.title}
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <a
+                    className="premium-resource-link"
+                    href={resource.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open Free Resource →
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

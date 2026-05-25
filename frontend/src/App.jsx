@@ -4,7 +4,6 @@ import Sidebar from "./components/Sidebar";
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
-import QuizPage from "./pages/QuizPage";
 import MockTestPage from "./pages/MockTestPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
@@ -36,11 +35,6 @@ const PAGE_META = {
     title: "Ask Doubt",
     subtitle: "Ask chapter-specific doubts and get guided explanations.",
     icon: "❓",
-  },
-  quiz: {
-    title: "Quiz",
-    subtitle: "Practice instantly with question-by-question feedback.",
-    icon: "📝",
   },
   mockTest: {
     title: "Mock Test",
@@ -140,8 +134,6 @@ function App() {
         return <LessonsPage user={user} />;
       case "doubt":
         return <DoubtPage user={user} />;
-      case "quiz":
-        return <QuizPage user={user} />;
       case "mockTest":
         return <MockTestPage user={user} />;
       case "resources":
