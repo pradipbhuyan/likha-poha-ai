@@ -29,7 +29,6 @@ function Sidebar({
     { key: "dashboard", label: "Dashboard", icon: Home },
     { key: "lessons", label: "Lessons", icon: BookOpen },
     { key: "doubt", label: "Ask Doubt", icon: HelpCircle },
-    { key: "quiz", label: "Quiz", icon: Brain },
     { key: "mockTest", label: "Mock Test", icon: ClipboardList },
     { key: "resources", label: "Learn More", icon: Video },
     { key: "analytics", label: "Analytics", icon: BarChart3 },
