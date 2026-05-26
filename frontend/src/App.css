@@ -7108,3 +7108,257 @@ body.dark-mode .premium-rag-result-row span {
     flex-direction: column;
   }
 }
+
+.mentor-suggestion-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.mentor-suggestion-card {
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+.mentor-suggestion-card-btn {
+  width: 100%;
+  padding: 18px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mentor-suggestion-card-btn span {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.mentor-suggestion-card-btn strong {
+  display: block;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.mentor-suggestion-card-btn small {
+  color: #64748b;
+  font-weight: 800;
+}
+
+.mentor-followup-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid #dbeafe;
+  background: #f8fbff;
+}
+
+.mentor-followup-panel textarea {
+  width: 100%;
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid #dbeafe;
+  resize: vertical;
+}
+
+.mentor-followup-answer {
+  padding: 16px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #dbeafe;
+}
+
+body.dark-mode .mentor-suggestion-card,
+body.dark-mode .mentor-followup-answer {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .mentor-followup-panel {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .mentor-suggestion-card-btn strong {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .mentor-suggestion-card-btn small {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .mentor-followup-panel textarea {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.mermaid-block,
+.mermaid-block svg {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mermaid-block svg {
+  height: auto !important;
+}
+
+.mermaid-block text {
+  font-size: 13px !important;
+}
+
+body.dark-mode .mermaid-block {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .mermaid-block svg {
+  background: transparent !important;
+}
+
+body.dark-mode .mentor-suggestion-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+body.dark-mode .mentor-suggestion-section h4 {
+  color: #f8fafc;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+body.dark-mode .mentor-suggestion-card {
+  background: linear-gradient(145deg, #101827, #111f35) !important;
+  border: 1px solid rgba(96, 165, 250, 0.25) !important;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+}
+
+body.dark-mode .mentor-suggestion-card:hover {
+  border-color: rgba(147, 197, 253, 0.55) !important;
+  transform: translateY(-2px);
+}
+
+body.dark-mode .mentor-suggestion-card-btn {
+  padding: 22px;
+}
+
+body.dark-mode .mentor-suggestion-card-btn span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(59, 130, 246, 0.16);
+  margin-bottom: 14px;
+}
+
+body.dark-mode .mentor-common-followup-panel {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 32%),
+    linear-gradient(145deg, #0f172a, #111827) !important;
+  border: 1px solid rgba(96, 165, 250, 0.28) !important;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.32);
+}
+
+body.dark-mode .mentor-common-followup-panel h4 {
+  color: #93c5fd;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+body.dark-mode .mentor-followup-answer {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(148, 163, 184, 0.22) !important;
+  color: #e5e7eb;
+  line-height: 1.75;
+}
+
+body.dark-mode .mentor-followup-answer p,
+body.dark-mode .mentor-followup-answer li {
+  color: #e5e7eb !important;
+}
+
+body.dark-mode .mentor-followup-answer strong {
+  color: #ffffff !important;
+}
+
+body.dark-mode .mentor-followup-panel textarea {
+  margin-top: 14px;
+  background: #0b1220 !important;
+  border: 1px solid rgba(96, 165, 250, 0.25) !important;
+  color: #f8fafc !important;
+}
+
+/* Fix visual prompt helper text in light mode */
+
+.visual-generator-card p,
+.visual-generator-header p,
+.visual-generator-controls p,
+.visual-prompt-helper,
+.visual-topic-helper {
+  color: #475569 !important;
+}
+
+/* Dark mode */
+
+body.dark-mode .visual-generator-card p,
+body.dark-mode .visual-generator-header p,
+body.dark-mode .visual-generator-controls p,
+body.dark-mode .visual-prompt-helper,
+body.dark-mode .visual-topic-helper {
+  color: #cbd5e1 !important;
+}
+
+/* Fix visual prompt helper text in light mode */
+
+.visual-generator-card p,
+.visual-generator-header p,
+.visual-generator-controls p,
+.visual-prompt-helper,
+.visual-topic-helper {
+  color: #475569 !important;
+}
+
+/* Dark mode */
+
+body.dark-mode .visual-generator-card p,
+body.dark-mode .visual-generator-header p,
+body.dark-mode .visual-generator-controls p,
+body.dark-mode .visual-prompt-helper,
+body.dark-mode .visual-topic-helper {
+  color: #cbd5e1 !important;
+}
+
+/* Fix visual generator input text in light mode */
+
+.visual-topic-input {
+  color: #0f172a !important;
+  background: #ffffff !important;
+}
+
+.visual-topic-input::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode */
+
+body.dark-mode .visual-topic-input {
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .visual-topic-input::placeholder {
+  color: #94a3b8 !important;
+}

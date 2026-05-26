@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
 import { answerDoubt } from "../api/doubt";
@@ -13,13 +15,18 @@ function DoubtPage({ user }) {
 
   const [grade, setGrade] = useState("Grade 9");
   const [mode, setMode] = useState("CBSE");
-  const [subject, setSubject] = useState("");
-  const [chapter, setChapter] = useState("");
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [sourceInfo, setSourceInfo] = useState(null);
   const [asking, setAsking] = useState(false);
+  const [mentorSuggestions, setMentorSuggestions] = useState([]);
+
+  const [activeFollowUpCard, setActiveFollowUpCard] = useState(null);
+  const [followUpQuestion, setFollowUpQuestion] = useState("");
+  const [followUpAnswers, setFollowUpAnswers] = useState({});
+  const [followUpLoading, setFollowUpLoading] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState("");
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -29,17 +36,9 @@ function DoubtPage({ user }) {
 
         const defaultGrade = "Grade 9";
         const defaultMode = "CBSE";
-        const defaultSubject = Object.keys(
-          data.syllabus[defaultGrade][defaultMode]
-        )[0];
-
-        const defaultChapter =
-          data.syllabus[defaultGrade][defaultMode][defaultSubject][0];
 
         setGrade(defaultGrade);
         setMode(defaultMode);
-        setSubject(defaultSubject);
-        setChapter(defaultChapter);
       } catch {
         setError("Could not load syllabus");
       } finally {
@@ -55,43 +54,77 @@ function DoubtPage({ user }) {
 
   const grades = Object.keys(syllabusData);
   const modes = Object.keys(syllabusData[grade]);
-  const subjects = Object.keys(syllabusData[grade][mode]);
-  const chapters = syllabusData[grade][mode][subject] || [];
 
   function clearAnswerState() {
     setAnswer("");
     setSourceInfo(null);
+    setMentorSuggestions([]);
+    setActiveFollowUpCard(null);
+    setFollowUpQuestion("");
+    setFollowUpAnswers({});
     setError("");
   }
 
   function handleGradeChange(value) {
     const newMode = Object.keys(syllabusData[value])[0];
-    const newSubject = Object.keys(syllabusData[value][newMode])[0];
-    const newChapter = syllabusData[value][newMode][newSubject][0];
 
     setGrade(value);
     setMode(newMode);
-    setSubject(newSubject);
-    setChapter(newChapter);
     clearAnswerState();
   }
 
   function handleModeChange(value) {
-    const newSubject = Object.keys(syllabusData[grade][value])[0];
-    const newChapter = syllabusData[grade][value][newSubject][0];
-
     setMode(value);
-    setSubject(newSubject);
-    setChapter(newChapter);
     clearAnswerState();
   }
 
-  function handleSubjectChange(value) {
-    const newChapter = syllabusData[grade][mode][value][0];
+  function normalizeMermaidBlocks(text) {
+    if (!text) return "";
 
-    setSubject(value);
-    setChapter(newChapter);
-    clearAnswerState();
+    if (text.includes("graph TD") && !text.includes("```mermaid")) {
+      const lines = text.split("\n");
+      const output = [];
+      let inMermaid = false;
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("graph TD")) {
+          output.push("```mermaid");
+          output.push(line);
+          inMermaid = true;
+          continue;
+        }
+
+        if (inMermaid) {
+          const isMermaidLine =
+            trimmed === "" ||
+            trimmed.includes("-->") ||
+            trimmed.includes("-.->") ||
+            /^[A-Za-z0-9_]+\[.*\]$/.test(trimmed);
+
+          if (isMermaidLine) {
+            output.push(line);
+          } else {
+            output.push("```");
+            output.push(line);
+            inMermaid = false;
+          }
+
+          continue;
+        }
+
+        output.push(line);
+      }
+
+      if (inMermaid) {
+        output.push("```");
+      }
+
+      return output.join("\n");
+    }
+
+    return text;
   }
 
   async function handleAskDoubt() {
@@ -104,14 +137,18 @@ function DoubtPage({ user }) {
     setError("");
     setAnswer("");
     setSourceInfo(null);
+    setMentorSuggestions([]);
+    setActiveFollowUpCard(null);
+    setFollowUpQuestion("");
+    setFollowUpAnswers({});
 
     try {
       const result = await answerDoubt({
         username: user.username,
         grade,
         mode,
-        subject,
-        chapter,
+        subject: "",
+        chapter: "",
         question,
       });
 
@@ -120,55 +157,10 @@ function DoubtPage({ user }) {
         return;
       }
 
-      let finalAnswer = result.answer || "";
-
-      if (
-        finalAnswer.includes("graph TD") &&
-        !finalAnswer.includes("```mermaid")
-      ) {
-        const lines = finalAnswer.split("\n");
-        const output = [];
-        let inMermaid = false;
-
-        for (const line of lines) {
-          const trimmed = line.trim();
-
-          if (trimmed.startsWith("graph TD")) {
-            output.push("```mermaid");
-            output.push(line);
-            inMermaid = true;
-            continue;
-          }
-
-          if (inMermaid) {
-            const isMermaidLine =
-              trimmed === "" ||
-              trimmed.includes("-->") ||
-              trimmed.includes("-.->") ||
-              /^[A-Za-z0-9_]+\[.*\]$/.test(trimmed);
-
-            if (isMermaidLine) {
-              output.push(line);
-            } else {
-              output.push("```");
-              output.push(line);
-              inMermaid = false;
-            }
-
-            continue;
-          }
-
-          output.push(line);
-        }
-
-        if (inMermaid) {
-          output.push("```");
-        }
-
-        finalAnswer = output.join("\n");
-      }
+      const finalAnswer = normalizeMermaidBlocks(result.answer || "");
 
       setAnswer(finalAnswer);
+      setMentorSuggestions(result.mentor_suggestions || []);
 
       setSourceInfo({
         sourceType: result.source_type,
@@ -178,6 +170,102 @@ function DoubtPage({ user }) {
       setError("Could not answer doubt. Check backend.");
     } finally {
       setAsking(false);
+    }
+  }
+
+  async function handleOpenSuggestionCard(suggestion) {
+    setActiveFollowUpCard(suggestion);
+
+    if (followUpAnswers[suggestion]) {
+      return;
+    }
+
+    setFollowUpLoading(true);
+
+    try {
+const result = await answerDoubt({
+  username: user.username,
+  grade,
+  mode,
+  subject: "",
+  chapter: "",
+  question: `Mentor follow-up mode.
+
+Student's original doubt:
+${question}
+
+Requested follow-up:
+${suggestion}
+
+Rules:
+- Keep response under 150 words.
+- No Mermaid diagrams.
+- No long lesson structure.
+- No markdown tables.
+- Be concise and conversational.
+- Focus only on the requested follow-up.
+- End with one short reflective question.`,
+});
+
+      if (!result.success) {
+        setError(result.message || "Could not answer follow-up.");
+        return;
+      }
+
+      setFollowUpAnswers((prev) => ({
+        ...prev,
+        [suggestion]: normalizeMermaidBlocks(result.answer || ""),
+      }));
+    } catch {
+      setError("Could not answer follow-up. Check backend.");
+    } finally {
+      setFollowUpLoading(false);
+    }
+  }
+
+  async function handleAskFollowUpCard(suggestion) {
+    if (!followUpQuestion.trim()) {
+      return;
+    }
+
+    setFollowUpLoading(true);
+
+    try {
+      const result = await answerDoubt({
+        username: user.username,
+        grade,
+        mode,
+        subject: "",
+        chapter: "",
+        question: `${suggestion}
+
+Deeper follow-up question:
+${followUpQuestion}
+
+Original student doubt:
+${question}
+
+Important:
+- Answer the deeper follow-up directly.
+- Use the original doubt as context.
+- Keep the response concise unless detail is required.`,
+      });
+
+      if (!result.success) {
+        setError(result.message || "Could not answer follow-up.");
+        return;
+      }
+
+      setFollowUpAnswers((prev) => ({
+        ...prev,
+        [suggestion]: normalizeMermaidBlocks(result.answer || ""),
+      }));
+
+      setFollowUpQuestion("");
+    } catch {
+      setError("Could not answer follow-up. Check backend.");
+    } finally {
+      setFollowUpLoading(false);
     }
   }
 
@@ -198,18 +286,21 @@ function DoubtPage({ user }) {
           <div>
             <strong>AI Study Companion</strong>
             <p>
-              Context: {grade} • {subject} • {chapter}
+              Open mentor mode • {grade} • {mode}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="premium-doubt-layout">
+      <section className="premium-doubt-layout premium-doubt-open-layout">
         <aside className="premium-section premium-doubt-context">
           <div className="premium-header">
-            <p className="eyebrow">Context</p>
-            <h3>📚 Select Topic</h3>
-            <p>Choose the syllabus context so answers stay focused.</p>
+            <p className="eyebrow">Mentor Context</p>
+            <h3>🎯 Choose Learning Level</h3>
+            <p>
+              Ask Doubt is now open-topic. The AI will use your question, mentor
+              memory, textbook RAG, and general LLM knowledge together.
+            </p>
           </div>
 
           <div className="form-grid">
@@ -240,37 +331,15 @@ function DoubtPage({ user }) {
                 ))}
               </select>
             </label>
+          </div>
 
-            <label>
-              Subject
-              <select
-                value={subject}
-                onChange={(e) => handleSubjectChange(e.target.value)}
-              >
-                {subjects.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              Chapter / Section
-              <select
-                value={chapter}
-                onChange={(e) => {
-                  setChapter(e.target.value);
-                  clearAnswerState();
-                }}
-              >
-                {chapters.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </label>
+          <div className="premium-open-mentor-note">
+            <strong>How this works</strong>
+            <p>
+              You do not need to select a subject or chapter here. Type your
+              doubt naturally, and the AI will search broadly across uploaded
+              textbook content and combine it with mentor memory.
+            </p>
           </div>
         </aside>
 
@@ -280,17 +349,17 @@ function DoubtPage({ user }) {
               <div>
                 <p className="eyebrow">Ask AI Tutor</p>
                 <h3>💬 What are you stuck on?</h3>
-                <p>Type your doubt, or choose a quick prompt below.</p>
+                <p>Ask any concept, homework, textbook, or Olympiad doubt.</p>
               </div>
 
-              <span className="composer-badge">AI Guided</span>
+              <span className="composer-badge">Open Mentor</span>
             </div>
 
             <textarea
               rows="6"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Example: What is the difference between frequency and resonance?"
+              placeholder="Example: Explain Newton's laws of force with real-life examples."
             />
 
             <div className="prompt-chip-row">
@@ -329,10 +398,11 @@ function DoubtPage({ user }) {
             <section className="premium-section premium-doubt-empty">
               <div className="premium-header">
                 <p className="eyebrow">Ready to help</p>
-                <h3>Ask any doubt from this chapter</h3>
+                <h3>Ask any doubt in open mentor mode</h3>
                 <p>
-                  Your AI mentor can simplify concepts, give examples, solve
-                  problems, and explain diagrams using your selected context.
+                  Your AI mentor can simplify concepts, solve problems, explain
+                  diagrams, and connect your question to textbook content when
+                  available.
                 </p>
               </div>
 
@@ -343,13 +413,17 @@ function DoubtPage({ user }) {
                 </div>
 
                 <div className="premium-card premium-glow-card glow-purple">
-                  <h3>📘 Textbook Aware</h3>
-                  <p>Uses uploaded RAG content when relevant.</p>
+                  <h3>📘 RAG + LLM</h3>
+                  <p>
+                    Uses textbook context and general AI knowledge together.
+                  </p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-green">
-                  <h3>🧠 Exam Focused</h3>
-                  <p>Get clear answers with scoring tips.</p>
+                  <h3>🧠 Mentor Memory</h3>
+                  <p>
+                    Adapts to previous doubts and preferred explanation style.
+                  </p>
                 </div>
               </div>
             </section>
@@ -364,12 +438,16 @@ function DoubtPage({ user }) {
                     : "AI generated"}
                 </p>
                 <h3>Answer</h3>
-                <p>Your AI tutor response for the selected chapter.</p>
+                <p>
+                  Your AI tutor response using your question as the main
+                  context.
+                </p>
               </div>
 
               <div className="markdown-content">
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
                   components={{
                     code({ className, children }) {
                       const match = /language-mermaid/.exec(className || "");
@@ -389,6 +467,91 @@ function DoubtPage({ user }) {
                   {answer}
                 </ReactMarkdown>
               </div>
+
+              {mentorSuggestions.length > 0 && (
+                <div className="mentor-suggestion-section">
+                  <h4>🧠 Suggested Next Steps</h4>
+
+                  <div className="mentor-suggestion-card-grid">
+                    {mentorSuggestions.map((suggestion, index) => (
+                      <div key={index} className="mentor-suggestion-card">
+                        <button
+                          type="button"
+                          className="mentor-suggestion-card-btn"
+                          onClick={() => {
+                            setActiveSuggestion(suggestion);
+                            handleOpenSuggestionCard(suggestion);
+                            setFollowUpQuestion("");
+                          }}
+                        >
+                          <span>🧠</span>
+                          <strong>{suggestion}</strong>
+                          <small>Open guided follow-up</small>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  {activeSuggestion && (
+                    <div className="mentor-followup-panel mentor-common-followup-panel">
+                      <h4>🧠 {activeSuggestion}</h4>
+
+                      {followUpLoading &&
+                        !followUpAnswers[activeSuggestion] && (
+                          <p>Thinking...</p>
+                        )}
+
+                      {followUpAnswers[activeSuggestion] && (
+                        <div className="mentor-followup-answer markdown-content">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                            components={{
+                              code({ className, children }) {
+                                const match = /language-mermaid/.exec(
+                                  className || ""
+                                );
+
+                                if (match) {
+                                  return (
+                                    <MermaidBlock
+                                      chart={String(children).replace(
+                                        /\n$/,
+                                        ""
+                                      )}
+                                    />
+                                  );
+                                }
+
+                                return (
+                                  <code className={className}>{children}</code>
+                                );
+                              },
+                            }}
+                          >
+                            {followUpAnswers[activeSuggestion]}
+                          </ReactMarkdown>
+                        </div>
+                      )}
+
+                      <textarea
+                        rows="3"
+                        value={followUpQuestion}
+                        placeholder="Ask a deeper follow-up..."
+                        onChange={(e) => setFollowUpQuestion(e.target.value)}
+                      />
+
+                      <button
+                        className="primary-btn"
+                        disabled={followUpLoading || !followUpQuestion.trim()}
+                        onClick={() => handleAskFollowUpCard(activeSuggestion)}
+                      >
+                        {followUpLoading ? "Thinking..." : "Ask Follow-up"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </section>
           )}
 
@@ -400,7 +563,7 @@ function DoubtPage({ user }) {
                 <p>
                   <strong>Answer Source:</strong>{" "}
                   {sourceInfo.sourceType === "RAG"
-                    ? "Uploaded Textbook / RAG Content"
+                    ? "Uploaded Textbook / RAG Content + LLM"
                     : "General LLM Knowledge"}
                 </p>
               </div>
@@ -419,7 +582,7 @@ function DoubtPage({ user }) {
 
                       uniqueDocs.push({
                         title,
-                        chapter: s.document?.chapter || chapter,
+                        chapter: s.document?.chapter || "Matched topic",
                       });
                     }
                   });
@@ -439,7 +602,7 @@ function DoubtPage({ user }) {
                           </p>
 
                           <p>
-                            <strong>Match:</strong> Textbook chapter match
+                            <strong>Match:</strong> Broad textbook match
                           </p>
                         </div>
                       ))}
