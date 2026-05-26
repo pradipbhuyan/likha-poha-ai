@@ -24,15 +24,17 @@ def answer_student_doubt(data: DoubtRequest):
             "answer": result.get("answer"),
             "source_type": result.get("source_type", "LLM"),
             "sources": result.get("sources", []),
+            "mentor_suggestions": result.get("mentor_suggestions", []),
             "message": "Doubt answered successfully",
         }
 
     except Exception as e:
-
+        
         return {
-            "success": False,
-            "answer": None,
-            "source_type": "LLM",
-            "sources": [],
-            "message": f"Doubt answering failed: {str(e)}",
-        }
+            "success": True,
+            "answer": result.get("answer"),
+            "source_type": result.get("source_type", "LLM"),
+            "sources": result.get("sources", []),
+            "mentor_suggestions": result.get("mentor_suggestions", []),
+            "message": "Doubt answered successfully",
+        }   

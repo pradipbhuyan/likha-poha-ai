@@ -96,6 +96,9 @@ Rules for Mermaid:
 - Use only simple labels.
 - Avoid special symbols inside node labels.
 - Wrap Mermaid exactly in:
+- Keep every Mermaid node label under 24 characters.
+- Use short labels like Inertia, Force, Acceleration, Reaction.
+- Do not write full sentences inside Mermaid nodes.
 
 ```mermaid
 graph TD
@@ -166,6 +169,10 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 
 {DIAGRAM_HINT}
 
+- Keep every Mermaid node label under 24 characters.
+- Use short labels like Inertia, Force, Acceleration, Reaction.
+- Do not write full sentences inside Mermaid nodes.
+
 End with one small question to check understanding.
 """
 
@@ -190,21 +197,28 @@ def answer_doubt(
     question: str,
     username: str = "unknown",
 ):
+    rag_query = f"""
+    Student doubt:
+    {question}
+
+    Find any relevant textbook explanation, definition, formula, example, or concept.
+    """
+
     rag_results = search_textbook_content(
-        query=f"{chapter} {question}",
+        query=rag_query,
         grade=grade,
-        subject=subject,
-        chapter=chapter,
-        match_count=3,
+        subject=subject if subject else None,
+        chapter=chapter if chapter else None,
+        match_count=5,
     )
 
     if not rag_results:
         rag_results = search_textbook_content(
-            query=f"{chapter} {question}",
+            query=rag_query,
             grade=grade,
-            subject=subject,
+            subject=None,
             chapter=None,
-            match_count=3,
+            match_count=5,
         )
 
     source_type = "RAG" if rag_results else "LLM"
@@ -216,8 +230,6 @@ def answer_doubt(
 
     memories = get_recent_mentor_memory(
         username=username,
-        subject=subject,
-        chapter=chapter,
         limit=5,
     )
 
@@ -225,8 +237,8 @@ def answer_doubt(
 
     prompt = f"""
 Grade: {grade}
-Subject: {subject}
-Chapter: {chapter}
+Subject: {subject if subject else "Open doubt"}
+Chapter: {chapter if chapter else "Open topic"}
 
 Student mentor memory:
 {memory_context}
@@ -255,11 +267,20 @@ Use bullet points instead.
 
 {DIAGRAM_HINT}
 
-For formulas use:
+- Keep every Mermaid node label under 24 characters.
+- Use short labels like Inertia, Force, Acceleration, Reaction.
+- Do not write full sentences inside Mermaid nodes.
+
+For formulas:
+- Use inline LaTeX like $F = m \times a$
+- Use display LaTeX like:
 
 $$
-formula
+F = m \times a
 $$
+
+- Never write formulas inside normal parentheses like:
+( F = m \times a )
 """
 
     answer = ask_llm(
@@ -279,10 +300,35 @@ $$
         answer=answer,
     )
 
+    suggestions = []
+
+    lower_question = question.lower()
+
+    if "formula" in lower_question or "equation" in lower_question:
+        suggestions.append("Show a worked example")
+
+    if "diagram" in lower_question or "structure" in lower_question:
+        suggestions.append("Generate a visual explanation")
+
+    if "not understand" in lower_question or "confused" in lower_question:
+        suggestions.append("Explain in simpler language")
+
+    if "why" in lower_question:
+        suggestions.append("Give a real-life analogy")
+
+    if not suggestions:
+        suggestions = [
+            "Give a practice question",
+            "Explain step-by-step",
+            "Show a visual explanation",
+        ]
+
+
     return {
         "answer": answer,
         "source_type": source_type,
         "sources": rag_results,
+        "mentor_suggestions": suggestions,
     }
 
 def answer_lesson_follow_up(
@@ -358,6 +404,11 @@ Rules:
 - End with one small check question.
 
 {DIAGRAM_HINT}
+- Keep every Mermaid node label under 24 characters.
+- Use short labels like Inertia, Force, Acceleration, Reaction.
+- Do not write full sentences inside Mermaid nodes.
+
+
 """
 
     answer = ask_llm(
