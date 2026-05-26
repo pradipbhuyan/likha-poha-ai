@@ -308,7 +308,7 @@ $$
         suggestions.append("Show a worked example")
 
     if "diagram" in lower_question or "structure" in lower_question:
-        suggestions.append("Generate a visual explanation")
+        suggestions.append("Explain the structure step-by-step")
 
     if "not understand" in lower_question or "confused" in lower_question:
         suggestions.append("Explain in simpler language")
@@ -320,7 +320,7 @@ $$
         suggestions = [
             "Give a practice question",
             "Explain step-by-step",
-            "Show a visual explanation",
+            "Give a real-life example",
         ]
 
 
