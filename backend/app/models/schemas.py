@@ -136,3 +136,10 @@ class LessonFollowUpResponse(BaseModel):
     source_type: str = "LLM"
     sources: list[dict] = []
     message: str
+    
+
+class AnswerEvaluationRequest(BaseModel):
+    username: str
+    question: str
+    student_answer: str
+    ideal_context: str

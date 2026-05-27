@@ -18,3 +18,7 @@ frontend/dist/
 
 *.log
 .env.local
+
+# Local textbook/RAG files
+RAG DB/
+*.pdf
