@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import MermaidBlock from "../components/MermaidBlock";
 
 import { getSyllabus } from "../api/syllabus";
 import { generateLesson, askLessonFollowUp } from "../api/lesson";
 import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
-
 import LessonSections from "../components/LessonSections";
+
+import {
+  evaluateStudentAnswer,
+  generatePracticeQuestions,
+} from "../api/evaluation";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -48,6 +53,17 @@ function LessonsPage({ user }) {
   const [visualTopic, setVisualTopic] = useState("");
   const [visualError, setVisualError] = useState("");
 
+  const [practiceAnswers, setPracticeAnswers] = useState({});
+  const [practiceEvaluations, setPracticeEvaluations] = useState({});
+  const [practiceScores, setPracticeScores] = useState({});
+  const [practicePassedMap, setPracticePassedMap] = useState({});
+  const [practiceLoadingMap, setPracticeLoadingMap] = useState({});
+  const [practicePassed, setPracticePassed] = useState(false);
+
+  const [practiceQuestions, setPracticeQuestions] = useState([]);
+  const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
+    useState(false);
+
   const lessonSteps = [
     "Concept introduction",
     "Core explanation",
@@ -76,6 +92,9 @@ function LessonsPage({ user }) {
   const [speechRate, setSpeechRate] = useState("+0%");
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
+
+  const [practiceModeActive, setPracticeModeActive] = useState(false);
+  const [practiceFocusWarnings, setPracticeFocusWarnings] = useState(0);
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -111,11 +130,47 @@ function LessonsPage({ user }) {
   }, []);
 
   useEffect(() => {
+    if (!practiceModeActive) {
+      return;
+    }
+
+    let warningCooldown = false;
+
+    function registerFocusWarning() {
+      if (warningCooldown) {
+        return;
+      }
+
+      warningCooldown = true;
+
+      setPracticeFocusWarnings((prev) => prev + 1);
+
+      setTimeout(() => {
+        warningCooldown = false;
+      }, 1500);
+    }
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        registerFocusWarning();
+      }
+    }
+
+    window.addEventListener("blur", registerFocusWarning);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("blur", registerFocusWarning);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [practiceModeActive]);
+
+  useEffect(() => {
     async function loadProgress() {
       if (!grade || !mode || !subject || !chapter) {
         return;
       }
-    
+
       try {
         const result = await getChapterProgress({
           username: user.username,
@@ -124,28 +179,27 @@ function LessonsPage({ user }) {
           subject,
           chapter,
         });
-    
+
         const progress = result.progress || {};
-    
+
         const savedStepIndex = progress.current_step_index || 0;
         const savedStepLessons = progress.step_lessons || {};
-    
+
         setCurrentStepIndex(savedStepIndex);
         setCompleted(progress.completed || false);
         setStepLessons(savedStepLessons);
-    
+
         setLesson(
-          savedStepLessons[String(savedStepIndex)] ||
-            progress.last_lesson ||
-            ""
+          savedStepLessons[String(savedStepIndex)] || progress.last_lesson || ""
         );
-    
+
         setAudioUrl("");
         setVisualImage("");
         setVisualError("");
         setSourceInfo(null);
         setFollowUpQuestion("");
         setFollowUpMessages([]);
+        resetPracticeState();
       } catch {
         console.error("Could not load progress");
       }
@@ -175,6 +229,7 @@ function LessonsPage({ user }) {
     setSourceInfo(null);
     setFollowUpQuestion("");
     setFollowUpMessages([]);
+    resetPracticeState();
   }
 
   function handleGradeChange(value) {
@@ -207,6 +262,18 @@ function LessonsPage({ user }) {
     resetLessonState();
   }
 
+  function resetPracticeState() {
+    setPracticeQuestions([]);
+    setPracticeAnswers({});
+    setPracticeEvaluations({});
+    setPracticeScores({});
+    setPracticePassedMap({});
+    setPracticeLoadingMap({});
+    setPracticePassed(false);
+    setPracticeModeActive(false);
+    setPracticeFocusWarnings(0);
+  }
+
   async function handleGenerateLesson() {
     setGenerating(true);
     setLesson("");
@@ -217,6 +284,7 @@ function LessonsPage({ user }) {
     setError("");
     setFollowUpQuestion("");
     setFollowUpMessages([]);
+    resetPracticeState();
 
     try {
       const result = await generateLesson({
@@ -236,10 +304,12 @@ function LessonsPage({ user }) {
 
       setLesson(result.lesson);
 
-      setStepLessons((prev) => ({
-        ...prev,
+      const updatedStepLessons = {
+        ...stepLessons,
         [String(currentStepIndex)]: result.lesson,
-      }));
+      };
+
+      setStepLessons(updatedStepLessons);
 
       setSourceInfo({
         sourceType: result.source_type || "LLM",
@@ -255,6 +325,7 @@ function LessonsPage({ user }) {
         current_step_index: currentStepIndex,
         completed: false,
         last_lesson: result.lesson,
+        step_lessons: updatedStepLessons,
       });
     } catch {
       setError("Could not generate lesson. Check backend.");
@@ -264,7 +335,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleAskFollowUp() {
-    if (!followUpQuestion.trim()) {
+    if (!followUpQuestion.trim() || practiceModeActive) {
       return;
     }
 
@@ -379,9 +450,131 @@ function LessonsPage({ user }) {
     }
   }
 
-  const hasSavedLesson = Boolean(
-    stepLessons[String(currentStepIndex)]
-  );
+  const hasSavedLesson = Boolean(stepLessons[String(currentStepIndex)]);
+
+  async function handleGeneratePracticeQuestions() {
+    if (!lesson) {
+      return;
+    }
+
+    setPracticeQuestionsLoading(true);
+    setPracticeQuestions([]);
+    setPracticeAnswers({});
+    setPracticeEvaluations({});
+    setPracticeScores({});
+    setPracticePassedMap({});
+    setPracticeLoadingMap({});
+    setPracticePassed(false);
+    setPracticeFocusWarnings(0);
+
+    try {
+      const result = await generatePracticeQuestions({
+        username: user.username,
+        question: chapter,
+        student_answer: "",
+        ideal_context: lesson,
+      });
+
+      if (!result.success) {
+        setPracticeQuestions([
+          "Explain the main concept from this lesson in your own words.",
+          "Give one real-life example or application of this concept.",
+        ]);
+        setPracticeModeActive(true);
+        return;
+      }
+
+      setPracticeQuestions(result.questions || []);
+      setPracticeModeActive(true);
+    } catch {
+      setPracticeQuestions([
+        "Explain the main concept from this lesson in your own words.",
+        "Give one real-life example or application of this concept.",
+      ]);
+      setPracticeModeActive(true);
+    } finally {
+      setPracticeQuestionsLoading(false);
+    }
+  }
+
+  async function handleEvaluatePracticeAnswer(question, index) {
+    const answer = practiceAnswers[index] || "";
+
+    if (!answer.trim() || countWords(answer) < 100) {
+      return;
+    }
+
+    setPracticeLoadingMap((prev) => ({
+      ...prev,
+      [index]: true,
+    }));
+
+    setPracticeEvaluations((prev) => ({
+      ...prev,
+      [index]: "",
+    }));
+
+    setPracticeScores((prev) => ({
+      ...prev,
+      [index]: 0,
+    }));
+
+    setPracticePassedMap((prev) => ({
+      ...prev,
+      [index]: false,
+    }));
+
+    try {
+      const result = await evaluateStudentAnswer({
+        username: user.username,
+        question,
+        student_answer: answer,
+        ideal_context: lesson,
+      });
+
+      if (!result.success) {
+        setPracticeEvaluations((prev) => ({
+          ...prev,
+          [index]: result.message || "Could not evaluate answer.",
+        }));
+        return;
+      }
+
+      setPracticeEvaluations((prev) => ({
+        ...prev,
+        [index]: result.evaluation || "",
+      }));
+
+      setPracticeScores((prev) => ({
+        ...prev,
+        [index]: result.score || 0,
+      }));
+
+      setPracticePassedMap((prev) => ({
+        ...prev,
+        [index]: result.passed || false,
+      }));
+
+      if (result.passed) {
+        setPracticePassed(true);
+        setPracticeModeActive(false);
+      }
+    } catch {
+      setPracticeEvaluations((prev) => ({
+        ...prev,
+        [index]: "Could not evaluate answer. Check backend.",
+      }));
+    } finally {
+      setPracticeLoadingMap((prev) => ({
+        ...prev,
+        [index]: false,
+      }));
+    }
+  }
+
+  function countWords(text) {
+    return text.trim().split(/\s+/).filter(Boolean).length;
+  }
 
   return (
     <div className="lesson-workspace premium-page premium-lessons-page">
@@ -443,7 +636,13 @@ function LessonsPage({ user }) {
                   value={chapter}
                   onChange={(e) => {
                     setChapter(e.target.value);
-                    resetLessonState();
+                    setLesson("");
+                    setAudioUrl("");
+                    setVisualImage("");
+                    setSourceInfo(null);
+                    setFollowUpQuestion("");
+                    setFollowUpMessages([]);
+                    resetPracticeState();
                   }}
                 >
                   {chapters.map((c) => (
@@ -460,7 +659,6 @@ function LessonsPage({ user }) {
                   value={currentStepIndex}
                   onChange={(e) => {
                     const newIndex = Number(e.target.value);
-
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
@@ -468,6 +666,7 @@ function LessonsPage({ user }) {
                     setVisualError("");
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
+                    resetPracticeState();
                   }}
                 >
                   {lessonSteps.map((step, index) => (
@@ -523,7 +722,7 @@ function LessonsPage({ user }) {
 
             <div className="progress-box premium-progress-box">
               <p>
-                Step {currentStepIndex + 1} of {lessonSteps.length}:{" "}
+                Step {currentStepIndex + 1} of {lessonSteps.length}: {" "}
                 <strong>{stepTitle}</strong>
               </p>
 
@@ -559,6 +758,7 @@ function LessonsPage({ user }) {
                   setVisualImage("");
                   setVisualError("");
                   setCompleted(false);
+                  resetPracticeState();
 
                   await saveChapterProgress({
                     username: user.username,
@@ -577,6 +777,12 @@ function LessonsPage({ user }) {
 
               <button
                 className="secondary-btn"
+                disabled={!practicePassed}
+                title={
+                  practicePassed
+                    ? "You can complete this step."
+                    : "Write and pass practice answer first."
+                }
                 onClick={async () => {
                   const isLastStep = currentStepIndex >= lessonSteps.length - 1;
 
@@ -597,11 +803,11 @@ function LessonsPage({ user }) {
                     const newIndex = currentStepIndex + 1;
 
                     setCurrentStepIndex(newIndex);
-
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
                     setVisualImage("");
                     setVisualError("");
+                    resetPracticeState();
 
                     await saveChapterProgress({
                       username: user.username,
@@ -627,6 +833,7 @@ function LessonsPage({ user }) {
                   setAudioUrl("");
                   setVisualImage("");
                   setCompleted(false);
+                  resetPracticeState();
 
                   await saveChapterProgress({
                     username: user.username,
@@ -715,6 +922,128 @@ function LessonsPage({ user }) {
                   )}
                 </div>
 
+                <div className="lesson-practice-card">
+                  {practiceFocusWarnings > 0 && (
+                    <div className="practice-warning-banner">
+                      ⚠️ Focus warning {practiceFocusWarnings}: Please stay on
+                      this page while answering. Practice works best when you
+                      recall from memory.
+                    </div>
+                  )}
+
+                  {practiceModeActive && (
+                    <div className="practice-focus-banner">
+                      ✍️ Practice Mode Active — AI follow-up help is temporarily
+                      disabled. Try answering from memory like a real exam.
+                    </div>
+                  )}
+
+                  <div className="lesson-followup-header">
+                    <h3>✍️ Write & Practice</h3>
+                    <p>
+                      Write your own answer first. AI will evaluate it like an
+                      examiner.
+                    </p>
+                  </div>
+
+                  <button
+                    className="secondary-btn"
+                    onClick={handleGeneratePracticeQuestions}
+                    disabled={practiceQuestionsLoading}
+                  >
+                    {practiceQuestionsLoading
+                      ? "Creating practice questions..."
+                      : "🎲 Generate 2 Practice Questions"}
+                  </button>
+
+                  {practiceQuestions.length > 0 && (
+                    <div className="practice-question-list">
+                      {practiceQuestions.map((q, index) => {
+                        const currentAnswer = practiceAnswers[index] || "";
+                        const currentWordCount = countWords(currentAnswer);
+                        const currentEvaluation =
+                          practiceEvaluations[index] || "";
+                        const currentScore = practiceScores[index] || 0;
+                        const currentPassed =
+                          practicePassedMap[index] || false;
+                        const currentLoading =
+                          practiceLoadingMap[index] || false;
+
+                        return (
+                          <div
+                            key={index}
+                            className="practice-question-card workbook-card"
+                          >
+                            <strong>Question {index + 1}</strong>
+                            <span>{q}</span>
+
+                            <textarea
+                              rows="6"
+                              value={currentAnswer}
+                              placeholder="Write your answer here in at least 100 words..."
+                              onChange={(e) =>
+                                setPracticeAnswers((prev) => ({
+                                  ...prev,
+                                  [index]: e.target.value,
+                                }))
+                              }
+                            />
+
+                            <p className="practice-word-count">
+                              Words: {currentWordCount} / 100
+                            </p>
+
+                            <button
+                              className="primary-btn"
+                              disabled={currentLoading || currentWordCount < 100}
+                              onClick={() =>
+                                handleEvaluatePracticeAnswer(q, index)
+                              }
+                            >
+                              {currentLoading
+                                ? "Evaluating..."
+                                : currentWordCount < 100
+                                ? "Write at least 100 words"
+                                : "Evaluate This Answer"}
+                            </button>
+
+                            {currentEvaluation && (
+                              <div className="mentor-followup-answer markdown-content">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                  {currentEvaluation}
+                                </ReactMarkdown>
+                              </div>
+                            )}
+
+                            {currentEvaluation && (
+                              <div
+                                className={
+                                  currentPassed
+                                    ? "practice-status-box passed"
+                                    : "practice-status-box retry"
+                                }
+                              >
+                                <strong>
+                                  {currentPassed
+                                    ? "✅ Practice Passed"
+                                    : "🔁 Retry Needed"}
+                                </strong>
+
+                                <p>
+                                  Score: {currentScore}/10. {" "}
+                                  {currentPassed
+                                    ? "You can now mark this step complete."
+                                    : "Improve your answer and try again. You need 8/10 to continue."}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
                 <div className="visual-generator-card premium-card premium-glow-card glow-purple">
                   <div className="visual-generator-header">
                     <h3>🖼 Visual Generator</h3>
@@ -729,7 +1058,7 @@ function LessonsPage({ user }) {
                     <input
                       className="visual-topic-input"
                       type="text"
-                      placeholder="Example: structure of atom"
+                      placeholder="Example: how friction affects motion in daily life"
                       value={visualTopic}
                       onChange={(e) => setVisualTopic(e.target.value)}
                     />
@@ -761,7 +1090,13 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                <div className="lesson-followup-box premium-card">
+                <div
+                  className={
+                    practiceModeActive
+                      ? "lesson-followup-box disabled-practice-mode"
+                      : "lesson-followup-box"
+                  }
+                >
                   <div className="lesson-followup-header">
                     <h3>💬 Ask a follow-up</h3>
                     <p>Ask anything about this lesson step.</p>
@@ -782,7 +1117,31 @@ function LessonsPage({ user }) {
                             {msg.role === "user" ? "You" : "AI Tutor"}
                           </strong>
 
-                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                              code({ className, children }) {
+                                const match = /language-mermaid/.exec(
+                                  className || ""
+                                );
+
+                                if (match) {
+                                  return (
+                                    <MermaidBlock
+                                      chart={String(children).replace(
+                                        /\n$/,
+                                        ""
+                                      )}
+                                    />
+                                  );
+                                }
+
+                                return (
+                                  <code className={className}>{children}</code>
+                                );
+                              },
+                            }}
+                          >
                             {msg.content}
                           </ReactMarkdown>
 
@@ -799,7 +1158,12 @@ function LessonsPage({ user }) {
                   <div className="lesson-followup-input">
                     <textarea
                       rows="4"
-                      placeholder="Ask a follow-up question..."
+                      disabled={practiceModeActive}
+                      placeholder={
+                        practiceModeActive
+                          ? "Practice mode active. Complete written practice first."
+                          : "Ask a follow-up question..."
+                      }
                       value={followUpQuestion}
                       onChange={(e) => setFollowUpQuestion(e.target.value)}
                     />
@@ -816,6 +1180,7 @@ function LessonsPage({ user }) {
                           key={chip}
                           type="button"
                           className="followup-chip"
+                          disabled={practiceModeActive}
                           onClick={() =>
                             setFollowUpQuestion((prev) =>
                               prev ? `${prev}\n${chip}` : chip
@@ -830,7 +1195,11 @@ function LessonsPage({ user }) {
                     <button
                       className="primary-btn followup-submit-btn"
                       onClick={handleAskFollowUp}
-                      disabled={followUpLoading || !followUpQuestion.trim()}
+                      disabled={
+                        practiceModeActive ||
+                        followUpLoading ||
+                        !followUpQuestion.trim()
+                      }
                     >
                       {followUpLoading ? "Thinking..." : "✨ Ask AI Tutor"}
                     </button>
@@ -844,7 +1213,7 @@ function LessonsPage({ user }) {
                     <h3>📚 Source Information</h3>
 
                     <p>
-                      <strong>Lesson Source:</strong>{" "}
+                      <strong>Lesson Source:</strong> {" "}
                       {sourceInfo.sourceType === "RAG"
                         ? "Uploaded Textbook / RAG Content"
                         : "General LLM Knowledge"}
