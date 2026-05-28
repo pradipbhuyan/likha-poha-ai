@@ -1,7 +1,6 @@
 import {
   BarChart3,
   BookOpen,
-  Brain,
   ClipboardList,
   HelpCircle,
   Home,
@@ -23,22 +22,77 @@ function Sidebar({
   mobileNavOpen,
   setMobileNavOpen,
 }) {
-  const isAdmin = ["admin", "pradip"].includes(user?.username);
+  const isAdmin = user?.role === "admin" || user?.username === "pradip";
+  const isParent = user?.role === "parent";
+  const isStudent = user?.role === "student";
 
   const pages = [
-    { key: "dashboard", label: "Dashboard", icon: Home },
-    { key: "lessons", label: "Lessons", icon: BookOpen },
-    { key: "doubt", label: "Ask Doubt", icon: HelpCircle },
-    { key: "mockTest", label: "Mock Test", icon: ClipboardList },
-    { key: "resources", label: "Learn More", icon: Video },
-    { key: "analytics", label: "Analytics", icon: BarChart3 },
-    { key: "leaderboard", label: "Leaderboard", icon: Trophy },
-    { key: "ragUpload", label: "RAG Upload", icon: UploadCloud, adminOnly: true },
-    { key: "usage", label: "AI Usage", icon: DollarSign, adminOnly: true },
-    { key: "parentDashboard", label: "Parent Dashboard", icon: Users, adminOnly: true },
+    {
+      key: "dashboard",
+      label: "Dashboard",
+      icon: Home,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "lessons",
+      label: "Lessons",
+      icon: BookOpen,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "doubt",
+      label: "Ask Doubt",
+      icon: HelpCircle,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "mockTest",
+      label: "Mock Test",
+      icon: ClipboardList,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "resources",
+      label: "Learn More",
+      icon: Video,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "analytics",
+      label: "Analytics",
+      icon: BarChart3,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "leaderboard",
+      label: "Leaderboard",
+      icon: Trophy,
+      roles: ["student", "admin"],
+    },
+    {
+      key: "parentDashboard",
+      label: "Parent Dashboard",
+      icon: Users,
+      roles: ["parent", "admin"],
+    },
+    {
+      key: "ragUpload",
+      label: "RAG Upload",
+      icon: UploadCloud,
+      roles: ["admin"],
+    },
+    {
+      key: "usage",
+      label: "AI Usage",
+      icon: DollarSign,
+      roles: ["admin"],
+    },
   ];
 
-  const visiblePages = pages.filter((page) => !page.adminOnly || isAdmin);
+  const visiblePages = pages.filter((page) => {
+    if (isAdmin) return true;
+    return page.roles?.includes(user?.role);
+  });
 
   return (
     <aside
@@ -70,8 +124,8 @@ function Sidebar({
         </div>
 
         <div>
-          <strong>{user.username}</strong>
-          <span>{user.role}</span>
+          <strong>{user?.username}</strong>
+          <span>{user?.role}</span>
         </div>
       </div>
 

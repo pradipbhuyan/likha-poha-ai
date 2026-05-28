@@ -1,4 +1,6 @@
 from fastapi import APIRouter, HTTPException
+from fastapi import Depends
+from app.services.auth_service import get_current_user
 
 from app.models.schemas import (
     LessonRequest,
@@ -144,3 +146,12 @@ def lesson_follow_up(data: LessonFollowUpRequest):
             sources=[],
             message=f"Follow-up failed: {str(e)}",
         )
+        
+
+@router.post("/generate")
+def generate_lesson(payload: dict, user=Depends(get_current_user)):
+    user_id = user.id
+
+    # existing logic here
+
+    return result

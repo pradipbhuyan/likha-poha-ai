@@ -19,6 +19,7 @@ from app.routes import usage
 from app.routes import recommendations
 from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
+from app.routes.parent_dashboard import router as parent_dashboard_router
 
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
@@ -128,6 +129,12 @@ app.include_router(
     evaluation_router,
     prefix="/api/evaluation",
     tags=["Evaluation"],
+)
+
+app.include_router(
+    parent_dashboard_router,
+    prefix="/api/parent-dashboard",
+    tags=["Parent Dashboard"]
 )
 
 @app.get("/api/health")

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { login } from "../api/auth";
 import logo from "../assets/AITutorLogo.png";
 import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
+import { supabase } from "../api/supabaseClient";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -11,19 +11,42 @@ function LoginPage({ onLogin }) {
 
   async function handleLogin(e) {
     e.preventDefault();
+  
     setError("");
     setLoading(true);
-
+  
     try {
-      const result = await login(username, password);
-
-      if (!result.success) {
-        setError(result.message || "Invalid username or password");
-      } else {
-        onLogin(result);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: username,
+        password,
+      });
+  
+      if (error) {
+        setError(error.message);
+        return;
       }
-    } catch {
-      setError("Login failed. Check backend is running.");
+  
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("id, email, username, role, parent_id")
+        .eq("id", data.user.id)
+        .single();
+  
+      if (profileError) {
+        setError("Login successful, but profile role was not found.");
+        return;
+      }
+  
+      onLogin({
+        id: data.user.id,
+        email: data.user.email,
+        username: profile.username || data.user.email,
+        role: profile.role,
+        parentId: profile.parent_id,
+        accessToken: data.session.access_token,
+      });
+    } catch (err) {
+      setError(err.message || "Login failed.");
     } finally {
       setLoading(false);
     }
@@ -74,10 +97,11 @@ function LoginPage({ onLogin }) {
               <div className="ait-input-row">
                 <span>👤</span>
                 <input
-                  type="text"
-                  placeholder="Enter username"
+                  type="email"
+                  placeholder="Enter email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  required
                 />
               </div>
 
@@ -88,6 +112,7 @@ function LoginPage({ onLogin }) {
                   placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <span>👁️</span>
               </div>

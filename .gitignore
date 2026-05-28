@@ -1,24 +1,48 @@
+# Environment variables
 .env
+.env.local
+.env.development.local
+.env.production.local
+
+# Frontend env
+frontend/.env
+frontend/.env.local
+
+# Backend env
 backend/.env
+
+# Python
 __pycache__/
 *.pyc
 venv/
-.venv/
-node_modules/
-dist/
-.DS_Store
-test_history.json
-student_progress.json
-backend/generated_audio/
-backend/__pycache__/
 backend/venv/
 
-frontend/node_modules/
-frontend/dist/
+# Node
+node_modules/
 
+# Logs
 *.log
-.env.local
+
+# OS
+.DS_Store
+
+# RAG data
+RAG DB/
+uploads/
+
+# Test artifacts
+playwright-report/
+test-results/
+
+# IDE
+.vscode/
+.idea/
 
 # Local textbook/RAG files
 RAG DB/
 *.pdf
+
+# Generated runtime files
+backend/generated_audio/
+backend/student_progress.json
+backend/test_history.json

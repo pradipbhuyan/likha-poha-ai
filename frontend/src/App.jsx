@@ -90,8 +90,16 @@ function App() {
       setUser(JSON.parse(savedUser));
     }
 
-    if (savedPage) {
-      setActivePage(savedPage);
+    if (savedUser) {
+      const parsedUser = JSON.parse(savedUser);
+    
+      if (savedPage) {
+        setActivePage(savedPage);
+      } else if (parsedUser.role === "parent") {
+        setActivePage("parentDashboard");
+      } else {
+        setActivePage("dashboard");
+      }
     }
 
     document.body.classList.toggle("dark-mode", darkMode);
@@ -106,6 +114,14 @@ function App() {
   function handleLogin(userData) {
     setUser(userData);
     localStorage.setItem("tutor_user", JSON.stringify(userData));
+  
+    if (userData.role === "parent") {
+      setActivePage("parentDashboard");
+      localStorage.setItem("tutor_active_page", "parentDashboard");
+    } else {
+      setActivePage("dashboard");
+      localStorage.setItem("tutor_active_page", "dashboard");
+    }
   }
 
   function handleLogout() {
