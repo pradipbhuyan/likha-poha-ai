@@ -10,6 +10,7 @@ import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
 import LessonSections from "../components/LessonSections";
 
+
 import {
   evaluateStudentAnswer,
   generatePracticeQuestions,

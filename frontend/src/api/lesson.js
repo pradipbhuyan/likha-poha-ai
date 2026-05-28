@@ -1,35 +1,15 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost:8000";
+import { authFetch } from "./authClient";
 
 export async function generateLesson(payload) {
-  const response = await fetch(`${API_BASE_URL}/api/lesson/generate`, {
+  return authFetch("/api/lesson/generate", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(payload),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to generate lesson");
-  }
-
-  return response.json();
 }
 
 export async function askLessonFollowUp(payload) {
-  const response = await fetch(`${API_BASE_URL}/api/lesson/follow-up`, {
+  return authFetch("/api/lesson/follow-up", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(payload),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to answer follow-up question");
-  }
-
-  return response.json();
 }
