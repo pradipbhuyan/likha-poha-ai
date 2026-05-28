@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import (
     LessonRequest,
@@ -14,8 +14,46 @@ from app.services.tutor_service import (
 router = APIRouter()
 
 
+def validate_required_text(value: str, field_name: str):
+    """
+    Validate that a required text field is not empty.
+
+    This catches both:
+    - empty strings like ""
+    - strings with only spaces like "   "
+
+    If the value is empty, FastAPI will return HTTP 400.
+    """
+    if value is None or not value.strip():
+        raise HTTPException(
+            status_code=400,
+            detail=f"{field_name} must not be empty",
+        )
+
+
 @router.post("/generate")
 def generate_lesson(data: LessonRequest):
+    """
+    Generate a lesson step for a student.
+
+    Required fields:
+    - username
+    - grade
+    - mode
+    - subject
+    - chapter
+    - step_title
+
+    teacher_persona is not validated here because it may be optional
+    depending on your frontend flow.
+    """
+    validate_required_text(data.username, "username")
+    validate_required_text(data.grade, "grade")
+    validate_required_text(data.mode, "mode")
+    validate_required_text(data.subject, "subject")
+    validate_required_text(data.chapter, "chapter")
+    validate_required_text(data.step_title, "step_title")
+
     try:
         result = generate_step_lesson(
             grade=data.grade,
@@ -53,8 +91,31 @@ def generate_lesson(data: LessonRequest):
             "message": f"Lesson generation failed: {str(e)}",
         }
 
+
 @router.post("/follow-up", response_model=LessonFollowUpResponse)
 def lesson_follow_up(data: LessonFollowUpRequest):
+    """
+    Answer a student's follow-up question about a lesson.
+
+    Required fields:
+    - username
+    - grade
+    - mode
+    - subject
+    - chapter
+    - step_title
+    - lesson
+    - question
+    """
+    validate_required_text(data.username, "username")
+    validate_required_text(data.grade, "grade")
+    validate_required_text(data.mode, "mode")
+    validate_required_text(data.subject, "subject")
+    validate_required_text(data.chapter, "chapter")
+    validate_required_text(data.step_title, "step_title")
+    validate_required_text(data.lesson, "lesson")
+    validate_required_text(data.question, "question")
+
     try:
         result = answer_lesson_follow_up(
             grade=data.grade,
@@ -83,4 +144,3 @@ def lesson_follow_up(data: LessonFollowUpRequest):
             sources=[],
             message=f"Follow-up failed: {str(e)}",
         )
-    
