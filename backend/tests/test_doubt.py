@@ -1,18 +1,17 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
+import app.routes.doubt as doubt_route
 
 client = TestClient(app)
 
 
-def test_answer_doubt_api():
+def test_answer_doubt_api(monkeypatch):
     """
     Test that the doubt-answering API returns a valid response.
 
-    This checks the normal student doubt flow:
-    1. A student asks a question.
-    2. The frontend sends the question to the backend.
-    3. The backend returns an AI-generated answer.
+    This test mocks answer_doubt so it does not call the real AI service,
+    Supabase, or any external dependency.
 
     Expected result:
     - The endpoint should return HTTP 200.
@@ -22,6 +21,19 @@ def test_answer_doubt_api():
       - source_type
       - mentor_suggestions
     """
+
+    def fake_answer_doubt(grade, subject, chapter, question, username):
+        return {
+            "answer": "Matter is anything that has mass and occupies space.",
+            "source_type": "MOCK",
+            "sources": [],
+            "mentor_suggestions": [
+                "Try giving two examples of matter.",
+            ],
+        }
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -41,8 +53,13 @@ def test_answer_doubt_api():
     assert "answer" in data
     assert "source_type" in data
     assert "mentor_suggestions" in data
-    
-def test_answer_doubt_response_has_valid_data_types():
+
+    assert data["success"] is True
+    assert data["answer"] == "Matter is anything that has mass and occupies space."
+    assert data["source_type"] == "MOCK"
+
+
+def test_answer_doubt_response_has_valid_data_types(monkeypatch):
     """
     Test that the doubt-answering API returns values with expected data types.
 
@@ -55,6 +72,17 @@ def test_answer_doubt_response_has_valid_data_types():
     - source_type should be text.
     - mentor_suggestions should be a list.
     """
+
+    def fake_answer_doubt(grade, subject, chapter, question, username):
+        return {
+            "answer": "Matter has mass and occupies space.",
+            "source_type": "MOCK",
+            "sources": [],
+            "mentor_suggestions": [],
+        }
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -74,7 +102,8 @@ def test_answer_doubt_response_has_valid_data_types():
     assert isinstance(data["answer"], str)
     assert isinstance(data["source_type"], str)
     assert isinstance(data["mentor_suggestions"], list)
-    
+
+
 def test_answer_doubt_empty_question():
     """
     Test that the doubt-answering API rejects an empty question.
