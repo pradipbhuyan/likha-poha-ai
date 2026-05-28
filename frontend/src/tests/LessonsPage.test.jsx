@@ -67,7 +67,18 @@ vi.mock("../components/MermaidBlock", () => ({
 }));
 
 describe("LessonsPage", () => {
-  test("practice mode disables Ask AI follow-up", async () => {
+  test("loads and displays saved lesson progress", async () => {
+    /*
+     * This test checks the initial LessonsPage load.
+     *
+     * The mocked progress API returns a saved lesson:
+     * "This is a generated lesson about tissues."
+     *
+     * Expected result:
+     * - The page should show the Generated Lesson heading.
+     * - The saved lesson text should appear on screen.
+     */
+
     render(
       <LessonsPage
         user={{
@@ -77,10 +88,84 @@ describe("LessonsPage", () => {
     );
 
     expect(
-        await screen.findByRole("heading", {
-          name: /generated lesson/i,
-        })
-      ).toBeInTheDocument();
+      await screen.findByRole("heading", {
+        name: /generated lesson/i,
+      })
+    ).toBeInTheDocument();
+
+    expect(
+      await screen.findByText(/this is a generated lesson about tissues/i)
+    ).toBeInTheDocument();
+  });
+
+  test("shows practice questions after clicking generate practice questions", async () => {
+    /*
+     * This test checks that practice questions are displayed.
+     *
+     * The mocked evaluation API returns two practice questions.
+     *
+     * Expected result:
+     * - User clicks Generate 2 Practice Questions.
+     * - The two mocked questions should appear on screen.
+     */
+
+    render(
+      <LessonsPage
+        user={{
+          username: "test_user",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /generated lesson/i,
+      })
+    ).toBeInTheDocument();
+
+    const practiceButton = screen.getByRole("button", {
+      name: /generate 2 practice questions/i,
+    });
+
+    fireEvent.click(practiceButton);
+
+    expect(
+      await screen.findByText(/explain tissues in your own words/i)
+    ).toBeInTheDocument();
+
+    expect(
+      await screen.findByText(
+        /why is division of labour important in multicellular organisms/i
+      )
+    ).toBeInTheDocument();
+  });
+
+  test("practice mode disables Ask AI follow-up", async () => {
+    /*
+     * This test checks that practice mode blocks AI follow-up questions.
+     *
+     * Once practice mode is active, the student should complete the written
+     * practice first instead of immediately asking the AI tutor for help.
+     *
+     * Expected result:
+     * - Practice mode active message should appear.
+     * - Ask AI input should be disabled.
+     * - Ask AI Tutor button should be disabled.
+     */
+
+    render(
+      <LessonsPage
+        user={{
+          username: "test_user",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /generated lesson/i,
+      })
+    ).toBeInTheDocument();
 
     const practiceButton = screen.getByRole("button", {
       name: /generate 2 practice questions/i,
