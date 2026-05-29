@@ -14,6 +14,7 @@ import {
   Sparkles,
   Target,
   Trophy,
+  GraduationCap,
 } from "lucide-react";
 
 import {
@@ -198,23 +199,26 @@ function DashboardPage({ user, setActivePage }) {
           </h2>
 
           <p>
-            Continue your CBSE + SOF learning journey with lessons, doubts,
-            quizzes, mock tests, and textbook-powered AI support.
+            You have completed {profile?.lessons_completed || 0} lessons,
+            attempted {stats.testsTaken} mock tests and currently hold a
+            {stats.averageScore}% average score.
           </p>
 
           <div className="dashboard-actions premium-hero-actions">
             <button
-              className="primary-btn"
+              className="primary-btn dashboard-hero-btn"
               onClick={() => setActivePage("lessons")}
             >
-              📘 Continue Learning
+              <BookOpen size={22} />
+              Continue Learning
             </button>
 
             <button
-              className="secondary-btn"
+              className="secondary-btn dashboard-hero-btn"
               onClick={() => setActivePage("mockTest")}
             >
-              🧪 Take Mock Test
+              <ClipboardList size={22} />
+              Take Mock Test
             </button>
           </div>
         </div>
@@ -228,17 +232,36 @@ function DashboardPage({ user, setActivePage }) {
             <div>
               <h3>AI Tutor Suggestion</h3>
 
-              <p>
-                Start with your latest chapter, then attempt a quick quiz to
-                check understanding.
-              </p>
+              {recommendations.length > 0 ? (
+                <>
+                  <p>
+                    <strong>{recommendations[0].title}</strong>
+                  </p>
 
-              <button
-                className="mini-cta-btn"
-                onClick={() => setActivePage("lessons")}
-              >
-                ✨ Start Quiz
-              </button>
+                  <p>{recommendations[0].message}</p>
+
+                  <button
+                    className="mini-cta-btn"
+                    onClick={() => setActivePage("lessons")}
+                  >
+                    📚 Continue Learning
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Continue your learning journey by revising your latest
+                    chapter and attempting a lesson.
+                  </p>
+
+                  <button
+                    className="mini-cta-btn"
+                    onClick={() => setActivePage("lessons")}
+                  >
+                    📚 Continue Learning
+                  </button>
+                </>
+              )}
             </div>
           </div>
 

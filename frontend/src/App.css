@@ -7791,3 +7791,58 @@ body.dark-mode .selected-child-badge {
   background: rgba(34, 197, 94, 0.18);
   color: #86efac;
 }
+
+.dashboard-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.dashboard-actions button {
+  min-width: 240px;
+  height: 72px;
+}
+
+.dashboard-actions.premium-hero-actions {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.dashboard-actions.premium-hero-actions button {
+  min-width: 260px;
+  height: 72px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.dashboard-actions.premium-hero-actions .primary-btn,
+.dashboard-actions.premium-hero-actions .secondary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-hero-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+
+  min-width: 280px !important;
+  height: 72px !important;
+
+  font-size: 20px !important;
+  font-weight: 900 !important;
+}
+
+.dashboard-hero-btn svg {
+  flex-shrink: 0;
+}
+
+.dashboard-actions.premium-hero-actions {
+  flex-direction: column;
+  align-items: flex-start;
+}
