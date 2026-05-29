@@ -5,6 +5,9 @@ import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
 
 import { supabase } from "../api/supabaseClient";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
 function LoginPage({ onLogin }) {
   const [isSignupMode, setIsSignupMode] = useState(false);
 
@@ -29,9 +32,7 @@ function LoginPage({ onLogin }) {
 
       if (!loginEmail.includes("@")) {
         const response = await fetch(
-          `http://localhost:8000/api/auth/lookup-email/${encodeURIComponent(
-            loginEmail
-          )}`
+          `${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginEmail)}`
         );
 
         if (!response.ok) {
