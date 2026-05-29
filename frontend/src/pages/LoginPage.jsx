@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/AITutorLogo.png";
+import logo from "../assets/AITutorLogo1.png";
 
 import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
 

@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 
-import logo from "../assets/AITutorLogo.png";
+import logo from "../assets/AITutorLogo1.png";
 
 function Sidebar({
   activePage,
