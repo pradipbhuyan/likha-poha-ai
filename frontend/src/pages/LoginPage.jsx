@@ -109,15 +109,29 @@ function LoginPage({ onLogin }) {
         return;
       }
 
+      const familyId = crypto.randomUUID();
+
+      const { error: familyError } = await supabase
+        .from("families")
+        .insert({
+          id: familyId,
+          name: `${fullName}'s Family`,
+        });
+      
+      if (familyError) {
+        setError(familyError.message);
+        return;
+      }
+      
       const profilePayload = {
         id: data.user.id,
         email: username,
         username: fullName,
         role: "parent",
         parent_id: null,
-        family_id: crypto.randomUUID(),
+        family_id: familyId,
       };
-
+      
       const { error: profileError } = await supabase
         .from("profiles")
         .insert(profilePayload);
