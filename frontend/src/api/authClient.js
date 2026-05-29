@@ -1,22 +1,31 @@
 import { supabase } from "./supabaseClient";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost:8000";
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export async function authFetch(path, options = {}) {
-  const { data } = await supabase.auth.getSession();
+  const { data, error } = await supabase.auth.getSession();
 
-  const token = data.session?.access_token;
+  if (error) {
+    throw new Error("Unable to read Supabase session");
+  }
+
+  let token = data.session?.access_token;
+
+  if (!token) {
+    const refreshed = await supabase.auth.refreshSession();
+    token = refreshed.data.session?.access_token;
+  }
+
+  if (!token) {
+    throw new Error("No Supabase access token found. Please logout and login again.");
+  }
 
   const headers = {
     "Content-Type": "application/json",
     ...(options.headers || {}),
+    Authorization: `Bearer ${token}`,
   };
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
@@ -24,7 +33,8 @@ export async function authFetch(path, options = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`API failed: ${path}`);
+    const errorText = await response.text();
+    throw new Error(`API failed: ${path} - ${response.status} - ${errorText}`);
   }
 
   return response.json();

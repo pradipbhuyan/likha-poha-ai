@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from app.models.schemas import LoginRequest, LoginResponse
 from app.config import settings
 
@@ -43,3 +43,29 @@ def login(data: LoginRequest):
         role=USERS[username]["role"],
         message="Login successful"
     )
+    
+@router.get("/lookup-email/{username}")
+def lookup_email(username: str):
+
+    from app.services.auth_service import admin_client
+
+    clean_username = username.strip().lower()
+
+    response = (
+        admin_client
+        .table("profiles")
+        .select("email")
+        .ilike("username", clean_username)
+        .single()
+        .execute()
+    )
+
+    if not response.data:
+        raise HTTPException(
+            status_code=404,
+            detail="Username not found",
+        )
+
+    return {
+        "email": response.data["email"],
+    }

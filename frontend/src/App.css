@@ -7533,3 +7533,261 @@ body.dark-mode .practice-question-card.workbook-card textarea {
   color: #f8fafc !important;
   border-color: #334155 !important;
 }
+
+.premium-parent-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.premium-parent-insight-card {
+  min-width: 0;
+}
+
+.premium-parent-hero input,
+.premium-parent-hero select {
+  box-sizing: border-box;
+}
+
+.parent-family-hub {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.parent-family-copy h2 {
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.05;
+}
+
+.family-id-pill {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.family-id-pill span {
+  color: #334155;
+}
+
+.family-action-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.family-member-panel {
+  display: grid;
+  gap: 24px;
+}
+
+.family-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.family-person-card,
+.family-empty-card {
+  border: 1px solid #dbeafe;
+  background: white;
+  border-radius: 22px;
+  padding: 18px;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.family-person-card {
+  cursor: default;
+}
+
+button.family-person-card {
+  cursor: pointer;
+}
+
+.family-person-card.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.family-person-card span {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.family-person-card strong,
+.family-empty-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.family-person-card small,
+.family-empty-card small {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.selected-child-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+.premium-modal {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 30px;
+  border-radius: 28px;
+  background: white;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 30px 90px rgba(15, 23, 42, 0.28);
+}
+
+.premium-modal form {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.premium-modal .primary-btn {
+  width: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+body.dark-mode .family-person-card,
+body.dark-mode .family-empty-card,
+body.dark-mode .premium-modal {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .family-person-card.selected {
+  background: rgba(37, 99, 235, 0.18) !important;
+  border-color: #60a5fa !important;
+}
+
+body.dark-mode .family-id-pill {
+  background: rgba(37, 99, 235, 0.18);
+  color: #93c5fd;
+}
+
+body.dark-mode .family-id-pill span,
+body.dark-mode .family-person-card small,
+body.dark-mode .family-empty-card small {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .modal-close {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+@media (max-width: 1100px) {
+  .parent-family-hub,
+  .selected-child-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+.family-summary-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.family-summary-row span {
+  display: inline-flex;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.family-person-card {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.family-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.child-avatar {
+  background: linear-gradient(135deg, #16a34a, #2563eb);
+}
+
+.family-person-card strong {
+  margin-bottom: 4px;
+}
+
+.family-person-card small {
+  display: block;
+  line-height: 1.35;
+}
+
+.selected-child-badge {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #047857;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+body.dark-mode .family-summary-row span {
+  background: rgba(37, 99, 235, 0.18);
+  color: #93c5fd;
+}
+
+body.dark-mode .selected-child-badge {
+  background: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+}
