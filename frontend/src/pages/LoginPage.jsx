@@ -8,6 +8,11 @@ import { supabase } from "../api/supabaseClient";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
+console.log(
+    "VITE_API_BASE_URL =",
+    import.meta.env.VITE_API_BASE_URL
+  );
+
 function LoginPage({ onLogin }) {
   const [isSignupMode, setIsSignupMode] = useState(false);
 
@@ -110,6 +115,7 @@ function LoginPage({ onLogin }) {
         username: fullName,
         role: "parent",
         parent_id: null,
+        family_id: crypto.randomUUID(),
       };
 
       const { error: profileError } = await supabase
