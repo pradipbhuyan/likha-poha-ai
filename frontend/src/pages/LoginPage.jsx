@@ -89,40 +89,40 @@ function LoginPage({ onLogin }) {
 
   async function handleSignup(e) {
     e.preventDefault();
-
+  
     setError("");
     setLoading(true);
-
+  
     try {
       const { data, error } = await supabase.auth.signUp({
         email: username,
         password,
       });
-
+  
       if (error) {
         setError(error.message);
         return;
       }
-
+  
       if (!data.user) {
         setError("Unable to create account.");
         return;
       }
-
+  
       const familyId = crypto.randomUUID();
-
+  
       const { error: familyError } = await supabase
-        .from("families")
-        .insert({
-          id: familyId,
-          name: `${fullName}'s Family`,
-        });
-      
+      .from("families")
+      .insert({
+        id: familyId,
+        family_name: `${fullName}'s Family`,
+      });
+  
       if (familyError) {
         setError(familyError.message);
         return;
       }
-      
+  
       const profilePayload = {
         id: data.user.id,
         email: username,
@@ -131,29 +131,27 @@ function LoginPage({ onLogin }) {
         parent_id: null,
         family_id: familyId,
       };
-      
+  
       const { error: profileError } = await supabase
         .from("profiles")
         .insert(profilePayload);
-
+  
       if (profileError) {
         setError(profileError.message);
-
         return;
       }
-
+  
       const { data: loginData, error: loginError } =
         await supabase.auth.signInWithPassword({
           email: username,
           password,
         });
-
+  
       if (loginError) {
         setError(loginError.message);
-
         return;
       }
-
+  
       onLogin({
         id: loginData.user.id,
         email: loginData.user.email,
