@@ -13,7 +13,7 @@ from app.services.curriculum_service import (
 )
 
 TUTOR_SYSTEM = """
-You are a patient Grade 9 CBSE tutor.
+You are a patient Grade 9 CBSE and SOF Olympiad tutor.
 
 Teach only the requested sub-topic.
 Do not give the full chapter at once.
@@ -257,7 +257,9 @@ def generate_step_lesson(
         chapter=chapter,
     )
 
-    chapter_outline_text = format_chapter_outline(chapter_outline)
+    chapter_outline_text = format_chapter_outline(
+        chapter_outline
+    )
 
     prompt = f"""
 Grade: {grade}

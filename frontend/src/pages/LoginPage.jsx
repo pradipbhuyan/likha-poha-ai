@@ -19,6 +19,7 @@ function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
 
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [fullName, setFullName] = useState("");
 
@@ -248,14 +249,20 @@ function LoginPage({ onLogin }) {
                 <span>🔒</span>
 
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
 
-                <span>👁️</span>
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
               </div>
 
               {!isSignupMode && (
