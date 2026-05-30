@@ -158,3 +158,34 @@ export async function confirmSofUpload({
 
   return response.json();
 }
+
+export async function searchRag({
+  grade,
+  subject,
+  chapter,
+  query,
+  matchCount = 5,
+}) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/search`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        grade,
+        subject,
+        chapter,
+        query,
+        match_count: matchCount,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("RAG search failed");
+  }
+
+  return response.json();
+}
