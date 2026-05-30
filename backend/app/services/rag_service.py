@@ -139,3 +139,28 @@ def search_textbook_content(
                 item["document"] = doc_response.data[0]
 
     return results
+
+def list_rag_documents():
+    response = (
+        supabase
+        .table("rag_documents")
+        .select("id, title, grade, subject, chapter, uploaded_by, source_type, created_at")
+        .order("created_at", desc=True)
+        .execute()
+    )
+
+    return response.data or []
+
+
+def delete_rag_document(document_id: str):
+    supabase.table("rag_chunks").delete().eq("document_id", document_id).execute()
+
+    response = (
+        supabase
+        .table("rag_documents")
+        .delete()
+        .eq("id", document_id)
+        .execute()
+    )
+
+    return response.data

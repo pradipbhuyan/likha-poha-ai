@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 
 import { getSyllabus } from "../api/syllabus";
-import { uploadRagFile, uploadRagFilesBatch } from "../api/rag";
+
+import {
+  uploadRagFilesBatch,
+  getRagDocuments,
+  deleteRagDocument,
+  analyzeRagImage,
+  analyzeSofImages,
+  confirmSofUpload,
+} from "../api/rag";
 
 function RagUploadPage({ user }) {
   const [loading, setLoading] = useState(true);
@@ -13,7 +21,6 @@ function RagUploadPage({ user }) {
   const [chapter, setChapter] = useState("");
 
   const [title, setTitle] = useState("");
-  const [file, setFile] = useState(null);
 
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
@@ -21,8 +28,17 @@ function RagUploadPage({ user }) {
 
   const [files, setFiles] = useState([]);
   const [batchResults, setBatchResults] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
-  const allowedUsers = ["admin", "pradip"];
+  const [analysisImage, setAnalysisImage] = useState(null);
+  const [analyzingImage, setAnalyzingImage] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState(null);
+
+  const [sofFiles, setSofFiles] = useState([]);
+  const [sofAnalyzing, setSofAnalyzing] = useState(false);
+  const [sofUploading, setSofUploading] = useState(false);
+  const [sofGroups, setSofGroups] = useState([]);
+  const [sofRawResponse, setSofRawResponse] = useState("");
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -49,16 +65,192 @@ function RagUploadPage({ user }) {
     }
 
     loadSyllabus();
+    loadDocuments();
   }, []);
 
-  if (!allowedUsers.includes(user.username)) {
+  async function loadDocuments() {
+    try {
+      const result = await getRagDocuments();
+      setDocuments(result.documents || []);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleAnalyzeImage() {
+    if (!analysisImage) {
+      alert("Please select an image.");
+      return;
+    }
+
+    setAnalyzingImage(true);
+    setAnalysisResult(null);
+
+    try {
+      const result = await analyzeRagImage(analysisImage);
+      setAnalysisResult(result);
+    } catch (err) {
+      console.error(err);
+      alert("Image analysis failed.");
+    } finally {
+      setAnalyzingImage(false);
+    }
+  }
+
+  async function handleAnalyzeSofImages() {
+    setMessage("");
+    setError("");
+    setSofGroups([]);
+    setSofRawResponse("");
+
+    if (sofFiles.length === 0) {
+      setError("Please select SOF page photos.");
+      return;
+    }
+
+    if (sofFiles.length > 10) {
+      setError("You can analyze a maximum of 10 SOF page photos.");
+      return;
+    }
+
+    setSofAnalyzing(true);
+
+    try {
+      const result = await analyzeSofImages({
+        grade,
+        files: sofFiles,
+      });
+
+      if (!result.success) {
+        setError(result.message || "SOF image analysis failed.");
+        return;
+      }
+
+      setSofGroups(result.groups || []);
+      setSofRawResponse(result.raw_ai_response || "");
+      setMessage("SOF pages analyzed. Review the groups before uploading.");
+    } catch (err) {
+      console.error(err);
+      setError("SOF image analysis failed. Check backend.");
+    } finally {
+      setSofAnalyzing(false);
+    }
+  }
+
+  async function handleConfirmSofUpload() {
+    setMessage("");
+    setError("");
+  
+    if (sofGroups.length === 0) {
+      setError("No SOF groups found to upload.");
+      return;
+    }
+  
+    setSofUploading(true);
+  
+    try {
+      const result = await confirmSofUpload({
+        username: "admin",
+        groups: sofGroups,
+      });
+  
+      console.log("SOF upload result:", result);
+  
+      if (!result.success) {
+        setError(result.message || "SOF upload failed.");
+        setBatchResults(result.results || []);
+        return;
+      }
+  
+      setMessage(result.message || "SOF upload completed.");
+      setBatchResults(result.results || []);
+  
+      setSofFiles([]);
+      setSofGroups([]);
+      setSofRawResponse("");
+  
+      await loadDocuments();
+    } catch (err) {
+      console.error("SOF upload failed:", err);
+      setError(err.message || "SOF upload failed. Check backend.");
+    } finally {
+      setSofUploading(false);
+    }
+  }
+
+
+  async function handleBatchUpload() {
+    setMessage("");
+    setError("");
+    setBatchResults([]);
+
+    if (!title.trim()) {
+      setError("Please enter comma-separated document titles.");
+      return;
+    }
+
+    if (files.length === 0) {
+      setError("Please select files.");
+      return;
+    }
+
+    if (files.length > 10) {
+      setError("You can upload a maximum of 10 files.");
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const result = await uploadRagFilesBatch({
+        username: user.username,
+        grade,
+        subject,
+        chapter,
+        titles: title,
+        files,
+      });
+
+      if (!result.success) {
+        setError(result.message || "Batch upload failed.");
+        return;
+      }
+
+      setMessage(result.message);
+      setBatchResults(result.results || []);
+
+      await loadDocuments();
+
+      setTitle("");
+      setFiles([]);
+    } catch {
+      setError("Batch upload failed. Check backend.");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function handleDeleteDocument(documentId) {
+    if (!window.confirm("Delete this document?")) {
+      return;
+    }
+
+    try {
+      await deleteRagDocument(documentId);
+      await loadDocuments();
+    } catch (err) {
+      alert("Unable to delete document.");
+    }
+  }
+
+  if (user.role !== "admin") {
     return (
       <div className="premium-page">
         <section className="premium-section premium-rag-locked">
           <div className="premium-header">
             <p className="eyebrow">Restricted Access</p>
             <h2>🔒 RAG Upload</h2>
-            <p>Only admin/pradip can upload textbook content.</p>
+            <p>Only administrators can upload textbook content.</p>
           </div>
         </section>
       </div>
@@ -101,99 +293,6 @@ function RagUploadPage({ user }) {
     setChapter(newChapter);
   }
 
-  async function handleUpload() {
-    setMessage("");
-    setError("");
-
-    if (!title.trim()) {
-      setError("Please enter a document titles.");
-      return;
-    }
-
-    if (!file) {
-      setError("Please select a file.");
-      return;
-    }
-
-    setUploading(true);
-
-    try {
-      const result = await uploadRagFile({
-        username: user.username,
-        grade,
-        subject,
-        chapter,
-        title,
-        file,
-      });
-
-      if (!result.success) {
-        setError(result.message || "Upload failed.");
-        return;
-      }
-
-      setMessage(
-        `Upload successful. Document ID: ${result.document_id}. Chunks created: ${result.chunks_created}.`
-      );
-
-      setTitle("");
-      setFile(null);
-    } catch {
-      setError("Upload failed. Check backend.");
-    } finally {
-      setUploading(false);
-    }
-  }
-
-  async function handleBatchUpload() {
-    setMessage("");
-    setError("");
-    setBatchResults([]);
-
-    if (!title.trim()) {
-      setError("Please enter comma-separated document titles.");
-      return;
-    }
-
-    if (files.length === 0) {
-      setError("Please select files.");
-      return;
-    }
-
-    if (files.length > 10) {
-      setError("You can upload a maximum of 10 files.");
-      return;
-    }
-
-    setUploading(true);
-
-    try {
-      const result = await uploadRagFilesBatch({
-        username: user.username,
-        grade,
-        subject,
-        chapter,
-        titles: title,
-        files,
-      });
-
-      if (!result.success) {
-        setError(result.message || "Batch upload failed.");
-        return;
-      }
-
-      setMessage(result.message);
-      setBatchResults(result.results || []);
-
-      setTitle("");
-      setFiles([]);
-    } catch {
-      setError("Batch upload failed. Check backend.");
-    } finally {
-      setUploading(false);
-    }
-  }
-
   return (
     <div className="rag-upload-page premium-page premium-rag-page">
       <section className="premium-section premium-rag-hero">
@@ -209,71 +308,199 @@ function RagUploadPage({ user }) {
         <div className="premium-rag-info-card">
           <span>📚</span>
           <div>
-            <strong>Batch Upload Ready</strong>
-            <p>Upload up to 10 documents in one batch with comma-separated titles.</p>
+            <strong>SOF Bulk Upload Ready</strong>
+            <p>
+              Upload up to 10 SOF book photos. AI will organize them by
+              Olympiad subject and chapter before RAG upload.
+            </p>
           </div>
         </div>
       </section>
 
+      <section className="premium-section">
+        <div className="premium-header">
+          <h3>📚 SOF Bulk Book Upload</h3>
+          <p>
+            Upload up to 10 SOF page photos. AI will group them as Science
+            Olympiad, Maths Olympiad, or English Olympiad and prepare them for
+            RAG upload.
+          </p>
+        </div>
+
+        <label className="full-width-label premium-rag-file-input">
+          SOF Page Photos
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={(e) => setSofFiles(Array.from(e.target.files || []))}
+          />
+        </label>
+
+        {sofFiles.length > 0 && (
+          <div className="selected-files-box premium-selected-files-box">
+            <strong>Selected SOF photos:</strong>
+            {sofFiles.map((selectedFile, index) => (
+              <div key={index}>
+                {index + 1}. {selectedFile.name}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <button
+          className="primary-btn"
+          onClick={handleAnalyzeSofImages}
+          disabled={sofAnalyzing}
+          style={{ marginTop: 16 }}
+        >
+          {sofAnalyzing ? "Analyzing SOF Photos..." : "🧠 Analyze & Organize SOF Pages"}
+        </button>
+
+        {sofGroups.length > 0 && (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 20,
+              borderRadius: 16,
+              border: "1px solid #334155",
+            }}
+          >
+            <h4>Detected SOF Groups</h4>
+
+            <div className="premium-rag-result-list">
+              {sofGroups.map((group, index) => (
+                <div key={index} className="premium-rag-result-row success">
+                  <div>
+                    <strong>{group.title || group.chapter}</strong>
+                    <p>
+                      {group.grade} • {group.subject}
+                    </p>
+                    <p>{group.chapter}</p>
+                    <small>
+                      Pages: {(group.page_numbers || []).join(", ") || "N/A"} •
+                      Confidence: {group.confidence || "Unknown"}
+                    </small>
+                  </div>
+
+                  <div>
+                    <span>
+                      {(group.combined_text || "").split(/\s+/).filter(Boolean)
+                        .length}{" "}
+                      words
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button
+              className="primary-btn"
+              onClick={handleConfirmSofUpload}
+              disabled={sofUploading}
+              style={{ marginTop: 16 }}
+            >
+              {sofUploading ? "Uploading to RAG..." : "✅ Confirm SOF Upload to RAG"}
+            </button>
+          </div>
+        )}
+
+        {sofRawResponse && sofGroups.length === 0 && (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 20,
+              borderRadius: 16,
+              border: "1px solid #334155",
+            }}
+          >
+            <h4>Raw AI Response</h4>
+            <pre style={{ whiteSpace: "pre-wrap" }}>{sofRawResponse}</pre>
+          </div>
+        )}
+      </section>
+
+      <section className="premium-section">
+        <div className="premium-header">
+          <h3>📸 Analyze Single Book Page</h3>
+          <p>
+            Upload one textbook page photo. AI will extract text and suggest
+            title, chapter, subject, and grade.
+          </p>
+        </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setAnalysisImage(e.target.files?.[0] || null)}
+        />
+
+        <button
+          className="primary-btn"
+          onClick={handleAnalyzeImage}
+          disabled={analyzingImage}
+          style={{ marginTop: 16 }}
+        >
+          {analyzingImage ? "Analyzing..." : "🔍 Analyze Page"}
+        </button>
+
+        {analysisResult && (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 20,
+              borderRadius: 16,
+              border: "1px solid #334155",
+            }}
+          >
+            <h4>Detected Metadata</h4>
+
+            <pre style={{ whiteSpace: "pre-wrap" }}>
+              {analysisResult.suggestion}
+            </pre>
+          </div>
+        )}
+      </section>
+
       <section className="premium-section premium-rag-upload-panel">
         <div className="premium-header">
-          <h3>Upload Textbook / Notes / Worksheet</h3>
+          <h3>Manual Upload Textbook / Notes / Worksheet</h3>
           <p>Supported files: txt, jpg, jpeg, png, webp, pdf, docx, pptx.</p>
         </div>
 
         <div className="form-grid premium-rag-form-grid">
           <label>
             Grade
-            <select
-              value={grade}
-              onChange={(e) => handleGradeChange(e.target.value)}
-            >
+            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
               {grades.map((g) => (
-                <option key={g} value={g}>
-                  {g}
-                </option>
+                <option key={g} value={g}>{g}</option>
               ))}
             </select>
           </label>
 
           <label>
             Mode
-            <select
-              value={mode}
-              onChange={(e) => handleModeChange(e.target.value)}
-            >
+            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
               {modes.map((m) => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
+                <option key={m} value={m}>{m}</option>
               ))}
             </select>
           </label>
 
           <label>
             Subject
-            <select
-              value={subject}
-              onChange={(e) => handleSubjectChange(e.target.value)}
-            >
+            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
               {subjects.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
+                <option key={s} value={s}>{s}</option>
               ))}
             </select>
           </label>
 
           <label>
             Chapter / Section
-            <select
-              value={chapter}
-              onChange={(e) => setChapter(e.target.value)}
-            >
+            <select value={chapter} onChange={(e) => setChapter(e.target.value)}>
               {chapters.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
+                <option key={c} value={c}>{c}</option>
               ))}
             </select>
           </label>
@@ -302,7 +529,6 @@ function RagUploadPage({ user }) {
         {files.length > 0 && (
           <div className="selected-files-box premium-selected-files-box">
             <strong>Selected files:</strong>
-
             {files.map((selectedFile, index) => (
               <div key={index}>
                 {index + 1}. {selectedFile.name}
@@ -326,8 +552,8 @@ function RagUploadPage({ user }) {
       {batchResults.length > 0 && (
         <section className="premium-section premium-rag-results">
           <div className="premium-header">
-            <h3>Batch Upload Results</h3>
-            <p>Each document title is mapped to the selected file order.</p>
+            <h3>Upload Results</h3>
+            <p>Uploaded documents and chunk creation status.</p>
           </div>
 
           <div className="premium-rag-result-list">
@@ -342,8 +568,8 @@ function RagUploadPage({ user }) {
               >
                 <div>
                   <strong>{item.title}</strong>
-                  <p>File: {item.filename}</p>
-                  <p>{item.message}</p>
+                  <p>{item.subject || item.filename}</p>
+                  <p>{item.chapter || item.message}</p>
                 </div>
 
                 <div>
@@ -355,6 +581,41 @@ function RagUploadPage({ user }) {
           </div>
         </section>
       )}
+
+      <section className="premium-section">
+        <div className="premium-header">
+          <h3>📚 RAG Document Library</h3>
+          <p>Uploaded documents currently available to the AI tutor.</p>
+        </div>
+
+        {documents.length === 0 ? (
+          <div className="premium-parent-empty">
+            <h3>No documents uploaded yet</h3>
+          </div>
+        ) : (
+          <div className="premium-rag-result-list">
+            {documents.map((doc) => (
+              <div key={doc.id} className="premium-rag-result-row success">
+                <div>
+                  <strong>{doc.title}</strong>
+                  <p>{doc.grade} • {doc.subject}</p>
+                  <p>{doc.chapter}</p>
+                  <small>Uploaded by {doc.uploaded_by}</small>
+                </div>
+
+                <div>
+                  <button
+                    className="danger-btn"
+                    onClick={() => handleDeleteDocument(doc.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

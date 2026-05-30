@@ -93,31 +93,69 @@ SOF_9 = {
 
     "Science Olympiad": [
 
-        "Logical Reasoning",
-        "Physics",
-        "Chemistry",
-        "Biology",
-        "Achievers Section",
-        "Mock Tests"
+        "Matter in Our Surroundings",
+        "Is Matter Around Us Pure?",
+        "Atoms and Molecules",
+        "Structure of the Atom",
+        "Cell – The Fundamental Unit of Life",
+        "Tissues",
+        "Diversity in Living Organisms",
+        "Motion",
+        "Force and Laws of Motion",
+        "Gravitation",
+        "Work and Energy",
+        "Sound",
+        "Human Health and Diseases",
+        "Improvement in Food Resources",
+        "SOF-ISO Model Test Paper-1",
+        "SOF-ISO Model Test Paper-2"
     ],
 
     "Maths Olympiad": [
 
-        "Logical Reasoning",
-        "Mathematical Reasoning",
-        "Everyday Mathematics",
-        "Higher Order Thinking Skills",
-        "Achievers Section",
-        "Mock Tests"
+        "Number Systems",
+        "Algebraic Identities",
+        "Polynomials",
+        "Coordinate Geometry",
+        "Linear Equations in Two Variables",
+        "Sequences and Progressions",
+        "Introduction to Euclid's Geometry",
+        "Lines and Angles",
+        "Triangles",
+        "Quadrilaterals",
+        "Areas of Parallelograms and Triangles",
+        "Circles",
+        "Constructions",
+        "Area and Perimeter",
+        "Surface Areas and Volumes",
+        "Statistics",
+        "Introduction to Probability",
+        "SOF-IMO Model Test Paper-1",
+        "SOF-IMO Model Test Paper-2"
     ],
 
     "English Olympiad": [
 
-        "Word and Structure Knowledge",
-        "Reading",
+        "Nouns",
+        "Pronouns",
+        "Verbs",
+        "Adverbs",
+        "Adjectives",
+        "Articles",
+        "Prepositions",
+        "Conjunctions",
+        "Voices",
+        "Subject-Verb Agreement",
+        "Tenses",
+        "Modals",
+        "Reported Speech",
+        "Word Power-1",
+        "Word Power-2",
+        "Vocabulary",
+        "Comprehension",
         "Spoken and Written Expression",
-        "Achievers Section",
-        "Mock Tests"
+        "SOF-IEO Model Test Paper-1",
+        "SOF-IEO Model Test Paper-2"
     ]
 }
 

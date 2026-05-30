@@ -1,12 +1,11 @@
 import json
 
 from app.services.openai_service import ask_llm
+from app.services.rag_service import search_textbook_content
 
 
 MOCK_TEST_SYSTEM = """
-You create original Grade 9 SOF Olympiad style mock tests.
-Do not copy previous year questions verbatim.
-Create questions inspired by common SOF patterns.
+You create original Grade 9 mock tests.
 
 Return ONLY valid JSON. No markdown.
 
@@ -27,7 +26,95 @@ JSON schema:
 """
 
 
-def generate_olympiad_mock_test(olympiad, num_questions=10, difficulty="Medium"):
+def get_sof_model_papers(olympiad):
+    if olympiad == "Science Olympiad":
+        return [
+            "SOF-ISO Model Test Paper-1",
+            "SOF-ISO Model Test Paper-2",
+        ]
+
+    if olympiad == "Maths Olympiad":
+        return [
+            "SOF-IMO Model Test Paper-1",
+            "SOF-IMO Model Test Paper-2",
+        ]
+
+    if olympiad == "English Olympiad":
+        return [
+            "SOF-IEO Model Test Paper-1",
+            "SOF-IEO Model Test Paper-2",
+        ]
+
+    return []
+
+
+def build_rag_context(items):
+    if not items:
+        return ""
+
+    chunks = []
+
+    for item in items:
+        text = item.get("chunk_text", "")
+
+        document = item.get("document") or {}
+
+        title = document.get("title", "")
+        subject = document.get("subject", "")
+        chapter = document.get("chapter", "")
+
+        chunks.append(
+            f"""
+Source: {title}
+Subject: {subject}
+Chapter: {chapter}
+
+{text}
+"""
+        )
+
+    return "\n\n".join(chunks)
+
+
+def get_sof_rag_context(
+    olympiad,
+    chapter=None,
+    grade="Grade 9",
+):
+    rag_items = []
+
+    if chapter:
+        rag_items.extend(
+            search_textbook_content(
+                query=f"Important concepts, examples and practice questions from {chapter}",
+                grade=grade,
+                subject=olympiad,
+                chapter=chapter,
+                match_count=8,
+            )
+        )
+
+    for paper_chapter in get_sof_model_papers(olympiad):
+        rag_items.extend(
+            search_textbook_content(
+                query=f"SOF question pattern difficulty sample questions for {olympiad}",
+                grade=grade,
+                subject=olympiad,
+                chapter=paper_chapter,
+                match_count=5,
+            )
+        )
+
+    return build_rag_context(rag_items)
+
+
+def generate_olympiad_mock_test(
+    olympiad,
+    num_questions=10,
+    difficulty="Medium",
+    chapter=None,
+    grade="Grade 9",
+):
     if olympiad == "Science Olympiad":
         pattern = """
 Create a Class 9 SOF Science Olympiad style mock test.
@@ -71,16 +158,46 @@ Include vocabulary, grammar, sentence correction, comprehension, inference, para
 Create a Class 9 SOF Olympiad style mock test.
 """
 
+    rag_context = get_sof_rag_context(
+        olympiad=olympiad,
+        chapter=chapter,
+        grade=grade,
+    )
+
+
     prompt = f"""
 {pattern}
 
+Grade: {grade}
+Olympiad: {olympiad}
+Chapter: {chapter or "Mixed SOF syllabus"}
 Difficulty: {difficulty}
 Number of questions: {num_questions}
+
+Use the RAG context below.
+
+Rules:
+- Use chapter RAG content for concepts.
+- Use SOF model test paper RAG content for question style, difficulty and pattern.
+- Do not copy exact questions from the RAG context.
+- Create fresh original questions inspired by the uploaded SOF material.
+- Keep questions suitable for Grade 9.
+- Every question must have 4 options.
+- Every answer must be one of A, B, C or D.
+- Include a clear explanation.
+
+RAG CONTEXT:
+{rag_context[:14000]}
 
 Return only valid JSON.
 """
 
-    raw = ask_llm(MOCK_TEST_SYSTEM, prompt)
+    raw = ask_llm(
+        MOCK_TEST_SYSTEM,
+        prompt,
+        username="admin",
+        feature="sof_mock_test",
+    )
 
     try:
         data = json.loads(raw)
@@ -89,27 +206,42 @@ Return only valid JSON.
         return []
 
 
-def generate_science_olympiad_mock_test(num_questions=10, difficulty="Medium"):
+def generate_science_olympiad_mock_test(
+    num_questions=10,
+    difficulty="Medium",
+    chapter=None,
+):
     return generate_olympiad_mock_test(
         "Science Olympiad",
         num_questions,
-        difficulty
+        difficulty,
+        chapter,
     )
 
 
-def generate_maths_olympiad_mock_test(num_questions=10, difficulty="Medium"):
+def generate_maths_olympiad_mock_test(
+    num_questions=10,
+    difficulty="Medium",
+    chapter=None,
+):
     return generate_olympiad_mock_test(
         "Maths Olympiad",
         num_questions,
-        difficulty
+        difficulty,
+        chapter,
     )
 
 
-def generate_english_olympiad_mock_test(num_questions=10, difficulty="Medium"):
+def generate_english_olympiad_mock_test(
+    num_questions=10,
+    difficulty="Medium",
+    chapter=None,
+):
     return generate_olympiad_mock_test(
         "English Olympiad",
         num_questions,
-        difficulty
+        difficulty,
+        chapter,
     )
 
 
@@ -143,6 +275,7 @@ def calculate_score(questions, user_answers):
 
     return total_score, max_score, results
 
+
 def generate_cbse_mock_test(
     subject,
     chapter,
@@ -150,7 +283,6 @@ def generate_cbse_mock_test(
     num_questions=10,
     difficulty="Medium"
 ):
-
     prompt = f"""
 Create a CBSE Grade 9 mock test.
 
@@ -197,7 +329,12 @@ JSON schema:
 }}
 """
 
-    raw = ask_llm(MOCK_TEST_SYSTEM, prompt)
+    raw = ask_llm(
+        MOCK_TEST_SYSTEM,
+        prompt,
+        username="admin",
+        feature="cbse_mock_test",
+    )
 
     try:
         data = json.loads(raw)

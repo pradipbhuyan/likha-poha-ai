@@ -22,10 +22,12 @@ def generate_mock_test(data: MockTestRequest):
 
             questions = generate_olympiad_mock_test(
                 olympiad=data.subject,
+                chapter=data.chapter,
+                grade=data.grade,
                 num_questions=data.question_count,
                 difficulty=data.difficulty,
             )
-
+            
         else:
 
             questions = generate_cbse_mock_test(
