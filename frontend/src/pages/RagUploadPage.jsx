@@ -9,6 +9,7 @@ import {
   analyzeRagImage,
   analyzeSofImages,
   confirmSofUpload,
+  searchRag,
 } from "../api/rag";
 
 function RagUploadPage({ user }) {
@@ -39,6 +40,14 @@ function RagUploadPage({ user }) {
   const [sofUploading, setSofUploading] = useState(false);
   const [sofGroups, setSofGroups] = useState([]);
   const [sofRawResponse, setSofRawResponse] = useState("");
+  const [ragQuery, setRagQuery] = useState("");
+  const [ragResults, setRagResults] = useState([]);
+  const [searchingRag, setSearchingRag] = useState(false);
+
+  const [searchGrade, setSearchGrade] = useState("Grade 9");
+  const [searchMode, setSearchMode] = useState("SOF");
+  const [searchSubject, setSearchSubject] = useState("English Olympiad");
+  const [searchChapter, setSearchChapter] = useState("Nouns");
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -140,35 +149,35 @@ function RagUploadPage({ user }) {
   async function handleConfirmSofUpload() {
     setMessage("");
     setError("");
-  
+
     if (sofGroups.length === 0) {
       setError("No SOF groups found to upload.");
       return;
     }
-  
+
     setSofUploading(true);
-  
+
     try {
       const result = await confirmSofUpload({
         username: "admin",
         groups: sofGroups,
       });
-  
+
       console.log("SOF upload result:", result);
-  
+
       if (!result.success) {
         setError(result.message || "SOF upload failed.");
         setBatchResults(result.results || []);
         return;
       }
-  
+
       setMessage(result.message || "SOF upload completed.");
       setBatchResults(result.results || []);
-  
+
       setSofFiles([]);
       setSofGroups([]);
       setSofRawResponse("");
-  
+
       await loadDocuments();
     } catch (err) {
       console.error("SOF upload failed:", err);
@@ -177,7 +186,6 @@ function RagUploadPage({ user }) {
       setSofUploading(false);
     }
   }
-
 
   async function handleBatchUpload() {
     setMessage("");
@@ -227,6 +235,32 @@ function RagUploadPage({ user }) {
       setError("Batch upload failed. Check backend.");
     } finally {
       setUploading(false);
+    }
+  }
+
+  async function handleSearchRag() {
+    if (!ragQuery.trim()) {
+      alert("Please enter a search query.");
+      return;
+    }
+
+    setSearchingRag(true);
+
+    try {
+      const result = await searchRag({
+        grade: searchGrade,
+        subject: searchSubject,
+        chapter: searchChapter,
+        query: ragQuery,
+        matchCount: 5,
+      });
+
+      setRagResults(result.results || []);
+    } catch (err) {
+      console.error(err);
+      alert("RAG search failed.");
+    } finally {
+      setSearchingRag(false);
     }
   }
 
@@ -310,11 +344,162 @@ function RagUploadPage({ user }) {
           <div>
             <strong>SOF Bulk Upload Ready</strong>
             <p>
-              Upload up to 10 SOF book photos. AI will organize them by
-              Olympiad subject and chapter before RAG upload.
+              Upload up to 10 SOF book photos. AI will organize them by Olympiad
+              subject and chapter before RAG upload.
             </p>
           </div>
         </div>
+      </section>
+
+      <section className="premium-section">
+        <div className="premium-header">
+          <h3>🧪 RAG Search Test Console</h3>
+
+          <p>
+            Test whether uploaded RAG content can be found correctly before
+            using it in lessons, doubts, or mock tests.
+          </p>
+        </div>
+
+        <div className="form-grid premium-rag-form-grid">
+          <label>
+            Search Grade
+            <select
+              value={searchGrade}
+              onChange={(e) => {
+                const newGrade = e.target.value;
+                const newMode = Object.keys(syllabusData[newGrade])[0];
+                const newSubject = Object.keys(
+                  syllabusData[newGrade][newMode]
+                )[0];
+                const newChapter =
+                  syllabusData[newGrade][newMode][newSubject][0];
+
+                setSearchGrade(newGrade);
+                setSearchMode(newMode);
+                setSearchSubject(newSubject);
+                setSearchChapter(newChapter);
+              }}
+            >
+              {grades.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Search Mode
+            <select
+              value={searchMode}
+              onChange={(e) => {
+                const newMode = e.target.value;
+                const newSubject = Object.keys(
+                  syllabusData[searchGrade][newMode]
+                )[0];
+                const newChapter =
+                  syllabusData[searchGrade][newMode][newSubject][0];
+
+                setSearchMode(newMode);
+                setSearchSubject(newSubject);
+                setSearchChapter(newChapter);
+              }}
+            >
+              {Object.keys(syllabusData[searchGrade]).map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Search Subject
+            <select
+              value={searchSubject}
+              onChange={(e) => {
+                const newSubject = e.target.value;
+                const newChapter =
+                  syllabusData[searchGrade][searchMode][newSubject][0];
+
+                setSearchSubject(newSubject);
+                setSearchChapter(newChapter);
+              }}
+            >
+              {Object.keys(syllabusData[searchGrade][searchMode]).map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Search Chapter
+            <select
+              value={searchChapter}
+              onChange={(e) => setSearchChapter(e.target.value)}
+            >
+              {(syllabusData[searchGrade][searchMode][searchSubject] || []).map(
+                (c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                )
+              )}
+            </select>
+          </label>
+        </div>
+
+        <input
+          type="text"
+          placeholder="Example: What are nouns?"
+          value={ragQuery}
+          onChange={(e) => setRagQuery(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginBottom: 16,
+          }}
+        />
+
+        <button
+          className="primary-btn"
+          onClick={handleSearchRag}
+          disabled={searchingRag}
+        >
+          {searchingRag ? "Searching..." : "🔍 Search RAG"}
+        </button>
+
+        {ragResults.length > 0 && (
+          <div
+            style={{
+              marginTop: 24,
+            }}
+          >
+            {ragResults.map((item, index) => (
+              <div key={index} className="premium-rag-result-row success">
+                <div>
+                  <strong>{item.document?.title || "Unknown Source"}</strong>
+
+                  <p>
+                    {item.document?.subject} • {item.document?.chapter}
+                  </p>
+
+                  <pre
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      marginTop: 12,
+                    }}
+                  >
+                    {item.chunk_text}
+                  </pre>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="premium-section">
@@ -354,7 +539,9 @@ function RagUploadPage({ user }) {
           disabled={sofAnalyzing}
           style={{ marginTop: 16 }}
         >
-          {sofAnalyzing ? "Analyzing SOF Photos..." : "🧠 Analyze & Organize SOF Pages"}
+          {sofAnalyzing
+            ? "Analyzing SOF Photos..."
+            : "🧠 Analyze & Organize SOF Pages"}
         </button>
 
         {sofGroups.length > 0 && (
@@ -385,8 +572,10 @@ function RagUploadPage({ user }) {
 
                   <div>
                     <span>
-                      {(group.combined_text || "").split(/\s+/).filter(Boolean)
-                        .length}{" "}
+                      {
+                        (group.combined_text || "").split(/\s+/).filter(Boolean)
+                          .length
+                      }{" "}
                       words
                     </span>
                   </div>
@@ -400,7 +589,9 @@ function RagUploadPage({ user }) {
               disabled={sofUploading}
               style={{ marginTop: 16 }}
             >
-              {sofUploading ? "Uploading to RAG..." : "✅ Confirm SOF Upload to RAG"}
+              {sofUploading
+                ? "Uploading to RAG..."
+                : "✅ Confirm SOF Upload to RAG"}
             </button>
           </div>
         )}
@@ -471,36 +662,56 @@ function RagUploadPage({ user }) {
         <div className="form-grid premium-rag-form-grid">
           <label>
             Grade
-            <select value={grade} onChange={(e) => handleGradeChange(e.target.value)}>
+            <select
+              value={grade}
+              onChange={(e) => handleGradeChange(e.target.value)}
+            >
               {grades.map((g) => (
-                <option key={g} value={g}>{g}</option>
+                <option key={g} value={g}>
+                  {g}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Mode
-            <select value={mode} onChange={(e) => handleModeChange(e.target.value)}>
+            <select
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value)}
+            >
               {modes.map((m) => (
-                <option key={m} value={m}>{m}</option>
+                <option key={m} value={m}>
+                  {m}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Subject
-            <select value={subject} onChange={(e) => handleSubjectChange(e.target.value)}>
+            <select
+              value={subject}
+              onChange={(e) => handleSubjectChange(e.target.value)}
+            >
               {subjects.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
             </select>
           </label>
 
           <label>
             Chapter / Section
-            <select value={chapter} onChange={(e) => setChapter(e.target.value)}>
+            <select
+              value={chapter}
+              onChange={(e) => setChapter(e.target.value)}
+            >
               {chapters.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>
+                  {c}
+                </option>
               ))}
             </select>
           </label>
@@ -598,7 +809,9 @@ function RagUploadPage({ user }) {
               <div key={doc.id} className="premium-rag-result-row success">
                 <div>
                   <strong>{doc.title}</strong>
-                  <p>{doc.grade} • {doc.subject}</p>
+                  <p>
+                    {doc.grade} • {doc.subject}
+                  </p>
                   <p>{doc.chapter}</p>
                   <small>Uploaded by {doc.uploaded_by}</small>
                 </div>

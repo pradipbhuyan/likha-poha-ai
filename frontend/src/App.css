@@ -7846,3 +7846,49 @@ body.dark-mode .selected-child-badge {
   flex-direction: column;
   align-items: flex-start;
 }
+
+@media (max-width: 768px) {
+  .ait-login-page {
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 16px;
+  }
+
+  .ait-login-shell {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+
+  .ait-login-left,
+  .ait-login-right {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px 20px;
+    box-sizing: border-box;
+  }
+
+  .ait-login-left h1 {
+    font-size: 42px;
+    line-height: 1.08;
+    word-break: normal;
+  }
+
+  .ait-login-left p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .ait-login-logo {
+    max-width: 220px;
+    width: 70%;
+    height: auto;
+  }
+
+  .ait-feature-list div {
+    font-size: 18px;
+    white-space: normal;
+  }
+}
