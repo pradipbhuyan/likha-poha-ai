@@ -156,3 +156,292 @@ def test_get_single_child_not_found(monkeypatch):
 
     assert error.value.status_code == 404
     assert error.value.detail == "Child not found"
+    
+class FakeAuthUser:
+    """
+    Fake auth user returned by create_auth_user.
+
+    The real create_auth_user returns an object with an id.
+    The route only needs auth_user.id, so this fake object is enough.
+    """
+
+    def __init__(self, user_id):
+        self.id = user_id
+
+
+class FakeInsertResult:
+    """
+    Fake database insert result.
+
+    The route expects response.data after inserting into profiles.
+    """
+
+    def __init__(self, data):
+        self.data = data
+
+
+class FakeProfilesTable:
+    """
+    Fake admin_client profiles table.
+
+    This captures the inserted payload and returns it as response.data.
+    """
+
+    def __init__(self):
+        self.inserted_payload = None
+
+    def insert(self, payload):
+        self.inserted_payload = payload
+        return self
+
+    def execute(self):
+        return FakeInsertResult([self.inserted_payload])
+
+
+class FakeAdminClient:
+    """
+    Fake admin_client.
+
+    The parent dashboard route calls:
+    admin_client.table("profiles").insert(...).execute()
+
+    This fake supports that chain without touching Supabase.
+    """
+
+    def __init__(self):
+        self.profiles_table = FakeProfilesTable()
+
+    def table(self, table_name):
+        assert table_name == "profiles"
+        return self.profiles_table
+
+
+def test_create_student_with_mocked_auth_and_admin_client(monkeypatch):
+    """
+    Test that a parent can create a student profile.
+
+    This test mocks:
+    - get_children so we control the current child count
+    - create_auth_user so no real auth user is created
+    - admin_client so no real Supabase insert happens
+
+    Expected result:
+    - success should be True.
+    - child should contain the created student profile.
+    - child should belong to the parent's family.
+    """
+
+    def fake_get_children(parent_id):
+        return []
+
+    def fake_create_auth_user(email, password):
+        return FakeAuthUser("child_1")
+
+    fake_admin_client = FakeAdminClient()
+
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "get_children",
+        fake_get_children,
+    )
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "create_auth_user",
+        fake_create_auth_user,
+    )
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "admin_client",
+        fake_admin_client,
+    )
+
+    request = parent_dashboard_route.CreateStudentRequest(
+        email="child@example.com",
+        password="password123",
+        username="child_user",
+    )
+
+    result = parent_dashboard_route.create_student(
+        data=request,
+        parent=FAKE_PARENT,
+    )
+
+    assert result["success"] is True
+    assert result["child"]["id"] == "child_1"
+    assert result["child"]["email"] == "child@example.com"
+    assert result["child"]["username"] == "child_user"
+    assert result["child"]["role"] == "student"
+    assert result["child"]["parent_id"] == "parent_1"
+    assert result["child"]["family_id"] == "family_1"
+
+
+def test_create_student_rejects_more_than_two_children(monkeypatch):
+    """
+    Test that a parent cannot create more than two children.
+
+    The route checks the current children before creating a new student.
+
+    Expected result:
+    - The route should raise HTTPException.
+    - The status code should be 400.
+    """
+
+    def fake_get_children(parent_id):
+        return [
+            {"id": "child_1"},
+            {"id": "child_2"},
+        ]
+
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "get_children",
+        fake_get_children,
+    )
+
+    request = parent_dashboard_route.CreateStudentRequest(
+        email="third-child@example.com",
+        password="password123",
+        username="third_child",
+    )
+
+    with pytest.raises(HTTPException) as error:
+        parent_dashboard_route.create_student(
+            data=request,
+            parent=FAKE_PARENT,
+        )
+
+    assert error.value.status_code == 400
+    assert error.value.detail == "Maximum 2 children allowed for this family."
+
+
+def test_create_student_rejects_parent_without_family(monkeypatch):
+    """
+    Test that a parent without a family_id cannot create a student.
+
+    The child profile must belong to a family, so family_id is required.
+
+    Expected result:
+    - The route should raise HTTPException.
+    - The status code should be 400.
+    """
+
+    def fake_get_children(parent_id):
+        return []
+
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "get_children",
+        fake_get_children,
+    )
+
+    parent_without_family = {
+        "profile": {
+            "id": "parent_no_family",
+            "email": "parent@example.com",
+            "username": "parent_user",
+            "role": "parent",
+            "family_id": None,
+        }
+    }
+
+    request = parent_dashboard_route.CreateStudentRequest(
+        email="child@example.com",
+        password="password123",
+        username="child_user",
+    )
+
+    with pytest.raises(HTTPException) as error:
+        parent_dashboard_route.create_student(
+            data=request,
+            parent=parent_without_family,
+        )
+
+    assert error.value.status_code == 400
+    assert error.value.detail == "Parent does not belong to a family."
+
+
+def test_invite_parent_with_mocked_auth_and_admin_client(monkeypatch):
+    """
+    Test that a parent can invite another parent to the same family.
+
+    This test mocks:
+    - create_auth_user so no real auth user is created
+    - admin_client so no real Supabase insert happens
+
+    Expected result:
+    - success should be True.
+    - parent should contain the invited parent profile.
+    - invited parent should belong to the same family.
+    """
+
+    def fake_create_auth_user(email, password):
+        return FakeAuthUser("parent_2")
+
+    fake_admin_client = FakeAdminClient()
+
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "create_auth_user",
+        fake_create_auth_user,
+    )
+    monkeypatch.setattr(
+        parent_dashboard_route,
+        "admin_client",
+        fake_admin_client,
+    )
+
+    request = parent_dashboard_route.InviteParentRequest(
+        email="second-parent@example.com",
+        password="password123",
+        username="second_parent",
+    )
+
+    result = parent_dashboard_route.invite_parent(
+        data=request,
+        parent=FAKE_PARENT,
+    )
+
+    assert result["success"] is True
+    assert result["parent"]["id"] == "parent_2"
+    assert result["parent"]["email"] == "second-parent@example.com"
+    assert result["parent"]["username"] == "second_parent"
+    assert result["parent"]["role"] == "parent"
+    assert result["parent"]["family_id"] == "family_1"
+    assert result["parent"]["parent_id"] is None
+
+
+def test_invite_parent_rejects_parent_without_family():
+    """
+    Test that a parent without a family_id cannot invite another parent.
+
+    The invited parent must be connected to an existing family.
+
+    Expected result:
+    - The route should raise HTTPException.
+    - The status code should be 400.
+    """
+
+    parent_without_family = {
+        "profile": {
+            "id": "parent_no_family",
+            "email": "parent@example.com",
+            "username": "parent_user",
+            "role": "parent",
+            "family_id": None,
+        }
+    }
+
+    request = parent_dashboard_route.InviteParentRequest(
+        email="second-parent@example.com",
+        password="password123",
+        username="second_parent",
+    )
+
+    with pytest.raises(HTTPException) as error:
+        parent_dashboard_route.invite_parent(
+            data=request,
+            parent=parent_without_family,
+        )
+
+    assert error.value.status_code == 400
+    assert error.value.detail == "Parent does not belong to a family."
