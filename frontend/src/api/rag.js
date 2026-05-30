@@ -62,3 +62,99 @@ export async function uploadRagFilesBatch({
 
   return response.json();
 }
+
+export async function getRagDocuments() {
+  const response = await fetch(`${API_BASE_URL}/api/rag/documents`);
+
+  if (!response.ok) {
+    throw new Error("Failed to load RAG documents");
+  }
+
+  return response.json();
+}
+
+
+export async function deleteRagDocument(documentId) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/documents/${documentId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to delete RAG document");
+  }
+
+  return response.json();
+}
+
+export async function analyzeRagImage(file) {
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/analyze-image`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to analyze image");
+  }
+
+  return response.json();
+}
+
+export async function analyzeSofImages({
+  grade,
+  files,
+}) {
+  const formData = new FormData();
+
+  formData.append("grade", grade);
+
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/analyze-sof-images`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("SOF image analysis failed");
+  }
+
+  return response.json();
+}
+
+
+export async function confirmSofUpload({
+  username,
+  groups,
+}) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/confirm-sof-upload`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        groups,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("SOF upload failed");
+  }
+
+  return response.json();
+}
