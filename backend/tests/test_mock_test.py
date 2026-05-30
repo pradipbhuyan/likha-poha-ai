@@ -96,6 +96,7 @@ def test_generate_olympiad_mock_test_api_with_mocked_service(monkeypatch):
         olympiad,
         num_questions,
         difficulty,
+        **kwargs,
     ):
         return [
             {
