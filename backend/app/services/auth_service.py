@@ -46,6 +46,9 @@ def get_current_user(
                 detail="Invalid token",
             )
 
+        print("AUTH USER ID:", response.user.id)
+        print("AUTH USER EMAIL:", response.user.email)
+
         return response.user
 
     except Exception as e:
@@ -54,7 +57,6 @@ def get_current_user(
             status_code=401,
             detail="Invalid or expired token",
         )
-
 
 def get_user_profile(user_id: str):
     response = (
@@ -101,6 +103,8 @@ def require_student(user=Depends(get_current_user)):
 
 def require_admin(user=Depends(get_current_user)):
     profile = get_user_profile(user.id)
+
+    print("ADMIN PROFILE:", profile)
 
     if not profile or profile.get("role") != "admin":
         raise HTTPException(

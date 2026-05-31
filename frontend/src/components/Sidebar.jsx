@@ -10,6 +10,7 @@ import {
   Video,
   DollarSign,
   Users,
+  Settings,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -32,6 +33,12 @@ function Sidebar({
       label: "Dashboard",
       icon: Home,
       roles: ["student", "admin"],
+    },
+    {
+      key: "adminControl",
+      label: "Admin Control",
+      icon: Settings,
+      roles: ["admin"],
     },
     {
       key: "lessons",
