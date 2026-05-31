@@ -2,10 +2,95 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+import app.routes.progress as progress_route
+
 client = TestClient(app)
 
+def setup_fake_progress_store(monkeypatch):
+    fake_store = {}
 
-def test_save_and_get_chapter_progress():
+    def fake_save_chapter_progress(data):
+        key = (
+            data.get("username"),
+            data.get("grade"),
+            data.get("mode"),
+            data.get("subject"),
+            data.get("chapter"),
+        )
+
+        existing = fake_store.get(key, {})
+
+        step_index = int(data.get("current_step_index", 0))
+        last_lesson = data.get("last_lesson", "")
+
+        step_lessons = existing.get("step_lessons", {})
+
+        if last_lesson:
+            step_lessons[str(step_index)] = last_lesson
+
+        progress = {
+            "username": data.get("username"),
+            "grade": data.get("grade"),
+            "mode": data.get("mode"),
+            "subject": data.get("subject"),
+            "chapter": data.get("chapter"),
+            "current_step_index": step_index,
+            "completed": data.get("completed", False),
+            "last_lesson": last_lesson or existing.get("last_lesson", ""),
+            "step_lessons": step_lessons,
+            "updated_at": None,
+        }
+
+        fake_store[key] = progress
+        return progress
+
+    def fake_get_chapter_progress(
+        username,
+        grade,
+        mode,
+        subject,
+        chapter,
+    ):
+        key = (
+            username,
+            grade,
+            mode,
+            subject,
+            chapter,
+        )
+
+        return fake_store.get(
+            key,
+            {
+                "username": username,
+                "grade": grade,
+                "mode": mode,
+                "subject": subject,
+                "chapter": chapter,
+                "current_step_index": 0,
+                "completed": False,
+                "last_lesson": "",
+                "step_lessons": {},
+                "updated_at": None,
+            },
+        )
+
+    monkeypatch.setattr(
+        progress_route,
+        "save_chapter_progress",
+        fake_save_chapter_progress,
+    )
+
+    monkeypatch.setattr(
+        progress_route,
+        "get_chapter_progress",
+        fake_get_chapter_progress,
+    )
+
+    return fake_store
+
+
+def test_save_and_get_chapter_progress(monkeypatch):
     """
     Test that chapter progress can be saved and then retrieved.
 
@@ -19,6 +104,7 @@ def test_save_and_get_chapter_progress():
     - Getting progress should return HTTP 200.
     - The response should contain a "progress" object.
     """
+    setup_fake_progress_store(monkeypatch)
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -52,7 +138,7 @@ def test_save_and_get_chapter_progress():
     assert "progress" in data
 
 
-def test_update_existing_chapter_progress():
+def test_update_existing_chapter_progress(monkeypatch):
     """
     Test that existing chapter progress can be updated.
 
@@ -70,6 +156,8 @@ def test_update_existing_chapter_progress():
       - completed as True
       - last_lesson as "Updated lesson."
     """
+    
+    setup_fake_progress_store(monkeypatch)
     initial_payload = {
         "username": "test_user_update",
         "grade": "Grade 9",
@@ -181,7 +269,7 @@ def test_save_progress_invalid_step_index():
     assert response.status_code in [400, 422]
 
 
-def test_different_chapters_have_separate_progress():
+def test_different_chapters_have_separate_progress(monkeypatch):
     """
     Test that progress for different chapters is stored separately.
 
@@ -197,6 +285,8 @@ def test_different_chapters_have_separate_progress():
     - Retrieving each chapter should return its own progress.
     - The progress for one chapter should not overwrite the other chapter.
     """
+    
+    setup_fake_progress_store(monkeypatch)
     chapter_one_payload = {
         "username": "test_user_multi",
         "grade": "Grade 9",
