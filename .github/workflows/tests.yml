@@ -32,6 +32,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run backend tests
+        env:
+          SUPABASE_URL: "https://example.supabase.co"
+          SUPABASE_KEY: "test-supabase-key"
+          SUPABASE_ANON_KEY: "test-supabase-anon-key"
+          SUPABASE_SERVICE_ROLE_KEY: "test-supabase-service-role-key"
+          OPENAI_API_KEY: "test-openai-key"
         run: |
           python -m pytest -v
 
