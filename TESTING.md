@@ -1,5 +1,7 @@
 # Testing Guide
 
+![Tests](https://github.com/pradipbhuyan/cbse-tutor-platform/actions/workflows/tests.yml/badge.svg)
+
 This project has three layers of tests:
 
 1. Backend API tests using pytest
