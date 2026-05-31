@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
+import AdminControlPage from "./pages/AdminControlPage";
 
 
 import "./App.css";
@@ -24,6 +25,11 @@ const PAGE_META = {
     subtitle:
       "Your central AI learning hub for lessons, practice, progress, and recommendations.",
     icon: "🏠",
+  },
+  adminControl: {
+    title: "Admin Control",
+    subtitle: "Manage families, users, access, limits, and subscription readiness.",
+    icon: "🛠️",
   },
   lessons: {
     title: "Lessons",
@@ -146,6 +152,8 @@ function App() {
     switch (activePage) {
       case "dashboard":
         return <DashboardPage user={user} setActivePage={handlePageChange} />;
+      case "adminControl":
+        return <AdminControlPage user={user} />;
       case "lessons":
         return <LessonsPage user={user} />;
       case "doubt":

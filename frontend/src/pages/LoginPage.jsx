@@ -8,24 +8,37 @@ import { supabase } from "../api/supabaseClient";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
-console.log(
-    "VITE_API_BASE_URL =",
-    import.meta.env.VITE_API_BASE_URL
-  );
-
 function LoginPage({ onLogin }) {
   const [isSignupMode, setIsSignupMode] = useState(false);
-
   const [username, setUsername] = useState("");
-
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const [fullName, setFullName] = useState("");
-
   const [error, setError] = useState("");
-
   const [loading, setLoading] = useState(false);
+
+  function buildLoginUser({ authUser, profile, accessToken }) {
+    return {
+      id: authUser.id,
+      email: authUser.email,
+      username: profile.username || authUser.email,
+      role: profile.role,
+      parentId: profile.parent_id,
+      familyId: profile.family_id,
+
+      accessToken,
+
+      accessCbse: !!profile.access_cbse,
+      accessSofScience: !!profile.access_sof_science,
+      accessSofMaths: !!profile.access_sof_maths,
+      accessSofEnglish: !!profile.access_sof_english,
+
+      dailyTokenLimit: profile.daily_token_limit,
+      monthlyTokenLimit: profile.monthly_token_limit,
+      subscriptionPlan: profile.subscription_plan || "free",
+      accountStatus: profile.account_status || "active",
+    };
+  }
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -47,7 +60,6 @@ function LoginPage({ onLogin }) {
         }
 
         const result = await response.json();
-
         loginEmail = result.email;
       }
 
@@ -63,24 +75,37 @@ function LoginPage({ onLogin }) {
 
       const { data: profile, error: profileError } = await supabase
         .from("profiles")
-        .select("id, email, username, role, parent_id")
+        .select(`
+          id,
+          email,
+          username,
+          role,
+          parent_id,
+          family_id,
+          access_cbse,
+          access_sof_science,
+          access_sof_maths,
+          access_sof_english,
+          daily_token_limit,
+          monthly_token_limit,
+          subscription_plan,
+          account_status
+        `)
         .eq("id", data.user.id)
         .single();
 
       if (profileError) {
         setError("Login successful, but profile role was not found.");
-
         return;
       }
 
-      onLogin({
-        id: data.user.id,
-        email: data.user.email,
-        username: profile.username || data.user.email,
-        role: profile.role,
-        parentId: profile.parent_id,
-        accessToken: data.session.access_token,
-      });
+      onLogin(
+        buildLoginUser({
+          authUser: data.user,
+          profile,
+          accessToken: data.session.access_token,
+        })
+      );
     } catch (err) {
       setError(err.message || "Login failed.");
     } finally {
@@ -90,40 +115,40 @@ function LoginPage({ onLogin }) {
 
   async function handleSignup(e) {
     e.preventDefault();
-  
+
     setError("");
     setLoading(true);
-  
+
     try {
       const { data, error } = await supabase.auth.signUp({
         email: username,
         password,
       });
-  
+
       if (error) {
         setError(error.message);
         return;
       }
-  
+
       if (!data.user) {
         setError("Unable to create account.");
         return;
       }
-  
+
       const familyId = crypto.randomUUID();
-  
+
       const { error: familyError } = await supabase
-      .from("families")
-      .insert({
-        id: familyId,
-        family_name: `${fullName}'s Family`,
-      });
-  
+        .from("families")
+        .insert({
+          id: familyId,
+          family_name: `${fullName}'s Family`,
+        });
+
       if (familyError) {
         setError(familyError.message);
         return;
       }
-  
+
       const profilePayload = {
         id: data.user.id,
         email: username,
@@ -131,36 +156,43 @@ function LoginPage({ onLogin }) {
         role: "parent",
         parent_id: null,
         family_id: familyId,
+        access_cbse: true,
+        access_sof_science: false,
+        access_sof_maths: false,
+        access_sof_english: false,
+        daily_token_limit: 50000,
+        monthly_token_limit: 1000000,
+        subscription_plan: "free",
+        account_status: "active",
       };
-  
+
       const { error: profileError } = await supabase
         .from("profiles")
         .insert(profilePayload);
-  
+
       if (profileError) {
         setError(profileError.message);
         return;
       }
-  
+
       const { data: loginData, error: loginError } =
         await supabase.auth.signInWithPassword({
           email: username,
           password,
         });
-  
+
       if (loginError) {
         setError(loginError.message);
         return;
       }
-  
-      onLogin({
-        id: loginData.user.id,
-        email: loginData.user.email,
-        username: fullName,
-        role: "parent",
-        parentId: null,
-        accessToken: loginData.session.access_token,
-      });
+
+      onLogin(
+        buildLoginUser({
+          authUser: loginData.user,
+          profile: profilePayload,
+          accessToken: loginData.session.access_token,
+        })
+      );
     } catch (err) {
       setError(err.message || "Unable to create account.");
     } finally {
@@ -184,25 +216,21 @@ function LoginPage({ onLogin }) {
           <div className="ait-feature-list">
             <div>
               <BookOpen size={24} strokeWidth={2.4} />
-
               <span>Personalized Lessons</span>
             </div>
 
             <div>
               <Brain size={24} strokeWidth={2.4} />
-
               <span>Smart Doubt Solving</span>
             </div>
 
             <div>
               <ClipboardList size={24} strokeWidth={2.4} />
-
               <span>Practice & Tests</span>
             </div>
 
             <div>
               <BarChart3 size={24} strokeWidth={2.4} />
-
               <span>Progress Analytics</span>
             </div>
           </div>

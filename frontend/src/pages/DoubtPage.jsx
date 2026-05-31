@@ -34,11 +34,8 @@ function DoubtPage({ user }) {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        const defaultGrade = "Grade 9";
-        const defaultMode = "CBSE";
-
-        setGrade(defaultGrade);
-        setMode(defaultMode);
+        setGrade("Grade 9");
+        setMode("CBSE");
       } catch {
         setError("Could not load syllabus");
       } finally {
@@ -55,6 +52,26 @@ function DoubtPage({ user }) {
   const grades = Object.keys(syllabusData);
   const modes = Object.keys(syllabusData[grade]);
 
+  function hasModeAccess(selectedMode) {
+    if (user.role === "admin") return true;
+
+    if (selectedMode === "CBSE") {
+      return !!user.accessCbse;
+    }
+
+    if (selectedMode === "SOF") {
+      return (
+        !!user.accessSofScience ||
+        !!user.accessSofMaths ||
+        !!user.accessSofEnglish
+      );
+    }
+
+    return false;
+  }
+
+  const allowedModes = modes.filter((m) => hasModeAccess(m));
+
   function clearAnswerState() {
     setAnswer("");
     setSourceInfo(null);
@@ -66,14 +83,28 @@ function DoubtPage({ user }) {
   }
 
   function handleGradeChange(value) {
-    const newMode = Object.keys(syllabusData[value])[0];
+    const gradeModes = Object.keys(syllabusData[value]);
+    const firstAllowedMode = gradeModes.find((m) => hasModeAccess(m));
 
     setGrade(value);
-    setMode(newMode);
+
+    if (!firstAllowedMode) {
+      setMode("");
+      setError("You do not have access to any learning mode.");
+      clearAnswerState();
+      return;
+    }
+
+    setMode(firstAllowedMode);
     clearAnswerState();
   }
 
   function handleModeChange(value) {
+    if (!hasModeAccess(value)) {
+      setError(`You do not have access to ${value}.`);
+      return;
+    }
+
     setMode(value);
     clearAnswerState();
   }
@@ -128,6 +159,11 @@ function DoubtPage({ user }) {
   }
 
   async function handleAskDoubt() {
+    if (!hasModeAccess(mode)) {
+      setError(`You do not have access to ${mode}.`);
+      return;
+    }
+
     if (!question.trim()) {
       setError("Please type your question.");
       return;
@@ -174,6 +210,11 @@ function DoubtPage({ user }) {
   }
 
   async function handleOpenSuggestionCard(suggestion) {
+    if (!hasModeAccess(mode)) {
+      setError(`You do not have access to ${mode}.`);
+      return;
+    }
+
     setActiveFollowUpCard(suggestion);
 
     if (followUpAnswers[suggestion]) {
@@ -183,13 +224,13 @@ function DoubtPage({ user }) {
     setFollowUpLoading(true);
 
     try {
-const result = await answerDoubt({
-  username: user.username,
-  grade,
-  mode,
-  subject: "",
-  chapter: "",
-  question: `Mentor follow-up mode.
+      const result = await answerDoubt({
+        username: user.username,
+        grade,
+        mode,
+        subject: "",
+        chapter: "",
+        question: `Mentor follow-up mode.
 
 Student's original doubt:
 ${question}
@@ -205,7 +246,7 @@ Rules:
 - Be concise and conversational.
 - Focus only on the requested follow-up.
 - End with one short reflective question.`,
-});
+      });
 
       if (!result.success) {
         setError(result.message || "Could not answer follow-up.");
@@ -224,6 +265,11 @@ Rules:
   }
 
   async function handleAskFollowUpCard(suggestion) {
+    if (!hasModeAccess(mode)) {
+      setError(`You do not have access to ${mode}.`);
+      return;
+    }
+
     if (!followUpQuestion.trim()) {
       return;
     }
@@ -286,7 +332,7 @@ Important:
           <div>
             <strong>AI Study Companion</strong>
             <p>
-              Open mentor mode • {grade} • {mode}
+              Open mentor mode • {grade} • {mode || "No Access"}
             </p>
           </div>
         </div>
@@ -298,8 +344,8 @@ Important:
             <p className="eyebrow">Mentor Context</p>
             <h3>🎯 Choose Learning Level</h3>
             <p>
-              Ask Doubt is now open-topic. The AI will use your question, mentor
-              memory, textbook RAG, and general LLM knowledge together.
+              Ask Doubt is open-topic, but access is restricted by your enabled
+              learning modes.
             </p>
           </div>
 
@@ -323,12 +369,17 @@ Important:
               <select
                 value={mode}
                 onChange={(e) => handleModeChange(e.target.value)}
+                disabled={allowedModes.length === 0}
               >
-                {modes.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
+                {allowedModes.length === 0 ? (
+                  <option value="">No access available</option>
+                ) : (
+                  allowedModes.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))
+                )}
               </select>
             </label>
           </div>
@@ -337,7 +388,7 @@ Important:
             <strong>How this works</strong>
             <p>
               You do not need to select a subject or chapter here. Type your
-              doubt naturally, and the AI will search broadly across uploaded
+              doubt naturally, and the AI will search broadly across allowed
               textbook content and combine it with mentor memory.
             </p>
           </div>
@@ -360,6 +411,7 @@ Important:
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Example: Explain Newton's laws of force with real-life examples."
+              disabled={!mode}
             />
 
             <div className="prompt-chip-row">
@@ -374,6 +426,7 @@ Important:
                   key={chip}
                   type="button"
                   className="prompt-chip"
+                  disabled={!mode}
                   onClick={() =>
                     setQuestion((prev) => (prev ? `${prev}\n${chip}` : chip))
                   }
@@ -386,7 +439,7 @@ Important:
             <button
               className="primary-btn doubt-submit-btn"
               onClick={handleAskDoubt}
-              disabled={asking}
+              disabled={asking || !mode}
             >
               {asking ? "Thinking..." : "✨ Ask AI Tutor"}
             </button>

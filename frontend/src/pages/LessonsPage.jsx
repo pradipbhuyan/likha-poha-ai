@@ -219,8 +219,29 @@ function LessonsPage({ user }) {
 
   const grades = Object.keys(syllabusData);
   const modes = Object.keys(syllabusData[grade]);
-  const subjects = Object.keys(syllabusData[grade][mode]);
-  const chapters = syllabusData[grade][mode][subject] || [];
+  
+  function getAllowedSubjects(allSubjects, selectedMode) {
+    if (user.role === "admin") return allSubjects;
+  
+    if (selectedMode === "CBSE") {
+      return user.accessCbse ? allSubjects : [];
+    }
+  
+    if (selectedMode === "SOF") {
+      return allSubjects.filter((subjectName) => {
+        if (subjectName === "Science Olympiad") return user.accessSofScience;
+        if (subjectName === "Maths Olympiad") return user.accessSofMaths;
+        if (subjectName === "English Olympiad") return user.accessSofEnglish;
+        return false;
+      });
+    }
+  
+    return [];
+  }
+  
+  const allSubjects = Object.keys(syllabusData[grade][mode]);
+  const subjects = getAllowedSubjects(allSubjects, mode);
+  const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
 
   function resetLessonState() {
     setLesson("");
@@ -246,9 +267,22 @@ function LessonsPage({ user }) {
   }
 
   function handleModeChange(value) {
-    const newSubject = Object.keys(syllabusData[grade][value])[0];
+    const allModeSubjects = Object.keys(syllabusData[grade][value]);
+    const allowedModeSubjects = getAllowedSubjects(allModeSubjects, value);
+  
+    if (allowedModeSubjects.length === 0) {
+      setMode(value);
+      setSubject("");
+      setChapter("");
+      setError(`You do not have access to ${value} lessons.`);
+      resetLessonState();
+      return;
+    }
+  
+    const newSubject = allowedModeSubjects[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
-
+  
+    setError("");
     setMode(value);
     setSubject(newSubject);
     setChapter(newChapter);
@@ -622,12 +656,17 @@ function LessonsPage({ user }) {
                 <select
                   value={subject}
                   onChange={(e) => handleSubjectChange(e.target.value)}
+                  disabled={subjects.length === 0}
                 >
-                  {subjects.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
+                  {subjects.length === 0 ? (
+                    <option value="">No access available</option>
+                  ) : (
+                    subjects.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))
+                  )}
                 </select>
               </label>
 
@@ -723,7 +762,7 @@ function LessonsPage({ user }) {
 
             <div className="progress-box premium-progress-box">
               <p>
-                Step {currentStepIndex + 1} of {lessonSteps.length}: {" "}
+                Step {currentStepIndex + 1} of {lessonSteps.length}:{" "}
                 <strong>{stepTitle}</strong>
               </p>
 
@@ -965,8 +1004,7 @@ function LessonsPage({ user }) {
                         const currentEvaluation =
                           practiceEvaluations[index] || "";
                         const currentScore = practiceScores[index] || 0;
-                        const currentPassed =
-                          practicePassedMap[index] || false;
+                        const currentPassed = practicePassedMap[index] || false;
                         const currentLoading =
                           practiceLoadingMap[index] || false;
 
@@ -996,7 +1034,9 @@ function LessonsPage({ user }) {
 
                             <button
                               className="primary-btn"
-                              disabled={currentLoading || currentWordCount < 100}
+                              disabled={
+                                currentLoading || currentWordCount < 100
+                              }
                               onClick={() =>
                                 handleEvaluatePracticeAnswer(q, index)
                               }
@@ -1031,7 +1071,7 @@ function LessonsPage({ user }) {
                                 </strong>
 
                                 <p>
-                                  Score: {currentScore}/10. {" "}
+                                  Score: {currentScore}/10.{" "}
                                   {currentPassed
                                     ? "You can now mark this step complete."
                                     : "Improve your answer and try again. You need 8/10 to continue."}
@@ -1214,7 +1254,7 @@ function LessonsPage({ user }) {
                     <h3>📚 Source Information</h3>
 
                     <p>
-                      <strong>Lesson Source:</strong> {" "}
+                      <strong>Lesson Source:</strong>{" "}
                       {sourceInfo.sourceType === "RAG"
                         ? "Uploaded Textbook / RAG Content"
                         : "General LLM Knowledge"}

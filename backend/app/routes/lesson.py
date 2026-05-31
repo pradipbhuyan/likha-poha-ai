@@ -1,12 +1,13 @@
-from fastapi import APIRouter, HTTPException
-from fastapi import Depends
-from app.services.auth_service import get_current_user
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.models.schemas import (
     LessonRequest,
     LessonFollowUpRequest,
     LessonFollowUpResponse,
 )
+
+from app.services.auth_service import get_current_user, admin_client
+from app.services.usage_service import enforce_token_limits
 
 from app.services.tutor_service import (
     generate_step_lesson,
@@ -17,15 +18,6 @@ router = APIRouter()
 
 
 def validate_required_text(value: str, field_name: str):
-    """
-    Validate that a required text field is not empty.
-
-    This catches both:
-    - empty strings like ""
-    - strings with only spaces like "   "
-
-    If the value is empty, FastAPI will return HTTP 400.
-    """
     if value is None or not value.strip():
         raise HTTPException(
             status_code=400,
@@ -33,28 +25,94 @@ def validate_required_text(value: str, field_name: str):
         )
 
 
+def get_profile_by_user_id(user_id: str):
+    response = (
+        admin_client
+        .table("profiles")
+        .select(
+            "id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english, account_status"
+        )
+        .eq("id", user_id)
+        .single()
+        .execute()
+    )
+
+    return response.data
+
+
+def enforce_learning_access(profile: dict, mode: str, subject: str):
+    if not profile:
+        raise HTTPException(status_code=403, detail="Profile not found")
+
+    if profile.get("role") == "admin":
+        return
+
+    if profile.get("account_status") not in [None, "active", "trial"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Account is not active.",
+        )
+
+    if mode == "CBSE":
+        if not profile.get("access_cbse"):
+            raise HTTPException(
+                status_code=403,
+                detail="CBSE access is not enabled for this student.",
+            )
+        return
+
+    if mode == "SOF":
+        if subject == "Science Olympiad" and not profile.get("access_sof_science"):
+            raise HTTPException(
+                status_code=403,
+                detail="SOF Science access is not enabled for this student.",
+            )
+
+        if subject == "Maths Olympiad" and not profile.get("access_sof_maths"):
+            raise HTTPException(
+                status_code=403,
+                detail="SOF Maths access is not enabled for this student.",
+            )
+
+        if subject == "English Olympiad" and not profile.get("access_sof_english"):
+            raise HTTPException(
+                status_code=403,
+                detail="SOF English access is not enabled for this student.",
+            )
+
+        return
+
+    raise HTTPException(
+        status_code=403,
+        detail="Invalid learning mode.",
+    )
+
+
+def enforce_ai_token_limit(username: str):
+    limit_check = enforce_token_limits(username)
+
+    if not limit_check.get("allowed"):
+        raise HTTPException(
+            status_code=403,
+            detail=limit_check.get("message", "AI token limit reached."),
+        )
+
+
 @router.post("/generate")
-def generate_lesson(data: LessonRequest):
-    """
-    Generate a lesson step for a student.
-
-    Required fields:
-    - username
-    - grade
-    - mode
-    - subject
-    - chapter
-    - step_title
-
-    teacher_persona is not validated here because it may be optional
-    depending on your frontend flow.
-    """
+def generate_lesson(
+    data: LessonRequest,
+    user=Depends(get_current_user),
+):
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
     validate_required_text(data.mode, "mode")
     validate_required_text(data.subject, "subject")
     validate_required_text(data.chapter, "chapter")
     validate_required_text(data.step_title, "step_title")
+
+    profile = get_profile_by_user_id(user.id)
+    enforce_learning_access(profile, data.mode, data.subject)
+    enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
         result = generate_step_lesson(
@@ -84,6 +142,9 @@ def generate_lesson(data: LessonRequest):
             "message": "Lesson generated successfully",
         }
 
+    except HTTPException:
+        raise
+
     except Exception as e:
         return {
             "success": False,
@@ -95,20 +156,10 @@ def generate_lesson(data: LessonRequest):
 
 
 @router.post("/follow-up", response_model=LessonFollowUpResponse)
-def lesson_follow_up(data: LessonFollowUpRequest):
-    """
-    Answer a student's follow-up question about a lesson.
-
-    Required fields:
-    - username
-    - grade
-    - mode
-    - subject
-    - chapter
-    - step_title
-    - lesson
-    - question
-    """
+def lesson_follow_up(
+    data: LessonFollowUpRequest,
+    user=Depends(get_current_user),
+):
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
     validate_required_text(data.mode, "mode")
@@ -117,6 +168,10 @@ def lesson_follow_up(data: LessonFollowUpRequest):
     validate_required_text(data.step_title, "step_title")
     validate_required_text(data.lesson, "lesson")
     validate_required_text(data.question, "question")
+
+    profile = get_profile_by_user_id(user.id)
+    enforce_learning_access(profile, data.mode, data.subject)
+    enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
         result = answer_lesson_follow_up(
@@ -138,6 +193,9 @@ def lesson_follow_up(data: LessonFollowUpRequest):
             message="Follow-up answered successfully",
         )
 
+    except HTTPException:
+        raise
+
     except Exception as e:
         return LessonFollowUpResponse(
             success=False,
@@ -146,12 +204,3 @@ def lesson_follow_up(data: LessonFollowUpRequest):
             sources=[],
             message=f"Follow-up failed: {str(e)}",
         )
-        
-
-@router.post("/generate")
-def generate_lesson(payload: dict, user=Depends(get_current_user)):
-    user_id = user.id
-
-    # existing logic here
-
-    return result

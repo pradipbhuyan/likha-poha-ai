@@ -101,8 +101,31 @@ function MockTestPage({ user }) {
 
   const grades = Object.keys(syllabusData);
   const modes = Object.keys(syllabusData[grade]);
-  const subjects = Object.keys(syllabusData[grade][mode]);
-  const chapters = syllabusData[grade][mode][subject] || [];
+  
+  function getAllowedSubjects(allSubjects, selectedMode) {
+    if (user.role === "admin") return allSubjects;
+  
+    if (selectedMode === "CBSE") {
+      return user.accessCbse ? allSubjects : [];
+    }
+  
+    if (selectedMode === "SOF") {
+      return allSubjects.filter((subjectName) => {
+        if (subjectName === "Science Olympiad") return user.accessSofScience;
+        if (subjectName === "Maths Olympiad") return user.accessSofMaths;
+        if (subjectName === "English Olympiad") return user.accessSofEnglish;
+        return false;
+      });
+    }
+  
+    return [];
+  }
+  
+  const allSubjects = Object.keys(syllabusData[grade][mode]);
+  const subjects = getAllowedSubjects(allSubjects, mode);
+  const chapters = subject
+    ? syllabusData[grade][mode][subject] || []
+    : [];
 
   const answeredCount = Object.keys(answers).length;
   const progressPercent = questions.length
@@ -127,8 +150,36 @@ function MockTestPage({ user }) {
   }
 
   function handleModeChange(value) {
+    const allModeSubjects = Object.keys(
+      syllabusData[grade][value]
+    );
+  
+    const allowedModeSubjects =
+      getAllowedSubjects(
+        allModeSubjects,
+        value
+      );
+  
+    if (allowedModeSubjects.length === 0) {
+      setMode(value);
+      setSubject("");
+      setChapter("");
+      setError(
+        `You do not have access to ${value} mock tests.`
+      );
+      clearTest();
+      return;
+    }
+  
+    const firstSubject = allowedModeSubjects[0];
+    const firstChapter =
+      syllabusData[grade][value][firstSubject][0];
+  
+    setError("");
     setMode(value);
-    resetSelections(grade, value);
+    setSubject(firstSubject);
+    setChapter(firstChapter);
+  
     clearTest();
   }
 
@@ -147,6 +198,33 @@ function MockTestPage({ user }) {
 
   async function handleGenerateMockTest() {
     setLoading(true);
+
+    if (
+      mode === "CBSE" &&
+      !user.accessCbse
+    ) {
+      setError(
+        "You do not have access to CBSE mock tests."
+      );
+      setLoading(false);
+      return;
+    }
+    
+    if (
+      mode === "SOF" &&
+      !(
+        user.accessSofScience ||
+        user.accessSofMaths ||
+        user.accessSofEnglish
+      )
+    ) {
+      setError(
+        "You do not have access to SOF mock tests."
+      );
+      setLoading(false);
+      return;
+    }
+
     setError("");
     setResults(null);
     setAnswers({});
@@ -279,8 +357,8 @@ function MockTestPage({ user }) {
           <p className="eyebrow">Exam Practice</p>
           <h2>🧪 Mock Test Studio</h2>
           <p>
-            Generate exam-style practice tests, track your answers, review mistakes,
-            and build confidence for CBSE and SOF preparation.
+            Generate exam-style practice tests, track your answers, review
+            mistakes, and build confidence for CBSE and SOF preparation.
           </p>
         </div>
 
@@ -331,10 +409,13 @@ function MockTestPage({ user }) {
             <select
               value={subject}
               onChange={(e) => handleSubjectChange(e.target.value)}
+              disabled={subjects.length === 0}
             >
-              {subjects.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
+              {subjects.length === 0 ? (
+                <option value="">No access available</option>
+              ) : (
+                subjects.map((s) => <option key={s}>{s}</option>)
+              )}
             </select>
           </label>
 
@@ -496,7 +577,9 @@ function MockTestPage({ user }) {
                     Q{q.id}. {q.question}
                   </h4>
 
-                  <span>{q.marks} mark{Number(q.marks || 1) > 1 ? "s" : ""}</span>
+                  <span>
+                    {q.marks} mark{Number(q.marks || 1) > 1 ? "s" : ""}
+                  </span>
                 </div>
 
                 <p className="muted">Section: {q.section}</p>
@@ -527,7 +610,10 @@ function MockTestPage({ user }) {
             ))}
           </div>
 
-          <button className="primary-btn premium-submit-test-btn" onClick={handleSubmitTest}>
+          <button
+            className="primary-btn premium-submit-test-btn"
+            onClick={handleSubmitTest}
+          >
             Submit Test
           </button>
         </section>
@@ -578,7 +664,10 @@ function MockTestPage({ user }) {
 
           <div className="premium-header">
             <h3>📘 Answer Review</h3>
-            <p>Review each question to understand mistakes and strengthen concepts.</p>
+            <p>
+              Review each question to understand mistakes and strengthen
+              concepts.
+            </p>
           </div>
 
           <div className="premium-review-list">

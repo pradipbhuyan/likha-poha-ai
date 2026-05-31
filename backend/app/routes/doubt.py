@@ -1,21 +1,18 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 
 from app.models.schemas import DoubtRequest
 from app.services.tutor_service import answer_doubt
+from app.services.usage_service import enforce_token_limits
+
+from app.services.auth_service import (
+    get_current_user,
+    admin_client,
+)
 
 router = APIRouter()
 
 
 def validate_required_text(value: str, field_name: str):
-    """
-    Validate that a required text field is not empty.
-
-    This catches both:
-    - empty strings like ""
-    - strings with only spaces like "   "
-
-    If the value is empty, FastAPI will return HTTP 400.
-    """
     if value is None or not value.strip():
         raise HTTPException(
             status_code=400,
@@ -23,20 +20,87 @@ def validate_required_text(value: str, field_name: str):
         )
 
 
+def get_profile_by_user_id(user_id: str):
+    response = (
+        admin_client
+        .table("profiles")
+        .select(
+            "id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english, account_status"
+        )
+        .eq("id", user_id)
+        .single()
+        .execute()
+    )
+
+    return response.data
+
+
+def enforce_learning_access(profile: dict, mode: str):
+    if not profile:
+        raise HTTPException(
+            status_code=403,
+            detail="Profile not found",
+        )
+
+    if profile.get("role") == "admin":
+        return
+
+    if profile.get("account_status") not in [None, "active", "trial"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Account is not active.",
+        )
+
+    if mode == "CBSE":
+        if not profile.get("access_cbse"):
+            raise HTTPException(
+                status_code=403,
+                detail="CBSE access is not enabled.",
+            )
+        return
+
+    if mode == "SOF":
+        sof_enabled = (
+            profile.get("access_sof_science")
+            or profile.get("access_sof_maths")
+            or profile.get("access_sof_english")
+        )
+
+        if not sof_enabled:
+            raise HTTPException(
+                status_code=403,
+                detail="SOF access is not enabled.",
+            )
+
+        return
+
+    raise HTTPException(
+        status_code=403,
+        detail="Invalid learning mode.",
+    )
+
+
+def enforce_ai_token_limit(username: str):
+    limit_check = enforce_token_limits(username)
+
+    if not limit_check.get("allowed"):
+        raise HTTPException(
+            status_code=403,
+            detail=limit_check.get("message", "AI token limit reached."),
+        )
+
+
 @router.post("/answer")
-def answer_student_doubt(data: DoubtRequest):
-    """
-    Answer a student's doubt.
-
-    Required fields:
-    - username
-    - question
-
-    subject and chapter are allowed to be empty for now because some existing
-    tests and flows may ask a general question without selecting a chapter.
-    """
+def answer_student_doubt(
+    data: DoubtRequest,
+    user=Depends(get_current_user),
+):
     validate_required_text(data.username, "username")
     validate_required_text(data.question, "question")
+
+    profile = get_profile_by_user_id(user.id)
+    enforce_learning_access(profile, data.mode)
+    enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
         result = answer_doubt(
@@ -55,6 +119,9 @@ def answer_student_doubt(data: DoubtRequest):
             "mentor_suggestions": result.get("mentor_suggestions", []),
             "message": "Doubt answered successfully",
         }
+
+    except HTTPException:
+        raise
 
     except Exception as e:
         return {

@@ -20,6 +20,8 @@ from app.routes import recommendations
 from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
 from app.routes.parent_dashboard import router as parent_dashboard_router
+from app.routes.admin_control import router as admin_control_router
+
 
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
@@ -108,6 +110,12 @@ app.include_router(
     rag_router,
     prefix="/api/rag",
     tags=["RAG"]
+)
+
+app.include_router(
+    admin_control_router,
+    prefix="/api/admin-control",
+    tags=["Admin Control"],
 )
 
 app.include_router(images.router, prefix="/api/images", tags=["Images"])
