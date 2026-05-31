@@ -124,7 +124,7 @@ def test_generate_olympiad_mock_test_api_with_mocked_service(monkeypatch):
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
-        "mode": "Olympiad",
+        "mode": "SOF",
         "subject": "Science Olympiad",
         "chapter": "General Science",
         "mock_type": "SOF Olympiad Mock Test",
