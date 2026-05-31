@@ -6,6 +6,8 @@ This project has three layers of tests:
 2. Frontend component tests using Vitest
 3. End-to-end tests using Playwright
 
+It also includes a longer monthly student journey simulation for realistic platform usage testing.
+
 ---
 
 ## Backend tests
@@ -82,6 +84,60 @@ Current E2E tests cover:
 
 ---
 
+## Monthly student journey simulation
+
+This project also has a longer scenario simulation that behaves like a student using the platform over a month.
+
+The script is:
+
+```text
+backend/simulations/monthly_student_journey.py
+```
+
+This simulation calls the real backend APIs and covers:
+
+- Lesson generation
+- Progress saving
+- Profile activity and XP updates
+- Doubt answering
+- Answer evaluation
+- Practice question generation
+- CBSE mock test generation
+- SOF Olympiad mock test generation
+- Test history saving
+- Recommendations
+- Usage tracking
+
+This is not a normal unit test. It may call real AI services and write data to Supabase.
+
+### Terminal 1: start backend
+
+```bash
+cd backend
+./venv/bin/python -m uvicorn app.main:app --reload
+```
+
+Keep this terminal running.
+
+### Terminal 2: run the simulation
+
+Open another terminal:
+
+```bash
+cd backend
+./venv/bin/python simulations/monthly_student_journey.py
+```
+
+Expected result:
+
+- API calls should return `200`
+- Profile counters should increase
+- XP should increase
+- Usage summary should show requests and tokens
+- Recommendations should be based on saved test history
+
+---
+
 ## Recommended full test checklist
 
 Before pushing important changes, run all three test layers.
@@ -118,6 +174,17 @@ cd frontend
 npx playwright test
 ```
 
+### 4. Optional monthly simulation
+
+Run this only when you want a realistic longer scenario test:
+
+```bash
+cd backend
+./venv/bin/python simulations/monthly_student_journey.py
+```
+
+Make sure the backend server is already running before starting the simulation.
+
 ---
 
 ## Notes
@@ -125,6 +192,8 @@ npx playwright test
 - Backend tests use pytest and FastAPI `TestClient`.
 - Frontend component tests use Vitest and React Testing Library.
 - E2E tests use Playwright.
+- The monthly student journey simulation calls real backend APIs and may write data to Supabase.
+- The simulation may call real AI services, so avoid running it repeatedly unless needed.
 - Vitest should not run Playwright tests. The `e2e` folder is excluded in `vite.config.js`.
 - Some backend tests use mocks to avoid calling Supabase, OpenAI, or other external services.
 - Generated files like `.coverage` should not be committed.
