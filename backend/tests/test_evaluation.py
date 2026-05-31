@@ -45,7 +45,7 @@ def test_evaluate_answer_api():
     assert "score" in data
     assert "passed" in data
     
-def test_evaluate_answer_response_has_valid_data_types():
+def test_evaluate_answer_response_has_valid_data_types(monkeypatch):
     """
     Test that the evaluation API returns the expected data types.
 
@@ -59,6 +59,27 @@ def test_evaluate_answer_response_has_valid_data_types():
     - score should be a number.
     - passed should be a boolean.
     """
+    
+    import app.routes.evaluation as evaluation_route
+
+    def fake_evaluate_student_answer(
+        question,
+        student_answer,
+        ideal_context,
+        username,
+    ):
+        return {
+            "evaluation": "Good answer.",
+            "score": 8,
+            "passed": True,
+        }
+
+    monkeypatch.setattr(
+        evaluation_route,
+        "evaluate_student_answer",
+        fake_evaluate_student_answer,
+    )
+    
     payload = {
         "username": "test_user",
         "question": "What is xylem?",
