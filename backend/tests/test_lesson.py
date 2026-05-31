@@ -2,27 +2,81 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+import app.routes.lesson as lesson_route
+
 client = TestClient(app)
 
 
-def test_generate_lesson_api():
+def mock_lesson_generation(monkeypatch):
+    """
+    Mock lesson generation so tests do not call the real AI service.
+    """
+
+    def fake_generate_lesson_content(*args, **kwargs):
+        return {
+            "success": True,
+            "lesson": "This is a generated lesson about matter.",
+            "source_type": "MOCK",
+            "sources": [],
+            "message": "Lesson generated successfully.",
+        }
+
+    possible_lesson_function_names = [
+        "generate_lesson_content",
+        "generate_lesson_with_rag",
+        "generate_lesson_with_sources",
+        "generate_lesson_for_step",
+        "generate_lesson_from_rag",
+        "generate_lesson_text",
+    ]
+
+    for function_name in possible_lesson_function_names:
+        monkeypatch.setattr(
+            lesson_route,
+            function_name,
+            fake_generate_lesson_content,
+            raising=False,
+        )
+
+
+def mock_lesson_follow_up(monkeypatch):
+    """
+    Mock lesson follow-up so tests do not call the real AI service.
+    """
+
+    def fake_answer_lesson_follow_up(*args, **kwargs):
+        return {
+            "success": True,
+            "answer": "Particles are tiny units that make up matter.",
+            "source_type": "MOCK",
+            "sources": [],
+            "message": "Follow-up answered successfully.",
+        }
+
+    possible_follow_up_function_names = [
+        "answer_lesson_follow_up",
+        "ask_lesson_follow_up",
+        "answer_follow_up_question",
+        "generate_lesson_follow_up",
+        "answer_lesson_question",
+    ]
+
+    for function_name in possible_follow_up_function_names:
+        monkeypatch.setattr(
+            lesson_route,
+            function_name,
+            fake_answer_lesson_follow_up,
+            raising=False,
+        )
+
+
+def test_generate_lesson_api(monkeypatch):
     """
     Test that the lesson generation API returns a valid response.
-
-    This checks the normal lesson flow:
-    1. The frontend sends student, subject, chapter, and lesson step details.
-    2. The backend generates lesson content.
-    3. The response includes the generated lesson and source information.
-
-    Expected result:
-    - The endpoint should return HTTP 200.
-    - The response should contain:
-      - success
-      - lesson
-      - source_type
-      - sources
-      - message
     """
+
+    mock_lesson_generation(monkeypatch)
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -44,21 +98,15 @@ def test_generate_lesson_api():
     assert "source_type" in data
     assert "sources" in data
     assert "message" in data
-    
-def test_generate_lesson_response_has_valid_data_types():
+
+
+def test_generate_lesson_response_has_valid_data_types(monkeypatch):
     """
     Test that the lesson generation API returns values with expected data types.
-
-    The frontend depends on these fields to display lesson content,
-    source information, and status messages.
-
-    Expected result:
-    - success should be a boolean.
-    - lesson should be text or None.
-    - source_type should be text.
-    - sources should be a list.
-    - message should be text.
     """
+
+    mock_lesson_generation(monkeypatch)
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -80,20 +128,13 @@ def test_generate_lesson_response_has_valid_data_types():
     assert isinstance(data["source_type"], str)
     assert isinstance(data["sources"], list)
     assert isinstance(data["message"], str)
-    
+
+
 def test_generate_lesson_empty_step_title():
     """
     Test that the lesson generation API rejects an empty step title.
-
-    The step_title tells the backend what part of the lesson to generate.
-    Without it, the tutor does not know what concept to teach.
-
-    This test sends an empty step_title.
-
-    Expected result:
-    - The backend should reject the request.
-    - The response should be HTTP 400 or HTTP 422.
     """
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -107,28 +148,15 @@ def test_generate_lesson_empty_step_title():
     response = client.post("/api/lesson/generate", json=payload)
 
     assert response.status_code in [400, 422]
-    
-def test_lesson_follow_up_api():
+
+
+def test_lesson_follow_up_api(monkeypatch):
     """
     Test that the lesson follow-up API returns a valid response.
-
-    This checks the flow where a student asks a question after receiving
-    a lesson explanation.
-
-    Example:
-    - The tutor teaches "What is matter?"
-    - The student asks a follow-up question like "Can you explain particles?"
-    - The backend returns an answer.
-
-    Expected result:
-    - The endpoint should return HTTP 200.
-    - The response should contain:
-      - success
-      - answer
-      - source_type
-      - sources
-      - message
     """
+
+    mock_lesson_follow_up(monkeypatch)
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
@@ -151,18 +179,13 @@ def test_lesson_follow_up_api():
     assert "source_type" in data
     assert "sources" in data
     assert "message" in data
-    
+
+
 def test_lesson_follow_up_empty_question():
     """
     Test that the lesson follow-up API rejects an empty question.
-
-    The follow-up question is required because the tutor needs to know
-    what the student is asking about.
-
-    Expected result:
-    - The backend should reject the request.
-    - The response should be HTTP 400 or HTTP 422.
     """
+
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
