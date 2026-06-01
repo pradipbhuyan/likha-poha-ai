@@ -23,27 +23,37 @@ from app.routes.parent_dashboard import router as parent_dashboard_router
 from app.routes.admin_control import router as admin_control_router
 
 
-frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+frontend_url = os.getenv(
+    "FRONTEND_URL",
+    "http://localhost:5173",
+)
+
+allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+
+    "https://cbse-tutor-platform.vercel.app",
+
+    "https://likhapoha.in",
+    "https://www.likhapoha.in",
+
+    frontend_url,
+]
 
 app = FastAPI(
     title="CBSE Tutor API",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        frontend_url,
-    ],
+    allow_origins=list(set(allowed_origins)),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-origins = [
-    settings.FRONTEND_URL,
-]
+origins = allowed_origins
 
 
 app.include_router(
