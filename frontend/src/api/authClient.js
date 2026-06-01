@@ -33,8 +33,17 @@ export async function authFetch(path, options = {}) {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`API failed: ${path} - ${response.status} - ${errorText}`);
+    let message = "API request failed";
+  
+    try {
+      const errorData = await response.json();
+      message = errorData.detail || errorData.message || message;
+    } catch {
+      const errorText = await response.text();
+      message = errorText || message;
+    }
+  
+    throw new Error(message);
   }
 
   return response.json();

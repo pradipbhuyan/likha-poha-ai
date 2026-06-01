@@ -10,7 +10,6 @@ import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
 import LessonSections from "../components/LessonSections";
 
-
 import {
   evaluateStudentAnswer,
   generatePracticeQuestions,
@@ -60,6 +59,7 @@ function LessonsPage({ user }) {
   const [practicePassedMap, setPracticePassedMap] = useState({});
   const [practiceLoadingMap, setPracticeLoadingMap] = useState({});
   const [practicePassed, setPracticePassed] = useState(false);
+  const [devanagariInputEnabled, setDevanagariInputEnabled] = useState(true);
 
   const [practiceQuestions, setPracticeQuestions] = useState([]);
   const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
@@ -219,14 +219,14 @@ function LessonsPage({ user }) {
 
   const grades = Object.keys(syllabusData);
   const modes = Object.keys(syllabusData[grade]);
-  
+
   function getAllowedSubjects(allSubjects, selectedMode) {
     if (user.role === "admin") return allSubjects;
-  
+
     if (selectedMode === "CBSE") {
       return user.accessCbse ? allSubjects : [];
     }
-  
+
     if (selectedMode === "SOF") {
       return allSubjects.filter((subjectName) => {
         if (subjectName === "Science Olympiad") return user.accessSofScience;
@@ -235,10 +235,10 @@ function LessonsPage({ user }) {
         return false;
       });
     }
-  
+
     return [];
   }
-  
+
   const allSubjects = Object.keys(syllabusData[grade][mode]);
   const subjects = getAllowedSubjects(allSubjects, mode);
   const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
@@ -269,7 +269,7 @@ function LessonsPage({ user }) {
   function handleModeChange(value) {
     const allModeSubjects = Object.keys(syllabusData[grade][value]);
     const allowedModeSubjects = getAllowedSubjects(allModeSubjects, value);
-  
+
     if (allowedModeSubjects.length === 0) {
       setMode(value);
       setSubject("");
@@ -278,10 +278,10 @@ function LessonsPage({ user }) {
       resetLessonState();
       return;
     }
-  
+
     const newSubject = allowedModeSubjects[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
-  
+
     setError("");
     setMode(value);
     setSubject(newSubject);
@@ -295,6 +295,10 @@ function LessonsPage({ user }) {
     setSubject(value);
     setChapter(newChapter);
     resetLessonState();
+  }
+
+  function shouldSkipPracticeRequirement() {
+    return subject === "Hindi" || subject === "Sanskrit";
   }
 
   function resetPracticeState() {
@@ -419,12 +423,12 @@ function LessonsPage({ user }) {
           sourceType: result.source_type,
         },
       ]);
-    } catch {
+    } catch (error) {
       setFollowUpMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: "Follow-up failed. Check backend.",
+          content: error.message || "Follow-up failed. Check backend.",
         },
       ]);
     } finally {
@@ -607,6 +611,10 @@ function LessonsPage({ user }) {
     }
   }
 
+  function shouldUseDevanagariInput() {
+    return subject === "Hindi" || subject === "Sanskrit";
+  }
+  
   function countWords(text) {
     return text.trim().split(/\s+/).filter(Boolean).length;
   }
@@ -817,9 +825,9 @@ function LessonsPage({ user }) {
 
               <button
                 className="secondary-btn"
-                disabled={!practicePassed}
+                disabled={!practicePassed && !shouldSkipPracticeRequirement()}
                 title={
-                  practicePassed
+                  practicePassed || shouldSkipPracticeRequirement()
                     ? "You can complete this step."
                     : "Write and pass practice answer first."
                 }
@@ -962,128 +970,132 @@ function LessonsPage({ user }) {
                   )}
                 </div>
 
-                <div className="lesson-practice-card">
-                  {practiceFocusWarnings > 0 && (
-                    <div className="practice-warning-banner">
-                      ⚠️ Focus warning {practiceFocusWarnings}: Please stay on
-                      this page while answering. Practice works best when you
-                      recall from memory.
+                {!shouldSkipPracticeRequirement() && (
+                  <div className="lesson-practice-card">
+                    {practiceFocusWarnings > 0 && (
+                      <div className="practice-warning-banner">
+                        ⚠️ Focus warning {practiceFocusWarnings}: Please stay on
+                        this page while answering. Practice works best when you
+                        recall from memory.
+                      </div>
+                    )}
+
+                    {practiceModeActive && (
+                      <div className="practice-focus-banner">
+                        ✍️ Practice Mode Active — AI follow-up help is
+                        temporarily disabled. Try answering from memory like a
+                        real exam.
+                      </div>
+                    )}
+
+                    <div className="lesson-followup-header">
+                      <h3>✍️ Write & Practice</h3>
+                      <p>
+                        Write your own answer first. AI will evaluate it like an
+                        examiner.
+                      </p>
                     </div>
-                  )}
 
-                  {practiceModeActive && (
-                    <div className="practice-focus-banner">
-                      ✍️ Practice Mode Active — AI follow-up help is temporarily
-                      disabled. Try answering from memory like a real exam.
-                    </div>
-                  )}
+                    <button
+                      className="secondary-btn"
+                      onClick={handleGeneratePracticeQuestions}
+                      disabled={practiceQuestionsLoading}
+                    >
+                      {practiceQuestionsLoading
+                        ? "Creating practice questions..."
+                        : "🎲 Generate 2 Practice Questions"}
+                    </button>
 
-                  <div className="lesson-followup-header">
-                    <h3>✍️ Write & Practice</h3>
-                    <p>
-                      Write your own answer first. AI will evaluate it like an
-                      examiner.
-                    </p>
-                  </div>
+                    {practiceQuestions.length > 0 && (
+                      <div className="practice-question-list">
+                        {practiceQuestions.map((q, index) => {
+                          const currentAnswer = practiceAnswers[index] || "";
+                          const currentWordCount = countWords(currentAnswer);
+                          const currentEvaluation =
+                            practiceEvaluations[index] || "";
+                          const currentScore = practiceScores[index] || 0;
+                          const currentPassed =
+                            practicePassedMap[index] || false;
+                          const currentLoading =
+                            practiceLoadingMap[index] || false;
 
-                  <button
-                    className="secondary-btn"
-                    onClick={handleGeneratePracticeQuestions}
-                    disabled={practiceQuestionsLoading}
-                  >
-                    {practiceQuestionsLoading
-                      ? "Creating practice questions..."
-                      : "🎲 Generate 2 Practice Questions"}
-                  </button>
-
-                  {practiceQuestions.length > 0 && (
-                    <div className="practice-question-list">
-                      {practiceQuestions.map((q, index) => {
-                        const currentAnswer = practiceAnswers[index] || "";
-                        const currentWordCount = countWords(currentAnswer);
-                        const currentEvaluation =
-                          practiceEvaluations[index] || "";
-                        const currentScore = practiceScores[index] || 0;
-                        const currentPassed = practicePassedMap[index] || false;
-                        const currentLoading =
-                          practiceLoadingMap[index] || false;
-
-                        return (
-                          <div
-                            key={index}
-                            className="practice-question-card workbook-card"
-                          >
-                            <strong>Question {index + 1}</strong>
-                            <span>{q}</span>
-
-                            <textarea
-                              rows="6"
-                              value={currentAnswer}
-                              placeholder="Write your answer here in at least 100 words..."
-                              onChange={(e) =>
-                                setPracticeAnswers((prev) => ({
-                                  ...prev,
-                                  [index]: e.target.value,
-                                }))
-                              }
-                            />
-
-                            <p className="practice-word-count">
-                              Words: {currentWordCount} / 100
-                            </p>
-
-                            <button
-                              className="primary-btn"
-                              disabled={
-                                currentLoading || currentWordCount < 100
-                              }
-                              onClick={() =>
-                                handleEvaluatePracticeAnswer(q, index)
-                              }
+                          return (
+                            <div
+                              key={index}
+                              className="practice-question-card workbook-card"
                             >
-                              {currentLoading
-                                ? "Evaluating..."
-                                : currentWordCount < 100
-                                ? "Write at least 100 words"
-                                : "Evaluate This Answer"}
-                            </button>
+                              <strong>Question {index + 1}</strong>
+                              <span>{q}</span>
 
-                            {currentEvaluation && (
-                              <div className="mentor-followup-answer markdown-content">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                  {currentEvaluation}
-                                </ReactMarkdown>
-                              </div>
-                            )}
+                              <textarea
+                                rows="6"
+                                value={currentAnswer}
+                                placeholder="Write your answer here in at least 100 words..."
+                                onChange={(e) =>
+                                  setPracticeAnswers((prev) => ({
+                                    ...prev,
+                                    [index]: e.target.value,
+                                  }))
+                                }
+                              />
 
-                            {currentEvaluation && (
-                              <div
-                                className={
-                                  currentPassed
-                                    ? "practice-status-box passed"
-                                    : "practice-status-box retry"
+                              <p className="practice-word-count">
+                                Words: {currentWordCount} / 100
+                              </p>
+
+                              <button
+                                className="primary-btn"
+                                disabled={
+                                  currentLoading || currentWordCount < 100
+                                }
+                                onClick={() =>
+                                  handleEvaluatePracticeAnswer(q, index)
                                 }
                               >
-                                <strong>
-                                  {currentPassed
-                                    ? "✅ Practice Passed"
-                                    : "🔁 Retry Needed"}
-                                </strong>
+                                {currentLoading
+                                  ? "Evaluating..."
+                                  : currentWordCount < 100
+                                  ? "Write at least 100 words"
+                                  : "Evaluate This Answer"}
+                              </button>
 
-                                <p>
-                                  Score: {currentScore}/10.{" "}
-                                  {currentPassed
-                                    ? "You can now mark this step complete."
-                                    : "Improve your answer and try again. You need 8/10 to continue."}
-                                </p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                              {currentEvaluation && (
+                                <div className="mentor-followup-answer markdown-content">
+                                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                    {currentEvaluation}
+                                  </ReactMarkdown>
+                                </div>
+                              )}
+
+                              {currentEvaluation && (
+                                <div
+                                  className={
+                                    currentPassed
+                                      ? "practice-status-box passed"
+                                      : "practice-status-box retry"
+                                  }
+                                >
+                                  <strong>
+                                    {currentPassed
+                                      ? "✅ Practice Passed"
+                                      : "🔁 Retry Needed"}
+                                  </strong>
+
+                                  <p>
+                                    Score: {currentScore}/10.{" "}
+                                    {currentPassed
+                                      ? "You can now mark this step complete."
+                                      : "Improve your answer and try again. You need 8/10 to continue."}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div className="visual-generator-card premium-card premium-glow-card glow-purple">
                   <div className="visual-generator-header">
