@@ -170,6 +170,8 @@ def lesson_follow_up(
     validate_required_text(data.question, "question")
 
     profile = get_profile_by_user_id(user.id)
+
+
     enforce_learning_access(profile, data.mode, data.subject)
     enforce_ai_token_limit(profile.get("username") or data.username)
 
