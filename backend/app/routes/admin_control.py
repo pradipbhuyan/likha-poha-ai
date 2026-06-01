@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -35,6 +37,54 @@ class UpdateLimitsRequest(BaseModel):
     monthly_token_limit: int
 
 
+def build_student_activity(username: str):
+    now = datetime.now(timezone.utc)
+    today_start = now.date().isoformat()
+    month_start = now.replace(day=1).date().isoformat()
+
+    usage_response = (
+        admin_client
+        .table("ai_usage_logs")
+        .select("*")
+        .eq("username", username)
+        .execute()
+    )
+
+    logs = usage_response.data or []
+
+    today_prefix = f"{today_start}T"
+    month_prefix = f"{month_start[:7]}-"
+
+    today_logs = [
+        item for item in logs
+        if str(item.get("created_at", "")).startswith(today_prefix)
+    ]
+
+    month_logs = [
+        item for item in logs
+        if str(item.get("created_at", "")).startswith(month_prefix)
+    ]
+
+    def feature_count(feature_name: str):
+        return len([
+            item for item in logs
+            if item.get("feature") == feature_name
+        ])
+
+    return {
+        "username": username,
+        "lessons_generated": feature_count("lesson"),
+        "doubts_asked": feature_count("doubt"),
+        "mock_tests_generated": feature_count("mock_test"),
+        "requests_total": len(logs),
+        "tokens_today": sum(int(item.get("total_tokens") or 0) for item in today_logs),
+        "tokens_this_month": sum(int(item.get("total_tokens") or 0) for item in month_logs),
+        "tokens_total": sum(int(item.get("total_tokens") or 0) for item in logs),
+        "cost_total": sum(float(item.get("estimated_cost") or 0) for item in logs),
+        "last_activity": logs[0].get("created_at") if logs else None,
+    }
+
+
 @router.get("/families")
 def get_all_families(admin=Depends(require_admin)):
     profiles_response = (
@@ -63,6 +113,9 @@ def get_all_families(admin=Depends(require_admin)):
         if profile.get("role") == "parent":
             families[family_id]["parents"].append(profile)
         elif profile.get("role") == "student":
+            profile["activity"] = build_student_activity(
+                profile.get("username") or ""
+            )
             families[family_id]["children"].append(profile)
         elif profile.get("role") == "admin":
             families[family_id]["admins"].append(profile)
