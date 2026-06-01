@@ -366,8 +366,11 @@ function LessonsPage({ user }) {
         last_lesson: result.lesson,
         step_lessons: updatedStepLessons,
       });
-    } catch {
-      setError("Could not generate lesson. Check backend.");
+    } catch (err) {
+      setError(
+        err.message ||
+          "Could not generate lesson. Check backend."
+      );
     } finally {
       setGenerating(false);
     }

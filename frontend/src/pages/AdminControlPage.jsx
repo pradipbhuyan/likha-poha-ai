@@ -165,6 +165,24 @@ function AdminControlPage({ user }) {
     }
   }
 
+  async function suspendChild(child) {
+    const updatedChild = {
+      ...child,
+      account_status: "suspended",
+    };
+  
+    await savePlan(updatedChild);
+  }
+  
+  async function reactivateChild(child) {
+    const updatedChild = {
+      ...child,
+      account_status: "active",
+    };
+  
+    await savePlan(updatedChild);
+  }
+
   async function savePlan(child) {
     setMessage("");
     setError("");
@@ -328,7 +346,12 @@ function AdminControlPage({ user }) {
               type="text"
               value={parentForm.username}
               onChange={(e) =>
-                applyPlanPreset(family.family_id, child.id, e.target.value)
+                updateLocalChild(
+                  family.family_id,
+                  child.id,
+                  "account_status",
+                  e.target.value
+                )
               }
               required
             />
@@ -654,6 +677,21 @@ function AdminControlPage({ user }) {
                 >
                   Save Limits
                 </button>
+                {child.account_status === "suspended" ? (
+                  <button
+                    className="primary-btn"
+                    onClick={() => reactivateChild(child)}
+                  >
+                    🔓 Reactivate
+                  </button>
+                ) : (
+                  <button
+                    className="secondary-btn"
+                    onClick={() => suspendChild(child)}
+                  >
+                    🔒 Suspend
+                  </button>
+                )}
 
                 <button
                   className="danger-btn"

@@ -48,7 +48,7 @@ def enforce_learning_access(profile: dict, mode: str):
     if profile.get("account_status") not in [None, "active", "trial"]:
         raise HTTPException(
             status_code=403,
-            detail="Account is not active.",
+            detail="Your account is suspended. Please contact your parent or administrator.",
         )
 
     if mode == "CBSE":
