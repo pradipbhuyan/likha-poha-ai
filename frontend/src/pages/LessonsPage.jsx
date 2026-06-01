@@ -59,6 +59,9 @@ function LessonsPage({ user }) {
   const [practicePassedMap, setPracticePassedMap] = useState({});
   const [practiceLoadingMap, setPracticeLoadingMap] = useState({});
   const [practicePassed, setPracticePassed] = useState(false);
+  const [practiceAttemptCount, setPracticeAttemptCount] = useState(0);
+  const [practiceBestScore, setPracticeBestScore] = useState(0);
+  const [allowContinueAnyway, setAllowContinueAnyway] = useState(false);
 
   const [practiceQuestions, setPracticeQuestions] = useState([]);
   const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
@@ -320,6 +323,9 @@ function LessonsPage({ user }) {
     setPracticePassedMap({});
     setPracticeLoadingMap({});
     setPracticePassed(false);
+    setPracticeAttemptCount(0);
+    setPracticeBestScore(0);
+    setAllowContinueAnyway(false);
     setPracticeModeActive(false);
     setPracticeFocusWarnings(0);
   }
@@ -608,11 +614,20 @@ function LessonsPage({ user }) {
         ...prev,
         [index]: result.passed || false,
       }));
-
+      
+      const nextAttemptCount = practiceAttemptCount + 1;
+      const nextBestScore = Math.max(practiceBestScore, result.score || 0);
+      
+      setPracticeAttemptCount(nextAttemptCount);
+      setPracticeBestScore(nextBestScore);
+      
       if (result.passed) {
         setPracticePassed(true);
         setPracticeModeActive(false);
+      } else if (nextAttemptCount >= 2) {
+        setAllowContinueAnyway(true);
       }
+
     } catch {
       setPracticeEvaluations((prev) => ({
         ...prev,
@@ -843,9 +858,15 @@ function LessonsPage({ user }) {
 
               <button
                 className="secondary-btn"
-                disabled={!practicePassed && !shouldSkipPracticeRequirement()}
+                disabled={
+                  !practicePassed &&
+                  !allowContinueAnyway &&
+                  !shouldSkipPracticeRequirement()
+                }
                 title={
-                  practicePassed || shouldSkipPracticeRequirement()
+                  practicePassed ||
+                  allowContinueAnyway ||
+                  shouldSkipPracticeRequirement()
                     ? "You can complete this step."
                     : "Write and pass practice answer first."
                 }
@@ -898,7 +919,9 @@ function LessonsPage({ user }) {
                   }
                 }}
               >
-                ✅ Mark Step Complete
+                {allowContinueAnyway && !practicePassed
+                  ? "➡ Continue Anyway"
+                  : "✅ Mark Step Complete"}
               </button>
 
               <button
@@ -1008,6 +1031,14 @@ function LessonsPage({ user }) {
                         ⚠️ Focus warning {practiceFocusWarnings}: Please stay on
                         this page while answering. Practice works best when you
                         recall from memory.
+                      </div>
+                    )}
+
+                    {allowContinueAnyway && !practicePassed && (
+                      <div className="practice-warning-banner">
+                        ⚠️ You have tried this step twice. You can continue to
+                        the next step, but this topic will be marked for
+                        revision later.
                       </div>
                     )}
 
