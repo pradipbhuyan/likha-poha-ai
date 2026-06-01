@@ -59,7 +59,6 @@ function LessonsPage({ user }) {
   const [practicePassedMap, setPracticePassedMap] = useState({});
   const [practiceLoadingMap, setPracticeLoadingMap] = useState({});
   const [practicePassed, setPracticePassed] = useState(false);
-  const [devanagariInputEnabled, setDevanagariInputEnabled] = useState(true);
 
   const [practiceQuestions, setPracticeQuestions] = useState([]);
   const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
@@ -74,6 +73,7 @@ function LessonsPage({ user }) {
   ];
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [highestUnlockedStep, setHighestUnlockedStep] = useState(0);
   const [completed, setCompleted] = useState(false);
 
   const stepTitle = lessonSteps[currentStepIndex];
@@ -184,9 +184,12 @@ function LessonsPage({ user }) {
         const progress = result.progress || {};
 
         const savedStepIndex = progress.current_step_index || 0;
+        const savedHighestUnlockedStep =
+          progress.highest_unlocked_step ?? savedStepIndex;
         const savedStepLessons = progress.step_lessons || {};
 
         setCurrentStepIndex(savedStepIndex);
+        setHighestUnlockedStep(savedHighestUnlockedStep);
         setCompleted(progress.completed || false);
         setStepLessons(savedStepLessons);
 
@@ -300,6 +303,14 @@ function LessonsPage({ user }) {
   function shouldSkipPracticeRequirement() {
     return subject === "Hindi" || subject === "Sanskrit";
   }
+  
+  function isMathSubject() {
+    return subject === "Maths" || subject === "Maths Olympiad";
+  }
+  
+  function getMinimumPracticeWords() {
+    return isMathSubject() ? 1 : 100;
+  }
 
   function resetPracticeState() {
     setPracticeQuestions([]);
@@ -324,7 +335,7 @@ function LessonsPage({ user }) {
     setFollowUpQuestion("");
     setFollowUpMessages([]);
     resetPracticeState();
-
+  
     try {
       const result = await generateLesson({
         username: user.username,
@@ -335,26 +346,26 @@ function LessonsPage({ user }) {
         step_title: stepTitle,
         teacher_persona: TEACHER_PERSONAS[teacherPersona],
       });
-
+  
       if (!result.success) {
         setError(result.message || "Lesson generation failed");
         return;
       }
-
+  
       setLesson(result.lesson);
-
+  
       const updatedStepLessons = {
         ...stepLessons,
         [String(currentStepIndex)]: result.lesson,
       };
-
+  
       setStepLessons(updatedStepLessons);
-
+  
       setSourceInfo({
         sourceType: result.source_type || "LLM",
         sources: result.sources || [],
       });
-
+  
       await saveChapterProgress({
         username: user.username,
         grade,
@@ -362,19 +373,18 @@ function LessonsPage({ user }) {
         subject,
         chapter,
         current_step_index: currentStepIndex,
+        highest_unlocked_step: highestUnlockedStep,
         completed: false,
         last_lesson: result.lesson,
         step_lessons: updatedStepLessons,
       });
     } catch (err) {
-      setError(
-        err.message ||
-          "Could not generate lesson. Check backend."
-      );
+      setError(err.message || "Could not generate lesson. Check backend.");
     } finally {
       setGenerating(false);
     }
   }
+
 
   async function handleAskFollowUp() {
     if (!followUpQuestion.trim() || practiceModeActive) {
@@ -542,7 +552,9 @@ function LessonsPage({ user }) {
   async function handleEvaluatePracticeAnswer(question, index) {
     const answer = practiceAnswers[index] || "";
 
-    if (!answer.trim() || countWords(answer) < 100) {
+    const minimumWords = getMinimumPracticeWords();
+
+    if (!answer.trim() || countWords(answer) < minimumWords) {
       return;
     }
 
@@ -612,10 +624,6 @@ function LessonsPage({ user }) {
         [index]: false,
       }));
     }
-  }
-
-  function shouldUseDevanagariInput() {
-    return subject === "Hindi" || subject === "Sanskrit";
   }
   
   function countWords(text) {
@@ -721,7 +729,12 @@ function LessonsPage({ user }) {
                   }}
                 >
                   {lessonSteps.map((step, index) => (
-                    <option key={step} value={index}>
+                    <option
+                      key={step}
+                      value={index}
+                      disabled={index > highestUnlockedStep}
+                    >
+                      {index > highestUnlockedStep ? "🔒 " : ""}
                       Step {index + 1}: {step}
                     </option>
                   ))}
@@ -818,8 +831,10 @@ function LessonsPage({ user }) {
                     subject,
                     chapter,
                     current_step_index: newIndex,
+                    highest_unlocked_step: highestUnlockedStep,
                     completed: false,
                     last_lesson: "",
+                    step_lessons: stepLessons,
                   });
                 }}
               >
@@ -847,12 +862,20 @@ function LessonsPage({ user }) {
                       subject,
                       chapter,
                       current_step_index: currentStepIndex,
+                      highest_unlocked_step: highestUnlockedStep,
                       completed: true,
                       last_lesson: lesson,
+                      step_lessons: stepLessons,
                     });
                   } else {
                     const newIndex = currentStepIndex + 1;
 
+                    const newHighestUnlockedStep = Math.max(
+                      highestUnlockedStep,
+                      newIndex
+                    );
+
+                    setHighestUnlockedStep(newHighestUnlockedStep);
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
@@ -867,8 +890,10 @@ function LessonsPage({ user }) {
                       subject,
                       chapter,
                       current_step_index: newIndex,
+                      highest_unlocked_step: newHighestUnlockedStep,
                       completed: false,
                       last_lesson: "",
+                      step_lessons: stepLessons,
                     });
                   }
                 }}
@@ -880,6 +905,7 @@ function LessonsPage({ user }) {
                 className="secondary-btn"
                 onClick={async () => {
                   setCurrentStepIndex(0);
+                  setHighestUnlockedStep(0);
                   setLesson("");
                   setAudioUrl("");
                   setVisualImage("");
@@ -893,8 +919,10 @@ function LessonsPage({ user }) {
                     subject,
                     chapter,
                     current_step_index: 0,
+                    highest_unlocked_step: 0,
                     completed: false,
                     last_lesson: "",
+                    step_lessons: {},
                   });
                 }}
               >
@@ -1014,6 +1042,7 @@ function LessonsPage({ user }) {
                         {practiceQuestions.map((q, index) => {
                           const currentAnswer = practiceAnswers[index] || "";
                           const currentWordCount = countWords(currentAnswer);
+                          const minimumWords = getMinimumPracticeWords();
                           const currentEvaluation =
                             practiceEvaluations[index] || "";
                           const currentScore = practiceScores[index] || 0;
@@ -1033,7 +1062,11 @@ function LessonsPage({ user }) {
                               <textarea
                                 rows="6"
                                 value={currentAnswer}
-                                placeholder="Write your answer here in at least 100 words..."
+                                placeholder={
+                                  isMathSubject()
+                                    ? "Write your final answer and short working here..."
+                                    : "Write your answer here in at least 100 words..."
+                                }
                                 onChange={(e) =>
                                   setPracticeAnswers((prev) => ({
                                     ...prev,
@@ -1043,13 +1076,16 @@ function LessonsPage({ user }) {
                               />
 
                               <p className="practice-word-count">
-                                Words: {currentWordCount} / 100
+                                {isMathSubject()
+                                  ? `Answer length: ${currentWordCount} word(s)`
+                                  : `Words: ${currentWordCount} / ${minimumWords}`}
                               </p>
 
                               <button
                                 className="primary-btn"
                                 disabled={
-                                  currentLoading || currentWordCount < 100
+                                  currentLoading ||
+                                  currentWordCount < minimumWords
                                 }
                                 onClick={() =>
                                   handleEvaluatePracticeAnswer(q, index)
@@ -1057,8 +1093,10 @@ function LessonsPage({ user }) {
                               >
                                 {currentLoading
                                   ? "Evaluating..."
-                                  : currentWordCount < 100
-                                  ? "Write at least 100 words"
+                                  : currentWordCount < minimumWords
+                                  ? isMathSubject()
+                                    ? "Write your answer"
+                                    : `Write at least ${minimumWords} words`
                                   : "Evaluate This Answer"}
                               </button>
 

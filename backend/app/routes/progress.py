@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.services.progress_service import (
     get_chapter_progress,
@@ -25,8 +25,10 @@ class SaveProgressRequest(BaseModel):
     subject: str
     chapter: str
     current_step_index: int
+    highest_unlocked_step: int = 0
     completed: bool = False
     last_lesson: str = ""
+    step_lessons: dict = Field(default_factory=dict)
 
 
 @router.post("/chapter")
@@ -38,8 +40,8 @@ def read_chapter_progress(data: ChapterProgressRequest):
             data.grade,
             data.mode,
             data.subject,
-            data.chapter
-        )
+            data.chapter,
+        ),
     }
 
 
@@ -49,7 +51,7 @@ def save_progress(data: SaveProgressRequest):
 
     return {
         "success": True,
-        "progress": saved
+        "progress": saved,
     }
 
 
@@ -57,5 +59,5 @@ def save_progress(data: SaveProgressRequest):
 def user_progress(username: str):
     return {
         "success": True,
-        "progress": get_user_progress(username)
+        "progress": get_user_progress(username),
     }
