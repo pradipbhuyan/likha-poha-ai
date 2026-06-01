@@ -8,19 +8,54 @@ function authHeaders(accessToken) {
   };
 }
 
-export async function getAdminFamilies(accessToken) {
-    const response = await fetch(`${API_BASE_URL}/api/admin-control/families`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-  
-    if (!response.ok) {
-      throw new Error("Failed to load families");
-    }
-  
-    return response.json();
+async function parseError(response, fallbackMessage) {
+  try {
+    const data = await response.json();
+    return data.detail || data.message || fallbackMessage;
+  } catch {
+    return fallbackMessage;
   }
+}
+
+export async function getAdminFamilies(accessToken) {
+  const response = await fetch(`${API_BASE_URL}/api/admin-control/families`, {
+    headers: authHeaders(accessToken),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load families"));
+  }
+
+  return response.json();
+}
+
+export async function createAdminParent(payload, accessToken) {
+  const response = await fetch(`${API_BASE_URL}/api/admin-control/parents`, {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to create parent"));
+  }
+
+  return response.json();
+}
+
+export async function createAdminChild(payload, accessToken) {
+  const response = await fetch(`${API_BASE_URL}/api/admin-control/children`, {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to create child"));
+  }
+
+  return response.json();
+}
 
 export async function updateChildAccess(childId, payload, accessToken) {
   const response = await fetch(
@@ -33,7 +68,7 @@ export async function updateChildAccess(childId, payload, accessToken) {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to update access");
+    throw new Error(await parseError(response, "Failed to update access"));
   }
 
   return response.json();
@@ -50,7 +85,7 @@ export async function updateChildLimits(childId, payload, accessToken) {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to update limits");
+    throw new Error(await parseError(response, "Failed to update limits"));
   }
 
   return response.json();
@@ -66,7 +101,7 @@ export async function deleteUser(userId, accessToken) {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to delete user");
+    throw new Error(await parseError(response, "Failed to delete user"));
   }
 
   return response.json();
