@@ -41,6 +41,18 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "ragUpload",
+      label: "RAG Upload",
+      icon: UploadCloud,
+      roles: ["admin"],
+    },
+    {
+      key: "usage",
+      label: "AI Usage",
+      icon: DollarSign,
+      roles: ["admin"],
+    },
+    {
       key: "lessons",
       label: "Lessons",
       icon: BookOpen,
@@ -81,18 +93,6 @@ function Sidebar({
       label: "Parent Dashboard",
       icon: Users,
       roles: ["parent", "admin"],
-    },
-    {
-      key: "ragUpload",
-      label: "RAG Upload",
-      icon: UploadCloud,
-      roles: ["admin"],
-    },
-    {
-      key: "usage",
-      label: "AI Usage",
-      icon: DollarSign,
-      roles: ["admin"],
     },
   ];
 

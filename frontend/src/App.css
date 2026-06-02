@@ -31,6 +31,8 @@ body {
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   width: 270px;
   background: #0f172a;
   color: white;
@@ -38,6 +40,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  overflow: hidden;
   box-shadow: 8px 0 24px rgba(15, 23, 42, 0.16);
 }
 
@@ -650,6 +653,28 @@ textarea:focus {
 
 .sidebar-nav {
   gap: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.46);
+  border-radius: 999px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
 }
 
 .sidebar-nav button {
