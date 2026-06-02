@@ -298,12 +298,15 @@ def delete_user(user_id: str, admin=Depends(require_admin)):
             detail="User not found.",
         )
 
-    admin_client.table("profiles").delete().eq("id", user_id).execute()
-
     try:
         admin_client.auth.admin.delete_user(user_id)
-    except Exception:
-        pass
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Unable to delete auth user: {str(exc)}",
+        )
+
+    admin_client.table("profiles").delete().eq("id", user_id).execute()
 
     return {
         "success": True,

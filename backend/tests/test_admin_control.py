@@ -18,6 +18,9 @@ class FakeAuthAdmin:
         self.deleted_users = []
 
     def delete_user(self, user_id):
+        if user_id in self.client.failing_auth_delete_ids:
+            raise Exception("auth service unavailable")
+
         self.deleted_users.append(user_id)
 
 
@@ -123,6 +126,7 @@ class FakeAdminClient:
         self.usage_logs = []
         self.created_family_id = "family-created-123"
         self.missing_update_ids = set()
+        self.failing_auth_delete_ids = set()
         self.auth = FakeAuth(self)
 
     def table(self, table_name):
@@ -544,6 +548,46 @@ def test_delete_user_removes_profile_and_auth_user(monkeypatch):
 
     assert len(delete_calls) == 1
     assert ("id", "user-1") in delete_calls[0]["filters"]
+
+
+def test_delete_user_returns_502_when_auth_delete_fails(monkeypatch):
+    """
+    If auth deletion fails, keep the profile and return a clear error.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        delete_user()
+    """
+    fake_client = FakeAdminClient()
+    fake_client.profile_rows = [
+        {
+            "id": "user-1",
+            "username": "Student",
+            "role": "student",
+        }
+    ]
+    fake_client.failing_auth_delete_ids.add("user-1")
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    with pytest.raises(HTTPException) as error:
+        admin_control_route.delete_user(
+            "user-1",
+            admin={"role": "admin"},
+        )
+
+    assert error.value.status_code == 502
+    assert error.value.detail == (
+        "Unable to delete auth user: auth service unavailable"
+    )
+
+    delete_calls = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "profiles" and call["operation"] == "delete"
+    ]
+
+    assert delete_calls == []
 
 
 def test_delete_user_returns_404_when_profile_not_found(monkeypatch):
