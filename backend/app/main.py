@@ -21,6 +21,7 @@ from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
 from app.routes.parent_dashboard import router as parent_dashboard_router
 from app.routes.admin_control import router as admin_control_router
+from app.routes.weak_area_alerts import router as weak_area_alerts_router
 
 
 frontend_url = os.getenv(
@@ -153,6 +154,12 @@ app.include_router(
     parent_dashboard_router,
     prefix="/api/parent-dashboard",
     tags=["Parent Dashboard"]
+)
+
+app.include_router(
+    weak_area_alerts_router,
+    prefix="/api/weak-area-alerts",
+    tags=["Weak Area Alerts"],
 )
 
 @app.get("/api/health")

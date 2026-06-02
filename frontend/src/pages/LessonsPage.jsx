@@ -9,6 +9,7 @@ import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
 import LessonSections from "../components/LessonSections";
+import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
 
 import {
   evaluateStudentAnswer,
@@ -626,6 +627,22 @@ function LessonsPage({ user }) {
         setPracticeModeActive(false);
       } else if (nextAttemptCount >= 2) {
         setAllowContinueAnyway(true);
+      
+        try {
+          await saveWeakAreaAlert({
+            username: user.username,
+            grade,
+            mode,
+            subject,
+            chapter,
+            step_title: stepTitle,
+            step_index: currentStepIndex,
+            attempts: nextAttemptCount,
+            best_score: nextBestScore,
+          });
+        } catch (err) {
+          console.error("Unable to save weak area alert", err);
+        }
       }
 
     } catch {
