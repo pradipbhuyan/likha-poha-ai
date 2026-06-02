@@ -94,6 +94,9 @@ class FakeTable:
             return FakeResponse([inserted])
 
         if self.table_name == "profiles" and self.operation == "update":
+            if self._filter_value("id") in self.client.missing_update_ids:
+                return FakeResponse([])
+
             updated = {
                 "id": self._filter_value("id"),
                 "role": self._filter_value("role"),
@@ -119,6 +122,7 @@ class FakeAdminClient:
         self.profile_rows = []
         self.usage_logs = []
         self.created_family_id = "family-created-123"
+        self.missing_update_ids = set()
         self.auth = FakeAuth(self)
 
     def table(self, table_name):
@@ -406,6 +410,37 @@ def test_update_child_access_updates_subscription_and_access_flags(monkeypatch):
     assert ("role", "student") in update_call["filters"]
 
 
+def test_update_child_access_returns_404_when_student_not_found(monkeypatch):
+    """
+    Updating access for a missing student should not report success.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        update_child_access()
+    """
+    fake_client = FakeAdminClient()
+    fake_client.missing_update_ids.add("missing-child")
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    request = admin_control_route.UpdateAccessRequest(
+        access_cbse=True,
+        access_sof_science=False,
+        access_sof_maths=False,
+        access_sof_english=False,
+    )
+
+    with pytest.raises(HTTPException) as error:
+        admin_control_route.update_child_access(
+            "missing-child",
+            request,
+            admin={"role": "admin"},
+        )
+
+    assert error.value.status_code == 404
+    assert error.value.detail == "Student not found."
+
+
 def test_update_child_limits_updates_daily_and_monthly_limits(monkeypatch):
     """
     Admin should be able to update AI token limits for a student.
@@ -442,6 +477,35 @@ def test_update_child_limits_updates_daily_and_monthly_limits(monkeypatch):
 
     assert ("id", "child-1") in update_call["filters"]
     assert ("role", "student") in update_call["filters"]
+
+
+def test_update_child_limits_returns_404_when_student_not_found(monkeypatch):
+    """
+    Updating limits for a missing student should not report success.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        update_child_limits()
+    """
+    fake_client = FakeAdminClient()
+    fake_client.missing_update_ids.add("missing-child")
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    request = admin_control_route.UpdateLimitsRequest(
+        daily_token_limit=25000,
+        monthly_token_limit=500000,
+    )
+
+    with pytest.raises(HTTPException) as error:
+        admin_control_route.update_child_limits(
+            "missing-child",
+            request,
+            admin={"role": "admin"},
+        )
+
+    assert error.value.status_code == 404
+    assert error.value.detail == "Student not found."
 
 
 def test_delete_user_removes_profile_and_auth_user(monkeypatch):

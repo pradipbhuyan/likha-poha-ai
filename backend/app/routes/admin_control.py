@@ -240,9 +240,15 @@ def update_child_access(
         .execute()
     )
 
+    if not response.data:
+        raise HTTPException(
+            status_code=404,
+            detail="Student not found.",
+        )
+
     return {
         "success": True,
-        "profile": response.data[0] if response.data else None,
+        "profile": response.data[0],
     }
 
 
@@ -264,9 +270,15 @@ def update_child_limits(
         .execute()
     )
 
+    if not response.data:
+        raise HTTPException(
+            status_code=404,
+            detail="Student not found.",
+        )
+
     return {
         "success": True,
-        "profile": response.data[0] if response.data else None,
+        "profile": response.data[0],
     }
 
 
