@@ -38,6 +38,7 @@ function RagUploadPage({ user }) {
   const [sofFiles, setSofFiles] = useState([]);
   const [sofAnalyzing, setSofAnalyzing] = useState(false);
   const [sofUploading, setSofUploading] = useState(false);
+  const [sofPages, setSofPages] = useState([]);
   const [sofGroups, setSofGroups] = useState([]);
   const [sofRawResponse, setSofRawResponse] = useState("");
   const [ragQuery, setRagQuery] = useState("");
@@ -86,6 +87,10 @@ function RagUploadPage({ user }) {
     }
   }
 
+  function appendFiles(currentFiles, selectedFiles, maxFiles = 10) {
+    return [...currentFiles, ...selectedFiles].slice(0, maxFiles);
+  }
+
   async function handleAnalyzeImage() {
     if (!analysisImage) {
       alert("Please select an image.");
@@ -109,16 +114,17 @@ function RagUploadPage({ user }) {
   async function handleAnalyzeSofImages() {
     setMessage("");
     setError("");
+    setSofPages([]);
     setSofGroups([]);
     setSofRawResponse("");
 
     if (sofFiles.length === 0) {
-      setError("Please select SOF page photos.");
+      setError("Please select SOF PDFs or page photos.");
       return;
     }
 
     if (sofFiles.length > 10) {
-      setError("You can analyze a maximum of 10 SOF page photos.");
+      setError("You can analyze a maximum of 10 SOF files.");
       return;
     }
 
@@ -135,9 +141,10 @@ function RagUploadPage({ user }) {
         return;
       }
 
+      setSofPages(result.pages || []);
       setSofGroups(result.groups || []);
       setSofRawResponse(result.raw_ai_response || "");
-      setMessage("SOF pages analyzed. Review the groups before uploading.");
+      setMessage("SOF files analyzed. Review extracted pages and groups before uploading.");
     } catch (err) {
       console.error(err);
       setError("SOF image analysis failed. Check backend.");
@@ -175,6 +182,7 @@ function RagUploadPage({ user }) {
       setBatchResults(result.results || []);
 
       setSofFiles([]);
+      setSofPages([]);
       setSofGroups([]);
       setSofRawResponse("");
 
@@ -506,25 +514,42 @@ function RagUploadPage({ user }) {
         <div className="premium-header">
           <h3>📚 SOF Bulk Book Upload</h3>
           <p>
-            Upload up to 10 SOF page photos. AI will group them as Science
+            Upload up to 10 SOF PDFs or page photos. AI will group them as Science
             Olympiad, Maths Olympiad, or English Olympiad and prepare them for
             RAG upload.
           </p>
         </div>
 
         <label className="full-width-label premium-rag-file-input">
-          SOF Page Photos
+          SOF PDFs or Page Photos
           <input
             type="file"
             multiple
-            accept="image/*"
+            accept=".pdf,image/*"
             onChange={(e) => setSofFiles(Array.from(e.target.files || []))}
+          />
+        </label>
+
+        <label className="full-width-label premium-rag-file-input premium-rag-camera-input">
+          <span>Scan SOF Page With Phone Camera</span>
+          <span className="premium-rag-camera-button">Open Camera</span>
+          <input
+            className="premium-rag-hidden-file-input"
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={(e) => {
+              const selectedFiles = Array.from(e.target.files || []);
+
+              setSofFiles((prev) => appendFiles(prev, selectedFiles));
+              e.target.value = "";
+            }}
           />
         </label>
 
         {sofFiles.length > 0 && (
           <div className="selected-files-box premium-selected-files-box">
-            <strong>Selected SOF photos:</strong>
+            <strong>Selected SOF files:</strong>
             {sofFiles.map((selectedFile, index) => (
               <div key={index}>
                 {index + 1}. {selectedFile.name}
@@ -540,9 +565,41 @@ function RagUploadPage({ user }) {
           style={{ marginTop: 16 }}
         >
           {sofAnalyzing
-            ? "Analyzing SOF Photos..."
-            : "🧠 Analyze & Organize SOF Pages"}
+            ? "Analyzing SOF Files..."
+            : "🧠 Analyze & Organize SOF Files"}
         </button>
+
+        {sofPages.length > 0 && (
+          <div className="premium-rag-extracted-pages">
+            <h4>Extracted Pages Review</h4>
+            <div className="premium-rag-result-list">
+              {sofPages.map((page) => (
+                <div
+                  key={`${page.filename}-${page.page_number}`}
+                  className={
+                    page.warnings?.length
+                      ? "premium-rag-result-row failed"
+                      : "premium-rag-result-row success"
+                  }
+                >
+                  <div>
+                    <strong>
+                      Page {page.page_number}: {page.filename}
+                    </strong>
+                    <p>
+                      Source page {page.source_page_number || page.page_number} •{" "}
+                      {page.extraction_method || "extracted text"} •{" "}
+                      {page.word_count || 0} words
+                    </p>
+                    {page.warnings?.length > 0 && (
+                      <small>{page.warnings.join(" ")}</small>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {sofGroups.length > 0 && (
           <div
@@ -620,11 +677,38 @@ function RagUploadPage({ user }) {
           </p>
         </div>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setAnalysisImage(e.target.files?.[0] || null)}
-        />
+        <div className="premium-rag-scan-grid">
+          <label className="full-width-label premium-rag-file-input">
+            Upload Page Photo
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setAnalysisImage(e.target.files?.[0] || null)}
+            />
+          </label>
+
+          <label className="full-width-label premium-rag-file-input premium-rag-camera-input">
+            <span>Scan Page With Phone Camera</span>
+            <span className="premium-rag-camera-button">Open Camera</span>
+            <input
+              className="premium-rag-hidden-file-input"
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={(e) => {
+                setAnalysisImage(e.target.files?.[0] || null);
+                e.target.value = "";
+              }}
+            />
+          </label>
+        </div>
+
+        {analysisImage && (
+          <div className="selected-files-box premium-selected-files-box">
+            <strong>Selected page:</strong>
+            <div>{analysisImage.name}</div>
+          </div>
+        )}
 
         <button
           className="primary-btn"
@@ -734,6 +818,23 @@ function RagUploadPage({ user }) {
             multiple
             accept=".txt,.jpg,.jpeg,.png,.webp,.pdf,.docx,.pptx"
             onChange={(e) => setFiles(Array.from(e.target.files || []))}
+          />
+        </label>
+
+        <label className="full-width-label premium-rag-file-input premium-rag-camera-input">
+          <span>Scan Page With Phone Camera</span>
+          <span className="premium-rag-camera-button">Open Camera</span>
+          <input
+            className="premium-rag-hidden-file-input"
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={(e) => {
+              const selectedFiles = Array.from(e.target.files || []);
+
+              setFiles((prev) => appendFiles(prev, selectedFiles));
+              e.target.value = "";
+            }}
           />
         </label>
 

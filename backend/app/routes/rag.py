@@ -1,5 +1,8 @@
 from fastapi import APIRouter, File, Form, UploadFile, HTTPException
-from app.services.file_extract_service import extract_text_from_uploaded_file
+from app.services.file_extract_service import (
+    extract_pages_from_uploaded_file,
+    extract_text_from_uploaded_file,
+)
 from app.services.openai_service import ask_llm
 import json
 from pydantic import BaseModel
@@ -328,27 +331,47 @@ async def analyze_sof_images(
         if len(files) > 10:
             return {
                 "success": False,
-                "message": "You can analyze a maximum of 10 images at once.",
+                "message": "You can analyze a maximum of 10 files at once.",
                 "pages": [],
                 "groups": [],
             }
 
         pages = []
 
-        for index, file in enumerate(files):
-            image_bytes = await file.read()
+        for file in files:
+            file_bytes = await file.read()
+            extracted_pages = extract_pages_from_uploaded_file(
+                filename=file.filename,
+                file_bytes=file_bytes,
+            )
 
-            extracted_text = extract_text_from_image_bytes(image_bytes)
+            if len(pages) + len(extracted_pages) > 30:
+                return {
+                    "success": False,
+                    "message": "You can analyze a maximum of 30 extracted pages at once.",
+                    "pages": pages,
+                    "groups": [],
+                }
 
-            pages.append({
-                "page_number": index + 1,
-                "filename": file.filename,
-                "ocr_text": extracted_text,
-            })
+            for extracted_page in extracted_pages:
+                pages.append({
+                    "page_number": len(pages) + 1,
+                    "source_page_number": extracted_page["page_number"],
+                    "filename": extracted_page["filename"],
+                    "ocr_text": extracted_page["text"],
+                    "word_count": extracted_page["word_count"],
+                    "extraction_method": extracted_page["extraction_method"],
+                    "warnings": extracted_page["warnings"],
+                })
 
         combined_ocr = "\n\n".join(
             [
-                f"PAGE {page['page_number']} - {page['filename']}\n{page['ocr_text']}"
+                (
+                    f"PAGE {page['page_number']} - {page['filename']} "
+                    f"(source page {page['source_page_number']}, "
+                    f"{page['extraction_method']}, {page['word_count']} words)\n"
+                    f"{page['ocr_text']}"
+                )
                 for page in pages
             ]
         )
