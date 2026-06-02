@@ -37,20 +37,10 @@ class UpdateLimitsRequest(BaseModel):
     monthly_token_limit: int
 
 
-def build_student_activity(username: str):
+def summarize_student_activity(username: str, logs: list[dict]):
     now = datetime.now(timezone.utc)
     today_start = now.date().isoformat()
     month_start = now.replace(day=1).date().isoformat()
-
-    usage_response = (
-        admin_client
-        .table("ai_usage_logs")
-        .select("*")
-        .eq("username", username)
-        .execute()
-    )
-
-    logs = usage_response.data or []
 
     today_prefix = f"{today_start}T"
     month_prefix = f"{month_start[:7]}-"
@@ -85,6 +75,44 @@ def build_student_activity(username: str):
     }
 
 
+def build_student_activity(username: str):
+    usage_response = (
+        admin_client
+        .table("ai_usage_logs")
+        .select("*")
+        .eq("username", username)
+        .execute()
+    )
+
+    return summarize_student_activity(username, usage_response.data or [])
+
+
+def build_activity_by_username(usernames: list[str]):
+    if not usernames:
+        return {}
+
+    usage_response = (
+        admin_client
+        .table("ai_usage_logs")
+        .select("*")
+        .in_("username", usernames)
+        .execute()
+    )
+
+    logs_by_username = {username: [] for username in usernames}
+
+    for log in usage_response.data or []:
+        username = log.get("username")
+
+        if username in logs_by_username:
+            logs_by_username[username].append(log)
+
+    return {
+        username: summarize_student_activity(username, logs)
+        for username, logs in logs_by_username.items()
+    }
+
+
 @router.get("/families")
 def get_all_families(admin=Depends(require_admin)):
     profiles_response = (
@@ -96,6 +124,12 @@ def get_all_families(admin=Depends(require_admin)):
     )
 
     profiles = profiles_response.data or []
+    student_usernames = [
+        profile.get("username") or ""
+        for profile in profiles
+        if profile.get("role") == "student"
+    ]
+    activity_by_username = build_activity_by_username(student_usernames)
 
     families = {}
 
@@ -113,8 +147,10 @@ def get_all_families(admin=Depends(require_admin)):
         if profile.get("role") == "parent":
             families[family_id]["parents"].append(profile)
         elif profile.get("role") == "student":
-            profile["activity"] = build_student_activity(
-                profile.get("username") or ""
+            username = profile.get("username") or ""
+            profile["activity"] = activity_by_username.get(
+                username,
+                summarize_student_activity(username, []),
             )
             families[family_id]["children"].append(profile)
         elif profile.get("role") == "admin":

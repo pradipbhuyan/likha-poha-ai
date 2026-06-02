@@ -61,6 +61,10 @@ class FakeTable:
         self.filters.append((key, value))
         return self
 
+    def in_(self, key, values):
+        self.filters.append((key, tuple(values)))
+        return self
+
     def order(self, column, desc=False):
         self.order_args = {
             "column": column,
@@ -80,7 +84,21 @@ class FakeTable:
         )
 
         if self.table_name == "ai_usage_logs":
-            return FakeResponse(self.client.usage_logs)
+            logs = self.client.usage_logs
+            username = self._filter_value("username")
+
+            if isinstance(username, tuple):
+                logs = [
+                    item for item in logs
+                    if item.get("username") in username
+                ]
+            elif username is not None:
+                logs = [
+                    item for item in logs
+                    if item.get("username") == username
+                ]
+
+            return FakeResponse(logs)
 
         if self.table_name == "families" and self.operation == "insert":
             family = {
@@ -242,6 +260,74 @@ def test_get_all_families_groups_parents_children_and_admins(monkeypatch):
     assert len(family["children"]) == 1
     assert len(family["admins"]) == 1
     assert family["children"][0]["activity"]["tokens_total"] == 100
+
+
+def test_get_all_families_batches_student_activity_lookup(monkeypatch):
+    """
+    Admin family loading should fetch usage logs once for all students.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        get_all_families()
+    """
+    fake_client = FakeAdminClient()
+
+    fake_client.profile_rows = [
+        {
+            "id": "child-1",
+            "username": "Akshita",
+            "role": "student",
+            "family_id": "family-1",
+        },
+        {
+            "id": "child-2",
+            "username": "Rohan",
+            "role": "student",
+            "family_id": "family-1",
+        },
+    ]
+
+    now = datetime.now(timezone.utc).isoformat()
+    fake_client.usage_logs = [
+        {
+            "username": "Akshita",
+            "feature": "lesson",
+            "total_tokens": 100,
+            "estimated_cost": 0.01,
+            "created_at": now,
+        },
+        {
+            "username": "Rohan",
+            "feature": "doubt",
+            "total_tokens": 200,
+            "estimated_cost": 0.02,
+            "created_at": now,
+        },
+    ]
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    result = admin_control_route.get_all_families(admin={"role": "admin"})
+    children = result["families"][0]["children"]
+    activity_by_username = {
+        child["username"]: child["activity"]
+        for child in children
+    }
+
+    assert activity_by_username["Akshita"]["tokens_total"] == 100
+    assert activity_by_username["Akshita"]["lessons_generated"] == 1
+    assert activity_by_username["Rohan"]["tokens_total"] == 200
+    assert activity_by_username["Rohan"]["doubts_asked"] == 1
+
+    usage_select_calls = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "ai_usage_logs"
+        and call["operation"] == "select"
+    ]
+
+    assert len(usage_select_calls) == 1
+    assert ("username", ("Akshita", "Rohan")) in usage_select_calls[0]["filters"]
 
 
 def test_create_parent_creates_family_when_family_id_is_missing(monkeypatch):
