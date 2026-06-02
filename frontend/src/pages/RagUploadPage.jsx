@@ -87,7 +87,7 @@ function RagUploadPage({ user }) {
     }
   }
 
-  function appendFiles(currentFiles, selectedFiles, maxFiles = 10) {
+  function appendFiles(currentFiles, selectedFiles, maxFiles = 20) {
     return [...currentFiles, ...selectedFiles].slice(0, maxFiles);
   }
 
@@ -123,8 +123,8 @@ function RagUploadPage({ user }) {
       return;
     }
 
-    if (sofFiles.length > 10) {
-      setError("You can analyze a maximum of 10 SOF files.");
+    if (sofFiles.length > 20) {
+      setError("You can analyze a maximum of 20 SOF files.");
       return;
     }
 
@@ -210,8 +210,8 @@ function RagUploadPage({ user }) {
       return;
     }
 
-    if (files.length > 10) {
-      setError("You can upload a maximum of 10 files.");
+    if (files.length > 20) {
+      setError("You can upload a maximum of 20 files.");
       return;
     }
 
@@ -352,7 +352,7 @@ function RagUploadPage({ user }) {
           <div>
             <strong>SOF Bulk Upload Ready</strong>
             <p>
-              Upload up to 10 SOF book photos. AI will organize them by Olympiad
+              Upload up to 20 SOF book photos. AI will organize them by Olympiad
               subject and chapter before RAG upload.
             </p>
           </div>
@@ -514,7 +514,7 @@ function RagUploadPage({ user }) {
         <div className="premium-header">
           <h3>📚 SOF Bulk Book Upload</h3>
           <p>
-            Upload up to 10 SOF PDFs or page photos. AI will group them as Science
+            Upload up to 20 SOF PDFs or page photos. AI will group them as Science
             Olympiad, Maths Olympiad, or English Olympiad and prepare them for
             RAG upload.
           </p>

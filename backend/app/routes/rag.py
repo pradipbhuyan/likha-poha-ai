@@ -114,10 +114,10 @@ async def upload_files_batch(
     files: list[UploadFile] = File(...),
 ):
     try:
-        if len(files) > 10:
+        if len(files) > 20:
             return {
                 "success": False,
-                "message": "You can upload a maximum of 10 documents at once.",
+                "message": "You can upload a maximum of 20 documents at once.",
                 "results": [],
             }
 
@@ -328,10 +328,10 @@ async def analyze_sof_images(
     files: list[UploadFile] = File(...),
 ):
     try:
-        if len(files) > 10:
+        if len(files) > 20:
             return {
                 "success": False,
-                "message": "You can analyze a maximum of 10 files at once.",
+                "message": "You can analyze a maximum of 20 files at once.",
                 "pages": [],
                 "groups": [],
             }
@@ -345,10 +345,10 @@ async def analyze_sof_images(
                 file_bytes=file_bytes,
             )
 
-            if len(pages) + len(extracted_pages) > 30:
+            if len(pages) + len(extracted_pages) > 60:
                 return {
                     "success": False,
-                    "message": "You can analyze a maximum of 30 extracted pages at once.",
+                    "message": "You can analyze a maximum of 60 extracted pages at once.",
                     "pages": pages,
                     "groups": [],
                 }
@@ -380,7 +380,7 @@ async def analyze_sof_images(
 You are an educational OCR organizer for SOF Olympiad books.
 
 Your job:
-- Read OCR text from up to 10 book page images.
+- Read OCR text from up to 20 uploaded SOF files.
 - Group pages by SOF subject and chapter.
 - Return ONLY valid JSON.
 - Never return markdown.
