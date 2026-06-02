@@ -9,20 +9,21 @@ import app.routes.lesson as lesson_route
 import app.routes.mock_test as mock_test_route
 
 
+TEST_USER_ID = "11111111-1111-1111-1111-111111111111"
+TEST_PARENT_ID = "22222222-2222-2222-2222-222222222222"
 
 
-@pytest.fixture(autouse=True)
-def override_auth_dependencies(monkeypatch):
+def fake_student_profile(**overrides):
     """
-    Automatically bypass authentication and profile lookup during tests.
+    Build a fake student profile for route tests.
 
-    The real app requires Supabase auth and profile lookup for protected routes.
-    Unit/API tests should not depend on real login tokens or real Supabase data.
+    Tests can override access flags like:
+        fake_student_profile(access_cbse=False)
+        fake_student_profile(access_sof_science=False)
     """
-
-    fake_profile = {
-        "id": "11111111-1111-1111-1111-111111111111",
-        "user_id": "11111111-1111-1111-1111-111111111111",
+    profile = {
+        "id": TEST_USER_ID,
+        "user_id": TEST_USER_ID,
         "email": "test@example.com",
         "username": "test_user",
         "role": "student",
@@ -37,21 +38,67 @@ def override_auth_dependencies(monkeypatch):
         "access_sof_english": True,
     }
 
-    fake_user = SimpleNamespace(
-        id="11111111-1111-1111-1111-111111111111",
-        email="test@example.com",
-        username="test_user",
-        role="student",
-        profile=fake_profile,
+    profile.update(overrides)
+    return profile
+
+
+def fake_admin_profile(**overrides):
+    """
+    Build a fake admin profile.
+
+    Admin users should bypass course access checks.
+    """
+    profile = {
+        "id": TEST_USER_ID,
+        "user_id": TEST_USER_ID,
+        "email": "admin@example.com",
+        "username": "admin_user",
+        "role": "admin",
+        "family_id": None,
+        "parent_id": None,
+        "grade": None,
+        "mode": None,
+        "account_status": "active",
+        "access_cbse": False,
+        "access_sof_science": False,
+        "access_sof_maths": False,
+        "access_sof_english": False,
+    }
+
+    profile.update(overrides)
+    return profile
+
+
+def fake_current_user(profile=None):
+    """
+    Build a fake authenticated user object.
+
+    The real routes expect user.id, so this must be a SimpleNamespace,
+    not a plain dictionary.
+    """
+    if profile is None:
+        profile = fake_student_profile()
+
+    return SimpleNamespace(
+        id=profile["id"],
+        email=profile["email"],
+        username=profile["username"],
+        role=profile["role"],
+        profile=profile,
     )
 
-    fake_parent = {
-        "id": "22222222-2222-2222-2222-222222222222",
+
+def fake_parent():
+    """
+    Build a fake authenticated parent for parent-dashboard tests.
+    """
+    return {
+        "id": TEST_PARENT_ID,
         "email": "parent@example.com",
         "username": "test_parent",
         "role": "parent",
         "profile": {
-            "id": "22222222-2222-2222-2222-222222222222",
+            "id": TEST_PARENT_ID,
             "email": "parent@example.com",
             "username": "test_parent",
             "role": "parent",
@@ -60,43 +107,97 @@ def override_auth_dependencies(monkeypatch):
         },
     }
 
+
+def patch_route_profile(monkeypatch, route_module, profile=None):
+    """
+    Patch one route module to use a fake profile.
+
+    Use this inside specific tests when you need a different access setup.
+    Example:
+        patch_route_profile(
+            monkeypatch,
+            lesson_route,
+            fake_student_profile(access_cbse=False),
+        )
+    """
+    if profile is None:
+        profile = fake_student_profile()
+
+    user = fake_current_user(profile)
+
+    app.dependency_overrides[get_current_user] = lambda: user
+
+    monkeypatch.setattr(
+        route_module,
+        "get_profile_by_user_id",
+        lambda user_id: profile,
+        raising=False,
+    )
+
+    if hasattr(route_module, "enforce_ai_token_limit"):
+        monkeypatch.setattr(
+            route_module,
+            "enforce_ai_token_limit",
+            lambda username: None,
+            raising=False,
+        )
+
+
+@pytest.fixture(autouse=True)
+def override_auth_dependencies(monkeypatch):
+    """
+    Automatically bypass authentication and profile lookup during tests.
+
+    The real app requires Supabase auth and profile lookup for protected routes.
+    Unit/API tests should not depend on real login tokens or real Supabase data.
+    """
+
+    fake_profile = fake_student_profile()
+    fake_user = fake_current_user(fake_profile)
+
     app.dependency_overrides[get_current_user] = lambda: fake_user
-    app.dependency_overrides[require_parent] = lambda: fake_parent
+    app.dependency_overrides[require_parent] = lambda: fake_parent()
 
     monkeypatch.setattr(
         doubt_route,
         "get_profile_by_user_id",
         lambda user_id: fake_profile,
+        raising=False,
     )
 
     monkeypatch.setattr(
         lesson_route,
         "get_profile_by_user_id",
         lambda user_id: fake_profile,
+        raising=False,
     )
 
     monkeypatch.setattr(
         mock_test_route,
         "get_profile_by_user_id",
         lambda user_id: fake_profile,
+        raising=False,
     )
-    
+
     monkeypatch.setattr(
         lesson_route,
         "enforce_ai_token_limit",
         lambda username: None,
+        raising=False,
     )
 
     monkeypatch.setattr(
         doubt_route,
         "enforce_ai_token_limit",
         lambda username: None,
+        raising=False,
     )
 
     monkeypatch.setattr(
         mock_test_route,
         "enforce_ai_token_limit",
         lambda username: None,
+        raising=False,
     )
 
     yield
