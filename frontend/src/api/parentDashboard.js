@@ -31,3 +31,11 @@ export async function inviteParent(payload) {
     body: JSON.stringify(payload),
   });
 }
+
+export async function getWeakAreaAlerts(childId) {
+  const response = await authFetch(
+    `/api/parent-dashboard/children/${childId}/weak-area-alerts`
+  );
+
+  return response;
+}

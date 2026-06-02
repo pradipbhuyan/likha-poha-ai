@@ -59,6 +59,29 @@ def get_single_child(child_id: str, parent=Depends(require_parent)):
         "success": True,
         "child": child,
     }
+    
+@router.get("/children/{child_id}/weak-area-alerts")
+def get_child_weak_area_alerts(child_id: str, parent=Depends(require_parent)):
+    parent_profile = parent["profile"]
+
+    child = get_child_by_id(parent_profile["id"], child_id)
+
+    if not child:
+        raise HTTPException(status_code=404, detail="Child not found")
+
+    response = (
+        admin_client
+        .table("weak_area_alerts")
+        .select("*")
+        .eq("username", child.get("username"))
+        .order("created_at", desc=True)
+        .execute()
+    )
+
+    return {
+        "success": True,
+        "alerts": response.data or [],
+    }
 
 
 @router.post("/create-student")

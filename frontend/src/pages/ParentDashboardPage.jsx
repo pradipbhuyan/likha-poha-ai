@@ -7,6 +7,7 @@ import {
   getFamily,
   createStudent,
   inviteParent,
+  getWeakAreaAlerts,
 } from "../api/parentDashboard";
 
 import { BarChart3, ClipboardList, Target, Trophy } from "lucide-react";
@@ -31,6 +32,7 @@ function ParentDashboardPage() {
 
   const [history, setHistory] = useState([]);
   const [usage, setUsage] = useState(null);
+  const [weakAreaAlerts, setWeakAreaAlerts] = useState([]);
 
   const [familyLoading, setFamilyLoading] = useState(true);
   const [childLoading, setChildLoading] = useState(false);
@@ -89,6 +91,7 @@ function ParentDashboardPage() {
       if (!selectedChild) {
         setHistory([]);
         setUsage(null);
+        setWeakAreaAlerts([]);
         return;
       }
 
@@ -99,9 +102,12 @@ function ParentDashboardPage() {
 
         const historyData = await getUserHistory(username);
         const usageData = await getUsageSummary(username);
+        const alertData = await getWeakAreaAlerts(selectedChild.id);
 
         setHistory(historyData.history || []);
         setUsage(usageData);
+        setWeakAreaAlerts(alertData.alerts || []);
+
       } catch (err) {
         console.error(err);
       } finally {
@@ -361,6 +367,37 @@ function ParentDashboardPage() {
               </div>
             </div>
           </section>
+
+          {weakAreaAlerts.length > 0 && (
+            <section className="premium-section">
+              <div className="premium-header">
+                <h3>⚠️ Learning Alerts</h3>
+                <p>
+                  These topics were continued without full mastery and should be
+                  revised.
+                </p>
+              </div>
+
+              <div className="premium-parent-activity-list">
+                {weakAreaAlerts.slice(0, 5).map((alert) => (
+                  <div key={alert.id} className="premium-parent-activity-row">
+                    <div>
+                      <strong>{alert.chapter}</strong>
+                      <p>
+                        {alert.subject} • {alert.step_title}
+                      </p>
+                      <small>
+                        Attempts: {alert.attempts} • Best Score:{" "}
+                        {alert.best_score}/10
+                      </small>
+                    </div>
+
+                    <span>Needs Revision</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <section className="premium-grid premium-grid-4 premium-parent-stats">
             <div className="premium-card premium-glow-card glow-blue">
