@@ -346,12 +346,10 @@ function AdminControlPage({ user }) {
               type="text"
               value={parentForm.username}
               onChange={(e) =>
-                updateLocalChild(
-                  family.family_id,
-                  child.id,
-                  "account_status",
-                  e.target.value
-                )
+                setParentForm((prev) => ({
+                  ...prev,
+                  username: e.target.value,
+                }))
               }
               required
             />

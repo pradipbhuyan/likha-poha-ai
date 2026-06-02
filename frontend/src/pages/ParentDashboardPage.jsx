@@ -232,7 +232,7 @@ function ParentDashboardPage() {
           <h2>Family Learning Center</h2>
 
           <p>
-            Manage parents, children, progress, test performance, and AI usage
+            Manage parents, children, progress, test performance
             from one clean dashboard.
           </p>
 
@@ -353,7 +353,7 @@ function ParentDashboardPage() {
               <p className="eyebrow">Selected Child</p>
               <h2>{childName}&apos;s Learning Overview</h2>
               <p>
-                Track learning progress, test performance, AI usage, and
+                Track learning progress, test performance, and
                 suggested next steps.
               </p>
             </div>
@@ -519,31 +519,6 @@ function ParentDashboardPage() {
               )}
             </div>
 
-            <div className="premium-section premium-parent-usage">
-              <div className="premium-header">
-                <h3>🤖 AI Usage</h3>
-                <p>Estimated AI usage and cost visibility.</p>
-              </div>
-
-              <div className="premium-parent-usage-grid">
-                <div>
-                  <strong>
-                    ${Number(usage?.totals?.total_cost || 0).toFixed(6)}
-                  </strong>
-                  <span>Estimated cost</span>
-                </div>
-
-                <div>
-                  <strong>{usage?.totals?.total_tokens || 0}</strong>
-                  <span>Total tokens</span>
-                </div>
-
-                <div>
-                  <strong>{usage?.totals?.requests || 0}</strong>
-                  <span>Requests</span>
-                </div>
-              </div>
-            </div>
           </section>
         </>
       )}
