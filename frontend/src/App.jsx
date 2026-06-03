@@ -15,6 +15,7 @@ import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
 import AdminControlPage from "./pages/AdminControlPage";
+import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 
 
 import "./App.css";
@@ -77,6 +78,11 @@ const PAGE_META = {
     title: "Parent Dashboard",
     subtitle: "Track student progress, test performance, and AI usage.",
     icon: "👨‍👩‍👧",
+  },
+  subscriptionPlans: {
+    title: "Subscription",
+    subtitle: "Compare plans, review inclusions, and choose payment options.",
+    icon: "💳",
   },
 };
 
@@ -172,6 +178,8 @@ function App() {
         return <UsagePage user={user} />;
       case "parentDashboard":
         return <ParentDashboardPage user={user} />;
+      case "subscriptionPlans":
+        return <SubscriptionPlansPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

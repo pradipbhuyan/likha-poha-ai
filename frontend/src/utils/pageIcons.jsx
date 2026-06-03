@@ -3,6 +3,7 @@ import {
     BookOpen,
     Brain,
     ClipboardList,
+    CreditCard,
     HelpCircle,
     Home,
     Trophy,
@@ -20,4 +21,5 @@ import {
     analytics: BarChart3,
     leaderboard: Trophy,
     ragUpload: UploadCloud,
+    subscriptionPlans: CreditCard,
   };

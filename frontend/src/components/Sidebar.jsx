@@ -2,6 +2,7 @@ import {
   BarChart3,
   BookOpen,
   ClipboardList,
+  CreditCard,
   HelpCircle,
   Home,
   LogOut,
@@ -94,10 +95,17 @@ function Sidebar({
       icon: Users,
       roles: ["parent", "admin"],
     },
+    {
+      key: "subscriptionPlans",
+      label: "Subscription",
+      icon: CreditCard,
+      roles: ["parent"],
+      parentOnly: true,
+    },
   ];
 
   const visiblePages = pages.filter((page) => {
-    if (isAdmin) return true;
+    if (isAdmin) return !page.parentOnly;
     return page.roles?.includes(user?.role);
   });
 

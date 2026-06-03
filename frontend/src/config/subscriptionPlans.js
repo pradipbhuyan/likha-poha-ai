@@ -1,0 +1,156 @@
+export const SUBSCRIPTION_PLANS = {
+  free: {
+    key: "free",
+    label: "Free Trial",
+    shortLabel: "Free",
+    price: 0,
+    priceLabel: "₹0",
+    billingLabel: "14 days",
+    audience:
+      "Best for exploring lessons, doubts, and basic progress before choosing a paid plan.",
+    badge: "Current starter",
+    recommended: false,
+    access_cbse: true,
+    access_sof_science: false,
+    access_sof_maths: false,
+    access_sof_english: false,
+    daily_token_limit: 50000,
+    monthly_token_limit: 1000000,
+    included: [
+      "1 child profile",
+      "Limited AI lessons and doubt solving",
+      "Basic CBSE practice and progress view",
+    ],
+    notIncluded: [
+      "SOF mock tests",
+      "Advanced analytics",
+    ],
+    comparison: {
+      children: "1",
+      aiUsage: "Limited",
+      cbse: "Limited",
+      sof: "Locked",
+      ragSof: "Locked",
+      parentDashboard: "Basic",
+    },
+  },
+  starter: {
+    key: "starter",
+    label: "Standard",
+    shortLabel: "Standard",
+    price: 499,
+    priceLabel: "₹499",
+    billingLabel: "month",
+    audience:
+      "Best for regular CBSE learning with higher AI limits and parent tracking.",
+    badge: "",
+    recommended: false,
+    access_cbse: true,
+    access_sof_science: false,
+    access_sof_maths: false,
+    access_sof_english: false,
+    daily_token_limit: 75000,
+    monthly_token_limit: 1500000,
+    included: [
+      "Everything in Free Trial",
+      "Higher AI lessons, doubts, and explanations",
+      "CBSE mock tests and chapter revision",
+      "Full parent dashboard",
+    ],
+    notIncluded: [
+      "SOF RAG mock tests",
+    ],
+    comparison: {
+      children: "1",
+      aiUsage: "Higher limit",
+      cbse: "Included",
+      sof: "Locked",
+      ragSof: "Locked",
+      parentDashboard: "Full",
+    },
+  },
+  premium: {
+    key: "premium",
+    label: "Premium SOF",
+    shortLabel: "Premium",
+    price: 999,
+    priceLabel: "₹999",
+    billingLabel: "month",
+    audience:
+      "Best for CBSE plus Science, Maths, and English Olympiad preparation.",
+    badge: "Recommended",
+    recommended: true,
+    access_cbse: true,
+    access_sof_science: true,
+    access_sof_maths: true,
+    access_sof_english: true,
+    daily_token_limit: 100000,
+    monthly_token_limit: 3000000,
+    included: [
+      "Everything in Standard",
+      "SOF Science, Maths, and English access",
+      "RAG-based SOF mock tests from uploaded workbook content",
+      "Highest AI usage limit",
+      "Advanced analytics and weak-area recommendations",
+    ],
+    notIncluded: [],
+    comparison: {
+      children: "1",
+      aiUsage: "Highest limit",
+      cbse: "Included",
+      sof: "Included",
+      ragSof: "Included",
+      parentDashboard: "Full + analytics",
+    },
+  },
+  family_premium: {
+    key: "family_premium",
+    label: "Family Premium",
+    shortLabel: "Family Premium",
+    price: 1499,
+    priceLabel: "₹1499",
+    billingLabel: "month",
+    audience:
+      "Best for families with two children who both need CBSE and SOF support.",
+    badge: "Family",
+    recommended: false,
+    access_cbse: true,
+    access_sof_science: true,
+    access_sof_maths: true,
+    access_sof_english: true,
+    daily_token_limit: 150000,
+    monthly_token_limit: 5000000,
+    included: [
+      "Everything in Premium SOF",
+      "Up to 2 child profiles",
+      "Expanded monthly AI usage",
+      "Family progress and usage view",
+    ],
+    notIncluded: [],
+    comparison: {
+      children: "2",
+      aiUsage: "Family limit",
+      cbse: "Included",
+      sof: "Included",
+      ragSof: "Included",
+      parentDashboard: "Full + analytics",
+    },
+  },
+};
+
+export const SUBSCRIPTION_PLAN_ORDER = [
+  "free",
+  "starter",
+  "premium",
+  "family_premium",
+];
+
+export const PARENT_PLAN_ORDER = [
+  "free",
+  "starter",
+  "premium",
+];
+
+export function getSubscriptionPlan(planKey) {
+  return SUBSCRIPTION_PLANS[planKey] || SUBSCRIPTION_PLANS.free;
+}

@@ -7,45 +7,10 @@ import {
   updateChildLimits,
   deleteUser,
 } from "../api/adminControl";
-
-const PLAN_PRESETS = {
-    free: {
-      label: "Free",
-      access_cbse: true,
-      access_sof_science: false,
-      access_sof_maths: false,
-      access_sof_english: false,
-      daily_token_limit: 50000,
-      monthly_token_limit: 1000000,
-    },
-    starter: {
-      label: "Starter",
-      access_cbse: true,
-      access_sof_science: false,
-      access_sof_maths: false,
-      access_sof_english: false,
-      daily_token_limit: 75000,
-      monthly_token_limit: 1500000,
-    },
-    premium: {
-      label: "Premium",
-      access_cbse: true,
-      access_sof_science: true,
-      access_sof_maths: true,
-      access_sof_english: true,
-      daily_token_limit: 100000,
-      monthly_token_limit: 3000000,
-    },
-    family_premium: {
-      label: "Family Premium",
-      access_cbse: true,
-      access_sof_science: true,
-      access_sof_maths: true,
-      access_sof_english: true,
-      daily_token_limit: 150000,
-      monthly_token_limit: 5000000,
-    },
-  };
+import {
+  SUBSCRIPTION_PLAN_ORDER,
+  SUBSCRIPTION_PLANS,
+} from "../config/subscriptionPlans";
 
 function AdminControlPage({ user }) {
   const [families, setFamilies] = useState([]);
@@ -257,7 +222,7 @@ function AdminControlPage({ user }) {
   }
 
   function applyPlanPreset(familyId, childId, planName) {
-    const preset = PLAN_PRESETS[planName];
+    const preset = SUBSCRIPTION_PLANS[planName];
   
     if (!preset) return;
   
@@ -571,10 +536,11 @@ function AdminControlPage({ user }) {
                       )
                     }
                   >
-                    <option value="free">Free</option>
-                    <option value="starter">Starter</option>
-                    <option value="premium">Premium</option>
-                    <option value="family_premium">Family Premium</option>
+                    {SUBSCRIPTION_PLAN_ORDER.map((planKey) => (
+                      <option key={planKey} value={planKey}>
+                        {SUBSCRIPTION_PLANS[planKey].label}
+                      </option>
+                    ))}
                   </select>
                 </label>
 
@@ -583,10 +549,12 @@ function AdminControlPage({ user }) {
                   <select
                     value={child.account_status || "active"}
                     onChange={(e) =>
-                      setParentForm((prev) => ({
-                        ...prev,
-                        username: e.target.value,
-                      }))
+                      updateLocalChild(
+                        family.family_id,
+                        child.id,
+                        "account_status",
+                        e.target.value
+                      )
                     }
                   >
                     <option value="active">Active</option>
