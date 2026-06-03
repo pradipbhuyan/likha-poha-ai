@@ -78,6 +78,7 @@ vi.mock("../api/payments", () => ({
 }));
 
 function renderPage() {
+  /** Render the subscription page with a minimal mocked parent user. */
   return render(
     <SubscriptionPlansPage
       user={{

@@ -6,6 +6,7 @@ router = APIRouter()
 
 @router.get("")
 def get_resources(subject: str, chapter: str):
+    """Return curated learning resources for the selected subject/chapter."""
     return {
         "success": True,
         "resources": get_learning_resources(subject, chapter)

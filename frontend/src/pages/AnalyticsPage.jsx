@@ -18,11 +18,13 @@ import {
 } from "../api/analytics";
 
 function AnalyticsPage({ user }) {
+  /** Shows a student's test history trends and provides admin cleanup actions. */
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
   async function loadHistory() {
+    /** Fetch the selected user's stored test attempts for charts and summary cards. */
     setLoading(true);
 
     try {
@@ -40,6 +42,7 @@ function AnalyticsPage({ user }) {
   }, [user.username]);
 
   async function handleClearMyHistory() {
+    /** Remove only the current user's test history after confirmation. */
     if (!confirm("Clear your test history?")) return;
 
     await clearUserHistory(user.username);
@@ -48,6 +51,7 @@ function AnalyticsPage({ user }) {
   }
 
   async function handleClearAkshitaHistory() {
+    /** Convenience admin action for clearing Akshita's test history. */
     if (!confirm("Clear Akshita's test history?")) return;
 
     await clearUserHistory("akshita");
@@ -56,6 +60,7 @@ function AnalyticsPage({ user }) {
   }
 
   async function handleClearAllHistory() {
+    /** Remove all stored test history after an explicit confirmation. */
     if (!confirm("Clear ALL test history?")) return;
 
     await clearAllHistory();

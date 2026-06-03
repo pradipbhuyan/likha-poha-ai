@@ -2,6 +2,7 @@ export function calculateAchievements({
   testHistory = [],
   progress = null,
 }) {
+  /** Build dashboard achievement cards from test history and chapter progress. */
   const achievements = [];
 
   achievements.push({

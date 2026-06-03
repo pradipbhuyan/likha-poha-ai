@@ -15,10 +15,12 @@ import {
 } from "../config/subscriptionPlans";
 
 function listToText(items = []) {
+  /** Convert stored feature arrays into newline text for admin editing. */
   return items.join("\n");
 }
 
 function textToList(value) {
+  /** Convert textarea content back into clean feature arrays for saving. */
   return String(value || "")
     .split("\n")
     .map((item) => item.trim())
@@ -26,6 +28,7 @@ function textToList(value) {
 }
 
 function AdminSubscriptionSettingsPage({ user }) {
+  /** Admin page for editing public plan pricing, discounts, access, and feature copy. */
   const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
   const [planOrder, setPlanOrder] = useState(SUBSCRIPTION_PLAN_ORDER);
   const [settingsSource, setSettingsSource] = useState("defaults");
@@ -36,6 +39,7 @@ function AdminSubscriptionSettingsPage({ user }) {
 
   useEffect(() => {
     async function loadPlans() {
+      /** Load persisted plan settings and merge them with local defaults for missing fields. */
       try {
         const result = await getAdminSubscriptionPlans(user.accessToken);
         const loadedPlans = mergeSubscriptionPlans(result.plans || {});
@@ -57,6 +61,7 @@ function AdminSubscriptionSettingsPage({ user }) {
   }, [user?.accessToken]);
 
   function updatePlan(planKey, field, value) {
+    /** Update one editable field on one subscription plan draft. */
     setPlans((prev) => ({
       ...prev,
       [planKey]: {
@@ -67,6 +72,7 @@ function AdminSubscriptionSettingsPage({ user }) {
   }
 
   function updateComparison(planKey, field, value) {
+    /** Update one comparison-table value while preserving the rest of the plan metadata. */
     setPlans((prev) => ({
       ...prev,
       [planKey]: {
@@ -80,6 +86,7 @@ function AdminSubscriptionSettingsPage({ user }) {
   }
 
   async function savePlans() {
+    /** Persist all plan settings and reconcile the UI with the saved response. */
     setSaving(true);
     setMessage("");
     setError("");
@@ -105,6 +112,7 @@ function AdminSubscriptionSettingsPage({ user }) {
         : draftPlanOrder;
 
       setPlans((currentPlans) => {
+        /** Keep optimistic discount edits if the backend response falls back to stale defaults. */
         return loadedPlanOrder.reduce((nextPlans, planKey) => {
           const draftPlan =
             draftPlans[planKey] || currentPlans[planKey] || SUBSCRIPTION_PLANS[planKey];

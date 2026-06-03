@@ -18,6 +18,7 @@ mermaid.initialize({
 });
 
 function cleanMermaidChart(input) {
+  /** Normalize AI-generated Mermaid syntax before handing it to the renderer. */
   if (!input) return "";
 
   let chart = String(input)
@@ -48,11 +49,13 @@ function cleanMermaidChart(input) {
 }
 
 function MermaidBlock({ chart }) {
+  /** Renders a Mermaid diagram and falls back to text if the diagram cannot be parsed. */
   const ref = useRef(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
     async function renderChart() {
+      /** Render the current Mermaid chart into an isolated SVG container. */
       if (!ref.current || !chart) return;
 
       try {

@@ -3,6 +3,7 @@ const API_BASE_URL =
   "http://localhost:8000";
 
 export async function saveTestHistory(payload) {
+  /** Save one completed mock-test result for analytics and leaderboard views. */
   const response = await fetch(`${API_BASE_URL}/api/analytics/test-history`, {
     method: "POST",
     headers: {
@@ -19,6 +20,7 @@ export async function saveTestHistory(payload) {
 }
 
 export async function getUserHistory(username) {
+  /** Load one student's historical mock-test results. */
   const response = await fetch(`${API_BASE_URL}/api/analytics/test-history/${username}`);
 
   if (!response.ok) {
@@ -29,6 +31,7 @@ export async function getUserHistory(username) {
 }
 
 export async function getLeaderboard() {
+  /** Load leaderboard data built from saved test history. */
   const response = await fetch(`${API_BASE_URL}/api/analytics/leaderboard`);
 
   if (!response.ok) {
@@ -39,6 +42,7 @@ export async function getLeaderboard() {
 }
 
 export async function clearUserHistory(username) {
+  /** Delete one student's test-history records. */
   const response = await fetch(`${API_BASE_URL}/api/analytics/test-history/user/${username}`, {
     method: "DELETE",
   });
@@ -51,6 +55,7 @@ export async function clearUserHistory(username) {
 }
 
 export async function clearAllHistory() {
+  /** Delete all stored test-history records. */
   const response = await fetch(`${API_BASE_URL}/api/analytics/test-history`, {
     method: "DELETE",
   });
@@ -63,6 +68,7 @@ export async function clearAllHistory() {
 }
 
 export async function getAnalytics(username) {
+  /** Load test-history data for the analytics page. */
   const response = await fetch(
     `${API_BASE_URL}/api/analytics/test-history/${username}`
   );

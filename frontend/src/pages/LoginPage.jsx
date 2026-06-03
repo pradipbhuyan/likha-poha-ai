@@ -9,6 +9,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 function LoginPage({ onLogin }) {
+  /** Handles Supabase authentication and parent signup for the app entry point. */
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +19,7 @@ function LoginPage({ onLogin }) {
   const [loading, setLoading] = useState(false);
 
   function buildLoginUser({ authUser, profile, accessToken }) {
+    /** Convert Supabase auth/profile rows into the app's normalized user object. */
     return {
       id: authUser.id,
       email: authUser.email,
@@ -41,6 +43,7 @@ function LoginPage({ onLogin }) {
   }
 
   async function handleLogin(e) {
+    /** Resolve username or email, authenticate with Supabase, then load profile access flags. */
     e.preventDefault();
 
     setError("");
@@ -125,6 +128,7 @@ function LoginPage({ onLogin }) {
   }
 
   async function handleSignup(e) {
+    /** Create a parent family, profile, and authenticated session for new signup users. */
     e.preventDefault();
 
     setError("");

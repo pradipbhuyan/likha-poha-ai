@@ -36,6 +36,12 @@ def generate_quiz(
     difficulty: str,
     count: int
 ):
+    """
+    Generate a multiple-choice quiz as JSON for the selected topic.
+
+    The service expects valid JSON from the model and returns the parsed question
+    list to the quiz route.
+    """
     prompt = f"""
 Generate {count} MCQs.
 

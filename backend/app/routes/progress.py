@@ -33,6 +33,7 @@ class SaveProgressRequest(BaseModel):
 
 @router.post("/chapter")
 def read_chapter_progress(data: ChapterProgressRequest):
+    """Return saved progress for one user/grade/mode/subject/chapter tuple."""
     return {
         "success": True,
         "progress": get_chapter_progress(
@@ -47,6 +48,7 @@ def read_chapter_progress(data: ChapterProgressRequest):
 
 @router.post("/save")
 def save_progress(data: SaveProgressRequest):
+    """Persist chapter progress, unlocked lesson step, and generated lesson cache."""
     saved = save_chapter_progress(data.model_dump())
 
     return {
@@ -57,6 +59,7 @@ def save_progress(data: SaveProgressRequest):
 
 @router.get("/user/{username}")
 def user_progress(username: str):
+    """Return all saved chapter progress records for one user."""
     return {
         "success": True,
         "progress": get_user_progress(username),

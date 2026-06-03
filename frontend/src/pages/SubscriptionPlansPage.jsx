@@ -25,6 +25,7 @@ import {
 } from "../config/subscriptionPlans";
 
 function SubscriptionPlansPage({ user }) {
+  /** Parent-facing plan comparison and payment entry page. */
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
   const [selectedPlanKey, setSelectedPlanKey] = useState("premium");
@@ -46,6 +47,7 @@ function SubscriptionPlansPage({ user }) {
 
   useEffect(() => {
     async function loadChildren() {
+      /** Load children, current plan settings, and payment readiness in one page bootstrap. */
       try {
         const [childrenResult, planResult] = await Promise.all([
           getParentChildren(),
@@ -100,12 +102,14 @@ function SubscriptionPlansPage({ user }) {
   const isCurrentPlan = activePlan.key === selectedPlan.key;
 
   function handlePlanClick(planKey) {
+    /** Select the plan card the parent wants to review or purchase. */
     setSelectedPlanKey(planKey);
     setMessage("");
     setError("");
   }
 
   function loadRazorpayCheckout() {
+    /** Lazily inject Razorpay Checkout so normal browsing is unaffected until payment starts. */
     return new Promise((resolve, reject) => {
       if (window.Razorpay) {
         resolve(true);
@@ -122,6 +126,7 @@ function SubscriptionPlansPage({ user }) {
   }
 
   async function handlePaymentClick() {
+    /** Start a payment order when Razorpay is configured, otherwise show a non-blocking setup message. */
     if (!selectedChild) {
       setError("Please select a child before choosing a plan.");
       return;

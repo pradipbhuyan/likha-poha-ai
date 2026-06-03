@@ -18,6 +18,7 @@ router = APIRouter()
 
 
 def validate_required_text(value: str, field_name: str):
+    """Reject empty request fields before expensive lesson generation starts."""
     if value is None or not value.strip():
         raise HTTPException(
             status_code=400,
@@ -26,6 +27,7 @@ def validate_required_text(value: str, field_name: str):
 
 
 def get_profile_by_user_id(user_id: str):
+    """Load access flags and status for the authenticated user profile."""
     response = (
         admin_client
         .table("profiles")
@@ -41,6 +43,12 @@ def get_profile_by_user_id(user_id: str):
 
 
 def enforce_learning_access(profile: dict, mode: str, subject: str):
+    """
+    Enforce plan access for CBSE and subject-specific SOF lessons.
+
+    Admins bypass student plan gates; all other users must be active/trial and
+    have the exact access flag needed by the requested learning mode.
+    """
     if not profile:
         raise HTTPException(status_code=403, detail="Profile not found")
 
@@ -89,6 +97,7 @@ def enforce_learning_access(profile: dict, mode: str, subject: str):
 
 
 def enforce_ai_token_limit(username: str):
+    """Convert the shared usage-limit service response into route HTTP errors."""
     limit_check = enforce_token_limits(username)
 
     if not limit_check.get("allowed"):
@@ -103,6 +112,12 @@ def generate_lesson(
     data: LessonRequest,
     user=Depends(get_current_user),
 ):
+    """
+    Generate one lesson step for an authenticated user.
+
+    The route validates profile access and token limits before invoking the LLM,
+    then returns both the lesson and source metadata for frontend attribution.
+    """
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
     validate_required_text(data.mode, "mode")
@@ -160,6 +175,12 @@ def lesson_follow_up(
     data: LessonFollowUpRequest,
     user=Depends(get_current_user),
 ):
+    """
+    Answer a student follow-up question about the current lesson step.
+
+    It uses the same access/token gates as lesson generation so follow-up chats
+    cannot bypass plan limits.
+    """
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
     validate_required_text(data.mode, "mode")

@@ -33,6 +33,7 @@ class SaveTestResultRequest(BaseModel):
 
 @router.post("/test-history")
 def save_history(data: SaveTestResultRequest):
+    """Save one submitted mock-test result for analytics and leaderboard views."""
     saved = save_test_result(data.model_dump())
     return {
         "success": True,
@@ -42,6 +43,7 @@ def save_history(data: SaveTestResultRequest):
 
 @router.get("/test-history/{username}")
 def user_history(username: str):
+    """Return saved test-history records for one student."""
     return {
         "success": True,
         "history": get_user_history(username)
@@ -50,6 +52,7 @@ def user_history(username: str):
 
 @router.get("/leaderboard")
 def leaderboard():
+    """Return ranked students based on stored test-history performance."""
     return {
         "success": True,
         "leaderboard": get_leaderboard()
@@ -58,6 +61,7 @@ def leaderboard():
 
 @router.delete("/test-history/user/{username}")
 def clear_user_history(username: str):
+    """Delete test-history records for one student username."""
     clear_user_test_history(username)
     return {
         "success": True,
@@ -67,6 +71,7 @@ def clear_user_history(username: str):
 
 @router.delete("/test-history")
 def clear_all_history():
+    """Delete all locally stored test-history records."""
     clear_test_history()
     return {
         "success": True,

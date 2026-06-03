@@ -166,14 +166,17 @@ export const PARENT_PLAN_ORDER = [
 ];
 
 export function getSubscriptionPlan(planKey) {
+  /** Return a known plan or fall back to Free Trial for unknown keys. */
   return SUBSCRIPTION_PLANS[planKey] || SUBSCRIPTION_PLANS.free;
 }
 
 export function formatPlanPrice(price) {
+  /** Format rupee prices for display in parent/admin subscription UIs. */
   return `₹${Number(price || 0).toLocaleString("en-IN")}`;
 }
 
 export function getPlanDisplayPrice(plan) {
+  /** Calculate the discounted parent-facing display price for a plan. */
   const price = Number(plan?.price || 0);
   const discountPercent = Number(plan?.discountPercent || 0);
 
@@ -183,6 +186,12 @@ export function getPlanDisplayPrice(plan) {
 }
 
 export function normalizeSubscriptionPlan(rawPlan = {}) {
+  /**
+   * Convert API/database plan shape into the frontend's camelCase display shape.
+   *
+   * Defaults are merged first so partially persisted Supabase rows still render
+   * complete cards and comparison tables.
+   */
   const key = rawPlan.key;
   const fallback = SUBSCRIPTION_PLANS[key] || {};
 
@@ -217,6 +226,7 @@ export function normalizeSubscriptionPlan(rawPlan = {}) {
 }
 
 function keySubscriptionPlans(apiPlans = {}) {
+  /** Normalize API plans from either array or keyed-object shape into a map. */
   if (Array.isArray(apiPlans)) {
     return apiPlans.reduce((plans, plan) => {
       if (plan?.key) {
@@ -231,6 +241,7 @@ function keySubscriptionPlans(apiPlans = {}) {
 }
 
 export function mergeSubscriptionPlans(apiPlans = {}) {
+  /** Merge backend plan overrides into the built-in plan catalog. */
   const keyedApiPlans = keySubscriptionPlans(apiPlans);
 
   return Object.keys(SUBSCRIPTION_PLANS).reduce((plans, planKey) => {
@@ -243,6 +254,7 @@ export function mergeSubscriptionPlans(apiPlans = {}) {
 }
 
 export function serializeSubscriptionPlan(plan) {
+  /** Convert frontend plan state back into the snake_case backend payload shape. */
   return {
     key: plan.key,
     label: plan.label,

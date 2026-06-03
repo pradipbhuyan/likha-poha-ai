@@ -6,6 +6,7 @@ router = APIRouter()
 
 @router.get("")
 def get_syllabus():
+    """Return the static Grade 9 syllabus tree and lesson-step sequence."""
     return {
         "success": True,
         "syllabus": SYLLABUS,

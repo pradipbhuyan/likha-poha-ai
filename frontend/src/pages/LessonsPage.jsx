@@ -40,6 +40,7 @@ const VOICE_OPTIONS = {
 };
 
 function LessonsPage({ user }) {
+  /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and practice gates. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -103,6 +104,7 @@ function LessonsPage({ user }) {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus data and initialize the lesson selectors to the default topic. */
       try {
         const data = await getSyllabus();
 
@@ -142,6 +144,7 @@ function LessonsPage({ user }) {
     let warningCooldown = false;
 
     function registerFocusWarning() {
+      /** Count focus loss during practice mode to discourage switching away mid-answer. */
       if (warningCooldown) {
         return;
       }
@@ -156,6 +159,7 @@ function LessonsPage({ user }) {
     }
 
     function handleVisibilityChange() {
+      /** Treat hidden browser tabs as practice focus warnings. */
       if (document.hidden) {
         registerFocusWarning();
       }
@@ -172,6 +176,7 @@ function LessonsPage({ user }) {
 
   useEffect(() => {
     async function loadProgress() {
+      /** Restore saved lesson step, generated content, and completion state for the selected chapter. */
       if (!grade || !mode || !subject || !chapter) {
         return;
       }
@@ -228,6 +233,7 @@ function LessonsPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
 
   function getAllowedSubjects(allSubjects, selectedMode) {
+    /** Filter subjects by the student's subscription access for CBSE and SOF modes. */
     if (user.role === "admin") return allSubjects;
 
     if (selectedMode === "CBSE") {
@@ -251,6 +257,7 @@ function LessonsPage({ user }) {
   const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
 
   function resetLessonState() {
+    /** Clear generated lesson artifacts when the selected topic changes. */
     setLesson("");
     setAudioUrl("");
     setVisualImage("");
@@ -262,6 +269,7 @@ function LessonsPage({ user }) {
   }
 
   function handleGradeChange(value) {
+    /** Reset mode, subject, chapter, and generated content after changing grade. */
     const newMode = Object.keys(syllabusData[value])[0];
     const newSubject = Object.keys(syllabusData[value][newMode])[0];
     const newChapter = syllabusData[value][newMode][newSubject][0];
@@ -274,6 +282,7 @@ function LessonsPage({ user }) {
   }
 
   function handleModeChange(value) {
+    /** Switch learning mode while enforcing subject-level access. */
     const allModeSubjects = Object.keys(syllabusData[grade][value]);
     const allowedModeSubjects = getAllowedSubjects(allModeSubjects, value);
 
@@ -297,6 +306,7 @@ function LessonsPage({ user }) {
   }
 
   function handleSubjectChange(value) {
+    /** Select a new subject and reset the chapter to its first available lesson. */
     const newChapter = syllabusData[grade][mode][value][0];
 
     setSubject(value);
@@ -305,18 +315,22 @@ function LessonsPage({ user }) {
   }
 
   function shouldSkipPracticeRequirement() {
+    /** Skip long written practice for language subjects where the gate is not useful yet. */
     return subject === "Hindi" || subject === "Sanskrit";
   }
   
   function isMathSubject() {
+    /** Identify math subjects so numeric answers are not forced into long prose. */
     return subject === "Maths" || subject === "Maths Olympiad";
   }
   
   function getMinimumPracticeWords() {
+    /** Decide the minimum answer length needed before evaluation can run. */
     return isMathSubject() ? 1 : 100;
   }
 
   function resetPracticeState() {
+    /** Clear all practice questions, evaluations, scores, and focus warnings. */
     setPracticeQuestions([]);
     setPracticeAnswers({});
     setPracticeEvaluations({});
@@ -332,6 +346,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleGenerateLesson() {
+    /** Generate one lesson step, save it to progress, and store RAG source metadata. */
     setGenerating(true);
     setLesson("");
     setAudioUrl("");
@@ -394,6 +409,7 @@ function LessonsPage({ user }) {
 
 
   async function handleAskFollowUp() {
+    /** Ask a follow-up about the current lesson unless practice mode is active. */
     if (!followUpQuestion.trim() || practiceModeActive) {
       return;
     }
@@ -457,6 +473,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleReadAloud() {
+    /** Convert the current lesson into speech using the selected voice and rate. */
     if (!lesson) return;
 
     setTtsLoading(true);
@@ -478,6 +495,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleGenerateVisual() {
+    /** Generate an educational image for a custom topic or the current lesson step. */
     const topic = visualTopic.trim();
 
     if (!lesson && !topic) return;
@@ -512,6 +530,7 @@ function LessonsPage({ user }) {
   const hasSavedLesson = Boolean(stepLessons[String(currentStepIndex)]);
 
   async function handleGeneratePracticeQuestions() {
+    /** Create practice questions from the lesson, with local fallback prompts if AI fails. */
     if (!lesson) {
       return;
     }
@@ -557,6 +576,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleEvaluatePracticeAnswer(question, index) {
+    /** Evaluate one practice answer and unlock progress or raise weak-area alerts. */
     const answer = practiceAnswers[index] || "";
 
     const minimumWords = getMinimumPracticeWords();
@@ -659,6 +679,7 @@ function LessonsPage({ user }) {
   }
   
   function countWords(text) {
+    /** Count non-empty words for minimum practice answer validation. */
     return text.trim().split(/\s+/).filter(Boolean).length;
   }
 

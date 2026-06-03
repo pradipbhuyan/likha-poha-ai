@@ -35,6 +35,12 @@ admin_client = create_client(
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
 ):
+    """
+    Validate the bearer token from the request and return the Supabase auth user.
+
+    All protected routes depend on this function, so failures are deliberately
+    normalized to HTTP 401 instead of leaking provider-specific auth errors.
+    """
     token = credentials.credentials
 
     try:
@@ -59,6 +65,12 @@ def get_current_user(
         )
 
 def get_user_profile(user_id: str):
+    """
+    Load the application profile row that belongs to an authenticated user id.
+
+    Supabase auth confirms identity, while the profile row provides app-level
+    role and family metadata used by route guards.
+    """
     response = (
         admin_client
         .table("profiles")
@@ -72,6 +84,12 @@ def get_user_profile(user_id: str):
 
 
 def require_parent(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only users whose profile role is parent.
+
+    Returns both the raw auth user and profile so parent routes can safely scope
+    child/family lookups to the signed-in parent.
+    """
     profile = get_user_profile(user.id)
 
     if not profile or profile.get("role") != "parent":
@@ -87,6 +105,11 @@ def require_parent(user=Depends(get_current_user)):
 
 
 def require_student(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only student profile users.
+
+    Use this for routes that should not be reachable by parents or admins.
+    """
     profile = get_user_profile(user.id)
 
     if not profile or profile.get("role") != "student":
@@ -102,6 +125,12 @@ def require_student(user=Depends(get_current_user)):
 
 
 def require_admin(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only admin profile users.
+
+    Admin-only routes can mutate access, families, plans, and user records, so
+    they must use this guard before touching service-role Supabase APIs.
+    """
     profile = get_user_profile(user.id)
 
     print("ADMIN PROFILE:", profile)
@@ -118,6 +147,12 @@ def require_admin(user=Depends(get_current_user)):
     }
     
 def create_auth_user(email: str, password: str):
+    """
+    Create a confirmed Supabase auth user from server-side admin credentials.
+
+    This is used by admin/parent onboarding flows that need an auth account and
+    a profile row to be created as one controlled operation.
+    """
     try:
         response = admin_client.auth.admin.create_user({
             "email": email,

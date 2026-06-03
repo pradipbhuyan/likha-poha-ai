@@ -6,6 +6,12 @@ ADMIN_USERS = ["admin", "pradip"]
 
 
 def split_text_into_chunks(text, chunk_size=1200):
+    """
+    Split uploaded textbook text into embedding-sized word chunks.
+
+    Chunking by approximate character length keeps retrieved context small
+    enough for prompts while preserving paragraph-like continuity.
+    """
     words = text.split()
     chunks = []
 
@@ -25,6 +31,7 @@ def split_text_into_chunks(text, chunk_size=1200):
 
 
 def create_embedding(text: str):
+    """Create a vector embedding for text using the configured OpenAI client."""
     response = client.embeddings.create(
         model="text-embedding-3-small",
         input=text
@@ -41,6 +48,12 @@ def upload_textbook_text(
     title,
     text,
 ):
+    """
+    Store one RAG document, split its text, and persist embeddings for search.
+
+    Only trusted admin upload usernames are accepted here because inserted RAG
+    content directly influences student answers and SOF mock-test generation.
+    """
     if username not in ADMIN_USERS:
         return {
             "success": False,
@@ -78,6 +91,8 @@ def upload_textbook_text(
     rows = []
 
     for index, chunk in enumerate(chunks):
+        # Embeddings are stored beside each chunk so the Supabase RPC can run
+        # vector similarity search without calling OpenAI at query time.
         embedding = create_embedding(chunk)
 
         rows.append({
@@ -104,6 +119,12 @@ def search_textbook_content(
     chapter=None,
     match_count=5,
 ):
+    """
+    Search uploaded RAG chunks using vector similarity and optional metadata.
+
+    The document metadata lookup enriches each matching chunk with title,
+    subject, chapter, and grade so UI/source attribution can be shown.
+    """
     query_embedding = create_embedding(query)
 
     response = (
@@ -141,6 +162,7 @@ def search_textbook_content(
     return results
 
 def list_rag_documents():
+    """Return uploaded RAG document metadata in newest-first order."""
     response = (
         supabase
         .table("rag_documents")
@@ -153,6 +175,12 @@ def list_rag_documents():
 
 
 def delete_rag_document(document_id: str):
+    """
+    Delete a RAG document and its chunks.
+
+    Chunks are removed first to avoid orphaned vector rows if cascading deletes
+    are not configured in the database.
+    """
     supabase.table("rag_chunks").delete().eq("document_id", document_id).execute()
 
     response = (

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getLeaderboard } from "../api/analytics";
 
 function getMedal(index) {
+  /** Return podium medals for the first three ranks and numeric labels after that. */
   if (index === 0) return "🥇";
   if (index === 1) return "🥈";
   if (index === 2) return "🥉";
@@ -9,6 +10,7 @@ function getMedal(index) {
 }
 
 function getRankName(index) {
+  /** Provide a friendly rank title for leaderboard cards. */
   if (index === 0) return "Champion";
   if (index === 1) return "Runner Up";
   if (index === 2) return "Rising Star";
@@ -16,11 +18,13 @@ function getRankName(index) {
 }
 
 function LeaderboardPage() {
+  /** Shows ranked student mock-test performance with podium and full ranking views. */
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadLeaderboard() {
+      /** Load the leaderboard summary used by both podium and ranking rows. */
       try {
         const data = await getLeaderboard();
         setLeaderboard(data.leaderboard || []);

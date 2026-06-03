@@ -3,6 +3,7 @@ const API_BASE_URL =
   "http://localhost:8000";
 
 export async function getChapterProgress(payload) {
+  /** Load saved lesson progress for one chapter selection. */
   const response = await fetch(`${API_BASE_URL}/api/progress/chapter`, {
     method: "POST",
     headers: {
@@ -19,6 +20,7 @@ export async function getChapterProgress(payload) {
 }
 
 export async function saveChapterProgress(payload) {
+  /** Save current step, unlock state, completion flag, and cached lesson text. */
   const response = await fetch(`${API_BASE_URL}/api/progress/save`, {
     method: "POST",
     headers: {
@@ -35,6 +37,7 @@ export async function saveChapterProgress(payload) {
 }
 
 export async function getUserProgress(username) {
+  /** Load all saved chapter progress for one student. */
   const response = await fetch(`${API_BASE_URL}/api/progress/user/${username}`);
 
   if (!response.ok) {

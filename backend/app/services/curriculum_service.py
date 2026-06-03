@@ -4,6 +4,7 @@ from app.services.rag_service import search_textbook_content
 
 
 def extract_section_headings(text: str):
+    """Extract numbered textbook-style section headings from raw chapter text."""
     headings = []
 
     for line in text.split("\n"):
@@ -20,6 +21,12 @@ def build_chapter_outline(
     subject: str,
     chapter: str,
 ):
+    """
+    Build a chapter outline from RAG context for lesson generation.
+
+    If uploaded chapter text lacks detectable headings, a generic teaching
+    sequence is returned so the lesson prompt still has structure.
+    """
     rag_results = search_textbook_content(
         query=f"{chapter} full chapter headings sections activities summary questions",
         grade=grade,
@@ -52,6 +59,7 @@ def build_chapter_outline(
 
 
 def format_chapter_outline(outline: dict) -> str:
+    """Format a chapter outline into prompt-ready plain text."""
     headings = outline.get("headings", [])
 
     lines = [

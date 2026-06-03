@@ -35,6 +35,7 @@ router = APIRouter()
 
 @router.post("/upload-text", response_model=RagUploadResponse)
 def upload_text(data: RagTextUploadRequest):
+    """Upload raw text as a RAG document and create searchable embeddings."""
     result = upload_textbook_text(
         username=data.username,
         grade=data.grade,
@@ -56,6 +57,7 @@ async def upload_image(
     title: str = Form(...),
     file: UploadFile = File(...),
 ):
+    """OCR one uploaded image and save the extracted text into RAG."""
     image_bytes = await file.read()
 
     extracted_text = extract_text_from_image_bytes(image_bytes)
@@ -81,6 +83,7 @@ async def upload_file(
     title: str = Form(...),
     file: UploadFile = File(...),
 ):
+    """Extract text from one supported file type and save it into RAG."""
     try:
         file_bytes = await file.read()
 
@@ -118,6 +121,12 @@ async def upload_files_batch(
     titles: str = Form(...),
     files: list[UploadFile] = File(...),
 ):
+    """
+    Upload up to 20 files into RAG as separate documents.
+
+    Titles are supplied as a comma-separated list and must line up one-for-one
+    with the uploaded files so each document has useful source attribution.
+    """
     try:
         if len(files) > 20:
             return {
@@ -199,6 +208,7 @@ async def upload_files_batch(
 
 @router.get("/documents")
 def get_rag_documents():
+    """Return uploaded RAG document metadata for the admin upload page."""
     documents = list_rag_documents()
 
     return {
@@ -209,6 +219,7 @@ def get_rag_documents():
 
 @router.delete("/documents/{document_id}")
 def remove_rag_document(document_id: str):
+    """Delete a RAG document and all associated chunks by document id."""
     try:
         delete_rag_document(document_id)
 
@@ -227,6 +238,12 @@ def remove_rag_document(document_id: str):
 async def analyze_rag_image(
     file: UploadFile = File(...),
 ):
+    """
+    OCR and classify one textbook page image before upload.
+
+    The endpoint suggests grade/subject/chapter metadata but does not persist
+    anything; admins review the result before uploading.
+    """
     try:
         image_bytes = await file.read()
 
@@ -332,6 +349,12 @@ async def analyze_sof_images(
     grade: str = Form("Grade 9"),
     files: list[UploadFile] = File(...),
 ):
+    """
+    OCR and organize up to 20 SOF files into canonical upload groups.
+
+    The organizer maps noisy OCR to the canonical SOF TOC so later mock tests can
+    retrieve chapter, exercise, model-paper, and explanation content correctly.
+    """
     try:
         if len(files) > 20:
             return {
@@ -483,6 +506,12 @@ OCR PAGES:
 
 @router.post("/confirm-sof-upload")
 def confirm_sof_upload(data: ConfirmSofUploadRequest):
+    """
+    Validate normalized SOF groups and upload each accepted group into RAG.
+
+    Groups with subject/chapter normalization warnings are rejected rather than
+    silently filed under the wrong canonical document title.
+    """
     try:
         results = []
 
@@ -558,6 +587,7 @@ def confirm_sof_upload(data: ConfirmSofUploadRequest):
 
 @router.post("/search", response_model=RagSearchResponse)
 def search_rag(data: RagSearchRequest):
+    """Run a manual RAG search for admin/debug verification."""
     try:
         results = search_textbook_content(
             query=data.query,

@@ -38,6 +38,7 @@ const ANSWER_STYLE_OPTIONS = [
 ];
 
 function DoubtPage({ user }) {
+  /** Student doubt-solving page with syllabus context, RAG/LLM answers, images, and follow-ups. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -66,6 +67,7 @@ function DoubtPage({ user }) {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus metadata before allowing the student to choose context for a doubt. */
       try {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
@@ -89,6 +91,7 @@ function DoubtPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
 
   function hasModeAccess(selectedMode) {
+    /** Check whether the signed-in user may use CBSE or at least one SOF subject. */
     if (user.role === "admin") return true;
 
     if (selectedMode === "CBSE") {
@@ -132,6 +135,7 @@ function DoubtPage({ user }) {
     : [];
 
   function getAllowedSofSubjectsForGrade(selectedGrade) {
+    /** Return only SOF subjects the user can access for the selected grade. */
     const sofSubjects = Object.keys(syllabusData[selectedGrade]?.SOF || {});
 
     if (user.role === "admin") {
@@ -145,10 +149,12 @@ function DoubtPage({ user }) {
   }
 
   function getDoubtSubject() {
+    /** Provide the selected subject to the backend for RAG filtering and access checks. */
     return subject;
   }
 
   function buildQuestionWithContext(questionText) {
+    /** Combine the typed question, answer style, and OCR text into one backend prompt. */
     const selectedStyle = ANSWER_STYLE_OPTIONS.find(
       (option) => option.key === answerStyle
     );
@@ -168,6 +174,7 @@ function DoubtPage({ user }) {
   }
 
   function buildDoubtPayload(questionText) {
+    /** Build the authenticated doubt payload with syllabus context and enriched question text. */
     return {
       username: user.username,
       grade,
@@ -179,6 +186,7 @@ function DoubtPage({ user }) {
   }
 
   function clearAnswerState() {
+    /** Reset generated answer, source, follow-up, and feedback state after context changes. */
     setAnswer("");
     setSourceInfo(null);
     setMentorSuggestions([]);
@@ -190,6 +198,7 @@ function DoubtPage({ user }) {
   }
 
   function handleGradeChange(value) {
+    /** Change grade and choose the first accessible mode for that grade. */
     const gradeModes = Object.keys(syllabusData[value]);
     const firstAllowedMode = gradeModes.find((m) => hasModeAccess(m));
 
@@ -213,6 +222,7 @@ function DoubtPage({ user }) {
   }
 
   function handleModeChange(value) {
+    /** Change CBSE/SOF mode only when the user has access to it. */
     if (!hasModeAccess(value)) {
       setError(`You do not have access to ${value}.`);
       return;
@@ -225,17 +235,20 @@ function DoubtPage({ user }) {
   }
 
   function handleSubjectChange(value) {
+    /** Change the SOF subject and clear stale answer state. */
     setSubject(value);
     setChapter("");
     clearAnswerState();
   }
 
   function handleChapterChange(value) {
+    /** Change the chapter used for retrieval and clear stale answer state. */
     setChapter(value);
     clearAnswerState();
   }
 
   async function handleImageSelection(file) {
+    /** Extract readable text from an attached image and add it to the next doubt prompt. */
     setAttachedImage(file || null);
     setExtractedImageText("");
     setActionMessage("");
@@ -263,6 +276,7 @@ function DoubtPage({ user }) {
   }
 
   async function handleCopyAnswer() {
+    /** Copy the latest answer to the clipboard when the browser allows it. */
     if (!answer) return;
 
     try {
@@ -274,6 +288,7 @@ function DoubtPage({ user }) {
   }
 
   function handleSaveRevision() {
+    /** Save the latest answer to local revision notes for quick review on this device. */
     if (!answer) return;
 
     const storageKey = `revision_notes_${user.username || "student"}`;
@@ -297,12 +312,14 @@ function DoubtPage({ user }) {
   }
 
   function handleStartManualFollowUp() {
+    /** Open the manual follow-up prompt under the answer actions. */
     setActiveSuggestion("Ask a follow-up");
     setFollowUpQuestion("");
     setActionMessage("Follow-up box opened.");
   }
 
   function handleFeedback(value) {
+    /** Store lightweight helpful/not-helpful feedback in page state for the current answer. */
     setFeedback(value);
     setActionMessage(
       value === "helpful"
@@ -312,6 +329,7 @@ function DoubtPage({ user }) {
   }
 
   function normalizeMermaidBlocks(text) {
+    /** Wrap loose Mermaid graph text in code fences so ReactMarkdown renders diagrams correctly. */
     if (!text) return "";
 
     if (text.includes("graph TD") && !text.includes("```mermaid")) {
@@ -361,6 +379,7 @@ function DoubtPage({ user }) {
   }
 
   async function handleAskDoubt() {
+    /** Validate access and context, then request the main answer from the backend. */
     if (!hasModeAccess(mode)) {
       setError(`You do not have access to ${mode}.`);
       return;
@@ -412,6 +431,7 @@ function DoubtPage({ user }) {
   }
 
   async function handleOpenSuggestionCard(suggestion) {
+    /** Generate a concise mentor follow-up for one suggested learning action. */
     if (!hasModeAccess(mode)) {
       setError(`You do not have access to ${mode}.`);
       return;
@@ -466,6 +486,7 @@ Rules:
   }
 
   async function handleAskFollowUpCard(suggestion) {
+    /** Ask a custom deeper follow-up while preserving the original doubt as context. */
     if (!hasModeAccess(mode)) {
       setError(`You do not have access to ${mode}.`);
       return;

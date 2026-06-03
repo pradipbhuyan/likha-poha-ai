@@ -55,6 +55,12 @@ def evaluate_student_answer(
     ideal_context: str,
     username: str = "unknown",
 ):
+    """
+    Evaluate a written student answer and parse a pass/fail score.
+
+    The model returns teacher feedback; the service extracts an X/10 score so
+    the lesson page can decide whether to unlock continuation.
+    """
     prompt = f"""
 Question:
 {question}
@@ -103,6 +109,12 @@ def generate_practice_questions(
     step_title: str,
     username: str = "unknown",
 ):
+    """
+    Generate two written-answer practice questions for a lesson step.
+
+    The output is parsed from a numbered list into plain strings for the
+    frontend practice workflow.
+    """
     prompt = f"""
 Create exactly 2 written-answer practice questions for a Grade 9 student.
 

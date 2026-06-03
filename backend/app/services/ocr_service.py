@@ -14,6 +14,12 @@ client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 
 def extract_text_from_image_bytes(image_bytes: bytes) -> str:
+    """
+    OCR readable textbook/question text from image bytes using a vision model.
+
+    The prompt asks for clean plain text only so callers can reuse the result for
+    RAG upload, SOF grouping, or Ask Doubt context.
+    """
     image_base64 = base64.b64encode(image_bytes).decode("utf-8")
 
     response = client.responses.create(

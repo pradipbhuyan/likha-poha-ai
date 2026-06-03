@@ -12,11 +12,12 @@ XP_REWARDS = {
 
 
 def calculate_level(xp_points: int) -> int:
-    # Simple level curve: every 100 XP = 1 level
+    """Convert accumulated XP into a simple 100-XP-per-level curve."""
     return max(1, (xp_points // 100) + 1)
 
 
 def calculate_rank_title(level: int) -> str:
+    """Map a numeric level to the gamified student rank label."""
     if level >= 20:
         return "AI Scholar"
     if level >= 15:
@@ -29,6 +30,12 @@ def calculate_rank_title(level: int) -> str:
 
 
 def get_student_profile(username: str):
+    """
+    Load or initialize a student's gamified profile record.
+
+    New students get a default profile row so dashboard/profile views can render
+    without a separate onboarding step.
+    """
     response = (
         supabase
         .table("student_profiles")
@@ -60,6 +67,12 @@ def get_student_profile(username: str):
 
 
 def update_student_activity(username: str, activity_type: str):
+    """
+    Apply XP, streak, and activity counters for one student action.
+
+    Streaks increment only for consecutive active days; activity-specific
+    counters are updated alongside the shared XP/level/rank fields.
+    """
     profile = get_student_profile(username)
 
     today = date.today()
@@ -117,6 +130,12 @@ def update_student_activity(username: str, activity_type: str):
 
 
 def get_chapter_progress(username, grade, mode, subject, chapter):
+    """
+    Return saved chapter progress and the cached lesson for the current step.
+
+    The early return below is the active implementation; older fallback code
+    remains unreachable but untouched to avoid changing behavior in this pass.
+    """
     response = (
         supabase
         .table("student_progress")
@@ -188,6 +207,12 @@ def get_chapter_progress(username, grade, mode, subject, chapter):
 
 
 def save_chapter_progress(data):
+    """
+    Upsert chapter progress and maintain the per-step lesson cache.
+
+    Step lesson caching lets students return to a generated lesson without
+    regenerating AI content for every navigation.
+    """
     username = data.get("username")
     grade = data.get("grade")
     mode = data.get("mode")
@@ -257,6 +282,7 @@ def save_chapter_progress(data):
 
 
 def get_user_progress(username):
+    """Return all saved chapter-progress rows for one student."""
     response = (
         supabase
         .table("student_progress")

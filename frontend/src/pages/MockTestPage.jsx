@@ -5,7 +5,9 @@ import { saveTestHistory } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
 
 function MockTestPage({ user }) {
+  /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
   function getPerformanceSummary(percentage) {
+    /** Choose summary text based on the submitted test percentage. */
     if (percentage >= 90) {
       return {
         title: "🌟 Olympiad Ready",
@@ -65,6 +67,7 @@ function MockTestPage({ user }) {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus options and initialize the mock test topic. */
       try {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
@@ -103,6 +106,7 @@ function MockTestPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
   
   function getAllowedSubjects(allSubjects, selectedMode) {
+    /** Enforce subscription access when showing CBSE and SOF subjects. */
     if (user.role === "admin") return allSubjects;
   
     if (selectedMode === "CBSE") {
@@ -133,6 +137,7 @@ function MockTestPage({ user }) {
     : 0;
 
   function resetSelections(newGrade, newMode) {
+    /** Reset subject and chapter when grade or mode changes. */
     const firstSubject = Object.keys(syllabusData[newGrade][newMode])[0];
     const firstChapter = syllabusData[newGrade][newMode][firstSubject][0];
 
@@ -141,6 +146,7 @@ function MockTestPage({ user }) {
   }
 
   function handleGradeChange(value) {
+    /** Switch grade, reset dependent selections, and clear any generated test. */
     const newMode = Object.keys(syllabusData[value])[0];
 
     setGrade(value);
@@ -150,6 +156,7 @@ function MockTestPage({ user }) {
   }
 
   function handleModeChange(value) {
+    /** Switch mode only when at least one subject is available to the student. */
     const allModeSubjects = Object.keys(
       syllabusData[grade][value]
     );
@@ -184,12 +191,14 @@ function MockTestPage({ user }) {
   }
 
   function handleSubjectChange(value) {
+    /** Change subject, default to its first chapter, and clear stale test state. */
     setSubject(value);
     setChapter(syllabusData[grade][mode][value][0]);
     clearTest();
   }
 
   function clearTest() {
+    /** Remove generated questions, answers, results, and active timer. */
     setQuestions([]);
     setAnswers({});
     setResults(null);
@@ -197,6 +206,7 @@ function MockTestPage({ user }) {
   }
 
   async function handleGenerateMockTest() {
+    /** Validate access and request a fresh mock test for the selected topic and settings. */
     setLoading(true);
 
     if (
@@ -259,6 +269,7 @@ function MockTestPage({ user }) {
   }
 
   function handleAnswerChange(questionId, optionKey) {
+    /** Store the selected answer for one mock-test question. */
     setAnswers((prev) => ({
       ...prev,
       [questionId]: optionKey,
@@ -266,6 +277,7 @@ function MockTestPage({ user }) {
   }
 
   function handleSubmitTest() {
+    /** Score the test, apply optional negative marking, and persist history/activity. */
     let rawScore = 0;
     let maxScore = 0;
     let wrongCount = 0;
@@ -339,12 +351,14 @@ function MockTestPage({ user }) {
   }
 
   function formatTime(totalSeconds) {
+    /** Format the countdown timer as mm:ss. */
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
     return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
   }
 
   function getRecommendation(percentage) {
+    /** Suggest the next difficulty level based on submitted performance. */
     if (percentage >= 85) return "Recommended next difficulty: Hard / Olympiad HOTS";
     if (percentage >= 60) return "Recommended next difficulty: Medium";
     return "Recommended next difficulty: Easy with revision";

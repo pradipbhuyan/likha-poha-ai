@@ -6,6 +6,12 @@ router = APIRouter()
 
 @router.get("/summary")
 def get_usage_summary(username: str | None = Query(default=None)):
+    """
+    Summarize AI usage logs for admin cost/token monitoring.
+
+    Optional username filtering powers per-student drill-downs while the default
+    returns platform-wide totals and recent log rows.
+    """
     query = (
         supabase.table("ai_usage_logs")
         .select("*")

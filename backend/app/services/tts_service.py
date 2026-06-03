@@ -10,6 +10,7 @@ AUDIO_DIR = "generated_audio"
 
 
 def clean_text_for_tts(text: str) -> str:
+    """Strip markdown/math punctuation so generated speech sounds natural."""
     text = re.sub(r"#+\s*", "", text)
     text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
     text = re.sub(r"\*(.*?)\*", r"\1", text)
@@ -39,6 +40,7 @@ def clean_text_for_tts(text: str) -> str:
 
 
 async def _generate_edge_tts(text, output_file, voice, rate, pitch):
+    """Call Edge TTS asynchronously and save the MP3 to disk."""
     communicate = edge_tts.Communicate(
         text=text,
         voice=voice,
@@ -54,6 +56,11 @@ def generate_speech_file(
     rate: str = "+0%",
     pitch: str = "+0Hz",
 ) -> str:
+    """
+    Generate an MP3 file from lesson text and return its local file path.
+
+    The frontend receives this file through a FastAPI FileResponse.
+    """
     os.makedirs(AUDIO_DIR, exist_ok=True)
 
     file_name = f"{uuid.uuid4()}.mp3"

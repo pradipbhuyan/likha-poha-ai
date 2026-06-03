@@ -2,6 +2,7 @@ from app.services.auth_service import admin_client
 
 
 def get_family_profile(user_id: str):
+    """Load one parent/student profile with subscription and access fields."""
     response = (
         admin_client
         .table("profiles")
@@ -20,6 +21,7 @@ def get_family_profile(user_id: str):
 
 
 def get_family_members(user_id: str):
+    """Return all parent and child profiles in the user's family."""
     profile = get_family_profile(user_id)
 
     if not profile or not profile.get("family_id"):
@@ -54,14 +56,17 @@ def get_family_members(user_id: str):
 
 
 def get_children(parent_user_id: str):
+    """Return child profiles visible to the given parent user."""
     return get_family_members(parent_user_id)["children"]
 
 
 def get_parents(parent_user_id: str):
+    """Return parent profiles in the given parent's family."""
     return get_family_members(parent_user_id)["parents"]
 
 
 def get_child_by_id(parent_user_id: str, child_id: str):
+    """Return a child only if it belongs to the given parent's family."""
     family = get_family_members(parent_user_id)
     family_id = family.get("family_id")
 

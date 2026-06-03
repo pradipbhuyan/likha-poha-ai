@@ -175,6 +175,7 @@ app.include_router(
 
 @app.get("/api/health")
 def health_check():
+    """Return a detailed health response for frontend/API uptime checks."""
     return {
         "status": "ok",
         "message": "Backend is healthy"
@@ -182,6 +183,7 @@ def health_check():
 
 @app.get("/")
 def health_check():
+    """Return a root-level health response for browsers and platform probes."""
     return {
         "status": "ok",
         "message": "CBSE Tutor API is running"
@@ -189,6 +191,7 @@ def health_check():
 
 @app.get("/api/health")
 def api_health():
+    """Return a compact API health response for clients expecting success=true."""
     return {
         "success": True
     }

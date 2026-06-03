@@ -3,6 +3,7 @@ const API_BASE_URL =
   "http://localhost:8000";
 
 export async function login(username, password) {
+  /** Call the legacy backend username/password login endpoint. */
   const response = await fetch(
     `${API_BASE_URL}/api/auth/login`,
     {

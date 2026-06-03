@@ -5,6 +5,7 @@ const API_BASE_URL =
 export default API_BASE_URL;
 
 export async function healthCheck() {
+  /** Confirm the backend API is reachable. */
   const response = await fetch(`${API_BASE_URL}/api/health`);
 
   if (!response.ok) {

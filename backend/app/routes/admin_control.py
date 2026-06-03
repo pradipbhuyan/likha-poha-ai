@@ -70,6 +70,7 @@ class UpdateSubscriptionPlanSettingsRequest(BaseModel):
 
 
 def summarize_student_activity(username: str, logs: list[dict]):
+    """Summarize raw AI usage logs into the admin child activity card."""
     now = datetime.now(timezone.utc)
     today_start = now.date().isoformat()
     month_start = now.replace(day=1).date().isoformat()
@@ -88,6 +89,7 @@ def summarize_student_activity(username: str, logs: list[dict]):
     ]
 
     def feature_count(feature_name: str):
+        """Count how many logged AI requests used one feature name."""
         return len([
             item for item in logs
             if item.get("feature") == feature_name
@@ -108,6 +110,7 @@ def summarize_student_activity(username: str, logs: list[dict]):
 
 
 def build_student_activity(username: str):
+    """Load and summarize AI usage for one student username."""
     usage_response = (
         admin_client
         .table("ai_usage_logs")
@@ -120,6 +123,11 @@ def build_student_activity(username: str):
 
 
 def build_activity_by_username(usernames: list[str]):
+    """
+    Batch-load usage logs and summarize activity for many students at once.
+
+    This avoids one Supabase query per child on the admin family list.
+    """
     if not usernames:
         return {}
 
@@ -146,6 +154,12 @@ def build_activity_by_username(usernames: list[str]):
 
 
 def normalize_subscription_plan_row(row: dict):
+    """
+    Normalize a database subscription-plan row into API-safe field types.
+
+    Supabase JSON/nullable fields are converted to predictable booleans, ints,
+    lists, and dicts before merging with defaults or sending to the frontend.
+    """
     return {
         "key": row.get("key"),
         "label": row.get("label") or "",
@@ -172,6 +186,12 @@ def normalize_subscription_plan_row(row: dict):
 
 
 def list_subscription_plan_settings():
+    """
+    Load subscription plans from Supabase with built-in defaults as fallback.
+
+    The admin and parent subscription pages both call this path so discounts,
+    prices, visibility, and feature lists stay aligned.
+    """
     plans = get_default_subscription_plans()
     persisted = False
     load_error = None
@@ -211,6 +231,12 @@ def list_subscription_plan_settings():
 
 @router.get("/families")
 def get_all_families(admin=Depends(require_admin)):
+    """
+    Return all profiles grouped by family for the admin control page.
+
+    Student rows are enriched with activity summaries so admins can review usage
+    and plan limits without opening separate reports.
+    """
     profiles_response = (
         admin_client
         .table("profiles")
@@ -260,6 +286,7 @@ def get_all_families(admin=Depends(require_admin)):
 
 @router.get("/subscription-plans")
 def get_subscription_plans(admin=Depends(require_admin)):
+    """Return editable subscription plan settings for admins."""
     return list_subscription_plan_settings()
 
 
@@ -268,6 +295,12 @@ def update_subscription_plans(
     data: UpdateSubscriptionPlanSettingsRequest,
     admin=Depends(require_admin),
 ):
+    """
+    Persist admin-edited subscription prices, discounts, access, and inclusions.
+
+    Discount percent is clamped to 0-100 before upsert so invalid UI/input state
+    cannot produce negative or above-free pricing.
+    """
     rows = []
 
     for index, plan in enumerate(data.plans, start=1):
@@ -322,6 +355,12 @@ def update_subscription_plans(
 
 @router.post("/parents")
 def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
+    """
+    Create a parent auth account/profile, creating a family when needed.
+
+    Admin-created parents default to the free plan with CBSE enabled and SOF
+    disabled until plan/access is updated.
+    """
     family_id = data.family_id
 
     if not family_id:
@@ -377,6 +416,7 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
 
 @router.post("/children")
 def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
+    """Create a student auth account/profile under an existing parent/family."""
     auth_user = create_auth_user(
         email=data.email,
         password=data.password,
@@ -418,6 +458,7 @@ def update_child_access(
     data: UpdateAccessRequest,
     admin=Depends(require_admin),
 ):
+    """Update a student's subscription plan, status, and subject access flags."""
     response = (
         admin_client
         .table("profiles")
@@ -452,6 +493,7 @@ def update_child_limits(
     data: UpdateLimitsRequest,
     admin=Depends(require_admin),
 ):
+    """Update a student's daily and monthly AI token limits."""
     response = (
         admin_client
         .table("profiles")
@@ -478,6 +520,12 @@ def update_child_limits(
 
 @router.delete("/users/{user_id}")
 def delete_user(user_id: str, admin=Depends(require_admin)):
+    """
+    Delete a user from Supabase auth and then remove their profile row.
+
+    Auth deletion happens first so a profile is not removed while the login
+    account remains active.
+    """
     profile_response = (
         admin_client
         .table("profiles")

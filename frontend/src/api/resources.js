@@ -3,6 +3,7 @@ const API_BASE_URL =
   "http://localhost:8000";
 
 export async function getResources(subject, chapter) {
+  /** Load curated free learning resources for one subject/chapter pair. */
   const params = new URLSearchParams({
     subject,
     chapter,

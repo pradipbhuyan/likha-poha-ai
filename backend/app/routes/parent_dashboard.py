@@ -26,6 +26,7 @@ class InviteParentRequest(BaseModel):
 
 @router.get("/family")
 def get_family(parent=Depends(require_parent)):
+    """Return all parents and children in the signed-in parent's family."""
     parent_profile = parent["profile"]
     family = get_family_members(parent_profile["id"])
 
@@ -39,6 +40,7 @@ def get_family(parent=Depends(require_parent)):
 
 @router.get("/children")
 def get_parent_children(parent=Depends(require_parent)):
+    """Return only the children that belong to the signed-in parent's family."""
     parent_profile = parent["profile"]
 
     return {
@@ -49,6 +51,7 @@ def get_parent_children(parent=Depends(require_parent)):
 
 @router.get("/subscription-plans")
 def get_parent_subscription_plans(parent=Depends(require_parent)):
+    """Return public subscription plans for the parent subscription page."""
     settings = list_subscription_plan_settings()
     plans = {
         key: plan
@@ -72,6 +75,7 @@ def get_parent_subscription_plans(parent=Depends(require_parent)):
 
 @router.get("/children/{child_id}")
 def get_single_child(child_id: str, parent=Depends(require_parent)):
+    """Return one child profile after parent-scoped ownership validation."""
     parent_profile = parent["profile"]
 
     child = get_child_by_id(parent_profile["id"], child_id)
@@ -86,6 +90,7 @@ def get_single_child(child_id: str, parent=Depends(require_parent)):
     
 @router.get("/children/{child_id}/weak-area-alerts")
 def get_child_weak_area_alerts(child_id: str, parent=Depends(require_parent)):
+    """Return weak-area alerts for one child owned by the signed-in parent."""
     parent_profile = parent["profile"]
 
     child = get_child_by_id(parent_profile["id"], child_id)
@@ -110,6 +115,12 @@ def get_child_weak_area_alerts(child_id: str, parent=Depends(require_parent)):
 
 @router.post("/create-student")
 def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
+    """
+    Create a student auth account and profile inside the parent's family.
+
+    Families are capped at two children here to keep the paid-plan/family-plan
+    assumptions consistent.
+    """
     parent_profile = parent["profile"]
 
     children = get_children(parent_profile["id"])
@@ -155,6 +166,7 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
 
 @router.post("/invite-parent")
 def invite_parent(data: InviteParentRequest, parent=Depends(require_parent)):
+    """Invite/create another parent profile attached to the same family."""
     parent_profile = parent["profile"]
 
     if not parent_profile.get("family_id"):

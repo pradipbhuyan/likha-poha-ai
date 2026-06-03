@@ -21,6 +21,7 @@ router = APIRouter()
 
 
 def get_profile_by_user_id(user_id: str):
+    """Load profile access fields used to gate mock-test generation."""
     response = (
         admin_client
         .table("profiles")
@@ -36,6 +37,13 @@ def get_profile_by_user_id(user_id: str):
 
 
 def enforce_mock_access(profile: dict, mode: str, subject: str):
+    """
+    Enforce mock-test access for CBSE and each SOF Olympiad subject.
+
+    SOF mock tests are intentionally subject-specific because uploaded SOF RAG
+    material, subscriptions, and parent-facing plan benefits are split by
+    Science, Maths, and English.
+    """
     if not profile:
         raise HTTPException(
             status_code=403,
@@ -96,6 +104,7 @@ def enforce_mock_access(profile: dict, mode: str, subject: str):
 
 
 def enforce_ai_token_limit(username: str):
+    """Block mock-test generation when the user's AI token budget is exhausted."""
     limit_check = enforce_token_limits(username)
 
     if not limit_check.get("allowed"):
@@ -110,6 +119,12 @@ def generate_mock_test(
     data: MockTestRequest,
     user=Depends(get_current_user),
 ):
+    """
+    Generate either a CBSE mock test or an SOF RAG-based mock test.
+
+    SOF tests route to the Olympiad generator, which requires uploaded RAG
+    context; CBSE tests route to the general CBSE generator.
+    """
     profile = get_profile_by_user_id(user.id)
 
     enforce_mock_access(

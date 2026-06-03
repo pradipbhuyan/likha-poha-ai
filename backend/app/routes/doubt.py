@@ -22,6 +22,7 @@ SOF_SUBJECT_ACCESS = {
 
 
 def validate_required_text(value: str, field_name: str):
+    """Reject empty text fields before routing the doubt to AI services."""
     if value is None or not value.strip():
         raise HTTPException(
             status_code=400,
@@ -30,6 +31,7 @@ def validate_required_text(value: str, field_name: str):
 
 
 def get_profile_by_user_id(user_id: str):
+    """Load the signed-in user's role, account status, and learning access flags."""
     response = (
         admin_client
         .table("profiles")
@@ -45,10 +47,17 @@ def get_profile_by_user_id(user_id: str):
 
 
 def normalize_subject(subject: str):
+    """Normalize SOF subject text so UI aliases map to the same access flag."""
     return (subject or "").strip().lower()
 
 
 def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
+    """
+    Enforce CBSE/SOF doubt access for the authenticated profile.
+
+    SOF doubts require a concrete Olympiad subject so Science, Maths, and English
+    plan flags stay independent and RAG retrieval can be subject-targeted.
+    """
     if not profile:
         raise HTTPException(
             status_code=403,
@@ -97,6 +106,7 @@ def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
 
 
 def enforce_ai_token_limit(username: str):
+    """Stop doubt generation when the user's plan token limit is exhausted."""
     limit_check = enforce_token_limits(username)
 
     if not limit_check.get("allowed"):
@@ -111,12 +121,21 @@ def answer_student_doubt(
     data: DoubtRequest,
     user=Depends(get_current_user),
 ):
+    """
+    Answer an authenticated student's doubt with RAG context and mentor memory.
+
+    The route intentionally uses the username from the authenticated profile,
+    not the request body, so clients cannot spoof another student's usage or
+    mentor memory.
+    """
     validate_required_text(data.username, "username")
     validate_required_text(data.question, "question")
 
     profile = get_profile_by_user_id(user.id)
     canonical_username = profile.get("username") or data.username
 
+    # Access checks happen before token/LLM work so unauthorized SOF subjects do
+    # not consume paid AI resources.
     enforce_learning_access(profile, data.mode, data.subject)
     enforce_ai_token_limit(canonical_username)
 
@@ -158,6 +177,12 @@ async def extract_doubt_image(
     file: UploadFile = File(...),
     user=Depends(get_current_user),
 ):
+    """
+    OCR a student's uploaded/camera image for use as doubt context.
+
+    This endpoint only extracts text; it does not store the image. The frontend
+    lets the student review/edit extracted text before sending it to Ask Doubt.
+    """
     profile = get_profile_by_user_id(user.id)
 
     if not profile:

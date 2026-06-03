@@ -9,6 +9,7 @@ router = APIRouter()
 
 @router.post("/generate")
 def generate_tts(data: TTSRequest):
+    """Generate an MP3 file for lesson read-aloud playback."""
     audio_path = generate_speech_file(
         text=data.text,
         voice=data.voice,

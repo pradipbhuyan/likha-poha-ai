@@ -4,6 +4,12 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export async function authFetch(path, options = {}) {
+  /**
+   * Call a protected backend endpoint with the current Supabase bearer token.
+   *
+   * FormData requests intentionally omit Content-Type so the browser can attach
+   * the multipart boundary.
+   */
   const { data, error } = await supabase.auth.getSession();
 
   if (error) {

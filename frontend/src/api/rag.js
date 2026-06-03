@@ -10,6 +10,7 @@ export async function uploadRagFile({
   title,
   file,
 }) {
+  /** Upload one file as one RAG document after extracting text server-side. */
   const formData = new FormData();
 
   formData.append("username", username);
@@ -39,6 +40,7 @@ export async function uploadRagFilesBatch({
   titles,
   files,
 }) {
+  /** Upload up to 20 files as separate RAG documents in one request. */
   const formData = new FormData();
 
   formData.append("username", username);
@@ -64,6 +66,7 @@ export async function uploadRagFilesBatch({
 }
 
 export async function getRagDocuments() {
+  /** Load metadata for uploaded RAG documents. */
   const response = await fetch(`${API_BASE_URL}/api/rag/documents`);
 
   if (!response.ok) {
@@ -75,6 +78,7 @@ export async function getRagDocuments() {
 
 
 export async function deleteRagDocument(documentId) {
+  /** Delete a RAG document and its chunks by document id. */
   const response = await fetch(
     `${API_BASE_URL}/api/rag/documents/${documentId}`,
     {
@@ -90,6 +94,7 @@ export async function deleteRagDocument(documentId) {
 }
 
 export async function analyzeRagImage(file) {
+  /** OCR and classify one image before admin decides whether to upload it. */
   const formData = new FormData();
 
   formData.append("file", file);
@@ -110,6 +115,7 @@ export async function analyzeSofImages({
   grade,
   files,
 }) {
+  /** OCR and group SOF files into canonical subject/chapter upload groups. */
   const formData = new FormData();
 
   formData.append("grade", grade);
@@ -138,6 +144,7 @@ export async function confirmSofUpload({
   username,
   groups,
 }) {
+  /** Persist reviewed SOF upload groups into the RAG database. */
   const response = await fetch(
     `${API_BASE_URL}/api/rag/confirm-sof-upload`,
     {
@@ -166,6 +173,7 @@ export async function searchRag({
   query,
   matchCount = 5,
 }) {
+  /** Run a manual RAG search for admin verification/debugging. */
   const response = await fetch(
     `${API_BASE_URL}/api/rag/search`,
     {

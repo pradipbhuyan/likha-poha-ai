@@ -56,6 +56,12 @@ BLOCKED_DIAGRAM_KEYWORDS = [
 
 
 def validate_visual_prompt(prompt: str):
+    """
+    Block prompts that ask for exact scientific diagrams or labelled structures.
+
+    Generated images are allowed only for conceptual illustrations; precise
+    diagrams should come from curated/textbook sources.
+    """
     text = prompt.lower()
 
     if any(word in text for word in BLOCKED_DIAGRAM_KEYWORDS):
@@ -93,6 +99,12 @@ def validate_visual_prompt(prompt: str):
 
 
 def generate_educational_image(prompt: str, username: str = "unknown"):
+    """
+    Generate a safe conceptual education image and log image usage.
+
+    The function enforces daily limits, blocks unsafe requests, and rejects
+    diagram prompts where hallucinated labels could mislead students.
+    """
     limit = enforce_daily_limit(
         username=username,
         feature="image_generation",

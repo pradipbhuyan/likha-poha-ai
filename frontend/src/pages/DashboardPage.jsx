@@ -30,6 +30,7 @@ import {
 } from "recharts";
 
 function DashboardPage({ user, setActivePage }) {
+  /** Student dashboard that summarizes progress, recommendations, and quick entry points. */
   const [achievements, setAchievements] = useState([]);
   const [profile, setProfile] = useState(null);
 
@@ -46,6 +47,7 @@ function DashboardPage({ user, setActivePage }) {
 
   useEffect(() => {
     async function loadDashboard() {
+      /** Load analytics, profile metrics, recommendations, and achievement badges together. */
       try {
         const result = await getAnalytics(user.username);
 

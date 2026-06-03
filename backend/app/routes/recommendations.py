@@ -7,6 +7,7 @@ router = APIRouter()
 
 @router.get("/{username}")
 def get_recommendations(username: str):
+    """Build study recommendations from a student's stored test history."""
     result = (
         supabase.table("test_history")
         .select("*")

@@ -14,11 +14,13 @@ import {
 } from "recharts";
 
 function UsagePage() {
+  /** Admin dashboard for monitoring AI cost, token volume, image usage, and alerts. */
   const [usage, setUsage] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadUsage() {
+      /** Fetch aggregated usage metrics for cards, charts, and operational alerts. */
       try {
         const data = await getUsageSummary();
         setUsage(data);

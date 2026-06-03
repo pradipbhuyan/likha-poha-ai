@@ -3,6 +3,7 @@ const API_BASE_URL =
   "http://localhost:8000";
 
 export async function generateSpeech(payload) {
+  /** Generate lesson audio and return a browser object URL for playback. */
   const response = await fetch(`${API_BASE_URL}/api/tts/generate`, {
     method: "POST",
     headers: {

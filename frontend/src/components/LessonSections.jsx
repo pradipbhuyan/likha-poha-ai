@@ -15,6 +15,7 @@ const SECTION_ICONS = {
 };
 
 function cleanTitle(title) {
+  /** Remove markdown heading noise so generated section titles render cleanly. */
   return title
     .replace(/\*\*/g, "")
     .replace(/#/g, "")
@@ -22,6 +23,7 @@ function cleanTitle(title) {
 }
 
 function parseSections(markdown) {
+  /** Split the generated lesson markdown into collapsible, student-friendly sections. */
   const lines = markdown.split("\n");
   const sections = [];
 
@@ -57,6 +59,7 @@ function parseSections(markdown) {
 }
 
 function LessonSections({ lesson }) {
+  /** Presents a generated lesson as expandable sections with markdown and diagram support. */
   const sections = parseSections(lesson);
 
   const [openSections, setOpenSections] = useState(
@@ -64,6 +67,7 @@ function LessonSections({ lesson }) {
   );
 
   function toggleSection(index) {
+    /** Open or close a single lesson section without changing the others. */
     setOpenSections((prev) =>
       prev.map((item, i) => (i === index ? !item : item))
     );

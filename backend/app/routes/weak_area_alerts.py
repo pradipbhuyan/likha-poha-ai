@@ -20,6 +20,7 @@ class WeakAreaAlertRequest(BaseModel):
 
 @router.post("/save")
 def save_weak_area_alert(data: WeakAreaAlertRequest):
+    """Record a weak-area alert when practice attempts show revision is needed."""
     payload = {
         "username": data.username,
         "grade": data.grade,

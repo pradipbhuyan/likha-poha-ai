@@ -144,6 +144,12 @@ B --> C[End]
 """
 
 def ensure_mermaid_fences(text: str) -> str:
+    """
+    Wrap raw Mermaid graph output in fenced code blocks when the model forgets.
+
+    The React renderer only recognizes Mermaid inside ```mermaid fences, so this
+    cleanup keeps diagrams renderable without asking the model again.
+    """
     if not text or "graph TD" not in text or "```mermaid" in text:
         return text
 
@@ -188,10 +194,18 @@ import re
 
 
 def sanitize_mermaid(text: str) -> str:
+    """
+    Remove Mermaid-breaking punctuation and shorten node labels in diagrams.
+
+    The LLM can produce labels that are valid prose but invalid Mermaid syntax;
+    this normalizer protects the frontend diagram renderer from blank/error
+    states.
+    """
     if "```mermaid" not in text:
         return text
 
     def clean_line(line: str):
+        """Clean one Mermaid edge line without touching non-edge prose."""
         if "-->" not in line:
             return line
 
@@ -221,6 +235,13 @@ def generate_step_lesson(
     teacher_persona: str = "",
     username: str = "unknown",
 ):
+    """
+    Generate one focused lesson step using RAG when uploaded context exists.
+
+    The function first searches exact chapter material, falls back to broader
+    subject material, and only then relies on general model knowledge. Returned
+    source metadata lets the frontend show whether textbook content was used.
+    """
     rag_query = f"""
     Grade 9 {subject} {chapter}
     Current lesson step: {step_title}
@@ -351,6 +372,13 @@ def answer_doubt(
     question: str,
     username: str = "unknown",
 ):
+    """
+    Answer a student doubt with current-question priority, RAG, and mentor memory.
+
+    The current question is placed above memory in the prompt so stale previous
+    doubts cannot override the student's latest intent. Any answer is saved back
+    to mentor memory under the correct CBSE/SOF mode.
+    """
     rag_query = f"""
     Student doubt:
     {question}
@@ -504,6 +532,12 @@ def answer_lesson_follow_up(
     question: str,
     username: str = "unknown",
 ):
+    """
+    Answer a follow-up about a generated lesson step.
+
+    The lesson text and selected chapter are both included so the response stays
+    tied to the current screen instead of drifting into a generic explanation.
+    """
     rag_query = f"""
 Grade: {grade}
 Mode: {mode}

@@ -15,6 +15,12 @@ def log_ai_usage(
     estimated_cost: float = 0.0,
     metadata: dict | None = None,
 ):
+    """
+    Best-effort write of AI usage metrics for cost, token, image, and TTS views.
+
+    Usage logging should never break the student workflow, so failures are
+    printed and swallowed instead of raising back into lesson/doubt generation.
+    """
     try:
         supabase.table("ai_usage_logs").insert({
             "username": username or "unknown",
@@ -34,6 +40,7 @@ def log_ai_usage(
 
 
 def get_user_limits(username: str):
+    """Load role, account status, and configured AI token limits for a user."""
     response = (
         supabase
         .table("profiles")
@@ -47,6 +54,7 @@ def get_user_limits(username: str):
 
 
 def get_token_usage(username: str):
+    """Aggregate daily and current-month token usage from usage logs."""
     now = datetime.now(timezone.utc)
 
     today_start = now.date().isoformat()
@@ -83,6 +91,12 @@ def get_token_usage(username: str):
 
 
 def enforce_token_limits(username: str):
+    """
+    Decide whether a user can make another AI request based on plan limits.
+
+    Admins bypass token ceilings; inactive/suspended students are blocked before
+    expensive AI calls are made.
+    """
     profile = get_user_limits(username)
 
     if not profile:
@@ -130,6 +144,7 @@ def enforce_token_limits(username: str):
 
 
 def get_daily_usage(username: str, feature: str):
+    """Summarize today's usage for one feature, such as TTS or image generation."""
     today = datetime.now(timezone.utc).date().isoformat()
 
     result = (
@@ -151,6 +166,7 @@ def get_daily_usage(username: str, feature: str):
 
 
 def enforce_daily_limit(username: str, feature: str, max_requests: int):
+    """Apply a simple per-day request limit for non-token-metered features."""
     usage = get_daily_usage(username, feature)
 
     if usage["requests"] >= max_requests:

@@ -13,6 +13,7 @@ import {
 } from "../config/subscriptionPlans";
 
 function AdminControlPage({ user }) {
+  /** Admin operations page for managing families, access flags, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
@@ -27,6 +28,7 @@ function AdminControlPage({ user }) {
   const [childForms, setChildForms] = useState({});
 
   async function loadFamilies() {
+    /** Fetch all families with their parents and children for admin editing. */
     try {
       const data = await getAdminFamilies(user.accessToken);
       setFamilies(data.families || []);
@@ -45,6 +47,7 @@ function AdminControlPage({ user }) {
   }, [user?.accessToken]);
 
   async function handleCreateParent(e) {
+    /** Create a parent account and refresh the family list. */
     e.preventDefault();
     setMessage("");
     setError("");
@@ -67,6 +70,7 @@ function AdminControlPage({ user }) {
   }
 
   async function handleCreateChild(e, familyId, parentId) {
+    /** Create a child account under an existing family and parent. */
     e.preventDefault();
     setMessage("");
     setError("");
@@ -105,6 +109,7 @@ function AdminControlPage({ user }) {
   }
 
   async function saveAccess(child) {
+    /** Persist the subject access flags and account status for one child. */
     setMessage("");
     setError("");
 
@@ -131,6 +136,7 @@ function AdminControlPage({ user }) {
   }
 
   async function suspendChild(child) {
+    /** Mark a child account as suspended using the same plan-saving path. */
     const updatedChild = {
       ...child,
       account_status: "suspended",
@@ -140,6 +146,7 @@ function AdminControlPage({ user }) {
   }
   
   async function reactivateChild(child) {
+    /** Restore a suspended child account to active status. */
     const updatedChild = {
       ...child,
       account_status: "active",
@@ -149,6 +156,7 @@ function AdminControlPage({ user }) {
   }
 
   async function savePlan(child) {
+    /** Save both subscription access and token limits so plan changes stay consistent. */
     setMessage("");
     setError("");
   
@@ -184,6 +192,7 @@ function AdminControlPage({ user }) {
   }
 
   async function saveLimits(child) {
+    /** Save only token limits when the admin edits usage caps directly. */
     setMessage("");
     setError("");
 
@@ -206,6 +215,7 @@ function AdminControlPage({ user }) {
   }
 
   async function removeUser(userId) {
+    /** Delete a user after confirmation and reload the admin roster. */
     setMessage("");
     setError("");
 
@@ -222,6 +232,7 @@ function AdminControlPage({ user }) {
   }
 
   function applyPlanPreset(familyId, childId, planName) {
+    /** Apply a configured subscription preset to local child state before saving it. */
     const preset = SUBSCRIPTION_PLANS[planName];
   
     if (!preset) return;
@@ -253,6 +264,7 @@ function AdminControlPage({ user }) {
 
 
   function updateLocalChild(familyId, childId, field, value) {
+    /** Update a child field locally inside the nested family list. */
     setFamilies((prev) =>
       prev.map((family) => {
         if (family.family_id !== familyId) return family;
@@ -268,6 +280,7 @@ function AdminControlPage({ user }) {
   }
 
   function updateChildForm(parentId, field, value) {
+    /** Track per-parent child creation forms without mixing family rows. */
     setChildForms((prev) => ({
       ...prev,
       [parentId]: {

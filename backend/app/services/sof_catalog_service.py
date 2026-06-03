@@ -41,6 +41,12 @@ SOF_SUBJECT_ALIASES = {
 
 
 def normalize_lookup_text(value):
+    """
+    Normalize OCR/user text for fuzzy SOF subject and chapter matching.
+
+    OCR often changes apostrophes, dashes, spacing, and punctuation; reducing
+    strings to comparable tokens improves canonical TOC matching.
+    """
     text = str(value or "").strip().lower()
     text = text.replace("’", "'").replace("‘", "'")
     text = text.replace("–", "-").replace("—", "-")
@@ -53,10 +59,17 @@ def normalize_lookup_text(value):
 
 
 def get_sof_subjects():
+    """Return canonical SOF subject names from the Grade 9 catalog."""
     return list(SOF_9.keys())
 
 
 def canonical_sof_subject(value, text_hint=""):
+    """
+    Resolve OCR/user subject text into a canonical SOF subject.
+
+    Direct aliases are tried first, then substring aliases, then fuzzy matching
+    against canonical subject names.
+    """
     candidates = [value, text_hint]
 
     for candidate in candidates:
@@ -89,6 +102,12 @@ def canonical_sof_subject(value, text_hint=""):
 
 
 def canonical_sof_chapter(subject, value, text_hint=""):
+    """
+    Resolve OCR/user chapter text into the canonical chapter for one subject.
+
+    This keeps uploaded RAG documents aligned to the exact TOC names used by
+    lesson and mock-test retrieval.
+    """
     if subject not in SOF_9:
         return None
 
@@ -123,15 +142,18 @@ def canonical_sof_chapter(subject, value, text_hint=""):
 
 
 def is_sof_model_paper(chapter):
+    """Return whether a canonical chapter represents a model test paper."""
     return "model test paper" in normalize_lookup_text(chapter)
 
 
 def is_sof_exam_paper(chapter):
+    """Return whether a chapter is an exam/model paper section."""
     normalized = normalize_lookup_text(chapter)
     return is_sof_model_paper(chapter) or "olympiad 2025" in normalized
 
 
 def is_sof_support_section(chapter):
+    """Return whether a chapter is an answer-key or hints/explanations section."""
     normalized = normalize_lookup_text(chapter)
     return normalized in [
         "hints and explanations",
@@ -140,6 +162,7 @@ def is_sof_support_section(chapter):
 
 
 def get_sof_exam_paper_chapters(subject):
+    """List canonical exam/model-paper chapters for one SOF subject."""
     return [
         chapter
         for chapter in SOF_9.get(subject, [])
@@ -148,6 +171,7 @@ def get_sof_exam_paper_chapters(subject):
 
 
 def get_sof_support_chapters(subject):
+    """List canonical hints/explanations/answer-key chapters for one subject."""
     return [
         chapter
         for chapter in SOF_9.get(subject, [])
@@ -156,6 +180,12 @@ def get_sof_support_chapters(subject):
 
 
 def infer_sof_content_type(chapter, text):
+    """
+    Classify uploaded SOF content as chapter, exercise, paper, or explanations.
+
+    The content type becomes part of the document title and helps downstream mock
+    tests retrieve the right style of material.
+    """
     normalized_text = normalize_lookup_text(text)
 
     if is_sof_exam_paper(chapter):
@@ -180,6 +210,7 @@ def infer_sof_content_type(chapter, text):
 
 
 def build_sof_document_title(subject, chapter, content_type):
+    """Build a stable document title for SOF RAG uploads."""
     if is_sof_exam_paper(chapter) or is_sof_support_section(chapter):
         return chapter
 
@@ -188,6 +219,7 @@ def build_sof_document_title(subject, chapter, content_type):
 
 
 def build_sof_catalog_prompt():
+    """Create the canonical TOC prompt used by the OCR organizer."""
     lines = ["Canonical Grade 9 SOF TOC. Use these exact subject and chapter names:"]
 
     for subject, chapters in SOF_9.items():
@@ -199,6 +231,12 @@ def build_sof_catalog_prompt():
 
 
 def normalize_sof_group(group, fallback_grade="Grade 9"):
+    """
+    Normalize an AI-detected SOF upload group to canonical RAG metadata.
+
+    If the subject or chapter cannot be matched, the group is preserved with a
+    warning so the admin can review rather than silently misfile content.
+    """
     if not isinstance(group, dict):
         group = {}
 

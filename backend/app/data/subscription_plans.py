@@ -161,6 +161,12 @@ DEFAULT_SUBSCRIPTION_PLANS = {
 
 
 def get_default_subscription_plans():
+    """
+    Return a deep-enough copy of built-in plan settings.
+
+    Copies prevent route/admin code from mutating the module-level defaults while
+    preparing API responses or merging database overrides.
+    """
     return {
         key: {
             **plan,
@@ -173,6 +179,7 @@ def get_default_subscription_plans():
 
 
 def subscription_plan_order(plans):
+    """Return plan keys sorted by their configured display order."""
     return [
         key
         for key, _plan in sorted(

@@ -2,6 +2,7 @@ from app.services.supabase_client import supabase
 
 
 def save_test_result(result):
+    """Persist one mock-test result row for analytics and leaderboard features."""
     payload = {
         "username": result.get("username"),
         "grade": result.get("grade"),
@@ -31,6 +32,7 @@ def save_test_result(result):
 
 
 def get_user_history(username):
+    """Return all stored test results for one username in chronological order."""
     response = (
         supabase
         .table("test_history")
@@ -44,6 +46,7 @@ def get_user_history(username):
 
 
 def get_all_history():
+    """Return all stored test-history rows for platform analytics."""
     response = (
         supabase
         .table("test_history")
@@ -56,6 +59,7 @@ def get_all_history():
 
 
 def clear_test_history():
+    """Delete all test-history rows."""
     response = (
         supabase
         .table("test_history")
@@ -68,6 +72,7 @@ def clear_test_history():
 
 
 def clear_user_test_history(username):
+    """Delete all test-history rows for one username."""
     response = (
         supabase
         .table("test_history")
@@ -80,6 +85,7 @@ def clear_user_test_history(username):
 
 
 def get_leaderboard():
+    """Build leaderboard rows from each student's best and average scores."""
     history = get_all_history()
     scores = {}
 

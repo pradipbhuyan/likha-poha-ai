@@ -2,6 +2,7 @@ from app.services.supabase_client import supabase
 
 
 def get_chapter_progress(username, grade, mode, subject, chapter):
+    """Return saved progress for one chapter, or an initial progress object."""
     response = (
         supabase
         .table("student_progress")
@@ -31,6 +32,7 @@ def get_chapter_progress(username, grade, mode, subject, chapter):
 
 
 def save_chapter_progress(data):
+    """Upsert progress for one chapter and preserve per-step lesson cache."""
     username = data.get("username")
     grade = data.get("grade")
     mode = data.get("mode")
@@ -79,6 +81,7 @@ def save_chapter_progress(data):
     return response.data[0] if response.data else payload
 
 def get_user_progress(username):
+    """Return all chapter-progress records for one username."""
     response = (
         supabase
         .table("student_progress")

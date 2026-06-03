@@ -4,6 +4,7 @@ import { getSyllabus } from "../api/syllabus";
 import { getResources } from "../api/resources";
 
 function ResourcesPage() {
+  /** Lets students browse external learning resources for a selected syllabus topic. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -18,6 +19,7 @@ function ResourcesPage() {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus metadata and initialize the resource filters to a valid topic. */
       try {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
@@ -47,6 +49,7 @@ function ResourcesPage() {
 
   useEffect(() => {
     async function loadResources() {
+      /** Fetch chapter resources whenever the selected subject or chapter changes. */
       if (!subject || !chapter) return;
 
       setResourcesLoading(true);
@@ -74,6 +77,7 @@ function ResourcesPage() {
   const chapters = syllabusData[grade][mode][subject] || [];
 
   function handleGradeChange(value) {
+    /** Reset dependent mode, subject, and chapter selections when grade changes. */
     const newMode = Object.keys(syllabusData[value])[0];
     const newSubject = Object.keys(syllabusData[value][newMode])[0];
     const newChapter = syllabusData[value][newMode][newSubject][0];
@@ -85,6 +89,7 @@ function ResourcesPage() {
   }
 
   function handleModeChange(value) {
+    /** Reset subject and chapter to valid defaults for the selected learning mode. */
     const newSubject = Object.keys(syllabusData[grade][value])[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
 
@@ -94,6 +99,7 @@ function ResourcesPage() {
   }
 
   function handleSubjectChange(value) {
+    /** Reset the chapter to the first available chapter for the selected subject. */
     const newChapter = syllabusData[grade][mode][value][0];
 
     setSubject(value);
@@ -101,6 +107,7 @@ function ResourcesPage() {
   }
 
   function isEmbeddableYoutube(url) {
+    /** Identify standard YouTube watch URLs that can be shown inside the page. */
     return url.includes("youtube.com/watch");
   }
 

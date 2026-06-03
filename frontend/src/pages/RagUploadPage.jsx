@@ -13,6 +13,7 @@ import {
 } from "../api/rag";
 
 function RagUploadPage({ user }) {
+  /** Admin-only workspace for uploading, analyzing, searching, and deleting RAG documents. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
 
@@ -52,6 +53,7 @@ function RagUploadPage({ user }) {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus metadata so uploads can be tagged with grade, subject, and chapter. */
       try {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
@@ -79,6 +81,7 @@ function RagUploadPage({ user }) {
   }, []);
 
   async function loadDocuments() {
+    /** Refresh the list of documents already indexed in the RAG database. */
     try {
       const result = await getRagDocuments();
       setDocuments(result.documents || []);
@@ -88,10 +91,12 @@ function RagUploadPage({ user }) {
   }
 
   function appendFiles(currentFiles, selectedFiles, maxFiles = 20) {
+    /** Add selected files while enforcing the 20-file upload limit. */
     return [...currentFiles, ...selectedFiles].slice(0, maxFiles);
   }
 
   async function handleAnalyzeImage() {
+    /** Run single-image OCR/analysis as a quick quality check before upload. */
     if (!analysisImage) {
       alert("Please select an image.");
       return;
@@ -112,6 +117,7 @@ function RagUploadPage({ user }) {
   }
 
   async function handleAnalyzeSofImages() {
+    /** Analyze up to 20 SOF PDFs/photos and group pages by subject/chapter before indexing. */
     setMessage("");
     setError("");
     setSofPages([]);
@@ -154,6 +160,7 @@ function RagUploadPage({ user }) {
   }
 
   async function handleConfirmSofUpload() {
+    /** Persist reviewed SOF page groups into the RAG database. */
     setMessage("");
     setError("");
 
@@ -196,6 +203,7 @@ function RagUploadPage({ user }) {
   }
 
   async function handleBatchUpload() {
+    /** Upload one or more regular RAG documents with the selected syllabus metadata. */
     setMessage("");
     setError("");
     setBatchResults([]);
@@ -247,6 +255,7 @@ function RagUploadPage({ user }) {
   }
 
   async function handleSearchRag() {
+    /** Query the RAG index to verify that uploaded content is retrievable. */
     if (!ragQuery.trim()) {
       alert("Please enter a search query.");
       return;
@@ -273,6 +282,7 @@ function RagUploadPage({ user }) {
   }
 
   async function handleDeleteDocument(documentId) {
+    /** Delete an indexed RAG document after admin confirmation. */
     if (!window.confirm("Delete this document?")) {
       return;
     }
@@ -309,6 +319,7 @@ function RagUploadPage({ user }) {
   const chapters = syllabusData[grade][mode][subject] || [];
 
   function handleGradeChange(value) {
+    /** Reset upload selectors to valid mode, subject, and chapter defaults for the grade. */
     const newMode = Object.keys(syllabusData[value])[0];
     const newSubject = Object.keys(syllabusData[value][newMode])[0];
     const newChapter = syllabusData[value][newMode][newSubject][0];
@@ -320,6 +331,7 @@ function RagUploadPage({ user }) {
   }
 
   function handleModeChange(value) {
+    /** Reset subject and chapter when the upload mode changes. */
     const newSubject = Object.keys(syllabusData[grade][value])[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
 
@@ -329,6 +341,7 @@ function RagUploadPage({ user }) {
   }
 
   function handleSubjectChange(value) {
+    /** Reset chapter to the first available option for the selected upload subject. */
     const newChapter = syllabusData[grade][mode][value][0];
 
     setSubject(value);

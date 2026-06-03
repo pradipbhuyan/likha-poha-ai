@@ -4,6 +4,7 @@ export async function logStudentActivity({
   username,
   activity_type,
 }) {
+  /** Record one gamified student activity such as lesson completion or test. */
   const response = await fetch(
     `${API_BASE_URL}/api/profile/activity`,
     {
@@ -26,13 +27,14 @@ export async function logStudentActivity({
 }
 
 export async function getStudentProfile(username) {
-    const response = await fetch(
-      `${API_BASE_URL}/api/profile/${username}`
-    );
-  
-    if (!response.ok) {
-      throw new Error("Failed to load student profile");
-    }
-  
-    return response.json();
+  /** Load gamified profile counters, XP, level, rank, and streak details. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/profile/${username}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to load student profile");
   }
+
+  return response.json();
+}

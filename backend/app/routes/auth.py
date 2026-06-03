@@ -22,6 +22,12 @@ USERS = {
 
 @router.post("/login", response_model=LoginResponse)
 def login(data: LoginRequest):
+    """
+    Legacy username/password login endpoint for seeded demo users.
+
+    Most current UI auth flows use Supabase directly, but this endpoint remains
+    for compatibility with older tests and local demo access.
+    """
 
     username = data.username.lower()
 
@@ -46,6 +52,12 @@ def login(data: LoginRequest):
     
 @router.get("/lookup-email/{username}")
 def lookup_email(username: str):
+    """
+    Resolve a friendly username to an email address for Supabase login.
+
+    The admin alias fallback lets the UI log in as "admin" even when the profile
+    row stores a display name rather than that exact username.
+    """
 
     from app.services.auth_service import admin_client
 

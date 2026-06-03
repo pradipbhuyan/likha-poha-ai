@@ -93,6 +93,7 @@ const PAGE_META = {
 };
 
 function App() {
+  /** Owns global session, navigation, and theme state for the single-page app shell. */
   const [user, setUser] = useState(null);
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -130,6 +131,7 @@ function App() {
   }, [darkMode]);
 
   function handleLogin(userData) {
+    /** Persist the authenticated user and send them to the right role-specific landing page. */
     setUser(userData);
     localStorage.setItem("tutor_user", JSON.stringify(userData));
   
@@ -143,12 +145,14 @@ function App() {
   }
 
   function handleLogout() {
+    /** Clear the local session and force the app back to the login page. */
     setUser(null);
     localStorage.removeItem("tutor_user");
     localStorage.removeItem("tutor_active_page");
   }
 
   function handlePageChange(page) {
+    /** Switch pages, close mobile navigation, and remember the last selected page. */
     setActivePage(page);
     setMobileNavOpen(false);
     localStorage.setItem("tutor_active_page", page);
@@ -161,6 +165,7 @@ function App() {
   const pageMeta = PAGE_META[activePage] || PAGE_META.lessons;
 
   function renderPage() {
+    /** Render the active page component while keeping all routing state inside the app shell. */
     switch (activePage) {
       case "dashboard":
         return <DashboardPage user={user} setActivePage={handlePageChange} />;

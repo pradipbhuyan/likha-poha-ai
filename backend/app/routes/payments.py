@@ -26,10 +26,16 @@ class VerifyPaymentRequest(BaseModel):
 
 
 def razorpay_is_configured():
+    """Return whether Razorpay keys are present enough to enable checkout."""
     return bool(settings.RAZORPAY_KEY_ID and settings.RAZORPAY_KEY_SECRET)
 
 
 def plan_display_amount(plan):
+    """
+    Calculate the parent-facing payable amount after any admin discount.
+
+    Prices are stored in rupees; Razorpay conversion to paise happens later.
+    """
     price = int(plan.get("price") or 0)
     discount = int(plan.get("discount_percent") or 0)
 
@@ -40,6 +46,12 @@ def plan_display_amount(plan):
 
 
 def get_public_plan(plan_key: str):
+    """
+    Fetch a plan that parents are allowed to purchase.
+
+    Hidden/non-public plans may still exist for admin use but should not be used
+    to create public payment orders.
+    """
     settings_payload = list_subscription_plan_settings()
     plan = (settings_payload.get("plans") or {}).get(plan_key)
 
@@ -50,6 +62,12 @@ def get_public_plan(plan_key: str):
 
 
 def create_razorpay_order(amount_paise: int, receipt: str, notes: dict):
+    """
+    Create a Razorpay order and translate gateway failures into HTTP 502.
+
+    The local payment record is saved only after Razorpay returns an order id,
+    so the database never stores an order that Razorpay did not create.
+    """
     response = requests.post(
         "https://api.razorpay.com/v1/orders",
         auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET),
@@ -72,6 +90,11 @@ def create_razorpay_order(amount_paise: int, receipt: str, notes: dict):
 
 
 def verify_razorpay_signature(order_id: str, payment_id: str, signature: str):
+    """
+    Verify the Razorpay checkout callback using HMAC SHA-256.
+
+    Constant-time comparison protects the signature check from timing leaks.
+    """
     payload = f"{order_id}|{payment_id}".encode("utf-8")
     expected = hmac.new(
         settings.RAZORPAY_KEY_SECRET.encode("utf-8"),
@@ -83,6 +106,12 @@ def verify_razorpay_signature(order_id: str, payment_id: str, signature: str):
 
 
 def save_payment_record(record: dict):
+    """
+    Upsert the local payment record keyed by Razorpay order id.
+
+    Upsert keeps order creation idempotent if the frontend retries after a
+    transient network issue.
+    """
     response = (
         admin_client
         .table("subscription_payments")
@@ -94,6 +123,7 @@ def save_payment_record(record: dict):
 
 
 def get_payment_by_order_id(order_id: str):
+    """Load the local payment record associated with a Razorpay order id."""
     response = (
         admin_client
         .table("subscription_payments")
@@ -108,6 +138,12 @@ def get_payment_by_order_id(order_id: str):
 
 
 def profile_access_from_plan(plan):
+    """
+    Convert a subscription plan row into profile access fields.
+
+    This is the single mapping that decides which CBSE/SOF flags and AI token
+    limits are applied after a successful payment or family premium activation.
+    """
     return {
         "subscription_plan": plan["key"],
         "account_status": "active",
@@ -121,6 +157,12 @@ def profile_access_from_plan(plan):
 
 
 def activate_plan_for_payment(payment, plan, parent_profile):
+    """
+    Apply a verified paid plan to the correct student profile or family.
+
+    Family Premium intentionally updates all children in the parent's family;
+    single-child plans update only the child attached to the payment record.
+    """
     family_id = parent_profile.get("family_id")
     child_ids = [payment["child_id"]]
 
@@ -144,6 +186,7 @@ def activate_plan_for_payment(payment, plan, parent_profile):
 
 @router.get("/config")
 def get_payment_config(parent=Depends(require_parent)):
+    """Return safe frontend checkout configuration for a signed-in parent."""
     return {
         "success": True,
         "configured": razorpay_is_configured(),
@@ -158,6 +201,12 @@ def create_payment_order(
     data: CreatePaymentOrderRequest,
     parent=Depends(require_parent),
 ):
+    """
+    Create a paid subscription order for one child under the signed-in parent.
+
+    The child lookup is parent-scoped before plan/payment creation, preventing a
+    parent from buying or changing a plan for someone else's child id.
+    """
     if not razorpay_is_configured():
         raise HTTPException(
             status_code=503,
@@ -227,6 +276,12 @@ def verify_payment(
     data: VerifyPaymentRequest,
     parent=Depends(require_parent),
 ):
+    """
+    Verify Razorpay callback data, mark payment paid, and activate access.
+
+    The local payment row must belong to the signed-in parent before signature
+    validation or plan activation, which prevents cross-family order reuse.
+    """
     if not razorpay_is_configured():
         raise HTTPException(status_code=503, detail="Payment gateway is not configured.")
 

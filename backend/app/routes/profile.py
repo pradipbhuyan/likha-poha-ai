@@ -16,6 +16,7 @@ class ActivityRequest(BaseModel):
 
 @router.get("/{username}")
 def get_profile(username: str):
+    """Return gamified profile/progress summary for one student username."""
     return {
         "success": True,
         "profile": get_student_profile(username),
@@ -24,6 +25,7 @@ def get_profile(username: str):
 
 @router.post("/activity")
 def log_activity(data: ActivityRequest):
+    """Record one student activity and return the updated profile summary."""
     return {
         "success": True,
         "profile": update_student_activity(

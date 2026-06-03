@@ -25,6 +25,7 @@ function Sidebar({
   mobileNavOpen,
   setMobileNavOpen,
 }) {
+  /** Builds the role-aware navigation menu and renders the persistent app sidebar. */
   const isAdmin = user?.role === "admin" || user?.username === "pradip";
   const isParent = user?.role === "parent";
   const isStudent = user?.role === "student";
@@ -118,6 +119,7 @@ function Sidebar({
   ];
 
   const visiblePages = pages.filter((page) => {
+    /** Hide student/parent-only destinations from admin while keeping admin tools visible. */
     if (isAdmin) return !page.parentOnly && !page.hideForAdmin;
     return page.roles?.includes(user?.role);
   });

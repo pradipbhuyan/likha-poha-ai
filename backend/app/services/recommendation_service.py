@@ -1,4 +1,10 @@
 def build_study_recommendations(history: list[dict]):
+    """
+    Build actionable study recommendations from test-history trends.
+
+    The logic looks for weak subjects, strong subjects, latest low scores, and
+    recent decline patterns, then returns a short prioritized list for the UI.
+    """
     if not history:
         return [
             {

@@ -5,7 +5,9 @@ import { generateQuiz } from "../api/quiz";
 import { logStudentActivity } from "../api/profile";
 
 function QuizPage() {
+  /** Legacy quiz page for generating and checking short practice quizzes. */
   function getQuizEncouragement(scorePercent) {
+    /** Choose feedback copy based on the student's quiz score percentage. */
     if (scorePercent >= 90) {
       return "🌟 Outstanding work! You have mastered this concept very well.";
     }
@@ -40,6 +42,7 @@ function QuizPage() {
 
   useEffect(() => {
     async function loadSyllabus() {
+      /** Load syllabus data and initialize quiz filters to the first valid topic. */
       try {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
@@ -76,12 +79,14 @@ function QuizPage() {
   const chapters = syllabusData[grade][mode][subject] || [];
 
   function resetQuiz() {
+    /** Clear generated questions and all answer state when quiz context changes. */
     setQuestions([]);
     setSelectedAnswers({});
     setCheckedAnswers({});
   }
 
   function handleGradeChange(value) {
+    /** Change grade and reset all dependent quiz selections. */
     const newMode = Object.keys(syllabusData[value])[0];
     const newSubject = Object.keys(syllabusData[value][newMode])[0];
     const newChapter = syllabusData[value][newMode][newSubject][0];
@@ -94,6 +99,7 @@ function QuizPage() {
   }
 
   function handleModeChange(value) {
+    /** Change CBSE/SOF mode and reset subject and chapter selections. */
     const newSubject = Object.keys(syllabusData[grade][value])[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
 
@@ -104,6 +110,7 @@ function QuizPage() {
   }
 
   function handleSubjectChange(value) {
+    /** Change subject and reset the chapter to the first available option. */
     const newChapter = syllabusData[grade][mode][value][0];
 
     setSubject(value);
@@ -112,6 +119,7 @@ function QuizPage() {
   }
 
   async function handleGenerateQuiz() {
+    /** Request AI-generated quiz questions for the selected topic and difficulty. */
     console.log("Generate quiz clicked");
     console.log("Payload:", {
       grade,
@@ -150,6 +158,7 @@ function QuizPage() {
   }
 
   function handleSelectAnswer(questionId, optionKey) {
+    /** Store the selected option for one generated quiz question. */
     setSelectedAnswers((prev) => ({
       ...prev,
       [questionId]: optionKey,
@@ -157,6 +166,7 @@ function QuizPage() {
   }
 
   async function handleCheckAnswer(questionId) {
+    /** Reveal one answer and attempt to log the quiz activity. */
     setCheckedAnswers((prev) => ({
       ...prev,
       [questionId]: true,

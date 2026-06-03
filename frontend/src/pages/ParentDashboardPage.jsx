@@ -25,6 +25,7 @@ import {
 } from "recharts";
 
 function ParentDashboardPage() {
+  /** Parent view for managing family members and monitoring child progress and usage. */
   const [familyId, setFamilyId] = useState(null);
   const [parents, setParents] = useState([]);
   const [children, setChildren] = useState([]);
@@ -51,6 +52,7 @@ function ParentDashboardPage() {
   const [invitingParent, setInvitingParent] = useState(false);
 
   async function loadFamily() {
+    /** Load parent and child records, preserving the currently selected child when possible. */
     setFamilyLoading(true);
 
     try {
@@ -88,6 +90,7 @@ function ParentDashboardPage() {
 
   useEffect(() => {
     async function loadChildData() {
+      /** Refresh analytics, usage, and weak-area alerts for the selected child. */
       if (!selectedChild) {
         setHistory([]);
         setUsage(null);
@@ -119,6 +122,7 @@ function ParentDashboardPage() {
   }, [selectedChild]);
 
   async function handleCreateStudent(e) {
+    /** Create a child account under the current family and refresh the dashboard. */
     e.preventDefault();
 
     setCreatingStudent(true);
@@ -147,6 +151,7 @@ function ParentDashboardPage() {
   }
 
   async function handleInviteParent(e) {
+    /** Add another parent login to the same family and reload the family roster. */
     e.preventDefault();
 
     setInvitingParent(true);

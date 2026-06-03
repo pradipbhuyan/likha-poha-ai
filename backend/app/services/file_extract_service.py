@@ -12,10 +12,12 @@ IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"]
 MIN_USEFUL_PAGE_WORDS = 12
 
 def extract_text_from_txt(file_bytes: bytes) -> str:
+    """Decode a plain text upload into normalized UTF-8 text."""
     return file_bytes.decode("utf-8", errors="ignore").strip()
 
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
+    """Extract embedded text from all pages of a PDF upload."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
@@ -34,6 +36,7 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
 
 
 def count_words(text: str) -> int:
+    """Count whitespace-separated words for OCR quality warnings."""
     return len(text.split())
 
 
@@ -45,6 +48,12 @@ def build_extracted_page(
     extraction_method: str,
     warnings: list[str] | None = None,
 ) -> dict:
+    """
+    Build normalized page metadata for upload review and SOF grouping.
+
+    Low-word pages are flagged because they often indicate a blurry scan or a
+    PDF page that needs OCR rather than embedded-text extraction.
+    """
     clean_text = (text or "").strip()
     page_warnings = list(warnings or [])
 
@@ -62,6 +71,12 @@ def build_extracted_page(
 
 
 def ocr_pdf_page_images(page) -> str:
+    """
+    OCR embedded images from one PDF page when normal PDF text is too sparse.
+
+    Failures on individual images are ignored so one bad image does not abort the
+    whole multi-page upload.
+    """
     text_parts = []
 
     for image in getattr(page, "images", []) or []:
@@ -77,6 +92,12 @@ def ocr_pdf_page_images(page) -> str:
 
 
 def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
+    """
+    Extract per-page text from a PDF, falling back to embedded-image OCR.
+
+    Per-page output is important for SOF bulk upload because the organizer groups
+    pages by subject/chapter after extraction.
+    """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
@@ -118,6 +139,7 @@ def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
 
 
 def extract_text_from_docx(file_bytes: bytes) -> str:
+    """Extract paragraph text from a DOCX upload."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
@@ -135,6 +157,7 @@ def extract_text_from_docx(file_bytes: bytes) -> str:
 
 
 def extract_text_from_pptx(file_bytes: bytes) -> str:
+    """Extract slide text from a PPTX upload while preserving slide order."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
@@ -157,6 +180,12 @@ def extract_text_from_pptx(file_bytes: bytes) -> str:
 
 
 def extract_text_from_uploaded_file(filename: str, file_bytes: bytes) -> str:
+    """
+    Route an uploaded file to the correct text extractor based on extension.
+
+    Images go through OCR, modern Office formats use their parsers, and legacy
+    DOC/PPT files are rejected with a conversion instruction.
+    """
     ext = os.path.splitext(filename.lower())[1]
 
     if ext in IMAGE_EXTENSIONS:
@@ -186,6 +215,12 @@ def extract_text_from_uploaded_file(filename: str, file_bytes: bytes) -> str:
 
 
 def extract_pages_from_uploaded_file(filename: str, file_bytes: bytes) -> list[dict]:
+    """
+    Return page-like extraction records for any supported upload type.
+
+    Single-document formats are represented as one page so downstream SOF upload
+    code can process all inputs through one grouping pipeline.
+    """
     ext = os.path.splitext(filename.lower())[1]
 
     if ext in IMAGE_EXTENSIONS:

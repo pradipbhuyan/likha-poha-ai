@@ -17,6 +17,12 @@ OUTPUT_COST_PER_1K = 0.0012
 
 
 def estimate_cost(prompt_tokens: int, completion_tokens: int) -> float:
+    """
+    Estimate one OpenAI call's cost from token counts.
+
+    The values are used for admin usage reporting, not for billing parents
+    directly, so a rounded approximate cost is sufficient.
+    """
     input_cost = (prompt_tokens / 1000) * INPUT_COST_PER_1K
     output_cost = (completion_tokens / 1000) * OUTPUT_COST_PER_1K
 
@@ -29,7 +35,13 @@ def ask_llm(
     username: str = "unknown",
     feature: str = "lesson",
 ) -> str:
+    """
+    Send a prompt to the configured LLM and log usage metrics.
 
+    All high-level tutor features call through this helper so token accounting
+    and estimated-cost tracking stay consistent across lessons, doubts, mock
+    tests, practice, and image-related explanations.
+    """
     response = client.responses.create(
         model="gpt-4.1-mini",
         input=[

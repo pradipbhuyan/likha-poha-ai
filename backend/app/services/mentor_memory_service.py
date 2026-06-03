@@ -7,6 +7,7 @@ def get_recent_mentor_memory(
     chapter: str | None = None,
     limit: int = 5,
 ):
+    """Fetch recent mentor-memory rows for a student, optionally scoped by topic."""
     query = (
         supabase
         .table("mentor_memory")
@@ -28,6 +29,7 @@ def get_recent_mentor_memory(
 
 
 def build_memory_context(memories: list[dict]) -> str:
+    """Convert mentor-memory rows into compact prompt context for the tutor."""
     if not memories:
         return "No prior mentor memory is available for this student yet."
 
@@ -70,6 +72,12 @@ def save_mentor_memory(
     question: str,
     answer: str,
 ):
+    """
+    Save one answered interaction as future mentor context.
+
+    Lightweight derived fields capture confidence/style signals without storing
+    or replaying a full chat transcript in every future prompt.
+    """
     answer_summary = answer[:500] if answer else ""
 
     memory_note = "Student asked a doubt in this chapter. Use this as continuity for future explanations."

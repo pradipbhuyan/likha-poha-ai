@@ -33,6 +33,12 @@ JSON schema:
 
 
 def build_rag_context(items, label="RAG"):
+    """
+    Format retrieved RAG chunks with source metadata for prompt injection.
+
+    The section labels let the model distinguish chapter content, exercises,
+    model papers, and answer explanations when composing SOF questions.
+    """
     if not items:
         return ""
 
@@ -66,6 +72,13 @@ def get_sof_rag_context(
     chapter=None,
     grade="Grade 9",
 ):
+    """
+    Gather all RAG material needed for a high-quality SOF mock test.
+
+    Chapter content teaches concepts, exercise content informs practice style,
+    model papers shape exam patterns, and answer-key sections improve
+    explanations.
+    """
     context_parts = []
 
     if chapter:
@@ -170,10 +183,22 @@ def get_sof_rag_context(
 
 
 def create_generation_variant(username="admin"):
+    """
+    Create a per-request seed so repeated mock tests differ on the same day.
+
+    The seed is included in the LLM prompt, not used for deterministic random
+    generation, because the model itself performs the question generation.
+    """
     return f"{username}-{date.today().isoformat()}-{uuid.uuid4().hex[:8]}"
 
 
 def validate_sof_rag_context(rag_context, olympiad, chapter):
+    """
+    Ensure SOF mock tests are generated only from uploaded RAG material.
+
+    This protects the product promise that SOF mock tests are grounded in the
+    uploaded workbook/exercise/model-paper content.
+    """
     if rag_context.strip():
         return
 
@@ -194,6 +219,12 @@ def generate_olympiad_mock_test(
     grade="Grade 9",
     username="admin",
 ):
+    """
+    Generate an original SOF mock test grounded in uploaded RAG context.
+
+    Explanations may add wider model knowledge, but every question must be
+    inspired by uploaded SOF content so the test stays aligned with the workbook.
+    """
     if olympiad == "Science Olympiad":
         pattern = """
 Create a Class 9 SOF Science Olympiad style mock test.
@@ -301,6 +332,7 @@ def generate_science_olympiad_mock_test(
     difficulty="Medium",
     chapter=None,
 ):
+    """Convenience wrapper for Science Olympiad mock-test generation."""
     return generate_olympiad_mock_test(
         "Science Olympiad",
         num_questions,
@@ -314,6 +346,7 @@ def generate_maths_olympiad_mock_test(
     difficulty="Medium",
     chapter=None,
 ):
+    """Convenience wrapper for Maths Olympiad mock-test generation."""
     return generate_olympiad_mock_test(
         "Maths Olympiad",
         num_questions,
@@ -327,6 +360,7 @@ def generate_english_olympiad_mock_test(
     difficulty="Medium",
     chapter=None,
 ):
+    """Convenience wrapper for English Olympiad mock-test generation."""
     return generate_olympiad_mock_test(
         "English Olympiad",
         num_questions,
@@ -336,6 +370,12 @@ def generate_english_olympiad_mock_test(
 
 
 def calculate_score(questions, user_answers):
+    """
+    Score submitted mock-test answers and return per-question result metadata.
+
+    The frontend uses the result list to show selected answer, correct answer,
+    explanations, and marks after submission.
+    """
     total_score = 0
     max_score = 0
     results = []
@@ -373,6 +413,12 @@ def generate_cbse_mock_test(
     num_questions=10,
     difficulty="Medium"
 ):
+    """
+    Generate a general CBSE-style mock test for a selected chapter.
+
+    Unlike SOF generation, this path does not require RAG content yet and uses
+    standard CBSE/NCERT style instructions directly in the prompt.
+    """
     prompt = f"""
 Create a CBSE Grade 9 mock test.
 
