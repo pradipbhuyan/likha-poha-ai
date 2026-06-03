@@ -3815,13 +3815,134 @@ body.dark-mode .login-logo {
 }
 
 .mermaid-box svg {
-  max-width: 100%;
+  display: block;
+  max-width: none;
   height: auto;
+  overflow: visible;
+}
+
+.mermaid-box svg .nodeLabel,
+.mermaid-box svg .label,
+.mermaid-box svg text,
+.mermaid-box svg tspan {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
 }
 
 .mermaid-error {
   color: #dc2626;
   font-weight: 800;
+}
+
+.simple-flowchart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 64px);
+  width: 100%;
+  min-width: 0;
+  padding: clamp(18px, 3vw, 32px);
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.simple-flowchart-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 280px;
+  min-width: 0;
+  max-width: 420px;
+}
+
+.simple-flowchart-levels {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.simple-flowchart-level {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.simple-flowchart-level-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+  width: 100%;
+}
+
+.simple-flowchart-level-nodes .simple-flowchart-node {
+  flex: 1 1 220px;
+  max-width: 360px;
+}
+
+.simple-flowchart-level-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  color: #2563eb;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.simple-flowchart-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.simple-flowchart-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 76px;
+  padding: 18px 28px;
+  border: 2px solid #60a5fa;
+  background: #eff6ff;
+  color: #334155;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  box-sizing: border-box;
+}
+
+.simple-flowchart-arrow {
+  position: relative;
+  width: 2px;
+  height: 58px;
+  background: #2563eb;
+}
+
+.simple-flowchart-arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 14px solid #2563eb;
+  transform: translateX(-50%);
+}
+
+body.dark-mode .simple-flowchart-node {
+  background: #1e293b;
+  border-color: #60a5fa;
+  color: #f8fafc;
 }
 
 body.dark-mode .mermaid-card {
