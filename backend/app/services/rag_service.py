@@ -2,7 +2,19 @@ from app.services.supabase_client import supabase
 from app.services.openai_service import client
 
 
-ADMIN_USERS = ["admin", "pradip"]
+ADMIN_USERS = {"admin", "pradip", "pradip admin"}
+
+
+def is_admin_upload_user(username) -> bool:
+    """
+    Check whether a RAG upload request came from a trusted admin identity.
+
+    The frontend may pass the profile display name, such as "Pradip Admin",
+    rather than the short username "admin", so comparison is normalized.
+    """
+    normalized_username = str(username or "").strip().lower()
+
+    return normalized_username in ADMIN_USERS
 
 
 def split_text_into_chunks(text, chunk_size=1200):
@@ -54,10 +66,10 @@ def upload_textbook_text(
     Only trusted admin upload usernames are accepted here because inserted RAG
     content directly influences student answers and SOF mock-test generation.
     """
-    if username not in ADMIN_USERS:
+    if not is_admin_upload_user(username):
         return {
             "success": False,
-            "message": "Only admin/pradip can upload RAG content.",
+            "message": "Only an admin user can upload RAG content.",
             "document_id": None,
             "chunks_created": 0,
         }

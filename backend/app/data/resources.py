@@ -148,13 +148,14 @@ for _subject, _chapters in GENERIC_SUBJECT_CHAPTERS.items():
         ])
 
 
-def get_learning_resources(subject: str, chapter: str):
+def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
     """Return curated resources if present; otherwise return free fallback links."""
     resources = LEARNING_RESOURCES.get(subject, {}).get(chapter, [])
     if resources:
         return resources
 
-    query = quote_plus(f"class 9 {subject} {chapter} free lecture")
+    grade_query = grade.lower().replace("grade", "class")
+    query = quote_plus(f"{grade_query} {subject} {chapter} free lecture")
     return [
         {
             "title": f"YouTube Search - {subject}: {chapter}",

@@ -4,6 +4,9 @@ import { getSyllabus } from "../api/syllabus";
 
 import {
   uploadRagFilesBatch,
+  uploadBulkBooks,
+  uploadBookSet,
+  analyzeBookSetFiles,
   getRagDocuments,
   deleteRagDocument,
   analyzeRagImage,
@@ -11,6 +14,21 @@ import {
   confirmSofUpload,
   searchRag,
 } from "../api/rag";
+import { getDefaultSelection } from "../utils/syllabusDefaults";
+
+const BOOK_CHAPTER_LABEL = "Uploaded Book Content";
+const BULK_BOOK_FILE_ACCEPT = ".txt,.jpg,.jpeg,.png,.webp,.pdf,.docx,.pptx";
+
+function createBulkBookRow(index = 0) {
+  /** Create one editable row for a Class 1-10 full-book RAG upload. */
+  return {
+    id: `${Date.now()}-${index}`,
+    grade: "Grade 1",
+    subject: "",
+    title: "",
+    file: null,
+  };
+}
 
 function RagUploadPage({ user }) {
   /** Admin-only workspace for uploading, analyzing, searching, and deleting RAG documents. */
@@ -31,6 +49,16 @@ function RagUploadPage({ user }) {
   const [files, setFiles] = useState([]);
   const [batchResults, setBatchResults] = useState([]);
   const [documents, setDocuments] = useState([]);
+  const [bulkBookRows, setBulkBookRows] = useState([createBulkBookRow()]);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const [bookSetGrade, setBookSetGrade] = useState("Grade 1");
+  const [bookSetSubject, setBookSetSubject] = useState("");
+  const [bookSetTitle, setBookSetTitle] = useState("");
+  const [bookSetSectionTitles, setBookSetSectionTitles] = useState("");
+  const [bookSetFiles, setBookSetFiles] = useState([]);
+  const [bookSetAnalysis, setBookSetAnalysis] = useState([]);
+  const [bookSetAnalyzing, setBookSetAnalyzing] = useState(false);
+  const [bookSetUploading, setBookSetUploading] = useState(false);
 
   const [analysisImage, setAnalysisImage] = useState(null);
   const [analyzingImage, setAnalyzingImage] = useState(false);
@@ -58,19 +86,27 @@ function RagUploadPage({ user }) {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        const defaultGrade = "Grade 9";
-        const defaultMode = "CBSE";
-        const defaultSubject = Object.keys(
-          data.syllabus[defaultGrade][defaultMode]
-        )[0];
-
-        const defaultChapter =
-          data.syllabus[defaultGrade][defaultMode][defaultSubject][0];
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+          subject: defaultSubject,
+          chapter: defaultChapter,
+        } = getDefaultSelection(data.syllabus);
 
         setGrade(defaultGrade);
         setMode(defaultMode);
         setSubject(defaultSubject);
         setChapter(defaultChapter);
+        setSearchGrade(defaultGrade);
+        setSearchMode(defaultMode);
+        setSearchSubject(defaultSubject);
+        setSearchChapter(defaultChapter);
+        setBulkBookRows([createBulkBookRow()]);
+        setBookSetGrade(defaultGrade);
+        setBookSetSubject(
+          Object.keys(data.syllabus?.[defaultGrade]?.CBSE || {})[0] ||
+            defaultSubject
+        );
       } finally {
         setLoading(false);
       }
@@ -93,6 +129,74 @@ function RagUploadPage({ user }) {
   function appendFiles(currentFiles, selectedFiles, maxFiles = 20) {
     /** Add selected files while enforcing the 20-file upload limit. */
     return [...currentFiles, ...selectedFiles].slice(0, maxFiles);
+  }
+
+  function getCbseSubjectsForGrade(rowGrade) {
+    /** Return the CBSE subject options available for one bulk book row. */
+    return Object.keys(syllabusData?.[rowGrade]?.CBSE || {});
+  }
+
+  function resolveBulkBookRow(row) {
+    /** Fill safe defaults for one bulk book row before validation/upload. */
+    const subjectsForGrade = getCbseSubjectsForGrade(row.grade);
+    const resolvedSubject = row.subject || subjectsForGrade[0] || "";
+
+    return {
+      ...row,
+      subject: resolvedSubject,
+      title:
+        row.title.trim() ||
+        `${row.grade} ${resolvedSubject || "CBSE"} Full Book`,
+    };
+  }
+
+  function updateBulkBookRow(rowId, updates) {
+    /** Update one editable bulk book row, resetting subject if grade changes. */
+    setBulkBookRows((currentRows) =>
+      currentRows.map((row) => {
+        if (row.id !== rowId) {
+          return row;
+        }
+
+        const nextRow = {
+          ...row,
+          ...updates,
+        };
+
+        if (updates.grade) {
+          nextRow.subject = getCbseSubjectsForGrade(updates.grade)[0] || "";
+        }
+
+        return nextRow;
+      })
+    );
+  }
+
+  function addBulkBookRow() {
+    /** Add another Class 1-10 book row while keeping the backend 20-file limit. */
+    if (bulkBookRows.length >= 20) {
+      setError("You can upload a maximum of 20 books at once.");
+      return;
+    }
+
+    const nextRow = createBulkBookRow(bulkBookRows.length);
+    nextRow.subject = getCbseSubjectsForGrade(nextRow.grade)[0] || "";
+    setBulkBookRows((currentRows) => [...currentRows, nextRow]);
+  }
+
+  function removeBulkBookRow(rowId) {
+    /** Remove one bulk book row, keeping at least one editable row on screen. */
+    setBulkBookRows((currentRows) => {
+      const nextRows = currentRows.filter((row) => row.id !== rowId);
+
+      return nextRows.length > 0 ? nextRows : [createBulkBookRow()];
+    });
+  }
+
+  function handleBookSetGradeChange(value) {
+    /** Keep the book-set subject valid when the selected grade changes. */
+    setBookSetGrade(value);
+    setBookSetSubject(getCbseSubjectsForGrade(value)[0] || "");
   }
 
   async function handleAnalyzeImage() {
@@ -143,6 +247,14 @@ function RagUploadPage({ user }) {
       });
 
       if (!result.success) {
+        setSofPages(result.pages || []);
+        setSofGroups(result.groups || []);
+        setSofRawResponse(
+          result.raw_ai_response ||
+            (result.file_warnings || [])
+              .map((warning) => `${warning.filename}: ${warning.message}`)
+              .join("\n")
+        );
         setError(result.message || "SOF image analysis failed.");
         return;
       }
@@ -150,10 +262,10 @@ function RagUploadPage({ user }) {
       setSofPages(result.pages || []);
       setSofGroups(result.groups || []);
       setSofRawResponse(result.raw_ai_response || "");
-      setMessage("SOF files analyzed. Review extracted pages and groups before uploading.");
+      setMessage(result.message || "SOF files analyzed. Review extracted pages and groups before uploading.");
     } catch (err) {
       console.error(err);
-      setError("SOF image analysis failed. Check backend.");
+      setError(err.message || "SOF image analysis failed. Check backend.");
     } finally {
       setSofAnalyzing(false);
     }
@@ -200,6 +312,196 @@ function RagUploadPage({ user }) {
     } finally {
       setSofUploading(false);
     }
+  }
+
+  async function handleBulkBookUpload() {
+    /** Upload full subject books for Class 1-10 with explicit metadata per file. */
+    setMessage("");
+    setError("");
+    setBatchResults([]);
+
+    const rowsToUpload = bulkBookRows
+      .map(resolveBulkBookRow)
+      .filter((row) => row.file);
+
+    if (rowsToUpload.length === 0) {
+      setError("Please select at least one book file.");
+      return;
+    }
+
+    if (rowsToUpload.length > 20) {
+      setError("You can upload a maximum of 20 books at once.");
+      return;
+    }
+
+    const missingMetadataRow = rowsToUpload.find(
+      (row) => !row.grade || !row.subject || !row.title.trim()
+    );
+
+    if (missingMetadataRow) {
+      setError("Every selected book needs a grade, subject, and title.");
+      return;
+    }
+
+    setBulkUploading(true);
+
+    try {
+      const result = await uploadBulkBooks({
+        username: user.username,
+        books: rowsToUpload.map((row) => ({
+          grade: row.grade,
+          subject: row.subject,
+          chapter: BOOK_CHAPTER_LABEL,
+          title: row.title.trim(),
+          file: row.file,
+        })),
+      });
+
+      if (!result.success) {
+        setError(result.message || "Bulk book upload failed.");
+        setBatchResults(result.results || []);
+        return;
+      }
+
+      setMessage(result.message || "Bulk books uploaded successfully.");
+      setBatchResults(result.results || []);
+      setBulkBookRows([createBulkBookRow()]);
+
+      await loadDocuments();
+    } catch (err) {
+      console.error(err);
+      setError("Bulk book upload failed. Check backend.");
+    } finally {
+      setBulkUploading(false);
+    }
+  }
+
+  async function handleBookSetUpload() {
+    /** Upload one book that is represented by multiple TOC/chapter files. */
+    setMessage("");
+    setError("");
+    setBatchResults([]);
+
+    if (!bookSetTitle.trim()) {
+      setError("Please enter a book title.");
+      return;
+    }
+
+    if (bookSetFiles.length === 0) {
+      setError("Please select TOC/chapter files for the book.");
+      return;
+    }
+
+    if (bookSetFiles.length > 20) {
+      setError("You can upload a maximum of 20 book files at once.");
+      return;
+    }
+
+    const sectionTitleCount = bookSetSectionTitles
+      .replace(/,/g, "\n")
+      .split("\n")
+      .map((item) => item.trim())
+      .filter(Boolean).length;
+
+    if (sectionTitleCount > 0 && sectionTitleCount !== bookSetFiles.length) {
+      setError("Section title count must match selected file count.");
+      return;
+    }
+
+    setBookSetUploading(true);
+
+    try {
+      const result = await uploadBookSet({
+        username: user.username,
+        grade: bookSetGrade,
+        subject: bookSetSubject,
+        bookTitle: bookSetTitle.trim(),
+        sectionTitles: bookSetSectionTitles,
+        files: bookSetFiles,
+      });
+
+      if (!result.success) {
+        setError(result.message || "Book set upload failed.");
+        setBatchResults(result.results || []);
+        return;
+      }
+
+      setMessage(result.message || "Book files uploaded successfully.");
+      setBatchResults(result.results || []);
+      setBookSetTitle("");
+      setBookSetSectionTitles("");
+      setBookSetFiles([]);
+      setBookSetAnalysis([]);
+
+      await loadDocuments();
+    } catch (err) {
+      console.error(err);
+      setError("Book set upload failed. Check backend.");
+    } finally {
+      setBookSetUploading(false);
+    }
+  }
+
+  async function handleAnalyzeBookSet() {
+    /** Suggest editable labels for each TOC/chapter file before uploading. */
+    setMessage("");
+    setError("");
+    setBookSetAnalysis([]);
+
+    if (bookSetFiles.length === 0) {
+      setError("Please select TOC/chapter files to analyze.");
+      return;
+    }
+
+    if (bookSetFiles.length > 20) {
+      setError("You can analyze a maximum of 20 book files at once.");
+      return;
+    }
+
+    setBookSetAnalyzing(true);
+
+    try {
+      const result = await analyzeBookSetFiles({
+        files: bookSetFiles,
+      });
+
+      if (!result.success) {
+        setError(result.message || "Book set analysis failed.");
+        return;
+      }
+
+      const sections = result.sections || [];
+      setBookSetAnalysis(sections);
+      setBookSetSectionTitles(
+        sections.map((section) => section.suggested_title || "").join("\n")
+      );
+      setMessage(result.message || "Book labels suggested. Review before upload.");
+    } catch (err) {
+      console.error(err);
+      setError("Book set analysis failed. Check backend.");
+    } finally {
+      setBookSetAnalyzing(false);
+    }
+  }
+
+  function updateBookSetAnalysisTitle(index, value) {
+    /** Keep editable section cards and the upload title textarea in sync. */
+    setBookSetAnalysis((currentSections) => {
+      const nextSections = currentSections.map((section, sectionIndex) =>
+        sectionIndex === index
+          ? {
+              ...section,
+              suggested_title: value,
+            }
+          : section
+      );
+
+      setBookSetSectionTitles(
+        nextSections.map((section) => section.suggested_title || "").join("\n")
+      );
+
+      return nextSections;
+    });
   }
 
   async function handleBatchUpload() {
@@ -317,6 +619,7 @@ function RagUploadPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
+  const bookSetSubjects = getCbseSubjectsForGrade(bookSetGrade);
 
   function handleGradeChange(value) {
     /** Reset upload selectors to valid mode, subject, and chapter defaults for the grade. */
@@ -521,6 +824,270 @@ function RagUploadPage({ user }) {
             ))}
           </div>
         )}
+      </section>
+
+      <section className="premium-section premium-rag-upload-panel">
+        <div className="premium-header">
+          <h3>📦 CBSE Class 1-10 Bulk Book Upload</h3>
+          <p>
+            Upload full subject books for any class from 1 to 10. Each file is
+            tagged with its own class and subject, then indexed under Uploaded
+            Book Content for lessons, doubts, and mock-test retrieval.
+          </p>
+        </div>
+
+        <div className="premium-rag-bulk-book-list">
+          {bulkBookRows.map((row, index) => {
+            const resolvedRow = resolveBulkBookRow(row);
+            const rowSubjects = getCbseSubjectsForGrade(resolvedRow.grade);
+
+            return (
+              <div key={row.id} className="premium-rag-bulk-book-row">
+                <div className="premium-rag-bulk-book-heading">
+                  <strong>Book {index + 1}</strong>
+                  <button
+                    type="button"
+                    className="secondary-btn"
+                    onClick={() => removeBulkBookRow(row.id)}
+                    disabled={bulkBookRows.length === 1}
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                <div className="form-grid premium-rag-form-grid">
+                  <label>
+                    Class
+                    <select
+                      value={resolvedRow.grade}
+                      onChange={(e) =>
+                        updateBulkBookRow(row.id, {
+                          grade: e.target.value,
+                        })
+                      }
+                    >
+                      {grades.map((g) => (
+                        <option key={g} value={g}>
+                          {g}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label>
+                    Subject
+                    <select
+                      value={resolvedRow.subject}
+                      onChange={(e) =>
+                        updateBulkBookRow(row.id, {
+                          subject: e.target.value,
+                        })
+                      }
+                    >
+                      {rowSubjects.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label>
+                    Document Title
+                    <input
+                      type="text"
+                      value={row.title}
+                      placeholder={`${resolvedRow.grade} ${resolvedRow.subject} Full Book`}
+                      onChange={(e) =>
+                        updateBulkBookRow(row.id, {
+                          title: e.target.value,
+                        })
+                      }
+                    />
+                  </label>
+
+                  <label>
+                    Book File
+                    <input
+                      type="file"
+                      accept={BULK_BOOK_FILE_ACCEPT}
+                      onChange={(e) =>
+                        updateBulkBookRow(row.id, {
+                          file: e.target.files?.[0] || null,
+                        })
+                      }
+                    />
+                  </label>
+                </div>
+
+                {row.file && (
+                  <small className="premium-rag-bulk-book-file">
+                    Selected: {row.file.name} • Stored as {BOOK_CHAPTER_LABEL}
+                  </small>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="premium-rag-bulk-book-actions">
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={addBulkBookRow}
+            disabled={bulkBookRows.length >= 20}
+          >
+            + Add Another Book
+          </button>
+
+          <button
+            className="primary-btn premium-rag-upload-btn"
+            onClick={handleBulkBookUpload}
+            disabled={bulkUploading}
+          >
+            {bulkUploading ? "Uploading Books..." : "Upload Books to RAG"}
+          </button>
+        </div>
+      </section>
+
+      <section className="premium-section premium-rag-upload-panel">
+        <div className="premium-header">
+          <h3>🗂️ One Book, Many Files</h3>
+          <p>
+            Upload a TOC PDF and chapter PDFs that together make one book. Each
+            file is indexed as a separate searchable section under the same book.
+          </p>
+        </div>
+
+        <div className="form-grid premium-rag-form-grid">
+          <label>
+            Book Set Class
+            <select
+              value={bookSetGrade}
+              onChange={(e) => handleBookSetGradeChange(e.target.value)}
+            >
+              {grades.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Book Set Subject
+            <select
+              value={bookSetSubject}
+              onChange={(e) => setBookSetSubject(e.target.value)}
+            >
+              {bookSetSubjects.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Book Title
+            <input
+              type="text"
+              value={bookSetTitle}
+              placeholder="Example: Grade 5 Science Textbook"
+              onChange={(e) => setBookSetTitle(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Book Files
+            <input
+              type="file"
+              multiple
+              accept={BULK_BOOK_FILE_ACCEPT}
+              onChange={(e) => setBookSetFiles(Array.from(e.target.files || []))}
+            />
+          </label>
+        </div>
+
+        <label className="full-width-label premium-rag-title-input">
+          TOC / Chapter Titles
+          <textarea
+            value={bookSetSectionTitles}
+            rows={5}
+            placeholder={"Table of Contents\nChapter 1: Plants\nChapter 2: Animals"}
+            onChange={(e) => setBookSetSectionTitles(e.target.value)}
+          />
+        </label>
+
+        {bookSetFiles.length > 0 && (
+          <div className="selected-files-box premium-selected-files-box">
+            <strong>Selected book files:</strong>
+            {bookSetFiles.map((selectedFile, index) => (
+              <div key={index}>
+                {index + 1}. {selectedFile.name}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="premium-rag-bulk-book-actions">
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={handleAnalyzeBookSet}
+            disabled={bookSetAnalyzing || bookSetFiles.length === 0}
+          >
+            {bookSetAnalyzing ? "Analyzing Labels..." : "Analyze Chapter Labels"}
+          </button>
+        </div>
+
+        {bookSetAnalysis.length > 0 && (
+          <div className="premium-rag-extracted-pages">
+            <h4>Review Suggested Labels</h4>
+            <div className="premium-rag-result-list">
+              {bookSetAnalysis.map((section, index) => (
+                <div
+                  key={`${section.filename}-${index}`}
+                  className={
+                    section.warnings?.length
+                      ? "premium-rag-result-row failed"
+                      : "premium-rag-result-row success"
+                  }
+                >
+                  <div>
+                    <strong>{section.filename}</strong>
+                    <p>{section.word_count || 0} extracted words</p>
+                    {section.warnings?.length > 0 && (
+                      <small>{section.warnings.join(" ")}</small>
+                    )}
+                    {section.preview && (
+                      <small>{section.preview.slice(0, 180)}</small>
+                    )}
+                  </div>
+
+                  <label className="premium-rag-inline-label">
+                    Confirm Label
+                    <input
+                      type="text"
+                      value={section.suggested_title || ""}
+                      onChange={(e) =>
+                        updateBookSetAnalysisTitle(index, e.target.value)
+                      }
+                    />
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <button
+          className="primary-btn premium-rag-upload-btn"
+          onClick={handleBookSetUpload}
+          disabled={bookSetUploading}
+        >
+          {bookSetUploading ? "Uploading Book Files..." : "Upload Book Set to RAG"}
+        </button>
       </section>
 
       <section className="premium-section">
@@ -829,7 +1396,7 @@ function RagUploadPage({ user }) {
           <input
             type="file"
             multiple
-            accept=".txt,.jpg,.jpeg,.png,.webp,.pdf,.docx,.pptx"
+            accept={BULK_BOOK_FILE_ACCEPT}
             onChange={(e) => setFiles(Array.from(e.target.files || []))}
           />
         </label>
@@ -894,7 +1461,10 @@ function RagUploadPage({ user }) {
                 <div>
                   <strong>{item.title}</strong>
                   <p>{item.subject || item.filename}</p>
-                  <p>{item.chapter || item.message}</p>
+                  <p>{item.chapter || "No chapter metadata"}</p>
+                  {!item.success && item.message && (
+                    <small>{item.message}</small>
+                  )}
                 </div>
 
                 <div>

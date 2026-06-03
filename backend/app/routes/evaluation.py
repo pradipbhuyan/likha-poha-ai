@@ -46,6 +46,7 @@ def evaluate_answer(data: AnswerEvaluationRequest):
 
     try:
         result = evaluate_student_answer(
+            grade=data.grade,
             question=data.question,
             student_answer=data.student_answer,
             ideal_context=data.ideal_context,
@@ -87,6 +88,7 @@ def create_practice_questions(data: AnswerEvaluationRequest):
 
     try:
         result = generate_practice_questions(
+            grade=data.grade,
             lesson=data.ideal_context,
             chapter=data.question,
             step_title="Current lesson step",

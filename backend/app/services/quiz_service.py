@@ -3,7 +3,7 @@ from app.services.openai_service import ask_llm
 
 
 QUIZ_SYSTEM = """
-You generate Grade 9 CBSE and SOF Olympiad quizzes.
+You generate CBSE and SOF Olympiad quizzes for the grade requested by the user.
 
 Return ONLY valid JSON.
 Do not use markdown.

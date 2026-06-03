@@ -15,6 +15,11 @@ import {
   evaluateStudentAnswer,
   generatePracticeQuestions,
 } from "../api/evaluation";
+import {
+  getDefaultSelection,
+  getUserGrade,
+  getVisibleGrades,
+} from "../utils/syllabusDefaults";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -110,17 +115,12 @@ function LessonsPage({ user }) {
 
         setSyllabusData(data.syllabus);
 
-        const defaultGrade = "Grade 9";
-        const defaultMode = "CBSE";
-
-        const defaultSubjects = Object.keys(
-          data.syllabus[defaultGrade][defaultMode]
-        );
-
-        const defaultSubject = defaultSubjects[0];
-
-        const defaultChapter =
-          data.syllabus[defaultGrade][defaultMode][defaultSubject][0];
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+          subject: defaultSubject,
+          chapter: defaultChapter,
+        } = getDefaultSelection(data.syllabus, getUserGrade(user));
 
         setGrade(defaultGrade);
         setMode(defaultMode);
@@ -229,7 +229,7 @@ function LessonsPage({ user }) {
     return <p className="error">{error}</p>;
   }
 
-  const grades = Object.keys(syllabusData);
+  const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
 
   function getAllowedSubjects(allSubjects, selectedMode) {
@@ -506,8 +506,8 @@ function LessonsPage({ user }) {
 
     try {
       const imagePrompt = topic
-        ? `${subject} - ${chapter}. Create a clear educational visual specifically about: ${topic}`
-        : `${subject} - ${chapter} - ${stepTitle}. Create a visual explanation for this lesson: ${lesson.slice(
+        ? `${grade} ${subject} - ${chapter}. Create a clear educational visual specifically about: ${topic}`
+        : `${grade} ${subject} - ${chapter} - ${stepTitle}. Create a visual explanation for this lesson: ${lesson.slice(
             0,
             1200
           )}`;
@@ -547,6 +547,7 @@ function LessonsPage({ user }) {
 
     try {
       const result = await generatePracticeQuestions({
+        grade,
         username: user.username,
         question: chapter,
         student_answer: "",
@@ -607,6 +608,7 @@ function LessonsPage({ user }) {
 
     try {
       const result = await evaluateStudentAnswer({
+        grade,
         username: user.username,
         question,
         student_answer: answer,

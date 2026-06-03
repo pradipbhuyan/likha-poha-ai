@@ -2,9 +2,10 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "http://localhost:8000";
 
-export async function getResources(subject, chapter) {
+export async function getResources(subject, chapter, grade = "Grade 9") {
   /** Load curated free learning resources for one subject/chapter pair. */
   const params = new URLSearchParams({
+    grade,
     subject,
     chapter,
   });

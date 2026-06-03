@@ -5,8 +5,10 @@ from app.services.file_extract_service import (
 )
 from app.services.openai_service import ask_llm
 import json
+import re
 from pydantic import BaseModel
 from typing import List, Optional
+from pathlib import Path
 
 
 from app.models.schemas import (
@@ -344,6 +346,317 @@ class ConfirmSofUploadRequest(BaseModel):
     groups: List[SofRagGroup]
 
 
+class BulkBookMetadata(BaseModel):
+    grade: str
+    subject: str
+    title: str
+    chapter: str = "Uploaded Book Content"
+
+
+def parse_bulk_book_metadata(metadata_json: str, file_count: int) -> List[BulkBookMetadata]:
+    """
+    Validate the per-file book metadata supplied by the admin bulk upload UI.
+
+    Each uploaded book must have an explicit grade, subject, and title so the
+    resulting RAG documents can be filtered correctly for Class 1-10 students.
+    """
+    try:
+        raw_metadata = json.loads(metadata_json)
+    except json.JSONDecodeError as exc:
+        raise ValueError("Book metadata must be valid JSON.") from exc
+
+    if not isinstance(raw_metadata, list):
+        raise ValueError("Book metadata must be a list.")
+
+    if len(raw_metadata) != file_count:
+        raise ValueError("Book metadata count must match uploaded file count.")
+
+    metadata = [BulkBookMetadata(**item) for item in raw_metadata]
+
+    for index, item in enumerate(metadata, start=1):
+        if not item.grade.strip():
+            raise ValueError(f"Book {index} is missing a grade.")
+        if not item.subject.strip():
+            raise ValueError(f"Book {index} is missing a subject.")
+        if not item.title.strip():
+            raise ValueError(f"Book {index} is missing a title.")
+
+    return metadata
+
+
+def parse_book_section_titles(section_titles: str, files: list[UploadFile]) -> list[str]:
+    """
+    Resolve one TOC/chapter label per uploaded book-section file.
+
+    Admins can paste one title per line. If they leave the field blank, readable
+    file names are used so a multi-file book can still be indexed safely.
+    """
+    titles = [
+        title.strip()
+        for title in section_titles.replace(",", "\n").splitlines()
+        if title.strip()
+    ]
+
+    if titles and len(titles) != len(files):
+        raise ValueError("Section title count must match uploaded file count.")
+
+    if titles:
+        return titles
+
+    return [
+        Path(file.filename or f"Section {index + 1}").stem
+        .replace("_", " ")
+        .replace("-", " ")
+        .strip()
+        or f"Section {index + 1}"
+        for index, file in enumerate(files)
+    ]
+
+
+def readable_title_from_filename(filename: str, index: int) -> str:
+    """Convert a raw file name into a readable fallback section title."""
+    return (
+        Path(filename or f"Section {index + 1}").stem
+        .replace("_", " ")
+        .replace("-", " ")
+        .strip()
+        or f"Section {index + 1}"
+    )
+
+
+def infer_book_section_title(filename: str, extracted_text: str, index: int) -> str:
+    """
+    Suggest a TOC/chapter label from extracted file text before RAG upload.
+
+    The heuristic intentionally stays simple and predictable: it detects table
+    of contents pages and common chapter-heading lines, then falls back to the
+    original file name for admin review.
+    """
+    fallback = readable_title_from_filename(filename, index)
+    lines = [
+        line.strip(" \t:-–—")
+        for line in (extracted_text or "").splitlines()
+        if line.strip()
+    ]
+
+    for line in lines[:12]:
+        lower_line = line.lower()
+        if "contents" in lower_line or "table of contents" in lower_line:
+            return "Table of Contents"
+
+    for line in lines[:24]:
+        words = line.split()
+        lower_line = line.lower()
+        title_before_chapter = re.match(
+            r"^(.{4,90}?)\s+chapter\s+(\d{1,2})\b",
+            line,
+            flags=re.IGNORECASE,
+        )
+        if title_before_chapter:
+            title = title_before_chapter.group(1).strip(" :-–—")
+            chapter_number = title_before_chapter.group(2)
+            return f"Chapter {chapter_number}: {title}"
+
+        chapter_with_title = re.match(
+            r"^chapter\s+(\d{1,2})\s*[:.-]?\s+(.{4,90})",
+            line,
+            flags=re.IGNORECASE,
+        )
+        if chapter_with_title:
+            chapter_number = chapter_with_title.group(1)
+            title = chapter_with_title.group(2).strip(" :-–—")
+            return f"Chapter {chapter_number}: {title}"
+
+        if lower_line.startswith("chapter") and len(words) <= 14:
+            return line
+        if lower_line.startswith("unit") and len(words) <= 14:
+            return line
+
+    return fallback
+
+
+def is_weak_section_title(title: str, filename: str) -> bool:
+    """Identify labels that need AI help before admin confirmation."""
+    normalized_title = (title or "").strip().lower()
+    filename_title = readable_title_from_filename(filename, 0).strip().lower()
+
+    return (
+        not normalized_title
+        or normalized_title == "chapter"
+        or normalized_title == filename_title
+        or bool(re.fullmatch(r"[a-z]{2,}\d+", normalized_title))
+    )
+
+
+def parse_ai_section_labels(raw_response: str) -> list[dict]:
+    """Parse AI-suggested section labels from JSON, tolerating code fences."""
+    cleaned = raw_response.strip()
+
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?", "", cleaned).strip()
+        cleaned = re.sub(r"```$", "", cleaned).strip()
+
+    parsed = json.loads(cleaned)
+
+    if isinstance(parsed, dict):
+        return parsed.get("sections", [])
+
+    if isinstance(parsed, list):
+        return parsed
+
+    return []
+
+
+def improve_book_section_labels_with_ai(sections: list[dict]) -> list[dict]:
+    """
+    Use a lightweight AI pass when local chapter-label heuristics are weak.
+
+    The AI receives only short previews and returns one label per filename; the
+    admin still reviews and confirms before anything is stored in RAG.
+    """
+    weak_sections = [
+        section for section in sections
+        if is_weak_section_title(
+            section.get("suggested_title", ""),
+            section.get("filename", ""),
+        )
+    ]
+
+    if not weak_sections:
+        return sections
+
+    section_payload = [
+        {
+            "filename": section.get("filename", ""),
+            "current_label": section.get("suggested_title", ""),
+            "preview": section.get("preview", "")[:700],
+        }
+        for section in sections
+    ]
+
+    system_prompt = """
+You label school textbook PDF files before RAG upload.
+Return only valid JSON. Do not explain.
+"""
+
+    user_prompt = f"""
+For each file, infer the clearest chapter/section label from filename and preview.
+
+Rules:
+- Prefer format "Chapter N: Title" when a chapter number is visible.
+- Use "Table of Contents" for contents pages.
+- Do not return raw filenames like iesc101.
+- Keep labels short and readable for an admin to confirm.
+- Return exactly this JSON shape:
+{{"sections":[{{"filename":"","suggested_title":""}}]}}
+
+Files:
+{json.dumps(section_payload, ensure_ascii=False)}
+"""
+
+    try:
+        ai_response = ask_llm(
+            system_prompt=system_prompt,
+            user_prompt=user_prompt,
+            username="admin",
+            feature="rag_book_label_analysis",
+        )
+        ai_sections = parse_ai_section_labels(ai_response)
+        ai_title_by_filename = {
+            item.get("filename"): item.get("suggested_title", "").strip()
+            for item in ai_sections
+            if isinstance(item, dict)
+        }
+    except Exception:
+        return sections
+
+    improved_sections = []
+
+    for section in sections:
+        ai_title = ai_title_by_filename.get(section.get("filename", ""))
+        if ai_title:
+            section = {
+                **section,
+                "suggested_title": ai_title,
+            }
+        improved_sections.append(section)
+
+    return improved_sections
+
+
+@router.post("/analyze-book-set")
+async def analyze_book_set(
+    files: list[UploadFile] = File(...),
+):
+    """
+    Extract text and suggest editable TOC/chapter labels before RAG upload.
+
+    Nothing is persisted here. The admin reviews the suggestions and the final
+    upload still happens through /book-set-upload.
+    """
+    try:
+        if len(files) > 20:
+            return {
+                "success": False,
+                "message": "You can analyze a maximum of 20 book files at once.",
+                "sections": [],
+            }
+
+        sections = []
+
+        for index, file in enumerate(files, start=1):
+            try:
+                file_bytes = await file.read()
+                extracted_text = extract_text_from_uploaded_file(
+                    filename=file.filename,
+                    file_bytes=file_bytes,
+                )
+                word_count = len(extracted_text.split())
+
+                sections.append({
+                    "filename": file.filename,
+                    "suggested_title": infer_book_section_title(
+                        file.filename,
+                        extracted_text,
+                        index,
+                    ),
+                    "word_count": word_count,
+                    "preview": extracted_text[:500],
+                    "warnings": (
+                        ["Low text detected. Review scan quality before upload."]
+                        if word_count < 12
+                        else []
+                    ),
+                })
+
+            except Exception as file_error:
+                sections.append({
+                    "filename": file.filename,
+                    "suggested_title": readable_title_from_filename(
+                        file.filename,
+                        index,
+                    ),
+                    "word_count": 0,
+                    "preview": "",
+                    "warnings": [f"Analysis failed: {str(file_error)}"],
+                })
+
+        sections = improve_book_section_labels_with_ai(sections)
+
+        return {
+            "success": True,
+            "message": "Book files analyzed. Review suggested labels before upload.",
+            "sections": sections,
+        }
+
+    except Exception as exc:
+        return {
+            "success": False,
+            "message": f"Book set analysis failed: {str(exc)}",
+            "sections": [],
+        }
+
+
 @router.post("/analyze-sof-images")
 async def analyze_sof_images(
     grade: str = Form("Grade 9"),
@@ -365,13 +678,21 @@ async def analyze_sof_images(
             }
 
         pages = []
+        file_warnings = []
 
         for file in files:
-            file_bytes = await file.read()
-            extracted_pages = extract_pages_from_uploaded_file(
-                filename=file.filename,
-                file_bytes=file_bytes,
-            )
+            try:
+                file_bytes = await file.read()
+                extracted_pages = extract_pages_from_uploaded_file(
+                    filename=file.filename,
+                    file_bytes=file_bytes,
+                )
+            except Exception as file_error:
+                file_warnings.append({
+                    "filename": file.filename,
+                    "message": f"Could not extract text: {str(file_error)}",
+                })
+                continue
 
             if len(pages) + len(extracted_pages) > 60:
                 return {
@@ -379,6 +700,7 @@ async def analyze_sof_images(
                     "message": "You can analyze a maximum of 60 extracted pages at once.",
                     "pages": pages,
                     "groups": [],
+                    "file_warnings": file_warnings,
                 }
 
             for extracted_page in extracted_pages:
@@ -392,6 +714,15 @@ async def analyze_sof_images(
                     "warnings": extracted_page["warnings"],
                 })
 
+        if not pages:
+            return {
+                "success": False,
+                "message": "No readable text could be extracted from the selected SOF files.",
+                "pages": [],
+                "groups": [],
+                "file_warnings": file_warnings,
+            }
+
         combined_ocr = "\n\n".join(
             [
                 (
@@ -404,7 +735,7 @@ async def analyze_sof_images(
             ]
         )
 
-        canonical_toc = build_sof_catalog_prompt()
+        canonical_toc = build_sof_catalog_prompt(grade)
 
         system_prompt = """
 You are an educational OCR organizer for SOF Olympiad books.
@@ -424,8 +755,10 @@ For SOF content, subject must be exactly one of:
 
 Never return Science, Maths, or English for SOF content.
 
-Use the canonical TOC chapter names exactly. If OCR shows ISO, IMO, or IEO,
-map it to the matching SOF subject and model paper title.
+Use canonical TOC chapter names when a canonical chapter is provided. For
+uploaded Class 1-10 books without a canonical TOC, preserve the clearest chapter
+or section title visible in OCR. If OCR shows ISO, IMO, or IEO, map it to the
+matching SOF subject and model paper title.
 """
 
         user_prompt = f"""
@@ -452,7 +785,7 @@ Rules:
 - If a page is table of contents, use it to identify the subject/book but do not create RAG content unless useful.
 - If uncertain, still create the best possible group with confidence "Low".
 - subject must exactly match one canonical SOF subject.
-- chapter must exactly match one canonical chapter or model test paper title.
+- chapter should match a canonical chapter when available; otherwise preserve the clearest OCR chapter or section title.
 - title should clearly identify the SOF subject, chapter, and whether the content is chapter content, exercise, or model test paper.
 - combined_text must include the useful learning content from the matching pages.
 
@@ -473,7 +806,17 @@ OCR PAGES:
         try:
             parsed = json.loads(ai_response)
             raw_groups = parsed.get("groups", [])
-        except Exception:
+        except Exception as parse_error:
+            return {
+                "success": False,
+                "message": f"SOF organizer returned invalid JSON: {str(parse_error)}",
+                "pages": pages,
+                "groups": [],
+                "raw_ai_response": ai_response,
+                "file_warnings": file_warnings,
+            }
+
+        if not isinstance(raw_groups, list):
             raw_groups = []
 
         groups = []
@@ -493,6 +836,12 @@ OCR PAGES:
             "pages": pages,
             "groups": groups,
             "raw_ai_response": ai_response,
+            "file_warnings": file_warnings,
+            "message": (
+                "SOF files analyzed with warnings."
+                if file_warnings
+                else "SOF files analyzed successfully."
+            ),
         }
 
     except Exception as e:
@@ -501,6 +850,214 @@ OCR PAGES:
             "message": f"SOF image analysis failed: {str(e)}",
             "pages": [],
             "groups": [],
+            "file_warnings": [],
+        }
+
+
+@router.post("/bulk-book-upload")
+async def bulk_book_upload(
+    username: str = Form(...),
+    metadata_json: str = Form(...),
+    files: list[UploadFile] = File(...),
+):
+    """
+    Upload Class 1-10 CBSE books with per-file grade and subject metadata.
+
+    This endpoint is for full subject books or large book PDFs. The content is
+    stored under the stable "Uploaded Book Content" chapter unless the admin
+    supplies a more specific chapter label in the metadata.
+    """
+    try:
+        if len(files) > 20:
+            return {
+                "success": False,
+                "message": "You can upload a maximum of 20 books at once.",
+                "results": [],
+            }
+
+        metadata = parse_bulk_book_metadata(metadata_json, len(files))
+        upload_results = []
+
+        for index, file in enumerate(files):
+            item = metadata[index]
+
+            try:
+                file_bytes = await file.read()
+                extracted_text = extract_text_from_uploaded_file(
+                    filename=file.filename,
+                    file_bytes=file_bytes,
+                )
+
+                result = upload_textbook_text(
+                    username=username,
+                    grade=item.grade.strip(),
+                    subject=item.subject.strip(),
+                    chapter=(item.chapter or "Uploaded Book Content").strip(),
+                    title=item.title.strip(),
+                    text=extracted_text,
+                )
+
+                upload_results.append({
+                    "filename": file.filename,
+                    "grade": item.grade,
+                    "subject": item.subject,
+                    "chapter": item.chapter,
+                    "title": item.title,
+                    "success": result.get("success", False),
+                    "message": result.get("message", ""),
+                    "document_id": result.get("document_id"),
+                    "chunks_created": result.get("chunks_created", 0),
+                })
+
+            except Exception as file_error:
+                upload_results.append({
+                    "filename": file.filename,
+                    "grade": item.grade,
+                    "subject": item.subject,
+                    "chapter": item.chapter,
+                    "title": item.title,
+                    "success": False,
+                    "message": f"Upload failed: {str(file_error)}",
+                    "document_id": None,
+                    "chunks_created": 0,
+                })
+
+        successful = [
+            item for item in upload_results
+            if item["success"]
+        ]
+
+        return {
+            "success": len(successful) > 0,
+            "message": f"{len(successful)} of {len(files)} books uploaded successfully.",
+            "results": upload_results,
+        }
+
+    except ValueError as exc:
+        return {
+            "success": False,
+            "message": str(exc),
+            "results": [],
+        }
+
+    except Exception as exc:
+        return {
+            "success": False,
+            "message": f"Bulk book upload failed: {str(exc)}",
+            "results": [],
+        }
+
+
+@router.post("/book-set-upload")
+async def book_set_upload(
+    username: str = Form(...),
+    grade: str = Form(...),
+    subject: str = Form(...),
+    book_title: str = Form(...),
+    section_titles: str = Form(""),
+    files: list[UploadFile] = File(...),
+):
+    """
+    Upload one book that is split across multiple TOC/chapter files.
+
+    Each file becomes a separate RAG document under the same grade, subject, and
+    book title prefix, while the chapter field stores the section title. This
+    keeps retrieval chapter-aware without needing a new database table.
+    """
+    try:
+        if len(files) > 20:
+            return {
+                "success": False,
+                "message": "You can upload a maximum of 20 book files at once.",
+                "results": [],
+            }
+
+        clean_book_title = book_title.strip()
+        if not clean_book_title:
+            return {
+                "success": False,
+                "message": "Book title is required.",
+                "results": [],
+            }
+
+        if not grade.strip() or not subject.strip():
+            return {
+                "success": False,
+                "message": "Grade and subject are required.",
+                "results": [],
+            }
+
+        resolved_titles = parse_book_section_titles(section_titles, files)
+        upload_results = []
+
+        for index, file in enumerate(files):
+            section_title = resolved_titles[index]
+            document_title = f"{clean_book_title} - {section_title}"
+
+            try:
+                file_bytes = await file.read()
+                extracted_text = extract_text_from_uploaded_file(
+                    filename=file.filename,
+                    file_bytes=file_bytes,
+                )
+
+                result = upload_textbook_text(
+                    username=username,
+                    grade=grade.strip(),
+                    subject=subject.strip(),
+                    chapter=section_title,
+                    title=document_title,
+                    text=extracted_text,
+                )
+
+                upload_results.append({
+                    "filename": file.filename,
+                    "grade": grade,
+                    "subject": subject,
+                    "chapter": section_title,
+                    "title": document_title,
+                    "success": result.get("success", False),
+                    "message": result.get("message", ""),
+                    "document_id": result.get("document_id"),
+                    "chunks_created": result.get("chunks_created", 0),
+                })
+
+            except Exception as file_error:
+                upload_results.append({
+                    "filename": file.filename,
+                    "grade": grade,
+                    "subject": subject,
+                    "chapter": section_title,
+                    "title": document_title,
+                    "success": False,
+                    "message": f"Upload failed: {str(file_error)}",
+                    "document_id": None,
+                    "chunks_created": 0,
+                })
+
+        successful = [
+            item for item in upload_results
+            if item["success"]
+        ]
+
+        return {
+            "success": len(successful) > 0,
+            "message": f"{len(successful)} of {len(files)} book files uploaded successfully.",
+            "results": upload_results,
+        }
+
+    except ValueError as exc:
+        return {
+            "success": False,
+            "message": str(exc),
+            "results": [],
+        }
+
+    except Exception as exc:
+        return {
+            "success": False,
+            "message": f"Book set upload failed: {str(exc)}",
+            "results": [],
         }
 
 

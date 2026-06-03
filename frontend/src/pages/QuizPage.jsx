@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { getSyllabus } from "../api/syllabus";
 import { generateQuiz } from "../api/quiz";
 import { logStudentActivity } from "../api/profile";
+import {
+  getDefaultSelection,
+  getUserGrade,
+  getVisibleGrades,
+} from "../utils/syllabusDefaults";
 
-function QuizPage() {
+function QuizPage({ user }) {
   /** Legacy quiz page for generating and checking short practice quizzes. */
   function getQuizEncouragement(scorePercent) {
     /** Choose feedback copy based on the student's quiz score percentage. */
@@ -47,14 +52,12 @@ function QuizPage() {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        const defaultGrade = "Grade 9";
-        const defaultMode = "CBSE";
-        const defaultSubject = Object.keys(
-          data.syllabus[defaultGrade][defaultMode]
-        )[0];
-
-        const defaultChapter =
-          data.syllabus[defaultGrade][defaultMode][defaultSubject][0];
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+          subject: defaultSubject,
+          chapter: defaultChapter,
+        } = getDefaultSelection(data.syllabus, getUserGrade(user));
 
         setGrade(defaultGrade);
         setMode(defaultMode);
@@ -73,7 +76,7 @@ function QuizPage() {
   if (loading) return <p>Loading quiz page...</p>;
   if (error) return <p className="error">{error}</p>;
 
-  const grades = Object.keys(syllabusData);
+  const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];

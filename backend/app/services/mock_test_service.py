@@ -11,7 +11,7 @@ from app.services.sof_catalog_service import (
 
 
 MOCK_TEST_SYSTEM = """
-You create original Grade 9 mock tests.
+You create original CBSE and SOF mock tests for the grade requested by the user.
 
 Return ONLY valid JSON. No markdown.
 
@@ -226,8 +226,8 @@ def generate_olympiad_mock_test(
     inspired by uploaded SOF content so the test stays aligned with the workbook.
     """
     if olympiad == "Science Olympiad":
-        pattern = """
-Create a Class 9 SOF Science Olympiad style mock test.
+        pattern = f"""
+Create a {grade} SOF Science Olympiad style mock test.
 
 Pattern:
 - Logical Reasoning: about 20%
@@ -238,8 +238,8 @@ Include Physics, Chemistry, Biology, reasoning, application and HOTS.
 """
 
     elif olympiad == "Maths Olympiad":
-        pattern = """
-Create a Class 9 SOF Maths Olympiad style mock test.
+        pattern = f"""
+Create a {grade} SOF Maths Olympiad style mock test.
 
 Pattern:
 - Logical Reasoning: about 20%
@@ -251,8 +251,8 @@ Include number systems, algebra, geometry, mensuration, statistics, probability,
 """
 
     elif olympiad == "English Olympiad":
-        pattern = """
-Create a Class 9 SOF English Olympiad style mock test.
+        pattern = f"""
+Create a {grade} SOF English Olympiad style mock test.
 
 Pattern:
 - Word and Structure Knowledge
@@ -264,8 +264,8 @@ Include vocabulary, grammar, sentence correction, comprehension, inference, para
 """
 
     else:
-        pattern = """
-Create a Class 9 SOF Olympiad style mock test.
+        pattern = f"""
+Create a {grade} SOF Olympiad style mock test.
 """
 
     rag_context = get_sof_rag_context(
@@ -300,7 +300,7 @@ Rules:
 - Do not copy exact questions from the RAG context.
 - Create fresh original questions inspired by the uploaded SOF material.
 - Use the generation variation seed to make this test different from other tests generated today.
-- Keep questions suitable for Grade 9.
+- Keep questions suitable for {grade}.
 - Every question must have 4 options.
 - Every answer must be one of A, B, C or D.
 - Explanations must first use the uploaded RAG concept that supports the answer.
@@ -407,6 +407,7 @@ def calculate_score(questions, user_answers):
 
 
 def generate_cbse_mock_test(
+    grade,
     subject,
     chapter,
     exam_type="Class Test",
@@ -420,8 +421,9 @@ def generate_cbse_mock_test(
     standard CBSE/NCERT style instructions directly in the prompt.
     """
     prompt = f"""
-Create a CBSE Grade 9 mock test.
+Create a CBSE {grade} mock test.
 
+Grade: {grade}
 Subject: {subject}
 Chapter: {chapter}
 Exam Type: {exam_type}

@@ -24,8 +24,9 @@ function LoginPage({ onLogin }) {
       id: authUser.id,
       email: authUser.email,
       username: profile.username || authUser.email,
-      role: profile.role,
-      parentId: profile.parent_id,
+	      role: profile.role,
+	      grade: profile.grade || "Grade 9",
+	      parentId: profile.parent_id,
       familyId: profile.family_id,
 
       accessToken,
@@ -89,22 +90,7 @@ function LoginPage({ onLogin }) {
 
       const { data: profile, error: profileError } = await supabase
         .from("profiles")
-        .select(`
-          id,
-          email,
-          username,
-          role,
-          parent_id,
-          family_id,
-          access_cbse,
-          access_sof_science,
-          access_sof_maths,
-          access_sof_english,
-          daily_token_limit,
-          monthly_token_limit,
-          subscription_plan,
-          account_status
-        `)
+	        .select("*")
         .eq("id", data.user.id)
         .single();
 

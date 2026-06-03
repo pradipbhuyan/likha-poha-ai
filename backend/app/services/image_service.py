@@ -134,7 +134,7 @@ def generate_educational_image(prompt: str, username: str = "unknown"):
         }
 
     educational_prompt = f"""
-Create ONE clean conceptual educational illustration for a Grade 9 CBSE student.
+	Create ONE clean conceptual educational illustration for the grade and topic requested by the user.
 
 Topic:
 {prompt}

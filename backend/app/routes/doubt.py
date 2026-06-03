@@ -35,15 +35,39 @@ def get_profile_by_user_id(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select(
-            "id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english, account_status"
-        )
+        .select("*")
         .eq("id", user_id)
         .single()
         .execute()
     )
 
     return response.data
+
+
+def normalize_grade(value: str | None):
+    """Normalize stored/requested grade values to the app's Grade N label."""
+    text = str(value or "Grade 9").strip()
+    digits = "".join(char for char in text if char.isdigit())
+
+    if digits:
+        return f"Grade {int(digits)}"
+
+    return text
+
+
+def enforce_profile_grade(profile: dict, requested_grade: str):
+    """Prevent students from asking doubts outside their onboarded grade."""
+    if not profile or profile.get("role") in ["admin", "parent"]:
+        return
+
+    profile_grade = normalize_grade(profile.get("grade"))
+    request_grade = normalize_grade(requested_grade)
+
+    if profile_grade != request_grade:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_grade}.",
+        )
 
 
 def normalize_subject(subject: str):
@@ -136,6 +160,7 @@ def answer_student_doubt(
 
     # Access checks happen before token/LLM work so unauthorized SOF subjects do
     # not consume paid AI resources.
+    enforce_profile_grade(profile, data.grade)
     enforce_learning_access(profile, data.mode, data.subject)
     enforce_ai_token_limit(canonical_username)
 

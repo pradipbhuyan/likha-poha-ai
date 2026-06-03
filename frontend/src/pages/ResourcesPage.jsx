@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 
 import { getSyllabus } from "../api/syllabus";
 import { getResources } from "../api/resources";
+import {
+  getDefaultSelection,
+  getUserGrade,
+  getVisibleGrades,
+} from "../utils/syllabusDefaults";
 
-function ResourcesPage() {
+function ResourcesPage({ user }) {
   /** Lets students browse external learning resources for a selected syllabus topic. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
@@ -24,14 +29,12 @@ function ResourcesPage() {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        const defaultGrade = "Grade 9";
-        const defaultMode = "CBSE";
-        const defaultSubject = Object.keys(
-          data.syllabus[defaultGrade][defaultMode]
-        )[0];
-
-        const defaultChapter =
-          data.syllabus[defaultGrade][defaultMode][defaultSubject][0];
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+          subject: defaultSubject,
+          chapter: defaultChapter,
+        } = getDefaultSelection(data.syllabus, getUserGrade(user));
 
         setGrade(defaultGrade);
         setMode(defaultMode);
@@ -56,7 +59,7 @@ function ResourcesPage() {
       setError("");
 
       try {
-        const result = await getResources(subject, chapter);
+        const result = await getResources(subject, chapter, grade);
         setResources(result.resources || []);
       } catch {
         setError("Could not load learning resources.");
@@ -66,12 +69,12 @@ function ResourcesPage() {
     }
 
     loadResources();
-  }, [subject, chapter]);
+  }, [grade, subject, chapter]);
 
   if (loading) return <p>Loading resources page...</p>;
   if (error) return <p className="error">{error}</p>;
 
-  const grades = Object.keys(syllabusData);
+  const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];

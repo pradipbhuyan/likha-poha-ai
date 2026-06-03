@@ -22,6 +22,7 @@ def test_generate_cbse_mock_test_api_with_mocked_service(monkeypatch):
     """
 
     def fake_generate_cbse_mock_test(
+        grade,
         subject,
         chapter,
         exam_type,
@@ -158,6 +159,7 @@ def test_generate_mock_test_response_has_valid_data_types(monkeypatch):
     """
 
     def fake_generate_cbse_mock_test(
+        grade,
         subject,
         chapter,
         exam_type,

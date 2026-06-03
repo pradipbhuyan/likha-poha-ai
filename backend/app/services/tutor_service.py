@@ -13,10 +13,10 @@ from app.services.curriculum_service import (
 )
 
 TUTOR_SYSTEM = """
-You are a patient Grade 9 CBSE and SOF Olympiad tutor.
+	You are a patient CBSE and SOF Olympiad tutor for Class 1 to Class 10 students.
 
-Teach only the requested sub-topic.
-Do not give the full chapter at once.
+	Teach only the requested sub-topic.
+	Do not give the full chapter at once.
 
 Use this structure:
 1. What you will learn
@@ -27,7 +27,7 @@ Use this structure:
 6. Quick check question
 7. Summary
 
-Use simple language for a 14-15 year old student.
+	Use language, examples, and depth suitable for the grade provided in the user prompt.
 
 DEPTH REQUIREMENTS:
 - Teach concepts thoroughly, not superficially.
@@ -109,7 +109,7 @@ MATH RULES:
 $$
 v = u + at
 $$
-"""
+	"""
 
 
 DIAGRAM_HINT = """
@@ -243,7 +243,7 @@ def generate_step_lesson(
     source metadata lets the frontend show whether textbook content was used.
     """
     rag_query = f"""
-    Grade 9 {subject} {chapter}
+    {grade} {subject} {chapter}
     Current lesson step: {step_title}
     Find textbook explanation, definitions, examples, formulas, important points.
     """
@@ -311,9 +311,11 @@ Textbook coverage rules:
 - Explain how each idea connects to the next.
 - Do not skip important subtopics from the retrieved textbook context.
 
-Depth instructions:
-- Teach this topic in strong conceptual depth.
-- Include conceptual intuition and scientific reasoning.
+	Depth instructions:
+	- Teach this topic at the right depth for {grade}.
+	- Use simpler words, concrete examples, and shorter steps for Classes 1-5.
+	- Use stronger conceptual reasoning and exam framing for Classes 6-10.
+	- Include conceptual intuition and scientific reasoning when age-appropriate.
 - Explain WHY concepts work.
 - Include misconception correction.
 - Include exam framing where relevant.
@@ -443,7 +445,7 @@ IMPORTANT:
 Relevant textbook/RAG context:
 {textbook_context if textbook_context else "No uploaded textbook context found."}
 
-Explain clearly for a Grade 9 student.
+	Explain clearly for a {grade} student.
 
 Use uploaded textbook/RAG context when available.
 If RAG context is available, align the answer with it.
@@ -572,7 +574,7 @@ Student follow-up question: {question}
     ) if rag_results else ""
 
     prompt = f"""
-You are helping a Grade 9 student understand a lesson.
+	You are helping a {grade} student understand a lesson.
 
 Grade: {grade}
 Mode: {mode}
@@ -594,7 +596,7 @@ Answer the follow-up question clearly and briefly.
 Rules:
 - Use the lesson content as context.
 - Use RAG textbook context when available.
-- Explain like a friendly tutor.
+	- Explain like a friendly tutor using age-appropriate language for {grade}.
 - Use bullets if helpful.
 - Do not repeat the full lesson.
 - If the answer benefits from a visual, include one Mermaid diagram.

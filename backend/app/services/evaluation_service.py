@@ -4,7 +4,7 @@ from app.services.openai_service import ask_llm
 
 
 EVALUATOR_SYSTEM = """
-You are an expert Grade 9 CBSE examiner and teacher.
+You are an expert CBSE examiner and teacher for Class 1 to Class 10 students.
 
 Your role:
 - Evaluate student-written answers.
@@ -50,6 +50,7 @@ Anti-copy rule:
 
 
 def evaluate_student_answer(
+    grade: str,
     question: str,
     student_answer: str,
     ideal_context: str,
@@ -62,8 +63,8 @@ def evaluate_student_answer(
     the lesson page can decide whether to unlock continuation.
     """
     prompt = f"""
-Question:
-{question}
+	Question:
+	{question}
 
 Student answer:
 {student_answer}
@@ -71,10 +72,12 @@ Student answer:
 Reference lesson/context:
 {ideal_context}
 
-Evaluate the student's answer carefully.
+	Evaluate the student's answer carefully.
 
-Important:
-- Focus on conceptual understanding.
+	Important:
+- Evaluate at the expected level for {grade}.
+- Use simpler expectations for Classes 1-5 and stronger exam expectations for Classes 6-10.
+	- Focus on conceptual understanding.
 - Reward partial understanding.
 - Correct misconceptions clearly.
 - Keep tone encouraging.
@@ -104,6 +107,7 @@ Important:
     }
     
 def generate_practice_questions(
+    grade: str,
     lesson: str,
     chapter: str,
     step_title: str,
@@ -116,7 +120,7 @@ def generate_practice_questions(
     frontend practice workflow.
     """
     prompt = f"""
-Create exactly 2 written-answer practice questions for a Grade 9 student.
+	Create exactly 2 written-answer practice questions for a {grade} student.
 
 Chapter:
 {chapter}
@@ -127,8 +131,9 @@ Lesson step:
 Lesson content:
 {lesson}
 
-Rules:
-- Questions must require written explanation, not MCQ.
+	Rules:
+- Keep wording and difficulty suitable for {grade}.
+	- Questions must require written explanation, not MCQ.
 - Questions should test understanding, not copying.
 - One question should be concept-based.
 - One question should be application/reasoning-based.

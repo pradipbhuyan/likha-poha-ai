@@ -1,7 +1,7 @@
 from difflib import get_close_matches
 import re
 
-from app.data.syllabus import SOF_9
+from app.data.syllabus import SOF_9, SYLLABUS
 
 
 SOF_SUBJECT_CODES = {
@@ -61,6 +61,11 @@ def normalize_lookup_text(value):
 def get_sof_subjects():
     """Return canonical SOF subject names from the Grade 9 catalog."""
     return list(SOF_9.keys())
+
+
+def get_sof_catalog_for_grade(grade="Grade 9"):
+    """Return the SOF catalog for a grade, preserving the canonical Grade 9 TOC."""
+    return SYLLABUS.get(grade, {}).get("SOF") or SOF_9
 
 
 def canonical_sof_subject(value, text_hint=""):
@@ -209,20 +214,24 @@ def infer_sof_content_type(chapter, text):
     return "Chapter Content"
 
 
-def build_sof_document_title(subject, chapter, content_type):
+def build_sof_document_title(subject, chapter, content_type, grade="Grade 9"):
     """Build a stable document title for SOF RAG uploads."""
     if is_sof_exam_paper(chapter) or is_sof_support_section(chapter):
         return chapter
 
     subject_code = SOF_SUBJECT_CODES.get(subject, "SOF")
-    return f"SOF-{subject_code} Grade 9 - {chapter} - {content_type}"
+    return f"SOF-{subject_code} {grade} - {chapter} - {content_type}"
 
 
-def build_sof_catalog_prompt():
+def build_sof_catalog_prompt(grade="Grade 9"):
     """Create the canonical TOC prompt used by the OCR organizer."""
-    lines = ["Canonical Grade 9 SOF TOC. Use these exact subject and chapter names:"]
+    catalog = get_sof_catalog_for_grade(grade)
+    lines = [
+        f"SOF TOC for {grade}. Use these subject names exactly. "
+        "For non-canonical uploaded grades, preserve clear chapter titles from OCR."
+    ]
 
-    for subject, chapters in SOF_9.items():
+    for subject, chapters in catalog.items():
         lines.append(f"{subject}:")
         for index, chapter in enumerate(chapters, start=1):
             lines.append(f"{index}. {chapter}")
@@ -240,6 +249,7 @@ def normalize_sof_group(group, fallback_grade="Grade 9"):
     if not isinstance(group, dict):
         group = {}
 
+    grade = group.get("grade") or fallback_grade
     combined_text = str(group.get("combined_text") or "").strip()
     subject_hint = " ".join(
         [
@@ -254,9 +264,38 @@ def normalize_sof_group(group, fallback_grade="Grade 9"):
     if not subject:
         return {
             **group,
-            "grade": group.get("grade") or fallback_grade,
+            "grade": grade,
             "combined_text": combined_text,
             "normalization_warning": "Could not match SOF subject to canonical TOC.",
+        }
+
+    if grade != "Grade 9":
+        chapter = str(group.get("chapter") or group.get("title") or "").strip()
+
+        if not chapter:
+            return {
+                **group,
+                "grade": grade,
+                "subject": subject,
+                "combined_text": combined_text,
+                "normalization_warning": "Could not identify a chapter or section title.",
+            }
+
+        content_type = infer_sof_content_type(chapter, combined_text)
+
+        return {
+            **group,
+            "grade": grade,
+            "subject": subject,
+            "chapter": chapter,
+            "title": group.get("title") or build_sof_document_title(
+                subject,
+                chapter,
+                content_type,
+                grade=grade,
+            ),
+            "combined_text": combined_text,
+            "content_type": content_type,
         }
 
     chapter_hint = " ".join(
@@ -271,7 +310,7 @@ def normalize_sof_group(group, fallback_grade="Grade 9"):
     if not chapter:
         return {
             **group,
-            "grade": group.get("grade") or fallback_grade,
+            "grade": grade,
             "subject": subject,
             "combined_text": combined_text,
             "normalization_warning": "Could not match SOF chapter to canonical TOC.",
@@ -281,10 +320,10 @@ def normalize_sof_group(group, fallback_grade="Grade 9"):
 
     return {
         **group,
-        "grade": group.get("grade") or fallback_grade,
+        "grade": grade,
         "subject": subject,
         "chapter": chapter,
-        "title": build_sof_document_title(subject, chapter, content_type),
+        "title": build_sof_document_title(subject, chapter, content_type, grade=grade),
         "combined_text": combined_text,
         "content_type": content_type,
     }

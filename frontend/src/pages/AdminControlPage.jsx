@@ -12,6 +12,11 @@ import {
   SUBSCRIPTION_PLANS,
 } from "../config/subscriptionPlans";
 
+const STUDENT_GRADE_OPTIONS = Array.from(
+  { length: 10 },
+  (_, index) => `Grade ${index + 1}`
+);
+
 function AdminControlPage({ user }) {
   /** Admin operations page for managing families, access flags, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
@@ -79,6 +84,7 @@ function AdminControlPage({ user }) {
       email: "",
       password: "",
       username: "",
+      grade: "Grade 9",
     };
 
     try {
@@ -97,6 +103,7 @@ function AdminControlPage({ user }) {
           email: "",
           password: "",
           username: "",
+          grade: "Grade 9",
         },
       }));
 
@@ -123,6 +130,7 @@ function AdminControlPage({ user }) {
           access_sof_english: !!child.access_sof_english,
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
+          grade: child.grade || "Grade 9",
         },
         user.accessToken
       );
@@ -170,6 +178,7 @@ function AdminControlPage({ user }) {
           access_sof_english: !!child.access_sof_english,
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
+          grade: child.grade || "Grade 9",
         },
         user.accessToken
       );
@@ -450,6 +459,22 @@ function AdminControlPage({ user }) {
                       />
                     </label>
 
+                    <label>
+                      Class
+                      <select
+                        value={childForm.grade || "Grade 9"}
+                        onChange={(e) =>
+                          updateChildForm(parent.id, "grade", e.target.value)
+                        }
+                      >
+                        {STUDENT_GRADE_OPTIONS.map((gradeOption) => (
+                          <option key={gradeOption} value={gradeOption}>
+                            {gradeOption}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
                     <button className="secondary-btn" type="submit">
                       Create Child
                     </button>
@@ -468,7 +493,9 @@ function AdminControlPage({ user }) {
               style={{ marginBottom: 18 }}
             >
               <h3>{child.username}</h3>
-              <p>{child.email}</p>
+              <p>
+                {child.email} • {child.grade || "Grade 9"}
+              </p>
 
               {child.activity && (
                 <div
@@ -537,6 +564,27 @@ function AdminControlPage({ user }) {
               )}
 
               <div className="form-grid premium-rag-form-grid">
+                <label>
+                  Class
+                  <select
+                    value={child.grade || "Grade 9"}
+                    onChange={(e) =>
+                      updateLocalChild(
+                        family.family_id,
+                        child.id,
+                        "grade",
+                        e.target.value
+                      )
+                    }
+                  >
+                    {STUDENT_GRADE_OPTIONS.map((gradeOption) => (
+                      <option key={gradeOption} value={gradeOption}>
+                        {gradeOption}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
                 <label>
                   Plan
                   <select

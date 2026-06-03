@@ -140,6 +140,7 @@ class LessonFollowUpResponse(BaseModel):
 
 class AnswerEvaluationRequest(BaseModel):
     username: str
+    grade: str = "Grade 9"
     question: str
     student_answer: str
     ideal_context: str

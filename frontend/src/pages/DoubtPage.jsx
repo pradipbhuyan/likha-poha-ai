@@ -7,6 +7,11 @@ import rehypeKatex from "rehype-katex";
 import { getSyllabus } from "../api/syllabus";
 import { answerDoubt, extractDoubtImage } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
+import {
+  getDefaultSelection,
+  getUserGrade,
+  getVisibleGrades,
+} from "../utils/syllabusDefaults";
 
 const SOF_SUBJECT_ACCESS = {
   "Science Olympiad": "accessSofScience",
@@ -72,8 +77,13 @@ function DoubtPage({ user }) {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        setGrade("Grade 9");
-        setMode("CBSE");
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+
+        setGrade(defaultGrade);
+        setMode(defaultMode);
       } catch {
         setError("Could not load syllabus. Please refresh and try again.");
       } finally {
@@ -87,7 +97,7 @@ function DoubtPage({ user }) {
   if (loading) return <p>Loading doubt page...</p>;
   if (error && !answer) return <p className="error">{error}</p>;
 
-  const grades = Object.keys(syllabusData);
+  const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
 
   function hasModeAccess(selectedMode) {

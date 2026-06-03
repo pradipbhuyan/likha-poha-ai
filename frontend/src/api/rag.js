@@ -65,6 +65,88 @@ export async function uploadRagFilesBatch({
   return response.json();
 }
 
+export async function uploadBulkBooks({
+  username,
+  books,
+}) {
+  /** Upload Class 1-10 books with one metadata record per file. */
+  const formData = new FormData();
+  const metadata = books.map(({ file, ...book }) => book);
+
+  formData.append("username", username);
+  formData.append("metadata_json", JSON.stringify(metadata));
+
+  books.forEach((book) => {
+    formData.append("files", book.file);
+  });
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/bulk-book-upload`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Bulk book upload failed");
+  }
+
+  return response.json();
+}
+
+export async function uploadBookSet({
+  username,
+  grade,
+  subject,
+  bookTitle,
+  sectionTitles,
+  files,
+}) {
+  /** Upload one book that is split into TOC/chapter files. */
+  const formData = new FormData();
+
+  formData.append("username", username);
+  formData.append("grade", grade);
+  formData.append("subject", subject);
+  formData.append("book_title", bookTitle);
+  formData.append("section_titles", sectionTitles);
+
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/book-set-upload`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Book set upload failed");
+  }
+
+  return response.json();
+}
+
+export async function analyzeBookSetFiles({
+  files,
+}) {
+  /** Suggest TOC/chapter labels before uploading a multi-file book to RAG. */
+  const formData = new FormData();
+
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/analyze-book-set`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Book set analysis failed");
+  }
+
+  return response.json();
+}
+
 export async function getRagDocuments() {
   /** Load metadata for uploaded RAG documents. */
   const response = await fetch(`${API_BASE_URL}/api/rag/documents`);

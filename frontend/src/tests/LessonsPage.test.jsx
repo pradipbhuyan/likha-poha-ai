@@ -6,6 +6,11 @@ import LessonsPage from "../pages/LessonsPage";
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
     syllabus: {
+      "Grade 5": {
+        CBSE: {
+          Maths: ["Fractions"],
+        },
+      },
       "Grade 9": {
         CBSE: {
           Science: ["Tissues in Action"],
@@ -190,5 +195,30 @@ describe("LessonsPage", () => {
         name: /ask ai tutor/i,
       })
     ).toBeDisabled();
+  });
+
+  test("student only sees their onboarded grade in the grade dropdown", async () => {
+    /*
+     * This test protects grade-scoped onboarding behavior.
+     *
+     * A Grade 5 student should not see Grade 9 content in the lesson selector.
+     */
+
+    render(
+      <LessonsPage
+        user={{
+          role: "student",
+          username: "grade_five_student",
+          grade: "Grade 5",
+        }}
+      />
+    );
+
+    const gradeSelect = await screen.findByLabelText(/grade/i);
+
+    expect(gradeSelect).toHaveValue("Grade 5");
+    expect(
+      Array.from(gradeSelect.options).map((option) => option.value)
+    ).toEqual(["Grade 5"]);
   });
 });

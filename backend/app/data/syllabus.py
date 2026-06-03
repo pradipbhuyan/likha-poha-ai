@@ -297,9 +297,73 @@ LESSON_STEPS = {
         ]
     }
 }
+UPLOAD_READY_CBSE_SUBJECTS = {
+    "English": ["Uploaded Book Content"],
+    "Hindi": ["Uploaded Book Content"],
+    "Maths": ["Uploaded Book Content"],
+    "EVS": ["Uploaded Book Content"],
+    "Science": ["Uploaded Book Content"],
+    "Social Science": ["Uploaded Book Content"],
+    "Computer Science": ["Uploaded Book Content"],
+}
+
+
+UPPER_PRIMARY_CBSE_SUBJECTS = {
+    "English": ["Uploaded Book Content"],
+    "Hindi": ["Uploaded Book Content"],
+    "Maths": ["Uploaded Book Content"],
+    "Science": ["Uploaded Book Content"],
+    "Social Science": ["Uploaded Book Content"],
+    "Computer Science": ["Uploaded Book Content"],
+}
+
+
+GENERIC_SOF = {
+    "Science Olympiad": [
+        "Uploaded SOF Chapter Content",
+        "Uploaded SOF Exercises",
+        "Uploaded SOF Model Test Papers",
+        "Uploaded SOF Answer Keys and Explanations",
+    ],
+    "Maths Olympiad": [
+        "Uploaded SOF Chapter Content",
+        "Uploaded SOF Exercises",
+        "Uploaded SOF Model Test Papers",
+        "Uploaded SOF Answer Keys and Explanations",
+    ],
+    "English Olympiad": [
+        "Uploaded SOF Chapter Content",
+        "Uploaded SOF Exercises",
+        "Uploaded SOF Model Test Papers",
+        "Uploaded SOF Answer Keys and Explanations",
+    ],
+}
+
+
+def build_upload_ready_cbse_catalog(grade_number):
+    """
+    Return a CBSE scaffold for grades whose exact chapters will come from RAG.
+
+    The placeholders keep the product usable for bulk PDF upload before every
+    class-wise chapter list has been curated in code. The syllabus API also
+    merges uploaded RAG document metadata, so real chapters appear after upload.
+    """
+    if grade_number <= 5:
+        return UPLOAD_READY_CBSE_SUBJECTS
+
+    return UPPER_PRIMARY_CBSE_SUBJECTS
+
+
 SYLLABUS = {
+    **{
+        f"Grade {grade_number}": {
+            "CBSE": build_upload_ready_cbse_catalog(grade_number),
+            "SOF": GENERIC_SOF,
+        }
+        for grade_number in range(1, 11)
+    },
     "Grade 9": {
         "CBSE": CBSE_9,
-        "SOF": SOF_9
-    }
+        "SOF": SOF_9,
+    },
 }

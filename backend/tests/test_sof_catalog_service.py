@@ -152,3 +152,111 @@ def test_confirm_sof_upload_saves_canonical_metadata(monkeypatch):
     assert captured_upload["title"] == (
         "SOF-ISO Grade 9 - Cell – The Fundamental Unit of Life - Chapter Content"
     )
+
+
+def test_analyze_sof_images_keeps_good_files_when_one_file_fails(monkeypatch):
+    """
+    A bad SOF scan/PDF should not prevent other selected files from being
+    analyzed and grouped.
+    """
+
+    def fake_extract_pages_from_uploaded_file(filename, file_bytes):
+        if filename == "bad.pdf":
+            raise ValueError("Unreadable PDF")
+        return [
+            {
+                "page_number": 1,
+                "filename": filename,
+                "text": "Force and Laws of Motion chapter content with exercise questions.",
+                "word_count": 9,
+                "extraction_method": "pdf_text",
+                "warnings": [],
+            }
+        ]
+
+    def fake_ask_llm(*args, **kwargs):
+        return """
+        {
+          "groups": [
+            {
+              "grade": "Grade 9",
+              "subject": "Science Olympiad",
+              "chapter": "Force and Laws of Motion",
+              "title": "Force exercise",
+              "page_numbers": [1],
+              "confidence": "High",
+              "combined_text": "Force and Laws of Motion chapter content with exercise questions."
+            }
+          ]
+        }
+        """
+
+    monkeypatch.setattr(
+        rag,
+        "extract_pages_from_uploaded_file",
+        fake_extract_pages_from_uploaded_file,
+    )
+    monkeypatch.setattr(rag, "ask_llm", fake_ask_llm)
+
+    import asyncio
+
+    async def run_request():
+        from fastapi import UploadFile
+        from io import BytesIO
+
+        return await rag.analyze_sof_images(
+            grade="Grade 9",
+            files=[
+                UploadFile(filename="bad.pdf", file=BytesIO(b"bad")),
+                UploadFile(filename="good.pdf", file=BytesIO(b"good")),
+            ],
+        )
+
+    result = asyncio.run(run_request())
+
+    assert result["success"] is True
+    assert len(result["groups"]) == 1
+    assert result["file_warnings"][0]["filename"] == "bad.pdf"
+
+
+def test_analyze_sof_images_returns_raw_response_for_invalid_json(monkeypatch):
+    """
+    Invalid AI JSON should return the raw response so the admin can see what
+    failed instead of only seeing a generic frontend error.
+    """
+
+    def fake_extract_pages_from_uploaded_file(filename, file_bytes):
+        return [
+            {
+                "page_number": 1,
+                "filename": filename,
+                "text": "SOF ISO Cell chapter content.",
+                "word_count": 5,
+                "extraction_method": "image_ocr",
+                "warnings": [],
+            }
+        ]
+
+    monkeypatch.setattr(
+        rag,
+        "extract_pages_from_uploaded_file",
+        fake_extract_pages_from_uploaded_file,
+    )
+    monkeypatch.setattr(rag, "ask_llm", lambda *args, **kwargs: "not-json")
+
+    import asyncio
+
+    async def run_request():
+        from fastapi import UploadFile
+        from io import BytesIO
+
+        return await rag.analyze_sof_images(
+            grade="Grade 9",
+            files=[UploadFile(filename="sof.jpg", file=BytesIO(b"image"))],
+        )
+
+    result = asyncio.run(run_request())
+
+    assert result["success"] is False
+    assert "invalid JSON" in result["message"]
+    assert result["raw_ai_response"] == "not-json"

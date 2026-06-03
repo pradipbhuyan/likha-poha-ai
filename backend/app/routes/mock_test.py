@@ -25,15 +25,39 @@ def get_profile_by_user_id(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select(
-            "id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english, account_status"
-        )
+        .select("*")
         .eq("id", user_id)
         .single()
         .execute()
     )
 
     return response.data
+
+
+def normalize_grade(value: str | None):
+    """Normalize stored/requested grade values to the app's Grade N label."""
+    text = str(value or "Grade 9").strip()
+    digits = "".join(char for char in text if char.isdigit())
+
+    if digits:
+        return f"Grade {int(digits)}"
+
+    return text
+
+
+def enforce_profile_grade(profile: dict, requested_grade: str):
+    """Prevent students from generating mock tests outside their onboarded grade."""
+    if not profile or profile.get("role") in ["admin", "parent"]:
+        return
+
+    profile_grade = normalize_grade(profile.get("grade"))
+    request_grade = normalize_grade(requested_grade)
+
+    if profile_grade != request_grade:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_grade}.",
+        )
 
 
 def enforce_mock_access(profile: dict, mode: str, subject: str):
@@ -127,6 +151,7 @@ def generate_mock_test(
     """
     profile = get_profile_by_user_id(user.id)
 
+    enforce_profile_grade(profile, data.grade)
     enforce_mock_access(
         profile,
         data.mode,
@@ -148,6 +173,7 @@ def generate_mock_test(
 
         else:
             questions = generate_cbse_mock_test(
+                grade=data.grade,
                 subject=data.subject,
                 chapter=data.chapter,
                 exam_type=data.exam_type or "Class Test",

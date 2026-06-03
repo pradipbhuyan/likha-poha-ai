@@ -63,6 +63,7 @@ def test_evaluate_answer_response_has_valid_data_types(monkeypatch):
     import app.routes.evaluation as evaluation_route
 
     def fake_evaluate_student_answer(
+        grade,
         question,
         student_answer,
         ideal_context,

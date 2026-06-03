@@ -218,7 +218,7 @@ function App() {
             ☰
           </button>
           <div>
-            <p className="eyebrow">Grade 9 CBSE + SOF Olympiad</p>
+            <p className="eyebrow">Class 1-10 CBSE + SOF Olympiad</p>
             <h1>
               {(() => {
                 const PageIcon = PAGE_ICONS[activePage];

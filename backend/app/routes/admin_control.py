@@ -25,6 +25,7 @@ class CreateChildRequest(BaseModel):
     username: str
     parent_id: str
     family_id: str
+    grade: str = "Grade 9"
 
 
 class UpdateAccessRequest(BaseModel):
@@ -34,6 +35,7 @@ class UpdateAccessRequest(BaseModel):
     access_sof_english: bool
     subscription_plan: str = "free"
     account_status: str = "active"
+    grade: str = "Grade 9"
 
 
 class UpdateLimitsRequest(BaseModel):
@@ -429,6 +431,7 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "role": "student",
         "parent_id": data.parent_id,
         "family_id": data.family_id,
+        "grade": data.grade or "Grade 9",
         "account_status": "active",
         "subscription_plan": "free",
         "access_cbse": True,
@@ -469,6 +472,7 @@ def update_child_access(
             "access_sof_english": data.access_sof_english,
             "subscription_plan": data.subscription_plan,
             "account_status": data.account_status,
+            "grade": data.grade or "Grade 9",
         })
         .eq("id", child_id)
         .eq("role", "student")

@@ -3,6 +3,11 @@ import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
+import {
+  getDefaultSelection,
+  getUserGrade,
+  getVisibleGrades,
+} from "../utils/syllabusDefaults";
 
 function MockTestPage({ user }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
@@ -72,10 +77,15 @@ function MockTestPage({ user }) {
         const data = await getSyllabus();
         setSyllabusData(data.syllabus);
 
-        const defaultSubject = Object.keys(data.syllabus["Grade 9"]["CBSE"])[0];
-        const defaultChapter =
-          data.syllabus["Grade 9"]["CBSE"][defaultSubject][0];
+        const {
+          grade: defaultGrade,
+          mode: defaultMode,
+          subject: defaultSubject,
+          chapter: defaultChapter,
+        } = getDefaultSelection(data.syllabus, getUserGrade(user));
 
+        setGrade(defaultGrade);
+        setMode(defaultMode);
         setSubject(defaultSubject);
         setChapter(defaultChapter);
       } catch {
@@ -102,7 +112,7 @@ function MockTestPage({ user }) {
     return <p>Loading mock test setup...</p>;
   }
 
-  const grades = Object.keys(syllabusData);
+  const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
   
   function getAllowedSubjects(allSubjects, selectedMode) {
