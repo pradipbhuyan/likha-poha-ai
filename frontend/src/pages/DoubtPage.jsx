@@ -5,7 +5,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
-import { answerDoubt } from "../api/doubt";
+import { answerDoubt, extractDoubtImage } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
 
 const SOF_SUBJECT_ACCESS = {
@@ -13,6 +13,29 @@ const SOF_SUBJECT_ACCESS = {
   "Maths Olympiad": "accessSofMaths",
   "English Olympiad": "accessSofEnglish",
 };
+
+const ANSWER_STYLE_OPTIONS = [
+  {
+    key: "simple",
+    label: "Explain simply",
+    instruction: "Explain this in simple language first.",
+  },
+  {
+    key: "example",
+    label: "Give example",
+    instruction: "Include one clear example.",
+  },
+  {
+    key: "steps",
+    label: "Step by step",
+    instruction: "Show the answer step by step.",
+  },
+  {
+    key: "practice",
+    label: "Create practice question",
+    instruction: "End with one similar practice question.",
+  },
+];
 
 function DoubtPage({ user }) {
   const [loading, setLoading] = useState(true);
@@ -22,6 +45,8 @@ function DoubtPage({ user }) {
   const [grade, setGrade] = useState("Grade 9");
   const [mode, setMode] = useState("CBSE");
   const [subject, setSubject] = useState("");
+  const [chapter, setChapter] = useState("");
+  const [answerStyle, setAnswerStyle] = useState("simple");
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -33,6 +58,11 @@ function DoubtPage({ user }) {
   const [followUpAnswers, setFollowUpAnswers] = useState({});
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState("");
+  const [attachedImage, setAttachedImage] = useState(null);
+  const [extractedImageText, setExtractedImageText] = useState("");
+  const [extractingImage, setExtractingImage] = useState(false);
+  const [actionMessage, setActionMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -43,7 +73,7 @@ function DoubtPage({ user }) {
         setGrade("Grade 9");
         setMode("CBSE");
       } catch {
-        setError("Could not load syllabus");
+        setError("Could not load syllabus. Please refresh and try again.");
       } finally {
         setLoading(false);
       }
@@ -78,11 +108,28 @@ function DoubtPage({ user }) {
 
   const allowedModes = modes.filter((m) => hasModeAccess(m));
   const allModeSubjects = mode ? Object.keys(syllabusData[grade][mode] || {}) : [];
+  const allowedSubjects = allModeSubjects.filter((subjectName) => {
+    if (user.role === "admin") return true;
+
+    if (mode === "CBSE") {
+      return !!user.accessCbse;
+    }
+
+    if (mode === "SOF") {
+      const accessKey = SOF_SUBJECT_ACCESS[subjectName];
+      return accessKey ? !!user[accessKey] : false;
+    }
+
+    return false;
+  });
   const allowedSofSubjects = allModeSubjects.filter((subjectName) => {
     if (user.role === "admin") return true;
     const accessKey = SOF_SUBJECT_ACCESS[subjectName];
     return accessKey ? !!user[accessKey] : false;
   });
+  const availableChapters = subject
+    ? syllabusData[grade][mode]?.[subject] || []
+    : [];
 
   function getAllowedSofSubjectsForGrade(selectedGrade) {
     const sofSubjects = Object.keys(syllabusData[selectedGrade]?.SOF || {});
@@ -98,7 +145,26 @@ function DoubtPage({ user }) {
   }
 
   function getDoubtSubject() {
-    return mode === "SOF" ? subject : "";
+    return subject;
+  }
+
+  function buildQuestionWithContext(questionText) {
+    const selectedStyle = ANSWER_STYLE_OPTIONS.find(
+      (option) => option.key === answerStyle
+    );
+    const contextParts = [questionText.trim()];
+
+    if (selectedStyle?.instruction) {
+      contextParts.push(`Preferred answer style: ${selectedStyle.instruction}`);
+    }
+
+    if (extractedImageText.trim()) {
+      contextParts.push(
+        `Text extracted from attached image:\n${extractedImageText.trim()}`
+      );
+    }
+
+    return contextParts.join("\n\n");
   }
 
   function buildDoubtPayload(questionText) {
@@ -107,8 +173,8 @@ function DoubtPage({ user }) {
       grade,
       mode,
       subject: getDoubtSubject(),
-      chapter: "",
-      question: questionText,
+      chapter,
+      question: buildQuestionWithContext(questionText),
     };
   }
 
@@ -119,6 +185,8 @@ function DoubtPage({ user }) {
     setFollowUpQuestion("");
     setFollowUpAnswers({});
     setError("");
+    setActionMessage("");
+    setFeedback("");
   }
 
   function handleGradeChange(value) {
@@ -140,6 +208,7 @@ function DoubtPage({ user }) {
         ? getAllowedSofSubjectsForGrade(value)[0] || ""
         : ""
     );
+    setChapter("");
     clearAnswerState();
   }
 
@@ -151,7 +220,95 @@ function DoubtPage({ user }) {
 
     setMode(value);
     setSubject(value === "SOF" ? getAllowedSofSubjectsForGrade(grade)[0] || "" : "");
+    setChapter("");
     clearAnswerState();
+  }
+
+  function handleSubjectChange(value) {
+    setSubject(value);
+    setChapter("");
+    clearAnswerState();
+  }
+
+  function handleChapterChange(value) {
+    setChapter(value);
+    clearAnswerState();
+  }
+
+  async function handleImageSelection(file) {
+    setAttachedImage(file || null);
+    setExtractedImageText("");
+    setActionMessage("");
+
+    if (!file) return;
+
+    setExtractingImage(true);
+    setError("");
+
+    try {
+      const result = await extractDoubtImage(file);
+
+      if (!result.success) {
+        setError(result.message || "Could not read text from image.");
+        return;
+      }
+
+      setExtractedImageText(result.text || "");
+      setActionMessage("Image text added to this doubt.");
+    } catch (err) {
+      setError(err.message || "Could not read text from image.");
+    } finally {
+      setExtractingImage(false);
+    }
+  }
+
+  async function handleCopyAnswer() {
+    if (!answer) return;
+
+    try {
+      await navigator.clipboard.writeText(answer);
+      setActionMessage("Answer copied.");
+    } catch {
+      setActionMessage("Copy is not available in this browser.");
+    }
+  }
+
+  function handleSaveRevision() {
+    if (!answer) return;
+
+    const storageKey = `revision_notes_${user.username || "student"}`;
+    const savedItems = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    const newItem = {
+      id: Date.now(),
+      grade,
+      mode,
+      subject: subject || "Open topic",
+      chapter: chapter || "Open chapter",
+      question,
+      answer,
+      createdAt: new Date().toISOString(),
+    };
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify([newItem, ...savedItems].slice(0, 50))
+    );
+    setActionMessage("Saved to revision notes on this device.");
+  }
+
+  function handleStartManualFollowUp() {
+    setActiveSuggestion("Ask a follow-up");
+    setFollowUpQuestion("");
+    setActionMessage("Follow-up box opened.");
+  }
+
+  function handleFeedback(value) {
+    setFeedback(value);
+    setActionMessage(
+      value === "helpful"
+        ? "Feedback saved. Glad this helped."
+        : "Feedback saved. Try asking a follow-up so I can improve the explanation."
+    );
   }
 
   function normalizeMermaidBlocks(text) {
@@ -209,8 +366,8 @@ function DoubtPage({ user }) {
       return;
     }
 
-    if (!question.trim()) {
-      setError("Please type your question.");
+    if (!question.trim() && !extractedImageText.trim()) {
+      setError("Please type your question or attach a readable image.");
       return;
     }
 
@@ -245,7 +402,10 @@ function DoubtPage({ user }) {
         sources: result.sources || [],
       });
     } catch (err) {
-      setError(err.message || "Could not answer doubt. Check backend.");
+      setError(
+        err.message ||
+          "Could not answer right now. Please check your login and try again."
+      );
     } finally {
       setAsking(false);
     }
@@ -296,7 +456,10 @@ Rules:
         [suggestion]: normalizeMermaidBlocks(result.answer || ""),
       }));
     } catch (err) {
-      setError(err.message || "Could not answer follow-up. Check backend.");
+      setError(
+        err.message ||
+          "Could not answer the follow-up right now. Please try again."
+      );
     } finally {
       setFollowUpLoading(false);
     }
@@ -345,7 +508,10 @@ Important:
 
       setFollowUpQuestion("");
     } catch (err) {
-      setError(err.message || "Could not answer follow-up. Check backend.");
+      setError(
+        err.message ||
+          "Could not answer the follow-up right now. Please try again."
+      );
     } finally {
       setFollowUpLoading(false);
     }
@@ -420,26 +586,44 @@ Important:
               </select>
             </label>
 
-            {mode === "SOF" && (
+            {mode && (
               <label>
-                Olympiad Subject
+                {mode === "SOF" ? "Olympiad Subject" : "Subject"}
                 <select
                   value={subject}
-                  onChange={(e) => {
-                    setSubject(e.target.value);
-                    clearAnswerState();
-                  }}
-                  disabled={allowedSofSubjects.length === 0}
+                  onChange={(e) => handleSubjectChange(e.target.value)}
+                  disabled={mode === "SOF" && allowedSofSubjects.length === 0}
                 >
-                  {allowedSofSubjects.length === 0 ? (
+                  {mode !== "SOF" && (
+                    <option value="">Open subject</option>
+                  )}
+
+                  {mode === "SOF" && allowedSofSubjects.length === 0 ? (
                     <option value="">No SOF subject access</option>
                   ) : (
-                    allowedSofSubjects.map((subjectName) => (
+                    allowedSubjects.map((subjectName) => (
                       <option key={subjectName} value={subjectName}>
                         {subjectName}
                       </option>
                     ))
                   )}
+                </select>
+              </label>
+            )}
+
+            {subject && (
+              <label>
+                Chapter
+                <select
+                  value={chapter}
+                  onChange={(e) => handleChapterChange(e.target.value)}
+                >
+                  <option value="">Open chapter</option>
+                  {availableChapters.map((chapterName) => (
+                    <option key={chapterName} value={chapterName}>
+                      {chapterName}
+                    </option>
+                  ))}
                 </select>
               </label>
             )}
@@ -449,8 +633,8 @@ Important:
             <strong>How this works</strong>
             <p>
               {mode === "SOF"
-                ? "Select the Olympiad subject, type your doubt naturally, and the AI will search the matching SOF content before adding wider explanation."
-                : "You do not need to select a subject or chapter here. Type your doubt naturally, and the AI will search broadly across allowed textbook content and combine it with mentor memory."}
+                ? "Select the Olympiad subject. Chapter is optional, but choosing it helps the AI search the matching SOF content before adding wider explanation."
+                : "Subject and chapter are optional. Add them when you know the source topic, or leave them open for a broader textbook search."}
             </p>
           </div>
         </aside>
@@ -471,42 +655,94 @@ Important:
               rows="6"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Example: Explain Newton's laws of force with real-life examples."
+              placeholder="Example: Explain Newton's laws of force with real-life examples. You can also attach a textbook or handwritten question photo."
               disabled={!mode}
             />
 
-            <div className="prompt-chip-row">
-              {[
-                "Explain simply",
-                "Give real-life example",
-                "Show step-by-step",
-                "Olympiad style",
-                "Add diagram if useful",
-              ].map((chip) => (
+            <div className="prompt-chip-row answer-style-row">
+              {ANSWER_STYLE_OPTIONS.map((option) => (
                 <button
-                  key={chip}
+                  key={option.key}
                   type="button"
-                  className="prompt-chip"
-                  disabled={!mode}
-                  onClick={() =>
-                    setQuestion((prev) => (prev ? `${prev}\n${chip}` : chip))
+                  className={
+                    answerStyle === option.key
+                      ? "prompt-chip selected"
+                      : "prompt-chip"
                   }
+                  disabled={!mode}
+                  onClick={() => setAnswerStyle(option.key)}
                 >
-                  {chip}
+                  {option.label}
                 </button>
               ))}
             </div>
 
+            <div className="doubt-attachment-panel">
+              <div>
+                <strong>Photo doubt</strong>
+                <p>
+                  Upload or scan a textbook page, diagram, or handwritten
+                  question. The readable text will be included with your doubt.
+                </p>
+              </div>
+
+              <div className="doubt-attachment-actions">
+                <label className="doubt-file-button">
+                  Upload Image
+                  <input
+                    type="file"
+                    accept="image/*"
+                    disabled={!mode || extractingImage}
+                    onChange={(e) =>
+                      handleImageSelection(e.target.files?.[0] || null)
+                    }
+                  />
+                </label>
+
+                <label className="doubt-file-button">
+                  Open Camera
+                  <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    disabled={!mode || extractingImage}
+                    onChange={(e) =>
+                      handleImageSelection(e.target.files?.[0] || null)
+                    }
+                  />
+                </label>
+              </div>
+            </div>
+
+            {(attachedImage || extractingImage || extractedImageText) && (
+              <div className="doubt-image-preview">
+                <strong>
+                  {extractingImage
+                    ? "Reading image..."
+                    : attachedImage?.name || "Attached image"}
+                </strong>
+                {extractedImageText && (
+                  <textarea
+                    rows="4"
+                    value={extractedImageText}
+                    onChange={(e) => setExtractedImageText(e.target.value)}
+                    aria-label="Extracted image text"
+                  />
+                )}
+              </div>
+            )}
+
             <button
               className="primary-btn doubt-submit-btn"
               onClick={handleAskDoubt}
-              disabled={asking || !mode}
+              disabled={asking || extractingImage || !mode}
             >
               {asking ? "Thinking..." : "✨ Ask AI Tutor"}
             </button>
           </section>
 
           {error && <div className="error-box">{error}</div>}
+          {actionMessage && <div className="success-box">{actionMessage}</div>}
 
           {!answer && !asking && (
             <section className="premium-section premium-doubt-empty">
@@ -582,6 +818,81 @@ Important:
                 </ReactMarkdown>
               </div>
 
+              <div className="doubt-answer-actions">
+                <button type="button" onClick={handleCopyAnswer}>
+                  Copy
+                </button>
+                <button type="button" onClick={handleSaveRevision}>
+                  Save to revision
+                </button>
+                <button type="button" onClick={handleStartManualFollowUp}>
+                  Ask follow-up
+                </button>
+                <button
+                  type="button"
+                  className={feedback === "helpful" ? "selected" : ""}
+                  onClick={() => handleFeedback("helpful")}
+                >
+                  Helpful
+                </button>
+                <button
+                  type="button"
+                  className={feedback === "confusing" ? "selected" : ""}
+                  onClick={() => handleFeedback("confusing")}
+                >
+                  Confusing
+                </button>
+              </div>
+
+              {activeSuggestion === "Ask a follow-up" && (
+                <div className="mentor-followup-panel mentor-common-followup-panel">
+                  <h4>Ask a follow-up</h4>
+
+                  <textarea
+                    rows="3"
+                    value={followUpQuestion}
+                    placeholder="Ask a deeper follow-up..."
+                    onChange={(e) => setFollowUpQuestion(e.target.value)}
+                  />
+
+                  <button
+                    className="primary-btn"
+                    disabled={followUpLoading || !followUpQuestion.trim()}
+                    onClick={() => handleAskFollowUpCard(activeSuggestion)}
+                  >
+                    {followUpLoading ? "Thinking..." : "Ask Follow-up"}
+                  </button>
+
+                  {followUpAnswers[activeSuggestion] && (
+                    <div className="mentor-followup-answer markdown-content">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                        components={{
+                          code({ className, children }) {
+                            const match = /language-mermaid/.exec(
+                              className || ""
+                            );
+
+                            if (match) {
+                              return (
+                                <MermaidBlock
+                                  chart={String(children).replace(/\n$/, "")}
+                                />
+                              );
+                            }
+
+                            return <code className={className}>{children}</code>;
+                          },
+                        }}
+                      >
+                        {followUpAnswers[activeSuggestion]}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {mentorSuggestions.length > 0 && (
                 <div className="mentor-suggestion-section">
                   <h4>🧠 Suggested Next Steps</h4>
@@ -606,7 +917,7 @@ Important:
                     ))}
                   </div>
 
-                  {activeSuggestion && (
+                  {activeSuggestion && activeSuggestion !== "Ask a follow-up" && (
                     <div className="mentor-followup-panel mentor-common-followup-panel">
                       <h4>🧠 {activeSuggestion}</h4>
 

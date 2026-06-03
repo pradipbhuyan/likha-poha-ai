@@ -258,6 +258,15 @@ textarea:focus {
   margin: 18px 0;
 }
 
+.success-box {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
 .success-text {
   color: var(--success);
   font-weight: 700;
@@ -5981,6 +5990,77 @@ body.dark-mode .premium-admin-danger-section {
     font-weight: 900;
     cursor: pointer;
   }
+
+  .premium-doubt-composer .prompt-chip.selected {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  }
+
+  .doubt-attachment-panel,
+  .doubt-image-preview,
+  .doubt-answer-actions {
+    border: 1px solid #dbeafe;
+    background: #f8fbff;
+    border-radius: 18px;
+  }
+
+  .doubt-attachment-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .doubt-attachment-panel p {
+    margin: 4px 0 0;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .doubt-attachment-actions,
+  .doubt-answer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .doubt-file-button,
+  .doubt-answer-actions button {
+    border: 1px solid #c7d2fe;
+    background: #ffffff;
+    color: #1e3a8a;
+    border-radius: 12px;
+    padding: 10px 13px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .doubt-file-button input {
+    display: none;
+  }
+
+  .doubt-image-preview {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .doubt-image-preview textarea {
+    min-height: 110px;
+  }
+
+  .doubt-answer-actions {
+    padding: 12px;
+  }
+
+  .doubt-answer-actions button.selected {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+  }
   
   .premium-doubt-composer .composer-badge {
     flex-shrink: 0;
@@ -6059,6 +6139,30 @@ body.dark-mode .premium-admin-danger-section {
     border-color: rgba(147, 197, 253, 0.28);
     color: #bfdbfe;
   }
+
+  body.dark-mode .premium-doubt-composer .prompt-chip.selected {
+    background: #2563eb;
+    border-color: #60a5fa;
+    color: #ffffff;
+  }
+
+  body.dark-mode .doubt-attachment-panel,
+  body.dark-mode .doubt-image-preview,
+  body.dark-mode .doubt-answer-actions {
+    background: #111827;
+    border-color: #334155;
+  }
+
+  body.dark-mode .doubt-file-button,
+  body.dark-mode .doubt-answer-actions button {
+    background: #0f172a;
+    border-color: #334155;
+    color: #bfdbfe;
+  }
+
+  body.dark-mode .doubt-attachment-panel p {
+    color: #cbd5e1;
+  }
   
   /* Responsive */
   
@@ -6080,6 +6184,17 @@ body.dark-mode .premium-admin-danger-section {
   
     .premium-doubt-composer .doubt-submit-btn {
       width: 100%;
+    }
+
+    .doubt-attachment-panel {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .doubt-file-button,
+    .doubt-answer-actions button {
+      flex: 1 1 auto;
+      text-align: center;
     }
   }
   

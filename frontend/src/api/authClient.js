@@ -21,8 +21,10 @@ export async function authFetch(path, options = {}) {
     throw new Error("No Supabase access token found. Please logout and login again.");
   }
 
+  const isFormData = options.body instanceof FormData;
+
   const headers = {
-    "Content-Type": "application/json",
+    ...(!isFormData ? { "Content-Type": "application/json" } : {}),
     ...(options.headers || {}),
     Authorization: `Bearer ${token}`,
   };

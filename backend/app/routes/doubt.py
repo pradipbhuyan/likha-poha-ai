@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, File, UploadFile
 
 from app.models.schemas import DoubtRequest
 from app.services.tutor_service import answer_doubt
 from app.services.usage_service import enforce_token_limits
+from app.services.ocr_service import extract_text_from_image_bytes
 
 from app.services.auth_service import (
     get_current_user,
@@ -149,4 +150,59 @@ def answer_student_doubt(
             "sources": [],
             "mentor_suggestions": [],
             "message": f"Doubt answering failed: {str(e)}",
+        }
+
+
+@router.post("/extract-image")
+async def extract_doubt_image(
+    file: UploadFile = File(...),
+    user=Depends(get_current_user),
+):
+    profile = get_profile_by_user_id(user.id)
+
+    if not profile:
+        raise HTTPException(
+            status_code=403,
+            detail="Profile not found",
+        )
+
+    if profile.get("account_status") not in [None, "active", "trial"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Your account is suspended. Please contact your parent or administrator.",
+        )
+
+    content_type = file.content_type or ""
+
+    if not content_type.startswith("image/"):
+        raise HTTPException(
+            status_code=400,
+            detail="Please upload a JPG, JPEG, PNG, or WEBP image.",
+        )
+
+    try:
+        image_bytes = await file.read()
+        extracted_text = extract_text_from_image_bytes(image_bytes).strip()
+
+        if not extracted_text:
+            return {
+                "success": False,
+                "text": "",
+                "message": "No readable text found in the image. Try a clearer photo.",
+            }
+
+        return {
+            "success": True,
+            "text": extracted_text,
+            "message": "Image text extracted successfully.",
+        }
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        return {
+            "success": False,
+            "text": "",
+            "message": f"Image extraction failed: {str(e)}",
         }
