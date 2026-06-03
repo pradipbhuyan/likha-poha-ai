@@ -128,6 +128,7 @@ def generate_mock_test(
                 grade=data.grade,
                 num_questions=data.question_count,
                 difficulty=data.difficulty,
+                username=profile.get("username") or "admin",
             )
 
         else:

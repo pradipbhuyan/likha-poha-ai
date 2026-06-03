@@ -1,4 +1,6 @@
 import json
+import uuid
+from datetime import date
 
 from app.services.openai_service import ask_llm
 from app.services.rag_service import search_textbook_content
@@ -48,7 +50,7 @@ def get_sof_model_papers(olympiad):
     return []
 
 
-def build_rag_context(items):
+def build_rag_context(items, label="RAG"):
     if not items:
         return ""
 
@@ -65,6 +67,7 @@ def build_rag_context(items):
 
         chunks.append(
             f"""
+RAG Section: {label}
 Source: {title}
 Subject: {subject}
 Chapter: {chapter}
@@ -81,31 +84,101 @@ def get_sof_rag_context(
     chapter=None,
     grade="Grade 9",
 ):
-    rag_items = []
+    context_parts = []
 
     if chapter:
-        rag_items.extend(
+        chapter_items = search_textbook_content(
+            query=(
+                f"{chapter} SOF chapter concepts definitions examples "
+                "formulas important points"
+            ),
+            grade=grade,
+            subject=olympiad,
+            chapter=chapter,
+            match_count=10,
+        )
+
+        exercise_items = search_textbook_content(
+            query=(
+                f"{chapter} SOF exercise practice questions solved examples "
+                "answer explanations"
+            ),
+            grade=grade,
+            subject=olympiad,
+            chapter=chapter,
+            match_count=10,
+        )
+
+        chapter_context = build_rag_context(
+            chapter_items,
+            label="SOF chapter content",
+        )
+        exercise_context = build_rag_context(
+            exercise_items,
+            label="SOF chapter exercises",
+        )
+
+        if chapter_context:
+            context_parts.append(chapter_context)
+
+        if exercise_context:
+            context_parts.append(exercise_context)
+
+    model_paper_items = []
+
+    for paper_chapter in get_sof_model_papers(olympiad):
+        model_paper_items.extend(
             search_textbook_content(
-                query=f"Important concepts, examples and practice questions from {chapter}",
+                query=(
+                    f"{paper_chapter} SOF model mock test paper question "
+                    f"pattern difficulty sample questions answer explanations {olympiad}"
+                ),
                 grade=grade,
                 subject=olympiad,
-                chapter=chapter,
+                chapter=paper_chapter,
                 match_count=8,
             )
         )
 
-    for paper_chapter in get_sof_model_papers(olympiad):
-        rag_items.extend(
-            search_textbook_content(
-                query=f"SOF question pattern difficulty sample questions for {olympiad}",
-                grade=grade,
-                subject=olympiad,
-                chapter=paper_chapter,
-                match_count=5,
-            )
+    model_paper_items.extend(
+        search_textbook_content(
+            query=(
+                f"uploaded SOF mock test paper model paper sample paper "
+                f"section pattern question difficulty answer explanations {olympiad}"
+            ),
+            grade=grade,
+            subject=olympiad,
+            chapter=None,
+            match_count=10,
         )
+    )
 
-    return build_rag_context(rag_items)
+    model_paper_context = build_rag_context(
+        model_paper_items,
+        label="SOF uploaded mock or model test papers",
+    )
+
+    if model_paper_context:
+        context_parts.append(model_paper_context)
+
+    return "\n\n".join(context_parts)
+
+
+def create_generation_variant(username="admin"):
+    return f"{username}-{date.today().isoformat()}-{uuid.uuid4().hex[:8]}"
+
+
+def validate_sof_rag_context(rag_context, olympiad, chapter):
+    if rag_context.strip():
+        return
+
+    chapter_text = f" - {chapter}" if chapter else ""
+
+    raise ValueError(
+        f"No RAG content found for {olympiad}{chapter_text}. "
+        "Upload SOF chapter pages, exercises, or mock test papers before "
+        "generating an SOF mock test."
+    )
 
 
 def generate_olympiad_mock_test(
@@ -114,6 +187,7 @@ def generate_olympiad_mock_test(
     difficulty="Medium",
     chapter=None,
     grade="Grade 9",
+    username="admin",
 ):
     if olympiad == "Science Olympiad":
         pattern = """
@@ -164,6 +238,9 @@ Create a Class 9 SOF Olympiad style mock test.
         grade=grade,
     )
 
+    validate_sof_rag_context(rag_context, olympiad, chapter)
+
+    generation_variant = create_generation_variant(username=username)
 
     prompt = f"""
 {pattern}
@@ -173,18 +250,25 @@ Olympiad: {olympiad}
 Chapter: {chapter or "Mixed SOF syllabus"}
 Difficulty: {difficulty}
 Number of questions: {num_questions}
+Generation variation seed: {generation_variant}
 
-Use the RAG context below.
+Use the RAG context below as the mandatory source material.
 
 Rules:
-- Use chapter RAG content for concepts.
-- Use SOF model test paper RAG content for question style, difficulty and pattern.
+- Every question must be based on a concept, example, pattern, or exercise present in the uploaded RAG context.
+- Use SOF chapter RAG content for tested concepts.
+- Use SOF exercise RAG content for practice-question style and common traps.
+- Use SOF mock/model test paper RAG content for exam pattern, section mix, wording style, difficulty and option design.
+- Do not introduce unrelated syllabus areas that are not supported by RAG.
 - Do not copy exact questions from the RAG context.
 - Create fresh original questions inspired by the uploaded SOF material.
+- Use the generation variation seed to make this test different from other tests generated today.
 - Keep questions suitable for Grade 9.
 - Every question must have 4 options.
 - Every answer must be one of A, B, C or D.
-- Include a clear explanation.
+- Explanations must first use the uploaded RAG concept that supports the answer.
+- Explanations may then add wider conceptual clarification, reasoning shortcuts, and common-mistake notes from general LLM knowledge.
+- Include a clear explanation for every answer.
 
 RAG CONTEXT:
 {rag_context[:14000]}
