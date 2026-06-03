@@ -3,6 +3,10 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from app.data.subscription_plans import (
+    get_default_subscription_plans,
+    subscription_plan_order,
+)
 from app.services.auth_service import require_admin, create_auth_user, admin_client
 
 router = APIRouter()
@@ -35,6 +39,34 @@ class UpdateAccessRequest(BaseModel):
 class UpdateLimitsRequest(BaseModel):
     daily_token_limit: int
     monthly_token_limit: int
+
+
+class SubscriptionPlanSettings(BaseModel):
+    key: str
+    label: str
+    short_label: str
+    price: int
+    billing_label: str
+    audience: str
+    badge: str = ""
+    recommended: bool = False
+    discount_percent: int = 0
+    discount_label: str = ""
+    is_public: bool = True
+    display_order: int = 999
+    access_cbse: bool = True
+    access_sof_science: bool = False
+    access_sof_maths: bool = False
+    access_sof_english: bool = False
+    daily_token_limit: int = 0
+    monthly_token_limit: int = 0
+    included: list[str] = []
+    not_included: list[str] = []
+    comparison: dict = {}
+
+
+class UpdateSubscriptionPlanSettingsRequest(BaseModel):
+    plans: list[SubscriptionPlanSettings]
 
 
 def summarize_student_activity(username: str, logs: list[dict]):
@@ -113,6 +145,70 @@ def build_activity_by_username(usernames: list[str]):
     }
 
 
+def normalize_subscription_plan_row(row: dict):
+    return {
+        "key": row.get("key"),
+        "label": row.get("label") or "",
+        "short_label": row.get("short_label") or row.get("label") or "",
+        "price": int(row.get("price") or 0),
+        "billing_label": row.get("billing_label") or "month",
+        "audience": row.get("audience") or "",
+        "badge": row.get("badge") or "",
+        "recommended": bool(row.get("recommended")),
+        "discount_percent": int(row.get("discount_percent") or 0),
+        "discount_label": row.get("discount_label") or "",
+        "is_public": row.get("is_public") is not False,
+        "display_order": int(row.get("display_order") or 999),
+        "access_cbse": bool(row.get("access_cbse")),
+        "access_sof_science": bool(row.get("access_sof_science")),
+        "access_sof_maths": bool(row.get("access_sof_maths")),
+        "access_sof_english": bool(row.get("access_sof_english")),
+        "daily_token_limit": int(row.get("daily_token_limit") or 0),
+        "monthly_token_limit": int(row.get("monthly_token_limit") or 0),
+        "included": row.get("included") or [],
+        "not_included": row.get("not_included") or [],
+        "comparison": row.get("comparison") or {},
+    }
+
+
+def list_subscription_plan_settings():
+    plans = get_default_subscription_plans()
+    persisted = False
+    load_error = None
+
+    try:
+        response = (
+            admin_client
+            .table("subscription_plan_settings")
+            .select("*")
+            .execute()
+        )
+
+        for row in response.data or []:
+            normalized = normalize_subscription_plan_row(row)
+            if normalized["key"] in plans:
+                plans[normalized["key"]] = {
+                    **plans[normalized["key"]],
+                    **normalized,
+                }
+
+        persisted = bool(response.data)
+    except Exception as exc:
+        persisted = False
+        load_error = str(exc)
+
+    order = subscription_plan_order(plans)
+
+    return {
+        "success": True,
+        "persisted": persisted,
+        "source": "database" if persisted else "defaults",
+        "load_error": load_error,
+        "plans": plans,
+        "plan_order": order,
+    }
+
+
 @router.get("/families")
 def get_all_families(admin=Depends(require_admin)):
     profiles_response = (
@@ -160,6 +256,68 @@ def get_all_families(admin=Depends(require_admin)):
         "success": True,
         "families": list(families.values()),
     }
+
+
+@router.get("/subscription-plans")
+def get_subscription_plans(admin=Depends(require_admin)):
+    return list_subscription_plan_settings()
+
+
+@router.put("/subscription-plans")
+def update_subscription_plans(
+    data: UpdateSubscriptionPlanSettingsRequest,
+    admin=Depends(require_admin),
+):
+    rows = []
+
+    for index, plan in enumerate(data.plans, start=1):
+        row = plan.model_dump() if hasattr(plan, "model_dump") else plan.dict()
+        row["display_order"] = int(row.get("display_order") or index)
+        row["discount_percent"] = max(
+            0,
+            min(100, int(row.get("discount_percent") or 0)),
+        )
+        rows.append(row)
+
+    try:
+        response = (
+            admin_client
+            .table("subscription_plan_settings")
+            .upsert(rows, on_conflict="key")
+            .execute()
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Unable to save subscription plan settings. Make sure the "
+                "subscription_plan_settings table exists. "
+                f"Original error: {str(exc)}"
+            ),
+        )
+
+    saved_settings = list_subscription_plan_settings()
+
+    if saved_settings.get("load_error"):
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Subscription plan settings were saved, but the saved values "
+                "could not be read back from Supabase. "
+                f"Original error: {saved_settings['load_error']}"
+            ),
+        )
+
+    if not saved_settings.get("persisted"):
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Subscription plan settings were saved, but no rows were read "
+                "back from subscription_plan_settings."
+            ),
+        )
+
+    return saved_settings
 
 
 @router.post("/parents")

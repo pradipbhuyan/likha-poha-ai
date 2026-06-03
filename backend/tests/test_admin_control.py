@@ -53,6 +53,12 @@ class FakeTable:
         self.payload = payload
         return self
 
+    def upsert(self, payload, on_conflict=None):
+        self.operation = "upsert"
+        self.payload = payload
+        self.on_conflict = on_conflict
+        return self
+
     def delete(self):
         self.operation = "delete"
         return self
@@ -128,6 +134,21 @@ class FakeTable:
         if self.table_name == "profiles" and self.operation == "delete":
             return FakeResponse([])
 
+        if self.table_name == "subscription_plan_settings":
+            if self.operation == "select":
+                return FakeResponse(self.client.subscription_plan_rows)
+
+            if self.operation == "upsert":
+                by_key = {
+                    row["key"]: dict(row)
+                    for row in self.client.subscription_plan_rows
+                }
+                for row in self.payload:
+                    by_key[row["key"]] = dict(row)
+
+                self.client.subscription_plan_rows = list(by_key.values())
+                return FakeResponse(self.client.subscription_plan_rows)
+
         return FakeResponse([])
 
     def _filter_value(self, key):
@@ -145,6 +166,7 @@ class FakeAdminClient:
         self.created_family_id = "family-created-123"
         self.missing_update_ids = set()
         self.failing_auth_delete_ids = set()
+        self.subscription_plan_rows = []
         self.auth = FakeAuth(self)
 
     def table(self, table_name):
@@ -697,3 +719,58 @@ def test_delete_user_returns_404_when_profile_not_found(monkeypatch):
 
     assert error.value.status_code == 404
     assert error.value.detail == "User not found."
+
+
+def test_update_subscription_plans_returns_persisted_discount(monkeypatch):
+    """
+    Admin subscription save should return the row read back from storage.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        update_subscription_plans()
+    """
+    fake_client = FakeAdminClient()
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    request = admin_control_route.UpdateSubscriptionPlanSettingsRequest(
+        plans=[
+            admin_control_route.SubscriptionPlanSettings(
+                key="starter",
+                label="Standard",
+                short_label="Standard",
+                price=499,
+                billing_label="month",
+                audience="Best for regular CBSE learning.",
+                discount_percent=10,
+                discount_label="Introductory Offer",
+                display_order=2,
+                daily_token_limit=75000,
+                monthly_token_limit=1500000,
+                included=["Everything in Free Trial"],
+                not_included=["SOF RAG mock tests"],
+                comparison={"children": "1"},
+            )
+        ],
+    )
+
+    result = admin_control_route.update_subscription_plans(
+        request,
+        admin={"role": "admin"},
+    )
+
+    assert result["success"] is True
+    assert result["persisted"] is True
+    assert result["source"] == "database"
+    assert result["plans"]["starter"]["discount_percent"] == 10
+    assert result["plans"]["starter"]["discount_label"] == "Introductory Offer"
+
+    upsert_calls = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "subscription_plan_settings"
+        and call["operation"] == "upsert"
+    ]
+
+    assert len(upsert_calls) == 1
+    assert upsert_calls[0]["payload"][0]["key"] == "starter"

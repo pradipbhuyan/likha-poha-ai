@@ -16,6 +16,7 @@ import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
 import AdminControlPage from "./pages/AdminControlPage";
 import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
+import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
 
 
 import "./App.css";
@@ -68,6 +69,11 @@ const PAGE_META = {
     subtitle:
       "Admin area for uploading textbook content into the AI knowledge base.",
     icon: "📤",
+  },
+  subscriptionSettings: {
+    title: "Subscription Settings",
+    subtitle: "Manage subscription prices, discounts, and parent-facing plan details.",
+    icon: "🏷️",
   },
   usage: {
     title: "AI Usage",
@@ -174,6 +180,8 @@ function App() {
         return <LeaderboardPage user={user} />;
       case "ragUpload":
         return <RagUploadPage user={user} />;
+      case "subscriptionSettings":
+        return <AdminSubscriptionSettingsPage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
       case "parentDashboard":

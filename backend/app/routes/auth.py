@@ -56,16 +56,29 @@ def lookup_email(username: str):
         .table("profiles")
         .select("email")
         .ilike("username", clean_username)
-        .single()
+        .limit(1)
         .execute()
     )
 
-    if not response.data:
+    rows = response.data or []
+
+    if not rows and clean_username == "admin":
+        response = (
+            admin_client
+            .table("profiles")
+            .select("email")
+            .eq("role", "admin")
+            .limit(1)
+            .execute()
+        )
+        rows = response.data or []
+
+    if not rows:
         raise HTTPException(
             status_code=404,
             detail="Username not found",
         )
 
     return {
-        "email": response.data["email"],
+        "email": rows[0]["email"],
     }

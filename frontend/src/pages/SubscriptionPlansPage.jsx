@@ -7,10 +7,15 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { getParentChildren } from "../api/parentDashboard";
 import {
+  getParentChildren,
+  getParentSubscriptionPlans,
+} from "../api/parentDashboard";
+import {
+  formatPlanPrice,
+  getPlanDisplayPrice,
   getSubscriptionPlan,
-  PARENT_PLAN_ORDER,
+  mergeSubscriptionPlans,
   SUBSCRIPTION_PLANS,
 } from "../config/subscriptionPlans";
 
@@ -18,6 +23,13 @@ function SubscriptionPlansPage({ user }) {
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
   const [selectedPlanKey, setSelectedPlanKey] = useState("premium");
+  const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
+  const [planOrder, setPlanOrder] = useState(
+    Object.values(SUBSCRIPTION_PLANS)
+      .filter((plan) => plan.isPublic !== false)
+      .sort((a, b) => a.displayOrder - b.displayOrder)
+      .map((plan) => plan.key)
+  );
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -25,9 +37,25 @@ function SubscriptionPlansPage({ user }) {
   useEffect(() => {
     async function loadChildren() {
       try {
-        const result = await getParentChildren();
-        const loadedChildren = result.children || [];
+        const [childrenResult, planResult] = await Promise.all([
+          getParentChildren(),
+          getParentSubscriptionPlans(),
+        ]);
+        const loadedChildren = childrenResult.children || [];
+        const loadedPlans = mergeSubscriptionPlans(planResult.plans || {});
+        const loadedPlanOrder = (planResult.plan_order || []).filter(
+          (planKey) => loadedPlans[planKey]?.isPublic !== false
+        );
 
+        setPlans(loadedPlans);
+        if (loadedPlanOrder.length) {
+          setPlanOrder(loadedPlanOrder);
+        }
+        if (planResult.persisted === false || planResult.load_error) {
+          setError(
+            "Subscription pricing settings could not load from Supabase, so default prices are shown. Please ask admin to check the subscription_plan_settings table."
+          );
+        }
         setChildren(loadedChildren);
         setSelectedChildId(loadedChildren[0]?.id || "");
       } catch (err) {
@@ -50,8 +78,10 @@ function SubscriptionPlansPage({ user }) {
     [children, selectedChildId]
   );
 
-  const activePlan = getSubscriptionPlan(selectedChild?.subscription_plan);
-  const selectedPlan = getSubscriptionPlan(selectedPlanKey);
+  const activePlan =
+    plans[selectedChild?.subscription_plan] ||
+    getSubscriptionPlan(selectedChild?.subscription_plan);
+  const selectedPlan = plans[selectedPlanKey] || getSubscriptionPlan(selectedPlanKey);
   const isCurrentPlan = activePlan.key === selectedPlan.key;
 
   function handlePlanClick(planKey) {
@@ -91,7 +121,7 @@ function SubscriptionPlansPage({ user }) {
       <section className="subscription-hero">
         <div>
           <p className="eyebrow">Parent Subscription</p>
-          <h2>Choose the right plan for your child</h2>
+          <h2>Choose the right plan for your family</h2>
           <p>
             Compare CBSE access, SOF preparation, AI limits, and parent controls
             before activating a plan.
@@ -129,10 +159,12 @@ function SubscriptionPlansPage({ user }) {
       {error && <div className="error-box">{error}</div>}
 
       <section className="subscription-plan-grid">
-        {PARENT_PLAN_ORDER.map((planKey) => {
-          const plan = SUBSCRIPTION_PLANS[planKey];
+        {planOrder.map((planKey) => {
+          const plan = plans[planKey];
           const isActive = activePlan.key === plan.key;
           const isSelected = selectedPlanKey === plan.key;
+          const displayPrice = getPlanDisplayPrice(plan);
+          const hasDiscount = Number(plan.discountPercent || 0) > 0;
 
           return (
             <article
@@ -159,9 +191,19 @@ function SubscriptionPlansPage({ user }) {
               </div>
 
               <div className="subscription-price-row">
-                <strong>{plan.priceLabel}</strong>
+                <strong>{formatPlanPrice(displayPrice)}</strong>
                 <span>/ {plan.billingLabel}</span>
               </div>
+
+              {hasDiscount && (
+                <div className="subscription-discount-row">
+                  <span>{formatPlanPrice(plan.price)}</span>
+                  <strong>
+                    {plan.discountLabel ||
+                      `${plan.discountPercent}% off active`}
+                  </strong>
+                </div>
+              )}
 
               <ul className="subscription-feature-list">
                 {plan.included.map((feature) => (
@@ -202,8 +244,8 @@ function SubscriptionPlansPage({ user }) {
               <thead>
                 <tr>
                   <th>Feature</th>
-                  {PARENT_PLAN_ORDER.map((planKey) => (
-                    <th key={planKey}>{SUBSCRIPTION_PLANS[planKey].shortLabel}</th>
+                  {planOrder.map((planKey) => (
+                    <th key={planKey}>{plans[planKey].shortLabel}</th>
                   ))}
                 </tr>
               </thead>
@@ -218,9 +260,9 @@ function SubscriptionPlansPage({ user }) {
                 ].map(([label, key]) => (
                   <tr key={key}>
                     <td>{label}</td>
-                    {PARENT_PLAN_ORDER.map((planKey) => (
+                    {planOrder.map((planKey) => (
                       <td key={planKey}>
-                        {SUBSCRIPTION_PLANS[planKey].comparison[key]}
+                        {plans[planKey].comparison[key]}
                       </td>
                     ))}
                   </tr>
@@ -249,13 +291,17 @@ function SubscriptionPlansPage({ user }) {
           <div className="subscription-summary-line">
             <span>Includes</span>
             <strong>
-              {selectedPlan.access_sof_science ? "CBSE + SOF + AI" : "CBSE + AI"}
+              {selectedPlan.key === "family_premium"
+                ? "2 children + CBSE + SOF + AI"
+                : selectedPlan.access_sof_science
+                  ? "CBSE + SOF + AI"
+                  : "CBSE + AI"}
             </strong>
           </div>
 
           <div className="subscription-summary-line total">
             <span>Total today</span>
-            <strong>{selectedPlan.priceLabel}</strong>
+            <strong>{formatPlanPrice(getPlanDisplayPrice(selectedPlan))}</strong>
           </div>
 
           <button

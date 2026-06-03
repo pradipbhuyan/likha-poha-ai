@@ -7,6 +7,7 @@ from app.services.parent_dashboard_service import (
     get_child_by_id,
     get_family_members,
 )
+from app.routes.admin_control import list_subscription_plan_settings
 
 router = APIRouter()
 
@@ -43,6 +44,29 @@ def get_parent_children(parent=Depends(require_parent)):
     return {
         "success": True,
         "children": get_children(parent_profile["id"]),
+    }
+
+
+@router.get("/subscription-plans")
+def get_parent_subscription_plans(parent=Depends(require_parent)):
+    settings = list_subscription_plan_settings()
+    plans = {
+        key: plan
+        for key, plan in settings["plans"].items()
+        if plan.get("is_public") is not False
+    }
+    plan_order = [
+        key for key in settings["plan_order"]
+        if key in plans
+    ]
+
+    return {
+        "success": True,
+        "persisted": settings.get("persisted", False),
+        "source": settings.get("source", "defaults"),
+        "load_error": settings.get("load_error"),
+        "plans": plans,
+        "plan_order": plan_order,
     }
 
 

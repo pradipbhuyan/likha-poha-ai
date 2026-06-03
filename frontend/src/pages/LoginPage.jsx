@@ -55,7 +55,16 @@ function LoginPage({ onLogin }) {
         );
 
         if (!response.ok) {
-          setError("Username not found.");
+          let detail = "Username not found.";
+
+          try {
+            const result = await response.json();
+            detail = result.detail || detail;
+          } catch {
+            // Keep the friendly default when the API returns no JSON body.
+          }
+
+          setError(detail);
           return;
         }
 
@@ -69,7 +78,9 @@ function LoginPage({ onLogin }) {
       });
 
       if (error) {
-        setError(error.message);
+        setError(
+          `Supabase login failed for ${loginEmail}: ${error.message}`
+        );
         return;
       }
 

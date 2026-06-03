@@ -39,3 +39,9 @@ export async function getWeakAreaAlerts(childId) {
 
   return response;
 }
+
+export async function getParentSubscriptionPlans() {
+  return authFetch("/api/parent-dashboard/subscription-plans", {
+    method: "GET",
+  });
+}

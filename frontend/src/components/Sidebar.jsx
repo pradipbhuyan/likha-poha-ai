@@ -10,6 +10,7 @@ import {
   UploadCloud,
   Video,
   DollarSign,
+  Tags,
   Users,
   Settings,
 } from "lucide-react";
@@ -48,6 +49,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "subscriptionSettings",
+      label: "Subscription Settings",
+      icon: Tags,
+      roles: ["admin"],
+    },
+    {
       key: "usage",
       label: "AI Usage",
       icon: DollarSign,
@@ -58,30 +65,35 @@ function Sidebar({
       label: "Lessons",
       icon: BookOpen,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "doubt",
       label: "Ask Doubt",
       icon: HelpCircle,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "mockTest",
       label: "Mock Test",
       icon: ClipboardList,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "resources",
       label: "Learn More",
       icon: Video,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "analytics",
       label: "Analytics",
       icon: BarChart3,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "leaderboard",
@@ -94,6 +106,7 @@ function Sidebar({
       label: "Parent Dashboard",
       icon: Users,
       roles: ["parent", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "subscriptionPlans",
@@ -105,7 +118,7 @@ function Sidebar({
   ];
 
   const visiblePages = pages.filter((page) => {
-    if (isAdmin) return !page.parentOnly;
+    if (isAdmin) return !page.parentOnly && !page.hideForAdmin;
     return page.roles?.includes(user?.role);
   });
 

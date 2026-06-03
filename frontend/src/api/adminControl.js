@@ -106,3 +106,39 @@ export async function deleteUser(userId, accessToken) {
 
   return response.json();
 }
+
+export async function getAdminSubscriptionPlans(accessToken) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/admin-control/subscription-plans`,
+    {
+      headers: authHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await parseError(response, "Failed to load subscription plans")
+    );
+  }
+
+  return response.json();
+}
+
+export async function updateAdminSubscriptionPlans(payload, accessToken) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/admin-control/subscription-plans`,
+    {
+      method: "PUT",
+      headers: authHeaders(accessToken),
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await parseError(response, "Failed to save subscription plans")
+    );
+  }
+
+  return response.json();
+}

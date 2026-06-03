@@ -8067,7 +8067,7 @@ body.dark-mode .selected-child-badge {
 
 .subscription-plan-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -8144,6 +8144,21 @@ body.dark-mode .selected-child-badge {
 .subscription-price-row span {
   color: var(--muted);
   font-weight: 700;
+}
+
+.subscription-discount-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  color: var(--success);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.subscription-discount-row span {
+  color: var(--muted);
+  text-decoration: line-through;
 }
 
 .subscription-feature-list {
@@ -8304,6 +8319,10 @@ body.dark-mode .subscription-summary-line span {
   color: #94a3b8;
 }
 
+body.dark-mode .subscription-discount-row {
+  color: #86efac;
+}
+
 body.dark-mode .subscription-plan-card .plan-badge {
   background: rgba(37, 99, 235, 0.18);
   border: 1px solid rgba(96, 165, 250, 0.42);
@@ -8327,8 +8346,13 @@ body.dark-mode .subscription-plan-card .secondary-btn:hover {
   border-color: rgba(148, 163, 184, 0.34);
 }
 
+@media (max-width: 1280px) {
+  .subscription-plan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1100px) {
-  .subscription-plan-grid,
   .subscription-bottom-grid,
   .subscription-hero {
     grid-template-columns: 1fr;
@@ -8340,12 +8364,203 @@ body.dark-mode .subscription-plan-card .secondary-btn:hover {
 }
 
 @media (max-width: 720px) {
+  .subscription-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
   .subscription-hero,
   .subscription-plan-card {
     padding: 18px;
   }
 
   .subscription-plan-topline {
+    display: grid;
+  }
+}
+
+.admin-subscription-page {
+  display: grid;
+  gap: 20px;
+}
+
+.admin-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  min-width: 0;
+}
+
+.admin-plan-card {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.admin-plan-card .premium-rag-form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-plan-card label {
+  min-width: 0;
+}
+
+.admin-plan-card input,
+.admin-plan-card textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.admin-plan-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-plan-card-head h3 {
+  margin: 0 0 4px;
+}
+
+.admin-plan-card-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.admin-plan-price-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #e8f1ff;
+  color: var(--primary-dark);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.admin-settings-source {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  color: #64748b;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.admin-plan-full-label,
+.admin-plan-list-grid label,
+.admin-plan-comparison-grid label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.admin-plan-full-label textarea,
+.admin-plan-list-grid textarea,
+.admin-plan-comparison-grid input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.admin-plan-full-label textarea,
+.admin-plan-list-grid textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.admin-plan-toggle-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-plan-toggle-row label {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.admin-plan-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.admin-plan-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-subscription-save-bar {
+  position: static;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.admin-subscription-save-bar div {
+  display: grid;
+  gap: 5px;
+}
+
+.admin-subscription-save-bar strong,
+.admin-subscription-save-bar span,
+.admin-subscription-save-bar .primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-subscription-save-bar span {
+  color: var(--muted);
+}
+
+body.dark-mode .admin-plan-price-preview {
+  background: rgba(37, 99, 235, 0.18);
+  color: #bfdbfe;
+}
+
+body.dark-mode .admin-plan-full-label textarea,
+body.dark-mode .admin-plan-list-grid textarea,
+body.dark-mode .admin-plan-comparison-grid input {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #e5e7eb;
+}
+
+body.dark-mode .admin-subscription-save-bar {
+  background: rgba(15, 23, 42, 0.94);
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+@media (max-width: 1100px) {
+  .admin-plan-grid,
+  .admin-plan-card .premium-rag-form-grid,
+  .admin-plan-list-grid,
+  .admin-plan-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-subscription-save-bar {
     display: grid;
   }
 }

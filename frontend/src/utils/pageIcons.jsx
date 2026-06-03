@@ -6,6 +6,7 @@ import {
     CreditCard,
     HelpCircle,
     Home,
+    Tags,
     Trophy,
     UploadCloud,
     Video,
@@ -21,5 +22,6 @@ import {
     analytics: BarChart3,
     leaderboard: Trophy,
     ragUpload: UploadCloud,
+    subscriptionSettings: Tags,
     subscriptionPlans: CreditCard,
   };
