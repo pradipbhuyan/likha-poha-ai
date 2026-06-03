@@ -22,6 +22,11 @@ from app.services.rag_service import (
     list_rag_documents,
     delete_rag_document,
 )
+from app.services.sof_catalog_service import (
+    build_sof_catalog_prompt,
+    get_sof_subjects,
+    normalize_sof_group,
+)
 
 from app.services.ocr_service import extract_text_from_image_bytes
 
@@ -376,6 +381,8 @@ async def analyze_sof_images(
             ]
         )
 
+        canonical_toc = build_sof_catalog_prompt()
+
         system_prompt = """
 You are an educational OCR organizer for SOF Olympiad books.
 
@@ -394,7 +401,8 @@ For SOF content, subject must be exactly one of:
 
 Never return Science, Maths, or English for SOF content.
 
-Use chapter names from the page text whenever possible.
+Use the canonical TOC chapter names exactly. If OCR shows ISO, IMO, or IEO,
+map it to the matching SOF subject and model paper title.
 """
 
         user_prompt = f"""
@@ -418,9 +426,14 @@ Return JSON in this exact format:
 
 Rules:
 - If multiple pages belong to the same chapter, combine them into one group.
-- If a page is table of contents, extract chapter names but do not create RAG content unless useful.
+- If a page is table of contents, use it to identify the subject/book but do not create RAG content unless useful.
 - If uncertain, still create the best possible group with confidence "Low".
+- subject must exactly match one canonical SOF subject.
+- chapter must exactly match one canonical chapter or model test paper title.
+- title should clearly identify the SOF subject, chapter, and whether the content is chapter content, exercise, or model test paper.
 - combined_text must include the useful learning content from the matching pages.
+
+{canonical_toc}
 
 OCR PAGES:
 
@@ -436,9 +449,21 @@ OCR PAGES:
 
         try:
             parsed = json.loads(ai_response)
-            groups = parsed.get("groups", [])
+            raw_groups = parsed.get("groups", [])
         except Exception:
-            groups = []
+            raw_groups = []
+
+        groups = []
+        for group in raw_groups:
+            if not isinstance(group, dict):
+                continue
+
+            normalized_group = normalize_sof_group(
+                group,
+                fallback_grade=grade,
+            )
+            if normalized_group["combined_text"]:
+                groups.append(normalized_group)
 
         return {
             "success": True,
@@ -462,15 +487,33 @@ def confirm_sof_upload(data: ConfirmSofUploadRequest):
         results = []
 
         for group in data.groups:
-            if group.subject not in [
-                "Science Olympiad",
-                "Maths Olympiad",
-                "English Olympiad",
-            ]:
+            group_data = (
+                group.model_dump()
+                if hasattr(group, "model_dump")
+                else group.dict()
+            )
+            normalized_group = normalize_sof_group(
+                group_data,
+                fallback_grade=group.grade,
+            )
+
+            if normalized_group.get("subject") not in get_sof_subjects():
                 results.append({
                     "success": False,
-                    "title": group.title,
+                    "title": normalized_group.get("title") or group.title,
                     "message": f"Invalid SOF subject: {group.subject}",
+                    "document_id": None,
+                    "chunks_created": 0,
+                })
+                continue
+
+            if normalized_group.get("normalization_warning"):
+                results.append({
+                    "success": False,
+                    "title": normalized_group.get("title") or group.title,
+                    "subject": normalized_group.get("subject") or group.subject,
+                    "chapter": normalized_group.get("chapter") or group.chapter,
+                    "message": normalized_group["normalization_warning"],
                     "document_id": None,
                     "chunks_created": 0,
                 })
@@ -478,18 +521,18 @@ def confirm_sof_upload(data: ConfirmSofUploadRequest):
 
             result = upload_textbook_text(
                 username=data.username,
-                grade=group.grade,
-                subject=group.subject,
-                chapter=group.chapter,
-                title=group.title,
-                text=group.combined_text,
+                grade=normalized_group["grade"],
+                subject=normalized_group["subject"],
+                chapter=normalized_group["chapter"],
+                title=normalized_group["title"],
+                text=normalized_group["combined_text"],
             )
 
             results.append({
                 "success": result.get("success", False),
-                "title": group.title,
-                "subject": group.subject,
-                "chapter": group.chapter,
+                "title": normalized_group["title"],
+                "subject": normalized_group["subject"],
+                "chapter": normalized_group["chapter"],
                 "message": result.get("message", ""),
                 "document_id": result.get("document_id"),
                 "chunks_created": result.get("chunks_created", 0),

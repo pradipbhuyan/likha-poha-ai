@@ -4,6 +4,10 @@ from datetime import date
 
 from app.services.openai_service import ask_llm
 from app.services.rag_service import search_textbook_content
+from app.services.sof_catalog_service import (
+    get_sof_exam_paper_chapters,
+    get_sof_support_chapters,
+)
 
 
 MOCK_TEST_SYSTEM = """
@@ -26,28 +30,6 @@ JSON schema:
   ]
 }
 """
-
-
-def get_sof_model_papers(olympiad):
-    if olympiad == "Science Olympiad":
-        return [
-            "SOF-ISO Model Test Paper-1",
-            "SOF-ISO Model Test Paper-2",
-        ]
-
-    if olympiad == "Maths Olympiad":
-        return [
-            "SOF-IMO Model Test Paper-1",
-            "SOF-IMO Model Test Paper-2",
-        ]
-
-    if olympiad == "English Olympiad":
-        return [
-            "SOF-IEO Model Test Paper-1",
-            "SOF-IEO Model Test Paper-2",
-        ]
-
-    return []
 
 
 def build_rag_context(items, label="RAG"):
@@ -126,16 +108,31 @@ def get_sof_rag_context(
 
     model_paper_items = []
 
-    for paper_chapter in get_sof_model_papers(olympiad):
-        model_paper_items.extend(
+    for paper_chapter in get_sof_exam_paper_chapters(olympiad):
+        paper_items = search_textbook_content(
+            query=(
+                f"{paper_chapter} SOF workbook paper mock test questions "
+                f"pattern difficulty sample questions answer explanations {olympiad}"
+            ),
+            grade=grade,
+            subject=olympiad,
+            chapter=paper_chapter,
+            match_count=8,
+        )
+        model_paper_items.extend(paper_items)
+
+    support_items = []
+
+    for support_chapter in get_sof_support_chapters(olympiad):
+        support_items.extend(
             search_textbook_content(
                 query=(
-                    f"{paper_chapter} SOF model mock test paper question "
-                    f"pattern difficulty sample questions answer explanations {olympiad}"
+                    f"{support_chapter} SOF workbook answer key hints "
+                    f"explanations solutions reasoning {olympiad}"
                 ),
                 grade=grade,
                 subject=olympiad,
-                chapter=paper_chapter,
+                chapter=support_chapter,
                 match_count=8,
             )
         )
@@ -160,6 +157,14 @@ def get_sof_rag_context(
 
     if model_paper_context:
         context_parts.append(model_paper_context)
+
+    support_context = build_rag_context(
+        support_items,
+        label="SOF workbook answer keys and explanations",
+    )
+
+    if support_context:
+        context_parts.append(support_context)
 
     return "\n\n".join(context_parts)
 
@@ -258,7 +263,8 @@ Rules:
 - Every question must be based on a concept, example, pattern, or exercise present in the uploaded RAG context.
 - Use SOF chapter RAG content for tested concepts.
 - Use SOF exercise RAG content for practice-question style and common traps.
-- Use SOF mock/model test paper RAG content for exam pattern, section mix, wording style, difficulty and option design.
+- Use SOF workbook/mock/model test paper RAG content for exam pattern, section mix, wording style, difficulty and option design.
+- Use uploaded SOF answer keys, hints, and explanations to improve answer reasoning.
 - Do not introduce unrelated syllabus areas that are not supported by RAG.
 - Do not copy exact questions from the RAG context.
 - Create fresh original questions inspired by the uploaded SOF material.
