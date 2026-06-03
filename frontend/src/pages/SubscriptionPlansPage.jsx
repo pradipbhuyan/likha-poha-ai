@@ -12,6 +12,11 @@ import {
   getParentSubscriptionPlans,
 } from "../api/parentDashboard";
 import {
+  createPaymentOrder,
+  getPaymentConfig,
+  verifyPayment,
+} from "../api/payments";
+import {
   formatPlanPrice,
   getPlanDisplayPrice,
   getSubscriptionPlan,
@@ -30,6 +35,11 @@ function SubscriptionPlansPage({ user }) {
       .sort((a, b) => a.displayOrder - b.displayOrder)
       .map((plan) => plan.key)
   );
+  const [paymentConfig, setPaymentConfig] = useState({
+    configured: false,
+    provider: "razorpay",
+  });
+  const [paymentProcessing, setPaymentProcessing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -41,6 +51,10 @@ function SubscriptionPlansPage({ user }) {
           getParentChildren(),
           getParentSubscriptionPlans(),
         ]);
+        const paymentResult = await getPaymentConfig().catch((err) => {
+          console.warn("Payment config unavailable", err);
+          return { configured: false, provider: "razorpay" };
+        });
         const loadedChildren = childrenResult.children || [];
         const loadedPlans = mergeSubscriptionPlans(planResult.plans || {});
         const loadedPlanOrder = (planResult.plan_order || []).filter(
@@ -56,6 +70,7 @@ function SubscriptionPlansPage({ user }) {
             "Subscription pricing settings could not load from Supabase, so default prices are shown. Please ask admin to check the subscription_plan_settings table."
           );
         }
+        setPaymentConfig(paymentResult);
         setChildren(loadedChildren);
         setSelectedChildId(loadedChildren[0]?.id || "");
       } catch (err) {
@@ -90,15 +105,96 @@ function SubscriptionPlansPage({ user }) {
     setError("");
   }
 
-  function handlePaymentClick() {
+  function loadRazorpayCheckout() {
+    return new Promise((resolve, reject) => {
+      if (window.Razorpay) {
+        resolve(true);
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.async = true;
+      script.onload = () => resolve(true);
+      script.onerror = () => reject(new Error("Unable to load payment checkout."));
+      document.body.appendChild(script);
+    });
+  }
+
+  async function handlePaymentClick() {
     if (!selectedChild) {
       setError("Please select a child before choosing a plan.");
       return;
     }
 
-    setMessage(
-      `Payment gateway is ready to connect for ${selectedPlan.label}. Admin can activate this plan from Admin Control until payment integration is enabled.`
-    );
+    if (!paymentConfig.configured) {
+      setMessage(
+        `Online UPI payment is not enabled yet. Admin can activate ${selectedPlan.label} from Admin Control until Razorpay setup is complete.`
+      );
+      return;
+    }
+
+    setPaymentProcessing(true);
+    setMessage("");
+    setError("");
+
+    try {
+      await loadRazorpayCheckout();
+
+      const orderResult = await createPaymentOrder({
+        child_id: selectedChild.id,
+        plan_key: selectedPlan.key,
+      });
+
+      const checkout = new window.Razorpay({
+        key: orderResult.key_id,
+        amount: orderResult.order.amount,
+        currency: orderResult.order.currency,
+        name: "Likha Poha AI",
+        description: `${selectedPlan.label} subscription`,
+        order_id: orderResult.order.id,
+        prefill: {
+          email: user?.email || "",
+          name: user?.username || "",
+        },
+        notes: {
+          child_id: selectedChild.id,
+          plan_key: selectedPlan.key,
+        },
+        handler: async (response) => {
+          try {
+            await verifyPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+
+            setMessage(
+              `${selectedPlan.label} payment verified. Subscription access has been updated.`
+            );
+          } catch (err) {
+            console.error(err);
+            setError(err.message || "Payment verification failed.");
+          } finally {
+            setPaymentProcessing(false);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setPaymentProcessing(false);
+          },
+        },
+        method: {
+          upi: true,
+        },
+      });
+
+      checkout.open();
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to start payment.");
+      setPaymentProcessing(false);
+    }
   }
 
   if (user?.role !== "parent") {
@@ -306,16 +402,23 @@ function SubscriptionPlansPage({ user }) {
 
           <button
             className="primary-btn"
-            disabled={isCurrentPlan || !selectedChild}
+            disabled={isCurrentPlan || !selectedChild || paymentProcessing}
             onClick={handlePaymentClick}
           >
             <Sparkles size={18} strokeWidth={2.5} />
-            {isCurrentPlan ? "Current Plan Selected" : "Proceed to Payment"}
+            {isCurrentPlan
+              ? "Current Plan Selected"
+              : paymentProcessing
+                ? "Opening Payment..."
+                : paymentConfig.configured
+                  ? "Pay with UPI"
+                  : "Payment Setup Pending"}
           </button>
 
           <p className="subscription-payment-note">
-            Admin-configured inclusions and limits power this page. Payment
-            gateway activation can be connected to this button.
+            {paymentConfig.configured
+              ? "UPI checkout opens through Razorpay. Subscription is activated only after payment verification."
+              : "Online UPI payment is not enabled yet. Admin can activate plans manually without affecting current access."}
           </p>
         </aside>
       </section>
