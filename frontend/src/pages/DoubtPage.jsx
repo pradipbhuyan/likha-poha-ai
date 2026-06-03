@@ -8,6 +8,12 @@ import { getSyllabus } from "../api/syllabus";
 import { answerDoubt } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
 
+const SOF_SUBJECT_ACCESS = {
+  "Science Olympiad": "accessSofScience",
+  "Maths Olympiad": "accessSofMaths",
+  "English Olympiad": "accessSofEnglish",
+};
+
 function DoubtPage({ user }) {
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
@@ -15,6 +21,7 @@ function DoubtPage({ user }) {
 
   const [grade, setGrade] = useState("Grade 9");
   const [mode, setMode] = useState("CBSE");
+  const [subject, setSubject] = useState("");
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -22,7 +29,6 @@ function DoubtPage({ user }) {
   const [asking, setAsking] = useState(false);
   const [mentorSuggestions, setMentorSuggestions] = useState([]);
 
-  const [activeFollowUpCard, setActiveFollowUpCard] = useState(null);
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpAnswers, setFollowUpAnswers] = useState({});
   const [followUpLoading, setFollowUpLoading] = useState(false);
@@ -71,12 +77,45 @@ function DoubtPage({ user }) {
   }
 
   const allowedModes = modes.filter((m) => hasModeAccess(m));
+  const allModeSubjects = mode ? Object.keys(syllabusData[grade][mode] || {}) : [];
+  const allowedSofSubjects = allModeSubjects.filter((subjectName) => {
+    if (user.role === "admin") return true;
+    const accessKey = SOF_SUBJECT_ACCESS[subjectName];
+    return accessKey ? !!user[accessKey] : false;
+  });
+
+  function getAllowedSofSubjectsForGrade(selectedGrade) {
+    const sofSubjects = Object.keys(syllabusData[selectedGrade]?.SOF || {});
+
+    if (user.role === "admin") {
+      return sofSubjects;
+    }
+
+    return sofSubjects.filter((subjectName) => {
+      const accessKey = SOF_SUBJECT_ACCESS[subjectName];
+      return accessKey ? !!user[accessKey] : false;
+    });
+  }
+
+  function getDoubtSubject() {
+    return mode === "SOF" ? subject : "";
+  }
+
+  function buildDoubtPayload(questionText) {
+    return {
+      username: user.username,
+      grade,
+      mode,
+      subject: getDoubtSubject(),
+      chapter: "",
+      question: questionText,
+    };
+  }
 
   function clearAnswerState() {
     setAnswer("");
     setSourceInfo(null);
     setMentorSuggestions([]);
-    setActiveFollowUpCard(null);
     setFollowUpQuestion("");
     setFollowUpAnswers({});
     setError("");
@@ -90,12 +129,17 @@ function DoubtPage({ user }) {
 
     if (!firstAllowedMode) {
       setMode("");
-      setError("You do not have access to any learning mode.");
       clearAnswerState();
+      setError("You do not have access to any learning mode.");
       return;
     }
 
     setMode(firstAllowedMode);
+    setSubject(
+      firstAllowedMode === "SOF"
+        ? getAllowedSofSubjectsForGrade(value)[0] || ""
+        : ""
+    );
     clearAnswerState();
   }
 
@@ -106,6 +150,7 @@ function DoubtPage({ user }) {
     }
 
     setMode(value);
+    setSubject(value === "SOF" ? getAllowedSofSubjectsForGrade(grade)[0] || "" : "");
     clearAnswerState();
   }
 
@@ -169,24 +214,21 @@ function DoubtPage({ user }) {
       return;
     }
 
+    if (mode === "SOF" && !subject) {
+      setError("Please select Science, Maths, or English Olympiad.");
+      return;
+    }
+
     setAsking(true);
     setError("");
     setAnswer("");
     setSourceInfo(null);
     setMentorSuggestions([]);
-    setActiveFollowUpCard(null);
     setFollowUpQuestion("");
     setFollowUpAnswers({});
 
     try {
-      const result = await answerDoubt({
-        username: user.username,
-        grade,
-        mode,
-        subject: "",
-        chapter: "",
-        question,
-      });
+      const result = await answerDoubt(buildDoubtPayload(question));
 
       if (!result.success) {
         setError(result.message || "Could not answer doubt");
@@ -202,8 +244,8 @@ function DoubtPage({ user }) {
         sourceType: result.source_type,
         sources: result.sources || [],
       });
-    } catch {
-      setError("Could not answer doubt. Check backend.");
+    } catch (err) {
+      setError(err.message || "Could not answer doubt. Check backend.");
     } finally {
       setAsking(false);
     }
@@ -215,7 +257,10 @@ function DoubtPage({ user }) {
       return;
     }
 
-    setActiveFollowUpCard(suggestion);
+    if (mode === "SOF" && !subject) {
+      setError("Please select Science, Maths, or English Olympiad.");
+      return;
+    }
 
     if (followUpAnswers[suggestion]) {
       return;
@@ -224,13 +269,7 @@ function DoubtPage({ user }) {
     setFollowUpLoading(true);
 
     try {
-      const result = await answerDoubt({
-        username: user.username,
-        grade,
-        mode,
-        subject: "",
-        chapter: "",
-        question: `Mentor follow-up mode.
+      const result = await answerDoubt(buildDoubtPayload(`Mentor follow-up mode.
 
 Student's original doubt:
 ${question}
@@ -245,8 +284,7 @@ Rules:
 - No markdown tables.
 - Be concise and conversational.
 - Focus only on the requested follow-up.
-- End with one short reflective question.`,
-      });
+- End with one short reflective question.`));
 
       if (!result.success) {
         setError(result.message || "Could not answer follow-up.");
@@ -257,8 +295,8 @@ Rules:
         ...prev,
         [suggestion]: normalizeMermaidBlocks(result.answer || ""),
       }));
-    } catch {
-      setError("Could not answer follow-up. Check backend.");
+    } catch (err) {
+      setError(err.message || "Could not answer follow-up. Check backend.");
     } finally {
       setFollowUpLoading(false);
     }
@@ -270,6 +308,11 @@ Rules:
       return;
     }
 
+    if (mode === "SOF" && !subject) {
+      setError("Please select Science, Maths, or English Olympiad.");
+      return;
+    }
+
     if (!followUpQuestion.trim()) {
       return;
     }
@@ -277,13 +320,7 @@ Rules:
     setFollowUpLoading(true);
 
     try {
-      const result = await answerDoubt({
-        username: user.username,
-        grade,
-        mode,
-        subject: "",
-        chapter: "",
-        question: `${suggestion}
+      const result = await answerDoubt(buildDoubtPayload(`${suggestion}
 
 Deeper follow-up question:
 ${followUpQuestion}
@@ -294,8 +331,7 @@ ${question}
 Important:
 - Answer the deeper follow-up directly.
 - Use the original doubt as context.
-- Keep the response concise unless detail is required.`,
-      });
+- Keep the response concise unless detail is required.`));
 
       if (!result.success) {
         setError(result.message || "Could not answer follow-up.");
@@ -308,8 +344,8 @@ Important:
       }));
 
       setFollowUpQuestion("");
-    } catch {
-      setError("Could not answer follow-up. Check backend.");
+    } catch (err) {
+      setError(err.message || "Could not answer follow-up. Check backend.");
     } finally {
       setFollowUpLoading(false);
     }
@@ -333,6 +369,7 @@ Important:
             <strong>AI Study Companion</strong>
             <p>
               Open mentor mode • {grade} • {mode || "No Access"}
+              {mode === "SOF" && subject ? ` • ${subject}` : ""}
             </p>
           </div>
         </div>
@@ -382,14 +419,38 @@ Important:
                 )}
               </select>
             </label>
+
+            {mode === "SOF" && (
+              <label>
+                Olympiad Subject
+                <select
+                  value={subject}
+                  onChange={(e) => {
+                    setSubject(e.target.value);
+                    clearAnswerState();
+                  }}
+                  disabled={allowedSofSubjects.length === 0}
+                >
+                  {allowedSofSubjects.length === 0 ? (
+                    <option value="">No SOF subject access</option>
+                  ) : (
+                    allowedSofSubjects.map((subjectName) => (
+                      <option key={subjectName} value={subjectName}>
+                        {subjectName}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </label>
+            )}
           </div>
 
           <div className="premium-open-mentor-note">
             <strong>How this works</strong>
             <p>
-              You do not need to select a subject or chapter here. Type your
-              doubt naturally, and the AI will search broadly across allowed
-              textbook content and combine it with mentor memory.
+              {mode === "SOF"
+                ? "Select the Olympiad subject, type your doubt naturally, and the AI will search the matching SOF content before adding wider explanation."
+                : "You do not need to select a subject or chapter here. Type your doubt naturally, and the AI will search broadly across allowed textbook content and combine it with mentor memory."}
             </p>
           </div>
         </aside>

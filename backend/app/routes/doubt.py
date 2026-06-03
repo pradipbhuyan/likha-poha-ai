@@ -12,6 +12,14 @@ from app.services.auth_service import (
 router = APIRouter()
 
 
+SOF_SUBJECT_ACCESS = {
+    "science olympiad": "access_sof_science",
+    "maths olympiad": "access_sof_maths",
+    "mathematics olympiad": "access_sof_maths",
+    "english olympiad": "access_sof_english",
+}
+
+
 def validate_required_text(value: str, field_name: str):
     if value is None or not value.strip():
         raise HTTPException(
@@ -35,7 +43,11 @@ def get_profile_by_user_id(user_id: str):
     return response.data
 
 
-def enforce_learning_access(profile: dict, mode: str):
+def normalize_subject(subject: str):
+    return (subject or "").strip().lower()
+
+
+def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
     if not profile:
         raise HTTPException(
             status_code=403,
@@ -60,16 +72,19 @@ def enforce_learning_access(profile: dict, mode: str):
         return
 
     if mode == "SOF":
-        sof_enabled = (
-            profile.get("access_sof_science")
-            or profile.get("access_sof_maths")
-            or profile.get("access_sof_english")
-        )
+        subject_key = SOF_SUBJECT_ACCESS.get(normalize_subject(subject))
 
-        if not sof_enabled:
+        if not subject_key:
+            raise HTTPException(
+                status_code=400,
+                detail="Please select Science, Maths, or English Olympiad for SOF doubts.",
+            )
+
+        if not profile.get(subject_key):
+            readable_subject = subject.replace(" Olympiad", "")
             raise HTTPException(
                 status_code=403,
-                detail="SOF access is not enabled.",
+                detail=f"SOF {readable_subject} access is not enabled.",
             )
 
         return
@@ -99,16 +114,19 @@ def answer_student_doubt(
     validate_required_text(data.question, "question")
 
     profile = get_profile_by_user_id(user.id)
-    enforce_learning_access(profile, data.mode)
-    enforce_ai_token_limit(profile.get("username") or data.username)
+    canonical_username = profile.get("username") or data.username
+
+    enforce_learning_access(profile, data.mode, data.subject)
+    enforce_ai_token_limit(canonical_username)
 
     try:
         result = answer_doubt(
             grade=data.grade,
+            mode=data.mode,
             subject=data.subject,
             chapter=data.chapter,
             question=data.question,
-            username=data.username,
+            username=canonical_username,
         )
 
         return {

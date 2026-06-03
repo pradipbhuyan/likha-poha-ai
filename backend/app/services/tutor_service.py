@@ -345,6 +345,7 @@ End with one small question to check understanding.
 
 def answer_doubt(
     grade: str,
+    mode: str,
     subject: str,
     chapter: str,
     question: str,
@@ -397,6 +398,7 @@ IMPORTANT:
 
     prompt = f"""
 Grade: {grade}
+Mode: {mode}
 Subject: {subject if subject else "Open doubt"}
 Chapter: {chapter if chapter else "Open topic"}
 
@@ -454,7 +456,7 @@ $$
     save_mentor_memory(
         username=username,
         grade=grade,
-        mode="CBSE",
+        mode=mode,
         subject=subject,
         chapter=chapter,
         question=question,

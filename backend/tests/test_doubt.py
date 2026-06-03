@@ -22,7 +22,7 @@ def test_answer_doubt_api(monkeypatch):
       - mentor_suggestions
     """
 
-    def fake_answer_doubt(grade, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
         return {
             "answer": "Matter is anything that has mass and occupies space.",
             "source_type": "MOCK",
@@ -73,7 +73,7 @@ def test_answer_doubt_response_has_valid_data_types(monkeypatch):
     - mentor_suggestions should be a list.
     """
 
-    def fake_answer_doubt(grade, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
         return {
             "answer": "Matter has mass and occupies space.",
             "source_type": "MOCK",
@@ -127,3 +127,75 @@ def test_answer_doubt_empty_question():
     response = client.post("/api/doubt/answer", json=payload)
 
     assert response.status_code in [400, 422]
+
+
+def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
+    captured = {}
+
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
+        captured["mode"] = mode
+        captured["username"] = username
+        return {
+            "answer": "SOF answer",
+            "source_type": "MOCK",
+            "sources": [],
+            "mentor_suggestions": [],
+        }
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+
+    payload = {
+        "username": "spoofed_user",
+        "grade": "Grade 9",
+        "mode": "SOF",
+        "subject": "Science Olympiad",
+        "chapter": "",
+        "question": "What is motion?",
+    }
+
+    response = client.post("/api/doubt/answer", json=payload)
+
+    assert response.status_code == 200
+    assert captured["username"] == "test_user"
+    assert captured["mode"] == "SOF"
+
+
+def test_answer_doubt_rejects_sof_subject_without_access(monkeypatch):
+    from tests.conftest import fake_student_profile, patch_route_profile
+
+    profile = fake_student_profile(
+        access_sof_science=True,
+        access_sof_maths=False,
+        access_sof_english=False,
+    )
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    payload = {
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "SOF",
+        "subject": "Maths Olympiad",
+        "chapter": "",
+        "question": "Solve this olympiad problem.",
+    }
+
+    response = client.post("/api/doubt/answer", json=payload)
+
+    assert response.status_code == 403
+    assert "SOF Maths access is not enabled" in response.json()["detail"]
+
+
+def test_answer_doubt_requires_sof_subject():
+    payload = {
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "SOF",
+        "subject": "",
+        "chapter": "",
+        "question": "Explain this olympiad question.",
+    }
+
+    response = client.post("/api/doubt/answer", json=payload)
+
+    assert response.status_code == 400
+    assert "Please select Science, Maths, or English Olympiad" in response.json()["detail"]
