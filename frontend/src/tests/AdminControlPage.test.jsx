@@ -229,6 +229,7 @@ describe("AdminControlPage teacher management", () => {
 
     renderPage();
 
+    expect(await screen.findByText("Parent One Family")).toBeInTheDocument();
     expect(await screen.findByText("Parent One")).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText(/parent name/i), {

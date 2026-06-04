@@ -35,6 +35,20 @@ const AI_MODEL_OPTIONS = [
   },
 ];
 
+function getFamilyDisplayName(family) {
+  /** Prefer human-readable family labels over UUIDs in the admin roster. */
+  const parents = family.parents || [];
+  const children = family.children || [];
+  const firstParent = parents[0]?.username?.trim();
+  const firstChild = children[0]?.username?.trim();
+
+  if (firstParent) return `${firstParent} Family`;
+  if (firstChild) return `${firstChild}'s Family`;
+  if (family.family_id === "no-family") return "Unassigned Accounts";
+
+  return `Family ${String(family.family_id || "").slice(0, 8)}`;
+}
+
 function AdminControlPage({ user }) {
   /** Admin operations page for managing families, access flags, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
@@ -456,227 +470,269 @@ function AdminControlPage({ user }) {
 
   const allTeachers = families.flatMap((family) => family.teachers || []);
   const allStudents = families.flatMap((family) => family.children || []);
+  const allParents = families.flatMap((family) => family.parents || []);
+  const activeStudents = allStudents.filter(
+    (student) => (student.account_status || "active") === "active"
+  );
   const studentById = Object.fromEntries(
     allStudents.map((student) => [student.id, student])
   );
 
   return (
-    <div className="premium-page">
-      <section className="premium-section">
+    <div className="premium-page admin-control-page">
+      <section className="premium-section admin-control-hero">
         <div className="premium-header">
           <p className="eyebrow">Admin Operations</p>
           <h2>🛠️ Admin Control Center</h2>
-          <p>Manage families, children, learning access, and AI limits.</p>
+          <p>Manage accounts, teacher access, subscriptions, and AI limits from one workspace.</p>
+        </div>
+
+        <div className="admin-overview-grid">
+          <div className="admin-overview-card">
+            <span>Families</span>
+            <strong>{families.length}</strong>
+          </div>
+
+          <div className="admin-overview-card">
+            <span>Parents</span>
+            <strong>{allParents.length}</strong>
+          </div>
+
+          <div className="admin-overview-card">
+            <span>Students</span>
+            <strong>{allStudents.length}</strong>
+            <small>{activeStudents.length} active</small>
+          </div>
+
+          <div className="admin-overview-card">
+            <span>Teachers</span>
+            <strong>{allTeachers.length}</strong>
+          </div>
         </div>
       </section>
 
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
 
-      <section className="premium-section">
+      <section className="premium-section admin-create-section">
         <div className="premium-header">
-          <h3>➕ Create New Parent</h3>
-          <p>Create a new family with one parent account.</p>
+          <p className="eyebrow">Quick Create</p>
+          <h3>Accounts</h3>
+          <p>Create parent families and teacher logins without leaving the admin console.</p>
         </div>
 
-        <form
-          onSubmit={handleCreateParent}
-          className="form-grid premium-rag-form-grid"
-        >
-          <label>
-            Parent Name
-            <input
-              type="text"
-              value={parentForm.username}
-              onChange={(e) =>
-                setParentForm((prev) => ({
-                  ...prev,
-                  username: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
+        <div className="admin-create-grid">
+          <div className="admin-create-card">
+            <div className="admin-card-heading">
+              <span>👨‍👩‍👧</span>
+              <div>
+                <h3>Create New Parent</h3>
+                <p>Create a new family with one parent account.</p>
+              </div>
+            </div>
 
-          <label>
-            Parent Email
-            <input
-              type="email"
-              value={parentForm.email}
-              onChange={(e) =>
-                setParentForm((prev) => ({
-                  ...prev,
-                  email: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
+            <form
+              onSubmit={handleCreateParent}
+              className="form-grid premium-rag-form-grid admin-compact-form"
+            >
+              <label>
+                Parent Name
+                <input
+                  type="text"
+                  value={parentForm.username}
+                  onChange={(e) =>
+                    setParentForm((prev) => ({
+                      ...prev,
+                      username: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
 
-          <label>
-            Temporary Password
-            <input
-              type="password"
-              value={parentForm.password}
-              onChange={(e) =>
-                setParentForm((prev) => ({
-                  ...prev,
-                  password: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
+              <label>
+                Parent Email
+                <input
+                  type="email"
+                  value={parentForm.email}
+                  onChange={(e) =>
+                    setParentForm((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
 
-          <button className="primary-btn" type="submit">
-            Create Parent
-          </button>
-        </form>
-      </section>
+              <label>
+                Temporary Password
+                <input
+                  type="password"
+                  value={parentForm.password}
+                  onChange={(e) =>
+                    setParentForm((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
 
-      <section className="premium-section">
-        <div className="premium-header">
-          <p className="eyebrow">Teacher Access</p>
-          <h3>Teacher Accounts</h3>
-          <p>
-            Create teacher logins for schools or independent teachers. Public
-            signup remains parent-only.
-          </p>
+              <button className="primary-btn" type="submit">
+                Create Parent
+              </button>
+            </form>
+          </div>
+
+          <div className="admin-create-card">
+            <div className="admin-card-heading">
+              <span>🎓</span>
+              <div>
+                <h3>Teacher Accounts</h3>
+                <p>Create teacher logins for schools or independent teachers.</p>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleCreateTeacher}
+              className="form-grid premium-rag-form-grid admin-compact-form"
+            >
+              <label>
+                Teacher Name
+                <input
+                  type="text"
+                  value={teacherForm.username}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      username: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                Teacher Email
+                <input
+                  type="email"
+                  value={teacherForm.email}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                Temporary Password
+                <input
+                  type="password"
+                  value={teacherForm.password}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                Teacher Type
+                <select
+                  value={teacherForm.teacher_type}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      teacher_type: e.target.value,
+                    }))
+                  }
+                >
+                  <option value="independent">Independent Teacher</option>
+                  <option value="school">School Teacher</option>
+                </select>
+              </label>
+
+              <label>
+                School / Organization
+                <input
+                  type="text"
+                  value={teacherForm.school_name}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      school_name: e.target.value,
+                    }))
+                  }
+                  placeholder="Optional for independent teachers"
+                />
+              </label>
+
+              <label>
+                Status
+                <select
+                  value={teacherForm.status}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      status: e.target.value,
+                    }))
+                  }
+                >
+                  <option value="active">Active</option>
+                  <option value="suspended">Suspended</option>
+                </select>
+              </label>
+
+              <label>
+                Subjects
+                <input
+                  type="text"
+                  value={teacherForm.subjectsCsv}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      subjectsCsv: e.target.value,
+                    }))
+                  }
+                  placeholder="Science, Maths, English"
+                />
+              </label>
+
+              <label>
+                Grades
+                <input
+                  type="text"
+                  value={teacherForm.gradesCsv}
+                  onChange={(e) =>
+                    setTeacherForm((prev) => ({
+                      ...prev,
+                      gradesCsv: e.target.value,
+                    }))
+                  }
+                  placeholder="Grade 6, Grade 7, Grade 9"
+                />
+              </label>
+
+              <button className="primary-btn admin-teacher-create-btn" type="submit">
+                Create Teacher
+              </button>
+            </form>
+          </div>
         </div>
 
-        <form
-          onSubmit={handleCreateTeacher}
-          className="form-grid premium-rag-form-grid"
-        >
-          <label>
-            Teacher Name
-            <input
-              type="text"
-              value={teacherForm.username}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  username: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
-
-          <label>
-            Teacher Email
-            <input
-              type="email"
-              value={teacherForm.email}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  email: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
-
-          <label>
-            Temporary Password
-            <input
-              type="password"
-              value={teacherForm.password}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  password: e.target.value,
-                }))
-              }
-              required
-            />
-          </label>
-
-          <label>
-            Teacher Type
-            <select
-              value={teacherForm.teacher_type}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  teacher_type: e.target.value,
-                }))
-              }
-            >
-              <option value="independent">Independent Teacher</option>
-              <option value="school">School Teacher</option>
-            </select>
-          </label>
-
-          <label>
-            School / Organization
-            <input
-              type="text"
-              value={teacherForm.school_name}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  school_name: e.target.value,
-                }))
-              }
-              placeholder="Optional for independent teachers"
-            />
-          </label>
-
-          <label>
-            Status
-            <select
-              value={teacherForm.status}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  status: e.target.value,
-                }))
-              }
-            >
-              <option value="active">Active</option>
-              <option value="suspended">Suspended</option>
-            </select>
-          </label>
-
-          <label>
-            Subjects
-            <input
-              type="text"
-              value={teacherForm.subjectsCsv}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  subjectsCsv: e.target.value,
-                }))
-              }
-              placeholder="Science, Maths, English"
-            />
-          </label>
-
-          <label>
-            Grades
-            <input
-              type="text"
-              value={teacherForm.gradesCsv}
-              onChange={(e) =>
-                setTeacherForm((prev) => ({
-                  ...prev,
-                  gradesCsv: e.target.value,
-                }))
-              }
-              placeholder="Grade 6, Grade 7, Grade 9"
-            />
-          </label>
-
-          <button className="primary-btn" type="submit">
-            Create Teacher
-          </button>
-        </form>
-
-        <div style={{ marginTop: 24 }}>
-          <h4>Current Teachers</h4>
+        <details className="admin-roster-panel">
+          <summary>
+            <span>Current Teachers</span>
+            <strong>{allTeachers.length}</strong>
+          </summary>
 
           {allTeachers.length === 0 ? (
             <div className="info-box">
@@ -838,14 +894,27 @@ function AdminControlPage({ user }) {
               );
             })
           )}
-        </div>
+        </details>
       </section>
 
       {families.map((family) => (
-        <section key={family.family_id} className="premium-section">
-          <div className="premium-header">
-            <h3>Family: {family.family_id}</h3>
-          </div>
+        <section key={family.family_id} className="premium-section admin-family-section">
+          <details className="admin-family-details">
+            <summary className="admin-family-summary">
+              <div>
+                <p className="eyebrow">Family</p>
+                <h3>{getFamilyDisplayName(family)}</h3>
+                <small className="admin-family-id">
+                  ID: {family.family_id}
+                </small>
+              </div>
+
+              <div className="admin-family-summary-metrics">
+                <span>{(family.parents || []).length} parent(s)</span>
+                <span>{(family.children || []).length} child(ren)</span>
+                <span>{(family.teachers || []).length} teacher(s)</span>
+              </div>
+            </summary>
 
           <h4>Parents</h4>
 
@@ -1213,6 +1282,7 @@ function AdminControlPage({ user }) {
               </div>
             </div>
           ))}
+          </details>
         </section>
       ))}
     </div>

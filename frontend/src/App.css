@@ -6020,6 +6020,290 @@ body.dark-mode .premium-admin-danger-section {
   border-color: rgba(248, 113, 113, 0.3) !important;
 }
 
+.admin-control-page {
+  display: grid;
+  gap: 24px;
+}
+
+.admin-control-hero {
+  overflow: hidden;
+}
+
+.admin-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.admin-overview-card,
+.admin-create-card {
+  border: 1px solid #dbeafe;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+}
+
+.admin-overview-card {
+  display: grid;
+  gap: 6px;
+  min-height: 118px;
+  padding: 20px;
+}
+
+.admin-overview-card span,
+.admin-overview-card small {
+  color: #64748b;
+  font-weight: 800;
+}
+
+.admin-overview-card strong {
+  color: #0f172a;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.admin-create-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(420px, 1.2fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.admin-create-card {
+  padding: 22px;
+}
+
+.admin-card-heading {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.admin-card-heading > span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: #eff6ff;
+  box-shadow: inset 0 0 0 1px #dbeafe;
+}
+
+.admin-card-heading h3,
+.admin-card-heading p {
+  margin: 0;
+}
+
+.admin-card-heading p {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.admin-compact-form {
+  gap: 14px !important;
+}
+
+.admin-create-card .admin-compact-form {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: end;
+}
+
+.admin-create-card .admin-compact-form label {
+  min-width: 0;
+}
+
+.admin-create-card .admin-compact-form input,
+.admin-create-card .admin-compact-form select {
+  width: 100%;
+  min-width: 0;
+}
+
+.admin-create-card:first-child .admin-compact-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.admin-create-card:first-child .admin-compact-form label:nth-of-type(3) {
+  grid-column: 1 / -1;
+}
+
+.admin-create-card:first-child .admin-compact-form .primary-btn {
+  grid-column: 1 / -1;
+}
+
+.admin-teacher-create-btn {
+  width: 100%;
+  min-width: 0 !important;
+  height: 52px;
+}
+
+.admin-roster-panel,
+.admin-family-details {
+  margin-top: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.admin-roster-panel > summary,
+.admin-family-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.admin-roster-panel > summary::-webkit-details-marker,
+.admin-family-summary::-webkit-details-marker {
+  display: none;
+}
+
+.admin-roster-panel > summary span,
+.admin-family-summary h3 {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.admin-roster-panel > summary strong,
+.admin-family-summary-metrics span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.admin-roster-panel[open],
+.admin-family-details[open] {
+  background: #ffffff;
+}
+
+.admin-roster-panel[open] {
+  padding: 0 18px 18px;
+}
+
+.admin-roster-panel[open] > summary {
+  margin: 0 -18px 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-family-section {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.admin-family-details {
+  margin-top: 0;
+  border: 0;
+  border-radius: inherit;
+}
+
+.admin-family-details[open] {
+  padding: 0 28px 28px;
+}
+
+.admin-family-details[open] .admin-family-summary {
+  margin: 0 -28px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-family-summary .eyebrow,
+.admin-family-summary h3 {
+  margin: 0;
+}
+
+.admin-family-id {
+  display: block;
+  max-width: min(620px, 70vw);
+  margin-top: 6px;
+  color: #64748b;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-family-summary-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+body.dark-mode .admin-overview-card,
+body.dark-mode .admin-create-card,
+body.dark-mode .admin-roster-panel,
+body.dark-mode .admin-family-details,
+body.dark-mode .admin-roster-panel[open],
+body.dark-mode .admin-family-details[open] {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .admin-card-heading > span,
+body.dark-mode .admin-roster-panel > summary strong,
+body.dark-mode .admin-family-summary-metrics span {
+  background: rgba(37, 99, 235, 0.18) !important;
+  color: #bfdbfe !important;
+  box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.25);
+}
+
+body.dark-mode .admin-overview-card strong,
+body.dark-mode .admin-roster-panel > summary span,
+body.dark-mode .admin-family-summary h3,
+body.dark-mode .admin-card-heading h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .admin-overview-card span,
+body.dark-mode .admin-overview-card small,
+body.dark-mode .admin-card-heading p,
+body.dark-mode .admin-family-id {
+  color: #cbd5e1 !important;
+}
+
+@media (max-width: 1100px) {
+  .admin-overview-grid,
+  .admin-create-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-create-card .admin-compact-form,
+  .admin-create-card:first-child .admin-compact-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-overview-grid,
+  .admin-create-grid,
+  .admin-create-card .admin-compact-form,
+  .admin-create-card:first-child .admin-compact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-roster-panel > summary,
+  .admin-family-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-family-summary-metrics {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 1100px) {
   .premium-analytics-hero {
     grid-template-columns: 1fr;
