@@ -47,6 +47,24 @@ const VOICE_OPTIONS = {
   "UK Male (Ryan)": "en-GB-RyanNeural",
 };
 
+const MATH_VISUAL_AID_SUGGESTIONS = [
+  "Number line with examples marked",
+  "Fraction bars or area model",
+  "Coordinate plane sketch",
+  "Geometry shape with key parts",
+  "Graph of a simple relation",
+  "Step diagram for solving",
+];
+
+const SCIENCE_VISUAL_AID_SUGGESTIONS = [
+  "Process flow with arrows",
+  "Cause and effect scene",
+  "Experiment setup sketch",
+  "Cycle or sequence diagram",
+  "Classification tree",
+  "Real-life example scene",
+];
+
 function LessonsPage({ user }) {
   /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and practice gates. */
   const [loading, setLoading] = useState(true);
@@ -326,7 +344,56 @@ function LessonsPage({ user }) {
     /** Identify math subjects so numeric answers are not forced into long prose. */
     return subject === "Maths" || subject === "Maths Olympiad";
   }
-  
+
+  function isScienceSubject() {
+    /** Identify science subjects for useful visual-aid suggestions. */
+    return subject === "Science" || subject === "Science Olympiad";
+  }
+
+  function isVisualSubject() {
+    /** Restrict image generation to subjects where conceptual visuals add real value. */
+    return (
+      subject === "Science" ||
+      subject === "Maths" ||
+      subject === "Science Olympiad" ||
+      subject === "Maths Olympiad"
+    );
+  }
+
+  function getVisualPlaceholder() {
+    /** Give subject-specific prompt examples so students ask for useful visuals. */
+    if (isMathSubject()) {
+      return "Example: show rational numbers on a number line";
+    }
+
+    if (isScienceSubject()) {
+      return "Example: show osmosis as water movement through a membrane";
+    }
+
+    return "Example: how friction affects motion in daily life";
+  }
+
+  function getVisualAidSuggestions() {
+    /** Choose useful visual prompt starters by subject type. */
+    if (isMathSubject()) return MATH_VISUAL_AID_SUGGESTIONS;
+    if (isScienceSubject()) return SCIENCE_VISUAL_AID_SUGGESTIONS;
+    return [];
+  }
+
+  function getVisualAidHeading() {
+    /** Label the visual suggestions in a subject-specific way. */
+    return isMathSubject()
+      ? "Best Maths visual aids to ask for"
+      : "Best Science visual aids to ask for";
+  }
+
+  function getVisualAidWarning() {
+    /** Explain how to spend image tokens on visuals that improve learning. */
+    return isMathSubject()
+      ? "Avoid asking for formula posters. Ask for a model that shows the idea visually."
+      : "Avoid asking for decorative pictures. Ask for a process, setup, cycle, or cause-effect visual.";
+  }
+
   function getMinimumPracticeWords() {
     /** Decide the minimum answer length needed before evaluation can run. */
     return isMathSubject() ? 1 : 100;
@@ -501,6 +568,13 @@ function LessonsPage({ user }) {
     /** Generate an educational image for a custom topic or the current lesson step. */
     const topic = visualTopic.trim();
 
+    if (!isVisualSubject()) {
+      setVisualError(
+        "Visual generation is available only for Science and Maths."
+      );
+      return;
+    }
+
     if (!lesson && !topic) return;
 
     setVisualLoading(true);
@@ -515,7 +589,12 @@ function LessonsPage({ user }) {
             1200
           )}`;
 
-      const result = await generateEducationalImage(imagePrompt, user.username);
+      const result = await generateEducationalImage(imagePrompt, user.username, {
+        grade,
+        mode,
+        subject,
+        chapter,
+      });
 
       if (!result.success) {
         setVisualError(result.message || "Visual generation failed.");
@@ -1215,38 +1294,60 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                <div className="visual-generator-card premium-card premium-glow-card glow-purple">
-                  <div className="visual-generator-header">
-                    <h3>🖼 Visual Generator</h3>
+                {isVisualSubject() && (
+                  <div className="visual-generator-card premium-card premium-glow-card glow-purple">
+                    <div className="visual-generator-header">
+                      <h3>🖼 Visual Generator</h3>
 
-                    <p>
-                      Generate a custom educational visual for this lesson or
-                      topic.
-                    </p>
+                      <p>
+                        {isMathSubject()
+                          ? "Ask for a visual aid like a number line, fraction model, graph, or geometry sketch."
+                          : "Ask for a visual aid like a process flow, experiment setup, cycle, or cause-effect scene."}
+                      </p>
+                    </div>
+
+                    <div className="visual-aid-helper">
+                      <strong>{getVisualAidHeading()}</strong>
+
+                      <div className="visual-aid-chip-grid">
+                        {getVisualAidSuggestions().map((suggestion) => (
+                          <button
+                            key={suggestion}
+                            type="button"
+                            className="visual-aid-chip"
+                            onClick={() => setVisualTopic(suggestion)}
+                          >
+                            {suggestion}
+                          </button>
+                        ))}
+                      </div>
+
+                      <p>{getVisualAidWarning()}</p>
+                    </div>
+
+                    <div className="visual-generator-controls">
+                      <input
+                        className="visual-topic-input"
+                        type="text"
+                        placeholder={getVisualPlaceholder()}
+                        value={visualTopic}
+                        onChange={(e) => setVisualTopic(e.target.value)}
+                      />
+
+                      <button
+                        className="secondary-btn visual-generate-btn"
+                        onClick={handleGenerateVisual}
+                        disabled={visualLoading}
+                      >
+                        {visualLoading ? "Generating..." : "🖼 Generate Visual"}
+                      </button>
+                    </div>
+
+                    {visualError && (
+                      <div className="visual-error-box">{visualError}</div>
+                    )}
                   </div>
-
-                  <div className="visual-generator-controls">
-                    <input
-                      className="visual-topic-input"
-                      type="text"
-                      placeholder="Example: how friction affects motion in daily life"
-                      value={visualTopic}
-                      onChange={(e) => setVisualTopic(e.target.value)}
-                    />
-
-                    <button
-                      className="secondary-btn visual-generate-btn"
-                      onClick={handleGenerateVisual}
-                      disabled={visualLoading}
-                    >
-                      {visualLoading ? "Generating..." : "🖼 Generate Visual"}
-                    </button>
-                  </div>
-
-                  {visualError && (
-                    <div className="visual-error-box">{visualError}</div>
-                  )}
-                </div>
+                )}
 
                 {visualImage && (
                   <div className="visual-image-card premium-card">

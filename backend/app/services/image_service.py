@@ -58,6 +58,31 @@ BLOCKED_DIAGRAM_KEYWORDS = [
 ]
 
 
+def validate_visual_context(subject: str = "", mode: str = ""):
+    """
+    Allow AI-generated conceptual visuals only for Science and Maths contexts.
+
+    Other subjects should use more reliable learning tools such as passages,
+    vocabulary maps, examples, or practice questions instead of decorative
+    generated images.
+    """
+    subject_text = (subject or "").strip().lower()
+
+    if "science" in subject_text or "math" in subject_text:
+        return {
+            "allowed": True,
+            "message": "",
+        }
+
+    return {
+        "allowed": False,
+        "message": (
+            "Visual generation is available only for Science and Maths lessons. "
+            "For language and other subjects, use practice questions or examples instead."
+        ),
+    }
+
+
 def validate_visual_prompt(prompt: str):
     """
     Block prompts that ask for exact scientific diagrams or labelled structures.
@@ -101,13 +126,60 @@ def validate_visual_prompt(prompt: str):
     }
 
 
-def generate_educational_image(prompt: str, username: str = "unknown"):
+def build_subject_visual_rules(subject: str = "") -> str:
+    """Return subject-specific image rules to reduce misleading generated visuals."""
+    subject_text = (subject or "").strip().lower()
+
+    if "math" in subject_text:
+        return """
+Maths visual rules:
+- Do not create a formula poster.
+- Do not make large standalone equations the main visual.
+- Prefer a visual model: number line, fraction bar, area model, grid, coordinate plane, geometry sketch, or simple graph.
+- Use little or no text inside the image.
+- If text is needed, use only short labels like 0, 1, Half, Point A, x-axis, y-axis.
+- Show relationships spatially instead of writing explanations inside the image.
+"""
+
+    if "science" in subject_text:
+        return """
+Science visual rules:
+- Create a conceptual scene or simple process illustration.
+- Avoid exact labelled scientific diagrams unless the prompt explicitly asks for a simple concept visual.
+- Prefer useful learning visuals: process flow, cause-effect scene, experiment setup, cycle, sequence, classification tree, or real-life example.
+- Avoid decorative pictures that do not explain a concept.
+- Do not create dense textbook pages or posters.
+- Use little or no text inside the image.
+"""
+
+    return ""
+
+
+def generate_educational_image(
+    prompt: str,
+    username: str = "unknown",
+    grade: str = "",
+    subject: str = "",
+    chapter: str = "",
+    mode: str = "CBSE",
+):
     """
     Generate a safe conceptual education image and log image usage.
 
     The function enforces daily limits, blocks unsafe requests, and rejects
     diagram prompts where hallucinated labels could mislead students.
     """
+    context_validation = validate_visual_context(
+        subject=subject,
+        mode=mode,
+    )
+
+    if not context_validation["allowed"]:
+        return {
+            "success": False,
+            "message": context_validation["message"],
+        }
+
     limit = enforce_daily_limit(
         username=username,
         feature="image_generation",
@@ -141,6 +213,14 @@ def generate_educational_image(prompt: str, username: str = "unknown"):
 
 Topic:
 {prompt}
+
+Lesson context:
+- Grade: {grade if grade else "Not provided"}
+- Mode: {mode if mode else "CBSE"}
+- Subject: {subject if subject else "Not provided"}
+- Chapter: {chapter if chapter else "Not provided"}
+
+{build_subject_visual_rules(subject)}
 
 Important accuracy rules:
 - Use this only as a conceptual illustration, not as an exact scientific diagram.
@@ -194,7 +274,13 @@ Safety rules:
         model="gpt-image-1",
         image_count=1,
         estimated_cost=0.04,
-        metadata={"prompt": prompt},
+        metadata={
+            "prompt": prompt,
+            "grade": grade,
+            "mode": mode,
+            "subject": subject,
+            "chapter": chapter,
+        },
     )
 
     update_student_activity(
