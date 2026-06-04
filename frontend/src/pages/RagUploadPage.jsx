@@ -199,6 +199,20 @@ function RagUploadPage({ user }) {
     setBookSetSubject(getCbseSubjectsForGrade(value)[0] || "");
   }
 
+  function updateSofGroup(index, updates) {
+    /** Let admins correct SOF metadata and OCR context before RAG upload. */
+    setSofGroups((currentGroups) =>
+      currentGroups.map((group, groupIndex) =>
+        groupIndex === index
+          ? {
+              ...group,
+              ...updates,
+            }
+          : group
+      )
+    );
+  }
+
   async function handleAnalyzeImage() {
     /** Run single-image OCR/analysis as a quick quality check before upload. */
     if (!analysisImage) {
@@ -1194,27 +1208,90 @@ function RagUploadPage({ user }) {
 
             <div className="premium-rag-result-list">
               {sofGroups.map((group, index) => (
-                <div key={index} className="premium-rag-result-row success">
-                  <div>
+                <div key={index} className="premium-rag-result-row success premium-rag-editable-group">
+                  <div className="premium-rag-editable-group-main">
                     <strong>{group.title || group.chapter}</strong>
-                    <p>
-                      {group.grade} • {group.subject}
-                    </p>
-                    <p>{group.chapter}</p>
                     <small>
                       Pages: {(group.page_numbers || []).join(", ") || "N/A"} •
-                      Confidence: {group.confidence || "Unknown"}
+                      Confidence: {group.confidence || "Unknown"} •{" "}
+                      {(group.combined_text || "").split(/\s+/).filter(Boolean).length} words
                     </small>
-                  </div>
 
-                  <div>
-                    <span>
-                      {
-                        (group.combined_text || "").split(/\s+/).filter(Boolean)
-                          .length
-                      }{" "}
-                      words
-                    </span>
+                    <div className="form-grid premium-rag-form-grid">
+                      <label>
+                        Grade
+                        <input
+                          type="text"
+                          value={group.grade || ""}
+                          onChange={(e) =>
+                            updateSofGroup(index, {
+                              grade: e.target.value,
+                            })
+                          }
+                        />
+                      </label>
+
+                      <label>
+                        Subject
+                        <select
+                          value={group.subject || ""}
+                          onChange={(e) =>
+                            updateSofGroup(index, {
+                              subject: e.target.value,
+                            })
+                          }
+                        >
+                          {[
+                            "Science Olympiad",
+                            "Maths Olympiad",
+                            "English Olympiad",
+                          ].map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+
+                      <label>
+                        Chapter / Section
+                        <input
+                          type="text"
+                          value={group.chapter || ""}
+                          onChange={(e) =>
+                            updateSofGroup(index, {
+                              chapter: e.target.value,
+                            })
+                          }
+                        />
+                      </label>
+
+                      <label>
+                        Document Title
+                        <input
+                          type="text"
+                          value={group.title || ""}
+                          onChange={(e) =>
+                            updateSofGroup(index, {
+                              title: e.target.value,
+                            })
+                          }
+                        />
+                      </label>
+                    </div>
+
+                    <label className="full-width-label premium-rag-title-input">
+                      RAG Context Text
+                      <textarea
+                        value={group.combined_text || ""}
+                        rows={8}
+                        onChange={(e) =>
+                          updateSofGroup(index, {
+                            combined_text: e.target.value,
+                          })
+                        }
+                      />
+                    </label>
                   </div>
                 </div>
               ))}

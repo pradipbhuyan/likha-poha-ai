@@ -7350,6 +7350,21 @@ body.dark-mode .premium-rag-extracted-pages {
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
 }
 
+.premium-rag-editable-group {
+  align-items: stretch;
+}
+
+.premium-rag-editable-group-main {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+}
+
+.premium-rag-editable-group textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
 .premium-rag-result-row.success {
   border-color: #bbf7d0;
 }
