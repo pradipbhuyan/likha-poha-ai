@@ -2,16 +2,13 @@ import os
 
 from dotenv import load_dotenv
 
-# SSL fix for macOS Python 3.13
-try:
-    import truststore
-    truststore.inject_into_ssl()
-except Exception:
-    pass
+from app.services.ssl_service import enable_system_truststore
 
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from supabase import create_client
+
+enable_system_truststore()
 
 load_dotenv()
 

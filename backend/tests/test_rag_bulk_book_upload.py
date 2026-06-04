@@ -207,7 +207,10 @@ def test_analyze_book_set_uses_ai_for_filename_like_labels(monkeypatch):
             "In the middle stage, science invited you to be curious."
         )
 
+    captured_model = {}
+
     def fake_ask_llm(*args, **kwargs):
+        captured_model["model"] = kwargs.get("model")
         return json.dumps({
             "sections": [
                 {
@@ -238,3 +241,4 @@ def test_analyze_book_set_uses_ai_for_filename_like_labels(monkeypatch):
     assert data["sections"][0]["suggested_title"] == (
         "Chapter 1: Exploration - Entering the World of Secondary Science"
     )
+    assert captured_model["model"] == rag.GPT5_TEXT_MODEL

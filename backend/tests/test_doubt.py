@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.openai_service import GPT5_MINI_TEXT_MODEL
 import app.routes.doubt as doubt_route
 
 client = TestClient(app)
@@ -22,7 +23,7 @@ def test_answer_doubt_api(monkeypatch):
       - mentor_suggestions
     """
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
         return {
             "answer": "Matter is anything that has mass and occupies space.",
             "source_type": "MOCK",
@@ -73,7 +74,7 @@ def test_answer_doubt_response_has_valid_data_types(monkeypatch):
     - mentor_suggestions should be a list.
     """
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
         return {
             "answer": "Matter has mass and occupies space.",
             "source_type": "MOCK",
@@ -132,7 +133,7 @@ def test_answer_doubt_empty_question():
 def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
     captured = {}
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
         captured["mode"] = mode
         captured["username"] = username
         return {
@@ -158,6 +159,49 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
     assert response.status_code == 200
     assert captured["username"] == "test_user"
     assert captured["mode"] == "SOF"
+
+
+def test_admin_selected_gpt5_mini_is_used_for_doubt(monkeypatch):
+    """Admin model override should win over the default/family plan routing."""
+    from tests.conftest import fake_student_profile, patch_route_profile
+
+    captured = {}
+    profile = fake_student_profile(ai_model_preference="gpt-5-mini")
+    patch_route_profile(monkeypatch, doubt_route, profile)
+
+    def fake_answer_doubt(
+        grade,
+        mode,
+        subject,
+        chapter,
+        question,
+        username,
+        model=None,
+    ):
+        captured["model"] = model
+        return {
+            "answer": "Step-wise answer",
+            "source_type": "MOCK",
+            "sources": [],
+            "mentor_suggestions": [],
+        }
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+
+    response = client.post(
+        "/api/doubt/answer",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Motion",
+            "question": "What is motion?",
+        },
+    )
+
+    assert response.status_code == 200
+    assert captured["model"] == GPT5_MINI_TEXT_MODEL
 
 
 def test_answer_doubt_rejects_sof_subject_without_access(monkeypatch):

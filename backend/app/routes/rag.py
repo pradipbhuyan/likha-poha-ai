@@ -3,7 +3,7 @@ from app.services.file_extract_service import (
     extract_pages_from_uploaded_file,
     extract_text_from_uploaded_file,
 )
-from app.services.openai_service import ask_llm
+from app.services.openai_service import GPT5_TEXT_MODEL, ask_llm
 import json
 import re
 from pydantic import BaseModel
@@ -560,6 +560,7 @@ Files:
             user_prompt=user_prompt,
             username="admin",
             feature="rag_book_label_analysis",
+            model=GPT5_TEXT_MODEL,
         )
         ai_sections = parse_ai_section_labels(ai_response)
         ai_title_by_filename = {
@@ -801,6 +802,7 @@ OCR PAGES:
             user_prompt=user_prompt,
             username="admin",
             feature="rag_sof_bulk_analysis",
+            model=GPT5_TEXT_MODEL,
         )
 
         try:

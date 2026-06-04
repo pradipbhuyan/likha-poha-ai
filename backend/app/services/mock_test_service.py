@@ -3,6 +3,7 @@ import uuid
 from datetime import date
 
 from app.services.openai_service import ask_llm
+from app.services.openai_service import DEFAULT_TEXT_MODEL
 from app.services.rag_service import search_textbook_content
 from app.services.sof_catalog_service import (
     get_sof_exam_paper_chapters,
@@ -218,6 +219,7 @@ def generate_olympiad_mock_test(
     chapter=None,
     grade="Grade 9",
     username="admin",
+    model=DEFAULT_TEXT_MODEL,
 ):
     """
     Generate an original SOF mock test grounded in uploaded RAG context.
@@ -316,8 +318,9 @@ Return only valid JSON.
     raw = ask_llm(
         MOCK_TEST_SYSTEM,
         prompt,
-        username="admin",
+        username=username,
         feature="sof_mock_test",
+        model=model,
     )
 
     try:

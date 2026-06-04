@@ -174,7 +174,10 @@ def test_analyze_sof_images_keeps_good_files_when_one_file_fails(monkeypatch):
             }
         ]
 
+    captured_model = {}
+
     def fake_ask_llm(*args, **kwargs):
+        captured_model["model"] = kwargs.get("model")
         return """
         {
           "groups": [
@@ -217,6 +220,7 @@ def test_analyze_sof_images_keeps_good_files_when_one_file_fails(monkeypatch):
     assert result["success"] is True
     assert len(result["groups"]) == 1
     assert result["file_warnings"][0]["filename"] == "bad.pdf"
+    assert captured_model["model"] == rag.GPT5_TEXT_MODEL
 
 
 def test_analyze_sof_images_returns_raw_response_for_invalid_json(monkeypatch):

@@ -309,6 +309,7 @@ describe("AdminControlPage teacher management", () => {
               access_sof_english: false,
               daily_token_limit: 50000,
               monthly_token_limit: 1000000,
+              ai_model_preference: "default",
               activity: {
                 lessons_generated: 1,
                 doubts_asked: 2,
@@ -336,6 +337,9 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(controls.getByLabelText(/^plan$/i), {
       target: { value: "starter" },
     });
+    fireEvent.change(controls.getByLabelText(/ai model/i), {
+      target: { value: "gpt-5-mini" },
+    });
     fireEvent.click(controls.getByRole("button", { name: /save plan/i }));
 
     await waitFor(() => {
@@ -345,6 +349,7 @@ describe("AdminControlPage teacher management", () => {
           subscription_plan: "starter",
           access_cbse: true,
           grade: "Grade 9",
+          ai_model_preference: "gpt-5-mini",
         }),
         "admin-token"
       );

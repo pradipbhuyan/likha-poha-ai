@@ -7,6 +7,7 @@ from app.data.subscription_plans import (
     get_default_subscription_plans,
     subscription_plan_order,
 )
+from app.services.model_routing_service import normalize_model_preference
 from app.services.auth_service import require_admin, create_auth_user, admin_client
 
 router = APIRouter()
@@ -55,6 +56,7 @@ class UpdateAccessRequest(BaseModel):
     subscription_plan: str = "free"
     account_status: str = "active"
     grade: str = "Grade 9"
+    ai_model_preference: str = "default"
 
 
 class UpdateLimitsRequest(BaseModel):
@@ -514,6 +516,7 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "access_sof_english": False,
         "daily_token_limit": 50000,
         "monthly_token_limit": 1000000,
+        "ai_model_preference": "default",
     }
 
     response = (
@@ -682,6 +685,9 @@ def update_child_access(
             "subscription_plan": data.subscription_plan,
             "account_status": data.account_status,
             "grade": data.grade or "Grade 9",
+            "ai_model_preference": normalize_model_preference(
+                data.ai_model_preference,
+            ),
         })
         .eq("id", child_id)
         .eq("role", "student")

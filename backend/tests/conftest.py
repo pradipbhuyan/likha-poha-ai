@@ -32,6 +32,8 @@ def fake_student_profile(**overrides):
         "grade": "Grade 9",
         "mode": "CBSE",
         "account_status": "active",
+        "subscription_plan": "free",
+        "ai_model_preference": "default",
         "access_cbse": True,
         "access_sof_science": True,
         "access_sof_maths": True,

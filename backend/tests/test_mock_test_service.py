@@ -65,11 +65,12 @@ def test_sof_mock_test_prompt_uses_chapter_exercise_and_model_paper_rag(monkeypa
             )
         ]
 
-    def fake_ask_llm(system_prompt, user_prompt, username, feature):
+    def fake_ask_llm(system_prompt, user_prompt, username, feature, model=None):
         captured_prompt["system_prompt"] = system_prompt
         captured_prompt["user_prompt"] = user_prompt
         captured_prompt["username"] = username
         captured_prompt["feature"] = feature
+        captured_prompt["model"] = model
 
         return json.dumps(
             {
@@ -117,6 +118,7 @@ def test_sof_mock_test_prompt_uses_chapter_exercise_and_model_paper_rag(monkeypa
 
     assert len(questions) == 1
     assert captured_prompt["feature"] == "sof_mock_test"
+    assert captured_prompt["model"] == mock_test_service.DEFAULT_TEXT_MODEL
     assert "RAG Section: SOF chapter content" in prompt
     assert "RAG Section: SOF chapter exercises" in prompt
     assert "RAG Section: SOF uploaded mock or model test papers" in prompt

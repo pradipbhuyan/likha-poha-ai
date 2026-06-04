@@ -1,5 +1,5 @@
 
-from app.services.openai_service import ask_llm
+from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
 from app.services.rag_service import search_textbook_content
 from app.services.mentor_memory_service import (
     get_recent_mentor_memory,
@@ -373,6 +373,7 @@ def answer_doubt(
     chapter: str,
     question: str,
     username: str = "unknown",
+    model: str = DEFAULT_TEXT_MODEL,
 ):
     """
     Answer a student doubt with current-question priority, RAG, and mentor memory.
@@ -477,6 +478,7 @@ $$
         prompt,
         username=username,
         feature="doubt",
+        model=model,
     )
 
     answer = ensure_mermaid_fences(answer)

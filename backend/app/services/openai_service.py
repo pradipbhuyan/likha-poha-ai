@@ -1,15 +1,16 @@
-try:
-    import truststore
-    truststore.inject_into_ssl()
-except Exception:
-    pass
-
 from openai import OpenAI
 
 from app.config import settings
+from app.services.ssl_service import enable_system_truststore
 from app.services.usage_service import log_ai_usage
 
+enable_system_truststore()
+
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
+
+DEFAULT_TEXT_MODEL = "gpt-4.1-mini"
+GPT5_TEXT_MODEL = "gpt-5"
+GPT5_MINI_TEXT_MODEL = "gpt-5-mini"
 
 # Approximate GPT-4.1-mini pricing
 INPUT_COST_PER_1K = 0.0003
@@ -34,6 +35,7 @@ def ask_llm(
     user_prompt: str,
     username: str = "unknown",
     feature: str = "lesson",
+    model: str = DEFAULT_TEXT_MODEL,
 ) -> str:
     """
     Send a prompt to the configured LLM and log usage metrics.
@@ -42,14 +44,21 @@ def ask_llm(
     and estimated-cost tracking stay consistent across lessons, doubts, mock
     tests, practice, and image-related explanations.
     """
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=[
+    request_payload = {
+        "model": model,
+        "input": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ],
-        temperature=0.4,
-    )
+    }
+
+    if model.startswith("gpt-5"):
+        request_payload["reasoning"] = {"effort": "low"}
+        request_payload["max_output_tokens"] = 6000
+    else:
+        request_payload["temperature"] = 0.4
+
+    response = client.responses.create(**request_payload)
 
     usage = getattr(response, "usage", None)
 
@@ -70,7 +79,7 @@ def ask_llm(
     log_ai_usage(
         username=username,
         feature=feature,
-        model="gpt-4.1-mini",
+        model=model,
         prompt_tokens=prompt_tokens,
         completion_tokens=completion_tokens,
         total_tokens=total_tokens,

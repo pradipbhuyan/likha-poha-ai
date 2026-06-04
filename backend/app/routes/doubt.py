@@ -4,6 +4,7 @@ from app.models.schemas import DoubtRequest
 from app.services.tutor_service import answer_doubt
 from app.services.usage_service import enforce_token_limits
 from app.services.ocr_service import extract_text_from_image_bytes
+from app.services.model_routing_service import resolve_student_feature_model
 
 from app.services.auth_service import (
     get_current_user,
@@ -165,6 +166,12 @@ def answer_student_doubt(
     enforce_ai_token_limit(canonical_username)
 
     try:
+        model = resolve_student_feature_model(
+            profile,
+            feature="doubt",
+            question=data.question,
+            mode=data.mode,
+        )
         result = answer_doubt(
             grade=data.grade,
             mode=data.mode,
@@ -172,6 +179,7 @@ def answer_student_doubt(
             chapter=data.chapter,
             question=data.question,
             username=canonical_username,
+            model=model,
         )
 
         return {

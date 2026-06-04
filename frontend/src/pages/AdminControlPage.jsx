@@ -20,6 +20,21 @@ const STUDENT_GRADE_OPTIONS = Array.from(
   (_, index) => `Grade ${index + 1}`
 );
 
+const AI_MODEL_OPTIONS = [
+  {
+    value: "default",
+    label: "Default (GPT-4.1 mini; Family Premium auto GPT-5)",
+  },
+  {
+    value: "gpt-5",
+    label: "GPT-5",
+  },
+  {
+    value: "gpt-5-mini",
+    label: "GPT-5 mini",
+  },
+];
+
 function AdminControlPage({ user }) {
   /** Admin operations page for managing families, access flags, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
@@ -253,6 +268,7 @@ function AdminControlPage({ user }) {
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
+          ai_model_preference: child.ai_model_preference || "default",
         },
         user.accessToken
       );
@@ -301,6 +317,7 @@ function AdminControlPage({ user }) {
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
+          ai_model_preference: child.ai_model_preference || "default",
         },
         user.accessToken
       );
@@ -1101,6 +1118,27 @@ function AdminControlPage({ user }) {
                       )
                     }
                   />
+                </label>
+
+                <label>
+                  AI Model for SOF Mock & Doubts
+                  <select
+                    value={child.ai_model_preference || "default"}
+                    onChange={(e) =>
+                      updateLocalChild(
+                        family.family_id,
+                        child.id,
+                        "ai_model_preference",
+                        e.target.value
+                      )
+                    }
+                  >
+                    {AI_MODEL_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </label>
               </div>
 

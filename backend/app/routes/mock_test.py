@@ -9,6 +9,7 @@ from app.services.mock_test_service import (
     generate_olympiad_mock_test,
     generate_cbse_mock_test,
 )
+from app.services.model_routing_service import resolve_student_feature_model
 
 from app.services.auth_service import (
     get_current_user,
@@ -162,6 +163,10 @@ def generate_mock_test(
 
     try:
         if data.mock_type == "SOF Olympiad Mock Test":
+            model = resolve_student_feature_model(
+                profile,
+                feature="sof_mock_test",
+            )
             questions = generate_olympiad_mock_test(
                 olympiad=data.subject,
                 chapter=data.chapter,
@@ -169,6 +174,7 @@ def generate_mock_test(
                 num_questions=data.question_count,
                 difficulty=data.difficulty,
                 username=profile.get("username") or "admin",
+                model=model,
             )
 
         else:

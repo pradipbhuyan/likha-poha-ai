@@ -140,7 +140,7 @@ def test_students_from_grade_1_to_grade_10_can_ask_doubts(monkeypatch):
     """Every onboarded grade should be able to ask CBSE doubts for its grade."""
     captured_grades = []
 
-    def fake_answer_doubt(grade, mode, subject, chapter, question, username):
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
         captured_grades.append(grade)
         return {
             "answer": f"{grade} doubt answer",

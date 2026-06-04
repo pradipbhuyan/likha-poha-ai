@@ -1,8 +1,11 @@
 from openai import OpenAI
 
 from app.config import settings
+from app.services.ssl_service import enable_system_truststore
 from app.services.usage_service import log_ai_usage, enforce_daily_limit
 from app.services.profile_service import update_student_activity
+
+enable_system_truststore()
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 

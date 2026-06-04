@@ -2,13 +2,9 @@ import base64
 from openai import OpenAI
 
 from app.config import settings
+from app.services.ssl_service import enable_system_truststore
 
-try:
-    import truststore
-    truststore.inject_into_ssl()
-except Exception:
-    pass
-
+enable_system_truststore()
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
