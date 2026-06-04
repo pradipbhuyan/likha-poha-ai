@@ -86,6 +86,7 @@ class FakeTable:
                 "payload": self.payload,
                 "filters": self.filters,
                 "order": self.order_args,
+                "on_conflict": getattr(self, "on_conflict", None),
             }
         )
 
@@ -134,6 +135,35 @@ class FakeTable:
         if self.table_name == "profiles" and self.operation == "delete":
             return FakeResponse([])
 
+        if self.table_name == "teacher_profiles":
+            if self.operation == "select":
+                return FakeResponse(self.client.teacher_profile_rows)
+
+            if self.operation == "insert":
+                inserted = dict(self.payload)
+                self.client.teacher_profile_rows.append(inserted)
+                return FakeResponse([inserted])
+
+        if self.table_name == "teacher_student_assignments":
+            if self.operation == "select":
+                return FakeResponse(self.client.teacher_assignment_rows)
+
+            if self.operation == "upsert":
+                inserted = {
+                    "id": self.payload.get("id", "assignment-created-123"),
+                    **self.payload,
+                }
+                self.client.teacher_assignment_rows.append(inserted)
+                return FakeResponse([inserted])
+
+            if self.operation == "delete":
+                assignment_id = self._filter_value("id")
+                self.client.teacher_assignment_rows = [
+                    item for item in self.client.teacher_assignment_rows
+                    if item.get("id") != assignment_id
+                ]
+                return FakeResponse([])
+
         if self.table_name == "subscription_plan_settings":
             if self.operation == "select":
                 return FakeResponse(self.client.subscription_plan_rows)
@@ -167,6 +197,8 @@ class FakeAdminClient:
         self.missing_update_ids = set()
         self.failing_auth_delete_ids = set()
         self.subscription_plan_rows = []
+        self.teacher_profile_rows = []
+        self.teacher_assignment_rows = []
         self.auth = FakeAuth(self)
 
     def table(self, table_name):
@@ -474,6 +506,93 @@ def test_create_child_creates_student_profile(monkeypatch):
     assert result["child"]["access_cbse"] is True
     assert result["child"]["daily_token_limit"] == 50000
     assert result["child"]["monthly_token_limit"] == 1000000
+
+
+def test_create_teacher_creates_profile_and_teacher_metadata(monkeypatch):
+    """
+    Admin should be able to create a teacher account without public signup.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        create_teacher()
+    """
+    fake_client = FakeAdminClient()
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(
+        admin_control_route,
+        "create_auth_user",
+        lambda email, password: make_fake_auth_user("teacher-user-123"),
+    )
+
+    request = admin_control_route.CreateTeacherRequest(
+        email="teacher@example.com",
+        password="password123",
+        username="Science Teacher",
+        teacher_type="school",
+        school_name="Demo School",
+        subjects=["Science"],
+        grades=["Grade 9"],
+    )
+
+    result = admin_control_route.create_teacher(
+        request,
+        admin={"role": "admin"},
+    )
+
+    assert result["success"] is True
+    assert result["teacher"]["id"] == "teacher-user-123"
+    assert result["teacher"]["role"] == "teacher"
+    assert result["teacher"]["teacher_profile"]["teacher_type"] == "school"
+    assert result["teacher"]["teacher_profile"]["school_name"] == "Demo School"
+
+    profile_insert = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "profiles" and call["operation"] == "insert"
+    ][0]
+
+    assert profile_insert["payload"]["role"] == "teacher"
+
+
+def test_assign_teacher_student_upserts_assignment(monkeypatch):
+    """
+    Admin should be able to assign an existing student to a teacher.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        assign_teacher_student()
+    """
+    fake_client = FakeAdminClient()
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    request = admin_control_route.AssignTeacherStudentRequest(
+        teacher_id="teacher-1",
+        student_id="student-1",
+        grade="Grade 9",
+        subject="Science",
+        section="9A",
+    )
+
+    result = admin_control_route.assign_teacher_student(
+        request,
+        admin={"role": "admin"},
+    )
+
+    assert result["success"] is True
+    assert result["assignment"]["teacher_id"] == "teacher-1"
+    assert result["assignment"]["student_id"] == "student-1"
+    assert result["assignment"]["subject"] == "Science"
+    assert result["assignment"]["section"] == "9A"
+
+    upsert_call = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "teacher_student_assignments"
+        and call["operation"] == "upsert"
+    ][0]
+
+    assert upsert_call["on_conflict"] == "teacher_id,student_id,subject"
 
 
 def test_update_child_access_updates_subscription_and_access_flags(monkeypatch):

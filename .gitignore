@@ -33,6 +33,11 @@ uploads/
 # Test artifacts
 playwright-report/
 test-results/
+coverage/
+frontend/coverage/
+backend/htmlcov/
+.coverage
+backend/.coverage
 docs/
 
 # IDE

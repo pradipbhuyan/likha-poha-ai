@@ -3,6 +3,9 @@ import {
   getAdminFamilies,
   createAdminParent,
   createAdminChild,
+  createAdminTeacher,
+  assignTeacherStudent,
+  deleteTeacherAssignment,
   updateChildAccess,
   updateChildLimits,
   deleteUser,
@@ -30,7 +33,19 @@ function AdminControlPage({ user }) {
     username: "",
   });
 
+  const [teacherForm, setTeacherForm] = useState({
+    email: "",
+    password: "",
+    username: "",
+    teacher_type: "independent",
+    school_name: "",
+    subjectsCsv: "Science, Maths, English",
+    gradesCsv: "Grade 9",
+    status: "active",
+  });
+
   const [childForms, setChildForms] = useState({});
+  const [assignmentForms, setAssignmentForms] = useState({});
 
   async function loadFamilies() {
     /** Fetch all families with their parents and children for admin editing. */
@@ -112,6 +127,113 @@ function AdminControlPage({ user }) {
     } catch (err) {
       console.error(err);
       setError(err.message || "Unable to create child.");
+    }
+  }
+
+  function parseCsvList(value) {
+    /** Convert admin comma-separated inputs into clean API arrays. */
+    return String(value || "")
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  async function handleCreateTeacher(e) {
+    /** Create a teacher account that can later be assigned students. */
+    e.preventDefault();
+    setMessage("");
+    setError("");
+
+    try {
+      await createAdminTeacher(
+        {
+          email: teacherForm.email,
+          password: teacherForm.password,
+          username: teacherForm.username,
+          teacher_type: teacherForm.teacher_type,
+          school_name: teacherForm.school_name,
+          subjects: parseCsvList(teacherForm.subjectsCsv),
+          grades: parseCsvList(teacherForm.gradesCsv),
+          status: teacherForm.status,
+        },
+        user.accessToken
+      );
+
+      setTeacherForm({
+        email: "",
+        password: "",
+        username: "",
+        teacher_type: "independent",
+        school_name: "",
+        subjectsCsv: "Science, Maths, English",
+        gradesCsv: "Grade 9",
+        status: "active",
+      });
+
+      await loadFamilies();
+      setMessage("Teacher created successfully.");
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to create teacher.");
+    }
+  }
+
+  async function handleAssignTeacherStudent(e, teacher, allStudents) {
+    /** Link one existing student to a teacher with optional class context. */
+    e.preventDefault();
+    setMessage("");
+    setError("");
+
+    const form = assignmentForms[teacher.id] || {};
+    const studentId = form.student_id || allStudents[0]?.id;
+    const student = allStudents.find((item) => item.id === studentId);
+
+    if (!studentId) {
+      setError("Create a student before assigning them to a teacher.");
+      return;
+    }
+
+    try {
+      await assignTeacherStudent(
+        {
+          teacher_id: teacher.id,
+          student_id: studentId,
+          grade: form.grade || student?.grade || "Grade 9",
+          subject: form.subject || "",
+          section: form.section || "",
+        },
+        user.accessToken
+      );
+
+      setAssignmentForms((prev) => ({
+        ...prev,
+        [teacher.id]: {
+          student_id: "",
+          subject: "",
+          section: "",
+        },
+      }));
+
+      await loadFamilies();
+      setMessage(`Student assigned to ${teacher.username}.`);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to assign student.");
+    }
+  }
+
+  async function removeTeacherAssignment(assignmentId) {
+    /** Remove one teacher-student link and refresh the admin page. */
+    setMessage("");
+    setError("");
+
+    try {
+      await deleteTeacherAssignment(assignmentId, user.accessToken);
+      await loadFamilies();
+      setMessage("Teacher assignment removed.");
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to remove teacher assignment.");
     }
   }
 
@@ -302,7 +424,24 @@ function AdminControlPage({ user }) {
     }));
   }
 
+  function updateAssignmentForm(teacherId, field, value) {
+    /** Track per-teacher student assignment forms independently. */
+    setAssignmentForms((prev) => ({
+      ...prev,
+      [teacherId]: {
+        ...(prev[teacherId] || {}),
+        [field]: value,
+      },
+    }));
+  }
+
   if (loading) return <p>Loading admin control...</p>;
+
+  const allTeachers = families.flatMap((family) => family.teachers || []);
+  const allStudents = families.flatMap((family) => family.children || []);
+  const studentById = Object.fromEntries(
+    allStudents.map((student) => [student.id, student])
+  );
 
   return (
     <div className="premium-page">
@@ -376,6 +515,313 @@ function AdminControlPage({ user }) {
             Create Parent
           </button>
         </form>
+      </section>
+
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Teacher Access</p>
+          <h3>Teacher Accounts</h3>
+          <p>
+            Create teacher logins for schools or independent teachers. Public
+            signup remains parent-only.
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleCreateTeacher}
+          className="form-grid premium-rag-form-grid"
+        >
+          <label>
+            Teacher Name
+            <input
+              type="text"
+              value={teacherForm.username}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  username: e.target.value,
+                }))
+              }
+              required
+            />
+          </label>
+
+          <label>
+            Teacher Email
+            <input
+              type="email"
+              value={teacherForm.email}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  email: e.target.value,
+                }))
+              }
+              required
+            />
+          </label>
+
+          <label>
+            Temporary Password
+            <input
+              type="password"
+              value={teacherForm.password}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  password: e.target.value,
+                }))
+              }
+              required
+            />
+          </label>
+
+          <label>
+            Teacher Type
+            <select
+              value={teacherForm.teacher_type}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  teacher_type: e.target.value,
+                }))
+              }
+            >
+              <option value="independent">Independent Teacher</option>
+              <option value="school">School Teacher</option>
+            </select>
+          </label>
+
+          <label>
+            School / Organization
+            <input
+              type="text"
+              value={teacherForm.school_name}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  school_name: e.target.value,
+                }))
+              }
+              placeholder="Optional for independent teachers"
+            />
+          </label>
+
+          <label>
+            Status
+            <select
+              value={teacherForm.status}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  status: e.target.value,
+                }))
+              }
+            >
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+            </select>
+          </label>
+
+          <label>
+            Subjects
+            <input
+              type="text"
+              value={teacherForm.subjectsCsv}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  subjectsCsv: e.target.value,
+                }))
+              }
+              placeholder="Science, Maths, English"
+            />
+          </label>
+
+          <label>
+            Grades
+            <input
+              type="text"
+              value={teacherForm.gradesCsv}
+              onChange={(e) =>
+                setTeacherForm((prev) => ({
+                  ...prev,
+                  gradesCsv: e.target.value,
+                }))
+              }
+              placeholder="Grade 6, Grade 7, Grade 9"
+            />
+          </label>
+
+          <button className="primary-btn" type="submit">
+            Create Teacher
+          </button>
+        </form>
+
+        <div style={{ marginTop: 24 }}>
+          <h4>Current Teachers</h4>
+
+          {allTeachers.length === 0 ? (
+            <div className="info-box">
+              No teacher accounts yet. Create one above, then assign students.
+            </div>
+          ) : (
+            allTeachers.map((teacher) => {
+              const metadata = teacher.teacher_profile || {};
+              const form = assignmentForms[teacher.id] || {};
+
+              return (
+                <div
+                  key={teacher.id}
+                  className="premium-card"
+                  style={{ marginBottom: 18 }}
+                >
+                  <div className="premium-rag-result-row success">
+                    <div>
+                      <strong>{teacher.username}</strong>
+                      <p>{teacher.email}</p>
+                      <small>
+                        {metadata.teacher_type || "independent"}
+                        {metadata.school_name ? ` • ${metadata.school_name}` : ""}
+                      </small>
+                    </div>
+
+                    <button
+                      className="danger-btn"
+                      onClick={() => removeUser(teacher.id)}
+                    >
+                      Delete Teacher
+                    </button>
+                  </div>
+
+                  <div className="family-summary-row" style={{ marginTop: 14 }}>
+                    <span>
+                      Subjects: {(metadata.subjects || []).join(", ") || "Any"}
+                    </span>
+                    <span>
+                      Grades: {(metadata.grades || []).join(", ") || "Any"}
+                    </span>
+                  </div>
+
+                  <form
+                    onSubmit={(e) =>
+                      handleAssignTeacherStudent(e, teacher, allStudents)
+                    }
+                    className="form-grid premium-rag-form-grid"
+                    style={{ marginTop: 18 }}
+                  >
+                    <label>
+                      Assign Student
+                      <select
+                        value={form.student_id || ""}
+                        onChange={(e) => {
+                          const selected = studentById[e.target.value];
+                          updateAssignmentForm(
+                            teacher.id,
+                            "student_id",
+                            e.target.value
+                          );
+                          updateAssignmentForm(
+                            teacher.id,
+                            "grade",
+                            selected?.grade || "Grade 9"
+                          );
+                        }}
+                      >
+                        <option value="">Select student</option>
+                        {allStudents.map((student) => (
+                          <option key={student.id} value={student.id}>
+                            {student.username} ({student.grade || "Grade 9"})
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
+                    <label>
+                      Subject
+                      <input
+                        value={form.subject || ""}
+                        onChange={(e) =>
+                          updateAssignmentForm(
+                            teacher.id,
+                            "subject",
+                            e.target.value
+                          )
+                        }
+                        placeholder="Science"
+                      />
+                    </label>
+
+                    <label>
+                      Section / Group
+                      <input
+                        value={form.section || ""}
+                        onChange={(e) =>
+                          updateAssignmentForm(
+                            teacher.id,
+                            "section",
+                            e.target.value
+                          )
+                        }
+                        placeholder="9A or Pradip batch"
+                      />
+                    </label>
+
+                    <button className="secondary-btn" type="submit">
+                      Assign Student
+                    </button>
+                  </form>
+
+                  {(teacher.assignments || []).length > 0 && (
+                    <div style={{ marginTop: 18 }}>
+                      <h4>Assigned Students</h4>
+                      {(teacher.assignments || []).map((assignment) => {
+                        const assignedStudent =
+                          studentById[assignment.student_id] || {};
+
+                        return (
+                          <div
+                            key={
+                              assignment.id ||
+                              `${assignment.student_id}-${assignment.subject}`
+                            }
+                            className="premium-rag-result-row success"
+                            style={{ marginBottom: 10 }}
+                          >
+                            <div>
+                              <strong>
+                                {assignedStudent.username ||
+                                  assignment.student_id}
+                              </strong>
+                              <p>
+                                {assignment.grade || "Grade 9"} •{" "}
+                                {assignment.subject || "General"}
+                                {assignment.section
+                                  ? ` • ${assignment.section}`
+                                  : ""}
+                              </p>
+                            </div>
+
+                            {assignment.id && (
+                              <button
+                                className="secondary-btn"
+                                onClick={() =>
+                                  removeTeacherAssignment(assignment.id)
+                                }
+                              >
+                                Remove
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
+        </div>
       </section>
 
       {families.map((family) => (

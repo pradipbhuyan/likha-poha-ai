@@ -7,6 +7,7 @@ import {
     HelpCircle,
     Home,
     Tags,
+    GraduationCap,
     Trophy,
     UploadCloud,
     Video,
@@ -24,4 +25,5 @@ import {
     ragUpload: UploadCloud,
     subscriptionSettings: Tags,
     subscriptionPlans: CreditCard,
+    teacherDashboard: GraduationCap,
   };

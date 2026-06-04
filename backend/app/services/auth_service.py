@@ -145,6 +145,27 @@ def require_admin(user=Depends(get_current_user)):
         "auth_user": user,
         "profile": profile,
     }
+
+
+def require_teacher(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only teacher profile users.
+
+    Teacher accounts are created by admins, not public signup, and this guard
+    scopes teacher dashboard endpoints to those admin-created profiles.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile or profile.get("role") != "teacher":
+        raise HTTPException(
+            status_code=403,
+            detail="Teacher access required",
+        )
+
+    return {
+        "auth_user": user,
+        "profile": profile,
+    }
     
 def create_auth_user(email: str, password: str):
     """

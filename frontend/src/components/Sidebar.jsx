@@ -13,6 +13,7 @@ import {
   Tags,
   Users,
   Settings,
+  GraduationCap,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -48,6 +49,13 @@ function Sidebar({
       label: "RAG Upload",
       icon: UploadCloud,
       roles: ["admin"],
+    },
+    {
+      key: "teacherDashboard",
+      label: "Teacher Dashboard",
+      icon: GraduationCap,
+      roles: ["teacher"],
+      hideForAdmin: true,
     },
     {
       key: "subscriptionSettings",

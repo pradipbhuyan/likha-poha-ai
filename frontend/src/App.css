@@ -8864,3 +8864,97 @@ body.dark-mode .admin-subscription-save-bar {
     display: grid;
   }
 }
+
+.teacher-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.teacher-student-card {
+  background: #ffffff;
+  border: 1px solid #dbe3f0;
+  border-radius: 16px;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  text-align: left;
+  width: 100%;
+}
+
+.teacher-student-card:hover,
+.teacher-student-card.active {
+  border-color: #2563eb;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.14);
+  transform: translateY(-1px);
+}
+
+.teacher-student-card strong {
+  font-size: 18px;
+}
+
+.teacher-student-card span,
+.teacher-student-card small {
+  color: #64748b;
+}
+
+.teacher-student-card div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.teacher-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 20px;
+}
+
+.teacher-progress-row,
+.teacher-note-row {
+  border-top: 1px solid #e5e7eb;
+  padding: 14px 0;
+}
+
+.teacher-progress-row:first-of-type,
+.teacher-note-row:first-of-type {
+  border-top: 0;
+}
+
+.teacher-progress-row span,
+.teacher-note-row small {
+  color: #64748b;
+  display: block;
+  margin-top: 4px;
+}
+
+.teacher-note-row p {
+  margin: 8px 0 0;
+}
+
+body.dark-mode .teacher-student-card {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #e5e7eb;
+}
+
+body.dark-mode .teacher-student-card span,
+body.dark-mode .teacher-student-card small,
+body.dark-mode .teacher-progress-row span,
+body.dark-mode .teacher-note-row small {
+  color: #cbd5e1;
+}
+
+body.dark-mode .teacher-progress-row,
+body.dark-mode .teacher-note-row {
+  border-top-color: rgba(148, 163, 184, 0.24);
+}
+
+@media (max-width: 900px) {
+  .teacher-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

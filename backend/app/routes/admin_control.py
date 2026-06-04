@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.data.subscription_plans import (
     get_default_subscription_plans,
@@ -26,6 +26,25 @@ class CreateChildRequest(BaseModel):
     parent_id: str
     family_id: str
     grade: str = "Grade 9"
+
+
+class CreateTeacherRequest(BaseModel):
+    email: str
+    password: str
+    username: str
+    teacher_type: str = "independent"
+    school_name: str = ""
+    subjects: list[str] = Field(default_factory=list)
+    grades: list[str] = Field(default_factory=list)
+    status: str = "active"
+
+
+class AssignTeacherStudentRequest(BaseModel):
+    teacher_id: str
+    student_id: str
+    grade: str = "Grade 9"
+    subject: str = ""
+    section: str = ""
 
 
 class UpdateAccessRequest(BaseModel):
@@ -155,6 +174,41 @@ def build_activity_by_username(usernames: list[str]):
     }
 
 
+def list_teacher_profiles_by_id():
+    """Return teacher metadata rows keyed by profile_id for admin display."""
+    try:
+        response = (
+            admin_client
+            .table("teacher_profiles")
+            .select("*")
+            .execute()
+        )
+    except Exception:
+        return {}
+
+    return {
+        item.get("profile_id"): item
+        for item in response.data or []
+        if item.get("profile_id")
+    }
+
+
+def list_teacher_assignments():
+    """Return all teacher-student links for the admin assignment panel."""
+    try:
+        response = (
+            admin_client
+            .table("teacher_student_assignments")
+            .select("*")
+            .order("created_at", desc=True)
+            .execute()
+        )
+    except Exception:
+        return []
+
+    return response.data or []
+
+
 def normalize_subscription_plan_row(row: dict):
     """
     Normalize a database subscription-plan row into API-safe field types.
@@ -255,6 +309,15 @@ def get_all_families(admin=Depends(require_admin)):
     ]
     activity_by_username = build_activity_by_username(student_usernames)
 
+    teacher_profiles_by_id = list_teacher_profiles_by_id()
+    teacher_assignments = list_teacher_assignments()
+    assignments_by_teacher = {}
+
+    for assignment in teacher_assignments:
+        teacher_id = assignment.get("teacher_id")
+        if teacher_id:
+            assignments_by_teacher.setdefault(teacher_id, []).append(assignment)
+
     families = {}
 
     for profile in profiles:
@@ -266,6 +329,7 @@ def get_all_families(admin=Depends(require_admin)):
                 "parents": [],
                 "children": [],
                 "admins": [],
+                "teachers": [],
             }
 
         if profile.get("role") == "parent":
@@ -279,6 +343,16 @@ def get_all_families(admin=Depends(require_admin)):
             families[family_id]["children"].append(profile)
         elif profile.get("role") == "admin":
             families[family_id]["admins"].append(profile)
+        elif profile.get("role") == "teacher":
+            profile["teacher_profile"] = teacher_profiles_by_id.get(
+                profile.get("id"),
+                {},
+            )
+            profile["assignments"] = assignments_by_teacher.get(
+                profile.get("id"),
+                [],
+            )
+            families[family_id]["teachers"].append(profile)
 
     return {
         "success": True,
@@ -452,6 +526,141 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
     return {
         "success": True,
         "child": response.data[0] if response.data else child_profile,
+    }
+
+
+@router.post("/teachers")
+def create_teacher(data: CreateTeacherRequest, admin=Depends(require_admin)):
+    """
+    Create a teacher auth/profile pair from the admin panel only.
+
+    Teachers can represent either school accounts or independent tutors. Their
+    metadata is stored separately so teacher access can evolve without changing
+    parent/student signup.
+    """
+    teacher_type = data.teacher_type
+    if teacher_type not in {"school", "independent"}:
+        teacher_type = "independent"
+
+    auth_user = create_auth_user(
+        email=data.email,
+        password=data.password,
+    )
+
+    teacher_profile = {
+        "id": auth_user.id,
+        "email": data.email,
+        "username": data.username,
+        "role": "teacher",
+        "parent_id": None,
+        "family_id": None,
+        "account_status": data.status or "active",
+        "subscription_plan": "teacher",
+        "access_cbse": True,
+        "access_sof_science": True,
+        "access_sof_maths": True,
+        "access_sof_english": True,
+    }
+
+    metadata = {
+        "profile_id": auth_user.id,
+        "teacher_type": teacher_type,
+        "school_name": data.school_name or "",
+        "subjects": data.subjects or [],
+        "grades": data.grades or [],
+        "status": data.status or "active",
+    }
+
+    try:
+        profile_response = (
+            admin_client
+            .table("profiles")
+            .insert(teacher_profile)
+            .execute()
+        )
+
+        metadata_response = (
+            admin_client
+            .table("teacher_profiles")
+            .insert(metadata)
+            .execute()
+        )
+    except Exception as exc:
+        try:
+            admin_client.table("profiles").delete().eq("id", auth_user.id).execute()
+            admin_client.auth.admin.delete_user(auth_user.id)
+        except Exception:
+            pass
+
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Unable to create teacher profile. Make sure "
+                "backend/sql/add_teacher_dashboard.sql has been executed in "
+                f"Supabase. Original error: {str(exc)}"
+            ),
+        )
+
+    saved_profile = profile_response.data[0] if profile_response.data else teacher_profile
+    saved_profile["teacher_profile"] = (
+        metadata_response.data[0] if metadata_response.data else metadata
+    )
+    saved_profile["assignments"] = []
+
+    return {
+        "success": True,
+        "teacher": saved_profile,
+    }
+
+
+@router.post("/teacher-assignments")
+def assign_teacher_student(
+    data: AssignTeacherStudentRequest,
+    admin=Depends(require_admin),
+):
+    """Assign one student to one teacher for a subject/section context."""
+    response = (
+        admin_client
+        .table("teacher_student_assignments")
+        .upsert(
+            {
+                "teacher_id": data.teacher_id,
+                "student_id": data.student_id,
+                "grade": data.grade or "Grade 9",
+                "subject": data.subject or "",
+                "section": data.section or "",
+            },
+            on_conflict="teacher_id,student_id,subject",
+        )
+        .execute()
+    )
+
+    return {
+        "success": True,
+        "assignment": response.data[0] if response.data else {
+            "teacher_id": data.teacher_id,
+            "student_id": data.student_id,
+            "grade": data.grade or "Grade 9",
+            "subject": data.subject or "",
+            "section": data.section or "",
+        },
+    }
+
+
+@router.delete("/teacher-assignments/{assignment_id}")
+def delete_teacher_assignment(
+    assignment_id: str,
+    admin=Depends(require_admin),
+):
+    """Remove one teacher-student assignment from the admin panel."""
+    admin_client.table("teacher_student_assignments").delete().eq(
+        "id",
+        assignment_id,
+    ).execute()
+
+    return {
+        "success": True,
+        "message": "Teacher assignment removed.",
     }
 
 

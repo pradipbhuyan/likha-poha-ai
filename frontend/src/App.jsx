@@ -17,6 +17,7 @@ import ParentDashboardPage from "./pages/ParentDashboardPage";
 import AdminControlPage from "./pages/AdminControlPage";
 import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
+import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 
 
 import "./App.css";
@@ -85,6 +86,11 @@ const PAGE_META = {
     subtitle: "Track student progress, test performance, and AI usage.",
     icon: "👨‍👩‍👧",
   },
+  teacherDashboard: {
+    title: "Teacher Dashboard",
+    subtitle: "Track assigned students, progress, AI usage, and teacher notes.",
+    icon: "🎓",
+  },
   subscriptionPlans: {
     title: "Subscription",
     subtitle: "Compare plans, review inclusions, and choose payment options.",
@@ -116,6 +122,8 @@ function App() {
         setActivePage(savedPage);
       } else if (parsedUser.role === "parent") {
         setActivePage("parentDashboard");
+      } else if (parsedUser.role === "teacher") {
+        setActivePage("teacherDashboard");
       } else {
         setActivePage("dashboard");
       }
@@ -138,6 +146,9 @@ function App() {
     if (userData.role === "parent") {
       setActivePage("parentDashboard");
       localStorage.setItem("tutor_active_page", "parentDashboard");
+    } else if (userData.role === "teacher") {
+      setActivePage("teacherDashboard");
+      localStorage.setItem("tutor_active_page", "teacherDashboard");
     } else {
       setActivePage("dashboard");
       localStorage.setItem("tutor_active_page", "dashboard");
@@ -191,6 +202,8 @@ function App() {
         return <UsagePage user={user} />;
       case "parentDashboard":
         return <ParentDashboardPage user={user} />;
+      case "teacherDashboard":
+        return <TeacherDashboardPage user={user} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} />;
       default:
