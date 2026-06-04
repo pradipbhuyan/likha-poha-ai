@@ -66,6 +66,8 @@ class DoubtRequest(BaseModel):
     chapter: str
     question: str
     username: str = "unknown"
+    display_question: str | None = None
+    save_to_history: bool = True
 
 
 class DoubtResponse(BaseModel):

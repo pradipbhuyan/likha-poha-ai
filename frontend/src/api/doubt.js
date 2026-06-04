@@ -19,3 +19,8 @@ export async function extractDoubtImage(file) {
     body: formData,
   });
 }
+
+export async function getDoubtHistory(limit = 20) {
+  /** Load recent full Ask Doubt answers for the authenticated student. */
+  return authFetch(`/api/doubt/history?limit=${limit}`);
+}

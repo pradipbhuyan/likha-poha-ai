@@ -161,6 +161,107 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
     assert captured["mode"] == "SOF"
 
 
+def test_answer_doubt_saves_full_history(monkeypatch):
+    """A normal Ask Doubt request should persist the full answer for review."""
+    captured_history = {}
+
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+        return {
+            "answer": "Osmosis is movement of water across a membrane.",
+            "source_type": "RAG",
+            "sources": [{"document": {"title": "Cell chapter"}}],
+            "mentor_suggestions": ["Give a practice question"],
+        }
+
+    def fake_save_doubt_history(**kwargs):
+        captured_history.update(kwargs)
+        return {"id": "history-42"}
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+    monkeypatch.setattr(doubt_route, "save_doubt_history", fake_save_doubt_history)
+
+    response = client.post(
+        "/api/doubt/answer",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Cell",
+            "question": "Preferred answer style: Explain simply",
+            "display_question": "What is osmosis?",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["history_id"] == "history-42"
+    assert captured_history["username"] == "test_user"
+    assert captured_history["question"] == "What is osmosis?"
+    assert captured_history["answer"] == "Osmosis is movement of water across a membrane."
+    assert captured_history["source_type"] == "RAG"
+
+
+def test_answer_doubt_can_skip_history_for_followups(monkeypatch):
+    """Follow-up helper calls should not clutter the student's doubt history."""
+    captured = {"called": False}
+
+    def fake_answer_doubt(grade, mode, subject, chapter, question, username, model=None):
+        return {
+            "answer": "Short follow-up answer.",
+            "source_type": "LLM",
+            "sources": [],
+            "mentor_suggestions": [],
+        }
+
+    def fake_save_doubt_history(**kwargs):
+        captured["called"] = True
+        return {"id": "history-should-not-exist"}
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+    monkeypatch.setattr(doubt_route, "save_doubt_history", fake_save_doubt_history)
+
+    response = client.post(
+        "/api/doubt/answer",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "Cell",
+            "question": "Mentor follow-up mode.",
+            "save_to_history": False,
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["history_id"] is None
+    assert captured["called"] is False
+
+
+def test_get_doubt_history_returns_authenticated_student_rows(monkeypatch):
+    """History endpoint should return only rows loaded for the signed-in profile."""
+    captured = {}
+
+    def fake_list_doubt_history(**kwargs):
+        captured.update(kwargs)
+        return [
+            {
+                "id": "history-1",
+                "question": "What is osmosis?",
+                "answer": "Water movement.",
+            }
+        ]
+
+    monkeypatch.setattr(doubt_route, "list_doubt_history", fake_list_doubt_history)
+
+    response = client.get("/api/doubt/history?limit=5")
+
+    assert response.status_code == 200
+    assert response.json()["history"][0]["question"] == "What is osmosis?"
+    assert captured["profile_id"] == "11111111-1111-1111-1111-111111111111"
+    assert captured["limit"] == 5
+
+
 def test_admin_selected_gpt5_mini_is_used_for_doubt(monkeypatch):
     """Admin model override should win over the default/family plan routing."""
     from tests.conftest import fake_student_profile, patch_route_profile

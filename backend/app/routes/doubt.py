@@ -5,6 +5,10 @@ from app.services.tutor_service import answer_doubt
 from app.services.usage_service import enforce_token_limits
 from app.services.ocr_service import extract_text_from_image_bytes
 from app.services.model_routing_service import resolve_student_feature_model
+from app.services.doubt_history_service import (
+    list_doubt_history,
+    save_doubt_history,
+)
 
 from app.services.auth_service import (
     get_current_user,
@@ -181,6 +185,33 @@ def answer_student_doubt(
             username=canonical_username,
             model=model,
         )
+        history_item = None
+
+        if data.save_to_history:
+            display_question = (
+                data.display_question
+                or data.question.split("Preferred answer style:", 1)[0]
+                or data.question
+            ).strip()
+
+            try:
+                history_item = save_doubt_history(
+                    client=admin_client,
+                    profile_id=profile.get("id"),
+                    username=canonical_username,
+                    grade=data.grade,
+                    mode=data.mode,
+                    subject=data.subject,
+                    chapter=data.chapter,
+                    question=display_question,
+                    prompt_question=data.question,
+                    answer=result.get("answer") or "",
+                    source_type=result.get("source_type", "LLM"),
+                    sources=result.get("sources", []),
+                    mentor_suggestions=result.get("mentor_suggestions", []),
+                )
+            except Exception as history_error:
+                print(f"Doubt history save failed: {history_error}")
 
         return {
             "success": True,
@@ -188,6 +219,7 @@ def answer_student_doubt(
             "source_type": result.get("source_type", "LLM"),
             "sources": result.get("sources", []),
             "mentor_suggestions": result.get("mentor_suggestions", []),
+            "history_id": history_item.get("id") if history_item else None,
             "message": "Doubt answered successfully",
         }
 
@@ -201,8 +233,33 @@ def answer_student_doubt(
             "source_type": "ERROR",
             "sources": [],
             "mentor_suggestions": [],
+            "history_id": None,
             "message": f"Doubt answering failed: {str(e)}",
         }
+
+
+@router.get("/history")
+def get_doubt_history(
+    limit: int = 20,
+    user=Depends(get_current_user),
+):
+    """Return recent full Ask Doubt answers for the authenticated student."""
+    profile = get_profile_by_user_id(user.id)
+
+    if not profile:
+        raise HTTPException(
+            status_code=403,
+            detail="Profile not found",
+        )
+
+    return {
+        "success": True,
+        "history": list_doubt_history(
+            client=admin_client,
+            profile_id=profile.get("id"),
+            limit=limit,
+        ),
+    }
 
 
 @router.post("/extract-image")

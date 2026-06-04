@@ -196,6 +196,20 @@ def override_auth_dependencies(monkeypatch):
     )
 
     monkeypatch.setattr(
+        doubt_route,
+        "save_doubt_history",
+        lambda **kwargs: {"id": "history-1"},
+        raising=False,
+    )
+
+    monkeypatch.setattr(
+        doubt_route,
+        "list_doubt_history",
+        lambda **kwargs: [],
+        raising=False,
+    )
+
+    monkeypatch.setattr(
         mock_test_route,
         "enforce_ai_token_limit",
         lambda username: None,

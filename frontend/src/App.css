@@ -6182,6 +6182,50 @@ body.dark-mode .premium-admin-danger-section {
     border-color: #86efac;
     color: #166534;
   }
+
+  .premium-doubt-history {
+    display: grid;
+    gap: 16px;
+  }
+
+  .doubt-history-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .doubt-history-item {
+    width: 100%;
+    text-align: left;
+    border: 1px solid #dbeafe;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px 16px;
+    cursor: pointer;
+    display: grid;
+    gap: 5px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  }
+
+  .doubt-history-item strong {
+    color: #0f172a;
+    display: -webkit-box;
+    font-size: 15px;
+    line-height: 1.35;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .doubt-history-item span,
+  .doubt-history-item small {
+    color: #64748b;
+    font-weight: 750;
+  }
+
+  .doubt-history-item:hover {
+    border-color: #93c5fd;
+    transform: translateY(-1px);
+  }
   
   .premium-doubt-composer .composer-badge {
     flex-shrink: 0;
@@ -6282,6 +6326,20 @@ body.dark-mode .premium-admin-danger-section {
   }
 
   body.dark-mode .doubt-attachment-panel p {
+    color: #cbd5e1;
+  }
+
+  body.dark-mode .doubt-history-item {
+    background: #111827;
+    border-color: #334155;
+  }
+
+  body.dark-mode .doubt-history-item strong {
+    color: #f8fafc;
+  }
+
+  body.dark-mode .doubt-history-item span,
+  body.dark-mode .doubt-history-item small {
     color: #cbd5e1;
   }
   

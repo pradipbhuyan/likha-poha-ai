@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
 
 import { authFetch } from "../api/authClient";
-import { answerDoubt, extractDoubtImage } from "../api/doubt";
+import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
 
 vi.mock("../api/authClient", () => ({
   authFetch: vi.fn(async () => ({ success: true })),
@@ -35,5 +35,11 @@ describe("answerDoubt", () => {
       method: "POST",
       body: expect.any(FormData),
     });
+  });
+
+  test("loads authenticated doubt history", async () => {
+    await getDoubtHistory(10);
+
+    expect(authFetch).toHaveBeenCalledWith("/api/doubt/history?limit=10");
   });
 });

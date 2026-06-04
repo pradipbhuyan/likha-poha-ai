@@ -5,7 +5,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
-import { answerDoubt, extractDoubtImage } from "../api/doubt";
+import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
 import {
   getDefaultSelection,
@@ -69,6 +69,8 @@ function DoubtPage({ user }) {
   const [extractingImage, setExtractingImage] = useState(false);
   const [actionMessage, setActionMessage] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [doubtHistory, setDoubtHistory] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -92,6 +94,24 @@ function DoubtPage({ user }) {
     }
 
     loadSyllabus();
+  }, []);
+
+  useEffect(() => {
+    async function loadHistory() {
+      /** Load saved Ask Doubt answers for quick student review. */
+      setHistoryLoading(true);
+
+      try {
+        const result = await getDoubtHistory(20);
+        setDoubtHistory(result.history || []);
+      } catch {
+        setDoubtHistory([]);
+      } finally {
+        setHistoryLoading(false);
+      }
+    }
+
+    loadHistory();
   }, []);
 
   if (loading) return <p>Loading doubt page...</p>;
@@ -183,7 +203,7 @@ function DoubtPage({ user }) {
     return contextParts.join("\n\n");
   }
 
-  function buildDoubtPayload(questionText) {
+  function buildDoubtPayload(questionText, options = {}) {
     /** Build the authenticated doubt payload with syllabus context and enriched question text. */
     return {
       username: user.username,
@@ -192,6 +212,9 @@ function DoubtPage({ user }) {
       subject: getDoubtSubject(),
       chapter,
       question: buildQuestionWithContext(questionText),
+      display_question:
+        options.displayQuestion ?? questionText.trim() ?? question.trim(),
+      save_to_history: options.saveToHistory !== false,
     };
   }
 
@@ -338,6 +361,39 @@ function DoubtPage({ user }) {
     );
   }
 
+  function formatHistoryDate(value) {
+    /** Format a saved doubt timestamp for compact display. */
+    if (!value) return "";
+
+    return new Date(value).toLocaleString([], {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  function handleOpenHistoryItem(item) {
+    /** Restore a saved doubt and answer into the main answer panel. */
+    setGrade(item.grade || grade);
+    setMode(item.mode || mode);
+    setSubject(item.subject || "");
+    setChapter(item.chapter || "");
+    setQuestion(item.question || "");
+    setAnswer(normalizeMermaidBlocks(item.answer || ""));
+    setMentorSuggestions(item.mentor_suggestions || []);
+    setSourceInfo({
+      sourceType: item.source_type || "LLM",
+      sources: item.sources || [],
+    });
+    setFollowUpQuestion("");
+    setFollowUpAnswers({});
+    setActiveSuggestion("");
+    setFeedback("");
+    setActionMessage("Loaded saved doubt.");
+    setError("");
+  }
+
   function normalizeMermaidBlocks(text) {
     /** Wrap loose Mermaid graph text in code fences so ReactMarkdown renders diagrams correctly. */
     if (!text) return "";
@@ -414,7 +470,12 @@ function DoubtPage({ user }) {
     setFollowUpAnswers({});
 
     try {
-      const result = await answerDoubt(buildDoubtPayload(question));
+      const result = await answerDoubt(
+        buildDoubtPayload(question || extractedImageText, {
+          displayQuestion: question.trim() || extractedImageText.trim(),
+          saveToHistory: true,
+        })
+      );
 
       if (!result.success) {
         setError(result.message || "Could not answer doubt");
@@ -430,6 +491,14 @@ function DoubtPage({ user }) {
         sourceType: result.source_type,
         sources: result.sources || [],
       });
+
+      try {
+        const historyResult = await getDoubtHistory(20);
+        setDoubtHistory(historyResult.history || []);
+      } catch {
+        // History is a convenience feature; a refresh failure should not hide
+        // the answer the student just received.
+      }
     } catch (err) {
       setError(
         err.message ||
@@ -474,7 +543,9 @@ Rules:
 - No markdown tables.
 - Be concise and conversational.
 - Focus only on the requested follow-up.
-- End with one short reflective question.`));
+- End with one short reflective question.`, {
+        saveToHistory: false,
+      }));
 
       if (!result.success) {
         setError(result.message || "Could not answer follow-up.");
@@ -525,7 +596,9 @@ ${question}
 Important:
 - Answer the deeper follow-up directly.
 - Use the original doubt as context.
-- Keep the response concise unless detail is required.`));
+- Keep the response concise unless detail is required.`, {
+        saveToHistory: false,
+      }));
 
       if (!result.success) {
         setError(result.message || "Could not answer follow-up.");
@@ -770,6 +843,42 @@ Important:
             >
               {asking ? "Thinking..." : "✨ Ask AI Tutor"}
             </button>
+          </section>
+
+          <section className="premium-section premium-doubt-history">
+            <div className="premium-header">
+              <p className="eyebrow">Saved History</p>
+              <h3>Recent Doubts</h3>
+              <p>Reopen previous questions and answers whenever you revise.</p>
+            </div>
+
+            {historyLoading && <p>Loading saved doubts...</p>}
+
+            {!historyLoading && doubtHistory.length === 0 && (
+              <p className="muted-text">
+                Your answered doubts will appear here after you ask the tutor.
+              </p>
+            )}
+
+            {!historyLoading && doubtHistory.length > 0 && (
+              <div className="doubt-history-list">
+                {doubtHistory.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className="doubt-history-item"
+                    onClick={() => handleOpenHistoryItem(item)}
+                  >
+                    <strong>{item.question}</strong>
+                    <span>
+                      {item.grade} • {item.mode}
+                      {item.subject ? ` • ${item.subject}` : ""}
+                    </span>
+                    <small>{formatHistoryDate(item.created_at)}</small>
+                  </button>
+                ))}
+              </div>
+            )}
           </section>
 
           {error && <div className="error-box">{error}</div>}
