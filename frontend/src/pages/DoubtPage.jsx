@@ -12,6 +12,7 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
+import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const SOF_SUBJECT_ACCESS = {
   "Science Olympiad": "accessSofScience",
@@ -380,7 +381,7 @@ function DoubtPage({ user }) {
     setSubject(item.subject || "");
     setChapter(item.chapter || "");
     setQuestion(item.question || "");
-    setAnswer(normalizeMermaidBlocks(item.answer || ""));
+    setAnswer(normalizeTutorMarkdown(item.answer || ""));
     setMentorSuggestions(item.mentor_suggestions || []);
     setSourceInfo({
       sourceType: item.source_type || "LLM",
@@ -392,56 +393,6 @@ function DoubtPage({ user }) {
     setFeedback("");
     setActionMessage("Loaded saved doubt.");
     setError("");
-  }
-
-  function normalizeMermaidBlocks(text) {
-    /** Wrap loose Mermaid graph text in code fences so ReactMarkdown renders diagrams correctly. */
-    if (!text) return "";
-
-    if (text.includes("graph TD") && !text.includes("```mermaid")) {
-      const lines = text.split("\n");
-      const output = [];
-      let inMermaid = false;
-
-      for (const line of lines) {
-        const trimmed = line.trim();
-
-        if (trimmed.startsWith("graph TD")) {
-          output.push("```mermaid");
-          output.push(line);
-          inMermaid = true;
-          continue;
-        }
-
-        if (inMermaid) {
-          const isMermaidLine =
-            trimmed === "" ||
-            trimmed.includes("-->") ||
-            trimmed.includes("-.->") ||
-            /^[A-Za-z0-9_]+\[.*\]$/.test(trimmed);
-
-          if (isMermaidLine) {
-            output.push(line);
-          } else {
-            output.push("```");
-            output.push(line);
-            inMermaid = false;
-          }
-
-          continue;
-        }
-
-        output.push(line);
-      }
-
-      if (inMermaid) {
-        output.push("```");
-      }
-
-      return output.join("\n");
-    }
-
-    return text;
   }
 
   async function handleAskDoubt() {
@@ -482,7 +433,7 @@ function DoubtPage({ user }) {
         return;
       }
 
-      const finalAnswer = normalizeMermaidBlocks(result.answer || "");
+      const finalAnswer = normalizeTutorMarkdown(result.answer || "");
 
       setAnswer(finalAnswer);
       setMentorSuggestions(result.mentor_suggestions || []);
@@ -554,7 +505,7 @@ Rules:
 
       setFollowUpAnswers((prev) => ({
         ...prev,
-        [suggestion]: normalizeMermaidBlocks(result.answer || ""),
+        [suggestion]: normalizeTutorMarkdown(result.answer || ""),
       }));
     } catch (err) {
       setError(
@@ -607,7 +558,7 @@ Important:
 
       setFollowUpAnswers((prev) => ({
         ...prev,
-        [suggestion]: normalizeMermaidBlocks(result.answer || ""),
+        [suggestion]: normalizeTutorMarkdown(result.answer || ""),
       }));
 
       setFollowUpQuestion("");

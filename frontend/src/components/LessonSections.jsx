@@ -1,8 +1,11 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 import MermaidBlock from "./MermaidBlock";
+import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const SECTION_ICONS = {
   "What you will learn": "🎯",
@@ -60,7 +63,7 @@ function parseSections(markdown) {
 
 function LessonSections({ lesson }) {
   /** Presents a generated lesson as expandable sections with markdown and diagram support. */
-  const sections = parseSections(lesson);
+  const sections = parseSections(normalizeTutorMarkdown(lesson));
 
   const [openSections, setOpenSections] = useState(
     sections.map((_, index) => index === 0)
@@ -103,7 +106,8 @@ function LessonSections({ lesson }) {
           {openSections[index] && (
             <div className="lesson-section-body">
               <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex]}
                 components={{
                   code({ className, children }) {
                     const match = /language-mermaid/.exec(className || "");

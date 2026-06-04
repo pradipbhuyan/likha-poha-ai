@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
 import MermaidBlock from "../components/MermaidBlock";
 
@@ -20,6 +22,7 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
+import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -1173,8 +1176,11 @@ function LessonsPage({ user }) {
 
                               {currentEvaluation && (
                                 <div className="mentor-followup-answer markdown-content">
-                                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                    {currentEvaluation}
+                                  <ReactMarkdown
+                                    remarkPlugins={[remarkGfm, remarkMath]}
+                                    rehypePlugins={[rehypeKatex]}
+                                  >
+                                    {normalizeTutorMarkdown(currentEvaluation)}
                                   </ReactMarkdown>
                                 </div>
                               )}
@@ -1283,7 +1289,8 @@ function LessonsPage({ user }) {
                           </strong>
 
                           <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
                             components={{
                               code({ className, children }) {
                                 const match = /language-mermaid/.exec(
@@ -1307,7 +1314,7 @@ function LessonsPage({ user }) {
                               },
                             }}
                           >
-                            {msg.content}
+                            {normalizeTutorMarkdown(msg.content)}
                           </ReactMarkdown>
 
                           {msg.sourceType && (

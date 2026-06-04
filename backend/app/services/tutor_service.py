@@ -104,7 +104,12 @@ B --> C[End]
 
 MATH RULES:
 - Use LaTeX math for formulas.
-- Use this format:
+- Inline formulas MUST use dollar delimiters, for example $\\frac{p}{q}$ and $q \\neq 0$.
+- Display formulas MUST use double-dollar delimiters.
+- Never place LaTeX commands inside normal parentheses.
+- Bad: (\\frac{p}{q}), (q \\neq 0), (7 = \\frac{7}{1})
+- Good: $\\frac{p}{q}$, $q \\neq 0$, $7 = \\frac{7}{1}$
+- Use this display format:
 
 $$
 v = u + at
@@ -463,6 +468,7 @@ Use bullet points instead.
 
 For formulas:
 - Use inline LaTeX like $F = m \times a$
+- Use inline LaTeX like $\\frac{{p}}{{q}}$ and $q \\neq 0$
 - Use display LaTeX like:
 
 $$
@@ -471,6 +477,8 @@ $$
 
 - Never write formulas inside normal parentheses like:
 ( F = m \times a )
+- Never write LaTeX commands inside normal parentheses like:
+(\\frac{{p}}{{q}}) or (q \\neq 0)
 """
 
     answer = ask_llm(
