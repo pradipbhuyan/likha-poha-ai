@@ -9,6 +9,10 @@ from app.services.doubt_history_service import (
     list_doubt_history,
     save_doubt_history,
 )
+from app.services.platform_info_service import (
+    answer_platform_info,
+    is_platform_info_question,
+)
 
 from app.services.auth_service import (
     get_current_user,
@@ -167,6 +171,47 @@ def answer_student_doubt(
     # not consume paid AI resources.
     enforce_profile_grade(profile, data.grade)
     enforce_learning_access(profile, data.mode, data.subject)
+
+    if is_platform_info_question(data.question):
+        result = answer_platform_info(data.question)
+        history_item = None
+
+        if data.save_to_history:
+            display_question = (
+                data.display_question
+                or data.question.split("Preferred answer style:", 1)[0]
+                or data.question
+            ).strip()
+
+            try:
+                history_item = save_doubt_history(
+                    client=admin_client,
+                    profile_id=profile.get("id"),
+                    username=canonical_username,
+                    grade=data.grade,
+                    mode=data.mode,
+                    subject=data.subject,
+                    chapter=data.chapter,
+                    question=display_question,
+                    prompt_question=data.question,
+                    answer=result.get("answer") or "",
+                    source_type=result.get("source_type", "PLATFORM_RAG"),
+                    sources=result.get("sources", []),
+                    mentor_suggestions=result.get("mentor_suggestions", []),
+                )
+            except Exception as history_error:
+                print(f"Doubt history save failed: {history_error}")
+
+        return {
+            "success": True,
+            "answer": result.get("answer"),
+            "source_type": result.get("source_type", "PLATFORM_RAG"),
+            "sources": result.get("sources", []),
+            "mentor_suggestions": result.get("mentor_suggestions", []),
+            "history_id": history_item.get("id") if history_item else None,
+            "message": "Platform information answered successfully",
+        }
+
     enforce_ai_token_limit(canonical_username)
 
     try:

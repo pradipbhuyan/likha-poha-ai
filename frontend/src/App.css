@@ -1409,6 +1409,72 @@ textarea:focus {
   border: 1px solid #bfdbfe;
 }
 
+.lesson-history-panel {
+  margin: 18px 0;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  background: #f8fbff;
+  overflow: hidden;
+}
+
+.lesson-history-panel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #0f172a;
+  font-weight: 900;
+  cursor: pointer;
+  list-style: none;
+}
+
+.lesson-history-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.lesson-history-panel summary span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13px;
+}
+
+.lesson-history-list {
+  display: grid;
+  gap: 10px;
+  padding: 0 14px 14px;
+}
+
+.lesson-history-item {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #0f172a;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lesson-history-item strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lesson-history-item small {
+  color: #64748b;
+  font-weight: 800;
+}
+
 @media (max-width: 800px) {
   .lesson-followup-input {
     grid-template-columns: 1fr;
@@ -2695,6 +2761,26 @@ body.dark-mode .lesson-followup-input textarea {
 body.dark-mode .lesson-followup-box {
   background: linear-gradient(180deg, #0f172a, #111827) !important;
   border-color: #334155 !important;
+}
+
+body.dark-mode .lesson-history-panel,
+body.dark-mode .lesson-history-item {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .lesson-history-panel summary,
+body.dark-mode .lesson-history-item {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .lesson-history-panel summary span {
+  background: rgba(37, 99, 235, 0.18) !important;
+  color: #bfdbfe !important;
+}
+
+body.dark-mode .lesson-history-item small {
+  color: #cbd5e1 !important;
 }
 
 /* Dark mode follow-up chat message fix */

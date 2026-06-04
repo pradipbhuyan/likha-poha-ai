@@ -203,6 +203,13 @@ def override_auth_dependencies(monkeypatch):
     )
 
     monkeypatch.setattr(
+        lesson_route,
+        "save_doubt_history",
+        lambda **kwargs: {"id": "lesson-history-1"},
+        raising=False,
+    )
+
+    monkeypatch.setattr(
         doubt_route,
         "list_doubt_history",
         lambda **kwargs: [],

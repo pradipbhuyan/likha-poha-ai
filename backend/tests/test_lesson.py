@@ -178,6 +178,7 @@ def test_lesson_follow_up_api(monkeypatch):
     assert "answer" in data
     assert "source_type" in data
     assert "sources" in data
+    assert "history_id" in data
     assert "message" in data
 
 
@@ -200,3 +201,39 @@ def test_lesson_follow_up_empty_question():
     response = client.post("/api/lesson/follow-up", json=payload)
 
     assert response.status_code in [400, 422]
+
+
+def test_lesson_follow_up_uses_platform_rag_for_founder_questions(monkeypatch):
+    """Lesson follow-ups about Likha Poha AI should use controlled platform facts."""
+    captured = {"called": False}
+
+    def fake_answer_lesson_follow_up(*args, **kwargs):
+        captured["called"] = True
+        raise AssertionError("Platform questions must not call lesson LLM.")
+
+    monkeypatch.setattr(
+        lesson_route,
+        "answer_lesson_follow_up",
+        fake_answer_lesson_follow_up,
+    )
+
+    payload = {
+        "username": "test_user",
+        "grade": "Grade 9",
+        "mode": "CBSE",
+        "subject": "Science",
+        "chapter": "Matter in Our Surroundings",
+        "step_title": "What is matter?",
+        "lesson": "Matter is anything that has mass and occupies space.",
+        "question": "What is Likha Poha AI?",
+    }
+
+    response = client.post("/api/lesson/follow-up", json=payload)
+
+    assert response.status_code == 200
+    data = response.json()
+
+    assert captured["called"] is False
+    assert data["source_type"] == "PLATFORM_RAG"
+    assert "Pradip Bhuyan" in data["answer"]
+    assert "Akshita" in data["answer"]

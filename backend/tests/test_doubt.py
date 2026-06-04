@@ -238,6 +238,37 @@ def test_answer_doubt_can_skip_history_for_followups(monkeypatch):
     assert captured["called"] is False
 
 
+def test_answer_doubt_uses_platform_rag_for_founder_questions(monkeypatch):
+    """Questions about the app should not use the general tutor LLM path."""
+    captured = {"answer_doubt_called": False}
+
+    def fake_answer_doubt(*args, **kwargs):
+        captured["answer_doubt_called"] = True
+        raise AssertionError("Platform questions must not call the general LLM path.")
+
+    monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
+
+    response = client.post(
+        "/api/doubt/answer",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "Science",
+            "chapter": "",
+            "question": "Who founded Likha Poha AI?",
+        },
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+
+    assert captured["answer_doubt_called"] is False
+    assert data["source_type"] == "PLATFORM_RAG"
+    assert "Pradip Bhuyan" in data["answer"]
+    assert "Akshita" in data["answer"]
+
+
 def test_get_doubt_history_returns_authenticated_student_rows(monkeypatch):
     """History endpoint should return only rows loaded for the signed-in profile."""
     captured = {}

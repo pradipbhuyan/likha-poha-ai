@@ -7,6 +7,7 @@ import MermaidBlock from "../components/MermaidBlock";
 
 import { getSyllabus } from "../api/syllabus";
 import { generateLesson, askLessonFollowUp } from "../api/lesson";
+import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import { generateEducationalImage } from "../api/images";
@@ -118,6 +119,7 @@ function LessonsPage({ user }) {
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpMessages, setFollowUpMessages] = useState([]);
+  const [lessonDoubtHistory, setLessonDoubtHistory] = useState([]);
   const [followUpLoading, setFollowUpLoading] = useState(false);
 
   const [voiceName, setVoiceName] = useState("English India Female (Neerja)");
@@ -156,6 +158,24 @@ function LessonsPage({ user }) {
 
     loadSyllabus();
   }, []);
+
+  useEffect(() => {
+    loadLessonDoubtHistory();
+  }, [user?.username]);
+
+  async function loadLessonDoubtHistory() {
+    /** Load recent saved follow-up doubts asked from the Lessons page. */
+    try {
+      const result = await getDoubtHistory(30);
+      const lessonHistory = (result.history || []).filter((item) =>
+        ["LESSON_FOLLOW_UP", "LESSON_PLATFORM_RAG"].includes(item.source_type)
+      );
+
+      setLessonDoubtHistory(lessonHistory);
+    } catch {
+      // Lesson history is a convenience feature and should never block lessons.
+    }
+  }
 
   useEffect(() => {
     if (!practiceModeActive) {
@@ -529,6 +549,8 @@ function LessonsPage({ user }) {
           sourceType: result.source_type,
         },
       ]);
+
+      loadLessonDoubtHistory();
     } catch (error) {
       setFollowUpMessages((prev) => [
         ...prev,
@@ -540,6 +562,24 @@ function LessonsPage({ user }) {
     } finally {
       setFollowUpLoading(false);
     }
+  }
+
+  function handleOpenLessonHistory(item) {
+    /** Restore a saved lesson follow-up into the current lesson chat thread. */
+    setFollowUpMessages([
+      {
+        role: "user",
+        content: item.question || "",
+      },
+      {
+        role: "assistant",
+        content: item.answer || "",
+        sourceType:
+          item.source_type === "LESSON_PLATFORM_RAG"
+            ? "PLATFORM_RAG"
+            : item.source_type,
+      },
+    ]);
   }
 
   async function handleReadAloud() {
@@ -1420,12 +1460,41 @@ function LessonsPage({ user }) {
 
                           {msg.sourceType && (
                             <span className="chat-source-chip">
-                              {msg.sourceType === "RAG" ? "📚 RAG" : "🤖 LLM"}
+                              {msg.sourceType === "PLATFORM_RAG"
+                                ? "🏷 Platform"
+                                : msg.sourceType === "RAG"
+                                ? "📚 RAG"
+                                : "🤖 LLM"}
                             </span>
                           )}
                         </div>
                       ))}
                     </div>
+                  )}
+
+                  {lessonDoubtHistory.length > 0 && (
+                    <details className="lesson-history-panel">
+                      <summary>
+                        Recent Lesson Doubts
+                        <span>{lessonDoubtHistory.length}</span>
+                      </summary>
+
+                      <div className="lesson-history-list">
+                        {lessonDoubtHistory.slice(0, 5).map((item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            className="lesson-history-item"
+                            onClick={() => handleOpenLessonHistory(item)}
+                          >
+                            <strong>{item.question}</strong>
+                            <small>
+                              {item.chapter || item.subject || "Lesson follow-up"}
+                            </small>
+                          </button>
+                        ))}
+                      </div>
+                    </details>
                   )}
 
                   <div className="lesson-followup-input">

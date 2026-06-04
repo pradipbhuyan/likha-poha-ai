@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 
 import LessonsPage from "../pages/LessonsPage";
+import { getDoubtHistory } from "../api/doubt";
 import { generateEducationalImage } from "../api/images";
 
 vi.mock("../api/syllabus", () => ({
@@ -61,6 +62,10 @@ vi.mock("../api/lesson", () => ({
   askLessonFollowUp: vi.fn(),
 }));
 
+vi.mock("../api/doubt", () => ({
+  getDoubtHistory: vi.fn(),
+}));
+
 vi.mock("../api/tts", () => ({
   generateSpeech: vi.fn(),
 }));
@@ -83,6 +88,10 @@ describe("LessonsPage", () => {
     generateEducationalImage.mockResolvedValue({
       success: true,
       image_base64: "fake-image",
+    });
+    getDoubtHistory.mockResolvedValue({
+      success: true,
+      history: [],
     });
   });
 
@@ -347,5 +356,48 @@ describe("LessonsPage", () => {
     expect(
       screen.getByPlaceholderText(/show osmosis as water movement/i)
     ).toHaveValue("Process flow with arrows");
+  });
+
+  test("shows saved lesson follow-up history and restores a selected doubt", async () => {
+    getDoubtHistory.mockResolvedValue({
+      success: true,
+      history: [
+        {
+          id: "lesson-history-1",
+          source_type: "LESSON_PLATFORM_RAG",
+          question: "What is Likha Poha AI?",
+          answer:
+            "Likha Poha AI was initially developed to help Akshita with her studies.",
+          subject: "Maths Olympiad",
+          chapter: "Number Systems",
+        },
+      ],
+    });
+
+    render(
+      <LessonsPage
+        user={{
+          role: "student",
+          username: "history_student",
+          grade: "Grade 9",
+          accessCbse: true,
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByText(/recent lesson doubts/i)
+    ).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /what is likha poha ai/i,
+      })
+    );
+
+    expect(
+      await screen.findByText(/initially developed to help Akshita/i)
+    ).toBeInTheDocument();
+    expect(await screen.findByText(/platform/i)).toBeInTheDocument();
   });
 });

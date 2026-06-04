@@ -137,6 +137,7 @@ class LessonFollowUpResponse(BaseModel):
     answer: str | None = None
     source_type: str = "LLM"
     sources: list[dict] = []
+    history_id: str | None = None
     message: str
     
 

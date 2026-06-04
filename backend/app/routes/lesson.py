@@ -13,6 +13,11 @@ from app.services.tutor_service import (
     generate_step_lesson,
     answer_lesson_follow_up,
 )
+from app.services.doubt_history_service import save_doubt_history
+from app.services.platform_info_service import (
+    answer_platform_info,
+    is_platform_info_question,
+)
 
 router = APIRouter()
 
@@ -152,6 +157,7 @@ def generate_lesson(
     profile = get_profile_by_user_id(user.id)
     enforce_profile_grade(profile, data.grade)
     enforce_learning_access(profile, data.mode, data.subject)
+
     enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
@@ -219,6 +225,39 @@ def lesson_follow_up(
 
     enforce_profile_grade(profile, data.grade)
     enforce_learning_access(profile, data.mode, data.subject)
+
+    if is_platform_info_question(data.question):
+        result = answer_platform_info(data.question)
+        history_item = None
+
+        try:
+            history_item = save_doubt_history(
+                client=admin_client,
+                profile_id=profile.get("id"),
+                username=profile.get("username") or data.username,
+                grade=data.grade,
+                mode=data.mode,
+                subject=data.subject,
+                chapter=data.chapter,
+                question=data.question,
+                prompt_question=data.question,
+                answer=result.get("answer") or "",
+                source_type="LESSON_PLATFORM_RAG",
+                sources=result.get("sources", []),
+                mentor_suggestions=[],
+            )
+        except Exception as history_error:
+            print(f"Lesson follow-up history save failed: {history_error}")
+
+        return LessonFollowUpResponse(
+            success=True,
+            answer=result["answer"],
+            source_type=result.get("source_type", "PLATFORM_RAG"),
+            sources=result.get("sources", []),
+            history_id=history_item.get("id") if history_item else None,
+            message="Platform information answered successfully",
+        )
+
     enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
@@ -233,11 +272,33 @@ def lesson_follow_up(
             username=data.username,
         )
 
+        history_item = None
+
+        try:
+            history_item = save_doubt_history(
+                client=admin_client,
+                profile_id=profile.get("id"),
+                username=profile.get("username") or data.username,
+                grade=data.grade,
+                mode=data.mode,
+                subject=data.subject,
+                chapter=data.chapter,
+                question=data.question,
+                prompt_question=data.question,
+                answer=result.get("answer") or "",
+                source_type="LESSON_FOLLOW_UP",
+                sources=result.get("sources", []),
+                mentor_suggestions=[],
+            )
+        except Exception as history_error:
+            print(f"Lesson follow-up history save failed: {history_error}")
+
         return LessonFollowUpResponse(
             success=True,
             answer=result["answer"],
             source_type=result.get("source_type", "LLM"),
             sources=result.get("sources", []),
+            history_id=history_item.get("id") if history_item else None,
             message="Follow-up answered successfully",
         )
 
@@ -250,5 +311,6 @@ def lesson_follow_up(
             answer=None,
             source_type="LLM",
             sources=[],
+            history_id=None,
             message=f"Follow-up failed: {str(e)}",
         )
