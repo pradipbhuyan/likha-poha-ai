@@ -16,6 +16,7 @@ function LoginPage({ onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState("");
   const [error, setError] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   function buildLoginUser({ authUser, profile, accessToken }) {
@@ -111,6 +112,59 @@ function LoginPage({ onLogin }) {
       );
     } catch (err) {
       setError(err.message || "Login failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function resolveLoginEmail(value) {
+    /** Resolve an email or username into the email Supabase needs for auth actions. */
+    const loginValue = value.trim();
+
+    if (loginValue.includes("@")) {
+      return loginValue;
+    }
+
+    const response = await fetch(
+      `${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginValue)}`
+    );
+
+    if (!response.ok) {
+      return "";
+    }
+
+    const result = await response.json();
+    return result.email || "";
+  }
+
+  async function handleForgotPassword() {
+    /** Send a Supabase password reset email without exposing whether the account exists. */
+    setError("");
+    setInfoMessage("");
+
+    if (!username.trim()) {
+      setError("Enter your username or email first, then request a reset link.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const resetEmail = await resolveLoginEmail(username);
+
+      if (resetEmail) {
+        await supabase.auth.resetPasswordForEmail(resetEmail, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+      }
+
+      setInfoMessage(
+        "If this account exists, a password reset link has been sent."
+      );
+    } catch {
+      setInfoMessage(
+        "If this account exists, a password reset link has been sent."
+      );
     } finally {
       setLoading(false);
     }
@@ -305,7 +359,13 @@ function LoginPage({ onLogin }) {
                     Remember me
                   </label>
 
-                  <button type="button">Forgot password?</button>
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    disabled={loading}
+                  >
+                    Forgot password?
+                  </button>
                 </div>
               )}
 
@@ -341,6 +401,7 @@ function LoginPage({ onLogin }) {
             </form>
 
             {error && <div className="error-box">{error}</div>}
+            {infoMessage && <div className="info-box">{infoMessage}</div>}
           </div>
         </div>
       </div>

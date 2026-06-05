@@ -20,6 +20,8 @@ import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
 import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
 import TeacherDashboardPage from "./pages/TeacherDashboardPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 
 import "./App.css";
@@ -110,6 +112,11 @@ const PAGE_META = {
     subtitle: "Compare plans, review inclusions, and choose payment options.",
     icon: "💳",
   },
+  changePassword: {
+    title: "Change Password",
+    subtitle: "Update your account password securely.",
+    icon: "🔐",
+  },
 };
 
 function App() {
@@ -183,6 +190,17 @@ function App() {
     localStorage.setItem("tutor_active_page", page);
   }
 
+  if (!user && window.location.pathname === "/reset-password") {
+    return (
+      <ResetPasswordPage
+        onBackToLogin={() => {
+          window.history.replaceState({}, "", "/");
+          setUser(null);
+        }}
+      />
+    );
+  }
+
   if (!user) {
     return <LoginPage onLogin={handleLogin} />;
   }
@@ -224,6 +242,8 @@ function App() {
         return <TeacherDashboardPage user={user} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} />;
+      case "changePassword":
+        return <ChangePasswordPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

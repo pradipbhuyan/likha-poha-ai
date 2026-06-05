@@ -7,6 +7,7 @@ import {
     CreditCard,
     HelpCircle,
     Home,
+    KeyRound,
     Tags,
     GraduationCap,
     Trophy,
@@ -28,4 +29,5 @@ import {
     pricingCalculator: Calculator,
     subscriptionPlans: CreditCard,
     teacherDashboard: GraduationCap,
+    changePassword: KeyRound,
   };

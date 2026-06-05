@@ -16,6 +16,7 @@ import {
   GraduationCap,
   ListChecks,
   Calculator,
+  KeyRound,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -137,6 +138,12 @@ function Sidebar({
       icon: CreditCard,
       roles: ["parent"],
       parentOnly: true,
+    },
+    {
+      key: "changePassword",
+      label: "Change Password",
+      icon: KeyRound,
+      roles: ["student", "parent", "teacher", "admin"],
     },
   ];
 
