@@ -124,11 +124,19 @@ function App() {
   const [user, setUser] = useState(null);
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [routePath, setRoutePath] = useState(window.location.pathname);
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("tutor_dark_mode") === "true"
   );
 
   useEffect(() => {
+    function handlePopState() {
+      /** Keep the app shell in sync when browser navigation changes the URL. */
+      setRoutePath(window.location.pathname);
+    }
+
+    window.addEventListener("popstate", handlePopState);
+
     const savedUser = localStorage.getItem("tutor_user");
     const savedPage = localStorage.getItem("tutor_active_page");
 
@@ -151,6 +159,8 @@ function App() {
     }
 
     document.body.classList.toggle("dark-mode", darkMode);
+
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   useEffect(() => {
@@ -162,6 +172,7 @@ function App() {
   function handleLogin(userData) {
     /** Persist the authenticated user and send them to the right role-specific landing page. */
     setUser(userData);
+    setRoutePath("/");
     localStorage.setItem("tutor_user", JSON.stringify(userData));
   
     if (userData.role === "parent") {
@@ -179,8 +190,16 @@ function App() {
   function handleLogout() {
     /** Clear the local session and force the app back to the login page. */
     setUser(null);
+    setRoutePath("/");
     localStorage.removeItem("tutor_user");
     localStorage.removeItem("tutor_active_page");
+  }
+
+  function handleBackToLogin() {
+    /** Leave the recovery route and show the sign-in screen immediately. */
+    window.history.replaceState({}, "", "/");
+    setRoutePath("/");
+    setUser(null);
   }
 
   function handlePageChange(page) {
@@ -190,13 +209,10 @@ function App() {
     localStorage.setItem("tutor_active_page", page);
   }
 
-  if (window.location.pathname === "/reset-password") {
+  if (routePath === "/reset-password") {
     return (
       <ResetPasswordPage
-        onBackToLogin={() => {
-          window.history.replaceState({}, "", "/");
-          setUser(null);
-        }}
+        onBackToLogin={handleBackToLogin}
       />
     );
   }
