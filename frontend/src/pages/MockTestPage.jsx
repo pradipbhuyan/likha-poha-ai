@@ -8,6 +8,7 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
+import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 function MockTestPage({ user }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
@@ -83,11 +84,43 @@ function MockTestPage({ user }) {
           subject: defaultSubject,
           chapter: defaultChapter,
         } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        const defaultSubjects = Object.keys(
+          data.syllabus[defaultGrade]?.[defaultMode] || {}
+        );
+        const allowedDefaultSubjects = filterAllowedSubjects(
+          user,
+          defaultSubjects,
+          defaultMode
+        );
+        let selectedMode = defaultMode;
+        let selectedSubject = allowedDefaultSubjects.includes(defaultSubject)
+          ? defaultSubject
+          : allowedDefaultSubjects[0] || "";
+
+        if (!selectedSubject) {
+          selectedMode =
+            Object.keys(data.syllabus[defaultGrade] || {}).find((modeName) => {
+              const modeSubjects = Object.keys(
+                data.syllabus[defaultGrade]?.[modeName] || {}
+              );
+              return filterAllowedSubjects(user, modeSubjects, modeName).length > 0;
+            }) || defaultMode;
+          selectedSubject =
+            filterAllowedSubjects(
+              user,
+              Object.keys(data.syllabus[defaultGrade]?.[selectedMode] || {}),
+              selectedMode
+            )[0] || "";
+        }
+        const selectedChapter =
+          selectedSubject === defaultSubject
+            ? defaultChapter
+            : data.syllabus[defaultGrade]?.[selectedMode]?.[selectedSubject]?.[0] || "";
 
         setGrade(defaultGrade);
-        setMode(defaultMode);
-        setSubject(defaultSubject);
-        setChapter(defaultChapter);
+        setMode(selectedMode);
+        setSubject(selectedSubject);
+        setChapter(selectedChapter);
       } catch {
         setError("Could not load syllabus");
       }
@@ -117,22 +150,7 @@ function MockTestPage({ user }) {
   
   function getAllowedSubjects(allSubjects, selectedMode) {
     /** Enforce subscription access when showing CBSE and SOF subjects. */
-    if (user.role === "admin") return allSubjects;
-  
-    if (selectedMode === "CBSE") {
-      return user.accessCbse ? allSubjects : [];
-    }
-  
-    if (selectedMode === "SOF") {
-      return allSubjects.filter((subjectName) => {
-        if (subjectName === "Science Olympiad") return user.accessSofScience;
-        if (subjectName === "Maths Olympiad") return user.accessSofMaths;
-        if (subjectName === "English Olympiad") return user.accessSofEnglish;
-        return false;
-      });
-    }
-  
-    return [];
+    return filterAllowedSubjects(user, allSubjects, selectedMode);
   }
   
   const allSubjects = Object.keys(syllabusData[grade][mode]);
@@ -148,8 +166,12 @@ function MockTestPage({ user }) {
 
   function resetSelections(newGrade, newMode) {
     /** Reset subject and chapter when grade or mode changes. */
-    const firstSubject = Object.keys(syllabusData[newGrade][newMode])[0];
-    const firstChapter = syllabusData[newGrade][newMode][firstSubject][0];
+    const modeSubjects = Object.keys(syllabusData[newGrade][newMode] || {});
+    const allowedModeSubjects = getAllowedSubjects(modeSubjects, newMode);
+    const firstSubject = allowedModeSubjects[0] || "";
+    const firstChapter = firstSubject
+      ? syllabusData[newGrade][newMode][firstSubject][0]
+      : "";
 
     setSubject(firstSubject);
     setChapter(firstChapter);
@@ -157,11 +179,17 @@ function MockTestPage({ user }) {
 
   function handleGradeChange(value) {
     /** Switch grade, reset dependent selections, and clear any generated test. */
-    const newMode = Object.keys(syllabusData[value])[0];
+    const gradeModes = Object.keys(syllabusData[value]);
+    const newMode =
+      gradeModes.find((modeName) => {
+        const modeSubjects = Object.keys(syllabusData[value][modeName] || {});
+        return getAllowedSubjects(modeSubjects, modeName).length > 0;
+      }) || gradeModes[0];
 
     setGrade(value);
     setMode(newMode);
     resetSelections(value, newMode);
+    setError("");
     clearTest();
   }
 
@@ -190,7 +218,7 @@ function MockTestPage({ user }) {
   
     const firstSubject = allowedModeSubjects[0];
     const firstChapter =
-      syllabusData[grade][value][firstSubject][0];
+      syllabusData[grade][value][firstSubject]?.[0] || "";
   
     setError("");
     setMode(value);
@@ -226,6 +254,12 @@ function MockTestPage({ user }) {
       setError(
         "You do not have access to CBSE mock tests."
       );
+      setLoading(false);
+      return;
+    }
+
+    if (mode === "CBSE" && subjects.length === 0) {
+      setError("You do not have access to this CBSE subject.");
       setLoading(false);
       return;
     }

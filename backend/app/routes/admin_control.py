@@ -9,6 +9,7 @@ from app.data.subscription_plans import (
 )
 from app.services.model_routing_service import normalize_model_preference
 from app.services.auth_service import require_admin, create_auth_user, admin_client
+from app.services.subject_access_service import clean_subject_access_list
 
 router = APIRouter()
 
@@ -53,6 +54,7 @@ class UpdateAccessRequest(BaseModel):
     access_sof_science: bool
     access_sof_maths: bool
     access_sof_english: bool
+    cbse_subjects: list[str] = Field(default_factory=list)
     subscription_plan: str = "free"
     account_status: str = "active"
     grade: str = "Grade 9"
@@ -514,6 +516,7 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "access_sof_science": False,
         "access_sof_maths": False,
         "access_sof_english": False,
+        "cbse_subjects": [],
         "daily_token_limit": 50000,
         "monthly_token_limit": 1000000,
         "ai_model_preference": "default",
@@ -682,6 +685,7 @@ def update_child_access(
             "access_sof_science": data.access_sof_science,
             "access_sof_maths": data.access_sof_maths,
             "access_sof_english": data.access_sof_english,
+            "cbse_subjects": clean_subject_access_list(data.cbse_subjects),
             "subscription_plan": data.subscription_plan,
             "account_status": data.account_status,
             "grade": data.grade or "Grade 9",

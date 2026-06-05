@@ -14,6 +14,11 @@ import {
   SUBSCRIPTION_PLAN_ORDER,
   SUBSCRIPTION_PLANS,
 } from "../config/subscriptionPlans";
+import {
+  COMMON_CBSE_SUBJECTS,
+  normalizeSubjectName,
+  parseSubjectList,
+} from "../utils/subjectAccess";
 
 const STUDENT_GRADE_OPTIONS = Array.from(
   { length: 10 },
@@ -47,6 +52,18 @@ function getFamilyDisplayName(family) {
   if (family.family_id === "no-family") return "Unassigned Accounts";
 
   return `Family ${String(family.family_id || "").slice(0, 8)}`;
+}
+
+function getChildCbseSubjects(child) {
+  /** Return a normalized array for the child's custom CBSE subject access. */
+  return Array.isArray(child.cbse_subjects)
+    ? child.cbse_subjects
+    : parseSubjectList(child.cbse_subjects || "");
+}
+
+function subjectListToText(subjects) {
+  /** Render subject access arrays in a form-friendly comma list. */
+  return Array.isArray(subjects) ? subjects.join(", ") : subjects || "";
 }
 
 function AdminControlPage({ user }) {
@@ -283,6 +300,7 @@ function AdminControlPage({ user }) {
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
           ai_model_preference: child.ai_model_preference || "default",
+          cbse_subjects: getChildCbseSubjects(child),
         },
         user.accessToken
       );
@@ -332,6 +350,7 @@ function AdminControlPage({ user }) {
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
           ai_model_preference: child.ai_model_preference || "default",
+          cbse_subjects: getChildCbseSubjects(child),
         },
         user.accessToken
       );
@@ -416,6 +435,7 @@ function AdminControlPage({ user }) {
                   access_sof_english: preset.access_sof_english,
                   daily_token_limit: preset.daily_token_limit,
                   monthly_token_limit: preset.monthly_token_limit,
+                  cbse_subjects: [],
                 }
               : child
           ),
@@ -439,6 +459,25 @@ function AdminControlPage({ user }) {
         };
       })
     );
+  }
+
+  function updateChildCbseSubjects(familyId, childId, value) {
+    /** Store the custom CBSE subject list locally while the admin edits it. */
+    updateLocalChild(familyId, childId, "cbse_subjects", parseSubjectList(value));
+  }
+
+  function toggleChildCbseSubject(familyId, childId, child, subjectName, checked) {
+    /** Toggle one common CBSE subject inside the child's custom subject list. */
+    const currentSubjects = getChildCbseSubjects(child);
+    const subjectKey = normalizeSubjectName(subjectName);
+    const withoutSubject = currentSubjects.filter(
+      (item) => normalizeSubjectName(item) !== subjectKey
+    );
+    const nextSubjects = checked
+      ? [...withoutSubject, subjectName]
+      : withoutSubject;
+
+    updateLocalChild(familyId, childId, "cbse_subjects", nextSubjects);
   }
 
   function updateChildForm(parentId, field, value) {
@@ -1237,6 +1276,77 @@ function AdminControlPage({ user }) {
                     {label}
                   </label>
                 ))}
+              </div>
+
+              <div className="admin-cbse-subject-access">
+                <div>
+                  <h4>CBSE Subject Access</h4>
+                  <p>
+                    Leave blank for all CBSE subjects, or select only the
+                    subjects included in a custom lower-cost plan.
+                  </p>
+                </div>
+
+                <div className="admin-cbse-subject-chip-grid">
+                  {COMMON_CBSE_SUBJECTS.map((subjectName) => {
+                    const selectedSubjects = getChildCbseSubjects(child);
+                    const isChecked = selectedSubjects.some(
+                      (item) =>
+                        normalizeSubjectName(item) ===
+                        normalizeSubjectName(subjectName)
+                    );
+
+                    return (
+                      <label key={subjectName}>
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={(e) =>
+                            toggleChildCbseSubject(
+                              family.family_id,
+                              child.id,
+                              child,
+                              subjectName,
+                              e.target.checked
+                            )
+                          }
+                        />
+                        {subjectName}
+                      </label>
+                    );
+                  })}
+                </div>
+
+                <label>
+                  Custom / Extra Subjects
+                  <input
+                    type="text"
+                    value={subjectListToText(child.cbse_subjects)}
+                    onChange={(e) =>
+                      updateChildCbseSubjects(
+                        family.family_id,
+                        child.id,
+                        e.target.value
+                      )
+                    }
+                    placeholder="Blank = all CBSE subjects, or Science, Maths"
+                  />
+                </label>
+
+                <button
+                  className="secondary-btn"
+                  type="button"
+                  onClick={() =>
+                    updateLocalChild(
+                      family.family_id,
+                      child.id,
+                      "cbse_subjects",
+                      []
+                    )
+                  }
+                >
+                  Allow All CBSE Subjects
+                </button>
               </div>
 
               <div style={{ display: "flex", gap: 12, marginTop: 18 }}>

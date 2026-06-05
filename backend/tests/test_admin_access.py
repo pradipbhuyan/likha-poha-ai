@@ -54,6 +54,38 @@ def test_student_without_cbse_access_cannot_generate_lesson(monkeypatch):
     )
 
 
+def test_student_without_cbse_subject_access_cannot_generate_lesson(monkeypatch):
+    """
+    A custom CBSE plan should block lesson generation for subjects outside the
+    student's configured subject list.
+    """
+    profile = fake_student_profile(cbse_subjects=["Science", "Maths"])
+
+    patch_route_profile(
+        monkeypatch,
+        lesson_route,
+        profile,
+    )
+
+    response = client.post(
+        "/api/lesson/generate",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "English",
+            "chapter": "Nouns",
+            "step_title": "What are nouns?",
+            "teacher_persona": "friendly",
+        },
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == (
+        "CBSE English access is not enabled for this student."
+    )
+
+
 def test_inactive_student_cannot_generate_lesson(monkeypatch):
     """
     A student whose account is suspended should be blocked from lessons.
@@ -120,6 +152,35 @@ def test_student_without_cbse_access_cannot_ask_doubt(monkeypatch):
 
     assert response.status_code == 403
     assert response.json()["detail"] == "CBSE access is not enabled."
+
+
+def test_student_without_cbse_subject_access_cannot_ask_doubt(monkeypatch):
+    """
+    A custom CBSE plan should block doubts for subjects outside the student's
+    configured subject list.
+    """
+    profile = fake_student_profile(cbse_subjects=["Science", "Maths"])
+
+    patch_route_profile(
+        monkeypatch,
+        doubt_route,
+        profile,
+    )
+
+    response = client.post(
+        "/api/doubt/answer",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "English",
+            "chapter": "Nouns",
+            "question": "What is a noun?",
+        },
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == "CBSE English access is not enabled."
 
 
 def test_inactive_student_cannot_ask_doubt(monkeypatch):
@@ -190,6 +251,38 @@ def test_student_without_cbse_access_cannot_generate_mock_test(monkeypatch):
 
     assert response.status_code == 403
     assert response.json()["detail"] == "CBSE access is not enabled."
+
+
+def test_student_without_cbse_subject_access_cannot_generate_mock_test(monkeypatch):
+    """
+    A custom CBSE plan should block mock tests for subjects outside the
+    student's configured subject list.
+    """
+    profile = fake_student_profile(cbse_subjects=["Science", "Maths"])
+
+    patch_route_profile(
+        monkeypatch,
+        mock_test_route,
+        profile,
+    )
+
+    response = client.post(
+        "/api/mock-test/generate",
+        json={
+            "username": "test_user",
+            "grade": "Grade 9",
+            "mode": "CBSE",
+            "subject": "English",
+            "chapter": "Nouns",
+            "mock_type": "CBSE Mock Test",
+            "exam_type": "Class Test",
+            "question_count": 1,
+            "difficulty": "easy",
+        },
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == "CBSE English access is not enabled."
 
 
 def test_inactive_student_cannot_generate_mock_test(monkeypatch):

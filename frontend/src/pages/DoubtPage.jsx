@@ -13,12 +13,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
-
-const SOF_SUBJECT_ACCESS = {
-  "Science Olympiad": "accessSofScience",
-  "Maths Olympiad": "accessSofMaths",
-  "English Olympiad": "accessSofEnglish",
-};
+import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 const ANSWER_STYLE_OPTIONS = [
   {
@@ -142,25 +137,7 @@ function DoubtPage({ user }) {
 
   const allowedModes = modes.filter((m) => hasModeAccess(m));
   const allModeSubjects = mode ? Object.keys(syllabusData[grade][mode] || {}) : [];
-  const allowedSubjects = allModeSubjects.filter((subjectName) => {
-    if (user.role === "admin") return true;
-
-    if (mode === "CBSE") {
-      return !!user.accessCbse;
-    }
-
-    if (mode === "SOF") {
-      const accessKey = SOF_SUBJECT_ACCESS[subjectName];
-      return accessKey ? !!user[accessKey] : false;
-    }
-
-    return false;
-  });
-  const allowedSofSubjects = allModeSubjects.filter((subjectName) => {
-    if (user.role === "admin") return true;
-    const accessKey = SOF_SUBJECT_ACCESS[subjectName];
-    return accessKey ? !!user[accessKey] : false;
-  });
+  const allowedSubjects = filterAllowedSubjects(user, allModeSubjects, mode);
   const availableChapters = subject
     ? syllabusData[grade][mode]?.[subject] || []
     : [];
@@ -168,15 +145,7 @@ function DoubtPage({ user }) {
   function getAllowedSofSubjectsForGrade(selectedGrade) {
     /** Return only SOF subjects the user can access for the selected grade. */
     const sofSubjects = Object.keys(syllabusData[selectedGrade]?.SOF || {});
-
-    if (user.role === "admin") {
-      return sofSubjects;
-    }
-
-    return sofSubjects.filter((subjectName) => {
-      const accessKey = SOF_SUBJECT_ACCESS[subjectName];
-      return accessKey ? !!user[accessKey] : false;
-    });
+    return filterAllowedSubjects(user, sofSubjects, "SOF");
   }
 
   function getDoubtSubject() {
@@ -249,7 +218,11 @@ function DoubtPage({ user }) {
     setSubject(
       firstAllowedMode === "SOF"
         ? getAllowedSofSubjectsForGrade(value)[0] || ""
-        : ""
+        : filterAllowedSubjects(
+            user,
+            Object.keys(syllabusData[value][firstAllowedMode] || {}),
+            firstAllowedMode
+          )[0] || ""
     );
     setChapter("");
     clearAnswerState();
@@ -263,7 +236,15 @@ function DoubtPage({ user }) {
     }
 
     setMode(value);
-    setSubject(value === "SOF" ? getAllowedSofSubjectsForGrade(grade)[0] || "" : "");
+    setSubject(
+      value === "SOF"
+        ? getAllowedSofSubjectsForGrade(grade)[0] || ""
+        : filterAllowedSubjects(
+            user,
+            Object.keys(syllabusData[grade][value] || {}),
+            value
+          )[0] || ""
+    );
     setChapter("");
     clearAnswerState();
   }
@@ -412,6 +393,11 @@ function DoubtPage({ user }) {
       return;
     }
 
+    if (mode === "CBSE" && allowedSubjects.length === 0) {
+      setError("You do not have access to this CBSE subject.");
+      return;
+    }
+
     setAsking(true);
     setError("");
     setAnswer("");
@@ -472,6 +458,11 @@ function DoubtPage({ user }) {
       return;
     }
 
+    if (mode === "CBSE" && allowedSubjects.length === 0) {
+      setError("You do not have access to this CBSE subject.");
+      return;
+    }
+
     if (followUpAnswers[suggestion]) {
       return;
     }
@@ -526,6 +517,11 @@ Rules:
 
     if (mode === "SOF" && !subject) {
       setError("Please select Science, Maths, or English Olympiad.");
+      return;
+    }
+
+    if (mode === "CBSE" && allowedSubjects.length === 0) {
+      setError("You do not have access to this CBSE subject.");
       return;
     }
 
@@ -647,15 +643,15 @@ Important:
                 <select
                   value={subject}
                   onChange={(e) => handleSubjectChange(e.target.value)}
-                  disabled={mode === "SOF" && allowedSofSubjects.length === 0}
+                  disabled={allowedSubjects.length === 0}
                 >
-                  {mode !== "SOF" && (
+                  {allowedSubjects.length === 0 ? (
+                    <option value="">No subject access</option>
+                  ) : mode !== "SOF" ? (
                     <option value="">Open subject</option>
-                  )}
+                  ) : null}
 
-                  {mode === "SOF" && allowedSofSubjects.length === 0 ? (
-                    <option value="">No SOF subject access</option>
-                  ) : (
+                  {allowedSubjects.length === 0 ? null : (
                     allowedSubjects.map((subjectName) => (
                       <option key={subjectName} value={subjectName}>
                         {subjectName}

@@ -15,6 +15,7 @@ import {
   Settings,
   GraduationCap,
   ListChecks,
+  Calculator,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -68,6 +69,12 @@ function Sidebar({
       key: "subscriptionSettings",
       label: "Subscription Settings",
       icon: Tags,
+      roles: ["admin"],
+    },
+    {
+      key: "pricingCalculator",
+      label: "Pricing Calculator",
+      icon: Calculator,
       roles: ["admin"],
     },
     {

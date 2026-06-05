@@ -2,6 +2,7 @@ import {
     BarChart3,
     BookOpen,
     Brain,
+    Calculator,
     ClipboardList,
     CreditCard,
     HelpCircle,
@@ -24,6 +25,7 @@ import {
     leaderboard: Trophy,
     ragUpload: UploadCloud,
     subscriptionSettings: Tags,
+    pricingCalculator: Calculator,
     subscriptionPlans: CreditCard,
     teacherDashboard: GraduationCap,
   };

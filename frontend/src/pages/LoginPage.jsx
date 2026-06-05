@@ -35,6 +35,9 @@ function LoginPage({ onLogin }) {
       accessSofScience: !!profile.access_sof_science,
       accessSofMaths: !!profile.access_sof_maths,
       accessSofEnglish: !!profile.access_sof_english,
+      cbseSubjects: Array.isArray(profile.cbse_subjects)
+        ? profile.cbse_subjects
+        : [],
 
       dailyTokenLimit: profile.daily_token_limit,
       monthlyTokenLimit: profile.monthly_token_limit,
@@ -161,6 +164,7 @@ function LoginPage({ onLogin }) {
         access_sof_science: false,
         access_sof_maths: false,
         access_sof_english: false,
+        cbse_subjects: [],
         daily_token_limit: 50000,
         monthly_token_limit: 1000000,
         subscription_plan: "free",

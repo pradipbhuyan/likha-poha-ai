@@ -31,6 +31,7 @@ describe("Sidebar role visibility", () => {
     expect(screen.getByRole("button", { name: /admin control/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /rag upload/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /syllabus review/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /pricing calculator/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /teacher dashboard/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /lessons/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /parent dashboard/i })).not.toBeInTheDocument();

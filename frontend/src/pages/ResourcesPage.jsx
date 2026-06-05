@@ -7,6 +7,7 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
+import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 function ResourcesPage({ user }) {
   /** Lets students browse external learning resources for a selected syllabus topic. */
@@ -35,11 +36,43 @@ function ResourcesPage({ user }) {
           subject: defaultSubject,
           chapter: defaultChapter,
         } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        const defaultSubjects = Object.keys(
+          data.syllabus[defaultGrade]?.[defaultMode] || {}
+        );
+        const allowedDefaultSubjects = filterAllowedSubjects(
+          user,
+          defaultSubjects,
+          defaultMode
+        );
+        let selectedMode = defaultMode;
+        let selectedSubject = allowedDefaultSubjects.includes(defaultSubject)
+          ? defaultSubject
+          : allowedDefaultSubjects[0] || "";
+
+        if (!selectedSubject) {
+          selectedMode =
+            Object.keys(data.syllabus[defaultGrade] || {}).find((modeName) => {
+              const modeSubjects = Object.keys(
+                data.syllabus[defaultGrade]?.[modeName] || {}
+              );
+              return filterAllowedSubjects(user, modeSubjects, modeName).length > 0;
+            }) || defaultMode;
+          selectedSubject =
+            filterAllowedSubjects(
+              user,
+              Object.keys(data.syllabus[defaultGrade]?.[selectedMode] || {}),
+              selectedMode
+            )[0] || "";
+        }
+        const selectedChapter =
+          selectedSubject === defaultSubject
+            ? defaultChapter
+            : data.syllabus[defaultGrade]?.[selectedMode]?.[selectedSubject]?.[0] || "";
 
         setGrade(defaultGrade);
-        setMode(defaultMode);
-        setSubject(defaultSubject);
-        setChapter(defaultChapter);
+        setMode(selectedMode);
+        setSubject(selectedSubject);
+        setChapter(selectedChapter);
       } catch {
         setError("Could not load resources page.");
       } finally {
@@ -76,29 +109,55 @@ function ResourcesPage({ user }) {
 
   const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
-  const subjects = Object.keys(syllabusData[grade][mode]);
+  const subjects = filterAllowedSubjects(
+    user,
+    Object.keys(syllabusData[grade][mode]),
+    mode
+  );
   const chapters = syllabusData[grade][mode][subject] || [];
+
+  function getFirstAccessibleTopic(selectedGrade, selectedMode) {
+    /** Find the first subject/chapter the student can access for a grade and mode. */
+    const modeSubjects = Object.keys(syllabusData[selectedGrade][selectedMode] || {});
+    const allowedModeSubjects = filterAllowedSubjects(
+      user,
+      modeSubjects,
+      selectedMode
+    );
+    const nextSubject = allowedModeSubjects[0] || "";
+    const nextChapter = nextSubject
+      ? syllabusData[selectedGrade][selectedMode][nextSubject][0]
+      : "";
+
+    return {
+      subject: nextSubject,
+      chapter: nextChapter,
+    };
+  }
 
   function handleGradeChange(value) {
     /** Reset dependent mode, subject, and chapter selections when grade changes. */
-    const newMode = Object.keys(syllabusData[value])[0];
-    const newSubject = Object.keys(syllabusData[value][newMode])[0];
-    const newChapter = syllabusData[value][newMode][newSubject][0];
+    const gradeModes = Object.keys(syllabusData[value]);
+    const newMode =
+      gradeModes.find((modeName) => {
+        const topic = getFirstAccessibleTopic(value, modeName);
+        return !!topic.subject;
+      }) || gradeModes[0];
+    const nextTopic = getFirstAccessibleTopic(value, newMode);
 
     setGrade(value);
     setMode(newMode);
-    setSubject(newSubject);
-    setChapter(newChapter);
+    setSubject(nextTopic.subject);
+    setChapter(nextTopic.chapter);
   }
 
   function handleModeChange(value) {
     /** Reset subject and chapter to valid defaults for the selected learning mode. */
-    const newSubject = Object.keys(syllabusData[grade][value])[0];
-    const newChapter = syllabusData[grade][value][newSubject][0];
+    const nextTopic = getFirstAccessibleTopic(grade, value);
 
     setMode(value);
-    setSubject(newSubject);
-    setChapter(newChapter);
+    setSubject(nextTopic.subject);
+    setChapter(nextTopic.chapter);
   }
 
   function handleSubjectChange(value) {

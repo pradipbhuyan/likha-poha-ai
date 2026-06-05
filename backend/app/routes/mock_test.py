@@ -17,6 +17,7 @@ from app.services.auth_service import (
 )
 
 from app.services.usage_service import enforce_token_limits
+from app.services.subject_access_service import has_cbse_subject_access
 
 router = APIRouter()
 
@@ -89,6 +90,11 @@ def enforce_mock_access(profile: dict, mode: str, subject: str):
             raise HTTPException(
                 status_code=403,
                 detail="CBSE access is not enabled.",
+            )
+        if not has_cbse_subject_access(profile, subject):
+            raise HTTPException(
+                status_code=403,
+                detail=f"CBSE {subject} access is not enabled.",
             )
         return
 

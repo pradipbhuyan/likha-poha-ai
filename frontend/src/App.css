@@ -7725,6 +7725,190 @@ body.dark-mode .premium-resource-empty p {
   margin-right: 8px;
 }
 
+.admin-cbse-subject-access {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  background: #f8fbff;
+}
+
+.admin-cbse-subject-access h4,
+.admin-cbse-subject-access p {
+  margin: 0;
+}
+
+.admin-cbse-subject-access p {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.admin-cbse-subject-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.admin-cbse-subject-chip-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.admin-pricing-calculator-page {
+  display: grid;
+  gap: 24px;
+}
+
+.admin-pricing-hero {
+  display: grid;
+  gap: 22px;
+}
+
+.pricing-result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pricing-result-card,
+.pricing-margin-panel {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.pricing-result-card span,
+.pricing-result-card small,
+.pricing-margin-panel small {
+  color: #64748b;
+  font-weight: 800;
+}
+
+.pricing-result-card strong {
+  color: #0f172a;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.pricing-result-card.recommended {
+  border-color: #2563eb;
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+.pricing-calculator-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.pricing-assumption-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pricing-assumption-grid label,
+.pricing-usage-row input,
+.pricing-usage-row select {
+  min-width: 0;
+}
+
+.pricing-margin-panel h3 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.pricing-positive {
+  color: #047857;
+}
+
+.pricing-negative {
+  color: #dc2626;
+}
+
+.pricing-usage-table {
+  display: grid;
+  gap: 10px;
+}
+
+.pricing-usage-header,
+.pricing-usage-row {
+  display: grid;
+  grid-template-columns: 80px minmax(180px, 1fr) repeat(3, minmax(110px, 0.6fr)) minmax(150px, 0.8fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.pricing-usage-header {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pricing-usage-row {
+  padding: 12px;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.pricing-checkbox-label {
+  justify-content: center;
+}
+
+body.dark-mode .admin-cbse-subject-access,
+body.dark-mode .pricing-result-card,
+body.dark-mode .pricing-margin-panel,
+body.dark-mode .pricing-usage-row {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+body.dark-mode .admin-cbse-subject-chip-grid label {
+  background: #111827;
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #e5e7eb;
+}
+
+body.dark-mode .pricing-result-card strong {
+  color: #f8fafc;
+}
+
+@media (max-width: 1100px) {
+  .pricing-result-grid,
+  .pricing-assumption-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricing-calculator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-usage-header {
+    display: none;
+  }
+
+  .pricing-usage-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .premium-rag-scan-grid {
   display: grid;
   gap: 14px;

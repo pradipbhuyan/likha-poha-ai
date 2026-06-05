@@ -35,6 +35,7 @@ def fake_student_profile(**overrides):
         "subscription_plan": "free",
         "ai_model_preference": "default",
         "access_cbse": True,
+        "cbse_subjects": [],
         "access_sof_science": True,
         "access_sof_maths": True,
         "access_sof_english": True,

@@ -308,6 +308,7 @@ describe("AdminControlPage teacher management", () => {
               access_sof_science: false,
               access_sof_maths: false,
               access_sof_english: false,
+              cbse_subjects: [],
               daily_token_limit: 50000,
               monthly_token_limit: 1000000,
               ai_model_preference: "default",
@@ -341,6 +342,8 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(controls.getByLabelText(/ai model/i), {
       target: { value: "gpt-5-mini" },
     });
+    fireEvent.click(controls.getByLabelText("Science"));
+    fireEvent.click(controls.getByLabelText("Maths"));
     fireEvent.click(controls.getByRole("button", { name: /save plan/i }));
 
     await waitFor(() => {
@@ -349,6 +352,7 @@ describe("AdminControlPage teacher management", () => {
         expect.objectContaining({
           subscription_plan: "starter",
           access_cbse: true,
+          cbse_subjects: ["Science", "Maths"],
           grade: "Grade 9",
           ai_model_preference: "gpt-5-mini",
         }),

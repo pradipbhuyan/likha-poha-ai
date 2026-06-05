@@ -24,6 +24,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
+import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -144,11 +145,43 @@ function LessonsPage({ user }) {
           subject: defaultSubject,
           chapter: defaultChapter,
         } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        const defaultSubjects = Object.keys(
+          data.syllabus[defaultGrade]?.[defaultMode] || {}
+        );
+        const allowedDefaultSubjects = filterAllowedSubjects(
+          user,
+          defaultSubjects,
+          defaultMode
+        );
+        let selectedMode = defaultMode;
+        let selectedSubject = allowedDefaultSubjects.includes(defaultSubject)
+          ? defaultSubject
+          : allowedDefaultSubjects[0] || "";
+
+        if (!selectedSubject) {
+          selectedMode =
+            Object.keys(data.syllabus[defaultGrade] || {}).find((modeName) => {
+              const modeSubjects = Object.keys(
+                data.syllabus[defaultGrade]?.[modeName] || {}
+              );
+              return filterAllowedSubjects(user, modeSubjects, modeName).length > 0;
+            }) || defaultMode;
+          selectedSubject =
+            filterAllowedSubjects(
+              user,
+              Object.keys(data.syllabus[defaultGrade]?.[selectedMode] || {}),
+              selectedMode
+            )[0] || "";
+        }
+        const selectedChapter =
+          selectedSubject === defaultSubject
+            ? defaultChapter
+            : data.syllabus[defaultGrade]?.[selectedMode]?.[selectedSubject]?.[0] || "";
 
         setGrade(defaultGrade);
-        setMode(defaultMode);
-        setSubject(defaultSubject);
-        setChapter(defaultChapter);
+        setMode(selectedMode);
+        setSubject(selectedSubject);
+        setChapter(selectedChapter);
       } catch {
         setError("Could not load syllabus");
       } finally {
@@ -275,22 +308,7 @@ function LessonsPage({ user }) {
 
   function getAllowedSubjects(allSubjects, selectedMode) {
     /** Filter subjects by the student's subscription access for CBSE and SOF modes. */
-    if (user.role === "admin") return allSubjects;
-
-    if (selectedMode === "CBSE") {
-      return user.accessCbse ? allSubjects : [];
-    }
-
-    if (selectedMode === "SOF") {
-      return allSubjects.filter((subjectName) => {
-        if (subjectName === "Science Olympiad") return user.accessSofScience;
-        if (subjectName === "Maths Olympiad") return user.accessSofMaths;
-        if (subjectName === "English Olympiad") return user.accessSofEnglish;
-        return false;
-      });
-    }
-
-    return [];
+    return filterAllowedSubjects(user, allSubjects, selectedMode);
   }
 
   const allSubjects = Object.keys(syllabusData[grade][mode]);
@@ -311,14 +329,26 @@ function LessonsPage({ user }) {
 
   function handleGradeChange(value) {
     /** Reset mode, subject, chapter, and generated content after changing grade. */
-    const newMode = Object.keys(syllabusData[value])[0];
-    const newSubject = Object.keys(syllabusData[value][newMode])[0];
-    const newChapter = syllabusData[value][newMode][newSubject][0];
+    const gradeModes = Object.keys(syllabusData[value]);
+    const newMode =
+      gradeModes.find((modeName) => {
+        const modeSubjects = Object.keys(syllabusData[value][modeName] || {});
+        return getAllowedSubjects(modeSubjects, modeName).length > 0;
+      }) || gradeModes[0];
+    const allowedModeSubjects = getAllowedSubjects(
+      Object.keys(syllabusData[value][newMode] || {}),
+      newMode
+    );
+    const newSubject = allowedModeSubjects[0] || "";
+    const newChapter = newSubject
+      ? syllabusData[value][newMode][newSubject][0]
+      : "";
 
     setGrade(value);
     setMode(newMode);
     setSubject(newSubject);
     setChapter(newChapter);
+    setError(newSubject ? "" : `You do not have access to ${newMode} lessons.`);
     resetLessonState();
   }
 

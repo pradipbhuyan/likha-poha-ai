@@ -18,6 +18,7 @@ from app.services.platform_info_service import (
     answer_platform_info,
     is_platform_info_question,
 )
+from app.services.subject_access_service import has_cbse_subject_access
 
 router = APIRouter()
 
@@ -95,6 +96,11 @@ def enforce_learning_access(profile: dict, mode: str, subject: str):
             raise HTTPException(
                 status_code=403,
                 detail="CBSE access is not enabled for this student.",
+            )
+        if not has_cbse_subject_access(profile, subject):
+            raise HTTPException(
+                status_code=403,
+                detail=f"CBSE {subject} access is not enabled for this student.",
             )
         return
 

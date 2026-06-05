@@ -18,6 +18,7 @@ import ParentDashboardPage from "./pages/ParentDashboardPage";
 import AdminControlPage from "./pages/AdminControlPage";
 import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
+import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
 import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 
 
@@ -82,6 +83,12 @@ const PAGE_META = {
     title: "Subscription Settings",
     subtitle: "Manage subscription prices, discounts, and parent-facing plan details.",
     icon: "🏷️",
+  },
+  pricingCalculator: {
+    title: "Pricing Calculator",
+    subtitle:
+      "Estimate per-student plan cost from tokens, hosting, database, and domain fees.",
+    icon: "🧮",
   },
   usage: {
     title: "AI Usage",
@@ -207,6 +214,8 @@ function App() {
         return <AdminSyllabusReviewPage user={user} />;
       case "subscriptionSettings":
         return <AdminSubscriptionSettingsPage user={user} />;
+      case "pricingCalculator":
+        return <AdminPricingCalculatorPage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
       case "parentDashboard":
