@@ -190,7 +190,7 @@ function App() {
     localStorage.setItem("tutor_active_page", page);
   }
 
-  if (!user && window.location.pathname === "/reset-password") {
+  if (window.location.pathname === "/reset-password") {
     return (
       <ResetPasswordPage
         onBackToLogin={() => {
