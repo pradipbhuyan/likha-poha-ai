@@ -19,6 +19,7 @@ vi.mock("../api/supabaseClient", () => ({
 describe("ResetPasswordPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    window.history.replaceState({}, "", "/reset-password");
     supabase.auth.getSession.mockResolvedValue({
       data: {
         session: {
@@ -65,5 +66,24 @@ describe("ResetPasswordPage", () => {
     });
 
     expect(await screen.findByText(/password updated/i)).toBeInTheDocument();
+  });
+
+  test("shows a clear message for expired reset links", async () => {
+    /** Supabase returns expired recovery-link errors in the URL hash. */
+    window.history.replaceState(
+      {},
+      "",
+      "/reset-password#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired"
+    );
+
+    render(<ResetPasswordPage onBackToLogin={vi.fn()} />);
+
+    expect(
+      await screen.findByText(/password reset link is invalid or has expired/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /update password/i })
+    ).toBeDisabled();
+    expect(supabase.auth.getSession).not.toHaveBeenCalled();
   });
 });

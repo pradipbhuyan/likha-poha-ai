@@ -15,6 +15,7 @@ vi.mock("../api/supabaseClient", () => ({
 describe("LoginPage password reset", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.unstubAllEnvs();
   });
 
   test("sends a reset email for an entered email address", async () => {

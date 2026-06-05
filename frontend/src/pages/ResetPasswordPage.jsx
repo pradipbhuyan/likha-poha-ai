@@ -7,6 +7,23 @@ function isStrongEnough(password) {
   return password.length >= 8;
 }
 
+function getRecoveryLinkError() {
+  /** Supabase sends expired or invalid recovery-link errors in the URL hash. */
+  const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const errorCode = hashParams.get("error_code");
+  const errorDescription = hashParams.get("error_description");
+
+  if (errorCode === "otp_expired") {
+    return "This password reset link is invalid or has expired. Please request a fresh reset link from the sign in page.";
+  }
+
+  if (errorDescription) {
+    return errorDescription.replace(/\+/g, " ");
+  }
+
+  return "";
+}
+
 function ResetPasswordPage({ onBackToLogin }) {
   /** Handles the Supabase recovery-link landing page and stores a new password. */
   const [password, setPassword] = useState("");
@@ -22,6 +39,15 @@ function ResetPasswordPage({ onBackToLogin }) {
       setError("");
 
       try {
+        const recoveryLinkError = getRecoveryLinkError();
+
+        if (recoveryLinkError) {
+          setError(recoveryLinkError);
+          setSessionReady(false);
+          window.history.replaceState({}, "", "/reset-password");
+          return;
+        }
+
         const code = new URLSearchParams(window.location.search).get("code");
 
         if (code && supabase.auth.exchangeCodeForSession) {
@@ -112,8 +138,8 @@ function ResetPasswordPage({ onBackToLogin }) {
 
             {!sessionReady && !message && (
               <div className="error-box">
-                Reset session is not ready. Open the latest password reset link
-                from your email.
+                {error ||
+                  "Reset session is not ready. Open the latest password reset link from your email."}
               </div>
             )}
 
@@ -157,7 +183,7 @@ function ResetPasswordPage({ onBackToLogin }) {
               Back to sign in
             </button>
 
-            {error && <div className="error-box">{error}</div>}
+            {error && sessionReady && <div className="error-box">{error}</div>}
             {message && <div className="info-box">{message}</div>}
           </div>
         </div>

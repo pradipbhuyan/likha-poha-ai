@@ -7,6 +7,9 @@ import { supabase } from "../api/supabaseClient";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const PASSWORD_RESET_REDIRECT_URL =
+  import.meta.env.VITE_PASSWORD_RESET_REDIRECT_URL ||
+  `${window.location.origin}/reset-password`;
 
 function LoginPage({ onLogin }) {
   /** Handles Supabase authentication and parent signup for the app entry point. */
@@ -154,7 +157,7 @@ function LoginPage({ onLogin }) {
 
       if (resetEmail) {
         await supabase.auth.resetPasswordForEmail(resetEmail, {
-          redirectTo: `${window.location.origin}/reset-password`,
+          redirectTo: PASSWORD_RESET_REDIRECT_URL,
         });
       }
 
