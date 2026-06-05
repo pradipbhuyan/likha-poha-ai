@@ -30,6 +30,19 @@ function createBulkBookRow(index = 0) {
   };
 }
 
+function getReadableSectionTitleFromFile(file, index) {
+  /** Build a readable fallback chapter label when admin labels are incomplete. */
+  const fallbackName = file?.name || `Section ${index + 1}`;
+  const nameWithoutExtension = fallbackName.replace(/\.[^/.]+$/, "");
+
+  return (
+    nameWithoutExtension
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim() || `Section ${index + 1}`
+  );
+}
+
 function RagUploadPage({ user }) {
   /** Admin-only workspace for uploading, analyzing, searching, and deleting RAG documents. */
   const [loading, setLoading] = useState(true);
@@ -411,16 +424,22 @@ function RagUploadPage({ user }) {
       return;
     }
 
-    const sectionTitleCount = bookSetSectionTitles
+    const manualSectionTitles = bookSetSectionTitles
       .replace(/,/g, "\n")
       .split("\n")
       .map((item) => item.trim())
-      .filter(Boolean).length;
+      .filter(Boolean);
 
-    if (sectionTitleCount > 0 && sectionTitleCount !== bookSetFiles.length) {
-      setError("Section title count must match selected file count.");
-      return;
-    }
+    const resolvedSectionTitles = bookSetFiles.map((file, index) => {
+      const analyzedTitle = bookSetAnalysis[index]?.suggested_title?.trim();
+      const manualTitle = manualSectionTitles[index];
+
+      return (
+        analyzedTitle ||
+        manualTitle ||
+        getReadableSectionTitleFromFile(file, index)
+      );
+    });
 
     setBookSetUploading(true);
 
@@ -430,7 +449,7 @@ function RagUploadPage({ user }) {
         grade: bookSetGrade,
         subject: bookSetSubject,
         bookTitle: bookSetTitle.trim(),
-        sectionTitles: bookSetSectionTitles,
+        sectionTitles: resolvedSectionTitles.join("\n"),
         files: bookSetFiles,
       });
 
@@ -1081,8 +1100,9 @@ function RagUploadPage({ user }) {
 
                   <label className="premium-rag-inline-label">
                     Confirm Label
-                    <input
-                      type="text"
+                    <textarea
+                      className="premium-rag-label-input"
+                      rows={2}
                       value={section.suggested_title || ""}
                       onChange={(e) =>
                         updateBookSetAnalysisTitle(index, e.target.value)

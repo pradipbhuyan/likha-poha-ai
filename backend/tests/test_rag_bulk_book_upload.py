@@ -149,6 +149,56 @@ def test_book_set_upload_indexes_each_file_as_one_book_section(monkeypatch):
     assert captured_uploads[1]["subject"] == "Science"
 
 
+def test_book_set_upload_fills_missing_section_titles_from_filenames(monkeypatch):
+    """
+    Book-set upload should not fail if admins provide fewer labels than files.
+
+    This commonly happens on mobile when one analyzed title is blank or hard to
+    edit. Missing labels should fall back to readable file names.
+    """
+    captured_uploads = []
+
+    def fake_extract_text_from_uploaded_file(filename, file_bytes):
+        return f"Extracted {filename}: {file_bytes.decode()}"
+
+    def fake_upload_textbook_text(**kwargs):
+        captured_uploads.append(kwargs)
+        return {
+            "success": True,
+            "message": "Uploaded",
+            "document_id": f"doc-{len(captured_uploads)}",
+            "chunks_created": 1,
+        }
+
+    monkeypatch.setattr(
+        rag,
+        "extract_text_from_uploaded_file",
+        fake_extract_text_from_uploaded_file,
+    )
+    monkeypatch.setattr(rag, "upload_textbook_text", fake_upload_textbook_text)
+
+    response = client.post(
+        "/api/rag/book-set-upload",
+        data={
+            "username": "admin",
+            "grade": "Grade 5",
+            "subject": "Science",
+            "book_title": "Grade 5 Science Textbook",
+            "section_titles": "Table of Contents",
+        },
+        files=[
+            ("files", ("toc.pdf", b"contents", "application/pdf")),
+            ("files", ("chapter-1.pdf", b"plants", "application/pdf")),
+        ],
+    )
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True
+    assert captured_uploads[0]["chapter"] == "Table of Contents"
+    assert captured_uploads[1]["chapter"] == "chapter 1"
+    assert captured_uploads[1]["title"] == "Grade 5 Science Textbook - chapter 1"
+
+
 def test_analyze_book_set_suggests_titles_before_upload(monkeypatch):
     """
     Book-set analysis should suggest editable labels without creating RAG rows.

@@ -7786,6 +7786,14 @@ body.dark-mode .premium-resource-empty p {
 
 .premium-rag-inline-label input {
   width: 100%;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+
+.premium-rag-label-input {
+  min-height: 92px;
+  line-height: 1.35;
+  resize: vertical;
 }
 
 .premium-selected-files-box {
@@ -7972,6 +7980,14 @@ body.dark-mode .premium-rag-inline-label {
   .premium-rag-result-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .premium-rag-inline-label {
+    width: 100%;
+  }
+
+  .premium-rag-label-input {
+    min-height: 110px;
   }
 }
 

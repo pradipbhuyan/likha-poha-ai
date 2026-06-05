@@ -294,9 +294,11 @@ describe("RagUploadPage", () => {
       });
     });
 
-    expect(
-      await bookSetControls.findByDisplayValue("Table of Contents")
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        bookSetControls.getAllByDisplayValue("Table of Contents").length
+      ).toBeGreaterThan(0);
+    });
     expect(
       await bookSetControls.findByDisplayValue("Chapter 1: Plants")
     ).toBeInTheDocument();
@@ -317,6 +319,125 @@ describe("RagUploadPage", () => {
         files: [tocFile, chapterFile],
       });
     });
+  });
+
+  test("uses analyzed and file-name fallback labels when section titles are incomplete", async () => {
+    /*
+     * This protects mobile/book-set uploads from failing with a brittle
+     * "section title count" error when one label is blank or missing.
+     */
+    analyzeBookSetFiles.mockResolvedValueOnce({
+      success: true,
+      message: "Book files analyzed. Review suggested labels before upload.",
+      sections: [
+        {
+          filename: "toc.pdf",
+          suggested_title: "Table of Contents",
+          word_count: 12,
+          preview: "Contents",
+          warnings: [],
+        },
+        {
+          filename: "chapter-1.pdf",
+          suggested_title: "",
+          word_count: 25,
+          preview: "Chapter text",
+          warnings: [],
+        },
+      ],
+    });
+
+    render(
+      <RagUploadPage
+        user={{
+          role: "admin",
+          username: "admin",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /one book, many files/i,
+      })
+    ).toBeInTheDocument();
+
+    const bookSetSection = screen
+      .getByRole("heading", {
+        name: /one book, many files/i,
+      })
+      .closest("section");
+    const bookSetControls = within(bookSetSection);
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Set Class"), {
+      target: {
+        value: "Grade 5",
+      },
+    });
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Set Subject"), {
+      target: {
+        value: "Science",
+      },
+    });
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Title"), {
+      target: {
+        value: "Grade 5 Science Textbook",
+      },
+    });
+
+    const tocFile = new File(["contents"], "toc.pdf", {
+      type: "application/pdf",
+    });
+    const chapterFile = new File(["plants"], "chapter-1.pdf", {
+      type: "application/pdf",
+    });
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Files"), {
+      target: {
+        files: [tocFile, chapterFile],
+      },
+    });
+
+    fireEvent.change(bookSetControls.getByLabelText("TOC / Chapter Titles"), {
+      target: {
+        value: "Only One Manual Title",
+      },
+    });
+
+    fireEvent.click(
+      bookSetControls.getByRole("button", {
+        name: /analyze chapter labels/i,
+      })
+    );
+
+    await waitFor(() => {
+      expect(
+        bookSetControls.getAllByDisplayValue("Table of Contents").length
+      ).toBeGreaterThan(0);
+    });
+
+    fireEvent.click(
+      bookSetControls.getByRole("button", {
+        name: /upload book set to rag/i,
+      })
+    );
+
+    await waitFor(() => {
+      expect(uploadBookSet).toHaveBeenCalledWith({
+        username: "admin",
+        grade: "Grade 5",
+        subject: "Science",
+        bookTitle: "Grade 5 Science Textbook",
+        sectionTitles: "Table of Contents\nchapter 1",
+        files: [tocFile, chapterFile],
+      });
+    });
+
+    expect(
+      screen.queryByText(/section title count must match selected file count/i)
+    ).not.toBeInTheDocument();
   });
 
   test("allows admin to correct SOF group context before confirming upload", async () => {

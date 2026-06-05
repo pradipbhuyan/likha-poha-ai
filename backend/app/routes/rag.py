@@ -397,20 +397,19 @@ def parse_book_section_titles(section_titles: str, files: list[UploadFile]) -> l
         if title.strip()
     ]
 
-    if titles and len(titles) != len(files):
-        raise ValueError("Section title count must match uploaded file count.")
+    resolved_titles = []
 
-    if titles:
-        return titles
+    for index, file in enumerate(files):
+        fallback_title = (
+            Path(file.filename or f"Section {index + 1}").stem
+            .replace("_", " ")
+            .replace("-", " ")
+            .strip()
+            or f"Section {index + 1}"
+        )
+        resolved_titles.append(titles[index] if index < len(titles) else fallback_title)
 
-    return [
-        Path(file.filename or f"Section {index + 1}").stem
-        .replace("_", " ")
-        .replace("-", " ")
-        .strip()
-        or f"Section {index + 1}"
-        for index, file in enumerate(files)
-    ]
+    return resolved_titles
 
 
 def readable_title_from_filename(filename: str, index: int) -> str:
