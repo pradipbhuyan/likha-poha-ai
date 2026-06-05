@@ -14,6 +14,7 @@ import {
   Users,
   Settings,
   GraduationCap,
+  ListChecks,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -48,6 +49,12 @@ function Sidebar({
       key: "ragUpload",
       label: "RAG Upload",
       icon: UploadCloud,
+      roles: ["admin"],
+    },
+    {
+      key: "syllabusReview",
+      label: "Syllabus Review",
+      icon: ListChecks,
       roles: ["admin"],
     },
     {

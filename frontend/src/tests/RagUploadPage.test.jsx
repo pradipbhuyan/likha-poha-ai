@@ -12,6 +12,9 @@ import {
   analyzeBookSetFiles,
   analyzeSofImages,
   confirmSofUpload,
+  getRagDocuments,
+  previewRagDocument,
+  updateRagDocumentMetadata,
   uploadBookSet,
   uploadBulkBooks,
 } from "../api/rag";
@@ -97,6 +100,14 @@ vi.mock("../api/rag", () => ({
     ],
   })),
   getRagDocuments: vi.fn(async () => ({ documents: [] })),
+  previewRagDocument: vi.fn(async () => ({
+    success: true,
+    preview: "Pressure, winds, storms, and cyclones content from stored chunks.",
+  })),
+  updateRagDocumentMetadata: vi.fn(async () => ({
+    success: true,
+    message: "RAG document metadata updated.",
+  })),
   deleteRagDocument: vi.fn(),
   analyzeRagImage: vi.fn(),
   analyzeSofImages: vi.fn(async () => ({
@@ -440,6 +451,87 @@ describe("RagUploadPage", () => {
     ).not.toBeInTheDocument();
   });
 
+  test("keeps commas inside book-set chapter titles during upload", async () => {
+    /*
+     * Chapter labels are one per line. Commas are part of many real titles and
+     * must not split one chapter into multiple RAG documents.
+     */
+    render(
+      <RagUploadPage
+        user={{
+          role: "admin",
+          username: "admin",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /one book, many files/i,
+      })
+    ).toBeInTheDocument();
+
+    const bookSetSection = screen
+      .getByRole("heading", {
+        name: /one book, many files/i,
+      })
+      .closest("section");
+    const bookSetControls = within(bookSetSection);
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Set Class"), {
+      target: {
+        value: "Grade 5",
+      },
+    });
+    fireEvent.change(bookSetControls.getByLabelText("Book Set Subject"), {
+      target: {
+        value: "Science",
+      },
+    });
+    fireEvent.change(bookSetControls.getByLabelText("Book Title"), {
+      target: {
+        value: "Science Text Book",
+      },
+    });
+
+    const chapterSixFile = new File(["pressure"], "hecu106.pdf", {
+      type: "application/pdf",
+    });
+    const chapterSevenFile = new File(["matter"], "hecu107.pdf", {
+      type: "application/pdf",
+    });
+
+    fireEvent.change(bookSetControls.getByLabelText("Book Files"), {
+      target: {
+        files: [chapterSixFile, chapterSevenFile],
+      },
+    });
+    fireEvent.change(bookSetControls.getByLabelText("TOC / Chapter Titles"), {
+      target: {
+        value:
+          "Chapter 6: Pressure, Winds, Storms, and Cyclones\nChapter 7: Particulate Nature of Matter",
+      },
+    });
+
+    fireEvent.click(
+      bookSetControls.getByRole("button", {
+        name: /upload book set to rag/i,
+      })
+    );
+
+    await waitFor(() => {
+      expect(uploadBookSet).toHaveBeenCalledWith({
+        username: "admin",
+        grade: "Grade 5",
+        subject: "Science",
+        bookTitle: "Science Text Book",
+        sectionTitles:
+          "Chapter 6: Pressure, Winds, Storms, and Cyclones\nChapter 7: Particulate Nature of Matter",
+        files: [chapterSixFile, chapterSevenFile],
+      });
+    });
+  });
+
   test("allows admin to correct SOF group context before confirming upload", async () => {
     /*
      * This validates the SOF review loop.
@@ -526,6 +618,92 @@ describe("RagUploadPage", () => {
     expect(analyzeSofImages).toHaveBeenCalledWith({
       grade: "Grade 1",
       files: [file],
+    });
+  });
+
+  test("previews stored RAG content and edits document metadata", async () => {
+    /*
+     * This validates the metadata repair loop for mismatched RAG labels.
+     *
+     * Expected result:
+     * - Admin can preview the stored chunks behind a document.
+     * - Admin can fix both the visible document title and retrieval chapter.
+     */
+    getRagDocuments.mockResolvedValueOnce({
+      documents: [
+        {
+          id: "doc-1",
+          title: "Science Text Book - and Cyclones",
+          grade: "Grade 8",
+          subject: "Science",
+          chapter: "Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",
+          uploaded_by: "Pradip Admin",
+        },
+      ],
+    });
+
+    render(
+      <RagUploadPage
+        user={{
+          role: "admin",
+          username: "admin",
+          accessToken: "admin-token",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByText("Science Text Book - and Cyclones")
+    ).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /preview content/i,
+      })
+    );
+
+    expect(
+      await screen.findByText(/pressure, winds, storms, and cyclones content/i)
+    ).toBeInTheDocument();
+    expect(previewRagDocument).toHaveBeenCalledWith("doc-1", "admin-token");
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /edit metadata/i,
+      })
+    );
+
+    fireEvent.change(
+      screen.getByDisplayValue("Science Text Book - and Cyclones"),
+      {
+        target: {
+          value:
+            "Science Text Book - Chapter 6: Pressure, Winds, Storms, and Cyclones",
+        },
+      }
+    );
+    fireEvent.change(screen.getByDisplayValue(/Chapter 9:/), {
+      target: {
+        value: "Chapter 6: Pressure, Winds, Storms, and Cyclones",
+      },
+    });
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /save metadata/i,
+      })
+    );
+
+    await waitFor(() => {
+      expect(updateRagDocumentMetadata).toHaveBeenCalledWith(
+        "doc-1",
+        {
+          title:
+            "Science Text Book - Chapter 6: Pressure, Winds, Storms, and Cyclones",
+          chapter: "Chapter 6: Pressure, Winds, Storms, and Cyclones",
+        },
+        "admin-token"
+      );
     });
   });
 });

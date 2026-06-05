@@ -1,5 +1,6 @@
 from app.services.supabase_client import supabase
 from app.services.openai_service import client
+import re
 
 
 ADMIN_USERS = {"admin", "pradip", "pradip admin"}
@@ -50,6 +51,16 @@ def create_embedding(text: str):
     )
 
     return response.data[0].embedding
+
+
+def strip_chapter_display_prefix(chapter):
+    """Remove display-only book part prefixes before querying RAG metadata."""
+    return re.sub(
+        r"^\s*part\s*\d+\s*[-:]\s*",
+        "",
+        str(chapter or ""),
+        flags=re.IGNORECASE,
+    ).strip()
 
 
 def upload_textbook_text(
@@ -148,7 +159,7 @@ def search_textbook_content(
                 "match_count": match_count,
                 "filter_grade": grade,
                 "filter_subject": subject,
-                "filter_chapter": chapter,
+                "filter_chapter": strip_chapter_display_prefix(chapter) if chapter else chapter,
             },
         )
         .execute()
@@ -180,6 +191,21 @@ def list_rag_documents():
         .table("rag_documents")
         .select("id, title, grade, subject, chapter, uploaded_by, source_type, created_at")
         .order("created_at", desc=True)
+        .execute()
+    )
+
+    return response.data or []
+
+
+def get_rag_document_preview(document_id: str, limit: int = 2):
+    """Return the first few stored chunks so admins can validate document content."""
+    response = (
+        supabase
+        .table("rag_chunks")
+        .select("chunk_text, chunk_index")
+        .eq("document_id", document_id)
+        .order("chunk_index")
+        .limit(limit)
         .execute()
     )
 

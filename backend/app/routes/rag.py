@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, Form, UploadFile, HTTPException
+from fastapi import APIRouter, Depends, File, Form, UploadFile, HTTPException
 from app.services.file_extract_service import (
     extract_pages_from_uploaded_file,
     extract_text_from_uploaded_file,
@@ -22,8 +22,10 @@ from app.services.rag_service import (
     upload_textbook_text,
     search_textbook_content,
     list_rag_documents,
+    get_rag_document_preview,
     delete_rag_document,
 )
+from app.services.auth_service import admin_client, require_admin
 from app.services.sof_catalog_service import (
     build_sof_catalog_prompt,
     get_sof_subjects,
@@ -33,6 +35,13 @@ from app.services.sof_catalog_service import (
 from app.services.ocr_service import extract_text_from_image_bytes
 
 router = APIRouter()
+
+
+class RagDocumentMetadataUpdate(BaseModel):
+    """Editable RAG document metadata managed from the admin library."""
+
+    title: str
+    chapter: str
 
 
 @router.post("/upload-text", response_model=RagUploadResponse)
@@ -219,6 +228,55 @@ def get_rag_documents():
     }
 
 
+@router.get("/documents/{document_id}/preview")
+def preview_rag_document(
+    document_id: str,
+    _admin=Depends(require_admin),
+):
+    """Return a short chunk preview so admins can verify title/content alignment."""
+    chunks = get_rag_document_preview(document_id)
+
+    return {
+        "success": True,
+        "chunks": chunks,
+        "preview": "\n\n".join(chunk.get("chunk_text", "") for chunk in chunks),
+    }
+
+
+@router.patch("/documents/{document_id}/metadata")
+def update_rag_document_metadata(
+    document_id: str,
+    data: RagDocumentMetadataUpdate,
+    _admin=Depends(require_admin),
+):
+    """Update one RAG document's display title and retrieval chapter label."""
+    title = data.title.strip()
+    chapter = data.chapter.strip()
+
+    if not title or not chapter:
+        raise HTTPException(
+            status_code=400,
+            detail="Title and chapter are required.",
+        )
+
+    response = (
+        admin_client
+        .table("rag_documents")
+        .update({
+            "title": title,
+            "chapter": chapter,
+        })
+        .eq("id", document_id)
+        .execute()
+    )
+
+    return {
+        "success": True,
+        "document": response.data[0] if response.data else None,
+        "message": "RAG document metadata updated.",
+    }
+
+
 @router.delete("/documents/{document_id}")
 def remove_rag_document(document_id: str):
     """Delete a RAG document and all associated chunks by document id."""
@@ -388,12 +446,14 @@ def parse_book_section_titles(section_titles: str, files: list[UploadFile]) -> l
     """
     Resolve one TOC/chapter label per uploaded book-section file.
 
-    Admins can paste one title per line. If they leave the field blank, readable
-    file names are used so a multi-file book can still be indexed safely.
+    Admins can paste one title per line. Commas are preserved because textbook
+    chapters often include comma-separated titles such as "Pressure, Winds,
+    Storms, and Cyclones". If a label is missing, readable file names are used
+    so a multi-file book can still be indexed safely.
     """
     titles = [
         title.strip()
-        for title in section_titles.replace(",", "\n").splitlines()
+        for title in section_titles.splitlines()
         if title.strip()
     ]
 
@@ -423,6 +483,104 @@ def readable_title_from_filename(filename: str, index: int) -> str:
     )
 
 
+def clean_pdf_label_text(text: str) -> str:
+    """Remove PDF/export artifacts before chapter-label extraction."""
+    cleaned = re.sub(r"\b[\w-]+\.indd\b", " ", text or "", flags=re.IGNORECASE)
+    cleaned = re.sub(r"\b\d{1,2}/\d{1,2}/\d{4}\b", " ", cleaned)
+    cleaned = re.sub(r"\b\d{1,2}:\d{2}(?::\d{2})?\s*(?:AM|PM)?\b", " ", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\b(?:AM|PM)\b", " ", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned)
+
+    return cleaned.strip()
+
+
+def infer_chapter_number_from_filename(filename: str) -> str:
+    """
+    Infer common textbook chapter numbers from filenames like hecu106.pdf.
+
+    NCERT split PDFs often encode chapter 1 as 101, chapter 6 as 106, etc.
+    This is only a fallback when OCR text does not expose a clean heading.
+    """
+    match = re.search(r"(\d{3})(?=\D*$)", Path(filename or "").stem)
+
+    if not match:
+        return ""
+
+    number = int(match.group(1))
+
+    if 101 <= number <= 130:
+        return str(number - 100)
+
+    return ""
+
+
+def normalize_suggested_section_title(title: str, filename: str, preview: str = "") -> str:
+    """Keep AI/local labels readable and strip publishing metadata artifacts."""
+    cleaned = clean_pdf_label_text(title)
+    cleaned = re.sub(r"\s*[:.-]?\s*z\s+why\b.*$", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s*[:.-]?\s+why\b.*$", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s*[:.-]?\s+probe\b.*$", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" :-–—")
+
+    chapter_with_bad_tail = re.match(
+        r"^chapter\s+(\d{1,2})\b(?:\s+\d+)?(?:\s+chapter\s+\1\b)?\s*(.*)$",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    if chapter_with_bad_tail:
+        chapter_number = chapter_with_bad_tail.group(1)
+        title_tail = chapter_with_bad_tail.group(2).strip(" :-–—")
+
+        if title_tail and not re.search(r"\d{1,2}/\d{1,2}/\d{4}|\.indd", title_tail, flags=re.IGNORECASE):
+            return f"Chapter {chapter_number}: {title_tail}"
+
+        clean_preview_title = infer_title_from_grade_heading(preview)
+        if clean_preview_title:
+            return clean_preview_title
+
+        return f"Chapter {chapter_number}"
+
+    if ".indd" in (title or "").lower():
+        clean_preview_title = infer_title_from_grade_heading(preview)
+        if clean_preview_title:
+            return clean_preview_title
+
+    return cleaned or readable_title_from_filename(filename, 0)
+
+
+def infer_title_from_grade_heading(extracted_text: str) -> str:
+    """
+    Extract chapter labels from single-line NCERT PDF text.
+
+    Some PDFs flatten the first page into one long line like:
+    "Curiosity Textbook of Science for Grade 8 Pressure, Winds... 6 z Why..."
+    This recovers the chapter title before the exercise/opening question text.
+    """
+    normalized_text = clean_pdf_label_text(extracted_text)
+    match = re.search(
+        (
+            r"\bgrade\s+\d+\s+"
+            r"(?P<title>[A-Z][A-Za-z0-9,()'’&/\- ]{4,110}?)"
+            r"\s+(?P<number>\d{1,2})\s+"
+            r"(?=z\b|why\b|probe\b|chapter\b|let\b|in\b)"
+        ),
+        normalized_text,
+        flags=re.IGNORECASE,
+    )
+
+    if not match:
+        return ""
+
+    title = match.group("title").strip(" :-–—")
+    chapter_number = match.group("number")
+    title = re.sub(r"\s+", " ", title)
+
+    if len(title.split()) < 2:
+        return ""
+
+    return f"Chapter {chapter_number}: {title}"
+
+
 def infer_book_section_title(filename: str, extracted_text: str, index: int) -> str:
     """
     Suggest a TOC/chapter label from extracted file text before RAG upload.
@@ -432,20 +590,36 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
     original file name for admin review.
     """
     fallback = readable_title_from_filename(filename, index)
-    lines = [
-        line.strip(" \t:-–—")
+    raw_lines = [
+        line.strip()
         for line in (extracted_text or "").splitlines()
         if line.strip()
     ]
+    lines = []
+
+    for raw_line in raw_lines:
+        if re.search(r"\.indd\b|\d{1,2}/\d{1,2}/\d{4}", raw_line, flags=re.IGNORECASE):
+            continue
+
+        cleaned_line = clean_pdf_label_text(raw_line).strip(" \t:-–—")
+
+        if cleaned_line:
+            lines.append(cleaned_line)
 
     for line in lines[:12]:
         lower_line = line.lower()
         if "contents" in lower_line or "table of contents" in lower_line:
             return "Table of Contents"
 
+    grade_heading_title = infer_title_from_grade_heading(extracted_text)
+
+    if grade_heading_title:
+        return grade_heading_title
+
     for line in lines[:24]:
         words = line.split()
         lower_line = line.lower()
+
         title_before_chapter = re.match(
             r"^(.{4,90}?)\s+chapter\s+(\d{1,2})\b",
             line,
@@ -471,6 +645,11 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
         if lower_line.startswith("unit") and len(words) <= 14:
             return line
 
+    chapter_number = infer_chapter_number_from_filename(filename)
+
+    if chapter_number:
+        return f"Chapter {chapter_number}"
+
     return fallback
 
 
@@ -482,6 +661,7 @@ def is_weak_section_title(title: str, filename: str) -> bool:
     return (
         not normalized_title
         or normalized_title == "chapter"
+        or bool(re.fullmatch(r"chapter\s+\d{1,2}", normalized_title))
         or normalized_title == filename_title
         or bool(re.fullmatch(r"[a-z]{2,}\d+", normalized_title))
     )
@@ -527,8 +707,12 @@ def improve_book_section_labels_with_ai(sections: list[dict]) -> list[dict]:
     section_payload = [
         {
             "filename": section.get("filename", ""),
-            "current_label": section.get("suggested_title", ""),
-            "preview": section.get("preview", "")[:700],
+            "current_label": normalize_suggested_section_title(
+                section.get("suggested_title", ""),
+                section.get("filename", ""),
+                section.get("preview", ""),
+            ),
+            "preview": clean_pdf_label_text(section.get("preview", ""))[:700],
         }
         for section in sections
     ]
@@ -577,7 +761,20 @@ Files:
         if ai_title:
             section = {
                 **section,
-                "suggested_title": ai_title,
+                "suggested_title": normalize_suggested_section_title(
+                    ai_title,
+                    section.get("filename", ""),
+                    section.get("preview", ""),
+                ),
+            }
+        else:
+            section = {
+                **section,
+                "suggested_title": normalize_suggested_section_title(
+                    section.get("suggested_title", ""),
+                    section.get("filename", ""),
+                    section.get("preview", ""),
+                ),
             }
         improved_sections.append(section)
 

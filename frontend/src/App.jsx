@@ -9,6 +9,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
+import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
 import DashboardPage from "./pages/DashboardPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
@@ -70,6 +71,12 @@ const PAGE_META = {
     subtitle:
       "Admin area for uploading textbook content into the AI knowledge base.",
     icon: "📤",
+  },
+  syllabusReview: {
+    title: "Syllabus Review",
+    subtitle:
+      "Preview and approve student-facing class, subject, and chapter dropdowns.",
+    icon: "✅",
   },
   subscriptionSettings: {
     title: "Subscription Settings",
@@ -196,6 +203,8 @@ function App() {
         return <LeaderboardPage user={user} />;
       case "ragUpload":
         return <RagUploadPage user={user} />;
+      case "syllabusReview":
+        return <AdminSyllabusReviewPage user={user} />;
       case "subscriptionSettings":
         return <AdminSubscriptionSettingsPage user={user} />;
       case "usage":

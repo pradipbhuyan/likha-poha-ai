@@ -9,6 +9,8 @@ import {
   analyzeBookSetFiles,
   getRagDocuments,
   deleteRagDocument,
+  previewRagDocument,
+  updateRagDocumentMetadata,
   analyzeRagImage,
   analyzeSofImages,
   confirmSofUpload,
@@ -86,6 +88,14 @@ function RagUploadPage({ user }) {
   const [ragQuery, setRagQuery] = useState("");
   const [ragResults, setRagResults] = useState([]);
   const [searchingRag, setSearchingRag] = useState(false);
+  const [activeMetadataDocId, setActiveMetadataDocId] = useState("");
+  const [metadataDraft, setMetadataDraft] = useState({
+    title: "",
+    chapter: "",
+  });
+  const [previewByDocument, setPreviewByDocument] = useState({});
+  const [previewLoadingId, setPreviewLoadingId] = useState("");
+  const [savingMetadataId, setSavingMetadataId] = useState("");
 
   const [searchGrade, setSearchGrade] = useState("Grade 9");
   const [searchMode, setSearchMode] = useState("SOF");
@@ -425,7 +435,6 @@ function RagUploadPage({ user }) {
     }
 
     const manualSectionTitles = bookSetSectionTitles
-      .replace(/,/g, "\n")
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
@@ -627,6 +636,66 @@ function RagUploadPage({ user }) {
       await loadDocuments();
     } catch (err) {
       alert("Unable to delete document.");
+    }
+  }
+
+  function startEditRagDocument(doc) {
+    /** Open metadata editing for one uploaded RAG document. */
+    setActiveMetadataDocId(doc.id);
+    setMetadataDraft({
+      title: doc.title || "",
+      chapter: doc.chapter || "",
+    });
+    setMessage("");
+    setError("");
+  }
+
+  async function handleSaveRagMetadata(doc) {
+    /** Save corrected document title/chapter metadata without changing chunks. */
+    setSavingMetadataId(doc.id);
+    setMessage("");
+    setError("");
+
+    try {
+      await updateRagDocumentMetadata(
+        doc.id,
+        {
+          title: metadataDraft.title,
+          chapter: metadataDraft.chapter,
+        },
+        user.accessToken
+      );
+
+      setMessage(
+        "RAG metadata updated. Content chunks are unchanged; retrieval now uses the corrected chapter label."
+      );
+      setActiveMetadataDocId("");
+      await loadDocuments();
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to update RAG metadata.");
+    } finally {
+      setSavingMetadataId("");
+    }
+  }
+
+  async function handlePreviewRagDocument(doc) {
+    /** Load stored chunks so admin can compare content against the chapter label. */
+    setPreviewLoadingId(doc.id);
+    setError("");
+
+    try {
+      const result = await previewRagDocument(doc.id, user.accessToken);
+
+      setPreviewByDocument((currentPreviews) => ({
+        ...currentPreviews,
+        [doc.id]: result.preview || "No chunk text found for this document.",
+      }));
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to preview RAG document.");
+    } finally {
+      setPreviewLoadingId("");
     }
   }
 
@@ -1588,16 +1657,88 @@ function RagUploadPage({ user }) {
           <div className="premium-rag-result-list">
             {documents.map((doc) => (
               <div key={doc.id} className="premium-rag-result-row success">
-                <div>
-                  <strong>{doc.title}</strong>
-                  <p>
-                    {doc.grade} • {doc.subject}
-                  </p>
-                  <p>{doc.chapter}</p>
-                  <small>Uploaded by {doc.uploaded_by}</small>
+                <div className="premium-rag-library-main">
+                  {activeMetadataDocId === doc.id ? (
+                    <div className="premium-rag-metadata-editor">
+                      <label>
+                        Document title
+                        <input
+                          value={metadataDraft.title}
+                          onChange={(e) =>
+                            setMetadataDraft((currentDraft) => ({
+                              ...currentDraft,
+                              title: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+
+                      <label>
+                        Retrieval chapter
+                        <input
+                          value={metadataDraft.chapter}
+                          onChange={(e) =>
+                            setMetadataDraft((currentDraft) => ({
+                              ...currentDraft,
+                              chapter: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                    </div>
+                  ) : (
+                    <>
+                      <strong>{doc.title}</strong>
+                      <p>
+                        {doc.grade} • {doc.subject}
+                      </p>
+                      <p>{doc.chapter}</p>
+                      <small>Uploaded by {doc.uploaded_by}</small>
+                    </>
+                  )}
+
+                  {previewByDocument[doc.id] && (
+                    <div className="premium-rag-preview-box">
+                      <strong>Stored content preview</strong>
+                      <p>{previewByDocument[doc.id]}</p>
+                    </div>
+                  )}
                 </div>
 
-                <div>
+                <div className="premium-rag-library-actions">
+                  {activeMetadataDocId === doc.id ? (
+                    <>
+                      <button
+                        className="primary-btn compact-btn"
+                        onClick={() => handleSaveRagMetadata(doc)}
+                        disabled={savingMetadataId === doc.id}
+                      >
+                        {savingMetadataId === doc.id ? "Saving..." : "Save Metadata"}
+                      </button>
+                      <button
+                        className="secondary-btn compact-btn"
+                        onClick={() => setActiveMetadataDocId("")}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="secondary-btn compact-btn"
+                        onClick={() => handlePreviewRagDocument(doc)}
+                        disabled={previewLoadingId === doc.id}
+                      >
+                        {previewLoadingId === doc.id ? "Loading..." : "Preview Content"}
+                      </button>
+                      <button
+                        className="secondary-btn compact-btn"
+                        onClick={() => startEditRagDocument(doc)}
+                      >
+                        Edit Metadata
+                      </button>
+                    </>
+                  )}
                   <button
                     className="danger-btn"
                     onClick={() => handleDeleteDocument(doc.id)}

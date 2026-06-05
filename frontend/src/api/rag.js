@@ -2,6 +2,24 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "http://localhost:8000";
 
+function authHeaders(accessToken) {
+  /** Build JSON headers for protected RAG admin endpoints. */
+  return {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  };
+}
+
+async function parseError(response, fallbackMessage) {
+  /** Prefer backend detail/message fields for admin-visible failures. */
+  try {
+    const data = await response.json();
+    return data.detail || data.message || fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+}
+
 export async function uploadRagFile({
   username,
   grade,
@@ -170,6 +188,40 @@ export async function deleteRagDocument(documentId) {
 
   if (!response.ok) {
     throw new Error("Failed to delete RAG document");
+  }
+
+  return response.json();
+}
+
+export async function previewRagDocument(documentId, accessToken) {
+  /** Load a short stored-content preview for one RAG document. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/documents/${documentId}/preview`,
+    {
+      headers: authHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to preview RAG document"));
+  }
+
+  return response.json();
+}
+
+export async function updateRagDocumentMetadata(documentId, payload, accessToken) {
+  /** Save corrected RAG document title and chapter metadata. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/documents/${documentId}/metadata`,
+    {
+      method: "PATCH",
+      headers: authHeaders(accessToken),
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to update RAG metadata"));
   }
 
   return response.json();
