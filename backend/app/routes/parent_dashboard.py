@@ -7,7 +7,10 @@ from app.services.parent_dashboard_service import (
     get_child_by_id,
     get_family_members,
 )
-from app.routes.admin_control import list_subscription_plan_settings
+from app.routes.admin_control import (
+    list_subscription_contact_settings,
+    list_subscription_plan_settings,
+)
 from app.services.board_service import normalize_board
 
 router = APIRouter()
@@ -72,6 +75,7 @@ def get_parent_subscription_plans(parent=Depends(require_parent)):
         "load_error": settings.get("load_error"),
         "plans": plans,
         "plan_order": plan_order,
+        "contact": list_subscription_contact_settings().get("contact", {}),
     }
 
 

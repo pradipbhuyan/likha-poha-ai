@@ -68,6 +68,13 @@ vi.mock("../api/parentDashboard", () => ({
       },
     },
     plan_order: ["free", "starter"],
+    contact: {
+      email: "help@likhapoha.test",
+      phone: "",
+      whatsapp: "",
+      availability: "Replies within 24 hours.",
+      message: "Need help choosing a plan? Contact support.",
+    },
   })),
 }));
 
@@ -118,6 +125,11 @@ describe("SubscriptionPlansPage payments", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("₹449")).toBeInTheDocument();
     expect(screen.getByText("Summer Special")).toBeInTheDocument();
+    expect(screen.getByText("help@likhapoha.test")).toBeInTheDocument();
+    expect(screen.getByText("Replies within 24 hours.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Support number will be added soon")
+    ).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /choose standard/i }));
 

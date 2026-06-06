@@ -174,6 +174,125 @@ def test_multi_part_maths_labels_stay_distinct_for_dropdowns():
     ]
 
 
+def test_multi_book_english_labels_show_source_prefixes():
+    """English Text Book and Supplementary Reader chapters should be distinct."""
+    chapters = syllabus_route.sort_uploaded_chapters(
+        ["Uploaded Book Content"],
+        [
+            {
+                "chapter": "Chapter 1: A Triumph of Surgery",
+                "title": (
+                    "Grade 10 CBSE English Supplementary Reader - "
+                    "Chapter 1: A Triumph of Surgery"
+                ),
+            },
+            {
+                "chapter": "Chapter 1: A Letter to God",
+                "title": "Grade 10 CBSE English Text Book - Chapter 1: A Letter to God",
+            },
+            {
+                "chapter": "Chapter 2: Nelson Mandela: Long Walk to Freedom",
+                "title": (
+                    "Grade 10 CBSE English Text Book - "
+                    "Chapter 2: Nelson Mandela: Long Walk to Freedom"
+                ),
+            },
+        ],
+    )
+
+    assert chapters == [
+        "Text Book - Chapter 1: A Letter to God",
+        "Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom",
+        "Supplementary Reader - Chapter 1: A Triumph of Surgery",
+    ]
+
+
+def test_social_science_book_sources_show_source_prefixes():
+    """Social Science Text Book and Geography chapters should stay distinct."""
+    chapters = syllabus_route.sort_uploaded_chapters(
+        ["Uploaded Book Content"],
+        [
+            {
+                "chapter": "Chapter 1: Resources and Development",
+                "title": (
+                    "Grade 10 CBSE Social Science Geography - "
+                    "Chapter 1: Resources and Development"
+                ),
+            },
+            {
+                "chapter": "Chapter 1: Development",
+                "title": (
+                    "Grade 10 CBSE Social Science Text Book - "
+                    "Chapter 1: Development"
+                ),
+            },
+            {
+                "chapter": "Chapter 2: Forest and Wildlife Resources",
+                "title": (
+                    "Grade 10 CBSE Social Science Geography - "
+                    "Chapter 2: Forest and Wildlife Resources"
+                ),
+            },
+        ],
+    )
+
+    assert chapters == [
+        "Text Book - Chapter 1: Development",
+        "Geography - Chapter 1: Resources and Development",
+        "Geography - Chapter 2: Forest and Wildlife Resources",
+    ]
+
+
+def test_content_status_matches_source_prefixed_dropdown_labels():
+    """Display-only source prefixes should not break RAG linked status."""
+    syllabus_tree = {
+        "Grade 10": {
+            "CBSE": {
+                "English": [
+                    "Text Book - Chapter 1: A Letter to God",
+                    "Supplementary Reader - Chapter 1: A Triumph of Surgery",
+                ],
+                "Social Science": [
+                    "Text Book - Chapter 1: Development",
+                    "Geography - Chapter 1: Resources and Development",
+                ],
+            },
+        },
+    }
+    rag_counts = {
+        (
+            "Grade 10",
+            "CBSE",
+            "English",
+            syllabus_route.normalize_rag_chapter_lookup("Chapter 1: A Letter to God"),
+        ): 1,
+        (
+            "Grade 10",
+            "CBSE",
+            "English",
+            syllabus_route.normalize_rag_chapter_lookup("Chapter 1: A Triumph of Surgery"),
+        ): 1,
+        (
+            "Grade 10",
+            "CBSE",
+            "Social Science",
+            syllabus_route.normalize_rag_chapter_lookup("Chapter 1: Development"),
+        ): 1,
+        (
+            "Grade 10",
+            "CBSE",
+            "Social Science",
+            syllabus_route.normalize_rag_chapter_lookup(
+                "Chapter 1: Resources and Development"
+            ),
+        ): 1,
+    }
+
+    status = syllabus_route.build_chapter_content_status(syllabus_tree, rag_counts)
+
+    assert [item["has_content"] for item in status] == [True, True, True, True]
+
+
 def test_uploaded_rag_chapter_labels_preserve_admin_confirmed_text(monkeypatch):
     """The syllabus dropdown must not rewrite labels confirmed during RAG upload."""
     confirmed_label = "Chapter 13: Our Home: Earth"
@@ -354,6 +473,39 @@ def test_subject_override_controls_visible_subjects():
     assert list(result["Grade 8"]["CBSE"].keys()) == ["Maths", "Marathi"]
     assert "Computer Science" not in result["Grade 8"]["CBSE"]
     assert result["Grade 8"]["CBSE"]["Marathi"] == ["Uploaded Book Content"]
+
+
+def test_subject_override_keeps_new_live_rag_subjects_visible():
+    """Newly uploaded subjects should not be hidden by an older subject review."""
+    merged = {
+        "Grade 10": {
+            "CBSE": {
+                "English": ["Chapter 1: A Letter to God"],
+                "Maths": ["Chapter 1: Real Numbers"],
+                "Social Science": ["Chapter 1: Development"],
+                "Computer Science": ["Uploaded Book Content"],
+            },
+        },
+    }
+
+    result = syllabus_route.apply_subject_overrides(
+        merged,
+        {
+            ("Grade 10", "CBSE"): {
+                "subjects": ["English", "Maths"],
+            },
+        },
+    )
+
+    assert list(result["Grade 10"]["CBSE"].keys()) == [
+        "English",
+        "Maths",
+        "Social Science",
+    ]
+    assert result["Grade 10"]["CBSE"]["Social Science"] == [
+        "Chapter 1: Development",
+    ]
+    assert "Computer Science" not in result["Grade 10"]["CBSE"]
 
 
 def test_chapter_content_status_flags_missing_override_content():

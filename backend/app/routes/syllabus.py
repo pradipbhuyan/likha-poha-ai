@@ -58,6 +58,57 @@ def extract_part_number(text):
     return 1
 
 
+def extract_book_source(text):
+    """Find the book/source name when one subject has multiple books."""
+    normalized = str(text or "").lower()
+
+    if re.search(r"\bgeography\b", normalized):
+        return "Geography"
+
+    if re.search(r"\bhistory\b", normalized):
+        return "History"
+
+    if re.search(r"\bcivics\b|\bpolitical\s+science\b", normalized):
+        return "Political Science"
+
+    if re.search(r"\beconomics\b", normalized):
+        return "Economics"
+
+    if re.search(r"\bsupplement(?:ary|ery)?\b|\bsupplement(?:ary|ery)?\s+reader\b", normalized):
+        return "Supplementary Reader"
+
+    if re.search(r"\bgrammar\b|\bgrammer\b", normalized):
+        return "Grammar"
+
+    if re.search(r"\bwork\s*book\b|\bworkbook\b", normalized):
+        return "Workbook"
+
+    if re.search(r"\btext\s*book\b|\btextbook\b|\bbeehive\b", normalized):
+        return "Text Book"
+
+    if re.search(r"\breader\b", normalized):
+        return "Reader"
+
+    return ""
+
+
+def book_source_rank(source):
+    """Sort book sources in the order students usually study them."""
+    ranks = {
+        "Text Book": 1,
+        "Reader": 2,
+        "Supplementary Reader": 3,
+        "Grammar": 4,
+        "Workbook": 5,
+        "History": 6,
+        "Geography": 7,
+        "Political Science": 8,
+        "Economics": 9,
+    }
+
+    return ranks.get(source or "", 99)
+
+
 def format_part_label(part_number):
     """Return the user-facing label for a textbook part number."""
     return f"Part {part_number}"
@@ -74,6 +125,19 @@ def strip_part_prefix(chapter):
     """Remove a display-only part prefix from a chapter label."""
     return re.sub(
         r"^\s*part\s*\d+\s*[-:]\s*",
+        "",
+        str(chapter or ""),
+        flags=re.IGNORECASE,
+    ).strip()
+
+
+def strip_book_source_prefix(chapter):
+    """Remove display-only book source prefixes from a chapter label."""
+    return re.sub(
+        (
+            r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+            r"History|Geography|Political Science|Economics)\s*[-:]\s*"
+        ),
         "",
         str(chapter or ""),
         flags=re.IGNORECASE,
@@ -106,6 +170,33 @@ def create_part_display_label(chapter, part_number, use_part_prefix):
         return f"{format_part_label(part_number)} - Front Matter"
 
     return f"{format_part_label(part_number)} - {chapter}"
+
+
+def create_source_display_label(chapter, source, use_source_prefix):
+    """
+    Add a display-only source prefix for subjects with multiple books.
+
+    For example, Grade 10 English may have Text Book, Supplementary Reader, and
+    Grammar documents. Prefixing prevents duplicate-looking "Chapter 1" labels
+    while the stored RAG chapter remains clean.
+    """
+    chapter = str(chapter or "").strip()
+    source = str(source or "").strip()
+
+    if not use_source_prefix or not source or not chapter:
+        return chapter
+
+    if re.match(
+        (
+            r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+            r"History|Geography|Political Science|Economics)\s*[-:]"
+        ),
+        chapter,
+        flags=re.IGNORECASE,
+    ):
+        return chapter
+
+    return f"{source} - {chapter}"
 
 
 def is_part_display_label(chapter):
@@ -152,6 +243,7 @@ def uploaded_chapter_sort_key(item):
     title = item.get("title") or ""
     combined = f"{title} {chapter}"
     normalized = chapter.lower()
+    source = extract_book_source(title)
     part_number = extract_part_number(combined)
     chapter_number = extract_chapter_number(chapter)
 
@@ -166,6 +258,7 @@ def uploaded_chapter_sort_key(item):
         chapter_rank = 999
 
     return (
+        book_source_rank(source),
         part_number,
         section_rank,
         chapter_rank,
@@ -180,7 +273,10 @@ def normalize_chapter_lookup(chapter):
 
 def normalize_rag_chapter_lookup(chapter):
     """Normalize display labels to the stored RAG chapter label for matching."""
-    return re.sub(r"\s+", " ", strip_part_prefix(chapter).strip()).casefold()
+    without_part = strip_part_prefix(chapter)
+    without_source = strip_book_source_prefix(without_part)
+
+    return re.sub(r"\s+", " ", without_source.strip()).casefold()
 
 
 def sort_uploaded_chapters(existing_chapters, uploaded_items):
@@ -196,15 +292,26 @@ def sort_uploaded_chapters(existing_chapters, uploaded_items):
         extract_part_number(f"{item.get('title') or ''} {item.get('chapter') or ''}")
         for item in uploaded_items
     }
+    source_labels = {
+        extract_book_source(item.get("title") or "")
+        for item in uploaded_items
+    }
     use_part_prefix = len(part_numbers) > 1
+    use_source_prefix = len({source for source in source_labels if source}) > 1
 
     for item in sorted(uploaded_items, key=uploaded_chapter_sort_key):
         chapter = item["chapter"].strip()
+        source = extract_book_source(item.get("title") or "")
         part_number = extract_part_number(f"{item.get('title') or ''} {chapter}")
         display_chapter = create_part_display_label(
             chapter,
             part_number,
             use_part_prefix,
+        )
+        display_chapter = create_source_display_label(
+            display_chapter,
+            source,
+            use_source_prefix,
         )
         lookup_key = normalize_chapter_lookup(display_chapter)
 
@@ -338,7 +445,13 @@ def fetch_subject_overrides():
 
 
 def apply_subject_overrides(merged, subject_overrides):
-    """Replace visible subject order/list for a grade and mode."""
+    """
+    Apply reviewed subject order without hiding newly uploaded live RAG subjects.
+
+    A saved subject review can become stale when admins upload another subject
+    later. Keep the reviewed order first, then append any live subject that has
+    real RAG chapters for the same grade and board so the admin can review it.
+    """
     for (grade, mode), override in subject_overrides.items():
         subjects = override.get("subjects") or []
 
@@ -354,6 +467,18 @@ def apply_subject_overrides(merged, subject_overrides):
                 subject,
                 [placeholder_chapter_for_mode(mode)],
             )
+
+        for subject, chapters in mode_data.items():
+            if subject in reviewed_mode_data:
+                continue
+
+            has_live_content = any(
+                not is_uploaded_placeholder(chapter)
+                for chapter in chapters
+            )
+
+            if has_live_content:
+                reviewed_mode_data[subject] = chapters
 
         grade_data[mode] = reviewed_mode_data
 
@@ -629,12 +754,12 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
         response = (
             admin_client
             .table("rag_documents")
-            .select("id,title,board")
+            .select("id,title,board,chapter")
             .eq("grade", grade)
             .eq("subject", subject)
-            .eq("chapter", old_label)
             .execute()
         )
+        old_lookup_key = normalize_rag_chapter_lookup(old_label)
 
         for document in response.data or []:
             document_mode = (
@@ -646,15 +771,21 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
             if document_mode != mode:
                 continue
 
+            stored_chapter = document.get("chapter") or ""
+
+            if normalize_rag_chapter_lookup(stored_chapter) != old_lookup_key:
+                continue
+
             current_title = document.get("title") or ""
+            clean_new_label = strip_book_source_prefix(strip_part_prefix(new_label))
             next_title = (
-                current_title.replace(old_label, new_label)
-                if old_label in current_title
+                current_title.replace(stored_chapter, clean_new_label)
+                if stored_chapter and stored_chapter in current_title
                 else current_title
             )
 
             admin_client.table("rag_documents").update({
-                "chapter": new_label,
+                "chapter": clean_new_label,
                 "title": next_title,
             }).eq("id", document["id"]).execute()
 

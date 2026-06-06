@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Percent, Save, Tags } from "lucide-react";
+import { Mail, MessageCircle, Percent, Phone, Save, Tags } from "lucide-react";
 
 import {
+  getAdminSubscriptionContact,
   getAdminSubscriptionPlans,
+  updateAdminSubscriptionContact,
   updateAdminSubscriptionPlans,
 } from "../api/adminControl";
 import {
@@ -27,13 +29,24 @@ function textToList(value) {
     .filter(Boolean);
 }
 
+const DEFAULT_SUBSCRIPTION_CONTACT = {
+  email: "lilhapohaai@gmail.com",
+  phone: "",
+  whatsapp: "",
+  availability: "We usually respond within one business day.",
+  message:
+    "Need help choosing a plan or activating access? Contact us and we will guide you.",
+};
+
 function AdminSubscriptionSettingsPage({ user }) {
   /** Admin page for editing public plan pricing, discounts, access, and feature copy. */
   const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
   const [planOrder, setPlanOrder] = useState(SUBSCRIPTION_PLAN_ORDER);
+  const [contact, setContact] = useState(DEFAULT_SUBSCRIPTION_CONTACT);
   const [settingsSource, setSettingsSource] = useState("defaults");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [savingContact, setSavingContact] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -41,11 +54,21 @@ function AdminSubscriptionSettingsPage({ user }) {
     async function loadPlans() {
       /** Load persisted plan settings and merge them with local defaults for missing fields. */
       try {
-        const result = await getAdminSubscriptionPlans(user.accessToken);
+        const [result, contactResult] = await Promise.all([
+          getAdminSubscriptionPlans(user.accessToken),
+          getAdminSubscriptionContact(user.accessToken).catch((err) => {
+            console.warn("Subscription contact settings unavailable", err);
+            return { contact: DEFAULT_SUBSCRIPTION_CONTACT };
+          }),
+        ]);
         const loadedPlans = mergeSubscriptionPlans(result.plans || {});
 
         setPlans(loadedPlans);
         setPlanOrder(result.plan_order?.length ? result.plan_order : SUBSCRIPTION_PLAN_ORDER);
+        setContact({
+          ...DEFAULT_SUBSCRIPTION_CONTACT,
+          ...(contactResult.contact || {}),
+        });
         setSettingsSource(result.source || (result.persisted ? "database" : "defaults"));
       } catch (err) {
         console.error(err);
@@ -68,6 +91,14 @@ function AdminSubscriptionSettingsPage({ user }) {
         ...prev[planKey],
         [field]: value,
       },
+    }));
+  }
+
+  function updateContact(field, value) {
+    /** Update one support-contact field before saving to Supabase. */
+    setContact((prev) => ({
+      ...prev,
+      [field]: value,
     }));
   }
 
@@ -157,6 +188,36 @@ function AdminSubscriptionSettingsPage({ user }) {
     }
   }
 
+  async function saveContact() {
+    /** Persist contact details shown to parents on the Subscription page. */
+    setSavingContact(true);
+    setMessage("");
+    setError("");
+
+    try {
+      const result = await updateAdminSubscriptionContact(contact, user.accessToken);
+
+      setContact({
+        ...DEFAULT_SUBSCRIPTION_CONTACT,
+        ...(result.contact || {}),
+      });
+
+      if (result.persisted === false || result.load_error) {
+        setError(
+          "Contact settings saved locally, but Supabase could not be confirmed. Parent pages may still show the default contact."
+        );
+        return;
+      }
+
+      setMessage("Subscription contact details saved.");
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to save subscription contact settings.");
+    } finally {
+      setSavingContact(false);
+    }
+  }
+
   if (loading) {
     return <p>Loading subscription settings...</p>;
   }
@@ -179,6 +240,73 @@ function AdminSubscriptionSettingsPage({ user }) {
 
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
+
+      <section className="premium-section admin-contact-settings">
+        <div className="subscription-section-heading">
+          <MessageCircle size={22} strokeWidth={2.4} />
+          <h3>Support contact shown to parents</h3>
+        </div>
+
+        <p>
+          These details appear under the parent Subscription page for plan
+          questions, payment help, and manual activation support.
+        </p>
+
+        <div className="form-grid premium-rag-form-grid">
+          <label>
+            <Mail size={16} strokeWidth={2.4} /> Support Email
+            <input
+              type="email"
+              value={contact.email}
+              onChange={(e) => updateContact("email", e.target.value)}
+            />
+          </label>
+
+          <label>
+            <Phone size={16} strokeWidth={2.4} /> Phone Number
+            <input
+              value={contact.phone}
+              placeholder="Add phone number when ready"
+              onChange={(e) => updateContact("phone", e.target.value)}
+            />
+          </label>
+
+          <label>
+            <MessageCircle size={16} strokeWidth={2.4} /> WhatsApp Number
+            <input
+              value={contact.whatsapp}
+              placeholder="Optional WhatsApp number"
+              onChange={(e) => updateContact("whatsapp", e.target.value)}
+            />
+          </label>
+
+          <label>
+            Availability
+            <input
+              value={contact.availability}
+              onChange={(e) => updateContact("availability", e.target.value)}
+            />
+          </label>
+        </div>
+
+        <label className="admin-plan-full-label">
+          Parent-Facing Help Message
+          <textarea
+            rows={3}
+            value={contact.message}
+            onChange={(e) => updateContact("message", e.target.value)}
+          />
+        </label>
+
+        <button
+          className="primary-btn admin-contact-save"
+          onClick={saveContact}
+          disabled={savingContact}
+        >
+          <Save size={18} strokeWidth={2.5} />
+          {savingContact ? "Saving..." : "Save Contact Details"}
+        </button>
+      </section>
 
       <section className="admin-plan-grid">
         {planOrder.map((planKey) => {

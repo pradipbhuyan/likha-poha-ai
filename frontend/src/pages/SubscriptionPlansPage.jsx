@@ -2,7 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Check,
   CreditCard,
+  Mail,
+  MessageCircle,
   Minus,
+  Phone,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -24,12 +27,29 @@ import {
   SUBSCRIPTION_PLANS,
 } from "../config/subscriptionPlans";
 
+const DEFAULT_SUBSCRIPTION_CONTACT = {
+  email: "lilhapohaai@gmail.com",
+  phone: "",
+  whatsapp: "",
+  availability: "We usually respond within one business day.",
+  message:
+    "Need help choosing a plan or activating access? Contact us and we will guide you.",
+};
+
+function cleanContactNumber(value = "") {
+  /** Strip spaces/symbols for tel and WhatsApp links while preserving leading +. */
+  const trimmed = String(value || "").trim();
+  const prefix = trimmed.startsWith("+") ? "+" : "";
+  return `${prefix}${trimmed.replace(/[^\d]/g, "")}`;
+}
+
 function SubscriptionPlansPage({ user }) {
   /** Parent-facing plan comparison and payment entry page. */
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
   const [selectedPlanKey, setSelectedPlanKey] = useState("premium");
   const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
+  const [contact, setContact] = useState(DEFAULT_SUBSCRIPTION_CONTACT);
   const [planOrder, setPlanOrder] = useState(
     Object.values(SUBSCRIPTION_PLANS)
       .filter((plan) => plan.isPublic !== false)
@@ -62,8 +82,13 @@ function SubscriptionPlansPage({ user }) {
         const loadedPlanOrder = (planResult.plan_order || []).filter(
           (planKey) => loadedPlans[planKey]?.isPublic !== false
         );
+        const loadedContact = {
+          ...DEFAULT_SUBSCRIPTION_CONTACT,
+          ...(planResult.contact || {}),
+        };
 
         setPlans(loadedPlans);
+        setContact(loadedContact);
         if (loadedPlanOrder.length) {
           setPlanOrder(loadedPlanOrder);
         }
@@ -100,6 +125,9 @@ function SubscriptionPlansPage({ user }) {
     getSubscriptionPlan(selectedChild?.subscription_plan);
   const selectedPlan = plans[selectedPlanKey] || getSubscriptionPlan(selectedPlanKey);
   const isCurrentPlan = activePlan.key === selectedPlan.key;
+  const supportEmail = contact.email || DEFAULT_SUBSCRIPTION_CONTACT.email;
+  const supportPhone = cleanContactNumber(contact.phone);
+  const supportWhatsapp = cleanContactNumber(contact.whatsapp);
 
   function handlePlanClick(planKey) {
     /** Select the plan card the parent wants to review or purchase. */
@@ -426,6 +454,65 @@ function SubscriptionPlansPage({ user }) {
               : "Online UPI payment is not enabled yet. Admin can activate plans manually without affecting current access."}
           </p>
         </aside>
+      </section>
+
+      <section className="premium-section subscription-contact-card">
+        <div>
+          <p className="eyebrow">Need help?</p>
+          <h3>Contact us before choosing a plan</h3>
+          <p>{contact.message || DEFAULT_SUBSCRIPTION_CONTACT.message}</p>
+          <small>{contact.availability || DEFAULT_SUBSCRIPTION_CONTACT.availability}</small>
+        </div>
+
+        <div className="subscription-contact-actions">
+          <a href={`mailto:${supportEmail}`}>
+            <Mail size={20} strokeWidth={2.4} />
+            <span>
+              Email
+              <strong>{supportEmail}</strong>
+            </span>
+          </a>
+
+          {supportPhone ? (
+            <a href={`tel:${supportPhone}`}>
+              <Phone size={20} strokeWidth={2.4} />
+              <span>
+                Call
+                <strong>{contact.phone}</strong>
+              </span>
+            </a>
+          ) : (
+            <div className="subscription-contact-placeholder">
+              <Phone size={20} strokeWidth={2.4} />
+              <span>
+                Call
+                <strong>Support number will be added soon</strong>
+              </span>
+            </div>
+          )}
+
+          {supportWhatsapp ? (
+            <a
+              href={`https://wa.me/${supportWhatsapp.replace("+", "")}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle size={20} strokeWidth={2.4} />
+              <span>
+                WhatsApp
+                <strong>{contact.whatsapp}</strong>
+              </span>
+            </a>
+          ) : (
+            <div className="subscription-contact-placeholder">
+              <MessageCircle size={20} strokeWidth={2.4} />
+              <span>
+                WhatsApp
+                <strong>Optional contact channel</strong>
+              </span>
+            </div>
+          )}
+        </div>
       </section>
     </div>
   );

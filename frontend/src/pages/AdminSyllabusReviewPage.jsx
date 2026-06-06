@@ -14,7 +14,15 @@ function optionKey(grade, mode, subject) {
 
 function normalizeChapterKey(chapter) {
   /** Match backend duplicate/content checks without changing display labels. */
-  return String(chapter || "").trim().replace(/\s+/g, " ").toLowerCase();
+  return String(chapter || "")
+    .trim()
+    .replace(/^\s*part\s*\d+\s*[-:]\s*/i, "")
+    .replace(
+      /^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader)\s*[-:]\s*/i,
+      ""
+    )
+    .replace(/\s+/g, " ")
+    .toLowerCase();
 }
 
 function contentKey(grade, mode, subject, chapter) {
@@ -361,6 +369,30 @@ function AdminSyllabusReviewPage({ user }) {
           chapters: cleanedItems.map((item) => item.chapter),
         },
       ]);
+      setContentStatus((currentStatus) =>
+        currentStatus.map((statusItem) => {
+          if (
+            statusItem.grade !== grade ||
+            statusItem.mode !== mode ||
+            statusItem.subject !== activeSubject
+          ) {
+            return statusItem;
+          }
+
+          const matchingItem = cleanedItems.find(
+            (item) =>
+              normalizeChapterKey(item.original_chapter) ===
+              normalizeChapterKey(statusItem.chapter)
+          );
+
+          return matchingItem
+            ? {
+                ...statusItem,
+                chapter: matchingItem.chapter,
+              }
+            : statusItem;
+        })
+      );
       setDraftItems(cleanedItems.map((item, index) =>
         createDraftItem(item.chapter, index)
       ));
@@ -568,7 +600,12 @@ function AdminSyllabusReviewPage({ user }) {
                     onChange={(e) => updateDraftItem(item.id, e.target.value)}
                   />
                   {(() => {
-                    const chapterStatus = getChapterStatus(activeSubject, item.chapter);
+                    const chapterStatus =
+                      getChapterStatus(activeSubject, item.chapter) ||
+                      getChapterStatus(activeSubject, item.original_chapter);
+                    const hasEditedLinkedLabel =
+                      item.chapter.trim() !== item.original_chapter?.trim() &&
+                      chapterStatus?.has_content;
 
                     return (
                       <small
@@ -579,7 +616,9 @@ function AdminSyllabusReviewPage({ user }) {
                         }
                       >
                         {chapterStatus?.has_content
-                          ? `${chapterStatus.document_count} RAG document(s) linked`
+                          ? hasEditedLinkedLabel
+                            ? `${chapterStatus.document_count} RAG document(s) will relink on save`
+                            : `${chapterStatus.document_count} RAG document(s) linked`
                           : "No matching RAG document right now"}
                       </small>
                     );

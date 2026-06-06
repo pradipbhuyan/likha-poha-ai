@@ -215,3 +215,41 @@ export async function updateAdminSubscriptionPlans(payload, accessToken) {
 
   return response.json();
 }
+
+export async function getAdminSubscriptionContact(accessToken) {
+  /** Load editable subscription support contact settings for the admin pricing page. */
+  const response = await adminFetch(
+    "/api/admin-control/subscription-contact",
+    {
+      headers: authHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await parseError(response, "Failed to load subscription contact settings")
+    );
+  }
+
+  return response.json();
+}
+
+export async function updateAdminSubscriptionContact(payload, accessToken) {
+  /** Persist parent-facing support contact settings for subscriptions. */
+  const response = await adminFetch(
+    "/api/admin-control/subscription-contact",
+    {
+      method: "PUT",
+      headers: authHeaders(accessToken),
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      await parseError(response, "Failed to save subscription contact settings")
+    );
+  }
+
+  return response.json();
+}

@@ -97,6 +97,27 @@ class UpdateSubscriptionPlanSettingsRequest(BaseModel):
     plans: list[SubscriptionPlanSettings]
 
 
+class SubscriptionContactSettings(BaseModel):
+    email: str = "lilhapohaai@gmail.com"
+    phone: str = ""
+    whatsapp: str = ""
+    availability: str = "We usually respond within one business day."
+    message: str = (
+        "Need help choosing a plan or activating access? Contact us and we will guide you."
+    )
+
+
+DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS = {
+    "email": "lilhapohaai@gmail.com",
+    "phone": "",
+    "whatsapp": "",
+    "availability": "We usually respond within one business day.",
+    "message": (
+        "Need help choosing a plan or activating access? Contact us and we will guide you."
+    ),
+}
+
+
 def summarize_student_activity(username: str, logs: list[dict]):
     """Summarize raw AI usage logs into the admin child activity card."""
     now = datetime.now(timezone.utc)
@@ -292,6 +313,56 @@ def list_subscription_plan_settings():
     }
 
 
+def normalize_subscription_contact_row(row: dict | None):
+    """Normalize subscription support/contact settings for admin and parent UIs."""
+    row = row or {}
+
+    return {
+        **DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS,
+        "email": row.get("email") or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["email"],
+        "phone": row.get("phone") or "",
+        "whatsapp": row.get("whatsapp") or "",
+        "availability": (
+            row.get("availability")
+            or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["availability"]
+        ),
+        "message": row.get("message") or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["message"],
+    }
+
+
+def list_subscription_contact_settings():
+    """Load subscription contact settings with a safe default fallback."""
+    persisted = False
+    load_error = None
+    contact = normalize_subscription_contact_row(None)
+
+    try:
+        response = (
+            admin_client
+            .table("subscription_contact_settings")
+            .select("*")
+            .eq("key", "default")
+            .limit(1)
+            .execute()
+        )
+        row = (response.data or [None])[0]
+
+        if row:
+            persisted = True
+            contact = normalize_subscription_contact_row(row)
+    except Exception as exc:
+        persisted = False
+        load_error = str(exc)
+
+    return {
+        "success": True,
+        "persisted": persisted,
+        "source": "database" if persisted else "defaults",
+        "load_error": load_error,
+        "contact": contact,
+    }
+
+
 @router.get("/families")
 def get_all_families(admin=Depends(require_admin)):
     """
@@ -430,6 +501,66 @@ def update_subscription_plans(
             detail=(
                 "Subscription plan settings were saved, but no rows were read "
                 "back from subscription_plan_settings."
+            ),
+        )
+
+    return saved_settings
+
+
+@router.get("/subscription-contact")
+def get_subscription_contact(admin=Depends(require_admin)):
+    """Return editable subscription contact settings for admins."""
+    return list_subscription_contact_settings()
+
+
+@router.put("/subscription-contact")
+def update_subscription_contact(
+    data: SubscriptionContactSettings,
+    admin=Depends(require_admin),
+):
+    """Persist the support contact details shown on the parent Subscription page."""
+    row = data.model_dump() if hasattr(data, "model_dump") else data.dict()
+    row["key"] = "default"
+    row["email"] = (
+        row.get("email")
+        or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["email"]
+    ).strip()
+    row["phone"] = (row.get("phone") or "").strip()
+    row["whatsapp"] = (row.get("whatsapp") or "").strip()
+    row["availability"] = (
+        row.get("availability")
+        or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["availability"]
+    ).strip()
+    row["message"] = (
+        row.get("message")
+        or DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS["message"]
+    ).strip()
+    row["updated_by"] = admin["profile"]["id"]
+
+    try:
+        admin_client.table("subscription_contact_settings").upsert(
+            row,
+            on_conflict="key",
+        ).execute()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Unable to save subscription contact settings. Make sure the "
+                "subscription_contact_settings table exists. "
+                f"Original error: {str(exc)}"
+            ),
+        )
+
+    saved_settings = list_subscription_contact_settings()
+
+    if saved_settings.get("load_error"):
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Subscription contact settings were saved, but could not be "
+                "read back from Supabase. "
+                f"Original error: {saved_settings['load_error']}"
             ),
         )
 
