@@ -9,11 +9,12 @@ import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
 import MermaidBlock from "../components/MermaidBlock";
 import {
   getDefaultSelection,
+  getUserBoard,
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
-import { filterAllowedSubjects } from "../utils/subjectAccess";
+import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
 
 const ANSWER_STYLE_OPTIONS = [
   {
@@ -78,7 +79,11 @@ function DoubtPage({ user }) {
         const {
           grade: defaultGrade,
           mode: defaultMode,
-        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        } = getDefaultSelection(
+          data.syllabus,
+          getUserGrade(user),
+          getUserBoard(user)
+        );
 
         setGrade(defaultGrade);
         setMode(defaultMode);
@@ -120,7 +125,7 @@ function DoubtPage({ user }) {
     /** Check whether the signed-in user may use CBSE or at least one SOF subject. */
     if (user.role === "admin") return true;
 
-    if (selectedMode === "CBSE") {
+    if (isSchoolBoardMode(selectedMode)) {
       return !!user.accessCbse;
     }
 
@@ -141,6 +146,7 @@ function DoubtPage({ user }) {
   const availableChapters = subject
     ? syllabusData[grade][mode]?.[subject] || []
     : [];
+  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
 
   function getAllowedSofSubjectsForGrade(selectedGrade) {
     /** Return only SOF subjects the user can access for the selected grade. */
@@ -179,6 +185,7 @@ function DoubtPage({ user }) {
       username: user.username,
       grade,
       mode,
+      board: requestBoard,
       subject: getDoubtSubject(),
       chapter,
       question: buildQuestionWithContext(questionText),
@@ -393,7 +400,7 @@ function DoubtPage({ user }) {
       return;
     }
 
-    if (mode === "CBSE" && allowedSubjects.length === 0) {
+    if (isSchoolBoardMode(mode) && allowedSubjects.length === 0) {
       setError("You do not have access to this CBSE subject.");
       return;
     }
@@ -458,7 +465,7 @@ function DoubtPage({ user }) {
       return;
     }
 
-    if (mode === "CBSE" && allowedSubjects.length === 0) {
+    if (isSchoolBoardMode(mode) && allowedSubjects.length === 0) {
       setError("You do not have access to this CBSE subject.");
       return;
     }
@@ -520,7 +527,7 @@ Rules:
       return;
     }
 
-    if (mode === "CBSE" && allowedSubjects.length === 0) {
+    if (isSchoolBoardMode(mode) && allowedSubjects.length === 0) {
       setError("You do not have access to this CBSE subject.");
       return;
     }

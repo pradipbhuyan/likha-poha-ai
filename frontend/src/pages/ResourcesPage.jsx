@@ -4,6 +4,7 @@ import { getSyllabus } from "../api/syllabus";
 import { getResources } from "../api/resources";
 import {
   getDefaultSelection,
+  getUserBoard,
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
@@ -35,7 +36,11 @@ function ResourcesPage({ user }) {
           mode: defaultMode,
           subject: defaultSubject,
           chapter: defaultChapter,
-        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        } = getDefaultSelection(
+          data.syllabus,
+          getUserGrade(user),
+          getUserBoard(user)
+        );
         const defaultSubjects = Object.keys(
           data.syllabus[defaultGrade]?.[defaultMode] || {}
         );

@@ -10,6 +10,8 @@ from app.services.ocr_service import extract_text_from_image_bytes
 
 IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"]
 MIN_USEFUL_PAGE_WORDS = 12
+MIN_MULTI_PAGE_PDF_WORDS = 200
+MIN_MULTI_PAGE_PDF_WORDS_PER_PAGE = 2
 
 def extract_text_from_txt(file_bytes: bytes) -> str:
     """Decode a plain text upload into normalized UTF-8 text."""
@@ -23,15 +25,63 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
         tmp_path = tmp.name
 
     try:
-        reader = PdfReader(tmp_path)
-        text_parts = []
+        try:
+            reader = PdfReader(tmp_path)
+            text_parts = []
 
-        for page in reader.pages:
-            text_parts.append(page.extract_text() or "")
+            for page in reader.pages:
+                text_parts.append(page.extract_text() or "")
 
-        return "\n\n".join(text_parts).strip()
+            page_count = len(reader.pages)
+        except Exception:
+            text_parts = extract_pdf_text_parts_with_pymupdf(file_bytes)
+            page_count = len(text_parts)
+
+        extracted_text = "\n\n".join(text_parts).strip()
+        word_count = count_words(extracted_text)
+
+        if (
+            page_count >= 10
+            and word_count < MIN_MULTI_PAGE_PDF_WORDS
+            and word_count < page_count * MIN_MULTI_PAGE_PDF_WORDS_PER_PAGE
+        ):
+            raise ValueError(
+                "This PDF appears to be scanned or image-based. "
+                f"Only {word_count} readable words were extracted from {page_count} pages, "
+                "so RAG upload was stopped to avoid creating an unusable one-chunk document. "
+                "Please upload chapter images, a searchable/OCR PDF, or use the full-book OCR splitter flow."
+            )
+
+        return extracted_text
 
     finally:
+        os.remove(tmp_path)
+
+
+def extract_pdf_text_parts_with_pymupdf(file_bytes: bytes) -> list[str]:
+    """Fallback PDF text extraction for compressed PDFs that pypdf cannot parse."""
+    try:
+        import fitz  # PyMuPDF
+    except Exception as exc:
+        raise RuntimeError(
+            "PDF text extraction failed and PyMuPDF fallback is unavailable. "
+            "Install backend requirement PyMuPDF and redeploy."
+        ) from exc
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    document = None
+    try:
+        document = fitz.open(tmp_path)
+        return [
+            document.load_page(page_index).get_text("text") or ""
+            for page_index in range(document.page_count)
+        ]
+    finally:
+        if document is not None:
+            document.close()
         os.remove(tmp_path)
 
 
@@ -103,36 +153,49 @@ def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
         tmp_path = tmp.name
 
     try:
-        reader = PdfReader(tmp_path)
-        pages = []
+        try:
+            reader = PdfReader(tmp_path)
+            pages = []
 
-        for page_index, page in enumerate(reader.pages, start=1):
-            warnings = []
-            text = (page.extract_text() or "").strip()
-            extraction_method = "pdf_text"
+            for page_index, page in enumerate(reader.pages, start=1):
+                warnings = []
+                text = (page.extract_text() or "").strip()
+                extraction_method = "pdf_text"
 
-            if count_words(text) < MIN_USEFUL_PAGE_WORDS:
-                ocr_text = ocr_pdf_page_images(page)
+                if count_words(text) < MIN_USEFUL_PAGE_WORDS:
+                    ocr_text = ocr_pdf_page_images(page)
 
-                if ocr_text:
-                    text = ocr_text
-                    extraction_method = "pdf_embedded_image_ocr"
-                else:
-                    warnings.append(
-                        "PDF page may be scanned. No embedded image text could be extracted."
+                    if ocr_text:
+                        text = ocr_text
+                        extraction_method = "pdf_embedded_image_ocr"
+                    else:
+                        warnings.append(
+                            "PDF page may be scanned. No embedded image text could be extracted."
+                        )
+
+                pages.append(
+                    build_extracted_page(
+                        filename=filename,
+                        page_number=page_index,
+                        text=text,
+                        extraction_method=extraction_method,
+                        warnings=warnings,
                     )
+                )
 
-            pages.append(
+            return pages
+        except Exception:
+            return [
                 build_extracted_page(
                     filename=filename,
-                    page_number=page_index,
+                    page_number=page_index + 1,
                     text=text,
-                    extraction_method=extraction_method,
-                    warnings=warnings,
+                    extraction_method="pdf_text_pymupdf",
                 )
-            )
-
-        return pages
+                for page_index, text in enumerate(
+                    extract_pdf_text_parts_with_pymupdf(file_bytes)
+                )
+            ]
 
     finally:
         os.remove(tmp_path)

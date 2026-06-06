@@ -10,6 +10,15 @@ function authHeaders(accessToken) {
   };
 }
 
+function authFormHeaders(accessToken) {
+  /** Build auth-only headers for protected multipart/form-data endpoints. */
+  return accessToken
+    ? {
+        Authorization: `Bearer ${accessToken}`,
+      }
+    : {};
+}
+
 async function parseError(response, fallbackMessage) {
   /** Prefer backend detail/message fields for admin-visible failures. */
   try {
@@ -23,6 +32,7 @@ async function parseError(response, fallbackMessage) {
 export async function uploadRagFile({
   username,
   grade,
+  board = "CBSE",
   subject,
   chapter,
   title,
@@ -33,6 +43,7 @@ export async function uploadRagFile({
 
   formData.append("username", username);
   formData.append("grade", grade);
+  formData.append("board", board);
   formData.append("subject", subject);
   formData.append("chapter", chapter);
   formData.append("title", title);
@@ -53,6 +64,7 @@ export async function uploadRagFile({
 export async function uploadRagFilesBatch({
   username,
   grade,
+  board = "CBSE",
   subject,
   chapter,
   titles,
@@ -63,6 +75,7 @@ export async function uploadRagFilesBatch({
 
   formData.append("username", username);
   formData.append("grade", grade);
+  formData.append("board", board);
   formData.append("subject", subject);
   formData.append("chapter", chapter);
   formData.append("titles", titles);
@@ -113,6 +126,7 @@ export async function uploadBulkBooks({
 export async function uploadBookSet({
   username,
   grade,
+  board = "CBSE",
   subject,
   bookTitle,
   sectionTitles,
@@ -123,6 +137,7 @@ export async function uploadBookSet({
 
   formData.append("username", username);
   formData.append("grade", grade);
+  formData.append("board", board);
   formData.append("subject", subject);
   formData.append("book_title", bookTitle);
   formData.append("section_titles", sectionTitles);
@@ -160,6 +175,148 @@ export async function analyzeBookSetFiles({
 
   if (!response.ok) {
     throw new Error("Book set analysis failed");
+  }
+
+  return response.json();
+}
+
+export async function analyzeFullBookPdf({
+  file,
+  ocrScanned = false,
+}) {
+  /** Analyze one full PDF and suggest chapter page ranges before RAG upload. */
+  const formData = new FormData();
+
+  formData.append("ocr_scanned", String(ocrScanned));
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/analyze-full-book`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Full book analysis failed");
+  }
+
+  return response.json();
+}
+
+export async function startFullBookAnalysisJob({
+  file,
+  ocrScanned = false,
+  accessToken,
+}) {
+  /** Start background full-book analysis and return a pollable job id. */
+  const formData = new FormData();
+
+  formData.append("ocr_scanned", String(ocrScanned));
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/jobs/analyze-full-book`, {
+    method: "POST",
+    headers: authFormHeaders(accessToken),
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Full book analysis job failed"));
+  }
+
+  return response.json();
+}
+
+export async function uploadFullBookSections({
+  username,
+  grade,
+  board = "CBSE",
+  subject,
+  bookTitle,
+  chapters,
+  ocrScanned = false,
+  file,
+}) {
+  /** Upload reviewed full-book chapter ranges as separate RAG documents. */
+  const formData = new FormData();
+
+  formData.append("username", username);
+  formData.append("grade", grade);
+  formData.append("board", board);
+  formData.append("subject", subject);
+  formData.append("book_title", bookTitle);
+  formData.append("chapters_json", JSON.stringify(chapters));
+  formData.append("ocr_scanned", String(ocrScanned));
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/upload-full-book-sections`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Full book chapter upload failed");
+  }
+
+  return response.json();
+}
+
+export async function startFullBookUploadJob({
+  username,
+  grade,
+  board = "CBSE",
+  subject,
+  bookTitle,
+  chapters,
+  ocrScanned = false,
+  file,
+  accessToken,
+}) {
+  /** Start background full-book RAG chapter upload and embedding. */
+  const formData = new FormData();
+
+  formData.append("username", username);
+  formData.append("grade", grade);
+  formData.append("board", board);
+  formData.append("subject", subject);
+  formData.append("book_title", bookTitle);
+  formData.append("chapters_json", JSON.stringify(chapters));
+  formData.append("ocr_scanned", String(ocrScanned));
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/api/rag/jobs/upload-full-book-sections`, {
+    method: "POST",
+    headers: authFormHeaders(accessToken),
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Full book chapter upload job failed"));
+  }
+
+  return response.json();
+}
+
+export async function getRagUploadJob(jobId, accessToken) {
+  /** Poll one background RAG upload job. */
+  const response = await fetch(`${API_BASE_URL}/api/rag/jobs/${jobId}`, {
+    headers: authFormHeaders(accessToken),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load RAG upload job"));
+  }
+
+  return response.json();
+}
+
+export async function getRagUploadJobs(accessToken) {
+  /** Load recent background RAG upload jobs. */
+  const response = await fetch(`${API_BASE_URL}/api/rag/jobs`, {
+    headers: authFormHeaders(accessToken),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load RAG upload jobs"));
   }
 
   return response.json();
@@ -302,6 +459,7 @@ export async function confirmSofUpload({
 
 export async function searchRag({
   grade,
+  board = "CBSE",
   subject,
   chapter,
   query,
@@ -317,6 +475,7 @@ export async function searchRag({
       },
       body: JSON.stringify({
         grade,
+        board,
         subject,
         chapter,
         query,

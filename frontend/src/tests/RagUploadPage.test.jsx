@@ -108,6 +108,49 @@ vi.mock("../api/rag", () => ({
     success: true,
     message: "RAG document metadata updated.",
   })),
+  startFullBookAnalysisJob: vi.fn(async () => ({
+    success: true,
+    job_id: "analysis-job",
+    job: {
+      id: "analysis-job",
+      status: "completed",
+      percent: 100,
+      result: {
+        success: true,
+        chapters: [],
+      },
+    },
+  })),
+  startFullBookUploadJob: vi.fn(async () => ({
+    success: true,
+    job_id: "upload-job",
+    job: {
+      id: "upload-job",
+      status: "completed",
+      percent: 100,
+      result: {
+        success: true,
+        results: [],
+      },
+    },
+  })),
+  getRagUploadJob: vi.fn(async () => ({
+    success: true,
+    job: {
+      id: "upload-job",
+      status: "completed",
+      percent: 100,
+      result: {
+        success: true,
+        chapters: [],
+        results: [],
+      },
+    },
+  })),
+  getRagUploadJobs: vi.fn(async () => ({
+    success: true,
+    jobs: [],
+  })),
   deleteRagDocument: vi.fn(),
   analyzeRagImage: vi.fn(),
   analyzeSofImages: vi.fn(async () => ({
@@ -168,13 +211,13 @@ describe("RagUploadPage", () => {
 
     expect(
       await screen.findByRole("heading", {
-        name: /cbse class 1-10 bulk book upload/i,
+        name: /school-board bulk book upload/i,
       })
     ).toBeInTheDocument();
 
     const bulkBookSection = screen
       .getByRole("heading", {
-        name: /cbse class 1-10 bulk book upload/i,
+        name: /school-board bulk book upload/i,
       })
       .closest("section");
 
@@ -221,6 +264,7 @@ describe("RagUploadPage", () => {
         username: "admin",
         books: [
           {
+            board: "CBSE",
             grade: "Grade 5",
             subject: "Maths",
             chapter: "Uploaded Book Content",
@@ -323,6 +367,7 @@ describe("RagUploadPage", () => {
     await waitFor(() => {
       expect(uploadBookSet).toHaveBeenCalledWith({
         username: "admin",
+        board: "CBSE",
         grade: "Grade 5",
         subject: "Science",
         bookTitle: "Grade 5 Science Textbook",
@@ -438,6 +483,7 @@ describe("RagUploadPage", () => {
     await waitFor(() => {
       expect(uploadBookSet).toHaveBeenCalledWith({
         username: "admin",
+        board: "CBSE",
         grade: "Grade 5",
         subject: "Science",
         bookTitle: "Grade 5 Science Textbook",
@@ -522,6 +568,7 @@ describe("RagUploadPage", () => {
     await waitFor(() => {
       expect(uploadBookSet).toHaveBeenCalledWith({
         username: "admin",
+        board: "CBSE",
         grade: "Grade 5",
         subject: "Science",
         bookTitle: "Science Text Book",
@@ -548,6 +595,12 @@ describe("RagUploadPage", () => {
           username: "admin",
         }}
       />
+    );
+
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: /sof upload/i,
+      })
     );
 
     expect(
@@ -650,6 +703,12 @@ describe("RagUploadPage", () => {
           accessToken: "admin-token",
         }}
       />
+    );
+
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: /library \/ test/i,
+      })
     );
 
     expect(

@@ -9,6 +9,7 @@ from app.data.subscription_plans import (
 )
 from app.services.model_routing_service import normalize_model_preference
 from app.services.auth_service import require_admin, create_auth_user, admin_client
+from app.services.board_service import normalize_board
 from app.services.subject_access_service import clean_subject_access_list
 
 router = APIRouter()
@@ -28,6 +29,7 @@ class CreateChildRequest(BaseModel):
     parent_id: str
     family_id: str
     grade: str = "Grade 9"
+    board: str = "CBSE"
 
 
 class CreateTeacherRequest(BaseModel):
@@ -58,6 +60,7 @@ class UpdateAccessRequest(BaseModel):
     subscription_plan: str = "free"
     account_status: str = "active"
     grade: str = "Grade 9"
+    board: str = "CBSE"
     ai_model_preference: str = "default"
 
 
@@ -510,6 +513,7 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "parent_id": data.parent_id,
         "family_id": data.family_id,
         "grade": data.grade or "Grade 9",
+        "board": normalize_board(data.board),
         "account_status": "active",
         "subscription_plan": "free",
         "access_cbse": True,
@@ -689,6 +693,7 @@ def update_child_access(
             "subscription_plan": data.subscription_plan,
             "account_status": data.account_status,
             "grade": data.grade or "Grade 9",
+            "board": normalize_board(data.board),
             "ai_model_preference": normalize_model_preference(
                 data.ai_model_preference,
             ),

@@ -12,6 +12,7 @@ def save_doubt_history(
     source_type: str,
     sources: list[dict],
     mentor_suggestions: list[str],
+    board: str = "CBSE",
 ):
     """
     Persist the full Ask Doubt answer for student review history.
@@ -24,6 +25,7 @@ def save_doubt_history(
         "username": username,
         "grade": grade,
         "mode": mode,
+        "board": board or "CBSE",
         "subject": subject or "",
         "chapter": chapter or "",
         "question": question,
@@ -34,12 +36,25 @@ def save_doubt_history(
         "mentor_suggestions": mentor_suggestions or [],
     }
 
-    result = (
-        client
-        .table("doubt_history")
-        .insert(payload)
-        .execute()
-    )
+    try:
+        result = (
+            client
+            .table("doubt_history")
+            .insert(payload)
+            .execute()
+        )
+    except Exception as exc:
+        if "board" not in str(exc).lower():
+            raise
+
+        legacy_payload = dict(payload)
+        legacy_payload.pop("board", None)
+        result = (
+            client
+            .table("doubt_history")
+            .insert(legacy_payload)
+            .execute()
+        )
 
     return result.data[0] if result.data else payload
 

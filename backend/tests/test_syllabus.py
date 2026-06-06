@@ -152,8 +152,8 @@ def test_uploaded_rag_chapter_labels_preserve_admin_confirmed_text(monkeypatch):
     assert merged["Grade 8"]["CBSE"]["Science"] == [confirmed_label]
 
 
-def test_syllabus_override_keeps_review_order_and_appends_live_uploads():
-    """Saved admin reviews should not hide newly reuploaded RAG chapters."""
+def test_syllabus_override_is_authoritative_after_admin_review():
+    """Saved admin reviews should not re-add noisy live labels after refresh."""
     merged = {
         "Grade 8": {
             "CBSE": {
@@ -181,7 +181,6 @@ def test_syllabus_override_keeps_review_order_and_appends_live_uploads():
     assert result["Grade 8"]["CBSE"]["Maths"] == [
         "Chapter 1: Reviewed",
         "Chapter 2: Reviewed",
-        "Chapter 3: Newly Reuploaded",
     ]
 
 

@@ -19,8 +19,19 @@ from app.services.platform_info_service import (
     is_platform_info_question,
 )
 from app.services.subject_access_service import has_cbse_subject_access
+from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 
 router = APIRouter()
+
+
+def call_with_optional_board(func, board: str, **kwargs):
+    """Call upgraded services with board, while tolerating older test doubles."""
+    try:
+        return func(board=board, **kwargs)
+    except TypeError as error:
+        if "unexpected keyword argument 'board'" not in str(error):
+            raise
+        return func(**kwargs)
 
 
 def validate_required_text(value: str, field_name: str):
@@ -72,6 +83,21 @@ def enforce_profile_grade(profile: dict, requested_grade: str):
         )
 
 
+def enforce_profile_board(profile: dict, requested_board: str):
+    """Prevent students from requesting school-board content outside onboarding."""
+    if not profile or profile.get("role") in ["admin", "parent"]:
+        return
+
+    profile_board = normalize_board(profile.get("board"))
+    request_board = normalize_board(requested_board)
+
+    if profile_board != request_board:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_board}.",
+        )
+
+
 def enforce_learning_access(profile: dict, mode: str, subject: str):
     """
     Enforce plan access for CBSE and subject-specific SOF lessons.
@@ -91,16 +117,22 @@ def enforce_learning_access(profile: dict, mode: str, subject: str):
             detail="Your account is suspended. Please contact your parent or administrator.",
         )
 
-    if mode == "CBSE":
+    if is_school_board(mode):
         if not profile.get("access_cbse"):
+            access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
-                detail="CBSE access is not enabled for this student.",
+                detail=f"{access_label} access is not enabled for this student.",
             )
         if not has_cbse_subject_access(profile, subject):
+            subject_label = (
+                f"CBSE {subject}"
+                if normalize_board(mode) == "CBSE"
+                else f"{normalize_board(mode)} {subject}"
+            )
             raise HTTPException(
                 status_code=403,
-                detail=f"CBSE {subject} access is not enabled for this student.",
+                detail=f"{subject_label} access is not enabled for this student.",
             )
         return
 
@@ -155,20 +187,25 @@ def generate_lesson(
     """
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
+    validate_required_text(data.board, "board")
     validate_required_text(data.mode, "mode")
     validate_required_text(data.subject, "subject")
     validate_required_text(data.chapter, "chapter")
     validate_required_text(data.step_title, "step_title")
 
     profile = get_profile_by_user_id(user.id)
+    request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
+    enforce_profile_board(profile, request_board)
     enforce_learning_access(profile, data.mode, data.subject)
 
     enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
-        result = generate_step_lesson(
+        result = call_with_optional_board(
+            generate_step_lesson,
             grade=data.grade,
+            board=request_board,
             subject=data.subject,
             chapter=data.chapter,
             mode=data.mode,
@@ -220,6 +257,7 @@ def lesson_follow_up(
     """
     validate_required_text(data.username, "username")
     validate_required_text(data.grade, "grade")
+    validate_required_text(data.board, "board")
     validate_required_text(data.mode, "mode")
     validate_required_text(data.subject, "subject")
     validate_required_text(data.chapter, "chapter")
@@ -229,7 +267,9 @@ def lesson_follow_up(
 
     profile = get_profile_by_user_id(user.id)
 
+    request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
+    enforce_profile_board(profile, request_board)
     enforce_learning_access(profile, data.mode, data.subject)
 
     if is_platform_info_question(data.question):
@@ -243,6 +283,7 @@ def lesson_follow_up(
                 username=profile.get("username") or data.username,
                 grade=data.grade,
                 mode=data.mode,
+                board=request_board,
                 subject=data.subject,
                 chapter=data.chapter,
                 question=data.question,
@@ -267,9 +308,11 @@ def lesson_follow_up(
     enforce_ai_token_limit(profile.get("username") or data.username)
 
     try:
-        result = answer_lesson_follow_up(
+        result = call_with_optional_board(
+            answer_lesson_follow_up,
             grade=data.grade,
             mode=data.mode,
+            board=request_board,
             subject=data.subject,
             chapter=data.chapter,
             step_title=data.step_title,
@@ -287,6 +330,7 @@ def lesson_follow_up(
                 username=profile.get("username") or data.username,
                 grade=data.grade,
                 mode=data.mode,
+                board=request_board,
                 subject=data.subject,
                 chapter=data.chapter,
                 question=data.question,

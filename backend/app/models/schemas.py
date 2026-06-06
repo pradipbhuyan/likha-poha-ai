@@ -15,6 +15,7 @@ class LoginResponse(BaseModel):
 class LessonRequest(BaseModel):
     grade: str
     mode: str
+    board: str = "CBSE"
     subject: str
     chapter: str
     step_title: str
@@ -36,6 +37,7 @@ class TTSRequest(BaseModel):
 class MockTestRequest(BaseModel):
     grade: str
     mode: str
+    board: str = "CBSE"
     subject: str
     chapter: str | None = None
     mock_type: str
@@ -62,6 +64,7 @@ class MockTestResponse(BaseModel):
 class DoubtRequest(BaseModel):
     grade: str
     mode: str
+    board: str = "CBSE"
     subject: str
     chapter: str
     question: str
@@ -78,6 +81,7 @@ class DoubtResponse(BaseModel):
 class QuizRequest(BaseModel):
     grade: str
     mode: str
+    board: str = "CBSE"
     subject: str
     chapter: str
     difficulty: str
@@ -98,6 +102,7 @@ class QuizResponse(BaseModel):
 class RagTextUploadRequest(BaseModel):
     username: str
     grade: str
+    board: str = "CBSE"
     subject: str
     chapter: str
     title: str
@@ -110,6 +115,7 @@ class RagUploadResponse(BaseModel):
     chunks_created: int = 0
 
 class RagSearchRequest(BaseModel):
+    board: str | None = None
     grade: str | None = None
     subject: str | None = None
     chapter: str | None = None
@@ -124,6 +130,7 @@ class RagSearchResponse(BaseModel):
 class LessonFollowUpRequest(BaseModel):
     grade: str
     mode: str
+    board: str = "CBSE"
     subject: str
     chapter: str
     step_title: str

@@ -9,11 +9,20 @@ export function getDefaultGrade(syllabusData, preferredGrade = "Grade 9") {
   return grades[0] || "";
 }
 
-export function getDefaultSelection(syllabusData, preferredGrade = "Grade 9") {
+export function getDefaultSelection(
+  syllabusData,
+  preferredGrade = "Grade 9",
+  preferredMode = "CBSE"
+) {
   /** Return a valid grade/mode/subject/chapter selection for any syllabus tree. */
   const grade = getDefaultGrade(syllabusData, preferredGrade);
   const gradeData = syllabusData?.[grade] || {};
-  const mode = Object.keys(gradeData)[0] || "";
+  const modes = Object.keys(gradeData);
+  const mode = modes.includes(preferredMode)
+    ? preferredMode
+    : modes.includes("CBSE")
+      ? "CBSE"
+      : modes[0] || "";
   const subjectData = gradeData?.[mode] || {};
   const subject = Object.keys(subjectData)[0] || "";
   const chapter = subjectData?.[subject]?.[0] || "";
@@ -24,6 +33,31 @@ export function getDefaultSelection(syllabusData, preferredGrade = "Grade 9") {
     subject,
     chapter,
   };
+}
+
+export function getUserBoard(user, fallbackBoard = "CBSE") {
+  /** Normalize the school board stored on a student profile. */
+  const rawBoard = user?.board || user?.schoolBoard || user?.school_board;
+
+  if (!rawBoard) {
+    return fallbackBoard;
+  }
+
+  const text = String(rawBoard).trim().toLowerCase();
+
+  if (text === "cbse") {
+    return "CBSE";
+  }
+
+  if (text === "icse") {
+    return "ICSE";
+  }
+
+  if (text === "state" || text === "state board") {
+    return "State Board";
+  }
+
+  return rawBoard;
 }
 
 export function getUserGrade(user, fallbackGrade = "Grade 9") {

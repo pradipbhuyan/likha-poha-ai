@@ -22,6 +22,7 @@ import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
 import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import SalesIncentivePage from "./pages/SalesIncentivePage";
 
 
 import "./App.css";
@@ -92,6 +93,11 @@ const PAGE_META = {
       "Estimate per-student plan cost from tokens, hosting, database, and domain fees.",
     icon: "🧮",
   },
+  salesIncentives: {
+    title: "Sales Incentives",
+    subtitle: "Track salespeople, student onboarding, packages, and commissions.",
+    icon: "🤝",
+  },
   usage: {
     title: "AI Usage",
     subtitle: "Track token, image, and estimated AI costs by user and feature.",
@@ -153,6 +159,8 @@ function App() {
         setActivePage("parentDashboard");
       } else if (parsedUser.role === "teacher") {
         setActivePage("teacherDashboard");
+      } else if (parsedUser.role === "sales") {
+        setActivePage("salesIncentives");
       } else {
         setActivePage("dashboard");
       }
@@ -181,6 +189,9 @@ function App() {
     } else if (userData.role === "teacher") {
       setActivePage("teacherDashboard");
       localStorage.setItem("tutor_active_page", "teacherDashboard");
+    } else if (userData.role === "sales") {
+      setActivePage("salesIncentives");
+      localStorage.setItem("tutor_active_page", "salesIncentives");
     } else {
       setActivePage("dashboard");
       localStorage.setItem("tutor_active_page", "dashboard");
@@ -250,6 +261,8 @@ function App() {
         return <AdminSubscriptionSettingsPage user={user} />;
       case "pricingCalculator":
         return <AdminPricingCalculatorPage user={user} />;
+      case "salesIncentives":
+        return <SalesIncentivePage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
       case "parentDashboard":

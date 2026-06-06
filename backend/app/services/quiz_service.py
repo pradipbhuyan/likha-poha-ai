@@ -34,7 +34,8 @@ def generate_quiz(
     chapter: str,
     mode: str,
     difficulty: str,
-    count: int
+    count: int,
+    board: str = "CBSE",
 ):
     """
     Generate a multiple-choice quiz as JSON for the selected topic.
@@ -46,6 +47,7 @@ def generate_quiz(
 Generate {count} MCQs.
 
 Grade: {grade}
+Board: {board}
 Subject: {subject}
 Chapter/Topic: {chapter}
 Mode: {mode}

@@ -1,4 +1,5 @@
 import os
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -24,6 +25,7 @@ from app.routes.admin_control import router as admin_control_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
 from app.routes.weak_area_alerts import router as weak_area_alerts_router
 from app.routes.payments import router as payments_router
+from app.routes.sales import router as sales_router
 
 
 frontend_url = os.getenv(
@@ -180,6 +182,12 @@ app.include_router(
     tags=["Payments"],
 )
 
+app.include_router(
+    sales_router,
+    prefix="/api/sales",
+    tags=["Sales"],
+)
+
 @app.get("/api/health")
 def health_check():
     """Return a detailed health response for frontend/API uptime checks."""
@@ -201,4 +209,28 @@ def api_health():
     """Return a compact API health response for clients expecting success=true."""
     return {
         "success": True
+    }
+
+
+@app.get("/api/health/dependencies")
+def dependency_health():
+    """Report optional runtime dependencies used by advanced upload flows."""
+    pymupdf = {
+        "available": False,
+        "version": None,
+        "error": None,
+    }
+
+    try:
+        import fitz
+
+        pymupdf["available"] = True
+        pymupdf["version"] = getattr(fitz, "version", None)
+    except Exception as exc:
+        pymupdf["error"] = f"{type(exc).__name__}: {exc}"
+
+    return {
+        "success": True,
+        "python_executable": sys.executable,
+        "pymupdf": pymupdf,
     }

@@ -14,6 +14,7 @@ from app.services.platform_info_service import (
     is_platform_info_question,
 )
 from app.services.subject_access_service import has_cbse_subject_access
+from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 
 from app.services.auth_service import (
     get_current_user,
@@ -29,6 +30,16 @@ SOF_SUBJECT_ACCESS = {
     "mathematics olympiad": "access_sof_maths",
     "english olympiad": "access_sof_english",
 }
+
+
+def call_with_optional_board(func, board: str, **kwargs):
+    """Call upgraded tutor services with board, while tolerating old test doubles."""
+    try:
+        return func(board=board, **kwargs)
+    except TypeError as error:
+        if "unexpected keyword argument 'board'" not in str(error):
+            raise
+        return func(**kwargs)
 
 
 def validate_required_text(value: str, field_name: str):
@@ -80,6 +91,21 @@ def enforce_profile_grade(profile: dict, requested_grade: str):
         )
 
 
+def enforce_profile_board(profile: dict, requested_board: str):
+    """Prevent students from asking school-board doubts outside onboarding."""
+    if not profile or profile.get("role") in ["admin", "parent"]:
+        return
+
+    profile_board = normalize_board(profile.get("board"))
+    request_board = normalize_board(requested_board)
+
+    if profile_board != request_board:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_board}.",
+        )
+
+
 def normalize_subject(subject: str):
     """Normalize SOF subject text so UI aliases map to the same access flag."""
     return (subject or "").strip().lower()
@@ -107,16 +133,22 @@ def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
             detail="Your account is suspended. Please contact your parent or administrator.",
         )
 
-    if mode == "CBSE":
+    if is_school_board(mode):
         if not profile.get("access_cbse"):
+            access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
-                detail="CBSE access is not enabled.",
+                detail=f"{access_label} access is not enabled.",
             )
         if not has_cbse_subject_access(profile, subject):
+            subject_label = (
+                f"CBSE {subject}"
+                if normalize_board(mode) == "CBSE"
+                else f"{normalize_board(mode)} {subject}"
+            )
             raise HTTPException(
                 status_code=403,
-                detail=f"CBSE {subject} access is not enabled.",
+                detail=f"{subject_label} access is not enabled.",
             )
         return
 
@@ -175,7 +207,9 @@ def answer_student_doubt(
 
     # Access checks happen before token/LLM work so unauthorized SOF subjects do
     # not consume paid AI resources.
+    request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
+    enforce_profile_board(profile, request_board)
     enforce_learning_access(profile, data.mode, data.subject)
 
     if is_platform_info_question(data.question):
@@ -196,6 +230,7 @@ def answer_student_doubt(
                     username=canonical_username,
                     grade=data.grade,
                     mode=data.mode,
+                    board=request_board,
                     subject=data.subject,
                     chapter=data.chapter,
                     question=display_question,
@@ -227,9 +262,11 @@ def answer_student_doubt(
             question=data.question,
             mode=data.mode,
         )
-        result = answer_doubt(
+        result = call_with_optional_board(
+            answer_doubt,
             grade=data.grade,
             mode=data.mode,
+            board=request_board,
             subject=data.subject,
             chapter=data.chapter,
             question=data.question,
@@ -252,6 +289,7 @@ def answer_student_doubt(
                     username=canonical_username,
                     grade=data.grade,
                     mode=data.mode,
+                    board=request_board,
                     subject=data.subject,
                     chapter=data.chapter,
                     question=display_question,

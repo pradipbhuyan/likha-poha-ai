@@ -8,6 +8,7 @@ from app.services.parent_dashboard_service import (
     get_family_members,
 )
 from app.routes.admin_control import list_subscription_plan_settings
+from app.services.board_service import normalize_board
 
 router = APIRouter()
 
@@ -16,6 +17,7 @@ class CreateStudentRequest(BaseModel):
     email: str
     password: str
     username: str
+    board: str = "CBSE"
 
 
 class InviteParentRequest(BaseModel):
@@ -149,6 +151,7 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "role": "student",
         "parent_id": parent_profile["id"],
         "family_id": parent_profile["family_id"],
+        "board": normalize_board(data.board),
     }
 
     response = (

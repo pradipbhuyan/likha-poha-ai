@@ -5,6 +5,7 @@ import { generateQuiz } from "../api/quiz";
 import { logStudentActivity } from "../api/profile";
 import {
   getDefaultSelection,
+  getUserBoard,
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
@@ -57,7 +58,11 @@ function QuizPage({ user }) {
           mode: defaultMode,
           subject: defaultSubject,
           chapter: defaultChapter,
-        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        } = getDefaultSelection(
+          data.syllabus,
+          getUserGrade(user),
+          getUserBoard(user)
+        );
 
         setGrade(defaultGrade);
         setMode(defaultMode);
@@ -78,6 +83,7 @@ function QuizPage({ user }) {
 
   const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
+  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
 
@@ -140,6 +146,7 @@ function QuizPage({ user }) {
       const result = await generateQuiz({
         grade,
         mode,
+        board: requestBoard,
         subject,
         chapter,
         difficulty,

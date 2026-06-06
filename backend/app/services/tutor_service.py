@@ -239,6 +239,7 @@ def generate_step_lesson(
     step_title: str,
     teacher_persona: str = "",
     username: str = "unknown",
+    board: str = "CBSE",
 ):
     """
     Generate one focused lesson step using RAG when uploaded context exists.
@@ -255,6 +256,7 @@ def generate_step_lesson(
 
     rag_results = search_textbook_content(
         query=rag_query,
+        board=board,
         grade=grade,
         subject=subject,
         chapter=chapter,
@@ -264,6 +266,7 @@ def generate_step_lesson(
     if not rag_results:
         rag_results = search_textbook_content(
             query=rag_query,
+            board=board,
             grade=grade,
             subject=subject,
             chapter=None,
@@ -279,6 +282,7 @@ def generate_step_lesson(
 
     chapter_outline = build_chapter_outline(
         grade=grade,
+        board=board,
         subject=subject,
         chapter=chapter,
     )
@@ -379,6 +383,7 @@ def answer_doubt(
     question: str,
     username: str = "unknown",
     model: str = DEFAULT_TEXT_MODEL,
+    board: str = "CBSE",
 ):
     """
     Answer a student doubt with current-question priority, RAG, and mentor memory.
@@ -403,6 +408,7 @@ IMPORTANT:
 
     rag_results = search_textbook_content(
         query=rag_query,
+        board=board,
         grade=grade,
         subject=subject if subject else None,
         chapter=chapter if chapter else None,
@@ -412,6 +418,7 @@ IMPORTANT:
     if not rag_results:
         rag_results = search_textbook_content(
             query=rag_query,
+            board=board,
             grade=grade,
             subject=None,
             chapter=None,
@@ -543,6 +550,7 @@ def answer_lesson_follow_up(
     lesson: str,
     question: str,
     username: str = "unknown",
+    board: str = "CBSE",
 ):
     """
     Answer a follow-up about a generated lesson step.
@@ -561,6 +569,7 @@ Student follow-up question: {question}
 
     rag_results = search_textbook_content(
         query=rag_query,
+        board=board,
         grade=grade,
         subject=subject,
         chapter=chapter,
@@ -570,6 +579,7 @@ Student follow-up question: {question}
     if not rag_results:
         rag_results = search_textbook_content(
             query=rag_query,
+            board=board,
             grade=grade,
             subject=subject,
             chapter=None,

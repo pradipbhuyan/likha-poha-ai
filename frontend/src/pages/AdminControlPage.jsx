@@ -25,6 +25,8 @@ const STUDENT_GRADE_OPTIONS = Array.from(
   (_, index) => `Grade ${index + 1}`
 );
 
+const STUDENT_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
+
 const AI_MODEL_OPTIONS = [
   {
     value: "default",
@@ -146,6 +148,7 @@ function AdminControlPage({ user }) {
       password: "",
       username: "",
       grade: "Grade 9",
+      board: "CBSE",
     };
 
     try {
@@ -165,6 +168,7 @@ function AdminControlPage({ user }) {
           password: "",
           username: "",
           grade: "Grade 9",
+          board: "CBSE",
         },
       }));
 
@@ -299,6 +303,7 @@ function AdminControlPage({ user }) {
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
+          board: child.board || "CBSE",
           ai_model_preference: child.ai_model_preference || "default",
           cbse_subjects: getChildCbseSubjects(child),
         },
@@ -962,6 +967,8 @@ function AdminControlPage({ user }) {
               email: "",
               password: "",
               username: "",
+              grade: "Grade 9",
+              board: "CBSE",
             };
 
             return (
@@ -1046,6 +1053,22 @@ function AdminControlPage({ user }) {
                       </select>
                     </label>
 
+                    <label>
+                      Board
+                      <select
+                        value={childForm.board || "CBSE"}
+                        onChange={(e) =>
+                          updateChildForm(parent.id, "board", e.target.value)
+                        }
+                      >
+                        {STUDENT_BOARD_OPTIONS.map((boardOption) => (
+                          <option key={boardOption} value={boardOption}>
+                            {boardOption}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
                     <button className="secondary-btn" type="submit">
                       Create Child
                     </button>
@@ -1057,7 +1080,10 @@ function AdminControlPage({ user }) {
 
           <h4 style={{ marginTop: 24 }}>Children</h4>
 
-          {(family.children || []).map((child) => (
+          {(family.children || []).map((child) => {
+            const schoolBoardLabel = child.board || "CBSE";
+
+            return (
             <div
               key={child.id}
               className="premium-card"
@@ -1065,7 +1091,7 @@ function AdminControlPage({ user }) {
             >
               <h3>{child.username}</h3>
               <p>
-                {child.email} • {child.grade || "Grade 9"}
+                {child.email} • {child.board || "CBSE"} • {child.grade || "Grade 9"}
               </p>
 
               {child.activity && (
@@ -1151,6 +1177,27 @@ function AdminControlPage({ user }) {
                     {STUDENT_GRADE_OPTIONS.map((gradeOption) => (
                       <option key={gradeOption} value={gradeOption}>
                         {gradeOption}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label>
+                  Board
+                  <select
+                    value={child.board || "CBSE"}
+                    onChange={(e) =>
+                      updateLocalChild(
+                        family.family_id,
+                        child.id,
+                        "board",
+                        e.target.value
+                      )
+                    }
+                  >
+                    {STUDENT_BOARD_OPTIONS.map((boardOption) => (
+                      <option key={boardOption} value={boardOption}>
+                        {boardOption}
                       </option>
                     ))}
                   </select>
@@ -1252,7 +1299,7 @@ function AdminControlPage({ user }) {
 
               <div style={{ marginTop: 16 }}>
                 {[
-                  ["access_cbse", "CBSE"],
+                  ["access_cbse", schoolBoardLabel],
                   ["access_sof_science", "SOF Science"],
                   ["access_sof_maths", "SOF Maths"],
                   ["access_sof_english", "SOF English"],
@@ -1280,9 +1327,9 @@ function AdminControlPage({ user }) {
 
               <div className="admin-cbse-subject-access">
                 <div>
-                  <h4>CBSE Subject Access</h4>
+                  <h4>{schoolBoardLabel} Subject Access</h4>
                   <p>
-                    Leave blank for all CBSE subjects, or select only the
+                    Leave blank for all {schoolBoardLabel} subjects, or select only the
                     subjects included in a custom lower-cost plan.
                   </p>
                 </div>
@@ -1329,7 +1376,7 @@ function AdminControlPage({ user }) {
                         e.target.value
                       )
                     }
-                    placeholder="Blank = all CBSE subjects, or Science, Maths"
+                    placeholder={`Blank = all ${schoolBoardLabel} subjects, or Science, Maths`}
                   />
                 </label>
 
@@ -1345,7 +1392,7 @@ function AdminControlPage({ user }) {
                     )
                   }
                 >
-                  Allow All CBSE Subjects
+                  Allow All {schoolBoardLabel} Subjects
                 </button>
               </div>
 
@@ -1391,7 +1438,8 @@ function AdminControlPage({ user }) {
                 </button>
               </div>
             </div>
-          ))}
+            );
+          })}
           </details>
         </section>
       ))}

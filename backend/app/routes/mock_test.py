@@ -18,8 +18,19 @@ from app.services.auth_service import (
 
 from app.services.usage_service import enforce_token_limits
 from app.services.subject_access_service import has_cbse_subject_access
+from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 
 router = APIRouter()
+
+
+def call_with_optional_board(func, board: str, **kwargs):
+    """Call upgraded mock-test services with board, while tolerating old doubles."""
+    try:
+        return func(board=board, **kwargs)
+    except TypeError as error:
+        if "unexpected keyword argument 'board'" not in str(error):
+            raise
+        return func(**kwargs)
 
 
 def get_profile_by_user_id(user_id: str):
@@ -62,6 +73,21 @@ def enforce_profile_grade(profile: dict, requested_grade: str):
         )
 
 
+def enforce_profile_board(profile: dict, requested_board: str):
+    """Prevent students from generating mock tests outside their onboarded board."""
+    if not profile or profile.get("role") in ["admin", "parent"]:
+        return
+
+    profile_board = normalize_board(profile.get("board"))
+    request_board = normalize_board(requested_board)
+
+    if profile_board != request_board:
+        raise HTTPException(
+            status_code=403,
+            detail=f"This student is onboarded for {profile_board}.",
+        )
+
+
 def enforce_mock_access(profile: dict, mode: str, subject: str):
     """
     Enforce mock-test access for CBSE and each SOF Olympiad subject.
@@ -85,16 +111,22 @@ def enforce_mock_access(profile: dict, mode: str, subject: str):
             detail="Your account is suspended. Please contact your parent or administrator.",
         )
 
-    if mode == "CBSE":
+    if is_school_board(mode):
         if not profile.get("access_cbse"):
+            access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
-                detail="CBSE access is not enabled.",
+                detail=f"{access_label} access is not enabled.",
             )
         if not has_cbse_subject_access(profile, subject):
+            subject_label = (
+                f"CBSE {subject}"
+                if normalize_board(mode) == "CBSE"
+                else f"{normalize_board(mode)} {subject}"
+            )
             raise HTTPException(
                 status_code=403,
-                detail=f"CBSE {subject} access is not enabled.",
+                detail=f"{subject_label} access is not enabled.",
             )
         return
 
@@ -158,7 +190,9 @@ def generate_mock_test(
     """
     profile = get_profile_by_user_id(user.id)
 
+    request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
+    enforce_profile_board(profile, request_board)
     enforce_mock_access(
         profile,
         data.mode,
@@ -184,8 +218,10 @@ def generate_mock_test(
             )
 
         else:
-            questions = generate_cbse_mock_test(
+            questions = call_with_optional_board(
+                generate_cbse_mock_test,
                 grade=data.grade,
+                board=request_board,
                 subject=data.subject,
                 chapter=data.chapter,
                 exam_type=data.exam_type or "Class Test",

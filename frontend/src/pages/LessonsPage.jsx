@@ -20,6 +20,7 @@ import {
 } from "../api/evaluation";
 import {
   getDefaultSelection,
+  getUserBoard,
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
@@ -144,7 +145,11 @@ function LessonsPage({ user }) {
           mode: defaultMode,
           subject: defaultSubject,
           chapter: defaultChapter,
-        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        } = getDefaultSelection(
+          data.syllabus,
+          getUserGrade(user),
+          getUserBoard(user)
+        );
         const defaultSubjects = Object.keys(
           data.syllabus[defaultGrade]?.[defaultMode] || {}
         );
@@ -314,6 +319,7 @@ function LessonsPage({ user }) {
   const allSubjects = Object.keys(syllabusData[grade][mode]);
   const subjects = getAllowedSubjects(allSubjects, mode);
   const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
+  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
 
   function resetLessonState() {
     /** Clear generated lesson artifacts when the selected topic changes. */
@@ -483,6 +489,7 @@ function LessonsPage({ user }) {
         username: user.username,
         grade,
         mode,
+        board: requestBoard,
         subject,
         chapter,
         step_title: stepTitle,
@@ -512,6 +519,7 @@ function LessonsPage({ user }) {
         username: user.username,
         grade,
         mode,
+        board: requestBoard,
         subject,
         chapter,
         current_step_index: currentStepIndex,

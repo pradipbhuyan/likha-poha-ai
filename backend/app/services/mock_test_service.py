@@ -415,25 +415,27 @@ def generate_cbse_mock_test(
     chapter,
     exam_type="Class Test",
     num_questions=10,
-    difficulty="Medium"
+    difficulty="Medium",
+    board="CBSE",
 ):
     """
-    Generate a general CBSE-style mock test for a selected chapter.
+    Generate a general school-board mock test for a selected chapter.
 
     Unlike SOF generation, this path does not require RAG content yet and uses
-    standard CBSE/NCERT style instructions directly in the prompt.
+    the requested board style instructions directly in the prompt.
     """
     prompt = f"""
-Create a CBSE {grade} mock test.
+Create a {board} {grade} mock test.
 
 Grade: {grade}
+Board: {board}
 Subject: {subject}
 Chapter: {chapter}
 Exam Type: {exam_type}
 Difficulty: {difficulty}
 Questions: {num_questions}
 
-Follow CBSE/NCERT style.
+Follow {board} textbook and exam style.
 
 For:
 - Class Test -> short chapter focused questions

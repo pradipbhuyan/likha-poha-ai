@@ -163,6 +163,48 @@ def require_teacher(user=Depends(get_current_user)):
         "auth_user": user,
         "profile": profile,
     }
+
+
+def require_sales(user=Depends(get_current_user)):
+    """
+    FastAPI dependency that allows only sales profile users.
+
+    Sales accounts are admin-created and can only see their own onboarding and
+    incentive data.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile or profile.get("role") != "sales":
+        raise HTTPException(
+            status_code=403,
+            detail="Sales access required",
+        )
+
+    return {
+        "auth_user": user,
+        "profile": profile,
+    }
+
+
+def require_admin_or_sales(user=Depends(get_current_user)):
+    """
+    FastAPI dependency for routes shared by admins and sales users.
+
+    Admins receive the full sales dashboard; salespeople receive data scoped to
+    their own profile id.
+    """
+    profile = get_user_profile(user.id)
+
+    if not profile or profile.get("role") not in {"admin", "sales"}:
+        raise HTTPException(
+            status_code=403,
+            detail="Admin or sales access required",
+        )
+
+    return {
+        "auth_user": user,
+        "profile": profile,
+    }
     
 def create_auth_user(email: str, password: str):
     """

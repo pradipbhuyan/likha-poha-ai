@@ -55,6 +55,7 @@ def create_quiz(data: QuizRequest):
             subject=data.subject,
             chapter=data.chapter,
             mode=data.mode,
+            board=data.board,
             difficulty=data.difficulty,
             count=data.question_count,
         )

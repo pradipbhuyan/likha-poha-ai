@@ -17,6 +17,7 @@ import {
   ListChecks,
   Calculator,
   KeyRound,
+  Handshake,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -77,6 +78,12 @@ function Sidebar({
       label: "Pricing Calculator",
       icon: Calculator,
       roles: ["admin"],
+    },
+    {
+      key: "salesIncentives",
+      label: "Sales Incentives",
+      icon: Handshake,
+      roles: ["admin", "sales"],
     },
     {
       key: "usage",
@@ -143,7 +150,7 @@ function Sidebar({
       key: "changePassword",
       label: "Change Password",
       icon: KeyRound,
-      roles: ["student", "parent", "teacher", "admin"],
+      roles: ["student", "parent", "teacher", "admin", "sales"],
     },
   ];
 

@@ -5,10 +5,11 @@ import { saveTestHistory } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
 import {
   getDefaultSelection,
+  getUserBoard,
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
-import { filterAllowedSubjects } from "../utils/subjectAccess";
+import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
 
 function MockTestPage({ user }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
@@ -83,7 +84,11 @@ function MockTestPage({ user }) {
           mode: defaultMode,
           subject: defaultSubject,
           chapter: defaultChapter,
-        } = getDefaultSelection(data.syllabus, getUserGrade(user));
+        } = getDefaultSelection(
+          data.syllabus,
+          getUserGrade(user),
+          getUserBoard(user)
+        );
         const defaultSubjects = Object.keys(
           data.syllabus[defaultGrade]?.[defaultMode] || {}
         );
@@ -158,6 +163,7 @@ function MockTestPage({ user }) {
   const chapters = subject
     ? syllabusData[grade][mode][subject] || []
     : [];
+  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
 
   const answeredCount = Object.keys(answers).length;
   const progressPercent = questions.length
@@ -248,18 +254,18 @@ function MockTestPage({ user }) {
     setLoading(true);
 
     if (
-      mode === "CBSE" &&
+      isSchoolBoardMode(mode) &&
       !user.accessCbse
     ) {
       setError(
-        "You do not have access to CBSE mock tests."
+        `You do not have access to ${mode} mock tests.`
       );
       setLoading(false);
       return;
     }
 
-    if (mode === "CBSE" && subjects.length === 0) {
-      setError("You do not have access to this CBSE subject.");
+    if (isSchoolBoardMode(mode) && subjects.length === 0) {
+      setError(`You do not have access to this ${mode} subject.`);
       setLoading(false);
       return;
     }
@@ -287,6 +293,7 @@ function MockTestPage({ user }) {
       const response = await generateMockTest({
         grade,
         mode,
+        board: requestBoard,
         subject,
         chapter,
         mock_type: mockType,

@@ -20,6 +20,7 @@ def build_chapter_outline(
     grade: str,
     subject: str,
     chapter: str,
+    board: str = "CBSE",
 ):
     """
     Build a chapter outline from RAG context for lesson generation.
@@ -29,6 +30,7 @@ def build_chapter_outline(
     """
     rag_results = search_textbook_content(
         query=f"{chapter} full chapter headings sections activities summary questions",
+        board=board,
         grade=grade,
         subject=subject,
         chapter=chapter,

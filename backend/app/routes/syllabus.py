@@ -6,6 +6,7 @@ from pydantic import BaseModel
 
 from app.data.syllabus import SYLLABUS, LESSON_STEPS
 from app.services.auth_service import admin_client, require_admin
+from app.services.board_service import normalize_board
 from app.services.supabase_client import supabase
 
 router = APIRouter()
@@ -331,11 +332,19 @@ def fetch_rag_chapter_counts():
         response = (
             supabase
             .table("rag_documents")
-            .select("grade,subject,chapter")
+            .select("grade,subject,chapter,board")
             .execute()
         )
     except Exception:
-        return {}
+        try:
+            response = (
+                supabase
+                .table("rag_documents")
+                .select("grade,subject,chapter")
+                .execute()
+            )
+        except Exception:
+            return {}
 
     counts = {}
 
@@ -347,7 +356,7 @@ def fetch_rag_chapter_counts():
         if not grade or not subject or not chapter:
             continue
 
-        mode = "SOF" if "Olympiad" in subject else "CBSE"
+        mode = "SOF" if "Olympiad" in subject else normalize_board(document.get("board"))
         key = (
             grade,
             mode,
@@ -437,19 +446,16 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters):
 
 
 def apply_syllabus_overrides(merged, overrides):
-    """Apply admin reviews without hiding newly uploaded live RAG chapters."""
+    """Apply admin-reviewed dropdowns as the student-facing source of truth."""
     for (grade, mode, subject), override in overrides.items():
-        chapters = override.get("chapters") or []
+        chapters = clean_chapter_list(override.get("chapters") or [])
 
         if not chapters:
             continue
 
         grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
         mode_data = grade_data.setdefault(mode, {})
-        mode_data[subject] = merge_reviewed_and_live_chapters(
-            chapters,
-            mode_data.get(subject, []),
-        )
+        mode_data[subject] = chapters
 
     return merged
 
@@ -468,11 +474,19 @@ def merge_uploaded_rag_chapters(syllabus):
         response = (
             supabase
             .table("rag_documents")
-            .select("grade,subject,chapter,title,created_at")
+            .select("grade,subject,chapter,title,created_at,board")
             .execute()
         )
     except Exception:
-        return merged
+        try:
+            response = (
+                supabase
+                .table("rag_documents")
+                .select("grade,subject,chapter,title,created_at")
+                .execute()
+            )
+        except Exception:
+            return merged
 
     uploaded_by_subject = {}
 
@@ -485,7 +499,7 @@ def merge_uploaded_rag_chapters(syllabus):
             continue
 
         grade_data = merged.setdefault(grade, {"CBSE": {}})
-        mode = "SOF" if "Olympiad" in subject else "CBSE"
+        mode = "SOF" if "Olympiad" in subject else normalize_board(document.get("board"))
         mode_data = grade_data.setdefault(mode, {})
         chapters = mode_data.setdefault(subject, [])
 

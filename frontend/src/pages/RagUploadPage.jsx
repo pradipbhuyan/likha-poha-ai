@@ -7,6 +7,10 @@ import {
   uploadBulkBooks,
   uploadBookSet,
   analyzeBookSetFiles,
+  startFullBookAnalysisJob,
+  startFullBookUploadJob,
+  getRagUploadJob,
+  getRagUploadJobs,
   getRagDocuments,
   deleteRagDocument,
   previewRagDocument,
@@ -20,11 +24,88 @@ import { getDefaultSelection } from "../utils/syllabusDefaults";
 
 const BOOK_CHAPTER_LABEL = "Uploaded Book Content";
 const BULK_BOOK_FILE_ACCEPT = ".txt,.jpg,.jpeg,.png,.webp,.pdf,.docx,.pptx";
+const SCHOOL_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
+const RAG_JOB_RUNNING_STATUSES = new Set(["queued", "running"]);
+const RAG_WORKSPACE_TABS = [
+  {
+    id: "bookUploads",
+    label: "Book Uploads",
+    description: "Full books, chapter PDFs, and class books",
+  },
+  {
+    id: "sof",
+    label: "SOF Upload",
+    description: "Olympiad worksheets and prep books",
+  },
+  {
+    id: "manual",
+    label: "Manual / Scan",
+    description: "Quick uploads, photos, and single-page OCR",
+  },
+  {
+    id: "library",
+    label: "Library / Test",
+    description: "Search, preview, repair, and delete RAG content",
+  },
+];
+
+function sleep(ms) {
+  /** Wait between background job polling attempts. */
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRagJobRunning(job) {
+  /** Detect whether a background RAG job still needs polling. */
+  return job && RAG_JOB_RUNNING_STATUSES.has(job.status);
+}
+
+function RagJobProgress({ job, title }) {
+  /** Show live RAG analysis/upload progress with page, chapter, and chunk counters. */
+  if (!job) {
+    return null;
+  }
+
+  const percent = Math.max(0, Math.min(100, Number(job.percent || 0)));
+
+  return (
+    <div className={`premium-rag-job-progress ${job.status || ""}`}>
+      <div className="premium-rag-job-progress-header">
+        <div>
+          <strong>{title}</strong>
+          <p>{job.message || job.phase || "Working..."}</p>
+        </div>
+        <span>{percent}%</span>
+      </div>
+
+      <div className="premium-rag-job-progress-bar">
+        <div style={{ width: `${percent}%` }} />
+      </div>
+
+      <div className="premium-rag-job-progress-meta">
+        <span>
+          Pages {job.processed_pages || 0}/{job.page_count || 0}
+        </span>
+        <span>
+          Chapters {job.processed_chapters || 0}/{job.total_chapters || 0}
+        </span>
+        <span>
+          Chunks {job.processed_chunks || 0}/{job.total_chunks || 0}
+        </span>
+        <span>{job.status || "queued"}</span>
+      </div>
+
+      {job.error_message && (
+        <p className="premium-rag-job-progress-error">{job.error_message}</p>
+      )}
+    </div>
+  );
+}
 
 function createBulkBookRow(index = 0) {
   /** Create one editable row for a Class 1-10 full-book RAG upload. */
   return {
     id: `${Date.now()}-${index}`,
+    board: "CBSE",
     grade: "Grade 1",
     subject: "",
     title: "",
@@ -48,6 +129,7 @@ function getReadableSectionTitleFromFile(file, index) {
 function RagUploadPage({ user }) {
   /** Admin-only workspace for uploading, analyzing, searching, and deleting RAG documents. */
   const [loading, setLoading] = useState(true);
+  const [activeRagWorkspace, setActiveRagWorkspace] = useState("bookUploads");
   const [syllabusData, setSyllabusData] = useState(null);
 
   const [grade, setGrade] = useState("Grade 9");
@@ -67,6 +149,7 @@ function RagUploadPage({ user }) {
   const [bulkBookRows, setBulkBookRows] = useState([createBulkBookRow()]);
   const [bulkUploading, setBulkUploading] = useState(false);
   const [bookSetGrade, setBookSetGrade] = useState("Grade 1");
+  const [bookSetBoard, setBookSetBoard] = useState("CBSE");
   const [bookSetSubject, setBookSetSubject] = useState("");
   const [bookSetTitle, setBookSetTitle] = useState("");
   const [bookSetSectionTitles, setBookSetSectionTitles] = useState("");
@@ -74,6 +157,18 @@ function RagUploadPage({ user }) {
   const [bookSetAnalysis, setBookSetAnalysis] = useState([]);
   const [bookSetAnalyzing, setBookSetAnalyzing] = useState(false);
   const [bookSetUploading, setBookSetUploading] = useState(false);
+  const [fullBookGrade, setFullBookGrade] = useState("Grade 1");
+  const [fullBookBoard, setFullBookBoard] = useState("State Board");
+  const [fullBookSubject, setFullBookSubject] = useState("");
+  const [fullBookTitle, setFullBookTitle] = useState("");
+  const [fullBookFile, setFullBookFile] = useState(null);
+  const [fullBookOcrScanned, setFullBookOcrScanned] = useState(false);
+  const [fullBookAnalysis, setFullBookAnalysis] = useState(null);
+  const [fullBookAnalyzing, setFullBookAnalyzing] = useState(false);
+  const [fullBookUploading, setFullBookUploading] = useState(false);
+  const [fullBookAnalysisJob, setFullBookAnalysisJob] = useState(null);
+  const [fullBookUploadJob, setFullBookUploadJob] = useState(null);
+  const [recentRagJobs, setRecentRagJobs] = useState([]);
 
   const [analysisImage, setAnalysisImage] = useState(null);
   const [analyzingImage, setAnalyzingImage] = useState(false);
@@ -130,6 +225,12 @@ function RagUploadPage({ user }) {
           Object.keys(data.syllabus?.[defaultGrade]?.CBSE || {})[0] ||
             defaultSubject
         );
+        setFullBookGrade(defaultGrade);
+        setFullBookSubject(
+          Object.keys(data.syllabus?.[defaultGrade]?.["State Board"] || {})[0] ||
+            Object.keys(data.syllabus?.[defaultGrade]?.CBSE || {})[0] ||
+            defaultSubject
+        );
       } finally {
         setLoading(false);
       }
@@ -137,6 +238,7 @@ function RagUploadPage({ user }) {
 
     loadSyllabus();
     loadDocuments();
+    loadRagJobs();
   }, []);
 
   async function loadDocuments() {
@@ -149,19 +251,53 @@ function RagUploadPage({ user }) {
     }
   }
 
+  async function loadRagJobs() {
+    /** Refresh recent background RAG jobs for parallel batch monitoring. */
+    if (!user?.accessToken) {
+      return;
+    }
+
+    try {
+      const result = await getRagUploadJobs(user.accessToken);
+      setRecentRagJobs(result.jobs || []);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function pollRagJob(jobId, onUpdate) {
+    /** Poll one background job until it reaches a terminal state. */
+    let latestJob = null;
+
+    for (let attempt = 0; attempt < 720; attempt += 1) {
+      const result = await getRagUploadJob(jobId, user.accessToken);
+      latestJob = result.job;
+      onUpdate(latestJob);
+      await loadRagJobs();
+
+      if (!isRagJobRunning(latestJob)) {
+        return latestJob;
+      }
+
+      await sleep(1500);
+    }
+
+    throw new Error("RAG job is still running after the polling window.");
+  }
+
   function appendFiles(currentFiles, selectedFiles, maxFiles = 20) {
     /** Add selected files while enforcing the 20-file upload limit. */
     return [...currentFiles, ...selectedFiles].slice(0, maxFiles);
   }
 
-  function getCbseSubjectsForGrade(rowGrade) {
-    /** Return the CBSE subject options available for one bulk book row. */
-    return Object.keys(syllabusData?.[rowGrade]?.CBSE || {});
+  function getSubjectsForGradeAndBoard(rowGrade, rowBoard = "CBSE") {
+    /** Return subject options available for one grade/board combination. */
+    return Object.keys(syllabusData?.[rowGrade]?.[rowBoard] || {});
   }
 
   function resolveBulkBookRow(row) {
     /** Fill safe defaults for one bulk book row before validation/upload. */
-    const subjectsForGrade = getCbseSubjectsForGrade(row.grade);
+    const subjectsForGrade = getSubjectsForGradeAndBoard(row.grade, row.board);
     const resolvedSubject = row.subject || subjectsForGrade[0] || "";
 
     return {
@@ -169,7 +305,7 @@ function RagUploadPage({ user }) {
       subject: resolvedSubject,
       title:
         row.title.trim() ||
-        `${row.grade} ${resolvedSubject || "CBSE"} Full Book`,
+        `${row.grade} ${row.board || "CBSE"} ${resolvedSubject || "Book"} Full Book`,
     };
   }
 
@@ -186,8 +322,11 @@ function RagUploadPage({ user }) {
           ...updates,
         };
 
-        if (updates.grade) {
-          nextRow.subject = getCbseSubjectsForGrade(updates.grade)[0] || "";
+        if (updates.grade || updates.board) {
+          nextRow.subject =
+            getSubjectsForGradeAndBoard(nextRow.grade, nextRow.board)[0] ||
+            nextRow.subject ||
+            "";
         }
 
         return nextRow;
@@ -203,7 +342,8 @@ function RagUploadPage({ user }) {
     }
 
     const nextRow = createBulkBookRow(bulkBookRows.length);
-    nextRow.subject = getCbseSubjectsForGrade(nextRow.grade)[0] || "";
+    nextRow.subject =
+      getSubjectsForGradeAndBoard(nextRow.grade, nextRow.board)[0] || "";
     setBulkBookRows((currentRows) => [...currentRows, nextRow]);
   }
 
@@ -219,7 +359,29 @@ function RagUploadPage({ user }) {
   function handleBookSetGradeChange(value) {
     /** Keep the book-set subject valid when the selected grade changes. */
     setBookSetGrade(value);
-    setBookSetSubject(getCbseSubjectsForGrade(value)[0] || "");
+    setBookSetSubject(getSubjectsForGradeAndBoard(value, bookSetBoard)[0] || bookSetSubject);
+  }
+
+  function handleBookSetBoardChange(value) {
+    /** Keep the book-set subject valid when the selected board changes. */
+    setBookSetBoard(value);
+    setBookSetSubject(getSubjectsForGradeAndBoard(bookSetGrade, value)[0] || bookSetSubject);
+  }
+
+  function handleFullBookGradeChange(value) {
+    /** Keep the full-book splitter subject valid when class changes. */
+    setFullBookGrade(value);
+    setFullBookSubject(
+      getSubjectsForGradeAndBoard(value, fullBookBoard)[0] || fullBookSubject
+    );
+  }
+
+  function handleFullBookBoardChange(value) {
+    /** Keep the full-book splitter subject valid when board changes. */
+    setFullBookBoard(value);
+    setFullBookSubject(
+      getSubjectsForGradeAndBoard(fullBookGrade, value)[0] || fullBookSubject
+    );
   }
 
   function updateSofGroup(index, updates) {
@@ -387,6 +549,7 @@ function RagUploadPage({ user }) {
         username: user.username,
         books: rowsToUpload.map((row) => ({
           grade: row.grade,
+          board: row.board || "CBSE",
           subject: row.subject,
           chapter: BOOK_CHAPTER_LABEL,
           title: row.title.trim(),
@@ -456,6 +619,7 @@ function RagUploadPage({ user }) {
       const result = await uploadBookSet({
         username: user.username,
         grade: bookSetGrade,
+        board: bookSetBoard,
         subject: bookSetSubject,
         bookTitle: bookSetTitle.trim(),
         sectionTitles: resolvedSectionTitles.join("\n"),
@@ -481,6 +645,148 @@ function RagUploadPage({ user }) {
       setError("Book set upload failed. Check backend.");
     } finally {
       setBookSetUploading(false);
+    }
+  }
+
+  async function handleAnalyzeFullBook() {
+    /** Analyze one full textbook PDF and suggest chapter page ranges. */
+    setMessage("");
+    setError("");
+    setBatchResults([]);
+    setFullBookAnalysis(null);
+    setFullBookAnalysisJob(null);
+
+    if (!fullBookFile) {
+      setError("Please select one full textbook PDF.");
+      return;
+    }
+
+    if (!fullBookFile.name.toLowerCase().endsWith(".pdf")) {
+      setError("Full book splitter currently supports PDF files only.");
+      return;
+    }
+
+    setFullBookAnalyzing(true);
+
+    try {
+      const started = await startFullBookAnalysisJob({
+        file: fullBookFile,
+        ocrScanned: fullBookOcrScanned,
+        accessToken: user.accessToken,
+      });
+      setFullBookAnalysisJob(started.job || null);
+      setMessage(started.message || "Full-book analysis started.");
+
+      const completedJob = await pollRagJob(started.job_id, setFullBookAnalysisJob);
+      const result = completedJob.result || {};
+
+      if (completedJob.status === "failed" || !result.success) {
+        setError(
+          completedJob.error_message ||
+            result.message ||
+            "Full book analysis failed."
+        );
+        setFullBookAnalysis(result);
+        return;
+      }
+
+      setFullBookAnalysis(result);
+      setMessage(result.message || "Full book analyzed. Review chapters before upload.");
+    } catch (err) {
+      console.error(err);
+      setError("Full book analysis failed. Check backend.");
+    } finally {
+      setFullBookAnalyzing(false);
+    }
+  }
+
+  function updateFullBookChapter(index, updates) {
+    /** Let admins correct detected chapter ranges before upload. */
+    setFullBookAnalysis((currentAnalysis) => {
+      if (!currentAnalysis) {
+        return currentAnalysis;
+      }
+
+      return {
+        ...currentAnalysis,
+        chapters: (currentAnalysis.chapters || []).map((chapter, chapterIndex) =>
+          chapterIndex === index
+            ? {
+                ...chapter,
+                ...updates,
+              }
+            : chapter
+        ),
+      };
+    });
+  }
+
+  async function handleUploadFullBookSections() {
+    /** Upload reviewed full-book page ranges as separate RAG chapter documents. */
+    setMessage("");
+    setError("");
+    setBatchResults([]);
+    setFullBookUploadJob(null);
+
+    if (!fullBookFile) {
+      setError("Please select one full textbook PDF.");
+      return;
+    }
+
+    if (!fullBookTitle.trim()) {
+      setError("Please enter a book title.");
+      return;
+    }
+
+    const chapters = fullBookAnalysis?.chapters || [];
+    const selectedChapters = chapters.filter((chapter) => chapter.include !== false);
+
+    if (selectedChapters.length === 0) {
+      setError("Select at least one chapter to upload.");
+      return;
+    }
+
+    setFullBookUploading(true);
+
+    try {
+      const started = await startFullBookUploadJob({
+        username: user.username,
+        grade: fullBookGrade,
+        board: fullBookBoard,
+        subject: fullBookSubject,
+        bookTitle: fullBookTitle.trim(),
+        chapters,
+        ocrScanned: fullBookOcrScanned,
+        file: fullBookFile,
+        accessToken: user.accessToken,
+      });
+      setFullBookUploadJob(started.job || null);
+      setMessage(started.message || "Full-book RAG upload started.");
+
+      const completedJob = await pollRagJob(started.job_id, setFullBookUploadJob);
+      const result = completedJob.result || {};
+
+      if (completedJob.status === "failed" || !result.success) {
+        setError(
+          completedJob.error_message ||
+            result.message ||
+            "Full book chapter upload failed."
+        );
+        setBatchResults(result.results || []);
+        return;
+      }
+
+      setMessage(result.message || "Full book chapters uploaded successfully.");
+      setBatchResults(result.results || []);
+      setFullBookFile(null);
+      setFullBookAnalysis(null);
+
+      await loadDocuments();
+    } catch (err) {
+      console.error(err);
+      setError("Full book chapter upload failed. Check backend.");
+    } finally {
+      setFullBookUploading(false);
     }
   }
 
@@ -573,6 +879,7 @@ function RagUploadPage({ user }) {
       const result = await uploadRagFilesBatch({
         username: user.username,
         grade,
+        board: mode === "SOF" ? "CBSE" : mode,
         subject,
         chapter,
         titles: title,
@@ -610,6 +917,7 @@ function RagUploadPage({ user }) {
     try {
       const result = await searchRag({
         grade: searchGrade,
+        board: searchMode === "SOF" ? "CBSE" : searchMode,
         subject: searchSubject,
         chapter: searchChapter,
         query: ragQuery,
@@ -721,7 +1029,8 @@ function RagUploadPage({ user }) {
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
-  const bookSetSubjects = getCbseSubjectsForGrade(bookSetGrade);
+  const bookSetSubjects = getSubjectsForGradeAndBoard(bookSetGrade, bookSetBoard);
+  const fullBookSubjects = getSubjectsForGradeAndBoard(fullBookGrade, fullBookBoard);
 
   function handleGradeChange(value) {
     /** Reset upload selectors to valid mode, subject, and chapter defaults for the grade. */
@@ -777,6 +1086,26 @@ function RagUploadPage({ user }) {
         </div>
       </section>
 
+      <section className="premium-rag-workspace-tabs" aria-label="RAG workspace sections">
+        {RAG_WORKSPACE_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            className={
+              activeRagWorkspace === tab.id
+                ? "premium-rag-workspace-tab active"
+                : "premium-rag-workspace-tab"
+            }
+            aria-pressed={activeRagWorkspace === tab.id}
+            onClick={() => setActiveRagWorkspace(tab.id)}
+          >
+            <strong>{tab.label}</strong>
+            <span>{tab.description}</span>
+          </button>
+        ))}
+      </section>
+
+      {activeRagWorkspace === "library" && (
       <section className="premium-section">
         <div className="premium-header">
           <h3>🧪 RAG Search Test Console</h3>
@@ -927,13 +1256,257 @@ function RagUploadPage({ user }) {
           </div>
         )}
       </section>
+      )}
+
+      {activeRagWorkspace === "bookUploads" && (
+      <>
+      <section className="premium-section premium-rag-upload-panel">
+        <div className="premium-header">
+          <h3>📖 Full Book PDF Splitter</h3>
+          <p>
+            Upload one complete textbook PDF, detect chapter page ranges, review
+            them, then create one RAG document per chapter. Best for State Board
+            books that come as a single PDF.
+          </p>
+        </div>
+
+        <div className="form-grid premium-rag-form-grid">
+          <label>
+            Class
+            <select
+              value={fullBookGrade}
+              onChange={(e) => handleFullBookGradeChange(e.target.value)}
+            >
+              {grades.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Board
+            <select
+              value={fullBookBoard}
+              onChange={(e) => handleFullBookBoardChange(e.target.value)}
+            >
+              {SCHOOL_BOARD_OPTIONS.map((boardOption) => (
+                <option key={boardOption} value={boardOption}>
+                  {boardOption}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Subject
+            {fullBookSubjects.length > 0 ? (
+              <select
+                value={fullBookSubject}
+                onChange={(e) => setFullBookSubject(e.target.value)}
+              >
+                {fullBookSubjects.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type="text"
+                value={fullBookSubject}
+                placeholder="Example: English"
+                onChange={(e) => setFullBookSubject(e.target.value)}
+              />
+            )}
+          </label>
+
+          <label>
+            Book Title
+            <input
+              type="text"
+              value={fullBookTitle}
+              placeholder="Example: Assam State Board - English Beehive"
+              onChange={(e) => setFullBookTitle(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Full Book PDF
+            <input
+              type="file"
+              accept=".pdf"
+              onChange={(e) => {
+                setFullBookFile(e.target.files?.[0] || null);
+                setFullBookAnalysis(null);
+              }}
+            />
+          </label>
+
+          <label className="premium-toggle-row">
+            <input
+              type="checkbox"
+              checked={fullBookOcrScanned}
+              onChange={(e) => setFullBookOcrScanned(e.target.checked)}
+            />
+            OCR scanned/image PDF
+          </label>
+        </div>
+
+        {fullBookFile && (
+          <small className="premium-rag-bulk-book-file">
+            Selected: {fullBookFile.name}
+          </small>
+        )}
+
+        <div className="premium-rag-bulk-book-actions">
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={handleAnalyzeFullBook}
+            disabled={fullBookAnalyzing || isRagJobRunning(fullBookAnalysisJob) || !fullBookFile}
+          >
+            {fullBookAnalyzing ? "Analyzing Book..." : "Analyze Full Book"}
+          </button>
+
+          <button
+            type="button"
+            className="primary-btn premium-rag-upload-btn"
+            onClick={handleUploadFullBookSections}
+            disabled={
+              fullBookUploading ||
+              isRagJobRunning(fullBookUploadJob) ||
+              !fullBookAnalysis?.chapters?.length
+            }
+          >
+            {fullBookUploading ? "Uploading Chapters..." : "Upload Reviewed Chapters"}
+          </button>
+        </div>
+
+        <RagJobProgress
+          job={fullBookAnalysisJob}
+          title="Full-book analysis"
+        />
+
+        <RagJobProgress
+          job={fullBookUploadJob}
+          title="Reviewed chapter upload"
+        />
+
+        {recentRagJobs.length > 0 && (
+          <div className="premium-rag-job-list">
+            <div className="premium-rag-job-list-header">
+              <strong>Recent RAG jobs</strong>
+              <small>Parallel book batches continue in the background.</small>
+            </div>
+
+            {recentRagJobs.slice(0, 5).map((job) => (
+              <div key={job.id} className="premium-rag-job-list-row">
+                <span>{job.filename || job.job_type}</span>
+                <span>{job.phase || job.status}</span>
+                <span>{job.percent || 0}%</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {fullBookAnalysis && (
+          <div className="premium-rag-extracted-pages">
+            <h4>Review Detected Chapters</h4>
+            <p>
+              {fullBookAnalysis.page_count || 0} pages •{" "}
+              {fullBookAnalysis.word_count || 0} extracted words •{" "}
+              {(fullBookAnalysis.extraction_methods || []).join(", ") || "No extraction method"}
+            </p>
+
+            {(fullBookAnalysis.warnings || []).map((warning, index) => (
+              <div key={index} className="premium-rag-result-row failed">
+                {warning}
+              </div>
+            ))}
+
+            <div className="premium-rag-result-list">
+              {(fullBookAnalysis.chapters || []).map((chapter, index) => (
+                <div
+                  key={`${chapter.title}-${index}`}
+                  className="premium-rag-result-row premium-rag-chapter-review-row success"
+                >
+                  <div className="premium-rag-chapter-review-fields">
+                    <label className="premium-toggle-row">
+                      <input
+                        type="checkbox"
+                        checked={chapter.include !== false}
+                        onChange={(e) =>
+                          updateFullBookChapter(index, {
+                            include: e.target.checked,
+                          })
+                        }
+                      />
+                      Include
+                    </label>
+
+                    <label className="premium-rag-inline-label">
+                      Chapter Title
+                      <input
+                        type="text"
+                        value={chapter.title || ""}
+                        onChange={(e) =>
+                          updateFullBookChapter(index, {
+                            title: e.target.value,
+                          })
+                        }
+                      />
+                    </label>
+
+                    <label className="premium-rag-inline-label">
+                      Start Page
+                      <input
+                        type="number"
+                        min="1"
+                        value={chapter.start_page || 1}
+                        onChange={(e) =>
+                          updateFullBookChapter(index, {
+                            start_page: Number(e.target.value),
+                          })
+                        }
+                      />
+                    </label>
+
+                    <label className="premium-rag-inline-label">
+                      End Page
+                      <input
+                        type="number"
+                        min="1"
+                        value={chapter.end_page || chapter.start_page || 1}
+                        onChange={(e) =>
+                          updateFullBookChapter(index, {
+                            end_page: Number(e.target.value),
+                          })
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="premium-rag-chapter-preview">
+                    <strong>Confidence: {chapter.confidence || "Low"}</strong>
+                    {chapter.preview && (
+                      <small>{chapter.preview.slice(0, 220)}</small>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
 
       <section className="premium-section premium-rag-upload-panel">
         <div className="premium-header">
-          <h3>📦 CBSE Class 1-10 Bulk Book Upload</h3>
+          <h3>📦 Class 1-10 School-board Bulk Book Upload</h3>
           <p>
-            Upload full subject books for any class from 1 to 10. Each file is
-            tagged with its own class and subject, then indexed under Uploaded
+            Upload full subject books for CBSE, ICSE, or State Board classes 1
+            to 10. Each file is tagged with its own board, class, and subject, then indexed under Uploaded
             Book Content for lessons, doubts, and mock-test retrieval.
           </p>
         </div>
@@ -941,7 +1514,10 @@ function RagUploadPage({ user }) {
         <div className="premium-rag-bulk-book-list">
           {bulkBookRows.map((row, index) => {
             const resolvedRow = resolveBulkBookRow(row);
-            const rowSubjects = getCbseSubjectsForGrade(resolvedRow.grade);
+            const rowSubjects = getSubjectsForGradeAndBoard(
+              resolvedRow.grade,
+              resolvedRow.board
+            );
 
             return (
               <div key={row.id} className="premium-rag-bulk-book-row">
@@ -977,21 +1553,52 @@ function RagUploadPage({ user }) {
                   </label>
 
                   <label>
-                    Subject
+                    Board
                     <select
-                      value={resolvedRow.subject}
+                      value={resolvedRow.board || "CBSE"}
                       onChange={(e) =>
                         updateBulkBookRow(row.id, {
-                          subject: e.target.value,
+                          board: e.target.value,
                         })
                       }
                     >
-                      {rowSubjects.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
+                      {SCHOOL_BOARD_OPTIONS.map((boardOption) => (
+                        <option key={boardOption} value={boardOption}>
+                          {boardOption}
                         </option>
                       ))}
                     </select>
+                  </label>
+
+                  <label>
+                    Subject
+                    {rowSubjects.length > 0 ? (
+                      <select
+                        value={resolvedRow.subject}
+                        onChange={(e) =>
+                          updateBulkBookRow(row.id, {
+                            subject: e.target.value,
+                          })
+                        }
+                      >
+                        {rowSubjects.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        type="text"
+                        value={resolvedRow.subject}
+                        placeholder="Example: Science"
+                        onChange={(e) =>
+                          updateBulkBookRow(row.id, {
+                            subject: e.target.value,
+                          })
+                        }
+                      />
+                    )}
                   </label>
 
                   <label>
@@ -1077,17 +1684,40 @@ function RagUploadPage({ user }) {
           </label>
 
           <label>
-            Book Set Subject
+            Book Set Board
             <select
-              value={bookSetSubject}
-              onChange={(e) => setBookSetSubject(e.target.value)}
+              value={bookSetBoard}
+              onChange={(e) => handleBookSetBoardChange(e.target.value)}
             >
-              {bookSetSubjects.map((s) => (
-                <option key={s} value={s}>
-                  {s}
+              {SCHOOL_BOARD_OPTIONS.map((boardOption) => (
+                <option key={boardOption} value={boardOption}>
+                  {boardOption}
                 </option>
               ))}
             </select>
+          </label>
+
+          <label>
+            Book Set Subject
+            {bookSetSubjects.length > 0 ? (
+              <select
+                value={bookSetSubject}
+                onChange={(e) => setBookSetSubject(e.target.value)}
+              >
+                {bookSetSubjects.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type="text"
+                value={bookSetSubject}
+                placeholder="Example: Science"
+                onChange={(e) => setBookSetSubject(e.target.value)}
+              />
+            )}
           </label>
 
           <label>
@@ -1192,7 +1822,10 @@ function RagUploadPage({ user }) {
           {bookSetUploading ? "Uploading Book Files..." : "Upload Book Set to RAG"}
         </button>
       </section>
+      </>
+      )}
 
+      {activeRagWorkspace === "sof" && (
       <section className="premium-section">
         <div className="premium-header">
           <h3>📚 SOF Bulk Book Upload</h3>
@@ -1413,7 +2046,10 @@ function RagUploadPage({ user }) {
           </div>
         )}
       </section>
+      )}
 
+      {activeRagWorkspace === "manual" && (
+      <>
       <section className="premium-section">
         <div className="premium-header">
           <h3>📸 Analyze Single Book Page</h3>
@@ -1603,6 +2239,8 @@ function RagUploadPage({ user }) {
           {uploading ? "Uploading..." : "✨ Upload Batch to RAG"}
         </button>
       </section>
+      </>
+      )}
 
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
@@ -1643,6 +2281,7 @@ function RagUploadPage({ user }) {
         </section>
       )}
 
+      {activeRagWorkspace === "library" && (
       <section className="premium-section">
         <div className="premium-header">
           <h3>📚 RAG Document Library</h3>
@@ -1690,7 +2329,7 @@ function RagUploadPage({ user }) {
                     <>
                       <strong>{doc.title}</strong>
                       <p>
-                        {doc.grade} • {doc.subject}
+                        {doc.board || "CBSE"} • {doc.grade} • {doc.subject}
                       </p>
                       <p>{doc.chapter}</p>
                       <small>Uploaded by {doc.uploaded_by}</small>
@@ -1751,6 +2390,7 @@ function RagUploadPage({ user }) {
           </div>
         )}
       </section>
+      )}
     </div>
   );
 }

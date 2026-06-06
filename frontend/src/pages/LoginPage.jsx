@@ -30,6 +30,7 @@ function LoginPage({ onLogin }) {
       username: profile.username || authUser.email,
 	      role: profile.role,
 	      grade: profile.grade || "Grade 9",
+      board: profile.board || "CBSE",
 	      parentId: profile.parent_id,
       familyId: profile.family_id,
 

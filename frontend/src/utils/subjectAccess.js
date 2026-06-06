@@ -40,11 +40,16 @@ export function hasCbseSubjectAccess(user, subjectName) {
   );
 }
 
+export function isSchoolBoardMode(selectedMode) {
+  /** Return true for school-board modes that share subject-access controls. */
+  return ["CBSE", "ICSE", "State Board"].includes(selectedMode);
+}
+
 export function filterAllowedSubjects(user, allSubjects, selectedMode) {
   /** Apply subscription and custom CBSE subject access to a subject list. */
   if (user?.role === "admin") return allSubjects;
 
-  if (selectedMode === "CBSE") {
+  if (isSchoolBoardMode(selectedMode)) {
     if (user?.accessCbse === false) return [];
     return allSubjects.filter((subjectName) =>
       hasCbseSubjectAccess(user, subjectName)
