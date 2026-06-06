@@ -23,6 +23,7 @@ import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
+import SalesDemoPage from "./pages/SalesDemoPage";
 
 
 import "./App.css";
@@ -97,6 +98,12 @@ const PAGE_META = {
     title: "Sales Incentives",
     subtitle: "Track salespeople, student onboarding, packages, and commissions.",
     icon: "🤝",
+  },
+  salesDemo: {
+    title: "Product Demo",
+    subtitle:
+      "Show safe prospect-facing demos for student, parent, and teacher flows.",
+    icon: "🖥️",
   },
   usage: {
     title: "AI Usage",
@@ -263,6 +270,8 @@ function App() {
         return <AdminPricingCalculatorPage user={user} />;
       case "salesIncentives":
         return <SalesIncentivePage user={user} />;
+      case "salesDemo":
+        return <SalesDemoPage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
       case "parentDashboard":

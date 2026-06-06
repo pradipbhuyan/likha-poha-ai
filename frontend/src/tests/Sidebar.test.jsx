@@ -55,7 +55,7 @@ describe("Sidebar role visibility", () => {
     expect(setActivePage).toHaveBeenCalledWith("teacherDashboard");
   });
 
-  test("shows sales incentives only for sales users", () => {
+  test("shows sales workspace pages for sales users", () => {
     const { setActivePage } = renderSidebar(
       {
         role: "sales",
@@ -65,6 +65,7 @@ describe("Sidebar role visibility", () => {
     );
 
     expect(screen.getByRole("button", { name: /sales incentives/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /product demo/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /change password/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /admin control/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /teacher dashboard/i })).not.toBeInTheDocument();

@@ -18,6 +18,7 @@ import {
   Calculator,
   KeyRound,
   Handshake,
+  MonitorPlay,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -83,6 +84,12 @@ function Sidebar({
       key: "salesIncentives",
       label: "Sales Incentives",
       icon: Handshake,
+      roles: ["admin", "sales"],
+    },
+    {
+      key: "salesDemo",
+      label: "Product Demo",
+      icon: MonitorPlay,
       roles: ["admin", "sales"],
     },
     {
