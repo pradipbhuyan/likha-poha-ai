@@ -6727,6 +6727,48 @@ body.dark-mode .admin-family-id {
   .premium-doubt-answer .markdown-content {
     padding-top: 8px;
   }
+
+  .premium-doubt-main,
+  .premium-doubt-answer,
+  .premium-doubt-answer .premium-header,
+  .premium-doubt-answer .markdown-content {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .premium-doubt-answer .markdown-content {
+    overflow-x: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .premium-doubt-answer .markdown-content *,
+  .mentor-followup-answer,
+  .mentor-followup-answer * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .premium-doubt-answer .markdown-content pre,
+  .premium-doubt-answer .markdown-content code,
+  .mentor-followup-answer pre,
+  .mentor-followup-answer code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .premium-doubt-answer .markdown-content table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .premium-doubt-answer .katex-display,
+  .mentor-followup-answer .katex-display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
   
   .premium-doubt-source {
     display: grid;
@@ -6822,6 +6864,24 @@ body.dark-mode .admin-family-id {
   }
   
   @media (max-width: 760px) {
+    .premium-doubt-page,
+    .premium-doubt-layout,
+    .premium-doubt-main,
+    .premium-doubt-answer {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .premium-doubt-answer {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .premium-doubt-answer .markdown-content {
+      padding: 16px;
+    }
+
     .premium-doubt-composer .composer-header {
       flex-direction: column;
     }
