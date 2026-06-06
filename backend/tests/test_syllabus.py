@@ -107,6 +107,51 @@ def test_uploaded_rag_chapters_replace_placeholder_and_sort_by_book_order(monkey
     ]
 
 
+def test_static_default_chapters_do_not_surface_without_rag(monkeypatch):
+    """Grade chapter dropdowns must use live RAG, not hardcoded defaults."""
+    monkeypatch.setattr(syllabus_route, "supabase", FakeSyllabusSupabase([]))
+
+    merged = syllabus_route.merge_uploaded_rag_chapters(SYLLABUS)
+
+    assert merged["Grade 9"]["CBSE"]["Science"] == ["Uploaded Book Content"]
+    assert "Cell: The Building Block of Life" not in merged["Grade 9"]["CBSE"]["Science"]
+
+
+def test_rag_chapters_are_isolated_by_grade(monkeypatch):
+    """A matching subject in another grade must not leak into this grade."""
+    monkeypatch.setattr(
+        syllabus_route,
+        "supabase",
+        FakeSyllabusSupabase([
+            {
+                "grade": "Grade 8",
+                "subject": "Maths",
+                "chapter": "Chapter 1: A Square and A Cube",
+                "title": "Grade 8 CBSE Maths Text Book Part 1 - Chapter 1",
+                "board": "CBSE",
+                "created_at": "2026-06-05T02:00:00Z",
+            },
+            {
+                "grade": "Grade 10",
+                "subject": "Maths",
+                "chapter": "Chapter 1: Real Numbers",
+                "title": "Grade 10 CBSE Maths Text Book - Chapter 1",
+                "board": "CBSE",
+                "created_at": "2026-06-05T02:00:00Z",
+            },
+        ]),
+    )
+
+    merged = syllabus_route.merge_uploaded_rag_chapters(SYLLABUS)
+
+    assert merged["Grade 8"]["CBSE"]["Maths"] == [
+        "Chapter 1: A Square and A Cube",
+    ]
+    assert merged["Grade 10"]["CBSE"]["Maths"] == [
+        "Chapter 1: Real Numbers",
+    ]
+
+
 def test_multi_part_maths_labels_stay_distinct_for_dropdowns():
     """Two Maths books should show clear Part 1 / Part 2 dropdown labels."""
     chapters = syllabus_route.sort_uploaded_chapters(
@@ -153,7 +198,7 @@ def test_uploaded_rag_chapter_labels_preserve_admin_confirmed_text(monkeypatch):
 
 
 def test_syllabus_override_is_authoritative_after_admin_review():
-    """Saved admin reviews should not re-add noisy live labels after refresh."""
+    """Saved admin reviews should stay aligned to live labels after refresh."""
     merged = {
         "Grade 8": {
             "CBSE": {
@@ -180,8 +225,91 @@ def test_syllabus_override_is_authoritative_after_admin_review():
 
     assert result["Grade 8"]["CBSE"]["Maths"] == [
         "Chapter 1: Reviewed",
-        "Chapter 2: Reviewed",
+        "Chapter 3: Newly Reuploaded",
     ]
+
+
+def test_mixed_grade_override_keeps_only_matching_live_chapters():
+    """A contaminated review should not mix Class 8 and Class 10 Maths labels."""
+    merged = {
+        "Grade 10": {
+            "CBSE": {
+                "Maths": [
+                    "Chapter 1: Real Numbers",
+                    "Chapter 2: Polynomials",
+                    "Chapter 3: Pair of Linear Equations in Two Variables",
+                ],
+            },
+        },
+    }
+
+    result = syllabus_route.apply_syllabus_overrides(
+        merged,
+        {
+            ("Grade 10", "CBSE", "Maths"): {
+                "chapters": [
+                    "Chapter 1: Real Numbers",
+                    "Part 1 - Chapter 1: A Square and A Cube",
+                    "Chapter 2: Polynomials",
+                    "Part 2 - Chapter 1: Fractions in Disguise",
+                ],
+            },
+        },
+    )
+
+    assert result["Grade 10"]["CBSE"]["Maths"] == [
+        "Chapter 1: Real Numbers",
+        "Chapter 2: Polynomials",
+        "Chapter 3: Pair of Linear Equations in Two Variables",
+    ]
+
+
+def test_stale_override_does_not_hide_live_rag_chapters():
+    """Old reviewed lists should yield when none of their labels match live RAG."""
+    merged = {
+        "Grade 8": {
+            "CBSE": {
+                "Maths": [
+                    "Part 1 - Chapter 1: A Square and A Cube",
+                    "Part 1 - Chapter 2: Power Play",
+                    "Part 2 - Chapter 1: Fractions in Disguise",
+                ],
+            },
+        },
+    }
+
+    result = syllabus_route.apply_syllabus_overrides(
+        merged,
+        {
+            ("Grade 8", "CBSE", "Maths"): {
+                "chapters": [
+                    "Chapter 1: Real Numbers",
+                    "Chapter 2: Polynomials",
+                ],
+            },
+        },
+    )
+
+    assert result["Grade 8"]["CBSE"]["Maths"] == [
+        "Part 1 - Chapter 1: A Square and A Cube",
+        "Part 1 - Chapter 2: Power Play",
+        "Part 2 - Chapter 1: Fractions in Disguise",
+    ]
+
+
+def test_no_live_rag_mixed_part_review_keeps_consistent_series():
+    """A saved review without live RAG should not recreate stale chapters."""
+    result = syllabus_route.merge_reviewed_and_live_chapters(
+        [
+            "Chapter 1: Real Numbers",
+            "Part 1 - Chapter 1: A Square and A Cube",
+            "Chapter 2: Polynomials",
+            "Part 2 - Chapter 1: Fractions in Disguise",
+        ],
+        ["Uploaded Book Content"],
+    )
+
+    assert result == ["Uploaded Book Content"]
 
 
 def test_override_merge_upgrades_old_flat_labels_to_part_labels():
@@ -199,7 +327,6 @@ def test_override_merge_upgrades_old_flat_labels_to_part_labels():
 
     assert result == [
         "Part 1 - Chapter 1: A Square and A Cube",
-        "Chapter 2: Reviewed Only",
         "Part 2 - Chapter 1: Fractions in Disguise",
     ]
 

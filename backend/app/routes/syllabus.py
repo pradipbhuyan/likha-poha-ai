@@ -1,4 +1,3 @@
-from copy import deepcopy
 import re
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -19,6 +18,11 @@ UPLOAD_PLACEHOLDER_CHAPTERS = {
     "Uploaded SOF Model Test Papers",
     "Uploaded SOF Answer Keys and Explanations",
 }
+
+
+def placeholder_chapter_for_mode(mode):
+    """Return the only non-RAG chapter placeholder allowed for an empty subject."""
+    return "Uploaded SOF Chapter Content" if mode == "SOF" else "Uploaded Book Content"
 
 
 def is_uploaded_placeholder(chapter):
@@ -104,6 +108,39 @@ def create_part_display_label(chapter, part_number, use_part_prefix):
     return f"{format_part_label(part_number)} - {chapter}"
 
 
+def is_part_display_label(chapter):
+    """Return whether a dropdown label is scoped to a displayed book part."""
+    return bool(re.match(r"^\s*part\s*\d+\s*[-:]", str(chapter or ""), re.I))
+
+
+def keep_consistent_part_series(chapters):
+    """
+    Drop accidentally mixed book-series labels from a reviewed dropdown list.
+
+    A review can become polluted if admins switch grades while saving. When a
+    list mixes normal chapter labels with Part 1/Part 2 labels, keep the series
+    that appears first, which matches what the admin was reviewing on screen.
+    """
+    labels = clean_chapter_list(chapters)
+
+    if not labels:
+        return []
+
+    has_part_labels = any(is_part_display_label(chapter) for chapter in labels)
+    has_plain_labels = any(not is_part_display_label(chapter) for chapter in labels)
+
+    if not has_part_labels or not has_plain_labels:
+        return labels
+
+    keep_part_labels = is_part_display_label(labels[0])
+
+    return [
+        chapter
+        for chapter in labels
+        if is_part_display_label(chapter) == keep_part_labels
+    ]
+
+
 def uploaded_chapter_sort_key(item):
     """
     Sort uploaded RAG chapters for student dropdowns.
@@ -147,16 +184,13 @@ def normalize_rag_chapter_lookup(chapter):
 
 
 def sort_uploaded_chapters(existing_chapters, uploaded_items):
-    """Merge and sort uploaded chapters, hiding placeholders once real uploads exist."""
-    static_chapters = [
+    """Sort uploaded RAG chapters and never mix in static syllabus defaults."""
+    placeholder_chapters = [
         chapter
         for chapter in existing_chapters
-        if not is_uploaded_placeholder(chapter)
+        if is_uploaded_placeholder(chapter)
     ]
-    seen = {
-        normalize_chapter_lookup(chapter)
-        for chapter in static_chapters
-    }
+    seen = set()
     sorted_uploaded = []
     part_numbers = {
         extract_part_number(f"{item.get('title') or ''} {item.get('chapter') or ''}")
@@ -181,9 +215,9 @@ def sort_uploaded_chapters(existing_chapters, uploaded_items):
         seen.add(lookup_key)
 
     if sorted_uploaded:
-        return static_chapters + sorted_uploaded
+        return sorted_uploaded
 
-    return existing_chapters
+    return placeholder_chapters
 
 
 class SyllabusChapterOverrideItem(BaseModel):
@@ -318,12 +352,34 @@ def apply_subject_overrides(merged, subject_overrides):
         for subject in subjects:
             reviewed_mode_data[subject] = mode_data.get(
                 subject,
-                ["Uploaded Book Content"] if mode == "CBSE" else ["Uploaded SOF Chapter Content"],
+                [placeholder_chapter_for_mode(mode)],
             )
 
         grade_data[mode] = reviewed_mode_data
 
     return merged
+
+
+def build_rag_only_syllabus_shell(syllabus):
+    """
+    Build grade/board/subject selectors without carrying static chapters forward.
+
+    Uploaded RAG metadata is the source of truth for chapter dropdowns. The
+    static syllabus catalog is intentionally reduced to a shell so default Class
+    9/10 chapters cannot leak into another grade or reappear after deletion.
+    """
+    shell = {}
+
+    for grade, grade_data in (syllabus or {}).items():
+        shell[grade] = {}
+
+        for mode, mode_data in (grade_data or {}).items():
+            shell[grade][mode] = {}
+
+            for subject in (mode_data or {}).keys():
+                shell[grade][mode][subject] = [placeholder_chapter_for_mode(mode)]
+
+    return shell
 
 
 def fetch_rag_chapter_counts():
@@ -412,11 +468,36 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters):
 
         live_by_lookup.setdefault(normalize_rag_chapter_lookup(label), []).append(label)
 
+    reviewed_labels = keep_consistent_part_series(reviewed_chapters)
+    live_lookup_keys = set(live_by_lookup.keys())
+    reviewed_lookup_keys = {
+        normalize_rag_chapter_lookup(chapter)
+        for chapter in reviewed_labels
+    }
+
+    if not live_lookup_keys:
+        return [
+            chapter
+            for chapter in live_chapters or []
+            if is_uploaded_placeholder(str(chapter or "").strip())
+        ]
+
+    if live_lookup_keys and reviewed_lookup_keys.isdisjoint(live_lookup_keys):
+        return [
+            str(chapter or "").strip()
+            for chapter in live_chapters or []
+            if str(chapter or "").strip()
+            and not is_uploaded_placeholder(str(chapter or "").strip())
+        ]
+
     merged_chapters = []
     used_live_labels = set()
 
-    for chapter in clean_chapter_list(reviewed_chapters):
+    for chapter in reviewed_labels:
         live_matches = live_by_lookup.get(normalize_rag_chapter_lookup(chapter), [])
+        if live_lookup_keys and not live_matches:
+            continue
+
         upgraded_label = live_matches[0] if live_matches else chapter
 
         merged_chapters.append(upgraded_label)
@@ -446,7 +527,7 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters):
 
 
 def apply_syllabus_overrides(merged, overrides):
-    """Apply admin-reviewed dropdowns as the student-facing source of truth."""
+    """Apply admin-reviewed dropdowns while keeping them aligned to live RAG."""
     for (grade, mode, subject), override in overrides.items():
         chapters = clean_chapter_list(override.get("chapters") or [])
 
@@ -455,20 +536,23 @@ def apply_syllabus_overrides(merged, overrides):
 
         grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
         mode_data = grade_data.setdefault(mode, {})
-        mode_data[subject] = chapters
+        mode_data[subject] = merge_reviewed_and_live_chapters(
+            chapters,
+            mode_data.get(subject, []),
+        )
 
     return merged
 
 
 def merge_uploaded_rag_chapters(syllabus):
     """
-    Add uploaded RAG document chapters to the static syllabus tree.
+    Build syllabus dropdowns from uploaded RAG document chapters.
 
-    This lets Class 1-10 books become selectable after bulk upload without a code
-    change for every new book or chapter. Failures are ignored so syllabus loading
-    still works if Supabase is temporarily unavailable.
+    The static syllabus only supplies grade/board/subject shells. Chapter
+    options are loaded from rag_documents so deleted content cannot remain
+    selectable and chapters from one grade cannot be mixed into another grade.
     """
-    merged = deepcopy(syllabus)
+    merged = build_rag_only_syllabus_shell(syllabus)
 
     try:
         response = (
@@ -522,7 +606,7 @@ def merge_uploaded_rag_chapters(syllabus):
     return apply_subject_overrides(merged, fetch_subject_overrides())
 
 
-def rename_rag_chapter_labels(grade, subject, items):
+def rename_rag_chapter_labels(grade, mode, subject, items):
     """
     Keep RAG metadata aligned when admin renames a dropdown chapter label.
 
@@ -545,7 +629,7 @@ def rename_rag_chapter_labels(grade, subject, items):
         response = (
             admin_client
             .table("rag_documents")
-            .select("id,title")
+            .select("id,title,board")
             .eq("grade", grade)
             .eq("subject", subject)
             .eq("chapter", old_label)
@@ -553,6 +637,15 @@ def rename_rag_chapter_labels(grade, subject, items):
         )
 
         for document in response.data or []:
+            document_mode = (
+                "SOF"
+                if "Olympiad" in subject
+                else normalize_board(document.get("board"))
+            )
+
+            if document_mode != mode:
+                continue
+
             current_title = document.get("title") or ""
             next_title = (
                 current_title.replace(old_label, new_label)
@@ -637,7 +730,7 @@ def save_admin_syllabus_override(
         raise HTTPException(status_code=400, detail="At least one chapter is required.")
 
     try:
-        renamed_pairs = rename_rag_chapter_labels(grade, subject, data.items)
+        renamed_pairs = rename_rag_chapter_labels(grade, mode, subject, data.items)
         response = (
             admin_client
             .table("syllabus_chapter_overrides")
