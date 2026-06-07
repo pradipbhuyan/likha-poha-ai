@@ -26,6 +26,7 @@ from app.routes.teacher_dashboard import router as teacher_dashboard_router
 from app.routes.weak_area_alerts import router as weak_area_alerts_router
 from app.routes.payments import router as payments_router
 from app.routes.sales import router as sales_router
+from app.routes.performance_tests import router as performance_tests_router
 
 
 frontend_url = os.getenv(
@@ -186,6 +187,12 @@ app.include_router(
     sales_router,
     prefix="/api/sales",
     tags=["Sales"],
+)
+
+app.include_router(
+    performance_tests_router,
+    prefix="/api/performance-tests",
+    tags=["Performance Tests"],
 )
 
 @app.get("/api/health")

@@ -1,0 +1,532 @@
+from __future__ import annotations
+
+import json
+import os
+import statistics
+from dataclasses import asdict, dataclass, field
+from itertools import cycle
+from pathlib import Path
+from typing import Any, Callable
+
+
+DEFAULT_GRADE = "Grade 9"
+DEFAULT_BOARD = "CBSE"
+DEFAULT_MODE = "CBSE"
+DEFAULT_SUBJECT = "Science"
+DEFAULT_CHAPTER = "Atoms and Molecules"
+DEFAULT_USERNAME = "loadtest_student"
+
+LESSON_MIN_CHARS = 500
+DOUBT_MIN_CHARS = 500
+MOCK_TEST_MIN_QUESTIONS = 3
+
+TEST_USERS_FILE = Path(
+    os.getenv(
+        "PERFORMANCE_TEST_USERS_FILE",
+        os.getenv("TEST_USERS_FILE", "tests/performance/test_users.json"),
+    )
+)
+
+
+def _resolve_test_users_file(path: Path | None = None) -> Path:
+    """Resolve the test-user file from backend cwd, repo cwd, or an absolute path."""
+    file_path = path or TEST_USERS_FILE
+    if file_path.is_absolute() or file_path.exists():
+        return file_path
+
+    backend_root = Path(__file__).resolve().parents[2]
+    backend_candidate = backend_root / file_path
+    if backend_candidate.exists():
+        return backend_candidate
+
+    repo_candidate = backend_root.parent / file_path
+    if repo_candidate.exists():
+        return repo_candidate
+
+    return file_path
+
+
+@dataclass(frozen=True)
+class ValidationResult:
+    """Validation outcome for one performance response payload."""
+
+    ok: bool
+    error: str = ""
+    metrics: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class ScenarioRequest:
+    """One HTTP request definition shared by Locust and admin test runs."""
+
+    name: str
+    method: str
+    path: str
+    params: dict[str, Any] | None = None
+    json: dict[str, Any] | None = None
+    requires_auth: bool = False
+    uses_ai: bool = False
+    validator_name: str = "success"
+
+
+@dataclass(frozen=True)
+class ScenarioDefinition:
+    """Performance scenario metadata and factory for request definitions."""
+
+    key: str
+    label: str
+    description: str
+    request_builder: Callable[[dict], list[ScenarioRequest]]
+    target_p95_ms: int
+    safe_max_concurrency: int
+    uses_ai: bool = False
+
+
+@dataclass
+class TimingResult:
+    """Serializable timing result for one HTTP request execution."""
+
+    name: str
+    method: str
+    path: str
+    ok: bool
+    elapsed_ms: float
+    status_code: int | None = None
+    response_length: int = 0
+    error: str = ""
+    validation: dict[str, Any] = field(default_factory=dict)
+    skipped: bool = False
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a JSON-safe timing result."""
+        return asdict(self)
+
+
+def load_test_users(path: Path | None = None) -> list[dict]:
+    """Load backend-only test user profiles and bearer tokens for protected APIs."""
+    file_path = _resolve_test_users_file(path)
+    if not file_path.exists():
+        env_token = os.getenv("PERFORMANCE_TEST_BEARER_TOKEN") or os.getenv(
+            "TEST_USER_ACCESS_TOKEN",
+        )
+        if not env_token:
+            return []
+
+        return [
+            {
+                "username": os.getenv("PERFORMANCE_TEST_USERNAME", DEFAULT_USERNAME),
+                "access_token": env_token,
+                "grade": os.getenv("PERFORMANCE_TEST_GRADE", DEFAULT_GRADE),
+                "board": os.getenv("PERFORMANCE_TEST_BOARD", DEFAULT_BOARD),
+                "mode": os.getenv("PERFORMANCE_TEST_MODE", DEFAULT_MODE),
+                "subject": os.getenv("PERFORMANCE_TEST_SUBJECT", DEFAULT_SUBJECT),
+                "chapter": os.getenv("PERFORMANCE_TEST_CHAPTER", DEFAULT_CHAPTER),
+            }
+        ]
+
+    data = json.loads(file_path.read_text(encoding="utf-8"))
+    users = data.get("users", data if isinstance(data, list) else [])
+    return [user for user in users if user.get("username")]
+
+
+def auth_headers(profile: dict) -> dict:
+    """Build auth headers from a backend-only test profile token."""
+    token = profile.get("access_token") or profile.get("token")
+    if not token:
+        return {}
+    return {"Authorization": f"Bearer {token}"}
+
+
+def profile_payload(profile: dict | None = None) -> dict:
+    """Build the common lesson/doubt/mock payload scope for a test profile."""
+    profile = profile or {}
+    return {
+        "username": profile.get("username", DEFAULT_USERNAME),
+        "grade": profile.get("grade", DEFAULT_GRADE),
+        "board": profile.get("board", DEFAULT_BOARD),
+        "mode": profile.get("mode", DEFAULT_MODE),
+        "subject": profile.get("subject", DEFAULT_SUBJECT),
+        "chapter": profile.get("chapter", DEFAULT_CHAPTER),
+    }
+
+
+def progress_payload(profile: dict | None = None) -> dict:
+    """Build a harmless progress save payload used by browsing baselines."""
+    base = profile_payload(profile)
+    return {
+        **base,
+        "current_step_index": 1,
+        "highest_unlocked_step": 1,
+        "completed": False,
+        "last_lesson": "Performance test progress marker.",
+        "step_lessons": {},
+    }
+
+
+def lesson_payload(profile: dict | None = None) -> dict:
+    """Build the AI lesson payload reused by Locust and admin tests."""
+    return {
+        **profile_payload(profile),
+        "step_title": "Concept overview",
+        "teacher_persona": "Explain simply for a school student.",
+    }
+
+
+def doubt_payload(profile: dict | None = None) -> dict:
+    """Build the AI doubt payload reused by Locust and admin tests."""
+    return {
+        **profile_payload(profile),
+        "question": "Explain the difference between atoms and molecules with one example.",
+        "display_question": "Atoms vs molecules",
+        "save_to_history": False,
+    }
+
+
+def mock_test_payload(profile: dict | None = None) -> dict:
+    """Build a small mock-test payload reused by Locust and admin tests."""
+    return {
+        **profile_payload(profile),
+        "mock_type": "Chapter Practice",
+        "difficulty": "Easy",
+        "question_count": 5,
+        "exam_type": "CBSE",
+    }
+
+
+def validate_success_payload(payload: Any) -> ValidationResult:
+    """Validate a generic API response payload."""
+    if isinstance(payload, dict) and payload.get("success") is False:
+        return ValidationResult(False, payload.get("message") or "success=false")
+    return ValidationResult(True)
+
+
+def validate_lesson_response(payload: Any) -> ValidationResult:
+    """Validate that lesson generation returned meaningful lesson text."""
+    text = payload.get("lesson") if isinstance(payload, dict) else None
+    length = len(text.strip()) if isinstance(text, str) else 0
+    if length < LESSON_MIN_CHARS:
+        return ValidationResult(
+            False,
+            f"lesson response below {LESSON_MIN_CHARS} chars",
+            {"chars": length},
+        )
+    return ValidationResult(True, metrics={"chars": length})
+
+
+def validate_doubt_response(payload: Any) -> ValidationResult:
+    """Validate that doubt answering returned meaningful answer text."""
+    text = payload.get("answer") if isinstance(payload, dict) else None
+    length = len(text.strip()) if isinstance(text, str) else 0
+    if length < DOUBT_MIN_CHARS:
+        return ValidationResult(
+            False,
+            f"doubt response below {DOUBT_MIN_CHARS} chars",
+            {"chars": length},
+        )
+    return ValidationResult(True, metrics={"chars": length})
+
+
+def validate_mock_test_response(payload: Any) -> ValidationResult:
+    """Validate that mock-test generation returned enough questions."""
+    questions = payload.get("questions") if isinstance(payload, dict) else None
+    count = len(questions) if isinstance(questions, list) else 0
+    if count < MOCK_TEST_MIN_QUESTIONS:
+        return ValidationResult(
+            False,
+            f"mock test below {MOCK_TEST_MIN_QUESTIONS} questions",
+            {"questions": count},
+        )
+    return ValidationResult(True, metrics={"questions": count})
+
+
+VALIDATORS = {
+    "success": validate_success_payload,
+    "lesson": validate_lesson_response,
+    "doubt": validate_doubt_response,
+    "mock_test": validate_mock_test_response,
+}
+
+
+def public_read_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the public read endpoint set used by browsing tests."""
+    base = profile_payload(profile)
+    return [
+        ScenarioRequest("health", "GET", "/api/health"),
+        ScenarioRequest("syllabus", "GET", "/api/syllabus"),
+        ScenarioRequest(
+            "resources",
+            "GET",
+            "/api/resources",
+            params={
+                "grade": base["grade"],
+                "subject": base["subject"],
+                "chapter": base["chapter"],
+            },
+        ),
+        ScenarioRequest("leaderboard", "GET", "/api/analytics/leaderboard"),
+    ]
+
+
+def student_progress_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return protected progress endpoints used by student browsing tests."""
+    username = profile_payload(profile)["username"]
+    return [
+        ScenarioRequest(
+            "progress:user",
+            "GET",
+            f"/api/progress/user/{username}",
+            requires_auth=True,
+        ),
+        ScenarioRequest(
+            "analytics:history",
+            "GET",
+            f"/api/analytics/test-history/{username}",
+            requires_auth=True,
+        ),
+        ScenarioRequest(
+            "progress:save",
+            "POST",
+            "/api/progress/save",
+            json=progress_payload(profile),
+            requires_auth=True,
+        ),
+    ]
+
+
+def lesson_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the single lesson-generation request definition."""
+    return [
+        ScenarioRequest(
+            "ai:lesson",
+            "POST",
+            "/api/lesson/generate",
+            json=lesson_payload(profile),
+            requires_auth=True,
+            uses_ai=True,
+            validator_name="lesson",
+        )
+    ]
+
+
+def doubt_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the single doubt-answer request definition."""
+    return [
+        ScenarioRequest(
+            "ai:doubt",
+            "POST",
+            "/api/doubt/answer",
+            json=doubt_payload(profile),
+            requires_auth=True,
+            uses_ai=True,
+            validator_name="doubt",
+        )
+    ]
+
+
+def mock_test_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the single mock-test generation request definition."""
+    return [
+        ScenarioRequest(
+            "ai:mock-test",
+            "POST",
+            "/api/mock-test/generate",
+            json=mock_test_payload(profile),
+            requires_auth=True,
+            uses_ai=True,
+            validator_name="mock_test",
+        )
+    ]
+
+
+def browsing_baseline_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the same browsing endpoint set covered by StudentBrowsingUser."""
+    return public_read_requests(profile) + student_progress_requests(profile)
+
+
+def mixed_student_journey_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the same mixed journey shape covered by StudentMixedUser."""
+    return (
+        public_read_requests(profile)
+        + student_progress_requests(profile)
+        + lesson_requests(profile)
+        + doubt_requests(profile)
+    )
+
+
+def ai_burst_requests(profile: dict | None = None) -> list[ScenarioRequest]:
+    """Return the AI endpoint set covered by StudentAIHeavyUser."""
+    return lesson_requests(profile) + doubt_requests(profile) + mock_test_requests(profile)
+
+
+SCENARIOS = {
+    "browsing_baseline": ScenarioDefinition(
+        key="browsing_baseline",
+        label="Browsing Baseline",
+        description="Read-heavy student browsing, progress, and save endpoints.",
+        request_builder=browsing_baseline_requests,
+        target_p95_ms=1000,
+        safe_max_concurrency=10,
+    ),
+    "mixed_student_journey": ScenarioDefinition(
+        key="mixed_student_journey",
+        label="Mixed Student Journey",
+        description="Browsing plus lesson and doubt generation.",
+        request_builder=mixed_student_journey_requests,
+        target_p95_ms=45000,
+        safe_max_concurrency=3,
+        uses_ai=True,
+    ),
+    "single_lesson": ScenarioDefinition(
+        key="single_lesson",
+        label="Single Lesson",
+        description="One AI lesson generation request.",
+        request_builder=lesson_requests,
+        target_p95_ms=35000,
+        safe_max_concurrency=3,
+        uses_ai=True,
+    ),
+    "single_doubt": ScenarioDefinition(
+        key="single_doubt",
+        label="Single Doubt",
+        description="One AI doubt-answer request.",
+        request_builder=doubt_requests,
+        target_p95_ms=45000,
+        safe_max_concurrency=3,
+        uses_ai=True,
+    ),
+    "single_mock_test": ScenarioDefinition(
+        key="single_mock_test",
+        label="Single Mock Test",
+        description="One small mock-test generation request.",
+        request_builder=mock_test_requests,
+        target_p95_ms=15000,
+        safe_max_concurrency=2,
+        uses_ai=True,
+    ),
+    "ai_burst_5": ScenarioDefinition(
+        key="ai_burst_5",
+        label="AI Burst 5",
+        description="Small AI burst using lesson, doubt, and mock-test requests.",
+        request_builder=ai_burst_requests,
+        target_p95_ms=45000,
+        safe_max_concurrency=5,
+        uses_ai=True,
+    ),
+}
+
+
+def get_scenario(key: str) -> ScenarioDefinition:
+    """Return a scenario definition or raise a helpful error for unknown keys."""
+    if key not in SCENARIOS:
+        raise ValueError(f"Unknown performance test type: {key}")
+    return SCENARIOS[key]
+
+
+def scenario_options() -> list[dict[str, Any]]:
+    """Return JSON-safe scenario metadata for admin UI selectors."""
+    return [
+        {
+            "key": scenario.key,
+            "label": scenario.label,
+            "description": scenario.description,
+            "target_p95_ms": scenario.target_p95_ms,
+            "safe_max_concurrency": scenario.safe_max_concurrency,
+            "uses_ai": scenario.uses_ai,
+        }
+        for scenario in SCENARIOS.values()
+    ]
+
+
+def _percentile(values: list[float], percentile: int) -> float:
+    """Return a simple nearest-rank percentile from a list of values."""
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    index = min(len(ordered) - 1, max(0, round((percentile / 100) * len(ordered)) - 1))
+    return float(ordered[index])
+
+
+def summarize_results(
+    results: list[dict[str, Any]] | list[TimingResult],
+    target_p95_ms: int,
+) -> dict[str, Any]:
+    """Compute timing and reliability summary for a run."""
+    rows = [
+        result.to_dict() if isinstance(result, TimingResult) else result
+        for result in results
+    ]
+    skipped = [row for row in rows if row.get("skipped")]
+    measured_rows = [row for row in rows if not row.get("skipped")]
+    elapsed = [float(row.get("elapsed_ms") or 0) for row in measured_rows]
+    failures = [row for row in measured_rows if not row.get("ok")]
+    success_count = len(measured_rows) - len(failures)
+    error_rate = (len(failures) / len(measured_rows) * 100) if measured_rows else 0.0
+    p50 = statistics.median(elapsed) if elapsed else 0.0
+    p95 = _percentile(elapsed, 95)
+    max_ms = max(elapsed) if elapsed else 0.0
+
+    return {
+        "target_p95_ms": target_p95_ms,
+        "request_count": len(rows),
+        "measured_count": len(measured_rows),
+        "skipped_count": len(skipped),
+        "skipped_requests": skipped,
+        "success_count": success_count,
+        "failure_count": len(failures),
+        "error_rate": round(error_rate, 2),
+        "p50_ms": round(p50, 2),
+        "p95_ms": round(p95, 2),
+        "max_ms": round(max_ms, 2),
+        "ai_failures": [
+            row for row in failures
+            if str(row.get("name", "")).startswith("ai:")
+        ],
+        "auth_failures": [
+            row for row in failures
+            if row.get("status_code") in {401, 403}
+        ],
+        "server_failures": [
+            row for row in failures
+            if int(row.get("status_code") or 0) >= 500
+        ],
+    }
+
+
+def classify_performance(
+    summary: dict[str, Any],
+    *,
+    uses_ai: bool = False,
+) -> str:
+    """Classify a run as Good, Warning, Degrading, or Critical."""
+    p95 = float(summary.get("p95_ms") or 0)
+    target = float(summary.get("target_p95_ms") or 1)
+    error_rate = float(summary.get("error_rate") or 0)
+    max_ms = float(summary.get("max_ms") or 0)
+
+    if (
+        summary.get("auth_failures")
+        or summary.get("server_failures")
+        or (uses_ai and summary.get("ai_failures"))
+        or max_ms > target * 2
+    ):
+        return "Critical"
+
+    if p95 <= target and error_rate < 1:
+        return "Good"
+
+    if p95 <= target * 1.25 or 1 <= error_rate <= 3:
+        return "Warning"
+
+    return "Degrading"
+
+
+def next_profile_factory(users: list[dict]):
+    """Return a rotating profile supplier shared by local runners."""
+    user_cycle = cycle(users) if users else None
+
+    def _next_profile() -> dict:
+        if user_cycle:
+            return next(user_cycle)
+        return profile_payload({})
+
+    return _next_profile

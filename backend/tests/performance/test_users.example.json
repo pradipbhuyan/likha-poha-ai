@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "username": "loadtest_student_1",
+      "grade": "Grade 9",
+      "board": "CBSE",
+      "mode": "CBSE",
+      "subject": "Science",
+      "chapter": "Atoms and Molecules",
+      "access_token": "PASTE_SUPABASE_ACCESS_TOKEN_FOR_THIS_STUDENT"
+    },
+    {
+      "username": "loadtest_student_2",
+      "grade": "Grade 8",
+      "board": "CBSE",
+      "mode": "CBSE",
+      "subject": "Maths",
+      "chapter": "Linear Equations",
+      "access_token": "PASTE_SUPABASE_ACCESS_TOKEN_FOR_THIS_STUDENT"
+    }
+  ]
+}

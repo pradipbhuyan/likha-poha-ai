@@ -24,6 +24,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
 import SalesDemoPage from "./pages/SalesDemoPage";
+import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 
 
 import "./App.css";
@@ -93,6 +94,12 @@ const PAGE_META = {
     subtitle:
       "Estimate per-student plan cost from tokens, hosting, database, and domain fees.",
     icon: "🧮",
+  },
+  performanceTests: {
+    title: "Performance Tests",
+    subtitle:
+      "Run controlled backend checks and monitor latency, errors, and trend health.",
+    icon: "⚡",
   },
   salesIncentives: {
     title: "Sales Incentives",
@@ -268,6 +275,8 @@ function App() {
         return <AdminSubscriptionSettingsPage user={user} />;
       case "pricingCalculator":
         return <AdminPricingCalculatorPage user={user} />;
+      case "performanceTests":
+        return <AdminPerformanceTestsPage user={user} />;
       case "salesIncentives":
         return <SalesIncentivePage user={user} />;
       case "salesDemo":
