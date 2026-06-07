@@ -18,6 +18,24 @@ From the `backend` directory:
 python3 -m pip install locust
 ```
 
+Recommended: configure a backend-only test student login in `backend/.env` so
+each run gets a fresh Supabase access token:
+
+```bash
+PERFORMANCE_TEST_EMAIL=akshita.teststudent@example.com
+PERFORMANCE_TEST_PASSWORD=...
+PERFORMANCE_TEST_USERNAME=akshita.teststudent
+PERFORMANCE_TEST_GRADE=Grade 9
+PERFORMANCE_TEST_BOARD=CBSE
+PERFORMANCE_TEST_MODE=CBSE
+PERFORMANCE_TEST_SUBJECT=Science
+PERFORMANCE_TEST_CHAPTER=Atoms and Molecules
+```
+
+Keep this in backend env only. Do not expose it in the frontend.
+
+Alternative: use a static local token file.
+
 Create a local test users file from the example:
 
 ```bash

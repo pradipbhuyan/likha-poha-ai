@@ -8,6 +8,8 @@ from itertools import cycle
 from pathlib import Path
 from typing import Any, Callable
 
+from supabase import create_client
+
 
 DEFAULT_GRADE = "Grade 9"
 DEFAULT_BOARD = "CBSE"
@@ -27,6 +29,11 @@ TEST_USERS_FILE = Path(
     )
 )
 
+PERFORMANCE_TOKEN_SETUP_MESSAGE = (
+    "Configure PERFORMANCE_TEST_EMAIL/PERFORMANCE_TEST_PASSWORD, "
+    "PERFORMANCE_TEST_BEARER_TOKEN, or tests/performance/test_users.json."
+)
+
 
 def _resolve_test_users_file(path: Path | None = None) -> Path:
     """Resolve the test-user file from backend cwd, repo cwd, or an absolute path."""
@@ -44,6 +51,118 @@ def _resolve_test_users_file(path: Path | None = None) -> Path:
         return repo_candidate
 
     return file_path
+
+
+def _first_env(*names: str) -> str:
+    """Return the first non-empty environment value from the provided aliases."""
+    for name in names:
+        value = os.getenv(name, "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _test_profile_defaults(username: str | None = None) -> dict[str, Any]:
+    """Build default test-profile metadata without any secret fields."""
+    return {
+        "username": username
+        or _first_env("PERFORMANCE_TEST_USERNAME", "TEST_USER_USERNAME")
+        or DEFAULT_USERNAME,
+        "grade": _first_env("PERFORMANCE_TEST_GRADE", "TEST_USER_GRADE")
+        or DEFAULT_GRADE,
+        "board": _first_env("PERFORMANCE_TEST_BOARD", "TEST_USER_BOARD")
+        or DEFAULT_BOARD,
+        "mode": _first_env("PERFORMANCE_TEST_MODE", "TEST_USER_MODE") or DEFAULT_MODE,
+        "subject": _first_env("PERFORMANCE_TEST_SUBJECT", "TEST_USER_SUBJECT")
+        or DEFAULT_SUBJECT,
+        "chapter": _first_env("PERFORMANCE_TEST_CHAPTER", "TEST_USER_CHAPTER")
+        or DEFAULT_CHAPTER,
+    }
+
+
+def _session_access_token(auth_response: Any) -> str:
+    """Extract a Supabase access token from object or dict auth responses."""
+    session = getattr(auth_response, "session", None)
+    token = getattr(session, "access_token", None)
+    if token:
+        return token
+
+    if isinstance(auth_response, dict):
+        session = auth_response.get("session") or {}
+        if isinstance(session, dict):
+            return session.get("access_token", "")
+
+    return ""
+
+
+def _login_test_user_from_env() -> dict[str, Any] | None:
+    """
+    Sign in the configured test student and return a fresh token profile.
+
+    This keeps long-lived access tokens out of the frontend and avoids stale
+    bearer tokens during repeated admin performance runs.
+    """
+    email = _first_env(
+        "PERFORMANCE_TEST_EMAIL",
+        "PERFORMANCE_TEST_USER_EMAIL",
+        "TEST_USER_EMAIL",
+    )
+    password = _first_env(
+        "PERFORMANCE_TEST_PASSWORD",
+        "PERFORMANCE_TEST_USER_PASSWORD",
+        "TEST_USER_PASSWORD",
+    )
+    if not email and not password:
+        return None
+    if not email or not password:
+        raise RuntimeError(
+            "Both PERFORMANCE_TEST_EMAIL and PERFORMANCE_TEST_PASSWORD are required.",
+        )
+
+    supabase_url = _first_env("SUPABASE_URL")
+    supabase_key = _first_env(
+        "SUPABASE_KEY",
+        "SUPABASE_ANON_KEY",
+        "VITE_SUPABASE_ANON_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY",
+    )
+    if not supabase_url or not supabase_key:
+        raise RuntimeError(
+            "Supabase URL/key missing for performance-test student login.",
+        )
+
+    client = create_client(supabase_url, supabase_key)
+    auth_response = client.auth.sign_in_with_password(
+        {
+            "email": email,
+            "password": password,
+        }
+    )
+    token = _session_access_token(auth_response)
+    if not token:
+        raise RuntimeError("Performance-test student login did not return a token.")
+
+    username = _first_env("PERFORMANCE_TEST_USERNAME", "TEST_USER_USERNAME")
+    if not username:
+        username = email.split("@", 1)[0]
+
+    return {
+        **_test_profile_defaults(username),
+        "email": email,
+        "access_token": token,
+    }
+
+
+def _token_test_user_from_env() -> dict[str, Any] | None:
+    """Return a static-token performance user when one is explicitly configured."""
+    env_token = _first_env("PERFORMANCE_TEST_BEARER_TOKEN", "TEST_USER_ACCESS_TOKEN")
+    if not env_token:
+        return None
+
+    return {
+        **_test_profile_defaults(),
+        "access_token": env_token,
+    }
 
 
 @dataclass(frozen=True)
@@ -106,23 +225,12 @@ def load_test_users(path: Path | None = None) -> list[dict]:
     """Load backend-only test user profiles and bearer tokens for protected APIs."""
     file_path = _resolve_test_users_file(path)
     if not file_path.exists():
-        env_token = os.getenv("PERFORMANCE_TEST_BEARER_TOKEN") or os.getenv(
-            "TEST_USER_ACCESS_TOKEN",
-        )
-        if not env_token:
-            return []
+        env_login_user = _login_test_user_from_env()
+        if env_login_user:
+            return [env_login_user]
 
-        return [
-            {
-                "username": os.getenv("PERFORMANCE_TEST_USERNAME", DEFAULT_USERNAME),
-                "access_token": env_token,
-                "grade": os.getenv("PERFORMANCE_TEST_GRADE", DEFAULT_GRADE),
-                "board": os.getenv("PERFORMANCE_TEST_BOARD", DEFAULT_BOARD),
-                "mode": os.getenv("PERFORMANCE_TEST_MODE", DEFAULT_MODE),
-                "subject": os.getenv("PERFORMANCE_TEST_SUBJECT", DEFAULT_SUBJECT),
-                "chapter": os.getenv("PERFORMANCE_TEST_CHAPTER", DEFAULT_CHAPTER),
-            }
-        ]
+        env_token_user = _token_test_user_from_env()
+        return [env_token_user] if env_token_user else []
 
     data = json.loads(file_path.read_text(encoding="utf-8"))
     users = data.get("users", data if isinstance(data, list) else [])

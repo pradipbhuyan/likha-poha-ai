@@ -5,6 +5,7 @@ import os
 from locust import HttpUser, between, events, task
 
 from app.services.performance_scenarios import (
+    PERFORMANCE_TOKEN_SETUP_MESSAGE,
     VALIDATORS,
     ScenarioRequest,
     auth_headers,
@@ -40,9 +41,7 @@ class LikhaPohaBaseUser(HttpUser):
                     name="missing bearer token",
                     response_time=0,
                     response_length=0,
-                    exception=RuntimeError(
-                        "Add tests/performance/test_users.json or PERFORMANCE_TEST_BEARER_TOKEN."
-                    ),
+                    exception=RuntimeError(PERFORMANCE_TOKEN_SETUP_MESSAGE),
                     context={},
                 )
                 return None

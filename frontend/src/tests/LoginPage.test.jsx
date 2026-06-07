@@ -27,7 +27,7 @@ describe("LoginPage password reset", () => {
 
     render(<LoginPage onLogin={vi.fn()} />);
 
-    fireEvent.change(screen.getByPlaceholderText(/enter username or email/i), {
+    fireEvent.change(screen.getByPlaceholderText(/username or email/i), {
       target: { value: "parent@example.com" },
     });
     fireEvent.click(screen.getByRole("button", { name: /forgot password/i }));

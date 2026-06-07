@@ -10803,9 +10803,87 @@ body.dark-mode .selected-child-badge {
     height: auto;
   }
 
+  .ait-form-card {
+    max-width: 100%;
+    padding: 34px 24px;
+    border-radius: 24px;
+  }
+
+  .ait-form-card h2 {
+    font-size: 36px;
+    line-height: 1.05;
+  }
+
+  .ait-form-card p {
+    font-size: 18px;
+    line-height: 1.45;
+    margin-bottom: 28px;
+  }
+
+  .ait-input-row {
+    height: 58px;
+    gap: 10px;
+    padding: 0 14px;
+    border-radius: 16px;
+  }
+
+  .ait-input-row span {
+    width: 28px;
+    min-width: 28px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .ait-input-row input {
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  .ait-input-row input::placeholder {
+    font-size: 15px;
+  }
+
+  .ait-input-row .password-toggle {
+    width: 34px;
+    min-width: 34px;
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .ait-login-options {
+    gap: 14px;
+    align-items: center;
+  }
+
+  .ait-login-options label,
+  .ait-login-options button {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
   .ait-feature-list div {
     font-size: 18px;
     white-space: normal;
+  }
+}
+
+@media (max-width: 420px) {
+  .ait-form-card {
+    padding: 28px 18px;
+  }
+
+  .ait-input-row {
+    height: 54px;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .ait-input-row input {
+    font-size: 15px;
+  }
+
+  .ait-input-row input::placeholder {
+    font-size: 14px;
   }
 }
 

@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 
 from app.services.auth_service import admin_client
 from app.services.performance_scenarios import (
+    PERFORMANCE_TOKEN_SETUP_MESSAGE,
     VALIDATORS,
     ScenarioDefinition,
     ScenarioRequest,
@@ -161,11 +162,7 @@ def _execute_request(
                     path=request_def.path,
                     ok=True,
                     elapsed_ms=0,
-                    error=(
-                        "Skipped: configure PERFORMANCE_TEST_BEARER_TOKEN or "
-                        "backend/tests/performance/test_users.json to include "
-                        "protected student endpoints."
-                    ),
+                    error=f"Skipped: {PERFORMANCE_TOKEN_SETUP_MESSAGE}",
                     skipped=True,
                     validation={"skip_reason": "missing_performance_test_token"},
                 )
@@ -176,7 +173,7 @@ def _execute_request(
                 ok=False,
                 elapsed_ms=0,
                 status_code=401,
-                error="Missing backend performance-test bearer token.",
+                error=f"Missing backend performance-test auth. {PERFORMANCE_TOKEN_SETUP_MESSAGE}",
             )
         headers.update(auth)
 

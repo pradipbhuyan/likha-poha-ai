@@ -329,7 +329,7 @@ function LoginPage({ onLogin }) {
 
                 <input
                   type="text"
-                  placeholder="Enter username or email"
+                  placeholder="Username or email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -341,7 +341,7 @@ function LoginPage({ onLogin }) {
 
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter password"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
