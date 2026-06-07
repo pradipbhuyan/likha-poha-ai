@@ -24,6 +24,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
 import SalesDemoPage from "./pages/SalesDemoPage";
+import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 
 
@@ -111,6 +112,12 @@ const PAGE_META = {
     subtitle:
       "Show safe prospect-facing demos for student, parent, and teacher flows.",
     icon: "🖥️",
+  },
+  salesCollaterals: {
+    title: "Sales Collaterals",
+    subtitle:
+      "Download approved WhatsApp messages, Instagram reels, brochures, and demo scripts.",
+    icon: "📣",
   },
   usage: {
     title: "AI Usage",
@@ -281,6 +288,8 @@ function App() {
         return <SalesIncentivePage user={user} />;
       case "salesDemo":
         return <SalesDemoPage user={user} />;
+      case "salesCollaterals":
+        return <SalesCollateralPage user={user} />;
       case "usage":
         return <UsagePage user={user} />;
       case "parentDashboard":

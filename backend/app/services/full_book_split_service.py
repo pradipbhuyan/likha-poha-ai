@@ -6,7 +6,11 @@ from dataclasses import dataclass
 
 from pypdf import PdfReader
 
-from app.services.file_extract_service import count_words
+from app.services.file_extract_service import (
+    count_words,
+    is_better_hindi_extraction,
+    looks_like_broken_hindi_pdf_text,
+)
 from app.services.ocr_service import extract_text_from_image_bytes
 
 
@@ -43,12 +47,22 @@ def extract_pdf_text_pages(
 
         for page_index, page in enumerate(reader.pages, start=1):
             text = (page.extract_text() or "").strip()
+            extraction_method = "pdf_text"
+
+            if looks_like_broken_hindi_pdf_text(text, filename):
+                image_bytes = render_pdf_page_to_jpeg(file_bytes, page_index - 1)
+                ocr_text = (extract_text_from_image_bytes(image_bytes) or "").strip()
+
+                if is_better_hindi_extraction(ocr_text, text):
+                    text = ocr_text
+                    extraction_method = "pdf_page_rendered_ocr"
+
             pages.append(
                 FullBookPage(
                     page_number=page_index,
                     text=text,
                     word_count=count_words(text),
-                    extraction_method="pdf_text",
+                    extraction_method=extraction_method,
                 )
             )
             if progress_callback:
@@ -102,12 +116,22 @@ def extract_pdf_text_pages_with_pymupdf(
 
         for page_index in range(page_count):
             text = (document.load_page(page_index).get_text("text") or "").strip()
+            extraction_method = "pdf_text_pymupdf"
+
+            if looks_like_broken_hindi_pdf_text(text, filename):
+                image_bytes = render_pdf_page_to_jpeg(file_bytes, page_index)
+                ocr_text = (extract_text_from_image_bytes(image_bytes) or "").strip()
+
+                if is_better_hindi_extraction(ocr_text, text):
+                    text = ocr_text
+                    extraction_method = "pdf_page_rendered_ocr"
+
             pages.append(
                 FullBookPage(
                     page_number=page_index + 1,
                     text=text,
                     word_count=count_words(text),
-                    extraction_method="pdf_text_pymupdf",
+                    extraction_method=extraction_method,
                 )
             )
             if progress_callback:

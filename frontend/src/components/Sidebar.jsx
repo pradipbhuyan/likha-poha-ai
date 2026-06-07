@@ -19,6 +19,7 @@ import {
   KeyRound,
   Handshake,
   MonitorPlay,
+  Megaphone,
   Activity,
 } from "lucide-react";
 
@@ -97,6 +98,12 @@ function Sidebar({
       key: "salesDemo",
       label: "Product Demo",
       icon: MonitorPlay,
+      roles: ["admin", "sales"],
+    },
+    {
+      key: "salesCollaterals",
+      label: "Sales Collaterals",
+      icon: Megaphone,
       roles: ["admin", "sales"],
     },
     {

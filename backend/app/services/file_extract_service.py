@@ -1,4 +1,5 @@
 import os
+import re
 import tempfile
 
 from pypdf import PdfReader
@@ -12,13 +13,27 @@ IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"]
 MIN_USEFUL_PAGE_WORDS = 12
 MIN_MULTI_PAGE_PDF_WORDS = 200
 MIN_MULTI_PAGE_PDF_WORDS_PER_PAGE = 2
+DEVANAGARI_RE = re.compile(r"[\u0900-\u097F]")
+LATIN_LETTER_RE = re.compile(r"[A-Za-z]")
+BROKEN_PDF_TOKEN_RE = re.compile(r"[;:`~{}\\¼%]|[A-Za-z]{4,}[A-Z][a-z]")
+HINDI_FILENAME_HINTS = (
+    "hindi",
+    "jhks",
+    "kshitij",
+    "kritika",
+    "sparsh",
+    "sanchayan",
+    "vasant",
+    "durva",
+    "rimjhim",
+)
 
 def extract_text_from_txt(file_bytes: bytes) -> str:
     """Decode a plain text upload into normalized UTF-8 text."""
     return file_bytes.decode("utf-8", errors="ignore").strip()
 
 
-def extract_text_from_pdf(file_bytes: bytes) -> str:
+def extract_text_from_pdf(file_bytes: bytes, filename: str = "") -> str:
     """Extract embedded text from all pages of a PDF upload."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp.write(file_bytes)
@@ -38,6 +53,12 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
             page_count = len(text_parts)
 
         extracted_text = "\n\n".join(text_parts).strip()
+
+        if looks_like_broken_hindi_pdf_text(extracted_text, filename):
+            ocr_text = extract_rendered_pdf_text_with_ocr(file_bytes)
+            if is_better_hindi_extraction(ocr_text, extracted_text):
+                extracted_text = ocr_text
+
         word_count = count_words(extracted_text)
 
         if (
@@ -83,6 +104,161 @@ def extract_pdf_text_parts_with_pymupdf(file_bytes: bytes) -> list[str]:
         if document is not None:
             document.close()
         os.remove(tmp_path)
+
+
+def has_hindi_filename_hint(filename: str) -> bool:
+    """Return true when a filename strongly suggests Hindi textbook content."""
+    lower_filename = (filename or "").lower()
+    return any(hint in lower_filename for hint in HINDI_FILENAME_HINTS)
+
+
+def count_devanagari_chars(text: str) -> int:
+    """Count Hindi/Devanagari characters in extracted text."""
+    return len(DEVANAGARI_RE.findall(text or ""))
+
+
+def looks_like_broken_hindi_pdf_text(text: str, filename: str = "") -> bool:
+    """
+    Detect Hindi PDFs whose embedded text layer decoded as font-encoded noise.
+
+    Some NCERT Hindi PDFs expose a Latin-looking text layer even though the page
+    visibly contains Devanagari. Indexing that text would poison RAG, so these
+    documents need rendered-page OCR instead of normal PDF text extraction.
+    """
+    sample = (text or "").strip()[:2500]
+    if not sample or not has_hindi_filename_hint(filename):
+        return False
+
+    if count_devanagari_chars(sample) >= 20:
+        return False
+
+    tokens = re.findall(r"\S+", sample)
+    if not tokens:
+        return False
+
+    latin_count = len(LATIN_LETTER_RE.findall(sample))
+    noisy_token_count = sum(
+        1
+        for token in tokens
+        if BROKEN_PDF_TOKEN_RE.search(token)
+        or (
+            len(token) >= 5
+            and LATIN_LETTER_RE.search(token)
+            and not re.search(r"[aeiouAEIOU]", token)
+        )
+    )
+    noisy_ratio = noisy_token_count / max(len(tokens), 1)
+
+    return latin_count >= 80 and noisy_ratio >= 0.18
+
+
+def is_better_hindi_extraction(candidate_text: str, original_text: str) -> bool:
+    """Prefer OCR text only when it clearly improves Devanagari extraction."""
+    candidate = (candidate_text or "").strip()
+    if not candidate:
+        return False
+
+    return (
+        count_devanagari_chars(candidate) > max(20, count_devanagari_chars(original_text))
+        and count_words(candidate) >= max(10, count_words(original_text) // 4)
+    )
+
+
+def render_pdf_page_to_jpeg(file_bytes: bytes, page_index: int) -> bytes:
+    """Render one PDF page into JPEG bytes for OCR fallback."""
+    try:
+        import fitz  # PyMuPDF
+    except Exception as exc:
+        raise RuntimeError(
+            "Hindi PDF text extraction needs PyMuPDF for rendered-page OCR. "
+            "Install backend requirement PyMuPDF and redeploy."
+        ) from exc
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    document = None
+    try:
+        document = fitz.open(tmp_path)
+        page = document.load_page(page_index)
+        matrix = fitz.Matrix(1.5, 1.5)
+        pixmap = page.get_pixmap(matrix=matrix, alpha=False)
+        return pixmap.tobytes("jpeg", jpg_quality=80)
+    finally:
+        if document is not None:
+            document.close()
+        os.remove(tmp_path)
+
+
+def render_open_pdf_page_to_jpeg(document, page_index: int) -> bytes:
+    """Render a page from an already opened PyMuPDF document to JPEG bytes."""
+    try:
+        import fitz  # PyMuPDF
+    except Exception as exc:
+        raise RuntimeError(
+            "Hindi PDF text extraction needs PyMuPDF for rendered-page OCR. "
+            "Install backend requirement PyMuPDF and redeploy."
+        ) from exc
+
+    page = document.load_page(page_index)
+    matrix = fitz.Matrix(1.5, 1.5)
+    pixmap = page.get_pixmap(matrix=matrix, alpha=False)
+    return pixmap.tobytes("jpeg", jpg_quality=80)
+
+
+def extract_rendered_pdf_page_text_with_ocr(file_bytes: bytes, page_index: int) -> str:
+    """OCR one rendered PDF page when embedded text is unusable."""
+    image_bytes = render_pdf_page_to_jpeg(file_bytes, page_index)
+    return (extract_text_from_image_bytes(image_bytes) or "").strip()
+
+
+def extract_rendered_pdf_text_with_ocr(file_bytes: bytes) -> str:
+    """OCR every rendered page in a PDF when the embedded text layer is broken."""
+    try:
+        import fitz  # PyMuPDF
+    except Exception as exc:
+        raise RuntimeError(
+            "Hindi PDF text extraction needs PyMuPDF for rendered-page OCR. "
+            "Install backend requirement PyMuPDF and redeploy."
+        ) from exc
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    document = None
+    try:
+        document = fitz.open(tmp_path)
+        text_parts = []
+
+        for page_index in range(document.page_count):
+            image_bytes = render_open_pdf_page_to_jpeg(document, page_index)
+            text_parts.append((extract_text_from_image_bytes(image_bytes) or "").strip())
+
+        return "\n\n".join(part for part in text_parts if part).strip()
+    finally:
+        if document is not None:
+            document.close()
+        os.remove(tmp_path)
+
+
+def maybe_ocr_broken_hindi_pdf_page(
+    *,
+    file_bytes: bytes,
+    filename: str,
+    page_index: int,
+    text: str,
+) -> str:
+    """Replace one page's broken Hindi PDF text with rendered-page OCR when useful."""
+    if not looks_like_broken_hindi_pdf_text(text, filename):
+        return text
+
+    ocr_text = extract_rendered_pdf_page_text_with_ocr(file_bytes, page_index)
+    if is_better_hindi_extraction(ocr_text, text):
+        return ocr_text
+
+    return text
 
 
 def count_words(text: str) -> int:
@@ -162,6 +338,20 @@ def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
                 text = (page.extract_text() or "").strip()
                 extraction_method = "pdf_text"
 
+                if looks_like_broken_hindi_pdf_text(text, filename):
+                    ocr_text = extract_rendered_pdf_page_text_with_ocr(
+                        file_bytes,
+                        page_index - 1,
+                    )
+
+                    if is_better_hindi_extraction(ocr_text, text):
+                        text = ocr_text
+                        extraction_method = "pdf_page_rendered_ocr"
+                    else:
+                        warnings.append(
+                            "Hindi PDF text layer looks unreadable. Review OCR quality before upload."
+                        )
+
                 if count_words(text) < MIN_USEFUL_PAGE_WORDS:
                     ocr_text = ocr_pdf_page_images(page)
 
@@ -189,7 +379,12 @@ def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
                 build_extracted_page(
                     filename=filename,
                     page_number=page_index + 1,
-                    text=text,
+                    text=maybe_ocr_broken_hindi_pdf_page(
+                        file_bytes=file_bytes,
+                        filename=filename,
+                        page_index=page_index,
+                        text=text,
+                    ),
                     extraction_method="pdf_text_pymupdf",
                 )
                 for page_index, text in enumerate(
@@ -258,7 +453,7 @@ def extract_text_from_uploaded_file(filename: str, file_bytes: bytes) -> str:
         return extract_text_from_txt(file_bytes)
 
     if ext == ".pdf":
-        return extract_text_from_pdf(file_bytes)
+        return extract_text_from_pdf(file_bytes, filename)
 
     if ext == ".docx":
         return extract_text_from_docx(file_bytes)

@@ -34,3 +34,50 @@ export async function updateSalesAttribution(attributionId, payload) {
     body: JSON.stringify(payload),
   });
 }
+
+
+export async function getSalesCollaterals() {
+  /** Load sales collateral entries visible to the current admin or sales user. */
+  return authFetch("/api/sales/collaterals", {
+    method: "GET",
+  });
+}
+
+
+export async function uploadSalesCollateralFile(file, channel = "whatsapp") {
+  /** Upload a collateral file through the backend so storage credentials stay server-side. */
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("channel", channel);
+
+  return authFetch("/api/sales/collaterals/upload", {
+    method: "POST",
+    body: formData,
+  });
+}
+
+
+export async function createSalesCollateral(payload) {
+  /** Create a sales collateral item from the admin sales collateral page. */
+  return authFetch("/api/sales/collaterals", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+
+export async function updateSalesCollateral(collateralId, payload) {
+  /** Update a sales collateral item from the admin page. */
+  return authFetch(`/api/sales/collaterals/${collateralId}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+}
+
+
+export async function deleteSalesCollateral(collateralId) {
+  /** Delete a sales collateral item from the admin page. */
+  return authFetch(`/api/sales/collaterals/${collateralId}`, {
+    method: "DELETE",
+  });
+}

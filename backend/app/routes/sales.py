@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+import os
+
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from app.services.auth_service import (
@@ -8,13 +10,21 @@ from app.services.auth_service import (
     require_admin_or_sales,
 )
 from app.services.sales_service import (
+    build_sales_collateral_storage_path,
     calculate_incentive_amount,
     enrich_sales_attribution,
+    infer_collateral_format,
+    normalize_sales_collateral_payload,
     normalize_incentive_percent,
+    validate_sales_collateral_upload,
 )
 
 
 router = APIRouter()
+SALES_COLLATERAL_BUCKET = os.getenv(
+    "SALES_COLLATERAL_BUCKET",
+    "sales-collaterals",
+)
 
 
 class CreateSalesPersonRequest(BaseModel):
@@ -46,6 +56,19 @@ class UpdateSalesAttributionRequest(BaseModel):
     incentive_percent: float | None = Field(default=None, ge=5, le=10)
     status: str | None = None
     notes: str | None = None
+
+
+class SalesCollateralRequest(BaseModel):
+    title: str
+    audience: str = "parents"
+    channel: str = "whatsapp"
+    format: str = "image"
+    description: str = ""
+    caption: str = ""
+    asset_url: str = ""
+    thumbnail_url: str = ""
+    status: str = "active"
+    display_order: int = 999
 
 
 def _safe_table_rows(table_name: str, select_value: str = "*") -> list[dict]:
@@ -80,6 +103,24 @@ def _profiles_by_id(rows: list[dict]) -> dict[str, dict]:
     }
 
 
+def _collateral_rows_for_role(role: str) -> list[dict]:
+    """Return collateral rows, hiding drafts from non-admin sales users."""
+    try:
+        query = (
+            admin_client
+            .table("sales_collaterals")
+            .select("*")
+            .order("display_order")
+            .order("created_at", desc=True)
+        )
+        if role != "admin":
+            query = query.eq("status", "active")
+        response = query.execute()
+        return response.data or []
+    except Exception:
+        return []
+
+
 def build_sales_summary(profile: dict) -> dict:
     """Build admin or salesperson sales dashboard data from Supabase rows."""
     role = profile.get("role")
@@ -92,6 +133,7 @@ def build_sales_summary(profile: dict) -> dict:
         for item in sales_profiles
         if item.get("profile_id")
     }
+
     sales_people = _profiles_by_role("sales")
     students = _profiles_by_role("student")
     attributions = _safe_table_rows("sales_student_attributions")
@@ -158,6 +200,155 @@ def build_sales_summary(profile: dict) -> dict:
 def get_sales_summary(user=Depends(require_admin_or_sales)):
     """Return sales incentive data for admins or the signed-in salesperson."""
     return build_sales_summary(user["profile"])
+
+
+@router.get("/collaterals")
+def get_sales_collaterals(user=Depends(require_admin_or_sales)):
+    """Return the sales collateral library for admins and sales users."""
+    return {
+        "success": True,
+        "collaterals": _collateral_rows_for_role(user["profile"].get("role")),
+    }
+
+
+@router.post("/collaterals/upload")
+async def upload_sales_collateral_file(
+    file: UploadFile = File(...),
+    channel: str = Form(default="whatsapp"),
+    admin=Depends(require_admin),
+):
+    """Upload a collateral file to Supabase Storage and return its public URL."""
+    file_bytes = await file.read()
+    content_type = file.content_type or "application/octet-stream"
+
+    try:
+        validate_sales_collateral_upload(
+            filename=file.filename or "",
+            content_type=content_type,
+            size_bytes=len(file_bytes),
+        )
+        storage_path = build_sales_collateral_storage_path(
+            filename=file.filename or "collateral",
+            channel=channel,
+            content_type=content_type,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+    try:
+        admin_client.storage.from_(SALES_COLLATERAL_BUCKET).upload(
+            path=storage_path,
+            file=file_bytes,
+            file_options={
+                "content-type": content_type,
+                "upsert": "false",
+            },
+        )
+        public_url = admin_client.storage.from_(
+            SALES_COLLATERAL_BUCKET,
+        ).get_public_url(storage_path)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Unable to upload collateral to Supabase Storage bucket "
+                f"'{SALES_COLLATERAL_BUCKET}'. Create this bucket and make it "
+                f"public, then try again. Original error: {str(exc)}"
+            ),
+        )
+
+    return {
+        "success": True,
+        "bucket": SALES_COLLATERAL_BUCKET,
+        "path": storage_path,
+        "asset_url": public_url,
+        "format": infer_collateral_format(content_type, file.filename or ""),
+        "content_type": content_type,
+        "size_bytes": len(file_bytes),
+    }
+
+
+@router.post("/collaterals")
+def create_sales_collateral(
+    data: SalesCollateralRequest,
+    admin=Depends(require_admin),
+):
+    """Create a sales collateral entry that salespeople can download or copy."""
+    try:
+        row = normalize_sales_collateral_payload(data.model_dump())
+        row["uploaded_by"] = admin["profile"].get("id")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+    try:
+        response = admin_client.table("sales_collaterals").insert(row).execute()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Unable to save sales collateral. Make sure "
+                "backend/sql/add_sales_collaterals.sql has been executed in "
+                f"Supabase. Original error: {str(exc)}"
+            ),
+        )
+
+    return {
+        "success": True,
+        "collateral": response.data[0] if response.data else row,
+    }
+
+
+@router.patch("/collaterals/{collateral_id}")
+def update_sales_collateral(
+    collateral_id: str,
+    data: SalesCollateralRequest,
+    admin=Depends(require_admin),
+):
+    """Update a sales collateral entry from the admin page."""
+    try:
+        update_data = normalize_sales_collateral_payload(data.model_dump())
+        update_data["uploaded_by"] = admin["profile"].get("id")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+    response = (
+        admin_client
+        .table("sales_collaterals")
+        .update(update_data)
+        .eq("id", collateral_id)
+        .execute()
+    )
+
+    if not response.data:
+        raise HTTPException(status_code=404, detail="Sales collateral not found.")
+
+    return {
+        "success": True,
+        "collateral": response.data[0],
+    }
+
+
+@router.delete("/collaterals/{collateral_id}")
+def delete_sales_collateral(
+    collateral_id: str,
+    admin=Depends(require_admin),
+):
+    """Delete a sales collateral entry from the admin page."""
+    response = (
+        admin_client
+        .table("sales_collaterals")
+        .delete()
+        .eq("id", collateral_id)
+        .execute()
+    )
+
+    if response.data is None:
+        raise HTTPException(status_code=404, detail="Sales collateral not found.")
+
+    return {
+        "success": True,
+        "deleted_id": collateral_id,
+    }
 
 
 @router.post("/people")

@@ -33,6 +33,7 @@ describe("Sidebar role visibility", () => {
     expect(screen.getByRole("button", { name: /syllabus review/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /pricing calculator/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /sales incentives/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /sales collaterals/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /teacher dashboard/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /lessons/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /parent dashboard/i })).not.toBeInTheDocument();
@@ -66,11 +67,12 @@ describe("Sidebar role visibility", () => {
 
     expect(screen.getByRole("button", { name: /sales incentives/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /product demo/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /sales collaterals/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /change password/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /admin control/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /teacher dashboard/i })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /sales incentives/i }));
-    expect(setActivePage).toHaveBeenCalledWith("salesIncentives");
+    fireEvent.click(screen.getByRole("button", { name: /sales collaterals/i }));
+    expect(setActivePage).toHaveBeenCalledWith("salesCollaterals");
   });
 });

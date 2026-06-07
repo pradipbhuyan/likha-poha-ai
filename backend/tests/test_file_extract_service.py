@@ -4,8 +4,10 @@ from pypdf import PdfWriter
 
 from app.services import file_extract_service
 from app.services.file_extract_service import (
+    count_devanagari_chars,
     extract_pages_from_uploaded_file,
     extract_text_from_uploaded_file,
+    looks_like_broken_hindi_pdf_text,
 )
 
 
@@ -110,3 +112,29 @@ def test_pdf_page_extraction_falls_back_to_pymupdf_when_pypdf_fails(monkeypatch)
 
     assert pages[0]["extraction_method"] == "pdf_text_pymupdf"
     assert "Heredity" in pages[0]["text"]
+
+
+def test_hindi_pdf_font_encoded_gibberish_is_detected():
+    broken_text = (
+        "dkO; [kaM ån; fIa/q efr lhi lekkuA Lokfr lkjhk dgfga "
+        "lqtkuA tks cj''kb cj ckfj fopk:A gksafg dfor eqDrkefu pk:AA "
+        "& rqylhnkl Reprint 2026-27 lu~ 1857 osQ ckxh"
+    )
+
+    assert looks_like_broken_hindi_pdf_text(broken_text, "jhks101.pdf")
+
+
+def test_readable_hindi_pdf_text_is_not_marked_as_broken():
+    hindi_text = "अध्याय 2: तुलसीदास भक्तिकाल के महान कवि थे। यह पाठ हिंदी साहित्य से जुड़ा है।"
+
+    assert count_devanagari_chars(hindi_text) > 20
+    assert not looks_like_broken_hindi_pdf_text(hindi_text, "jhks102.pdf")
+
+
+def test_english_pdf_text_is_not_marked_as_broken_even_with_short_filename():
+    english_text = (
+        "Chapter 2: Acids, Bases and Salts. Students learn about indicators, "
+        "neutralisation, and common examples from daily life."
+    )
+
+    assert not looks_like_broken_hindi_pdf_text(english_text, "jesc102.pdf")

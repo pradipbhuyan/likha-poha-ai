@@ -9121,6 +9121,190 @@ body.dark-mode .premium-resource-empty p {
   text-align: center;
 }
 
+.sales-collateral-page {
+  display: grid;
+  gap: 22px;
+}
+
+.sales-collateral-hero,
+.sales-collateral-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.sales-collateral-hero h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.sales-collateral-hero p,
+.sales-collateral-admin p {
+  max-width: 780px;
+  color: #64748b;
+}
+
+.sales-collateral-hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.sales-collateral-hero-metrics span,
+.sales-collateral-card-top span {
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.sales-collateral-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sales-collateral-form .wide-field {
+  grid-column: span 2;
+}
+
+.sales-collateral-form .primary-btn {
+  align-self: end;
+  min-height: 54px;
+}
+
+.sales-collateral-form input[type="file"] {
+  padding: 14px;
+  font-size: 14px;
+}
+
+.sales-collateral-form .field-help {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.sales-collateral-toolbar input {
+  width: min(100%, 420px);
+}
+
+.sales-collateral-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sales-collateral-card {
+  display: grid;
+  grid-template-columns: minmax(150px, 210px) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid #dbeafe;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+}
+
+.sales-collateral-card > img,
+.sales-collateral-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+  background:
+    linear-gradient(145deg, rgba(37, 99, 235, 0.16), rgba(16, 185, 129, 0.12)),
+    #eff6ff;
+}
+
+.sales-collateral-placeholder {
+  display: grid;
+  place-items: center;
+  color: #1d4ed8;
+}
+
+.sales-collateral-card-body {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 20px;
+}
+
+.sales-collateral-card-top,
+.sales-collateral-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sales-collateral-card h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.sales-collateral-card p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.sales-collateral-caption {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.sales-collateral-caption strong {
+  color: #1d4ed8;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sales-collateral-caption p {
+  white-space: pre-wrap;
+}
+
+.sales-collateral-actions button,
+.sales-collateral-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.sales-collateral-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.sales-collateral-actions .danger-link-button {
+  border-color: #fecaca;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
 .pricing-checkbox-label {
   justify-content: center;
 }
@@ -9145,6 +9329,8 @@ body.dark-mode .sales-demo-chart-mock,
 body.dark-mode .sales-demo-leaderboard-mock div,
 body.dark-mode .sales-demo-highlight,
 body.dark-mode .sales-form-card,
+body.dark-mode .sales-collateral-card,
+body.dark-mode .sales-collateral-caption,
 body.dark-mode .sales-ledger-row {
   background: #0f172a;
   border-color: rgba(148, 163, 184, 0.28);
@@ -9165,7 +9351,9 @@ body.dark-mode .sales-demo-copy h3,
 body.dark-mode .sales-demo-screen h4,
 body.dark-mode .sales-demo-stat span,
 body.dark-mode .sales-demo-mini-metric strong,
-body.dark-mode .sales-demo-highlight h4 {
+body.dark-mode .sales-demo-highlight h4,
+body.dark-mode .sales-collateral-hero h2,
+body.dark-mode .sales-collateral-card h3 {
   color: #f8fafc;
 }
 
@@ -9174,7 +9362,10 @@ body.dark-mode .sales-demo-screen-header p,
 body.dark-mode .sales-demo-login-mock p,
 body.dark-mode .sales-demo-mini-metric span,
 body.dark-mode .sales-demo-activity-card p,
-body.dark-mode .sales-demo-highlight p {
+body.dark-mode .sales-demo-highlight p,
+body.dark-mode .sales-collateral-hero p,
+body.dark-mode .sales-collateral-admin p,
+body.dark-mode .sales-collateral-card p {
   color: #cbd5e1;
 }
 
@@ -9217,6 +9408,28 @@ body.dark-mode .sales-empty-state {
   color: #94a3b8;
 }
 
+body.dark-mode .sales-collateral-placeholder {
+  background:
+    linear-gradient(145deg, rgba(37, 99, 235, 0.22), rgba(20, 184, 166, 0.16)),
+    #111827;
+  color: #93c5fd;
+}
+
+body.dark-mode .sales-collateral-actions button,
+body.dark-mode .sales-collateral-actions a,
+body.dark-mode .sales-collateral-hero-metrics span,
+body.dark-mode .sales-collateral-card-top span {
+  border-color: rgba(96, 165, 250, 0.28);
+  background: #172554;
+  color: #dbeafe;
+}
+
+body.dark-mode .sales-collateral-actions .danger-link-button {
+  border-color: rgba(248, 113, 113, 0.32);
+  background: rgba(127, 29, 29, 0.35);
+  color: #fecaca;
+}
+
 @media (max-width: 1100px) {
   .pricing-result-grid,
   .pricing-assumption-grid {
@@ -9238,8 +9451,32 @@ body.dark-mode .sales-empty-state {
   .sales-admin-grid,
   .sales-demo-showcase,
   .sales-form-grid,
+  .sales-collateral-grid,
+  .sales-collateral-form,
   .sales-ledger-row {
     grid-template-columns: 1fr;
+  }
+
+  .sales-collateral-form .wide-field {
+    grid-column: auto;
+  }
+
+  .sales-collateral-hero,
+  .sales-collateral-toolbar,
+  .sales-collateral-card {
+    align-items: stretch;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  .sales-collateral-toolbar input {
+    width: 100%;
+  }
+
+  .sales-collateral-card > img,
+  .sales-collateral-placeholder {
+    aspect-ratio: 16 / 9;
+    min-height: 180px;
   }
 
   .sales-demo-hero {

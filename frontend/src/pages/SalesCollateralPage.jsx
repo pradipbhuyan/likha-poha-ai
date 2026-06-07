@@ -1,0 +1,514 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  Copy,
+  Download,
+  ExternalLink,
+  FileText,
+  MessageCircle,
+  Plus,
+  Trash2,
+  Video,
+} from "lucide-react";
+
+import {
+  createSalesCollateral,
+  deleteSalesCollateral,
+  getSalesCollaterals,
+  uploadSalesCollateralFile,
+} from "../api/sales";
+
+const CHANNEL_OPTIONS = [
+  { value: "all", label: "All" },
+  { value: "whatsapp", label: "WhatsApp" },
+  { value: "instagram_reel", label: "Insta Reels" },
+  { value: "brochure", label: "Brochure" },
+  { value: "poster", label: "Poster" },
+  { value: "demo_script", label: "Demo Script" },
+];
+
+const AUDIENCE_OPTIONS = [
+  { value: "parents", label: "Parents" },
+  { value: "students", label: "Students" },
+  { value: "teachers", label: "Teachers" },
+  { value: "schools", label: "Schools" },
+];
+
+const FORMAT_OPTIONS = [
+  { value: "image", label: "Image" },
+  { value: "video", label: "Video" },
+  { value: "pdf", label: "PDF" },
+  { value: "text", label: "Text" },
+  { value: "link", label: "Link" },
+];
+
+const INITIAL_FORM = {
+  title: "",
+  audience: "parents",
+  channel: "whatsapp",
+  format: "image",
+  description: "",
+  caption: "",
+  asset_url: "",
+  thumbnail_url: "",
+  status: "active",
+  display_order: 10,
+};
+
+function channelLabel(value) {
+  /** Convert stored channel ids into short sales-friendly labels. */
+  return CHANNEL_OPTIONS.find((option) => option.value === value)?.label || value;
+}
+
+function formatIcon(format, channel) {
+  /** Pick a compact visual cue for the collateral card. */
+  if (channel === "whatsapp") return MessageCircle;
+  if (channel === "instagram_reel" || format === "video") return Video;
+  return FileText;
+}
+
+function SalesCollateralPage({ user }) {
+  /** Show salespeople downloadable collateral and admin-only collateral management. */
+  const isAdmin = user?.role === "admin" || user?.username === "pradip";
+  const [collaterals, setCollaterals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [channelFilter, setChannelFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  const [form, setForm] = useState(INITIAL_FORM);
+
+  async function loadCollaterals() {
+    /** Refresh the collateral library from the backend. */
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await getSalesCollaterals();
+      if (!response?.success) {
+        throw new Error(response?.detail || "Unable to load collateral library.");
+      }
+      setCollaterals(response.collaterals || []);
+    } catch (err) {
+      setError(err.message || "Unable to load collateral library.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadCollaterals();
+  }, []);
+
+  const filteredCollaterals = useMemo(() => {
+    /** Apply sales-friendly filtering without mutating the original API rows. */
+    const normalizedSearch = search.trim().toLowerCase();
+
+    return collaterals.filter((item) => {
+      const matchesChannel =
+        channelFilter === "all" || item.channel === channelFilter;
+      const searchableText = [
+        item.title,
+        item.description,
+        item.caption,
+        item.audience,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        matchesChannel &&
+        (!normalizedSearch || searchableText.includes(normalizedSearch))
+      );
+    });
+  }, [collaterals, channelFilter, search]);
+
+  async function handleSubmit(event) {
+    /** Save a new collateral row for sales users to consume. */
+    event.preventDefault();
+    setSaving(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await createSalesCollateral({
+        ...form,
+        display_order: Number(form.display_order || 999),
+      });
+      if (!response?.success) {
+        throw new Error(response?.detail || "Unable to save collateral.");
+      }
+      setMessage("Sales collateral saved.");
+      setForm(INITIAL_FORM);
+      await loadCollaterals();
+    } catch (err) {
+      setError(err.message || "Unable to save collateral.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleFileUpload(event) {
+    /** Upload a selected collateral asset and populate the public URL field. */
+    const selectedFile = event.target.files?.[0];
+    if (!selectedFile) return;
+
+    setUploading(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await uploadSalesCollateralFile(
+        selectedFile,
+        form.channel,
+      );
+      if (!response?.success) {
+        throw new Error(response?.detail || "Unable to upload collateral file.");
+      }
+      setForm((prev) => ({
+        ...prev,
+        asset_url: response.asset_url || prev.asset_url,
+        format: response.format || prev.format,
+      }));
+      setMessage("Collateral file uploaded. Review details and save.");
+    } catch (err) {
+      setError(err.message || "Unable to upload collateral file.");
+    } finally {
+      setUploading(false);
+      event.target.value = "";
+    }
+  }
+
+  async function handleDelete(collateralId) {
+    /** Remove a collateral row from the active sales library. */
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await deleteSalesCollateral(collateralId);
+      if (!response?.success) {
+        throw new Error(response?.detail || "Unable to delete collateral.");
+      }
+      setMessage("Sales collateral deleted.");
+      await loadCollaterals();
+    } catch (err) {
+      setError(err.message || "Unable to delete collateral.");
+    }
+  }
+
+  async function copyCaption(text) {
+    /** Copy the prepared sales message so it can be pasted into WhatsApp or Instagram. */
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setMessage("Caption copied.");
+    } catch {
+      setError("Copy failed. Select the caption text and copy it manually.");
+    }
+  }
+
+  return (
+    <div className="sales-collateral-page page-section">
+      <section className="sales-collateral-hero premium-card">
+        <div>
+          <p className="eyebrow">Sales enablement</p>
+          <h2>Collateral Library</h2>
+          <p>
+            Download WhatsApp creatives, Instagram reels, brochures, and demo
+            scripts approved for prospect communication.
+          </p>
+        </div>
+        <div className="sales-collateral-hero-metrics">
+          <span>{collaterals.length} total assets</span>
+          <span>{filteredCollaterals.length} visible now</span>
+        </div>
+      </section>
+
+      {message && <div className="success-banner">{message}</div>}
+      {error && <div className="error-banner">{error}</div>}
+
+      {isAdmin && (
+        <section className="sales-form-card sales-collateral-admin">
+          <div>
+            <p className="eyebrow">Admin upload</p>
+            <h3>Add Sales Collateral</h3>
+            <p>
+              Store a downloadable link and ready-to-send caption for the sales
+              team. Draft assets stay hidden from salesperson logins.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="sales-collateral-form">
+            <label>
+              Title
+              <input
+                value={form.title}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, title: event.target.value }))
+                }
+                placeholder="Grade 9 SOF launch WhatsApp poster"
+                required
+              />
+            </label>
+
+            <label>
+              Channel
+              <select
+                value={form.channel}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, channel: event.target.value }))
+                }
+              >
+                {CHANNEL_OPTIONS.filter((option) => option.value !== "all").map(
+                  (option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  )
+                )}
+              </select>
+            </label>
+
+            <label>
+              Audience
+              <select
+                value={form.audience}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, audience: event.target.value }))
+                }
+              >
+                {AUDIENCE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Format
+              <select
+                value={form.format}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, format: event.target.value }))
+                }
+              >
+                {FORMAT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Upload File
+              <input
+                type="file"
+                accept="image/*,video/mp4,video/webm,video/quicktime,application/pdf,text/plain"
+                onChange={handleFileUpload}
+                disabled={uploading}
+              />
+                <small className="field-help">
+                  {uploading
+                    ? "Uploading to Supabase Storage..."
+                    : "Uploads fill the public link automatically. Max 100 MB."}
+                </small>
+            </label>
+
+            <label>
+              Asset URL
+              <input
+                value={form.asset_url}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, asset_url: event.target.value }))
+                }
+                placeholder="https://..."
+              />
+            </label>
+
+            <label>
+              Thumbnail URL
+              <input
+                value={form.thumbnail_url}
+                onChange={(event) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    thumbnail_url: event.target.value,
+                  }))
+                }
+                placeholder="Optional preview image"
+              />
+            </label>
+
+            <label>
+              Display Order
+              <input
+                type="number"
+                min="1"
+                value={form.display_order}
+                onChange={(event) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    display_order: event.target.value,
+                  }))
+                }
+              />
+            </label>
+
+            <label>
+              Status
+              <select
+                value={form.status}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, status: event.target.value }))
+                }
+              >
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+
+            <label className="wide-field">
+              Short Description
+              <textarea
+                value={form.description}
+                onChange={(event) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    description: event.target.value,
+                  }))
+                }
+                placeholder="Where and when this collateral should be used."
+              />
+            </label>
+
+            <label className="wide-field">
+              WhatsApp / Reel Caption
+              <textarea
+                value={form.caption}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, caption: event.target.value }))
+                }
+                placeholder="Ready-to-send message for salespeople."
+              />
+            </label>
+
+            <button type="submit" className="primary-btn" disabled={saving}>
+              <Plus size={18} />
+              {saving ? "Saving..." : "Add Collateral"}
+            </button>
+          </form>
+        </section>
+      )}
+
+      <section className="sales-collateral-toolbar premium-card">
+        <div className="sales-demo-selector">
+          {CHANNEL_OPTIONS.map((option) => (
+            <button
+              key={option.value}
+              className={channelFilter === option.value ? "active" : ""}
+              onClick={() => setChannelFilter(option.value)}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search title, audience, or caption"
+        />
+      </section>
+
+      <section className="sales-collateral-grid">
+        {loading && <div className="sales-empty-state">Loading collateral...</div>}
+
+        {!loading && filteredCollaterals.length === 0 && (
+          <div className="sales-empty-state">
+            No collateral found. Ask admin to add WhatsApp, reel, brochure, or
+            demo script assets.
+          </div>
+        )}
+
+        {filteredCollaterals.map((item) => {
+          const Icon = formatIcon(item.format, item.channel);
+
+          return (
+            <article key={item.id || item.title} className="sales-collateral-card">
+              {item.thumbnail_url ? (
+                <img src={item.thumbnail_url} alt="" />
+              ) : (
+                <div className="sales-collateral-placeholder">
+                  <Icon size={34} />
+                </div>
+              )}
+
+              <div className="sales-collateral-card-body">
+                <div className="sales-collateral-card-top">
+                  <span>{channelLabel(item.channel)}</span>
+                  <span>{item.audience}</span>
+                  {isAdmin && <span>{item.status}</span>}
+                </div>
+
+                <h3>{item.title}</h3>
+                {item.description && <p>{item.description}</p>}
+
+                {item.caption && (
+                  <div className="sales-collateral-caption">
+                    <strong>Caption</strong>
+                    <p>{item.caption}</p>
+                  </div>
+                )}
+
+                <div className="sales-collateral-actions">
+                  <button
+                    type="button"
+                    onClick={() => copyCaption(item.caption)}
+                    disabled={!item.caption}
+                  >
+                    <Copy size={17} />
+                    Copy Caption
+                  </button>
+
+                  {item.asset_url ? (
+                    <a
+                      href={item.asset_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      download
+                    >
+                      <Download size={17} />
+                      Download
+                    </a>
+                  ) : (
+                    <button type="button" disabled>
+                      <ExternalLink size={17} />
+                      No File
+                    </button>
+                  )}
+
+                  {isAdmin && (
+                    <button
+                      type="button"
+                      className="danger-link-button"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      <Trash2 size={17} />
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    </div>
+  );
+}
+
+export default SalesCollateralPage;
