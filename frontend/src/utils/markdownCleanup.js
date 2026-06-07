@@ -4,11 +4,25 @@ const LATEX_COMMAND_PATTERN =
 const LATEX_FRAGMENT_PATTERN =
   /\\frac\{[^{}]+\}\{[^{}]+\}|\\sqrt\{[^{}]+\}|[A-Za-z0-9{}\s+\-*/=^_]*\\(?:neq|leq|geq|times|div|cdot|pm|approx|equiv|propto)[A-Za-z0-9{}\s+\-*/=^_]*/g;
 
+const PLAIN_ALGEBRA_DOUBLE_PAREN_PATTERN =
+  /\(\(([a-zA-Z][a-zA-Z0-9]*(?:[+\-]\d+)?)\)\^(\d+)\)/g;
+
+const PLAIN_ALGEBRA_GROUPED_POWER_PATTERN =
+  /\(\(([^()\n]{1,60})\)\^(\d+)([^()\n]{0,120})\)/g;
+
 function transformOutsideCodeFences(text, transform) {
   /** Apply markdown cleanup only to prose, leaving fenced code blocks untouched. */
   return text
     .split(/(```[\s\S]*?```)/g)
     .map((part) => (part.startsWith("```") ? part : transform(part)))
+    .join("");
+}
+
+function transformOutsideInlineMath(text, transform) {
+  /** Apply cleanup only outside already-normalized inline math spans. */
+  return text
+    .split(/(\$[^$\n]*\$)/g)
+    .map((part) => (part.startsWith("$") && part.endsWith("$") ? part : transform(part)))
     .join("");
 }
 
@@ -123,7 +137,79 @@ export function normalizeLatexParentheses(text) {
   });
 }
 
+export function normalizeDollarMath(text) {
+  /**
+   * Make numeric inline equations parseable by remark-math.
+   *
+   * remark-math intentionally ignores `$10...$` because it looks like currency.
+   * Tutor output sometimes uses that shape for equations, so add a tiny space
+   * after the opening dollar only when the content is clearly mathematical.
+   */
+  if (!text) return "";
+
+  return transformOutsideCodeFences(text, (content) =>
+    content.replace(/\$([0-9][^$\n]*?(?:\\[a-zA-Z]+|[=+\-*/^])[^$\n]*?)\$/g, (_match, expression) => {
+      const trimmed = expression.trim();
+      return `$ ${trimmed} $`;
+    })
+  );
+}
+
+export function normalizePlainAlgebra(text) {
+  /** Convert common plain-text algebra from the model into readable inline math. */
+  if (!text) return "";
+
+  return transformOutsideCodeFences(text, (content) =>
+    transformOutsideInlineMath(textToNormalizePlainAlgebra(content), (part) =>
+      part.replace(/\(([^()\n]{1,140})\)/g, (match, expression) => {
+        if (!isPlainMathExpression(expression)) {
+          return match;
+        }
+
+        return `$${expression.trim()}$`;
+      })
+    )
+  );
+}
+
+function textToNormalizePlainAlgebra(content) {
+  /** Normalize grouped powers before the wider parenthetical math pass. */
+  return content
+    .replace(
+      PLAIN_ALGEBRA_DOUBLE_PAREN_PATTERN,
+      (_match, base, exponent) => {
+        const expression = /[+\-]/.test(base)
+          ? `(${base})^${exponent}`
+          : `${base}^${exponent}`;
+        return `$${expression}$`;
+      }
+    )
+    .replace(
+      PLAIN_ALGEBRA_GROUPED_POWER_PATTERN,
+      (_match, base, exponent, suffix) =>
+        `$(${base.trim()})^${exponent}${suffix.trimEnd()}$`
+    );
+}
+
+function isPlainMathExpression(expression) {
+  /** Identify compact algebra expressions without catching normal prose. */
+  const trimmed = expression.trim();
+
+  if (!trimmed || !/^[A-Za-z0-9\s+\-*/=^_,.]+$/.test(trimmed)) {
+    return false;
+  }
+
+  if (!/[=^+\-*/]/.test(trimmed)) {
+    return false;
+  }
+
+  const words = trimmed.match(/[A-Za-z]{3,}/g) || [];
+  return words.length === 0;
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it. */
-  return normalizeLatexParentheses(normalizeMermaidBlocks(text));
+  return normalizeDollarMath(
+    normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+  );
 }

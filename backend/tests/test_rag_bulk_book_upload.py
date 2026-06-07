@@ -374,6 +374,36 @@ Reprint 2026-27
     assert title == "Chapter 6: Pressure, Winds, Storms, and Cyclones"
 
 
+def test_infer_book_section_title_preserves_hindi_chapter_label():
+    """Hindi uploads should return Hindi labels, not translated or generic titles."""
+    title = rag.infer_book_section_title(
+        "hindi-chapter-1.pdf",
+        """
+पाठ 1: दो बैलों की कथा
+मुंशी प्रेमचंद
+यह कहानी हीरा और मोती नाम के दो बैलों के बारे में है।
+""",
+        1,
+    )
+
+    assert title == "पाठ 1: दो बैलों की कथा"
+
+
+def test_infer_book_section_title_detects_hindi_contents_page():
+    """Hindi table-of-contents pages should be labeled in Hindi."""
+    title = rag.infer_book_section_title(
+        "hindi-toc.pdf",
+        """
+विषय सूची
+1 दो बैलों की कथा
+2 ल्हासा की ओर
+""",
+        1,
+    )
+
+    assert title == "विषय सूची"
+
+
 def test_normalize_suggested_section_title_removes_pdf_export_artifacts():
     """
     AI cleanup should remove .indd timestamps and recover the clean preview title.

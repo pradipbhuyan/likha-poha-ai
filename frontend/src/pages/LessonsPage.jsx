@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
-import MermaidBlock from "../components/MermaidBlock";
+import StructuredVisualBlock from "../components/StructuredVisualBlock";
 
 import { getSyllabus } from "../api/syllabus";
 import { generateLesson, askLessonFollowUp } from "../api/lesson";
@@ -25,6 +25,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
+import { getKeywordHint } from "../utils/keywordHints";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 const TEACHER_PERSONAS = {
@@ -68,8 +69,123 @@ const SCIENCE_VISUAL_AID_SUGGESTIONS = [
   "Real-life example scene",
 ];
 
+function buildPracticeFallbackQuestions(subject) {
+  /** Keep practice usable if the backend cannot generate structured questions. */
+  const isMath =
+    subject === "Maths" ||
+    subject === "Maths Olympiad" ||
+    subject === "Mathematics";
+
+  if (isMath) {
+    return [
+      {
+        type: "mcq",
+        question: "Which option best describes how to use this lesson idea?",
+        options: [
+          "Apply the rule step by step and check the answer.",
+          "Memorise only the heading.",
+          "Ignore the working.",
+          "Choose the longest option.",
+        ],
+        answer: "Apply the rule step by step and check the answer.",
+        explanation:
+          "Maths practice is strongest when you identify the rule, apply it, and check each step.",
+        expected_keywords: ["rule", "step", "check"],
+      },
+      {
+        type: "mcq",
+        question: "What is the best habit before finalising a maths answer?",
+        options: [
+          "Check signs, values, and the method used.",
+          "Skip the final check.",
+          "Write only the answer without thinking.",
+          "Ignore the question condition.",
+        ],
+        answer: "Check signs, values, and the method used.",
+        explanation:
+          "Checking signs, values, and method helps catch common mistakes before submission.",
+        expected_keywords: ["signs", "values", "method"],
+      },
+    ];
+  }
+
+  return [
+    {
+      type: "mcq",
+      question: "Which option best captures the main idea from this lesson?",
+      options: [
+        "The concept explains an idea and how it is used.",
+        "The concept is only a heading.",
+        "The concept has no examples.",
+        "The concept cannot be explained simply.",
+      ],
+      answer: "The concept explains an idea and how it is used.",
+      explanation:
+        "A strong answer connects the concept with a use, reason, or example.",
+      expected_keywords: ["concept", "use", "example"],
+    },
+    {
+      type: "descriptive",
+      question:
+        "Explain the main concept from this lesson in your own words. Add one example if possible.",
+      expected_keywords: ["concept", "example", "reason"],
+    },
+  ];
+}
+
+function normalizePracticeQuestion(question, subject) {
+  /** Accept both legacy string questions and the newer structured question format. */
+  if (typeof question === "string") {
+    return {
+      type: "descriptive",
+      question,
+      options: [],
+      answer: "",
+      explanation: "",
+      expected_keywords: [],
+    };
+  }
+
+  if (!question || typeof question !== "object") {
+    return buildPracticeFallbackQuestions(subject)[0];
+  }
+
+  const options = Array.isArray(question.options)
+    ? question.options.slice(0, 4)
+    : [];
+  const type = question.type === "mcq" && options.length >= 2
+    ? "mcq"
+    : "descriptive";
+
+  return {
+    type,
+    question: question.question || "Answer this practice question.",
+    options,
+    answer: question.answer || question.correct_answer || "",
+    explanation: question.explanation || "",
+    expected_keywords: Array.isArray(question.expected_keywords)
+      ? question.expected_keywords
+      : [],
+  };
+}
+
+function HighlightedStrong({ children }) {
+  /** Render important generated terms with a visible highlight and hover hint. */
+  const hint = getKeywordHint(children);
+
+  if (!hint) {
+    return <strong>{children}</strong>;
+  }
+
+  return (
+    <strong className="keyword-highlight" title={hint} aria-label={hint}>
+      {children}
+    </strong>
+  );
+}
+
 function LessonsPage({ user }) {
-  /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and practice gates. */
+  /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and coaching practice. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -392,8 +508,8 @@ function LessonsPage({ user }) {
   }
 
   function shouldSkipPracticeRequirement() {
-    /** Skip long written practice for language subjects where the gate is not useful yet. */
-    return subject === "Hindi" || subject === "Sanskrit";
+    /** Practice is available for every subject and no longer gates progression. */
+    return false;
   }
   
   function isMathSubject() {
@@ -451,8 +567,8 @@ function LessonsPage({ user }) {
   }
 
   function getMinimumPracticeWords() {
-    /** Decide the minimum answer length needed before evaluation can run. */
-    return isMathSubject() ? 1 : 100;
+    /** Practice has no word limit; any thoughtful answer can be evaluated. */
+    return 1;
   }
 
   function resetPracticeState() {
@@ -708,6 +824,10 @@ function LessonsPage({ user }) {
     try {
       const result = await generatePracticeQuestions({
         grade,
+        mode,
+        subject,
+        chapter,
+        step_title: stepTitle,
         username: user.username,
         question: chapter,
         student_answer: "",
@@ -715,21 +835,23 @@ function LessonsPage({ user }) {
       });
 
       if (!result.success) {
-        setPracticeQuestions([
-          "Explain the main concept from this lesson in your own words.",
-          "Give one real-life example or application of this concept.",
-        ]);
+        setPracticeQuestions(buildPracticeFallbackQuestions(subject));
         setPracticeModeActive(true);
         return;
       }
 
-      setPracticeQuestions(result.questions || []);
+      const normalizedQuestions = (result.questions || [])
+        .map((item) => normalizePracticeQuestion(item, subject))
+        .slice(0, 2);
+
+      setPracticeQuestions(
+        normalizedQuestions.length
+          ? normalizedQuestions
+          : buildPracticeFallbackQuestions(subject)
+      );
       setPracticeModeActive(true);
     } catch {
-      setPracticeQuestions([
-        "Explain the main concept from this lesson in your own words.",
-        "Give one real-life example or application of this concept.",
-      ]);
+      setPracticeQuestions(buildPracticeFallbackQuestions(subject));
       setPracticeModeActive(true);
     } finally {
       setPracticeQuestionsLoading(false);
@@ -737,12 +859,11 @@ function LessonsPage({ user }) {
   }
 
   async function handleEvaluatePracticeAnswer(question, index) {
-    /** Evaluate one practice answer and unlock progress or raise weak-area alerts. */
+    /** Evaluate one practice answer and record revision signals without blocking progress. */
+    const practiceQuestion = normalizePracticeQuestion(question, subject);
     const answer = practiceAnswers[index] || "";
 
-    const minimumWords = getMinimumPracticeWords();
-
-    if (!answer.trim() || countWords(answer) < minimumWords) {
+    if (!answer.trim()) {
       return;
     }
 
@@ -769,10 +890,16 @@ function LessonsPage({ user }) {
     try {
       const result = await evaluateStudentAnswer({
         grade,
+        mode,
+        subject,
+        chapter,
+        step_title: stepTitle,
         username: user.username,
-        question,
+        question: practiceQuestion.question,
         student_answer: answer,
         ideal_context: lesson,
+        question_type: practiceQuestion.type,
+        expected_keywords: practiceQuestion.expected_keywords || [],
       });
 
       if (!result.success) {
@@ -795,7 +922,7 @@ function LessonsPage({ user }) {
 
       setPracticePassedMap((prev) => ({
         ...prev,
-        [index]: result.passed || false,
+        [index]: true,
       }));
       
       const nextAttemptCount = practiceAttemptCount + 1;
@@ -803,13 +930,11 @@ function LessonsPage({ user }) {
       
       setPracticeAttemptCount(nextAttemptCount);
       setPracticeBestScore(nextBestScore);
-      
-      if (result.passed) {
-        setPracticePassed(true);
-        setPracticeModeActive(false);
-      } else if (nextAttemptCount >= 2) {
-        setAllowContinueAnyway(true);
-      
+
+      setPracticePassed(true);
+      setPracticeModeActive(false);
+
+      if ((result.score || 0) < 7) {
         try {
           await saveWeakAreaAlert({
             username: user.username,
@@ -1058,18 +1183,7 @@ function LessonsPage({ user }) {
 
               <button
                 className="secondary-btn"
-                disabled={
-                  !practicePassed &&
-                  !allowContinueAnyway &&
-                  !shouldSkipPracticeRequirement()
-                }
-                title={
-                  practicePassed ||
-                  allowContinueAnyway ||
-                  shouldSkipPracticeRequirement()
-                    ? "You can complete this step."
-                    : "Write and pass practice answer first."
-                }
+                title="You can complete this step. Practice feedback is for revision, not pass/fail."
                 onClick={async () => {
                   const isLastStep = currentStepIndex >= lessonSteps.length - 1;
 
@@ -1119,9 +1233,7 @@ function LessonsPage({ user }) {
                   }
                 }}
               >
-                {allowContinueAnyway && !practicePassed
-                  ? "➡ Continue Anyway"
-                  : "✅ Mark Step Complete"}
+                ✅ Mark Step Complete
               </button>
 
               <button
@@ -1236,25 +1348,25 @@ function LessonsPage({ user }) {
 
                     {allowContinueAnyway && !practicePassed && (
                       <div className="practice-warning-banner">
-                        ⚠️ You have tried this step twice. You can continue to
-                        the next step, but this topic will be marked for
-                        revision later.
+                        ⚠️ This topic has been marked for revision. You can
+                        still continue and revisit it later.
                       </div>
                     )}
 
                     {practiceModeActive && (
                       <div className="practice-focus-banner">
-                        ✍️ Practice Mode Active — AI follow-up help is
-                        temporarily disabled. Try answering from memory like a
-                        real exam.
+                        ✍️ Practice Mode Active — try the questions from memory
+                        first. Your result will guide revision, not block the
+                        next step.
                       </div>
                     )}
 
                     <div className="lesson-followup-header">
-                      <h3>✍️ Write & Practice</h3>
+                      <h3>✍️ Self Check Practice</h3>
                       <p>
-                        Write your own answer first. AI will evaluate it like an
-                        examiner.
+                        Maths gets two MCQs. Science, English, and Social
+                        Science get one MCQ plus one open answer with AI
+                        feedback.
                       </p>
                     </div>
 
@@ -1271,16 +1383,18 @@ function LessonsPage({ user }) {
                     {practiceQuestions.length > 0 && (
                       <div className="practice-question-list">
                         {practiceQuestions.map((q, index) => {
+                          const practiceQuestion = normalizePracticeQuestion(
+                            q,
+                            subject
+                          );
                           const currentAnswer = practiceAnswers[index] || "";
                           const currentWordCount = countWords(currentAnswer);
-                          const minimumWords = getMinimumPracticeWords();
                           const currentEvaluation =
                             practiceEvaluations[index] || "";
                           const currentScore = practiceScores[index] || 0;
-                          const currentPassed =
-                            practicePassedMap[index] || false;
                           const currentLoading =
                             practiceLoadingMap[index] || false;
+                          const isMcq = practiceQuestion.type === "mcq";
 
                           return (
                             <div
@@ -1288,47 +1402,64 @@ function LessonsPage({ user }) {
                               className="practice-question-card workbook-card"
                             >
                               <strong>Question {index + 1}</strong>
-                              <span>{q}</span>
+                              <span>{practiceQuestion.question}</span>
 
-                              <textarea
-                                rows="6"
-                                value={currentAnswer}
-                                placeholder={
-                                  isMathSubject()
-                                    ? "Write your final answer and short working here..."
-                                    : "Write your answer here in at least 100 words..."
-                                }
-                                onChange={(e) =>
-                                  setPracticeAnswers((prev) => ({
-                                    ...prev,
-                                    [index]: e.target.value,
-                                  }))
-                                }
-                              />
+                              {isMcq ? (
+                                <div className="practice-option-list">
+                                  {practiceQuestion.options.map((option) => (
+                                    <button
+                                      key={option}
+                                      type="button"
+                                      className={
+                                        currentAnswer === option
+                                          ? "practice-option-btn selected"
+                                          : "practice-option-btn"
+                                      }
+                                      onClick={() =>
+                                        setPracticeAnswers((prev) => ({
+                                          ...prev,
+                                          [index]: option,
+                                        }))
+                                      }
+                                    >
+                                      {option}
+                                    </button>
+                                  ))}
+                                </div>
+                              ) : (
+                                <textarea
+                                  rows="7"
+                                  value={currentAnswer}
+                                  placeholder="Write freely here. There is no word limit."
+                                  onChange={(e) =>
+                                    setPracticeAnswers((prev) => ({
+                                      ...prev,
+                                      [index]: e.target.value,
+                                    }))
+                                  }
+                                />
+                              )}
 
                               <p className="practice-word-count">
-                                {isMathSubject()
-                                  ? `Answer length: ${currentWordCount} word(s)`
-                                  : `Words: ${currentWordCount} / ${minimumWords}`}
+                                {isMcq
+                                  ? currentAnswer
+                                    ? "Option selected. Check it for instant feedback."
+                                    : "Choose one option."
+                                  : `Words written: ${currentWordCount}. No word limit.`}
                               </p>
 
                               <button
                                 className="primary-btn"
-                                disabled={
-                                  currentLoading ||
-                                  currentWordCount < minimumWords
-                                }
+                                disabled={currentLoading || !currentAnswer}
                                 onClick={() =>
                                   handleEvaluatePracticeAnswer(q, index)
                                 }
                               >
                                 {currentLoading
                                   ? "Evaluating..."
-                                  : currentWordCount < minimumWords
-                                  ? isMathSubject()
-                                    ? "Write your answer"
-                                    : `Write at least ${minimumWords} words`
-                                  : "Evaluate This Answer"}
+                                  : isMcq
+                                  ? "Check Answer"
+                                  : "Get AI Feedback"}
                               </button>
 
                               {currentEvaluation && (
@@ -1336,6 +1467,15 @@ function LessonsPage({ user }) {
                                   <ReactMarkdown
                                     remarkPlugins={[remarkGfm, remarkMath]}
                                     rehypePlugins={[rehypeKatex]}
+                                    components={{
+                                      strong({ children }) {
+                                        return (
+                                          <HighlightedStrong>
+                                            {children}
+                                          </HighlightedStrong>
+                                        );
+                                      },
+                                    }}
                                   >
                                     {normalizeTutorMarkdown(currentEvaluation)}
                                   </ReactMarkdown>
@@ -1344,23 +1484,14 @@ function LessonsPage({ user }) {
 
                               {currentEvaluation && (
                                 <div
-                                  className={
-                                    currentPassed
-                                      ? "practice-status-box passed"
-                                      : "practice-status-box retry"
-                                  }
+                                  className="practice-status-box coaching"
                                 >
-                                  <strong>
-                                    {currentPassed
-                                      ? "✅ Practice Passed"
-                                      : "🔁 Retry Needed"}
-                                  </strong>
+                                  <strong>🧠 Practice feedback saved</strong>
 
                                   <p>
-                                    Score: {currentScore}/10.{" "}
-                                    {currentPassed
-                                      ? "You can now mark this step complete."
-                                      : "Improve your answer and try again. You need 8/10 to continue."}
+                                    Score signal: {currentScore}/10. You can
+                                    continue to the next step anytime; this
+                                    feedback will help future revision.
                                   </p>
                                 </div>
                               )}
@@ -1472,19 +1603,18 @@ function LessonsPage({ user }) {
                             rehypePlugins={[rehypeKatex]}
                             components={{
                               code({ className, children }) {
-                                const match = /language-mermaid/.exec(
-                                  className || ""
-                                );
+                                const language = className || "";
 
-                                if (match) {
+                                if (/language-visual-json/.test(language)) {
                                   return (
-                                    <MermaidBlock
-                                      chart={String(children).replace(
-                                        /\n$/,
-                                        ""
-                                      )}
+                                    <StructuredVisualBlock
+                                      raw={String(children).replace(/\n$/, "")}
                                     />
                                   );
+                                }
+
+                                if (/language-mermaid/.test(language)) {
+                                  return null;
                                 }
 
                                 return (
@@ -1541,7 +1671,7 @@ function LessonsPage({ user }) {
                       disabled={practiceModeActive}
                       placeholder={
                         practiceModeActive
-                          ? "Practice mode active. Complete written practice first."
+                          ? "Practice mode active. Complete self-check practice first."
                           : "Ask a follow-up question..."
                       }
                       value={followUpQuestion}

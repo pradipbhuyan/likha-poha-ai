@@ -68,6 +68,12 @@ def test_evaluate_answer_response_has_valid_data_types(monkeypatch):
         student_answer,
         ideal_context,
         username,
+        mode="CBSE",
+        subject="",
+        chapter="",
+        step_title="",
+        question_type="descriptive",
+        expected_keywords=None,
     ):
         return {
             "evaluation": "Good answer.",

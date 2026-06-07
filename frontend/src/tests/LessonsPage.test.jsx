@@ -51,8 +51,22 @@ vi.mock("../api/evaluation", () => ({
   generatePracticeQuestions: vi.fn(async () => ({
     success: true,
     questions: [
-      "Explain tissues in your own words.",
-      "Why is division of labour important in multicellular organisms?",
+      {
+        type: "mcq",
+        question: "Which tissue transports water in plants?",
+        options: ["Xylem", "Phloem", "Epidermis", "Cork"],
+        answer: "Xylem",
+        explanation: "Xylem transports water and minerals.",
+        expected_keywords: ["xylem", "water", "minerals"],
+      },
+      {
+        type: "descriptive",
+        question: "Explain tissues in your own words.",
+        options: [],
+        answer: "A tissue is a group of similar cells doing one job.",
+        explanation: "Good answers mention cells, structure, and function.",
+        expected_keywords: ["cells", "function", "similar"],
+      },
     ],
   })),
 }));
@@ -158,13 +172,13 @@ describe("LessonsPage", () => {
     fireEvent.click(practiceButton);
 
     expect(
-      await screen.findByText(/explain tissues in your own words/i)
+      await screen.findByText(
+        /which tissue transports water in plants/i
+      )
     ).toBeInTheDocument();
 
     expect(
-      await screen.findByText(
-        /why is division of labour important in multicellular organisms/i
-      )
+      await screen.findByText(/explain tissues in your own words/i)
     ).toBeInTheDocument();
   });
 
@@ -208,7 +222,7 @@ describe("LessonsPage", () => {
     await waitFor(() => {
       expect(
         screen.getByPlaceholderText(
-          /practice mode active. complete written practice first/i
+          /practice mode active. complete self-check practice first/i
         )
       ).toBeDisabled();
     });

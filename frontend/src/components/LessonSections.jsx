@@ -4,7 +4,8 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
-import MermaidBlock from "./MermaidBlock";
+import StructuredVisualBlock from "./StructuredVisualBlock";
+import { getKeywordHint } from "../utils/keywordHints";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const SECTION_ICONS = {
@@ -61,8 +62,23 @@ function parseSections(markdown) {
   return sections;
 }
 
+function HighlightedStrong({ children }) {
+  /** Turn generated bold key terms into hoverable study hints. */
+  const hint = getKeywordHint(children);
+
+  if (!hint) {
+    return <strong>{children}</strong>;
+  }
+
+  return (
+    <strong className="keyword-highlight" title={hint} aria-label={hint}>
+      {children}
+    </strong>
+  );
+}
+
 function LessonSections({ lesson }) {
-  /** Presents a generated lesson as expandable sections with markdown and diagram support. */
+  /** Presents a generated lesson as expandable sections with validated visual support. */
   const sections = parseSections(normalizeTutorMarkdown(lesson));
 
   const [openSections, setOpenSections] = useState(
@@ -110,17 +126,24 @@ function LessonSections({ lesson }) {
                 rehypePlugins={[rehypeKatex]}
                 components={{
                   code({ className, children }) {
-                    const match = /language-mermaid/.exec(className || "");
+                    const language = className || "";
 
-                    if (match) {
+                    if (/language-visual-json/.test(language)) {
                       return (
-                        <MermaidBlock
-                          chart={String(children).replace(/\n$/, "")}
+                        <StructuredVisualBlock
+                          raw={String(children).replace(/\n$/, "")}
                         />
                       );
                     }
 
+                    if (/language-mermaid/.test(language)) {
+                      return null;
+                    }
+
                     return <code className={className}>{children}</code>;
+                  },
+                  strong({ children }) {
+                    return <HighlightedStrong>{children}</HighlightedStrong>;
                   },
                 }}
               >

@@ -575,84 +575,50 @@ def build_chapter_content_status(syllabus_tree, rag_counts):
     return status
 
 
-def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters):
+def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBSE"):
     """
-    Keep reviewed dropdown order while preserving newly uploaded live chapters.
+    Keep admin-reviewed order, but reconcile it against live RAG content.
 
-    Admin reviews are treated as curated ordering/renames, not as a permanent
-    blocklist. If content is deleted and later reuploaded, the live RAG labels
-    should reappear even when an older override exists.
+    The RAG table is the source of truth for what students can study. A saved
+    review should preserve ordering for matching live chapters, but it should
+    not hide newly reuploaded chapters or keep deleted chapters selectable.
     """
-    live_by_lookup = {}
+    reviewed = clean_chapter_list(reviewed_chapters)
+    live = clean_chapter_list([
+        chapter
+        for chapter in (live_chapters or [])
+        if not is_uploaded_placeholder(chapter)
+    ])
 
-    for chapter in live_chapters or []:
-        label = str(chapter or "").strip()
+    if not live:
+        return [placeholder_chapter_for_mode(mode)]
 
-        if not label or is_uploaded_placeholder(label):
-            continue
-
-        live_by_lookup.setdefault(normalize_rag_chapter_lookup(label), []).append(label)
-
-    reviewed_labels = keep_consistent_part_series(reviewed_chapters)
-    live_lookup_keys = set(live_by_lookup.keys())
-    reviewed_lookup_keys = {
-        normalize_rag_chapter_lookup(chapter)
-        for chapter in reviewed_labels
+    live_lookup = {
+        normalize_rag_chapter_lookup(chapter): chapter
+        for chapter in live
     }
+    merged = []
+    seen = set()
 
-    if not live_lookup_keys:
-        return [
-            chapter
-            for chapter in live_chapters or []
-            if is_uploaded_placeholder(str(chapter or "").strip())
-        ]
+    for chapter in reviewed:
+        lookup = normalize_rag_chapter_lookup(chapter)
 
-    if live_lookup_keys and reviewed_lookup_keys.isdisjoint(live_lookup_keys):
-        return [
-            str(chapter or "").strip()
-            for chapter in live_chapters or []
-            if str(chapter or "").strip()
-            and not is_uploaded_placeholder(str(chapter or "").strip())
-        ]
+        if lookup in live_lookup:
+            merged.append(chapter)
+            seen.add(lookup)
 
-    merged_chapters = []
-    used_live_labels = set()
+    for chapter in live:
+        lookup = normalize_rag_chapter_lookup(chapter)
 
-    for chapter in reviewed_labels:
-        live_matches = live_by_lookup.get(normalize_rag_chapter_lookup(chapter), [])
-        if live_lookup_keys and not live_matches:
-            continue
+        if lookup not in seen:
+            merged.append(chapter)
+            seen.add(lookup)
 
-        upgraded_label = live_matches[0] if live_matches else chapter
-
-        merged_chapters.append(upgraded_label)
-        used_live_labels.add(normalize_chapter_lookup(upgraded_label))
-
-    seen = {
-        normalize_chapter_lookup(chapter)
-        for chapter in merged_chapters
-    }
-
-    for chapter in live_chapters or []:
-        label = str(chapter or "").strip()
-        lookup_key = normalize_chapter_lookup(label)
-
-        if (
-            not label
-            or is_uploaded_placeholder(label)
-            or lookup_key in seen
-            or lookup_key in used_live_labels
-        ):
-            continue
-
-        merged_chapters.append(label)
-        seen.add(lookup_key)
-
-    return merged_chapters
+    return merged or live
 
 
 def apply_syllabus_overrides(merged, overrides):
-    """Apply admin-reviewed dropdowns while keeping them aligned to live RAG."""
+    """Apply admin-reviewed dropdowns as authoritative student-facing lists."""
     for (grade, mode, subject), override in overrides.items():
         chapters = clean_chapter_list(override.get("chapters") or [])
 
@@ -664,6 +630,7 @@ def apply_syllabus_overrides(merged, overrides):
         mode_data[subject] = merge_reviewed_and_live_chapters(
             chapters,
             mode_data.get(subject, []),
+            mode,
         )
 
     return merged

@@ -829,6 +829,22 @@ def clean_pdf_label_text(text: str) -> str:
     return cleaned.strip()
 
 
+def contains_devanagari(text: str) -> bool:
+    """Return true when text includes Hindi/Devanagari characters."""
+    return bool(re.search(r"[\u0900-\u097F]", text or ""))
+
+
+def normalize_hindi_section_title(prefix: str, number: str, title: str) -> str:
+    """Format Hindi chapter labels while preserving the original script."""
+    clean_title = clean_pdf_label_text(title).strip(" :-–—।")
+    clean_title = re.sub(r"\s+", " ", clean_title)
+
+    if clean_title:
+        return f"{prefix} {number}: {clean_title}"
+
+    return f"{prefix} {number}"
+
+
 def infer_chapter_number_from_filename(filename: str) -> str:
     """
     Infer common textbook chapter numbers from filenames like hecu106.pdf.
@@ -881,6 +897,59 @@ def normalize_suggested_section_title(title: str, filename: str, preview: str = 
             return clean_preview_title
 
     return cleaned or readable_title_from_filename(filename, 0)
+
+
+def infer_hindi_section_title(extracted_text: str) -> str:
+    """Extract Hindi chapter labels without translating them to English."""
+    raw_lines = [
+        line.strip()
+        for line in (extracted_text or "").splitlines()
+        if line.strip()
+    ]
+    lines = []
+
+    for raw_line in raw_lines:
+        cleaned_line = clean_pdf_label_text(raw_line).strip(" \t:-–—।")
+
+        if cleaned_line:
+            lines.append(cleaned_line)
+
+    for line in lines[:16]:
+        if re.search(r"विषय\s*सूची|अनुक्रमणिका|सामग्री", line):
+            return "विषय सूची"
+
+    for line in lines[:36]:
+        chapter_match = re.match(
+            r"^(पाठ|अध्याय)\s*([०-९0-9]+)\s*[:：.\-–—]?\s+(.{2,90})$",
+            line,
+        )
+        if chapter_match:
+            return normalize_hindi_section_title(
+                chapter_match.group(1),
+                chapter_match.group(2),
+                chapter_match.group(3),
+            )
+
+        title_before_chapter = re.match(
+            r"^(.{2,90}?)\s+(पाठ|अध्याय)\s*([०-९0-9]+)\b",
+            line,
+        )
+        if title_before_chapter and contains_devanagari(title_before_chapter.group(1)):
+            return normalize_hindi_section_title(
+                title_before_chapter.group(2),
+                title_before_chapter.group(3),
+                title_before_chapter.group(1),
+            )
+
+        numbered_title = re.match(r"^([०-९0-9]+)\s+(.{2,90})$", line)
+        if numbered_title and contains_devanagari(numbered_title.group(2)):
+            return normalize_hindi_section_title(
+                "पाठ",
+                numbered_title.group(1),
+                numbered_title.group(2),
+            )
+
+    return ""
 
 
 def infer_title_from_grade_heading(extracted_text: str) -> str:
@@ -945,6 +1014,12 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
         lower_line = line.lower()
         if "contents" in lower_line or "table of contents" in lower_line:
             return "Table of Contents"
+
+    if contains_devanagari(extracted_text):
+        hindi_title = infer_hindi_section_title(extracted_text)
+
+        if hindi_title:
+            return hindi_title
 
     grade_heading_title = infer_title_from_grade_heading(extracted_text)
 
@@ -1062,6 +1137,8 @@ For each file, infer the clearest chapter/section label from filename and previe
 
 Rules:
 - Prefer format "Chapter N: Title" when a chapter number is visible.
+- If the preview is in Hindi/Devanagari, preserve Hindi script and prefer "पाठ N: शीर्षक" or "अध्याय N: शीर्षक".
+- Do not translate Indian-language chapter titles to English.
 - Use "Table of Contents" for contents pages.
 - Do not return raw filenames like iesc101.
 - Keep labels short and readable for an admin to confirm.

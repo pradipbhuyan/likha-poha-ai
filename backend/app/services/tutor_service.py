@@ -75,36 +75,40 @@ IMPORTANT FORMATTING RULES:
 - Use markdown headings and lists properly.
 
 VISUAL RULES:
-- When useful, include Mermaid diagrams.
-- Use Mermaid especially for:
-  - science processes
-  - systems
-  - cycles
-  - hierarchies
-  - comparisons
-  - step-by-step flows
-  - cause and effect
-  - parts of an object
-- Keep Mermaid diagrams simple and educational.
-- Use simple Mermaid labels.
-- Avoid parentheses, plus signs, minus signs, slashes, and special symbols inside Mermaid node labels.
-- Example: use Proton positive, not Proton (+).
-- Example: use Electron negative, not Electron (-).
-- ALWAYS wrap Mermaid diagrams inside a fenced mermaid code block.
-- NEVER output raw graph TD text outside the fenced block.
-- Keep every Mermaid node label under 24 characters.
-- Use short labels only.
-- Use this exact format:
+- Do NOT use Mermaid diagrams.
+- Use a visual only when it clearly improves learning.
+- If a visual is useful, include exactly one fenced visual-json code block.
+- Use only facts from the lesson or textbook context. If unsure, skip the visual.
+- Keep labels short and complete so students are never shown cut-off text.
+- Allowed visual types:
+  - flow: sequence or cause-effect
+  - steps: ordered method
+  - cycle: repeating process
+  - compare: two-column comparison
+- For flow, steps, and cycle, use this shape:
 
-```mermaid
-graph TD
-A[Start] --> B[Next Step]
-B --> C[End]
+```visual-json
+{"type":"flow","title":"Short title","items":["Short complete label","Short complete label","Short complete label"],"note":"Optional one-line note"}
 ```
+
+- For compare, use this shape:
+
+```visual-json
+{"type":"compare","title":"Short title","columns":["Idea A","Idea B"],"rows":[["Short point","Short point"],["Short point","Short point"]]}
+```
+
+- Limits:
+  - title under 80 characters
+  - each label under 70 characters
+  - 2 to 6 items for flow, steps, and cycle
+  - 2 columns and 2 to 5 rows for compare
 
 MATH RULES:
 - Use LaTeX math for formulas.
 - Inline formulas MUST use dollar delimiters, for example $\\frac{p}{q}$ and $q \\neq 0$.
+- If an inline formula starts with a number, add a space after the opening dollar.
+  Bad: $10 - 2 \\times 4 = 2$
+  Good: $ 10 - 2 \\times 4 = 2 $
 - Display formulas MUST use double-dollar delimiters.
 - Never place LaTeX commands inside normal parentheses.
 - Bad: (\\frac{p}{q}), (q \\neq 0), (7 = \\frac{7}{1})
@@ -118,33 +122,36 @@ $$
 
 
 DIAGRAM_HINT = """
-Diagram instruction:
-If this topic can be understood better visually, include one simple Mermaid diagram.
+Visual instruction:
+Do not use Mermaid.
+If this topic can be understood better visually, include one validated
+visual-json block only.
 
-Good cases for Mermaid:
+Good cases for visual-json:
 - science processes
 - systems
 - cycles
-- hierarchies
 - comparisons
 - step-by-step flows
 - cause and effect
 - classification
 
-STRICT Mermaid rules:
-- ALWAYS wrap Mermaid diagrams inside a fenced mermaid code block.
-- NEVER output raw graph TD text outside the fenced block.
-- Keep every node label under 24 characters.
-- Use short labels like Inertia, Force, Acceleration, Reaction.
-- Do not write full sentences inside Mermaid nodes.
-- Avoid parentheses, plus signs, minus signs, slashes, and special symbols inside Mermaid labels.
-- Use only simple educational flowcharts.
-- Use this exact format:
+STRICT visual-json rules:
+- Use only facts from the lesson or textbook context.
+- If you are not confident the visual is correct, do not include a visual.
+- Keep labels short, complete, and student-safe.
+- Do not include cut-off words.
+- Do not include more than one visual-json block.
+- Use this format for a flow:
 
-```mermaid
-graph TD
-A[Start] --> B[Next]
-B --> C[End]
+```visual-json
+{"type":"flow","title":"Short title","items":["Short complete label","Short complete label","Short complete label"],"note":"Optional one-line note"}
+```
+
+- Use this format for a comparison:
+
+```visual-json
+{"type":"compare","title":"Short title","columns":["Idea A","Idea B"],"rows":[["Short point","Short point"],["Short point","Short point"]]}
 ```
 """
 
@@ -230,6 +237,55 @@ def sanitize_mermaid(text: str) -> str:
         output.append(clean_line(line))
 
     return "\n".join(output)
+
+
+def remove_mermaid_blocks(text: str) -> str:
+    """
+    Remove Mermaid output from student-facing answers.
+
+    Visuals are only shown when they arrive as validated visual-json. Mermaid has
+    proven too fragile for reliable student learning, so both fenced diagrams
+    and loose graph snippets are stripped before returning the answer.
+    """
+    if not text:
+        return text
+
+    without_fenced = re.sub(
+        r"```mermaid[\s\S]*?```",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    lines = without_fenced.split("\n")
+    output = []
+    in_loose_graph = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        if stripped.startswith("graph TD") or stripped.startswith("flowchart"):
+            in_loose_graph = True
+            continue
+
+        if in_loose_graph:
+            is_graph_line = (
+                stripped == ""
+                or "-->" in stripped
+                or "-.->" in stripped
+                or stripped.startswith("subgraph")
+                or stripped == "end"
+                or bool(re.match(r"^[A-Za-z0-9_]+\[.*\]$", stripped))
+            )
+
+            if is_graph_line:
+                continue
+
+            in_loose_graph = False
+
+        output.append(line)
+
+    return "\n".join(output).strip()
 
 def generate_step_lesson(
     grade: str,
@@ -338,10 +394,6 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 
 {DIAGRAM_HINT}
 
-- Keep every Mermaid node label under 24 characters.
-- Use short labels like Inertia, Force, Acceleration, Reaction.
-- Do not write full sentences inside Mermaid nodes.
-
 Worked example requirements:
 - Solve examples step-by-step.
 - Explain the reasoning behind each step.
@@ -365,8 +417,7 @@ End with one small question to check understanding.
         feature="lesson",
     )
 
-    lesson = ensure_mermaid_fences(lesson)
-    lesson = sanitize_mermaid(lesson)
+    lesson = remove_mermaid_blocks(lesson)
 
     return {
         "lesson": lesson,
@@ -469,13 +520,10 @@ Use bullet points instead.
 
 {DIAGRAM_HINT}
 
-- Keep every Mermaid node label under 24 characters.
-- Use short labels like Inertia, Force, Acceleration, Reaction.
-- Do not write full sentences inside Mermaid nodes.
-
 For formulas:
 - Use inline LaTeX like $F = m \times a$
 - Use inline LaTeX like $\\frac{{p}}{{q}}$ and $q \\neq 0$
+- If an inline formula starts with a number, write it like $ 10 - 2 \times 4 = 2 $
 - Use display LaTeX like:
 
 $$
@@ -496,8 +544,7 @@ $$
         model=model,
     )
 
-    answer = ensure_mermaid_fences(answer)
-    answer = sanitize_mermaid(answer)
+    answer = remove_mermaid_blocks(answer)
     
 
     save_mentor_memory(
@@ -619,14 +666,10 @@ Rules:
 	- Explain like a friendly tutor using age-appropriate language for {grade}.
 - Use bullets if helpful.
 - Do not repeat the full lesson.
-- If the answer benefits from a visual, include one Mermaid diagram.
+- If the answer benefits from a visual, include one visual-json block.
 - End with one small check question.
 
 {DIAGRAM_HINT}
-- Keep every Mermaid node label under 24 characters.
-- Use short labels like Inertia, Force, Acceleration, Reaction.
-- Do not write full sentences inside Mermaid nodes.
-
 
 """
 
@@ -637,8 +680,7 @@ Rules:
         feature="lesson_followup",
     )
 
-    answer = ensure_mermaid_fences(answer)
-    answer = sanitize_mermaid(answer)
+    answer = remove_mermaid_blocks(answer)
 
     return {
         "answer": answer,

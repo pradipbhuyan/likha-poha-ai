@@ -51,6 +51,12 @@ def evaluate_answer(data: AnswerEvaluationRequest):
             student_answer=data.student_answer,
             ideal_context=data.ideal_context,
             username=data.username,
+            mode=data.mode,
+            subject=data.subject,
+            chapter=data.chapter,
+            step_title=data.step_title,
+            question_type=data.question_type,
+            expected_keywords=data.expected_keywords,
         )
 
         return {
@@ -90,9 +96,10 @@ def create_practice_questions(data: AnswerEvaluationRequest):
         result = generate_practice_questions(
             grade=data.grade,
             lesson=data.ideal_context,
-            chapter=data.question,
-            step_title="Current lesson step",
+            chapter=data.chapter or data.question,
+            step_title=data.step_title or "Current lesson step",
             username=data.username,
+            subject=data.subject,
         )
 
         return {

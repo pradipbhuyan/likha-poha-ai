@@ -316,13 +316,12 @@ def test_uploaded_rag_chapter_labels_preserve_admin_confirmed_text(monkeypatch):
     assert merged["Grade 8"]["CBSE"]["Science"] == [confirmed_label]
 
 
-def test_syllabus_override_is_authoritative_after_admin_review():
-    """Saved admin reviews should stay aligned to live labels after refresh."""
+def test_syllabus_override_preserves_matching_review_order_and_appends_live_rag():
+    """Saved admin reviews should keep matching order but not hide new live RAG."""
     merged = {
         "Grade 8": {
             "CBSE": {
                 "Maths": [
-                    "Uploaded Book Content",
                     "Chapter 1: Reviewed",
                     "Chapter 3: Newly Reuploaded",
                 ],
@@ -348,8 +347,8 @@ def test_syllabus_override_is_authoritative_after_admin_review():
     ]
 
 
-def test_mixed_grade_override_keeps_only_matching_live_chapters():
-    """A contaminated review should not mix Class 8 and Class 10 Maths labels."""
+def test_syllabus_override_drops_stale_cross_grade_chapters():
+    """Reviewed chapters from another grade must not survive against live RAG."""
     merged = {
         "Grade 10": {
             "CBSE": {
@@ -383,8 +382,8 @@ def test_mixed_grade_override_keeps_only_matching_live_chapters():
     ]
 
 
-def test_stale_override_does_not_hide_live_rag_chapters():
-    """Old reviewed lists should yield when none of their labels match live RAG."""
+def test_stale_override_is_replaced_by_live_rag_for_same_grade_subject():
+    """Fresh reuploads should reappear even if an older override exists."""
     merged = {
         "Grade 8": {
             "CBSE": {
@@ -416,8 +415,8 @@ def test_stale_override_does_not_hide_live_rag_chapters():
     ]
 
 
-def test_no_live_rag_mixed_part_review_keeps_consistent_series():
-    """A saved review without live RAG should not recreate stale chapters."""
+def test_reviewed_chapter_merge_uses_placeholder_when_no_live_rag():
+    """Without live RAG content, reviewed chapters should not stay selectable."""
     result = syllabus_route.merge_reviewed_and_live_chapters(
         [
             "Chapter 1: Real Numbers",
@@ -431,8 +430,8 @@ def test_no_live_rag_mixed_part_review_keeps_consistent_series():
     assert result == ["Uploaded Book Content"]
 
 
-def test_override_merge_upgrades_old_flat_labels_to_part_labels():
-    """Existing reviewed Maths labels should adopt clearer live book-part labels."""
+def test_reviewed_chapter_merge_keeps_matching_labels_and_appends_new_live_rag():
+    """Admin-approved labels stay stable only when matching live content exists."""
     result = syllabus_route.merge_reviewed_and_live_chapters(
         [
             "Chapter 1: A Square and A Cube",
@@ -445,7 +444,7 @@ def test_override_merge_upgrades_old_flat_labels_to_part_labels():
     )
 
     assert result == [
-        "Part 1 - Chapter 1: A Square and A Cube",
+        "Chapter 1: A Square and A Cube",
         "Part 2 - Chapter 1: Fractions in Disguise",
     ]
 

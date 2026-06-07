@@ -6,7 +6,7 @@ import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
 import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
-import MermaidBlock from "../components/MermaidBlock";
+import StructuredVisualBlock from "../components/StructuredVisualBlock";
 import {
   getDefaultSelection,
   getUserBoard,
@@ -894,14 +894,18 @@ Important:
                   rehypePlugins={[rehypeKatex]}
                   components={{
                     code({ className, children }) {
-                      const match = /language-mermaid/.exec(className || "");
+                      const language = className || "";
 
-                      if (match) {
+                      if (/language-visual-json/.test(language)) {
                         return (
-                          <MermaidBlock
-                            chart={String(children).replace(/\n$/, "")}
+                          <StructuredVisualBlock
+                            raw={String(children).replace(/\n$/, "")}
                           />
                         );
+                      }
+
+                      if (/language-mermaid/.test(language)) {
+                        return null;
                       }
 
                       return <code className={className}>{children}</code>;
@@ -964,16 +968,18 @@ Important:
                         rehypePlugins={[rehypeKatex]}
                         components={{
                           code({ className, children }) {
-                            const match = /language-mermaid/.exec(
-                              className || ""
-                            );
+                            const language = className || "";
 
-                            if (match) {
+                            if (/language-visual-json/.test(language)) {
                               return (
-                                <MermaidBlock
-                                  chart={String(children).replace(/\n$/, "")}
+                                <StructuredVisualBlock
+                                  raw={String(children).replace(/\n$/, "")}
                                 />
                               );
+                            }
+
+                            if (/language-mermaid/.test(language)) {
+                              return null;
                             }
 
                             return <code className={className}>{children}</code>;
@@ -1027,19 +1033,18 @@ Important:
                             rehypePlugins={[rehypeKatex]}
                             components={{
                               code({ className, children }) {
-                                const match = /language-mermaid/.exec(
-                                  className || ""
-                                );
+                                const language = className || "";
 
-                                if (match) {
+                                if (/language-visual-json/.test(language)) {
                                   return (
-                                    <MermaidBlock
-                                      chart={String(children).replace(
-                                        /\n$/,
-                                        ""
-                                      )}
+                                    <StructuredVisualBlock
+                                      raw={String(children).replace(/\n$/, "")}
                                     />
                                   );
+                                }
+
+                                if (/language-mermaid/.test(language)) {
+                                  return null;
                                 }
 
                                 return (

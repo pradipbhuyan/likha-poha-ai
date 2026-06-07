@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class LoginRequest(BaseModel):
@@ -151,6 +151,12 @@ class LessonFollowUpResponse(BaseModel):
 class AnswerEvaluationRequest(BaseModel):
     username: str
     grade: str = "Grade 9"
+    mode: str = "CBSE"
+    subject: str = ""
+    chapter: str = ""
+    step_title: str = ""
     question: str
     student_answer: str
     ideal_context: str
+    question_type: str = "descriptive"
+    expected_keywords: list[str] = Field(default_factory=list)
