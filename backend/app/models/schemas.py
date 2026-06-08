@@ -26,6 +26,9 @@ class LessonRequest(BaseModel):
 class LessonResponse(BaseModel):
     success: bool
     lesson: str | None = None
+    source_type: str = "LLM"
+    sources: list[dict] = Field(default_factory=list)
+    textbook_visuals: list[dict] = Field(default_factory=list)
     message: str
 
 class TTSRequest(BaseModel):

@@ -10,6 +10,7 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 function MockTestPage({ user }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
@@ -255,6 +256,7 @@ function MockTestPage({ user }) {
 
     if (
       isSchoolBoardMode(mode) &&
+      !isAllAccessTestUser(user) &&
       !user.accessCbse
     ) {
       setError(
@@ -272,6 +274,7 @@ function MockTestPage({ user }) {
     
     if (
       mode === "SOF" &&
+      !isAllAccessTestUser(user) &&
       !(
         user.accessSofScience ||
         user.accessSofMaths ||

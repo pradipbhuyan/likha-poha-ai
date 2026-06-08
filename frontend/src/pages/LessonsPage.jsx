@@ -14,7 +14,6 @@ import {
 import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
-import { generateEducationalImage } from "../api/images";
 import LessonSections from "../components/LessonSections";
 import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
 
@@ -54,23 +53,7 @@ const VOICE_OPTIONS = {
   "UK Male (Ryan)": "en-GB-RyanNeural",
 };
 
-const MATH_VISUAL_AID_SUGGESTIONS = [
-  "Number line with examples marked",
-  "Fraction bars or area model",
-  "Coordinate plane sketch",
-  "Geometry shape with key parts",
-  "Graph of a simple relation",
-  "Step diagram for solving",
-];
-
-const SCIENCE_VISUAL_AID_SUGGESTIONS = [
-  "Process flow with arrows",
-  "Cause and effect scene",
-  "Experiment setup sketch",
-  "Cycle or sequence diagram",
-  "Classification tree",
-  "Real-life example scene",
-];
+const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
 
 function isHindiSubjectName(subject) {
   /** Identify Hindi subjects so practice can stay objective and lightweight. */
@@ -218,14 +201,12 @@ function LessonsPage({ user }) {
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
 
-  const [visualImage, setVisualImage] = useState("");
-  const [visualLoading, setVisualLoading] = useState(false);
-  const [visualTopic, setVisualTopic] = useState("");
-  const [visualError, setVisualError] = useState("");
   const [textbookVisuals, setTextbookVisuals] = useState([]);
   const [textbookVisualsLoading, setTextbookVisualsLoading] = useState(false);
   const [selectedTextbookVisual, setSelectedTextbookVisual] = useState(null);
   const [textbookVisualQuery, setTextbookVisualQuery] = useState("");
+  const [textbookVisualSearchResults, setTextbookVisualSearchResults] = useState([]);
+  const [textbookVisualSearching, setTextbookVisualSearching] = useState(false);
   const [textbookVisualError, setTextbookVisualError] = useState("");
 
   const [practiceAnswers, setPracticeAnswers] = useState({});
@@ -430,8 +411,6 @@ function LessonsPage({ user }) {
         );
 
         setAudioUrl("");
-        setVisualImage("");
-        setVisualError("");
         setSourceInfo(null);
         setFollowUpQuestion("");
         setFollowUpMessages([]);
@@ -448,9 +427,9 @@ function LessonsPage({ user }) {
     loadTextbookVisuals();
   }, [grade, mode, subject, chapter, user.username]);
 
-  async function loadTextbookVisuals(searchQuery = "") {
-    /** Load approved textbook-only visuals for English lessons in this exact context. */
-    if (!grade || !mode || !subject || !chapter || !isEnglishSubject()) {
+  async function loadTextbookVisuals() {
+    /** Load approved textbook-only visuals for this exact lesson context. */
+    if (!grade || !mode || !subject || !chapter || !isTextbookVisualSubject()) {
       setTextbookVisuals([]);
       setSelectedTextbookVisual(null);
       setTextbookVisualError("");
@@ -467,19 +446,13 @@ function LessonsPage({ user }) {
         board: mode === "SOF" ? getUserBoard(user) : mode,
         subject,
         chapter,
-        query: searchQuery,
       });
 
       const visuals = result.visuals || [];
-      setTextbookVisuals((prev) => (searchQuery ? prev : visuals));
+      setTextbookVisuals(visuals);
+      setTextbookVisualSearchResults([]);
       setSelectedTextbookVisual(visuals[0] || null);
-
-      if (!visuals.length) {
-        setTextbookVisualError(
-          result.message ||
-            "That visual is outside the current lesson context. Choose one of the textbook visual cards above."
-        );
-      }
+      setTextbookVisualError("");
     } catch (err) {
       setTextbookVisualError(
         err.message || "Could not load textbook visuals for this lesson."
@@ -515,6 +488,7 @@ function LessonsPage({ user }) {
     setTextbookVisuals([]);
     setSelectedTextbookVisual(null);
     setTextbookVisualQuery("");
+    setTextbookVisualSearchResults([]);
     setTextbookVisualError("");
   }
 
@@ -522,8 +496,6 @@ function LessonsPage({ user }) {
     /** Clear generated lesson artifacts when the selected topic changes. */
     setLesson("");
     setAudioUrl("");
-    setVisualImage("");
-    setVisualError("");
     resetTextbookVisualBrowser();
     setSourceInfo(null);
     setFollowUpQuestion("");
@@ -604,63 +576,133 @@ function LessonsPage({ user }) {
     return isHindiSubjectName(subject);
   }
 
-  function isEnglishSubject() {
-    /** English lessons can show approved textbook visuals, never generated images. */
-    return subject === "English" || subject === "English Olympiad";
-  }
-
-  function isScienceSubject() {
-    /** Identify science subjects for useful visual-aid suggestions. */
-    return subject === "Science" || subject === "Science Olympiad";
-  }
-
-  function isVisualSubject() {
-    /** Restrict image generation to subjects where conceptual visuals add real value. */
+  function isTextbookVisualSubject() {
+    /** Keep RAG visuals limited while storage quota is tight. */
     return (
-      subject === "Science" ||
-      subject === "Maths" ||
-      subject === "Science Olympiad" ||
-      subject === "Maths Olympiad"
+      RAG_VISUAL_ENABLED_CONTEXTS.has(`${requestBoard}|${grade}`) &&
+      Boolean(subject)
     );
   }
 
-  function getVisualPlaceholder() {
-    /** Give subject-specific prompt examples so students ask for useful visuals. */
-    if (isMathSubject()) {
-      return "Example: show rational numbers on a number line";
-    }
-
-    if (isScienceSubject()) {
-      return "Example: show osmosis as water movement through a membrane";
-    }
-
-    return "Example: how friction affects motion in daily life";
-  }
-
-  function getVisualAidSuggestions() {
-    /** Choose useful visual prompt starters by subject type. */
-    if (isMathSubject()) return MATH_VISUAL_AID_SUGGESTIONS;
-    if (isScienceSubject()) return SCIENCE_VISUAL_AID_SUGGESTIONS;
-    return [];
-  }
-
-  function getVisualAidHeading() {
-    /** Label the visual suggestions in a subject-specific way. */
-    return isMathSubject()
-      ? "Best Maths visual aids to ask for"
-      : "Best Science visual aids to ask for";
-  }
-
-  function getVisualAidWarning() {
-    /** Explain how to spend image tokens on visuals that improve learning. */
-    return isMathSubject()
-      ? "Avoid asking for formula posters. Ask for a model that shows the idea visually."
-      : "Avoid asking for decorative pictures. Ask for a process, setup, cycle, or cause-effect visual.";
+  function shouldShowTextbookVisualTools() {
+    /** Keep the UI available for every lesson; backend controls storage-enabled grades. */
+    return Boolean(grade && mode && subject && chapter);
   }
 
   function getMinimumPracticeWords() {
     /** Practice has no word limit; any thoughtful answer can be evaluated. */
     return 1;
+  }
+
+  function getTextbookVisualSearchTerms(query = "") {
+    /** Support English and Indian-language searches without regex escaping risk. */
+    return query
+      .toLowerCase()
+      .split(/[^\p{L}\p{N}]+/u)
+      .filter((term) => term.length > 1);
+  }
+
+  function getTextbookVisualCallout(visual, query = "") {
+    /** Build a short, grounded callout from stored visual metadata. */
+    const sourceText = [
+      visual.caption,
+      visual.nearby_text,
+      visual.title,
+      visual.chapter,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    const cleanText = sourceText.replace(/\s+/g, " ").trim();
+    if (!cleanText) {
+      return `Page ${visual.page_number} is an approved textbook visual for this lesson.`;
+    }
+
+    const terms = getTextbookVisualSearchTerms(query);
+    const lowerText = cleanText.toLowerCase();
+    const firstMatchIndex = terms
+      .map((term) => lowerText.indexOf(term))
+      .filter((index) => index >= 0)
+      .sort((a, b) => a - b)[0];
+    const startIndex =
+      firstMatchIndex > 60 ? cleanText.lastIndexOf(" ", firstMatchIndex - 45) : 0;
+    const words = cleanText.slice(Math.max(0, startIndex)).split(/\s+/).slice(0, 20);
+
+    return words.join(" ");
+  }
+
+  function renderHighlightedText(text, query = "") {
+    /** Highlight the matching search word in the metadata callout, not on the image itself. */
+    const terms = getTextbookVisualSearchTerms(query);
+    const term = terms.find((item) => text.toLowerCase().includes(item));
+
+    if (!term) {
+      return text;
+    }
+
+    const matchIndex = text.toLowerCase().indexOf(term);
+    const before = text.slice(0, matchIndex);
+    const match = text.slice(matchIndex, matchIndex + term.length);
+    const after = text.slice(matchIndex + term.length);
+
+    return (
+      <>
+        {before}
+        <mark>{match}</mark>
+        {after}
+      </>
+    );
+  }
+
+  async function handleFindTextbookVisual() {
+    /** Search active textbook visuals only inside the selected lesson context. */
+    const query = textbookVisualQuery.trim();
+
+    if (!query) {
+      setTextbookVisualSearchResults([]);
+      setTextbookVisualError("Type what you want to find in this lesson's textbook visuals.");
+      return;
+    }
+
+    if (!isTextbookVisualSubject()) {
+      setTextbookVisualSearchResults([]);
+      setTextbookVisualError(
+        "Textbook visual search is currently enabled only where reviewed visual assets exist."
+      );
+      return;
+    }
+
+    setTextbookVisualSearching(true);
+    setTextbookVisualError("");
+
+    try {
+      const result = await getLessonTextbookVisuals({
+        grade,
+        mode,
+        board: mode === "SOF" ? getUserBoard(user) : mode,
+        subject,
+        chapter,
+        query,
+      });
+      const visuals = result.visuals || [];
+
+      setTextbookVisualSearchResults(visuals);
+      if (visuals.length) {
+        setSelectedTextbookVisual(visuals[0]);
+        setTextbookVisualError("");
+      } else {
+        setTextbookVisualError(
+          result.message ||
+            "No approved textbook visual matched that text in this lesson."
+        );
+      }
+    } catch (err) {
+      setTextbookVisualError(
+        err.message || "Could not search textbook visuals for this lesson."
+      );
+    } finally {
+      setTextbookVisualSearching(false);
+    }
   }
 
   function resetPracticeState() {
@@ -684,8 +726,6 @@ function LessonsPage({ user }) {
     setGenerating(true);
     setLesson("");
     setAudioUrl("");
-    setVisualImage("");
-    setVisualError("");
     setSourceInfo(null);
     setError("");
     setFollowUpQuestion("");
@@ -710,6 +750,9 @@ function LessonsPage({ user }) {
       }
   
       setLesson(result.lesson);
+      if ((result.textbook_visuals || []).length > 0) {
+        setSelectedTextbookVisual(result.textbook_visuals[0]);
+      }
   
       const updatedStepLessons = {
         ...stepLessons,
@@ -849,68 +892,6 @@ function LessonsPage({ user }) {
     } finally {
       setTtsLoading(false);
     }
-  }
-
-  async function handleGenerateVisual() {
-    /** Generate an educational image for a custom topic or the current lesson step. */
-    const topic = visualTopic.trim();
-
-    if (!isVisualSubject()) {
-      setVisualError(
-        "Visual generation is available only for Science and Maths."
-      );
-      return;
-    }
-
-    if (!lesson && !topic) return;
-
-    setVisualLoading(true);
-    setVisualImage("");
-    setVisualError("");
-
-    try {
-      const imagePrompt = topic
-        ? `${grade} ${subject} - ${chapter}. Create a clear educational visual specifically about: ${topic}`
-        : `${grade} ${subject} - ${chapter} - ${stepTitle}. Create a visual explanation for this lesson: ${lesson.slice(
-            0,
-            1200
-          )}`;
-
-      const result = await generateEducationalImage(imagePrompt, user.username, {
-        grade,
-        mode,
-        subject,
-        chapter,
-      });
-
-      if (!result.success) {
-        setVisualError(result.message || "Visual generation failed.");
-        return;
-      }
-
-      setVisualImage(`data:image/png;base64,${result.image_base64}`);
-    } catch {
-      setVisualError("Could not generate visual explanation.");
-    } finally {
-      setVisualLoading(false);
-    }
-  }
-
-  async function handleFindTextbookVisual() {
-    /** Search only approved textbook visuals for the current English lesson. */
-    const query = textbookVisualQuery.trim();
-
-    if (!query) {
-      setSelectedTextbookVisual(textbookVisuals[0] || null);
-      setTextbookVisualError(
-        textbookVisuals.length
-          ? ""
-          : "No approved textbook visuals are available for this lesson yet."
-      );
-      return;
-    }
-
-    await loadTextbookVisuals(query);
   }
 
   const hasSavedLesson = Boolean(stepLessons[String(currentStepIndex)]);
@@ -1236,7 +1217,6 @@ function LessonsPage({ user }) {
                     setChapter(e.target.value);
                     setLesson("");
                     setAudioUrl("");
-                    setVisualImage("");
                     resetTextbookVisualBrowser();
                     setSourceInfo(null);
                     setFollowUpQuestion("");
@@ -1261,8 +1241,6 @@ function LessonsPage({ user }) {
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
-                    setVisualImage("");
-                    setVisualError("");
                     resetTextbookVisualBrowser();
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
@@ -1360,8 +1338,6 @@ function LessonsPage({ user }) {
                   setCurrentStepIndex(newIndex);
                   setLesson(stepLessons[String(newIndex)] || "");
                   setAudioUrl("");
-                  setVisualImage("");
-                  setVisualError("");
                   resetTextbookVisualBrowser();
                   setCompleted(false);
                   resetPracticeState();
@@ -1416,8 +1392,6 @@ function LessonsPage({ user }) {
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
-                    setVisualImage("");
-                    setVisualError("");
                     resetTextbookVisualBrowser();
                     resetPracticeState();
 
@@ -1446,7 +1420,6 @@ function LessonsPage({ user }) {
                   setHighestUnlockedStep(0);
                   setLesson("");
                   setAudioUrl("");
-                  setVisualImage("");
                   resetTextbookVisualBrowser();
                   setCompleted(false);
                   resetPracticeState();
@@ -1498,8 +1471,8 @@ function LessonsPage({ user }) {
                 </div>
 
                 <div className="premium-card premium-glow-card glow-green">
-                  <h3>🖼 AI Visuals</h3>
-                  <p>Create custom educational visuals for any topic.</p>
+                  <h3>🖼 Textbook Visuals</h3>
+                  <p>Use reviewed visuals from uploaded textbooks when they are available.</p>
                 </div>
               </div>
             </div>
@@ -1708,69 +1681,14 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                {isVisualSubject() && (
-                  <div className="visual-generator-card premium-card premium-glow-card glow-purple">
-                    <div className="visual-generator-header">
-                      <h3>🖼 Visual Generator</h3>
-
-                      <p>
-                        {isMathSubject()
-                          ? "Ask for a visual aid like a number line, fraction model, graph, or geometry sketch."
-                          : "Ask for a visual aid like a process flow, experiment setup, cycle, or cause-effect scene."}
-                      </p>
-                    </div>
-
-                    <div className="visual-aid-helper">
-                      <strong>{getVisualAidHeading()}</strong>
-
-                      <div className="visual-aid-chip-grid">
-                        {getVisualAidSuggestions().map((suggestion) => (
-                          <button
-                            key={suggestion}
-                            type="button"
-                            className="visual-aid-chip"
-                            onClick={() => setVisualTopic(suggestion)}
-                          >
-                            {suggestion}
-                          </button>
-                        ))}
-                      </div>
-
-                      <p>{getVisualAidWarning()}</p>
-                    </div>
-
-                    <div className="visual-generator-controls">
-                      <input
-                        className="visual-topic-input"
-                        type="text"
-                        placeholder={getVisualPlaceholder()}
-                        value={visualTopic}
-                        onChange={(e) => setVisualTopic(e.target.value)}
-                      />
-
-                      <button
-                        className="secondary-btn visual-generate-btn"
-                        onClick={handleGenerateVisual}
-                        disabled={visualLoading}
-                      >
-                        {visualLoading ? "Generating..." : "🖼 Generate Visual"}
-                      </button>
-                    </div>
-
-                    {visualError && (
-                      <div className="visual-error-box">{visualError}</div>
-                    )}
-                  </div>
-                )}
-
-                {isEnglishSubject() && (
+                {shouldShowTextbookVisualTools() && (
                   <div className="textbook-visual-browser-card premium-card premium-glow-card glow-blue">
                     <div className="visual-generator-header">
                       <h3>📖 Textbook visuals only</h3>
 
                       <p>
                         Choose from approved visuals extracted from this exact
-                        English lesson. AI-generated images are not used here.
+                        lesson. AI-generated images are not used here.
                       </p>
                     </div>
 
@@ -1817,30 +1735,93 @@ function LessonsPage({ user }) {
                       </div>
                     )}
 
-                    {!textbookVisualsLoading && !textbookVisuals.length && (
+                    <div className="textbook-visual-search">
+                      <input
+                        className="textbook-visual-input"
+                        type="text"
+                        placeholder="Search text in approved visuals, e.g. cell wall or grandmother"
+                        value={textbookVisualQuery}
+                        onChange={(e) => setTextbookVisualQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            handleFindTextbookVisual();
+                          }
+                        }}
+                      />
+
+                      <button
+                        className="secondary-btn textbook-visual-search-btn"
+                        onClick={handleFindTextbookVisual}
+                        disabled={textbookVisualSearching}
+                      >
+                        {textbookVisualSearching ? "Searching..." : "Search visuals"}
+                      </button>
+                    </div>
+
+                    {textbookVisualSearchResults.length > 0 && (
+                      <div className="textbook-visual-results">
+                        <strong>Matching textbook visual(s)</strong>
+
+                        <div className="textbook-visual-picker">
+                          {textbookVisualSearchResults.map((visual) => {
+                            const callout = getTextbookVisualCallout(
+                              visual,
+                              textbookVisualQuery
+                            );
+
+                            return (
+                              <button
+                                key={visual.id}
+                                type="button"
+                                className={
+                                  selectedTextbookVisual?.id === visual.id
+                                    ? "textbook-visual-option selected"
+                                    : "textbook-visual-option"
+                                }
+                                onClick={() => {
+                                  setSelectedTextbookVisual(visual);
+                                  setTextbookVisualError("");
+                                }}
+                              >
+                                <img
+                                  src={visual.asset_url}
+                                  alt={
+                                    visual.caption ||
+                                    `${visual.chapter} textbook page ${visual.page_number}`
+                                  }
+                                />
+
+                                <span>
+                                  Page {visual.page_number}
+                                  <small>
+                                    {visual.caption ||
+                                      visual.title ||
+                                      "Approved textbook visual"}
+                                  </small>
+                                </span>
+
+                                <small className="textbook-visual-callout">
+                                  {renderHighlightedText(
+                                    callout,
+                                    textbookVisualQuery
+                                  )}
+                                </small>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {!textbookVisualsLoading &&
+                      !textbookVisuals.length &&
+                      !textbookVisualSearchResults.length && (
                       <div className="textbook-visual-note">
                         No approved textbook visuals are available for this
                         lesson yet.
                       </div>
                     )}
-
-                    <div className="textbook-visual-search">
-                      <input
-                        className="visual-topic-input"
-                        type="text"
-                        placeholder="Search within this lesson's approved textbook visuals"
-                        value={textbookVisualQuery}
-                        onChange={(e) => setTextbookVisualQuery(e.target.value)}
-                      />
-
-                      <button
-                        className="secondary-btn visual-generate-btn"
-                        onClick={handleFindTextbookVisual}
-                        disabled={textbookVisualsLoading}
-                      >
-                        Find textbook visual
-                      </button>
-                    </div>
 
                     {textbookVisualError && (
                       <div className="visual-error-box">
@@ -1850,7 +1831,7 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                {selectedTextbookVisual && isEnglishSubject() && (
+                {selectedTextbookVisual && shouldShowTextbookVisualTools() && (
                   <div className="visual-image-card premium-card textbook-selected-visual-card">
                     <div className="visual-image-header">
                       <h3>📖 Textbook Visual</h3>
@@ -1868,19 +1849,6 @@ function LessonsPage({ user }) {
                       {selectedTextbookVisual.caption ||
                         `${selectedTextbookVisual.chapter} - page ${selectedTextbookVisual.page_number}`}
                     </p>
-                  </div>
-                )}
-
-                {visualImage && (
-                  <div className="visual-image-card premium-card">
-                    <div className="visual-image-header">
-                      <h3>🖼 Visual Explanation</h3>
-                    </div>
-
-                    <img
-                      src={visualImage}
-                      alt="AI generated educational visual"
-                    />
                   </div>
                 )}
 

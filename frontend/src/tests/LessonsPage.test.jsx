@@ -3,7 +3,7 @@ import { vi } from "vitest";
 
 import LessonsPage from "../pages/LessonsPage";
 import { getDoubtHistory } from "../api/doubt";
-import { generateEducationalImage } from "../api/images";
+import { getLessonTextbookVisuals } from "../api/lesson";
 
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
@@ -75,6 +75,10 @@ vi.mock("../api/evaluation", () => ({
 vi.mock("../api/lesson", () => ({
   generateLesson: vi.fn(),
   askLessonFollowUp: vi.fn(),
+  getLessonTextbookVisuals: vi.fn(async () => ({
+    success: true,
+    visuals: [],
+  })),
 }));
 
 vi.mock("../api/doubt", () => ({
@@ -83,10 +87,6 @@ vi.mock("../api/doubt", () => ({
 
 vi.mock("../api/tts", () => ({
   generateSpeech: vi.fn(),
-}));
-
-vi.mock("../api/images", () => ({
-  generateEducationalImage: vi.fn(),
 }));
 
 vi.mock("../components/LessonSections", () => ({
@@ -100,10 +100,6 @@ vi.mock("../components/MermaidBlock", () => ({
 describe("LessonsPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    generateEducationalImage.mockResolvedValue({
-      success: true,
-      image_base64: "fake-image",
-    });
     getDoubtHistory.mockResolvedValue({
       success: true,
       history: [],
@@ -260,7 +256,7 @@ describe("LessonsPage", () => {
     ).toEqual(["Grade 5"]);
   });
 
-  test("shows visual generator for Science and sends lesson context", async () => {
+  test("loads approved textbook visuals without showing visual finder", async () => {
     render(
       <LessonsPage
         user={{
@@ -274,16 +270,12 @@ describe("LessonsPage", () => {
 
     expect(
       await screen.findByRole("heading", {
-        name: /visual generator/i,
+        name: /textbook visuals only/i,
       })
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /generate visual/i }));
-
     await waitFor(() => {
-      expect(generateEducationalImage).toHaveBeenCalledWith(
-        expect.any(String),
-        "science_student",
+      expect(getLessonTextbookVisuals).toHaveBeenCalledWith(
         expect.objectContaining({
           grade: "Grade 9",
           mode: "CBSE",
@@ -292,9 +284,20 @@ describe("LessonsPage", () => {
         })
       );
     });
+
+    expect(
+      screen.queryByRole("heading", {
+        name: /visual finder/i,
+      })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", {
+        name: /find visual/i,
+      })
+    ).not.toBeInTheDocument();
   });
 
-  test("hides visual generator for English lessons", async () => {
+  test("shows visual tools for English while backend gates unsupported grades", async () => {
     render(
       <LessonsPage
         user={{
@@ -317,6 +320,79 @@ describe("LessonsPage", () => {
         name: /visual generator/i,
       })
     ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: /textbook visuals only/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", {
+        name: /visual finder/i,
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  test("searches approved textbook visuals inside the current lesson", async () => {
+    getLessonTextbookVisuals.mockImplementation(async ({ query }) => ({
+      success: true,
+      visuals: query
+        ? [
+            {
+              id: "visual-cell-wall",
+              asset_url: "https://example.com/cell-wall.png",
+              page_number: 4,
+              chapter: "Tissues in Action",
+              title: "Tissues textbook page",
+              caption: "Cell wall diagram",
+              nearby_text:
+                "The cell wall gives support and shape to plant cells during growth.",
+              status: "active",
+            },
+          ]
+        : [],
+    }));
+
+    render(
+      <LessonsPage
+        user={{
+          role: "student",
+          username: "science_student",
+          grade: "Grade 9",
+          accessCbse: true,
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /textbook visuals only/i,
+      })
+    ).toBeInTheDocument();
+
+    fireEvent.change(
+      screen.getByPlaceholderText(/search text in approved visuals/i),
+      {
+        target: { value: "cell wall" },
+      }
+    );
+    fireEvent.click(screen.getByRole("button", { name: /search visuals/i }));
+
+    expect(
+      await screen.findByText(/matching textbook visual/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/The cell wall gives support and shape/i)
+    ).toBeInTheDocument();
+    expect(screen.getAllByAltText(/Cell wall diagram/i).length).toBeGreaterThan(0);
+    expect(getLessonTextbookVisuals).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        grade: "Grade 9",
+        mode: "CBSE",
+        subject: "Science",
+        chapter: "Tissues in Action",
+        query: "cell wall",
+      })
+    );
   });
 
   test("uses Hindi MCQ-only practice and hides lesson follow-up chat", async () => {
@@ -369,7 +445,7 @@ describe("LessonsPage", () => {
     expect(screen.queryByText(/Score signal/i)).not.toBeInTheDocument();
   });
 
-  test("shows Maths visual aid suggestions and fills the visual prompt", async () => {
+  test("does not show visual finder suggestions for Maths lessons", async () => {
     render(
       <LessonsPage
         user={{
@@ -382,21 +458,18 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByText(/best maths visual aids to ask for/i)
+      await screen.findByRole("heading", { name: /textbook visuals only/i })
     ).toBeInTheDocument();
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: /number line with examples marked/i,
-      })
-    );
-
     expect(
-      screen.getByPlaceholderText(/show rational numbers on a number line/i)
-    ).toHaveValue("Number line with examples marked");
+      screen.queryByText(/visuals to look for in this lesson/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /fractions textbook page/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /find visual/i })).not.toBeInTheDocument();
   });
 
-  test("shows Science visual aid suggestions and fills the visual prompt", async () => {
+  test("does not show visual finder suggestions for Science lessons", async () => {
     render(
       <LessonsPage
         user={{
@@ -409,18 +482,15 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByText(/best science visual aids to ask for/i)
+      await screen.findByRole("heading", { name: /textbook visuals only/i })
     ).toBeInTheDocument();
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: /process flow with arrows/i,
-      })
-    );
-
     expect(
-      screen.getByPlaceholderText(/show osmosis as water movement/i)
-    ).toHaveValue("Process flow with arrows");
+      screen.queryByText(/visuals to look for in this lesson/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /tissues in action textbook page/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /find visual/i })).not.toBeInTheDocument();
   });
 
   test("shows saved lesson follow-up history and restores a selected doubt", async () => {

@@ -33,6 +33,30 @@ describe("subjectAccess", () => {
     expect(filterAllowedSubjects(user, subjects, "CBSE")).toEqual(subjects);
   });
 
+  test("allows the QA test student to access every subject", () => {
+    /** akshita.teststudent is intentionally unrestricted for test coverage. */
+    const user = {
+      role: "student",
+      username: "akshita.teststudent",
+      accessCbse: false,
+      accessSofScience: false,
+      accessSofMaths: false,
+      accessSofEnglish: false,
+      cbseSubjects: ["Science"],
+    };
+
+    expect(
+      filterAllowedSubjects(user, ["English", "Maths", "Science"], "ICSE")
+    ).toEqual(["English", "Maths", "Science"]);
+    expect(
+      filterAllowedSubjects(
+        user,
+        ["Science Olympiad", "Maths Olympiad", "English Olympiad"],
+        "SOF"
+      )
+    ).toEqual(["Science Olympiad", "Maths Olympiad", "English Olympiad"]);
+  });
+
   test("parses comma and newline subject lists without duplicates", () => {
     expect(parseSubjectList("Science, Maths\nscience")).toEqual([
       "Science",

@@ -1,7 +1,10 @@
 
 from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
 from app.services.rag_service import search_textbook_content
-from app.services.rag_visual_service import find_visual_assets_for_question
+from app.services.rag_visual_service import (
+    find_visual_assets_for_question,
+    get_lesson_step_visual_assets,
+)
 from app.services.mentor_memory_service import (
     get_recent_mentor_memory,
     build_memory_context,
@@ -61,6 +64,7 @@ PEDAGOGY RULES:
 - Explain ideas like an expert teacher teaching a real classroom.
 - Every explanation should deepen understanding.
 - Only the "Quick check question" section may ask a question.
+- Do not add a "Quick check question:" line inside any other section or after a visual.
 - All other sections must end with a statement or instruction, not a question.
 - Do not ask conversational questions such as "Would you like that?" or
   "Should we continue?" because the app will not process those as answers.
@@ -354,6 +358,24 @@ def generate_step_lesson(
         chapter_outline
     )
 
+    textbook_visuals = get_lesson_step_visual_assets(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        step_title=step_title,
+        lesson_context=textbook_context,
+        limit=3,
+    )
+
+    textbook_visual_context = "\n".join(
+        (
+            f"- Page {visual.get('page_number')}: "
+            f"{visual.get('caption') or visual.get('title') or visual.get('chapter')}"
+        )
+        for visual in textbook_visuals
+    )
+
     prompt = f"""
 Grade: {grade}
 Mode: {mode}
@@ -370,6 +392,9 @@ Relevant textbook/RAG context:
 Textbook chapter outline:
 {chapter_outline_text}
 
+Approved textbook visuals available for this exact lesson context:
+{textbook_visual_context if textbook_visual_context else "No approved textbook visual assets found."}
+
 Create a focused step-wise lesson only for this sub-topic.
 Do not cover unrelated topics.
 
@@ -382,6 +407,11 @@ Textbook coverage rules:
 - If the textbook contains "Activity", "Pause and Ponder", "Think as a Scientist", "At a Glance", or review questions, include their learning value in the lesson.
 - Explain how each idea connects to the next.
 - Do not skip important subtopics from the retrieved textbook context.
+- If approved textbook visuals are listed, weave them logically into the lesson
+  with a short instruction such as "Look at the textbook visual below..." only
+  when the visual supports the current idea.
+- Do not invent, request, or describe a different image. If no listed visual
+  fits the idea being taught, teach normally without mentioning visuals.
 
 	Depth instructions:
 	- Teach this topic at the right depth for {grade}.
@@ -431,6 +461,7 @@ question should be inside the "Quick check question" section.
         "lesson": lesson,
         "source_type": source_type,
         "sources": rag_results,
+        "textbook_visuals": textbook_visuals,
     }
 
 

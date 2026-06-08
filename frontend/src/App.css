@@ -4294,31 +4294,10 @@ body.dark-mode .visual-image-card img {
   background: white !important;
 }
 
-.visual-topic-input {
-  height: 56px;
-  min-width: 280px;
-  border-radius: 16px;
-  border: 1px solid #334155;
-  padding: 0 16px;
-  background: #0f172a;
-  color: #f8fafc;
-}
-
 /* Cleaner lesson actions */
 
 .lesson-audio-section {
   margin-top: 22px;
-}
-
-.visual-generator-card {
-  margin-top: 28px;
-
-  padding: 24px;
-
-  border-radius: 24px;
-
-  background: #f8fbff;
-  border: 1px solid #bfdbfe;
 }
 
 .visual-generator-header h3 {
@@ -4328,33 +4307,6 @@ body.dark-mode .visual-image-card img {
 .visual-generator-header p {
   color: #64748b;
   margin-bottom: 20px;
-}
-
-.visual-generator-controls {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.visual-topic-input {
-  flex: 1;
-  min-width: 260px;
-
-  height: 56px;
-
-  border-radius: 16px;
-
-  border: 1px solid #cbd5e1;
-
-  padding: 0 18px;
-
-  font-size: 16px;
-
-  background: white;
-}
-
-.visual-generate-btn {
-  min-width: 220px;
 }
 
 .visual-image-card {
@@ -4392,7 +4344,6 @@ body.dark-mode .visual-image-card img {
 
 /* Dark mode */
 
-body.dark-mode .visual-generator-card,
 body.dark-mode .visual-image-card {
   background: #0f172a !important;
   border-color: #334155 !important;
@@ -4400,12 +4351,6 @@ body.dark-mode .visual-image-card {
 
 body.dark-mode .visual-generator-header p {
   color: #94a3b8 !important;
-}
-
-body.dark-mode .visual-topic-input {
-  background: #111827 !important;
-  border-color: #334155 !important;
-  color: #f8fafc !important;
 }
 
 body.dark-mode .visual-image-card img {
@@ -4429,10 +4374,6 @@ body.dark-mode .visual-image-card img {
   width: 100% !important;
 }
 
-.visual-generator-card {
-  width: 100% !important;
-}
-
 .visual-generator-header h3 {
   display: inline-flex !important;
   align-items: center !important;
@@ -4445,11 +4386,6 @@ body.dark-mode .visual-image-card img {
   color: #1d4ed8 !important;
 }
 
-body.dark-mode .visual-generator-card {
-  background: #0f172a !important;
-  border-color: #334155 !important;
-}
-
 body.dark-mode .visual-generator-header h3 {
   background: #111827 !important;
   color: #93c5fd !important;
@@ -4458,25 +4394,6 @@ body.dark-mode .visual-generator-header h3 {
 
 body.dark-mode .visual-generator-header p {
   color: #cbd5e1 !important;
-}
-
-body.dark-mode .visual-topic-input {
-  background: #111827 !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
-}
-
-body.dark-mode .visual-topic-input::placeholder {
-  color: #94a3b8 !important;
-}
-
-.visual-generator-controls {
-  align-items: center !important;
-}
-
-.visual-generate-btn {
-  height: 56px !important;
-  white-space: nowrap !important;
 }
 
 .visual-error-box {
@@ -4493,61 +4410,6 @@ body.dark-mode .visual-error-box {
   background: rgba(127, 29, 29, 0.22) !important;
   border-color: rgba(248, 113, 113, 0.38) !important;
   color: #fecaca !important;
-}
-
-.visual-aid-helper {
-  display: grid;
-  gap: 12px;
-  margin: 18px 0;
-  padding: 16px;
-  border-radius: 18px;
-  background: #f8fafc;
-  border: 1px solid #dbeafe;
-}
-
-.visual-aid-helper strong {
-  color: #0f172a;
-}
-
-.visual-aid-helper p {
-  margin: 0;
-  color: #64748b;
-  font-weight: 700;
-}
-
-.visual-aid-chip-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.visual-aid-chip {
-  border: 1px solid #bfdbfe;
-  background: #eff6ff;
-  color: #1d4ed8;
-  border-radius: 999px;
-  padding: 9px 13px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.visual-aid-chip:hover {
-  background: #dbeafe;
-}
-
-body.dark-mode .visual-aid-helper {
-  background: #111827 !important;
-  border-color: #334155 !important;
-}
-
-body.dark-mode .visual-aid-helper strong {
-  color: #f8fafc !important;
-}
-
-body.dark-mode .visual-aid-chip {
-  background: #172554 !important;
-  border-color: #2563eb !important;
-  color: #bfdbfe !important;
 }
 
 .usage-chart-grid {
@@ -5658,7 +5520,6 @@ body.dark-mode .premium-header p {
   }
   
   .premium-lesson-output .lesson-audio-section,
-  .premium-lesson-output .visual-generator-card,
   .premium-lesson-output .visual-image-card,
   .premium-lesson-output .lesson-followup-box {
     margin-top: 0 !important;
@@ -10197,6 +10058,62 @@ body.dark-mode .premium-rag-extracted-pages {
   align-items: center;
 }
 
+.textbook-visual-input {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0 18px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.textbook-visual-input::placeholder {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.textbook-visual-search-btn {
+  min-height: 56px;
+  white-space: nowrap;
+}
+
+.textbook-visual-results {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  background: rgba(239, 246, 255, 0.72);
+}
+
+.textbook-visual-results > strong {
+  color: #0f172a;
+  font-weight: 950;
+}
+
+.textbook-visual-callout {
+  display: block !important;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #334155 !important;
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.35;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+}
+
+.textbook-visual-callout mark {
+  border-radius: 5px;
+  background: #fde68a;
+  color: #111827;
+  padding: 0 2px;
+}
+
 .textbook-visual-note {
   padding: 14px 16px;
   border-radius: 16px;
@@ -10340,9 +10257,37 @@ body.dark-mode .textbook-selected-caption {
   color: #cbd5e1;
 }
 
+body.dark-mode .textbook-visual-input {
+  background: #111827;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+body.dark-mode .textbook-visual-input::placeholder {
+  color: #94a3b8;
+}
+
+body.dark-mode .textbook-visual-results {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: #334155;
+}
+
+body.dark-mode .textbook-visual-results > strong {
+  color: #f8fafc;
+}
+
+body.dark-mode .textbook-visual-callout {
+  background: #0f172a;
+  color: #cbd5e1 !important;
+}
+
 @media (max-width: 720px) {
   .textbook-visual-search {
     grid-template-columns: 1fr;
+  }
+
+  .textbook-visual-search-btn {
+    width: 100%;
   }
 
   .textbook-visual-picker {
@@ -10884,9 +10829,7 @@ body.dark-mode .mentor-followup-panel textarea {
 
 /* Fix visual prompt helper text in light mode */
 
-.visual-generator-card p,
 .visual-generator-header p,
-.visual-generator-controls p,
 .visual-prompt-helper,
 .visual-topic-helper {
   color: #475569 !important;
@@ -10894,9 +10837,7 @@ body.dark-mode .mentor-followup-panel textarea {
 
 /* Dark mode */
 
-body.dark-mode .visual-generator-card p,
 body.dark-mode .visual-generator-header p,
-body.dark-mode .visual-generator-controls p,
 body.dark-mode .visual-prompt-helper,
 body.dark-mode .visual-topic-helper {
   color: #cbd5e1 !important;
@@ -10904,9 +10845,7 @@ body.dark-mode .visual-topic-helper {
 
 /* Fix visual prompt helper text in light mode */
 
-.visual-generator-card p,
 .visual-generator-header p,
-.visual-generator-controls p,
 .visual-prompt-helper,
 .visual-topic-helper {
   color: #475569 !important;
@@ -10914,35 +10853,10 @@ body.dark-mode .visual-topic-helper {
 
 /* Dark mode */
 
-body.dark-mode .visual-generator-card p,
 body.dark-mode .visual-generator-header p,
-body.dark-mode .visual-generator-controls p,
 body.dark-mode .visual-prompt-helper,
 body.dark-mode .visual-topic-helper {
   color: #cbd5e1 !important;
-}
-
-/* Fix visual generator input text in light mode */
-
-.visual-topic-input {
-  color: #0f172a !important;
-  background: #ffffff !important;
-}
-
-.visual-topic-input::placeholder {
-  color: #64748b !important;
-  opacity: 1 !important;
-}
-
-/* Dark mode */
-
-body.dark-mode .visual-topic-input {
-  background: #111827 !important;
-  color: #f8fafc !important;
-}
-
-body.dark-mode .visual-topic-input::placeholder {
-  color: #94a3b8 !important;
 }
 
 .lesson-practice-card {
@@ -12602,7 +12516,8 @@ body.dark-mode .premium-rag-job-list-row span {
   border-radius: 18px;
   background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
   box-shadow: 0 14px 36px rgba(37, 99, 235, 0.08);
-  overflow: hidden;
+  overflow: visible;
+  min-width: 0;
 }
 
 .structured-visual-header {
@@ -12655,6 +12570,8 @@ body.dark-mode .premium-rag-job-list-row span {
   text-align: center;
   white-space: normal;
   overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .structured-flow-arrow {
@@ -12753,6 +12670,9 @@ body.dark-mode .premium-rag-job-list-row span {
   color: #475569;
   font-size: 0.95rem;
   line-height: 1.45;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 body.dark-mode .structured-visual-card {

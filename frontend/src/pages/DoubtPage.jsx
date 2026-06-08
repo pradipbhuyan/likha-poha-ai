@@ -15,6 +15,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
+import { isAllAccessTestUser } from "../utils/testAccounts";
 
 const ANSWER_STYLE_OPTIONS = [
   {
@@ -123,7 +124,7 @@ function DoubtPage({ user }) {
 
   function hasModeAccess(selectedMode) {
     /** Check whether the signed-in user may use CBSE or at least one SOF subject. */
-    if (user.role === "admin") return true;
+    if (user.role === "admin" || isAllAccessTestUser(user)) return true;
 
     if (isSchoolBoardMode(selectedMode)) {
       return !!user.accessCbse;

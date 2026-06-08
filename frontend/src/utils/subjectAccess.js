@@ -1,3 +1,5 @@
+import { isAllAccessTestUser } from "./testAccounts";
+
 export const COMMON_CBSE_SUBJECTS = [
   "English",
   "Hindi",
@@ -29,6 +31,8 @@ export function parseSubjectList(value) {
 
 export function hasCbseSubjectAccess(user, subjectName) {
   /** Empty cbseSubjects means all CBSE subjects are allowed. */
+  if (isAllAccessTestUser(user)) return true;
+
   const allowedSubjects = user?.cbseSubjects || [];
 
   if (!allowedSubjects.length) return true;
@@ -47,7 +51,7 @@ export function isSchoolBoardMode(selectedMode) {
 
 export function filterAllowedSubjects(user, allSubjects, selectedMode) {
   /** Apply subscription and custom CBSE subject access to a subject list. */
-  if (user?.role === "admin") return allSubjects;
+  if (user?.role === "admin" || isAllAccessTestUser(user)) return allSubjects;
 
   if (isSchoolBoardMode(selectedMode)) {
     if (user?.accessCbse === false) return [];

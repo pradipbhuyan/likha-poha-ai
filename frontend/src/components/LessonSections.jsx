@@ -91,7 +91,7 @@ function getQuestionPrompt(section) {
     title.includes("practice");
 
   const labelledQuestionMatch = content.match(
-    /(?:^|\s)(?:question|quick check|try this|your turn)\s*:\s*([^]+?)(?=(?:\s(?:answer|hint|solution)\s*:)|$)/i
+    /(?:^|\s)(?:question|quick check(?: question)?|try this|your turn)\s*:\s*([^]+?)(?=(?:\s(?:answer|hint|solution)\s*:)|$)/i
   );
 
   if (labelledQuestionMatch) {
@@ -107,7 +107,49 @@ function getQuestionPrompt(section) {
     return content.slice(0, 420);
   }
 
+  const finalQuestionMatch = content.match(/([^.!?]*\?)\s*$/);
+
+  if (finalQuestionMatch) {
+    const prompt = finalQuestionMatch[1].trim();
+
+    if (
+      prompt.length >= 12 &&
+      !/^would you like (that|to|me to)\??$/i.test(prompt)
+    ) {
+      return prompt.slice(0, 420);
+    }
+  }
+
   return "";
+}
+
+function getRenderableContent(section, questionPrompt) {
+  /** Avoid showing questions as static text when the answer UI should handle them. */
+  if (!questionPrompt) {
+    return section.content;
+  }
+
+  const title = section.title.toLowerCase();
+  const withoutLabelledQuestion = section.content.replace(
+    /(?:^|\n)\s*(?:[-*]\s*)?(?:\*\*)?(?:question|quick check(?: question)?|try this|your turn)(?:\*\*)?\s*:\s*[\s\S]*$/i,
+    ""
+  );
+
+  if (withoutLabelledQuestion !== section.content) {
+    return withoutLabelledQuestion.trim();
+  }
+
+  if (
+    title.includes("question") ||
+    title.includes("quick check") ||
+    title.includes("self check") ||
+    title.includes("practice")
+  ) {
+    return "";
+  }
+
+  const escapedPrompt = questionPrompt.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return section.content.replace(new RegExp(`${escapedPrompt}\\s*$`), "").trim();
 }
 
 function LessonSections({ lesson, onEvaluateQuestion }) {
@@ -163,6 +205,7 @@ function LessonSections({ lesson, onEvaluateQuestion }) {
     <div className="lesson-sections">
       {sections.map((section, index) => {
         const questionPrompt = getQuestionPrompt(section);
+        const renderableContent = getRenderableContent(section, questionPrompt);
         const questionMode = questionModes[index] || "";
         const answer = questionAnswers[index] || "";
         const feedback = questionFeedback[index] || "";
@@ -195,31 +238,33 @@ function LessonSections({ lesson, onEvaluateQuestion }) {
 
             {openSections[index] && (
               <div className="lesson-section-body">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm, remarkMath]}
-                  rehypePlugins={[rehypeKatex]}
-                  components={{
-                    code({ className, children }) {
-                      const language = className || "";
+                {renderableContent && (
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                    components={{
+                      code({ className, children }) {
+                        const language = className || "";
 
-                      if (/language-visual-json/.test(language)) {
-                        return (
-                          <StructuredVisualBlock
-                            raw={String(children).replace(/\n$/, "")}
-                          />
-                        );
-                      }
+                        if (/language-visual-json/.test(language)) {
+                          return (
+                            <StructuredVisualBlock
+                              raw={String(children).replace(/\n$/, "")}
+                            />
+                          );
+                        }
 
-                      if (/language-mermaid/.test(language)) {
-                        return null;
-                      }
+                        if (/language-mermaid/.test(language)) {
+                          return null;
+                        }
 
-                      return <code className={className}>{children}</code>;
-                    },
-                  }}
-                >
-                  {section.content}
-                </ReactMarkdown>
+                        return <code className={className}>{children}</code>;
+                      },
+                    }}
+                  >
+                    {renderableContent}
+                  </ReactMarkdown>
+                )}
 
                 {questionPrompt && (
                   <div className="lesson-inline-question-box">

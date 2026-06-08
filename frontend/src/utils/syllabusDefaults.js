@@ -1,3 +1,5 @@
+import { isAllAccessTestUser } from "./testAccounts";
+
 export function getDefaultGrade(syllabusData, preferredGrade = "Grade 9") {
   /** Pick a stable default grade while allowing Class 1-10 syllabus expansion. */
   const grades = Object.keys(syllabusData || {});
@@ -82,7 +84,7 @@ export function getVisibleGrades(syllabusData, user) {
   /** Restrict student-facing grade dropdowns to the student's onboarded grade. */
   const allGrades = Object.keys(syllabusData || {});
 
-  if (user?.role !== "student") {
+  if (user?.role !== "student" || isAllAccessTestUser(user)) {
     return allGrades;
   }
 

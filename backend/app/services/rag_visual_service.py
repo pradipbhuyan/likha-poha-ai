@@ -10,6 +10,10 @@ from app.services.board_service import normalize_board
 
 RAG_VISUAL_BUCKET = "rag-visuals"
 MAX_VISUAL_PAGES_PER_BACKFILL = 80
+RAG_VISUAL_ENABLED_CONTEXTS = {
+    ("CBSE", "Grade 9"),
+    ("CBSE", "Grade 10"),
+}
 VISUAL_REQUEST_TERMS = {
     "diagram",
     "visual",
@@ -49,6 +53,11 @@ def _slug(value: str) -> str:
     """Create a stable storage path segment without losing readability."""
     cleaned = re.sub(r"[^a-zA-Z0-9._-]+", "-", str(value or "").strip())
     return cleaned.strip("-").lower() or "unknown"
+
+
+def is_rag_visual_context_enabled(board: str, grade: str) -> bool:
+    """Central allow-list for textbook visual storage/retrieval by class."""
+    return (normalize_board(board), str(grade or "").strip()) in RAG_VISUAL_ENABLED_CONTEXTS
 
 
 def _get_rag_document(document_id: str) -> dict:
@@ -161,6 +170,9 @@ def find_visual_assets_for_question(
     limit: int = 3,
 ) -> list[dict]:
     """Return approved textbook visuals for the exact selected context."""
+    if not is_rag_visual_context_enabled(board, grade):
+        return []
+
     if not question_requests_visual(question):
         return []
 
@@ -199,6 +211,9 @@ def list_active_visual_assets_for_context(
     limit: int = 12,
 ) -> list[dict]:
     """List approved textbook visuals for the exact selected lesson context."""
+    if not is_rag_visual_context_enabled(board, grade):
+        return []
+
     try:
         response = (
             admin_client
@@ -232,6 +247,9 @@ def search_visual_assets_for_context(
     limit: int = 6,
 ) -> list[dict]:
     """Search approved visuals inside one lesson; return empty for off-context text."""
+    if not is_rag_visual_context_enabled(board, grade):
+        return []
+
     visuals = list_active_visual_assets_for_context(
         board=board,
         grade=grade,
@@ -269,6 +287,54 @@ def search_visual_assets_for_context(
     ]
 
     return matched_visuals[:limit]
+
+
+def get_lesson_step_visual_assets(
+    *,
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    lesson_context: str = "",
+    limit: int = 3,
+) -> list[dict]:
+    """
+    Pick approved textbook visuals that can support a generated lesson step.
+
+    This intentionally stays inside the exact board/grade/subject/chapter. If
+    no page has strong keyword overlap, it falls back to the first active pages
+    from the same chapter so the frontend can still show safe textbook context
+    instead of asking the model to invent an image.
+    """
+    if not is_rag_visual_context_enabled(board, grade):
+        return []
+
+    query = " ".join([
+        str(chapter or ""),
+        str(step_title or ""),
+        str(lesson_context or "")[:2500],
+    ])
+
+    visuals = search_visual_assets_for_context(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        query=query,
+        limit=limit,
+    )
+
+    if visuals:
+        return visuals
+
+    return list_active_visual_assets_for_context(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        limit=limit,
+    )
 
 
 def update_visual_asset(visual_id: str, data: dict) -> dict | None:
@@ -310,6 +376,21 @@ def backfill_visual_assets_for_document(
         raise HTTPException(status_code=400, detail="Upload the source PDF for visual extraction.")
 
     document_row = _get_rag_document(document_id)
+    board = normalize_board(document_row.get("board"))
+    grade = document_row.get("grade") or ""
+
+    if not is_rag_visual_context_enabled(board, grade):
+        return {
+            "success": True,
+            "message": (
+                "Textbook visual extraction is currently enabled only for "
+                "CBSE Grade 9 and Grade 10 to protect storage quota."
+            ),
+            "document_id": document_row["id"],
+            "page_count": 0,
+            "visuals_created": 0,
+            "visuals": [],
+        }
 
     try:
         import fitz  # PyMuPDF
@@ -349,8 +430,6 @@ def backfill_visual_assets_for_document(
 
         _delete_existing_visual_rows(document_id, first_page, last_page)
 
-        board = normalize_board(document_row.get("board"))
-        grade = document_row.get("grade") or ""
         subject = document_row.get("subject") or ""
         chapter = document_row.get("chapter") or ""
         title = document_row.get("title") or ""
