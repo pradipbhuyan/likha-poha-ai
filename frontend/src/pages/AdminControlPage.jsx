@@ -42,6 +42,24 @@ const AI_MODEL_OPTIONS = [
   },
 ];
 
+const UNLIMITED_TOKEN_LIMIT = 0;
+
+function normalizeTokenLimit(value) {
+  /** Normalize form values so zero explicitly means unlimited token access. */
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) && numericValue > 0
+    ? Math.floor(numericValue)
+    : UNLIMITED_TOKEN_LIMIT;
+}
+
+function hasUnlimitedTokenAccess(child) {
+  /** A student is unlimited only when both daily and monthly caps are disabled. */
+  return (
+    normalizeTokenLimit(child.daily_token_limit) === UNLIMITED_TOKEN_LIMIT &&
+    normalizeTokenLimit(child.monthly_token_limit) === UNLIMITED_TOKEN_LIMIT
+  );
+}
+
 function getFamilyDisplayName(family) {
   /** Prefer human-readable family labels over UUIDs in the admin roster. */
   const parents = family.parents || [];
@@ -363,8 +381,8 @@ function AdminControlPage({ user }) {
       await updateChildLimits(
         child.id,
         {
-          daily_token_limit: Number(child.daily_token_limit || 0),
-          monthly_token_limit: Number(child.monthly_token_limit || 0),
+          daily_token_limit: normalizeTokenLimit(child.daily_token_limit),
+          monthly_token_limit: normalizeTokenLimit(child.monthly_token_limit),
         },
         user.accessToken
       );
@@ -386,8 +404,8 @@ function AdminControlPage({ user }) {
       await updateChildLimits(
         child.id,
         {
-          daily_token_limit: Number(child.daily_token_limit || 0),
-          monthly_token_limit: Number(child.monthly_token_limit || 0),
+          daily_token_limit: normalizeTokenLimit(child.daily_token_limit),
+          monthly_token_limit: normalizeTokenLimit(child.monthly_token_limit),
         },
         user.accessToken
       );
@@ -444,6 +462,38 @@ function AdminControlPage({ user }) {
                 }
               : child
           ),
+        };
+      })
+    );
+  }
+
+  function updateTokenAccessMode(familyId, childId, mode) {
+    /** Switch between unlimited access and the selected plan's normal token caps. */
+    setFamilies((prev) =>
+      prev.map((family) => {
+        if (family.family_id !== familyId) return family;
+
+        return {
+          ...family,
+          children: family.children.map((child) => {
+            if (child.id !== childId) return child;
+
+            if (mode === "unlimited") {
+              return {
+                ...child,
+                daily_token_limit: UNLIMITED_TOKEN_LIMIT,
+                monthly_token_limit: UNLIMITED_TOKEN_LIMIT,
+              };
+            }
+
+            const preset = SUBSCRIPTION_PLANS[child.subscription_plan || "free"];
+
+            return {
+              ...child,
+              daily_token_limit: preset?.daily_token_limit || 50000,
+              monthly_token_limit: preset?.monthly_token_limit || 1000000,
+            };
+          }),
         };
       })
     );
@@ -1082,6 +1132,7 @@ function AdminControlPage({ user }) {
 
           {(family.children || []).map((child) => {
             const schoolBoardLabel = child.board || "CBSE";
+            const unlimitedTokens = hasUnlimitedTokenAccess(child);
 
             return (
             <div
@@ -1244,10 +1295,32 @@ function AdminControlPage({ user }) {
                 </label>
 
                 <label>
+                  AI Token Access
+                  <select
+                    value={unlimitedTokens ? "unlimited" : "limited"}
+                    onChange={(e) =>
+                      updateTokenAccessMode(
+                        family.family_id,
+                        child.id,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option value="limited">Limited / Custom</option>
+                    <option value="unlimited">Unlimited</option>
+                  </select>
+                </label>
+
+                <label>
                   Daily Tokens
                   <input
-                    type="number"
-                    value={child.daily_token_limit || 0}
+                    type={unlimitedTokens ? "text" : "number"}
+                    value={
+                      unlimitedTokens
+                        ? "Unlimited"
+                        : normalizeTokenLimit(child.daily_token_limit)
+                    }
+                    disabled={unlimitedTokens}
                     onChange={(e) =>
                       updateLocalChild(
                         family.family_id,
@@ -1262,8 +1335,13 @@ function AdminControlPage({ user }) {
                 <label>
                   Monthly Tokens
                   <input
-                    type="number"
-                    value={child.monthly_token_limit || 0}
+                    type={unlimitedTokens ? "text" : "number"}
+                    value={
+                      unlimitedTokens
+                        ? "Unlimited"
+                        : normalizeTokenLimit(child.monthly_token_limit)
+                    }
+                    disabled={unlimitedTokens}
                     onChange={(e) =>
                       updateLocalChild(
                         family.family_id,

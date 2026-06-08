@@ -342,6 +342,9 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(controls.getByLabelText(/ai model/i), {
       target: { value: "gpt-5-mini" },
     });
+    fireEvent.change(controls.getByLabelText(/ai token access/i), {
+      target: { value: "unlimited" },
+    });
     fireEvent.click(controls.getByLabelText("Science"));
     fireEvent.click(controls.getByLabelText("Maths"));
     fireEvent.click(controls.getByRole("button", { name: /save plan/i }));
@@ -361,8 +364,8 @@ describe("AdminControlPage teacher management", () => {
       expect(updateChildLimits).toHaveBeenCalledWith(
         "student-1",
         expect.objectContaining({
-          daily_token_limit: expect.any(Number),
-          monthly_token_limit: expect.any(Number),
+          daily_token_limit: 0,
+          monthly_token_limit: 0,
         }),
         "admin-token"
       );

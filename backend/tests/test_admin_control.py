@@ -710,6 +710,43 @@ def test_update_child_limits_updates_daily_and_monthly_limits(monkeypatch):
     assert ("role", "student") in update_call["filters"]
 
 
+def test_update_child_limits_allows_unlimited_zero_caps(monkeypatch):
+    """
+    Admin should be able to set both token caps to zero for unlimited access.
+
+    Source under test:
+        backend/app/routes/admin_control.py
+        update_child_limits()
+    """
+    fake_client = FakeAdminClient()
+
+    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+
+    request = admin_control_route.UpdateLimitsRequest(
+        daily_token_limit=0,
+        monthly_token_limit=0,
+    )
+
+    result = admin_control_route.update_child_limits(
+        "child-1",
+        request,
+        admin={"role": "admin"},
+    )
+
+    assert result["success"] is True
+    assert result["profile"]["daily_token_limit"] == 0
+    assert result["profile"]["monthly_token_limit"] == 0
+
+    update_call = [
+        call
+        for call in fake_client.calls
+        if call["table"] == "profiles" and call["operation"] == "update"
+    ][0]
+
+    assert update_call["payload"]["daily_token_limit"] == 0
+    assert update_call["payload"]["monthly_token_limit"] == 0
+
+
 def test_update_child_limits_returns_404_when_student_not_found(monkeypatch):
     """
     Updating limits for a missing student should not report success.

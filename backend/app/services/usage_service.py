@@ -3,6 +3,22 @@ from datetime import datetime, timezone
 from app.services.supabase_client import supabase
 
 
+UNLIMITED_TOKEN_LIMIT = 0
+
+
+def normalize_token_limit(value) -> int:
+    """Normalize token caps so zero means unlimited and negatives never persist."""
+    try:
+        return max(UNLIMITED_TOKEN_LIMIT, int(value or 0))
+    except (TypeError, ValueError):
+        return UNLIMITED_TOKEN_LIMIT
+
+
+def is_unlimited_token_limit(value) -> bool:
+    """Return whether a stored token cap disables enforcement."""
+    return normalize_token_limit(value) == UNLIMITED_TOKEN_LIMIT
+
+
 def log_ai_usage(
     username: str,
     feature: str,
@@ -119,8 +135,8 @@ def enforce_token_limits(username: str):
 
     usage = get_token_usage(username)
 
-    daily_limit = int(profile.get("daily_token_limit") or 0)
-    monthly_limit = int(profile.get("monthly_token_limit") or 0)
+    daily_limit = normalize_token_limit(profile.get("daily_token_limit"))
+    monthly_limit = normalize_token_limit(profile.get("monthly_token_limit"))
 
     if daily_limit > 0 and usage["daily_tokens"] >= daily_limit:
         return {
@@ -140,6 +156,14 @@ def enforce_token_limits(username: str):
         "allowed": True,
         "message": "Allowed",
         "usage": usage,
+        "limits": {
+            "daily_token_limit": daily_limit,
+            "monthly_token_limit": monthly_limit,
+            "unlimited": (
+                is_unlimited_token_limit(daily_limit)
+                and is_unlimited_token_limit(monthly_limit)
+            ),
+        },
     }
 
 

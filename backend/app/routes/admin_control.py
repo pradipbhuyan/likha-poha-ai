@@ -11,6 +11,7 @@ from app.services.model_routing_service import normalize_model_preference
 from app.services.auth_service import require_admin, create_auth_user, admin_client
 from app.services.board_service import normalize_board
 from app.services.subject_access_service import clean_subject_access_list
+from app.services.usage_service import normalize_token_limit
 
 router = APIRouter()
 
@@ -65,8 +66,8 @@ class UpdateAccessRequest(BaseModel):
 
 
 class UpdateLimitsRequest(BaseModel):
-    daily_token_limit: int
-    monthly_token_limit: int
+    daily_token_limit: int = Field(default=0, ge=0)
+    monthly_token_limit: int = Field(default=0, ge=0)
 
 
 class SubscriptionPlanSettings(BaseModel):
@@ -857,8 +858,8 @@ def update_child_limits(
         admin_client
         .table("profiles")
         .update({
-            "daily_token_limit": data.daily_token_limit,
-            "monthly_token_limit": data.monthly_token_limit,
+            "daily_token_limit": normalize_token_limit(data.daily_token_limit),
+            "monthly_token_limit": normalize_token_limit(data.monthly_token_limit),
         })
         .eq("id", child_id)
         .eq("role", "student")
