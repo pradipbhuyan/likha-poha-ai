@@ -26,6 +26,36 @@ function transformOutsideInlineMath(text, transform) {
     .join("");
 }
 
+export function removeUnsupportedQuestionClosers(text) {
+  /**
+   * Convert conversational invitation questions into actionable next steps.
+   *
+   * The lesson UI only evaluates explicit practice questions. Ending a summary
+   * with "Would you like..." makes students answer a prompt the app will not
+   * actually handle, so we rewrite those invitations into instructions.
+   */
+  if (!text) return "";
+
+  const nextStep =
+    "Review these key points, then move to the next lesson section when ready.";
+
+  return transformOutsideCodeFences(text, (content) =>
+    content
+      .replace(
+        /\bIf you want,[^.!?\n]*\?\s*/gi,
+        nextStep
+      )
+      .replace(
+        /\bWould you like(?:\s+to|\s+me to|\s+that)?[^.!?\n]*\?\s*/gi,
+        nextStep
+      )
+      .replace(
+        /\b(?:Do you want|Shall we|Should we|Can we now)[^.!?\n]*\?\s*/gi,
+        nextStep
+      )
+  );
+}
+
 export function normalizeMermaidBlocks(text) {
   /** Wrap loose Mermaid graph text in code fences so ReactMarkdown renders diagrams correctly. */
   if (!text) return "";
@@ -209,7 +239,9 @@ function isPlainMathExpression(expression) {
 
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it. */
-  return normalizeDollarMath(
-    normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+  return removeUnsupportedQuestionClosers(
+    normalizeDollarMath(
+      normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+    )
   );
 }

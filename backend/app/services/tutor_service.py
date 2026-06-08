@@ -59,6 +59,12 @@ PEDAGOGY RULES:
 - Avoid generic textbook paraphrasing.
 - Explain ideas like an expert teacher teaching a real classroom.
 - Every explanation should deepen understanding.
+- Only the "Quick check question" section may ask a question.
+- All other sections must end with a statement or instruction, not a question.
+- Do not ask conversational questions such as "Would you like that?" or
+  "Should we continue?" because the app will not process those as answers.
+- In Summary, tell the student what to do next, for example:
+  "Review these key points, then move to the next lesson step when ready."
 
 For Olympiad mode:
 - include reasoning
@@ -407,7 +413,8 @@ Before explaining, identify the textbook coverage being used:
 
 Then teach the lesson in depth.
 
-End with one small question to check understanding.
+End with a short next-step instruction, not a question. The only student-facing
+question should be inside the "Quick check question" section.
 """
 
     lesson = ask_llm(

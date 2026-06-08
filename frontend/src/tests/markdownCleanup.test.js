@@ -5,6 +5,7 @@ import {
   normalizeLatexParentheses,
   normalizePlainAlgebra,
   normalizeTutorMarkdown,
+  removeUnsupportedQuestionClosers,
 } from "../utils/markdownCleanup";
 
 describe("markdownCleanup", () => {
@@ -68,5 +69,14 @@ describe("markdownCleanup", () => {
 
     expect(normalizeTutorMarkdown(input)).toContain("Use $\\frac{p}{q}$ here.");
     expect(normalizeTutorMarkdown(input)).toContain("A[(\\frac{p}{q})] --> B[Done]");
+  });
+
+  test("rewrites conversational lesson endings into next-step instructions", () => {
+    const input =
+      "This summary prepares you for the next idea. Would you like to try reading an introduction together from your textbook next?";
+
+    expect(removeUnsupportedQuestionClosers(input)).toBe(
+      "This summary prepares you for the next idea. Review these key points, then move to the next lesson section when ready."
+    );
   });
 });

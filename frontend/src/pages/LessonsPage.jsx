@@ -1053,6 +1053,30 @@ function LessonsPage({ user }) {
       }));
     }
   }
+
+  async function handleEvaluateInlineLessonQuestion({ question, answer }) {
+    /** Evaluate optional lesson-section answers without making the prompt mandatory. */
+    if (!question?.trim() || !answer?.trim()) {
+      return {
+        success: false,
+        message: "Write an answer before asking for evaluation.",
+      };
+    }
+
+    return evaluateStudentAnswer({
+      grade,
+      mode,
+      subject,
+      chapter,
+      step_title: stepTitle,
+      username: user.username,
+      question,
+      student_answer: answer,
+      ideal_context: lesson,
+      question_type: "short_answer",
+      expected_keywords: [],
+    });
+  }
   
   function countWords(text) {
     /** Count non-empty words for minimum practice answer validation. */
@@ -1406,7 +1430,10 @@ function LessonsPage({ user }) {
                 </div>
 
                 <div className="markdown-content">
-                  <LessonSections lesson={lesson} />
+                  <LessonSections
+                    lesson={lesson}
+                    onEvaluateQuestion={handleEvaluateInlineLessonQuestion}
+                  />
                 </div>
 
                 <div className="lesson-audio-section premium-card">

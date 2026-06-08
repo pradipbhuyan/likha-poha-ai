@@ -23,6 +23,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
 .app-shell {
@@ -1087,6 +1088,8 @@ textarea:focus {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  text-align: left;
 }
 
 .lesson-section-icon {
@@ -1100,12 +1103,115 @@ textarea:focus {
 
 .lesson-section-body {
   padding: 18px 22px;
+  min-width: 0;
 }
 
 .lesson-section-body p {
   font-size: 16px;
   line-height: 1.75;
   color: #334155;
+  overflow-wrap: anywhere;
+}
+
+.lesson-inline-question-box {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f8fbff, #ffffff);
+}
+
+.lesson-inline-question-label {
+  margin: 0 0 6px !important;
+  color: #1d4ed8 !important;
+  font-size: 0.9rem !important;
+  font-weight: 900;
+  line-height: 1.35 !important;
+}
+
+.lesson-inline-question-text {
+  margin: 0 !important;
+  color: #1e293b !important;
+  font-size: 1rem !important;
+  font-weight: 750;
+  line-height: 1.55 !important;
+}
+
+.lesson-inline-question-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.inline-question-choice {
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.inline-question-choice.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.inline-question-choice.muted {
+  background: #f8fafc;
+  color: #475569;
+}
+
+.inline-question-choice.active.muted {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+
+.lesson-inline-thinking-note {
+  margin: 0 !important;
+  color: #047857 !important;
+  font-size: 0.95rem !important;
+  font-weight: 800;
+}
+
+.lesson-inline-answer-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-inline-answer-panel textarea {
+  width: 100%;
+  min-height: 118px;
+  resize: vertical;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #0f172a;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.lesson-inline-evaluate-btn {
+  justify-self: start;
+  min-width: 190px;
+}
+
+.lesson-inline-feedback {
+  padding: 14px;
+  border-radius: 14px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.lesson-inline-feedback p,
+.lesson-inline-feedback li {
+  color: #14532d !important;
+  font-size: 0.98rem !important;
 }
 
 .lesson-section-body ul,
@@ -4608,6 +4714,9 @@ body.dark-mode .selected-files-box {
    .premium-dashboard-page {
     display: grid;
     gap: 26px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
   
   .premium-dashboard-hero {
@@ -4625,6 +4734,8 @@ body.dark-mode .selected-files-box {
       linear-gradient(135deg, #ffffff 0%, #f8fbff 55%, #eef4ff 100%) !important;
     border: 1px solid rgba(191, 219, 254, 0.9) !important;
     box-shadow: 0 24px 70px rgba(37, 99, 235, 0.12) !important;
+    max-width: 100%;
+    min-width: 0;
   }
   
   .premium-dashboard-hero::before {
@@ -4641,6 +4752,7 @@ body.dark-mode .selected-files-box {
   .premium-hero-copy {
     position: relative;
     z-index: 1;
+    min-width: 0;
   }
   
   .premium-hero-copy h2 {
@@ -4648,6 +4760,9 @@ body.dark-mode .selected-files-box {
     line-height: 1.02 !important;
     letter-spacing: -0.05em;
     margin: 6px 0 20px !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
   
   .premium-hero-copy h2 span {
@@ -4660,6 +4775,7 @@ body.dark-mode .selected-files-box {
     font-size: 19px;
     line-height: 1.75;
     color: #475569;
+    overflow-wrap: anywhere;
   }
   
   .premium-hero-actions {
@@ -4690,6 +4806,7 @@ body.dark-mode .selected-files-box {
       linear-gradient(135deg, #f6e9ff 0%, #eef6ff 55%, #ffffff 100%) !important;
     border: 1px solid rgba(196, 181, 253, 0.9) !important;
     box-shadow: 0 22px 55px rgba(147, 51, 234, 0.16) !important;
+    min-width: 0;
   }
   
   .premium-ai-content {
@@ -4997,11 +5114,45 @@ body.dark-mode .selected-files-box {
   @media (max-width: 760px) {
     .premium-dashboard-hero {
       padding: 24px !important;
+      border-radius: 26px !important;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .premium-hero-copy h2 {
+      font-size: clamp(34px, 12vw, 46px) !important;
+      letter-spacing: -0.035em;
+    }
+
+    .premium-hero-copy p:not(.eyebrow) {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .dashboard-actions.premium-hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
     }
   
     .premium-hero-actions .primary-btn,
     .premium-hero-actions .secondary-btn {
       width: 100%;
+      min-width: 0 !important;
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .dashboard-actions.premium-hero-actions button,
+    .dashboard-hero-btn {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 64px;
+      padding: 14px 16px !important;
+      font-size: 18px !important;
+      white-space: normal;
     }
   
     .premium-ai-content {
@@ -5021,6 +5172,43 @@ body.dark-mode .selected-files-box {
       border-bottom: none;
     }
   }
+
+@media (max-width: 640px) {
+  .lesson-section-header {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .lesson-section-title {
+    font-size: 0.98rem;
+    line-height: 1.3;
+  }
+
+  .lesson-section-body {
+    padding: 14px;
+  }
+
+  .lesson-section-body p,
+  .lesson-section-body li {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .lesson-inline-question-box {
+    padding: 14px;
+  }
+
+  .lesson-inline-question-actions,
+  .lesson-inline-answer-panel {
+    width: 100%;
+  }
+
+  .inline-question-choice,
+  .lesson-inline-evaluate-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
 /* Premium AI recommendation cards */
 
 .recommendation-section {
