@@ -21,6 +21,7 @@ import {
   MonitorPlay,
   Megaphone,
   Activity,
+  Sparkles,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -86,6 +87,12 @@ function Sidebar({
       key: "performanceTests",
       label: "Performance Tests",
       icon: Activity,
+      roles: ["admin"],
+    },
+    {
+      key: "guideThemes",
+      label: "LikhaPoha AI Guide",
+      icon: Sparkles,
       roles: ["admin"],
     },
     {

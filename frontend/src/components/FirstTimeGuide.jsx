@@ -1,0 +1,293 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  BarChart3,
+  BookOpen,
+  ClipboardList,
+  Compass,
+  HelpCircle,
+  LineChart,
+  Sparkles,
+  Users,
+  X,
+} from "lucide-react";
+
+import { getOnboardingGuideSettings } from "../api/onboardingGuide";
+
+const DEFAULT_SETTINGS = {
+  enabled: true,
+  active_theme: "quest",
+  rotation_enabled: false,
+  rotation_days: 14,
+  student_theme: "quest",
+  parent_theme: "clean",
+  teacher_theme: "forest",
+  show_once_per_theme: true,
+  auto_open: true,
+  message:
+    "A friendly first-time guide helps new users understand the main pages without feeling lost.",
+};
+
+const THEME_ORDER = ["clean", "quest", "space", "forest"];
+
+const THEME_META = {
+  clean: {
+    label: "Clean Coach",
+    badge: "Quick tour",
+    mascot: "🧭",
+    line: "A calm, simple guide for families who like a neat path.",
+  },
+  quest: {
+    label: "Quest Mode",
+    badge: "Level 1",
+    mascot: "🏅",
+    line: "A mission-style guide that makes the first visit feel like a learning quest.",
+  },
+  space: {
+    label: "Space Mission",
+    badge: "Launch pad",
+    mascot: "🚀",
+    line: "A playful launch sequence for exploring lessons, practice, and progress.",
+  },
+  forest: {
+    label: "Forest Trail",
+    badge: "Trail map",
+    mascot: "🌿",
+    line: "A softer guided trail for teachers and parents who want a steady walkthrough.",
+  },
+};
+
+const ROLE_STEPS = {
+  student: [
+    {
+      title: "Start at Dashboard",
+      text: "See your learning streak, weak areas, and what to study next.",
+      icon: Compass,
+    },
+    {
+      title: "Open Lessons",
+      text: "Pick your class, subject, chapter, and lesson step to learn in small pieces.",
+      icon: BookOpen,
+    },
+    {
+      title: "Use Ask Doubt",
+      text: "Ask a chapter doubt when something is confusing and save the answer for later.",
+      icon: HelpCircle,
+    },
+    {
+      title: "Try Mock Test",
+      text: "Practice with questions and review explanations before moving ahead.",
+      icon: ClipboardList,
+    },
+    {
+      title: "Check Analytics",
+      text: "Track what is improving and what needs another revision round.",
+      icon: BarChart3,
+    },
+  ],
+  parent: [
+    {
+      title: "Family Dashboard",
+      text: "Review your children, subscriptions, and linked parent accounts in one place.",
+      icon: Users,
+    },
+    {
+      title: "Progress Snapshot",
+      text: "See lesson progress, mock-test results, and AI usage patterns.",
+      icon: LineChart,
+    },
+    {
+      title: "Subscription Help",
+      text: "Compare available plans and contact support if you need activation help.",
+      icon: ClipboardList,
+    },
+  ],
+  teacher: [
+    {
+      title: "Teacher Dashboard",
+      text: "View assigned students, subjects, and class progress from your workspace.",
+      icon: Users,
+    },
+    {
+      title: "Spot Weak Areas",
+      text: "Use progress and practice signals to find students who need attention.",
+      icon: LineChart,
+    },
+    {
+      title: "Guide Revision",
+      text: "Add notes and help students revise the areas where they are not strong yet.",
+      icon: BookOpen,
+    },
+  ],
+};
+
+function storageKey(user, theme) {
+  /** Keep guide completion scoped to user, role, and theme. */
+  return `likha_poha_guide_seen_${user?.role || "guest"}_${
+    user?.username || "unknown"
+  }_${theme}`;
+}
+
+function getRotatedTheme(settings) {
+  /** Rotate available themes in stable two-week windows when admin enables it. */
+  if (!settings.rotation_enabled) return settings.active_theme || "quest";
+
+  const rotationDays = Number(settings.rotation_days || 14);
+  const windowMs = Math.max(7, rotationDays) * 24 * 60 * 60 * 1000;
+  const index = Math.floor(Date.now() / windowMs) % THEME_ORDER.length;
+
+  return THEME_ORDER[index];
+}
+
+function pickTheme(settings, role) {
+  /** Prefer role-specific themes, then active or rotated global theme. */
+  const roleTheme = settings[`${role}_theme`];
+  return roleTheme || getRotatedTheme(settings);
+}
+
+function FirstTimeGuide({ user, activePage }) {
+  /** Role-aware first-time guide with admin-configurable visual themes. */
+  const role = user?.role;
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  const [open, setOpen] = useState(false);
+  const [stepIndex, setStepIndex] = useState(0);
+  const steps = ROLE_STEPS[role] || [];
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadSettings() {
+      try {
+        const response = await getOnboardingGuideSettings();
+        if (!cancelled) {
+          setSettings({
+            ...DEFAULT_SETTINGS,
+            ...(response.settings || {}),
+          });
+        }
+      } catch {
+        if (!cancelled) {
+          setSettings(DEFAULT_SETTINGS);
+        }
+      }
+    }
+
+    loadSettings();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const theme = useMemo(() => pickTheme(settings, role), [settings, role]);
+  const themeMeta = THEME_META[theme] || THEME_META.quest;
+  const currentStep = steps[stepIndex] || steps[0];
+  const seenKey = storageKey(user, theme);
+
+  useEffect(() => {
+    if (!settings.enabled || !settings.auto_open || !steps.length) return;
+    if (settings.show_once_per_theme && localStorage.getItem(seenKey) === "true") {
+      return;
+    }
+
+    setOpen(true);
+  }, [
+    activePage,
+    seenKey,
+    settings.auto_open,
+    settings.enabled,
+    settings.show_once_per_theme,
+    steps.length,
+  ]);
+
+  if (!settings.enabled || !steps.length) {
+    return null;
+  }
+
+  function closeGuide(markSeen = true) {
+    /** Close the guide and optionally mark the current theme as seen. */
+    if (markSeen) {
+      localStorage.setItem(seenKey, "true");
+    }
+    setOpen(false);
+    setStepIndex(0);
+  }
+
+  function goNext() {
+    /** Advance the walkthrough or finish when the last guide card is reached. */
+    if (stepIndex >= steps.length - 1) {
+      closeGuide(true);
+      return;
+    }
+    setStepIndex((prev) => prev + 1);
+  }
+
+  const StepIcon = currentStep?.icon || Sparkles;
+
+  return (
+    <>
+      <button
+        className={`first-guide-launcher first-guide-launcher-${theme}`}
+        onClick={() => setOpen(true)}
+      >
+        <Sparkles size={17} strokeWidth={2.5} />
+        LikhaPoha AI Guide
+      </button>
+
+      {open && (
+        <div className="first-guide-layer" role="dialog" aria-modal="false">
+          <section className={`first-guide-panel first-guide-${theme}`}>
+            <button
+              className="first-guide-close"
+              onClick={() => closeGuide(false)}
+              aria-label="Close guide"
+            >
+              <X size={18} strokeWidth={2.5} />
+            </button>
+
+            <div className="first-guide-hero">
+              <span className="first-guide-mascot">{themeMeta.mascot}</span>
+              <div>
+                <p>{themeMeta.badge}</p>
+                <h3>{themeMeta.label}</h3>
+                <small>{themeMeta.line}</small>
+              </div>
+            </div>
+
+            <div className="first-guide-progress">
+              {steps.map((step, index) => (
+                <button
+                  key={step.title}
+                  className={index === stepIndex ? "active" : ""}
+                  onClick={() => setStepIndex(index)}
+                  aria-label={`Guide step ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <article className="first-guide-step-card">
+              <span className="first-guide-step-icon">
+                <StepIcon size={23} strokeWidth={2.4} />
+              </span>
+              <div>
+                <p>Step {stepIndex + 1} of {steps.length}</p>
+                <h4>{currentStep.title}</h4>
+                <span>{currentStep.text}</span>
+              </div>
+            </article>
+
+            <p className="first-guide-message">{settings.message}</p>
+
+            <div className="first-guide-actions">
+              <button onClick={() => closeGuide(true)}>Skip</button>
+              <button className="primary-btn" onClick={goNext}>
+                {stepIndex >= steps.length - 1 ? "Finish" : "Next"}
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default FirstTimeGuide;

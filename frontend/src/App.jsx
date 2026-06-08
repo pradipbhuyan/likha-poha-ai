@@ -26,6 +26,8 @@ import SalesIncentivePage from "./pages/SalesIncentivePage";
 import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
+import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
+import FirstTimeGuide from "./components/FirstTimeGuide";
 
 
 import "./App.css";
@@ -101,6 +103,12 @@ const PAGE_META = {
     subtitle:
       "Run controlled backend checks and monitor latency, errors, and trend health.",
     icon: "⚡",
+  },
+  guideThemes: {
+    title: "LikhaPoha AI Guide",
+    subtitle:
+      "Configure first-time walkthroughs, role themes, and periodic visual rotation.",
+    icon: "✨",
   },
   salesIncentives: {
     title: "Sales Incentives",
@@ -284,6 +292,8 @@ function App() {
         return <AdminPricingCalculatorPage user={user} />;
       case "performanceTests":
         return <AdminPerformanceTestsPage user={user} />;
+      case "guideThemes":
+        return <AdminGuideSettingsPage user={user} />;
       case "salesIncentives":
         return <SalesIncentivePage user={user} />;
       case "salesDemo":
@@ -378,6 +388,8 @@ function App() {
           </motion.section>
         </AnimatePresence>
       </main>
+
+      <FirstTimeGuide user={user} activePage={activePage} />
     </div>
   );
 }
