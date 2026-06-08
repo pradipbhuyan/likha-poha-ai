@@ -5,7 +5,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import StructuredVisualBlock from "./StructuredVisualBlock";
-import { getKeywordHint } from "../utils/keywordHints";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 const SECTION_ICONS = {
@@ -60,21 +59,6 @@ function parseSections(markdown) {
   }
 
   return sections;
-}
-
-function HighlightedStrong({ children }) {
-  /** Turn generated bold key terms into hoverable study hints. */
-  const hint = getKeywordHint(children);
-
-  if (!hint) {
-    return <strong>{children}</strong>;
-  }
-
-  return (
-    <strong className="keyword-highlight" title={hint} aria-label={hint}>
-      {children}
-    </strong>
-  );
 }
 
 function LessonSections({ lesson }) {
@@ -141,9 +125,6 @@ function LessonSections({ lesson }) {
                     }
 
                     return <code className={className}>{children}</code>;
-                  },
-                  strong({ children }) {
-                    return <HighlightedStrong>{children}</HighlightedStrong>;
                   },
                 }}
               >

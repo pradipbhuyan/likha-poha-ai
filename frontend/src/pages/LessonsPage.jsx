@@ -25,7 +25,6 @@ import {
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
-import { getKeywordHint } from "../utils/keywordHints";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
 
 const TEACHER_PERSONAS = {
@@ -69,6 +68,11 @@ const SCIENCE_VISUAL_AID_SUGGESTIONS = [
   "Real-life example scene",
 ];
 
+function isHindiSubjectName(subject) {
+  /** Identify Hindi subjects so practice can stay objective and lightweight. */
+  return subject === "Hindi" || subject === "Hindi Olympiad";
+}
+
 function buildPracticeFallbackQuestions(subject) {
   /** Keep practice usable if the backend cannot generate structured questions. */
   const isMath =
@@ -76,35 +80,65 @@ function buildPracticeFallbackQuestions(subject) {
     subject === "Maths Olympiad" ||
     subject === "Mathematics";
 
-  if (isMath) {
+  if (isMath || isHindiSubjectName(subject)) {
     return [
       {
         type: "mcq",
-        question: "Which option best describes how to use this lesson idea?",
+        question: isHindiSubjectName(subject)
+          ? "पाठ पढ़ते समय सबसे अच्छा तरीका क्या है?"
+          : "Which option best describes how to use this lesson idea?",
         options: [
-          "Apply the rule step by step and check the answer.",
-          "Memorise only the heading.",
-          "Ignore the working.",
-          "Choose the longest option.",
+          isHindiSubjectName(subject)
+            ? "मुख्य विचार समझकर उदाहरण से जोड़ना।"
+            : "Apply the rule step by step and check the answer.",
+          isHindiSubjectName(subject)
+            ? "केवल शीर्षक याद करना।"
+            : "Memorise only the heading.",
+          isHindiSubjectName(subject)
+            ? "प्रश्न को बिना पढ़े उत्तर चुनना।"
+            : "Ignore the working.",
+          isHindiSubjectName(subject)
+            ? "सबसे लंबा विकल्प चुनना।"
+            : "Choose the longest option.",
         ],
-        answer: "Apply the rule step by step and check the answer.",
-        explanation:
-          "Maths practice is strongest when you identify the rule, apply it, and check each step.",
-        expected_keywords: ["rule", "step", "check"],
+        answer: isHindiSubjectName(subject)
+          ? "मुख्य विचार समझकर उदाहरण से जोड़ना।"
+          : "Apply the rule step by step and check the answer.",
+        explanation: isHindiSubjectName(subject)
+          ? "हिंदी में अच्छा उत्तर मुख्य विचार, पात्र या प्रसंग, और एक छोटा उदाहरण जोड़कर लिखा जाता है।"
+          : "Maths practice is strongest when you identify the rule, apply it, and check each step.",
+        expected_keywords: isHindiSubjectName(subject)
+          ? ["मुख्य विचार", "उदाहरण", "पूरा वाक्य"]
+          : ["rule", "step", "check"],
       },
       {
         type: "mcq",
-        question: "What is the best habit before finalising a maths answer?",
+        question: isHindiSubjectName(subject)
+          ? "हिंदी उत्तर लिखते समय कौन-सी बात सबसे उपयोगी है?"
+          : "What is the best habit before finalising a maths answer?",
         options: [
-          "Check signs, values, and the method used.",
-          "Skip the final check.",
-          "Write only the answer without thinking.",
-          "Ignore the question condition.",
+          isHindiSubjectName(subject)
+            ? "स्पष्ट, पूरे वाक्यों में उत्तर लिखना।"
+            : "Check signs, values, and the method used.",
+          isHindiSubjectName(subject)
+            ? "बहुत छोटे और अधूरे शब्द लिखना।"
+            : "Skip the final check.",
+          isHindiSubjectName(subject)
+            ? "प्रश्न से अलग बात लिखना।"
+            : "Write only the answer without thinking.",
+          isHindiSubjectName(subject)
+            ? "पाठ के संदर्भ को छोड़ देना।"
+            : "Ignore the question condition.",
         ],
-        answer: "Check signs, values, and the method used.",
-        explanation:
-          "Checking signs, values, and method helps catch common mistakes before submission.",
-        expected_keywords: ["signs", "values", "method"],
+        answer: isHindiSubjectName(subject)
+          ? "स्पष्ट, पूरे वाक्यों में उत्तर लिखना।"
+          : "Check signs, values, and the method used.",
+        explanation: isHindiSubjectName(subject)
+          ? "उत्तर लिखते समय स्पष्ट वाक्य, पाठ से जुड़ा कारण, और सही शब्द चयन जरूरी होता है।"
+          : "Checking signs, values, and method helps catch common mistakes before submission.",
+        expected_keywords: isHindiSubjectName(subject)
+          ? ["स्पष्ट वाक्य", "कारण", "पाठ"]
+          : ["signs", "values", "method"],
       },
     ];
   }
@@ -167,21 +201,6 @@ function normalizePracticeQuestion(question, subject) {
       ? question.expected_keywords
       : [],
   };
-}
-
-function HighlightedStrong({ children }) {
-  /** Render important generated terms with a visible highlight and hover hint. */
-  const hint = getKeywordHint(children);
-
-  if (!hint) {
-    return <strong>{children}</strong>;
-  }
-
-  return (
-    <strong className="keyword-highlight" title={hint} aria-label={hint}>
-      {children}
-    </strong>
-  );
 }
 
 function LessonsPage({ user }) {
@@ -517,6 +536,11 @@ function LessonsPage({ user }) {
     return subject === "Maths" || subject === "Maths Olympiad";
   }
 
+  function isHindiSubject() {
+    /** Hindi lessons use objective checks and skip lesson chat follow-ups. */
+    return isHindiSubjectName(subject);
+  }
+
   function isScienceSubject() {
     /** Identify science subjects for useful visual-aid suggestions. */
     return subject === "Science" || subject === "Science Olympiad";
@@ -822,6 +846,7 @@ function LessonsPage({ user }) {
     setPracticeFocusWarnings(0);
 
     try {
+      const fallbackQuestions = buildPracticeFallbackQuestions(subject);
       const result = await generatePracticeQuestions({
         grade,
         mode,
@@ -835,19 +860,26 @@ function LessonsPage({ user }) {
       });
 
       if (!result.success) {
-        setPracticeQuestions(buildPracticeFallbackQuestions(subject));
+        setPracticeQuestions(fallbackQuestions);
         setPracticeModeActive(true);
         return;
       }
 
-      const normalizedQuestions = (result.questions || [])
+      let normalizedQuestions = (result.questions || [])
         .map((item) => normalizePracticeQuestion(item, subject))
         .slice(0, 2);
+
+      if (isHindiSubject()) {
+        normalizedQuestions = [
+          ...normalizedQuestions.filter((item) => item.type === "mcq"),
+          ...fallbackQuestions,
+        ].slice(0, 2);
+      }
 
       setPracticeQuestions(
         normalizedQuestions.length
           ? normalizedQuestions
-          : buildPracticeFallbackQuestions(subject)
+          : fallbackQuestions
       );
       setPracticeModeActive(true);
     } catch {
@@ -888,6 +920,63 @@ function LessonsPage({ user }) {
     }));
 
     try {
+      if (isHindiSubject() && practiceQuestion.type === "mcq") {
+        const isCorrect = answer === practiceQuestion.answer;
+        const nextAttemptCount = practiceAttemptCount + 1;
+        const nextBestScore = Math.max(practiceBestScore, isCorrect ? 10 : 0);
+        const writingNote =
+          practiceQuestion.explanation ||
+          "When writing Hindi answers, start with the direct answer, add one reason from the lesson, and write in complete sentences.";
+
+        setPracticeEvaluations((prev) => ({
+          ...prev,
+          [index]: [
+            `## ${isCorrect ? "Correct" : "Incorrect"}`,
+            isCorrect
+              ? "You selected the right answer."
+              : `Correct answer: ${practiceQuestion.answer}`,
+            "## Note for writing answers",
+            `- ${writingNote}`,
+            "- While writing, use complete Hindi sentences, mention the main idea, and support it with one short example from the lesson.",
+          ].join("\n\n"),
+        }));
+
+        setPracticeScores((prev) => ({
+          ...prev,
+          [index]: isCorrect ? 10 : 0,
+        }));
+
+        setPracticePassedMap((prev) => ({
+          ...prev,
+          [index]: isCorrect,
+        }));
+
+        setPracticeAttemptCount(nextAttemptCount);
+        setPracticeBestScore(nextBestScore);
+        setPracticePassed(true);
+        setPracticeModeActive(false);
+
+        if (!isCorrect) {
+          try {
+            await saveWeakAreaAlert({
+              username: user.username,
+              grade,
+              mode,
+              subject,
+              chapter,
+              step_title: stepTitle,
+              step_index: currentStepIndex,
+              attempts: nextAttemptCount,
+              best_score: nextBestScore,
+            });
+          } catch (err) {
+            console.error("Unable to save weak area alert", err);
+          }
+        }
+
+        return;
+      }
+
       const result = await evaluateStudentAnswer({
         grade,
         mode,
@@ -1364,9 +1453,9 @@ function LessonsPage({ user }) {
                     <div className="lesson-followup-header">
                       <h3>✍️ Self Check Practice</h3>
                       <p>
-                        Maths gets two MCQs. Science, English, and Social
-                        Science get one MCQ plus one open answer with AI
-                        feedback.
+                        {isHindiSubject()
+                          ? "Hindi gets two MCQs with instant correct or incorrect feedback plus writing pointers."
+                          : "Maths gets two MCQs. Science, English, and Social Science get one MCQ plus one open answer with AI feedback."}
                       </p>
                     </div>
 
@@ -1392,9 +1481,12 @@ function LessonsPage({ user }) {
                           const currentEvaluation =
                             practiceEvaluations[index] || "";
                           const currentScore = practiceScores[index] || 0;
+                          const currentCorrect =
+                            practicePassedMap[index] || false;
                           const currentLoading =
                             practiceLoadingMap[index] || false;
                           const isMcq = practiceQuestion.type === "mcq";
+                          const isHindiPractice = isHindiSubject();
 
                           return (
                             <div
@@ -1467,15 +1559,6 @@ function LessonsPage({ user }) {
                                   <ReactMarkdown
                                     remarkPlugins={[remarkGfm, remarkMath]}
                                     rehypePlugins={[rehypeKatex]}
-                                    components={{
-                                      strong({ children }) {
-                                        return (
-                                          <HighlightedStrong>
-                                            {children}
-                                          </HighlightedStrong>
-                                        );
-                                      },
-                                    }}
                                   >
                                     {normalizeTutorMarkdown(currentEvaluation)}
                                   </ReactMarkdown>
@@ -1489,9 +1572,13 @@ function LessonsPage({ user }) {
                                   <strong>🧠 Practice feedback saved</strong>
 
                                   <p>
-                                    Score signal: {currentScore}/10. You can
-                                    continue to the next step anytime; this
-                                    feedback will help future revision.
+                                    {isHindiPractice
+                                      ? `Result: ${
+                                          currentCorrect
+                                            ? "Correct"
+                                            : "Incorrect"
+                                        }. Read the note above before writing your own answer.`
+                                      : `Score signal: ${currentScore}/10. You can continue to the next step anytime; this feedback will help future revision.`}
                                   </p>
                                 </div>
                               )}
@@ -1571,150 +1658,154 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
-                <div
-                  className={
-                    practiceModeActive
-                      ? "lesson-followup-box disabled-practice-mode"
-                      : "lesson-followup-box"
-                  }
-                >
-                  <div className="lesson-followup-header">
-                    <h3>💬 Ask a follow-up</h3>
-                    <p>Ask anything about this lesson step.</p>
-                  </div>
-
-                  {followUpMessages.length > 0 && (
-                    <div className="lesson-chat-thread">
-                      {followUpMessages.map((msg, index) => (
-                        <div
-                          key={index}
-                          className={
-                            msg.role === "user"
-                              ? "chat-message user-message"
-                              : "chat-message ai-message"
-                          }
-                        >
-                          <strong>
-                            {msg.role === "user" ? "You" : "AI Tutor"}
-                          </strong>
-
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm, remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                            components={{
-                              code({ className, children }) {
-                                const language = className || "";
-
-                                if (/language-visual-json/.test(language)) {
-                                  return (
-                                    <StructuredVisualBlock
-                                      raw={String(children).replace(/\n$/, "")}
-                                    />
-                                  );
-                                }
-
-                                if (/language-mermaid/.test(language)) {
-                                  return null;
-                                }
-
-                                return (
-                                  <code className={className}>{children}</code>
-                                );
-                              },
-                            }}
-                          >
-                            {normalizeTutorMarkdown(msg.content)}
-                          </ReactMarkdown>
-
-                          {msg.sourceType && (
-                            <span className="chat-source-chip">
-                              {msg.sourceType === "PLATFORM_RAG"
-                                ? "🏷 Platform"
-                                : msg.sourceType === "RAG"
-                                ? "📚 RAG"
-                                : "🤖 LLM"}
-                            </span>
-                          )}
-                        </div>
-                      ))}
+                {!isHindiSubject() && (
+                  <div
+                    className={
+                      practiceModeActive
+                        ? "lesson-followup-box disabled-practice-mode"
+                        : "lesson-followup-box"
+                    }
+                  >
+                    <div className="lesson-followup-header">
+                      <h3>💬 Ask a follow-up</h3>
+                      <p>Ask anything about this lesson step.</p>
                     </div>
-                  )}
 
-                  {lessonDoubtHistory.length > 0 && (
-                    <details className="lesson-history-panel">
-                      <summary>
-                        Recent Lesson Doubts
-                        <span>{lessonDoubtHistory.length}</span>
-                      </summary>
-
-                      <div className="lesson-history-list">
-                        {lessonDoubtHistory.slice(0, 5).map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className="lesson-history-item"
-                            onClick={() => handleOpenLessonHistory(item)}
+                    {followUpMessages.length > 0 && (
+                      <div className="lesson-chat-thread">
+                        {followUpMessages.map((msg, index) => (
+                          <div
+                            key={index}
+                            className={
+                              msg.role === "user"
+                                ? "chat-message user-message"
+                                : "chat-message ai-message"
+                            }
                           >
-                            <strong>{item.question}</strong>
-                            <small>
-                              {item.chapter || item.subject || "Lesson follow-up"}
-                            </small>
+                            <strong>
+                              {msg.role === "user" ? "You" : "AI Tutor"}
+                            </strong>
+
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm, remarkMath]}
+                              rehypePlugins={[rehypeKatex]}
+                              components={{
+                                code({ className, children }) {
+                                  const language = className || "";
+
+                                  if (/language-visual-json/.test(language)) {
+                                    return (
+                                      <StructuredVisualBlock
+                                        raw={String(children).replace(/\n$/, "")}
+                                      />
+                                    );
+                                  }
+
+                                  if (/language-mermaid/.test(language)) {
+                                    return null;
+                                  }
+
+                                  return (
+                                    <code className={className}>{children}</code>
+                                  );
+                                },
+                              }}
+                            >
+                              {normalizeTutorMarkdown(msg.content)}
+                            </ReactMarkdown>
+
+                            {msg.sourceType && (
+                              <span className="chat-source-chip">
+                                {msg.sourceType === "PLATFORM_RAG"
+                                  ? "🏷 Platform"
+                                  : msg.sourceType === "RAG"
+                                  ? "📚 RAG"
+                                  : "🤖 LLM"}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {lessonDoubtHistory.length > 0 && (
+                      <details className="lesson-history-panel">
+                        <summary>
+                          Recent Lesson Doubts
+                          <span>{lessonDoubtHistory.length}</span>
+                        </summary>
+
+                        <div className="lesson-history-list">
+                          {lessonDoubtHistory.slice(0, 5).map((item) => (
+                            <button
+                              key={item.id}
+                              type="button"
+                              className="lesson-history-item"
+                              onClick={() => handleOpenLessonHistory(item)}
+                            >
+                              <strong>{item.question}</strong>
+                              <small>
+                                {item.chapter ||
+                                  item.subject ||
+                                  "Lesson follow-up"}
+                              </small>
+                            </button>
+                          ))}
+                        </div>
+                      </details>
+                    )}
+
+                    <div className="lesson-followup-input">
+                      <textarea
+                        rows="4"
+                        disabled={practiceModeActive}
+                        placeholder={
+                          practiceModeActive
+                            ? "Practice mode active. Complete self-check practice first."
+                            : "Ask a follow-up question..."
+                        }
+                        value={followUpQuestion}
+                        onChange={(e) => setFollowUpQuestion(e.target.value)}
+                      />
+
+                      <div className="followup-chip-row">
+                        {[
+                          "Explain in simpler words",
+                          "Give an example",
+                          "Why is this important?",
+                          "Show a diagram",
+                          "Ask more questions",
+                        ].map((chip) => (
+                          <button
+                            key={chip}
+                            type="button"
+                            className="followup-chip"
+                            disabled={practiceModeActive}
+                            onClick={() =>
+                              setFollowUpQuestion((prev) =>
+                                prev ? `${prev}\n${chip}` : chip
+                              )
+                            }
+                          >
+                            {chip}
                           </button>
                         ))}
                       </div>
-                    </details>
-                  )}
 
-                  <div className="lesson-followup-input">
-                    <textarea
-                      rows="4"
-                      disabled={practiceModeActive}
-                      placeholder={
-                        practiceModeActive
-                          ? "Practice mode active. Complete self-check practice first."
-                          : "Ask a follow-up question..."
-                      }
-                      value={followUpQuestion}
-                      onChange={(e) => setFollowUpQuestion(e.target.value)}
-                    />
-
-                    <div className="followup-chip-row">
-                      {[
-                        "Explain in simpler words",
-                        "Give an example",
-                        "Why is this important?",
-                        "Show a diagram",
-                        "Ask more questions",
-                      ].map((chip) => (
-                        <button
-                          key={chip}
-                          type="button"
-                          className="followup-chip"
-                          disabled={practiceModeActive}
-                          onClick={() =>
-                            setFollowUpQuestion((prev) =>
-                              prev ? `${prev}\n${chip}` : chip
-                            )
-                          }
-                        >
-                          {chip}
-                        </button>
-                      ))}
+                      <button
+                        className="primary-btn followup-submit-btn"
+                        onClick={handleAskFollowUp}
+                        disabled={
+                          practiceModeActive ||
+                          followUpLoading ||
+                          !followUpQuestion.trim()
+                        }
+                      >
+                        {followUpLoading ? "Thinking..." : "✨ Ask AI Tutor"}
+                      </button>
                     </div>
-
-                    <button
-                      className="primary-btn followup-submit-btn"
-                      onClick={handleAskFollowUp}
-                      disabled={
-                        practiceModeActive ||
-                        followUpLoading ||
-                        !followUpQuestion.trim()
-                      }
-                    >
-                      {followUpLoading ? "Thinking..." : "✨ Ask AI Tutor"}
-                    </button>
                   </div>
-                </div>
+                )}
               </div>
 
               {sourceInfo && (

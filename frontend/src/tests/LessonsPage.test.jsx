@@ -21,6 +21,7 @@ vi.mock("../api/syllabus", () => ({
       "Grade 9": {
         CBSE: {
           Science: ["Tissues in Action"],
+          Hindi: ["दो बैलों की कथा"],
         },
       },
     },
@@ -316,6 +317,56 @@ describe("LessonsPage", () => {
         name: /visual generator/i,
       })
     ).not.toBeInTheDocument();
+  });
+
+  test("uses Hindi MCQ-only practice and hides lesson follow-up chat", async () => {
+    render(
+      <LessonsPage
+        user={{
+          role: "student",
+          username: "hindi_student",
+          grade: "Grade 9",
+          accessCbse: true,
+        }}
+      />
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /generated lesson/i,
+      })
+    ).toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText(/subject/i), {
+      target: { value: "Hindi" },
+    });
+
+    await waitFor(() => {
+      expect(screen.queryByText(/ask a follow-up/i)).not.toBeInTheDocument();
+    });
+
+    expect(screen.getByText(/Hindi gets two MCQs/i)).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /generate 2 practice questions/i,
+      })
+    );
+
+    expect(
+      await screen.findByText(/Which tissue transports water in plants/i)
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/Explain tissues/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByPlaceholderText(/write freely here/i)
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Xylem" }));
+    fireEvent.click(screen.getAllByRole("button", { name: /check answer/i })[0]);
+
+    expect(await screen.findByRole("heading", { name: "Correct" })).toBeInTheDocument();
+    expect(screen.getByText(/Result: Correct/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Score signal/i)).not.toBeInTheDocument();
   });
 
   test("shows Maths visual aid suggestions and fills the visual prompt", async () => {

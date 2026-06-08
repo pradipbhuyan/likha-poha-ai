@@ -9219,10 +9219,15 @@ body.dark-mode .premium-resource-empty p {
   width: 100%;
   height: 100%;
   min-height: 250px;
-  object-fit: cover;
   background:
     linear-gradient(145deg, rgba(37, 99, 235, 0.16), rgba(16, 185, 129, 0.12)),
     #eff6ff;
+}
+
+.sales-collateral-card > img {
+  object-fit: contain;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .sales-collateral-placeholder {
@@ -10601,24 +10606,6 @@ body.dark-mode .practice-option-btn:hover,
 body.dark-mode .practice-option-btn.selected {
   background: rgba(37, 99, 235, 0.18) !important;
   border-color: #60a5fa !important;
-}
-
-.keyword-highlight {
-  padding: 1px 4px;
-  border-radius: 7px;
-  background: #fef3c7;
-  color: #92400e;
-  text-decoration: underline;
-  text-decoration-color: #f59e0b;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  cursor: help;
-}
-
-body.dark-mode .keyword-highlight {
-  background: rgba(251, 191, 36, 0.2);
-  color: #fde68a;
-  text-decoration-color: #fbbf24;
 }
 
 .practice-word-count {

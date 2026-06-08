@@ -50,6 +50,11 @@ def _is_math_subject(subject: str) -> bool:
     return subject in {"Maths", "Maths Olympiad", "Mathematics"}
 
 
+def _is_hindi_subject(subject: str) -> bool:
+    """Identify Hindi subjects for MCQ-only practice generation."""
+    return subject in {"Hindi", "Hindi Olympiad"}
+
+
 def _extract_json_array(text: str) -> list[dict]:
     """Parse a model response that should contain one JSON array."""
     stripped = text.strip()
@@ -77,33 +82,65 @@ def _extract_json_array(text: str) -> list[dict]:
 
 def _fallback_practice_questions(subject: str) -> list[dict]:
     """Provide structured practice questions if LLM formatting is unusable."""
-    if _is_math_subject(subject):
+    if _is_math_subject(subject) or _is_hindi_subject(subject):
         return [
             {
                 "type": "mcq",
-                "question": "Which option best matches the main idea from this lesson?",
+                "question": "पाठ पढ़ते समय सबसे अच्छा तरीका क्या है?"
+                if _is_hindi_subject(subject)
+                else "Which option best matches the main idea from this lesson?",
                 "options": [
-                    "The concept can be applied using a clear rule or method.",
-                    "The concept only needs memorisation.",
-                    "The concept has no examples.",
-                    "The concept cannot be checked step by step.",
+                    "मुख्य विचार समझकर उदाहरण से जोड़ना।"
+                    if _is_hindi_subject(subject)
+                    else "The concept can be applied using a clear rule or method.",
+                    "केवल शीर्षक याद करना।"
+                    if _is_hindi_subject(subject)
+                    else "The concept only needs memorisation.",
+                    "प्रश्न को बिना पढ़े उत्तर चुनना।"
+                    if _is_hindi_subject(subject)
+                    else "The concept has no examples.",
+                    "सबसे लंबा विकल्प चुनना।"
+                    if _is_hindi_subject(subject)
+                    else "The concept cannot be checked step by step.",
                 ],
-                "answer": "The concept can be applied using a clear rule or method.",
-                "explanation": "Maths practice should check whether you can identify and apply the method, not only remember a definition.",
-                "expected_keywords": ["method", "rule", "step"],
+                "answer": "मुख्य विचार समझकर उदाहरण से जोड़ना।"
+                if _is_hindi_subject(subject)
+                else "The concept can be applied using a clear rule or method.",
+                "explanation": "हिंदी में अच्छा उत्तर मुख्य विचार, पात्र या प्रसंग, और एक छोटा उदाहरण जोड़कर लिखा जाता है।"
+                if _is_hindi_subject(subject)
+                else "Maths practice should check whether you can identify and apply the method, not only remember a definition.",
+                "expected_keywords": ["मुख्य विचार", "उदाहरण", "पूरा वाक्य"]
+                if _is_hindi_subject(subject)
+                else ["method", "rule", "step"],
             },
             {
                 "type": "mcq",
-                "question": "What should you do before choosing the final answer in a maths problem?",
+                "question": "हिंदी उत्तर लिखते समय कौन-सी बात सबसे उपयोगी है?"
+                if _is_hindi_subject(subject)
+                else "What should you do before choosing the final answer in a maths problem?",
                 "options": [
-                    "Check the given values and the rule used.",
-                    "Pick the longest option.",
-                    "Skip the working.",
-                    "Ignore units and signs.",
+                    "स्पष्ट, पूरे वाक्यों में उत्तर लिखना।"
+                    if _is_hindi_subject(subject)
+                    else "Check the given values and the rule used.",
+                    "बहुत छोटे और अधूरे शब्द लिखना।"
+                    if _is_hindi_subject(subject)
+                    else "Pick the longest option.",
+                    "प्रश्न से अलग बात लिखना।"
+                    if _is_hindi_subject(subject)
+                    else "Skip the working.",
+                    "पाठ के संदर्भ को छोड़ देना।"
+                    if _is_hindi_subject(subject)
+                    else "Ignore units and signs.",
                 ],
-                "answer": "Check the given values and the rule used.",
-                "explanation": "Good maths answers come from checking values, signs, units, and the rule used.",
-                "expected_keywords": ["given values", "rule", "check"],
+                "answer": "स्पष्ट, पूरे वाक्यों में उत्तर लिखना।"
+                if _is_hindi_subject(subject)
+                else "Check the given values and the rule used.",
+                "explanation": "उत्तर लिखते समय स्पष्ट वाक्य, पाठ से जुड़ा कारण, और सही शब्द चयन जरूरी होता है।"
+                if _is_hindi_subject(subject)
+                else "Good maths answers come from checking values, signs, units, and the rule used.",
+                "expected_keywords": ["स्पष्ट वाक्य", "कारण", "पाठ"]
+                if _is_hindi_subject(subject)
+                else ["given values", "rule", "check"],
             },
         ]
 
@@ -231,10 +268,10 @@ def generate_practice_questions(
     """
     Generate subject-aware structured practice questions for a lesson step.
 
-    Maths receives two MCQs. Science, English, and Social Science receive one
-    MCQ plus one descriptive answer prompt with no word limit.
+    Maths and Hindi receive two MCQs. Science, English, and Social Science
+    receive one MCQ plus one descriptive answer prompt with no word limit.
     """
-    if _is_math_subject(subject):
+    if _is_math_subject(subject) or _is_hindi_subject(subject):
         pattern_rule = "Create exactly 2 MCQ questions and 0 descriptive questions."
     else:
         pattern_rule = "Create exactly 1 MCQ question and exactly 1 descriptive question."
@@ -258,6 +295,7 @@ Rules:
 - Keep wording and difficulty suitable for {grade}.
 - Questions should test understanding, not copying.
 - {pattern_rule}
+- For Hindi, keep the questions and options in Hindi when the lesson context is Hindi.
 - MCQ questions must have exactly 4 options.
 - MCQ "answer" must exactly match one option.
 - MCQ explanation must explain why the answer is right and why a common distractor is wrong.

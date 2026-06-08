@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.services.evaluation_service import _fallback_practice_questions
 
 client = TestClient(app)
 
@@ -192,3 +193,12 @@ def test_generate_practice_questions_api():
     assert "success" in data
     assert "questions" in data
     assert "message" in data
+
+
+def test_hindi_fallback_practice_questions_are_mcq_only():
+    """Hindi practice should stay objective and avoid descriptive scoring."""
+    questions = _fallback_practice_questions("Hindi")
+
+    assert len(questions) == 2
+    assert all(question["type"] == "mcq" for question in questions)
+    assert all(len(question["options"]) == 4 for question in questions)
