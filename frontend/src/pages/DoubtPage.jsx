@@ -434,6 +434,7 @@ function DoubtPage({ user }) {
       setSourceInfo({
         sourceType: result.source_type,
         sources: result.sources || [],
+        textbookVisuals: result.textbook_visuals || [],
       });
 
       try {
@@ -915,6 +916,28 @@ Important:
                   {answer}
                 </ReactMarkdown>
               </div>
+
+              {sourceInfo?.textbookVisuals?.length > 0 && (
+                <div className="textbook-visual-strip">
+                  {sourceInfo.textbookVisuals.map((visual) => (
+                    <figure key={visual.id} className="textbook-visual-card">
+                      <img
+                        src={visual.asset_url}
+                        alt={
+                          visual.caption ||
+                          `Textbook page ${visual.page_number}`
+                        }
+                      />
+                      <figcaption>
+                        <strong>Textbook visual</strong>
+                        <span>
+                          Page {visual.page_number} • {visual.chapter}
+                        </span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
 
               <div className="doubt-answer-actions">
                 <button type="button" onClick={handleCopyAnswer}>

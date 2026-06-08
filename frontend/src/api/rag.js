@@ -384,6 +384,73 @@ export async function updateRagDocumentMetadata(documentId, payload, accessToken
   return response.json();
 }
 
+export async function getRagDocumentVisuals(documentId, accessToken) {
+  /** Load textbook page visuals linked to one RAG document. */
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/documents/${documentId}/visuals`,
+    {
+      headers: authFormHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load textbook visuals"));
+  }
+
+  return response.json();
+}
+
+export async function backfillRagDocumentVisuals({
+  documentId,
+  file,
+  startPage,
+  endPage,
+  accessToken,
+}) {
+  /** Upload source PDF pages and link rendered visuals to a RAG document. */
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  if (startPage) {
+    formData.append("start_page", String(startPage));
+  }
+
+  if (endPage) {
+    formData.append("end_page", String(endPage));
+  }
+
+  const response = await fetch(
+    `${API_BASE_URL}/api/rag/documents/${documentId}/visuals/backfill`,
+    {
+      method: "POST",
+      headers: authFormHeaders(accessToken),
+      body: formData,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to extract textbook visuals"));
+  }
+
+  return response.json();
+}
+
+export async function updateRagVisualAsset(visualId, payload, accessToken) {
+  /** Save review status/caption for one textbook visual asset. */
+  const response = await fetch(`${API_BASE_URL}/api/rag/visuals/${visualId}`, {
+    method: "PATCH",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to update textbook visual"));
+  }
+
+  return response.json();
+}
+
 export async function analyzeRagImage(file) {
   /** OCR and classify one image before admin decides whether to upload it. */
   const formData = new FormData();

@@ -6,7 +6,11 @@ import ReactMarkdown from "react-markdown";
 import StructuredVisualBlock from "../components/StructuredVisualBlock";
 
 import { getSyllabus } from "../api/syllabus";
-import { generateLesson, askLessonFollowUp } from "../api/lesson";
+import {
+  generateLesson,
+  askLessonFollowUp,
+  getLessonTextbookVisuals,
+} from "../api/lesson";
 import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
@@ -218,6 +222,11 @@ function LessonsPage({ user }) {
   const [visualLoading, setVisualLoading] = useState(false);
   const [visualTopic, setVisualTopic] = useState("");
   const [visualError, setVisualError] = useState("");
+  const [textbookVisuals, setTextbookVisuals] = useState([]);
+  const [textbookVisualsLoading, setTextbookVisualsLoading] = useState(false);
+  const [selectedTextbookVisual, setSelectedTextbookVisual] = useState(null);
+  const [textbookVisualQuery, setTextbookVisualQuery] = useState("");
+  const [textbookVisualError, setTextbookVisualError] = useState("");
 
   const [practiceAnswers, setPracticeAnswers] = useState({});
   const [practiceEvaluations, setPracticeEvaluations] = useState({});
@@ -435,6 +444,51 @@ function LessonsPage({ user }) {
     loadProgress();
   }, [grade, mode, subject, chapter, user.username]);
 
+  useEffect(() => {
+    loadTextbookVisuals();
+  }, [grade, mode, subject, chapter, user.username]);
+
+  async function loadTextbookVisuals(searchQuery = "") {
+    /** Load approved textbook-only visuals for English lessons in this exact context. */
+    if (!grade || !mode || !subject || !chapter || !isEnglishSubject()) {
+      setTextbookVisuals([]);
+      setSelectedTextbookVisual(null);
+      setTextbookVisualError("");
+      return;
+    }
+
+    setTextbookVisualsLoading(true);
+    setTextbookVisualError("");
+
+    try {
+      const result = await getLessonTextbookVisuals({
+        grade,
+        mode,
+        board: mode === "SOF" ? getUserBoard(user) : mode,
+        subject,
+        chapter,
+        query: searchQuery,
+      });
+
+      const visuals = result.visuals || [];
+      setTextbookVisuals((prev) => (searchQuery ? prev : visuals));
+      setSelectedTextbookVisual(visuals[0] || null);
+
+      if (!visuals.length) {
+        setTextbookVisualError(
+          result.message ||
+            "That visual is outside the current lesson context. Choose one of the textbook visual cards above."
+        );
+      }
+    } catch (err) {
+      setTextbookVisualError(
+        err.message || "Could not load textbook visuals for this lesson."
+      );
+    } finally {
+      setTextbookVisualsLoading(false);
+    }
+  }
+
   if (loading) {
     return <p>Loading syllabus...</p>;
   }
@@ -456,12 +510,21 @@ function LessonsPage({ user }) {
   const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
   const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
 
+  function resetTextbookVisualBrowser() {
+    /** Clear textbook visual browser state when the lesson context changes. */
+    setTextbookVisuals([]);
+    setSelectedTextbookVisual(null);
+    setTextbookVisualQuery("");
+    setTextbookVisualError("");
+  }
+
   function resetLessonState() {
     /** Clear generated lesson artifacts when the selected topic changes. */
     setLesson("");
     setAudioUrl("");
     setVisualImage("");
     setVisualError("");
+    resetTextbookVisualBrowser();
     setSourceInfo(null);
     setFollowUpQuestion("");
     setFollowUpMessages([]);
@@ -539,6 +602,11 @@ function LessonsPage({ user }) {
   function isHindiSubject() {
     /** Hindi lessons use objective checks and skip lesson chat follow-ups. */
     return isHindiSubjectName(subject);
+  }
+
+  function isEnglishSubject() {
+    /** English lessons can show approved textbook visuals, never generated images. */
+    return subject === "English" || subject === "English Olympiad";
   }
 
   function isScienceSubject() {
@@ -725,6 +793,7 @@ function LessonsPage({ user }) {
           role: "assistant",
           content: result.answer,
           sourceType: result.source_type,
+          textbookVisuals: result.textbook_visuals || [],
         },
       ]);
 
@@ -825,6 +894,23 @@ function LessonsPage({ user }) {
     } finally {
       setVisualLoading(false);
     }
+  }
+
+  async function handleFindTextbookVisual() {
+    /** Search only approved textbook visuals for the current English lesson. */
+    const query = textbookVisualQuery.trim();
+
+    if (!query) {
+      setSelectedTextbookVisual(textbookVisuals[0] || null);
+      setTextbookVisualError(
+        textbookVisuals.length
+          ? ""
+          : "No approved textbook visuals are available for this lesson yet."
+      );
+      return;
+    }
+
+    await loadTextbookVisuals(query);
   }
 
   const hasSavedLesson = Boolean(stepLessons[String(currentStepIndex)]);
@@ -1151,6 +1237,7 @@ function LessonsPage({ user }) {
                     setLesson("");
                     setAudioUrl("");
                     setVisualImage("");
+                    resetTextbookVisualBrowser();
                     setSourceInfo(null);
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
@@ -1176,6 +1263,7 @@ function LessonsPage({ user }) {
                     setAudioUrl("");
                     setVisualImage("");
                     setVisualError("");
+                    resetTextbookVisualBrowser();
                     setFollowUpQuestion("");
                     setFollowUpMessages([]);
                     resetPracticeState();
@@ -1274,6 +1362,7 @@ function LessonsPage({ user }) {
                   setAudioUrl("");
                   setVisualImage("");
                   setVisualError("");
+                  resetTextbookVisualBrowser();
                   setCompleted(false);
                   resetPracticeState();
 
@@ -1329,6 +1418,7 @@ function LessonsPage({ user }) {
                     setAudioUrl("");
                     setVisualImage("");
                     setVisualError("");
+                    resetTextbookVisualBrowser();
                     resetPracticeState();
 
                     await saveChapterProgress({
@@ -1357,6 +1447,7 @@ function LessonsPage({ user }) {
                   setLesson("");
                   setAudioUrl("");
                   setVisualImage("");
+                  resetTextbookVisualBrowser();
                   setCompleted(false);
                   resetPracticeState();
 
@@ -1672,6 +1763,114 @@ function LessonsPage({ user }) {
                   </div>
                 )}
 
+                {isEnglishSubject() && (
+                  <div className="textbook-visual-browser-card premium-card premium-glow-card glow-blue">
+                    <div className="visual-generator-header">
+                      <h3>📖 Textbook visuals only</h3>
+
+                      <p>
+                        Choose from approved visuals extracted from this exact
+                        English lesson. AI-generated images are not used here.
+                      </p>
+                    </div>
+
+                    {textbookVisualsLoading && (
+                      <div className="textbook-visual-note">
+                        Loading approved textbook visuals...
+                      </div>
+                    )}
+
+                    {!textbookVisualsLoading && textbookVisuals.length > 0 && (
+                      <div className="textbook-visual-picker">
+                        {textbookVisuals.map((visual) => (
+                          <button
+                            key={visual.id}
+                            type="button"
+                            className={
+                              selectedTextbookVisual?.id === visual.id
+                                ? "textbook-visual-option selected"
+                                : "textbook-visual-option"
+                            }
+                            onClick={() => {
+                              setSelectedTextbookVisual(visual);
+                              setTextbookVisualError("");
+                            }}
+                          >
+                            <img
+                              src={visual.asset_url}
+                              alt={
+                                visual.caption ||
+                                `${visual.chapter} textbook page ${visual.page_number}`
+                              }
+                            />
+
+                            <span>
+                              Page {visual.page_number}
+                              <small>
+                                {visual.caption ||
+                                  visual.title ||
+                                  "Approved textbook visual"}
+                              </small>
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {!textbookVisualsLoading && !textbookVisuals.length && (
+                      <div className="textbook-visual-note">
+                        No approved textbook visuals are available for this
+                        lesson yet.
+                      </div>
+                    )}
+
+                    <div className="textbook-visual-search">
+                      <input
+                        className="visual-topic-input"
+                        type="text"
+                        placeholder="Search within this lesson's approved textbook visuals"
+                        value={textbookVisualQuery}
+                        onChange={(e) => setTextbookVisualQuery(e.target.value)}
+                      />
+
+                      <button
+                        className="secondary-btn visual-generate-btn"
+                        onClick={handleFindTextbookVisual}
+                        disabled={textbookVisualsLoading}
+                      >
+                        Find textbook visual
+                      </button>
+                    </div>
+
+                    {textbookVisualError && (
+                      <div className="visual-error-box">
+                        {textbookVisualError}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {selectedTextbookVisual && isEnglishSubject() && (
+                  <div className="visual-image-card premium-card textbook-selected-visual-card">
+                    <div className="visual-image-header">
+                      <h3>📖 Textbook Visual</h3>
+                    </div>
+
+                    <img
+                      src={selectedTextbookVisual.asset_url}
+                      alt={
+                        selectedTextbookVisual.caption ||
+                        `${selectedTextbookVisual.chapter} textbook page ${selectedTextbookVisual.page_number}`
+                      }
+                    />
+
+                    <p className="textbook-selected-caption">
+                      {selectedTextbookVisual.caption ||
+                        `${selectedTextbookVisual.chapter} - page ${selectedTextbookVisual.page_number}`}
+                    </p>
+                  </div>
+                )}
+
                 {visualImage && (
                   <div className="visual-image-card premium-card">
                     <div className="visual-image-header">
@@ -1749,6 +1948,32 @@ function LessonsPage({ user }) {
                                   ? "📚 RAG"
                                   : "🤖 LLM"}
                               </span>
+                            )}
+
+                            {msg.textbookVisuals?.length > 0 && (
+                              <div className="textbook-visual-strip">
+                                {msg.textbookVisuals.map((visual) => (
+                                  <figure
+                                    key={visual.id}
+                                    className="textbook-visual-card"
+                                  >
+                                    <img
+                                      src={visual.asset_url}
+                                      alt={
+                                        visual.caption ||
+                                        `Textbook page ${visual.page_number}`
+                                      }
+                                    />
+                                    <figcaption>
+                                      <strong>Textbook visual</strong>
+                                      <span>
+                                        Page {visual.page_number} •{" "}
+                                        {visual.chapter}
+                                      </span>
+                                    </figcaption>
+                                  </figure>
+                                ))}
+                              </div>
                             )}
                           </div>
                         ))}

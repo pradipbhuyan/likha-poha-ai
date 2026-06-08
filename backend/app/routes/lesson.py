@@ -13,6 +13,10 @@ from app.services.tutor_service import (
     generate_step_lesson,
     answer_lesson_follow_up,
 )
+from app.services.rag_visual_service import (
+    list_active_visual_assets_for_context,
+    search_visual_assets_for_context,
+)
 from app.services.doubt_history_service import save_doubt_history
 from app.services.platform_info_service import (
     answer_platform_info,
@@ -174,6 +178,65 @@ def enforce_ai_token_limit(username: str):
         )
 
 
+@router.get("/textbook-visuals")
+def get_textbook_visuals(
+    grade: str,
+    mode: str,
+    subject: str,
+    chapter: str,
+    board: str = "CBSE",
+    query: str = "",
+    user=Depends(get_current_user),
+):
+    """Return approved textbook visuals for the current lesson only."""
+    validate_required_text(grade, "grade")
+    validate_required_text(board, "board")
+    validate_required_text(mode, "mode")
+    validate_required_text(subject, "subject")
+    validate_required_text(chapter, "chapter")
+
+    profile = get_profile_by_user_id(user.id)
+    request_board = resolve_request_board(mode, board)
+    enforce_profile_grade(profile, grade)
+    enforce_profile_board(profile, request_board)
+    enforce_learning_access(profile, mode, subject)
+
+    clean_query = str(query or "").strip()
+    if clean_query:
+        visuals = search_visual_assets_for_context(
+            board=request_board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            query=clean_query,
+            limit=6,
+        )
+        message = (
+            "Textbook visuals found."
+            if visuals
+            else "That visual is outside the current lesson context. Choose one of the textbook visual cards above."
+        )
+    else:
+        visuals = list_active_visual_assets_for_context(
+            board=request_board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            limit=12,
+        )
+        message = (
+            "Textbook visuals loaded."
+            if visuals
+            else "No approved textbook visuals are available for this lesson yet."
+        )
+
+    return {
+        "success": True,
+        "visuals": visuals,
+        "message": message,
+    }
+
+
 @router.post("/generate")
 def generate_lesson(
     data: LessonRequest,
@@ -301,6 +364,7 @@ def lesson_follow_up(
             answer=result["answer"],
             source_type=result.get("source_type", "PLATFORM_RAG"),
             sources=result.get("sources", []),
+            textbook_visuals=[],
             history_id=history_item.get("id") if history_item else None,
             message="Platform information answered successfully",
         )
@@ -348,6 +412,7 @@ def lesson_follow_up(
             answer=result["answer"],
             source_type=result.get("source_type", "LLM"),
             sources=result.get("sources", []),
+            textbook_visuals=result.get("textbook_visuals", []),
             history_id=history_item.get("id") if history_item else None,
             message="Follow-up answered successfully",
         )
@@ -361,6 +426,7 @@ def lesson_follow_up(
             answer=None,
             source_type="LLM",
             sources=[],
+            textbook_visuals=[],
             history_id=None,
             message=f"Follow-up failed: {str(e)}",
         )

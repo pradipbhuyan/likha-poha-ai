@@ -15,6 +15,9 @@ import {
   deleteRagDocument,
   previewRagDocument,
   updateRagDocumentMetadata,
+  getRagDocumentVisuals,
+  backfillRagDocumentVisuals,
+  updateRagVisualAsset,
   analyzeRagImage,
   analyzeSofImages,
   confirmSofUpload,
@@ -217,6 +220,11 @@ function RagUploadPage({ user }) {
   const [previewByDocument, setPreviewByDocument] = useState({});
   const [previewLoadingId, setPreviewLoadingId] = useState("");
   const [savingMetadataId, setSavingMetadataId] = useState("");
+  const [visualsByDocument, setVisualsByDocument] = useState({});
+  const [visualLoadingId, setVisualLoadingId] = useState("");
+  const [visualBackfillDrafts, setVisualBackfillDrafts] = useState({});
+  const [visualBackfillLoadingId, setVisualBackfillLoadingId] = useState("");
+  const [visualSavingId, setVisualSavingId] = useState("");
 
   const [searchGrade, setSearchGrade] = useState("Grade 9");
   const [searchMode, setSearchMode] = useState("SOF");
@@ -1135,6 +1143,115 @@ function RagUploadPage({ user }) {
       setError(err.message || "Unable to preview RAG document.");
     } finally {
       setPreviewLoadingId("");
+    }
+  }
+
+  function updateVisualBackfillDraft(documentId, updates) {
+    /** Keep per-document visual extraction settings local to the library row. */
+    setVisualBackfillDrafts((currentDrafts) => ({
+      ...currentDrafts,
+      [documentId]: {
+        file: null,
+        startPage: "",
+        endPage: "",
+        ...(currentDrafts[documentId] || {}),
+        ...updates,
+      },
+    }));
+  }
+
+  function getVisualBackfillDraft(documentId) {
+    /** Read the PDF/page-range draft for a RAG document. */
+    return (
+      visualBackfillDrafts[documentId] || {
+        file: null,
+        startPage: "",
+        endPage: "",
+      }
+    );
+  }
+
+  async function handleLoadRagVisuals(doc) {
+    /** Load extracted textbook visual assets for admin review. */
+    setVisualLoadingId(doc.id);
+    setError("");
+
+    try {
+      const result = await getRagDocumentVisuals(doc.id, user.accessToken);
+
+      setVisualsByDocument((currentVisuals) => ({
+        ...currentVisuals,
+        [doc.id]: result.visuals || [],
+      }));
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to load textbook visuals.");
+    } finally {
+      setVisualLoadingId("");
+    }
+  }
+
+  async function handleBackfillRagVisuals(doc) {
+    /** Render original PDF pages to storage-backed textbook visuals. */
+    const draft = getVisualBackfillDraft(doc.id);
+
+    if (!draft.file) {
+      setError("Choose the original PDF before extracting textbook visuals.");
+      return;
+    }
+
+    setVisualBackfillLoadingId(doc.id);
+    setError("");
+    setMessage("");
+
+    try {
+      const result = await backfillRagDocumentVisuals({
+        documentId: doc.id,
+        file: draft.file,
+        startPage: draft.startPage,
+        endPage: draft.endPage,
+        accessToken: user.accessToken,
+      });
+
+      setVisualsByDocument((currentVisuals) => ({
+        ...currentVisuals,
+        [doc.id]: result.visuals || [],
+      }));
+      updateVisualBackfillDraft(doc.id, { file: null });
+      setMessage(
+        `Extracted ${result.visuals_created || 0} textbook visual page(s). Review and approve before students see them.`
+      );
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to extract textbook visuals.");
+    } finally {
+      setVisualBackfillLoadingId("");
+    }
+  }
+
+  async function handleUpdateRagVisual(docId, visual, updates) {
+    /** Approve, hide, or edit metadata for a textbook visual asset. */
+    setVisualSavingId(visual.id);
+    setError("");
+
+    try {
+      const result = await updateRagVisualAsset(
+        visual.id,
+        updates,
+        user.accessToken
+      );
+
+      setVisualsByDocument((currentVisuals) => ({
+        ...currentVisuals,
+        [docId]: (currentVisuals[docId] || []).map((currentVisual) =>
+          currentVisual.id === visual.id ? result.visual : currentVisual
+        ),
+      }));
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Unable to update textbook visual.");
+    } finally {
+      setVisualSavingId("");
     }
   }
 
@@ -2486,99 +2603,236 @@ function RagUploadPage({ user }) {
           </div>
         ) : (
           <div className="premium-rag-result-list">
-            {documents.map((doc) => (
-              <div key={doc.id} className="premium-rag-result-row success">
-                <div className="premium-rag-library-main">
-                  {activeMetadataDocId === doc.id ? (
-                    <div className="premium-rag-metadata-editor">
-                      <label>
-                        Document title
-                        <input
-                          value={metadataDraft.title}
-                          onChange={(e) =>
-                            setMetadataDraft((currentDraft) => ({
-                              ...currentDraft,
-                              title: e.target.value,
-                            }))
-                          }
-                        />
-                      </label>
+            {documents.map((doc) => {
+              const visualDraft = getVisualBackfillDraft(doc.id);
+              const documentVisuals = visualsByDocument[doc.id] || [];
+              const activeVisualCount = documentVisuals.filter(
+                (visual) => visual.status === "active"
+              ).length;
 
-                      <label>
-                        Retrieval chapter
-                        <input
-                          value={metadataDraft.chapter}
-                          onChange={(e) =>
-                            setMetadataDraft((currentDraft) => ({
-                              ...currentDraft,
-                              chapter: e.target.value,
-                            }))
-                          }
-                        />
-                      </label>
-                    </div>
-                  ) : (
-                    <>
-                      <strong>{doc.title}</strong>
-                      <p>
-                        {doc.board || "CBSE"} • {doc.grade} • {doc.subject}
-                      </p>
-                      <p>{doc.chapter}</p>
-                      <small>Uploaded by {doc.uploaded_by}</small>
-                    </>
-                  )}
+              return (
+                <div key={doc.id} className="premium-rag-result-row success">
+                  <div className="premium-rag-library-main">
+                    {activeMetadataDocId === doc.id ? (
+                      <div className="premium-rag-metadata-editor">
+                        <label>
+                          Document title
+                          <input
+                            value={metadataDraft.title}
+                            onChange={(e) =>
+                              setMetadataDraft((currentDraft) => ({
+                                ...currentDraft,
+                                title: e.target.value,
+                              }))
+                            }
+                          />
+                        </label>
 
-                  {previewByDocument[doc.id] && (
-                    <div className="premium-rag-preview-box">
-                      <strong>Stored content preview</strong>
-                      <p>{previewByDocument[doc.id]}</p>
-                    </div>
-                  )}
+                        <label>
+                          Retrieval chapter
+                          <input
+                            value={metadataDraft.chapter}
+                            onChange={(e) =>
+                              setMetadataDraft((currentDraft) => ({
+                                ...currentDraft,
+                                chapter: e.target.value,
+                              }))
+                            }
+                          />
+                        </label>
+                      </div>
+                    ) : (
+                      <>
+                        <strong>{doc.title}</strong>
+                        <p>
+                          {doc.board || "CBSE"} • {doc.grade} • {doc.subject}
+                        </p>
+                        <p>{doc.chapter}</p>
+                        <small>Uploaded by {doc.uploaded_by}</small>
+                      </>
+                    )}
+
+                    {previewByDocument[doc.id] && (
+                      <div className="premium-rag-preview-box">
+                        <strong>Stored content preview</strong>
+                        <p>{previewByDocument[doc.id]}</p>
+                      </div>
+                    )}
+
+                    {visualsByDocument[doc.id] && (
+                      <div className="premium-rag-visual-panel">
+                        <div className="premium-rag-visual-header">
+                          <div>
+                            <strong>Textbook visuals</strong>
+                            <p>
+                              {documentVisuals.length} extracted page(s),{" "}
+                              {activeVisualCount} active for student use.
+                            </p>
+                          </div>
+                          <span>Review before enabling</span>
+                        </div>
+
+                        <div className="premium-rag-visual-backfill">
+                          <label>
+                            Original PDF
+                            <input
+                              type="file"
+                              accept=".pdf,application/pdf"
+                              onChange={(e) =>
+                                updateVisualBackfillDraft(doc.id, {
+                                  file: e.target.files?.[0] || null,
+                                })
+                              }
+                            />
+                          </label>
+                          <label>
+                            Start page
+                            <input
+                              type="number"
+                              min="1"
+                              value={visualDraft.startPage}
+                              placeholder="1"
+                              onChange={(e) =>
+                                updateVisualBackfillDraft(doc.id, {
+                                  startPage: e.target.value,
+                                })
+                              }
+                            />
+                          </label>
+                          <label>
+                            End page
+                            <input
+                              type="number"
+                              min="1"
+                              value={visualDraft.endPage}
+                              placeholder="Optional"
+                              onChange={(e) =>
+                                updateVisualBackfillDraft(doc.id, {
+                                  endPage: e.target.value,
+                                })
+                              }
+                            />
+                          </label>
+                          <button
+                            className="secondary-btn compact-btn"
+                            onClick={() => handleBackfillRagVisuals(doc)}
+                            disabled={visualBackfillLoadingId === doc.id}
+                          >
+                            {visualBackfillLoadingId === doc.id
+                              ? "Extracting..."
+                              : "Extract Visuals"}
+                          </button>
+                        </div>
+
+                        {documentVisuals.length === 0 ? (
+                          <div className="premium-rag-visual-empty">
+                            Upload the original PDF here to extract textbook page
+                            visuals for this RAG document.
+                          </div>
+                        ) : (
+                          <div className="premium-rag-visual-grid">
+                            {documentVisuals.slice(0, 12).map((visual) => (
+                              <div
+                                className="premium-rag-visual-card"
+                                key={visual.id}
+                              >
+                                <img
+                                  src={visual.asset_url}
+                                  alt={
+                                    visual.caption ||
+                                    `Textbook page ${visual.page_number}`
+                                  }
+                                />
+                                <div>
+                                  <strong>Page {visual.page_number}</strong>
+                                  <span className={`visual-status ${visual.status}`}>
+                                    {visual.status.replace("_", " ")}
+                                  </span>
+                                </div>
+                                <p>{visual.caption || doc.chapter}</p>
+                                <div className="premium-rag-visual-actions">
+                                  <button
+                                    className="secondary-btn compact-btn"
+                                    onClick={() =>
+                                      handleUpdateRagVisual(doc.id, visual, {
+                                        status: "active",
+                                      })
+                                    }
+                                    disabled={visualSavingId === visual.id}
+                                  >
+                                    Approve
+                                  </button>
+                                  <button
+                                    className="secondary-btn compact-btn"
+                                    onClick={() =>
+                                      handleUpdateRagVisual(doc.id, visual, {
+                                        status: "hidden",
+                                      })
+                                    }
+                                    disabled={visualSavingId === visual.id}
+                                  >
+                                    Hide
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="premium-rag-library-actions">
+                    {activeMetadataDocId === doc.id ? (
+                      <>
+                        <button
+                          className="primary-btn compact-btn"
+                          onClick={() => handleSaveRagMetadata(doc)}
+                          disabled={savingMetadataId === doc.id}
+                        >
+                          {savingMetadataId === doc.id ? "Saving..." : "Save Metadata"}
+                        </button>
+                        <button
+                          className="secondary-btn compact-btn"
+                          onClick={() => setActiveMetadataDocId("")}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="secondary-btn compact-btn"
+                          onClick={() => handlePreviewRagDocument(doc)}
+                          disabled={previewLoadingId === doc.id}
+                        >
+                          {previewLoadingId === doc.id ? "Loading..." : "Preview Content"}
+                        </button>
+                        <button
+                          className="secondary-btn compact-btn"
+                          onClick={() => handleLoadRagVisuals(doc)}
+                          disabled={visualLoadingId === doc.id}
+                        >
+                          {visualLoadingId === doc.id ? "Loading..." : "Review Visuals"}
+                        </button>
+                        <button
+                          className="secondary-btn compact-btn"
+                          onClick={() => startEditRagDocument(doc)}
+                        >
+                          Edit Metadata
+                        </button>
+                      </>
+                    )}
+                    <button
+                      className="danger-btn"
+                      onClick={() => handleDeleteDocument(doc.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-
-                <div className="premium-rag-library-actions">
-                  {activeMetadataDocId === doc.id ? (
-                    <>
-                      <button
-                        className="primary-btn compact-btn"
-                        onClick={() => handleSaveRagMetadata(doc)}
-                        disabled={savingMetadataId === doc.id}
-                      >
-                        {savingMetadataId === doc.id ? "Saving..." : "Save Metadata"}
-                      </button>
-                      <button
-                        className="secondary-btn compact-btn"
-                        onClick={() => setActiveMetadataDocId("")}
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        className="secondary-btn compact-btn"
-                        onClick={() => handlePreviewRagDocument(doc)}
-                        disabled={previewLoadingId === doc.id}
-                      >
-                        {previewLoadingId === doc.id ? "Loading..." : "Preview Content"}
-                      </button>
-                      <button
-                        className="secondary-btn compact-btn"
-                        onClick={() => startEditRagDocument(doc)}
-                      >
-                        Edit Metadata
-                      </button>
-                    </>
-                  )}
-                  <button
-                    className="danger-btn"
-                    onClick={() => handleDeleteDocument(doc.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>

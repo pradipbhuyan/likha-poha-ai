@@ -37,6 +37,11 @@ from app.services.rag_job_service import (
     submit_rag_job,
     update_rag_job,
 )
+from app.services.rag_visual_service import (
+    backfill_visual_assets_for_document,
+    list_visual_assets_for_document,
+    update_visual_asset,
+)
 from app.services.auth_service import admin_client, require_admin
 from app.services.sof_catalog_service import (
     build_sof_catalog_prompt,
@@ -54,6 +59,14 @@ class RagDocumentMetadataUpdate(BaseModel):
 
     title: str
     chapter: str
+
+
+class RagVisualAssetUpdate(BaseModel):
+    """Editable review metadata for textbook page visuals."""
+
+    caption: Optional[str] = None
+    nearby_text: Optional[str] = None
+    status: Optional[str] = None
 
 
 @router.post("/upload-text", response_model=RagUploadResponse)
@@ -259,6 +272,60 @@ def preview_rag_document(
         "success": True,
         "chunks": chunks,
         "preview": "\n\n".join(chunk.get("chunk_text", "") for chunk in chunks),
+    }
+
+
+@router.get("/documents/{document_id}/visuals")
+def get_rag_document_visuals(
+    document_id: str,
+    _admin=Depends(require_admin),
+):
+    """Return textbook visual pages linked to one RAG document."""
+    return {
+        "success": True,
+        "visuals": list_visual_assets_for_document(document_id),
+    }
+
+
+@router.post("/documents/{document_id}/visuals/backfill")
+async def backfill_rag_document_visuals(
+    document_id: str,
+    file: UploadFile = File(...),
+    start_page: Optional[int] = Form(None),
+    end_page: Optional[int] = Form(None),
+    admin=Depends(require_admin),
+):
+    """Render uploaded source PDF pages and link them to an existing RAG document."""
+    file_bytes = await file.read()
+    profile = admin.get("profile") or {}
+
+    return backfill_visual_assets_for_document(
+        document_id=document_id,
+        file_bytes=file_bytes,
+        filename=file.filename or "source.pdf",
+        uploaded_by=profile.get("id"),
+        start_page=start_page,
+        end_page=end_page,
+    )
+
+
+@router.patch("/visuals/{visual_id}")
+def patch_rag_visual_asset(
+    visual_id: str,
+    data: RagVisualAssetUpdate,
+    _admin=Depends(require_admin),
+):
+    """Update review status/caption for one textbook visual asset."""
+    payload = (
+        data.model_dump(exclude_unset=True)
+        if hasattr(data, "model_dump")
+        else data.dict(exclude_unset=True)
+    )
+
+    return {
+        "success": True,
+        "visual": update_visual_asset(visual_id, payload),
+        "message": "Textbook visual updated.",
     }
 
 

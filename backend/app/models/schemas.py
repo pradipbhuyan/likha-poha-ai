@@ -144,6 +144,7 @@ class LessonFollowUpResponse(BaseModel):
     answer: str | None = None
     source_type: str = "LLM"
     sources: list[dict] = []
+    textbook_visuals: list[dict] = Field(default_factory=list)
     history_id: str | None = None
     message: str
     

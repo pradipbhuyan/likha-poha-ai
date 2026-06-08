@@ -15,3 +15,27 @@ export async function askLessonFollowUp(payload) {
     body: JSON.stringify(payload),
   });
 }
+
+export async function getLessonTextbookVisuals({
+  grade,
+  mode,
+  board,
+  subject,
+  chapter,
+  query = "",
+}) {
+  /** Load approved textbook visuals for the selected lesson context. */
+  const params = new URLSearchParams({
+    grade,
+    mode,
+    board,
+    subject,
+    chapter,
+  });
+
+  if (query.trim()) {
+    params.set("query", query.trim());
+  }
+
+  return authFetch(`/api/lesson/textbook-visuals?${params.toString()}`);
+}

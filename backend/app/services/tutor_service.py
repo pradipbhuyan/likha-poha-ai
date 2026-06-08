@@ -1,6 +1,7 @@
 
 from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
 from app.services.rag_service import search_textbook_content
+from app.services.rag_visual_service import find_visual_assets_for_question
 from app.services.mentor_memory_service import (
     get_recent_mentor_memory,
     build_memory_context,
@@ -552,6 +553,13 @@ $$
     )
 
     answer = remove_mermaid_blocks(answer)
+    textbook_visuals = find_visual_assets_for_question(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        question=question,
+    )
     
 
     save_mentor_memory(
@@ -592,6 +600,7 @@ $$
         "answer": answer,
         "source_type": source_type,
         "sources": rag_results,
+        "textbook_visuals": textbook_visuals,
         "mentor_suggestions": suggestions,
     }
 
@@ -688,9 +697,17 @@ Rules:
     )
 
     answer = remove_mermaid_blocks(answer)
+    textbook_visuals = find_visual_assets_for_question(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        question=question,
+    )
 
     return {
         "answer": answer,
         "source_type": source_type,
         "sources": rag_results,
+        "textbook_visuals": textbook_visuals,
     }
