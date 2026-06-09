@@ -8,13 +8,28 @@ enable_system_truststore()
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-DEFAULT_TEXT_MODEL = "gpt-4.1-mini"
-GPT5_TEXT_MODEL = "gpt-5"
-GPT5_MINI_TEXT_MODEL = "gpt-5-mini"
+# ---------------------------------------------------------------------------
+# Model configuration
+# ---------------------------------------------------------------------------
+# All features use gpt-4.1-mini to keep token costs low.
+# To upgrade premium features (SOF mock tests, complex doubts, RAG analysis)
+# to a stronger model when budget allows, change GPT5_TEXT_MODEL to "gpt-4.1"
+# or "gpt-4o" — no other files need to change.
+# ---------------------------------------------------------------------------
 
-# Approximate GPT-4.1-mini pricing
-INPUT_COST_PER_1K = 0.0003
-OUTPUT_COST_PER_1K = 0.0012
+DEFAULT_TEXT_MODEL = "gpt-4.1-mini"
+
+# Premium-feature model — set to mini until token budget improves.
+# Future upgrade path: change to "gpt-4.1" for richer SOF Olympiad output.
+GPT5_TEXT_MODEL = "gpt-4.1-mini"
+
+# Admin per-student override model — same as default.
+GPT5_MINI_TEXT_MODEL = "gpt-4.1-mini"
+
+# Approximate GPT-4.1-mini pricing (per 1K tokens)
+# Source: OpenAI pricing page — update here if pricing changes.
+INPUT_COST_PER_1K = 0.0004
+OUTPUT_COST_PER_1K = 0.0016
 
 
 def estimate_cost(prompt_tokens: int, completion_tokens: int) -> float:
@@ -52,11 +67,7 @@ def ask_llm(
         ],
     }
 
-    if model.startswith("gpt-5"):
-        request_payload["reasoning"] = {"effort": "low"}
-        request_payload["max_output_tokens"] = 6000
-    else:
-        request_payload["temperature"] = 0.4
+    request_payload["temperature"] = 0.4
 
     response = client.responses.create(**request_payload)
 
