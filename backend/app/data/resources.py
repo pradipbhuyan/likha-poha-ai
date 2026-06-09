@@ -73,6 +73,24 @@ LEARNING_RESOURCES = {
         "Chapter 3: Tissues in Action": [
             {"title": "LikhaPoha AI - Tissues in Action | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
         ],
+        "Describing Motion Around Us": [
+            {"title": "LikhaPoha AI - Describing Motion Around Us | Class 9 Science Chapter 4", "type": "youtube", "url": "https://youtu.be/___wVgKghMA"},
+        ],
+        "Chapter 4: Describing Motion Around Us": [
+            {"title": "LikhaPoha AI - Describing Motion Around Us | Class 9 Science Chapter 4", "type": "youtube", "url": "https://youtu.be/___wVgKghMA"},
+        ],
+        "Exploring Mixtures and Their Separation": [
+            {"title": "LikhaPoha AI - Exploring Mixtures and Their Separation | Class 9 Science Chapter 5", "type": "youtube", "url": "https://youtu.be/1FS2LCZXd_A"},
+        ],
+        "Chapter 5: Exploring Mixtures and Their Separation": [
+            {"title": "LikhaPoha AI - Exploring Mixtures and Their Separation | Class 9 Science Chapter 5", "type": "youtube", "url": "https://youtu.be/1FS2LCZXd_A"},
+        ],
+        "How Forces Affect Motion": [
+            {"title": "LikhaPoha AI - How Forces Affect Motion | Class 9 Science Chapter 6", "type": "youtube", "url": "https://youtu.be/7Zd3nj4wZAE"},
+        ],
+        "Chapter 6: How Forces Affect Motion": [
+            {"title": "LikhaPoha AI - How Forces Affect Motion | Class 9 Science Chapter 6", "type": "youtube", "url": "https://youtu.be/7Zd3nj4wZAE"},
+        ],
         "Structure of the Atom": [
             {"title": "PhET - Build an Atom Simulation", "type": "website", "url": "https://phet.colorado.edu/en/simulation/build-an-atom"},
             {"title": "YouTube Search - Structure of the Atom", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+structure+of+the+atom+full+chapter"},
