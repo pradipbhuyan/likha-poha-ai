@@ -60,6 +60,19 @@ LEARNING_RESOURCES = {
         "Atoms and Molecules": [
             {"title": "LikhaPoha AI - Atoms and Molecules | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
         ],
+        # RAG-uploaded chapter label variants (chapter name as stored in Supabase rag_documents)
+        "Cell: The Building Block of Life": [
+            {"title": "LikhaPoha AI - Cell: The Building Block of Life | Class 9 Science Chapter 2", "type": "youtube", "url": "https://youtu.be/kADIaUbwL00"},
+        ],
+        "Chapter 2: Cell: The Building Block of Life": [
+            {"title": "LikhaPoha AI - Cell: The Building Block of Life | Class 9 Science Chapter 2", "type": "youtube", "url": "https://youtu.be/kADIaUbwL00"},
+        ],
+        "Tissues in Action": [
+            {"title": "LikhaPoha AI - Tissues in Action | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
+        ],
+        "Chapter 3: Tissues in Action": [
+            {"title": "LikhaPoha AI - Tissues in Action | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
+        ],
         "Structure of the Atom": [
             {"title": "PhET - Build an Atom Simulation", "type": "website", "url": "https://phet.colorado.edu/en/simulation/build-an-atom"},
             {"title": "YouTube Search - Structure of the Atom", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+structure+of+the+atom+full+chapter"},
@@ -169,12 +182,15 @@ for _subject in LEARNING_RESOURCES:
 
 def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
     """Return curated resources if present; otherwise return free fallback links."""
-    resources = LEARNING_RESOURCES.get(subject, {}).get(chapter, [])
+    # Strip invisible control characters (e.g. \x08 backspace) that can sneak
+    # in from PDF/RAG uploads so the chapter key lookup always matches cleanly.
+    cleaned_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
+    resources = LEARNING_RESOURCES.get(subject, {}).get(cleaned_chapter, [])
     if resources:
         return add_ncert_link(resources)
 
     grade_query = grade.lower().replace("grade", "class")
-    query = quote_plus(f"{grade_query} {subject} {chapter} free lecture")
+    query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
     return [
         {
             "title": f"YouTube Search - {subject}: {chapter}",
