@@ -375,31 +375,3 @@ def test_answer_doubt_requires_sof_subject():
 
     assert response.status_code == 400
     assert "Please select Science, Maths, or English Olympiad" in response.json()["detail"]
-
-
-def test_extract_doubt_image_returns_ocr_text(monkeypatch):
-    monkeypatch.setattr(
-        doubt_route,
-        "extract_text_from_image_bytes",
-        lambda image_bytes: "Question 1: What is matter?",
-    )
-
-    response = client.post(
-        "/api/doubt/extract-image",
-        files={"file": ("question.png", b"fake-image", "image/png")},
-    )
-
-    assert response.status_code == 200
-    data = response.json()
-    assert data["success"] is True
-    assert data["text"] == "Question 1: What is matter?"
-
-
-def test_extract_doubt_image_rejects_non_image_file():
-    response = client.post(
-        "/api/doubt/extract-image",
-        files={"file": ("question.txt", b"not-image", "text/plain")},
-    )
-
-    assert response.status_code == 400
-    assert "Please upload a JPG" in response.json()["detail"]

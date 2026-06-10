@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
 
 import { authFetch } from "../api/authClient";
-import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
+import { answerDoubt, getDoubtHistory } from "../api/doubt";
 
 vi.mock("../api/authClient", () => ({
   authFetch: vi.fn(async () => ({ success: true })),
@@ -23,17 +23,6 @@ describe("answerDoubt", () => {
     expect(authFetch).toHaveBeenCalledWith("/api/doubt/answer", {
       method: "POST",
       body: JSON.stringify(payload),
-    });
-  });
-
-  test("uses authenticated FormData request for image extraction", async () => {
-    const file = new File(["fake"], "question.png", { type: "image/png" });
-
-    await extractDoubtImage(file);
-
-    expect(authFetch).toHaveBeenCalledWith("/api/doubt/extract-image", {
-      method: "POST",
-      body: expect.any(FormData),
     });
   });
 

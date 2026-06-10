@@ -10,10 +10,14 @@ from app.services.mentor_memory_service import (
     build_memory_context,
     save_mentor_memory,
 )
-
 from app.services.curriculum_service import (
     build_chapter_outline,
     format_chapter_outline,
+)
+from app.services.lesson_cache_service import (
+    make_lesson_cache_key,
+    get_cached_lesson,
+    store_lesson_cache,
 )
 
 TUTOR_SYSTEM = """
@@ -311,10 +315,36 @@ def generate_step_lesson(
     """
     Generate one focused lesson step using RAG when uploaded context exists.
 
+    Cache-first: checks lesson_cache before calling the LLM. On cache hit the
+    lesson is returned instantly with zero token cost. On cache miss the LLM
+    generates as normal and the result is stored for future requests.
+
     The function first searches exact chapter material, falls back to broader
     subject material, and only then relies on general model knowledge. Returned
     source metadata lets the frontend show whether textbook content was used.
     """
+    # ------------------------------------------------------------------ cache
+    cache_key = make_lesson_cache_key(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        mode=mode,
+        step_title=step_title,
+        teacher_persona=teacher_persona or "",
+    )
+    cached = get_cached_lesson(cache_key)
+    if cached:
+        return {
+            "lesson": cached["lesson_content"],
+            "source_type": cached.get("source_type", "CACHE"),
+            "sources": [],
+            "textbook_visuals": [],
+            "practice_questions": cached.get("practice_questions") or [],
+            "from_cache": True,
+        }
+    # --------------------------------------------------------------- end cache
+
     rag_query = f"""
     {grade} {subject} {chapter}
     Current lesson step: {step_title}
@@ -457,11 +487,26 @@ question should be inside the "Quick check question" section.
 
     lesson = remove_mermaid_blocks(lesson)
 
+    # Store in cache so future requests for the same lesson are free
+    store_lesson_cache(
+        cache_key=cache_key,
+        lesson_content=lesson,
+        source_type=source_type,
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        mode=mode,
+        step_title=step_title,
+        teacher_persona=teacher_persona or "",
+    )
+
     return {
         "lesson": lesson,
         "source_type": source_type,
         "sources": rag_results,
         "textbook_visuals": textbook_visuals,
+        "from_cache": False,
     }
 
 

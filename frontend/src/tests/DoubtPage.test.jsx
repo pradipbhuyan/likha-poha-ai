@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import DoubtPage from "../pages/DoubtPage";
-import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
+import { answerDoubt, getDoubtHistory } from "../api/doubt";
 
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
@@ -23,7 +23,6 @@ vi.mock("../api/syllabus", () => ({
 
 vi.mock("../api/doubt", () => ({
   answerDoubt: vi.fn(),
-  extractDoubtImage: vi.fn(),
   getDoubtHistory: vi.fn(),
 }));
 
@@ -49,10 +48,6 @@ describe("DoubtPage", () => {
       source_type: "MOCK",
       sources: [],
       mentor_suggestions: [],
-    });
-    extractDoubtImage.mockResolvedValue({
-      success: true,
-      text: "What is matter?",
     });
     getDoubtHistory.mockResolvedValue({
       success: true,
@@ -89,32 +84,6 @@ describe("DoubtPage", () => {
           question: expect.stringContaining("What is matter?"),
           display_question: "What is matter?",
           save_to_history: true,
-        })
-      );
-    });
-  });
-
-  test("adds extracted image text to the submitted doubt", async () => {
-    render(<DoubtPage user={studentUser} />);
-
-    expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
-
-    const file = new File(["fake"], "question.png", { type: "image/png" });
-
-    fireEvent.change(screen.getByLabelText(/upload image/i), {
-      target: { files: [file] },
-    });
-
-    expect(
-      await screen.findByText(/image text added to this doubt/i)
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: /ask ai tutor/i }));
-
-    await waitFor(() => {
-      expect(answerDoubt).toHaveBeenCalledWith(
-        expect.objectContaining({
-          question: expect.stringContaining("Text extracted from attached image"),
         })
       );
     });

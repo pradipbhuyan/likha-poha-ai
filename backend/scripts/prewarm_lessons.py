@@ -1,0 +1,189 @@
+"""
+Lesson Pre-Warming Script
+=========================
+Generates all Grade 9 lesson steps and stores them in lesson_cache.
+
+Run this ONCE when your OpenAI API key is ready and the lesson_cache table
+has been created in Supabase (backend/sql/add_lesson_cache.sql).
+
+Estimated cost: ~$2.50 for all 750 Grade 9 lesson steps.
+Estimated time: ~25 minutes (rate limited to ~0.5 req/sec).
+
+Usage:
+    cd backend
+    python3 scripts/prewarm_lessons.py
+
+After completion, all Grade 9 lesson requests will be served from cache
+at zero token cost until RAG content changes for a chapter.
+"""
+
+import sys
+import time
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from app.data.syllabus import CBSE_9, SOF_9
+from app.services.tutor_service import generate_step_lesson
+from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cache_key
+
+# The 5 fixed lesson steps used by the frontend for every chapter
+LESSON_STEPS = [
+    "Concept introduction",
+    "Core explanation",
+    "Worked examples",
+    "Practice questions",
+    "Revision and recap",
+]
+
+GRADE = "Grade 9"
+BOARD = "CBSE"
+TEACHER_PERSONA = ""  # Standard persona — blank means CBSE default
+
+# Rate limit: pause between requests to avoid OpenAI rate limit errors
+REQUEST_DELAY_SECONDS = 2.0
+
+
+def count_total_steps():
+    """Count total lesson steps to generate for progress display."""
+    total = 0
+    for subject, chapters in CBSE_9.items():
+        total += len(chapters) * len(LESSON_STEPS)
+    for subject, chapters in SOF_9.items():
+        total += len(chapters) * len(LESSON_STEPS)
+    return total
+
+
+def prewarm_cbse():
+    """Generate and cache all CBSE Grade 9 lesson steps."""
+    total_generated = 0
+    total_skipped = 0
+
+    for subject, chapters in CBSE_9.items():
+        mode = BOARD
+
+        for chapter in chapters:
+            for step_title in LESSON_STEPS:
+                cache_key = make_lesson_cache_key(
+                    board=BOARD,
+                    grade=GRADE,
+                    subject=subject,
+                    chapter=chapter,
+                    mode=mode,
+                    step_title=step_title,
+                    teacher_persona=TEACHER_PERSONA,
+                )
+
+                # Skip if already cached
+                if get_cached_lesson(cache_key):
+                    print(f"  ⏭  SKIP  {subject} → {chapter[:40]} → {step_title}")
+                    total_skipped += 1
+                    continue
+
+                print(f"  ⚡ GEN   {subject} → {chapter[:40]} → {step_title}")
+
+                try:
+                    generate_step_lesson(
+                        grade=GRADE,
+                        subject=subject,
+                        chapter=chapter,
+                        mode=mode,
+                        step_title=step_title,
+                        teacher_persona=TEACHER_PERSONA,
+                        username="prewarm_admin",
+                        board=BOARD,
+                    )
+                    total_generated += 1
+                    time.sleep(REQUEST_DELAY_SECONDS)
+
+                except Exception as e:
+                    print(f"  ❌ ERROR {subject} → {chapter[:40]} → {step_title}: {e}")
+                    time.sleep(REQUEST_DELAY_SECONDS * 2)
+
+    return total_generated, total_skipped
+
+
+def prewarm_sof():
+    """Generate and cache all SOF Grade 9 lesson steps."""
+    total_generated = 0
+    total_skipped = 0
+
+    for subject, chapters in SOF_9.items():
+        mode = "SOF"
+
+        for chapter in chapters:
+            for step_title in LESSON_STEPS:
+                cache_key = make_lesson_cache_key(
+                    board=BOARD,
+                    grade=GRADE,
+                    subject=subject,
+                    chapter=chapter,
+                    mode=mode,
+                    step_title=step_title,
+                    teacher_persona=TEACHER_PERSONA,
+                )
+
+                if get_cached_lesson(cache_key):
+                    print(f"  ⏭  SKIP  {subject} → {chapter[:40]} → {step_title}")
+                    total_skipped += 1
+                    continue
+
+                print(f"  ⚡ GEN   {subject} → {chapter[:40]} → {step_title}")
+
+                try:
+                    generate_step_lesson(
+                        grade=GRADE,
+                        subject=subject,
+                        chapter=chapter,
+                        mode=mode,
+                        step_title=step_title,
+                        teacher_persona=TEACHER_PERSONA,
+                        username="prewarm_admin",
+                        board=BOARD,
+                    )
+                    total_generated += 1
+                    time.sleep(REQUEST_DELAY_SECONDS)
+
+                except Exception as e:
+                    print(f"  ❌ ERROR {subject} → {chapter[:40]} → {step_title}: {e}")
+                    time.sleep(REQUEST_DELAY_SECONDS * 2)
+
+    return total_generated, total_skipped
+
+
+if __name__ == "__main__":
+    total_steps = count_total_steps()
+
+    print("=" * 60)
+    print("LikhaPoha AI — Lesson Pre-Warming Script")
+    print("=" * 60)
+    print(f"Grade: {GRADE}")
+    print(f"Total steps to generate: {total_steps}")
+    print(f"Estimated cost: ~${total_steps * 0.0033:.2f}")
+    print(f"Estimated time: ~{total_steps * REQUEST_DELAY_SECONDS / 60:.0f} minutes")
+    print()
+    print("Note: Already-cached steps will be skipped automatically.")
+    print("Run this script again to resume after an interruption.")
+    print()
+
+    confirm = input("Type 'yes' to start pre-generation: ").strip().lower()
+    if confirm != "yes":
+        print("Aborted.")
+        sys.exit(0)
+
+    print()
+    print("--- Generating CBSE lessons ---")
+    cbse_gen, cbse_skip = prewarm_cbse()
+
+    print()
+    print("--- Generating SOF lessons ---")
+    sof_gen, sof_skip = prewarm_sof()
+
+    print()
+    print("=" * 60)
+    print("Pre-warming complete!")
+    print(f"Generated: {cbse_gen + sof_gen} lessons")
+    print(f"Skipped (already cached): {cbse_skip + sof_skip}")
+    print()
+    print("All future Grade 9 lesson requests will be served from cache.")
+    print("=" * 60)

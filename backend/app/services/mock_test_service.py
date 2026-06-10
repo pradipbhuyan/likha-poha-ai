@@ -9,6 +9,10 @@ from app.services.sof_catalog_service import (
     get_sof_exam_paper_chapters,
     get_sof_support_chapters,
 )
+from app.services.question_bank_service import (
+    get_questions_from_bank,
+    add_questions_to_bank,
+)
 
 
 MOCK_TEST_SYSTEM = """
@@ -419,11 +423,26 @@ def generate_cbse_mock_test(
     board="CBSE",
 ):
     """
-    Generate a general school-board mock test for a selected chapter.
+    Generate a CBSE mock test.
 
-    Unlike SOF generation, this path does not require RAG content yet and uses
-    the requested board style instructions directly in the prompt.
+    Bank-first: checks the question_bank before calling the LLM. On bank hit
+    returns a random sample instantly with zero token cost. On bank miss the
+    LLM generates as normal and the result is added to the bank.
     """
+    # ------------------------------------------------------------------ bank
+    bank_questions = get_questions_from_bank(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        difficulty=difficulty,
+        num_questions=num_questions,
+        exam_type=exam_type,
+    )
+    if bank_questions:
+        return bank_questions
+    # --------------------------------------------------------------- end bank
+
     prompt = f"""
 Create a {board} {grade} mock test.
 
@@ -481,6 +500,19 @@ JSON schema:
 
     try:
         data = json.loads(raw)
-        return data.get("questions", [])
+        questions = data.get("questions", [])
     except Exception:
         return []
+
+    # Store new LLM questions in bank for future requests
+    add_questions_to_bank(
+        questions=questions,
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter or "",
+        difficulty=difficulty,
+        exam_type=exam_type,
+    )
+
+    return questions

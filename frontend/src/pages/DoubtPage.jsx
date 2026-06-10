@@ -5,7 +5,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
-import { answerDoubt, extractDoubtImage, getDoubtHistory } from "../api/doubt";
+import { answerDoubt, getDoubtHistory } from "../api/doubt";
 import StructuredVisualBlock from "../components/StructuredVisualBlock";
 import {
   getDefaultSelection,
@@ -62,9 +62,6 @@ function DoubtPage({ user }) {
   const [followUpAnswers, setFollowUpAnswers] = useState({});
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState("");
-  const [attachedImage, setAttachedImage] = useState(null);
-  const [extractedImageText, setExtractedImageText] = useState("");
-  const [extractingImage, setExtractingImage] = useState(false);
   const [actionMessage, setActionMessage] = useState("");
   const [feedback, setFeedback] = useState("");
   const [doubtHistory, setDoubtHistory] = useState([]);
@@ -171,12 +168,6 @@ function DoubtPage({ user }) {
       contextParts.push(`Preferred answer style: ${selectedStyle.instruction}`);
     }
 
-    if (extractedImageText.trim()) {
-      contextParts.push(
-        `Text extracted from attached image:\n${extractedImageText.trim()}`
-      );
-    }
-
     return contextParts.join("\n\n");
   }
 
@@ -268,34 +259,6 @@ function DoubtPage({ user }) {
     /** Change the chapter used for retrieval and clear stale answer state. */
     setChapter(value);
     clearAnswerState();
-  }
-
-  async function handleImageSelection(file) {
-    /** Extract readable text from an attached image and add it to the next doubt prompt. */
-    setAttachedImage(file || null);
-    setExtractedImageText("");
-    setActionMessage("");
-
-    if (!file) return;
-
-    setExtractingImage(true);
-    setError("");
-
-    try {
-      const result = await extractDoubtImage(file);
-
-      if (!result.success) {
-        setError(result.message || "Could not read text from image.");
-        return;
-      }
-
-      setExtractedImageText(result.text || "");
-      setActionMessage("Image text added to this doubt.");
-    } catch (err) {
-      setError(err.message || "Could not read text from image.");
-    } finally {
-      setExtractingImage(false);
-    }
   }
 
   async function handleCopyAnswer() {
@@ -391,8 +354,8 @@ function DoubtPage({ user }) {
       return;
     }
 
-    if (!question.trim() && !extractedImageText.trim()) {
-      setError("Please type your question or attach a readable image.");
+    if (!question.trim()) {
+      setError("Please type your question.");
       return;
     }
 
@@ -416,8 +379,8 @@ function DoubtPage({ user }) {
 
     try {
       const result = await answerDoubt(
-        buildDoubtPayload(question || extractedImageText, {
-          displayQuestion: question.trim() || extractedImageText.trim(),
+        buildDoubtPayload(question, {
+          displayQuestion: question.trim(),
           saveToHistory: true,
         })
       );
@@ -715,7 +678,7 @@ Important:
               rows="6"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Example: Explain Newton's laws of force with real-life examples. You can also attach a textbook or handwritten question photo."
+              placeholder="Example: Explain Newton's laws of force with real-life examples."
               disabled={!mode}
             />
 
@@ -737,65 +700,10 @@ Important:
               ))}
             </div>
 
-            <div className="doubt-attachment-panel">
-              <div>
-                <strong>Photo doubt</strong>
-                <p>
-                  Upload or scan a textbook page, diagram, or handwritten
-                  question. The readable text will be included with your doubt.
-                </p>
-              </div>
-
-              <div className="doubt-attachment-actions">
-                <label className="doubt-file-button">
-                  Upload Image
-                  <input
-                    type="file"
-                    accept="image/*"
-                    disabled={!mode || extractingImage}
-                    onChange={(e) =>
-                      handleImageSelection(e.target.files?.[0] || null)
-                    }
-                  />
-                </label>
-
-                <label className="doubt-file-button">
-                  Open Camera
-                  <input
-                    type="file"
-                    accept="image/*"
-                    capture="environment"
-                    disabled={!mode || extractingImage}
-                    onChange={(e) =>
-                      handleImageSelection(e.target.files?.[0] || null)
-                    }
-                  />
-                </label>
-              </div>
-            </div>
-
-            {(attachedImage || extractingImage || extractedImageText) && (
-              <div className="doubt-image-preview">
-                <strong>
-                  {extractingImage
-                    ? "Reading image..."
-                    : attachedImage?.name || "Attached image"}
-                </strong>
-                {extractedImageText && (
-                  <textarea
-                    rows="4"
-                    value={extractedImageText}
-                    onChange={(e) => setExtractedImageText(e.target.value)}
-                    aria-label="Extracted image text"
-                  />
-                )}
-              </div>
-            )}
-
             <button
               className="primary-btn doubt-submit-btn"
               onClick={handleAskDoubt}
-              disabled={asking || extractingImage || !mode}
+              disabled={asking || !mode}
             >
               {asking ? "Thinking..." : "✨ Ask AI Tutor"}
             </button>

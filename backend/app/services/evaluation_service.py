@@ -166,6 +166,63 @@ def _fallback_practice_questions(subject: str) -> list[dict]:
     ]
 
 
+def _keyword_based_evaluation(
+    student_answer: str,
+    expected_keywords: list[str],
+) -> dict:
+    """
+    Score a descriptive answer by keyword coverage — zero LLM cost.
+
+    Checks how many expected_keywords appear in the student's answer and
+    returns a score, coverage feedback, and a template improvement tip.
+    Used when expected_keywords are known (from question bank or cached questions).
+    """
+    answer_lower = student_answer.lower()
+    found = [kw for kw in expected_keywords if kw.lower() in answer_lower]
+    missing = [kw for kw in expected_keywords if kw.lower() not in answer_lower]
+    total = len(expected_keywords)
+
+    if total == 0:
+        score = 5
+    else:
+        score = round((len(found) / total) * 10)
+
+    score = max(1, min(10, score))
+
+    lines = [f"## Score\n{score}/10\n"]
+
+    if found:
+        lines.append("## What was correct")
+        for kw in found:
+            lines.append(f"- ✅ You included **{kw}**")
+        lines.append("")
+
+    if missing:
+        lines.append("## What can be better")
+        for kw in missing:
+            lines.append(f"- 📝 Try to also include: **{kw}**")
+        lines.append("")
+    else:
+        lines.append("## What can be better\n- Great coverage! Your answer includes all key concepts.\n")
+
+    lines.append("## Key words to include")
+    for kw in expected_keywords:
+        lines.append(f"- **{kw}**")
+    lines.append("")
+
+    lines.append("## One improvement tip")
+    if missing:
+        lines.append(f"Write one sentence that explains **{missing[0]}** clearly in your own words.")
+    else:
+        lines.append("Excellent! Try explaining each keyword in a complete sentence for full marks.")
+
+    return {
+        "evaluation": "\n".join(lines),
+        "score": score,
+        "passed": score >= 6,
+    }
+
+
 def evaluate_student_answer(
     grade: str,
     question: str,
@@ -182,11 +239,33 @@ def evaluate_student_answer(
     """
     Evaluate a student answer as coaching feedback, not as a progression gate.
 
-    The model returns teacher feedback; the service extracts an X/10 score so
-    the lesson page can show a useful practice signal and mentor memory can
-    guide future revision.
+    Keyword-first: when expected_keywords are provided, evaluation is instant
+    with zero LLM cost using keyword coverage scoring. Only falls back to LLM
+    when no keywords are available (e.g. inline lesson questions).
     """
     expected_keywords = expected_keywords or []
+
+    # ------------------------------------------------- keyword-based (no LLM)
+    if question_type == "descriptive" and expected_keywords:
+        result = _keyword_based_evaluation(student_answer, expected_keywords)
+
+        try:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter or step_title,
+                question=f"Practice: {question}",
+                answer=f"Practice score: {result['score']}/10. Keyword feedback.",
+            )
+        except Exception:
+            pass
+
+        return result
+    # -------------------------------------------- end keyword-based
+
+    # Fallback: LLM evaluation (inline lesson questions without keywords)
     prompt = f"""
 Question:
 {question}
@@ -248,7 +327,6 @@ Important:
             answer=memory_answer,
         )
     except Exception:
-        # Practice memory should never block answer evaluation.
         pass
 
     return {
