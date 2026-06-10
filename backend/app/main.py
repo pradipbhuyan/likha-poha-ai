@@ -28,6 +28,7 @@ from app.routes.payments import router as payments_router
 from app.routes.sales import router as sales_router
 from app.routes.performance_tests import router as performance_tests_router
 from app.routes.onboarding_guide import router as onboarding_guide_router
+from app.routes.cache_management import router as cache_management_router
 
 
 frontend_url = os.getenv(
@@ -200,6 +201,12 @@ app.include_router(
     onboarding_guide_router,
     prefix="/api/onboarding-guide",
     tags=["Onboarding Guide"],
+)
+
+app.include_router(
+    cache_management_router,
+    prefix="/api/cache-management",
+    tags=["Cache Management"],
 )
 
 @app.get("/api/health")

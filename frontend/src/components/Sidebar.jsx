@@ -22,6 +22,7 @@ import {
   Megaphone,
   Activity,
   Sparkles,
+  Database,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -93,6 +94,12 @@ function Sidebar({
       key: "guideThemes",
       label: "LikhaPoha AI Guide",
       icon: Sparkles,
+      roles: ["admin"],
+    },
+    {
+      key: "cacheManagement",
+      label: "Cache & Question Bank",
+      icon: Database,
       roles: ["admin"],
     },
     {

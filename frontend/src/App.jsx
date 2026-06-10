@@ -27,6 +27,7 @@ import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
+import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 
 
@@ -109,6 +110,12 @@ const PAGE_META = {
     subtitle:
       "Configure first-time walkthroughs, role themes, and periodic visual rotation.",
     icon: "✨",
+  },
+  cacheManagement: {
+    title: "Cache & Question Bank",
+    subtitle:
+      "Pre-generate lessons and question banks grade by grade. Track progress and clear cache when needed.",
+    icon: "🗄️",
   },
   salesIncentives: {
     title: "Sales Incentives",
@@ -294,6 +301,8 @@ function App() {
         return <AdminPerformanceTestsPage user={user} />;
       case "guideThemes":
         return <AdminGuideSettingsPage user={user} />;
+      case "cacheManagement":
+        return <AdminCacheManagementPage user={user} />;
       case "salesIncentives":
         return <SalesIncentivePage user={user} />;
       case "salesDemo":
