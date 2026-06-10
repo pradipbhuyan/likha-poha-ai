@@ -357,18 +357,6 @@ body {
   width: 14px;
 }
 
-.price {
-  font-size: 44px;
-  font-weight: 950;
-  letter-spacing: -0.06em;
-}
-
-.price small {
-  color: var(--muted);
-  font-size: 17px;
-  letter-spacing: 0;
-}
-
 .cta-button {
   background: linear-gradient(135deg, var(--blue), #3b82f6);
   border-radius: 18px;

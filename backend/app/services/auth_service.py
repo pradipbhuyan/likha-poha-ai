@@ -263,6 +263,18 @@ def invite_parent_by_email(email: str, username: str) -> object:
         return response.user
 
     except Exception as e:
+        err_msg = str(e).lower()
+
+        if "rate limit" in err_msg or "email_rate_limit" in err_msg or "over_email" in err_msg:
+            raise HTTPException(
+                status_code=429,
+                detail=(
+                    "Too many invitation emails have been sent recently. "
+                    "Please wait a few minutes before creating another parent account, "
+                    "or use the in-person onboarding option to set a password directly."
+                ),
+            )
+
         raise HTTPException(
             status_code=400,
             detail=f"Unable to send parent invitation: {str(e)}",

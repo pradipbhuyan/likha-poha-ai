@@ -97,6 +97,7 @@ function AdminControlPage({ user }) {
     email: "",
     password: "",
     username: "",
+    skip_email_confirmation: false,
   });
 
   const [teacherForm, setTeacherForm] = useState({
@@ -139,12 +140,24 @@ function AdminControlPage({ user }) {
     setError("");
 
     try {
-      await createAdminParent(parentForm, user.accessToken);
+      const payload = {
+        email: parentForm.email,
+        username: parentForm.username,
+        skip_email_confirmation: parentForm.skip_email_confirmation,
+      };
+
+      // Only send password when admin explicitly bypasses email confirmation
+      if (parentForm.skip_email_confirmation && parentForm.password) {
+        payload.password = parentForm.password;
+      }
+
+      await createAdminParent(payload, user.accessToken);
 
       setParentForm({
         email: "",
         password: "",
         username: "",
+        skip_email_confirmation: false,
       });
 
       await loadFamilies();
@@ -659,23 +672,47 @@ function AdminControlPage({ user }) {
                 />
               </label>
 
-              <label>
-                Temporary Password
+              {!parentForm.skip_email_confirmation && (
+                <div className="info-box" style={{ gridColumn: "1 / -1", fontSize: "0.85rem" }}>
+                  📧 An invitation email will be sent to the parent. They must click the link to verify their email and set their own password before they can log in.
+                </div>
+              )}
+
+              <label style={{ gridColumn: "1 / -1" }}>
                 <input
-                  type="password"
-                  value={parentForm.password}
+                  type="checkbox"
+                  checked={parentForm.skip_email_confirmation}
                   onChange={(e) =>
                     setParentForm((prev) => ({
                       ...prev,
-                      password: e.target.value,
+                      skip_email_confirmation: e.target.checked,
+                      password: "",
                     }))
                   }
-                  required
-                />
+                />{" "}
+                In-person onboarding — skip email confirmation and set password directly
               </label>
 
+              {parentForm.skip_email_confirmation && (
+                <label>
+                  Temporary Password
+                  <input
+                    type="password"
+                    value={parentForm.password}
+                    onChange={(e) =>
+                      setParentForm((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }))
+                    }
+                    required={parentForm.skip_email_confirmation}
+                    placeholder="Required for in-person onboarding"
+                  />
+                </label>
+              )}
+
               <button className="primary-btn" type="submit">
-                Create Parent
+                {parentForm.skip_email_confirmation ? "Create Parent (Immediate Access)" : "Send Invite Email"}
               </button>
             </form>
           </div>

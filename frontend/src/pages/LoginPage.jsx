@@ -90,9 +90,21 @@ function LoginPage({ onLogin }) {
       });
 
       if (error) {
-        setError(
-          `Supabase login failed for ${loginEmail}: ${error.message}`
-        );
+        const msg = error.message || "";
+
+        if (
+          msg.toLowerCase().includes("email not confirmed") ||
+          msg.toLowerCase().includes("email_not_confirmed")
+        ) {
+          setError(
+            "📧 Your email address has not been verified yet. Please check your inbox for a confirmation email and click the link to activate your account. Check your spam folder if you don't see it."
+          );
+        } else if (msg.toLowerCase().includes("invalid login credentials")) {
+          setError("Incorrect username or password. Please try again.");
+        } else {
+          setError(msg || "Login failed. Please try again.");
+        }
+
         return;
       }
 
@@ -188,7 +200,16 @@ function LoginPage({ onLogin }) {
       });
 
       if (error) {
-        setError(error.message);
+        const msg = error.message || "";
+
+        if (msg.toLowerCase().includes("rate limit") || msg.toLowerCase().includes("over_email")) {
+          setError(
+            "⏳ Too many signup attempts. Supabase has temporarily limited email sending. Please wait a few minutes and try again."
+          );
+        } else {
+          setError(msg || "Unable to create account.");
+        }
+
         return;
       }
 
@@ -197,46 +218,79 @@ function LoginPage({ onLogin }) {
         return;
       }
 
-      const familyId = crypto.randomUUID();
+      // Check if a profile already exists for this user (re-submission after
+      // a previous signup attempt with the same email).
+      const { data: existingProfile } = await supabase
+        .from("profiles")
+        .select("id, family_id")
+        .eq("id", data.user.id)
+        .maybeSingle();
 
-      const { error: familyError } = await supabase
-        .from("families")
-        .insert({
-          id: familyId,
-          family_name: `${fullName}'s Family`,
-        });
+      let familyId = existingProfile?.family_id;
 
-      if (familyError) {
-        setError(familyError.message);
+      if (!existingProfile) {
+        // First signup attempt — create a new family and profile.
+        familyId = crypto.randomUUID();
+
+        const { error: familyError } = await supabase
+          .from("families")
+          .insert({
+            id: familyId,
+            family_name: `${fullName}'s Family`,
+          });
+
+        if (familyError) {
+          setError(familyError.message);
+          return;
+        }
+
+        const profilePayload = {
+          id: data.user.id,
+          email: username,
+          username: fullName,
+          role: "parent",
+          parent_id: null,
+          family_id: familyId,
+          access_cbse: true,
+          access_sof_science: false,
+          access_sof_maths: false,
+          access_sof_english: false,
+          cbse_subjects: [],
+          daily_token_limit: 50000,
+          monthly_token_limit: 1000000,
+          subscription_plan: "free",
+          account_status: "active",
+        };
+
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert(profilePayload);
+
+        if (profileError) {
+          setError(profileError.message);
+          return;
+        }
+      }
+
+      // When email confirmation is enabled in Supabase, signUp does not
+      // return a session. Show a friendly message and stop here — the parent
+      // must click the confirmation link before they can log in.
+      if (!data.session) {
+        setError("");
+        setInfoMessage(
+          "📧 Account created! A confirmation email has been sent to your inbox. Please click the link in that email to activate your account before signing in. Check your spam folder if you don't see it within a few minutes."
+        );
+        setIsSignupMode(false);
         return;
       }
 
-      const profilePayload = {
+      const profilePayload = existingProfile || {
         id: data.user.id,
         email: username,
         username: fullName,
         role: "parent",
-        parent_id: null,
         family_id: familyId,
-        access_cbse: true,
-        access_sof_science: false,
-        access_sof_maths: false,
-        access_sof_english: false,
-        cbse_subjects: [],
-        daily_token_limit: 50000,
-        monthly_token_limit: 1000000,
-        subscription_plan: "free",
-        account_status: "active",
       };
-
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .insert(profilePayload);
-
-      if (profileError) {
-        setError(profileError.message);
-        return;
-      }
 
       const { data: loginData, error: loginError } =
         await supabase.auth.signInWithPassword({
@@ -245,14 +299,33 @@ function LoginPage({ onLogin }) {
         });
 
       if (loginError) {
-        setError(loginError.message);
+        const msg = loginError.message || "";
+
+        if (
+          msg.toLowerCase().includes("email not confirmed") ||
+          msg.toLowerCase().includes("email_not_confirmed")
+        ) {
+          setError("");
+          setInfoMessage(
+            "📧 Please confirm your email address first. Check your inbox for a confirmation link from LikhaPoha AI. Check your spam folder if you don't see it."
+          );
+        } else {
+          setError(msg || "Unable to sign in after account creation.");
+        }
+
         return;
       }
+
+      const { data: freshProfile } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", loginData.user.id)
+        .single();
 
       onLogin(
         buildLoginUser({
           authUser: loginData.user,
-          profile: profilePayload,
+          profile: freshProfile || profilePayload,
           accessToken: loginData.session.access_token,
         })
       );
