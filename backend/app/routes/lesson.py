@@ -286,7 +286,7 @@ def generate_lesson(
             mode=data.mode,
             step_title=data.step_title,
             teacher_persona=data.teacher_persona,
-            username=data.username,
+            username=profile.get("username") or data.username,
         )
 
         if isinstance(result, dict):
