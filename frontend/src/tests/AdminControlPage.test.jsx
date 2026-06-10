@@ -67,7 +67,7 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(screen.getByLabelText(/teacher email/i), {
       target: { value: "teacher@example.com" },
     });
-    fireEvent.change(screen.getAllByLabelText(/temporary password/i)[1], {
+    fireEvent.change(screen.getAllByLabelText(/temporary password/i)[0], {
       target: { value: "password123" },
     });
     fireEvent.change(screen.getByLabelText(/school \/ organization/i), {
@@ -238,17 +238,15 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(screen.getByLabelText(/parent email/i), {
       target: { value: "new-parent@example.com" },
     });
-    fireEvent.change(screen.getAllByLabelText(/temporary password/i)[0], {
-      target: { value: "password123" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: /create parent/i }));
+    // Default flow: invite email (no password field shown until in-person checkbox checked)
+    fireEvent.click(screen.getByRole("button", { name: /send invite email/i }));
 
     await waitFor(() => {
       expect(createAdminParent).toHaveBeenCalledWith(
         {
           username: "New Parent",
           email: "new-parent@example.com",
-          password: "password123",
+          skip_email_confirmation: false,
         },
         "admin-token"
       );
