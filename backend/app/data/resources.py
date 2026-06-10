@@ -91,6 +91,42 @@ LEARNING_RESOURCES = {
         "Chapter 6: How Forces Affect Motion": [
             {"title": "LikhaPoha AI - How Forces Affect Motion | Class 9 Science Chapter 6", "type": "youtube", "url": "https://youtu.be/7Zd3nj4wZAE"},
         ],
+        "Work, Energy, and Simple Machines": [
+            {"title": "LikhaPoha AI - Work, Energy, and Simple Machines | Class 9 Science Chapter 7", "type": "youtube", "url": "https://youtu.be/LxluQchwS54"},
+        ],
+        "Chapter 7: Work, Energy, and Simple Machines": [
+            {"title": "LikhaPoha AI - Work, Energy, and Simple Machines | Class 9 Science Chapter 7", "type": "youtube", "url": "https://youtu.be/LxluQchwS54"},
+        ],
+        "Journey Inside the Atom": [
+            {"title": "LikhaPoha AI - Journey Inside the Atom | Class 9 Science Chapter 8", "type": "youtube", "url": "https://youtu.be/9b-4THbqIT0"},
+        ],
+        "Chapter 8: Journey Inside the Atom": [
+            {"title": "LikhaPoha AI - Journey Inside the Atom | Class 9 Science Chapter 8", "type": "youtube", "url": "https://youtu.be/9b-4THbqIT0"},
+        ],
+        "Atomic Foundations of Matter": [
+            {"title": "LikhaPoha AI - Atomic Foundations of Matter | Class 9 Science Chapter 9", "type": "youtube", "url": "https://youtu.be/AaEejyJllkk"},
+        ],
+        "Chapter 9: Atomic Foundations of Matter": [
+            {"title": "LikhaPoha AI - Atomic Foundations of Matter | Class 9 Science Chapter 9", "type": "youtube", "url": "https://youtu.be/AaEejyJllkk"},
+        ],
+        "Sound Waves: Characteristics and Applications": [
+            {"title": "LikhaPoha AI - Sound Waves: Characteristics and Applications | Class 9 Science Chapter 10", "type": "youtube", "url": "https://youtu.be/JgfIbwip9UI"},
+        ],
+        "Chapter 10: Sound Waves: Characteristics and Applications": [
+            {"title": "LikhaPoha AI - Sound Waves: Characteristics and Applications | Class 9 Science Chapter 10", "type": "youtube", "url": "https://youtu.be/JgfIbwip9UI"},
+        ],
+        "Reproduction: How Life Continues": [
+            {"title": "LikhaPoha AI - Reproduction: How Life Continues | Class 9 Science Chapter 11", "type": "youtube", "url": "https://youtu.be/pTJ634ebToQ"},
+        ],
+        "Chapter 11: Reproduction: How Life Continues": [
+            {"title": "LikhaPoha AI - Reproduction: How Life Continues | Class 9 Science Chapter 11", "type": "youtube", "url": "https://youtu.be/pTJ634ebToQ"},
+        ],
+        "Patterns in Life: Diversity and Classification": [
+            {"title": "LikhaPoha AI - Patterns in Life: Diversity and Classification | Class 9 Science Chapter 12", "type": "youtube", "url": "https://youtu.be/VHg5evqi4yU"},
+        ],
+        "Chapter 12: Patterns in Life: Diversity and Classification": [
+            {"title": "LikhaPoha AI - Patterns in Life: Diversity and Classification | Class 9 Science Chapter 12", "type": "youtube", "url": "https://youtu.be/VHg5evqi4yU"},
+        ],
         "Structure of the Atom": [
             {"title": "PhET - Build an Atom Simulation", "type": "website", "url": "https://phet.colorado.edu/en/simulation/build-an-atom"},
             {"title": "YouTube Search - Structure of the Atom", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+structure+of+the+atom+full+chapter"},
