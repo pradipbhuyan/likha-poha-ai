@@ -127,6 +127,12 @@ LEARNING_RESOURCES = {
         "Chapter 12: Patterns in Life: Diversity and Classification": [
             {"title": "LikhaPoha AI - Patterns in Life: Diversity and Classification | Class 9 Science Chapter 12", "type": "youtube", "url": "https://youtu.be/VHg5evqi4yU"},
         ],
+        "Earth as a System: Energy, Matter, and Life": [
+            {"title": "LikhaPoha AI - Earth as a System | Class 9 Science Chapter 13", "type": "youtube", "url": "https://youtu.be/RRbu9RttTiY"},
+        ],
+        "Chapter 13: Earth as a System: Energy, Matter, and Life": [
+            {"title": "LikhaPoha AI - Earth as a System | Class 9 Science Chapter 13", "type": "youtube", "url": "https://youtu.be/RRbu9RttTiY"},
+        ],
         "Structure of the Atom": [
             {"title": "PhET - Build an Atom Simulation", "type": "website", "url": "https://phet.colorado.edu/en/simulation/build-an-atom"},
             {"title": "YouTube Search - Structure of the Atom", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+structure+of+the+atom+full+chapter"},
@@ -162,6 +168,63 @@ LEARNING_RESOURCES = {
         ],
     },
     "Maths": {
+        # RAG-uploaded chapter labels (Chapter N: Title format from Supabase)
+        "Orienting Yourself: The Use of Coordinates": [
+            {"title": "LikhaPoha AI - Orienting Yourself: The Use of Coordinates | Class 9 Maths Chapter 1", "type": "youtube", "url": "https://youtu.be/n8qXaymOsAs"},
+        ],
+        "Chapter 1: Orienting Yourself: The Use of Coordinates": [
+            {"title": "LikhaPoha AI - Orienting Yourself: The Use of Coordinates | Class 9 Maths Chapter 1", "type": "youtube", "url": "https://youtu.be/n8qXaymOsAs"},
+        ],
+        "Introduction to Linear Polynomials": [
+            {"title": "LikhaPoha AI - Introduction to Linear Polynomials | Class 9 Maths Chapter 2", "type": "youtube", "url": "https://youtu.be/l3_lnTLvNQI"},
+        ],
+        "Chapter 2: Introduction to Linear Polynomials": [
+            {"title": "LikhaPoha AI - Introduction to Linear Polynomials | Class 9 Maths Chapter 2", "type": "youtube", "url": "https://youtu.be/l3_lnTLvNQI"},
+        ],
+        "The World of Numbers": [
+            {"title": "LikhaPoha AI - The World of Numbers | Class 9 Maths Chapter 3", "type": "youtube", "url": "https://youtu.be/_XLwB8P9m_4"},
+        ],
+        "Chapter 3: The World of Numbers": [
+            {"title": "LikhaPoha AI - The World of Numbers | Class 9 Maths Chapter 3", "type": "youtube", "url": "https://youtu.be/_XLwB8P9m_4"},
+        ],
+        "Exploring Algebraic Identities": [
+            {"title": "LikhaPoha AI - Exploring Algebraic Identities | Class 9 Maths Chapter 4", "type": "youtube", "url": "https://youtu.be/H0eyj1U1DCg"},
+        ],
+        "Chapter 4: Exploring Algebraic Identities": [
+            {"title": "LikhaPoha AI - Exploring Algebraic Identities | Class 9 Maths Chapter 4", "type": "youtube", "url": "https://youtu.be/H0eyj1U1DCg"},
+        ],
+        "I'm Up and Down, and Round and Round": [
+            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
+        ],
+        "Chapter 5: I'm Up and Down, and Round and Round": [
+            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
+        ],
+        # Curly apostrophe variant (U+2019) — as stored in Supabase rag_documents
+        "I\u2019m Up and Down, and Round and Round": [
+            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
+        ],
+        "Chapter 5: I\u2019m Up and Down, and Round and Round": [
+            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
+        ],
+        "Measuring Space: Perimeter and Area": [
+            {"title": "LikhaPoha AI - Measuring Space: Perimeter and Area | Class 9 Maths Chapter 6", "type": "youtube", "url": "https://youtu.be/yQk7eNc1pbs"},
+        ],
+        "Chapter 6: Measuring Space: Perimeter and Area": [
+            {"title": "LikhaPoha AI - Measuring Space: Perimeter and Area | Class 9 Maths Chapter 6", "type": "youtube", "url": "https://youtu.be/yQk7eNc1pbs"},
+        ],
+        "The Mathematics of Maybe: Introduction to Probability": [
+            {"title": "LikhaPoha AI - The Mathematics of Maybe: Introduction to Probability | Class 9 Maths Chapter 7", "type": "youtube", "url": "https://youtu.be/N8q2adCIBRU"},
+        ],
+        "Chapter 7: The Mathematics of Maybe: Introduction to Probability": [
+            {"title": "LikhaPoha AI - The Mathematics of Maybe: Introduction to Probability | Class 9 Maths Chapter 7", "type": "youtube", "url": "https://youtu.be/N8q2adCIBRU"},
+        ],
+        "Predicting What Comes Next: Exploring Sequences and Progressions": [
+            {"title": "LikhaPoha AI - Predicting What Comes Next | Class 9 Maths Chapter 8", "type": "youtube", "url": "https://youtu.be/GKMvXRoJKOI"},
+        ],
+        "Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions": [
+            {"title": "LikhaPoha AI - Predicting What Comes Next | Class 9 Maths Chapter 8", "type": "youtube", "url": "https://youtu.be/GKMvXRoJKOI"},
+        ],
+        # Legacy generic Maths chapter keys (kept for backward compatibility)
         "Number Systems": [{"title": "YouTube Search - Number Systems Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+number+systems+full+chapter"}],
         "Polynomials": [{"title": "YouTube Search - Polynomials Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+polynomials+full+chapter"}],
         "Coordinate Geometry": [{"title": "YouTube Search - Coordinate Geometry Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+coordinate+geometry+full+chapter"}],
