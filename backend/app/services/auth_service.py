@@ -206,18 +206,29 @@ def require_admin_or_sales(user=Depends(get_current_user)):
         "profile": profile,
     }
     
-def create_auth_user(email: str, password: str):
+def create_auth_user(email: str, password: str, email_confirm: bool = True):
     """
-    Create a confirmed Supabase auth user from server-side admin credentials.
+    Create a Supabase auth user using the service-role admin API.
 
-    This is used by admin/parent onboarding flows that need an auth account and
-    a profile row to be created as one controlled operation.
+    email_confirm=True  (default) — account is immediately active, no email
+                                    sent. Use this for admin-created children,
+                                    teachers, and in-person parent onboarding.
+
+    email_confirm=False            — account is created but NOT confirmed; the
+                                    user cannot log in. Use this only when you
+                                    will immediately follow up with
+                                    invite_parent_by_email() to send the real
+                                    confirmation email via Supabase.
+
+    NOTE: Supabase admin create_user with email_confirm=False does NOT send
+    any email automatically. To send a real invite/confirmation email, use
+    invite_parent_by_email() instead.
     """
     try:
         response = admin_client.auth.admin.create_user({
             "email": email,
             "password": password,
-            "email_confirm": True,
+            "email_confirm": email_confirm,
         })
 
         return response.user
@@ -226,4 +237,33 @@ def create_auth_user(email: str, password: str):
         raise HTTPException(
             status_code=400,
             detail=f"Unable to create auth user: {str(e)}",
+        )
+
+
+def invite_parent_by_email(email: str, username: str) -> object:
+    """
+    Create a parent account and send a real invitation email via Supabase.
+
+    Supabase's invite_user_by_email:
+    - Creates the auth user in an unconfirmed state
+    - Sends an invitation email with a confirmation link
+    - The parent clicks the link to verify their email and set their password
+    - The account cannot be used until the parent confirms
+
+    This is the correct way to enforce email confirmation for parent signups.
+    Use this for all parent-initiated invites and for admin-created parent
+    accounts that should require email verification.
+    """
+    try:
+        response = admin_client.auth.admin.invite_user_by_email(
+            email,
+            options={"data": {"username": username, "role": "parent"}},
+        )
+
+        return response.user
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unable to send parent invitation: {str(e)}",
         )

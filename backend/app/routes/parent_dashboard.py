@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import require_parent, create_auth_user, admin_client
+from app.services.auth_service import require_parent, create_auth_user, invite_parent_by_email, admin_client
 from app.services.parent_dashboard_service import (
     get_children,
     get_child_by_id,
@@ -25,8 +25,10 @@ class CreateStudentRequest(BaseModel):
 
 class InviteParentRequest(BaseModel):
     email: str
-    password: str
     username: str
+    # password is NOT accepted here — Supabase sends an invite email and the
+    # parent sets their own password when they click the confirmation link.
+    # This enforces real email ownership verification before first login.
 
 
 @router.get("/family")
@@ -173,7 +175,13 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
 
 @router.post("/invite-parent")
 def invite_parent(data: InviteParentRequest, parent=Depends(require_parent)):
-    """Invite/create another parent profile attached to the same family."""
+    """
+    Invite another parent to join the same family.
+
+    Email confirmation is always enforced for parent-initiated invites so the
+    invited parent must verify their email address before they can log in.
+    Only admin-created accounts bypass this check.
+    """
     parent_profile = parent["profile"]
 
     if not parent_profile.get("family_id"):
@@ -182,9 +190,13 @@ def invite_parent(data: InviteParentRequest, parent=Depends(require_parent)):
             detail="Parent does not belong to a family.",
         )
 
-    auth_user = create_auth_user(
+    # Use invite_user_by_email so Supabase sends a real invitation email.
+    # The invited parent must click the link to confirm their email and set
+    # their password before they can log in. This is the only Supabase admin
+    # API method that actually sends an email upon account creation.
+    auth_user = invite_parent_by_email(
         email=data.email,
-        password=data.password,
+        username=data.username,
     )
 
     invited_parent = {

@@ -8,7 +8,7 @@ from app.data.subscription_plans import (
     subscription_plan_order,
 )
 from app.services.model_routing_service import normalize_model_preference
-from app.services.auth_service import require_admin, create_auth_user, admin_client
+from app.services.auth_service import require_admin, create_auth_user, invite_parent_by_email, admin_client
 from app.services.board_service import normalize_board
 from app.services.subject_access_service import clean_subject_access_list
 from app.services.usage_service import normalize_token_limit
@@ -18,9 +18,19 @@ router = APIRouter()
 
 class CreateParentRequest(BaseModel):
     email: str
-    password: str
+    password: str | None = None
     username: str
     family_id: str | None = None
+    skip_email_confirmation: bool = False
+    """
+    By default all parent accounts require email confirmation before login.
+    Supabase sends a real invite email via invite_user_by_email.
+    The parent clicks the link to confirm and set their own password.
+
+    Set skip_email_confirmation=True for in-person onboarding where the admin
+    hands credentials directly to the parent. In this case a password is
+    required and the account is immediately active.
+    """
 
 
 class CreateChildRequest(BaseModel):
@@ -596,10 +606,27 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
 
         family_id = family_response.data[0]["id"]
 
-    auth_user = create_auth_user(
-        email=data.email,
-        password=data.password,
-    )
+    if data.skip_email_confirmation:
+        # In-person onboarding: admin hands credentials directly to the parent.
+        # A password is required; account is immediately active.
+        if not data.password:
+            raise HTTPException(
+                status_code=400,
+                detail="A password is required when skip_email_confirmation is True.",
+            )
+        auth_user = create_auth_user(
+            email=data.email,
+            password=data.password,
+            email_confirm=True,
+        )
+    else:
+        # Default: Supabase sends a real invite email.
+        # The parent must click the link to confirm their email and set their
+        # own password. No password should be submitted in this flow.
+        auth_user = invite_parent_by_email(
+            email=data.email,
+            username=data.username,
+        )
 
     parent_profile = {
         "id": auth_user.id,

@@ -234,7 +234,7 @@ def test_create_student_with_mocked_auth_and_admin_client(monkeypatch):
     def fake_get_children(parent_id):
         return []
 
-    def fake_create_auth_user(email, password):
+    def fake_create_auth_user(email, password, email_confirm=True):
         return FakeAuthUser("child_1")
 
     fake_admin_client = FakeAdminClient()
@@ -365,7 +365,7 @@ def test_invite_parent_with_mocked_auth_and_admin_client(monkeypatch):
     Test that a parent can invite another parent to the same family.
 
     This test mocks:
-    - create_auth_user so no real auth user is created
+    - invite_parent_by_email so no real Supabase invite is sent
     - admin_client so no real Supabase insert happens
 
     Expected result:
@@ -374,15 +374,15 @@ def test_invite_parent_with_mocked_auth_and_admin_client(monkeypatch):
     - invited parent should belong to the same family.
     """
 
-    def fake_create_auth_user(email, password):
+    def fake_invite_parent_by_email(email, username):
         return FakeAuthUser("parent_2")
 
     fake_admin_client = FakeAdminClient()
 
     monkeypatch.setattr(
         parent_dashboard_route,
-        "create_auth_user",
-        fake_create_auth_user,
+        "invite_parent_by_email",
+        fake_invite_parent_by_email,
     )
     monkeypatch.setattr(
         parent_dashboard_route,
@@ -390,9 +390,9 @@ def test_invite_parent_with_mocked_auth_and_admin_client(monkeypatch):
         fake_admin_client,
     )
 
+    # InviteParentRequest no longer accepts password — Supabase handles that
     request = parent_dashboard_route.InviteParentRequest(
         email="second-parent@example.com",
-        password="password123",
         username="second_parent",
     )
 
@@ -433,7 +433,6 @@ def test_invite_parent_rejects_parent_without_family():
 
     request = parent_dashboard_route.InviteParentRequest(
         email="second-parent@example.com",
-        password="password123",
         username="second_parent",
     )
 

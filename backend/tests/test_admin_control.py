@@ -387,7 +387,7 @@ def test_get_all_families_batches_student_activity_lookup(monkeypatch):
 def test_create_parent_creates_family_when_family_id_is_missing(monkeypatch):
     """
     If admin creates a parent without family_id, backend should create
-    a new family first.
+    a new family first. Default path sends invite email via invite_parent_by_email.
 
     Source under test:
         backend/app/routes/admin_control.py
@@ -398,14 +398,14 @@ def test_create_parent_creates_family_when_family_id_is_missing(monkeypatch):
     monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
     monkeypatch.setattr(
         admin_control_route,
-        "create_auth_user",
-        lambda email, password: make_fake_auth_user("parent-user-123"),
+        "invite_parent_by_email",
+        lambda email, username: make_fake_auth_user("parent-user-123"),
     )
 
     request = admin_control_route.CreateParentRequest(
         email="parent@example.com",
-        password="password123",
         username="Parent User",
+        # no password → uses invite flow by default
     )
 
     result = admin_control_route.create_parent(
@@ -430,6 +430,7 @@ def test_create_parent_creates_family_when_family_id_is_missing(monkeypatch):
 def test_create_parent_uses_existing_family_id(monkeypatch):
     """
     If admin provides family_id, backend should not create a new family.
+    Default path sends invite email via invite_parent_by_email.
 
     Source under test:
         backend/app/routes/admin_control.py
@@ -440,15 +441,15 @@ def test_create_parent_uses_existing_family_id(monkeypatch):
     monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
     monkeypatch.setattr(
         admin_control_route,
-        "create_auth_user",
-        lambda email, password: make_fake_auth_user("parent-user-456"),
+        "invite_parent_by_email",
+        lambda email, username: make_fake_auth_user("parent-user-456"),
     )
 
     request = admin_control_route.CreateParentRequest(
         email="parent2@example.com",
-        password="password123",
         username="Second Parent",
         family_id="existing-family-1",
+        # no password → uses invite flow by default
     )
 
     result = admin_control_route.create_parent(
@@ -482,7 +483,7 @@ def test_create_child_creates_student_profile(monkeypatch):
     monkeypatch.setattr(
         admin_control_route,
         "create_auth_user",
-        lambda email, password: make_fake_auth_user("child-user-123"),
+        lambda email, password, email_confirm=True: make_fake_auth_user("child-user-123"),
     )
 
     request = admin_control_route.CreateChildRequest(
@@ -522,7 +523,7 @@ def test_create_teacher_creates_profile_and_teacher_metadata(monkeypatch):
     monkeypatch.setattr(
         admin_control_route,
         "create_auth_user",
-        lambda email, password: make_fake_auth_user("teacher-user-123"),
+        lambda email, password, email_confirm=True: make_fake_auth_user("teacher-user-123"),
     )
 
     request = admin_control_route.CreateTeacherRequest(
