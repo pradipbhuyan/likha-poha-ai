@@ -1093,10 +1093,11 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
     if grade_heading_title:
         return grade_heading_title
 
-    for line in lines[:24]:
+    for line_index, line in enumerate(lines[:24]):
         words = line.split()
         lower_line = line.lower()
 
+        # ---- Chapter N: Title patterns ----
         title_before_chapter = re.match(
             r"^(.{4,90}?)\s+chapter\s+(\d{1,2})\b",
             line,
@@ -1117,9 +1118,60 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
             title = chapter_with_title.group(2).strip(" :-–—")
             return f"Chapter {chapter_number}: {title}"
 
-        if lower_line.startswith("chapter") and len(words) <= 14:
+        # ---- Unit N: Title patterns (textbooks that use Units instead of Chapters) ----
+        title_before_unit = re.match(
+            r"^(.{4,90}?)\s+unit\s+(\d{1,2})\b",
+            line,
+            flags=re.IGNORECASE,
+        )
+        if title_before_unit:
+            title = title_before_unit.group(1).strip(" :-–—")
+            unit_number = title_before_unit.group(2)
+            return f"Unit {unit_number}: {title}"
+
+        unit_with_title = re.match(
+            r"^unit\s+(\d{1,2})\s*[:.-]?\s+(.{4,90})",
+            line,
+            flags=re.IGNORECASE,
+        )
+        if unit_with_title:
+            unit_number = unit_with_title.group(1)
+            title = unit_with_title.group(2).strip(" :-–—")
+            return f"Unit {unit_number}: {title}"
+
+        # ---- Bare "Chapter N" or "Unit N" — peek at the next line for the title ----
+        if lower_line.startswith("chapter") and len(words) <= 4:
+            chapter_match = re.search(r"chapter\s+(\d{1,2})", line, flags=re.IGNORECASE)
+            if chapter_match:
+                next_lines = lines[line_index + 1 : line_index + 3]
+                for next_line in next_lines:
+                    next_clean = next_line.strip(" :-–—")
+                    if (
+                        2 <= len(next_clean.split()) <= 12
+                        and not re.search(
+                            r"^\d+$|let us|activities|listen|read|watch|look|do these",
+                            next_clean,
+                            flags=re.IGNORECASE,
+                        )
+                    ):
+                        return f"Chapter {chapter_match.group(1)}: {next_clean}"
             return line
-        if lower_line.startswith("unit") and len(words) <= 14:
+
+        if lower_line.startswith("unit") and len(words) <= 4:
+            unit_match = re.search(r"unit\s+(\d{1,2})", line, flags=re.IGNORECASE)
+            if unit_match:
+                next_lines = lines[line_index + 1 : line_index + 3]
+                for next_line in next_lines:
+                    next_clean = next_line.strip(" :-–—")
+                    if (
+                        2 <= len(next_clean.split()) <= 12
+                        and not re.search(
+                            r"^\d+$|let us|activities|listen|read|watch|look|do these",
+                            next_clean,
+                            flags=re.IGNORECASE,
+                        )
+                    ):
+                        return f"Unit {unit_match.group(1)}: {next_clean}"
             return line
 
     chapter_number = infer_chapter_number_from_filename(filename)
@@ -1138,7 +1190,9 @@ def is_weak_section_title(title: str, filename: str) -> bool:
     return (
         not normalized_title
         or normalized_title == "chapter"
+        or normalized_title == "unit"
         or bool(re.fullmatch(r"chapter\s+\d{1,2}", normalized_title))
+        or bool(re.fullmatch(r"unit\s+\d{1,2}", normalized_title))
         or normalized_title == filename_title
         or bool(re.fullmatch(r"[a-z]{2,}\d+", normalized_title))
     )
