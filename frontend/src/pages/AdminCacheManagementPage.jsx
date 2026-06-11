@@ -184,6 +184,11 @@ function AdminCacheManagementPage({ user }) {
         user.accessToken
       );
       setChapterMessage(result.message || "Chapter prewarm started.");
+      // Refresh the grade status cards when the chapter prewarm completes.
+      // 5 steps × ~12 s each ≈ 60 s total; poll at 20 s, 45 s, 75 s, 110 s.
+      [20000, 45000, 75000, 110000].forEach((delay) =>
+        setTimeout(loadStatus, delay)
+      );
     } catch (err) {
       setChapterError(err.message || "Failed to start chapter prewarm.");
     } finally {
@@ -392,22 +397,23 @@ function AdminCacheManagementPage({ user }) {
                 ))}
               </select>
             </label>
-
-            <label style={{ gridColumn: "1 / -1" }}>
-              Chapter
-              <select
-                value={selectedChapter}
-                onChange={(e) => setSelectedChapter(e.target.value)}
-                disabled={chapterListLoading || !selectedSubject}
-              >
-                {chapterList
-                  .filter((c) => c.subject === selectedSubject)
-                  .map((c) => (
-                    <option key={c.chapter} value={c.chapter}>{c.chapter}</option>
-                  ))}
-              </select>
-            </label>
           </div>
+
+          <label style={{ display: "block", marginTop: 12 }}>
+            Chapter
+            <select
+              value={selectedChapter}
+              onChange={(e) => setSelectedChapter(e.target.value)}
+              disabled={chapterListLoading || !selectedSubject}
+              style={{ width: "100%", marginTop: 4 }}
+            >
+              {chapterList
+                .filter((c) => c.subject === selectedSubject)
+                .map((c) => (
+                  <option key={c.chapter} value={c.chapter}>{c.chapter}</option>
+                ))}
+            </select>
+          </label>
 
           {chapterListLoading && <p style={{ fontSize: "0.85rem", color: "#888" }}>Loading chapters…</p>}
 

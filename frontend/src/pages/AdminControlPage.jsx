@@ -730,7 +730,7 @@ function AdminControlPage({ user }) {
 
           <button
             className="primary-btn"
-            onClick={saveAiSettings}
+            onClick={() => saveAiSettings()}
             disabled={aiSettingsSaving}
           >
             {aiSettingsSaving ? "Saving…" : "💾 Save AI Settings"}
