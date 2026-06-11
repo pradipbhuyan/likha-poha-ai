@@ -13482,3 +13482,101 @@ body.dark-mode .admin-guide-toggle-grid label {
     max-width: none;
   }
 }
+
+/* ============================================================
+   GLOBAL BUTTON FEEDBACK — press animation + loading spinner
+   ============================================================ */
+
+.primary-btn:not(:disabled):active,
+.secondary-btn:not(:disabled):active,
+.danger-btn:not(:disabled):active {
+  transform: scale(0.96);
+  opacity: 0.88;
+  transition: transform 0.07s ease, opacity 0.07s ease;
+}
+
+/* Spinner class — add .btn-loading to any button to show an inline spinner */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin 0.55s linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   GLOBAL TOAST NOTIFICATIONS — fixed bottom-right overlay
+   ============================================================ */
+
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  background: #1e293b;
+  color: #f1f5f9;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  cursor: pointer;
+  pointer-events: all;
+  animation: toast-slide-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  max-width: 400px;
+  word-break: break-word;
+}
+
+.toast-success { border-left: 4px solid #22c55e; }
+.toast-error   { border-left: 4px solid #ef4444; }
+.toast-info    { border-left: 4px solid #3b82f6; }
+
+.toast-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.toast-message {
+  flex: 1;
+}
+
+@keyframes toast-slide-in {
+  from { opacity: 0; transform: translateX(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0)    scale(1); }
+}
+
+/* Dark mode toast */
+body.dark-mode .toast {
+  background: #0f172a;
+  color: #e2e8f0;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+

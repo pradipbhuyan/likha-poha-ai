@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
+import { ToastProvider } from "./context/ToastContext";
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
@@ -330,6 +331,7 @@ function App() {
   }
 
   return (
+    <ToastProvider>
     <div className="app-shell premium-app-shell">
       <Sidebar
         activePage={activePage}
@@ -405,6 +407,7 @@ function App() {
 
       <FirstTimeGuide user={user} activePage={activePage} />
     </div>
+    </ToastProvider>
   );
 }
 
