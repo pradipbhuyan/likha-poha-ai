@@ -47,13 +47,14 @@ def _load_db_settings() -> dict | None:
     """
     Load the ai_settings row from the admin_settings Supabase table.
 
-    Uses a lazy import so this module can be imported before the Supabase
-    client is ready (e.g. during unit tests or CLI scripts).
+    Uses admin_client (service_role key) because the admin_settings table
+    has RLS enabled — the publishable anon key cannot read it.
+    Lazy import avoids circular imports at module level.
     """
     try:
-        from app.services.supabase_client import supabase  # noqa: PLC0415
+        from app.services.auth_service import admin_client  # noqa: PLC0415
         response = (
-            supabase
+            admin_client
             .table("admin_settings")
             .select("value")
             .eq("key", "ai_settings")

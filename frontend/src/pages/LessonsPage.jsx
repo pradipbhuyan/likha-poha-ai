@@ -42,16 +42,9 @@ const TEACHER_PERSONAS = {
     "Explain concepts using stories, analogies, and real-life examples.",
 };
 
-const VOICE_OPTIONS = {
-  "English India Female (Neerja)": "en-IN-NeerjaNeural",
-  "English India Male (Prabhat)": "en-IN-PrabhatNeural",
-  "Hindi Female (Swara)": "hi-IN-SwaraNeural",
-  "Hindi Male (Madhur)": "hi-IN-MadhurNeural",
-  "US Female (Aria)": "en-US-AriaNeural",
-  "US Male (Guy)": "en-US-GuyNeural",
-  "UK Female (Sonia)": "en-GB-SoniaNeural",
-  "UK Male (Ryan)": "en-GB-RyanNeural",
-};
+// Default voice and speed — not exposed in UI, used for narration.
+const DEFAULT_VOICE = "en-IN-NeerjaNeural";
+const DEFAULT_SPEECH_RATE = "+0%";
 
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
 
@@ -237,7 +230,9 @@ function LessonsPage({ user }) {
 
   const stepTitle = lessonSteps[currentStepIndex];
 
-  const [teacherPersona, setTeacherPersona] = useState("Friendly Teacher");
+  // Teacher persona, voice, and speed are fixed defaults — not user-selectable.
+  // Using "" persona ensures pre-warmed cached lessons are served instantly.
+  const teacherPersona = "";
 
   const [lesson, setLesson] = useState("");
   const [stepLessons, setStepLessons] = useState({});
@@ -249,8 +244,6 @@ function LessonsPage({ user }) {
   const [lessonDoubtHistory, setLessonDoubtHistory] = useState([]);
   const [followUpLoading, setFollowUpLoading] = useState(false);
 
-  const [voiceName, setVoiceName] = useState("English India Female (Neerja)");
-  const [speechRate, setSpeechRate] = useState("+0%");
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
 
@@ -873,7 +866,7 @@ function LessonsPage({ user }) {
   }
 
   async function handleReadAloud() {
-    /** Convert the current lesson into speech using the selected voice and rate. */
+    /** Convert the current lesson into speech using the default voice and rate. */
     if (!lesson) return;
 
     setTtsLoading(true);
@@ -882,8 +875,8 @@ function LessonsPage({ user }) {
     try {
       const url = await generateSpeech({
         text: lesson,
-        voice: VOICE_OPTIONS[voiceName],
-        rate: speechRate,
+        voice: DEFAULT_VOICE,
+        rate: DEFAULT_SPEECH_RATE,
       });
 
       setAudioUrl(url);
@@ -1260,47 +1253,6 @@ function LessonsPage({ user }) {
                 </select>
               </label>
 
-              <label>
-                Teacher Persona
-                <select
-                  value={teacherPersona}
-                  onChange={(e) => setTeacherPersona(e.target.value)}
-                >
-                  {Object.keys(TEACHER_PERSONAS).map((p) => (
-                    <option key={p} value={p}>
-                      {p}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Narration Voice
-                <select
-                  value={voiceName}
-                  onChange={(e) => setVoiceName(e.target.value)}
-                >
-                  {Object.keys(VOICE_OPTIONS).map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Narration Speed
-                <select
-                  value={speechRate}
-                  onChange={(e) => setSpeechRate(e.target.value)}
-                >
-                  <option>-25%</option>
-                  <option>-10%</option>
-                  <option>+0%</option>
-                  <option>+10%</option>
-                  <option>+20%</option>
-                </select>
-              </label>
             </div>
 
             <div className="progress-box premium-progress-box">
