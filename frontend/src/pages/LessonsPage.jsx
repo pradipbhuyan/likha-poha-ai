@@ -216,13 +216,24 @@ function LessonsPage({ user }) {
   const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
     useState(false);
 
-  const lessonSteps = [
-    "Concept introduction",
-    "Core explanation",
-    "Worked examples",
-    "Practice questions",
-    "Revision and recap",
-  ];
+  const lessonSteps = (() => {
+    /** Return grade-appropriate lesson steps matching the backend prewarm step definitions. */
+    const g = (grade || "").toLowerCase();
+    if (g === "grade 1" || g === "grade 2" || g === "grade 3") {
+      return ["Introduction", "Let's Practice", "Quick Review"];
+    }
+    if (g === "grade 4" || g === "grade 5") {
+      return ["What We Learn", "Worked Examples", "Recap"];
+    }
+    if (g === "grade 6" || g === "grade 7" || g === "grade 8") {
+      return ["Concept introduction", "Core explanation", "Worked examples", "Revision and recap"];
+    }
+    if (g === "grade 10") {
+      return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap", "Exam preparation"];
+    }
+    // Grade 9 + fallback
+    return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap"];
+  })();
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [highestUnlockedStep, setHighestUnlockedStep] = useState(0);

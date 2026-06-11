@@ -24,13 +24,64 @@ from app.services.supabase_client import supabase
 
 # ------------------------------------------------------------------ constants
 
-LESSON_STEPS = [
+# Grade-band lesson step definitions.
+# Fewer, simpler steps for lower grades; more steps with exam focus for higher grades.
+_STEPS_GRADES_1_3 = [
+    "Introduction",
+    "Let's Practice",
+    "Quick Review",
+]
+
+_STEPS_GRADES_4_5 = [
+    "What We Learn",
+    "Worked Examples",
+    "Recap",
+]
+
+_STEPS_GRADES_6_8 = [
     "Concept introduction",
     "Core explanation",
     "Worked examples",
-    "Practice questions",
     "Revision and recap",
 ]
+
+_STEPS_GRADE_9 = [
+    "Concept introduction",
+    "Core explanation",
+    "Worked examples",
+    "Exam-style problems",
+    "Revision and recap",
+]
+
+_STEPS_GRADE_10 = [
+    "Concept introduction",
+    "Core explanation",
+    "Worked examples",
+    "Exam-style problems",
+    "Revision and recap",
+    "Exam preparation",
+]
+
+
+def get_lesson_steps_for_grade(grade: str) -> list[str]:
+    """Return the appropriate lesson step list for a given grade."""
+    grade_lower = (grade or "").strip().lower()
+    if grade_lower in ("grade 1", "grade 2", "grade 3"):
+        return _STEPS_GRADES_1_3
+    if grade_lower in ("grade 4", "grade 5"):
+        return _STEPS_GRADES_4_5
+    if grade_lower in ("grade 6", "grade 7", "grade 8"):
+        return _STEPS_GRADES_6_8
+    if grade_lower == "grade 9":
+        return _STEPS_GRADE_9
+    if grade_lower == "grade 10":
+        return _STEPS_GRADE_10
+    # Fallback for any unrecognised grade
+    return _STEPS_GRADE_9
+
+
+# Backward-compat constant — used where a grade is not available.
+LESSON_STEPS = _STEPS_GRADE_9
 
 DIFFICULTIES = ["Easy", "Medium", "Hard"]
 QUESTIONS_PER_BATCH = 20
@@ -123,17 +174,18 @@ def count_expected_lessons(grade: str) -> int:
     """
     Total lesson steps to generate for a grade (RAG-backed chapters only).
 
-    Only chapters that have at least one RAG document are counted so the
-    progress bar reflects what will actually be generated.
+    Uses the grade-specific step count so the progress bar reflects the
+    actual number of steps for that grade band.
     """
     syllabus = get_syllabus_for_grade(grade)
+    lesson_steps = get_lesson_steps_for_grade(grade)
     total = 0
     for mode, mode_data in syllabus.items():
         board = "CBSE"
         for subject, chapters in mode_data.items():
             for chapter in chapters:
                 if has_rag_content_for_chapter(board, grade, subject, chapter):
-                    total += len(LESSON_STEPS)
+                    total += len(lesson_steps)
     return total
 
 
@@ -225,6 +277,7 @@ def prewarm_lessons_for_grade(grade: str) -> None:
 
     try:
         syllabus = get_syllabus_for_grade(grade)
+        lesson_steps = get_lesson_steps_for_grade(grade)
 
         for mode, mode_data in syllabus.items():
             board = "CBSE" if mode != "SOF" else "CBSE"
@@ -234,7 +287,7 @@ def prewarm_lessons_for_grade(grade: str) -> None:
                     if not has_rag_content_for_chapter(board, grade, subject, chapter):
                         continue
 
-                    for step_title in LESSON_STEPS:
+                    for step_title in lesson_steps:
                         cache_key = make_lesson_cache_key(
                             board=board,
                             grade=grade,
@@ -455,7 +508,8 @@ def prewarm_single_chapter(grade: str, mode: str, subject: str, chapter: str) ->
     set_job_status(job_key, "running")
 
     try:
-        for step_title in LESSON_STEPS:
+        lesson_steps = get_lesson_steps_for_grade(grade)
+        for step_title in lesson_steps:
             cache_key = make_lesson_cache_key(
                 board=board,
                 grade=grade,
