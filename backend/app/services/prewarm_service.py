@@ -71,12 +71,16 @@ def get_all_job_statuses() -> dict[str, str]:
 
 def get_syllabus_for_grade(grade: str) -> dict:
     """
-    Return {mode: {subject: [chapter, ...]}} for a grade from uploaded RAG documents.
+    Return {mode: {subject: [chapter, ...]}} using the same reviewed syllabus
+    data the student-facing UI uses (merge_uploaded_rag_chapters).
 
-    All grades now read from rag_documents so prewarm chapter names always
-    match the chapter names shown in the UI dropdown — eliminating cache misses
-    caused by static-syllabus names differing from uploaded textbook names.
+    This ensures the full-grade prewarm generates lessons for exactly the
+    chapters students can access — matching the student lesson dropdown.
     """
+    reviewed = _get_reviewed_syllabus_for_grade(grade)
+    if reviewed:
+        return reviewed
+    # Fallback: read raw rag_documents if syllabus merge fails
     try:
         response = (
             supabase
@@ -340,31 +344,43 @@ def build_question_bank_for_grade(grade: str) -> None:
         set_job_status(job_key, "idle")
 
 
-def get_chapters_for_grade(grade: str) -> list[dict]:
+def _get_reviewed_syllabus_for_grade(grade: str) -> dict:
     """
-    Return deduplicated {mode, subject, chapter} dicts for a grade from RAG documents.
+    Return the reviewed {mode: {subject: [chapters]}} for a grade using the
+    same merge_uploaded_rag_chapters logic the student-facing syllabus uses.
 
-    Used by the chapter-by-chapter prewarm panel so admins can pick an exact
-    chapter without running the full grade prewarm.
+    This ensures prewarm chapter names exactly match what students see.
     """
     try:
-        response = (
-            supabase
-            .table("rag_documents")
-            .select("subject, chapter, board")
-            .eq("grade", grade)
-            .execute()
-        )
+        from app.routes.syllabus import merge_uploaded_rag_chapters  # noqa: PLC0415
+        from app.data.syllabus import SYLLABUS  # noqa: PLC0415
+        full_syllabus = merge_uploaded_rag_chapters(SYLLABUS)
+        return full_syllabus.get(grade, {})
+    except Exception:
+        return {}
+
+
+def get_chapters_for_grade(grade: str) -> list[dict]:
+    """
+    Return deduplicated {mode, subject, chapter} dicts using the same
+    reviewed syllabus data students see in their lesson dropdown.
+
+    Uses merge_uploaded_rag_chapters so the chapter panel always matches
+    the student UI — no duplicates, no unreviewed placeholder chapters.
+    """
+    try:
+        grade_data = _get_reviewed_syllabus_for_grade(grade)
         seen: set = set()
         chapters: list[dict] = []
-        for doc in response.data or []:
-            subject = doc.get("subject") or ""
-            chapter = doc.get("chapter") or ""
-            mode = "SOF" if "Olympiad" in subject else "CBSE"
-            key = (mode, subject, chapter)
-            if subject and chapter and key not in seen:
-                seen.add(key)
-                chapters.append({"mode": mode, "subject": subject, "chapter": chapter})
+        for mode, mode_subjects in grade_data.items():
+            for subject, chapter_list in (mode_subjects or {}).items():
+                for chapter in (chapter_list or []):
+                    if not chapter:
+                        continue
+                    key = (mode, subject, chapter)
+                    if key not in seen:
+                        seen.add(key)
+                        chapters.append({"mode": mode, "subject": subject, "chapter": chapter})
         return sorted(chapters, key=lambda x: (x["mode"], x["subject"], x["chapter"]))
     except Exception:
         return []
