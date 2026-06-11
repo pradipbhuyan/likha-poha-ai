@@ -14,7 +14,7 @@ Design principles:
 import hashlib
 import json
 
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase
 
 
 def make_lesson_cache_key(
@@ -59,23 +59,25 @@ def get_cached_lesson(cache_key: str) -> dict | None:
             .select("lesson_content, practice_questions, source_type, access_count")
             .eq("cache_key", cache_key)
             .eq("status", "active")
-            .maybe_single()
+            .limit(1)
             .execute()
         )
 
         if not result.data:
             return None
 
+        row = result.data[0]
+
         # Update access stats fire-and-forget — failure is acceptable
         try:
             supabase.table("lesson_cache").update({
-                "access_count": (result.data.get("access_count") or 0) + 1,
+                "access_count": (row.get("access_count") or 0) + 1,
                 "last_accessed_at": "now()",
             }).eq("cache_key", cache_key).execute()
         except Exception:
             pass
 
-        return result.data
+        return row
 
     except Exception:
         return None  # Table may not exist yet — fall back to LLM

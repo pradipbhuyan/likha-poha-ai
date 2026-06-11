@@ -71,12 +71,12 @@ def get_all_job_statuses() -> dict[str, str]:
 
 def get_syllabus_for_grade(grade: str) -> dict:
     """
-    Return {mode: {subject: [chapter, ...]}} for a grade.
-    Grade 9 uses the static syllabus; other grades read from RAG documents.
-    """
-    if grade == "Grade 9":
-        return {"CBSE": CBSE_9, "SOF": SOF_9}
+    Return {mode: {subject: [chapter, ...]}} for a grade from uploaded RAG documents.
 
+    All grades now read from rag_documents so prewarm chapter names always
+    match the chapter names shown in the UI dropdown — eliminating cache misses
+    caused by static-syllabus names differing from uploaded textbook names.
+    """
     try:
         response = (
             supabase
