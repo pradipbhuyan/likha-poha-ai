@@ -360,19 +360,26 @@ def _get_reviewed_syllabus_for_grade(grade: str) -> dict:
         return {}
 
 
+# Only CBSE and SOF are valid lesson generation modes — State Board chapters
+# uploaded as RAG content are excluded from the prewarm chapter panel.
+_PREWARM_MODES = {"CBSE", "SOF"}
+
+
 def get_chapters_for_grade(grade: str) -> list[dict]:
     """
-    Return deduplicated {mode, subject, chapter} dicts using the same
-    reviewed syllabus data students see in their lesson dropdown.
+    Return deduplicated {mode, subject, chapter} dicts for CBSE and SOF only,
+    using the same reviewed syllabus data students see in their lesson dropdown.
 
-    Uses merge_uploaded_rag_chapters so the chapter panel always matches
-    the student UI — no duplicates, no unreviewed placeholder chapters.
+    State Board chapters are excluded — they are not accessible from the
+    student lesson selector and should not be prewarm targets.
     """
     try:
         grade_data = _get_reviewed_syllabus_for_grade(grade)
         seen: set = set()
         chapters: list[dict] = []
         for mode, mode_subjects in grade_data.items():
+            if mode not in _PREWARM_MODES:
+                continue  # skip State Board and any other non-lesson modes
             for subject, chapter_list in (mode_subjects or {}).items():
                 for chapter in (chapter_list or []):
                     if not chapter:
