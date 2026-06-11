@@ -4,6 +4,11 @@ from app.services.board_service import normalize_board
 import re
 
 
+# Embedding model used for both indexing and querying.
+# Must be the same model for all stored chunks — changing this requires
+# deleting all rag_chunks rows and re-uploading every RAG document.
+EMBEDDING_MODEL = "text-embedding-ada-002"
+
 ADMIN_USERS = {"admin", "pradip", "pradip admin"}
 
 
@@ -47,8 +52,8 @@ def split_text_into_chunks(text, chunk_size=1200):
 def create_embedding(text: str):
     """Create a vector embedding for text using the configured OpenAI client."""
     response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=text
+        model=EMBEDDING_MODEL,
+        input=text,
     )
 
     return response.data[0].embedding
