@@ -109,8 +109,13 @@ class TestUnauthenticatedAccess:
         r = client.get("/api/health")
         assert r.status_code == 200
 
-    def test_rag_documents_list_is_public(self):
+    def test_rag_documents_list_is_public(self, monkeypatch):
         override_as(fake_student_profile())
+        monkeypatch.setattr(
+            "app.routes.rag.list_rag_documents",
+            lambda: [],
+            raising=False,
+        )
         r = client.get("/api/rag/documents")
         assert r.status_code == 200
 
