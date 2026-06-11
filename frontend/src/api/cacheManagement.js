@@ -38,3 +38,25 @@ export async function clearQuestionBank(gradeSlug, accessToken) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 }
+
+export async function getChaptersForGrade(gradeSlug, accessToken) {
+  /** Load available {mode, subject, chapter} options for a grade from RAG documents. */
+  return authFetch(`/api/cache-management/chapters/${gradeSlug}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
+export async function startChapterPrewarm(payload, accessToken) {
+  /**
+   * Start background lesson pre-warming for one specific chapter.
+   * payload: { grade, mode, subject, chapter }
+   */
+  return authFetch("/api/cache-management/prewarm/chapter", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(payload),
+  });
+}

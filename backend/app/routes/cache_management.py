@@ -8,15 +8,25 @@ question bank building, status tracking, and cache clearing.
 import threading
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
+from pydantic import BaseModel
 from app.services.auth_service import require_admin
 from app.services.prewarm_service import (
     prewarm_lessons_for_grade,
+    prewarm_single_chapter,
     build_question_bank_for_grade,
     get_grade_status_summary,
+    get_chapters_for_grade,
     clear_lesson_cache_for_grade,
     clear_question_bank_for_grade,
     is_job_running,
 )
+
+
+class PrewarmChapterRequest(BaseModel):
+    grade: str
+    mode: str
+    subject: str
+    chapter: str
 
 router = APIRouter()
 
@@ -99,6 +109,71 @@ def start_question_bank_build(
         "success": True,
         "message": f"Question bank building started for {grade}. Poll /status for progress.",
         "grade": grade,
+    }
+
+
+@router.get("/chapters/{grade_slug}")
+def list_grade_chapters(
+    grade_slug: str,
+    admin=Depends(require_admin),
+):
+    """
+    Return the list of {mode, subject, chapter} options for a grade.
+
+    Used by the chapter-by-chapter prewarm panel to populate the dropdowns.
+    """
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    chapters = get_chapters_for_grade(grade)
+    return {
+        "success": True,
+        "grade": grade,
+        "chapters": chapters,
+    }
+
+
+@router.post("/prewarm/chapter")
+def start_single_chapter_prewarm(
+    data: PrewarmChapterRequest,
+    background_tasks: BackgroundTasks,
+    admin=Depends(require_admin),
+):
+    """
+    Start lesson pre-warming for exactly one chapter as a background task.
+
+    Allows admins to test one chapter at a time (5 steps × nano model)
+    before running the full grade prewarm.
+    """
+    if data.grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {data.grade}")
+
+    safe_subject = data.subject[:12].replace(" ", "_")
+    safe_chapter = data.chapter[:12].replace(" ", "_")
+    job_key = f"chapter_{data.grade.replace(' ', '')}_{safe_subject}_{safe_chapter}"
+
+    if is_job_running(job_key):
+        return {
+            "success": False,
+            "message": "A prewarm job is already running for this chapter.",
+        }
+
+    background_tasks.add_task(
+        prewarm_single_chapter,
+        data.grade,
+        data.mode,
+        data.subject,
+        data.chapter,
+    )
+
+    return {
+        "success": True,
+        "message": f"Chapter prewarm started: {data.subject} — {data.chapter}.",
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
+        "job_key": job_key,
     }
 
 

@@ -340,6 +340,89 @@ def build_question_bank_for_grade(grade: str) -> None:
         set_job_status(job_key, "idle")
 
 
+def get_chapters_for_grade(grade: str) -> list[dict]:
+    """
+    Return deduplicated {mode, subject, chapter} dicts for a grade from RAG documents.
+
+    Used by the chapter-by-chapter prewarm panel so admins can pick an exact
+    chapter without running the full grade prewarm.
+    """
+    try:
+        response = (
+            supabase
+            .table("rag_documents")
+            .select("subject, chapter, board")
+            .eq("grade", grade)
+            .execute()
+        )
+        seen: set = set()
+        chapters: list[dict] = []
+        for doc in response.data or []:
+            subject = doc.get("subject") or ""
+            chapter = doc.get("chapter") or ""
+            mode = "SOF" if "Olympiad" in subject else "CBSE"
+            key = (mode, subject, chapter)
+            if subject and chapter and key not in seen:
+                seen.add(key)
+                chapters.append({"mode": mode, "subject": subject, "chapter": chapter})
+        return sorted(chapters, key=lambda x: (x["mode"], x["subject"], x["chapter"]))
+    except Exception:
+        return []
+
+
+def prewarm_single_chapter(grade: str, mode: str, subject: str, chapter: str) -> None:
+    """
+    Background task: generate and cache all 5 lesson steps for one specific chapter.
+
+    Useful for testing a newly uploaded chapter without running the full grade prewarm.
+    Already-cached steps are skipped so this is safe to re-run.
+    """
+    board = "CBSE"
+    safe_subject = subject[:12].replace(" ", "_")
+    safe_chapter = chapter[:12].replace(" ", "_")
+    job_key = f"chapter_{grade.replace(' ', '')}_{safe_subject}_{safe_chapter}"
+    set_job_status(job_key, "running")
+
+    try:
+        for step_title in LESSON_STEPS:
+            cache_key = make_lesson_cache_key(
+                board=board,
+                grade=grade,
+                subject=subject,
+                chapter=chapter,
+                mode=mode,
+                step_title=step_title,
+                teacher_persona="",
+            )
+            if get_cached_lesson(cache_key):
+                continue
+
+            try:
+                generate_step_lesson(
+                    grade=grade,
+                    subject=subject,
+                    chapter=chapter,
+                    mode=mode,
+                    step_title=step_title,
+                    teacher_persona="",
+                    username="prewarm_admin",
+                    board=board,
+                    model=PREWARM_TEXT_MODEL,
+                )
+                time.sleep(REQUEST_DELAY_SECONDS)
+            except Exception as exc:
+                logger.warning(
+                    "Chapter prewarm step failed [%s | %s | %s | %s]: %s",
+                    grade, subject, chapter, step_title, exc,
+                )
+                time.sleep(REQUEST_DELAY_SECONDS * 2)
+
+    except Exception as exc:
+        logger.error("Chapter prewarm failed [%s | %s | %s]: %s", grade, subject, chapter, exc)
+    finally:
+        set_job_status(job_key, "idle")
+
+
 def get_grade_status_summary(grades: list[str]) -> list[dict]:
     """
     Return cache/bank status for a list of grades for the admin dashboard.

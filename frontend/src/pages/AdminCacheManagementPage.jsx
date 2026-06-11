@@ -5,6 +5,8 @@ import {
   startQuestionBankBuild,
   clearLessonCache,
   clearQuestionBank,
+  getChaptersForGrade,
+  startChapterPrewarm,
 } from "../api/cacheManagement";
 
 function gradeToSlug(grade) {
@@ -36,6 +38,8 @@ function StatusBadge({ complete, running }) {
   return <span className="status-pill" style={{ background: "#6b7280", color: "#fff" }}>⬜ Ready</span>;
 }
 
+const ALL_GRADE_OPTIONS = Array.from({ length: 10 }, (_, i) => `Grade ${i + 1}`);
+
 function AdminCacheManagementPage({ user }) {
   /** Admin page for grade-by-grade lesson pre-warming, question bank building, and cache clearing. */
   const [grades, setGrades] = useState([]);
@@ -43,6 +47,16 @@ function AdminCacheManagementPage({ user }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const pollRef = useRef(null);
+
+  // ---- Chapter-by-chapter prewarm state ----
+  const [chapterGrade, setChapterGrade] = useState("Grade 9");
+  const [chapterList, setChapterList] = useState([]);
+  const [chapterListLoading, setChapterListLoading] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedChapter, setSelectedChapter] = useState("");
+  const [chapterRunning, setChapterRunning] = useState(false);
+  const [chapterMessage, setChapterMessage] = useState("");
+  const [chapterError, setChapterError] = useState("");
 
   async function loadStatus() {
     /** Fetch latest cache/bank status for all grades. */
@@ -121,6 +135,59 @@ function AdminCacheManagementPage({ user }) {
       loadStatus();
     } catch (err) {
       setError(err.message || "Failed to clear lesson cache.");
+    }
+  }
+
+  async function loadChaptersForGrade(grade) {
+    /** Fetch available chapters for the selected grade. */
+    setChapterListLoading(true);
+    setChapterList([]);
+    setSelectedSubject("");
+    setSelectedChapter("");
+    setChapterMessage("");
+    setChapterError("");
+    try {
+      const result = await getChaptersForGrade(gradeToSlug(grade), user.accessToken);
+      const chapters = result.chapters || [];
+      setChapterList(chapters);
+      if (chapters.length > 0) {
+        setSelectedSubject(chapters[0].subject);
+        setSelectedChapter(chapters[0].chapter);
+      }
+    } catch (err) {
+      setChapterError(err.message || "Could not load chapters.");
+    } finally {
+      setChapterListLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (user?.accessToken && chapterGrade) {
+      loadChaptersForGrade(chapterGrade);
+    }
+  }, [chapterGrade, user?.accessToken]);
+
+  async function handleChapterPrewarm() {
+    /** Start a background prewarm for the selected single chapter. */
+    if (!selectedSubject || !selectedChapter) return;
+    const entry = chapterList.find(
+      (c) => c.subject === selectedSubject && c.chapter === selectedChapter
+    );
+    if (!entry) return;
+
+    setChapterRunning(true);
+    setChapterMessage("");
+    setChapterError("");
+    try {
+      const result = await startChapterPrewarm(
+        { grade: chapterGrade, mode: entry.mode, subject: selectedSubject, chapter: selectedChapter },
+        user.accessToken
+      );
+      setChapterMessage(result.message || "Chapter prewarm started.");
+    } catch (err) {
+      setChapterError(err.message || "Failed to start chapter prewarm.");
+    } finally {
+      setChapterRunning(false);
     }
   }
 
@@ -282,6 +349,90 @@ function AdminCacheManagementPage({ user }) {
             </div>
           );
         })}
+      </section>
+
+      {/* Chapter-by-chapter prewarm panel */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Token-Efficient Testing</p>
+          <h3>🔬 Chapter-by-Chapter Prewarm</h3>
+          <p>
+            Test one chapter at a time (5 steps × gpt-4.1-nano ≈ $0.002) before
+            committing to a full grade. Use this after uploading a new textbook chapter.
+          </p>
+        </div>
+
+        <div className="premium-card" style={{ maxWidth: 580 }}>
+          <div className="form-grid premium-rag-form-grid">
+            <label>
+              Grade
+              <select
+                value={chapterGrade}
+                onChange={(e) => setChapterGrade(e.target.value)}
+              >
+                {ALL_GRADE_OPTIONS.map((g) => (
+                  <option key={g} value={g}>{g}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Subject
+              <select
+                value={selectedSubject}
+                onChange={(e) => {
+                  setSelectedSubject(e.target.value);
+                  const first = chapterList.find((c) => c.subject === e.target.value);
+                  setSelectedChapter(first ? first.chapter : "");
+                }}
+                disabled={chapterListLoading || chapterList.length === 0}
+              >
+                {[...new Set(chapterList.map((c) => c.subject))].map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </label>
+
+            <label style={{ gridColumn: "1 / -1" }}>
+              Chapter
+              <select
+                value={selectedChapter}
+                onChange={(e) => setSelectedChapter(e.target.value)}
+                disabled={chapterListLoading || !selectedSubject}
+              >
+                {chapterList
+                  .filter((c) => c.subject === selectedSubject)
+                  .map((c) => (
+                    <option key={c.chapter} value={c.chapter}>{c.chapter}</option>
+                  ))}
+              </select>
+            </label>
+          </div>
+
+          {chapterListLoading && <p style={{ fontSize: "0.85rem", color: "#888" }}>Loading chapters…</p>}
+
+          {chapterList.length === 0 && !chapterListLoading && (
+            <p style={{ fontSize: "0.85rem", color: "#888" }}>
+              No RAG content uploaded for {chapterGrade} yet.
+            </p>
+          )}
+
+          <button
+            className="primary-btn"
+            onClick={handleChapterPrewarm}
+            disabled={chapterRunning || !selectedChapter || chapterListLoading}
+            style={{ marginTop: 16 }}
+          >
+            {chapterRunning ? "⏳ Prewarm running…" : "🎯 Prewarm This Chapter (5 steps)"}
+          </button>
+
+          {chapterMessage && (
+            <div className="info-box" style={{ marginTop: 12 }}>{chapterMessage}</div>
+          )}
+          {chapterError && (
+            <div className="error-box" style={{ marginTop: 12 }}>{chapterError}</div>
+          )}
+        </div>
       </section>
 
       <section className="premium-section">
