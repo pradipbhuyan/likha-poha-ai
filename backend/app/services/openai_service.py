@@ -12,9 +12,11 @@ enable_system_truststore()
 # ---------------------------------------------------------------------------
 # Model configuration
 # ---------------------------------------------------------------------------
-DEFAULT_TEXT_MODEL = "gpt-4.1-mini"
-GPT5_TEXT_MODEL = "gpt-4.1-mini"
-GPT5_MINI_TEXT_MODEL = "gpt-4.1-mini"
+# All features use gpt-4.1-nano — the only model available on this project.
+# To upgrade to mini/full when the project has access, change DEFAULT_TEXT_MODEL.
+DEFAULT_TEXT_MODEL = "gpt-4.1-nano"
+GPT5_TEXT_MODEL = "gpt-4.1-nano"
+GPT5_MINI_TEXT_MODEL = "gpt-4.1-nano"
 PREWARM_TEXT_MODEL = "gpt-4.1-nano"
 
 _MODEL_PRICING = {
@@ -23,8 +25,8 @@ _MODEL_PRICING = {
     "gpt-4.1":      {"input": 0.002,  "output": 0.008},
 }
 
-INPUT_COST_PER_1K = 0.0004
-OUTPUT_COST_PER_1K = 0.0016
+INPUT_COST_PER_1K = 0.0001
+OUTPUT_COST_PER_1K = 0.0004
 
 # ---------------------------------------------------------------------------
 # Dynamic client — key and enabled/disabled state are loaded from Supabase
