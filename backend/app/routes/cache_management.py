@@ -14,6 +14,7 @@ from app.services.prewarm_service import (
     prewarm_lessons_for_grade,
     prewarm_single_chapter,
     build_question_bank_for_grade,
+    build_question_bank_for_chapter,
     get_grade_status_summary,
     get_chapters_for_grade,
     clear_lesson_cache_for_grade,
@@ -131,6 +132,33 @@ def list_grade_chapters(
         "success": True,
         "grade": grade,
         "chapters": chapters,
+    }
+
+
+@router.post("/build-questions/chapter")
+def start_chapter_question_bank_build(
+    data: PrewarmChapterRequest,
+    background_tasks: BackgroundTasks,
+    admin=Depends(require_admin),
+):
+    """Start question bank building for exactly one chapter as a background task."""
+    if data.grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {data.grade}")
+
+    safe_subject = data.subject[:12].replace(" ", "_")
+    safe_chapter = data.chapter[:12].replace(" ", "_")
+    job_key = f"qbank_{data.grade.replace(' ', '')}_{safe_subject}_{safe_chapter}"
+
+    if is_job_running(job_key):
+        return {"success": False, "message": "A question bank build is already running for this chapter."}
+
+    background_tasks.add_task(build_question_bank_for_chapter, data.grade, data.mode, data.subject, data.chapter)
+    return {
+        "success": True,
+        "message": f"Question bank build started: {data.subject} — {data.chapter} (60 questions: Easy/Medium/Hard).",
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
     }
 
 

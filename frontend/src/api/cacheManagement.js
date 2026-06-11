@@ -46,6 +46,22 @@ export async function getChaptersForGrade(gradeSlug, accessToken) {
   });
 }
 
+export async function startChapterQuestionBankBuild(payload, accessToken) {
+  /**
+   * Start background question bank building for one specific chapter.
+   * payload: { grade, mode, subject, chapter }
+   * Generates 60 RAG-grounded questions (20 Easy + 20 Medium + 20 Hard).
+   */
+  return authFetch("/api/cache-management/build-questions/chapter", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(payload),
+  });
+}
+
 export async function startChapterPrewarm(payload, accessToken) {
   /**
    * Start background lesson pre-warming for one specific chapter.

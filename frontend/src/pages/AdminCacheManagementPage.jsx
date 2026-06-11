@@ -7,6 +7,7 @@ import {
   clearQuestionBank,
   getChaptersForGrade,
   startChapterPrewarm,
+  startChapterQuestionBankBuild,
 } from "../api/cacheManagement";
 
 function gradeToSlug(grade) {
@@ -55,6 +56,7 @@ function AdminCacheManagementPage({ user }) {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [selectedChapter, setSelectedChapter] = useState("");
   const [chapterRunning, setChapterRunning] = useState(false);
+  const [chapterQBankRunning, setChapterQBankRunning] = useState(false);
   const [chapterMessage, setChapterMessage] = useState("");
   const [chapterError, setChapterError] = useState("");
 
@@ -184,8 +186,6 @@ function AdminCacheManagementPage({ user }) {
         user.accessToken
       );
       setChapterMessage(result.message || "Chapter prewarm started.");
-      // Refresh the grade status cards when the chapter prewarm completes.
-      // 5 steps × ~12 s each ≈ 60 s total; poll at 20 s, 45 s, 75 s, 110 s.
       [20000, 45000, 75000, 110000].forEach((delay) =>
         setTimeout(loadStatus, delay)
       );
@@ -193,6 +193,34 @@ function AdminCacheManagementPage({ user }) {
       setChapterError(err.message || "Failed to start chapter prewarm.");
     } finally {
       setChapterRunning(false);
+    }
+  }
+
+  async function handleChapterQuestionBankBuild() {
+    /** Start background RAG-grounded question bank building for the selected chapter. */
+    if (!selectedSubject || !selectedChapter) return;
+    const entry = chapterList.find(
+      (c) => c.subject === selectedSubject && c.chapter === selectedChapter
+    );
+    if (!entry) return;
+
+    setChapterQBankRunning(true);
+    setChapterMessage("");
+    setChapterError("");
+    try {
+      const result = await startChapterQuestionBankBuild(
+        { grade: chapterGrade, mode: entry.mode, subject: selectedSubject, chapter: selectedChapter },
+        user.accessToken
+      );
+      setChapterMessage(result.message || "Question bank build started.");
+      // 9 batches × ~4 s each ≈ 36 s; poll at 20 s, 40 s, 60 s
+      [20000, 40000, 60000].forEach((delay) =>
+        setTimeout(loadStatus, delay)
+      );
+    } catch (err) {
+      setChapterError(err.message || "Failed to start question bank build.");
+    } finally {
+      setChapterQBankRunning(false);
     }
   }
 
@@ -423,14 +451,24 @@ function AdminCacheManagementPage({ user }) {
             </p>
           )}
 
-          <button
-            className="primary-btn"
-            onClick={handleChapterPrewarm}
-            disabled={chapterRunning || !selectedChapter || chapterListLoading}
-            style={{ marginTop: 16 }}
-          >
-            {chapterRunning ? "⏳ Prewarm running…" : "🎯 Prewarm This Chapter (5 steps)"}
-          </button>
+          <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
+            <button
+              className="primary-btn"
+              onClick={handleChapterPrewarm}
+              disabled={chapterRunning || chapterQBankRunning || !selectedChapter || chapterListLoading}
+            >
+              {chapterRunning ? "⏳ Prewarm running…" : "🎯 Prewarm Lessons (4-6 steps)"}
+            </button>
+
+            <button
+              className="secondary-btn"
+              onClick={handleChapterQuestionBankBuild}
+              disabled={chapterQBankRunning || chapterRunning || !selectedChapter || chapterListLoading}
+              title="Generates 60 RAG-grounded questions (20 Easy + 20 Medium + 20 Hard)"
+            >
+              {chapterQBankRunning ? "⏳ Building questions…" : "🎯 Build 60 Questions"}
+            </button>
+          </div>
 
           {chapterMessage && (
             <div className="info-box" style={{ marginTop: 12 }}>{chapterMessage}</div>
