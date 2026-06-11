@@ -9,6 +9,8 @@ import {
   updateChildAccess,
   updateChildLimits,
   deleteUser,
+  getAiSettings,
+  updateAiSettings,
 } from "../api/adminControl";
 import {
   SUBSCRIPTION_PLAN_ORDER,
@@ -87,11 +89,21 @@ function subjectListToText(subjects) {
 }
 
 function AdminControlPage({ user }) {
-  /** Admin operations page for managing families, access flags, subscriptions, and AI limits. */
+  /** Admin operations page for managing families, access, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
+  // ---- AI Settings state ----
+  const [aiEnabled, setAiEnabled] = useState(true);
+  const [aiKeyPrefix, setAiKeyPrefix] = useState("");
+  const [aiKeySource, setAiKeySource] = useState("environment");
+  const [newApiKey, setNewApiKey] = useState("");
+  const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
+  const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
+  const [aiSettingsMessage, setAiSettingsMessage] = useState("");
+  const [aiSettingsError, setAiSettingsError] = useState("");
 
   const [parentForm, setParentForm] = useState({
     email: "",
@@ -127,9 +139,48 @@ function AdminControlPage({ user }) {
     }
   }
 
+  async function loadAiSettings() {
+    /** Fetch current AI master switch state and key prefix from the backend. */
+    setAiSettingsLoading(true);
+    try {
+      const data = await getAiSettings(user.accessToken);
+      setAiEnabled(data.api_enabled ?? true);
+      setAiKeyPrefix(data.api_key_prefix || "");
+      setAiKeySource(data.key_source || "environment");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setAiSettingsLoading(false);
+    }
+  }
+
+  async function saveAiSettings() {
+    /** Persist the master switch and optional new key, then refresh the displayed prefix. */
+    setAiSettingsSaving(true);
+    setAiSettingsMessage("");
+    setAiSettingsError("");
+    try {
+      const payload = { api_enabled: aiEnabled };
+      if (newApiKey.trim()) {
+        payload.openai_api_key = newApiKey.trim();
+      }
+      const data = await updateAiSettings(payload, user.accessToken);
+      setAiEnabled(data.api_enabled ?? true);
+      setAiKeyPrefix(data.api_key_prefix || "");
+      setAiKeySource(data.key_source || "database");
+      setNewApiKey("");
+      setAiSettingsMessage("AI settings saved successfully.");
+    } catch (err) {
+      setAiSettingsError(err.message || "Unable to save AI settings.");
+    } finally {
+      setAiSettingsSaving(false);
+    }
+  }
+
   useEffect(() => {
     if (user?.accessToken) {
       loadFamilies();
+      loadAiSettings();
     }
   }, [user?.accessToken]);
 
@@ -575,6 +626,118 @@ function AdminControlPage({ user }) {
 
   if (loading) return <p>Loading admin control...</p>;
 
+  // ---- AI Settings panel (rendered at top of page) ----
+  const aiSettingsPanel = (
+    <section className="premium-section">
+      <div className="premium-header">
+        <p className="eyebrow">Platform Configuration</p>
+        <h3>🔑 AI API Settings</h3>
+        <p>Control the OpenAI master switch and set the API key used across the entire platform.</p>
+      </div>
+
+      {aiSettingsLoading ? (
+        <p>Loading AI settings…</p>
+      ) : (
+        <div className="premium-card" style={{ maxWidth: 620 }}>
+          {/* Master switch */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+            <strong style={{ fontSize: "1rem" }}>Master AI Switch</strong>
+            <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
+              <div
+                onClick={() => setAiEnabled((prev) => !prev)}
+                style={{
+                  width: 52,
+                  height: 28,
+                  borderRadius: 14,
+                  background: aiEnabled ? "var(--accent, #6c63ff)" : "#ccc",
+                  position: "relative",
+                  cursor: "pointer",
+                  transition: "background 0.2s",
+                  flexShrink: 0,
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 3,
+                    left: aiEnabled ? 27 : 3,
+                    width: 22,
+                    height: 22,
+                    borderRadius: "50%",
+                    background: "#fff",
+                    transition: "left 0.2s",
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+                  }}
+                />
+              </div>
+              <span style={{ fontWeight: 600, color: aiEnabled ? "var(--accent, #6c63ff)" : "#999" }}>
+                {aiEnabled ? "API ON" : "API OFF"}
+              </span>
+            </label>
+            {!aiEnabled && (
+              <span className="error-box" style={{ padding: "4px 10px", fontSize: "0.8rem", margin: 0 }}>
+                All AI features are disabled for all users
+              </span>
+            )}
+          </div>
+
+          {/* Active key indicator */}
+          <div style={{ marginBottom: 20 }}>
+            <strong>Active Key</strong>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6 }}>
+              <code
+                style={{
+                  background: "var(--surface2, #f5f5f5)",
+                  padding: "6px 12px",
+                  borderRadius: 6,
+                  fontFamily: "monospace",
+                  fontSize: "0.95rem",
+                  letterSpacing: 2,
+                }}
+              >
+                {aiKeyPrefix ? `${aiKeyPrefix}••••••••••••••••` : "No key stored"}
+              </code>
+              <span style={{ fontSize: "0.8rem", color: "#888" }}>
+                ({aiKeySource === "database" ? "set via admin console" : "from environment variable"})
+              </span>
+            </div>
+          </div>
+
+          {/* New key input */}
+          <label style={{ display: "block", marginBottom: 16 }}>
+            <strong>Update API Key</strong>
+            <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
+              Paste a new OpenAI key to replace the current one. Leave blank to keep the existing key.
+            </p>
+            <input
+              type="password"
+              value={newApiKey}
+              onChange={(e) => setNewApiKey(e.target.value)}
+              placeholder="sk-proj-… or sk-…"
+              style={{ width: "100%", fontFamily: "monospace" }}
+              autoComplete="new-password"
+            />
+          </label>
+
+          <button
+            className="primary-btn"
+            onClick={saveAiSettings}
+            disabled={aiSettingsSaving}
+          >
+            {aiSettingsSaving ? "Saving…" : "💾 Save AI Settings"}
+          </button>
+
+          {aiSettingsMessage && (
+            <div className="info-box" style={{ marginTop: 12 }}>{aiSettingsMessage}</div>
+          )}
+          {aiSettingsError && (
+            <div className="error-box" style={{ marginTop: 12 }}>{aiSettingsError}</div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+
   const allTeachers = families.flatMap((family) => family.teachers || []);
   const allStudents = families.flatMap((family) => family.children || []);
   const allParents = families.flatMap((family) => family.parents || []);
@@ -587,6 +750,8 @@ function AdminControlPage({ user }) {
 
   return (
     <div className="premium-page admin-control-page">
+      {aiSettingsPanel}
+
       <section className="premium-section admin-control-hero">
         <div className="premium-header">
           <p className="eyebrow">Admin Operations</p>

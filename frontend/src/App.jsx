@@ -189,8 +189,10 @@ function App() {
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
     
-      if (savedPage) {
+      if (savedPage && !(parsedUser.role === "admin" && savedPage === "dashboard")) {
         setActivePage(savedPage);
+      } else if (parsedUser.role === "admin") {
+        setActivePage("adminControl");
       } else if (parsedUser.role === "parent") {
         setActivePage("parentDashboard");
       } else if (parsedUser.role === "teacher") {
@@ -219,7 +221,10 @@ function App() {
     setRoutePath("/");
     localStorage.setItem("tutor_user", JSON.stringify(userData));
   
-    if (userData.role === "parent") {
+    if (userData.role === "admin") {
+      setActivePage("adminControl");
+      localStorage.setItem("tutor_active_page", "adminControl");
+    } else if (userData.role === "parent") {
       setActivePage("parentDashboard");
       localStorage.setItem("tutor_active_page", "parentDashboard");
     } else if (userData.role === "teacher") {

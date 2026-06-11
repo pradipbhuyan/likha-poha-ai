@@ -46,6 +46,7 @@ function Sidebar({
       label: "Dashboard",
       icon: Home,
       roles: ["student", "admin"],
+      hideForAdmin: true,
     },
     {
       key: "adminControl",

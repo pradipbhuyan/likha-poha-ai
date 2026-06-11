@@ -253,3 +253,34 @@ export async function updateAdminSubscriptionContact(payload, accessToken) {
 
   return response.json();
 }
+
+export async function getAiSettings(accessToken) {
+  /** Load the master API switch state and active key prefix for the admin console. */
+  const response = await adminFetch("/api/admin-control/ai-settings", {
+    headers: authHeaders(accessToken),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load AI settings"));
+  }
+
+  return response.json();
+}
+
+export async function updateAiSettings(payload, accessToken) {
+  /**
+   * Persist the master API on/off switch and optionally a new OpenAI API key.
+   * payload: { api_enabled: bool, openai_api_key?: string }
+   */
+  const response = await adminFetch("/api/admin-control/ai-settings", {
+    method: "PUT",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to save AI settings"));
+  }
+
+  return response.json();
+}

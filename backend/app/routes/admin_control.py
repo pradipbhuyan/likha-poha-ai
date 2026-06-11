@@ -12,6 +12,7 @@ from app.services.auth_service import require_admin, create_auth_user, invite_pa
 from app.services.board_service import normalize_board
 from app.services.subject_access_service import clean_subject_access_list
 from app.services.usage_service import normalize_token_limit
+from app.config import settings
 
 router = APIRouter()
 
@@ -902,6 +903,121 @@ def update_child_limits(
     return {
         "success": True,
         "profile": response.data[0],
+    }
+
+
+# ---------------------------------------------------------------------------
+# AI Settings — master switch + API key management
+# ---------------------------------------------------------------------------
+
+class UpdateAiSettingsRequest(BaseModel):
+    api_enabled: bool
+    openai_api_key: str | None = None
+
+
+def _load_ai_settings_row() -> dict | None:
+    """Read the ai_settings row from admin_settings. Returns value dict or None."""
+    try:
+        response = (
+            admin_client
+            .table("admin_settings")
+            .select("value")
+            .eq("key", "ai_settings")
+            .limit(1)
+            .execute()
+        )
+        if response.data:
+            return response.data[0]["value"]
+    except Exception:
+        pass
+    return None
+
+
+@router.get("/ai-settings")
+def get_ai_settings(admin=Depends(require_admin)):
+    """
+    Return current AI settings for the admin console.
+
+    The full API key is never returned — only the first 8 characters so the
+    admin can confirm which key is active without exposing the secret.
+    """
+    row = _load_ai_settings_row()
+
+    if row:
+        stored_key = (row.get("openai_api_key") or "").strip()
+        effective_key = stored_key if stored_key else (settings.OPENAI_API_KEY or "")
+        return {
+            "success": True,
+            "api_enabled": row.get("api_enabled", True),
+            "api_key_prefix": effective_key[:8] if effective_key else "",
+            "key_source": "database" if stored_key else "environment",
+        }
+
+    # Table exists but no row yet — fall back to env key
+    env_key = settings.OPENAI_API_KEY or ""
+    return {
+        "success": True,
+        "api_enabled": True,
+        "api_key_prefix": env_key[:8] if env_key else "",
+        "key_source": "environment",
+    }
+
+
+@router.put("/ai-settings")
+def update_ai_settings(
+    data: UpdateAiSettingsRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Persist the master API switch and (optionally) a new OpenAI API key.
+
+    When openai_api_key is omitted or blank the existing stored key is kept.
+    After saving, the in-memory settings cache is force-expired so the next
+    LLM call picks up the change without a server restart.
+    """
+    # Preserve existing key when the admin only toggles the switch
+    existing_key = ""
+    row = _load_ai_settings_row()
+    if row:
+        existing_key = (row.get("openai_api_key") or "").strip()
+
+    new_key = (data.openai_api_key or "").strip()
+    effective_key = new_key if new_key else existing_key
+
+    value = {
+        "api_enabled": data.api_enabled,
+        "openai_api_key": effective_key,
+    }
+
+    try:
+        admin_client.table("admin_settings").upsert(
+            {
+                "key": "ai_settings",
+                "value": value,
+                "updated_at": "now()",
+            },
+            on_conflict="key",
+        ).execute()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Unable to save AI settings. Run backend/sql/add_admin_settings.sql "
+                f"in Supabase first. Original error: {str(exc)}"
+            ),
+        )
+
+    # Immediately expire the in-memory cache in this process
+    from app.services.openai_service import force_refresh_settings
+    force_refresh_settings()
+
+    display_key = effective_key if effective_key else (settings.OPENAI_API_KEY or "")
+    return {
+        "success": True,
+        "api_enabled": data.api_enabled,
+        "api_key_prefix": display_key[:8] if display_key else "",
+        "key_source": "database" if effective_key else "environment",
+        "message": "AI settings saved successfully.",
     }
 
 

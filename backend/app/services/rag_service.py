@@ -1,5 +1,5 @@
 from app.services.supabase_client import supabase
-from app.services.openai_service import client
+from app.services.openai_service import get_openai_client
 from app.services.board_service import normalize_board
 import re
 
@@ -50,8 +50,13 @@ def split_text_into_chunks(text, chunk_size=1200):
 
 
 def create_embedding(text: str):
-    """Create a vector embedding for text using the configured OpenAI client."""
-    response = client.embeddings.create(
+    """
+    Create a vector embedding using the current effective OpenAI client.
+
+    Calls get_openai_client() on every embedding so a key change made from
+    the admin console takes effect immediately without a server restart.
+    """
+    response = get_openai_client().embeddings.create(
         model=EMBEDDING_MODEL,
         input=text,
     )
