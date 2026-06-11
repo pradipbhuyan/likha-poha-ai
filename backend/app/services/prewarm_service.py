@@ -21,7 +21,7 @@ from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cac
 from app.services.question_bank_service import add_questions_to_bank
 from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
 from app.services.supabase_client import supabase
-from app.services.rag_service import search_textbook_content
+# search_textbook_content imported lazily inside functions to avoid circular imports
 
 # ------------------------------------------------------------------ constants
 
@@ -389,6 +389,7 @@ def build_question_bank_for_grade(grade: str) -> None:
             for chapter in chapters:
                 # Fetch RAG context once per chapter for all difficulty batches
                 try:
+                    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
                     rag_results = search_textbook_content(
                         query=f"{subject} {chapter} concepts definitions formulas",
                         grade=grade,
@@ -634,6 +635,7 @@ def build_question_bank_for_chapter(
     try:
         # Fetch RAG context once for all batches
         try:
+            from app.services.rag_service import search_textbook_content  # noqa: PLC0415
             rag_results = search_textbook_content(
                 query=f"{subject} {chapter} concepts definitions formulas",
                 grade=grade,
