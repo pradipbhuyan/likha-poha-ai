@@ -165,9 +165,23 @@ def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: s
 
     Uses the batch-fetched RAG chapters cache so repeated calls within a
     single status load do not each issue a separate Supabase query.
+
+    Also strips any "Part N - " display prefix that the syllabus review
+    adds (e.g. "Part 1 - Chapter 1: A Square and A Cube" → matches
+    the RAG doc stored as "Chapter 1: A Square and A Cube").
     """
     clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-    return (subject, clean_chapter) in _get_rag_chapters_for_grade(grade)
+    rag_chapters = _get_rag_chapters_for_grade(grade)
+
+    if (subject, clean_chapter) in rag_chapters:
+        return True
+
+    # Strip "Part N - " or "Part N: " display prefix added by syllabus review
+    stripped = re.sub(r"^Part\s+\d+\s*[-:–]\s*", "", clean_chapter, flags=re.IGNORECASE).strip()
+    if stripped != clean_chapter and (subject, stripped) in rag_chapters:
+        return True
+
+    return False
 
 
 def count_expected_lessons(grade: str) -> int:
