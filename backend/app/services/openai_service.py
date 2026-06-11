@@ -6,7 +6,10 @@ from app.services.usage_service import log_ai_usage
 
 enable_system_truststore()
 
-client = OpenAI(api_key=settings.OPENAI_API_KEY)
+# 60-second timeout prevents background prewarm threads from hanging
+# indefinitely when the LLM API is slow or unresponsive.
+# All live student-facing calls complete well under 30 s in practice.
+client = OpenAI(api_key=settings.OPENAI_API_KEY, timeout=60.0)
 
 # ---------------------------------------------------------------------------
 # Model configuration

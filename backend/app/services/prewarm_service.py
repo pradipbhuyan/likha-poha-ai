@@ -8,9 +8,12 @@ Tracks in-progress jobs in memory (works for single-instance deployments).
 Status is persisted in the lesson_cache / question_bank Supabase tables.
 """
 
+import logging
 import re
 import threading
 import time
+
+logger = logging.getLogger(__name__)
 
 from app.data.syllabus import CBSE_9, SOF_9
 from app.services.tutor_service import generate_step_lesson
@@ -261,11 +264,15 @@ def prewarm_lessons_for_grade(grade: str) -> None:
                                 model=PREWARM_TEXT_MODEL,
                             )
                             time.sleep(REQUEST_DELAY_SECONDS)
-                        except Exception:
+                        except Exception as exc:
+                            logger.warning(
+                                "Prewarm step failed [%s | %s | %s | %s]: %s",
+                                grade, subject, chapter, step_title, exc,
+                            )
                             time.sleep(REQUEST_DELAY_SECONDS * 2)
 
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.error("Prewarm lessons job failed for %s: %s", grade, exc)
     finally:
         set_job_status(job_key, "idle")
 
@@ -319,13 +326,16 @@ def build_question_bank_for_grade(grade: str) -> None:
                                         difficulty=difficulty,
                                         exam_type="General",
                                     )
-                        except Exception:
-                            pass
+                        except Exception as exc:
+                            logger.warning(
+                                "Question bank batch failed [%s | %s | %s | difficulty=%s | batch=%d]: %s",
+                                grade, subject, chapter, difficulty, batch, exc,
+                            )
 
                         time.sleep(REQUEST_DELAY_SECONDS)
 
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.error("Build question bank job failed for %s: %s", grade, exc)
     finally:
         set_job_status(job_key, "idle")
 
