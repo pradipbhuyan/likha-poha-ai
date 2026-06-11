@@ -7,7 +7,7 @@ import re
 # Embedding model used for both indexing and querying.
 # Must be the same model for all stored chunks — changing this requires
 # deleting all rag_chunks rows and re-uploading every RAG document.
-EMBEDDING_MODEL = "text-embedding-ada-002"
+EMBEDDING_MODEL = "text-embedding-3-small"
 
 ADMIN_USERS = {"admin", "pradip", "pradip admin"}
 
