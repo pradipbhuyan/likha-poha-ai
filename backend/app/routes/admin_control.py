@@ -949,7 +949,7 @@ def get_ai_settings(admin=Depends(require_admin)):
         return {
             "success": True,
             "api_enabled": row.get("api_enabled", True),
-            "api_key_prefix": effective_key[:8] if effective_key else "",
+            "api_key_prefix": effective_key[:12] if effective_key else "",
             "key_source": "database" if stored_key else "environment",
         }
 
@@ -958,7 +958,7 @@ def get_ai_settings(admin=Depends(require_admin)):
     return {
         "success": True,
         "api_enabled": True,
-        "api_key_prefix": env_key[:8] if env_key else "",
+        "api_key_prefix": env_key[:12] if env_key else "",
         "key_source": "environment",
     }
 
@@ -1015,7 +1015,7 @@ def update_ai_settings(
     return {
         "success": True,
         "api_enabled": data.api_enabled,
-        "api_key_prefix": display_key[:8] if display_key else "",
+        "api_key_prefix": display_key[:12] if display_key else "",
         "key_source": "database" if effective_key else "environment",
         "message": "AI settings saved successfully.",
     }

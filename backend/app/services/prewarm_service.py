@@ -71,15 +71,20 @@ def get_all_job_statuses() -> dict[str, str]:
 
 def get_syllabus_for_grade(grade: str) -> dict:
     """
-    Return {mode: {subject: [chapter, ...]}} using the same reviewed syllabus
-    data the student-facing UI uses (merge_uploaded_rag_chapters).
+    Return {mode: {subject: [chapter, ...]}} for CBSE and SOF only, using the
+    same reviewed syllabus data the student-facing UI uses.
 
-    This ensures the full-grade prewarm generates lessons for exactly the
-    chapters students can access — matching the student lesson dropdown.
+    State Board is excluded so count_expected_lessons and the full-grade prewarm
+    do not include State Board chapters uploaded as RAG content.
     """
     reviewed = _get_reviewed_syllabus_for_grade(grade)
     if reviewed:
-        return reviewed
+        # Filter to prewarm-supported modes only
+        return {
+            mode: subjects
+            for mode, subjects in reviewed.items()
+            if mode in _PREWARM_MODES
+        }
     # Fallback: read raw rag_documents if syllabus merge fails
     try:
         response = (

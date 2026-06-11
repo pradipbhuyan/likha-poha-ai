@@ -154,13 +154,14 @@ function AdminControlPage({ user }) {
     }
   }
 
-  async function saveAiSettings() {
+  async function saveAiSettings(overrideEnabled) {
     /** Persist the master switch and optional new key, then refresh the displayed prefix. */
+    const enabledValue = overrideEnabled !== undefined ? overrideEnabled : aiEnabled;
     setAiSettingsSaving(true);
     setAiSettingsMessage("");
     setAiSettingsError("");
     try {
-      const payload = { api_enabled: aiEnabled };
+      const payload = { api_enabled: enabledValue };
       if (newApiKey.trim()) {
         payload.openai_api_key = newApiKey.trim();
       }
@@ -169,7 +170,11 @@ function AdminControlPage({ user }) {
       setAiKeyPrefix(data.api_key_prefix || "");
       setAiKeySource(data.key_source || "database");
       setNewApiKey("");
-      setAiSettingsMessage("AI settings saved successfully.");
+      setAiSettingsMessage(
+        data.api_enabled
+          ? "AI API is ON — lessons and doubts work normally."
+          : "AI API is OFF — all AI features are disabled for all users."
+      );
     } catch (err) {
       setAiSettingsError(err.message || "Unable to save AI settings.");
     } finally {
@@ -644,7 +649,11 @@ function AdminControlPage({ user }) {
             <strong style={{ fontSize: "1rem" }}>Master AI Switch</strong>
             <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
               <div
-                onClick={() => setAiEnabled((prev) => !prev)}
+                onClick={() => {
+                  const next = !aiEnabled;
+                  setAiEnabled(next);
+                  saveAiSettings(next);
+                }}
                 style={{
                   width: 52,
                   height: 28,
