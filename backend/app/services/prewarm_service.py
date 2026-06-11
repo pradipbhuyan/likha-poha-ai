@@ -112,24 +112,11 @@ def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: s
     """
     Return True if at least one RAG document exists for this chapter.
 
-    Pre-generation skips chapters without RAG so lessons are always
-    grounded in uploaded textbook content rather than LLM general knowledge.
+    Uses the batch-fetched RAG chapters cache so repeated calls within a
+    single status load do not each issue a separate Supabase query.
     """
-    try:
-        clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-        result = (
-            supabase
-            .table("rag_documents")
-            .select("id")
-            .eq("grade", grade)
-            .eq("subject", subject)
-            .eq("chapter", clean_chapter)
-            .limit(1)
-            .execute()
-        )
-        return len(result.data or []) > 0
-    except Exception:
-        return False  # If DB check fails, skip to be safe
+    clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
+    return (subject, clean_chapter) in _get_rag_chapters_for_grade(grade)
 
 
 def count_expected_lessons(grade: str) -> int:
@@ -349,20 +336,76 @@ def build_question_bank_for_grade(grade: str) -> None:
         set_job_status(job_key, "idle")
 
 
+# ---------------------------------------------------------------------------
+# Syllabus & RAG content caches — avoid O(N) Supabase queries on status load
+# ---------------------------------------------------------------------------
+
+_syllabus_cache: dict = {"data": None, "loaded_at": 0.0}
+_SYLLABUS_CACHE_TTL = 300.0  # 5 minutes
+
+_rag_chapters_cache: dict = {}          # grade → set of (subject, chapter)
+_rag_chapters_loaded: dict = {}         # grade → loaded_at timestamp
+_RAG_CHAPTERS_TTL = 300.0               # 5 minutes
+
+
+def _get_full_reviewed_syllabus() -> dict:
+    """
+    Return the full {grade: {mode: {subject: [chapters]}}} with 5-minute TTL.
+
+    Caches the result of merge_uploaded_rag_chapters so the status endpoint
+    does not re-run 10+ Supabase queries per grade on every poll.
+    """
+    now = time.time()
+    if _syllabus_cache["data"] is None or now - _syllabus_cache["loaded_at"] > _SYLLABUS_CACHE_TTL:
+        try:
+            from app.routes.syllabus import merge_uploaded_rag_chapters  # noqa: PLC0415
+            from app.data.syllabus import SYLLABUS  # noqa: PLC0415
+            _syllabus_cache["data"] = merge_uploaded_rag_chapters(SYLLABUS)
+            _syllabus_cache["loaded_at"] = now
+        except Exception:
+            if _syllabus_cache["data"] is None:
+                _syllabus_cache["data"] = {}
+    return _syllabus_cache["data"] or {}
+
+
 def _get_reviewed_syllabus_for_grade(grade: str) -> dict:
     """
-    Return the reviewed {mode: {subject: [chapters]}} for a grade using the
-    same merge_uploaded_rag_chapters logic the student-facing syllabus uses.
+    Return the reviewed {mode: {subject: [chapters]}} for a grade.
 
-    This ensures prewarm chapter names exactly match what students see.
+    Reads from the 5-minute cached full syllabus so repeated calls for
+    different grades share one Supabase round-trip.
     """
-    try:
-        from app.routes.syllabus import merge_uploaded_rag_chapters  # noqa: PLC0415
-        from app.data.syllabus import SYLLABUS  # noqa: PLC0415
-        full_syllabus = merge_uploaded_rag_chapters(SYLLABUS)
-        return full_syllabus.get(grade, {})
-    except Exception:
-        return {}
+    return _get_full_reviewed_syllabus().get(grade, {})
+
+
+def _get_rag_chapters_for_grade(grade: str) -> set:
+    """
+    Return the set of (subject, chapter) tuples that have RAG content for
+    a grade, fetched in ONE query with a 5-minute TTL cache.
+
+    Replaces has_rag_content_for_chapter() with a batch lookup so
+    count_expected_lessons does not issue one Supabase query per chapter.
+    """
+    now = time.time()
+    if grade not in _rag_chapters_loaded or now - _rag_chapters_loaded[grade] > _RAG_CHAPTERS_TTL:
+        try:
+            result = (
+                supabase
+                .table("rag_documents")
+                .select("subject, chapter")
+                .eq("grade", grade)
+                .execute()
+            )
+            _rag_chapters_cache[grade] = {
+                (doc.get("subject") or "", doc.get("chapter") or "")
+                for doc in result.data or []
+                if doc.get("subject") and doc.get("chapter")
+            }
+            _rag_chapters_loaded[grade] = now
+        except Exception:
+            if grade not in _rag_chapters_cache:
+                _rag_chapters_cache[grade] = set()
+    return _rag_chapters_cache.get(grade, set())
 
 
 # Only CBSE and SOF are valid lesson generation modes — State Board chapters
