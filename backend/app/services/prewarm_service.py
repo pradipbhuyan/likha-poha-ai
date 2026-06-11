@@ -96,13 +96,45 @@ def get_syllabus_for_grade(grade: str) -> dict:
         return {"CBSE": {}, "SOF": {}}
 
 
+def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: str) -> bool:
+    """
+    Return True if at least one RAG document exists for this chapter.
+
+    Pre-generation skips chapters without RAG so lessons are always
+    grounded in uploaded textbook content rather than LLM general knowledge.
+    """
+    try:
+        clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
+        result = (
+            supabase
+            .table("rag_documents")
+            .select("id")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("chapter", clean_chapter)
+            .limit(1)
+            .execute()
+        )
+        return len(result.data or []) > 0
+    except Exception:
+        return False  # If DB check fails, skip to be safe
+
+
 def count_expected_lessons(grade: str) -> int:
-    """Total lesson steps to generate for a grade."""
+    """
+    Total lesson steps to generate for a grade (RAG-backed chapters only).
+
+    Only chapters that have at least one RAG document are counted so the
+    progress bar reflects what will actually be generated.
+    """
     syllabus = get_syllabus_for_grade(grade)
     total = 0
-    for mode_data in syllabus.values():
-        for chapters in mode_data.values():
-            total += len(chapters) * len(LESSON_STEPS)
+    for mode, mode_data in syllabus.items():
+        board = "CBSE"
+        for subject, chapters in mode_data.items():
+            for chapter in chapters:
+                if has_rag_content_for_chapter(board, grade, subject, chapter):
+                    total += len(LESSON_STEPS)
     return total
 
 
@@ -182,8 +214,12 @@ def clear_question_bank_for_grade(grade: str) -> int:
 
 def prewarm_lessons_for_grade(grade: str) -> None:
     """
-    Background task: generate and cache all lesson steps for a grade.
-    Already-cached steps are skipped automatically (safe to re-run).
+    Background task: generate and cache RAG-backed lesson steps for a grade.
+
+    Only chapters that have RAG documents uploaded are processed.
+    Chapters without RAG content are skipped — this ensures all cached
+    lessons are grounded in uploaded textbook material.
+    Already-cached steps are also skipped (safe to re-run).
     """
     job_key = f"lessons_{grade.replace(' ', '')}"
     set_job_status(job_key, "running")
@@ -195,6 +231,10 @@ def prewarm_lessons_for_grade(grade: str) -> None:
             board = "CBSE" if mode != "SOF" else "CBSE"
             for subject, chapters in mode_data.items():
                 for chapter in chapters:
+                    # Skip chapters with no uploaded RAG content
+                    if not has_rag_content_for_chapter(board, grade, subject, chapter):
+                        continue
+
                     for step_title in LESSON_STEPS:
                         cache_key = make_lesson_cache_key(
                             board=board,
