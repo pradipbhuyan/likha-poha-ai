@@ -1,5 +1,5 @@
 
-from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
+from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm, PREWARM_TEXT_MODEL
 from app.services.rag_service import search_textbook_content
 from app.services.rag_visual_service import (
     find_visual_assets_for_question,
@@ -311,6 +311,7 @@ def generate_step_lesson(
     teacher_persona: str = "",
     username: str = "unknown",
     board: str = "CBSE",
+    model: str = DEFAULT_TEXT_MODEL,
 ):
     """
     Generate one focused lesson step using RAG when uploaded context exists.
@@ -318,6 +319,9 @@ def generate_step_lesson(
     Cache-first: checks lesson_cache before calling the LLM. On cache hit the
     lesson is returned instantly with zero token cost. On cache miss the LLM
     generates as normal and the result is stored for future requests.
+
+    Pass model=PREWARM_TEXT_MODEL for offline pre-generation (75% cheaper).
+    Live student requests use DEFAULT_TEXT_MODEL for best quality.
 
     The function first searches exact chapter material, falls back to broader
     subject material, and only then relies on general model knowledge. Returned
@@ -483,6 +487,7 @@ question should be inside the "Quick check question" section.
         prompt,
         username=username,
         feature="lesson",
+        model=model,
     )
 
     lesson = remove_mermaid_blocks(lesson)

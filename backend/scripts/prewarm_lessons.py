@@ -6,7 +6,8 @@ Generates all Grade 9 lesson steps and stores them in lesson_cache.
 Run this ONCE when your OpenAI API key is ready and the lesson_cache table
 has been created in Supabase (backend/sql/add_lesson_cache.sql).
 
-Estimated cost: ~$2.50 for all 750 Grade 9 lesson steps.
+Uses gpt-4.1-nano (PREWARM_TEXT_MODEL) — 75% cheaper than gpt-4.1-mini.
+Estimated cost: ~$0.44 for all 750 Grade 9 lesson steps (was ~$1.77 with mini).
 Estimated time: ~25 minutes (rate limited to ~0.5 req/sec).
 
 Usage:
@@ -26,6 +27,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.data.syllabus import CBSE_9, SOF_9
 from app.services.tutor_service import generate_step_lesson
 from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cache_key
+from app.services.openai_service import PREWARM_TEXT_MODEL
 
 # The 5 fixed lesson steps used by the frontend for every chapter
 LESSON_STEPS = [
@@ -55,7 +57,7 @@ def count_total_steps():
 
 
 def prewarm_cbse():
-    """Generate and cache all CBSE Grade 9 lesson steps."""
+    """Generate and cache all CBSE Grade 9 lesson steps using gpt-4.1-nano."""
     total_generated = 0
     total_skipped = 0
 
@@ -74,7 +76,6 @@ def prewarm_cbse():
                     teacher_persona=TEACHER_PERSONA,
                 )
 
-                # Skip if already cached
                 if get_cached_lesson(cache_key):
                     print(f"  ⏭  SKIP  {subject} → {chapter[:40]} → {step_title}")
                     total_skipped += 1
@@ -92,6 +93,7 @@ def prewarm_cbse():
                         teacher_persona=TEACHER_PERSONA,
                         username="prewarm_admin",
                         board=BOARD,
+                        model=PREWARM_TEXT_MODEL,
                     )
                     total_generated += 1
                     time.sleep(REQUEST_DELAY_SECONDS)
@@ -104,7 +106,7 @@ def prewarm_cbse():
 
 
 def prewarm_sof():
-    """Generate and cache all SOF Grade 9 lesson steps."""
+    """Generate and cache all SOF Grade 9 lesson steps using gpt-4.1-nano."""
     total_generated = 0
     total_skipped = 0
 
@@ -140,6 +142,7 @@ def prewarm_sof():
                         teacher_persona=TEACHER_PERSONA,
                         username="prewarm_admin",
                         board=BOARD,
+                        model=PREWARM_TEXT_MODEL,
                     )
                     total_generated += 1
                     time.sleep(REQUEST_DELAY_SECONDS)
@@ -158,8 +161,9 @@ if __name__ == "__main__":
     print("LikhaPoha AI — Lesson Pre-Warming Script")
     print("=" * 60)
     print(f"Grade: {GRADE}")
+    print(f"Model: {PREWARM_TEXT_MODEL} (gpt-4.1-nano, 75% cheaper than mini)")
     print(f"Total steps to generate: {total_steps}")
-    print(f"Estimated cost: ~${total_steps * 0.0033:.2f}")
+    print(f"Estimated cost: ~${total_steps * 0.0006:.2f}")
     print(f"Estimated time: ~{total_steps * REQUEST_DELAY_SECONDS / 60:.0f} minutes")
     print()
     print("Note: Already-cached steps will be skipped automatically.")

@@ -16,7 +16,7 @@ from app.data.syllabus import CBSE_9, SOF_9
 from app.services.tutor_service import generate_step_lesson
 from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cache_key
 from app.services.question_bank_service import add_questions_to_bank
-from app.services.openai_service import ask_llm
+from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
 from app.services.supabase_client import supabase
 
 # ------------------------------------------------------------------ constants
@@ -218,6 +218,7 @@ def prewarm_lessons_for_grade(grade: str) -> None:
                                 teacher_persona="",
                                 username="prewarm_admin",
                                 board=board,
+                                model=PREWARM_TEXT_MODEL,
                             )
                             time.sleep(REQUEST_DELAY_SECONDS)
                         except Exception:

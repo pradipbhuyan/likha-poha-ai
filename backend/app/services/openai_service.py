@@ -26,21 +26,34 @@ GPT5_TEXT_MODEL = "gpt-4.1-mini"
 # Admin per-student override model — same as default.
 GPT5_MINI_TEXT_MODEL = "gpt-4.1-mini"
 
-# Approximate GPT-4.1-mini pricing (per 1K tokens)
-# Source: OpenAI pricing page — update here if pricing changes.
+# Pre-generation model — gpt-4.1-nano for offline lesson cache building.
+# 75% cheaper than mini ($0.10/$0.40 per 1M vs $0.40/$1.60 per 1M).
+# Quality is reviewed before going live; cache misses still use DEFAULT_TEXT_MODEL.
+PREWARM_TEXT_MODEL = "gpt-4.1-nano"
+
+# Pricing per 1K tokens by model (used by estimate_cost).
+_MODEL_PRICING = {
+    "gpt-4.1-mini": {"input": 0.0004, "output": 0.0016},
+    "gpt-4.1-nano": {"input": 0.0001, "output": 0.0004},
+    "gpt-4.1":      {"input": 0.002,  "output": 0.008},
+}
+
+# Approximate GPT-4.1-mini pricing (per 1K tokens) — kept for backward compat
 INPUT_COST_PER_1K = 0.0004
 OUTPUT_COST_PER_1K = 0.0016
 
 
-def estimate_cost(prompt_tokens: int, completion_tokens: int) -> float:
+def estimate_cost(prompt_tokens: int, completion_tokens: int, model: str = DEFAULT_TEXT_MODEL) -> float:
     """
     Estimate one OpenAI call's cost from token counts.
 
-    The values are used for admin usage reporting, not for billing parents
-    directly, so a rounded approximate cost is sufficient.
+    Looks up per-model pricing so the admin usage dashboard accurately
+    reflects nano (pre-generation) vs mini (live requests) costs.
+    The values are used for admin usage reporting only.
     """
-    input_cost = (prompt_tokens / 1000) * INPUT_COST_PER_1K
-    output_cost = (completion_tokens / 1000) * OUTPUT_COST_PER_1K
+    pricing = _MODEL_PRICING.get(model, _MODEL_PRICING[DEFAULT_TEXT_MODEL])
+    input_cost = (prompt_tokens / 1000) * pricing["input"]
+    output_cost = (completion_tokens / 1000) * pricing["output"]
 
     return round(input_cost + output_cost, 6)
 
@@ -85,6 +98,7 @@ def ask_llm(
     estimated_cost = estimate_cost(
         prompt_tokens,
         completion_tokens,
+        model=model,
     )
 
     log_ai_usage(
