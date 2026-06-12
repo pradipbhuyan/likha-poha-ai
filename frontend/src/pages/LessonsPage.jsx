@@ -260,6 +260,7 @@ function LessonsPage({ user }) {
 
   const [practiceModeActive, setPracticeModeActive] = useState(false);
   const [practiceFocusWarnings, setPracticeFocusWarnings] = useState(0);
+  const [gifFading, setGifFading] = useState(false);
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -726,8 +727,15 @@ function LessonsPage({ user }) {
   }
 
   async function handleGenerateLesson() {
-    /** Generate one lesson step, save it to progress, and store RAG source metadata. */
+    /** Generate one lesson step, save it to progress, and store RAG source metadata.
+     *  GIF plays for 5 s, fades out over 1 s, lesson appears at 6 s.
+     */
+    const GIF_FADE_AT_MS = 5000;
+    const MIN_GIF_MS = 6000;
+    const gifStart = Date.now();
+
     setGenerating(true);
+    setGifFading(false);
     setLesson("");
     setAudioUrl("");
     setSourceInfo(null);
@@ -735,6 +743,9 @@ function LessonsPage({ user }) {
     setFollowUpQuestion("");
     setFollowUpMessages([]);
     resetPracticeState();
+
+    // Schedule the fade-out regardless of how fast the lesson loads
+    const fadeTimer = setTimeout(() => setGifFading(true), GIF_FADE_AT_MS);
   
     try {
       const result = await generateLesson({
@@ -749,10 +760,18 @@ function LessonsPage({ user }) {
       });
   
       if (!result.success) {
+        clearTimeout(fadeTimer);
         setError(result.message || "Lesson generation failed");
         return;
       }
-  
+
+      // Wait until 6 s total so the fade-out (1 s) has time to finish
+      const elapsed = Date.now() - gifStart;
+      if (elapsed < MIN_GIF_MS) {
+        await new Promise((resolve) => setTimeout(resolve, MIN_GIF_MS - elapsed));
+      }
+      clearTimeout(fadeTimer);
+
       setLesson(result.lesson);
       if ((result.textbook_visuals || []).length > 0) {
         setSelectedTextbookVisual(result.textbook_visuals[0]);
@@ -784,9 +803,11 @@ function LessonsPage({ user }) {
         step_lessons: updatedStepLessons,
       });
     } catch (err) {
+      clearTimeout(fadeTimer);
       setError(err.message || "Could not generate lesson. Check backend.");
     } finally {
       setGenerating(false);
+      setGifFading(false);
     }
   }
 
@@ -1409,6 +1430,17 @@ function LessonsPage({ user }) {
 
         <section className="lesson-content-panel premium-lesson-content">
           {error && <div className="error-box">{error}</div>}
+
+          {generating && (
+            <div className={`lesson-generating-overlay${gifFading ? " lesson-gif-fading" : ""}`}>
+              <img
+                src="/likhapohaai.gif"
+                alt="LikhaPoha AI is preparing your lesson…"
+                className="lesson-loading-gif"
+              />
+              <p className="lesson-loading-label">Preparing your lesson…</p>
+            </div>
+          )}
 
           {!lesson && !generating && (
             <div className="premium-section premium-empty-lesson">
