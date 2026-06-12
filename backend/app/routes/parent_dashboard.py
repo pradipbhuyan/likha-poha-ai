@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+import re
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -15,9 +20,28 @@ from app.services.board_service import normalize_board
 
 router = APIRouter()
 
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+_CHILD_EMAIL_DOMAIN = "child.likhapoha.in"
+
+
+def _resolve_child_auth_email(requested_email: str | None, username: str) -> str:
+    """
+    Return the email used for Supabase auth + profile lookup.
+
+    - If the parent provided a real email, use it.
+    - Otherwise generate a synthetic email so Supabase auth (which always
+      requires an email) succeeds and the lookup-email login flow works.
+    """
+    raw = (requested_email or "").strip()
+    if raw and _EMAIL_RE.match(raw):
+        return raw
+    # Sanitise username to a safe local-part
+    safe = re.sub(r"[^a-zA-Z0-9._-]", "", username) or "child"
+    return f"{safe}@{_CHILD_EMAIL_DOMAIN}"
+
 
 class CreateStudentRequest(BaseModel):
-    email: str
+    email: Optional[str] = None   # optional for children — real or synthetic
     password: str
     username: str
     board: str = "CBSE"
@@ -145,14 +169,18 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
             detail="Parent does not belong to a family.",
         )
 
+    auth_email = _resolve_child_auth_email(data.email, data.username)
+
     auth_user = create_auth_user(
-        email=data.email,
+        email=auth_email,
         password=data.password,
     )
 
     child_profile = {
         "id": auth_user.id,
-        "email": data.email,
+        # Store the resolved email (real or synthetic) so the username→email
+        # lookup-email login flow returns a usable address for signInWithPassword.
+        "email": auth_email,
         "username": data.username,
         "role": "student",
         "parent_id": parent_profile["id"],

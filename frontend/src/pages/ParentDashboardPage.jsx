@@ -552,11 +552,13 @@ function ParentDashboardPage() {
 
               <input
                 type="email"
-                placeholder="Student Email"
+                placeholder="Student Email (optional)"
                 value={studentEmail}
                 onChange={(e) => setStudentEmail(e.target.value)}
-                required
               />
+              <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
+                Leave blank if the student does not have an email — they can still log in with their username and password.
+              </small>
 
               <input
                 type="password"
