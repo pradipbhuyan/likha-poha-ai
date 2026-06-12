@@ -247,8 +247,17 @@ def generate_mock_test(
             message="Mock test generated successfully",
         )
 
-    except HTTPException:
-        raise
+    except HTTPException as http_exc:
+        # Re-raise access/auth errors (403) so they're handled by FastAPI middleware.
+        # Convert AI-disabled (503) and other service errors into a user-friendly
+        # MockTestResponse so the frontend can display the actual reason.
+        if http_exc.status_code in (401, 403):
+            raise
+        return MockTestResponse(
+            success=False,
+            questions=[],
+            message=http_exc.detail or "Service temporarily unavailable.",
+        )
 
     except Exception as e:
         return MockTestResponse(
