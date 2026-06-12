@@ -228,9 +228,26 @@ def generate_olympiad_mock_test(
     """
     Generate an original SOF mock test grounded in uploaded RAG context.
 
+    Bank-first: if question bank already contains questions for this chapter
+    and difficulty, serve them instantly at zero token cost.
+    Falls back to RAG + LLM generation only when the bank is empty.
     Explanations may add wider model knowledge, but every question must be
     inspired by uploaded SOF content so the test stays aligned with the workbook.
     """
+    # ------------------------------------------------------------------ bank
+    bank_questions = get_questions_from_bank(
+        board="CBSE",
+        grade=grade,
+        subject=olympiad,
+        chapter=chapter or "",
+        difficulty=difficulty,
+        num_questions=num_questions,
+        exam_type="General",
+    )
+    if bank_questions:
+        return bank_questions
+    # --------------------------------------------------------------- end bank
+
     if olympiad == "Science Olympiad":
         pattern = f"""
 Create a {grade} SOF Science Olympiad style mock test.
@@ -329,9 +346,23 @@ Return only valid JSON.
 
     try:
         data = json.loads(raw)
-        return data.get("questions", [])
+        questions = data.get("questions", [])
     except Exception:
         return []
+
+    # Store newly generated questions in the bank for future zero-cost requests
+    if questions:
+        add_questions_to_bank(
+            questions=questions,
+            board="CBSE",
+            grade=grade,
+            subject=olympiad,
+            chapter=chapter or "",
+            difficulty=difficulty,
+            exam_type="General",
+        )
+
+    return questions
 
 
 def generate_science_olympiad_mock_test(
