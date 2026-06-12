@@ -19,7 +19,7 @@ def extract_text_from_image_bytes(image_bytes: bytes) -> str:
     image_base64 = base64.b64encode(image_bytes).decode("utf-8")
 
     response = client.responses.create(
-        model="gpt-4.1-mini",
+        model="gpt-4.1-nano",
         input=[
             {
                 "role": "user",
