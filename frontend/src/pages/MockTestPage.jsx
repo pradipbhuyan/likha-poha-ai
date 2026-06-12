@@ -12,6 +12,28 @@ import {
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
+/**
+ * Renders text that may contain caret-notation exponents (x^2, a^{n+1}).
+ * Splits on exponent patterns and renders <sup> via React — no innerHTML needed.
+ */
+function MathText({ text }) {
+  const str = String(text || "");
+  // Split on ^{expr} or ^digits — keep delimiters so we know what was matched
+  const parts = str.split(/(\^\{[^}]+\}|\^[0-9]+)/g);
+
+  return (
+    <span>
+      {parts.map((part, i) => {
+        if (part.startsWith("^")) {
+          const exp = part.replace(/^\^[{]?/, "").replace(/[}]$/, "");
+          return <sup key={i}>{exp}</sup>;
+        }
+        return part;
+      })}
+    </span>
+  );
+}
+
 function MockTestPage({ user }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
   function getPerformanceSummary(percentage) {
@@ -642,7 +664,7 @@ function MockTestPage({ user }) {
               <div key={q.id} className="question-card premium-question-card">
                 <div className="premium-question-header">
                   <h4>
-                    Q{q.id}. {q.question}
+                    Q{q.id}. <MathText text={q.question} />
                   </h4>
 
                   <span>
@@ -669,7 +691,7 @@ function MockTestPage({ user }) {
                         onChange={() => handleAnswerChange(q.id, key)}
                       />
                       <span>
-                        <strong>{key}.</strong> {value}
+                        <strong>{key}.</strong> <MathText text={value} />
                       </span>
                     </label>
                   ))}
@@ -752,24 +774,25 @@ function MockTestPage({ user }) {
                   Q{r.id}. {r.isCorrect ? "✅ Correct" : "❌ Incorrect"}
                 </h4>
 
-                <p>{r.question}</p>
+                <p><MathText text={r.question} /></p>
 
                 <p>
                   Your Answer:{" "}
                   <strong>
-                    {r.selected || "Not answered"}
-                    {r.selected ? `. ${r.options?.[r.selected] || ""}` : ""}
+                    {r.selected
+                      ? <><>{r.selected}. </><MathText text={r.options?.[r.selected] || ""} /></>
+                      : "Not answered"}
                   </strong>
                 </p>
 
                 <p>
                   Correct Answer:{" "}
                   <strong>
-                    {r.correct}. {r.options?.[r.correct]}
+                    {r.correct}. <MathText text={r.options?.[r.correct]} />
                   </strong>
                 </p>
 
-                <p>Explanation: {r.explanation}</p>
+                <p>Explanation: <MathText text={r.explanation} /></p>
               </div>
             ))}
           </div>
