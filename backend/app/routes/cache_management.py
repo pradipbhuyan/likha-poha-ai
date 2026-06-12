@@ -10,6 +10,7 @@ import threading
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel
 from app.services.auth_service import require_admin
+from app.services.openai_service import get_effective_settings
 from app.services.prewarm_service import (
     prewarm_lessons_for_grade,
     prewarm_single_chapter,
@@ -97,6 +98,13 @@ def start_question_bank_build(
     if grade not in ALL_GRADES:
         raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
 
+    ai_settings = get_effective_settings()
+    if not ai_settings.get("api_enabled", True):
+        return {
+            "success": False,
+            "message": "AI API is currently disabled. Enable it in Admin Control → AI API Settings before building the question bank.",
+        }
+
     job_key = f"questions_{grade.replace(' ', '')}"
     if is_job_running(job_key):
         return {
@@ -144,6 +152,13 @@ def start_chapter_question_bank_build(
     """Start question bank building for exactly one chapter as a background task."""
     if data.grade not in ALL_GRADES:
         raise HTTPException(status_code=400, detail=f"Invalid grade: {data.grade}")
+
+    ai_settings = get_effective_settings()
+    if not ai_settings.get("api_enabled", True):
+        return {
+            "success": False,
+            "message": "AI API is currently disabled. Enable it in Admin Control → AI API Settings before building the question bank.",
+        }
 
     safe_subject = data.subject[:12].replace(" ", "_")
     safe_chapter = data.chapter[:12].replace(" ", "_")
