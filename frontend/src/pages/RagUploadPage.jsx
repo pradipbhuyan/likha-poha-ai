@@ -209,6 +209,7 @@ function RagUploadPage({ user }) {
   const [sofPages, setSofPages] = useState([]);
   const [sofGroups, setSofGroups] = useState([]);
   const [sofRawResponse, setSofRawResponse] = useState("");
+  const [sofAnalysisJob, setSofAnalysisJob] = useState(null);
   const [ragQuery, setRagQuery] = useState("");
   const [ragResults, setRagResults] = useState([]);
   const [searchingRag, setSearchingRag] = useState(false);
@@ -560,32 +561,45 @@ function RagUploadPage({ user }) {
     }
 
     setSofAnalyzing(true);
+    setSofAnalysisJob(null);
 
     try {
-      const result = await analyzeSofImages({
+      const started = await analyzeSofImages({
         grade,
         files: sofFiles,
       });
 
-      if (!result.success) {
-        setSofPages(result.pages || []);
-        setSofGroups(result.groups || []);
-        setSofRawResponse(
-          result.raw_ai_response ||
-            (result.file_warnings || [])
-              .map((warning) => `${warning.filename}: ${warning.message}`)
-              .join("\n")
-        );
-        setError(result.message || "SOF image analysis failed.");
+      if (!started.success) {
+        setError(started.message || "SOF analysis failed to start.");
         return;
       }
 
-      setSofPages(result.pages || []);
-      setSofGroups(result.groups || []);
-      setSofRawResponse(result.raw_ai_response || "");
-      setMessage(result.message || "SOF files analyzed. Review extracted pages and groups before uploading.");
+      // Background job started — persist job_id so user can resume on revisit
+      const jobId = started.job_id;
+      localStorage.setItem("sof_analysis_job_id", jobId);
+      setMessage(`Analysis started — processing ${sofFiles.length} file(s) in background. You can leave this page and come back.`);
+
+      const completedJob = await pollRagJob(jobId, setSofAnalysisJob);
+      localStorage.removeItem("sof_analysis_job_id");
+
+      if (completedJob.status === "failed") {
+        setError(completedJob.error_message || completedJob.message || "SOF analysis failed.");
+        setSofAnalysisJob(completedJob);
+        return;
+      }
+
+      const resultData = completedJob.result || {};
+      setSofPages(resultData.pages || []);
+      setSofGroups(resultData.groups || []);
+      setSofRawResponse(
+        (resultData.file_warnings || []).length > 0
+          ? (resultData.file_warnings || []).map((w) => `${w.filename}: ${w.message}`).join("\n")
+          : ""
+      );
+      setMessage(resultData.message || "SOF files analyzed. Review groups before uploading.");
     } catch (err) {
       console.error(err);
+      localStorage.removeItem("sof_analysis_job_id");
       setError(err.message || "SOF image analysis failed. Check backend.");
     } finally {
       setSofAnalyzing(false);
@@ -2193,6 +2207,8 @@ function RagUploadPage({ user }) {
             ? "Analyzing SOF Files..."
             : "🧠 Analyze & Organize SOF Files"}
         </button>
+
+        <RagJobProgress job={sofAnalysisJob} title="SOF OCR analysis" />
 
         {sofPages.length > 0 && (
           <div className="premium-rag-extracted-pages">

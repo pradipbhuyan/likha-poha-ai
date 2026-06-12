@@ -1682,87 +1682,104 @@ async def upload_full_book_sections(
             "results": [],
         }
 
-@router.post("/analyze-sof-images")
-async def analyze_sof_images(
-    grade: str = Form("Grade 9"),
-    files: list[UploadFile] = File(...),
-):
-    """
-    OCR and organize up to 20 SOF files into canonical upload groups.
 
-    The organizer maps noisy OCR to the canonical SOF TOC so later mock tests can
-    retrieve chapter, exercise, model-paper, and explanation content correctly.
+def run_sof_analysis_job(
+    *,
+    job_id: str,
+    grade: str,
+    files_data: list,
+) -> None:
     """
+    Background worker: OCR all SOF image/photo files, then use the LLM
+    organizer to group pages by subject and chapter for RAG upload.
+    Progress is persisted to rag_upload_jobs so the admin can poll for status.
+    """
+    total_files = len(files_data)
     try:
-        if len(files) > 20:
-            return {
-                "success": False,
-                "message": "You can analyze a maximum of 20 files at once.",
-                "pages": [],
-                "groups": [],
-            }
+        update_rag_job(
+            job_id,
+            status="running",
+            phase="extracting_pages",
+            percent=2,
+            page_count=total_files,
+            message=f"Starting OCR for {total_files} file(s).",
+        )
 
-        pages = []
-        file_warnings = []
+        pages: list[dict] = []
+        file_warnings: list[dict] = []
 
-        for file in files:
+        for i, fd in enumerate(files_data):
+            filename = fd["filename"]
+            file_bytes = fd["file_bytes"]
             try:
-                file_bytes = await file.read()
                 extracted_pages = extract_pages_from_uploaded_file(
-                    filename=file.filename,
+                    filename=filename,
                     file_bytes=file_bytes,
                 )
             except Exception as file_error:
                 file_warnings.append({
-                    "filename": file.filename,
+                    "filename": filename,
                     "message": f"Could not extract text: {str(file_error)}",
                 })
                 continue
 
             if len(pages) + len(extracted_pages) > 60:
-                return {
-                    "success": False,
-                    "message": "You can analyze a maximum of 60 extracted pages at once.",
-                    "pages": pages,
-                    "groups": [],
-                    "file_warnings": file_warnings,
-                }
+                file_warnings.append({
+                    "filename": filename,
+                    "message": "Skipped — 60-page limit reached.",
+                })
+                continue
 
-            for extracted_page in extracted_pages:
+            for ep in extracted_pages:
                 pages.append({
                     "page_number": len(pages) + 1,
-                    "source_page_number": extracted_page["page_number"],
-                    "filename": extracted_page["filename"],
-                    "ocr_text": extracted_page["text"],
-                    "word_count": extracted_page["word_count"],
-                    "extraction_method": extracted_page["extraction_method"],
-                    "warnings": extracted_page["warnings"],
+                    "source_page_number": ep["page_number"],
+                    "filename": ep["filename"],
+                    "ocr_text": ep["text"],
+                    "word_count": ep["word_count"],
+                    "extraction_method": ep["extraction_method"],
+                    "warnings": ep["warnings"],
                 })
 
-        if not pages:
-            return {
-                "success": False,
-                "message": "No readable text could be extracted from the selected SOF files.",
-                "pages": [],
-                "groups": [],
-                "file_warnings": file_warnings,
-            }
+            pct = 2 + int((i + 1) / total_files * 68)
+            update_rag_job(
+                job_id,
+                phase="extracting_pages",
+                processed_pages=len(pages),
+                percent=pct,
+                message=f"OCR: {i + 1}/{total_files} files done — {len(pages)} pages extracted.",
+            )
 
-        combined_ocr = "\n\n".join(
-            [
-                (
-                    f"PAGE {page['page_number']} - {page['filename']} "
-                    f"(source page {page['source_page_number']}, "
-                    f"{page['extraction_method']}, {page['word_count']} words)\n"
-                    f"{page['ocr_text']}"
-                )
-                for page in pages
-            ]
+        if not pages:
+            update_rag_job(
+                job_id,
+                status="failed",
+                phase="failed",
+                percent=100,
+                error_message="No readable text extracted.",
+                message="No readable text could be extracted from the selected SOF files.",
+                result={"success": False, "pages": [], "groups": [], "file_warnings": file_warnings},
+                warnings=file_warnings,
+            )
+            return
+
+        update_rag_job(
+            job_id,
+            phase="organizing",
+            percent=72,
+            message=f"Organizing {len(pages)} pages with AI.",
         )
 
+        combined_ocr = "\n\n".join(
+            f"PAGE {p['page_number']} - {p['filename']} "
+            f"(source page {p['source_page_number']}, "
+            f"{p['extraction_method']}, {p['word_count']} words)\n"
+            f"{p['ocr_text']}"
+            for p in pages
+        )
         canonical_toc = build_sof_catalog_prompt(grade)
 
-        system_prompt = """
+        sof_system_prompt = """
 You are an educational OCR organizer for SOF Olympiad books.
 
 Your job:
@@ -1786,7 +1803,7 @@ or section title visible in OCR. If OCR shows ISO, IMO, or IEO, map it to the
 matching SOF subject and model paper title.
 """
 
-        user_prompt = f"""
+        sof_user_prompt = f"""
 Analyze these OCR pages and organize them for SOF RAG upload.
 
 Return JSON in this exact format:
@@ -1822,25 +1839,35 @@ OCR PAGES:
 """
 
         ai_response = ask_llm(
-            system_prompt=system_prompt,
-            user_prompt=user_prompt,
+            system_prompt=sof_system_prompt,
+            user_prompt=sof_user_prompt,
             username="admin",
             feature="rag_sof_bulk_analysis",
             model=GPT5_TEXT_MODEL,
         )
 
+        update_rag_job(job_id, phase="parsing_result", percent=90, message="Parsing AI response.")
+
         try:
             parsed = json.loads(ai_response)
             raw_groups = parsed.get("groups", [])
         except Exception as parse_error:
-            return {
-                "success": False,
-                "message": f"SOF organizer returned invalid JSON: {str(parse_error)}",
-                "pages": pages,
-                "groups": [],
-                "raw_ai_response": ai_response,
-                "file_warnings": file_warnings,
-            }
+            update_rag_job(
+                job_id,
+                status="failed",
+                phase="failed",
+                percent=100,
+                error_message=f"Invalid JSON from organizer: {str(parse_error)}",
+                message="SOF organizer returned invalid JSON.",
+                result={
+                    "success": False,
+                    "pages": pages,
+                    "groups": [],
+                    "raw_ai_response": ai_response,
+                    "file_warnings": file_warnings,
+                },
+            )
+            return
 
         if not isinstance(raw_groups, list):
             raw_groups = []
@@ -1849,35 +1876,102 @@ OCR PAGES:
         for group in raw_groups:
             if not isinstance(group, dict):
                 continue
-
-            normalized_group = normalize_sof_group(
-                group,
-                fallback_grade=grade,
-            )
+            normalized_group = normalize_sof_group(group, fallback_grade=grade)
             if normalized_group["combined_text"]:
                 groups.append(normalized_group)
 
-        return {
-            "success": True,
-            "pages": pages,
-            "groups": groups,
-            "raw_ai_response": ai_response,
-            "file_warnings": file_warnings,
-            "message": (
-                "SOF files analyzed with warnings."
-                if file_warnings
-                else "SOF files analyzed successfully."
-            ),
-        }
+        final_message = (
+            "SOF files analyzed with warnings."
+            if file_warnings
+            else "SOF files analyzed successfully."
+        )
+        update_rag_job(
+            job_id,
+            status="completed",
+            phase="ready_for_review",
+            page_count=len(pages),
+            processed_pages=len(pages),
+            percent=100,
+            message=final_message,
+            warnings=file_warnings,
+            result={
+                "success": True,
+                "pages": pages,
+                "groups": groups,
+                "file_warnings": file_warnings,
+                "message": final_message,
+            },
+        )
 
-    except Exception as e:
+    except Exception as exc:
+        update_rag_job(
+            job_id,
+            status="failed",
+            phase="failed",
+            percent=100,
+            error_message=str(exc),
+            message=f"SOF analysis failed: {str(exc)}",
+            result={"success": False, "pages": [], "groups": [], "error": str(exc)},
+        )
+
+
+@router.post("/analyze-sof-images")
+async def analyze_sof_images(
+    grade: str = Form("Grade 9"),
+    files: list[UploadFile] = File(...),
+):
+    """
+    Submit SOF camera photos or PDFs for background OCR and AI organization.
+
+    Returns a job_id immediately — no waiting. Poll GET /api/rag/jobs/{job_id}
+    for progress. When status is "completed", the result contains pages and
+    groups ready for /confirm-sof-upload.
+    """
+    if len(files) > 20:
         return {
             "success": False,
-            "message": f"SOF image analysis failed: {str(e)}",
+            "message": "You can analyze a maximum of 20 files at once.",
             "pages": [],
             "groups": [],
-            "file_warnings": [],
         }
+
+    # Read file bytes now (fast - just memory copy, no OCR yet)
+    files_data = []
+    for f in files:
+        file_bytes = await f.read()
+        files_data.append({
+            "filename": f.filename or "upload.jpg",
+            "file_bytes": file_bytes,
+        })
+
+    if not files_data:
+        return {"success": False, "message": "No files received.", "pages": [], "groups": []}
+
+    total_size = sum(len(fd["file_bytes"]) for fd in files_data)
+    job = create_rag_job(
+        job_type="sof_analysis",
+        filename=f"{len(files_data)} SOF file(s)",
+        file_size=total_size,
+        message="SOF OCR analysis queued.",
+    )
+
+    submit_rag_job(
+        run_sof_analysis_job,
+        job_id=job["id"],
+        grade=grade,
+        files_data=files_data,
+    )
+
+    return {
+        "success": True,
+        "async": True,
+        "job_id": job["id"],
+        "job": job,
+        "message": (
+            f"{len(files_data)} SOF file(s) queued for background analysis. "
+            f"Poll /api/rag/jobs/{job['id']} for progress."
+        ),
+    }
 
 
 @router.post("/bulk-book-upload")
