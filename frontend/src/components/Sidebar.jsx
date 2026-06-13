@@ -23,6 +23,7 @@ import {
   Activity,
   Sparkles,
   Database,
+  Package,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -101,6 +102,12 @@ function Sidebar({
       key: "cacheManagement",
       label: "Cache & Question Bank",
       icon: Database,
+      roles: ["admin"],
+    },
+    {
+      key: "productCatalogue",
+      label: "Product Catalogue",
+      icon: Package,
       roles: ["admin"],
     },
     {
