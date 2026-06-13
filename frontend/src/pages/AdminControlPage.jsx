@@ -32,15 +32,19 @@ const STUDENT_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
 const AI_MODEL_OPTIONS = [
   {
     value: "default",
-    label: "Default (GPT-4.1 mini; Family Premium auto GPT-5)",
+    label: "Default (GPT-4.1 mini; auto-upgrade for premium plans)",
   },
   {
-    value: "gpt-5",
-    label: "GPT-5",
+    value: "gpt-4o",
+    label: "GPT-4o",
   },
   {
-    value: "gpt-5-mini",
-    label: "GPT-5 mini",
+    value: "gpt-4o-mini",
+    label: "GPT-4o mini (fastest)",
+  },
+  {
+    value: "o3-mini",
+    label: "o3-mini (reasoning)",
   },
 ];
 
@@ -374,37 +378,6 @@ function AdminControlPage({ user }) {
     }
   }
 
-  async function saveAccess(child) {
-    /** Persist the subject access flags and account status for one child. */
-    setMessage("");
-    setError("");
-
-    try {
-      await updateChildAccess(
-        child.id,
-        {
-          access_cbse: !!child.access_cbse,
-          access_sof_science: !!child.access_sof_science,
-          access_sof_maths: !!child.access_sof_maths,
-          access_sof_english: !!child.access_sof_english,
-          subscription_plan: child.subscription_plan || "free",
-          account_status: child.account_status || "active",
-          grade: child.grade || "Grade 9",
-          board: child.board || "CBSE",
-          ai_model_preference: child.ai_model_preference || "default",
-          cbse_subjects: getChildCbseSubjects(child),
-        },
-        user.accessToken
-      );
-
-      await loadFamilies();
-      setMessage(`Access saved for ${child.username}.`);
-    } catch (err) {
-      console.error(err);
-      setError("Unable to save access.");
-    }
-  }
-
   async function suspendChild(child) {
     /** Mark a child account as suspended using the same plan-saving path. */
     const updatedChild = {
@@ -464,12 +437,33 @@ function AdminControlPage({ user }) {
     }
   }
 
-  async function saveLimits(child) {
-    /** Save only token limits when the admin edits usage caps directly. */
+  async function saveAll(child) {
+    /**
+     * Save all child settings in one click: plan, access flags, AI model,
+     * board, grade, status, token limits, and CBSE subject access.
+     * Replaces the three separate Save Plan / Save Access / Save Limits buttons.
+     */
     setMessage("");
     setError("");
 
     try {
+      await updateChildAccess(
+        child.id,
+        {
+          access_cbse: !!child.access_cbse,
+          access_sof_science: !!child.access_sof_science,
+          access_sof_maths: !!child.access_sof_maths,
+          access_sof_english: !!child.access_sof_english,
+          subscription_plan: child.subscription_plan || "free",
+          account_status: child.account_status || "active",
+          grade: child.grade || "Grade 9",
+          board: child.board || "CBSE",
+          ai_model_preference: child.ai_model_preference || "default",
+          cbse_subjects: getChildCbseSubjects(child),
+        },
+        user.accessToken
+      );
+
       await updateChildLimits(
         child.id,
         {
@@ -480,10 +474,10 @@ function AdminControlPage({ user }) {
       );
 
       await loadFamilies();
-      setMessage(`Limits saved for ${child.username}.`);
+      setMessage(`✅ All changes saved for ${child.username}.`);
     } catch (err) {
       console.error(err);
-      setError("Unable to save limits.");
+      setError(`Unable to save changes for ${child.username}.`);
     }
   }
 
@@ -1685,27 +1679,18 @@ function AdminControlPage({ user }) {
                 </button>
               </div>
 
-              <div style={{ display: "flex", gap: 12, marginTop: 18 }}>
-                <button className="primary-btn" onClick={() => savePlan(child)}>
-                  💾 Save Plan
-                </button>
-
+              <div style={{ display: "flex", gap: 12, marginTop: 20, flexWrap: "wrap", alignItems: "center" }}>
                 <button
                   className="primary-btn"
-                  onClick={() => saveAccess(child)}
+                  onClick={() => saveAll(child)}
+                  style={{ minWidth: 180 }}
                 >
-                  Save Access
+                  💾 Save All Changes
                 </button>
 
-                <button
-                  className="secondary-btn"
-                  onClick={() => saveLimits(child)}
-                >
-                  Save Limits
-                </button>
                 {child.account_status === "suspended" ? (
                   <button
-                    className="primary-btn"
+                    className="secondary-btn"
                     onClick={() => reactivateChild(child)}
                   >
                     🔓 Reactivate
@@ -1721,9 +1706,10 @@ function AdminControlPage({ user }) {
 
                 <button
                   className="danger-btn"
+                  style={{ marginLeft: "auto" }}
                   onClick={() => removeUser(child.id)}
                 >
-                  Delete Child
+                  🗑 Delete Child
                 </button>
               </div>
             </div>
