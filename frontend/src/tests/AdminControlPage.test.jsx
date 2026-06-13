@@ -10,6 +10,7 @@ import {
   deleteTeacherAssignment,
   deleteUser,
   getAdminFamilies,
+  getAiSettings,
   updateChildAccess,
   updateChildLimits,
 } from "../api/adminControl";
@@ -24,6 +25,8 @@ vi.mock("../api/adminControl", () => ({
   updateChildAccess: vi.fn(),
   updateChildLimits: vi.fn(),
   deleteUser: vi.fn(),
+  getAiSettings: vi.fn(),
+  updateAiSettings: vi.fn(),
 }));
 
 const adminUser = {
@@ -45,6 +48,13 @@ describe("AdminControlPage teacher management", () => {
     getAdminFamilies.mockResolvedValue({
       success: true,
       families: [],
+    });
+
+    // AI settings panel needs a resolved value to avoid TypeError on api_enabled
+    vi.mocked(getAiSettings).mockResolvedValue({
+      api_enabled: true,
+      api_key_prefix: "sk-test",
+      key_source: "environment",
     });
   });
 
@@ -338,14 +348,14 @@ describe("AdminControlPage teacher management", () => {
       target: { value: "starter" },
     });
     fireEvent.change(controls.getByLabelText(/ai model/i), {
-      target: { value: "gpt-5-mini" },
+      target: { value: "gpt-4.1-mini" },
     });
     fireEvent.change(controls.getByLabelText(/ai token access/i), {
       target: { value: "unlimited" },
     });
     fireEvent.click(controls.getByLabelText("Science"));
     fireEvent.click(controls.getByLabelText("Maths"));
-    fireEvent.click(controls.getByRole("button", { name: /save plan/i }));
+    fireEvent.click(controls.getByRole("button", { name: /save all changes/i }));
 
     await waitFor(() => {
       expect(updateChildAccess).toHaveBeenCalledWith(
@@ -355,7 +365,7 @@ describe("AdminControlPage teacher management", () => {
           access_cbse: true,
           cbse_subjects: ["Science", "Maths"],
           grade: "Grade 9",
-          ai_model_preference: "gpt-5-mini",
+          ai_model_preference: "gpt-4.1-mini",
         }),
         "admin-token"
       );

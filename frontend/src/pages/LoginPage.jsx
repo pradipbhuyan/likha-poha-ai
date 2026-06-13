@@ -11,7 +11,7 @@ const PASSWORD_RESET_REDIRECT_URL =
   import.meta.env.VITE_PASSWORD_RESET_REDIRECT_URL ||
   `${window.location.origin}/reset-password`;
 
-function LoginPage({ onLogin }) {
+function LoginPage({ onLogin, onShowSignup }) {
   /** Handles Supabase authentication and parent signup for the app entry point. */
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [username, setUsername] = useState("");
@@ -466,13 +466,16 @@ function LoginPage({ onLogin }) {
                 {isSignupMode ? "Already have an account?" : "New here?"}
 
                 <span
-                  style={{
-                    cursor: "pointer",
-                    marginLeft: 6,
+                  style={{ cursor: "pointer", marginLeft: 6 }}
+                  onClick={() => {
+                    if (!isSignupMode && onShowSignup) {
+                      onShowSignup();
+                    } else {
+                      setIsSignupMode(!isSignupMode);
+                    }
                   }}
-                  onClick={() => setIsSignupMode(!isSignupMode)}
                 >
-                  {isSignupMode ? "Sign in" : "Create a parent account"}
+                  {isSignupMode ? "Sign in" : "Create an account"}
                 </span>
               </div>
             </form>

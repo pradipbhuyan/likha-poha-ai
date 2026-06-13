@@ -278,6 +278,7 @@ function MockTestPage({ user }) {
 
     if (
       isSchoolBoardMode(mode) &&
+      user?.role !== "admin" &&
       !isAllAccessTestUser(user) &&
       !user.accessCbse
     ) {
@@ -296,6 +297,7 @@ function MockTestPage({ user }) {
     
     if (
       mode === "SOF" &&
+      user?.role !== "admin" &&
       !isAllAccessTestUser(user) &&
       !(
         user.accessSofScience ||

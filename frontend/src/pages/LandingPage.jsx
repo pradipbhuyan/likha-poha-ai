@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
 import "./LandingPage.css";
 
-export default function LandingPage({ onShowLogin }) {
+export default function LandingPage({ onShowLogin, onShowSignup }) {
+  function handleCta(planKey) {
+    if (onShowSignup) {
+      onShowSignup(planKey);
+    } else {
+      onShowLogin();
+    }
+  }
   const [openFaq, setOpenFaq] = useState(null);
   const [contactEmail, setContactEmail] = useState("hello@likhapoha.in");
 
@@ -27,7 +34,7 @@ export default function LandingPage({ onShowLogin }) {
         <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
         <div className="lp-nav-r">
           <button className="lp-btn-ghost" onClick={onShowLogin}>Login</button>
-          <button className="lp-btn-cta" onClick={onShowLogin}>Try for &#8377;100</button>
+          <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try for &#8377;100</button>
         </div>
       </nav>
       <div className="lp-hero">
@@ -35,7 +42,7 @@ export default function LandingPage({ onShowLogin }) {
         <h1>Your Child&#39;s Personal<br /><span className="lp-gr">AI Study Tutor</span></h1>
         <p>Step-wise textbook lessons, instant doubt answers, mock tests, and real-time parent insights &mdash; all in one place.</p>
         <div className="lp-hcta">
-          <button className="lp-bc" onClick={onShowLogin}>&#128640; Try for &#8377;100 &mdash; 14 Days</button>
+          <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try for &#8377;100 &mdash; 14 Days</button>
           <a href="#features" className="lp-bol">See Features &rarr;</a>
         </div>
         <div className="lp-stats">
@@ -97,9 +104,9 @@ export default function LandingPage({ onShowLogin }) {
       <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free, upgrade anytime &middot; Cancel anytime</p></div>
         <div className="lp-pg">
-          <div className="lp-prc"><div className="lp-prname">Try It Out</div><div className="lp-pramount">&#8377;100<span>/14 days</span></div><div className="lp-prdesc">Explore before you commit</div><div className="lp-prf">CBSE Lessons (3 subjects)</div><div className="lp-prf">5 Doubt questions/day</div><div className="lp-prf">Basic mock tests</div><div className="lp-prf">Parent dashboard</div><button className="lp-bpro lp-bpout" onClick={onShowLogin}>Get Started</button></div>
-          <div className="lp-prc pop"><div className="lp-popb">Most Popular</div><div className="lp-prname">Standard</div><div className="lp-pramount">&#8377;299<span>/month</span></div><div className="lp-prdesc">For serious exam prep</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Priority support</div><button className="lp-bpro lp-bpfill" onClick={onShowLogin}>Start Now</button></div>
-          <div className="lp-prc"><div className="lp-prname">Family</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prdesc">Two children, one plan</div><div className="lp-prf">Everything in Standard</div><div className="lp-prf">Up to 2 children</div><div className="lp-prf">Multi-parent access</div><div className="lp-prf">Separate progress tracking</div><div className="lp-prf">Teacher dashboard access</div><button className="lp-bpro lp-bpout" onClick={onShowLogin}>Get Started</button></div>
+          <div className="lp-prc"><div className="lp-prname">Try It Out</div><div className="lp-pramount">&#8377;100<span>/14 days</span></div><div className="lp-prdesc">Explore before you commit</div><div className="lp-prf">CBSE Lessons (3 subjects)</div><div className="lp-prf">5 Doubt questions/day</div><div className="lp-prf">Basic mock tests</div><div className="lp-prf">Parent dashboard</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("free")}>Get Started</button></div>
+          <div className="lp-prc pop"><div className="lp-popb">Most Popular</div><div className="lp-prname">Standard</div><div className="lp-pramount">&#8377;299<span>/month</span></div><div className="lp-prdesc">For serious exam prep</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Priority support</div><button className="lp-bpro lp-bpfill" onClick={() => handleCta("starter")}>Start Now</button></div>
+          <div className="lp-prc"><div className="lp-prname">Family</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prdesc">Two children, one plan</div><div className="lp-prf">Everything in Standard</div><div className="lp-prf">Up to 2 children</div><div className="lp-prf">Multi-parent access</div><div className="lp-prf">Separate progress tracking</div><div className="lp-prf">Teacher dashboard access</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Started</button></div>
         </div>
         <p className="lp-prnote">Save up to 40% with 12-month plan &middot; No hidden charges</p>
       </div>
@@ -130,7 +137,7 @@ export default function LandingPage({ onShowLogin }) {
       <div className="lp-ctasec">
         <h2>Start Your Child's AI Learning Journey Today</h2>
         <p>Join hundreds of families already studying smarter with LikhaPoha AI</p>
-        <button className="lp-bc" onClick={onShowLogin} style={{display:"inline-flex"}}>&#128640; Try for &#8377;100 &mdash; No Credit Card Needed</button>
+        <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex"}}>&#128640; Try for &#8377;100 &mdash; No Credit Card Needed</button>
         <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Try for 14 days at &#8377;100 &middot; Cancel anytime</p>
       </div>
       <footer className="lp-footer">

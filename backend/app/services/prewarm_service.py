@@ -277,6 +277,27 @@ def count_banked_questions(grade: str) -> int:
         return 0
 
 
+def count_banked_questions_for_chapter_difficulty(
+    grade: str, subject: str, chapter: str, difficulty: str
+) -> int:
+    """Count active questions for a specific chapter + difficulty combo."""
+    try:
+        result = (
+            supabase
+            .table("question_bank")
+            .select("id", count="exact")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("chapter", chapter)
+            .eq("difficulty", difficulty)
+            .eq("status", "active")
+            .execute()
+        )
+        return result.count or 0
+    except Exception:
+        return 0
+
+
 def clear_lesson_cache_for_grade(grade: str) -> int:
     """Delete all lesson cache rows for a grade. Returns count deleted."""
     try:
@@ -402,6 +423,18 @@ def build_question_bank_for_grade(grade: str) -> None:
                     rag_context = ""
 
                 for difficulty in DIFFICULTIES:
+                    # Skip if already enough questions for this chapter/difficulty
+                    existing = count_banked_questions_for_chapter_difficulty(
+                        grade, subject, chapter, difficulty
+                    )
+                    target = QUESTIONS_PER_BATCH * BATCHES_PER_CHAPTER
+                    if existing >= target:
+                        logger.info(
+                            "Skipping [%s | %s | %s | %s] — already has %d/%d questions",
+                            grade, subject, chapter, difficulty, existing, target,
+                        )
+                        continue
+
                     for batch in range(1, BATCHES_PER_CHAPTER + 1):
                         prompt = _build_question_prompt(
                             grade=grade,
@@ -648,6 +681,18 @@ def build_question_bank_for_chapter(
             rag_context = ""
 
         for difficulty in DIFFICULTIES:
+            # Skip if already enough questions for this chapter/difficulty
+            existing = count_banked_questions_for_chapter_difficulty(
+                grade, subject, chapter, difficulty
+            )
+            target = QUESTIONS_PER_BATCH * BATCHES_PER_CHAPTER
+            if existing >= target:
+                logger.info(
+                    "Skipping chapter [%s | %s | %s | %s] — already has %d/%d questions",
+                    grade, subject, chapter, difficulty, existing, target,
+                )
+                continue
+
             for batch in range(1, BATCHES_PER_CHAPTER + 1):
                 prompt = _build_question_prompt(
                     grade=grade,
