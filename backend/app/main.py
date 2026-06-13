@@ -29,6 +29,7 @@ from app.routes.sales import router as sales_router
 from app.routes.performance_tests import router as performance_tests_router
 from app.routes.onboarding_guide import router as onboarding_guide_router
 from app.routes.cache_management import router as cache_management_router
+from app.routes.product_catalogue import router as product_catalogue_router
 
 
 frontend_url = os.getenv(
@@ -207,6 +208,12 @@ app.include_router(
     cache_management_router,
     prefix="/api/cache-management",
     tags=["Cache Management"],
+)
+
+app.include_router(
+    product_catalogue_router,
+    prefix="/api/product-catalogue",
+    tags=["Product Catalogue"],
 )
 
 @app.get("/api/health")

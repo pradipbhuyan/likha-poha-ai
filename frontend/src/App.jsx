@@ -29,9 +29,11 @@ import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
+import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
+import SignupPage from "./pages/SignupPage";
 
 import "./App.css";
 
@@ -113,6 +115,11 @@ const PAGE_META = {
       "Configure first-time walkthroughs, role themes, and periodic visual rotation.",
     icon: "✨",
   },
+  productCatalogue: {
+    label: "Product Catalogue",
+    icon: "📦",
+    roles: ["admin"],
+  },
   cacheManagement: {
     title: "Cache & Question Bank",
     subtitle:
@@ -169,6 +176,8 @@ function App() {
   const [showLanding, setShowLanding] = useState(
     () => !localStorage.getItem("tutor_user")
   );
+  const [showSignup, setShowSignup] = useState(false);
+  const [signupInitialPlan, setSignupInitialPlan] = useState("free");
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [routePath, setRoutePath] = useState(window.location.pathname);
@@ -274,6 +283,21 @@ function App() {
     );
   }
 
+  if (routePath === "/signup" || showSignup) {
+    const planFromUrl = new URLSearchParams(window.location.search).get("plan") || signupInitialPlan;
+    return (
+      <SignupPage
+        initialPlan={planFromUrl}
+        onBackToLogin={() => {
+          setShowSignup(false);
+          setShowLanding(false);
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+        }}
+      />
+    );
+  }
+
   if (routePath === "/refund-policy") {
     return (
       <RefundPolicyPage
@@ -287,9 +311,25 @@ function App() {
 
   if (!user) {
     if (showLanding) {
-      return <LandingPage onShowLogin={() => setShowLanding(false)} />;
+      return (
+        <LandingPage
+          onShowLogin={() => setShowLanding(false)}
+          onShowSignup={(plan) => {
+            setSignupInitialPlan(plan || "free");
+            setShowSignup(true);
+          }}
+        />
+      );
     }
-    return <LoginPage onLogin={handleLogin} />;
+    return (
+      <LoginPage
+        onLogin={handleLogin}
+        onShowSignup={() => {
+          setShowSignup(true);
+          setSignupInitialPlan("free");
+        }}
+      />
+    );
   }
 
   const pageMeta = PAGE_META[activePage] || PAGE_META.lessons;
@@ -325,6 +365,8 @@ function App() {
         return <AdminPerformanceTestsPage user={user} />;
       case "guideThemes":
         return <AdminGuideSettingsPage user={user} />;
+      case "productCatalogue":
+        return <AdminProductCataloguePage user={user} />;
       case "cacheManagement":
         return <AdminCacheManagementPage user={user} />;
       case "salesIncentives":
