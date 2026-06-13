@@ -31,6 +31,7 @@ import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
+import RefundPolicyPage from "./pages/RefundPolicyPage";
 
 import "./App.css";
 
@@ -269,6 +270,17 @@ function App() {
     return (
       <ResetPasswordPage
         onBackToLogin={handleBackToLogin}
+      />
+    );
+  }
+
+  if (routePath === "/refund-policy") {
+    return (
+      <RefundPolicyPage
+        onBackToHome={() => {
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+        }}
       />
     );
   }

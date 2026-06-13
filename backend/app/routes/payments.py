@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.config import settings
-from app.routes.admin_control import list_subscription_plan_settings
+from app.routes.admin_control import list_subscription_contact_settings, list_subscription_plan_settings
 from app.services.auth_service import admin_client, require_parent
 from app.services.parent_dashboard_service import get_child_by_id, get_children
 
@@ -316,4 +316,21 @@ def verify_payment(
         "success": True,
         "payment": saved_payment,
         "activated_profiles": activated_profiles,
+    }
+
+
+@router.get("/contact")
+def get_public_contact():
+    """
+    Return the admin-configured support contact for public pages (no auth required).
+
+    Used by the landing page footer to stay in sync with the admin contact settings.
+    """
+    result = list_subscription_contact_settings()
+    contact = result.get("contact") or {}
+    return {
+        "success": True,
+        "email": contact.get("email") or "hello@likhapoha.in",
+        "phone": contact.get("phone") or "",
+        "whatsapp": contact.get("whatsapp") or "",
     }

@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
 import "./LandingPage.css";
 
 export default function LandingPage({ onShowLogin }) {
   const [openFaq, setOpenFaq] = useState(null);
+  const [contactEmail, setContactEmail] = useState("hello@likhapoha.in");
+
   function toggleFaq(i) { setOpenFaq(p => p === i ? null : i); }
+
+  useEffect(() => {
+    fetch("/api/payments/contact")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.email) setContactEmail(data.email); })
+      .catch(() => {});
+  }, []);
   const faqs = [
     { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Class 5 to 10 for CBSE. State Board content can be uploaded by admins." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content." },
@@ -85,7 +94,7 @@ export default function LandingPage({ onShowLogin }) {
           <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#129351;</div>CLASS LEADERBOARD</div><img src="/screenshots/leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
         </div>
       </div></div>
-      <div className="lp-sw">
+      <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free, upgrade anytime &middot; Cancel anytime</p></div>
         <div className="lp-pg">
           <div className="lp-prc"><div className="lp-prname">Try It Out</div><div className="lp-pramount">&#8377;100<span>/14 days</span></div><div className="lp-prdesc">Explore before you commit</div><div className="lp-prf">CBSE Lessons (3 subjects)</div><div className="lp-prf">5 Doubt questions/day</div><div className="lp-prf">Basic mock tests</div><div className="lp-prf">Parent dashboard</div><button className="lp-bpro lp-bpout" onClick={onShowLogin}>Get Started</button></div>
@@ -131,7 +140,8 @@ export default function LandingPage({ onShowLogin }) {
           <a href="#">Home</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
-          <a href="mailto:hello@likhapoha.in">Contact</a>
+          <a href={`mailto:${contactEmail}`}>Contact</a>
+          <a href="/refund-policy">Refund Policy</a>
         </div>
         <p style={{marginTop:"20px"}}>&copy; 2026 LikhaPoha AI &middot; Made with &#10084; in India</p>
       </footer>
