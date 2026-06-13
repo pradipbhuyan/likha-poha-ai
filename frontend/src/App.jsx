@@ -30,7 +30,7 @@ import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
-
+import LandingPage from "./pages/LandingPage";
 
 import "./App.css";
 
@@ -165,6 +165,9 @@ const PAGE_META = {
 function App() {
   /** Owns global session, navigation, and theme state for the single-page app shell. */
   const [user, setUser] = useState(null);
+  const [showLanding, setShowLanding] = useState(
+    () => !localStorage.getItem("tutor_user")
+  );
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [routePath, setRoutePath] = useState(window.location.pathname);
@@ -271,6 +274,9 @@ function App() {
   }
 
   if (!user) {
+    if (showLanding) {
+      return <LandingPage onShowLogin={() => setShowLanding(false)} />;
+    }
     return <LoginPage onLogin={handleLogin} />;
   }
 
@@ -351,7 +357,7 @@ function App() {
             ☰
           </button>
           <div>
-            <p className="eyebrow">Class 1-10 CBSE + SOF Olympiad</p>
+            <p className="eyebrow">Class 5-10 CBSE</p>
             <h1>
               {(() => {
                 const PageIcon = PAGE_ICONS[activePage];
