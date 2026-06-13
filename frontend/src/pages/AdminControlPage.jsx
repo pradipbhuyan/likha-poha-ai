@@ -32,19 +32,15 @@ const STUDENT_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
 const AI_MODEL_OPTIONS = [
   {
     value: "default",
-    label: "Default (GPT-4.1 mini; auto-upgrade for premium plans)",
+    label: "Default (gpt-4.1-nano — all plans)",
   },
   {
-    value: "gpt-4o",
-    label: "GPT-4o",
+    value: "gpt-4.1-mini",
+    label: "gpt-4.1-mini (faster, higher quality)",
   },
   {
-    value: "gpt-4o-mini",
-    label: "GPT-4o mini (fastest)",
-  },
-  {
-    value: "o3-mini",
-    label: "o3-mini (reasoning)",
+    value: "gpt-4.1",
+    label: "gpt-4.1 (full — highest quality)",
   },
 ];
 

@@ -15,9 +15,12 @@ enable_system_truststore()
 # All features use gpt-4.1-nano — the only model available on this project.
 # To upgrade to mini/full when the project has access, change DEFAULT_TEXT_MODEL.
 DEFAULT_TEXT_MODEL = "gpt-4.1-nano"
-GPT5_TEXT_MODEL = "gpt-4.1-nano"
-GPT5_MINI_TEXT_MODEL = "gpt-4.1-nano"
+GPT_MINI_TEXT_MODEL = "gpt-4.1-mini"
+GPT_FULL_TEXT_MODEL = "gpt-4.1"
 PREWARM_TEXT_MODEL = "gpt-4.1-nano"
+# Legacy aliases kept for backward compatibility with model_routing_service
+GPT5_TEXT_MODEL = GPT_MINI_TEXT_MODEL
+GPT5_MINI_TEXT_MODEL = DEFAULT_TEXT_MODEL
 
 _MODEL_PRICING = {
     "gpt-4.1-mini": {"input": 0.0004, "output": 0.0016},

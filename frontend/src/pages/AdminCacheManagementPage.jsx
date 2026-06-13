@@ -41,6 +41,40 @@ function StatusBadge({ complete, running }) {
 
 const ALL_GRADE_OPTIONS = Array.from({ length: 10 }, (_, i) => `Grade ${i + 1}`);
 
+// Models available for pre-warming (admin choice, default nano)
+const PREWARM_MODEL_OPTIONS = [
+  { value: "gpt-4.1-nano", label: "gpt-4.1-nano (cheapest — default)" },
+  { value: "gpt-4.1-mini", label: "gpt-4.1-mini (better quality)" },
+  { value: "gpt-4.1",      label: "gpt-4.1 (highest quality)" },
+];
+
+// Fixed embedding model for all RAG / vector indexing
+const EMBEDDING_MODEL = "text-embedding-3-small";
+
+/**
+ * Approximate per-grade-9 prewarm costs.
+ * Lessons: ~750 steps × (1 000 input + 1 500 output tokens each)
+ * Questions: ~13 500 questions × (500 input + 800 output tokens each)
+ * Time figures are wall-clock estimates at typical concurrency.
+ */
+const PREWARM_COST = {
+  "gpt-4.1-nano": {
+    lessons:       0.53,   lessonMin: 12,
+    questions:     5.00,   questionMin: 40,
+    inputPer1K:    0.0001, outputPer1K: 0.0004,
+  },
+  "gpt-4.1-mini": {
+    lessons:       2.10,   lessonMin: 20,
+    questions:    20.00,   questionMin: 65,
+    inputPer1K:   0.0004,  outputPer1K: 0.0016,
+  },
+  "gpt-4.1": {
+    lessons:      10.50,   lessonMin: 30,
+    questions:   100.00,   questionMin: 100,
+    inputPer1K:   0.002,   outputPer1K: 0.008,
+  },
+};
+
 function AdminCacheManagementPage({ user }) {
   /** Admin page for grade-by-grade lesson pre-warming, question bank building, and cache clearing. */
   const [grades, setGrades] = useState([]);
@@ -48,6 +82,9 @@ function AdminCacheManagementPage({ user }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const pollRef = useRef(null);
+
+  // ---- Prewarm model selection ----
+  const [prewarmModel, setPrewarmModel] = useState("gpt-4.1-nano");
 
   // ---- Chapter-by-chapter prewarm state ----
   const [chapterGrade, setChapterGrade] = useState("Grade 9");
@@ -482,27 +519,69 @@ function AdminCacheManagementPage({ user }) {
       <section className="premium-section">
         <div className="premium-header">
           <h3>📋 Pre-Generation Cost Estimates</h3>
-          <p>One-time cost to populate lessons and question bank for all grades.</p>
+          <p>Estimated one-time cost to pre-warm lessons and question bank for all grades.</p>
         </div>
-        <div className="premium-grid premium-grid-3">
-          <div className="premium-card">
-            <strong>Grade 9 Lessons</strong>
-            <p>~750 lesson steps × $0.003</p>
-            <h4>~$2.50</h4>
-            <small>~25 min to generate</small>
-          </div>
-          <div className="premium-card">
-            <strong>Grade 9 Question Bank</strong>
-            <p>~13,500 questions × $0.0006</p>
-            <h4>~$8.73</h4>
-            <small>~60 min to generate</small>
-          </div>
-          <div className="premium-card">
-            <strong>After pre-generation</strong>
-            <p>Zero LLM cost for lessons + tests</p>
-            <h4>$0 / request</h4>
-            <small>Only Ask Doubt uses tokens</small>
-          </div>
+
+        {/* Model + embedding selectors */}
+        <div className="form-grid premium-rag-form-grid" style={{ maxWidth: 620, marginBottom: 20 }}>
+          <label>
+            Prewarm Model
+            <select
+              value={prewarmModel}
+              onChange={(e) => setPrewarmModel(e.target.value)}
+            >
+              {PREWARM_MODEL_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Embedding Model
+            <input
+              type="text"
+              value={EMBEDDING_MODEL}
+              readOnly
+              style={{ background: "var(--surface2, #f5f5f5)", cursor: "not-allowed", color: "#888" }}
+            />
+            <small style={{ display: "block", marginTop: 4, color: "#888" }}>
+              Fixed — used for all RAG / vector indexing. Changing requires re-uploading all documents.
+            </small>
+          </label>
+        </div>
+
+        {/* Dynamic cost cards */}
+        {(() => {
+          const c = PREWARM_COST[prewarmModel] || PREWARM_COST["gpt-4.1-nano"];
+          const allGradesLessons  = (c.lessons  * 10).toFixed(0);
+          const allGradesQuestions= (c.questions * 10).toFixed(0);
+          return (
+            <div className="premium-grid premium-grid-3">
+              <div className="premium-card">
+                <strong>Grade 9 — Lessons</strong>
+                <p>~750 steps × ({c.inputPer1K}/1K in + {c.outputPer1K}/1K out)</p>
+                <h4>~${c.lessons.toFixed(2)}</h4>
+                <small>~{c.lessonMin} min to generate</small>
+              </div>
+              <div className="premium-card">
+                <strong>Grade 9 — Question Bank</strong>
+                <p>~13,500 questions × ({c.inputPer1K}/1K in + {c.outputPer1K}/1K out)</p>
+                <h4>~${c.questions.toFixed(2)}</h4>
+                <small>~{c.questionMin} min to generate</small>
+              </div>
+              <div className="premium-card">
+                <strong>All 10 Grades (estimate)</strong>
+                <p>Lessons ~${allGradesLessons} + Q-Bank ~${allGradesQuestions}</p>
+                <h4>~${(Number(allGradesLessons) + Number(allGradesQuestions)).toFixed(0)} total</h4>
+                <small>$0 / request after — only Ask Doubt uses tokens</small>
+              </div>
+            </div>
+          );
+        })()}
+
+        <div className="info-box" style={{ marginTop: 16, fontSize: "0.85rem" }}>
+          💡 <strong>Tip:</strong> Use <strong>gpt-4.1-nano</strong> for the lowest cost prewarm.
+          Switch to <strong>gpt-4.1-mini</strong> or <strong>gpt-4.1</strong> only if you need
+          richer lesson content or HOTS-quality questions in the pre-generated cache.
         </div>
       </section>
     </div>

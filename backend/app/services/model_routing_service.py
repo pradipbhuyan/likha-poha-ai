@@ -1,15 +1,23 @@
 from app.services.openai_service import (
     DEFAULT_TEXT_MODEL,
-    GPT5_MINI_TEXT_MODEL,
-    GPT5_TEXT_MODEL,
+    GPT_MINI_TEXT_MODEL,
+    GPT_FULL_TEXT_MODEL,
 )
 
 
 DEFAULT_MODEL_PREFERENCE = "default"
+
+# Supported per-student AI model preference values that map to real model IDs.
+# Admins set these via the Admin Control "AI Model for SOF Mock & Doubts" dropdown.
 SUPPORTED_MODEL_PREFERENCES = {
     DEFAULT_MODEL_PREFERENCE,
-    GPT5_TEXT_MODEL,
-    GPT5_MINI_TEXT_MODEL,
+    "gpt-4.1-mini",
+    "gpt-4.1",
+}
+
+_PREFERENCE_TO_MODEL = {
+    "gpt-4.1-mini": GPT_MINI_TEXT_MODEL,
+    "gpt-4.1": GPT_FULL_TEXT_MODEL,
 }
 
 COMPLEX_DOUBT_KEYWORDS = [
@@ -30,7 +38,7 @@ COMPLEX_DOUBT_KEYWORDS = [
 
 
 def normalize_model_preference(value: str | None) -> str:
-    """Return a supported per-student AI model preference."""
+    """Return a supported per-student AI model preference or 'default'."""
     preference = (value or DEFAULT_MODEL_PREFERENCE).strip().lower()
 
     if preference in SUPPORTED_MODEL_PREFERENCES:
@@ -75,15 +83,17 @@ def resolve_student_feature_model(
     preference = normalize_model_preference(profile.get("ai_model_preference"))
 
     if preference != DEFAULT_MODEL_PREFERENCE:
-        return preference
+        # Admin has pinned a specific model for this student — honour it directly.
+        return _PREFERENCE_TO_MODEL.get(preference, DEFAULT_TEXT_MODEL)
 
     if profile.get("subscription_plan") != "family_premium":
         return DEFAULT_TEXT_MODEL
 
+    # Family Premium auto-upgrade: use gpt-4.1-mini for SOF and complex doubts.
     if feature == "sof_mock_test":
-        return GPT5_TEXT_MODEL
+        return GPT_MINI_TEXT_MODEL
 
     if feature == "doubt" and is_complex_doubt(mode, question):
-        return GPT5_TEXT_MODEL
+        return GPT_MINI_TEXT_MODEL
 
     return DEFAULT_TEXT_MODEL
