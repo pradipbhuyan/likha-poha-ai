@@ -891,6 +891,11 @@ def clean_pdf_label_text(text: str) -> str:
     cleaned = re.sub(r"\b\d{1,2}/\d{1,2}/\d{4}\b", " ", cleaned)
     cleaned = re.sub(r"\b\d{1,2}:\d{2}(?::\d{2})?\s*(?:AM|PM)?\b", " ", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\b(?:AM|PM)\b", " ", cleaned, flags=re.IGNORECASE)
+    # Remove U+25CC (dotted circle) — PyMuPDF/pypdf placeholder for
+    # orphaned Devanagari matras from NCERT Hindi PDFs with embedded fonts
+    cleaned = cleaned.replace("\u25cc", "")
+    # Remove other common Unicode replacement placeholders
+    cleaned = cleaned.replace("\ufffd", "")
     cleaned = re.sub(r"\s+", " ", cleaned)
 
     return cleaned.strip()
@@ -986,6 +991,7 @@ def infer_hindi_section_title(extracted_text: str) -> str:
             return "विषय सूची"
 
     for line in lines[:36]:
+        # Pattern 1: "पाठ N: title" or "अध्याय N: title"
         chapter_match = re.match(
             r"^(पाठ|अध्याय)\s*([०-९0-9]+)\s*[:：.\-–—]?\s+(.{2,90})$",
             line,
@@ -997,6 +1003,7 @@ def infer_hindi_section_title(extracted_text: str) -> str:
                 chapter_match.group(3),
             )
 
+        # Pattern 2: "title पाठ N" (title followed by chapter keyword + number)
         title_before_chapter = re.match(
             r"^(.{2,90}?)\s+(पाठ|अध्याय)\s*([०-९0-9]+)\b",
             line,
@@ -1008,6 +1015,7 @@ def infer_hindi_section_title(extracted_text: str) -> str:
                 title_before_chapter.group(1),
             )
 
+        # Pattern 3: "N title" (number followed by title)
         numbered_title = re.match(r"^([०-९0-9]+)\s+(.{2,90})$", line)
         if numbered_title and contains_devanagari(numbered_title.group(2)):
             return normalize_hindi_section_title(
@@ -1015,6 +1023,46 @@ def infer_hindi_section_title(extracted_text: str) -> str:
                 numbered_title.group(1),
                 numbered_title.group(2),
             )
+
+        # Pattern 4: "title N" (NCERT ghml style — title then chapter number)
+        # e.g., "माँ, कह एक कहानी1" or "माँ, कह एक कहानी 1"
+        title_then_number = re.match(
+            r"^(.{3,80}?[^\s\d])\s*([0-9]+)\s*$",
+            line,
+        )
+        if title_then_number and contains_devanagari(title_then_number.group(1)):
+            title_part = title_then_number.group(1).strip(" :-–—।")
+            num_part = title_then_number.group(2)
+            # Only treat as chapter title if title has meaningful Hindi content
+            if len(title_part) >= 3 and re.search(r"[\u0900-\u097F]{2,}", title_part):
+                return normalize_hindi_section_title("पाठ", num_part, title_part)
+
+        # Pattern 5: Standalone Hindi title line (no number) — first clean Hindi line
+        # Use as last resort: any line with enough Devanagari and 2+ words
+        if (
+            contains_devanagari(line)
+            and len(line.split()) >= 2
+            and len(line) >= 4
+            and len(line) <= 80
+            and not re.search(r"[A-Za-z]{3,}", line)  # exclude mostly-Latin lines
+        ):
+            # Only pick up if no better match found yet — defer by continuing loop
+            # We will fall through to this as a final fallback below
+            pass
+
+    # Fallback: first clean standalone Hindi line in the first 12 lines
+    for line in lines[:12]:
+        if (
+            contains_devanagari(line)
+            and len(line.split()) >= 2
+            and len(line) >= 4
+            and len(line) <= 80
+            and not re.search(r"[A-Za-z]{3,}", line)
+            and not re.search(r"^\d", line)  # not starting with a number
+        ):
+            # Verify it looks like a title (not a sentence with full stops mid-way)
+            if line.count("।") <= 1:
+                return line.strip(" :-–—।")
 
     return ""
 

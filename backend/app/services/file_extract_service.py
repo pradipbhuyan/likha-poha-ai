@@ -26,6 +26,15 @@ HINDI_FILENAME_HINTS = (
     "vasant",
     "durva",
     "rimjhim",
+    # NCERT Grade-Hindi textbook file codes (ghXX prefix series)
+    "ghml",   # MahaLekhak — Hindi grammar/reader
+    "ghsn",   # Sansaar Naati Kahi
+    "ghst",   # Hindi supplementary
+    "ghsc",   # Hindi supplementary
+    "ghmh",   # MahaBharat / Hindi heritage
+    "ihga",   # NCERT integrated Hindi Grade series
+    "iehe",   # English/Hindi combined
+    "hhss",   # Hindi higher secondary
 )
 
 def extract_text_from_txt(file_bytes: bytes) -> str:
