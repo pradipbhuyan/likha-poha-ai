@@ -28,6 +28,16 @@ import { getDefaultSelection } from "../utils/syllabusDefaults";
 const BOOK_CHAPTER_LABEL = "Uploaded Book Content";
 const BULK_BOOK_FILE_ACCEPT = ".txt,.jpg,.jpeg,.png,.webp,.pdf,.docx,.pptx";
 const SCHOOL_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
+
+// Grade 11 & 12 subjects — used as fallback when syllabus has no data yet
+// (before any content is uploaded for these grades).
+const HIGHER_SECONDARY_SUBJECTS = [
+  "Physics", "Chemistry", "Mathematics", "Biology",
+  "English", "Hindi",
+  "Accountancy", "Economics", "Business Studies",
+  "History", "Geography", "Political Science",
+  "Computer Science", "Physical Education",
+];
 const RAG_JOB_RUNNING_STATUSES = new Set(["queued", "running"]);
 const RAG_WORKSPACE_TABS = [
   {
@@ -363,8 +373,19 @@ function RagUploadPage({ user }) {
   }
 
   function getSubjectsForGradeAndBoard(rowGrade, rowBoard = "CBSE") {
-    /** Return subject options available for one grade/board combination. */
-    return getSubjectsFromSyllabus(syllabusData, rowGrade, rowBoard);
+    /** Return subject options for a grade/board. Grade 11/12 fall back to the
+     *  canonical higher-secondary list when syllabus data is sparse. */
+    const fromSyllabus = getSubjectsFromSyllabus(syllabusData, rowGrade, rowBoard);
+    if (rowGrade === "Grade 11" || rowGrade === "Grade 12") {
+      // Merge: syllabus subjects first (in case some content exists), then fill
+      // in the full higher-secondary list so admin can tag new uploads correctly.
+      const merged = [
+        ...fromSyllabus,
+        ...HIGHER_SECONDARY_SUBJECTS.filter((s) => !fromSyllabus.includes(s)),
+      ];
+      return merged;
+    }
+    return fromSyllabus;
   }
 
   function resolveBulkBookRow(row) {
@@ -1287,7 +1308,9 @@ function RagUploadPage({ user }) {
     return <p>Loading RAG upload page...</p>;
   }
 
-  const grades = Object.keys(syllabusData);
+  // All grades 1-12 for admin uploads — Grade 11/12 are hidden from students
+  // but admins must be able to upload NCERT textbooks for them.
+  const grades = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
   const modes = Object.keys(syllabusData[grade]);
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
