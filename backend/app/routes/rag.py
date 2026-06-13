@@ -1861,6 +1861,7 @@ OCR PAGES:
                 message="SOF organizer returned invalid JSON.",
                 result={
                     "success": False,
+                    "message": "SOF organizer returned invalid JSON.",
                     "pages": pages,
                     "groups": [],
                     "raw_ai_response": ai_response,

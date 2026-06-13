@@ -194,32 +194,33 @@ def test_analyze_sof_images_keeps_good_files_when_one_file_fails(monkeypatch):
         }
         """
 
+    captured_result = {}
+
+    def fake_update_rag_job(job_id, **fields):
+        if "result" in fields:
+            captured_result.update(fields["result"])
+        return None
+
     monkeypatch.setattr(
         rag,
         "extract_pages_from_uploaded_file",
         fake_extract_pages_from_uploaded_file,
     )
     monkeypatch.setattr(rag, "ask_llm", fake_ask_llm)
+    monkeypatch.setattr(rag, "update_rag_job", fake_update_rag_job)
 
-    import asyncio
+    rag.run_sof_analysis_job(
+        job_id="test-job",
+        grade="Grade 9",
+        files_data=[
+            {"filename": "bad.pdf", "file_bytes": b"bad"},
+            {"filename": "good.pdf", "file_bytes": b"good"},
+        ],
+    )
 
-    async def run_request():
-        from fastapi import UploadFile
-        from io import BytesIO
-
-        return await rag.analyze_sof_images(
-            grade="Grade 9",
-            files=[
-                UploadFile(filename="bad.pdf", file=BytesIO(b"bad")),
-                UploadFile(filename="good.pdf", file=BytesIO(b"good")),
-            ],
-        )
-
-    result = asyncio.run(run_request())
-
-    assert result["success"] is True
-    assert len(result["groups"]) == 1
-    assert result["file_warnings"][0]["filename"] == "bad.pdf"
+    assert captured_result["success"] is True
+    assert len(captured_result["groups"]) == 1
+    assert captured_result["file_warnings"][0]["filename"] == "bad.pdf"
     assert captured_model["model"] == rag.GPT5_TEXT_MODEL
 
 
@@ -241,26 +242,27 @@ def test_analyze_sof_images_returns_raw_response_for_invalid_json(monkeypatch):
             }
         ]
 
+    captured_result = {}
+
+    def fake_update_rag_job(job_id, **fields):
+        if "result" in fields:
+            captured_result.update(fields["result"])
+        return None
+
     monkeypatch.setattr(
         rag,
         "extract_pages_from_uploaded_file",
         fake_extract_pages_from_uploaded_file,
     )
     monkeypatch.setattr(rag, "ask_llm", lambda *args, **kwargs: "not-json")
+    monkeypatch.setattr(rag, "update_rag_job", fake_update_rag_job)
 
-    import asyncio
+    rag.run_sof_analysis_job(
+        job_id="test-job",
+        grade="Grade 9",
+        files_data=[{"filename": "sof.jpg", "file_bytes": b"image"}],
+    )
 
-    async def run_request():
-        from fastapi import UploadFile
-        from io import BytesIO
-
-        return await rag.analyze_sof_images(
-            grade="Grade 9",
-            files=[UploadFile(filename="sof.jpg", file=BytesIO(b"image"))],
-        )
-
-    result = asyncio.run(run_request())
-
-    assert result["success"] is False
-    assert "invalid JSON" in result["message"]
-    assert result["raw_ai_response"] == "not-json"
+    assert captured_result["success"] is False
+    assert "invalid JSON" in captured_result["message"]
+    assert captured_result["raw_ai_response"] == "not-json"

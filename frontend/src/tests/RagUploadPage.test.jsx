@@ -13,6 +13,7 @@ import {
   analyzeSofImages,
   confirmSofUpload,
   getRagDocuments,
+  getRagUploadJob,
   previewRagDocument,
   updateRagDocumentMetadata,
   uploadBookSet,
@@ -588,6 +589,50 @@ describe("RagUploadPage", () => {
      * - Admin edits the detected chapter and RAG context text.
      * - Confirm upload sends the edited group to the API.
      */
+
+    // analyzeSofImages now starts a background job — return a job_id
+    analyzeSofImages.mockResolvedValueOnce({
+      success: true,
+      job_id: "sof-analysis-job",
+      message: "SOF files queued for analysis.",
+    });
+
+    // getRagUploadJob returns the completed SOF analysis result with groups
+    getRagUploadJob.mockResolvedValue({
+      success: true,
+      job: {
+        id: "sof-analysis-job",
+        status: "completed",
+        percent: 100,
+        result: {
+          success: true,
+          message: "SOF files analyzed successfully.",
+          pages: [
+            {
+              filename: "sof-page.jpg",
+              page_number: 1,
+              source_page_number: 1,
+              extraction_method: "image_ocr",
+              word_count: 50,
+              warnings: [],
+            },
+          ],
+          groups: [
+            {
+              grade: "Grade 9",
+              subject: "Maths Olympiad",
+              chapter: "Coordinate Geometry",
+              title: "SOF-IMO Grade 9 - Coordinate Geometry - Chapter Content",
+              page_numbers: [1],
+              confidence: "High",
+              combined_text: "Original recognized Coordinate Geometry text.",
+            },
+          ],
+          file_warnings: [],
+        },
+      },
+    });
+
     render(
       <RagUploadPage
         user={{

@@ -1634,7 +1634,7 @@ textarea:focus {
 
 .question-card h4 {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 28px;
   line-height: 1.5;
   color: #0f172a;
 }
@@ -1663,6 +1663,7 @@ textarea:focus {
 }
 
 .option-row span {
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -5814,10 +5815,20 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
   
   .premium-question-header h4 {
     margin: 0;
+    font-size: 28px;
     line-height: 1.55;
   }
-  
-  .premium-question-header span {
+
+  .premium-question-header h4 span {
+    font-size: 20px !important;
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  .premium-question-header > span {
     flex-shrink: 0;
     padding: 8px 12px;
     border-radius: 999px;
@@ -5838,6 +5849,7 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
     border-radius: 16px;
     background: #f8fafc;
     border: 1px solid #e2e8f0;
+    font-size: 20px;
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
   

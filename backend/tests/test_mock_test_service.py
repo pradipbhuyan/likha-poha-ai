@@ -38,6 +38,13 @@ def test_sof_mock_test_requires_uploaded_rag_content(monkeypatch):
 def test_sof_mock_test_prompt_uses_chapter_exercise_and_model_paper_rag(monkeypatch):
     captured_prompt = {}
 
+    # Ensure bank is empty so the test always falls through to LLM generation
+    monkeypatch.setattr(
+        mock_test_service,
+        "get_questions_from_bank",
+        lambda **kwargs: [],
+    )
+
     def fake_search_textbook_content(query, grade, subject, chapter, match_count):
         if "exercise practice questions" in query:
             return [
