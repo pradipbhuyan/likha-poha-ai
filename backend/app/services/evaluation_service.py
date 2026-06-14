@@ -6,42 +6,39 @@ from app.services.mentor_memory_service import save_mentor_memory
 
 
 EVALUATOR_SYSTEM = """
-You are an expert CBSE examiner and teacher for Class 1 to Class 10 students.
+You are a warm, encouraging CBSE teacher for Class 1 to Class 10 students.
 
 Your role:
-- Evaluate student-written answers.
-- Encourage active learning.
-- Be constructive and educational.
+- Give coaching feedback on student answers.
+- Build confidence while helping students understand more deeply.
+- Be specific, constructive, and supportive.
 
 Evaluation rules:
-- Identify correct points.
-- Identify missing concepts.
-- Identify misconceptions.
-- Score fairly.
-- Explain how to improve.
-- Do not impose pass/fail language.
-- Always help the student learn from the attempt.
+- NEVER give a numeric score or rating (no X/10, no percentages, no grades).
+- NEVER say PASS, FAIL, or any judgment word.
+- Start by highlighting what the student got RIGHT, however small.
+- Then clearly explain what can be improved or added.
+- Correct any misconceptions gently.
+- Always end with an encouraging note.
 
-Output format:
+Output format (use exactly these section headings):
 
-## Score
-X/10
+## What you got right
+- List specific points the student answered correctly with brief praise.
 
-## What was correct
-- ...
+## What can be improved
+- Explain clearly what is missing or could be stronger.
+- For each point, say WHY it matters for understanding.
+- Use simple language appropriate for the grade.
 
-## What can be better
-- ...
+## Key terms to strengthen your answer
+- **term** — short explanation of why this term is important.
 
-## Key words to include
-- Use bold markdown for important terms, for example **photosynthesis**.
-- Include short notes on why each keyword matters.
+## A stronger answer would look like this
+Write a model answer at the right level for the student's grade.
 
-## Improved answer
-Provide a strong model answer suitable for the student's grade.
-
-## One improvement tip
-Short actionable advice.
+## Keep going!
+One encouraging sentence to motivate further effort.
 """
 
 
@@ -189,32 +186,38 @@ def _keyword_based_evaluation(
 
     score = max(1, min(10, score))
 
-    lines = [f"## Score\n{score}/10\n"]
+    lines = []
 
     if found:
-        lines.append("## What was correct")
+        lines.append("## What you got right")
         for kw in found:
-            lines.append(f"- ✅ You included **{kw}**")
+            lines.append(f"- ✅ You included **{kw}** — well done!")
+        lines.append("")
+    else:
+        lines.append("## What you got right")
+        lines.append("- You made an attempt — that is the most important first step! Keep going.")
         lines.append("")
 
     if missing:
-        lines.append("## What can be better")
+        lines.append("## What can be improved")
         for kw in missing:
-            lines.append(f"- 📝 Try to also include: **{kw}**")
+            lines.append(f"- 📝 Try to also mention **{kw}** — this is an important part of the answer.")
         lines.append("")
     else:
-        lines.append("## What can be better\n- Great coverage! Your answer includes all key concepts.\n")
+        lines.append("## What can be improved")
+        lines.append("- Excellent coverage! Try writing each keyword in a complete sentence to make your answer even stronger.")
+        lines.append("")
 
-    lines.append("## Key words to include")
+    lines.append("## Key terms to strengthen your answer")
     for kw in expected_keywords:
         lines.append(f"- **{kw}**")
     lines.append("")
 
-    lines.append("## One improvement tip")
+    lines.append("## Keep going!")
     if missing:
-        lines.append(f"Write one sentence that explains **{missing[0]}** clearly in your own words.")
+        lines.append(f"You are on the right track! Try adding **{missing[0]}** to your next attempt and see how much stronger it sounds.")
     else:
-        lines.append("Excellent! Try explaining each keyword in a complete sentence for full marks.")
+        lines.append("Excellent work! You have included all the key ideas. Keep practising to make your answers even clearer.")
 
     return {
         "evaluation": "\n".join(lines),

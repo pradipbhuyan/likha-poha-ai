@@ -204,7 +204,6 @@ function LessonsPage({ user }) {
 
   const [practiceAnswers, setPracticeAnswers] = useState({});
   const [practiceEvaluations, setPracticeEvaluations] = useState({});
-  const [practiceScores, setPracticeScores] = useState({});
   const [practicePassedMap, setPracticePassedMap] = useState({});
   const [practiceLoadingMap, setPracticeLoadingMap] = useState({});
   const [practicePassed, setPracticePassed] = useState(false);
@@ -715,7 +714,6 @@ function LessonsPage({ user }) {
     setPracticeQuestions([]);
     setPracticeAnswers({});
     setPracticeEvaluations({});
-    setPracticeScores({});
     setPracticePassedMap({});
     setPracticeLoadingMap({});
     setPracticePassed(false);
@@ -931,7 +929,6 @@ function LessonsPage({ user }) {
     setPracticeQuestions([]);
     setPracticeAnswers({});
     setPracticeEvaluations({});
-    setPracticeScores({});
     setPracticePassedMap({});
     setPracticeLoadingMap({});
     setPracticePassed(false);
@@ -1001,11 +998,6 @@ function LessonsPage({ user }) {
       [index]: "",
     }));
 
-    setPracticeScores((prev) => ({
-      ...prev,
-      [index]: 0,
-    }));
-
     setPracticePassedMap((prev) => ({
       ...prev,
       [index]: false,
@@ -1031,11 +1023,6 @@ function LessonsPage({ user }) {
             `- ${writingNote}`,
             "- While writing, use complete Hindi sentences, mention the main idea, and support it with one short example from the lesson.",
           ].join("\n\n"),
-        }));
-
-        setPracticeScores((prev) => ({
-          ...prev,
-          [index]: isCorrect ? 10 : 0,
         }));
 
         setPracticePassedMap((prev) => ({
@@ -1094,11 +1081,6 @@ function LessonsPage({ user }) {
       setPracticeEvaluations((prev) => ({
         ...prev,
         [index]: result.evaluation || "",
-      }));
-
-      setPracticeScores((prev) => ({
-        ...prev,
-        [index]: result.score || 0,
       }));
 
       setPracticePassedMap((prev) => ({
@@ -1567,7 +1549,6 @@ function LessonsPage({ user }) {
                           const currentWordCount = countWords(currentAnswer);
                           const currentEvaluation =
                             practiceEvaluations[index] || "";
-                          const currentScore = practiceScores[index] || 0;
                           const currentCorrect =
                             practicePassedMap[index] || false;
                           const currentLoading =
@@ -1653,19 +1634,12 @@ function LessonsPage({ user }) {
                               )}
 
                               {currentEvaluation && (
-                                <div
-                                  className="practice-status-box coaching"
-                                >
+                                <div className="practice-status-box coaching">
                                   <strong>🧠 Practice feedback saved</strong>
-
                                   <p>
                                     {isHindiPractice
-                                      ? `Result: ${
-                                          currentCorrect
-                                            ? "Correct"
-                                            : "Incorrect"
-                                        }. Read the note above before writing your own answer.`
-                                      : `Score signal: ${currentScore}/10. You can continue to the next step anytime; this feedback will help future revision.`}
+                                      ? `Result: ${currentCorrect ? "Correct" : "Incorrect"}. Read the note above before writing your own answer.`
+                                      : "Review the feedback above and try to improve your answer. You can continue to the next step anytime."}
                                   </p>
                                 </div>
                               )}
