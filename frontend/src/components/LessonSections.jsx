@@ -152,7 +152,12 @@ function getRenderableContent(section, questionPrompt) {
   return section.content.replace(new RegExp(`${escapedPrompt}\\s*$`), "").trim();
 }
 
-function LessonSections({ lesson, onEvaluateQuestion }) {
+function isHindiSubject(subject) {
+  const s = (subject || "").toLowerCase();
+  return s.includes("hindi") || s.includes("हिंदी") || s.includes("हिन्दी");
+}
+
+function LessonSections({ lesson, onEvaluateQuestion, subject }) {
   /** Presents a generated lesson as expandable sections with validated visual support. */
   const sections = parseSections(normalizeTutorMarkdown(lesson));
 
@@ -272,33 +277,40 @@ function LessonSections({ lesson, onEvaluateQuestion }) {
                       <p className="lesson-inline-question-label">
                         Want to try this question?
                       </p>
-                      <p className="lesson-inline-question-text">
-                        {questionPrompt}
-                      </p>
+                      <div className="lesson-inline-question-text">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm, remarkMath]}
+                          rehypePlugins={[rehypeKatex]}
+                        >
+                          {questionPrompt}
+                        </ReactMarkdown>
+                      </div>
                     </div>
 
                     <div className="lesson-inline-question-actions">
-                      <button
-                        type="button"
-                        className={
-                          questionMode === "answer"
-                            ? "inline-question-choice active"
-                            : "inline-question-choice"
-                        }
-                        onClick={() =>
-                          setQuestionModes((prev) => ({
-                            ...prev,
-                            [index]: "answer",
-                          }))
-                        }
-                      >
-                        Answer and evaluate
-                      </button>
+                      {!isHindiSubject(subject) && (
+                        <button
+                          type="button"
+                          className={
+                            questionMode === "answer"
+                              ? "inline-question-choice active"
+                              : "inline-question-choice"
+                          }
+                          onClick={() =>
+                            setQuestionModes((prev) => ({
+                              ...prev,
+                              [index]: "answer",
+                            }))
+                          }
+                        >
+                          Answer and evaluate
+                        </button>
+                      )}
 
                       <button
                         type="button"
                         className={
-                          questionMode === "think"
+                          questionMode === "think" || isHindiSubject(subject)
                             ? "inline-question-choice active muted"
                             : "inline-question-choice muted"
                         }

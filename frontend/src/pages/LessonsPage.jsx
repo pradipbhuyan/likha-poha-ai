@@ -1492,6 +1492,7 @@ function LessonsPage({ user }) {
                   <LessonSections
                     lesson={lesson}
                     onEvaluateQuestion={handleEvaluateInlineLessonQuestion}
+                    subject={subject}
                   />
                 </div>
 
