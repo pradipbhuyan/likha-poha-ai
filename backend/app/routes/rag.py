@@ -952,7 +952,8 @@ def normalize_suggested_section_title(title: str, filename: str, preview: str = 
     )
     if chapter_with_bad_tail:
         chapter_number = chapter_with_bad_tail.group(1)
-        title_tail = chapter_with_bad_tail.group(2).strip(" :-–—")
+        # Strip leading colon/space but preserve dashes inside the title
+        title_tail = chapter_with_bad_tail.group(2).lstrip(" :").rstrip(" ")
 
         if title_tail and not re.search(r"\d{1,2}/\d{1,2}/\d{4}|\.indd", title_tail, flags=re.IGNORECASE):
             return f"Chapter {chapter_number}: {title_tail}"
@@ -1130,11 +1131,19 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
         if "contents" in lower_line or "table of contents" in lower_line:
             return "Table of Contents"
 
+    # Only call Hindi extraction when the FIRST meaningful lines are primarily Devanagari.
+    # Skip it for books like fecu (Curiosity Science) that open with Sanskrit subhashitas
+    # but have an English chapter title on the very first line.
     if contains_devanagari(extracted_text):
-        hindi_title = infer_hindi_section_title(extracted_text)
-
-        if hindi_title:
-            return hindi_title
+        first_lines = [l.strip() for l in (extracted_text or "").splitlines() if l.strip()][:5]
+        first_text  = " ".join(first_lines[:3])
+        deva_chars  = len(re.findall(r"[\u0900-\u097F]", first_text))
+        latin_chars = len(re.findall(r"[A-Za-z]", first_text))
+        # Only use Hindi heuristic when Devanagari dominates the first 3 lines
+        if deva_chars > latin_chars:
+            hindi_title = infer_hindi_section_title(extracted_text)
+            if hindi_title:
+                return hindi_title
 
     grade_heading_title = infer_title_from_grade_heading(extracted_text)
 
@@ -1145,9 +1154,50 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
         words = line.split()
         lower_line = line.lower()
 
+        # ---- NCERT Curiosity Science (fecu) / mixed-case title + digit + Chapter ----
+        # Pattern C1: "Title Case Title1Chapter text"
+        # e.g. "The Wonderful World of Science1Chapter As human beings..."
+        ncert_mixed_c1 = re.match(
+            r"^([A-Z][A-Za-z\s,:'&/()\-]{3,80}?[a-zA-Z])\s*(\d{1,2})\s*[Cc]hapter\b",
+            line,
+        )
+        if ncert_mixed_c1:
+            return f"Chapter {ncert_mixed_c1.group(2)}: {ncert_mixed_c1.group(1).strip()}"
+
+        # Pattern C2: "TitleImmediatelyDigit content" (NO space before digit — fecu format)
+        # e.g. "Diversity in the Living World2 छायामनयसय..."
+        # e.g. "Mindful Eating: A Path to a Healthy Body3 Chapter..."
+        # Must NOT match "Science 1 In..." (space before digit = not a title heading)
+        ncert_mixed_c2 = re.match(
+            r"^([A-Z][A-Za-z\s,:'&/()\-]{3,80}?[a-zA-Z])(\d{1,2})\s+[A-Z\u0900-\u097F]",
+            line,
+        )
+        if ncert_mixed_c2 and not re.search(
+            r"\bchapter\b", ncert_mixed_c2.group(1), re.IGNORECASE
+        ):
+            return f"Chapter {ncert_mixed_c2.group(2)}: {ncert_mixed_c2.group(1).strip()}"
+
+        # ---- NCERT Ganita Prakash / new-gen series (ALL CAPS) ----
+        ncert_caps_a = re.match(
+            r"^([A-Z][A-Z\s,''&/:()-]{2,60}?)\s*(\d{1,2})\s+(?:\d+\.\d+|\d{1,2}\s+[A-Z])",
+            line,
+        )
+        if ncert_caps_a:
+            return f"Chapter {ncert_caps_a.group(2)}: {ncert_caps_a.group(1).strip().title()}"
+
+        # Pattern B: "TITLE_DIRECTLY_FOLLOWEDBY_DIGIT text"  e.g. "NUMBER PLAY3 Numbers..."
+        # Title ends with a capital letter, digit immediately after (no space), then space + text
+        ncert_caps_b = re.match(
+            r"^([A-Z][A-Z\s,''&/:()-]{2,60}[A-Z])(\d{1,2})\s+[A-Za-z]",
+            line,
+        )
+        if ncert_caps_b:
+            return f"Chapter {ncert_caps_b.group(2)}: {ncert_caps_b.group(1).strip().title()}"
+
         # ---- Chapter N: Title patterns ----
+        # Handles both "chapter N" (with space) and "CHAPTERN" (no space — NCERT gees style)
         title_before_chapter = re.match(
-            r"^(.{4,90}?)\s+chapter\s+(\d{1,2})\b",
+            r"^(.{4,90}?)\s+chapter\s*(\d{1,2})\b",
             line,
             flags=re.IGNORECASE,
         )
@@ -1157,7 +1207,7 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
             return f"Chapter {chapter_number}: {title}"
 
         chapter_with_title = re.match(
-            r"^chapter\s+(\d{1,2})\s*[:.-]?\s+(.{4,90})",
+            r"^chapter\s*(\d{1,2})\s*[:.-]?\s+(.{4,90})",
             line,
             flags=re.IGNORECASE,
         )
@@ -1188,39 +1238,40 @@ def infer_book_section_title(filename: str, extracted_text: str, index: int) -> 
             return f"Unit {unit_number}: {title}"
 
         # ---- Bare "Chapter N" or "Unit N" — peek at the next line for the title ----
-        if lower_line.startswith("chapter") and len(words) <= 4:
-            chapter_match = re.search(r"chapter\s+(\d{1,2})", line, flags=re.IGNORECASE)
-            if chapter_match:
-                next_lines = lines[line_index + 1 : line_index + 3]
-                for next_line in next_lines:
-                    next_clean = next_line.strip(" :-–—")
-                    if (
-                        2 <= len(next_clean.split()) <= 12
-                        and not re.search(
-                            r"^\d+$|let us|activities|listen|read|watch|look|do these",
-                            next_clean,
-                            flags=re.IGNORECASE,
-                        )
-                    ):
-                        return f"Chapter {chapter_match.group(1)}: {next_clean}"
-            return line
+        # Handle both "Chapter 1" (with space) and "CHAPTER1" (without space)
+        chapter_bare = re.match(r"^chapter\s*(\d{1,2})\s*$", line, flags=re.IGNORECASE)
+        if chapter_bare and len(words) <= 2:
+            chapter_number = chapter_bare.group(1)
+            next_lines = lines[line_index + 1 : line_index + 3]
+            for next_line in next_lines:
+                next_clean = next_line.strip(" :-–—")
+                if (
+                    2 <= len(next_clean.split()) <= 12
+                    and not re.search(
+                        r"^\d+$|let us|activities|listen|read|watch|look|do these",
+                        next_clean,
+                        flags=re.IGNORECASE,
+                    )
+                ):
+                    return f"Chapter {chapter_number}: {next_clean}"
+            return f"Chapter {chapter_number}"
 
-        if lower_line.startswith("unit") and len(words) <= 4:
-            unit_match = re.search(r"unit\s+(\d{1,2})", line, flags=re.IGNORECASE)
-            if unit_match:
-                next_lines = lines[line_index + 1 : line_index + 3]
-                for next_line in next_lines:
-                    next_clean = next_line.strip(" :-–—")
-                    if (
-                        2 <= len(next_clean.split()) <= 12
-                        and not re.search(
-                            r"^\d+$|let us|activities|listen|read|watch|look|do these",
-                            next_clean,
-                            flags=re.IGNORECASE,
-                        )
-                    ):
-                        return f"Unit {unit_match.group(1)}: {next_clean}"
-            return line
+        unit_bare = re.match(r"^unit\s*(\d{1,2})\s*$", line, flags=re.IGNORECASE)
+        if unit_bare and len(words) <= 2:
+            unit_number = unit_bare.group(1)
+            next_lines = lines[line_index + 1 : line_index + 3]
+            for next_line in next_lines:
+                next_clean = next_line.strip(" :-–—")
+                if (
+                    2 <= len(next_clean.split()) <= 12
+                    and not re.search(
+                        r"^\d+$|let us|activities|listen|read|watch|look|do these",
+                        next_clean,
+                        flags=re.IGNORECASE,
+                    )
+                ):
+                    return f"Unit {unit_number}: {next_clean}"
+            return f"Unit {unit_number}"
 
     chapter_number = infer_chapter_number_from_filename(filename)
 
@@ -1239,8 +1290,9 @@ def is_weak_section_title(title: str, filename: str) -> bool:
         not normalized_title
         or normalized_title == "chapter"
         or normalized_title == "unit"
-        or bool(re.fullmatch(r"chapter\s+\d{1,2}", normalized_title))
-        or bool(re.fullmatch(r"unit\s+\d{1,2}", normalized_title))
+        # Bare "Chapter N" or "Unit N" — AI can extract actual title from preview
+        or bool(re.fullmatch(r"chapter\s*\d{1,2}", normalized_title))
+        or bool(re.fullmatch(r"unit\s*\d{1,2}", normalized_title))
         or normalized_title == filename_title
         or bool(re.fullmatch(r"[a-z]{2,}\d+", normalized_title))
     )
