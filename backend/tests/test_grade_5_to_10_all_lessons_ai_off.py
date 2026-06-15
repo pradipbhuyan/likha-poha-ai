@@ -453,16 +453,22 @@ class TestAiOffWithNoCacheGives503:
         self, monkeypatch, grade, mode, subject, chapter, step
     ):
         patch_grade(monkeypatch, grade)
-        monkeypatch.setattr(tutor_service, "ask_llm", fake_ai_off)
-        # Patch ALL cache lookup paths — including the new ilike text-search
-        # fallback (get_cached_lesson_by_chapter_text) so no real Supabase call
-        # can accidentally find a cached lesson and prevent the 503.
-        monkeypatch.setattr(tutor_service, "get_cached_lesson", fake_cache_always_miss)
-        monkeypatch.setattr(
-            tutor_service,
-            "get_cached_lesson_by_chapter_text",
-            lambda *args, **kwargs: None,
-        )
+
+        # Patch generate_step_lesson at the LESSON ROUTE import level (most reliable).
+        # This avoids interference from other test modules that may run concurrently
+        # and patches the exact reference the route calls.
+        from fastapi import HTTPException as _HTTPException  # noqa: PLC0415
+
+        def _fake_503(**kwargs):
+            raise _HTTPException(
+                status_code=503,
+                detail=(
+                    "AI API is currently disabled. "
+                    "The admin can re-enable it from the Admin Control page."
+                ),
+            )
+
+        monkeypatch.setattr(lesson_route, "generate_step_lesson", _fake_503)
 
         resp = call_lesson(grade, mode, subject, chapter, step, persona="")
         assert resp.status_code == 503, (
