@@ -414,6 +414,23 @@ def generate_step_lesson(
             mode=mode,
             step_title=step_title,
         )
+        if cached:
+            # Backfill the primary cache key so future lookups are direct hash
+            # hits (avoids repeated ilike queries and ensures the prewarm counter
+            # counts this chapter correctly).
+            store_lesson_cache(
+                cache_key=cache_key,
+                lesson_content=cached["lesson_content"],
+                source_type=cached.get("source_type", "CACHE"),
+                board=board,
+                grade=grade,
+                subject=subject,
+                chapter=chapter,
+                mode=mode,
+                step_title=step_title,
+                teacher_persona=teacher_persona or "",
+                practice_questions=cached.get("practice_questions") or [],
+            )
 
     if cached:
         return {
