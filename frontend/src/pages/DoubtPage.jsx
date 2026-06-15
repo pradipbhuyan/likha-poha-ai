@@ -67,7 +67,6 @@ function DoubtPage({ user }) {
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState("");
   const [actionMessage, setActionMessage] = useState("");
-  const [feedback, setFeedback] = useState("");
   const [doubtHistory, setDoubtHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
 
@@ -213,7 +212,6 @@ function DoubtPage({ user }) {
     setFollowUpAnswers({});
     setError("");
     setActionMessage("");
-    setFeedback("");
   }
 
   function handleGradeChange(value) {
@@ -290,45 +288,11 @@ function DoubtPage({ user }) {
     }
   }
 
-  function handleSaveRevision() {
-    /** Save the latest answer to local revision notes for quick review on this device. */
-    if (!answer) return;
-
-    const storageKey = `revision_notes_${user.username || "student"}`;
-    const savedItems = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    const newItem = {
-      id: Date.now(),
-      grade,
-      mode,
-      subject: subject || "Open topic",
-      chapter: chapter || "Open chapter",
-      question,
-      answer,
-      createdAt: new Date().toISOString(),
-    };
-
-    localStorage.setItem(
-      storageKey,
-      JSON.stringify([newItem, ...savedItems].slice(0, 50))
-    );
-    setActionMessage("Saved to revision notes on this device.");
-  }
-
   function handleStartManualFollowUp() {
     /** Open the manual follow-up prompt under the answer actions. */
     setActiveSuggestion("Ask a follow-up");
     setFollowUpQuestion("");
     setActionMessage("Follow-up box opened.");
-  }
-
-  function handleFeedback(value) {
-    /** Store lightweight helpful/not-helpful feedback in page state for the current answer. */
-    setFeedback(value);
-    setActionMessage(
-      value === "helpful"
-        ? "Feedback saved. Glad this helped."
-        : "Feedback saved. Try asking a follow-up so I can improve the explanation."
-    );
   }
 
   function formatHistoryDate(value) {
@@ -359,7 +323,6 @@ function DoubtPage({ user }) {
     setFollowUpQuestion("");
     setFollowUpAnswers({});
     setActiveSuggestion("");
-    setFeedback("");
     setActionMessage("Loaded saved doubt.");
     setError("");
   }
@@ -909,28 +872,11 @@ Important:
               )}
 
               <div className="doubt-answer-actions">
-                <button type="button" onClick={handleCopyAnswer}>
-                  Copy
+                <button type="button" onClick={handleCopyAnswer} title="Copy answer to clipboard">
+                  📋 Copy answer
                 </button>
-                <button type="button" onClick={handleSaveRevision}>
-                  Save to revision
-                </button>
-                <button type="button" onClick={handleStartManualFollowUp}>
-                  Ask follow-up
-                </button>
-                <button
-                  type="button"
-                  className={feedback === "helpful" ? "selected" : ""}
-                  onClick={() => handleFeedback("helpful")}
-                >
-                  Helpful
-                </button>
-                <button
-                  type="button"
-                  className={feedback === "confusing" ? "selected" : ""}
-                  onClick={() => handleFeedback("confusing")}
-                >
-                  Confusing
+                <button type="button" onClick={handleStartManualFollowUp} title="Ask a deeper follow-up question about this answer">
+                  💬 Ask follow-up
                 </button>
               </div>
 
