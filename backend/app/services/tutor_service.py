@@ -631,8 +631,15 @@ def answer_doubt(
     # ----------------------------------------------------------------- DKB
     try:
         from app.services.doubt_kb_service import search_doubt_kb, store_in_doubt_kb  # noqa: PLC0415
+        # Strip answer-style instructions appended by buildDoubtPayload on the
+        # frontend before doing the DKB embedding lookup.  The appended text
+        # ("Preferred answer style: Explain this in simple language first.")
+        # changes the embedding enough to drop similarity below the threshold.
+        # We search with the clean raw question; the full enriched text is still
+        # sent to the LLM if the DKB misses.
+        raw_question_for_dkb = question.split("\n\nPreferred answer style:", 1)[0].strip()
         dkb_hit = search_doubt_kb(
-            question=question,
+            question=raw_question_for_dkb,
             grade=grade,
             # Treat empty string as None so the DKB subject filter is bypassed
             # (user left "Open subject" in the doubt page → search all subjects)
