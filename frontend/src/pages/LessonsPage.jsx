@@ -1404,6 +1404,7 @@ function LessonsPage({ user }) {
                   setCurrentStepIndex(0);
                   setHighestUnlockedStep(0);
                   setLesson("");
+                  setStepLessons({});          // ← fix: clear saved lessons so Generate button re-enables
                   setAudioUrl("");
                   resetTextbookVisualBrowser();
                   setCompleted(false);
