@@ -363,3 +363,90 @@ def get_doubt_history(
             limit=limit,
         ),
     }
+
+
+@router.get("/suggestions")
+def get_doubt_suggestions(
+    grade: str,
+    mode: str = "CBSE",
+    subject: str = "",
+    chapter: str = "",
+    board: str = "CBSE",
+    limit: int = 6,
+    user=Depends(get_current_user),
+):
+    """
+    Return DKB-backed suggestion chips for the Ask Doubt page.
+
+    When subject/chapter are empty ("Open subject"), returns the most popular
+    pre-answered questions for the grade across ALL subjects so the student
+    always sees relevant chips instead of generic defaults.
+
+    Every returned question has a pre-cached answer — clicking it is zero
+    token cost regardless of whether AI is ON or OFF.
+    """
+    try:
+        from app.services.doubt_kb_service import get_lesson_doubt_suggestions  # noqa: PLC0415
+        import re as _re  # noqa: PLC0415
+        from app.services.auth_service import admin_client as supabase  # noqa: PLC0415
+
+        clean_subject = (subject or "").strip()
+        clean_chapter = (chapter or "").strip()
+
+        # If subject is specified, use the lesson suggestions function
+        if clean_subject and clean_chapter:
+            suggestions = get_lesson_doubt_suggestions(
+                grade=grade,
+                subject=clean_subject,
+                chapter=clean_chapter,
+                mode=mode,
+                limit=limit,
+            )
+            if suggestions:
+                return {"success": True, "doubt_suggestions": suggestions}
+
+        # Fallback: subject-level suggestions (no chapter filter)
+        if clean_subject:
+            direct = (
+                supabase
+                .table("doubt_kb")
+                .select("id, question, hit_count")
+                .eq("grade", grade)
+                .eq("subject", clean_subject)
+                .eq("mode", mode)
+                .eq("status", "active")
+                .order("hit_count", desc=True)
+                .limit(limit)
+                .execute()
+            )
+            if direct.data:
+                return {
+                    "success": True,
+                    "doubt_suggestions": [
+                        {"id": r["id"], "question": r["question"]}
+                        for r in direct.data
+                    ],
+                }
+
+        # Open subject: return most popular across all subjects for this grade
+        open_suggestions = (
+            supabase
+            .table("doubt_kb")
+            .select("id, question, hit_count, subject")
+            .eq("grade", grade)
+            .eq("mode", mode)
+            .eq("status", "active")
+            .order("hit_count", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        return {
+            "success": True,
+            "doubt_suggestions": [
+                {"id": r["id"], "question": r["question"]}
+                for r in (open_suggestions.data or [])
+            ],
+        }
+
+    except Exception:
+        return {"success": True, "doubt_suggestions": []}

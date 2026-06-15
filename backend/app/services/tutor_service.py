@@ -634,8 +634,10 @@ def answer_doubt(
         dkb_hit = search_doubt_kb(
             question=question,
             grade=grade,
-            subject=subject,
-            chapter=chapter if chapter else None,
+            # Treat empty string as None so the DKB subject filter is bypassed
+            # (user left "Open subject" in the doubt page → search all subjects)
+            subject=subject if (subject or "").strip() else None,
+            chapter=chapter if (chapter or "").strip() else None,
             mode=mode,
             board=board,
         )

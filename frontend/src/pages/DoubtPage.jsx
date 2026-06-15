@@ -5,7 +5,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import { getSyllabus } from "../api/syllabus";
-import { answerDoubt, getDoubtHistory } from "../api/doubt";
+import { answerDoubt, getDoubtHistory, getDoubtSuggestions } from "../api/doubt";
 import StructuredVisualBlock from "../components/StructuredVisualBlock";
 import {
   getDefaultSelection,
@@ -51,6 +51,7 @@ function DoubtPage({ user }) {
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
   const [answerStyle, setAnswerStyle] = useState("simple");
+  const [doubtSuggestions, setDoubtSuggestions] = useState([]);
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -94,6 +95,19 @@ function DoubtPage({ user }) {
 
     loadSyllabus();
   }, []);
+
+  useEffect(() => {
+    async function loadSuggestions() {
+      /** Load DKB-backed question chips whenever the learning context changes. */
+      try {
+        const result = await getDoubtSuggestions({ grade, mode, subject, chapter, limit: 6 });
+        setDoubtSuggestions(Array.isArray(result?.doubt_suggestions) ? result.doubt_suggestions : []);
+      } catch {
+        setDoubtSuggestions([]);
+      }
+    }
+    if (grade && mode) loadSuggestions();
+  }, [grade, mode, subject, chapter]);
 
   useEffect(() => {
     async function loadHistory() {
@@ -681,6 +695,34 @@ Important:
               placeholder="Example: Explain Newton's laws of force with real-life examples."
               disabled={!mode}
             />
+
+            {/* DKB pre-answered question chips */}
+            {doubtSuggestions.length > 0 && (
+              <div style={{ marginBottom: 12 }}>
+                <p style={{ fontSize: "0.78rem", color: "#7c3aed", fontWeight: 600, marginBottom: 6 }}>
+                  🧠 Quick answers available (tap to ask):
+                </p>
+                <div className="prompt-chip-row">
+                  {doubtSuggestions.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      className="followup-chip"
+                      disabled={!mode || asking}
+                      style={{ borderColor: "#7c3aed", color: "#7c3aed" }}
+                      onClick={() => {
+                        setQuestion(s.question);
+                        setTimeout(() => {
+                          document.querySelector(".doubt-submit-btn")?.click();
+                        }, 50);
+                      }}
+                    >
+                      {s.question.length > 55 ? s.question.slice(0, 52) + "…" : s.question}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="prompt-chip-row answer-style-row">
               {ANSWER_STYLE_OPTIONS.map((option) => (
