@@ -175,11 +175,20 @@ def patch_ai_off_prewarm_cache(monkeypatch, grade):
     so we must patch the name in tutor_service's namespace, NOT in the
     lesson_cache_service module.  Patching the wrong namespace leaves the
     real Supabase call in place and every lookup returns None (cache miss).
+
+    Also patch get_cached_lesson_by_chapter_text (Fallback 3) to prevent
+    real Supabase ilike calls from finding cached lessons unexpectedly.
     """
     patch_grade(monkeypatch, grade)
     monkeypatch.setattr(tutor_service, "ask_llm", fake_ai_off)
     # Patch where the name is USED (tutor_service), not where it is DEFINED
     monkeypatch.setattr(tutor_service, "get_cached_lesson", fake_cache_prewarm_only)
+    # Fallback 3 also hits real Supabase — patch it to keep tests hermetic
+    monkeypatch.setattr(
+        tutor_service,
+        "get_cached_lesson_by_chapter_text",
+        lambda *args, **kwargs: None,
+    )
 
 
 def call_lesson(grade, mode, subject, chapter, step, persona=""):
@@ -452,7 +461,7 @@ class TestAiOffWithNoCacheGives503:
         monkeypatch.setattr(
             tutor_service,
             "get_cached_lesson_by_chapter_text",
-            lambda **kwargs: None,
+            lambda *args, **kwargs: None,
         )
 
         resp = call_lesson(grade, mode, subject, chapter, step, persona="")
