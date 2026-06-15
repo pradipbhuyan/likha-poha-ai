@@ -6,23 +6,47 @@ Science chapters WITHOUT calling the OpenAI LLM (simulating AI disabled).
 
 Test strategy
 -------------
-1. Preloaded card questions: exact DKB question texts → must always HIT at ~1.000
-2. Paraphrased questions: student-typed variations → should HIT at threshold ≥ 0.50
+1. Preloaded card questions: exact DKB question texts -> must always HIT at ~1.000
+2. Paraphrased questions: student-typed variations -> should HIT at threshold >= 0.50
 3. Lesson suggestion cards: only show questions that the DKB can answer
 4. Out-of-scope questions ("Show a diagram", UI commands): gracefully MISS
 
 All tests run against the REAL Supabase DB.  No LLM is called.
 AI is simulated as OFF by monkeypatching ask_llm to raise 503.
 
-Run with:
+Run locally only (requires real Supabase + OpenAI credentials):
     cd backend
     python3 -m pytest tests/test_doubt_kb_ai_off.py -v -s
+
+Skipped automatically in CI (no live DB / real API key available).
 """
 
 import logging
+import os
 import pytest
 
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Skip entire file in CI -- these tests require a live Supabase DB and a real
+# OpenAI API key for create_embedding.  The CI environment uses a test key
+# and has no network access to the production Supabase instance.
+# ---------------------------------------------------------------------------
+_openai_key = os.getenv("OPENAI_API_KEY", "")
+_is_ci_test_key = (
+    not _openai_key
+    or _openai_key.startswith("test-")
+    or _openai_key == "test-openai-key"
+    or len(_openai_key) < 20
+)
+
+pytestmark = pytest.mark.skipif(
+    _is_ci_test_key,
+    reason=(
+        "DKB integration tests require a real OpenAI API key and live Supabase DB. "
+        "Skipped in CI (test key detected). Run locally with real credentials."
+    ),
+)
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -53,11 +77,11 @@ SUBJECT = "Science"
 
 # Chapter names as used by the lesson route (from CBSE_9 syllabus, NO "Chapter N:" prefix)
 CHAPTERS = {
-    "Cell":       "Cell: The Building Block of Life",
-    "Tissues":    "Tissues in Action",
-    "Motion":     "Describing Motion Around Us",
-    "Atoms":      "Atomic Foundations of Matter",
-    "Exploration":"Exploration: Entering the World of Secondary Science",
+    "Cell":        "Cell: The Building Block of Life",
+    "Tissues":     "Tissues in Action",
+    "Motion":      "Describing Motion Around Us",
+    "Atoms":       "Atomic Foundations of Matter",
+    "Exploration": "Exploration: Entering the World of Secondary Science",
 }
 
 
@@ -69,7 +93,7 @@ class TestDKBSuggestions:
     """
     Verify that get_lesson_doubt_suggestions returns questions for each
     Grade 9 Science chapter.  Each returned question must be answerable
-    by the DKB (clicking it → HIT at ~1.000 similarity).
+    by the DKB (clicking it -> HIT at ~1.000 similarity).
     """
 
     @pytest.mark.parametrize("label,chapter", CHAPTERS.items())
@@ -92,7 +116,7 @@ class TestDKBSuggestions:
         """
         cards = suggestions(GRADE, SUBJECT, chapter)
         if not cards:
-            pytest.skip(f"No DKB suggestions for {chapter} — build DKB first.")
+            pytest.skip(f"No DKB suggestions for {chapter} -- build DKB first.")
 
         failures = []
         for card in cards:
@@ -106,7 +130,7 @@ class TestDKBSuggestions:
         assert not failures, (
             f"Some cards are NOT answerable by DKB for '{chapter}':\n"
             + "\n".join(failures)
-            + "\nThese cards should NOT be shown to students (fix get_lesson_doubt_suggestions)."
+            + "\nThese cards should NOT be shown to students."
         )
 
 
@@ -117,12 +141,11 @@ class TestDKBSuggestions:
 class TestExactCardClicks:
     """
     When a student clicks a suggestion card, the exact question text is
-    submitted.  This must ALWAYS be served from DKB (similarity ~1.000)
-    regardless of chapter name format differences.
+    submitted.  This must ALWAYS be served from DKB (similarity ~1.000).
     """
 
     def test_cell_chapter_card_click(self):
-        """Grade 9 Cell chapter card click → DKB HIT at 1.000."""
+        """Grade 9 Cell chapter card click -> DKB HIT at 1.000."""
         cards = suggestions(GRADE, SUBJECT, CHAPTERS["Cell"])
         if not cards:
             pytest.skip("No DKB entries for Cell chapter.")
@@ -135,7 +158,7 @@ class TestExactCardClicks:
         print(f"\nCard click HIT [{result['similarity']:.3f}]: {q[:60]}")
 
     def test_tissues_chapter_card_click(self):
-        """Grade 9 Tissues chapter card click → DKB HIT at 1.000."""
+        """Grade 9 Tissues chapter card click -> DKB HIT at 1.000."""
         cards = suggestions(GRADE, SUBJECT, CHAPTERS["Tissues"])
         if not cards:
             pytest.skip("No DKB entries for Tissues chapter.")
@@ -146,6 +169,7 @@ class TestExactCardClicks:
         print(f"\nTissues card HIT [{result['similarity']:.3f}]: {q[:60]}")
 
     def test_motion_chapter_card_click(self):
+        """Grade 9 Motion chapter card click -> DKB HIT at 1.000."""
         cards = suggestions(GRADE, SUBJECT, CHAPTERS["Motion"])
         if not cards:
             pytest.skip("No DKB entries for Motion chapter.")
@@ -162,22 +186,22 @@ class TestExactCardClicks:
 
 class TestParaphrasedQuestions:
     """
-    Student types a question that is SIMILAR but not identical to stored DKB entries.
-    These should hit the DKB at threshold 0.50 (calibrated from live data).
+    Student types a question that is SIMILAR but not identical to stored DKB
+    entries.  These should hit the DKB at threshold 0.50.
     """
 
     PARAPHRASE_TESTS = [
         # (question, chapter_key, reason)
-        ("what is a tissue",          "Tissues", "Core definition question"),
-        ("what does a cell do",        "Cell",    "Cell function question"),
-        ("what is velocity",           "Motion",  "Motion definition"),
-        ("what is an atom made of",    "Atoms",   "Atomic structure"),
-        ("why do we study science",    "Exploration", "Science motivation"),
-        ("what is the nucleus",        "Cell",    "Cell organelle"),
-        ("how does osmosis work",      "Cell",    "Osmosis process"),
-        ("types of tissue in plants",  "Tissues", "Plant tissue types"),
-        ("what is daltons theory",     "Atoms",   "Dalton atomic theory"),
-        ("define acceleration",        "Motion",  "Motion definition"),
+        ("what is a tissue",         "Tissues",     "Core definition question"),
+        ("what does a cell do",       "Cell",        "Cell function question"),
+        ("what is velocity",          "Motion",      "Motion definition"),
+        ("what is an atom made of",   "Atoms",       "Atomic structure"),
+        ("why do we study science",   "Exploration", "Science motivation"),
+        ("what is the nucleus",       "Cell",        "Cell organelle"),
+        ("how does osmosis work",     "Cell",        "Osmosis process"),
+        ("types of tissue in plants", "Tissues",     "Plant tissue types"),
+        ("what is daltons theory",    "Atoms",       "Dalton atomic theory"),
+        ("define acceleration",       "Motion",      "Motion definition"),
     ]
 
     @pytest.mark.parametrize("question,chapter_key,reason", PARAPHRASE_TESTS)
@@ -187,14 +211,12 @@ class TestParaphrasedQuestions:
         result = search(question, GRADE, SUBJECT, chapter, threshold=0.50)
         if result:
             print(f"\n  HIT [{result['similarity']:.3f}] ({reason}): "
-                  f"'{question}' → '{result['question'][:50]}'")
+                  f"'{question}' -> '{result['question'][:50]}'")
         else:
-            # Not a hard failure — log it so we know DKB coverage gaps
             print(f"\n  MISS ({reason}): '{question}' for chapter '{chapter[:40]}'")
-            # Soft failure: count how many miss at 0.50
             pytest.xfail(
                 f"'{question}' not covered in DKB at threshold 0.50. "
-                "Acceptable — novel questions fall back to LLM when AI is ON."
+                "Acceptable -- novel questions fall back to LLM when AI is ON."
             )
 
 
@@ -203,11 +225,7 @@ class TestParaphrasedQuestions:
 # ===========================================================================
 
 class TestDKBCoverageReport:
-    """
-    Generate a full coverage report for all Grade 9 Science chapters.
-    Shows which questions are in the DKB and estimates hit rate for
-    typical student questions.
-    """
+    """Generate a full coverage report for all Grade 9 Science chapters."""
 
     def test_print_full_coverage_report(self):
         """Print DKB coverage for each Grade 9 Science chapter."""
@@ -215,28 +233,24 @@ class TestDKBCoverageReport:
 
         print("\n")
         print("=" * 70)
-        print("DKB COVERAGE REPORT — Grade 9 Science (AI OFF Mode)")
+        print("DKB COVERAGE REPORT -- Grade 9 Science (AI OFF Mode)")
         print("=" * 70)
 
         for label, chapter in CHAPTERS.items():
             cards = suggestions(GRADE, SUBJECT, chapter)
-
-            # Count total DKB entries for this chapter
             total = supabase.table("doubt_kb").select(
                 "id", count="exact"
             ).eq("grade", GRADE).eq("subject", SUBJECT).ilike(
                 "chapter", f"%{chapter}%"
             ).eq("status", "active").execute()
-
             n_total = total.count or 0
 
-            print(f"\n{label} — {chapter[:50]}")
+            print(f"\n{label} -- {chapter[:50]}")
             print(f"  Total DKB Q&A pairs: {n_total}")
             print(f"  Suggestion cards available: {len(cards)}")
             if cards:
                 print("  Sample questions shown as cards:")
                 for c in cards[:3]:
-                    # verify each card hits DKB
                     r = search(c["question"], GRADE, SUBJECT, chapter)
                     status = f"HIT [{r['similarity']:.3f}]" if r else "MISS"
                     print(f"    [{status}] {c['question'][:60]}")
@@ -249,8 +263,6 @@ class TestDKBCoverageReport:
         print("  - Typed paraphrases = may miss at default threshold")
         print("  - UI commands ('Show a diagram') = always need AI ON")
         print("=" * 70)
-
-        # This test always passes — it's a reporting test
         assert True
 
 
@@ -262,25 +274,22 @@ class TestFollowUpFlowAiOff:
     """
     Simulate the full /api/lesson/follow-up flow with AI disabled.
     DKB-answerable questions should return a valid answer.
-    Non-DKB questions should gracefully return 503 (not crash).
+    Non-DKB questions should gracefully return 503.
     """
 
+    @staticmethod
     def _fake_ask_llm(*args, **kwargs):
         from fastapi import HTTPException
         raise HTTPException(
             status_code=503,
-            detail="AI API is currently disabled. The admin can re-enable it."
+            detail="AI API is currently disabled. The admin can re-enable it.",
         )
 
     def test_card_click_answered_without_llm(self, monkeypatch):
-        """
-        Simulates: student clicks a DKB suggestion card while AI is OFF.
-        Expected: DKB answers instantly, LLM is never called.
-        """
+        """Clicking a DKB card with AI OFF -> DKB answers instantly."""
         import app.services.tutor_service as tutor_service
         monkeypatch.setattr(tutor_service, "ask_llm", self._fake_ask_llm)
 
-        # Get a card from Tissues chapter
         cards = suggestions(GRADE, SUBJECT, CHAPTERS["Tissues"])
         if not cards:
             pytest.skip("No Tissues DKB entries.")
@@ -289,15 +298,12 @@ class TestFollowUpFlowAiOff:
         print(f"\nSimulating card click: '{card_question[:60]}'")
 
         result = tutor_service.answer_lesson_follow_up(
-            grade=GRADE,
-            mode="CBSE",
-            subject=SUBJECT,
+            grade=GRADE, mode="CBSE", subject=SUBJECT,
             chapter=CHAPTERS["Tissues"],
             step_title="Concept introduction",
             lesson="Tissues are groups of similar cells...",
             question=card_question,
-            username="test_student",
-            board="CBSE",
+            username="test_student", board="CBSE",
         )
 
         assert result is not None
@@ -306,48 +312,33 @@ class TestFollowUpFlowAiOff:
         print("  PASS: Card click answered from DKB without LLM")
 
     def test_typed_science_question_answered(self, monkeypatch):
-        """
-        Simulates: student types 'what is a tissue' while AI is OFF.
-        With threshold 0.50: should hit DKB.
-        """
+        """'what is a tissue' with AI OFF and threshold 0.50 -> DKB HIT."""
         import app.services.tutor_service as tutor_service
         from app.services import doubt_kb_service as dkb_svc
         monkeypatch.setattr(tutor_service, "ask_llm", self._fake_ask_llm)
-        # Temporarily lower threshold for this test
-        orig = dkb_svc.SIMILARITY_THRESHOLD
         monkeypatch.setattr(dkb_svc, "SIMILARITY_THRESHOLD", 0.50)
 
         try:
             result = tutor_service.answer_lesson_follow_up(
-                grade=GRADE,
-                mode="CBSE",
-                subject=SUBJECT,
+                grade=GRADE, mode="CBSE", subject=SUBJECT,
                 chapter=CHAPTERS["Tissues"],
                 step_title="Concept introduction",
                 lesson="Tissues are groups of similar cells...",
                 question="what is a tissue",
-                username="test_student",
-                board="CBSE",
+                username="test_student", board="CBSE",
             )
             assert result is not None
             assert result.get("answer"), "Expected DKB answer for 'what is a tissue'"
             print(f"\n  PASS: 'what is a tissue' answered from DKB")
-            print(f"  Answer preview: {result['answer'][:100]}")
         except Exception as e:
             if "503" in str(e) or "disabled" in str(e).lower():
                 pytest.xfail(
-                    "'what is a tissue' similarity < 0.50 in DKB — "
-                    "add it to DKB or accept that typed novel questions need AI ON."
+                    "'what is a tissue' similarity < 0.50 -- needs AI ON."
                 )
             raise
-        finally:
-            pass  # threshold restored by monkeypatch automatically
 
     def test_ui_command_chips_fail_gracefully(self, monkeypatch):
-        """
-        UI command chips like 'Show a diagram' are NOT in the DKB.
-        With AI off they should return 503 (not crash the server).
-        """
+        """UI command chips not in DKB -> 503 with AI OFF (not a crash)."""
         import app.services.tutor_service as tutor_service
         monkeypatch.setattr(tutor_service, "ask_llm", self._fake_ask_llm)
 
@@ -361,10 +352,9 @@ class TestFollowUpFlowAiOff:
                     lesson="Cells are the basic unit of life.",
                     question=cmd, username="test_student", board="CBSE",
                 )
-                # If we get here, DKB answered it — that's OK too
-                print(f"\n  '{cmd}' → answered from DKB (unexpected but fine)")
+                print(f"\n  '{cmd}' -> answered from DKB (unexpected but fine)")
             except Exception as e:
                 if "503" in str(e) or "disabled" in str(e).lower():
-                    print(f"\n  '{cmd}' → 503 as expected (UI command, not in DKB)")
+                    print(f"\n  '{cmd}' -> 503 as expected (UI command, not in DKB)")
                 else:
                     raise
