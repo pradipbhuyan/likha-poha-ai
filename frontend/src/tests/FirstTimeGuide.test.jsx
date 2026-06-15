@@ -44,7 +44,7 @@ describe("FirstTimeGuide", () => {
     expect(screen.getByText(/welcome to your first learning quest/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /next/i }));
-    expect(screen.getByText(/open lessons/i)).toBeInTheDocument();
+    expect(screen.getByText(/pick a chapter in lessons/i)).toBeInTheDocument();
   });
 
   test("does not render for admin users", async () => {

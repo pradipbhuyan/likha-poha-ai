@@ -60,27 +60,37 @@ const ROLE_STEPS = {
   student: [
     {
       title: "Start at Dashboard",
-      text: "See your learning streak, weak areas, and what to study next.",
+      text: "See your learning streak, weak areas, and what to study next. The dashboard shows you exactly where to begin today.",
       icon: Compass,
     },
     {
-      title: "Open Lessons",
-      text: "Pick your class, subject, chapter, and lesson step to learn in small pieces.",
+      title: "Pick a Chapter in Lessons",
+      text: "Go to Lessons → choose your Grade, Subject, and Chapter. Always start from Step 1 of the chapter. Each chapter has 5 lesson steps.",
       icon: BookOpen,
     },
     {
-      title: "Use Ask Doubt",
-      text: "Ask a chapter doubt when something is confusing and save the answer for later.",
-      icon: HelpCircle,
+      title: "Generate & Read the Lesson",
+      text: "Click ✨ Generate Lesson. Read carefully — each step teaches one focused concept. Use 🔊 Listen to hear it aloud.",
+      icon: Sparkles,
     },
     {
-      title: "Try Mock Test",
-      text: "Practice with questions and review explanations before moving ahead.",
+      title: "Practice & Mark Complete",
+      text: "After reading, click 🎲 Generate 2 Practice Questions. Answer them, then click ✅ Mark Step Complete to unlock the next step.",
       icon: ClipboardList,
     },
     {
-      title: "Check Analytics",
-      text: "Track what is improving and what needs another revision round.",
+      title: "Ask Doubts Anytime",
+      text: "Stuck on something? Use Ask Doubt or the 💬 Ask a follow-up box inside the lesson. Pre-answered questions are shown as chips.",
+      icon: HelpCircle,
+    },
+    {
+      title: "Take a Mock Test",
+      text: "Once you finish all steps of a chapter, go to Mock Test to test yourself with MCQs. Review explanations to learn from mistakes.",
+      icon: ClipboardList,
+    },
+    {
+      title: "Track Your Progress",
+      text: "Check Analytics to see which subjects are improving. The Dashboard shows weak areas to revisit before your exam.",
       icon: BarChart3,
     },
   ],

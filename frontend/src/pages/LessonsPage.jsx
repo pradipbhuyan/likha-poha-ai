@@ -1448,27 +1448,51 @@ function LessonsPage({ user }) {
               <div className="premium-header">
                 <p className="eyebrow">Ready when you are</p>
                 <h2>Start your next AI-guided lesson</h2>
-                <p>
-                  Pick a lesson step from the left panel and generate a focused,
-                  step-wise explanation with narration, visuals, and follow-up
-                  support.
+              </div>
+
+              {/* Step-by-step how-to guide */}
+              <div className="premium-card" style={{ background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)", border: "1px solid #bae6fd", marginBottom: 24 }}>
+                <h3 style={{ margin: "0 0 16px", fontSize: "1rem", color: "#0369a1" }}>📖 How to use Lessons — 5 simple steps</h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {[
+                    { n: "1", icon: "⬅️", text: "Select your Grade, Subject, and Chapter from the left panel" },
+                    { n: "2", icon: "✨", text: 'Click "Generate Lesson" — each chapter has 5 steps, always start from Step 1' },
+                    { n: "3", icon: "📚", text: "Read the lesson carefully. Use 🔊 Listen to hear it aloud" },
+                    { n: "4", icon: "🎲", text: 'Click "Generate 2 Practice Questions", answer them to test your understanding' },
+                    { n: "5", icon: "✅", text: 'Click "Mark Step Complete" to unlock the next step and move forward' },
+                  ].map(({ n, icon, text }) => (
+                    <div key={n} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                      <span style={{
+                        minWidth: 24, height: 24, borderRadius: "50%",
+                        background: "#0ea5e9", color: "#fff",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "0.75rem", fontWeight: 700, flexShrink: 0, marginTop: 1,
+                      }}>{n}</span>
+                      <span style={{ fontSize: "0.88rem", color: "#374151", lineHeight: 1.5 }}>
+                        {icon} {text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: 12, marginBottom: 0 }}>
+                  💡 Complete all 5 steps of a chapter to unlock the full chapter. Then try a Mock Test!
                 </p>
               </div>
 
               <div className="premium-grid premium-grid-3">
                 <div className="premium-card premium-glow-card glow-blue">
-                  <h3>📘 Focused Lessons</h3>
-                  <p>Learn one sub-topic at a time without chapter overload.</p>
+                  <h3>📘 5-Step Learning</h3>
+                  <p>Each chapter has 5 steps: Intro → Core → Examples → Exam Problems → Revision.</p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-purple">
-                  <h3>🔊 Narration</h3>
-                  <p>Listen to lessons aloud using your selected voice.</p>
+                  <h3>🔊 Listen & Learn</h3>
+                  <p>Every lesson can be read aloud so you can learn while relaxing.</p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-green">
-                  <h3>🖼 Textbook Visuals</h3>
-                  <p>Use reviewed visuals from uploaded textbooks when they are available.</p>
+                  <h3>� Ask Doubts</h3>
+                  <p>Ask follow-up questions inside the lesson. Pre-answered questions shown as chips.</p>
                 </div>
               </div>
             </div>
