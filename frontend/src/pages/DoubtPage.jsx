@@ -58,6 +58,7 @@ function DoubtPage({ user }) {
   const [sourceInfo, setSourceInfo] = useState(null);
   const [asking, setAsking] = useState(false);
   const [mentorSuggestions, setMentorSuggestions] = useState([]);
+  const [relatedDkbQuestions, setRelatedDkbQuestions] = useState([]);
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpAnswers, setFollowUpAnswers] = useState({});
@@ -408,6 +409,17 @@ function DoubtPage({ user }) {
 
       setAnswer(finalAnswer);
       setMentorSuggestions(result.mentor_suggestions || []);
+
+      // Fetch DKB-answerable related questions to show as instant-answer cards
+      try {
+        const dkbResult = await getDoubtSuggestions({ grade, mode, subject, chapter, limit: 6 });
+        const dkbQ = (dkbResult?.doubt_suggestions || []).filter(
+          (s) => s.question.toLowerCase() !== question.trim().toLowerCase()
+        );
+        setRelatedDkbQuestions(dkbQ.slice(0, 3));
+      } catch {
+        setRelatedDkbQuestions([]);
+      }
 
       setSourceInfo({
         sourceType: result.source_type,
@@ -967,7 +979,35 @@ Important:
                 </div>
               )}
 
-              {mentorSuggestions.length > 0 && (
+              {/* DKB-backed related questions — answered instantly, no AI needed */}
+              {relatedDkbQuestions.length > 0 && (
+                <div className="mentor-suggestion-section">
+                  <h4>🧠 Suggested Next Steps</h4>
+                  <div className="mentor-suggestion-card-grid">
+                    {relatedDkbQuestions.map((s) => (
+                      <div key={s.id} className="mentor-suggestion-card">
+                        <button
+                          type="button"
+                          className="mentor-suggestion-card-btn"
+                          style={{ borderLeft: "3px solid #7c3aed" }}
+                          onClick={() => {
+                            setQuestion(s.question);
+                            setTimeout(() => {
+                              document.querySelector(".doubt-submit-btn")?.click();
+                            }, 50);
+                          }}
+                        >
+                          <span>🧠</span>
+                          <strong>{s.question.length > 60 ? s.question.slice(0, 57) + "…" : s.question}</strong>
+                          <small style={{ color: "#7c3aed" }}>Instant answer from knowledge base</small>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {mentorSuggestions.length > 0 && relatedDkbQuestions.length === 0 && (
                 <div className="mentor-suggestion-section">
                   <h4>🧠 Suggested Next Steps</h4>
 
