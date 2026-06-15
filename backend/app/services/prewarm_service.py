@@ -792,12 +792,18 @@ def get_grade_status_summary(grades: list[str]) -> list[dict]:
 
     statuses = get_all_job_statuses()
 
-    # Batch-fetch DKB counts for all grades in one query
-    dkb_rows = supabase.table("doubt_kb").select("grade").eq("status", "active").execute()
+    # Fetch DKB counts per grade using count="exact" — avoids the Supabase
+    # default 1000-row page limit that causes undercounting when a grade has
+    # more than 1000 Q&A pairs (e.g. Grade 10 has 2200+).
     dkb_counts: dict[str, int] = {}
-    for row in (dkb_rows.data or []):
-        g = row.get("grade", "")
-        dkb_counts[g] = dkb_counts.get(g, 0) + 1
+    for g in grades:
+        try:
+            r = supabase.table("doubt_kb").select(
+                "id", count="exact"
+            ).eq("grade", g).eq("status", "active").execute()
+            dkb_counts[g] = r.count or 0
+        except Exception:
+            dkb_counts[g] = 0
 
     result = []
 
