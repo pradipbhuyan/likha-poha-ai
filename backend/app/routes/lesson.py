@@ -300,12 +300,29 @@ def generate_lesson(
             sources = []
             textbook_visuals = []
 
+        # Fetch DKB-backed question cards for this chapter.
+        # Only questions with pre-cached answers are included so every card
+        # click is served at zero token cost.  This is an internal mechanism
+        # and the card source is not disclosed to students.
+        doubt_suggestions = []
+        try:
+            from app.services.doubt_kb_service import get_lesson_doubt_suggestions  # noqa: PLC0415
+            doubt_suggestions = get_lesson_doubt_suggestions(
+                grade=data.grade,
+                subject=data.subject,
+                chapter=data.chapter,
+                mode=data.mode,
+            )
+        except Exception:
+            pass
+
         return {
             "success": True,
             "lesson": lesson,
             "source_type": source_type,
             "sources": sources,
             "textbook_visuals": textbook_visuals,
+            "doubt_suggestions": doubt_suggestions,
             "message": "Lesson generated successfully",
         }
 

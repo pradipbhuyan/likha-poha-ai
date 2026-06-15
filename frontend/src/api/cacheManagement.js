@@ -76,3 +76,28 @@ export async function startChapterPrewarm(payload, accessToken) {
     body: JSON.stringify(payload),
   });
 }
+
+export async function startDoubtKbPrewarm(gradeSlug, accessToken) {
+  /** Start background Doubt Knowledge Base pre-warming for a grade.
+   *  Generates 25 pre-answered Q&A pairs per chapter using gpt-4.1-nano.
+   *  Already-covered chapters are skipped — safe to re-run. */
+  return authFetch(`/api/cache-management/prewarm/doubt-kb/${gradeSlug}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
+export async function getDoubtKbStats(accessToken) {
+  /** Load aggregate Doubt Knowledge Base stats (total entries, hit rate, savings). */
+  return authFetch("/api/cache-management/doubt-kb/stats", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
+export async function restoreLessonCache(gradeSlug, accessToken) {
+  /** Restore archived (soft-deleted) lessons for a grade back to active status. */
+  return authFetch(`/api/cache-management/cache/lessons/${gradeSlug}/restore`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}

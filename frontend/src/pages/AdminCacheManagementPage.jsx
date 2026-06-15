@@ -8,6 +8,9 @@ import {
   getChaptersForGrade,
   startChapterPrewarm,
   startChapterQuestionBankBuild,
+  startDoubtKbPrewarm,
+  getDoubtKbStats,
+  restoreLessonCache,
 } from "../api/cacheManagement";
 
 function gradeToSlug(grade) {
@@ -86,6 +89,10 @@ function AdminCacheManagementPage({ user }) {
   // ---- Prewarm model selection ----
   const [prewarmModel, setPrewarmModel] = useState("gpt-4.1-nano");
 
+  // ---- Doubt KB state ----
+  const [dkbStats, setDkbStats] = useState(null);
+  const [dkbRunningGrades, setDkbRunningGrades] = useState({});
+
   // ---- Chapter-by-chapter prewarm state ----
   const [chapterGrade, setChapterGrade] = useState("Grade 9");
   const [chapterList, setChapterList] = useState([]);
@@ -111,6 +118,15 @@ function AdminCacheManagementPage({ user }) {
     }
   }
 
+  async function loadDkbStats() {
+    try {
+      const result = await getDoubtKbStats(user.accessToken);
+      if (result.success) setDkbStats(result);
+    } catch {
+      // DKB stats are optional — fail silently
+    }
+  }
+
   useEffect(() => {
     // Initial load + poll every 15 seconds for background job progress
     let cancelled = false;
@@ -129,6 +145,7 @@ function AdminCacheManagementPage({ user }) {
     }
 
     fetchStatus();
+    loadDkbStats();
     pollRef.current = setInterval(fetchStatus, 15000);
 
     return () => {
@@ -163,9 +180,41 @@ function AdminCacheManagementPage({ user }) {
     }
   }
 
+  async function handleBuildDoubtKb(grade) {
+    /** Start background Doubt KB pre-warming for a grade. */
+    setMessage("");
+    setError("");
+    setDkbRunningGrades((prev) => ({ ...prev, [grade]: true }));
+    try {
+      const result = await startDoubtKbPrewarm(gradeToSlug(grade), user.accessToken);
+      setMessage(result.message || `Doubt KB pre-warming started for ${grade}.`);
+      // Reload stats after a delay
+      setTimeout(loadDkbStats, 30000);
+    } catch (err) {
+      setError(err.message || "Failed to start Doubt KB pre-warming.");
+    } finally {
+      setTimeout(() => setDkbRunningGrades((prev) => ({ ...prev, [grade]: false })), 60000);
+    }
+  }
+
+  async function handleRestoreLessons(grade) {
+    /** Restore archived lessons for a grade. */
+    setMessage("");
+    setError("");
+    try {
+      const result = await restoreLessonCache(gradeToSlug(grade), user.accessToken);
+      setMessage(result.message || `Lessons restored for ${grade}.`);
+      loadStatus();
+    } catch (err) {
+      setError(err.message || "Failed to restore lessons.");
+    }
+  }
+
   async function handleClearLessons(grade) {
-    /** Clear all cached lessons for a grade after confirmation. */
-    if (!window.confirm(`Clear ALL cached lessons for ${grade}? This cannot be undone.`)) return;
+    /** Archive (soft-delete) cached lessons for a grade. Lessons can be restored. */
+    if (!window.confirm(
+      `Archive cached lessons for ${grade}?\n\nThey will be hidden from students but NOT permanently deleted.\nYou can restore them with the Restore button.`
+    )) return;
     setMessage("");
     setError("");
     try {
@@ -392,9 +441,18 @@ function AdminCacheManagementPage({ user }) {
                       className="secondary-btn"
                       disabled={cached_lessons === 0 || lessons_running}
                       onClick={() => handleClearLessons(grade)}
-                      title="Clear lesson cache to force re-generation (e.g. after RAG update)"
+                      title="Archives lessons (not deleted — can be restored)"
                     >
                       🗑️ Clear Lessons
+                    </button>
+
+                    <button
+                      className="secondary-btn"
+                      onClick={() => handleRestoreLessons(grade)}
+                      title="Restore archived lessons back to active"
+                      style={{ background: "#f0fdf4", color: "#166534", border: "1px solid #bbf7d0" }}
+                    >
+                      ↩️ Restore
                     </button>
 
                     {expected_questions > 0 && (
@@ -407,6 +465,16 @@ function AdminCacheManagementPage({ user }) {
                         🗑️ Clear Bank
                       </button>
                     )}
+
+                    <button
+                      className="primary-btn"
+                      disabled={dkbRunningGrades[grade]}
+                      onClick={() => handleBuildDoubtKb(grade)}
+                      title="Pre-generate 25 Q&A pairs per chapter for instant Ask Doubt responses"
+                      style={{ background: dkbRunningGrades[grade] ? "#6b7280" : "#7c3aed" }}
+                    >
+                      {dkbRunningGrades[grade] ? "⏳ Building Doubt KB…" : "🧠 Build Doubt KB"}
+                    </button>
                   </div>
 
                   {(lessons_complete && (expected_questions === 0 || questions_complete)) && (
@@ -420,6 +488,42 @@ function AdminCacheManagementPage({ user }) {
           );
         })}
       </section>
+
+      {/* Doubt KB stats panel */}
+      {dkbStats && dkbStats.total_entries > 0 && (
+        <section className="premium-section">
+          <div className="premium-header">
+            <p className="eyebrow">Internal Performance Metric</p>
+            <h3>🧠 Doubt Knowledge Base Stats</h3>
+          </div>
+          <div className="premium-grid premium-grid-3">
+            <div className="premium-card">
+              <strong>Total Q&A Pairs</strong>
+              <h4>{dkbStats.total_entries?.toLocaleString()}</h4>
+              <small>
+                {dkbStats.prewarmed?.toLocaleString()} prewarmed
+                &nbsp;+&nbsp;
+                {dkbStats.llm_generated?.toLocaleString()} auto-generated
+              </small>
+            </div>
+            <div className="premium-card">
+              <strong>Total DB Hits</strong>
+              <h4>{dkbStats.total_hits?.toLocaleString()}</h4>
+              <small>Doubts served from DB at zero token cost</small>
+            </div>
+            <div className="premium-card">
+              <strong>Estimated Savings</strong>
+              <h4>${dkbStats.estimated_savings_usd?.toFixed(3)}</h4>
+              <small>vs. always calling LLM for every doubt</small>
+            </div>
+          </div>
+          <div className="info-box" style={{ marginTop: 12, fontSize: "0.82rem" }}>
+            💡 Click <strong>🧠 Build Doubt KB</strong> on any grade to pre-generate 25 Q&A
+            pairs per chapter. New student doubts that don't match are automatically added
+            to the KB so it grows with use.
+          </div>
+        </section>
+      )}
 
       {/* Chapter-by-chapter prewarm panel */}
       <section className="premium-section">

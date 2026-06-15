@@ -1,4 +1,5 @@
 import json
+import re
 import uuid
 from datetime import date
 
@@ -13,6 +14,72 @@ from app.services.question_bank_service import (
     get_questions_from_bank,
     add_questions_to_bank,
 )
+
+# Display-source prefixes added by the syllabus review UI when multiple books
+# are uploaded for one subject (e.g. "Text Book - ", "Supplementary Reader - ").
+# The question bank may have been built BEFORE these prefixes were introduced,
+# so we try the un-prefixed chapter name as a fallback.
+_SOURCE_PREFIX_PATTERN = re.compile(
+    r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+    r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+    re.IGNORECASE,
+)
+
+
+def strip_source_display_prefix(chapter: str) -> str:
+    """
+    Remove a book-source display prefix from a chapter label.
+
+    e.g. 'Text Book - Chapter 7: Madam Rides the Bus'
+         → 'Chapter 7: Madam Rides the Bus'
+    """
+    return _SOURCE_PREFIX_PATTERN.sub("", chapter or "").strip()
+
+
+def get_questions_from_bank_with_fallback(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str,
+    difficulty: str,
+    num_questions: int,
+    exam_type: str = "General",
+) -> list[dict]:
+    """
+    Look up bank questions with automatic display-prefix fallback.
+
+    The question bank stores chapters with the exact name used at build time.
+    If the bank was built before multi-book display prefixes were introduced
+    (e.g. 'Text Book - Chapter 1: A Letter to God' vs 'Chapter 1: A Letter to God'),
+    the prefixed lookup will miss.  We automatically retry with the stripped
+    chapter name so both naming schemes hit the same bank entries.
+    """
+    questions = get_questions_from_bank(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        difficulty=difficulty,
+        num_questions=num_questions,
+        exam_type=exam_type,
+    )
+    if questions:
+        return questions
+
+    # Fallback: strip book-source display prefix and retry
+    stripped = strip_source_display_prefix(chapter)
+    if stripped and stripped != chapter:
+        questions = get_questions_from_bank(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=stripped,
+            difficulty=difficulty,
+            num_questions=num_questions,
+            exam_type=exam_type,
+        )
+
+    return questions
 
 
 MOCK_TEST_SYSTEM = """
@@ -461,7 +528,10 @@ def generate_cbse_mock_test(
     LLM generates as normal and the result is added to the bank.
     """
     # ------------------------------------------------------------------ bank
-    bank_questions = get_questions_from_bank(
+    # Uses fallback that strips display prefixes (e.g. "Text Book - ")
+    # so chapters stored under their plain name are still found even when
+    # the frontend sends the prefixed display label.
+    bank_questions = get_questions_from_bank_with_fallback(
         board=board,
         grade=grade,
         subject=subject,

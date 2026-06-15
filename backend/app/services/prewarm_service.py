@@ -198,9 +198,12 @@ def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: s
     Uses the batch-fetched RAG chapters cache so repeated calls within a
     single status load do not each issue a separate Supabase query.
 
-    Also strips any "Part N - " display prefix that the syllabus review
-    adds (e.g. "Part 1 - Chapter 1: A Square and A Cube" → matches
-    the RAG doc stored as "Chapter 1: A Square and A Cube").
+    Handles two types of display prefixes:
+    1. "Part N - " or "Part N: " added by the syllabus review UI.
+    2. Book-source prefixes ("Text Book - ", "Supplementary Reader - ",
+       "History - ", "Economics - ", etc.) added when multiple books are
+       uploaded for one subject.  The RAG document stores the plain chapter
+       name without the source prefix, so we must strip it before lookup.
     """
     clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
     rag_chapters = _get_rag_chapters_for_grade(grade)
@@ -211,6 +214,27 @@ def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: s
     # Strip "Part N - " or "Part N: " display prefix added by syllabus review
     stripped = re.sub(r"^Part\s+\d+\s*[-:–]\s*", "", clean_chapter, flags=re.IGNORECASE).strip()
     if stripped != clean_chapter and (subject, stripped) in rag_chapters:
+        return True
+
+    # Strip book-source display prefix (e.g. "Text Book - ", "Economics - ")
+    # The RAG document stores "Chapter 1: Development" but the syllabus
+    # display shows "Text Book - Chapter 1: Development" after a second
+    # book is uploaded for the same subject.
+    source_stripped = re.sub(
+        r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+        r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+        "",
+        clean_chapter,
+        flags=re.IGNORECASE,
+    ).strip()
+    if source_stripped and source_stripped != clean_chapter and (subject, source_stripped) in rag_chapters:
+        return True
+
+    # Also try stripping Part prefix from the source-stripped variant
+    source_then_part_stripped = re.sub(
+        r"^Part\s+\d+\s*[-:–]\s*", "", source_stripped, flags=re.IGNORECASE
+    ).strip()
+    if source_then_part_stripped != source_stripped and (subject, source_then_part_stripped) in rag_chapters:
         return True
 
     return False
@@ -299,18 +323,17 @@ def count_banked_questions_for_chapter_difficulty(
 
 
 def clear_lesson_cache_for_grade(grade: str) -> int:
-    """Delete all lesson cache rows for a grade. Returns count deleted."""
-    try:
-        result = (
-            supabase
-            .table("lesson_cache")
-            .delete()
-            .eq("grade", grade)
-            .execute()
-        )
-        return len(result.data or [])
-    except Exception:
-        return 0
+    """
+    Archive (soft-delete) lesson cache rows for a grade.
+
+    Rows are marked 'archived' rather than hard-deleted so that
+    token-expensive pre-generated lessons can be restored at any time
+    without re-spending AI credits.
+
+    Returns the number of rows archived.
+    """
+    from app.services.lesson_cache_service import archive_lesson_cache_for_grade  # noqa: PLC0415
+    return archive_lesson_cache_for_grade(grade)
 
 
 def clear_question_bank_for_grade(grade: str) -> int:

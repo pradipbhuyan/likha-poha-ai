@@ -21,6 +21,16 @@ from app.services.prewarm_service import (
     clear_lesson_cache_for_grade,
     clear_question_bank_for_grade,
     is_job_running,
+    set_job_status,
+)
+from app.services.lesson_cache_service import (
+    restore_archived_lessons_for_grade,
+    get_archived_lesson_count,
+)
+from app.services.doubt_kb_service import (
+    get_doubt_kb_stats,
+    get_doubt_kb_grade_stats,
+    prewarm_doubt_kb_for_grade,
 )
 
 
@@ -220,16 +230,97 @@ def start_single_chapter_prewarm(
     }
 
 
+# ---------------------------------------------------------------------------
+# Doubt Knowledge Base (DKB) endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/doubt-kb/stats")
+def get_doubt_kb_overview(admin=Depends(require_admin)):
+    """
+    Return aggregate Doubt Knowledge Base stats for the admin console.
+    Shows total Q&A pairs, DB hit rate, LLM call rate, and estimated savings.
+    """
+    return {
+        "success": True,
+        **get_doubt_kb_stats(),
+    }
+
+
+@router.get("/doubt-kb/stats/{grade_slug}")
+def get_doubt_kb_grade_overview(grade_slug: str, admin=Depends(require_admin)):
+    """Return per-subject DKB entry and hit counts for one grade."""
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+    return {
+        "success": True,
+        **get_doubt_kb_grade_stats(grade),
+    }
+
+
+@router.post("/prewarm/doubt-kb/{grade_slug}")
+def start_doubt_kb_prewarm(
+    grade_slug: str,
+    background_tasks: BackgroundTasks,
+    admin=Depends(require_admin),
+):
+    """
+    Start Doubt Knowledge Base pre-warming for a grade as a background task.
+
+    Generates 25 common student questions + answers per chapter using
+    gpt-4.1-nano + RAG context.  Already-covered chapters are skipped.
+    Safe to re-run.
+    """
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    ai_settings = get_effective_settings()
+    if not ai_settings.get("api_enabled", True):
+        return {
+            "success": False,
+            "message": "AI API is currently disabled. Enable it in Admin Control before building the Doubt KB.",
+        }
+
+    job_key = f"doubt_kb_{grade.replace(' ', '')}"
+    if is_job_running(job_key):
+        return {
+            "success": False,
+            "message": f"Doubt KB pre-warming for {grade} is already running.",
+        }
+
+    def _run_doubt_kb_prewarm(g: str):
+        set_job_status(job_key, "running")
+        try:
+            prewarm_doubt_kb_for_grade(g)
+        finally:
+            set_job_status(job_key, "idle")
+
+    background_tasks.add_task(_run_doubt_kb_prewarm, grade)
+
+    return {
+        "success": True,
+        "message": (
+            f"Doubt KB pre-warming started for {grade}. "
+            "Generates 25 Q&A pairs per chapter. Poll /status for progress."
+        ),
+        "grade": grade,
+    }
+
+
 @router.delete("/cache/lessons/{grade_slug}")
 def clear_lessons(
     grade_slug: str,
     admin=Depends(require_admin),
 ):
     """
-    Clear all cached lessons for a grade.
+    Archive (soft-delete) cached lessons for a grade.
 
-    Use this to force re-generation after RAG content is updated,
-    or to reset a grade before re-running pre-warming.
+    Lessons are marked 'archived' rather than permanently deleted so that
+    token-expensive pre-generated content can be recovered at any time via
+    POST /cache/lessons/{grade_slug}/restore.
+
+    Use this before re-running pre-warming after RAG content is updated.
     """
     grade = grade_slug.replace("-", " ").title()
     if grade not in ALL_GRADES:
@@ -242,12 +333,53 @@ def clear_lessons(
             detail=f"Cannot clear cache while pre-warming is running for {grade}.",
         )
 
-    deleted = clear_lesson_cache_for_grade(grade)
+    archived = clear_lesson_cache_for_grade(grade)
 
     return {
         "success": True,
-        "message": f"Cleared lesson cache for {grade}.",
-        "deleted": deleted,
+        "message": (
+            f"Archived {archived} lesson(s) for {grade}. "
+            f"They can be restored via POST /api/cache/cache/lessons/{grade_slug}/restore."
+        ),
+        "archived": archived,
+        "grade": grade,
+    }
+
+
+@router.post("/cache/lessons/{grade_slug}/restore")
+def restore_lessons(
+    grade_slug: str,
+    admin=Depends(require_admin),
+):
+    """
+    Restore archived lessons for a grade back to active status.
+
+    Allows recovery from an accidental 'Clear Lessons' click without
+    spending tokens to regenerate content.  Archived rows have status='archived'
+    and are invisible to students but remain in the database.
+    """
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    archived_count = get_archived_lesson_count(grade)
+    if archived_count == 0:
+        return {
+            "success": True,
+            "message": f"No archived lessons found for {grade}.",
+            "restored": 0,
+            "grade": grade,
+        }
+
+    restored = restore_archived_lessons_for_grade(grade)
+
+    return {
+        "success": True,
+        "message": (
+            f"Restored {restored} lesson(s) for {grade}. "
+            "They are now active and will be served to students."
+        ),
+        "restored": restored,
         "grade": grade,
     }
 

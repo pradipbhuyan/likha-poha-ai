@@ -1,0 +1,492 @@
+"""
+Doubt Knowledge Base Service (DKB)
+===================================
+Internal semantic Q&A cache for the Ask Doubt feature.
+
+Design goals
+------------
+- Students are always served an answer — either instantly from the DB or via
+  LLM fallback.  The source is never disclosed to students.
+- Every LLM-generated answer is stored back in the DB so the same question
+  (or semantically equivalent) never triggers an LLM call again.
+- Lesson suggestion cards show ONLY questions that have pre-cached answers in
+  the DKB, so every card click is zero-token-cost.
+- Admins can see hit rates, growth, and estimated savings in the admin console.
+
+Usage
+-----
+Run backend/sql/add_doubt_kb.sql in Supabase before enabling.
+Pre-warm via the admin cache management panel:
+  POST /api/cache/prewarm/doubt-kb/{grade-slug}
+"""
+
+import logging
+
+from app.services.auth_service import admin_client as supabase
+from app.services.rag_service import create_embedding
+
+logger = logging.getLogger(__name__)
+
+# Minimum cosine similarity to consider a DB match acceptable.
+# 0.82 allows natural language variation while avoiding false positives.
+SIMILARITY_THRESHOLD = 0.82
+
+# How many DKB questions to show as lesson suggestion cards.
+LESSON_SUGGESTION_LIMIT = 6
+
+
+# ---------------------------------------------------------------------------
+# Core search
+# ---------------------------------------------------------------------------
+
+def search_doubt_kb(
+    question: str,
+    grade: str,
+    subject: str,
+    chapter: str | None,
+    mode: str = "CBSE",
+    board: str = "CBSE",
+    threshold: float = SIMILARITY_THRESHOLD,
+) -> dict | None:
+    """
+    Semantic search for a matching Q&A pair in the Doubt Knowledge Base.
+
+    Returns the best-matching answer dict if similarity >= threshold, else None.
+    The caller falls back to LLM when None is returned.
+
+    Return shape:
+        {"answer": str, "question": str, "source_type": "DOUBT_KB",
+         "id": str, "similarity": float}
+    """
+    try:
+        embedding = create_embedding(question)
+
+        result = supabase.rpc(
+            "match_doubt_kb",
+            {
+                "query_embedding": embedding,
+                "match_count": 1,
+                "similarity_threshold": threshold,
+                "filter_grade": grade,
+                "filter_subject": subject,
+                "filter_chapter": chapter,
+                "filter_mode": mode,
+            },
+        ).execute()
+
+        rows = result.data or []
+        if not rows:
+            return None
+
+        row = rows[0]
+
+        # Increment hit count fire-and-forget
+        try:
+            supabase.table("doubt_kb").update({
+                "hit_count": (row.get("hit_count") or 0) + 1,
+                "last_hit_at": "now()",
+            }).eq("id", row["id"]).execute()
+        except Exception:
+            pass
+
+        return {
+            "answer": row["answer"],
+            "question": row["question"],
+            "source_type": "DOUBT_KB",
+            "id": row["id"],
+            "similarity": row.get("similarity", 1.0),
+        }
+
+    except Exception as exc:
+        logger.warning("DKB search failed: %s", exc)
+        return None
+
+
+# ---------------------------------------------------------------------------
+# Storage (auto-called after every LLM answer)
+# ---------------------------------------------------------------------------
+
+def store_in_doubt_kb(
+    question: str,
+    answer: str,
+    grade: str,
+    subject: str,
+    chapter: str | None,
+    mode: str = "CBSE",
+    board: str = "CBSE",
+    source: str = "llm",
+) -> str | None:
+    """
+    Store a new Q&A pair in the Doubt Knowledge Base with its embedding.
+
+    Called automatically after every LLM-generated doubt answer so the DB
+    grows with each new question that wasn't already covered.
+
+    Returns the new row id, or None on failure.
+    """
+    try:
+        embedding = create_embedding(question)
+
+        result = supabase.table("doubt_kb").insert({
+            "grade": grade,
+            "board": board,
+            "mode": mode,
+            "subject": subject,
+            "chapter": chapter,
+            "question": question,
+            "answer": answer,
+            "embedding": embedding,
+            "source": source,
+            "hit_count": 0,
+            "status": "active",
+        }).execute()
+
+        rows = result.data or []
+        return rows[0]["id"] if rows else None
+
+    except Exception as exc:
+        logger.warning("DKB store failed: %s", exc)
+        return None
+
+
+# ---------------------------------------------------------------------------
+# Lesson suggestion cards
+# ---------------------------------------------------------------------------
+
+def get_lesson_doubt_suggestions(
+    grade: str,
+    subject: str,
+    chapter: str,
+    mode: str = "CBSE",
+    limit: int = LESSON_SUGGESTION_LIMIT,
+) -> list[dict]:
+    """
+    Return pre-answered questions for a lesson chapter to show as card prompts.
+
+    Only questions that already have answers in the DKB are returned so every
+    card click is served instantly at zero token cost.
+
+    Returns list of {"id": str, "question": str} ordered by popularity.
+    """
+    try:
+        result = supabase.rpc(
+            "get_doubt_kb_suggestions",
+            {
+                "p_grade": grade,
+                "p_subject": subject,
+                "p_chapter": chapter,
+                "p_mode": mode,
+                "p_limit": limit,
+            },
+        ).execute()
+
+        return [
+            {"id": row["id"], "question": row["question"]}
+            for row in (result.data or [])
+        ]
+
+    except Exception as exc:
+        logger.warning("DKB suggestions failed: %s", exc)
+        return []
+
+
+# ---------------------------------------------------------------------------
+# Admin stats
+# ---------------------------------------------------------------------------
+
+def get_doubt_kb_stats() -> dict:
+    """
+    Return aggregate DKB stats for the admin analytics console.
+
+    Shows total entries, prewarmed vs auto-generated, hit rate, and estimated
+    token savings.  Estimated savings assume each DB hit saves one LLM call
+    at ~1500 tokens × $0.0001/1K = ~$0.00015 per hit.
+    """
+    try:
+        # Total + breakdown by source
+        all_rows = supabase.table("doubt_kb").select(
+            "source, hit_count, status"
+        ).execute()
+        rows = all_rows.data or []
+
+        active = [r for r in rows if r.get("status") == "active"]
+        prewarmed = sum(1 for r in active if r.get("source") == "prewarmed")
+        llm_generated = sum(1 for r in active if r.get("source") == "llm")
+        total_hits = sum(r.get("hit_count") or 0 for r in active)
+
+        # Estimated savings: each hit saves ~1500 input + 800 output tokens
+        # gpt-4.1-nano: $0.0001/1K input, $0.0004/1K output
+        saved_per_hit = (1500 / 1000) * 0.0001 + (800 / 1000) * 0.0004
+        estimated_savings = round(total_hits * saved_per_hit, 4)
+
+        # Grade-level breakdown
+        grade_breakdown = {}
+        for r in active:
+            # grade not in select — do a second query for breakdown
+            pass
+
+        grade_result = supabase.table("doubt_kb").select(
+            "grade, hit_count"
+        ).eq("status", "active").execute()
+
+        for r in (grade_result.data or []):
+            g = r.get("grade", "Unknown")
+            grade_breakdown[g] = grade_breakdown.get(g, 0) + (r.get("hit_count") or 0)
+
+        return {
+            "total_entries": len(active),
+            "prewarmed": prewarmed,
+            "llm_generated": llm_generated,
+            "total_hits": total_hits,
+            "estimated_savings_usd": estimated_savings,
+            "hits_by_grade": grade_breakdown,
+        }
+
+    except Exception as exc:
+        logger.warning("DKB stats failed: %s", exc)
+        return {
+            "total_entries": 0,
+            "prewarmed": 0,
+            "llm_generated": 0,
+            "total_hits": 0,
+            "estimated_savings_usd": 0.0,
+            "hits_by_grade": {},
+        }
+
+
+def get_doubt_kb_grade_stats(grade: str) -> dict:
+    """Return per-subject DKB entry counts for one grade."""
+    try:
+        result = supabase.table("doubt_kb").select(
+            "subject, hit_count, source"
+        ).eq("grade", grade).eq("status", "active").execute()
+
+        by_subject = {}
+        for r in (result.data or []):
+            subj = r.get("subject", "Unknown")
+            if subj not in by_subject:
+                by_subject[subj] = {"entries": 0, "hits": 0, "prewarmed": 0, "llm": 0}
+            by_subject[subj]["entries"] += 1
+            by_subject[subj]["hits"] += r.get("hit_count") or 0
+            src_key = "prewarmed" if r.get("source") == "prewarmed" else "llm"
+            by_subject[subj][src_key] += 1
+
+        return {
+            "grade": grade,
+            "subjects": by_subject,
+            "total_entries": sum(s["entries"] for s in by_subject.values()),
+            "total_hits": sum(s["hits"] for s in by_subject.values()),
+        }
+
+    except Exception as exc:
+        logger.warning("DKB grade stats failed for %s: %s", grade, exc)
+        return {"grade": grade, "subjects": {}, "total_entries": 0, "total_hits": 0}
+
+
+# ---------------------------------------------------------------------------
+# Prewarm: generate Q&A pairs for a chapter
+# ---------------------------------------------------------------------------
+
+def prewarm_doubt_kb_for_chapter(
+    grade: str,
+    subject: str,
+    chapter: str,
+    mode: str = "CBSE",
+    board: str = "CBSE",
+    num_questions: int = 25,
+    username: str = "prewarm_admin",
+) -> dict:
+    """
+    Generate and store pre-answered Q&A pairs for one chapter.
+
+    Uses gpt-4.1-nano + RAG context to anticipate the most common student
+    doubts for the chapter, then generates answers and stores them with
+    embeddings in the DKB.
+
+    Already-existing questions for the chapter are checked first to avoid
+    duplicate generation.  Safe to re-run.
+
+    Returns {"generated": int, "skipped_existing": int, "errors": int}
+    """
+    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+    from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL  # noqa: PLC0415
+    import json  # noqa: PLC0415
+
+    # Check how many Q&A pairs already exist for this chapter
+    try:
+        existing = supabase.table("doubt_kb").select(
+            "id", count="exact"
+        ).eq("grade", grade).eq("subject", subject).eq("chapter", chapter).eq(
+            "status", "active"
+        ).execute()
+        existing_count = existing.count or 0
+        if existing_count >= num_questions:
+            return {"generated": 0, "skipped_existing": existing_count, "errors": 0}
+    except Exception:
+        existing_count = 0
+
+    # Fetch RAG context for the chapter
+    try:
+        rag_results = search_textbook_content(
+            query=f"{subject} {chapter} concepts definitions formulas important topics",
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            match_count=10,
+        )
+        rag_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
+    except Exception:
+        rag_context = ""
+
+    questions_to_generate = num_questions - existing_count
+
+    # Step 1: Generate question list
+    q_system = (
+        "You are an education specialist who knows exactly what questions "
+        "students ask about CBSE/SOF textbook chapters. "
+        "Return ONLY a valid JSON array of question strings. No markdown."
+    )
+    q_prompt = f"""
+Grade: {grade}
+Subject: {subject}
+Chapter: {chapter}
+
+Textbook context:
+{rag_context[:3000] if rag_context else "Standard CBSE textbook content for this chapter."}
+
+Generate {questions_to_generate} distinct questions that Class {grade.replace("Grade ", "")} students
+commonly ask about this chapter.
+
+Requirements:
+- Mix conceptual questions ("Why does...?", "What is the difference between...?")
+- Include definition questions ("What is...?", "Define...?")
+- Include application questions ("How does...?", "Give an example of...?")
+- Include common misconception questions ("Is it true that...?")
+- Questions should be answerable from the chapter content
+- Each question must be different — no overlap
+- Keep questions concise (under 20 words)
+
+Return ONLY a JSON array: ["Question 1?", "Question 2?", ...]
+"""
+
+    try:
+        raw_questions = ask_llm(
+            q_system, q_prompt,
+            username=username,
+            feature="doubt_kb_prewarm",
+            model=PREWARM_TEXT_MODEL,
+        )
+        raw_questions = raw_questions.strip()
+        if raw_questions.startswith("```"):
+            raw_questions = raw_questions.split("```")[1]
+            if raw_questions.startswith("json"):
+                raw_questions = raw_questions[4:]
+        start = raw_questions.find("[")
+        end = raw_questions.rfind("]")
+        questions = json.loads(raw_questions[start:end + 1]) if start != -1 else []
+    except Exception as exc:
+        logger.warning("DKB prewarm question generation failed for %s/%s: %s", subject, chapter, exc)
+        return {"generated": 0, "skipped_existing": existing_count, "errors": 1}
+
+    # Step 2: Generate answer for each question and store
+    generated = 0
+    errors = 0
+
+    a_system = (
+        "You are an expert CBSE tutor. Answer the student's question clearly "
+        "and concisely using the provided textbook context. "
+        "Use student-appropriate language. Include key terms, formulas, or examples where relevant. "
+        "Answer in 3-6 sentences unless a longer explanation is genuinely needed."
+    )
+
+    for question in questions[:questions_to_generate]:
+        if not question or not isinstance(question, str):
+            continue
+
+        a_prompt = f"""
+Grade: {grade}
+Subject: {subject}
+Chapter: {chapter}
+
+Textbook context:
+{rag_context[:2000] if rag_context else "Standard CBSE knowledge for this chapter."}
+
+Student question: {question}
+
+Answer the question clearly for a {grade} student.
+"""
+
+        try:
+            answer = ask_llm(
+                a_system, a_prompt,
+                username=username,
+                feature="doubt_kb_prewarm",
+                model=PREWARM_TEXT_MODEL,
+            )
+            store_in_doubt_kb(
+                question=question,
+                answer=answer,
+                grade=grade,
+                subject=subject,
+                chapter=chapter,
+                mode=mode,
+                board=board,
+                source="prewarmed",
+            )
+            generated += 1
+        except Exception as exc:
+            logger.warning(
+                "DKB prewarm answer failed for %s/%s/%s: %s",
+                subject, chapter, question[:40], exc,
+            )
+            errors += 1
+
+    return {
+        "generated": generated,
+        "skipped_existing": existing_count,
+        "errors": errors,
+    }
+
+
+def prewarm_doubt_kb_for_grade(grade: str, mode: str = "CBSE") -> dict:
+    """
+    Pre-warm the DKB for all chapters of a grade that have RAG content.
+
+    Iterates through the reviewed syllabus for the grade, skips chapters
+    already fully covered, and generates Q&A for the rest.
+    Safe to re-run — existing entries are skipped.
+    """
+    import time  # noqa: PLC0415
+    from app.services.prewarm_service import get_syllabus_for_grade, has_rag_content_for_chapter  # noqa: PLC0415
+
+    syllabus = get_syllabus_for_grade(grade)
+    total_generated = 0
+    total_skipped = 0
+    total_errors = 0
+
+    for current_mode, mode_data in syllabus.items():
+        if current_mode not in ("CBSE", "SOF"):
+            continue
+        for subject, chapters in mode_data.items():
+            for chapter in chapters:
+                if not has_rag_content_for_chapter("CBSE", grade, subject, chapter):
+                    continue
+                result = prewarm_doubt_kb_for_chapter(
+                    grade=grade,
+                    subject=subject,
+                    chapter=chapter,
+                    mode=current_mode,
+                )
+                total_generated += result.get("generated", 0)
+                total_skipped += result.get("skipped_existing", 0)
+                total_errors += result.get("errors", 0)
+                # Rate limit between chapters
+                if result.get("generated", 0) > 0:
+                    time.sleep(2.0)
+
+    return {
+        "grade": grade,
+        "total_generated": total_generated,
+        "total_skipped": total_skipped,
+        "total_errors": total_errors,
+    }

@@ -14,11 +14,28 @@ from app.services.curriculum_service import (
     build_chapter_outline,
     format_chapter_outline,
 )
+import re as _re
+
 from app.services.lesson_cache_service import (
     make_lesson_cache_key,
     get_cached_lesson,
+    get_cached_lesson_by_chapter_text,
     store_lesson_cache,
 )
+
+# Display-source prefixes added when multiple books are uploaded for one subject.
+# The lesson cache may have been built before these prefixes were introduced,
+# so we strip them for the fallback lookup.
+_CHAPTER_SOURCE_PREFIX_RE = _re.compile(
+    r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+    r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+    _re.IGNORECASE,
+)
+
+
+def _strip_chapter_source_prefix(chapter: str) -> str:
+    """Remove a book-source display prefix from a chapter label for cache fallback."""
+    return _CHAPTER_SOURCE_PREFIX_RE.sub("", chapter or "").strip()
 
 TUTOR_SYSTEM = """
 	You are a patient CBSE and SOF Olympiad tutor for Class 1 to Class 10 students.
@@ -338,6 +355,66 @@ def generate_step_lesson(
         teacher_persona=teacher_persona or "",
     )
     cached = get_cached_lesson(cache_key)
+
+    # Fallback 1 (PERSONA): prewarm stores lessons with teacher_persona="".
+    # Try the empty-persona key when the request has a non-empty persona.
+    if not cached and (teacher_persona or "").strip():
+        fallback_key = make_lesson_cache_key(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+            step_title=step_title,
+            teacher_persona="",
+        )
+        cached = get_cached_lesson(fallback_key)
+
+    # Fallback 2 (SOURCE-PREFIX): the lesson cache may have been built before
+    # multi-book display prefixes were introduced (e.g. "Text Book - Chapter 7").
+    # Try the same lookups with the source prefix stripped from the chapter name.
+    stripped_chapter = _strip_chapter_source_prefix(chapter)
+    if not cached and stripped_chapter and stripped_chapter != chapter:
+        # Try stripped chapter with original persona
+        stripped_key = make_lesson_cache_key(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=stripped_chapter,
+            mode=mode,
+            step_title=step_title,
+            teacher_persona=teacher_persona or "",
+        )
+        cached = get_cached_lesson(stripped_key)
+
+        # Also try stripped chapter with empty persona
+        if not cached and (teacher_persona or "").strip():
+            stripped_empty_key = make_lesson_cache_key(
+                board=board,
+                grade=grade,
+                subject=subject,
+                chapter=stripped_chapter,
+                mode=mode,
+                step_title=step_title,
+                teacher_persona="",
+            )
+            cached = get_cached_lesson(stripped_empty_key)
+
+    # Fallback 3 (TEXT SEARCH): the cache key is a hash so prefix mismatches
+    # between prewarm time and request time produce different hashes even for
+    # the same chapter.  As a last resort, query the lesson_cache table by the
+    # core chapter text (ilike) so 'Economics - Chapter 1: Development' and
+    # 'Text Book - Chapter 1: Development' both resolve to the same row.
+    if not cached:
+        cached = get_cached_lesson_by_chapter_text(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+            step_title=step_title,
+        )
+
     if cached:
         return {
             "lesson": cached["lesson_content"],
@@ -526,12 +603,50 @@ def answer_doubt(
     board: str = "CBSE",
 ):
     """
-    Answer a student doubt with current-question priority, RAG, and mentor memory.
+    Answer a student doubt with DKB cache-first, then RAG, then LLM.
 
-    The current question is placed above memory in the prompt so stale previous
-    doubts cannot override the student's latest intent. Any answer is saved back
-    to mentor memory under the correct CBSE/SOF mode.
+    Flow:
+    1. Search Doubt Knowledge Base (DKB) by semantic similarity.
+       On hit → return cached answer instantly (zero token cost).
+    2. On DKB miss → RAG + LLM generation (existing flow).
+    3. Auto-store new LLM-generated answer in DKB for future reuse.
     """
+    # ----------------------------------------------------------------- DKB
+    try:
+        from app.services.doubt_kb_service import search_doubt_kb, store_in_doubt_kb  # noqa: PLC0415
+        dkb_hit = search_doubt_kb(
+            question=question,
+            grade=grade,
+            subject=subject,
+            chapter=chapter if chapter else None,
+            mode=mode,
+            board=board,
+        )
+        if dkb_hit:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter,
+                question=question,
+                answer=dkb_hit["answer"],
+            )
+            return {
+                "answer": dkb_hit["answer"],
+                "source_type": "LLM",   # shown to student as normal AI answer
+                "sources": [],
+                "textbook_visuals": [],
+                "mentor_suggestions": [
+                    "Give a practice question",
+                    "Explain step-by-step",
+                    "Give a real-life example",
+                ],
+            }
+    except Exception:
+        pass  # DKB unavailable — fall through to LLM
+    # -------------------------------------------------------------- end DKB
+
     rag_query = f"""
     Student doubt:
     {question}
@@ -676,6 +791,23 @@ $$
             "Give a real-life example",
         ]
 
+
+    # Auto-store the new LLM answer in DKB so future identical/similar questions
+    # are served instantly without another LLM call.
+    try:
+        from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
+        store_in_doubt_kb(
+            question=question,
+            answer=answer,
+            grade=grade,
+            subject=subject,
+            chapter=chapter if chapter else None,
+            mode=mode,
+            board=board,
+            source="llm",
+        )
+    except Exception:
+        pass  # DKB store failure must never break doubt delivery
 
     return {
         "answer": answer,

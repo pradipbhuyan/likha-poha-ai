@@ -150,6 +150,145 @@ def invalidate_cache_for_chapter(
         pass
 
 
+_CHAPTER_PREFIX_RE = __import__("re").compile(
+    r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+    r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+    __import__("re").IGNORECASE,
+)
+
+
+def _normalize_chapter_for_search(chapter: str) -> str:
+    """Strip ALL known source prefixes to get the core chapter name."""
+    result = (chapter or "").strip()
+    while True:
+        stripped = _CHAPTER_PREFIX_RE.sub("", result).strip()
+        if stripped == result:
+            break
+        result = stripped
+    return result
+
+
+def get_cached_lesson_by_chapter_text(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str,
+    mode: str,
+    step_title: str,
+) -> dict | None:
+    """
+    Text-based chapter lookup for when the cache key hash misses.
+
+    The lesson cache was built with chapter names that may have had different
+    source prefixes (e.g. 'Economics - Chapter 1: Development' vs the current
+    display 'Text Book - Chapter 1: Development').  Both normalize to
+    'Chapter 1: Development'.  We use ilike on the chapter column so that any
+    prefix variant in the stored row still matches the stripped search term.
+
+    Falls back to None so the caller can continue to other strategies.
+    """
+    try:
+        core = _normalize_chapter_for_search(chapter)
+        if not core:
+            return None
+
+        result = (
+            supabase
+            .table("lesson_cache")
+            .select("lesson_content, practice_questions, source_type, access_count")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("mode", mode)
+            .eq("step_title", step_title)
+            .eq("status", "active")
+            .ilike("chapter", f"%{core}%")
+            .limit(1)
+            .execute()
+        )
+
+        if not result.data:
+            return None
+
+        row = result.data[0]
+
+        # Update access stats fire-and-forget
+        try:
+            supabase.table("lesson_cache").update({
+                "access_count": (row.get("access_count") or 0) + 1,
+                "last_accessed_at": "now()",
+            }).ilike("chapter", f"%{core}%").eq("grade", grade).eq(
+                "subject", subject
+            ).eq("mode", mode).eq("step_title", step_title).execute()
+        except Exception:
+            pass
+
+        return row
+
+    except Exception:
+        return None
+
+
+def archive_lesson_cache_for_grade(grade: str) -> int:
+    """
+    Archive (soft-delete) all cached lessons for a grade.
+
+    Archived lessons are NOT deleted from the database — they can be restored
+    at any time.  This protects token-expensive pre-generated content from
+    accidental loss when an admin clicks 'Clear Lessons'.
+
+    Returns the number of lessons archived.
+    """
+    try:
+        result = (
+            supabase
+            .table("lesson_cache")
+            .update({"status": "archived"})
+            .eq("grade", grade)
+            .in_("status", ["active", "stale"])
+            .execute()
+        )
+        return len(result.data or [])
+    except Exception:
+        return 0
+
+
+def restore_archived_lessons_for_grade(grade: str) -> int:
+    """
+    Restore archived lessons for a grade back to 'active' status.
+
+    Allows recovery from an accidental 'Clear Lessons' without spending tokens.
+    Returns the number of lessons restored.
+    """
+    try:
+        result = (
+            supabase
+            .table("lesson_cache")
+            .update({"status": "active"})
+            .eq("grade", grade)
+            .eq("status", "archived")
+            .execute()
+        )
+        return len(result.data or [])
+    except Exception:
+        return 0
+
+
+def get_archived_lesson_count(grade: str) -> int:
+    """Return count of archived (recoverable) lessons for a grade."""
+    try:
+        result = (
+            supabase
+            .table("lesson_cache")
+            .select("id", count="exact")
+            .eq("grade", grade)
+            .eq("status", "archived")
+            .execute()
+        )
+        return result.count or 0
+    except Exception:
+        return 0
+
+
 def get_cache_stats() -> dict:
     """Return summary statistics for the admin cache health panel."""
     try:
