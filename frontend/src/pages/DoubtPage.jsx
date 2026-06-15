@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -59,6 +59,8 @@ function DoubtPage({ user }) {
   const [asking, setAsking] = useState(false);
   const [mentorSuggestions, setMentorSuggestions] = useState([]);
   const [relatedDkbQuestions, setRelatedDkbQuestions] = useState([]);
+
+  const answerRef = useRef(null);
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpAnswers, setFollowUpAnswers] = useState({});
@@ -410,6 +412,11 @@ function DoubtPage({ user }) {
       setAnswer(finalAnswer);
       setMentorSuggestions(result.mentor_suggestions || []);
 
+      // Scroll to the answer section so students see the response immediately
+      setTimeout(() => {
+        answerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+
       // Fetch DKB-answerable related questions to show as instant-answer cards
       try {
         const dkbResult = await getDoubtSuggestions({ grade, mode, subject, chapter, limit: 6 });
@@ -711,8 +718,8 @@ Important:
             {/* DKB pre-answered question chips */}
             {doubtSuggestions.length > 0 && (
               <div style={{ marginBottom: 12 }}>
-                <p style={{ fontSize: "0.78rem", color: "#7c3aed", fontWeight: 600, marginBottom: 6 }}>
-                  🧠 Quick answers available (tap to ask):
+                <p style={{ fontSize: "0.78rem", color: "#6b7280", fontWeight: 600, marginBottom: 6 }}>
+                  Suggested questions:
                 </p>
                 <div className="prompt-chip-row">
                   {doubtSuggestions.map((s) => (
@@ -721,7 +728,6 @@ Important:
                       type="button"
                       className="followup-chip"
                       disabled={!mode || asking}
-                      style={{ borderColor: "#7c3aed", color: "#7c3aed" }}
                       onClick={() => {
                         setQuestion(s.question);
                         setTimeout(() => {
@@ -838,7 +844,7 @@ Important:
           )}
 
           {answer && (
-            <section className="premium-section lesson-output premium-doubt-answer">
+            <section ref={answerRef} className="premium-section lesson-output premium-doubt-answer">
               <div className="premium-header">
                 <p className="eyebrow">
                   {sourceInfo?.sourceType === "RAG"
@@ -989,7 +995,6 @@ Important:
                         <button
                           type="button"
                           className="mentor-suggestion-card-btn"
-                          style={{ borderLeft: "3px solid #7c3aed" }}
                           onClick={() => {
                             setQuestion(s.question);
                             setTimeout(() => {
@@ -999,7 +1004,7 @@ Important:
                         >
                           <span>🧠</span>
                           <strong>{s.question.length > 60 ? s.question.slice(0, 57) + "…" : s.question}</strong>
-                          <small style={{ color: "#7c3aed" }}>Instant answer from knowledge base</small>
+                          <small>Ask this question</small>
                         </button>
                       </div>
                     ))}
