@@ -39,3 +39,13 @@ export async function getLessonTextbookVisuals({
 
   return authFetch(`/api/lesson/textbook-visuals?${params.toString()}`);
 }
+
+export function getLessonDoubtSuggestions({ grade, mode, subject, chapter, board = "CBSE" }) {
+  /** Fetch DKB-backed suggestion cards for a saved lesson (progress restore).
+   *  Returns the same doubt_suggestions format as generateLesson so chips
+   *  show pre-answered questions regardless of whether the lesson was freshly
+   *  generated or loaded from saved progress.
+   */
+  const params = new URLSearchParams({ grade, mode, subject, chapter, board });
+  return authFetch(`/api/lesson/doubt-suggestions?${params.toString()}`);
+}

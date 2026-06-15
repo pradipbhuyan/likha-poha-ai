@@ -463,3 +463,33 @@ def lesson_follow_up(
             history_id=None,
             message=f"Follow-up failed: {str(e)}",
         )
+
+
+@router.get("/doubt-suggestions")
+def get_doubt_suggestions(
+    grade: str,
+    subject: str,
+    chapter: str,
+    mode: str = "CBSE",
+    board: str = "CBSE",
+    user=Depends(get_current_user),
+):
+    """
+    Return DKB-backed suggestion cards for a lesson chapter.
+
+    Called when loading a saved lesson (progress restore) so that the
+    follow-up chip row shows pre-answered DKB questions instead of
+    generic default prompts.  Safe to call any time — returns empty list
+    if no DKB entries exist for the chapter.
+    """
+    try:
+        from app.services.doubt_kb_service import get_lesson_doubt_suggestions  # noqa: PLC0415
+        suggestions = get_lesson_doubt_suggestions(
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+        )
+        return {"success": True, "doubt_suggestions": suggestions}
+    except Exception:
+        return {"success": True, "doubt_suggestions": []}

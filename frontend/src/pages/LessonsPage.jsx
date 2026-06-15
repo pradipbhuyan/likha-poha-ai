@@ -10,6 +10,7 @@ import {
   generateLesson,
   askLessonFollowUp,
   getLessonTextbookVisuals,
+  getLessonDoubtSuggestions,
 } from "../api/lesson";
 import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech } from "../api/tts";
@@ -253,6 +254,7 @@ function LessonsPage({ user }) {
   const [followUpMessages, setFollowUpMessages] = useState([]);
   const [lessonDoubtHistory, setLessonDoubtHistory] = useState([]);
   const [followUpLoading, setFollowUpLoading] = useState(false);
+  const [doubtSuggestions, setDoubtSuggestions] = useState([]);
 
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
@@ -418,7 +420,22 @@ function LessonsPage({ user }) {
         setSourceInfo(null);
         setFollowUpQuestion("");
         setFollowUpMessages([]);
+        setDoubtSuggestions([]);
         resetPracticeState();
+
+        // Reload DKB suggestion cards for the saved lesson so chips show
+        // DKB-answerable questions rather than generic default prompts.
+        try {
+          const suggestionsResult = await getLessonDoubtSuggestions({
+            grade, mode, subject, chapter,
+            board: mode === "SOF" ? getUserBoard(user) : mode,
+          });
+          if (Array.isArray(suggestionsResult?.doubt_suggestions)) {
+            setDoubtSuggestions(suggestionsResult.doubt_suggestions.slice(0, 6));
+          }
+        } catch {
+          // Suggestions are a convenience — never block lesson loading
+        }
       } catch {
         console.error("Could not load progress");
       }
@@ -504,6 +521,7 @@ function LessonsPage({ user }) {
     setSourceInfo(null);
     setFollowUpQuestion("");
     setFollowUpMessages([]);
+    setDoubtSuggestions([]);
     resetPracticeState();
   }
 
@@ -570,11 +588,6 @@ function LessonsPage({ user }) {
     return false;
   }
   
-  function isMathSubject() {
-    /** Identify math subjects so numeric answers are not forced into long prose. */
-    return subject === "Maths" || subject === "Maths Olympiad";
-  }
-
   function isHindiSubject() {
     /** Hindi lessons use objective checks and skip lesson chat follow-ups. */
     return isHindiSubjectName(subject);
@@ -591,11 +604,6 @@ function LessonsPage({ user }) {
   function shouldShowTextbookVisualTools() {
     /** Keep the UI available for every lesson; backend controls storage-enabled grades. */
     return Boolean(grade && mode && subject && chapter);
-  }
-
-  function getMinimumPracticeWords() {
-    /** Practice has no word limit; any thoughtful answer can be evaluated. */
-    return 1;
   }
 
   function getTextbookVisualSearchTerms(query = "") {
@@ -774,6 +782,12 @@ function LessonsPage({ user }) {
       if ((result.textbook_visuals || []).length > 0) {
         setSelectedTextbookVisual(result.textbook_visuals[0]);
       }
+      // Capture DKB-backed suggestion cards (pre-answered, zero token cost).
+      setDoubtSuggestions(
+        Array.isArray(result.doubt_suggestions)
+          ? result.doubt_suggestions.slice(0, 6)
+          : []
+      );
   
       const updatedStepLessons = {
         ...stepLessons,
@@ -810,9 +824,15 @@ function LessonsPage({ user }) {
   }
 
 
-  async function handleAskFollowUp() {
-    /** Ask a follow-up about the current lesson unless practice mode is active. */
-    if (!followUpQuestion.trim() || practiceModeActive) {
+  async function handleAskFollowUp(overrideQuestion = null) {
+    /** Ask a follow-up about the current lesson unless practice mode is active.
+     *  Accepts an optional overrideQuestion so chip clicks can submit directly
+     *  without a separate state-set-then-submit cycle.
+     */
+    const questionToAsk =
+      overrideQuestion !== null ? String(overrideQuestion) : followUpQuestion;
+
+    if (!questionToAsk.trim() || practiceModeActive) {
       return;
     }
 
@@ -820,13 +840,12 @@ function LessonsPage({ user }) {
 
     const userMessage = {
       role: "user",
-      content: followUpQuestion,
+      content: questionToAsk,
     };
 
     setFollowUpMessages((prev) => [...prev, userMessage]);
 
-    const questionToAsk = followUpQuestion;
-
+    // Always clear the text area so the UI feels responsive
     setFollowUpQuestion("");
 
     try {
@@ -1959,32 +1978,31 @@ function LessonsPage({ user }) {
                       />
 
                       <div className="followup-chip-row">
-                        {[
-                          "Explain in simpler words",
-                          "Give an example",
-                          "Why is this important?",
-                          "Show a diagram",
-                          "Ask more questions",
-                        ].map((chip) => (
+                        {(doubtSuggestions.length > 0
+                          ? doubtSuggestions.map((s) => s.question)
+                          : [
+                              "Explain in simpler words",
+                              "Give a real-life example",
+                              "Why is this important?",
+                              "Show a diagram",
+                              "What are the key points to remember?",
+                            ]
+                        ).map((chip) => (
                           <button
                             key={chip}
                             type="button"
                             className="followup-chip"
-                            disabled={practiceModeActive}
-                            onClick={() =>
-                              setFollowUpQuestion((prev) =>
-                                prev ? `${prev}\n${chip}` : chip
-                              )
-                            }
+                            disabled={practiceModeActive || followUpLoading}
+                            onClick={() => handleAskFollowUp(chip)}
                           >
-                            {chip}
+                            {chip.length > 60 ? chip.slice(0, 57) + "…" : chip}
                           </button>
                         ))}
                       </div>
 
                       <button
                         className="primary-btn followup-submit-btn"
-                        onClick={handleAskFollowUp}
+                        onClick={() => handleAskFollowUp()}
                         disabled={
                           practiceModeActive ||
                           followUpLoading ||

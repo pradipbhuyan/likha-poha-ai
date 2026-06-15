@@ -848,9 +848,44 @@ def answer_lesson_follow_up(
     """
     Answer a follow-up about a generated lesson step.
 
+    DKB-first: checks the Doubt Knowledge Base for a pre-answered match before
+    calling the LLM.  On a DKB hit the answer is returned instantly at zero
+    token cost.  On a miss the existing RAG + LLM flow runs as normal.
+
     The lesson text and selected chapter are both included so the response stays
     tied to the current screen instead of drifting into a generic explanation.
     """
+    # ----------------------------------------------------------------- DKB
+    try:
+        from app.services.doubt_kb_service import search_doubt_kb, store_in_doubt_kb  # noqa: PLC0415
+        dkb_hit = search_doubt_kb(
+            question=question,
+            grade=grade,
+            subject=subject,
+            chapter=chapter if chapter else None,
+            mode=mode,
+            board=board,
+        )
+        if dkb_hit:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter,
+                question=question,
+                answer=dkb_hit["answer"],
+            )
+            return {
+                "answer": dkb_hit["answer"],
+                "source_type": "LLM",   # shown to student as normal AI answer
+                "sources": [],
+                "textbook_visuals": [],
+            }
+    except Exception:
+        pass  # DKB unavailable — fall through to LLM
+    # -------------------------------------------------------------- end DKB
+
     rag_query = f"""
 Grade: {grade}
 Mode: {mode}

@@ -28,11 +28,14 @@ from app.services.rag_service import create_embedding
 logger = logging.getLogger(__name__)
 
 # Minimum cosine similarity to consider a DB match acceptable.
-# 0.63 catches natural paraphrases of student questions
-# (e.g. "what does Golgi apparatus do" → "How does Golgi apparatus help...")
-# Calibrated from real data: similar questions score 0.63-0.70,
-# unrelated questions score < 0.55.
-SIMILARITY_THRESHOLD = 0.63
+# 0.50 is calibrated from live Supabase pgvector data:
+#   - Exact card clicks (same text): ~1.000 — always found
+#   - Paraphrased questions ("what is a tissue"): 0.50-0.58 — found at 0.50
+#   - Semantically related but different: 0.45-0.50 — borderline
+#   - Unrelated questions: < 0.45 — correctly excluded
+# NOTE: UI command chips ("Show a diagram", "Explain in simpler words")
+# score < 0.45 for Science content questions and will correctly MISS.
+SIMILARITY_THRESHOLD = 0.50
 
 # How many DKB questions to show as lesson suggestion cards.
 LESSON_SUGGESTION_LIMIT = 6
