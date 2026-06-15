@@ -768,22 +768,55 @@ def build_question_bank_for_chapter(
         set_job_status(job_key, "idle")
 
 
+def _count_dkb_chapters_for_grade(grade: str) -> int:
+    """Return the number of RAG-backed chapters for a grade (used for DKB expected count)."""
+    try:
+        syllabus = get_syllabus_for_grade(grade)
+        return sum(
+            1
+            for _mode, mode_data in syllabus.items()
+            for subject, chapters in mode_data.items()
+            for chapter in chapters
+            if has_rag_content_for_chapter("CBSE", grade, subject, chapter)
+        )
+    except Exception:
+        return 0
+
+
 def get_grade_status_summary(grades: list[str]) -> list[dict]:
     """
     Return cache/bank status for a list of grades for the admin dashboard.
+    Includes DKB (Doubt Knowledge Base) progress: dkb_cached / dkb_expected.
     """
+    from app.services.auth_service import admin_client as supabase  # noqa: PLC0415
+
     statuses = get_all_job_statuses()
+
+    # Batch-fetch DKB counts for all grades in one query
+    dkb_rows = supabase.table("doubt_kb").select("grade").eq("status", "active").execute()
+    dkb_counts: dict[str, int] = {}
+    for row in (dkb_rows.data or []):
+        g = row.get("grade", "")
+        dkb_counts[g] = dkb_counts.get(g, 0) + 1
+
     result = []
 
     for grade in grades:
         grade_key = grade.replace(" ", "")
         lesson_job_key = f"lessons_{grade_key}"
         question_job_key = f"questions_{grade_key}"
+        dkb_job_key = f"doubt_kb_{grade_key}"
 
         expected_lessons = count_expected_lessons(grade)
         cached_lessons = count_cached_lessons(grade)
         expected_questions = count_expected_questions(grade)
         banked_questions = count_banked_questions(grade)
+
+        # DKB: 25 Q&A pairs per chapter is the target
+        dkb_chapters = _count_dkb_chapters_for_grade(grade)
+        dkb_expected = dkb_chapters * 25
+        dkb_cached = dkb_counts.get(grade, 0)
+        dkb_complete = dkb_expected > 0 and dkb_cached >= dkb_expected
 
         lessons_complete = expected_lessons > 0 and cached_lessons >= expected_lessons
         questions_complete = expected_questions > 0 and banked_questions >= expected_questions
@@ -798,6 +831,11 @@ def get_grade_status_summary(grades: list[str]) -> list[dict]:
             "banked_questions": banked_questions,
             "questions_complete": questions_complete,
             "questions_running": statuses.get(question_job_key) == "running",
+            # DKB progress
+            "dkb_cached": dkb_cached,
+            "dkb_expected": dkb_expected,
+            "dkb_complete": dkb_complete,
+            "dkb_running": statuses.get(dkb_job_key) == "running",
         })
 
     return result

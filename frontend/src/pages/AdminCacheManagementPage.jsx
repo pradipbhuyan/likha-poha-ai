@@ -364,6 +364,7 @@ function AdminCacheManagementPage({ user }) {
             grade,
             cached_lessons, expected_lessons, lessons_complete, lessons_running,
             banked_questions, expected_questions, questions_complete, questions_running,
+            dkb_cached = 0, dkb_expected = 0, dkb_complete = false, dkb_running = false,
           } = gradeData;
 
           const lessonPct = expected_lessons > 0
@@ -371,6 +372,9 @@ function AdminCacheManagementPage({ user }) {
             : 0;
           const questionPct = expected_questions > 0
             ? Math.round((banked_questions / expected_questions) * 100)
+            : 0;
+          const dkbPct = dkb_expected > 0
+            ? Math.min(100, Math.round((dkb_cached / dkb_expected) * 100))
             : 0;
           const hasContent = expected_lessons > 0 || expected_questions > 0;
 
@@ -405,12 +409,36 @@ function AdminCacheManagementPage({ user }) {
 
                   {/* Question bank progress */}
                   {expected_questions > 0 && (
-                    <div style={{ marginBottom: 16 }}>
+                    <div style={{ marginBottom: 12 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: 4 }}>
                         <span>🎯 Questions in bank</span>
                         <strong>{banked_questions} / {expected_questions} ({questionPct}%)</strong>
                       </div>
                       <ProgressBar value={banked_questions} max={expected_questions} color="purple" />
+                    </div>
+                  )}
+
+                  {/* DKB (Doubt Knowledge Base) progress */}
+                  {dkb_expected > 0 && (
+                    <div style={{ marginBottom: 16 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: 4 }}>
+                        <span>🧠 Doubt KB Q&A pairs</span>
+                        <strong style={{ color: dkb_complete ? "#22c55e" : dkbPct > 0 ? "#7c3aed" : "#6b7280" }}>
+                          {dkb_cached.toLocaleString()} / {dkb_expected.toLocaleString()} ({dkbPct}%)
+                          {dkb_running && " ⏳"}
+                          {!dkb_running && dkb_cached < dkb_expected && dkb_cached > 0 && (
+                            <span style={{ fontWeight: 400, color: "#9ca3af" }}>
+                              {" "}— {(dkb_expected - dkb_cached).toLocaleString()} more needed
+                            </span>
+                          )}
+                        </strong>
+                      </div>
+                      <div style={{ background: "#e5e7eb", borderRadius: 6, height: 8, overflow: "hidden" }}>
+                        <div style={{
+                          width: `${dkbPct}%`, height: "100%", transition: "width 0.4s",
+                          background: dkb_complete ? "#22c55e" : dkbPct > 0 ? "#7c3aed" : "#d1d5db",
+                        }} />
+                      </div>
                     </div>
                   )}
 
@@ -468,12 +496,16 @@ function AdminCacheManagementPage({ user }) {
 
                     <button
                       className="primary-btn"
-                      disabled={dkbRunningGrades[grade]}
+                      disabled={dkbRunningGrades[grade] || dkb_running}
                       onClick={() => handleBuildDoubtKb(grade)}
-                      title="Pre-generate 25 Q&A pairs per chapter for instant Ask Doubt responses"
-                      style={{ background: dkbRunningGrades[grade] ? "#6b7280" : "#7c3aed" }}
+                      title={dkb_complete ? "Doubt KB complete for this grade" : `Pre-generate ${dkb_expected - dkb_cached} more Q&A pairs`}
+                      style={{ background: dkb_complete ? "#22c55e" : (dkbRunningGrades[grade] || dkb_running) ? "#6b7280" : "#7c3aed" }}
                     >
-                      {dkbRunningGrades[grade] ? "⏳ Building Doubt KB…" : "🧠 Build Doubt KB"}
+                      {(dkbRunningGrades[grade] || dkb_running)
+                        ? "⏳ Building Doubt KB…"
+                        : dkb_complete
+                        ? "✅ Doubt KB Done"
+                        : `🧠 Build Doubt KB${dkb_cached > 0 ? " (Resume)" : ""}`}
                     </button>
                   </div>
 
