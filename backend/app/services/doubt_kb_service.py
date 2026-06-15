@@ -28,8 +28,11 @@ from app.services.rag_service import create_embedding
 logger = logging.getLogger(__name__)
 
 # Minimum cosine similarity to consider a DB match acceptable.
-# 0.82 allows natural language variation while avoiding false positives.
-SIMILARITY_THRESHOLD = 0.82
+# 0.63 catches natural paraphrases of student questions
+# (e.g. "what does Golgi apparatus do" → "How does Golgi apparatus help...")
+# Calibrated from real data: similar questions score 0.63-0.70,
+# unrelated questions score < 0.55.
+SIMILARITY_THRESHOLD = 0.63
 
 # How many DKB questions to show as lesson suggestion cards.
 LESSON_SUGGESTION_LIMIT = 6
@@ -54,6 +57,13 @@ def search_doubt_kb(
     Returns the best-matching answer dict if similarity >= threshold, else None.
     The caller falls back to LLM when None is returned.
 
+    Search strategy:
+    1. Try exact chapter filter (fastest, most relevant).
+    2. If no match, broaden to subject-level search (no chapter filter).
+       DKB prewarm may store chapters with prefixes like "Chapter 2: Cell..."
+       while the request sends "Cell: The Building Block of Life" — subject-level
+       search handles this naming inconsistency gracefully.
+
     Return shape:
         {"answer": str, "question": str, "source_type": "DOUBT_KB",
          "id": str, "similarity": float}
@@ -61,6 +71,7 @@ def search_doubt_kb(
     try:
         embedding = create_embedding(question)
 
+        # Pass 1: try with exact chapter filter
         result = supabase.rpc(
             "match_doubt_kb",
             {
@@ -75,6 +86,25 @@ def search_doubt_kb(
         ).execute()
 
         rows = result.data or []
+
+        # Pass 2: if no match with chapter filter, broaden to subject-level.
+        # Chapter names stored in DKB may include number prefixes (e.g. "Chapter 2: Cell…")
+        # that don't match the display name used in the lesson/doubt request.
+        if not rows and chapter:
+            result = supabase.rpc(
+                "match_doubt_kb",
+                {
+                    "query_embedding": embedding,
+                    "match_count": 1,
+                    "similarity_threshold": threshold,
+                    "filter_grade": grade,
+                    "filter_subject": subject,
+                    "filter_chapter": None,   # no chapter filter
+                    "filter_mode": mode,
+                },
+            ).execute()
+            rows = result.data or []
+
         if not rows:
             return None
 
@@ -166,24 +196,62 @@ def get_lesson_doubt_suggestions(
     Only questions that already have answers in the DKB are returned so every
     card click is served instantly at zero token cost.
 
+    The DKB prewarm stores chapters using RAG document names which may include
+    "Chapter N:" prefixes (e.g. "Chapter 2: Cell: The Building Block of Life").
+    The lesson route sends chapter names without this prefix.  We try both
+    forms so suggestions appear regardless of the naming convention used at
+    prewarm time.
+
     Returns list of {"id": str, "question": str} ordered by popularity.
     """
-    try:
-        result = supabase.rpc(
-            "get_doubt_kb_suggestions",
-            {
-                "p_grade": grade,
-                "p_subject": subject,
-                "p_chapter": chapter,
-                "p_mode": mode,
-                "p_limit": limit,
-            },
-        ).execute()
+    import re as _re  # noqa: PLC0415
 
-        return [
-            {"id": row["id"], "question": row["question"]}
-            for row in (result.data or [])
-        ]
+    def _call_rpc(ch):
+        return supabase.rpc(
+            "get_doubt_kb_suggestions",
+            {"p_grade": grade, "p_subject": subject, "p_chapter": ch,
+             "p_mode": mode, "p_limit": limit},
+        ).execute().data or []
+
+    try:
+        rows = _call_rpc(chapter)
+
+        # If no results, try with "Chapter N: " prefix stripped from the request chapter.
+        # Lesson sends "Cell: The Building Block of Life" but DKB stores
+        # "Chapter 2: Cell: The Building Block of Life".
+        if not rows:
+            stripped = _re.sub(r"^Chapter\s+\d+\s*:\s*", "", chapter, flags=_re.IGNORECASE).strip()
+            if stripped and stripped != chapter:
+                rows = _call_rpc(stripped)
+
+        # If still no results, query the table directly with ILIKE on chapter
+        # (the get_doubt_kb_suggestions RPC does not support NULL as 'match all').
+        if not rows:
+            core = _re.sub(
+                r"^(?:Chapter\s+\d+\s*:\s*|Text Book\s*-\s*|Supplementary Reader\s*-\s*|"
+                r"Workbook\s*-\s*|History\s*-\s*|Geography\s*-\s*|Economics\s*-\s*|"
+                r"Political Science\s*-\s*)",
+                "",
+                chapter,
+                flags=_re.IGNORECASE,
+            ).strip()
+            if core:
+                direct = (
+                    supabase
+                    .table("doubt_kb")
+                    .select("id, question, hit_count")
+                    .eq("grade", grade)
+                    .eq("subject", subject)
+                    .eq("mode", mode)
+                    .eq("status", "active")
+                    .ilike("chapter", f"%{core}%")
+                    .order("hit_count", desc=True)
+                    .limit(limit)
+                    .execute()
+                )
+                rows = direct.data or []
+
+        return [{"id": row["id"], "question": row["question"]} for row in rows]
 
     except Exception as exc:
         logger.warning("DKB suggestions failed: %s", exc)
