@@ -448,11 +448,12 @@ def build_question_bank_for_grade(grade: str) -> None:
                     rag_context = ""
 
                 for difficulty in DIFFICULTIES:
-                    # Skip if already enough questions for this chapter/difficulty
+                    target = QUESTIONS_PER_BATCH * BATCHES_PER_CHAPTER
+
+                    # Re-check current count before starting (avoids re-running complete chapters)
                     existing = count_banked_questions_for_chapter_difficulty(
                         grade, subject, chapter, difficulty
                     )
-                    target = QUESTIONS_PER_BATCH * BATCHES_PER_CHAPTER
                     if existing >= target:
                         logger.info(
                             "Skipping [%s | %s | %s | %s] — already has %d/%d questions",
@@ -460,7 +461,22 @@ def build_question_bank_for_grade(grade: str) -> None:
                         )
                         continue
 
-                    for batch in range(1, BATCHES_PER_CHAPTER + 1):
+                    batch = 0
+                    while True:
+                        # Re-check after each batch to avoid overshooting
+                        current = count_banked_questions_for_chapter_difficulty(
+                            grade, subject, chapter, difficulty
+                        )
+                        if current >= target:
+                            break  # reached target — stop, no more API calls
+
+                        needed = target - current
+                        n_this_batch = min(QUESTIONS_PER_BATCH, needed)
+                        batch += 1
+
+                        if batch > BATCHES_PER_CHAPTER:
+                            break  # safety cap
+
                         prompt = _build_question_prompt(
                             grade=grade,
                             board=board,
@@ -468,7 +484,7 @@ def build_question_bank_for_grade(grade: str) -> None:
                             chapter=chapter,
                             difficulty=difficulty,
                             batch=batch,
-                            n=QUESTIONS_PER_BATCH,
+                            n=n_this_batch,  # never request more than needed
                             rag_context=rag_context,
                         )
 
@@ -485,12 +501,16 @@ def build_question_bank_for_grade(grade: str) -> None:
                                 raw = re.sub(r"\s*```$", "", raw)
                             start = raw.find("[")
                             end = raw.rfind("]")
+                            import json
                             if start != -1 and end > start:
-                                import json
                                 questions = json.loads(raw[start:end + 1])
                                 if isinstance(questions, list) and questions:
+                                    # Only store up to what we still need (prevents overshoot)
+                                    still_needed = target - count_banked_questions_for_chapter_difficulty(
+                                        grade, subject, chapter, difficulty
+                                    )
                                     add_questions_to_bank(
-                                        questions=questions,
+                                        questions=questions[:still_needed],
                                         board=board,
                                         grade=grade,
                                         subject=subject,
@@ -498,9 +518,19 @@ def build_question_bank_for_grade(grade: str) -> None:
                                         difficulty=difficulty,
                                         exam_type="General",
                                     )
+                            else:
+                                logger.warning(
+                                    "QB batch returned no JSON [%s | %s | %s | %s | batch=%d]",
+                                    grade, subject, chapter, difficulty, batch,
+                                )
+                        except json.JSONDecodeError as exc:
+                            logger.warning(
+                                "QB batch JSON parse failed [%s | %s | %s | %s | batch=%d]: %s",
+                                grade, subject, chapter, difficulty, batch, exc,
+                            )
                         except Exception as exc:
                             logger.warning(
-                                "Question bank batch failed [%s | %s | %s | difficulty=%s | batch=%d]: %s",
+                                "QB batch failed [%s | %s | %s | %s | batch=%d]: %s",
                                 grade, subject, chapter, difficulty, batch, exc,
                             )
 
