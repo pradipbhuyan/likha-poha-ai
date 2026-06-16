@@ -213,7 +213,7 @@ function App() {
       } else if (parsedUser.role === "teacher") {
         setActivePage("teacherDashboard");
       } else if (parsedUser.role === "sales") {
-        setActivePage("salesIncentives");
+        setActivePage("salesLeads");
       } else {
         setActivePage("dashboard");
       }
@@ -246,8 +246,8 @@ function App() {
       setActivePage("teacherDashboard");
       localStorage.setItem("tutor_active_page", "teacherDashboard");
     } else if (userData.role === "sales") {
-      setActivePage("salesIncentives");
-      localStorage.setItem("tutor_active_page", "salesIncentives");
+      setActivePage("salesLeads");
+      localStorage.setItem("tutor_active_page", "salesLeads");
     } else {
       setActivePage("dashboard");
       localStorage.setItem("tutor_active_page", "dashboard");

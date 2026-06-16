@@ -119,7 +119,7 @@ function Sidebar({
       key: "salesIncentives",
       label: "Sales Incentives",
       icon: Handshake,
-      roles: ["admin", "sales"],
+      roles: ["admin"],  // admin-only: old attribution system
     },
     {
       key: "salesDemo",
