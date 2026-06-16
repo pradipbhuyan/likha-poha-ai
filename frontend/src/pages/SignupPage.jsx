@@ -34,6 +34,8 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
 
   function selectRole(r) { setRole(r); setStep("form"); setError(""); }
 
+  const [passwordSetLink, setPasswordSetLink] = useState("");
+
   async function handleOfferCodeSignup(e) {
     e.preventDefault();
     setError("");
@@ -58,6 +60,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
         setError(data.detail || data.message || "Could not create account. Please check your offer code.");
         return;
       }
+      if (data.password_set_link) setPasswordSetLink(data.password_set_link);
       setStep("done");
     } catch (err) {
       setError(err.message || "Signup failed. Please try again.");
@@ -292,16 +295,26 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               <h2 style={{fontSize:"1.8rem",fontWeight:900,marginBottom:14}}>
                 {useOfferCode ? "Account Created!" : "Payment Confirmed!"}
               </h2>
-              {useOfferCode && (
+              {useOfferCode && passwordSetLink && (
+                <div style={{background:"rgba(5,150,105,.15)",border:"1px solid rgba(5,150,105,.4)",borderRadius:12,padding:"14px 18px",marginBottom:20,fontSize:".9rem",color:"#6ee7b7",textAlign:"center"}}>
+                  ✅ Account ready! Click below to set your password immediately:
+                  <br /><br />
+                  <a href={passwordSetLink}
+                    style={{display:"inline-block",background:"linear-gradient(135deg,#059669,#0d9488)",color:"#fff",borderRadius:10,padding:"11px 24px",fontWeight:700,textDecoration:"none",fontSize:"1rem"}}>
+                    🔑 Set My Password Now
+                  </a>
+                </div>
+              )}
+              {useOfferCode && !passwordSetLink && (
                 <div style={{background:"rgba(5,150,105,.15)",border:"1px solid rgba(5,150,105,.4)",borderRadius:12,padding:"14px 18px",marginBottom:20,fontSize:".9rem",color:"#6ee7b7",textAlign:"left"}}>
-                  ✅ Your account is ready! Your offer code access is valid until {/* shown in message */}<strong style={{color:"#f8fafc"}}>check email for expiry date</strong>.<br/>
-                  <strong style={{color:"#f8fafc"}}>Next step:</strong> Check your email for a <strong style={{color:"#f8fafc"}}>Set Password</strong> link. Click it to set your password, then log in.
+                  ✅ Account created! Check your email for a <strong style={{color:"#f8fafc"}}>Set Password</strong> link.<br/>
+                  If no email arrives, use the <strong style={{color:"#f8fafc"}}>Forgot Password</strong> option on the Login page.
                 </div>
               )}
               <p style={{color:"#cbd5e1",lineHeight:1.7,marginBottom:28,fontSize:"1rem"}}>
                 Your account has been created{useOfferCode ? " using your offer code" : " and payment is confirmed"}.<br />
-                <strong style={{color:"#f8fafc"}}>Please check your email</strong> {useOfferCode ? "for a Set Password link" : "for a verification link"} from LikhaPoha AI.<br />
-                {useOfferCode ? "Click it to set your password, then come back to " : "Click the link to verify your email and set your password, then come back to "}
+                {!useOfferCode && <><strong style={{color:"#f8fafc"}}>Please check your email</strong> for a verification link from LikhaPoha AI.<br /></>}
+                {useOfferCode ? "Set your password above or check your email, then come back to " : "Click the link to verify your email and set your password, then come back to "}
                 <strong style={{color:"#f8fafc"}}>Login</strong>.
               </p>
               <div style={{background:"#111827",border:"1px solid #334155",borderRadius:14,padding:"16px 20px",marginBottom:28,fontSize:".88rem",color:"#94a3b8",textAlign:"left"}}>

@@ -199,6 +199,16 @@ function App() {
 
     window.addEventListener("popstate", handlePopState);
 
+    // Detect Supabase recovery/invite links that arrive as hash fragments:
+    // https://likhapoha.in/#access_token=...&type=recovery
+    // The pathname stays "/" so we must inspect window.location.hash.
+    const hash = window.location.hash;
+    if (hash && hash.includes("type=recovery")) {
+      setRoutePath("/reset-password");
+    } else if (hash && hash.includes("type=invite")) {
+      setRoutePath("/reset-password");
+    }
+
     const savedUser = localStorage.getItem("tutor_user");
     const savedPage = localStorage.getItem("tutor_active_page");
 

@@ -436,8 +436,31 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
         email_confirm=True,  # immediately active
     )
 
-    # Send a password-reset email so the user can set their own password
-    # This works with all email domains unlike invite_user_by_email.
+    # Generate a one-time password-set link (works even if SMTP is not configured)
+    # This link lets the user set their own password by clicking it directly.
+    # We also try to send a password-reset email as a backup.
+    password_set_link = None
+    try:
+        link_response = admin_client.auth.admin.generate_link(
+            {
+                "type": "recovery",
+                "email": email_clean,
+                "options": {
+                    "redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"
+                },
+            }
+        )
+        password_set_link = getattr(link_response, "properties", {})
+        if hasattr(password_set_link, "action_link"):
+            password_set_link = password_set_link.action_link
+        elif isinstance(password_set_link, dict):
+            password_set_link = password_set_link.get("action_link") or password_set_link.get("hashed_token")
+        else:
+            password_set_link = None
+    except Exception:
+        pass  # Link generation failure must not block account creation
+
+    # Also try email as backup (may not arrive if SMTP is not configured)
     try:
         from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
         anon_client.auth.reset_password_for_email(
@@ -505,9 +528,10 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
         "success": True,
         "message": (
             "Account created using offer code. "
-            "Please check your email to verify your account before signing in. "
+            "Please check your email to set your password, then log in. "
             f"Your access is valid until {str(offer['valid_until'])[:10]}."
         ),
         "role": role,
         "offer_valid_until": offer["valid_until"],
+        "password_set_link": password_set_link,  # direct link if email not available
     }
