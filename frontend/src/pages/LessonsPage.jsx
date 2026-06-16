@@ -612,8 +612,11 @@ function LessonsPage({ user }) {
   }
 
   function shouldShowTextbookVisualTools() {
-    /** Keep the UI available for every lesson; backend controls storage-enabled grades. */
-    return Boolean(grade && mode && subject && chapter);
+    /** Only show the textbook visual section for supported grade/subject combos:
+     * Grade 9: all subjects.
+     * Grade 10: Science and Maths only.
+     */
+    return isTextbookVisualSubject();
   }
 
   function getTextbookVisualSearchTerms(query = "") {
