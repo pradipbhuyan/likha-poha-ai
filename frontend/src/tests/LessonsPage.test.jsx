@@ -297,7 +297,7 @@ describe("LessonsPage", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("shows visual tools for English while backend gates unsupported grades", async () => {
+  test("does not show visual tools for unsupported grades (Grade 6 English)", async () => {
     render(
       <LessonsPage
         user={{
@@ -315,19 +315,10 @@ describe("LessonsPage", () => {
       })
     ).toBeInTheDocument();
 
+    // Textbook visual section must NOT appear for Grade 6 (only Grade 9 all + Grade 10 Sci/Maths)
     expect(
       screen.queryByRole("heading", {
-        name: /visual generator/i,
-      })
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", {
         name: /textbook visuals only/i,
-      })
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("heading", {
-        name: /visual finder/i,
       })
     ).not.toBeInTheDocument();
   });
@@ -445,7 +436,7 @@ describe("LessonsPage", () => {
     expect(screen.queryByText(/Score signal/i)).not.toBeInTheDocument();
   });
 
-  test("does not show visual finder suggestions for Maths lessons", async () => {
+  test("does not show visual section for Grade 5 Maths (only Grade 9/10 supported)", async () => {
     render(
       <LessonsPage
         user={{
@@ -458,15 +449,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", { name: /textbook visuals only/i })
+      await screen.findByRole("heading", { name: /generated lesson/i })
     ).toBeInTheDocument();
+
+    // Textbook visual section must NOT appear for Grade 5
     expect(
-      screen.queryByText(/visuals to look for in this lesson/i)
+      screen.queryByRole("heading", { name: /textbook visuals only/i })
     ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: /fractions textbook page/i })
-    ).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /find visual/i })).not.toBeInTheDocument();
   });
 
   test("does not show visual finder suggestions for Science lessons", async () => {
