@@ -15,6 +15,8 @@ import {
   listOfferCodes,
   createOfferCode,
   deactivateOfferCode,
+  getInfluencerSummary,
+  markInfluencerIncentivePaid,
 } from "../api/adminControl";
 import {
   SUBSCRIPTION_PLAN_ORDER,
@@ -144,9 +146,17 @@ function AdminControlPage({ user }) {
     description: "",
     valid_until: "",
     max_uses: 100,
+    influencer_name: "",
+    influencer_email: "",
+    code_type: "free_trial",
+    discount_percent: 0,
+    incentive_inr: 0,
   });
   const [offerMsg, setOfferMsg] = useState("");
   const [offerErr, setOfferErr] = useState("");
+  const [influencers, setInfluencers] = useState([]);
+  const [influencerLoading, setInfluencerLoading] = useState(false);
+  const [influencerMsg, setInfluencerMsg] = useState("");
 
   const [childForms, setChildForms] = useState({});
   const [assignmentForms, setAssignmentForms] = useState({});
@@ -337,19 +347,44 @@ function AdminControlPage({ user }) {
     }
   }
 
+  async function loadInfluencers() {
+    setInfluencerLoading(true);
+    try {
+      const data = await getInfluencerSummary(user.accessToken);
+      setInfluencers(data.influencers || []);
+    } catch { /* table may not exist yet */ }
+    finally { setInfluencerLoading(false); }
+  }
+
+  async function handleMarkPaid(codeId) {
+    try {
+      await markInfluencerIncentivePaid(codeId, user.accessToken);
+      setInfluencerMsg("✅ Incentive marked as paid.");
+      await loadInfluencers();
+      await loadOfferCodes();
+    } catch (err) { setInfluencerMsg(err.message || "Failed."); }
+  }
+
   async function handleCreateOfferCode(e) {
     e.preventDefault();
     setOfferMsg("");
     setOfferErr("");
     if (!offerForm.valid_until) { setOfferErr("Valid Until date is required."); return; }
     try {
-      const data = await createOfferCode(
-        { description: offerForm.description, valid_until: offerForm.valid_until, max_uses: Number(offerForm.max_uses) || 100 },
-        user.accessToken
-      );
+      const data = await createOfferCode({
+        description: offerForm.description,
+        valid_until: offerForm.valid_until,
+        max_uses: Number(offerForm.max_uses) || 100,
+        influencer_name: offerForm.influencer_name,
+        influencer_email: offerForm.influencer_email,
+        code_type: offerForm.code_type,
+        discount_percent: Number(offerForm.discount_percent) || 0,
+        incentive_inr: Number(offerForm.incentive_inr) || 0,
+      }, user.accessToken);
       setOfferMsg(`✅ Code created: ${data.offer_code?.code || "—"}`);
-      setOfferForm({ description: "", valid_until: "", max_uses: 100 });
+      setOfferForm({ description: "", valid_until: "", max_uses: 100, influencer_name: "", influencer_email: "", code_type: "free_trial", discount_percent: 0, incentive_inr: 0 });
       await loadOfferCodes();
+      await loadInfluencers();
     } catch (err) {
       setOfferErr(err.message || "Unable to create offer code.");
     }
@@ -709,9 +744,9 @@ function AdminControlPage({ user }) {
     }));
   }
 
-  // Load offer codes when the AI settings panel loads
+  // Load offer codes and influencer summary on mount
   useEffect(() => {
-    if (user?.accessToken) loadOfferCodes();
+    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken]);
 
@@ -1433,6 +1468,38 @@ function AdminControlPage({ user }) {
                 <input type="number" min="1" max="10000" value={offerForm.max_uses}
                   onChange={e => setOfferForm(p => ({ ...p, max_uses: e.target.value }))} />
               </label>
+              <label>
+                Influencer Name <small style={{color:"var(--muted)"}}>(optional)</small>
+                <input type="text" value={offerForm.influencer_name}
+                  onChange={e => setOfferForm(p => ({ ...p, influencer_name: e.target.value }))}
+                  placeholder="e.g. Rohan Sharma" />
+              </label>
+              <label>
+                Influencer Email <small style={{color:"var(--muted)"}}>(optional)</small>
+                <input type="email" value={offerForm.influencer_email}
+                  onChange={e => setOfferForm(p => ({ ...p, influencer_email: e.target.value }))}
+                  placeholder="rohan@example.com" />
+              </label>
+              <label>
+                Code Type
+                <select value={offerForm.code_type} onChange={e => setOfferForm(p => ({ ...p, code_type: e.target.value }))}>
+                  <option value="free_trial">Free Trial (free access)</option>
+                  <option value="discount">Discount (% off paid plan)</option>
+                </select>
+              </label>
+              {offerForm.code_type === "discount" && (
+                <label>
+                  Discount % (5–10)
+                  <input type="number" min="5" max="10" value={offerForm.discount_percent}
+                    onChange={e => setOfferForm(p => ({ ...p, discount_percent: e.target.value }))} />
+                </label>
+              )}
+              <label>
+                Incentive per Redemption (₹)
+                <input type="number" min="0" value={offerForm.incentive_inr}
+                  onChange={e => setOfferForm(p => ({ ...p, incentive_inr: e.target.value }))}
+                  placeholder="e.g. 50" />
+              </label>
               {offerMsg && <div className="info-box" style={{ gridColumn: "1 / -1" }}>{offerMsg}</div>}
               {offerErr && <div className="error-box" style={{ gridColumn: "1 / -1" }}>{offerErr}</div>}
               <button className="primary-btn" type="submit">Generate Offer Code</button>
@@ -1477,6 +1544,58 @@ function AdminControlPage({ user }) {
             )}
           </div>
         </div>
+      </section>
+
+      {/* ── Influencer Tracking ── */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Influencer Programme</p>
+          <h3>📊 Influencer Tracking</h3>
+          <p>Track redemptions, conversions, and incentive payables per influencer.</p>
+        </div>
+        {influencerMsg && <div className="info-box" style={{marginBottom:12}}>{influencerMsg}</div>}
+        {influencerLoading ? <p>Loading…</p> : influencers.length === 0 ? (
+          <div className="info-box">No influencer codes yet. Create an offer code with an Influencer Name above.</div>
+        ) : (
+          <div style={{overflowX:"auto"}}>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:".88rem"}}>
+              <thead>
+                <tr style={{borderBottom:"2px solid var(--border)",textAlign:"left"}}>
+                  {["Influencer","Email","Codes","Total Redemptions","Incentive Payable","Status","Action"].map(h => (
+                    <th key={h} style={{padding:"8px 12px",color:"var(--muted)",fontWeight:700}}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {influencers.map(inf => (
+                  <tr key={inf.influencer_name} style={{borderBottom:"1px solid var(--border)"}}>
+                    <td style={{padding:"10px 12px",fontWeight:700}}>{inf.influencer_name}</td>
+                    <td style={{padding:"10px 12px",color:"var(--muted)",fontSize:".82rem"}}>{inf.influencer_email || "—"}</td>
+                    <td style={{padding:"10px 12px",textAlign:"center"}}>{inf.codes?.length || 0}</td>
+                    <td style={{padding:"10px 12px",textAlign:"center",fontWeight:700}}>{inf.total_redemptions}</td>
+                    <td style={{padding:"10px 12px",fontWeight:800,color: inf.total_incentive_payable > 0 ? "#047857" : "var(--muted)"}}>
+                      ₹{inf.total_incentive_payable}
+                    </td>
+                    <td style={{padding:"10px 12px"}}>
+                      {inf.incentive_paid
+                        ? <span style={{color:"#3b82f6",fontWeight:700}}>✅ All Paid</span>
+                        : <span style={{color:"#f59e0b",fontWeight:700}}>⏳ Unpaid</span>}
+                    </td>
+                    <td style={{padding:"10px 12px"}}>
+                      {!inf.incentive_paid && inf.codes?.filter(c => !c.incentive_paid).map(c => (
+                        <button key={c.id}
+                          onClick={() => handleMarkPaid(c.id)}
+                          style={{background:"rgba(4,120,87,.1)",color:"var(--success)",border:"1px solid rgba(4,120,87,.3)",borderRadius:6,padding:"3px 10px",cursor:"pointer",fontFamily:"inherit",fontSize:".78rem",fontWeight:700,marginRight:4,marginBottom:4}}>
+                          Pay {c.code}
+                        </button>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       {families.map((family) => (

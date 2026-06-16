@@ -58,6 +58,12 @@ class CreateOfferCodeRequest(BaseModel):
     valid_until: str  # ISO datetime string e.g. "2026-12-31T23:59:59"
     max_uses: int = 100
     valid_from: str | None = None  # defaults to now if omitted
+    # Influencer tracking fields
+    influencer_name: str = ""
+    influencer_email: str = ""
+    code_type: str = "free_trial"   # "free_trial" or "discount"
+    discount_percent: int = 0        # 0 for free_trial; 5-10 for discount
+    incentive_inr: int = 0           # INR per confirmed redemption to pay influencer
 
 
 class CreateTeacherRequest(BaseModel):
@@ -798,6 +804,13 @@ def create_offer_code(data: CreateOfferCodeRequest, admin=Depends(require_admin)
         "uses_count": 0,
         "created_by": admin_id,
         "is_active": True,
+        # Influencer tracking fields
+        "influencer_name": (data.influencer_name or "").strip(),
+        "influencer_email": (data.influencer_email or "").strip(),
+        "code_type": data.code_type if data.code_type in ("free_trial", "discount") else "free_trial",
+        "discount_percent": max(0, min(100, int(data.discount_percent or 0))),
+        "incentive_inr": max(0, int(data.incentive_inr or 0)),
+        "incentive_paid": False,
     }
 
     try:
@@ -808,10 +821,102 @@ def create_offer_code(data: CreateOfferCodeRequest, admin=Depends(require_admin)
         raise HTTPException(
             status_code=500,
             detail=(
-                "Unable to create offer code. Run migration_offer_codes.sql in Supabase. "
+                "Unable to create offer code. Run migration_offer_codes.sql and "
+                "migration_offer_codes_influencer.sql in Supabase. "
                 f"Error: {str(exc)}"
             ),
         )
+
+
+@router.get("/offer-codes/influencer-summary")
+def get_influencer_summary(admin=Depends(require_admin)):
+    """
+    Return per-influencer redemption stats for the admin tracking dashboard.
+
+    Aggregates all codes with non-empty influencer_name, counts redemptions
+    from offer_redemptions, and calculates total incentive payable.
+    """
+    try:
+        codes = (
+            admin_client
+            .table("offer_codes")
+            .select("*")
+            .neq("influencer_name", "")
+            .execute()
+        ).data or []
+    except Exception:
+        return {"success": True, "influencers": []}
+
+    if not codes:
+        return {"success": True, "influencers": []}
+
+    # Get redemption counts per code
+    code_ids = [c["id"] for c in codes]
+    try:
+        redemptions = (
+            admin_client
+            .table("offer_redemptions")
+            .select("code_id, user_id")
+            .in_("code_id", code_ids)
+            .execute()
+        ).data or []
+    except Exception:
+        redemptions = []
+
+    redemptions_by_code: dict = {}
+    for r in redemptions:
+        cid = r["code_id"]
+        redemptions_by_code[cid] = redemptions_by_code.get(cid, 0) + 1
+
+    # Aggregate by influencer name (one influencer may have multiple codes)
+    by_influencer: dict = {}
+    for code in codes:
+        name = code.get("influencer_name") or "Unknown"
+        if name not in by_influencer:
+            by_influencer[name] = {
+                "influencer_name": name,
+                "influencer_email": code.get("influencer_email") or "",
+                "codes": [],
+                "total_redemptions": 0,
+                "total_incentive_payable": 0,
+                "incentive_paid": True,  # False if any code unpaid
+            }
+        redemption_count = redemptions_by_code.get(code["id"], 0)
+        incentive = int(code.get("incentive_inr") or 0) * redemption_count
+        paid = bool(code.get("incentive_paid"))
+        by_influencer[name]["codes"].append({
+            **code,
+            "redemption_count": redemption_count,
+            "incentive_due": incentive,
+        })
+        by_influencer[name]["total_redemptions"] += redemption_count
+        by_influencer[name]["total_incentive_payable"] += incentive
+        if not paid:
+            by_influencer[name]["incentive_paid"] = False
+
+    return {
+        "success": True,
+        "influencers": list(by_influencer.values()),
+        "total_payable": sum(i["total_incentive_payable"] for i in by_influencer.values() if not i["incentive_paid"]),
+    }
+
+
+@router.patch("/offer-codes/{code_id}/mark-incentive-paid")
+def mark_influencer_incentive_paid(code_id: str, admin=Depends(require_admin)):
+    """Mark a specific offer code's influencer incentive as paid."""
+    result = (
+        admin_client
+        .table("offer_codes")
+        .update({
+            "incentive_paid": True,
+            "incentive_paid_at": datetime.now(timezone.utc).isoformat(),
+        })
+        .eq("id", code_id)
+        .execute()
+    )
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Offer code not found.")
+    return {"success": True, "offer_code": result.data[0]}
 
 
 @router.patch("/offer-codes/{code_id}/deactivate")

@@ -357,6 +357,30 @@ export async function deactivateOfferCode(codeId, accessToken) {
   return response.json();
 }
 
+export async function getInfluencerSummary(accessToken) {
+  /** Load per-influencer redemption stats and incentive totals. */
+  const response = await adminFetch("/api/admin-control/offer-codes/influencer-summary", {
+    method: "GET",
+    headers: authHeaders(accessToken),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load influencer summary"));
+  }
+  return response.json();
+}
+
+export async function markInfluencerIncentivePaid(codeId, accessToken) {
+  /** Mark a specific offer code's influencer incentive as paid. */
+  const response = await adminFetch(
+    `/api/admin-control/offer-codes/${codeId}/mark-incentive-paid`,
+    { method: "PATCH", headers: authHeaders(accessToken) }
+  );
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to mark incentive as paid"));
+  }
+  return response.json();
+}
+
 // ─── Student: redeem offer code ──────────────────────────────────────────────
 
 export async function redeemOfferCode(code, accessToken) {
