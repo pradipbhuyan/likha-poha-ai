@@ -173,7 +173,8 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
           )}
 
           {step === "form" && (
-            <form onSubmit={handlePayAndSignup}>
+            /* Render ONE top-level form — either offer-code or Razorpay, never nested */
+            <form onSubmit={useOfferCode ? handleOfferCodeSignup : handlePayAndSignup}>
               <button type="button" onClick={() => { setStep("role"); setError(""); }}
                 style={{background:"transparent",border:"none",color:"#93c5fd",cursor:"pointer",fontFamily:"inherit",fontSize:".88rem",marginBottom:20,padding:0}}>
                 ← Back
@@ -251,7 +252,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               </div>
 
               {useOfferCode ? (
-                <form onSubmit={handleOfferCodeSignup}>
+                <>
                   <div style={{marginBottom:16}}>
                     <label style={{display:"block",fontSize:"1rem",fontWeight:600,color:"#cbd5e1",marginBottom:10}}>Offer Code *</label>
                     <input
@@ -270,7 +271,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
                   <p style={{textAlign:"center",marginTop:14,color:"#64748b",fontSize:".78rem"}}>
                     You will receive a verification email after signup
                   </p>
-                </form>
+                </>
               ) : (
                 <>
                   <button type="submit" disabled={loading}
@@ -291,10 +292,16 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               <h2 style={{fontSize:"1.8rem",fontWeight:900,marginBottom:14}}>
                 {useOfferCode ? "Account Created!" : "Payment Confirmed!"}
               </h2>
+              {useOfferCode && (
+                <div style={{background:"rgba(5,150,105,.15)",border:"1px solid rgba(5,150,105,.4)",borderRadius:12,padding:"14px 18px",marginBottom:20,fontSize:".9rem",color:"#6ee7b7",textAlign:"left"}}>
+                  ✅ Your account has been created with your offer code.<br/>
+                  <strong style={{color:"#f8fafc"}}>Next step:</strong> Check your email for a verification link. Click it to verify your email and set your password, then log in.
+                </div>
+              )}
               <p style={{color:"#cbd5e1",lineHeight:1.7,marginBottom:28,fontSize:"1rem"}}>
                 Your account has been created{useOfferCode ? " using your offer code" : " and payment is confirmed"}.<br />
                 <strong style={{color:"#f8fafc"}}>Please check your email</strong> for a verification link from LikhaPoha AI.<br />
-                Click the link to verify your email and set your password.
+                Click the link to verify your email and set your password, then come back to <strong style={{color:"#f8fafc"}}>Login</strong>.
               </p>
               <div style={{background:"#111827",border:"1px solid #334155",borderRadius:14,padding:"16px 20px",marginBottom:28,fontSize:".88rem",color:"#94a3b8",textAlign:"left"}}>
                 <div style={{marginBottom:8}}>&#128274; Check your spam folder if you don't see the email</div>
