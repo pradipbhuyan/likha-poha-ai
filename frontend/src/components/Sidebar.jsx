@@ -38,8 +38,6 @@ function Sidebar({
 }) {
   /** Builds the role-aware navigation menu and renders the persistent app sidebar. */
   const isAdmin = user?.role === "admin" || user?.username === "pradip";
-  const isParent = user?.role === "parent";
-  const isStudent = user?.role === "student";
 
   const pages = [
     {
@@ -223,7 +221,7 @@ function Sidebar({
 
         <div>
           <h2>AI Tutor</h2>
-          <p>CBSE + SOF</p>
+          <p>CBSE</p>
         </div>
       </div>
 
