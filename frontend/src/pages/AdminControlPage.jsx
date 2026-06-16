@@ -18,6 +18,7 @@ import {
   getInfluencerSummary,
   markInfluencerIncentivePaid,
   regeneratePromoImages,
+  getOfferCodeEnrollments,
 } from "../api/adminControl";
 import {
   SUBSCRIPTION_PLAN_ORDER,
@@ -160,6 +161,9 @@ function AdminControlPage({ user }) {
   const [influencerMsg, setInfluencerMsg] = useState("");
   const [regenLoading, setRegenLoading] = useState(false);
   const [regenMsg, setRegenMsg] = useState("");
+  const [enrollments, setEnrollments] = useState([]);
+  const [enrollmentsLoading, setEnrollmentsLoading] = useState(false);
+  const [expandedCode, setExpandedCode] = useState(null);
 
   const [childForms, setChildForms] = useState({});
   const [assignmentForms, setAssignmentForms] = useState({});
@@ -348,6 +352,15 @@ function AdminControlPage({ user }) {
     } finally {
       setOfferCodesLoading(false);
     }
+  }
+
+  async function loadEnrollments() {
+    setEnrollmentsLoading(true);
+    try {
+      const data = await getOfferCodeEnrollments(user.accessToken);
+      setEnrollments(data.codes || []);
+    } catch { /* silently ignore */ }
+    finally { setEnrollmentsLoading(false); }
   }
 
   async function loadInfluencers() {
@@ -765,9 +778,9 @@ function AdminControlPage({ user }) {
     }));
   }
 
-  // Load offer codes and influencer summary on mount
+  // Load offer codes, influencer summary, and enrollments on mount
   useEffect(() => {
-    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); }
+    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken]);
 
@@ -1588,12 +1601,103 @@ function AdminControlPage({ user }) {
         </div>
       </section>
 
-      {/* ── Influencer Tracking ── */}
+      {/* ── Offer Code Enrollment Tracking ── */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Offer Code Programme</p>
+          <h3>👥 Student Enrollments by Offer Code</h3>
+          <p>See exactly which students enrolled using which code — with date, grade, and influencer attribution.</p>
+        </div>
+        {enrollmentsLoading ? <p>Loading…</p> : enrollments.length === 0 ? (
+          <div className="info-box">No offer codes yet. Create one above.</div>
+        ) : (
+          <div style={{display:"flex",flexDirection:"column",gap:12}}>
+            {enrollments.map(oc => {
+              const isExpired = new Date(oc.valid_until) < new Date();
+              const isExpanded = expandedCode === oc.id;
+              return (
+                <div key={oc.id} style={{border:"1px solid var(--border)",borderRadius:12,overflow:"hidden"}}>
+                  {/* Code header row */}
+                  <button
+                    onClick={() => setExpandedCode(isExpanded ? null : oc.id)}
+                    style={{width:"100%",background:"var(--surface2,#f8f9fa)",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontFamily:"inherit",display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+                    <strong style={{fontFamily:"monospace",fontSize:"1rem",letterSpacing:2,minWidth:90}}>{oc.code}</strong>
+                    <span style={{fontSize:".82rem",color:"var(--muted)",flex:1}}>{oc.description || (oc.influencer_name ? `Influencer: ${oc.influencer_name}` : "General")}</span>
+                    <span style={{fontSize:".8rem",background: oc.enrollment_count > 0 ? "rgba(4,120,87,.12)" : "var(--border)", color: oc.enrollment_count > 0 ? "#047857" : "var(--muted)", padding:"2px 10px",borderRadius:20,fontWeight:700}}>
+                      {oc.enrollment_count} enrolled
+                    </span>
+                    <span style={{fontSize:".8rem",color: isExpired ? "#ef4444" : "#22c55e"}}>
+                      {isExpired ? "⛔ Expired" : "✅ Active"} till {oc.valid_until}
+                    </span>
+                    <span style={{fontSize:".8rem",color:"var(--muted)"}}>{isExpanded ? "▲ Hide" : "▼ Show students"}</span>
+                  </button>
+
+                  {/* Enrollment list */}
+                  {isExpanded && (
+                    <div style={{padding:"0 16px 12px"}}>
+                      {oc.enrollment_count === 0 ? (
+                        <p style={{fontSize:".85rem",color:"var(--muted)",padding:"12px 0"}}>No students have enrolled with this code yet.</p>
+                      ) : (
+                        <>
+                          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:"1px solid var(--border)",marginBottom:8}}>
+                            <span style={{fontSize:".82rem",fontWeight:700,color:"var(--muted)"}}>
+                              {oc.enrollment_count} student{oc.enrollment_count !== 1 ? "s" : ""} enrolled
+                              {oc.influencer_name ? ` via ${oc.influencer_name}` : ""}
+                            </span>
+                            <button
+                              onClick={() => {
+                                const csv = ["Name,Email,Grade,Board,Enrolled At,Access Until",
+                                  ...oc.enrollments.map(e => `"${e.username}","${e.email}","${e.grade}","${e.board}","${e.enrolled_at}","${e.access_until}"`)
+                                ].join("\r\n");
+                                const blob = new Blob(["\uFEFF"+csv], {type:"text/csv;charset=utf-8;"});
+                                const a = document.createElement("a");
+                                a.href = URL.createObjectURL(blob);
+                                a.download = `enrollments-${oc.code}-${new Date().toISOString().slice(0,10)}.csv`;
+                                a.click();
+                              }}
+                              style={{background:"var(--panel)",border:"1px solid var(--border)",borderRadius:6,padding:"3px 10px",cursor:"pointer",fontFamily:"inherit",fontSize:".78rem",fontWeight:700}}>
+                              📥 Export CSV
+                            </button>
+                          </div>
+                          <div style={{overflowX:"auto"}}>
+                            <table style={{width:"100%",borderCollapse:"collapse",fontSize:".82rem"}}>
+                              <thead>
+                                <tr style={{color:"var(--muted)",textAlign:"left"}}>
+                                  {["Name","Email","Grade","Enrolled At","Access Until"].map(h => (
+                                    <th key={h} style={{padding:"4px 8px",fontWeight:600}}>{h}</th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {oc.enrollments.map((e, i) => (
+                                  <tr key={e.user_id} style={{borderTop:"1px solid var(--border)",background: i%2===0 ? "transparent" : "rgba(0,0,0,.02)"}}>
+                                    <td style={{padding:"6px 8px",fontWeight:600}}>{e.username}</td>
+                                    <td style={{padding:"6px 8px",color:"var(--muted)"}}>{e.email}</td>
+                                    <td style={{padding:"6px 8px"}}>{e.grade}</td>
+                                    <td style={{padding:"6px 8px",color:"var(--muted)"}}>{e.enrolled_at.replace("T"," ")}</td>
+                                    <td style={{padding:"6px 8px",color: new Date(e.access_until) > new Date() ? "#22c55e" : "#ef4444",fontWeight:700}}>{e.access_until}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      {/* ── Influencer Incentive Tracking ── */}
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Influencer Programme</p>
-          <h3>📊 Influencer Tracking</h3>
-          <p>Track redemptions, conversions, and incentive payables per influencer.</p>
+          <h3>📊 Influencer Incentive Tracking</h3>
+          <p>Track incentive payables per influencer and mark payments as settled.</p>
         </div>
         {influencerMsg && <div className="info-box" style={{marginBottom:12}}>{influencerMsg}</div>}
         {influencerLoading ? <p>Loading…</p> : influencers.length === 0 ? (

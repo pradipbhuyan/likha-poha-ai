@@ -381,6 +381,18 @@ export async function markInfluencerIncentivePaid(codeId, accessToken) {
   return response.json();
 }
 
+export async function getOfferCodeEnrollments(accessToken) {
+  /** Load all students enrolled per offer code for admin tracking. */
+  const response = await adminFetch("/api/admin-control/offer-codes/enrollments", {
+    method: "GET",
+    headers: authHeaders(accessToken),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load offer code enrollments"));
+  }
+  return response.json();
+}
+
 export async function regeneratePromoImages(payload, accessToken) {
   /**
    * Regenerate all WhatsApp promo images with the given offer code and

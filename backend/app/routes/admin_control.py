@@ -901,6 +901,88 @@ def get_influencer_summary(admin=Depends(require_admin)):
     }
 
 
+@router.get("/offer-codes/enrollments")
+def get_offer_code_enrollments(admin=Depends(require_admin)):
+    """
+    Return all student enrollments grouped by offer code.
+
+    For each active offer code, returns:
+    - Code details (code, influencer, valid_until, uses_count)
+    - List of enrolled students (username, email, grade, enrolled_at)
+
+    Joins offer_redemptions + offer_codes + profiles in Python
+    (Supabase free tier has no cross-table joins via REST).
+    """
+    try:
+        # Load all offer codes
+        codes_result = admin_client.table("offer_codes").select("*").order("created_at", desc=True).execute()
+        codes = {c["id"]: c for c in (codes_result.data or [])}
+    except Exception:
+        return {"success": True, "codes": []}
+
+    if not codes:
+        return {"success": True, "codes": []}
+
+    # Load all redemptions
+    try:
+        redemptions_result = admin_client.table("offer_redemptions").select("*").order("redeemed_at", desc=True).execute()
+        redemptions = redemptions_result.data or []
+    except Exception:
+        redemptions = []
+
+    # Load profiles for all redeemed user_ids
+    user_ids = list({r["user_id"] for r in redemptions})
+    profiles_by_id: dict = {}
+    if user_ids:
+        try:
+            batch = admin_client.table("profiles").select("id,username,email,grade,board,created_at").in_("id", user_ids).execute()
+            profiles_by_id = {p["id"]: p for p in (batch.data or [])}
+        except Exception:
+            pass
+
+    # Group redemptions by code
+    enrollments_by_code: dict = {}
+    for r in redemptions:
+        cid = r["code_id"]
+        if cid not in enrollments_by_code:
+            enrollments_by_code[cid] = []
+        profile = profiles_by_id.get(r["user_id"], {})
+        enrollments_by_code[cid].append({
+            "user_id": r["user_id"],
+            "username": profile.get("username") or "—",
+            "email": profile.get("email") or "—",
+            "grade": profile.get("grade") or "—",
+            "board": profile.get("board") or "CBSE",
+            "enrolled_at": r.get("redeemed_at", "")[:19],
+            "access_until": r.get("valid_until", "")[:10],
+        })
+
+    # Build response: all codes with their enrollments
+    result = []
+    for code in codes.values():
+        result.append({
+            "id": code["id"],
+            "code": code["code"],
+            "description": code.get("description") or "",
+            "influencer_name": code.get("influencer_name") or "",
+            "influencer_email": code.get("influencer_email") or "",
+            "code_type": code.get("code_type") or "free_trial",
+            "valid_until": (code.get("valid_until") or "")[:10],
+            "is_active": code.get("is_active", False),
+            "max_uses": code.get("max_uses", 0),
+            "uses_count": code.get("uses_count", 0),
+            "incentive_inr": code.get("incentive_inr", 0),
+            "enrollments": enrollments_by_code.get(code["id"], []),
+            "enrollment_count": len(enrollments_by_code.get(code["id"], [])),
+        })
+
+    return {
+        "success": True,
+        "codes": result,
+        "total_enrollments": sum(c["enrollment_count"] for c in result),
+    }
+
+
 @router.patch("/offer-codes/{code_id}/mark-incentive-paid")
 def mark_influencer_incentive_paid(code_id: str, admin=Depends(require_admin)):
     """Mark a specific offer code's influencer incentive as paid."""
