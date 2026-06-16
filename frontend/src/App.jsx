@@ -186,7 +186,15 @@ function App() {
   const [signupInitialPlan, setSignupInitialPlan] = useState("free");
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [routePath, setRoutePath] = useState(window.location.pathname);
+  const [routePath, setRoutePath] = useState(() => {
+    // Detect Supabase recovery/invite hash fragments on first load
+    // e.g. https://likhapoha.in/#access_token=...&type=recovery
+    const hash = window.location.hash;
+    if (hash && (hash.includes("type=recovery") || hash.includes("type=invite"))) {
+      return "/reset-password";
+    }
+    return window.location.pathname;
+  });
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("tutor_dark_mode") === "true"
   );
@@ -198,16 +206,6 @@ function App() {
     }
 
     window.addEventListener("popstate", handlePopState);
-
-    // Detect Supabase recovery/invite links that arrive as hash fragments:
-    // https://likhapoha.in/#access_token=...&type=recovery
-    // The pathname stays "/" so we must inspect window.location.hash.
-    const hash = window.location.hash;
-    if (hash && hash.includes("type=recovery")) {
-      setRoutePath("/reset-password");
-    } else if (hash && hash.includes("type=invite")) {
-      setRoutePath("/reset-password");
-    }
 
     const savedUser = localStorage.getItem("tutor_user");
     const savedPage = localStorage.getItem("tutor_active_page");
