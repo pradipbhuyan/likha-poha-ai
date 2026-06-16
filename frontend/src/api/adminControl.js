@@ -284,3 +284,112 @@ export async function updateAiSettings(payload, accessToken) {
 
   return response.json();
 }
+
+// ─── Create Student (standalone, no parent required) ────────────────────────
+
+export async function createAdminStudent(payload, accessToken) {
+  /**
+   * Create a standalone student account from the admin panel.
+   * payload: { email, username, password, grade, board, skip_email_confirmation,
+   *            parent_id? (optional), family_id? (optional) }
+   */
+  const response = await adminFetch("/api/admin-control/children", {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to create student"));
+  }
+
+  return response.json();
+}
+
+// ─── Offer Codes ─────────────────────────────────────────────────────────────
+
+export async function listOfferCodes(accessToken) {
+  /** List all offer codes for the admin panel. */
+  const response = await adminFetch("/api/admin-control/offer-codes", {
+    method: "GET",
+    headers: authHeaders(accessToken),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load offer codes"));
+  }
+
+  return response.json();
+}
+
+export async function createOfferCode(payload, accessToken) {
+  /**
+   * Create a new offer code.
+   * payload: { description, valid_until (ISO string), max_uses, valid_from? }
+   */
+  const response = await adminFetch("/api/admin-control/offer-codes", {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to create offer code"));
+  }
+
+  return response.json();
+}
+
+export async function deactivateOfferCode(codeId, accessToken) {
+  /** Deactivate an offer code so it can no longer be redeemed. */
+  const response = await adminFetch(
+    `/api/admin-control/offer-codes/${codeId}/deactivate`,
+    {
+      method: "PATCH",
+      headers: authHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to deactivate offer code"));
+  }
+
+  return response.json();
+}
+
+// ─── Student: redeem offer code ──────────────────────────────────────────────
+
+export async function redeemOfferCode(code, accessToken) {
+  /**
+   * Redeem an 8-char offer code for the currently logged-in user.
+   * Returns { success, valid_until, message, already_redeemed }
+   */
+  const response = await fetch("/api/offer/redeem", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ code }),
+  });
+
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    throw new Error(body.detail || "Failed to redeem offer code");
+  }
+
+  return response.json();
+}
+
+export async function getMyOfferAccess(accessToken) {
+  /**
+   * Check if the current user has a valid (non-expired) offer redemption.
+   * Returns { has_offer_access: bool, valid_until: string|null }
+   */
+  const response = await fetch("/api/offer/my-access", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!response.ok) return { has_offer_access: false, valid_until: null };
+  return response.json();
+}

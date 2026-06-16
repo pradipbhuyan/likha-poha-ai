@@ -3,6 +3,7 @@ import {
   getAdminFamilies,
   createAdminParent,
   createAdminChild,
+  createAdminStudent,
   createAdminTeacher,
   assignTeacherStudent,
   deleteTeacherAssignment,
@@ -11,6 +12,9 @@ import {
   deleteUser,
   getAiSettings,
   updateAiSettings,
+  listOfferCodes,
+  createOfferCode,
+  deactivateOfferCode,
 } from "../api/adminControl";
 import {
   SUBSCRIPTION_PLAN_ORDER,
@@ -122,6 +126,27 @@ function AdminControlPage({ user }) {
     gradesCsv: "Grade 9",
     status: "active",
   });
+
+  const [studentForm, setStudentForm] = useState({
+    email: "",
+    password: "",
+    username: "",
+    grade: "Grade 9",
+    board: "CBSE",
+    skip_email_confirmation: true,
+  });
+  const [studentMsg, setStudentMsg] = useState("");
+  const [studentErr, setStudentErr] = useState("");
+
+  const [offerCodes, setOfferCodes] = useState([]);
+  const [offerCodesLoading, setOfferCodesLoading] = useState(false);
+  const [offerForm, setOfferForm] = useState({
+    description: "",
+    valid_until: "",
+    max_uses: 100,
+  });
+  const [offerMsg, setOfferMsg] = useState("");
+  const [offerErr, setOfferErr] = useState("");
 
   const [childForms, setChildForms] = useState({});
   const [assignmentForms, setAssignmentForms] = useState({});
@@ -273,6 +298,71 @@ function AdminControlPage({ user }) {
       .split(",")
       .map((item) => item.trim())
       .filter(Boolean);
+  }
+
+  async function handleCreateStudent(e) {
+    /** Create a standalone student from the admin panel (no parent required). */
+    e.preventDefault();
+    setStudentMsg("");
+    setStudentErr("");
+    try {
+      await createAdminStudent(
+        {
+          email: studentForm.email,
+          username: studentForm.username,
+          password: studentForm.skip_email_confirmation ? studentForm.password : undefined,
+          grade: studentForm.grade,
+          board: studentForm.board,
+          skip_email_confirmation: studentForm.skip_email_confirmation,
+        },
+        user.accessToken
+      );
+      setStudentForm({ email: "", password: "", username: "", grade: "Grade 9", board: "CBSE", skip_email_confirmation: true });
+      setStudentMsg("✅ Student created successfully!");
+      await loadFamilies();
+    } catch (err) {
+      setStudentErr(err.message || "Unable to create student.");
+    }
+  }
+
+  async function loadOfferCodes() {
+    setOfferCodesLoading(true);
+    try {
+      const data = await listOfferCodes(user.accessToken);
+      setOfferCodes(data.offer_codes || []);
+    } catch {
+      // offer_codes table may not exist yet — silently ignore
+    } finally {
+      setOfferCodesLoading(false);
+    }
+  }
+
+  async function handleCreateOfferCode(e) {
+    e.preventDefault();
+    setOfferMsg("");
+    setOfferErr("");
+    if (!offerForm.valid_until) { setOfferErr("Valid Until date is required."); return; }
+    try {
+      const data = await createOfferCode(
+        { description: offerForm.description, valid_until: offerForm.valid_until, max_uses: Number(offerForm.max_uses) || 100 },
+        user.accessToken
+      );
+      setOfferMsg(`✅ Code created: ${data.offer_code?.code || "—"}`);
+      setOfferForm({ description: "", valid_until: "", max_uses: 100 });
+      await loadOfferCodes();
+    } catch (err) {
+      setOfferErr(err.message || "Unable to create offer code.");
+    }
+  }
+
+  async function handleDeactivateOfferCode(codeId) {
+    if (!window.confirm("Deactivate this offer code? Users with existing redemptions keep their access.")) return;
+    try {
+      await deactivateOfferCode(codeId, user.accessToken);
+      await loadOfferCodes();
+    } catch (err) {
+      setOfferErr(err.message || "Unable to deactivate.");
+    }
   }
 
   async function handleCreateTeacher(e) {
@@ -618,6 +708,12 @@ function AdminControlPage({ user }) {
       },
     }));
   }
+
+  // Load offer codes when the AI settings panel loads
+  useEffect(() => {
+    if (user?.accessToken) loadOfferCodes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.accessToken]);
 
   if (loading) return <p>Loading admin control...</p>;
 
@@ -1023,6 +1119,64 @@ function AdminControlPage({ user }) {
           </div>
         </div>
 
+        {/* ── Create Student Card ── */}
+        <div style={{ marginTop: 32 }}>
+          <div className="premium-header" style={{ marginBottom: 16 }}>
+            <p className="eyebrow">Quick Create</p>
+            <h3>🎓 Create Student</h3>
+            <p>Create a standalone student account. Optionally link to a parent later.</p>
+          </div>
+          <div className="admin-create-grid">
+            <div className="admin-create-card" style={{ gridColumn: "1 / -1" }}>
+              <form onSubmit={handleCreateStudent} className="form-grid premium-rag-form-grid admin-compact-form">
+                <label>
+                  Student Name
+                  <input type="text" value={studentForm.username} onChange={e => setStudentForm(p => ({ ...p, username: e.target.value }))} required />
+                </label>
+                <label>
+                  Student Email
+                  <input type="email" value={studentForm.email} onChange={e => setStudentForm(p => ({ ...p, email: e.target.value }))} required />
+                </label>
+                <label>
+                  Grade
+                  <select value={studentForm.grade} onChange={e => setStudentForm(p => ({ ...p, grade: e.target.value }))}>
+                    {STUDENT_GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+                  </select>
+                </label>
+                <label>
+                  Board
+                  <select value={studentForm.board} onChange={e => setStudentForm(p => ({ ...p, board: e.target.value }))}>
+                    {STUDENT_BOARD_OPTIONS.map(b => <option key={b} value={b}>{b}</option>)}
+                  </select>
+                </label>
+                <label style={{ gridColumn: "1 / -1" }}>
+                  <input type="checkbox" checked={studentForm.skip_email_confirmation}
+                    onChange={e => setStudentForm(p => ({ ...p, skip_email_confirmation: e.target.checked, password: "" }))} />{" "}
+                  In-person onboarding — skip email confirmation and set password directly
+                </label>
+                {studentForm.skip_email_confirmation && (
+                  <label>
+                    Password
+                    <input type="password" value={studentForm.password}
+                      onChange={e => setStudentForm(p => ({ ...p, password: e.target.value }))}
+                      required placeholder="Set password for immediate access" />
+                  </label>
+                )}
+                {!studentForm.skip_email_confirmation && (
+                  <div className="info-box" style={{ gridColumn: "1 / -1", fontSize: "0.85rem" }}>
+                    📧 An invitation email will be sent. The student must click the link to verify and set their password.
+                  </div>
+                )}
+                {studentMsg && <div className="info-box" style={{ gridColumn: "1 / -1" }}>{studentMsg}</div>}
+                {studentErr && <div className="error-box" style={{ gridColumn: "1 / -1" }}>{studentErr}</div>}
+                <button className="primary-btn" type="submit">
+                  {studentForm.skip_email_confirmation ? "Create Student (Immediate Access)" : "Send Invite Email"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <details className="admin-roster-panel">
           <summary>
             <span>Current Teachers</span>
@@ -1190,6 +1344,83 @@ function AdminControlPage({ user }) {
             })
           )}
         </details>
+      </section>
+
+      {/* ── Offer Codes Section ── */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Access Management</p>
+          <h3>🎟️ Offer Codes</h3>
+          <p>Create 8-character alphanumeric codes that grant platform access for a defined period.</p>
+        </div>
+
+        <div className="admin-create-grid">
+          <div className="admin-create-card">
+            <div className="admin-card-heading">
+              <span>➕</span>
+              <div><h3>Create Offer Code</h3><p>Auto-generates an 8-character code on creation.</p></div>
+            </div>
+            <form onSubmit={handleCreateOfferCode} className="form-grid premium-rag-form-grid admin-compact-form">
+              <label>
+                Description
+                <input type="text" value={offerForm.description}
+                  onChange={e => setOfferForm(p => ({ ...p, description: e.target.value }))}
+                  placeholder="e.g. Trial batch June 2026" />
+              </label>
+              <label>
+                Valid Until
+                <input type="datetime-local" value={offerForm.valid_until}
+                  onChange={e => setOfferForm(p => ({ ...p, valid_until: e.target.value }))} required />
+              </label>
+              <label>
+                Max Redemptions
+                <input type="number" min="1" max="10000" value={offerForm.max_uses}
+                  onChange={e => setOfferForm(p => ({ ...p, max_uses: e.target.value }))} />
+              </label>
+              {offerMsg && <div className="info-box" style={{ gridColumn: "1 / -1" }}>{offerMsg}</div>}
+              {offerErr && <div className="error-box" style={{ gridColumn: "1 / -1" }}>{offerErr}</div>}
+              <button className="primary-btn" type="submit">Generate Offer Code</button>
+            </form>
+          </div>
+
+          <div className="admin-create-card">
+            <div className="admin-card-heading">
+              <span>📋</span>
+              <div><h3>Active Offer Codes</h3><p>Click Deactivate to prevent new redemptions.</p></div>
+            </div>
+            {offerCodesLoading ? (
+              <p>Loading…</p>
+            ) : offerCodes.length === 0 ? (
+              <div className="info-box">No offer codes yet. Create one on the left.</div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {offerCodes.map(oc => {
+                  const isExpired = new Date(oc.valid_until) < new Date();
+                  return (
+                    <div key={oc.id} className="premium-rag-result-row success" style={{ flexWrap: "wrap", gap: 8 }}>
+                      <div style={{ flex: 1, minWidth: 200 }}>
+                        <strong style={{ fontFamily: "monospace", fontSize: "1.1rem", letterSpacing: 2 }}>{oc.code}</strong>
+                        <p style={{ margin: "2px 0", fontSize: "0.82rem" }}>{oc.description || "No description"}</p>
+                        <small style={{ color: isExpired ? "#ef4444" : "#22c55e" }}>
+                          {isExpired ? "⛔ Expired" : "✅ Active"} · Valid until {oc.valid_until?.slice(0, 10)}
+                        </small>
+                        <small style={{ display: "block" }}>
+                          Used: {oc.uses_count}/{oc.max_uses}
+                        </small>
+                      </div>
+                      {oc.is_active && !isExpired && (
+                        <button className="danger-btn" style={{ alignSelf: "center" }}
+                          onClick={() => handleDeactivateOfferCode(oc.id)}>
+                          Deactivate
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
       </section>
 
       {families.map((family) => (

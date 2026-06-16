@@ -1,3 +1,5 @@
+import random
+import string
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -36,12 +38,26 @@ class CreateParentRequest(BaseModel):
 
 class CreateChildRequest(BaseModel):
     email: str
-    password: str
+    password: str | None = None
     username: str
-    parent_id: str
-    family_id: str
+    parent_id: str | None = None
+    family_id: str | None = None
     grade: str = "Grade 9"
     board: str = "CBSE"
+    skip_email_confirmation: bool = True  # admin-created students get immediate access by default
+    """
+    Admin-created standalone students bypass email verification by default.
+    Set skip_email_confirmation=False to send an invite email instead.
+    A password is required when skip_email_confirmation=True.
+    Parent/family linking is optional — students can exist independently.
+    """
+
+
+class CreateOfferCodeRequest(BaseModel):
+    description: str = ""
+    valid_until: str  # ISO datetime string e.g. "2026-12-31T23:59:59"
+    max_uses: int = 100
+    valid_from: str | None = None  # defaults to now if omitted
 
 
 class CreateTeacherRequest(BaseModel):
@@ -659,19 +675,38 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
 
 @router.post("/children")
 def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
-    """Create a student auth account/profile under an existing parent/family."""
-    auth_user = create_auth_user(
-        email=data.email,
-        password=data.password,
-    )
+    """
+    Create a standalone student auth account/profile from the admin panel.
+
+    Students can be created without a parent/family (standalone) or linked to
+    an existing parent later. Admin-created students bypass email verification
+    by default (skip_email_confirmation=True) for in-person onboarding.
+    """
+    if data.skip_email_confirmation:
+        if not data.password:
+            raise HTTPException(
+                status_code=400,
+                detail="A password is required when skip_email_confirmation is True.",
+            )
+        auth_user = create_auth_user(
+            email=data.email,
+            password=data.password,
+            email_confirm=True,
+        )
+    else:
+        # Send invite email — student sets their own password via the link
+        auth_user = invite_parent_by_email(
+            email=data.email,
+            username=data.username,
+        )
 
     child_profile = {
         "id": auth_user.id,
         "email": data.email,
         "username": data.username,
         "role": "student",
-        "parent_id": data.parent_id,
-        "family_id": data.family_id,
+        "parent_id": data.parent_id or None,
+        "family_id": data.family_id or None,
         "grade": data.grade or "Grade 9",
         "board": normalize_board(data.board),
         "account_status": "active",
@@ -697,6 +732,113 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "success": True,
         "child": response.data[0] if response.data else child_profile,
     }
+
+
+# ---------------------------------------------------------------------------
+# Offer Code routes
+# ---------------------------------------------------------------------------
+
+def _generate_offer_code() -> str:
+    """Generate a unique 8-character alphanumeric offer code (uppercase)."""
+    chars = string.ascii_uppercase + string.digits
+    while True:
+        code = "".join(random.choices(chars, k=8))
+        # Ensure no existing code collision
+        existing = (
+            admin_client
+            .table("offer_codes")
+            .select("id")
+            .eq("code", code)
+            .execute()
+        )
+        if not existing.data:
+            return code
+
+
+@router.get("/offer-codes")
+def list_offer_codes(admin=Depends(require_admin)):
+    """Return all offer codes with usage stats for the admin panel."""
+    try:
+        result = (
+            admin_client
+            .table("offer_codes")
+            .select("*")
+            .order("created_at", desc=True)
+            .execute()
+        )
+        return {"success": True, "offer_codes": result.data or []}
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Offer codes table not found. Run backend/scripts/migration_offer_codes.sql "
+                f"in Supabase first. Error: {str(exc)}"
+            ),
+        )
+
+
+@router.post("/offer-codes")
+def create_offer_code(data: CreateOfferCodeRequest, admin=Depends(require_admin)):
+    """
+    Create a new offer code.
+
+    The 8-char alphanumeric code is auto-generated and guaranteed unique.
+    The admin provides description, validity window, and max redemptions.
+    """
+    code = _generate_offer_code()
+    admin_id = admin["profile"]["id"]
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    row = {
+        "code": code,
+        "description": (data.description or "").strip(),
+        "valid_from": data.valid_from or now_iso,
+        "valid_until": data.valid_until,
+        "max_uses": max(1, data.max_uses),
+        "uses_count": 0,
+        "created_by": admin_id,
+        "is_active": True,
+    }
+
+    try:
+        result = admin_client.table("offer_codes").insert(row).execute()
+        saved = result.data[0] if result.data else row
+        return {"success": True, "offer_code": saved}
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Unable to create offer code. Run migration_offer_codes.sql in Supabase. "
+                f"Error: {str(exc)}"
+            ),
+        )
+
+
+@router.patch("/offer-codes/{code_id}/deactivate")
+def deactivate_offer_code(code_id: str, admin=Depends(require_admin)):
+    """Deactivate an offer code so it can no longer be redeemed."""
+    result = (
+        admin_client
+        .table("offer_codes")
+        .update({"is_active": False})
+        .eq("id", code_id)
+        .execute()
+    )
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Offer code not found.")
+    return {"success": True, "offer_code": result.data[0]}
+
+
+@router.post("/redeem-offer-code")
+def redeem_offer_code(
+    payload: dict,
+    current_user=Depends(require_admin),
+):
+    """
+    Placeholder — actual redemption is handled by /api/offer/redeem (no admin required).
+    This route exists for admin-initiated redemption testing only.
+    """
+    return {"success": False, "message": "Use /api/offer/redeem for student redemptions."}
 
 
 @router.post("/teachers")

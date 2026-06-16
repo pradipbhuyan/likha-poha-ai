@@ -22,6 +22,7 @@ from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
 from app.routes.parent_dashboard import router as parent_dashboard_router
 from app.routes.admin_control import router as admin_control_router
+from app.routes.offer import router as offer_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
 from app.routes.weak_area_alerts import router as weak_area_alerts_router
 from app.routes.payments import router as payments_router
@@ -139,6 +140,12 @@ app.include_router(
     admin_control_router,
     prefix="/api/admin-control",
     tags=["Admin Control"],
+)
+
+app.include_router(
+    offer_router,
+    prefix="/api/offer",
+    tags=["Offer Codes"],
 )
 
 app.include_router(images.router, prefix="/api/images", tags=["Images"])
