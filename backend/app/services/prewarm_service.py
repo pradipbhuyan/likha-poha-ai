@@ -20,7 +20,9 @@ from app.services.tutor_service import generate_step_lesson
 from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cache_key
 from app.services.question_bank_service import add_questions_to_bank
 from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
-from app.services.supabase_client import supabase
+# prewarm_service performs admin-level reads (lesson counts, RAG chapters, question bank)
+# so it must use the service_role key which bypasses RLS.
+from app.services.auth_service import admin_client as supabase
 # search_textbook_content imported lazily inside functions to avoid circular imports
 
 # ------------------------------------------------------------------ constants

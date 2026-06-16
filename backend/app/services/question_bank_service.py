@@ -13,7 +13,7 @@ Design principles:
 
 import random
 
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 
 
 def get_questions_from_bank(

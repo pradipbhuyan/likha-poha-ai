@@ -1,4 +1,4 @@
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 from app.services.openai_service import get_openai_client
 from app.services.board_service import normalize_board
 import re

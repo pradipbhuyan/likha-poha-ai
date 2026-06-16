@@ -1,4 +1,4 @@
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 
 
 def get_chapter_progress(username, grade, mode, subject, chapter):

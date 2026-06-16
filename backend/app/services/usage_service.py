@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 
 
 UNLIMITED_TOKEN_LIMIT = 0
