@@ -76,6 +76,42 @@ export default function SalesLeadPage({ user }) {
   const confirmed = claims.filter(c => c.status === "confirmed");
   const pending   = claims.filter(c => c.status === "claimed");
 
+  function exportToCSV() {
+    const headers = [
+      "Salesperson","Student Name","Student Email","Phone","Grade","Package",
+      "Amount (₹)","Incentive %","Commission (₹)","Status",
+      "Claimed Date","Confirmed Date","Paid Date","Admin Notes",
+    ];
+    const rows = claims.map(c => [
+      isAdmin ? (c.salesperson?.username || c.sales_person_id || "") : (user?.username || ""),
+      c.student_name || "",
+      c.student_email || "",
+      c.student_phone || "",
+      c.grade || "",
+      c.package_key || "",
+      c.package_amount || 0,
+      c.incentive_percent || 5,
+      c.commission_amount || 0,
+      c.status || "",
+      c.claimed_at   ? c.claimed_at.slice(0, 10)   : "",
+      c.confirmed_at ? c.confirmed_at.slice(0, 10) : "",
+      c.paid_at      ? c.paid_at.slice(0, 10)      : "",
+      (c.admin_notes || "").replace(/,/g, ";"),
+    ]);
+
+    const csv = [headers, ...rows]
+      .map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(","))
+      .join("\r\n");
+
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `lead_claims_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div style={{ color: "#f8fafc", minHeight: "100vh" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 20px" }}>
@@ -83,12 +119,22 @@ export default function SalesLeadPage({ user }) {
         {/* Header */}
         <div style={{ marginBottom: 24 }}>
           <p style={{ color: "#6366f1", fontWeight: 700, fontSize: ".78rem", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 6 }}>Sales Dashboard</p>
-          <h2 style={{ fontSize: "1.8rem", fontWeight: 900, margin: 0 }}>
-            {isAdmin ? "💰 Commission Overview" : "🤝 My Lead Claims"}
-          </h2>
-          <p style={{ color: "#64748b", marginTop: 5 }}>
-            {isAdmin ? "All salespeople leads, conversions, and monthly payouts." : "Submit student leads and track commissions in real time."}
-          </p>
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+            <div>
+              <h2 style={{ fontSize: "1.8rem", fontWeight: 900, margin: 0 }}>
+                {isAdmin ? "💰 Commission Overview" : "🤝 My Lead Claims"}
+              </h2>
+              <p style={{ color: "#64748b", marginTop: 5 }}>
+                {isAdmin ? "All salespeople leads, conversions, and monthly payouts." : "Submit student leads and track commissions in real time."}
+              </p>
+            </div>
+            {claims.length > 0 && (
+              <button onClick={exportToCSV}
+                style={{ background: "rgba(34,197,94,.12)", color: "#86efac", border: "1px solid rgba(34,197,94,.3)", borderRadius: 8, padding: "8px 16px", fontSize: ".85rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap", alignSelf: "flex-start" }}>
+                📥 Export to Excel
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Notifications */}
