@@ -48,6 +48,11 @@ const DEFAULT_VOICE = "en-IN-NeerjaNeural";
 const DEFAULT_SPEECH_RATE = "+0%";
 
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
+// Grade 10 visuals restricted to Science and Maths only
+const GRADE10_VISUAL_SUBJECTS = new Set([
+  "Science", "Maths", "Mathematics",
+  "Advanced Science", "Advanced Mathematics",
+]);
 
 function isHindiSubjectName(subject) {
   /** Identify Hindi subjects so practice can stay objective and lightweight. */
@@ -594,11 +599,16 @@ function LessonsPage({ user }) {
   }
 
   function isTextbookVisualSubject() {
-    /** Keep RAG visuals limited while storage quota is tight. */
-    return (
-      RAG_VISUAL_ENABLED_CONTEXTS.has(`${requestBoard}|${grade}`) &&
-      Boolean(subject)
-    );
+    /** Keep RAG visuals limited while storage quota is tight.
+     * Grade 9: all subjects.
+     * Grade 10: Science and Maths only.
+     */
+    if (!RAG_VISUAL_ENABLED_CONTEXTS.has(`${requestBoard}|${grade}`)) return false;
+    if (!subject) return false;
+    if (grade === "Grade 10") {
+      return GRADE10_VISUAL_SUBJECTS.has(subject);
+    }
+    return true; // Grade 9: all subjects
   }
 
   function shouldShowTextbookVisualTools() {
