@@ -24,6 +24,7 @@ import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
+import SalesLeadPage from "./pages/SalesLeadPage";
 import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
@@ -371,6 +372,8 @@ function App() {
         return <AdminCacheManagementPage user={user} />;
       case "salesIncentives":
         return <SalesIncentivePage user={user} />;
+      case "salesLeads":
+        return <SalesLeadPage user={user} />;
       case "salesDemo":
         return <SalesDemoPage user={user} />;
       case "salesCollaterals":

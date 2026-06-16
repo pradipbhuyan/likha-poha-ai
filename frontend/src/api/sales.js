@@ -81,3 +81,41 @@ export async function deleteSalesCollateral(collateralId) {
     method: "DELETE",
   });
 }
+
+// ─── Lead Claims (self-service sales) ───────────────────────────────────────
+
+export async function submitLeadClaim(payload) {
+  /**
+   * Sales person self-submits a student lead.
+   * payload: { student_email, student_name, student_phone?, grade?, package_key? }
+   */
+  return authFetch("/api/sales/lead-claims", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function getLeadClaims() {
+  /**
+   * Sales person: their own claims.
+   * Admin: all claims across all salespeople.
+   * Returns { claims, summary } for sales; { claims } for admin.
+   */
+  return authFetch("/api/sales/lead-claims", { method: "GET" });
+}
+
+export async function batchPayCommissions(claimIds) {
+  /**
+   * Admin marks a list of confirmed claims as commission-paid.
+   * claimIds: string[] of claim UUIDs with status === 'confirmed'
+   */
+  return authFetch("/api/sales/lead-claims/batch-pay", {
+    method: "PATCH",
+    body: JSON.stringify({ claim_ids: claimIds }),
+  });
+}
+
+export async function getAdminCommissionSummary() {
+  /** Admin: per-salesperson monthly commission totals. */
+  return authFetch("/api/sales/lead-claims/admin-summary", { method: "GET" });
+}

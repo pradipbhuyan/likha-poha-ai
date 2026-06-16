@@ -326,6 +326,18 @@ def complete_signup(data: CompleteSignupRequest):
         .execute()
     )
 
+    # Auto-match sales lead claim (never blocks signup if it fails)
+    try:
+        from app.routes.sales import auto_match_lead_claim  # noqa: PLC0415
+        auto_match_lead_claim(
+            email=data.email.strip().lower(),
+            student_id=auth_user.id,
+            package_amount=_plan_amount(plan),
+            package_key=plan["key"],
+        )
+    except Exception:
+        pass
+
     return {
         "success": True,
         "message": (

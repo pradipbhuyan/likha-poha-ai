@@ -109,6 +109,13 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "salesLeads",
+      label: "My Lead Claims",
+      icon: Users,
+      roles: ["sales"],
+      hideForAdmin: true,
+    },
+    {
       key: "salesIncentives",
       label: "Sales Incentives",
       icon: Handshake,

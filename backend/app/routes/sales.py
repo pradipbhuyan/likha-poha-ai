@@ -38,6 +38,99 @@ class CreateSalesPersonRequest(BaseModel):
     default_incentive_percent: float = Field(default=5, ge=5, le=10)
 
 
+class LeadClaimRequest(BaseModel):
+    """Sales person self-submits a student lead — no admin needed."""
+    student_email: str
+    student_name: str
+    student_phone: str = ""
+    grade: str = "Grade 9"
+    package_key: str = "starter"
+
+
+class BatchPayRequest(BaseModel):
+    """Admin marks a list of confirmed claims as commission-paid."""
+    claim_ids: list[str]  # UUIDs of confirmed claims to mark paid
+
+
+# ---------------------------------------------------------------------------
+# Lead-claims helpers
+# ---------------------------------------------------------------------------
+
+CLAIM_EXPIRY_DAYS = 30
+DAILY_CLAIM_LIMIT = 15
+
+
+def _expire_stale_claims() -> None:
+    """Lazily mark claims older than CLAIM_EXPIRY_DAYS as expired."""
+    from datetime import datetime, timedelta, timezone
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=CLAIM_EXPIRY_DAYS)).isoformat()
+    try:
+        admin_client.table("sales_lead_claims").update({"status": "expired"}).eq(
+            "status", "claimed"
+        ).lt("claimed_at", cutoff).execute()
+    except Exception:
+        pass  # table may not exist yet
+
+
+def _get_salesperson_incentive_percent(sales_person_id: str) -> float:
+    """Look up the salesperson's default incentive percent from their profile."""
+    try:
+        r = (
+            admin_client.table("sales_profiles")
+            .select("default_incentive_percent")
+            .eq("profile_id", sales_person_id)
+            .limit(1)
+            .execute()
+        )
+        if r.data:
+            return float(r.data[0].get("default_incentive_percent") or 5)
+    except Exception:
+        pass
+    return 5.0
+
+
+def auto_match_lead_claim(email: str, student_id: str, package_amount: int, package_key: str) -> None:
+    """
+    Called from complete_signup after a student pays.
+
+    Looks up an active (non-expired) lead claim for the student's email
+    and auto-confirms it with commission calculated.
+    """
+    from datetime import datetime, timezone
+    from decimal import Decimal, ROUND_HALF_UP
+
+    try:
+        r = (
+            admin_client.table("sales_lead_claims")
+            .select("*")
+            .eq("student_email", email.strip().lower())
+            .eq("status", "claimed")
+            .limit(1)
+            .execute()
+        )
+        if not r.data:
+            return  # no claim — nothing to do
+
+        claim = r.data[0]
+        incentive_pct = Decimal(str(claim.get("incentive_percent") or 5))
+        commission = float(
+            (Decimal(str(package_amount)) * incentive_pct / Decimal("100"))
+            .quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        )
+
+        admin_client.table("sales_lead_claims").update({
+            "status": "confirmed",
+            "student_id": student_id,
+            "package_amount": package_amount,
+            "package_key": package_key or claim.get("package_key") or "starter",
+            "commission_amount": commission,
+            "confirmed_at": datetime.now(timezone.utc).isoformat(),
+        }).eq("id", claim["id"]).execute()
+
+    except Exception:
+        pass  # never block signup due to sales tracking error
+
+
 class CreateSalesAttributionRequest(BaseModel):
     sales_profile_id: str
     student_id: str
@@ -504,5 +597,247 @@ def update_sales_attribution(
         "incentive_amount": calculate_incentive_amount(
             response.data[0].get("package_amount"),
             response.data[0].get("incentive_percent"),
+        ),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Lead-claim endpoints (self-service for sales persons)
+# ---------------------------------------------------------------------------
+
+@router.post("/lead-claims")
+def submit_lead_claim(data: LeadClaimRequest, user=Depends(require_admin_or_sales)):
+    """
+    Sales person self-submits a student lead.
+
+    Anti-malpractice checks (all automated):
+    - First-claim-wins: UNIQUE(student_email) blocks duplicate claims
+    - Cannot claim already-paid students
+    - Cannot exceed DAILY_CLAIM_LIMIT per day
+    """
+    from datetime import datetime, timedelta, timezone
+
+    sales_person_id = user["profile"]["id"]
+    email_clean = (data.student_email or "").strip().lower()
+
+    if not email_clean or "@" not in email_clean:
+        raise HTTPException(status_code=400, detail="Valid student email is required.")
+    if not data.student_name.strip():
+        raise HTTPException(status_code=400, detail="Student name is required.")
+
+    # Anti-malpractice: cannot claim a student who already has a paid plan
+    existing_profile = (
+        admin_client.table("profiles")
+        .select("id, subscription_plan, account_status")
+        .eq("email", email_clean)
+        .limit(1)
+        .execute()
+    )
+    if existing_profile.data:
+        profile = existing_profile.data[0]
+        if profile.get("subscription_plan") not in ("free", None, ""):
+            raise HTTPException(
+                status_code=409,
+                detail="This student already has an active paid account.",
+            )
+
+    # Anti-malpractice: daily claim limit
+    today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    daily_count = (
+        admin_client.table("sales_lead_claims")
+        .select("id", count="exact")
+        .eq("sales_person_id", sales_person_id)
+        .gte("claimed_at", today_start)
+        .execute()
+    )
+    if (daily_count.count or 0) >= DAILY_CLAIM_LIMIT:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Daily claim limit of {DAILY_CLAIM_LIMIT} reached. Try again tomorrow.",
+        )
+
+    # Get salesperson's incentive percent
+    incentive_pct = _get_salesperson_incentive_percent(sales_person_id)
+
+    row = {
+        "sales_person_id": sales_person_id,
+        "student_email": email_clean,
+        "student_name": data.student_name.strip(),
+        "student_phone": (data.student_phone or "").strip(),
+        "grade": data.grade or "Grade 9",
+        "package_key": data.package_key or "starter",
+        "status": "claimed",
+        "incentive_percent": incentive_pct,
+    }
+
+    try:
+        result = admin_client.table("sales_lead_claims").insert(row).execute()
+    except Exception as exc:
+        err_str = str(exc)
+        if "unique" in err_str.lower() or "duplicate" in err_str.lower():
+            raise HTTPException(
+                status_code=409,
+                detail="Another sales person has already claimed this student.",
+            )
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Unable to save lead claim. Make sure "
+                "backend/sql/add_sales_lead_claims.sql has been run in Supabase. "
+                f"Error: {err_str}"
+            ),
+        )
+
+    return {
+        "success": True,
+        "claim": result.data[0] if result.data else row,
+        "message": f"Lead claimed for {data.student_name}. You will be notified when they complete payment.",
+    }
+
+
+@router.get("/lead-claims")
+def get_lead_claims(user=Depends(require_admin_or_sales)):
+    """
+    Return lead claims.
+    - Sales person: their own claims only
+    - Admin: all claims with salesperson details
+    """
+    _expire_stale_claims()
+
+    role = user["profile"].get("role")
+    sales_person_id = user["profile"]["id"]
+
+    query = admin_client.table("sales_lead_claims").select("*").order("claimed_at", desc=True)
+    if role != "admin":
+        query = query.eq("sales_person_id", sales_person_id)
+
+    result = query.execute()
+    claims = result.data or []
+
+    # Enrich with salesperson username for admin view
+    if role == "admin" and claims:
+        sp_ids = list({c["sales_person_id"] for c in claims})
+        sp_profiles = (
+            admin_client.table("profiles")
+            .select("id, username, email")
+            .in_("id", sp_ids)
+            .execute()
+        ).data or []
+        sp_by_id = {p["id"]: p for p in sp_profiles}
+        for c in claims:
+            c["salesperson"] = sp_by_id.get(c["sales_person_id"], {})
+
+    # Summary stats for sales person
+    if role != "admin":
+        total_commission = sum(
+            float(c.get("commission_amount") or 0)
+            for c in claims if c.get("status") in ("confirmed", "paid")
+        )
+        paid_commission = sum(
+            float(c.get("commission_amount") or 0)
+            for c in claims if c.get("status") == "paid"
+        )
+        return {
+            "success": True,
+            "claims": claims,
+            "summary": {
+                "total": len(claims),
+                "confirmed": sum(1 for c in claims if c["status"] == "confirmed"),
+                "claimed": sum(1 for c in claims if c["status"] == "claimed"),
+                "paid": sum(1 for c in claims if c["status"] == "paid"),
+                "expired": sum(1 for c in claims if c["status"] == "expired"),
+                "total_commission_earned": round(total_commission, 2),
+                "total_commission_paid": round(paid_commission, 2),
+                "commission_pending": round(total_commission - paid_commission, 2),
+            },
+        }
+
+    return {"success": True, "claims": claims}
+
+
+@router.patch("/lead-claims/batch-pay")
+def batch_pay_commissions(data: BatchPayRequest, admin=Depends(require_admin)):
+    """
+    Admin marks a list of confirmed claims as commission-paid.
+    This is the only admin action needed in the normal flow.
+    """
+    from datetime import datetime, timezone
+
+    if not data.claim_ids:
+        raise HTTPException(status_code=400, detail="No claim IDs provided.")
+
+    now = datetime.now(timezone.utc).isoformat()
+    result = (
+        admin_client.table("sales_lead_claims")
+        .update({"status": "paid", "paid_at": now})
+        .in_("id", data.claim_ids)
+        .eq("status", "confirmed")  # only confirmed → paid; no accidental re-paying
+        .execute()
+    )
+
+    updated = result.data or []
+    return {
+        "success": True,
+        "paid_count": len(updated),
+        "message": f"{len(updated)} commission(s) marked as paid.",
+    }
+
+
+@router.get("/lead-claims/admin-summary")
+def get_admin_commission_summary(admin=Depends(require_admin)):
+    """
+    Monthly commission summary per salesperson for the admin payout view.
+    Returns per-person totals of confirmed (unpaid) commission.
+    """
+    _expire_stale_claims()
+
+    claims = (
+        admin_client.table("sales_lead_claims")
+        .select("*")
+        .in_("status", ["confirmed", "paid"])
+        .order("confirmed_at", desc=True)
+        .execute()
+    ).data or []
+
+    # Get all salesperson profiles
+    sp_ids = list({c["sales_person_id"] for c in claims})
+    sp_profiles = {}
+    if sp_ids:
+        sp_data = (
+            admin_client.table("profiles")
+            .select("id, username, email")
+            .in_("id", sp_ids)
+            .execute()
+        ).data or []
+        sp_profiles = {p["id"]: p for p in sp_data}
+
+    # Aggregate by salesperson
+    summary_by_sp: dict = {}
+    for c in claims:
+        sp_id = c["sales_person_id"]
+        sp = summary_by_sp.setdefault(sp_id, {
+            "sales_person_id": sp_id,
+            "username": sp_profiles.get(sp_id, {}).get("username", "Unknown"),
+            "email": sp_profiles.get(sp_id, {}).get("email", ""),
+            "confirmed_count": 0,
+            "confirmed_amount": 0.0,
+            "paid_count": 0,
+            "paid_amount": 0.0,
+            "confirmed_claim_ids": [],
+        })
+        amt = float(c.get("commission_amount") or 0)
+        if c["status"] == "confirmed":
+            sp["confirmed_count"] += 1
+            sp["confirmed_amount"] = round(sp["confirmed_amount"] + amt, 2)
+            sp["confirmed_claim_ids"].append(c["id"])
+        elif c["status"] == "paid":
+            sp["paid_count"] += 1
+            sp["paid_amount"] = round(sp["paid_amount"] + amt, 2)
+
+    return {
+        "success": True,
+        "salespeople": list(summary_by_sp.values()),
+        "total_confirmed_payable": round(
+            sum(sp["confirmed_amount"] for sp in summary_by_sp.values()), 2
         ),
     }
