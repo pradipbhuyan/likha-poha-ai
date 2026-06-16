@@ -17,6 +17,7 @@ import {
   deactivateOfferCode,
   getInfluencerSummary,
   markInfluencerIncentivePaid,
+  regeneratePromoImages,
 } from "../api/adminControl";
 import {
   SUBSCRIPTION_PLAN_ORDER,
@@ -157,6 +158,8 @@ function AdminControlPage({ user }) {
   const [influencers, setInfluencers] = useState([]);
   const [influencerLoading, setInfluencerLoading] = useState(false);
   const [influencerMsg, setInfluencerMsg] = useState("");
+  const [regenLoading, setRegenLoading] = useState(false);
+  const [regenMsg, setRegenMsg] = useState("");
 
   const [childForms, setChildForms] = useState({});
   const [assignmentForms, setAssignmentForms] = useState({});
@@ -387,6 +390,24 @@ function AdminControlPage({ user }) {
       await loadInfluencers();
     } catch (err) {
       setOfferErr(err.message || "Unable to create offer code.");
+    }
+  }
+
+  async function handleRegenPromoImages(offerCode, validUntil) {
+    /** Regenerate all WhatsApp promo images with the offer code and re-upload to Supabase. */
+    setRegenLoading(true);
+    setRegenMsg("");
+    try {
+      const data = await regeneratePromoImages(
+        { offer_code: offerCode, valid_until: validUntil },
+        user.accessToken
+      );
+      setRegenMsg(`✅ ${data.uploaded} images regenerated and uploaded to Supabase (code: ${data.offer_code})`);
+      await loadOfferCodes();
+    } catch (err) {
+      setRegenMsg(`❌ ${err.message}`);
+    } finally {
+      setRegenLoading(false);
     }
   }
 
@@ -1504,6 +1525,27 @@ function AdminControlPage({ user }) {
               {offerErr && <div className="error-box" style={{ gridColumn: "1 / -1" }}>{offerErr}</div>}
               <button className="primary-btn" type="submit">Generate Offer Code</button>
             </form>
+
+            {/* Refresh Promo Images — stamp all WhatsApp cards with active code */}
+            {offerCodes.filter(oc => oc.is_active && new Date(oc.valid_until) > new Date()).length > 0 && (
+              <div style={{marginTop:20, padding:"16px", background:"var(--surface2,#f8f9fa)", borderRadius:12, border:"1px solid var(--border)"}}>
+                <h4 style={{margin:"0 0 8px",fontSize:".95rem"}}>🎨 Refresh Promo Images</h4>
+                <p style={{fontSize:".82rem",color:"var(--muted)",marginBottom:12}}>
+                  Stamp all 12 WhatsApp promo images with a new offer code and re-upload to Supabase automatically.
+                  Salespeople see updated images on the Collaterals page immediately.
+                </p>
+                {offerCodes.filter(oc => oc.is_active && new Date(oc.valid_until) > new Date()).map(oc => (
+                  <button key={oc.id}
+                    className="secondary-btn"
+                    style={{marginRight:8,marginBottom:8,fontSize:".82rem"}}
+                    disabled={regenLoading}
+                    onClick={() => handleRegenPromoImages(oc.code, oc.valid_until?.slice(0,10)?.split("-").reverse().join(" ").replace("-"," "))}>
+                    {regenLoading ? "Regenerating…" : `🖼️ Stamp code ${oc.code}`}
+                  </button>
+                ))}
+                {regenMsg && <div className={regenMsg.startsWith("✅") ? "info-box" : "error-box"} style={{marginTop:8}}>{regenMsg}</div>}
+              </div>
+            )}
           </div>
 
           <div className="admin-create-card">

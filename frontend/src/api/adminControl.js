@@ -381,6 +381,27 @@ export async function markInfluencerIncentivePaid(codeId, accessToken) {
   return response.json();
 }
 
+export async function regeneratePromoImages(payload, accessToken) {
+  /**
+   * Regenerate all WhatsApp promo images with the given offer code and
+   * re-upload them to sales-collaterals/whatsapp/ in Supabase.
+   * payload: { offer_code: string, valid_until?: string }
+   * Returns { success, uploaded, files, errors }
+   */
+  const response = await adminFetch(
+    "/api/admin-control/offer-codes/regenerate-promo-images",
+    {
+      method: "POST",
+      headers: authHeaders(accessToken),
+      body: JSON.stringify(payload),
+    }
+  );
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to regenerate promo images"));
+  }
+  return response.json();
+}
+
 // ─── Student: redeem offer code ──────────────────────────────────────────────
 
 export async function redeemOfferCode(code, accessToken) {

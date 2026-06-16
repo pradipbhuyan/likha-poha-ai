@@ -919,6 +919,77 @@ def mark_influencer_incentive_paid(code_id: str, admin=Depends(require_admin)):
     return {"success": True, "offer_code": result.data[0]}
 
 
+@router.post("/offer-codes/regenerate-promo-images")
+def regenerate_promo_images(payload: dict, admin=Depends(require_admin)):
+    """
+    Regenerate all WhatsApp promo images with a new offer code banner and
+    re-upload them to the sales-collaterals/whatsapp/ Supabase bucket.
+
+    Payload: { "offer_code": "L3YT1HAD", "valid_until": "30 June 2026" }
+    """
+    import subprocess
+    import sys
+    import pathlib
+
+    offer_code = (payload.get("offer_code") or "").strip().upper()
+    valid_until = (payload.get("valid_until") or "").strip()
+
+    if not offer_code:
+        raise HTTPException(status_code=400, detail="offer_code is required.")
+
+    script = pathlib.Path(
+        "/Users/a0247716/Pradips_Project/LikhaPohaAI-ReelBot/"
+        "likha-poha-reel-factory/tools/create_whatsapp_promos.py"
+    )
+    if not script.exists():
+        raise HTTPException(status_code=500, detail="Promo generation script not found.")
+
+    # Step 1 — generate images
+    cmd = [sys.executable, str(script), "--offer-code", offer_code]
+    if valid_until:
+        cmd += ["--valid-until", valid_until]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        if result.returncode != 0:
+            raise HTTPException(status_code=500, detail=f"Image generation failed: {result.stderr[:300]}")
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=500, detail="Image generation timed out.")
+
+    # Step 2 — upload to Supabase
+    promo_dir = pathlib.Path(
+        "/Users/a0247716/Pradips_Project/LikhaPohaAI-ReelBot/"
+        "likha-poha-reel-factory/output/whatsapp-promos"
+    )
+    bucket = "sales-collaterals"
+    folder = "whatsapp"
+    uploaded = []
+    errors = []
+
+    for img_path in sorted(promo_dir.glob("*.png")):
+        fname = img_path.name
+        dest = f"{folder}/{fname}"
+        with open(img_path, "rb") as f:
+            data = f.read()
+        try:
+            try:
+                admin_client.storage.from_(bucket).update(dest, data, {"content-type": "image/png", "upsert": "true"})
+            except Exception:
+                admin_client.storage.from_(bucket).upload(dest, data, {"content-type": "image/png"})
+            pub = admin_client.storage.from_(bucket).get_public_url(dest)
+            uploaded.append({"file": fname, "url": pub})
+        except Exception as exc:
+            errors.append({"file": fname, "error": str(exc)})
+
+    return {
+        "success": True,
+        "offer_code": offer_code,
+        "valid_until": valid_until,
+        "uploaded": len(uploaded),
+        "errors": errors,
+        "files": uploaded,
+    }
+
+
 @router.patch("/offer-codes/{code_id}/deactivate")
 def deactivate_offer_code(code_id: str, admin=Depends(require_admin)):
     """Deactivate an offer code so it can no longer be redeemed."""
