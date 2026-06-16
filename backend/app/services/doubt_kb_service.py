@@ -553,7 +553,7 @@ def prewarm_doubt_kb_for_grade(grade: str, mode: str = "CBSE") -> dict:
                 total_errors += result.get("errors", 0)
                 # Rate limit between chapters
                 if result.get("generated", 0) > 0:
-                    time.sleep(2.0)
+                    time.sleep(0.3)  # was 2.0 — gpt-4.1-nano allows 500+ RPM
 
     return {
         "grade": grade,

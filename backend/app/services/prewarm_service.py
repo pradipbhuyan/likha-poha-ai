@@ -87,9 +87,9 @@ def get_lesson_steps_for_grade(grade: str) -> list[str]:
 LESSON_STEPS = _STEPS_GRADE_9
 
 DIFFICULTIES = ["Easy", "Medium", "Hard"]
-QUESTIONS_PER_BATCH = 20
-BATCHES_PER_CHAPTER = 3
-REQUEST_DELAY_SECONDS = 1.5
+QUESTIONS_PER_BATCH = 50   # was 20 — gpt-4.1-nano handles 50 questions per call easily
+BATCHES_PER_CHAPTER = 2    # was 3 — 100 questions/chapter/difficulty is sufficient
+REQUEST_DELAY_SECONDS = 0.3  # was 1.5 — gpt-4.1-nano allows 500+ RPM on free tier
 
 MOCK_TEST_SYSTEM = (
     "You create original CBSE mock test questions grounded in the provided textbook content. "
