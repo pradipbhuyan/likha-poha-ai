@@ -263,7 +263,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
                     />
                     <p style={{marginTop:8,fontSize:".8rem",color:"#64748b"}}>Enter your 8-character offer code to create a free account.</p>
                   </div>
-                  {error && <div style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.3)",color:"#fca5a5",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:".88rem"}}>{error}</div>}
+                  {/* error is already shown above — no duplicate here */}
                   <button type="submit" disabled={loading || offerCodeInput.length !== 8}
                     style={{width:"100%",background:"linear-gradient(135deg,#059669,#0d9488)",color:"#fff",border:"none",borderRadius:12,padding:"15px",fontSize:"1rem",fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"inherit",opacity:(loading||offerCodeInput.length!==8)?0.6:1}}>
                     {loading ? "Creating account…" : "Create Account with Offer Code"}
@@ -294,14 +294,15 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               </h2>
               {useOfferCode && (
                 <div style={{background:"rgba(5,150,105,.15)",border:"1px solid rgba(5,150,105,.4)",borderRadius:12,padding:"14px 18px",marginBottom:20,fontSize:".9rem",color:"#6ee7b7",textAlign:"left"}}>
-                  ✅ Your account has been created with your offer code.<br/>
-                  <strong style={{color:"#f8fafc"}}>Next step:</strong> Check your email for a verification link. Click it to verify your email and set your password, then log in.
+                  ✅ Your account is ready! Your offer code access is valid until {/* shown in message */}<strong style={{color:"#f8fafc"}}>check email for expiry date</strong>.<br/>
+                  <strong style={{color:"#f8fafc"}}>Next step:</strong> Check your email for a <strong style={{color:"#f8fafc"}}>Set Password</strong> link. Click it to set your password, then log in.
                 </div>
               )}
               <p style={{color:"#cbd5e1",lineHeight:1.7,marginBottom:28,fontSize:"1rem"}}>
                 Your account has been created{useOfferCode ? " using your offer code" : " and payment is confirmed"}.<br />
-                <strong style={{color:"#f8fafc"}}>Please check your email</strong> for a verification link from LikhaPoha AI.<br />
-                Click the link to verify your email and set your password, then come back to <strong style={{color:"#f8fafc"}}>Login</strong>.
+                <strong style={{color:"#f8fafc"}}>Please check your email</strong> {useOfferCode ? "for a Set Password link" : "for a verification link"} from LikhaPoha AI.<br />
+                {useOfferCode ? "Click it to set your password, then come back to " : "Click the link to verify your email and set your password, then come back to "}
+                <strong style={{color:"#f8fafc"}}>Login</strong>.
               </p>
               <div style={{background:"#111827",border:"1px solid #334155",borderRadius:14,padding:"16px 20px",marginBottom:28,fontSize:".88rem",color:"#94a3b8",textAlign:"left"}}>
                 <div style={{marginBottom:8}}>&#128274; Check your spam folder if you don't see the email</div>

@@ -420,11 +420,32 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
     if existing.data:
         raise HTTPException(status_code=409, detail="An account with this email already exists. Please log in.")
 
-    # 3. Create auth user via invite (sends email verification)
-    auth_user = invite_parent_by_email(
+    # 3. Create auth user with a temp password and email_confirm=True
+    # (account is immediately active). Then trigger a password-reset email
+    # so the user can set their own password.
+    #
+    # We use this instead of invite_user_by_email() because that API
+    # validates email domains strictly and rejects many valid addresses
+    # (e.g. mail.com, gmail.com aliases, etc).
+    from app.services.auth_service import create_auth_user  # noqa: PLC0415
+    import secrets  # noqa: PLC0415
+    temp_password = secrets.token_urlsafe(16)  # user will reset this via the email link
+    auth_user = create_auth_user(
         email=email_clean,
-        username=data.name.strip(),
+        password=temp_password,
+        email_confirm=True,  # immediately active
     )
+
+    # Send a password-reset email so the user can set their own password
+    # This works with all email domains unlike invite_user_by_email.
+    try:
+        from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
+        anon_client.auth.reset_password_for_email(
+            email_clean,
+            options={"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
+        )
+    except Exception:
+        pass  # Email send failure must not block account creation
 
     # 4. Create profile (free plan — offer grants time-limited access separately)
     base_profile = {
