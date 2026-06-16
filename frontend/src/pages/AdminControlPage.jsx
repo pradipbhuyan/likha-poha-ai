@@ -843,6 +843,54 @@ function AdminControlPage({ user }) {
     allStudents.map((student) => [student.id, student])
   );
 
+  function exportUsersCSV() {
+    /** Export all students, parents, teachers with subscription info to CSV. */
+    const headers = [
+      "Role","Name","Email","Grade","Board","Subscription Plan","Account Status",
+      "CBSE Access","Daily Token Limit","Monthly Token Limit","Created At",
+    ];
+
+    const studentRows = allStudents.map(u => [
+      "Student", u.username || "", u.email || "",
+      u.grade || "", u.board || "CBSE",
+      u.subscription_plan || "free", u.account_status || "active",
+      u.access_cbse ? "Yes" : "No",
+      u.daily_token_limit || 0, u.monthly_token_limit || 0,
+      (u.created_at || "").slice(0, 10),
+    ]);
+
+    const parentRows = allParents.map(u => [
+      "Parent", u.username || "", u.email || "",
+      "", "",
+      u.subscription_plan || "free", u.account_status || "active",
+      u.access_cbse ? "Yes" : "No",
+      u.daily_token_limit || 0, u.monthly_token_limit || 0,
+      (u.created_at || "").slice(0, 10),
+    ]);
+
+    const teacherRows = allTeachers.map(u => [
+      "Teacher", u.username || "", u.email || "",
+      "", "",
+      u.subscription_plan || "teacher", u.account_status || "active",
+      "Yes",
+      u.daily_token_limit || 0, u.monthly_token_limit || 0,
+      (u.created_at || "").slice(0, 10),
+    ]);
+
+    const allRows = [...studentRows, ...parentRows, ...teacherRows];
+    const csv = [headers, ...allRows]
+      .map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(","))
+      .join("\r\n");
+
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `users_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="premium-page admin-control-page">
       {aiSettingsPanel}
@@ -850,7 +898,15 @@ function AdminControlPage({ user }) {
       <section className="premium-section admin-control-hero">
         <div className="premium-header">
           <p className="eyebrow">Admin Operations</p>
-          <h2>🛠️ Admin Control Center</h2>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+            <h2 style={{ margin: 0 }}>🛠️ Admin Control Center</h2>
+            {(allStudents.length + allParents.length + allTeachers.length) > 0 && (
+              <button onClick={exportUsersCSV}
+                style={{ background: "var(--panel)", color: "var(--primary)", border: "1px solid var(--border)", borderRadius: 8, padding: "8px 16px", fontSize: ".85rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
+                📥 Export Users to Excel
+              </button>
+            )}
+          </div>
           <p>Manage accounts, teacher access, subscriptions, and AI limits from one workspace.</p>
         </div>
 
