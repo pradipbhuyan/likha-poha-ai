@@ -27,10 +27,43 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
   const [planKey, setPlanKey] = useState(initialPlan || "free");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [useOfferCode, setUseOfferCode] = useState(false);
+  const [offerCodeInput, setOfferCodeInput] = useState("");
 
   useEffect(() => { loadRazorpay(); }, []);
 
   function selectRole(r) { setRole(r); setStep("form"); setError(""); }
+
+  async function handleOfferCodeSignup(e) {
+    e.preventDefault();
+    setError("");
+    if (!name.trim() || !email.trim()) { setError("Please fill in your name and email."); return; }
+    if (offerCodeInput.trim().length !== 8) { setError("Offer code must be exactly 8 characters."); return; }
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/signup-with-offer-code`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          role,
+          name: name.trim(),
+          email: email.trim(),
+          offer_code: offerCodeInput.trim().toUpperCase(),
+          grade: role === "student" ? grade : undefined,
+          school: role === "teacher" ? school.trim() : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setError(data.detail || data.message || "Could not create account. Please check your offer code.");
+        return;
+      }
+      setStep("done");
+    } catch (err) {
+      setError(err.message || "Signup failed. Please try again.");
+    } finally {
+      setLoading(false); }
+  }
 
   async function handlePayAndSignup(e) {
     e.preventDefault();
@@ -208,22 +241,58 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
                 </div>
               </div>
               {error && <div style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.3)",color:"#fca5a5",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:".88rem"}}>{error}</div>}
-              <button type="submit" disabled={loading}
-                style={{width:"100%",background:"linear-gradient(135deg,#2563eb,#7c3aed)",color:"#fff",border:"none",borderRadius:12,padding:"15px",fontSize:"1rem",fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"inherit",opacity:loading?0.7:1}}>
-                {loading ? "Processing..." : `Pay \u20B9${planObj?.price} & Create Account`}
-              </button>
-              <p style={{textAlign:"center",marginTop:14,color:"#64748b",fontSize:".78rem"}}>
-                Secure payment via Razorpay &middot; You will receive a verification email after payment
-              </p>
+              {/* Offer code toggle */}
+              <div style={{borderTop:"1px solid #1e293b",paddingTop:20,marginBottom:8}}>
+                <button type="button"
+                  onClick={() => { setUseOfferCode(v => !v); setError(""); }}
+                  style={{background:"transparent",border:"1px solid #334155",color:"#93c5fd",padding:"8px 16px",borderRadius:8,fontSize:".88rem",cursor:"pointer",fontFamily:"inherit",width:"100%"}}>
+                  {useOfferCode ? "← Pay with Razorpay instead" : "🎟️ Have an offer code? Skip payment"}
+                </button>
+              </div>
+
+              {useOfferCode ? (
+                <form onSubmit={handleOfferCodeSignup}>
+                  <div style={{marginBottom:16}}>
+                    <label style={{display:"block",fontSize:"1rem",fontWeight:600,color:"#cbd5e1",marginBottom:10}}>Offer Code *</label>
+                    <input
+                      value={offerCodeInput}
+                      onChange={e => setOfferCodeInput(e.target.value.toUpperCase())}
+                      required maxLength={8} placeholder="XXXXXXXX"
+                      style={{...inputStyle,fontFamily:"monospace",letterSpacing:4,textTransform:"uppercase",fontSize:"1.2rem",textAlign:"center"}}
+                    />
+                    <p style={{marginTop:8,fontSize:".8rem",color:"#64748b"}}>Enter your 8-character offer code to create a free account.</p>
+                  </div>
+                  {error && <div style={{background:"rgba(239,68,68,.1)",border:"1px solid rgba(239,68,68,.3)",color:"#fca5a5",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:".88rem"}}>{error}</div>}
+                  <button type="submit" disabled={loading || offerCodeInput.length !== 8}
+                    style={{width:"100%",background:"linear-gradient(135deg,#059669,#0d9488)",color:"#fff",border:"none",borderRadius:12,padding:"15px",fontSize:"1rem",fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"inherit",opacity:(loading||offerCodeInput.length!==8)?0.6:1}}>
+                    {loading ? "Creating account…" : "Create Account with Offer Code"}
+                  </button>
+                  <p style={{textAlign:"center",marginTop:14,color:"#64748b",fontSize:".78rem"}}>
+                    You will receive a verification email after signup
+                  </p>
+                </form>
+              ) : (
+                <>
+                  <button type="submit" disabled={loading}
+                    style={{width:"100%",background:"linear-gradient(135deg,#2563eb,#7c3aed)",color:"#fff",border:"none",borderRadius:12,padding:"15px",fontSize:"1rem",fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"inherit",opacity:loading?0.7:1}}>
+                    {loading ? "Processing..." : `Pay \u20B9${planObj?.price} & Create Account`}
+                  </button>
+                  <p style={{textAlign:"center",marginTop:14,color:"#64748b",fontSize:".78rem"}}>
+                    Secure payment via Razorpay &middot; You will receive a verification email after payment
+                  </p>
+                </>
+              )}
             </form>
           )}
 
           {step === "done" && (
             <div style={{textAlign:"center",padding:"40px 20px"}}>
               <div style={{fontSize:"4rem",marginBottom:20}}>&#10004;&#65039;</div>
-              <h2 style={{fontSize:"1.8rem",fontWeight:900,marginBottom:14}}>Payment Confirmed!</h2>
+              <h2 style={{fontSize:"1.8rem",fontWeight:900,marginBottom:14}}>
+                {useOfferCode ? "Account Created!" : "Payment Confirmed!"}
+              </h2>
               <p style={{color:"#cbd5e1",lineHeight:1.7,marginBottom:28,fontSize:"1rem"}}>
-                Your account has been created and payment is confirmed.<br />
+                Your account has been created{useOfferCode ? " using your offer code" : " and payment is confirmed"}.<br />
                 <strong style={{color:"#f8fafc"}}>Please check your email</strong> for a verification link from LikhaPoha AI.<br />
                 Click the link to verify your email and set your password.
               </p>

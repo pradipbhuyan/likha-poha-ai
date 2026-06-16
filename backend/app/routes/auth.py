@@ -115,6 +115,16 @@ class CompleteSignupRequest(BaseModel):
     school: Optional[str] = None
 
 
+class OfferCodeSignupRequest(BaseModel):
+    """Request body for creating an account using an offer code (no payment)."""
+    role: str
+    name: str
+    email: str
+    offer_code: str  # 8-char alphanumeric
+    grade: Optional[str] = None   # for students
+    school: Optional[str] = None  # for teachers
+
+
 def _razorpay_is_configured() -> bool:
     return bool(settings.RAZORPAY_KEY_ID and settings.RAZORPAY_KEY_SECRET)
 
@@ -323,4 +333,148 @@ def complete_signup(data: CompleteSignupRequest):
             "Please check your email to verify your account before signing in."
         ),
         "role": role,
+    }
+
+
+@router.post("/signup-with-offer-code")
+def signup_with_offer_code(data: OfferCodeSignupRequest):
+    """
+    Create a new account using a valid offer code instead of paying.
+
+    Flow:
+    1. Validate offer code (active, within validity window, max_uses not exceeded)
+    2. Check email not already registered
+    3. Create Supabase auth account via invite (sends email verification)
+    4. Create role-specific profile with free-plan access (offer grants time-limited access)
+    5. Record offer redemption so student gains platform access on login
+    6. Increment offer code usage counter
+
+    The user must verify their email before they can log in (same as paid signup).
+    """
+    from app.services.auth_service import invite_parent_by_email
+    from datetime import datetime, timezone
+
+    role = (data.role or "").lower().strip()
+    if role not in VALID_SIGNUP_ROLES:
+        raise HTTPException(status_code=400, detail="Invalid role.")
+
+    code = (data.offer_code or "").strip().upper()
+    if len(code) != 8:
+        raise HTTPException(status_code=400, detail="Offer code must be exactly 8 characters.")
+
+    # 1. Validate offer code
+    code_result = (
+        admin_client
+        .table("offer_codes")
+        .select("*")
+        .eq("code", code)
+        .limit(1)
+        .execute()
+    )
+    if not code_result.data:
+        raise HTTPException(status_code=404, detail="Invalid offer code.")
+
+    offer = code_result.data[0]
+
+    if not offer.get("is_active"):
+        raise HTTPException(status_code=400, detail="This offer code is no longer active.")
+
+    now = datetime.now(timezone.utc)
+    try:
+        valid_until = datetime.fromisoformat(
+            (offer.get("valid_until") or "").replace("Z", "+00:00")
+        )
+    except Exception:
+        raise HTTPException(status_code=400, detail="Offer code has an invalid expiry date.")
+
+    if now > valid_until:
+        raise HTTPException(status_code=400, detail="This offer code has expired.")
+
+    uses_count = int(offer.get("uses_count") or 0)
+    max_uses = int(offer.get("max_uses") or 100)
+    if uses_count >= max_uses:
+        raise HTTPException(status_code=400, detail="This offer code has reached its maximum number of uses.")
+
+    # 2. Check email not already registered
+    email_clean = (data.email or "").strip().lower()
+    existing = (
+        admin_client
+        .table("profiles")
+        .select("id")
+        .eq("email", email_clean)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(status_code=409, detail="An account with this email already exists. Please log in.")
+
+    # 3. Create auth user via invite (sends email verification)
+    auth_user = invite_parent_by_email(
+        email=email_clean,
+        username=data.name.strip(),
+    )
+
+    # 4. Create profile (free plan — offer grants time-limited access separately)
+    base_profile = {
+        "id": auth_user.id,
+        "email": email_clean,
+        "username": data.name.strip(),
+        "role": role,
+        "parent_id": None,
+        "family_id": None,
+        "subscription_plan": "free",
+        "account_status": "active",
+        "access_cbse": True,
+        "access_sof_science": False,
+        "access_sof_maths": False,
+        "access_sof_english": False,
+        "daily_token_limit": 50000,
+        "monthly_token_limit": 1000000,
+    }
+
+    if role == "parent":
+        family_resp = (
+            admin_client
+            .table("families")
+            .insert({"family_name": f"{data.name.strip()}'s Family"})
+            .execute()
+        )
+        if family_resp.data:
+            base_profile["family_id"] = family_resp.data[0]["id"]
+
+    elif role == "student":
+        grade = data.grade or "Grade 9"
+        if grade not in VALID_GRADES:
+            grade = "Grade 9"
+        base_profile["grade"] = grade
+        base_profile["board"] = "CBSE"
+        base_profile["cbse_subjects"] = []
+        base_profile["ai_model_preference"] = "default"
+
+    admin_client.table("profiles").insert(base_profile).execute()
+
+    # 5. Record offer redemption (gives time-limited access after email verification)
+    try:
+        admin_client.table("offer_redemptions").insert({
+            "code_id": offer["id"],
+            "user_id": auth_user.id,
+            "valid_until": offer["valid_until"],
+        }).execute()
+
+        # 6. Increment uses_count
+        admin_client.table("offer_codes").update({
+            "uses_count": uses_count + 1,
+        }).eq("id", offer["id"]).execute()
+    except Exception:
+        pass  # Don't fail signup if redemption recording fails
+
+    return {
+        "success": True,
+        "message": (
+            "Account created using offer code. "
+            "Please check your email to verify your account before signing in. "
+            f"Your access is valid until {str(offer['valid_until'])[:10]}."
+        ),
+        "role": role,
+        "offer_valid_until": offer["valid_until"],
     }
