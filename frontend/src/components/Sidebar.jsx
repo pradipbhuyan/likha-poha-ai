@@ -110,10 +110,9 @@ function Sidebar({
     },
     {
       key: "salesLeads",
-      label: "My Lead Claims",
+      label: isAdmin ? "Lead Claims" : "My Lead Claims",
       icon: Users,
-      roles: ["sales"],
-      hideForAdmin: true,
+      roles: ["admin", "sales"],
     },
     {
       key: "salesIncentives",
