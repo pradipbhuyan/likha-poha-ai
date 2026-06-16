@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.services.supabase_client import supabase
+from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
 from app.services.recommendation_service import build_study_recommendations
 
 router = APIRouter()
