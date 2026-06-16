@@ -119,3 +119,14 @@ export async function getAdminCommissionSummary() {
   /** Admin: per-salesperson monthly commission totals. */
   return authFetch("/api/sales/lead-claims/admin-summary", { method: "GET" });
 }
+
+export async function manualConfirmClaim(claimId, payload) {
+  /**
+   * Admin manually confirms a lead claim (offline payment — cash, bank transfer, UPI).
+   * payload: { package_amount, package_key?, admin_notes? }
+   */
+  return authFetch(`/api/sales/lead-claims/${claimId}/manual-confirm`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+}

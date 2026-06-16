@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getLeadClaims, getAdminCommissionSummary, batchPayCommissions } from "../api/sales";
+import { getLeadClaims, getAdminCommissionSummary, batchPayCommissions, manualConfirmClaim } from "../api/sales";
 import SalesLeadForm from "../components/SalesLeadForm";
 
 const SC = {
@@ -25,6 +25,9 @@ export default function SalesLeadPage({ user }) {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
   const [paying, setPaying] = useState(false);
+  const [confirmingId, setConfirmingId] = useState(null); // claim being manually confirmed
+  const [confirmForm, setConfirmForm] = useState({ package_amount: "", package_key: "starter", admin_notes: "" });
+  const [confirmErr, setConfirmErr] = useState("");
 
   async function load() {
     setLoading(true); setError("");
@@ -41,6 +44,23 @@ export default function SalesLeadPage({ user }) {
   }
 
   useEffect(() => { load(); }, []);
+
+  async function manualConfirm(claim) {
+    const amt = parseInt(confirmForm.package_amount);
+    if (!amt || amt <= 0) { setConfirmErr("Enter a valid payment amount (₹)."); return; }
+    try {
+      await manualConfirmClaim(claim.id, {
+        package_amount: amt,
+        package_key: confirmForm.package_key || claim.package_key || "starter",
+        admin_notes: confirmForm.admin_notes,
+      });
+      setConfirmingId(null);
+      setConfirmForm({ package_amount: "", package_key: "starter", admin_notes: "" });
+      setConfirmErr("");
+      setMsg("✅ Claim manually confirmed. Commission calculated.");
+      await load();
+    } catch (e) { setConfirmErr(e.message || "Failed."); }
+  }
 
   async function pay(ids) {
     if (!ids.length || !window.confirm(`Mark ${ids.length} commission(s) as paid?`)) return;
@@ -164,6 +184,32 @@ export default function SalesLeadPage({ user }) {
                           </div>
                           {isAdmin && claim.salesperson?.username && (
                             <div style={{ fontSize: ".73rem", color: "#64748b", marginTop: 3 }}>Sales: {claim.salesperson.username}</div>
+                          )}
+                          {/* Admin manual confirm for offline payments */}
+                          {isAdmin && claim.status === "claimed" && (
+                            <div style={{ marginTop: 8 }}>
+                              {confirmingId === claim.id ? (
+                                <div style={{ background: "rgba(251,191,36,.06)", border: "1px solid rgba(251,191,36,.2)", borderRadius: 8, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 7 }}>
+                                  <div style={{ fontSize: ".75rem", color: "#fbbf24", fontWeight: 700 }}>💵 Manual Confirmation (Offline Payment)</div>
+                                  <input type="number" min="1" placeholder="Amount collected ₹" value={confirmForm.package_amount}
+                                    onChange={e => setConfirmForm(p => ({ ...p, package_amount: e.target.value }))}
+                                    style={{ background: "#111827", border: "1px solid #334155", borderRadius: 6, padding: "6px 10px", color: "#f8fafc", fontSize: ".82rem", fontFamily: "inherit" }} />
+                                  <input type="text" placeholder="Notes: cash/UPI ref/bank transfer" value={confirmForm.admin_notes}
+                                    onChange={e => setConfirmForm(p => ({ ...p, admin_notes: e.target.value }))}
+                                    style={{ background: "#111827", border: "1px solid #334155", borderRadius: 6, padding: "6px 10px", color: "#f8fafc", fontSize: ".82rem", fontFamily: "inherit" }} />
+                                  {confirmErr && <div style={{ fontSize: ".75rem", color: "#fca5a5" }}>{confirmErr}</div>}
+                                  <div style={{ display: "flex", gap: 7 }}>
+                                    <button onClick={() => manualConfirm(claim)} style={{ background: "#059669", color: "#fff", border: "none", borderRadius: 6, padding: "5px 12px", fontSize: ".78rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Confirm</button>
+                                    <button onClick={() => { setConfirmingId(null); setConfirmErr(""); }} style={{ background: "transparent", color: "#64748b", border: "1px solid #334155", borderRadius: 6, padding: "5px 10px", fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <button onClick={() => { setConfirmingId(claim.id); setConfirmErr(""); setConfirmForm({ package_amount: "", package_key: claim.package_key || "starter", admin_notes: "" }); }}
+                                  style={{ background: "rgba(251,191,36,.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,.3)", borderRadius: 6, padding: "4px 10px", fontSize: ".75rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+                                  💵 Manually Confirm (Offline Payment)
+                                </button>
+                              )}
+                            </div>
                           )}
                           {claim.status === "confirmed" && claim.confirmed_at && (
                             <div style={{ fontSize: ".73rem", color: "#86efac", marginTop: 3 }}>✅ Confirmed {ago(claim.confirmed_at)}</div>

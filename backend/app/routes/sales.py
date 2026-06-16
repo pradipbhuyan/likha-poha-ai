@@ -783,6 +783,75 @@ def batch_pay_commissions(data: BatchPayRequest, admin=Depends(require_admin)):
     }
 
 
+@router.patch("/lead-claims/{claim_id}/manual-confirm")
+def manual_confirm_claim(
+    claim_id: str,
+    payload: dict,
+    admin=Depends(require_admin),
+):
+    """
+    Admin manually confirms a lead claim when payment was collected offline
+    (e.g. cash, bank transfer, UPI outside Razorpay).
+
+    Admin provides:
+    - package_amount: amount actually collected (INR)
+    - package_key: which plan (optional, defaults to existing)
+    - admin_notes: payment method, reference number, etc.
+
+    Commission is recalculated from the confirmed package amount.
+    """
+    from datetime import datetime, timezone
+    from decimal import Decimal, ROUND_HALF_UP
+
+    # Load the claim
+    result = (
+        admin_client.table("sales_lead_claims")
+        .select("*")
+        .eq("id", claim_id)
+        .limit(1)
+        .execute()
+    )
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Lead claim not found.")
+
+    claim = result.data[0]
+
+    if claim["status"] == "paid":
+        raise HTTPException(status_code=400, detail="This claim has already been paid. Cannot re-confirm.")
+
+    package_amount = int(payload.get("package_amount") or claim.get("package_amount") or 0)
+    if package_amount <= 0:
+        raise HTTPException(status_code=400, detail="Package amount must be greater than 0 for manual confirmation.")
+
+    incentive_pct = Decimal(str(claim.get("incentive_percent") or 5))
+    commission = float(
+        (Decimal(str(package_amount)) * incentive_pct / Decimal("100"))
+        .quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    )
+
+    update_data = {
+        "status": "confirmed",
+        "package_amount": package_amount,
+        "package_key": payload.get("package_key") or claim.get("package_key") or "starter",
+        "commission_amount": commission,
+        "confirmed_at": datetime.now(timezone.utc).isoformat(),
+        "admin_notes": (payload.get("admin_notes") or "") + " [Manual confirmation by admin]",
+    }
+
+    updated = (
+        admin_client.table("sales_lead_claims")
+        .update(update_data)
+        .eq("id", claim_id)
+        .execute()
+    )
+
+    return {
+        "success": True,
+        "claim": updated.data[0] if updated.data else {**claim, **update_data},
+        "message": f"Claim manually confirmed. Commission = ₹{commission}",
+    }
+
+
 @router.get("/lead-claims/admin-summary")
 def get_admin_commission_summary(admin=Depends(require_admin)):
     """
