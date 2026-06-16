@@ -86,6 +86,26 @@ CBSE_9 = {
         "दशमः पाठः — गङ्गा अहितगणम्",
         "एकादशः पाठः — वर्णोच्चारण-शिक्षा",
     ],
+    "Advanced Mathematics": [
+        "Advanced - Sets",
+        "Advanced - Logarithms",
+        "Advanced - Relations and Functions",
+        "Advanced - Coordinate Geometry",
+        "Advanced - Combinatorics",
+        "Advanced - Exploring some more Progressions",
+    ],
+    "Advanced Science": [
+        "Advanced - Measurement: Foundation of Science",
+        "Advanced - Understanding Motion through Experience",
+        "Advanced - Newton's Laws of Motion",
+        "Advanced - The Geometry of Power: Advanced Simple Machines",
+        "Advanced - Work and Energy",
+        "Advanced - Structure of Atom",
+        "Advanced - Chemical Bonding",
+        "Advanced - Mixtures and their Separation",
+        "Advanced - Microscope and Microscopy",
+        "Advanced - Engineering Life: Miracles in Biotechnology",
+    ],
 }
 
 

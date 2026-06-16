@@ -14,7 +14,6 @@ import {
   Sparkles,
   Target,
   Trophy,
-  GraduationCap,
 } from "lucide-react";
 
 import {
@@ -201,9 +200,9 @@ function DashboardPage({ user, setActivePage }) {
           </h2>
 
           <p>
-            You have completed {profile?.lessons_completed || 0} lessons,
-            attempted {stats.testsTaken} mock tests and currently hold a
-            {stats.averageScore}% average score.
+            You have completed <strong>{profile?.lessons_completed || 0}</strong> lessons,
+            attempted <strong>{stats.testsTaken}</strong> mock tests and currently hold a{" "}
+            <strong>{stats.averageScore}%</strong> average score.
           </p>
 
           <div className="dashboard-actions premium-hero-actions">
