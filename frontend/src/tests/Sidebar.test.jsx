@@ -63,13 +63,15 @@ describe("Sidebar role visibility", () => {
         role: "sales",
         username: "Sales Partner",
       },
-      "salesIncentives"
+      "salesLeads"
     );
 
-    expect(screen.getByRole("button", { name: /sales incentives/i })).toBeInTheDocument();
+    // Sales users see the new lead claims dashboard (not the admin-only Sales Incentives)
+    expect(screen.getByRole("button", { name: /my lead claims/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /product demo/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /sales collaterals/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /change password/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /sales incentives/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /admin control/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /teacher dashboard/i })).not.toBeInTheDocument();
 
