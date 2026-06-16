@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
@@ -186,22 +186,24 @@ function App() {
   const [signupInitialPlan, setSignupInitialPlan] = useState("free");
   const [activePage, setActivePage] = useState("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [routePath, setRoutePath] = useState(() => {
-    // Detect Supabase recovery/invite hash fragments on first load
-    // e.g. https://likhapoha.in/#access_token=...&type=recovery
-    const hash = window.location.hash;
-    if (hash && (hash.includes("type=recovery") || hash.includes("type=invite"))) {
-      return "/reset-password";
-    }
-    return window.location.pathname;
-  });
+  // Detect Supabase recovery/invite hash fragments on first load
+  const _initialHash = window.location.hash;
+  const _isRecovery = Boolean(_initialHash && (
+    _initialHash.includes("type=recovery") || _initialHash.includes("type=invite")
+  ));
+  const isRecoveryFlow = useRef(_isRecovery);
+  const [routePath, setRoutePath] = useState(_isRecovery ? "/reset-password" : window.location.pathname);
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("tutor_dark_mode") === "true"
   );
 
   useEffect(() => {
     function handlePopState() {
-      /** Keep the app shell in sync when browser navigation changes the URL. */
+      /** Keep the app shell in sync when browser navigation changes the URL.
+       * While isRecoveryFlow is true, block any popstate from navigating away
+       * — Supabase SDK pushes history entries while processing the token.
+       */
+      if (isRecoveryFlow.current) return;
       setRoutePath(window.location.pathname);
     }
 
@@ -277,6 +279,7 @@ function App() {
 
   function handleBackToLogin() {
     /** Leave the recovery route and show the sign-in screen immediately. */
+    isRecoveryFlow.current = false;
     window.history.replaceState({}, "", "/");
     setRoutePath("/");
     setUser(null);
