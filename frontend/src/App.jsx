@@ -127,6 +127,11 @@ const PAGE_META = {
       "Pre-generate lessons and question banks grade by grade. Track progress and clear cache when needed.",
     icon: "🗄️",
   },
+  salesLeads: {
+    title: "Lead Claims",
+    subtitle: "Submit student leads and track commissions. Payments auto-confirm on Razorpay checkout.",
+    icon: "🤝",
+  },
   salesIncentives: {
     title: "Sales Incentives",
     subtitle: "Track salespeople, student onboarding, packages, and commissions.",
