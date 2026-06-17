@@ -530,7 +530,7 @@ function MockTestPage({ user }) {
               onChange={(e) => setMockType(e.target.value)}
             >
               <option>CBSE Exam Mock Test</option>
-              <option>SOF Olympiad Mock Test</option>
+              <option>CBSE Chapter Test</option>
             </select>
           </label>
 
@@ -539,7 +539,7 @@ function MockTestPage({ user }) {
             <select
               value={examType}
               onChange={(e) => setExamType(e.target.value)}
-              disabled={mockType === "SOF Olympiad Mock Test"}
+              disabled={false}
             >
               <option>Class Test</option>
               <option>Mid Term</option>

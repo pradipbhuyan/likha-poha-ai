@@ -357,8 +357,8 @@ function LoginPage({ onLogin, onShowSignup }) {
           <h1>Learn smarter with AI.</h1>
 
           <p>
-            Personalized CBSE + SOF Olympiad preparation with AI-powered
-            lessons, quizzes, analytics, narration, and doubt solving.
+            Personalized CBSE preparation with AI-powered lessons, quizzes,
+            analytics, narration, and doubt solving. Class 5–10.
           </p>
 
           <div className="ait-feature-list">
