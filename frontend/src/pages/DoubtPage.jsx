@@ -630,6 +630,23 @@ Important:
               </label>
             )}
 
+            {/* Grade 9 Social Science — NCERT book not yet released */}
+            {grade === "Grade 9" && subject?.toLowerCase().includes("social") && (
+              <div style={{
+                background: "rgba(245,158,11,.1)",
+                border: "1px solid rgba(245,158,11,.35)",
+                borderRadius: "10px",
+                padding: "12px 16px",
+                fontSize: ".88rem",
+                color: "var(--text)",
+                lineHeight: 1.55,
+              }}>
+                📚 <strong>Social Science — Grade 9 content coming soon</strong>
+                <br />
+                NCERT has not yet released the updated Class 9 Social Science textbook. Content will be added as soon as the official book is published.
+              </div>
+            )}
+
             {subject && (
               <label>
                 Chapter
