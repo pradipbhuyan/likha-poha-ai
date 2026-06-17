@@ -60,6 +60,83 @@ function channelLabel(value) {
   return CHANNEL_OPTIONS.find((option) => option.value === value)?.label || value;
 }
 
+function renderCaption(text) {
+  /**
+   * Render a WhatsApp-style formatted caption as styled JSX.
+   * Supported syntax (mirrors WhatsApp's own formatting):
+   *   *bold text*     → <strong>
+   *   _italic text_   → <em>
+   *   ~strikethrough~ → <s>
+   *   Lines starting with •  - * or numbers → bullet list items
+   *   Blank lines     → paragraph break
+   */
+  if (!text) return null;
+  const lines = text.split("\n");
+  const elements = [];
+  let key = 0;
+
+  function parseInline(str) {
+    // Process bold (*), italic (_), strikethrough (~) inline markers
+    const parts = [];
+    let i = 0;
+    const markers = [
+      { open: "*", tag: "strong" },
+      { open: "_", tag: "em" },
+      { open: "~", tag: "s" },
+    ];
+    while (i < str.length) {
+      let matched = false;
+      for (const { open, tag } of markers) {
+        if (str[i] === open) {
+          const end = str.indexOf(open, i + 1);
+          if (end > i + 1) {
+            const inner = str.slice(i + 1, end);
+            const Tag = tag;
+            parts.push(<Tag key={`${i}-${tag}`}>{inner}</Tag>);
+            i = end + 1;
+            matched = true;
+            break;
+          }
+        }
+      }
+      if (!matched) {
+        // Append plain text
+        const nextSpecial = str.slice(i).search(/[*_~]/);
+        if (nextSpecial === -1) {
+          parts.push(str.slice(i));
+          break;
+        } else {
+          parts.push(str.slice(i, i + nextSpecial));
+          i += nextSpecial;
+        }
+      }
+    }
+    return parts.length > 0 ? parts : str;
+  }
+
+  for (let li = 0; li < lines.length; li++) {
+    const line = lines[li];
+    if (line.trim() === "") {
+      elements.push(<br key={key++} />);
+      continue;
+    }
+    // Bullet line: starts with •, -, *, or digits followed by . or )
+    const bulletMatch = line.match(/^(\s*)(•|-|\*|\d+[.)]\s)/);
+    if (bulletMatch) {
+      const content = line.slice(bulletMatch[0].length);
+      elements.push(
+        <div key={key++} style={{ display: "flex", gap: "6px", marginBottom: "2px" }}>
+          <span style={{ color: "#3b82f6", fontWeight: 700, minWidth: "12px" }}>•</span>
+          <span>{parseInline(content)}</span>
+        </div>
+      );
+    } else {
+      elements.push(<div key={key++} style={{ marginBottom: "2px" }}>{parseInline(line)}</div>);
+    }
+  }
+  return elements;
+}
+
 function formatIcon(format, channel) {
   /** Pick a compact visual cue for the collateral card. */
   if (channel === "whatsapp") return MessageCircle;
@@ -471,8 +548,11 @@ function SalesCollateralPage({ user }) {
                 onChange={(event) =>
                   setForm((prev) => ({ ...prev, caption: event.target.value }))
                 }
-                placeholder="Ready-to-send message for salespeople."
+                placeholder={`Use WhatsApp formatting:\n*bold text*\n_italic text_\n- bullet item\n• bullet item`}
               />
+              <small className="field-help">
+                *bold* · _italic_ · ~strikethrough~ · Start lines with • or - for bullets
+              </small>
             </label>
 
             <button type="submit" className="primary-btn" disabled={saving}>
@@ -539,13 +619,16 @@ function SalesCollateralPage({ user }) {
                 {isAdmin && editingCaptions[item.id] !== undefined ? (
                   <div className="sales-collateral-caption">
                     <strong>Edit Caption</strong>
+                    <small style={{ display: "block", color: "var(--muted)", fontSize: ".74rem", margin: "4px 0 2px" }}>
+                      *bold* · _italic_ · ~strikethrough~ · Start lines with • or - for bullets
+                    </small>
                     <textarea
                       value={editingCaptions[item.id]}
                       onChange={(e) =>
                         setEditingCaptions((prev) => ({ ...prev, [item.id]: e.target.value }))
                       }
-                      rows={8}
-                      style={{ width: "100%", fontFamily: "inherit", fontSize: ".85rem",
+                      rows={10}
+                      style={{ width: "100%", fontFamily: "monospace", fontSize: ".84rem",
                                padding: "8px", borderRadius: "8px", border: "1px solid var(--border)",
                                resize: "vertical", marginTop: "6px" }}
                     />
@@ -576,7 +659,9 @@ function SalesCollateralPage({ user }) {
                     {item.caption && (
                       <div className="sales-collateral-caption">
                         <strong>Caption</strong>
-                        <p>{item.caption}</p>
+                        <div style={{ fontSize: ".84rem", lineHeight: 1.55, marginTop: "6px" }}>
+                          {renderCaption(item.caption)}
+                        </div>
                       </div>
                     )}
                     {isAdmin && (
