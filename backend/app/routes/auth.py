@@ -260,12 +260,25 @@ def complete_signup(data: CompleteSignupRequest):
     if existing.data:
         raise HTTPException(status_code=409, detail="An account with this email already exists. Please log in.")
 
-    # Create Supabase auth user via invite — sends email verification automatically.
-    # All roles use the invite flow so email verification is enforced.
-    auth_user = invite_parent_by_email(
+    # Create auth user with email_confirm=True so the account is immediately active.
+    # Then send a reset_password_for_email so the user gets a "Set your password" email
+    # and can log in right after clicking the link — no separate invite flow needed.
+    import secrets as _secrets  # noqa: PLC0415
+    from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
+    temp_password = _secrets.token_urlsafe(24)
+    auth_user = create_auth_user(
         email=data.email.strip().lower(),
-        username=data.name.strip(),
+        password=temp_password,
+        email_confirm=True,   # account immediately active
     )
+    # Send the "set your password" email — user clicks the link → ResetPasswordPage → logs in
+    try:
+        anon_client.auth.reset_password_for_email(
+            data.email.strip().lower(),
+            options={"redirect_to": "https://likhapoha.in"},
+        )
+    except Exception:
+        pass  # non-fatal: user can use Forgot Password if email doesn't arrive
 
     base_profile = {
         "id": auth_user.id,
