@@ -48,6 +48,16 @@ class TestSignupOrder:
     def test_signup_order_fails_for_invalid_plan(self, monkeypatch):
         """signup-order returns 400 when an unknown or hidden plan key is requested."""
         monkeypatch.setattr(auth_module, "_razorpay_is_configured", lambda: True)
+        # Mock the email-duplicate check so it returns no existing profile
+        import unittest.mock as mock
+        mock_execute = mock.MagicMock()
+        mock_execute.data = []
+        mock_chain = mock.MagicMock()
+        mock_chain.execute.return_value = mock_execute
+        mock_chain.limit.return_value = mock_chain
+        mock_chain.eq.return_value = mock_chain
+        mock_chain.select.return_value = mock_chain
+        monkeypatch.setattr(auth_module.admin_client, "table", lambda _: mock_chain)
         monkeypatch.setattr(auth_module, "_get_plan", lambda plan_key: (_ for _ in ()).throw(
             __import__("fastapi").HTTPException(status_code=400, detail="Invalid plan selected.")
         ))
@@ -62,20 +72,27 @@ class TestSignupOrder:
     def test_signup_order_succeeds_for_valid_trial_plan(self, monkeypatch):
         """signup-order creates a Razorpay order for the Try It Out (free) plan."""
         monkeypatch.setattr(auth_module, "_razorpay_is_configured", lambda: True)
+        # Mock the email-duplicate check so it returns no existing profile
+        import unittest.mock as mock
+        mock_execute = mock.MagicMock()
+        mock_execute.data = []
+        mock_chain = mock.MagicMock()
+        mock_chain.execute.return_value = mock_execute
+        mock_chain.limit.return_value = mock_chain
+        mock_chain.eq.return_value = mock_chain
+        mock_chain.select.return_value = mock_chain
+        monkeypatch.setattr(auth_module.admin_client, "table", lambda _: mock_chain)
         monkeypatch.setattr(auth_module, "_get_plan", lambda plan_key: {
             "key": "free", "price": 100, "discount_percent": 0,
             "label": "Try It Out", "billing_label": "14 days", "is_public": True,
         })
         monkeypatch.setattr(auth_module, "_plan_amount", lambda plan: 100)
 
-        import requests as real_requests
-
         class FakeResp:
             status_code = 200
             def json(self):
                 return fake_razorpay_order("free")
 
-        import unittest.mock as mock
         with mock.patch("app.routes.auth.settings") as mock_settings:
             mock_settings.RAZORPAY_KEY_ID = "rzp_test_key"
             mock_settings.RAZORPAY_KEY_SECRET = "rzp_test_secret"
@@ -92,13 +109,22 @@ class TestSignupOrder:
     def test_signup_order_succeeds_for_standard_plan(self, monkeypatch):
         """signup-order creates a Razorpay order for the Standard (starter) plan."""
         monkeypatch.setattr(auth_module, "_razorpay_is_configured", lambda: True)
+        # Mock the email-duplicate check so it returns no existing profile
+        import unittest.mock as mock
+        mock_execute = mock.MagicMock()
+        mock_execute.data = []
+        mock_chain = mock.MagicMock()
+        mock_chain.execute.return_value = mock_execute
+        mock_chain.limit.return_value = mock_chain
+        mock_chain.eq.return_value = mock_chain
+        mock_chain.select.return_value = mock_chain
+        monkeypatch.setattr(auth_module.admin_client, "table", lambda _: mock_chain)
         monkeypatch.setattr(auth_module, "_get_plan", lambda plan_key: {
             "key": "starter", "price": 299, "discount_percent": 0,
             "label": "Standard", "billing_label": "month", "is_public": True,
         })
         monkeypatch.setattr(auth_module, "_plan_amount", lambda plan: 299)
 
-        import unittest.mock as mock
         class FakeResp:
             status_code = 200
             def json(self):
