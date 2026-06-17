@@ -433,124 +433,186 @@ function AdminPerformanceTestsPage({ user }) {
   );
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
 function PaymentTestSection({ user }) {
-  /** Create or remove a ₹1 Razorpay test plan for end-to-end payment testing. */
+  /**
+   * Admin-only ₹1 payment test. The plan is NEVER public (is_public: false)
+   * so customers never see it. The Razorpay checkout opens directly here
+   * inside the admin panel — no need to visit the live signup page.
+   */
   const [status, setStatus] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [testPlanActive, setTestPlanActive] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [testEmail, setTestEmail] = useState("");
+  const [testName, setTestName] = useState("Admin Test");
+  const [checkoutResult, setCheckoutResult] = useState(null);
 
-  async function checkTestPlan() {
-    try {
-      const data = await getAdminSubscriptionPlans(user.accessToken);
-      const plans = data.plans || {};
-      setTestPlanActive(!!plans["test_1rupee"] && plans["test_1rupee"].is_public !== false);
-    } catch { /* ignore */ }
+  function ensureRazorpayScript(cb) {
+    if (window.Razorpay) { cb(); return; }
+    const s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.onload = cb;
+    document.head.appendChild(s);
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { if (user?.accessToken) checkTestPlan(); }, [user?.accessToken]);
-
-  async function handleCreate() {
-    setLoading(true); setStatus("");
+  async function handleOpenCheckout() {
+    if (!testEmail.trim()) { setStatus("❌ Enter a test email first."); return; }
+    setCheckoutLoading(true);
+    setStatus("");
+    setCheckoutResult(null);
     try {
-      const data = await getAdminSubscriptionPlans(user.accessToken);
-      const plans = Object.values(data.plans || {});
-      const testPlan = {
-        key: "test_1rupee",
-        label: "₹1 Test Plan",
-        short_label: "Test ₹1",
-        price: 1,
-        billing_label: "one-time",
-        audience: "Test accounts only",
-        badge: "TEST",
-        recommended: false,
-        discount_percent: 0,
-        discount_label: "",
-        is_public: true,
-        display_order: 999,
-        access_cbse: true,
-        access_sof_science: false,
-        access_sof_maths: false,
-        access_sof_english: false,
-        daily_token_limit: 50000,
-        monthly_token_limit: 1000000,
-        included: ["Full CBSE access (test)", "AI Lessons", "Mock Tests"],
-        not_included: [],
-        comparison: {},
-      };
-      // Remove any existing test plan, add/replace with new
-      const others = plans.filter(p => p.key !== "test_1rupee");
-      await updateAdminSubscriptionPlans({ plans: [...others, testPlan] }, user.accessToken);
-      setTestPlanActive(true);
-      setStatus("✅ ₹1 Test Plan created! Go to likhapoha.in/signup to test payment.");
+      // 1. Create a ₹1 order via the backend (no public plan needed)
+      const orderResp = await fetch(`${API_BASE_URL}/api/auth/signup-order`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json","Authorization":`Bearer ${user.accessToken}`},
+        body: JSON.stringify({ email: testEmail.trim(), plan_key: "test_1rupee" }),
+      });
+
+      // If test_1rupee doesn't exist yet, upsert it silently (hidden from public)
+      if (!orderResp.ok) {
+        // Upsert the hidden test plan first
+        const plansData = await getAdminSubscriptionPlans(user.accessToken);
+        const existing = Object.values(plansData.plans || {});
+        const testPlan = {
+          key: "test_1rupee", label: "₹1 Admin Test", short_label: "Test ₹1",
+          price: 1, billing_label: "one-time", audience: "admin-only",
+          badge: "TEST", recommended: false, discount_percent: 0, discount_label: "",
+          is_public: false,  // ← NEVER shown on customer-facing signup page
+          display_order: 9999,
+          access_cbse: true, access_sof_science: false, access_sof_maths: false,
+          access_sof_english: false, daily_token_limit: 50000, monthly_token_limit: 1000000,
+          included: ["CBSE access (test)"], not_included: [], comparison: {},
+        };
+        await updateAdminSubscriptionPlans(
+          { plans: [...existing.filter(p => p.key !== "test_1rupee"), testPlan] },
+          user.accessToken
+        );
+        // Retry order creation
+        const retry = await fetch(`${API_BASE_URL}/api/auth/signup-order`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json","Authorization":`Bearer ${user.accessToken}`},
+          body: JSON.stringify({ email: testEmail.trim(), plan_key: "test_1rupee" }),
+        });
+        if (!retry.ok) {
+          const e = await retry.json().catch(() => ({}));
+          throw new Error(e.detail || "Order creation failed");
+        }
+        const od = await retry.json();
+        openRazorpay(od);
+      } else {
+        const od = await orderResp.json();
+        openRazorpay(od);
+      }
     } catch (err) {
-      setStatus("❌ " + (err.message || "Failed to create test plan"));
-    } finally { setLoading(false); }
+      setStatus("❌ " + (err.message || "Checkout failed"));
+      setCheckoutLoading(false);
+    }
   }
 
-  async function handleRemove() {
-    setLoading(true); setStatus("");
-    try {
-      const data = await getAdminSubscriptionPlans(user.accessToken);
-      const plans = Object.values(data.plans || {}).filter(p => p.key !== "test_1rupee");
-      await updateAdminSubscriptionPlans({ plans }, user.accessToken);
-      setTestPlanActive(false);
-      setStatus("✅ Test plan removed. Production plans restored.");
-    } catch (err) {
-      setStatus("❌ " + (err.message || "Failed to remove test plan"));
-    } finally { setLoading(false); }
+  function openRazorpay(orderData) {
+    ensureRazorpayScript(() => {
+      const rzp = new window.Razorpay({
+        key: orderData.key_id,
+        amount: orderData.amount * 100,
+        currency: "INR",
+        name: "Likha Poha AI",
+        description: "₹1 Admin Payment Test",
+        order_id: orderData.order_id,
+        prefill: { name: testName, email: testEmail },
+        theme: { color: "#6c63ff" },
+        handler: async (response) => {
+          setStatus("Payment captured — verifying...");
+          try {
+            const verifyResp = await fetch(`${API_BASE_URL}/api/auth/complete-signup`, {
+              method: "POST",
+              headers: {"Content-Type":"application/json","Authorization":`Bearer ${user.accessToken}`},
+              body: JSON.stringify({
+                role: "student",
+                name: testName,
+                email: testEmail.trim(),
+                plan_key: "test_1rupee",
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                grade: "Grade 9",
+              }),
+            });
+            const vd = await verifyResp.json();
+            if (verifyResp.ok && vd.success) {
+              setCheckoutResult({ success: true, email: testEmail, paymentId: response.razorpay_payment_id });
+              setStatus("✅ Full payment test PASSED! Account created. Check your email for the set-password link.");
+            } else {
+              setStatus("❌ Verification failed: " + (vd.detail || JSON.stringify(vd)));
+            }
+          } catch (err) {
+            setStatus("❌ Verify error: " + err.message);
+          } finally { setCheckoutLoading(false); }
+        },
+        modal: { ondismiss: () => { setStatus("⚠️ Checkout cancelled."); setCheckoutLoading(false); } },
+      });
+      rzp.open();
+    });
   }
 
   return (
     <section className="premium-section" style={{marginTop:24}}>
       <div className="premium-header">
-        <p className="eyebrow">Razorpay Integration</p>
-        <h3>💳 Payment Testing</h3>
-        <p>Create a temporary ₹1 plan to test the full Razorpay payment + account creation flow without spending real money.</p>
+        <p className="eyebrow">Razorpay Integration — Admin Only</p>
+        <h3>💳 Payment Flow Test</h3>
+        <p>Test the complete Razorpay → account creation flow here, inside the admin panel. The ₹1 test plan is <strong>never visible to customers</strong> on the live site.</p>
       </div>
       <div className="premium-card" style={{maxWidth:560}}>
-        <div style={{display:"flex",gap:12,marginBottom:16,flexWrap:"wrap"}}>
-          <div style={{flex:1,padding:"12px 16px",background:"var(--surface2,#f8f9fa)",borderRadius:10}}>
-            <strong style={{fontSize:".85rem"}}>Test Plan Status</strong>
-            <p style={{margin:"4px 0 0",fontSize:".82rem",color: testPlanActive ? "#22c55e" : "var(--muted)"}}>
-              {testPlanActive ? "✅ Active — visible on signup page" : "⬜ Not active"}
-            </p>
-          </div>
+        <div style={{background:"rgba(4,120,87,.08)",border:"1px solid rgba(4,120,87,.25)",borderRadius:8,padding:"10px 14px",marginBottom:16,fontSize:".82rem"}}>
+          <strong>🔒 Admin-only test</strong> — the ₹1 plan has <code>is_public: false</code> and is never shown on the customer signup page.
+          The Razorpay checkout opens right here. No need to visit the live site.
         </div>
 
-        <div style={{background:"rgba(59,130,246,.08)",border:"1px solid rgba(59,130,246,.2)",borderRadius:8,padding:"10px 14px",marginBottom:16,fontSize:".82rem"}}>
-          <strong>How to test:</strong>
-          <ol style={{margin:"6px 0 0",paddingLeft:20,lineHeight:1.8}}>
-            <li>Click <strong>Create ₹1 Test Plan</strong> below</li>
-            <li>Go to <strong>likhapoha.in</strong> → Try Today → select "₹1 Test Plan"</li>
-            <li>Pay ₹1 via UPI from your phone or card</li>
-            <li>Check email arrives with "Set your password" link</li>
-            <li>Set password → log in → verify account works</li>
-            <li>Come back here → click <strong>Remove Test Plan</strong></li>
-          </ol>
-        </div>
+        <label style={{display:"block",marginBottom:12}}>
+          <strong style={{fontSize:".85rem"}}>Your test email</strong>
+          <input
+            type="email"
+            value={testEmail}
+            onChange={e => setTestEmail(e.target.value)}
+            placeholder="your-test-email@gmail.com"
+            style={{width:"100%",marginTop:6}}
+          />
+          <small style={{color:"var(--muted)"}}>A "set your password" email will be sent here after payment</small>
+        </label>
 
-        <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-          <button
-            className="primary-btn"
-            onClick={handleCreate}
-            disabled={loading || testPlanActive}
-            style={{minWidth:160}}>
-            {loading ? "Working…" : testPlanActive ? "✅ Already Created" : "➕ Create ₹1 Test Plan"}
-          </button>
-          {testPlanActive && (
-            <button
-              className="danger-btn"
-              onClick={handleRemove}
-              disabled={loading}
-              style={{minWidth:160}}>
-              {loading ? "Working…" : "🗑 Remove Test Plan"}
-            </button>
-          )}
-        </div>
+        <label style={{display:"block",marginBottom:16}}>
+          <strong style={{fontSize:".85rem"}}>Test account name</strong>
+          <input
+            type="text"
+            value={testName}
+            onChange={e => setTestName(e.target.value)}
+            placeholder="Admin Test"
+            style={{width:"100%",marginTop:6}}
+          />
+        </label>
+
+        <button
+          className="primary-btn"
+          onClick={handleOpenCheckout}
+          disabled={checkoutLoading || !testEmail.trim()}
+          style={{minWidth:200}}>
+          {checkoutLoading ? "Opening checkout…" : "💳 Open ₹1 Razorpay Checkout"}
+        </button>
+
         {status && (
-          <div className={status.startsWith("✅") ? "info-box" : "error-box"} style={{marginTop:12}}>
+          <div className={status.startsWith("✅") ? "info-box" : status.startsWith("⚠️") ? "info-box" : "error-box"}
+            style={{marginTop:12}}>
             {status}
+          </div>
+        )}
+
+        {checkoutResult?.success && (
+          <div className="info-box" style={{marginTop:12}}>
+            <strong>✅ Test complete</strong>
+            <p style={{margin:"4px 0 0",fontSize:".82rem"}}>
+              Account: <code>{checkoutResult.email}</code><br/>
+              Payment ID: <code>{checkoutResult.paymentId}</code><br/>
+              Check your inbox for the "Set your password" email.
+            </p>
           </div>
         )}
       </div>
