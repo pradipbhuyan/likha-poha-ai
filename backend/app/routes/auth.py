@@ -202,6 +202,29 @@ def create_signup_order(data: SignupOrderRequest):
             status_code=503,
             detail="Payment is not yet configured. Please contact support to sign up.",
         )
+
+    # ── Email duplicate check BEFORE taking any money ────────────────────
+    # If the email already exists we must stop here — never open the payment
+    # dialog. The customer should see a clear message to log in instead.
+    existing = (
+        admin_client
+        .table("profiles")
+        .select("id")
+        .eq("email", data.email.strip().lower())
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "An account with this email already exists. "
+                "Please log in instead. "
+                "If you've forgotten your password, use Forgot Password on the login page."
+            ),
+        )
+    # ─────────────────────────────────────────────────────────────────────
+
     plan = _get_plan(data.plan_key)
     amount_rupees = _plan_amount(plan)
     if amount_rupees <= 0:
