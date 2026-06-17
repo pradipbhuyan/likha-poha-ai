@@ -12,11 +12,13 @@ enable_system_truststore()
 # ---------------------------------------------------------------------------
 # Model configuration
 # ---------------------------------------------------------------------------
-# All features use gpt-4.1-nano — the only model available on this project.
-# To upgrade to mini/full when the project has access, change DEFAULT_TEXT_MODEL.
+# Only gpt-4.1-nano is available on this OpenAI project.
+# GPT_MINI_TEXT_MODEL and GPT_FULL_TEXT_MODEL intentionally alias to nano
+# so routing upgrades degrade gracefully instead of returning 403.
+
 DEFAULT_TEXT_MODEL = "gpt-4.1-nano"
-GPT_MINI_TEXT_MODEL = "gpt-4.1-mini"
-GPT_FULL_TEXT_MODEL = "gpt-4.1"
+GPT_MINI_TEXT_MODEL = "gpt-4.1-nano"   # gpt-4.1-mini not available on this project
+GPT_FULL_TEXT_MODEL = "gpt-4.1-nano"   # gpt-4.1 not available on this project
 PREWARM_TEXT_MODEL = "gpt-4.1-nano"
 # Legacy aliases kept for backward compatibility with model_routing_service
 GPT5_TEXT_MODEL = GPT_MINI_TEXT_MODEL
