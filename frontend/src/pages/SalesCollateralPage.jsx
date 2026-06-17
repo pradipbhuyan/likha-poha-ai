@@ -100,11 +100,18 @@ function renderCaption(text) {
         }
       }
       if (!matched) {
-        // Append plain text
-        const nextSpecial = str.slice(i).search(/[*_~]/);
+        // Append plain text up to (but not including) the next special character.
+        // If the current character IS a special marker with no closing pair,
+        // consume it as a literal character (advance by 1) to avoid an infinite loop.
+        const remaining = str.slice(i);
+        const nextSpecial = remaining.search(/[*_~]/);
         if (nextSpecial === -1) {
-          parts.push(str.slice(i));
+          parts.push(remaining);
           break;
+        } else if (nextSpecial === 0) {
+          // Unmatched marker — treat as literal character
+          parts.push(str[i]);
+          i += 1;
         } else {
           parts.push(str.slice(i, i + nextSpecial));
           i += nextSpecial;
