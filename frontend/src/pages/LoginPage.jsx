@@ -84,6 +84,10 @@ function LoginPage({ onLogin, onShowSignup }) {
         loginEmail = result.email;
       }
 
+      // Ensure any stale recovery/invite session is cleared before fresh login.
+      // signOut() is a no-op when there is no active session.
+      await supabase.auth.signOut().catch(() => {});
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email: loginEmail,
         password,
@@ -116,6 +120,14 @@ function LoginPage({ onLogin, onShowSignup }) {
 
       if (profileError) {
         setError("Login successful, but profile role was not found.");
+        return;
+      }
+
+      if (!data.session) {
+        // This can happen if Supabase requires an additional verification step.
+        setError(
+          "Sign-in could not be completed. Please request a new password reset link from the Forgot Password page."
+        );
         return;
       }
 
