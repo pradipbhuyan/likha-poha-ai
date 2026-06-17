@@ -64,8 +64,19 @@ function ResetPasswordPage({ onBackToLogin }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      /**
+       * PASSWORD_RECOVERY fires when the SDK first processes the hash token.
+       * INITIAL_SESSION fires for newly-registered listeners when a session
+       * already exists — this happens when PASSWORD_RECOVERY fired before
+       * the React component mounted (common on first page load with hash).
+       * SIGNED_IN covers the case where exchangeCodeForSession completes.
+       */
+      if (
+        event === "PASSWORD_RECOVERY" ||
+        event === "SIGNED_IN" ||
+        (event === "INITIAL_SESSION" && !!session)
+      ) {
         setSessionReady(true);
       }
     });
