@@ -197,6 +197,58 @@ function SalesCollateralPage({ user }) {
     }
   }
 
+  async function shareToWhatsApp(item) {
+    /**
+     * Share image + caption to WhatsApp.
+     *
+     * On mobile (Web Share API with file support): fetches the image as a blob,
+     * creates a File object, and invokes navigator.share() — the native share
+     * sheet appears with WhatsApp as an option.
+     *
+     * On desktop (no file-share support): opens wa.me with the caption + image
+     * URL as text so the user can paste it into WhatsApp Web.
+     */
+    const caption = item.caption || item.title || "";
+    const imageUrl = item.asset_url || "";
+
+    // Try native Web Share API with image (works on iOS Safari, Android Chrome)
+    if (navigator.canShare && imageUrl) {
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const ext = blob.type.includes("png") ? "png" : blob.type.includes("pdf") ? "pdf" : "jpg";
+        const file = new File([blob], `likhapoha-${item.id || "card"}.${ext}`, { type: blob.type });
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: item.title || "Likha Poha AI",
+            text: caption,
+            files: [file],
+          });
+          return;
+        }
+      } catch {
+        // Fall through to text-only share
+      }
+    }
+
+    // Text-only Web Share API fallback
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: item.title || "Likha Poha AI",
+          text: imageUrl ? `${caption}\n\n${imageUrl}` : caption,
+        });
+        return;
+      } catch {
+        // User cancelled or not supported — fall through to wa.me
+      }
+    }
+
+    // Desktop fallback: open WhatsApp Web with caption + image URL
+    const waText = imageUrl ? `${caption}\n\n${imageUrl}` : caption;
+    window.open(`https://wa.me/?text=${encodeURIComponent(waText)}`, "_blank");
+  }
+
   async function copyCaption(text) {
     /** Copy the prepared sales message so it can be pasted into WhatsApp or Instagram. */
     if (!text) return;
@@ -465,6 +517,16 @@ function SalesCollateralPage({ user }) {
                 )}
 
                 <div className="sales-collateral-actions">
+                  <button
+                    type="button"
+                    onClick={() => shareToWhatsApp(item)}
+                    style={{background:"#25D366",color:"#fff",border:"none"}}
+                    title="Share to WhatsApp — downloads image + opens WhatsApp on mobile"
+                  >
+                    <MessageCircle size={17} />
+                    Share on WhatsApp
+                  </button>
+
                   <button
                     type="button"
                     onClick={() => copyCaption(item.caption)}
