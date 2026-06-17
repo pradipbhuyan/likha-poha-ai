@@ -1061,62 +1061,6 @@ Important:
             </section>
           )}
 
-          {sourceInfo && (
-            <section className="premium-section premium-doubt-source">
-              <div className="premium-header">
-                <h3>📚 Source Information</h3>
-
-                <p>
-                  <strong>Answer Source:</strong>{" "}
-                  {sourceInfo.sourceType === "RAG"
-                    ? "Uploaded Textbook / RAG Content + LLM"
-                    : "General LLM Knowledge"}
-                </p>
-              </div>
-
-              {sourceInfo.sourceType === "RAG" &&
-                sourceInfo.sources.length > 0 &&
-                (() => {
-                  const uniqueDocs = [];
-                  const seen = new Set();
-
-                  sourceInfo.sources.forEach((s) => {
-                    const title = s.document?.title || "Unknown";
-
-                    if (!seen.has(title)) {
-                      seen.add(title);
-
-                      uniqueDocs.push({
-                        title,
-                        chapter: s.document?.chapter || "Matched topic",
-                      });
-                    }
-                  });
-
-                  return (
-                    <>
-                      <h4>Matched Sources</h4>
-
-                      {uniqueDocs.map((doc, index) => (
-                        <div key={index} className="question-card">
-                          <p>
-                            <strong>Source:</strong> {doc.title}
-                          </p>
-
-                          <p>
-                            <strong>Chapter:</strong> {doc.chapter}
-                          </p>
-
-                          <p>
-                            <strong>Match:</strong> Broad textbook match
-                          </p>
-                        </div>
-                      ))}
-                    </>
-                  );
-                })()}
-            </section>
-          )}
         </main>
       </section>
     </div>

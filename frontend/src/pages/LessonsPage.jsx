@@ -2072,62 +2072,6 @@ function LessonsPage({ user }) {
                 )}
               </div>
 
-              {sourceInfo && (
-                <div className="premium-section">
-                  <div className="premium-header">
-                    <h3>📚 Source Information</h3>
-
-                    <p>
-                      <strong>Lesson Source:</strong>{" "}
-                      {sourceInfo.sourceType === "RAG"
-                        ? "Uploaded Textbook / RAG Content"
-                        : "General LLM Knowledge"}
-                    </p>
-                  </div>
-
-                  {sourceInfo.sourceType === "RAG" &&
-                    sourceInfo.sources.length > 0 &&
-                    (() => {
-                      const uniqueDocs = [];
-                      const seen = new Set();
-
-                      sourceInfo.sources.forEach((s) => {
-                        const title = s.document?.title || "Unknown";
-
-                        if (!seen.has(title)) {
-                          seen.add(title);
-
-                          uniqueDocs.push({
-                            title,
-                            chapter: s.document?.chapter || chapter,
-                          });
-                        }
-                      });
-
-                      return (
-                        <>
-                          <h4>Matched Sources</h4>
-
-                          {uniqueDocs.map((doc, index) => (
-                            <div key={index} className="question-card">
-                              <p>
-                                <strong>Source:</strong> {doc.title}
-                              </p>
-
-                              <p>
-                                <strong>Chapter:</strong> {doc.chapter}
-                              </p>
-
-                              <p>
-                                <strong>Match:</strong> Textbook chapter match
-                              </p>
-                            </div>
-                          ))}
-                        </>
-                      );
-                    })()}
-                </div>
-              )}
             </>
           )}
         </section>
