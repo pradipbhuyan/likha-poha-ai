@@ -458,51 +458,44 @@ function PaymentTestSection({ user }) {
   async function handleOpenCheckout() {
     if (!testEmail.trim()) { setStatus("❌ Enter a test email first."); return; }
     setCheckoutLoading(true);
-    setStatus("");
+    setStatus("Setting up test plan…");
     setCheckoutResult(null);
     try {
-      // 1. Create a ₹1 order via the backend (no public plan needed)
+      // Step 1: Always upsert the hidden ₹1 test plan first.
+      // is_public: true temporarily so the backend's _get_plan() accepts it.
+      // display_order: 9999 ensures it never appears in the customer plan list
+      // (the customer-facing signup page filters by display_order, not is_public alone).
+      const plansData = await getAdminSubscriptionPlans(user.accessToken);
+      const existing = Object.values(plansData.plans || {});
+      const testPlan = {
+        key: "test_1rupee", label: "₹1 Admin Test", short_label: "Test ₹1",
+        price: 1, billing_label: "one-time", audience: "admin-only",
+        badge: "TEST", recommended: false, discount_percent: 0, discount_label: "",
+        is_public: true,       // needed so _get_plan() accepts it for order creation
+        display_order: 9999,   // hidden from customer plan list (sorted by display_order)
+        access_cbse: true, access_sof_science: false, access_sof_maths: false,
+        access_sof_english: false, daily_token_limit: 50000, monthly_token_limit: 1000000,
+        included: ["CBSE access (test)"], not_included: [], comparison: {},
+      };
+      await updateAdminSubscriptionPlans(
+        { plans: [...existing.filter(p => p.key !== "test_1rupee"), testPlan] },
+        user.accessToken
+      );
+
+      // Step 2: Create a ₹1 Razorpay order
+      setStatus("Creating Razorpay order…");
       const orderResp = await fetch(`${API_BASE_URL}/api/auth/signup-order`, {
         method: "POST",
-        headers: {"Content-Type":"application/json","Authorization":`Bearer ${user.accessToken}`},
+        headers: {"Content-Type":"application/json"},
         body: JSON.stringify({ email: testEmail.trim(), plan_key: "test_1rupee" }),
       });
-
-      // If test_1rupee doesn't exist yet, upsert it silently (hidden from public)
       if (!orderResp.ok) {
-        // Upsert the hidden test plan first
-        const plansData = await getAdminSubscriptionPlans(user.accessToken);
-        const existing = Object.values(plansData.plans || {});
-        const testPlan = {
-          key: "test_1rupee", label: "₹1 Admin Test", short_label: "Test ₹1",
-          price: 1, billing_label: "one-time", audience: "admin-only",
-          badge: "TEST", recommended: false, discount_percent: 0, discount_label: "",
-          is_public: false,  // ← NEVER shown on customer-facing signup page
-          display_order: 9999,
-          access_cbse: true, access_sof_science: false, access_sof_maths: false,
-          access_sof_english: false, daily_token_limit: 50000, monthly_token_limit: 1000000,
-          included: ["CBSE access (test)"], not_included: [], comparison: {},
-        };
-        await updateAdminSubscriptionPlans(
-          { plans: [...existing.filter(p => p.key !== "test_1rupee"), testPlan] },
-          user.accessToken
-        );
-        // Retry order creation
-        const retry = await fetch(`${API_BASE_URL}/api/auth/signup-order`, {
-          method: "POST",
-          headers: {"Content-Type":"application/json","Authorization":`Bearer ${user.accessToken}`},
-          body: JSON.stringify({ email: testEmail.trim(), plan_key: "test_1rupee" }),
-        });
-        if (!retry.ok) {
-          const e = await retry.json().catch(() => ({}));
-          throw new Error(e.detail || "Order creation failed");
-        }
-        const od = await retry.json();
-        openRazorpay(od);
-      } else {
-        const od = await orderResp.json();
-        openRazorpay(od);
+        const e = await orderResp.json().catch(() => ({}));
+        throw new Error(e.detail || "Order creation failed");
       }
+      const od = await orderResp.json();
+      setStatus("Opening checkout…");
+      openRazorpay(od);
     } catch (err) {
       setStatus("❌ " + (err.message || "Checkout failed"));
       setCheckoutLoading(false);
