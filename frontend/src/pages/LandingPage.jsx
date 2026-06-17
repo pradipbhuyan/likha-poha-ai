@@ -110,6 +110,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         </div>
         <p className="lp-prnote">Save up to 40% with 12-month plan &middot; No hidden charges</p>
       </div>
+      {/* Testimonials + score improvements hidden until we have real customer feedback
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">What Families Say</div><h2>Loved by Students and Parents Across India</h2><p>Join hundreds of families already learning smarter</p></div>
         <div className="lp-tgrid">
@@ -126,6 +127,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div className="lp-skcard"><div className="lp-sktop"><div className="lp-skarrow"><div><div className="lp-skbef">48%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>BEFORE</div></div><div className="lp-skarr">&#8599;</div><div><div className="lp-skaft">79%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>AFTER</div></div></div><div className="lp-skbadge">+31%</div></div><div className="lp-skname">Karan Mehta</div><div className="lp-skschool">Modern School, Noida</div><div className="lp-skq" style={{fontSize:".78rem",marginTop:"6px",color:"#93c5fd"}}>Mathematics</div><div className="lp-skq">The worked examples in each lesson made algebra click for me finally.</div></div>
         </div>
       </div>
+      */}
       <div className="lp-sf"><div className="lp-si"><div className="lp-sh"><h2>Frequently Asked Questions</h2></div>
         {faqs.map((faq, i) => (
           <div key={i} className={"lp-faq-item" + (openFaq === i ? " open" : "")}>
