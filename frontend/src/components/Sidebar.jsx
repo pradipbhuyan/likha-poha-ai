@@ -85,6 +85,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "paymentLogs",
+      label: "Payment Logs",
+      icon: CreditCard,
+      roles: ["admin"],
+    },
+    {
       key: "performanceTests",
       label: "Performance Tests",
       icon: Activity,

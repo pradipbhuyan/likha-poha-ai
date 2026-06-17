@@ -31,6 +31,7 @@ import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
+import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
@@ -173,6 +174,11 @@ const PAGE_META = {
     title: "Change Password",
     subtitle: "Update your account password securely.",
     icon: "🔐",
+  },
+  paymentLogs: {
+    title: "Payment Logs",
+    subtitle: "Revenue analytics, transaction history, and Excel export.",
+    icon: "💳",
   },
 };
 
@@ -405,6 +411,8 @@ function App() {
         return <SubscriptionPlansPage user={user} />;
       case "changePassword":
         return <ChangePasswordPage user={user} />;
+      case "paymentLogs":
+        return <AdminPaymentsPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

@@ -381,6 +381,18 @@ export async function markInfluencerIncentivePaid(codeId, accessToken) {
   return response.json();
 }
 
+export async function getAdminPaymentLogs(accessToken) {
+  /** Load payment logs with revenue summary, trend data and plan distribution. */
+  const response = await adminFetch("/api/admin-control/payment-logs", {
+    method: "GET",
+    headers: authHeaders(accessToken),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load payment logs"));
+  }
+  return response.json();
+}
+
 export async function getOfferCodeEnrollments(accessToken) {
   /** Load all students enrolled per offer code for admin tracking. */
   const response = await adminFetch("/api/admin-control/offer-codes/enrollments", {
