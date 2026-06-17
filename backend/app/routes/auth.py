@@ -141,10 +141,26 @@ def _verify_signature(order_id: str, payment_id: str, signature: str) -> bool:
 
 
 def _get_plan(plan_key: str) -> dict:
-    """Load a public subscription plan for signup."""
-    from app.routes.admin_control import list_subscription_plan_settings
+    """
+    Load a subscription plan for signup.
+
+    First checks the merged default+DB plan settings. If the plan key is
+    not in the defaults (e.g. admin test plans like test_1rupee), falls back
+    to a direct Supabase lookup so recently-created plans are found immediately.
+    """
+    from app.routes.admin_control import list_subscription_plan_settings, normalize_subscription_plan_row  # noqa: PLC0415
     payload = list_subscription_plan_settings()
     plan = (payload.get("plans") or {}).get(plan_key)
+
+    # Fallback: plan not in defaults — look up directly in subscription_plan_settings table
+    if not plan:
+        try:
+            db_result = admin_client.table("subscription_plan_settings").select("*").eq("key", plan_key).limit(1).execute()
+            if db_result.data:
+                plan = normalize_subscription_plan_row(db_result.data[0])
+        except Exception:
+            pass
+
     if not plan or plan.get("is_public") is False:
         raise HTTPException(status_code=400, detail="Invalid plan selected.")
     return plan
