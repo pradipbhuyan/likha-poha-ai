@@ -336,11 +336,9 @@ def complete_signup(data: CompleteSignupRequest):
         .execute()
     )
 
-    # Log the payment so admins can trace signup payments
-    (
-        admin_client
-        .table("subscription_payments")
-        .upsert({
+    # Log the payment so admins can trace signup payments (non-critical — never blocks signup)
+    try:
+        admin_client.table("subscription_payments").upsert({
             "razorpay_order_id": data.razorpay_order_id,
             "razorpay_payment_id": data.razorpay_payment_id,
             "parent_id": auth_user.id,
@@ -351,9 +349,9 @@ def complete_signup(data: CompleteSignupRequest):
             "status": "paid",
             "provider": "razorpay",
             "metadata": {"signup_role": role, "signup_email": data.email},
-        }, on_conflict="razorpay_order_id")
-        .execute()
-    )
+        }, on_conflict="razorpay_order_id").execute()
+    except Exception:
+        pass  # Table may not exist yet — run sql/subscription_payments.sql in Supabase
 
     # Auto-match sales lead claim (never blocks signup if it fails)
     try:
