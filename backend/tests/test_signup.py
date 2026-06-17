@@ -213,15 +213,9 @@ class TestCompleteSignup:
             return fake_auth_user("parent-user-123")
 
         monkeypatch.setattr(
-            auth_module, "invite_parent_by_email", fake_invite,
-            raising=False
-        )
-        import sys
-        sys.modules.setdefault("app.services.auth_service", type(sys)("auth_service"))
-        import importlib
-        monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            fake_invite, raising=False
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("fake-id-001"),
+            raising=False,
         )
 
         result = auth_module.complete_signup(auth_module.CompleteSignupRequest(
@@ -277,8 +271,8 @@ class TestCompleteSignup:
 
         monkeypatch.setattr(auth_module, "admin_client", StudentCapture())
         monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            lambda email, username: fake_auth_user("student-001"),
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("student-001"),
             raising=False,
         )
 
@@ -316,8 +310,8 @@ class TestCompleteSignup:
 
         monkeypatch.setattr(auth_module, "admin_client", GradeCapture())
         monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            lambda email, username: fake_auth_user("student-002"),
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("student-002"),
             raising=False,
         )
 
@@ -360,8 +354,8 @@ class TestCompleteSignup:
 
         monkeypatch.setattr(auth_module, "admin_client", TeacherCapture())
         monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            lambda email, username: fake_auth_user("teacher-001"),
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("teacher-001"),
             raising=False,
         )
 
@@ -380,8 +374,8 @@ class TestCompleteSignup:
         """Teacher signup without school name is allowed (optional field)."""
         self._mock_dependencies(monkeypatch)
         monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            lambda email, username: fake_auth_user("teacher-002"),
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("teacher-002"),
             raising=False,
         )
 
@@ -490,8 +484,8 @@ class TestCompleteSignup:
 
         monkeypatch.setattr(auth_module, "admin_client", FamilyClient())
         monkeypatch.setattr(
-            "app.services.auth_service.invite_parent_by_email",
-            lambda email, username: fake_auth_user("family-parent-001"),
+            "app.services.auth_service.create_auth_user",
+            lambda email, password, email_confirm=True: fake_auth_user("family-parent-001"),
             raising=False,
         )
 
