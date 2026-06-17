@@ -15,6 +15,10 @@ import {
   getPerformanceScenarios,
   startPerformanceRun,
 } from "../api/performanceTests";
+import {
+  getAdminSubscriptionPlans,
+  updateAdminSubscriptionPlans,
+} from "../api/adminControl";
 import "./AdminPerformanceTestsPage.css";
 
 
@@ -50,7 +54,7 @@ function safeSummary(run) {
 }
 
 
-function AdminPerformanceTestsPage() {
+function AdminPerformanceTestsPage({ user }) {
   /** Admin-only console for backend performance probes and historical trends. */
   const [scenarios, setScenarios] = useState([]);
   const [runs, setRuns] = useState([]);
@@ -423,7 +427,134 @@ function AdminPerformanceTestsPage() {
           {!runs.length && <p className="empty-state">No trend history yet.</p>}
         </div>
       </section>
+
+      <PaymentTestSection user={user} />
     </div>
+  );
+}
+
+function PaymentTestSection({ user }) {
+  /** Create or remove a ₹1 Razorpay test plan for end-to-end payment testing. */
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [testPlanActive, setTestPlanActive] = useState(false);
+
+  async function checkTestPlan() {
+    try {
+      const data = await getAdminSubscriptionPlans(user.accessToken);
+      const plans = data.plans || {};
+      setTestPlanActive(!!plans["test_1rupee"] && plans["test_1rupee"].is_public !== false);
+    } catch { /* ignore */ }
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (user?.accessToken) checkTestPlan(); }, [user?.accessToken]);
+
+  async function handleCreate() {
+    setLoading(true); setStatus("");
+    try {
+      const data = await getAdminSubscriptionPlans(user.accessToken);
+      const plans = Object.values(data.plans || {});
+      const testPlan = {
+        key: "test_1rupee",
+        label: "₹1 Test Plan",
+        short_label: "Test ₹1",
+        price: 1,
+        billing_label: "one-time",
+        audience: "Test accounts only",
+        badge: "TEST",
+        recommended: false,
+        discount_percent: 0,
+        discount_label: "",
+        is_public: true,
+        display_order: 999,
+        access_cbse: true,
+        access_sof_science: false,
+        access_sof_maths: false,
+        access_sof_english: false,
+        daily_token_limit: 50000,
+        monthly_token_limit: 1000000,
+        included: ["Full CBSE access (test)", "AI Lessons", "Mock Tests"],
+        not_included: [],
+        comparison: {},
+      };
+      // Remove any existing test plan, add/replace with new
+      const others = plans.filter(p => p.key !== "test_1rupee");
+      await updateAdminSubscriptionPlans({ plans: [...others, testPlan] }, user.accessToken);
+      setTestPlanActive(true);
+      setStatus("✅ ₹1 Test Plan created! Go to likhapoha.in/signup to test payment.");
+    } catch (err) {
+      setStatus("❌ " + (err.message || "Failed to create test plan"));
+    } finally { setLoading(false); }
+  }
+
+  async function handleRemove() {
+    setLoading(true); setStatus("");
+    try {
+      const data = await getAdminSubscriptionPlans(user.accessToken);
+      const plans = Object.values(data.plans || {}).filter(p => p.key !== "test_1rupee");
+      await updateAdminSubscriptionPlans({ plans }, user.accessToken);
+      setTestPlanActive(false);
+      setStatus("✅ Test plan removed. Production plans restored.");
+    } catch (err) {
+      setStatus("❌ " + (err.message || "Failed to remove test plan"));
+    } finally { setLoading(false); }
+  }
+
+  return (
+    <section className="premium-section" style={{marginTop:24}}>
+      <div className="premium-header">
+        <p className="eyebrow">Razorpay Integration</p>
+        <h3>💳 Payment Testing</h3>
+        <p>Create a temporary ₹1 plan to test the full Razorpay payment + account creation flow without spending real money.</p>
+      </div>
+      <div className="premium-card" style={{maxWidth:560}}>
+        <div style={{display:"flex",gap:12,marginBottom:16,flexWrap:"wrap"}}>
+          <div style={{flex:1,padding:"12px 16px",background:"var(--surface2,#f8f9fa)",borderRadius:10}}>
+            <strong style={{fontSize:".85rem"}}>Test Plan Status</strong>
+            <p style={{margin:"4px 0 0",fontSize:".82rem",color: testPlanActive ? "#22c55e" : "var(--muted)"}}>
+              {testPlanActive ? "✅ Active — visible on signup page" : "⬜ Not active"}
+            </p>
+          </div>
+        </div>
+
+        <div style={{background:"rgba(59,130,246,.08)",border:"1px solid rgba(59,130,246,.2)",borderRadius:8,padding:"10px 14px",marginBottom:16,fontSize:".82rem"}}>
+          <strong>How to test:</strong>
+          <ol style={{margin:"6px 0 0",paddingLeft:20,lineHeight:1.8}}>
+            <li>Click <strong>Create ₹1 Test Plan</strong> below</li>
+            <li>Go to <strong>likhapoha.in</strong> → Try Today → select "₹1 Test Plan"</li>
+            <li>Pay ₹1 via UPI from your phone or card</li>
+            <li>Check email arrives with "Set your password" link</li>
+            <li>Set password → log in → verify account works</li>
+            <li>Come back here → click <strong>Remove Test Plan</strong></li>
+          </ol>
+        </div>
+
+        <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+          <button
+            className="primary-btn"
+            onClick={handleCreate}
+            disabled={loading || testPlanActive}
+            style={{minWidth:160}}>
+            {loading ? "Working…" : testPlanActive ? "✅ Already Created" : "➕ Create ₹1 Test Plan"}
+          </button>
+          {testPlanActive && (
+            <button
+              className="danger-btn"
+              onClick={handleRemove}
+              disabled={loading}
+              style={{minWidth:160}}>
+              {loading ? "Working…" : "🗑 Remove Test Plan"}
+            </button>
+          )}
+        </div>
+        {status && (
+          <div className={status.startsWith("✅") ? "info-box" : "error-box"} style={{marginTop:12}}>
+            {status}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
