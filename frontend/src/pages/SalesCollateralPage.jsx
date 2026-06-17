@@ -14,6 +14,7 @@ import {
   createSalesCollateral,
   deleteSalesCollateral,
   getSalesCollaterals,
+  updateSalesCollateral,
   uploadSalesCollateralFile,
 } from "../api/sales";
 
@@ -78,6 +79,10 @@ function SalesCollateralPage({ user }) {
   const [channelFilter, setChannelFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [form, setForm] = useState(INITIAL_FORM);
+  // { [id]: string } — caption currently being edited per card
+  const [editingCaptions, setEditingCaptions] = useState({});
+  // { [id]: boolean } — saving state per card
+  const [savingCaption, setSavingCaption] = useState({});
 
   async function loadCollaterals() {
     /** Refresh the collateral library from the backend. */
@@ -194,6 +199,27 @@ function SalesCollateralPage({ user }) {
       await loadCollaterals();
     } catch (err) {
       setError(err.message || "Unable to delete collateral.");
+    }
+  }
+
+  async function startEditCaption(item) {
+    setEditingCaptions((prev) => ({ ...prev, [item.id]: item.caption || "" }));
+  }
+
+  async function saveCaption(item) {
+    const newCaption = editingCaptions[item.id] ?? item.caption;
+    setSavingCaption((prev) => ({ ...prev, [item.id]: true }));
+    setError("");
+    try {
+      const response = await updateSalesCollateral(item.id, { caption: newCaption });
+      if (!response?.success) throw new Error(response?.detail || "Save failed.");
+      setMessage("Caption saved.");
+      setEditingCaptions((prev) => { const n = { ...prev }; delete n[item.id]; return n; });
+      await loadCollaterals();
+    } catch (err) {
+      setError(err.message || "Unable to save caption.");
+    } finally {
+      setSavingCaption((prev) => ({ ...prev, [item.id]: false }));
     }
   }
 
@@ -509,11 +535,62 @@ function SalesCollateralPage({ user }) {
                 <h3>{item.title}</h3>
                 {item.description && <p>{item.description}</p>}
 
-                {item.caption && (
+                {/* Admin inline caption editor */}
+                {isAdmin && editingCaptions[item.id] !== undefined ? (
                   <div className="sales-collateral-caption">
-                    <strong>Caption</strong>
-                    <p>{item.caption}</p>
+                    <strong>Edit Caption</strong>
+                    <textarea
+                      value={editingCaptions[item.id]}
+                      onChange={(e) =>
+                        setEditingCaptions((prev) => ({ ...prev, [item.id]: e.target.value }))
+                      }
+                      rows={8}
+                      style={{ width: "100%", fontFamily: "inherit", fontSize: ".85rem",
+                               padding: "8px", borderRadius: "8px", border: "1px solid var(--border)",
+                               resize: "vertical", marginTop: "6px" }}
+                    />
+                    <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+                      <button
+                        type="button"
+                        className="primary-btn"
+                        style={{ padding: "6px 16px", fontSize: ".82rem" }}
+                        onClick={() => saveCaption(item)}
+                        disabled={savingCaption[item.id]}
+                      >
+                        {savingCaption[item.id] ? "Saving…" : "Save Caption"}
+                      </button>
+                      <button
+                        type="button"
+                        className="secondary-btn"
+                        style={{ padding: "6px 14px", fontSize: ".82rem" }}
+                        onClick={() =>
+                          setEditingCaptions((prev) => { const n = { ...prev }; delete n[item.id]; return n; })
+                        }
+                      >
+                        Cancel
+                      </button>
+                    </div>
                   </div>
+                ) : (
+                  <>
+                    {item.caption && (
+                      <div className="sales-collateral-caption">
+                        <strong>Caption</strong>
+                        <p>{item.caption}</p>
+                      </div>
+                    )}
+                    {isAdmin && (
+                      <button
+                        type="button"
+                        style={{ fontSize: ".78rem", background: "none", border: "1px solid var(--border)",
+                                 borderRadius: "6px", padding: "4px 10px", cursor: "pointer",
+                                 color: "var(--muted)", marginBottom: "8px" }}
+                        onClick={() => startEditCaption(item)}
+                      >
+                        ✏️ Edit Caption
+                      </button>
+                    )}
+                  </>
                 )}
 
                 <div className="sales-collateral-actions">
