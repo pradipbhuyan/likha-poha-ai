@@ -96,7 +96,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       </div></div>
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">Kids Love It</div><h2>Gamified Learning Dashboard</h2><p>Badges, leaderboards and achievement streaks keep students motivated every day</p></div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"20px"}}>
+        <div className="lp-2col">
           <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}>&#127942;</div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/gamified-dashboard.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
           <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#129351;</div>CLASS LEADERBOARD</div><img src="/screenshots/leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
         </div>

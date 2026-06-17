@@ -13637,3 +13637,10 @@ body.dark-mode .toast {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Sales Lead Page — stack claims list and submit form on mobile */
+@media (max-width: 768px) {
+  .sales-lead-main-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

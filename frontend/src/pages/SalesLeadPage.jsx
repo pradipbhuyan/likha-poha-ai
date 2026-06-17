@@ -170,7 +170,8 @@ export default function SalesLeadPage({ user }) {
         )}
 
         {/* Claims list + submit form */}
-        <div style={{ display: "grid", gridTemplateColumns: isAdmin ? "1fr" : "1fr 330px", gap: 22, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isAdmin ? "1fr" : "min(100%, 1fr) min(330px, 100%)", gap: 22, alignItems: "start" }}
+             className={isAdmin ? "" : "sales-lead-main-grid"}>
 
           <div>
             <h3 style={{ fontSize: ".95rem", fontWeight: 700, marginBottom: 12, color: "var(--muted)", textTransform: "uppercase", letterSpacing: ".05em" }}>

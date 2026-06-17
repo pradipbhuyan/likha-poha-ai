@@ -90,8 +90,9 @@
 .lp-ctasec p{color:#cbd5e1;font-size:1.05rem;margin-bottom:36px}
 .lp-footer{background:#111827;border-top:1px solid #334155;padding:40px 20px;text-align:center;font-size:.85rem;color:#cbd5e1}
 .lp-footer a{color:#93c5fd;margin:0 10px}
+.lp-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:768px){
-  .lp-nav{padding:14px 20px}
+.lp-nav{padding:14px 20px}
   .lp-hero{padding:72px 20px 48px}
-  .lp-pvs,.lp-demo,.lp-fg,.lp-pg,.lp-tgrid,.lp-skg{grid-template-columns:1fr}
+  .lp-pvs,.lp-demo,.lp-fg,.lp-pg,.lp-tgrid,.lp-skg,.lp-2col{grid-template-columns:1fr}
 }
