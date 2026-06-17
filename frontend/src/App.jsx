@@ -278,11 +278,12 @@ function App() {
   }
 
   function handleBackToLogin() {
-    /** Leave the recovery route and show the sign-in screen immediately. */
+    /** Leave the recovery route and go directly to the login page — bypass the landing page. */
     isRecoveryFlow.current = false;
     window.history.replaceState({}, "", "/");
     setRoutePath("/");
     setUser(null);
+    setShowLanding(false);  // skip landing page → go straight to login form
   }
 
   function handlePageChange(page) {
