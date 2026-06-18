@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
+import "./SignupPage.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -324,10 +325,10 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
       </nav>
 
       {/* SPLIT SHELL */}
-      <div style={S.shell}>
+      <div className="signup-shell" style={S.shell}>
 
         {/* ── LEFT PANEL ── */}
-        <div style={S.left}>
+        <div className="signup-left-panel" style={S.left}>
           <div style={glow1} />
           <div style={glow2} />
           <div style={{ position:"relative", zIndex:1 }}>
@@ -403,7 +404,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
         </div>
 
         {/* ── RIGHT PANEL ── */}
-        <div style={S.right}>
+        <div className="signup-right-panel" style={S.right}>
 
           {/* STEP 1 — Role selection */}
           {step === "role" && (

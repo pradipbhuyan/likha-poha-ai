@@ -1,0 +1,29 @@
+/* SignupPage responsive layout */
+
+/* On mobile: stack panels vertically, hide the left brand panel */
+@media (max-width: 768px) {
+  .signup-shell {
+    grid-template-columns: 1fr !important;
+    min-height: unset !important;
+  }
+
+  .signup-left-panel {
+    display: none !important;
+  }
+
+  .signup-right-panel {
+    padding: 32px 20px 40px !important;
+    min-height: 100dvh;
+  }
+}
+
+/* Small tablets (769–1024px): allow left panel but reduce padding */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .signup-left-panel {
+    padding: 36px 28px !important;
+  }
+
+  .signup-right-panel {
+    padding: 36px 28px !important;
+  }
+}
