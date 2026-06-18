@@ -54,7 +54,10 @@ export function filterAllowedSubjects(user, allSubjects, selectedMode) {
   if (user?.role === "admin" || isAllAccessTestUser(user)) return allSubjects;
 
   if (isSchoolBoardMode(selectedMode)) {
-    if (user?.accessCbse === false) return [];
+    // Offer-code users have accessCbse=false but offerAccess=true.
+    // The backend enforces DKB-only for doubts; the frontend should still
+    // show CBSE subjects so they can generate lessons and browse chapters.
+    if (user?.accessCbse === false && !user?.offerAccess) return [];
     return allSubjects.filter((subjectName) =>
       hasCbseSubjectAccess(user, subjectName)
     );

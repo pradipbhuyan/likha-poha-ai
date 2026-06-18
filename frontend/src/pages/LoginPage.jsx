@@ -22,7 +22,7 @@ function LoginPage({ onLogin, onShowSignup }) {
   const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function buildLoginUser({ authUser, profile, accessToken }) {
+  async function buildLoginUser({ authUser, profile, accessToken }) {
     /** Convert Supabase auth/profile rows into the app's normalized user object. */
     return {
       id: authUser.id,
@@ -48,6 +48,18 @@ function LoginPage({ onLogin, onShowSignup }) {
       monthlyTokenLimit: profile.monthly_token_limit,
       subscriptionPlan: profile.subscription_plan || "free",
       accountStatus: profile.account_status || "active",
+      // Offer-code users have access_cbse=False — fetch their offer redemption
+      // status so the frontend can show subjects and chapters correctly.
+      offerAccess: !profile.access_cbse ? await (async () => {
+        try {
+          const r = await fetch(`${API_BASE_URL}/api/offer/my-access`, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
+          if (!r.ok) return false;
+          const d = await r.json();
+          return !!d.has_offer_access;
+        } catch { return false; }
+      })() : false,
     };
   }
 
@@ -132,7 +144,7 @@ function LoginPage({ onLogin, onShowSignup }) {
       }
 
       onLogin(
-        buildLoginUser({
+        await buildLoginUser({
           authUser: data.user,
           profile,
           accessToken: data.session.access_token,
@@ -335,7 +347,7 @@ function LoginPage({ onLogin, onShowSignup }) {
         .single();
 
       onLogin(
-        buildLoginUser({
+        await buildLoginUser({
           authUser: loginData.user,
           profile: freshProfile || profilePayload,
           accessToken: loginData.session.access_token,
