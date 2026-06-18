@@ -196,8 +196,7 @@ function Sidebar({
       key: "subscriptionPlans",
       label: "Subscription",
       icon: CreditCard,
-      roles: ["parent"],
-      parentOnly: true,
+      roles: ["student", "parent"],
     },
     {
       key: "changePassword",
