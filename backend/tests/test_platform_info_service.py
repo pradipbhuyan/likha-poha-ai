@@ -19,5 +19,5 @@ def test_platform_info_answer_uses_founder_story():
     assert result["source_type"] == "PLATFORM_RAG"
     assert "Pradip Bhuyan" in result["answer"]
     assert "Akshita" in result["answer"]
-    assert "not an official CBSE or SOF product" in result["answer"]
+    assert "not an official CBSE product" in result["answer"]
     assert result["sources"][0]["document"]["title"] == "Likha Poha AI Founder Story"

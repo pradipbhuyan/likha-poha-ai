@@ -64,28 +64,27 @@ def answer_platform_info(question: str):
         answer = (
             "Likha Poha AI was initially developed by Pradip Bhuyan to help his "
             "daughter, Akshita, with her studies. That personal need shaped the "
-            "platform into a patient AI learning companion for CBSE and SOF "
-            "Olympiad preparation."
+            "platform into a patient AI learning companion for CBSE preparation "
+            "from Grade 5 to Grade 10."
         )
     elif "founder" in text or "who created" in text or "who made" in text:
         answer = (
             "Likha Poha AI was created by Pradip Bhuyan. It began as a way to "
             "help his daughter Akshita study with step-by-step explanations, "
-            "doubt solving, practice, and progress visibility."
+            "doubt solving, practice, and progress visibility for CBSE students."
         )
     else:
         answer = (
             "Likha Poha AI is an independent AI learning companion created by "
-            "Pradip Bhuyan for Class 1 to Class 10 students. It supports CBSE "
-            "learning and SOF Science, Maths, and English Olympiad preparation "
-            "using lessons, doubt solving, mock tests, uploaded textbook or "
-            "workbook RAG content, and parent/teacher progress tracking. It was "
-            "initially developed to help the founder's daughter, Akshita, with "
-            "her studies."
+            "Pradip Bhuyan for CBSE students from Grade 5 to Grade 10. It "
+            "supports Science, Maths, English, Social Science, and Hindi using "
+            "lessons, doubt solving, mock tests, uploaded textbook RAG content, "
+            "and parent/teacher progress tracking. It was initially developed to "
+            "help the founder's daughter, Akshita, with her studies."
         )
 
     answer += (
-        "\n\nIt is not an official CBSE or SOF product, and it is not meant to "
+        "\n\nIt is not an official CBSE product, and it is not meant to "
         "replace teachers or parents. It is designed to support revision, "
         "practice, confidence building, and personalized learning."
     )
