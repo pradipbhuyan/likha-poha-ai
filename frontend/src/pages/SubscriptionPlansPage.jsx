@@ -43,6 +43,200 @@ function cleanContactNumber(value = "") {
   return `${prefix}${trimmed.replace(/[^\d]/g, "")}`;
 }
 
+function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
+  /**
+   * Read-only subscription plan showcase for students.
+   * Shows available plans with pricing and features, current access status,
+   * and a "Share with your parent" CTA. No payment button — payments are parent-driven.
+   */
+  const supportEmail = contact.email || DEFAULT_SUBSCRIPTION_CONTACT.email;
+  const supportPhone = cleanContactNumber(contact.phone);
+  const supportWhatsapp = cleanContactNumber(contact.whatsapp);
+
+  // Detect current student access level
+  const hasCbse = user?.accessCbse;
+  const hasSof = user?.accessSofScience || user?.accessSofMaths || user?.accessSofEnglish;
+  const currentPlanLabel = hasCbse
+    ? hasSof ? "CBSE + SOF Plan" : "CBSE Plan"
+    : "Offer / Free Access";
+
+  if (loading) return <p>Loading subscription plans...</p>;
+
+  return (
+    <div className="premium-page subscription-page">
+      {/* Hero */}
+      <section className="subscription-hero">
+        <div>
+          <p className="eyebrow">Upgrade Your Learning</p>
+          <h2>Unlock full AI tutoring for every subject</h2>
+          <p>
+            See what each plan includes. Ask your parent to subscribe so you get
+            unlimited lessons, doubt solving, and mock tests across all chapters.
+          </p>
+        </div>
+
+        {/* Current access badge */}
+        <div className="subscription-current-panel">
+          <div className="subscription-current-plan">
+            <span>Your current access</span>
+            <strong>{currentPlanLabel}</strong>
+            <small>
+              {hasCbse
+                ? "✅ CBSE access active"
+                : "🔒 Limited — upgrade to unlock all features"}
+            </small>
+          </div>
+        </div>
+      </section>
+
+      {/* Student notice */}
+      <div className="info-box" style={{ marginBottom: 24 }}>
+        <strong>📢 How to upgrade:</strong> Share this page with your parent.
+        They can log in as a parent and activate the plan directly.
+        Subscriptions are managed by parent accounts.
+      </div>
+
+      {/* Plan cards — read-only */}
+      <section className="subscription-plan-grid">
+        {planOrder.map((planKey) => {
+          const plan = plans[planKey];
+          const displayPrice = getPlanDisplayPrice(plan);
+          const hasDiscount = Number(plan.discountPercent || 0) > 0;
+
+          return (
+            <article
+              key={plan.key}
+              className={[
+                "subscription-plan-card",
+                plan.recommended ? "recommended" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <div className="subscription-plan-topline">
+                <div>
+                  <h3>{plan.label}</h3>
+                  <p>{plan.audience}</p>
+                </div>
+                {plan.badge && (
+                  <span className="plan-badge">{plan.badge}</span>
+                )}
+              </div>
+
+              <div className="subscription-price-row">
+                <strong>{formatPlanPrice(displayPrice)}</strong>
+                <span>/ {plan.billingLabel}</span>
+              </div>
+
+              {hasDiscount && (
+                <div className="subscription-discount-row">
+                  <span>{formatPlanPrice(plan.price)}</span>
+                  <strong>
+                    {plan.discountLabel || `${plan.discountPercent}% off`}
+                  </strong>
+                </div>
+              )}
+
+              <ul className="subscription-feature-list">
+                {plan.included.map((feature) => (
+                  <li key={feature}>
+                    <Check size={18} strokeWidth={2.6} />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+                {plan.notIncluded.map((feature) => (
+                  <li key={feature} className="muted-feature">
+                    <Minus size={18} strokeWidth={2.6} />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Read-only — no payment button for students */}
+              <div style={{
+                padding: "10px 14px",
+                background: "rgba(99,102,241,.06)",
+                borderRadius: 8,
+                fontSize: ".82rem",
+                color: "var(--text-muted)",
+                textAlign: "center",
+              }}>
+                🔒 Ask your parent to activate this plan
+              </div>
+            </article>
+          );
+        })}
+      </section>
+
+      {/* Share with parent CTA */}
+      <section className="premium-section" style={{ marginTop: 24 }}>
+        <div className="premium-header">
+          <p className="eyebrow">Ready to unlock everything?</p>
+          <h3>👨‍👩‍👧 Ask your parent to subscribe</h3>
+          <p style={{ maxWidth: 560 }}>
+            Your parent can log in with their parent account and activate a plan
+            in minutes. Once done, you'll have unlimited AI lessons, doubt
+            solving, practice questions, and mock tests for all your subjects.
+          </p>
+        </div>
+
+        <div className="premium-grid premium-grid-3" style={{ marginTop: 20 }}>
+          <div className="premium-card premium-glow-card glow-blue">
+            <h3>📚 All Lessons</h3>
+            <p>5-step AI lessons for every CBSE chapter, Grade 5–10.</p>
+          </div>
+          <div className="premium-card premium-glow-card glow-purple">
+            <h3>❓ Unlimited Doubts</h3>
+            <p>Ask any question — get textbook-aligned AI answers instantly.</p>
+          </div>
+          <div className="premium-card premium-glow-card glow-green">
+            <h3>🧪 Mock Tests</h3>
+            <p>Chapter-wise timed tests with scoring and revision guidance.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact section */}
+      <section className="premium-section subscription-contact-card">
+        <div>
+          <p className="eyebrow">Questions?</p>
+          <h3>Contact us to learn more</h3>
+          <p>{contact.message || DEFAULT_SUBSCRIPTION_CONTACT.message}</p>
+          <small>{contact.availability || DEFAULT_SUBSCRIPTION_CONTACT.availability}</small>
+        </div>
+
+        <div className="subscription-contact-actions">
+          <a href={`mailto:${supportEmail}`}>
+            <Mail size={20} strokeWidth={2.4} />
+            <span>
+              Email
+              <strong>{supportEmail}</strong>
+            </span>
+          </a>
+
+          {supportPhone ? (
+            <a href={`tel:${supportPhone}`}>
+              <Phone size={20} strokeWidth={2.4} />
+              <span>Call<strong>{contact.phone}</strong></span>
+            </a>
+          ) : null}
+
+          {supportWhatsapp ? (
+            <a
+              href={`https://wa.me/${supportWhatsapp.replace("+", "")}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle size={20} strokeWidth={2.4} />
+              <span>WhatsApp<strong>{contact.whatsapp}</strong></span>
+            </a>
+          ) : null}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function SubscriptionPlansPage({ user }) {
   /** Parent-facing plan comparison and payment entry page. */
   const [children, setChildren] = useState([]);
@@ -110,6 +304,26 @@ function SubscriptionPlansPage({ user }) {
 
     if (user?.role === "parent") {
       loadChildren();
+    } else if (user?.role === "student") {
+      // Students get read-only plan data — no children or payment config needed
+      getParentSubscriptionPlans()
+        .then((planResult) => {
+          const loadedPlans = mergeSubscriptionPlans(planResult.plans || {});
+          const loadedPlanOrder = (planResult.plan_order || []).filter(
+            (planKey) => loadedPlans[planKey]?.isPublic !== false
+          );
+          const loadedContact = {
+            ...DEFAULT_SUBSCRIPTION_CONTACT,
+            ...(planResult.contact || {}),
+          };
+          setPlans(loadedPlans);
+          setContact(loadedContact);
+          if (loadedPlanOrder.length) setPlanOrder(loadedPlanOrder);
+        })
+        .catch(() => {
+          // Fall back to defaults silently — student view still works
+        })
+        .finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
@@ -228,6 +442,18 @@ function SubscriptionPlansPage({ user }) {
       setError(err.message || "Unable to start payment.");
       setPaymentProcessing(false);
     }
+  }
+
+  if (user?.role === "student") {
+    return (
+      <StudentSubscriptionView
+        user={user}
+        plans={plans}
+        planOrder={planOrder}
+        contact={contact}
+        loading={loading}
+      />
+    );
   }
 
   if (user?.role !== "parent") {
