@@ -1087,6 +1087,21 @@ def deactivate_offer_code(code_id: str, admin=Depends(require_admin)):
     return {"success": True, "offer_code": result.data[0]}
 
 
+@router.patch("/offer-codes/{code_id}/reactivate")
+def reactivate_offer_code(code_id: str, admin=Depends(require_admin)):
+    """Reactivate a previously deactivated offer code."""
+    result = (
+        admin_client
+        .table("offer_codes")
+        .update({"is_active": True})
+        .eq("id", code_id)
+        .execute()
+    )
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Offer code not found.")
+    return {"success": True, "offer_code": result.data[0]}
+
+
 @router.post("/redeem-offer-code")
 def redeem_offer_code(
     payload: dict,
