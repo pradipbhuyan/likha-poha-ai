@@ -1669,12 +1669,18 @@ def offer_gate_test(
             valid_until_far = (datetime.now(timezone.utc) + timedelta(days=365)).isoformat()
             new_code = admin_client.table("offer_codes").insert({
                 "code": test_code_label,
-                "label": "Admin Offer-Gate Test Code",
+                "description": "Admin Offer-Gate Test Code (auto-created)",
                 "is_active": True,
                 "valid_from": datetime.now(timezone.utc).isoformat(),
                 "valid_until": valid_until_far,
                 "max_uses": 9999,
                 "uses_count": 0,
+                "influencer_name": "",
+                "influencer_email": "",
+                "code_type": "free_trial",
+                "discount_percent": 0,
+                "incentive_inr": 0,
+                "incentive_paid": False,
             }).execute()
             code_id = new_code.data[0]["id"]
 
