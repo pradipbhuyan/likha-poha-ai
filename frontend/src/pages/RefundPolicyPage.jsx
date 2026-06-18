@@ -39,7 +39,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="3. Monthly Plans — Standard (₹299) and Family (₹499)">
+        <Section title="3. Monthly Plans — Standard (₹299/month) and Family (₹499/month)">
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}><strong>Within 24 hours of first purchase:</strong> If you have not used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
             <li style={{marginBottom:8}}><strong>After 24 hours:</strong> Subscriptions are <strong>non-refundable</strong> once the billing cycle has started and platform features have been accessed.</li>
@@ -48,15 +48,26 @@ export default function RefundPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="4. Annual Plans">
-          If annual plan options become available:
+        <Section title="4. 6-Month Plan — Standard (₹1,495 / 6 months)">
+          The 6-month plan is a single upfront payment covering 6 months of access (equivalent to paying for 5 months — 1 month is included free).
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
-            <li style={{marginBottom:8}}>Refunds are available within <strong>7 days</strong> of purchase if the platform has not been materially used.</li>
-            <li>No refunds are issued after 7 days or after significant platform usage.</li>
+            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform, you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
+            <li style={{marginBottom:8}}><strong>After 7 days:</strong> The 6-month plan is <strong>non-refundable</strong> once the platform has been accessed.</li>
+            <li>There is no partial refund for the unused portion of the 6-month period once the refund window has passed.</li>
           </ul>
         </Section>
 
-        <Section title="5. How to Request a Refund">
+        <Section title="5. Annual Plans — Standard Annual (₹2,999/year) and Family Annual (₹4,999/year)">
+          Annual plans are single upfront payments covering 12 months of access (equivalent to 10 months' billing — 2 months are included free).
+          <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
+            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
+            <li style={{marginBottom:8}}><strong>After 7 days:</strong> Annual plans are <strong>non-refundable</strong> once the platform has been accessed or the 7-day window has passed.</li>
+            <li style={{marginBottom:8}}>There is no partial refund for the unused portion of the annual period once the refund window has passed.</li>
+            <li>If a prolonged technical failure on our part prevented you from using the platform for a significant period, we will assess the case individually and may issue a prorated credit.</li>
+          </ul>
+        </Section>
+
+        <Section title="6. How to Request a Refund">
           To request a refund, email us at <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a> with:
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}>Your registered email address or username</li>
@@ -67,7 +78,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
           We aim to respond within <strong>2 business days</strong>. Approved refunds are processed within <strong>5–7 business days</strong> to the original payment method.
         </Section>
 
-        <Section title="6. Non-Refundable Situations">
+        <Section title="7. Non-Refundable Situations">
           Refunds will <strong>not</strong> be issued in the following cases:
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}>The platform was used (lessons generated, doubts asked, or tests taken)</li>
@@ -77,15 +88,15 @@ export default function RefundPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="7. Disputed or Fraudulent Transactions">
+        <Section title="8. Disputed or Fraudulent Transactions">
           If you believe an unauthorised charge was made to your account, contact us immediately at <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>. We will investigate and resolve legitimate disputes as quickly as possible.
         </Section>
 
-        <Section title="8. Changes to This Policy">
+        <Section title="9. Changes to This Policy">
           We may update this Refund Policy from time to time. Changes will be posted on this page with an updated effective date. Continued use of the platform after changes constitutes acceptance of the revised policy.
         </Section>
 
-        <Section title="9. Contact Us">
+        <Section title="10. Contact Us">
           For any questions about this policy or your subscription:
           <br /><br />
           <strong>LikhaPoha AI</strong><br />
