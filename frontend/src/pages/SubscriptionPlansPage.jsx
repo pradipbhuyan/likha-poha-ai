@@ -18,6 +18,9 @@ import {
   createPaymentOrder,
   getPaymentConfig,
   verifyPayment,
+  getStudentPaymentConfig,
+  createStudentPaymentOrder,
+  verifyStudentPayment,
 } from "../api/payments";
 import {
   formatPlanPrice,
@@ -45,20 +48,104 @@ function cleanContactNumber(value = "") {
 
 function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
   /**
-   * Read-only subscription plan showcase for students.
-   * Shows available plans with pricing and features, current access status,
-   * and a "Share with your parent" CTA. No payment button — payments are parent-driven.
+   * Student subscription page — branches on whether the student has a parent.
+   *
+   * Standalone students (parentId === null, self-registered):
+   *   Full self-service plan selection + Razorpay payment.
+   *
+   * Parent-linked students (parentId !== null, added by parent):
+   *   Read-only view with "Talk to your parent to upgrade" message.
    */
+  const isStandaloneStudent = !user?.parentId;
   const supportEmail = contact.email || DEFAULT_SUBSCRIPTION_CONTACT.email;
   const supportPhone = cleanContactNumber(contact.phone);
   const supportWhatsapp = cleanContactNumber(contact.whatsapp);
 
-  // Detect current student access level
+  // Access level display
   const hasCbse = user?.accessCbse;
   const hasSof = user?.accessSofScience || user?.accessSofMaths || user?.accessSofEnglish;
   const currentPlanLabel = hasCbse
     ? hasSof ? "CBSE + SOF Plan" : "CBSE Plan"
     : "Offer / Free Access";
+
+  // Self-service payment state (standalone students only)
+  const [selectedPlanKey, setSelectedPlanKey] = useState(planOrder[0] || "premium");
+  const [paymentConfig, setPaymentConfig] = useState({ configured: false });
+  const [paymentProcessing, setPaymentProcessing] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState("");
+  const [paymentError, setPaymentError] = useState("");
+
+  useEffect(() => {
+    if (!isStandaloneStudent) return;
+    getStudentPaymentConfig()
+      .then(setPaymentConfig)
+      .catch(() => setPaymentConfig({ configured: false }));
+  }, [isStandaloneStudent]);
+
+  function loadRazorpayScript() {
+    return new Promise((resolve, reject) => {
+      if (window.Razorpay) { resolve(true); return; }
+      const s = document.createElement("script");
+      s.src = "https://checkout.razorpay.com/v1/checkout.js";
+      s.async = true;
+      s.onload = () => resolve(true);
+      s.onerror = () => reject(new Error("Unable to load payment checkout."));
+      document.body.appendChild(s);
+    });
+  }
+
+  async function handleStudentPayment() {
+    const plan = plans[selectedPlanKey];
+    if (!plan) return;
+
+    if (!paymentConfig.configured) {
+      setPaymentMessage(
+        `Online UPI payment is not enabled yet. Contact us to activate ${plan.label}.`
+      );
+      return;
+    }
+
+    setPaymentProcessing(true);
+    setPaymentMessage("");
+    setPaymentError("");
+
+    try {
+      await loadRazorpayScript();
+      const orderResult = await createStudentPaymentOrder({ plan_key: plan.key });
+
+      const checkout = new window.Razorpay({
+        key: orderResult.key_id,
+        amount: orderResult.order.amount,
+        currency: orderResult.order.currency,
+        name: "Likha Poha AI",
+        description: `${plan.label} subscription`,
+        order_id: orderResult.order.id,
+        prefill: { email: user?.email || "", name: user?.username || "" },
+        handler: async (response) => {
+          try {
+            await verifyStudentPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+            setPaymentMessage(
+              `✅ ${plan.label} activated! Refresh the page to see your updated access.`
+            );
+          } catch (err) {
+            setPaymentError(err.message || "Payment verification failed.");
+          } finally {
+            setPaymentProcessing(false);
+          }
+        },
+        modal: { ondismiss: () => setPaymentProcessing(false) },
+        method: { upi: true },
+      });
+      checkout.open();
+    } catch (err) {
+      setPaymentError(err.message || "Unable to start payment.");
+      setPaymentProcessing(false);
+    }
+  }
 
   if (loading) return <p>Loading subscription plans...</p>;
 
@@ -67,15 +154,20 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
       {/* Hero */}
       <section className="subscription-hero">
         <div>
-          <p className="eyebrow">Upgrade Your Learning</p>
-          <h2>Unlock full AI tutoring for every subject</h2>
+          <p className="eyebrow">
+            {isStandaloneStudent ? "Your Subscription" : "Upgrade Your Learning"}
+          </p>
+          <h2>
+            {isStandaloneStudent
+              ? "Choose the right plan for you"
+              : "Unlock full AI tutoring for every subject"}
+          </h2>
           <p>
-            See what each plan includes. Ask your parent to subscribe so you get
-            unlimited lessons, doubt solving, and mock tests across all chapters.
+            {isStandaloneStudent
+              ? "Compare plans and pay directly with UPI. Your access is activated instantly after payment."
+              : "See what each plan includes. Ask your parent to subscribe to unlock everything."}
           </p>
         </div>
-
-        {/* Current access badge */}
         <div className="subscription-current-panel">
           <div className="subscription-current-plan">
             <span>Your current access</span>
@@ -89,19 +181,30 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
         </div>
       </section>
 
-      {/* Student notice */}
-      <div className="info-box" style={{ marginBottom: 24 }}>
-        <strong>📢 How to upgrade:</strong> Share this page with your parent.
-        They can log in as a parent and activate the plan directly.
-        Subscriptions are managed by parent accounts.
-      </div>
+      {/* Parent-linked: read-only notice */}
+      {!isStandaloneStudent && (
+        <div className="info-box" style={{ marginBottom: 24 }}>
+          <strong>📢 How to upgrade:</strong> Your account is managed by your parent.
+          Ask them to log in and activate a plan for you. Subscriptions for parent-linked
+          accounts are managed by the parent.
+        </div>
+      )}
 
-      {/* Plan cards — read-only */}
+      {/* Standalone: payment messages */}
+      {isStandaloneStudent && paymentMessage && (
+        <div className="info-box" style={{ marginBottom: 16 }}>{paymentMessage}</div>
+      )}
+      {isStandaloneStudent && paymentError && (
+        <div className="error-box" style={{ marginBottom: 16 }}>{paymentError}</div>
+      )}
+
+      {/* Plan cards */}
       <section className="subscription-plan-grid">
         {planOrder.map((planKey) => {
           const plan = plans[planKey];
           const displayPrice = getPlanDisplayPrice(plan);
           const hasDiscount = Number(plan.discountPercent || 0) > 0;
+          const isSelected = selectedPlanKey === plan.key;
 
           return (
             <article
@@ -109,6 +212,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
               className={[
                 "subscription-plan-card",
                 plan.recommended ? "recommended" : "",
+                isStandaloneStudent && isSelected ? "selected" : "",
               ]
                 .filter(Boolean)
                 .join(" ")}
@@ -118,9 +222,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
                   <h3>{plan.label}</h3>
                   <p>{plan.audience}</p>
                 </div>
-                {plan.badge && (
-                  <span className="plan-badge">{plan.badge}</span>
-                )}
+                {plan.badge && <span className="plan-badge">{plan.badge}</span>}
               </div>
 
               <div className="subscription-price-row">
@@ -152,49 +254,104 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
                 ))}
               </ul>
 
-              {/* Read-only — no payment button for students */}
-              <div style={{
-                padding: "10px 14px",
-                background: "rgba(99,102,241,.06)",
-                borderRadius: 8,
-                fontSize: ".82rem",
-                color: "var(--text-muted)",
-                textAlign: "center",
-              }}>
-                🔒 Ask your parent to activate this plan
-              </div>
+              {isStandaloneStudent ? (
+                <button
+                  className={plan.recommended ? "primary-btn" : "secondary-btn"}
+                  onClick={() => setSelectedPlanKey(plan.key)}
+                >
+                  {isSelected ? `✓ ${plan.shortLabel} Selected` : `Choose ${plan.shortLabel}`}
+                </button>
+              ) : (
+                <div style={{
+                  padding: "10px 14px",
+                  background: "rgba(99,102,241,.06)",
+                  borderRadius: 8,
+                  fontSize: ".82rem",
+                  color: "var(--text-muted)",
+                  textAlign: "center",
+                }}>
+                  🔒 Ask your parent to activate this plan
+                </div>
+              )}
             </article>
           );
         })}
       </section>
 
-      {/* Share with parent CTA */}
-      <section className="premium-section" style={{ marginTop: 24 }}>
-        <div className="premium-header">
-          <p className="eyebrow">Ready to unlock everything?</p>
-          <h3>👨‍👩‍👧 Ask your parent to subscribe</h3>
-          <p style={{ maxWidth: 560 }}>
-            Your parent can log in with their parent account and activate a plan
-            in minutes. Once done, you'll have unlimited AI lessons, doubt
-            solving, practice questions, and mock tests for all your subjects.
-          </p>
-        </div>
+      {/* Standalone student: payment panel */}
+      {isStandaloneStudent && (
+        <section className="subscription-bottom-grid">
+          <div className="premium-section subscription-compare">
+            <div className="subscription-section-heading">
+              <ShieldCheck size={22} strokeWidth={2.4} />
+              <h3>What you get</h3>
+            </div>
+            <div className="premium-grid premium-grid-3" style={{ marginTop: 12 }}>
+              <div className="premium-card premium-glow-card glow-blue">
+                <h3>📚 All Lessons</h3>
+                <p>5-step AI lessons for every CBSE chapter, Grade 5–10.</p>
+              </div>
+              <div className="premium-card premium-glow-card glow-purple">
+                <h3>❓ Unlimited Doubts</h3>
+                <p>Ask any question — textbook-aligned AI answers instantly.</p>
+              </div>
+              <div className="premium-card premium-glow-card glow-green">
+                <h3>🧪 Mock Tests</h3>
+                <p>Chapter-wise timed tests with scoring and revision guidance.</p>
+              </div>
+            </div>
+          </div>
 
-        <div className="premium-grid premium-grid-3" style={{ marginTop: 20 }}>
-          <div className="premium-card premium-glow-card glow-blue">
-            <h3>📚 All Lessons</h3>
-            <p>5-step AI lessons for every CBSE chapter, Grade 5–10.</p>
+          <aside className="premium-section subscription-payment-panel">
+            <div className="subscription-section-heading">
+              <CreditCard size={22} strokeWidth={2.4} />
+              <h3>Payment summary</h3>
+            </div>
+            <div className="subscription-summary-line">
+              <span>Selected plan</span>
+              <strong>{plans[selectedPlanKey]?.label || "—"}</strong>
+            </div>
+            <div className="subscription-summary-line total">
+              <span>Total today</span>
+              <strong>
+                {formatPlanPrice(getPlanDisplayPrice(plans[selectedPlanKey] || {}))}
+              </strong>
+            </div>
+            <button
+              className="primary-btn"
+              disabled={paymentProcessing}
+              onClick={handleStudentPayment}
+            >
+              <Sparkles size={18} strokeWidth={2.5} />
+              {paymentProcessing
+                ? "Opening Payment..."
+                : paymentConfig.configured
+                  ? "Pay with UPI"
+                  : "Payment Setup Pending"}
+            </button>
+            <p className="subscription-payment-note">
+              {paymentConfig.configured
+                ? "UPI checkout opens through Razorpay. Access is activated after payment verification."
+                : "Online UPI payment is not yet enabled. Contact us to activate your plan."}
+            </p>
+          </aside>
+        </section>
+      )}
+
+      {/* Parent-linked: CTA */}
+      {!isStandaloneStudent && (
+        <section className="premium-section" style={{ marginTop: 24 }}>
+          <div className="premium-header">
+            <p className="eyebrow">Ready to unlock everything?</p>
+            <h3>👨‍👩‍👧 Ask your parent to subscribe</h3>
+            <p style={{ maxWidth: 560 }}>
+              Your parent can log in with their parent account and activate a plan
+              in minutes. Once done, you'll have unlimited AI lessons, doubt solving,
+              practice questions, and mock tests for all your subjects.
+            </p>
           </div>
-          <div className="premium-card premium-glow-card glow-purple">
-            <h3>❓ Unlimited Doubts</h3>
-            <p>Ask any question — get textbook-aligned AI answers instantly.</p>
-          </div>
-          <div className="premium-card premium-glow-card glow-green">
-            <h3>🧪 Mock Tests</h3>
-            <p>Chapter-wise timed tests with scoring and revision guidance.</p>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Contact section */}
       <section className="premium-section subscription-contact-card">
@@ -204,23 +361,17 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
           <p>{contact.message || DEFAULT_SUBSCRIPTION_CONTACT.message}</p>
           <small>{contact.availability || DEFAULT_SUBSCRIPTION_CONTACT.availability}</small>
         </div>
-
         <div className="subscription-contact-actions">
           <a href={`mailto:${supportEmail}`}>
             <Mail size={20} strokeWidth={2.4} />
-            <span>
-              Email
-              <strong>{supportEmail}</strong>
-            </span>
+            <span>Email<strong>{supportEmail}</strong></span>
           </a>
-
           {supportPhone ? (
             <a href={`tel:${supportPhone}`}>
               <Phone size={20} strokeWidth={2.4} />
               <span>Call<strong>{contact.phone}</strong></span>
             </a>
           ) : null}
-
           {supportWhatsapp ? (
             <a
               href={`https://wa.me/${supportWhatsapp.replace("+", "")}`}

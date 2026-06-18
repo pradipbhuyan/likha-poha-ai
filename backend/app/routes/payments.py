@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from app.config import settings
 from app.routes.admin_control import list_subscription_contact_settings, list_subscription_plan_settings
-from app.services.auth_service import admin_client, require_parent
+from app.services.auth_service import admin_client, require_parent, get_current_user
 from app.services.parent_dashboard_service import get_child_by_id, get_children
 
 router = APIRouter()
@@ -316,6 +316,191 @@ def verify_payment(
         "success": True,
         "payment": saved_payment,
         "activated_profiles": activated_profiles,
+    }
+
+
+# ── Student self-service payment endpoints ───────────────────────────────────
+# For standalone students (parent_id=None) who signed up via the public Signup
+# flow and manage their own subscription without a parent account.
+
+
+class StudentCreateOrderRequest(BaseModel):
+    plan_key: str
+
+
+@router.get("/student-config")
+def get_student_payment_config(user=Depends(get_current_user)):
+    """Return safe Razorpay configuration for a standalone student."""
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, role, parent_id")
+        .eq("id", user.id)
+        .single()
+        .execute()
+    )
+    profile = profile_resp.data or {}
+    if profile.get("role") != "student":
+        raise HTTPException(status_code=403, detail="Student account required.")
+    if profile.get("parent_id"):
+        raise HTTPException(
+            status_code=403,
+            detail="This account is managed by a parent. Ask your parent to upgrade.",
+        )
+    return {
+        "success": True,
+        "configured": razorpay_is_configured(),
+        "provider": "razorpay",
+        "currency": "INR",
+        "key_id": settings.RAZORPAY_KEY_ID if razorpay_is_configured() else None,
+    }
+
+
+@router.post("/student-create-order")
+def student_create_payment_order(
+    data: StudentCreateOrderRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Create a Razorpay subscription order for a standalone student paying for themselves.
+
+    Only allowed when the student has no parent_id (self-registered).
+    Parent-linked students must go through their parent's account.
+    """
+    if not razorpay_is_configured():
+        raise HTTPException(
+            status_code=503,
+            detail="Payment gateway is not configured yet.",
+        )
+
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, role, parent_id, email, username")
+        .eq("id", user.id)
+        .single()
+        .execute()
+    )
+    profile = profile_resp.data or {}
+
+    if profile.get("role") != "student":
+        raise HTTPException(status_code=403, detail="Student account required.")
+
+    if profile.get("parent_id"):
+        raise HTTPException(
+            status_code=403,
+            detail="This account is managed by a parent. Ask your parent to upgrade.",
+        )
+
+    plan = get_public_plan(data.plan_key)
+    amount_rupees = plan_display_amount(plan)
+
+    if amount_rupees <= 0:
+        raise HTTPException(status_code=400, detail="Free plans do not need payment.")
+
+    student_id = profile["id"]
+    amount_paise = amount_rupees * 100
+    receipt = f"stu_{student_id[:8]}_{int(datetime.now(timezone.utc).timestamp())}"
+    notes = {
+        "student_id": student_id,
+        "plan_key": plan["key"],
+        "source": "student_self_service",
+    }
+    order = create_razorpay_order(amount_paise, receipt, notes)
+
+    payment = save_payment_record({
+        "razorpay_order_id": order["id"],
+        "razorpay_payment_id": None,
+        "parent_id": student_id,   # reuse parent_id column to store payer id
+        "child_id": student_id,    # student is both payer and beneficiary
+        "family_id": None,
+        "plan_key": plan["key"],
+        "amount": amount_rupees,
+        "amount_paise": amount_paise,
+        "currency": "INR",
+        "status": "created",
+        "provider": "razorpay",
+        "metadata": {
+            "receipt": receipt,
+            "plan_label": plan.get("label"),
+            "source": "student_self_service",
+            "student_username": profile.get("username"),
+        },
+    })
+
+    return {
+        "success": True,
+        "configured": True,
+        "provider": "razorpay",
+        "key_id": settings.RAZORPAY_KEY_ID,
+        "order": order,
+        "payment": payment,
+        "plan": plan,
+    }
+
+
+@router.post("/student-verify")
+def student_verify_payment(
+    data: VerifyPaymentRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Verify Razorpay callback for a standalone student self-service payment.
+
+    Activates the plan directly on the student's own profile.
+    """
+    if not razorpay_is_configured():
+        raise HTTPException(status_code=503, detail="Payment gateway is not configured.")
+
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, role, parent_id")
+        .eq("id", user.id)
+        .single()
+        .execute()
+    )
+    profile = profile_resp.data or {}
+
+    if profile.get("role") != "student" or profile.get("parent_id"):
+        raise HTTPException(status_code=403, detail="Not authorised for self-service payment.")
+
+    payment = get_payment_by_order_id(data.razorpay_order_id)
+
+    if not payment or payment.get("child_id") != user.id:
+        raise HTTPException(status_code=404, detail="Payment order not found.")
+
+    if not verify_razorpay_signature(
+        data.razorpay_order_id,
+        data.razorpay_payment_id,
+        data.razorpay_signature,
+    ):
+        save_payment_record({
+            **payment,
+            "razorpay_payment_id": data.razorpay_payment_id,
+            "status": "signature_failed",
+        })
+        raise HTTPException(status_code=400, detail="Payment verification failed.")
+
+    plan = get_public_plan(payment["plan_key"])
+
+    # Activate plan on the student's own profile
+    admin_client.table("profiles").update(
+        profile_access_from_plan(plan)
+    ).eq("id", user.id).eq("role", "student").execute()
+
+    verified_at = datetime.now(timezone.utc).isoformat()
+    saved_payment = save_payment_record({
+        **payment,
+        "razorpay_payment_id": data.razorpay_payment_id,
+        "status": "paid",
+        "verified_at": verified_at,
+    })
+
+    return {
+        "success": True,
+        "payment": saved_payment,
+        "plan": plan,
     }
 
 
