@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Likha Poha AI — Pricing Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #f4f6fb; color: #1e2235; min-height: 100vh; padding: 32px 16px; }
+  h1 { text-align: center; font-size: 1.9rem; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; font-size: .95rem; }
+  .note { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 10px;
+          padding: 12px 20px; max-width: 960px; margin: 0 auto 28px; font-size: .87rem; color: #92400e; }
+  .section-title { max-width: 960px; margin: 36px auto 14px; font-size: 1rem;
+                   font-weight: 700; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+               gap: 18px; max-width: 960px; margin: 0 auto 8px; }
+  .plan-card { background: #fff; border-radius: 16px; border: 2px solid #e5e7eb;
+               padding: 28px 20px 20px; display: flex; flex-direction: column; gap: 10px;
+               position: relative; }
+  .plan-card.popular  { border-color: #6366f1; }
+  .plan-card.savings  { border-color: #f59e0b; }
+  .plan-card.annual   { border-color: #10b981; }
+  .badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+           white-space: nowrap; padding: 3px 14px; border-radius: 20px;
+           font-size: .72rem; font-weight: 700; }
+  .badge.b-start   { background: #6b7280; color: #fff; }
+  .badge.b-popular { background: #6366f1; color: #fff; }
+  .badge.b-savings { background: #f59e0b; color: #fff; }
+  .badge.b-annual  { background: #10b981; color: #fff; }
+  .badge.b-family  { background: #8b5cf6; color: #fff; }
+  .plan-label { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 7px; }
+  .tag-new { background: #ede9fe; color: #5b21b6; font-size: .67rem; font-weight: 700;
+             padding: 2px 7px; border-radius: 6px; }
+  .plan-audience { font-size: .78rem; color: #6b7280; line-height: 1.5; }
+  .price-row { display: flex; align-items: baseline; gap: 5px; }
+  .price-main { font-size: 2rem; font-weight: 800; }
+  .price-period { font-size: .82rem; color: #6b7280; }
+  .price-equiv { font-size: .75rem; color: #6b7280; margin-top: -6px; }
+  .savings-pill { display: inline-flex; align-items: center; gap: 4px;
+                  padding: 3px 10px; border-radius: 20px; font-size: .75rem; font-weight: 700; }
+  .sp-yellow { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; }
+  .sp-green  { background: #d1fae5; border: 1px solid #10b981; color: #065f46; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 5px; flex: 1; margin-top: 4px; }
+  .feature-list li { font-size: .8rem; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+  .c { color: #10b981; font-weight: 900; flex-shrink: 0; }
+  .m { color: #d1d5db; font-weight: 900; flex-shrink: 0; }
+  .plan-btn { margin-top: 12px; padding: 10px 0; border-radius: 9px; border: none;
+              font-size: .86rem; font-weight: 600; cursor: pointer; width: 100%; }
+  .btn-primary  { background: #6366f1; color: #fff; }
+  .btn-grey     { background: #f3f4f6; color: #374151; }
+  .btn-amber    { background: #f59e0b; color: #fff; }
+  .btn-green    { background: #10b981; color: #fff; }
+  .btn-purple   { background: #8b5cf6; color: #fff; }
+
+  /* Compare table */
+  .compare-wrap { max-width: 960px; margin: 28px auto 48px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; background: #fff;
+          border-radius: 12px; overflow: hidden; font-size: .81rem; }
+  thead tr { background: #6366f1; color: #fff; }
+  thead th { padding: 11px 14px; text-align: left; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #f9fafb; }
+  tbody td { padding: 9px 14px; color: #374151; border-bottom: 1px solid #f0f0f0; }
+  tbody td:first-child { font-weight: 600; color: #1e2235; }
+  .hi { background: #d1fae5 !important; font-weight: 700; color: #065f46; }
+</style>
+</head>
+<body>
+
+<h1>💳 Likha Poha AI — New Pricing Mockup</h1>
+<p class="subtitle">Preview only — not live. Approve this layout to proceed with implementation.</p>
+
+<div class="note">
+  ✏️ <strong>What's new:</strong> Adding a <strong>6-Month Standard plan at ₹1,495</strong> (pay 5 months, 1 month free),
+  <strong>Annual Standard at ₹2,999/year</strong> (2 months free vs monthly), and
+  <strong>Annual Family at ₹4,999/year</strong> (2 months free vs monthly).
+  All existing plans stay unchanged.
+</div>
+
+<!-- ── INDIVIDUAL PLANS ─────────────────────────────────── -->
+<div class="section-title">👤 Individual Plans — 1 Student</div>
+<div class="plan-grid">
+
+  <div class="plan-card">
+    <span class="badge b-start">Start here</span>
+    <div class="plan-label">Try It Out</div>
+    <div class="plan-audience">Explore before committing — 14-day access.</div>
+    <div class="price-row"><span class="price-main">₹100</span><span class="price-period">/ 14 days</span></div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> CBSE — 3 subjects</li>
+      <li><span class="c">✓</span> 5 doubts/day</li>
+      <li><span class="c">✓</span> Basic mock tests</li>
+      <li><span class="m">—</span> All subjects</li>
+      <li><span class="m">—</span> Unlimited doubts</li>
+    </ul>
+    <button class="plan-btn btn-grey">Get Started</button>
+  </div>
+
+  <div class="plan-card popular">
+    <span class="badge b-popular">⭐ Most Popular</span>
+    <div class="plan-label">Standard Monthly</div>
+    <div class="plan-audience">Unlimited AI tutoring for all CBSE subjects.</div>
+    <div class="price-row"><span class="price-main">₹299</span><span class="price-period">/ month</span></div>
+    <div class="price-equiv">₹299 / month · cancel anytime</div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> All CBSE subjects · All grades</li>
+      <li><span class="c">✓</span> Unlimited doubt solving</li>
+      <li><span class="c">✓</span> Full question bank</li>
+      <li><span class="c">✓</span> Parent dashboard + alerts</li>
+      <li><span class="c">✓</span> Priority support</li>
+    </ul>
+    <button class="plan-btn btn-primary">Choose Standard</button>
+  </div>
+
+  <div class="plan-card savings">
+    <span class="badge b-savings">🎁 1 Month Free — NEW</span>
+    <div class="plan-label">Standard 6-Month <span class="tag-new">NEW</span></div>
+    <div class="plan-audience">Pay for 5 months, get 6. Save ₹299 vs monthly.</div>
+    <div class="price-row"><span class="price-main">₹1,495</span><span class="price-period">/ 6 months</span></div>
+    <div class="price-equiv">₹249/month · Save ₹299 vs monthly</div>
+    <div class="savings-pill sp-yellow">🎁 1 month free included</div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> All CBSE subjects · All grades</li>
+      <li><span class="c">✓</span> Unlimited doubt solving</li>
+      <li><span class="c">✓</span> Full question bank</li>
+      <li><span class="c">✓</span> Parent dashboard + alerts</li>
+      <li><span class="c">✓</span> Priority support</li>
+    </ul>
+    <button class="plan-btn btn-amber">Choose 6-Month</button>
+  </div>
+
+  <div class="plan-card annual">
+    <span class="badge b-annual">🏆 2 Months Free — NEW</span>
+    <div class="plan-label">Standard Annual <span class="tag-new">NEW</span></div>
+    <div class="plan-audience">Best value. One payment, full year access.</div>
+    <div class="price-row"><span class="price-main">₹2,999</span><span class="price-period">/ year</span></div>
+    <div class="price-equiv">₹250/month · Save ₹589 vs monthly</div>
+    <div class="savings-pill sp-green">🎉 2 months free (₹3,588 → ₹2,999)</div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> All CBSE subjects · All grades</li>
+      <li><span class="c">✓</span> Unlimited doubt solving</li>
+      <li><span class="c">✓</span> Full question bank</li>
+      <li><span class="c">✓</span> Parent dashboard + alerts</li>
+      <li><span class="c">✓</span> Priority support</li>
+    </ul>
+    <button class="plan-btn btn-green">Choose Annual</button>
+  </div>
+
+</div>
+
+<!-- ── FAMILY PLANS ─────────────────────────────────────── -->
+<div class="section-title">👨‍👩‍👧‍👦 Family Plans — Up to 2 Students + SOF</div>
+<div class="plan-grid">
+
+  <div class="plan-card">
+    <span class="badge b-family">Best value</span>
+    <div class="plan-label">Family Monthly</div>
+    <div class="plan-audience">CBSE + SOF for up to 2 children. Full parent controls.</div>
+    <div class="price-row"><span class="price-main">₹499</span><span class="price-period">/ month</span></div>
+    <div class="price-equiv">₹499 / month · cancel anytime</div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> Up to 2 children</li>
+      <li><span class="c">✓</span> All CBSE subjects</li>
+      <li><span class="c">✓</span> SOF Science, Maths, English</li>
+      <li><span class="c">✓</span> Unlimited doubts for all</li>
+      <li><span class="c">✓</span> Full parent dashboard</li>
+    </ul>
+    <button class="plan-btn btn-purple">Choose Family</button>
+  </div>
+
+  <div class="plan-card annual">
+    <span class="badge b-annual">🏆 2 Months Free — NEW</span>
+    <div class="plan-label">Family Annual <span class="tag-new">NEW</span></div>
+    <div class="plan-audience">Full family access for a year. Save ₹989 vs monthly.</div>
+    <div class="price-row"><span class="price-main">₹4,999</span><span class="price-period">/ year</span></div>
+    <div class="price-equiv">₹417/month · Save ₹989 vs monthly</div>
+    <div class="savings-pill sp-green">🎉 2 months free (₹5,988 → ₹4,999)</div>
+    <ul class="feature-list">
+      <li><span class="c">✓</span> Up to 2 children</li>
+      <li><span class="c">✓</span> All CBSE subjects</li>
+      <li><span class="c">✓</span> SOF Science, Maths, English</li>
+      <li><span class="c">✓</span> Unlimited doubts for all</li>
+      <li><span class="c">✓</span> Full parent dashboard</li>
+    </ul>
+    <button class="plan-btn btn-green">Choose Family Annual</button>
+  </div>
+
+</div>
+
+<!-- ── COMPARISON TABLE ─────────────────────────────────── -->
+<div class="section-title">📊 Full Plan Comparison</div>
+<div class="compare-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Price</th>
+        <th>Per Month</th>
+        <th>Duration</th>
+        <th>Savings</th>
+        <th>Students</th>
+        <th>SOF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Try It Out</td>
+        <td>₹100</td>
+        <td>₹100</td>
+        <td>14 days</td>
+        <td>—</td>
+        <td>1</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Standard Monthly</td>
+        <td>₹299</td>
+        <td>₹299</td>
+        <td>1 month</td>
+        <td>—</td>
+        <td>1</td>
+        <td>—</td>
+      </tr>
+      <tr class="hi">
+        <td>Standard 6-Month 🆕</td>
+        <td>₹1,495</td>
+        <td>₹249</td>
+        <td>6 months</td>
+        <td>Save ₹299 · 1 month free</td>
+        <td>1</td>
+        <td>—</td>
+      </tr>
+      <tr class="hi">
+        <td>Standard Annual 🆕</td>
+        <td>₹2,999</td>
+        <td>₹250</td>
+        <td>12 months</td>
+        <td>Save ₹589 · 2 months free</td>
+        <td>1</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Family Monthly</td>
+        <td>₹499</td>
+        <td>₹499</td>
+        <td>1 month</td>
+        <td>—</td>
+        <td>2</td>
+        <td>✓</td>
+      </tr>
+      <tr class="hi">
+        <td>Family Annual 🆕</td>
+        <td>₹4,999</td>
+        <td>₹417</td>
+        <td>12 months</td>
+        <td>Save ₹989 · 2 months free</td>
+        <td>2</td>
+        <td>✓</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center;padding:24px 0 40px;color:#6b7280;font-size:.82rem;">
+  ✅ Mockup complete — review the cards and table above, then reply to proceed with full implementation.
+</div>
+
+</body>
+</html>
