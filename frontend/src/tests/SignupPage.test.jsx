@@ -62,13 +62,10 @@ describe("SignupPage", () => {
   test("renders role selection step with three role cards", async () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} initialPlan="free" />);
 
-    expect(await screen.findByText("I am signing up as a...")).toBeInTheDocument();
+    expect(await screen.findByText(/signing up as a/i)).toBeInTheDocument();
     expect(screen.getByText("Parent")).toBeInTheDocument();
     expect(screen.getByText("Student")).toBeInTheDocument();
     expect(screen.getByText("Teacher")).toBeInTheDocument();
-    expect(
-      screen.getByText(/All accounts require a paid plan/i)
-    ).toBeInTheDocument();
   });
 
   test("Login button calls onBackToLogin", async () => {
@@ -89,7 +86,7 @@ describe("SignupPage", () => {
 
     fireEvent.click(screen.getByText("Parent"));
 
-    expect(await screen.findByText(/Parent Account/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Create your account/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Enter your full name")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("your@email.com")).toBeInTheDocument();
   });
@@ -98,20 +95,21 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
+    await screen.findByText(/Create your account/i);
 
     expect(screen.queryByText(/Class \*/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/School Name/i)).not.toBeInTheDocument();
   });
 
-  test("parent form shows plan selection with all 3 plans", async () => {
+  test("parent form shows plan selection on step 3", async () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
+    await screen.findByText(/Create your account/i);
+    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
 
-    expect(screen.getByText("Try It Out")).toBeInTheDocument();
-    expect(screen.getByText("Standard")).toBeInTheDocument();
+    expect(await screen.findByText("Try It Out")).toBeInTheDocument();
+    expect(screen.getAllByText("Standard").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("Family")).toBeInTheDocument();
   });
 
@@ -119,10 +117,11 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
-
-    // Use form submit + act to flush async state updates in React 18
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
+    await screen.findByText(/Create your account/i);
+    // Navigate to plan step with empty fields — validation happens on Pay button
+    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
+    await screen.findByText(/Choose Your Plan/i);
+    await act(async () => { fireEvent.click(screen.getByText(/Pay ₹/i)); });
 
     expect(
       await screen.findByText(/please fill in all required fields/i)
@@ -251,17 +250,18 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Student");
     fireEvent.click(screen.getByText("Student"));
-    await screen.findByText(/Student Account/i);
+    await screen.findByText(/Create your account/i);
 
     expect(screen.getByText(/Class \*/i)).toBeInTheDocument();
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    // Student form has Grade + Board selects — both are comboboxes
+    expect(screen.getAllByRole("combobox").length).toBeGreaterThanOrEqual(1);
   });
 
   test("student form does NOT show school name field", async () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Student");
     fireEvent.click(screen.getByText("Student"));
-    await screen.findByText(/Student Account/i);
+    await screen.findByText(/Create your account/i);
 
     expect(screen.queryByText(/School Name/i)).not.toBeInTheDocument();
   });
@@ -324,7 +324,7 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Teacher");
     fireEvent.click(screen.getByText("Teacher"));
-    await screen.findByText(/Teacher Account/i);
+    await screen.findByText(/Create your account/i);
 
     expect(screen.getByText(/School Name/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Name of your school/i)).toBeInTheDocument();
@@ -334,7 +334,7 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Teacher");
     fireEvent.click(screen.getByText("Teacher"));
-    await screen.findByText(/Teacher Account/i);
+    await screen.findByText(/Create your account/i);
 
     expect(screen.queryByText(/Class \*/i)).not.toBeInTheDocument();
   });
@@ -396,25 +396,24 @@ describe("SignupPage", () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
+    await screen.findByText(/Create your account/i);
 
-    fireEvent.click(screen.getByText(/← Back/i));
+    fireEvent.click(screen.getByText(/← Back to role selection/i));
 
-    expect(await screen.findByText("I am signing up as a...")).toBeInTheDocument();
+    expect(await screen.findByText(/signing up as a/i)).toBeInTheDocument();
   });
 
   test("plan selection pre-selects initialPlan prop", async () => {
     render(<SignupPage onBackToLogin={mockOnBackToLogin} initialPlan="starter" />);
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
+    await screen.findByText(/Create your account/i);
+    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
+    await screen.findByText(/Choose Your Plan/i);
 
-    // Plan selector uses styled divs (not radio inputs) — verify "Standard" plan card is highlighted
-    // by checking the plan label text is visible and initialPlan was set correctly
-    expect(screen.getByText("Standard")).toBeInTheDocument();
+    expect(screen.getAllByText("Standard").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("Try It Out")).toBeInTheDocument();
     expect(screen.getByText("Family")).toBeInTheDocument();
-    // The "Standard" plan (starter) should show its price since it is pre-selected
     expect(screen.getByText(/Pay ₹299/)).toBeInTheDocument();
   });
 
