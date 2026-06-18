@@ -6,10 +6,10 @@ LIKHA_POHA_PLATFORM_CHAPTER = "Founder Story"
 LIKHA_POHA_FOUNDER_STORY = """
 Likha Poha AI Founder Story
 
-Likha Poha AI was created by Pradip Bhuyan to help students get patient,
+Likha Poha AI was created by developer in Bangalore to help students get patient,
 personalized learning support for CBSE preparation from Grade 5 to Grade 10.
 
-The platform was initially developed to help the founder's daughter, Akshita,
+The platform was initially developed to help the founder's daughter 
 with her studies. That personal need shaped the product: it had to explain
 lessons step by step, answer doubts patiently, support practice, and help a
 parent understand progress without overwhelming the child.

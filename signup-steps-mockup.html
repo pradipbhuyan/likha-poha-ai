@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LikhaPoha AI — Signup Steps 2 & 3 Mockup</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+       background: #0f172a; color: #f8fafc; min-height: 100vh; }
+
+nav { display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px; border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(15,23,42,.97); position: sticky; top: 0; z-index: 50; }
+.nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+.nav-logo { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg,#2563eb,#7c3aed);
+            display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.nav-login { background: transparent; border: 1px solid #334155; color: #93c5fd;
+             padding: 7px 16px; border-radius: 8px; font-size: .85rem; cursor: pointer; }
+
+.switcher { display: flex; justify-content: center; gap: 10px; padding: 16px;
+            background: #0c1220; border-bottom: 1px solid #1e293b; }
+.sw-btn { padding: 7px 18px; border-radius: 8px; border: 1px solid #334155;
+          background: transparent; color: #64748b; font-size: .82rem; cursor: pointer;
+          font-family: inherit; font-weight: 600; }
+.sw-btn.on { background: #2563eb; border-color: #2563eb; color: #fff; }
+
+/* SCREEN */
+.screen { display: none; }
+.screen.on { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 107px); }
+
+/* LEFT */
+.L { background: linear-gradient(140deg,#1e1b4b 0%,#0f172a 55%,#1a3a5c 100%);
+     padding: 52px 50px; display: flex; flex-direction: column; justify-content: center;
+     position: relative; overflow: hidden; }
+.L::before { content:""; position:absolute; width:380px; height:380px; border-radius:50%;
+             background:radial-gradient(circle,rgba(99,102,241,.18) 0%,transparent 70%);
+             top:-90px; left:-90px; pointer-events:none; }
+.L::after { content:""; position:absolute; width:260px; height:260px; border-radius:50%;
+            background:radial-gradient(circle,rgba(16,185,129,.13) 0%,transparent 70%);
+            bottom:-70px; right:-50px; pointer-events:none; }
+.lc { position: relative; z-index: 1; }
+
+/* Step indicator */
+.steps { display: flex; align-items: center; gap: 0; margin-bottom: 8px; }
+.sd { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
+.sd.done   { background: #10b981; color: #fff; }
+.sd.active { background: #2563eb; color: #fff; box-shadow: 0 0 0 4px rgba(37,99,235,.22); }
+.sd.future { background: #1e293b; color: #475569; border: 2px solid #334155; }
+.sl2 { height: 2px; flex: 1; }
+.sl2.done { background: #10b981; }
+.sl2.pend { background: #1e293b; }
+.step-labels { display: flex; gap: 0; margin-bottom: 32px; }
+.slb { flex: 1; font-size: .68rem; text-align: center; color: #475569; margin-top: 5px; }
+.slb.done   { color: #10b981; }
+.slb.active { color: #93c5fd; font-weight: 700; }
+.slb:first-child { text-align: left; flex: 0 0 30px; }
+.slb:last-child  { text-align: right; flex: 0 0 30px; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(99,102,241,.2);
+         border: 1px solid rgba(99,102,241,.4); color: #a5b4fc; font-size: .71rem;
+         font-weight: 700; padding: 4px 12px; border-radius: 99px; margin-bottom: 20px; }
+.lh { font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 900; line-height: 1.15; margin-bottom: 12px; }
+.lh em { font-style: normal; background: linear-gradient(135deg,#6366f1,#10b981);
+          -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.lp { color: #94a3b8; font-size: .92rem; line-height: 1.7; margin-bottom: 28px; }
+.flist { display: flex; flex-direction: column; gap: 11px; }
+.frow { display: flex; align-items: flex-start; gap: 11px; }
+.fi { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center;
+      justify-content: center; font-size: .95rem; flex-shrink: 0; }
+.fi.b { background: rgba(37,99,235,.2); }
+.fi.g { background: rgba(16,185,129,.2); }
+.fi.p { background: rgba(124,58,237,.2); }
+.fi.a { background: rgba(245,158,11,.2); }
+.ft strong { font-size: .85rem; color: #e2e8f0; display: block; margin-bottom: 1px; }
+.ft span   { font-size: .76rem; color: #64748b; }
+
+/* RIGHT */
+.R { padding: 52px 50px; display: flex; flex-direction: column; justify-content: center;
+     background: #0f172a; }
+.ey { font-size: .71rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: #6366f1; margin-bottom: 7px; }
+.rt { font-size: 1.75rem; font-weight: 900; margin-bottom: 5px; }
+.rs { color: #64748b; font-size: .9rem; margin-bottom: 28px; }
+
+/* FORM */
+.fs { display: flex; flex-direction: column; gap: 16px; }
+.ff label { display: block; font-size: .85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 7px; }
+.ff input, .ff select { width: 100%; background: #111827; border: 2px solid #1e293b;
+  border-radius: 11px; padding: 13px 15px; color: #f8fafc; font-family: inherit;
+  font-size: .93rem; outline: none; transition: border-color .18s; }
+.ff input:focus, .ff select:focus { border-color: #6366f1; }
+.frow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.sbtn { width: 100%; padding: 14px; border-radius: 11px; border: none;
+        background: linear-gradient(135deg,#2563eb,#7c3aed); color: #fff;
+        font-size: .95rem; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 6px; }
+.bk { text-align: center; margin-top: 14px; font-size: .8rem; color: #475569; cursor: pointer; }
+.bk:hover { color: #93c5fd; }
+
+/* PLAN CARDS */
+.ptoggle { display: flex; background: #111827; border: 1px solid #1e293b;
+           border-radius: 9px; padding: 3px; margin-bottom: 16px; gap: 3px; }
+.ptoggle button { flex: 1; padding: 7px 6px; border-radius: 7px; border: none;
+                  background: transparent; color: #64748b; font-family: inherit;
+                  font-size: .78rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.ptoggle button.on { background: #1e293b; color: #f8fafc; }
+.pgrid { display: flex; flex-direction: column; gap: 8px; max-height: 340px; overflow-y: auto; padding-right: 2px; }
+.pc { display: flex; align-items: center; gap: 12px; background: #111827;
+      border: 2px solid #1e293b; border-radius: 11px; padding: 12px 14px;
+      cursor: pointer; transition: all .15s; }
+.pc:hover { border-color: #334155; }
+.pc.sel { border-color: #6366f1; background: rgba(99,102,241,.08); }
+.radio { width: 17px; height: 17px; border-radius: 50%; border: 2px solid #334155;
+         flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.pc.sel .radio { border-color: #6366f1; background: #6366f1; }
+.pc.sel .radio::after { content:""; width:6px; height:6px; border-radius:50%; background:#fff; }
+.pname { font-size: .87rem; font-weight: 700; color: #e2e8f0; }
+.pdesc { font-size: .72rem; color: #64748b; margin-top: 1px; }
+.pprice { margin-left: auto; text-align: right; flex-shrink: 0; }
+.pprice strong { font-size: .98rem; font-weight: 800; color: #f8fafc; display: block; }
+.pprice span { font-size: .68rem; color: #64748b; }
+.pbadge { font-size: .63rem; font-weight: 700; padding: 2px 6px; border-radius: 5px; }
+.pb-pop  { background: rgba(37,99,235,.2);  color: #60a5fa; }
+.pb-save { background: rgba(16,185,129,.2); color: #34d399; }
+.pb-new  { background: rgba(245,158,11,.2); color: #fbbf24; }
+
+.psum { background: #111827; border: 1px solid #1e293b; border-radius: 11px;
+        padding: 14px; margin-top: 14px; }
+.psum-row { display: flex; justify-content: space-between; font-size: .83rem;
+             color: #94a3b8; margin-bottom: 7px; }
+.psum-row.total { font-weight: 700; color: #f8fafc; font-size: .9rem;
+                  border-top: 1px solid #1e293b; padding-top: 9px; margin-top: 4px; margin-bottom: 0; }
+.pay-btn { width: 100%; padding: 13px; border-radius: 11px; border: none;
+           background: linear-gradient(135deg,#2563eb,#7c3aed); color: #fff;
+           font-size: .92rem; font-weight: 700; cursor: pointer; margin-top: 12px;
+           font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.offer-link { text-align: center; margin-top: 10px; font-size: .78rem; color: #475569; cursor: pointer; }
+.offer-link:hover { color: #6366f1; }
+.rfooter { margin-top: 14px; padding-top: 12px; border-top: 1px solid #1e293b;
+           font-size: .74rem; color: #475569; text-align: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><div class="nav-logo">✏️</div> LikhaPoha AI</div>
+  <button class="nav-login">Already have an account? Login</button>
+</nav>
+
+<div class="switcher">
+  <button class="sw-btn" onclick="show(1)">← Step 1: Role</button>
+  <button class="sw-btn on" id="btn2" onclick="show(2)">Step 2: Your Details</button>
+  <button class="sw-btn" id="btn3" onclick="show(3)">Step 3: Plan & Pay →</button>
+</div>
+
+<!-- ══ STEP 2 — Fill in details ══ -->
+<div class="screen on" id="s2">
+  <div class="L">
+    <div class="lc">
+      <div class="steps">
+        <div class="sd done">✓</div>
+        <div class="sl2 done"></div>
+        <div class="sd active">2</div>
+        <div class="sl2 pend"></div>
+        <div class="sd future">3</div>
+      </div>
+      <div class="step-labels" style="display:flex;justify-content:space-between;margin-bottom:28px;">
+        <span style="font-size:.68rem;color:#10b981;">✓ Role</span>
+        <span style="font-size:.68rem;color:#93c5fd;font-weight:700;">Your Details</span>
+        <span style="font-size:.68rem;color:#475569;">Plan & Pay</span>
+      </div>
+      <div class="badge">🎓 Student account setup</div>
+      <h1 class="lh">Almost there —<br /><em>tell us about yourself</em></h1>
+      <p class="lp">Your account will be ready in 2 minutes. We only need a few basic details to personalise your learning experience.</p>
+      <div class="flist">
+        <div class="frow"><div class="fi b">🔒</div>
+          <div class="ft"><strong>Your data is private</strong><span>We never share your details with third parties</span></div></div>
+        <div class="frow"><div class="fi g">📧</div>
+          <div class="ft"><strong>Verify your email</strong><span>A link to set your password will be sent after signup</span></div></div>
+        <div class="frow"><div class="fi p">🚀</div>
+          <div class="ft"><strong>Access in minutes</strong><span>Start your first lesson right after verifying</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="R">
+    <p class="ey">Step 2 of 3 — Account Details</p>
+    <h2 class="rt">Create your account</h2>
+    <p class="rs">We'll use your email to send a verification link and learning updates</p>
+    <div class="fs">
+      <div class="ff"><label>Full Name *</label><input type="text" placeholder="Enter your full name" /></div>
+      <div class="ff"><label>Email Address *</label><input type="email" placeholder="your@email.com" /></div>
+      <div class="frow2">
+        <div class="ff"><label>Class *</label>
+          <select><option>Grade 9</option><option>Grade 5</option><option>Grade 6</option>
+            <option>Grade 7</option><option>Grade 8</option><option>Grade 10</option></select></div>
+        <div class="ff"><label>Board</label>
+          <select><option>CBSE</option></select></div>
+      </div>
+      <button class="sbtn" onclick="show(3)">Continue to Plan Selection →</button>
+    </div>
+    <div class="bk" onclick="show(1)">← Back to role selection</div>
+    <div class="rfooter">🔒 Your information is encrypted and never shared</div>
+  </div>
+</div>
+
+<!-- ══ STEP 3 — Plan & Pay ══ -->
+<div class="screen" id="s3">
+  <div class="L">
+    <div class="lc">
+      <div class="steps">
+        <div class="sd done">✓</div>
+        <div class="sl2 done"></div>
+        <div class="sd done">✓</div>
+        <div class="sl2 done"></div>
+        <div class="sd active">3</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:28px;">
+        <span style="font-size:.68rem;color:#10b981;">✓ Role</span>
+        <span style="font-size:.68rem;color:#10b981;">✓ Details</span>
+        <span style="font-size:.68rem;color:#93c5fd;font-weight:700;">Plan & Pay</span>
+      </div>
+      <div class="badge">💳 One-time secure payment</div>
+      <h1 class="lh">Choose how long<br /><em>you want to learn</em></h1>
+      <p class="lp">Pick the plan that suits your study schedule. All plans include unlimited CBSE lessons, doubt solving, and mock tests.</p>
+      <div class="flist">
+        <div class="frow"><div class="fi g">✅</div>
+          <div class="ft"><strong>Instant access after payment</strong><span>Set your password and start studying right away</span></div></div>
+        <div class="frow"><div class="fi b">💳</div>
+          <div class="ft"><strong>Secure Razorpay checkout</strong><span>UPI, cards, net banking accepted</span></div></div>
+        <div class="frow"><div class="fi p">🎁</div>
+          <div class="ft"><strong>Have an offer code?</strong><span>Skip payment and activate with your code instead</span></div></div>
+        <div class="frow"><div class="fi a">📞</div>
+          <div class="ft"><strong>Need help?</strong><span>Contact us to activate your plan manually</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="R" style="padding-top:40px;padding-bottom:40px;">
+    <p class="ey">Step 3 of 3 — Choose Your Plan</p>
+    <h2 class="rt" style="font-size:1.5rem;">Select a subscription plan</h2>
+    <p class="rs">All plans include all CBSE subjects, unlimited doubts and mock tests</p>
+    <div class="ptoggle">
+      <button class="on" onclick="toggleFilter(this,'monthly')">Monthly</button>
+      <button onclick="toggleFilter(this,'sixmonth')">6-Month 🎁</button>
+      <button onclick="toggleFilter(this,'annual')">Annual 🏆</button>
+    </div>
+    <div class="pgrid" id="plans">
+      <!-- Monthly plans -->
+      <div class="pc monthly" onclick="selPlan(this,'₹100','14 days')">
+        <div class="radio"></div>
+        <div><div class="pname">Try It Out</div><div class="pdesc">Explore before committing</div></div>
+        <div class="pprice"><strong>₹100</strong><span>/ 14 days</span></div>
+      </div>
+      <div class="pc monthly sel" onclick="selPlan(this,'₹299','month')">
+        <div class="radio"></div>
+        <div><span class="pbadge pb-pop">⭐ Popular</span><div class="pname">Standard</div><div class="pdesc">All CBSE subjects · All grades</div></div>
+        <div class="pprice"><strong>₹299</strong><span>/ month</span></div>
+      </div>
+      <div class="pc monthly" onclick="selPlan(this,'₹499','month')">
+        <div class="radio"></div>
+        <div><div class="pname">Family</div><div class="pdesc">Up to 2 children + SOF</div></div>
+        <div class="pprice"><strong>₹499</strong><span>/ month</span></div>
+      </div>
+      <!-- 6-month plans (hidden by default) -->
+      <div class="pc sixmonth" style="display:none" onclick="selPlan(this,'₹1,495','6 months')">
+        <div class="radio"></div>
+        <div><span class="pbadge pb-new">🎁 1 Month Free</span><div class="pname">Standard — 6 Months</div><div class="pdesc">₹249/month · Save ₹299</div></div>
+        <div class="pprice"><strong>₹1,495</strong><span>/ 6 months</span></div>
+      </div>
+      <!-- Annual plans (hidden by default) -->
+      <div class="pc annual" style="display:none" onclick="selPlan(this,'₹2,999','year')">
+        <div class="radio"></div>
+        <div><span class="pbadge pb-save">🏆 2 Months Free</span><div class="pname">Standard — Annual</div><div class="pdesc">₹250/month · Save ₹589</div></div>
+        <div class="pprice"><strong>₹2,999</strong><span>/ year</span></div>
+      </div>
+      <div class="pc annual" style="display:none" onclick="selPlan(this,'₹4,999','year')">
+        <div class="radio"></div>
+        <div><span class="pbadge pb-save">🏆 2 Months Free</span><div class="pname">Family — Annual</div><div class="pdesc">₹417/month · Save ₹989</div></div>
+        <div class="pprice"><strong>₹4,999</strong><span>/ year</span></div>
+      </div>
+    </div>
+    <div class="psum">
+      <div class="psum-row"><span>Selected plan</span><span id="pname">Standard</span></div>
+      <div class="psum-row"><span>Billing period</span><span id="pbill">1 month</span></div>
+      <div class="psum-row total"><span>Total today</span><span id="ptotal">₹299</span></div>
+    </div>
+    <button class="pay-btn">💳 Pay & Create Account</button>
+    <div class="offer-link" onclick="show(2)">🎟️ Have an offer code? Skip payment →</div>
+    <div class="rfooter">🔒 Secured by Razorpay &nbsp;·&nbsp; Verify email after payment to set password</div>
+  </div>
+</div>
+
+<script>
+function show(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.sw-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('s'+n).classList.add('on');
+  document.querySelectorAll('.sw-btn')[n-1].classList.add('on');
+}
+function selPlan(el, price, period) {
+  document.querySelectorAll('.pc').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('pname').textContent = el.querySelector('.pname').textContent;
+  document.getElementById('pbill').textContent = period;
+  document.getElementById('ptotal').textContent = price;
+}
+function toggleFilter(btn, filter) {
+  document.querySelectorAll('.ptoggle button').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(c => {
+    c.style.display = c.classList.contains(filter) ? 'flex' : 'none';
+  });
+  const first = document.querySelector('.pc.'+filter);
+  if (first) { document.querySelectorAll('.pc').forEach(c=>c.classList.remove('sel')); first.classList.add('sel'); }
+}
+</script>
+</body>
+</html>

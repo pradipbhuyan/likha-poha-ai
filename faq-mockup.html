@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Likha Poha AI — FAQ Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #0f172a; color: #f8fafc; min-height: 100vh; padding: 40px 16px; }
+  h1 { text-align: center; font-size: 1.8rem; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #64748b; margin-bottom: 8px; font-size: .9rem; }
+  .note { background: #1e293b; border: 1px solid #334155; border-radius: 10px;
+          padding: 12px 20px; max-width: 760px; margin: 0 auto 36px; font-size: .85rem;
+          color: #94a3b8; text-align: center; }
+  .eyebrow { text-align: center; font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+             text-transform: uppercase; color: #6366f1; margin-bottom: 10px; }
+  .section-head { text-align: center; max-width: 600px; margin: 0 auto 36px; }
+  .section-head h2 { font-size: 2rem; font-weight: 900; margin-bottom: 8px; }
+  .section-head p { color: #64748b; font-size: 1rem; }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+  .faq-item { border-bottom: 1px solid #1e293b; }
+  .faq-item:first-child { border-top: 1px solid #1e293b; }
+
+  .faq-q { width: 100%; background: transparent; border: none; color: #f1f5f9;
+            text-align: left; padding: 22px 0; font-size: 1.02rem; font-weight: 600;
+            cursor: pointer; font-family: inherit; display: flex; justify-content: space-between;
+            align-items: flex-start; gap: 16px; line-height: 1.5; }
+  .faq-q:hover { color: #a5b4fc; }
+  .faq-icon { font-size: 1.3rem; flex-shrink: 0; color: #6366f1; margin-top: 2px;
+              transition: transform .25s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s ease; }
+  .faq-item.open .faq-a { max-height: 1200px; padding-bottom: 22px; }
+
+  .faq-a p { color: #94a3b8; font-size: .93rem; line-height: 1.8; margin-bottom: 12px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { color: #94a3b8; font-size: .93rem; line-height: 1.8; padding-left: 20px;
+              display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .faq-a li { color: #94a3b8; }
+  .faq-a li strong { color: #e2e8f0; }
+</style>
+</head>
+<body>
+
+<h1>❓ FAQ Mockup</h1>
+<p class="subtitle">Preview — approve to make live</p>
+<div class="note">
+  The existing landing page has 5 short FAQs. This mockup replaces them with 10 detailed
+  product-focused FAQs. Click each question to expand the answer.
+</div>
+
+<div class="eyebrow">Frequently Asked Questions</div>
+<div class="section-head">
+  <h2>Everything You Need to Know</h2>
+  <p>Detailed answers about lessons, parent dashboard, analytics, and more</p>
+</div>
+
+<div class="faq-list" id="faqList">
+
+  <div class="faq-item open">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I manage multiple children on the Parent Dashboard?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — you can absolutely add more than one child to the dashboard.</p>
+      <p>The Parent Dashboard includes a <strong>Family Learning Center</strong> that acts as a central hub where you can manage multiple children. Simply click the <strong>"+ Add Child"</strong> button within this section to add another child. Once added, you can track each child's learning progress, mock test performance, and weak areas from one clean, unified dashboard.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      What does the Parent Dashboard show?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>The Parent Dashboard in LikhaPoha AI acts as a central <strong>Family Learning Center</strong> with the following features:</p>
+      <ul>
+        <li><strong>Account Management</strong> — Add multiple children and invite co-parents to share dashboard access.</li>
+        <li><strong>Comprehensive Tracking</strong> — Real-time overview of daily learning progress, mock test performance, score trends, and AI usage.</li>
+        <li><strong>Weak Area Alerts</strong> — Automatically highlights topics where the child is struggling so parents know exactly where to step in.</li>
+        <li><strong>Actionable Suggestions</strong> — AI-powered next steps based on performance, such as recommending harder practice or Olympiad-style questions if the student is doing well.</li>
+        <li><strong>Subscription Control</strong> — View, compare, and manage subscription plans and payment options.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I invite another parent to the dashboard?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Navigate to the <strong>Family Learning Center</strong> section within your Parent Dashboard. Just below the section showing the current number of parents and children on your account, you will see an <strong>"+ Invite Parent"</strong> button next to the "+ Add Child" button. Click it to send the invitation.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      How does the AI identify a child's weak areas?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>LikhaPoha AI identifies weak areas through <strong>smart evaluation</strong> based on ongoing test performance. When a student takes chapter-wise mock tests, the platform instantly scores each answer and transforms the results into a targeted revision plan.</p>
+      <p>The AI continuously tracks mock test history, average scores, and subject-specific performance over time. It then automatically flags the specific topics where the student is struggling and surfaces these as <strong>weak area alerts</strong> in two key places:</p>
+      <ul>
+        <li><strong>Student Dashboard</strong> — Acts as a daily starting point, showing the child exactly what to study next.</li>
+        <li><strong>Parent Dashboard</strong> — Gives parents a clear view of weak areas with actionable suggestions so they know exactly where to step in and help.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      How do students use the Analytics Dashboard for revision?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>The Analytics Dashboard turns past test performance into a targeted, actionable revision plan. Key features include:</p>
+      <ul>
+        <li><strong>Score Trend Graphs</strong> — A visual timeline mapping mock test performance over time. Students can see whether their average scores are improving with practice.</li>
+        <li><strong>Subject Performance Heatmaps</strong> — A bar chart showing average scores across different subjects, instantly highlighting which subjects need more focused revision.</li>
+        <li><strong>Automatic Weak Area Alerts</strong> — The AI flags specific topics where the student is struggling based on continuous analysis of test results.</li>
+        <li><strong>Guided Daily Starting Point</strong> — These insights combine to show students exactly what to study next, removing the guesswork from daily revision.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      How do score trend graphs help with revision?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Score trend graphs provide a clear visual timeline of your mock test performance over time. By continuously mapping your test results, they let you track your overall learning patterns at a glance.</p>
+      <p>You can easily see whether your average scores are improving as you practice — helping you gauge if your current revision efforts are working or if you need to shift focus to different subjects or topics.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      Are the AI lessons based on specific NCERT chapters?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — every AI lesson on LikhaPoha AI is explicitly based on specific NCERT chapters. Lessons are grounded directly in uploaded NCERT textbooks, not generic internet content.</p>
+      <p>When setting up a lesson, students select their <strong>Grade, Subject, and exact Chapter</strong> (for example, "Structure of the Atom" for Grade 9 Science). The AI then breaks that chapter into a self-paced learning path with multiple steps — concept introduction, core explanation, worked examples, exam-style problems, and revision — all strictly following the CBSE textbook.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      What types of tests can students create in Mock Test Studio?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>The Mock Test Studio lets students create <strong>highly customizable, exam-style practice tests</strong>. Available formats include class tests, mid-terms, and full mock tests across all grades.</p>
+      <p>When creating a test, students can customize:</p>
+      <ul>
+        <li><strong>Subject and Chapter</strong> — Select a specific subject and narrow down to the exact chapter or section.</li>
+        <li><strong>Test and Exam Type</strong> — Choose formats like "CBSE Exam Mock Test" or "Class Test".</li>
+        <li><strong>Difficulty</strong> — Adjust the challenge level (Easy, Medium, Hard).</li>
+        <li><strong>Length and Time</strong> — Define exactly how many questions to include and set a custom timer.</li>
+        <li><strong>Scoring Rules</strong> — Toggle negative marking to simulate real exam conditions.</li>
+      </ul>
+      <p>Once completed, timed tests provide instant scoring and a detailed review that transforms results into a guided revision plan.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      What resources are in the Learn More library?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>The <strong>Learn More library</strong> offers a curated selection of free learning resources hand-picked for each specific chapter — helping students strengthen their understanding beyond the core AI lessons.</p>
+      <p>By selecting their Grade, Subject, and specific Chapter, students can access:</p>
+      <ul>
+        <li>NCERT articles</li>
+        <li>Topic-specific YouTube links</li>
+        <li>Open references and supplementary reading</li>
+      </ul>
+      <p>These materials let students watch videos and read supplementary content tailored exactly to what they are studying.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      Which classes and boards are supported?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-a">
+      <p>LikhaPoha AI supports <strong>Class 5 to 10 for CBSE</strong> across all core subjects — Science, Maths, English, Social Science, and Hindi. State Board content can be uploaded by admins for custom deployments.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center;padding:40px 0;color:#475569;font-size:.82rem;">
+  ✅ 10 FAQs shown — approve to replace existing 5 FAQs in LandingPage.jsx
+</div>
+
+<script>
+function toggle(btn) {
+  const item = btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
