@@ -50,7 +50,8 @@ def is_offer_code_user(user_id: str) -> bool:
             .table("profiles")
             .select(
                 "id, role, username, access_cbse, "
-                "access_sof_science, access_sof_maths, access_sof_english"
+                "access_sof_science, access_sof_maths, access_sof_english, "
+                "parent_id, subscription_plan"
             )
             .eq("id", user_id)
             .single()
@@ -65,19 +66,32 @@ def is_offer_code_user(user_id: str) -> bool:
         if profile.get("role") == "admin":
             return False
 
+        now_iso = datetime.now(timezone.utc).isoformat()
+        parent_id = profile.get("parent_id")
+        subscription_plan = profile.get("subscription_plan") or "free"
+
+        # ── Child-of-offer-parent shortcut ──────────────────────────────────
+        # Children may have been created by admin with access_cbse=True, but if
+        # their parent enrolled via a free_trial offer code (and the child has
+        # not been explicitly upgraded to a paid plan), the child must be gated.
+        if parent_id and subscription_plan == "free":
+            if _parent_is_free_trial_offer_user(parent_id, now_iso):
+                return True
+        # ─────────────────────────────────────────────────────────────────────
+
         # If user has any paid access flag → not offer-only
-        if (
+        has_paid_access = (
             profile.get("access_cbse")
             or profile.get("access_sof_science")
             or profile.get("access_sof_maths")
             or profile.get("access_sof_english")
-        ):
+        )
+        if has_paid_access:
             return False
 
         # Check for a valid (non-expired) offer redemption that is a FREE TRIAL.
         # Discount-type codes should NOT trigger the DKB-only gate because the
         # user has already paid (at a discount); they get full LLM access.
-        now_iso = datetime.now(timezone.utc).isoformat()
         redemption_result = (
             admin_client
             .table("offer_redemptions")
@@ -113,6 +127,41 @@ def is_offer_code_user(user_id: str) -> bool:
         # If the check fails for any reason, do not gate — fail open to avoid
         # blocking legitimate users.
         logger.warning("is_offer_code_user check failed for user_id=%s: %s", user_id, exc)
+        return False
+
+
+def _parent_is_free_trial_offer_user(parent_id: str, now_iso: str) -> bool:
+    """
+    Return True if the given parent_id has a valid non-expired free_trial
+    offer redemption.  Used to gate children of offer-code parents.
+    """
+    try:
+        redemption = (
+            admin_client
+            .table("offer_redemptions")
+            .select("id, code_id")
+            .eq("user_id", parent_id)
+            .gte("valid_until", now_iso)
+            .limit(10)
+            .execute()
+        )
+        if not redemption.data:
+            return False
+        code_ids = [r["code_id"] for r in redemption.data if r.get("code_id")]
+        if not code_ids:
+            return True
+        codes = (
+            admin_client
+            .table("offer_codes")
+            .select("id, code_type")
+            .in_("id", code_ids)
+            .execute()
+        )
+        for code in (codes.data or []):
+            if code.get("code_type") == "discount":
+                return False
+        return True
+    except Exception:
         return False
 
 

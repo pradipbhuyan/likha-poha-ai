@@ -49,6 +49,87 @@ def login(data: LoginRequest):
     )
 
 
+@router.post("/forgot-password")
+def forgot_password(payload: dict):
+    """
+    Send a password reset email for a student.
+
+    If the student has a parent_id, the reset link is also sent to the
+    parent's email so they can help the child reset without needing to
+    access the child's inbox.
+
+    Payload: { "username": "likha1" }
+    Silently succeeds even if the username is not found (security best practice).
+    """
+    from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
+
+    username = (payload.get("username") or "").strip().lower()
+    if not username:
+        return {"success": True, "message": "If this account exists, a reset link was sent."}
+
+    # Resolve the profile
+    profile_result = (
+        admin_client
+        .table("profiles")
+        .select("id, email, role, parent_id")
+        .ilike("username", username)
+        .limit(1)
+        .execute()
+    )
+    if not profile_result.data:
+        return {"success": True, "message": "If this account exists, a reset link was sent."}
+
+    profile = profile_result.data[0]
+    emails_to_notify = []
+
+    # Always send to the user's own email
+    if profile.get("email"):
+        emails_to_notify.append(profile["email"])
+
+    # For students, also send to the parent's email
+    if profile.get("parent_id"):
+        parent_result = (
+            admin_client
+            .table("profiles")
+            .select("email")
+            .eq("id", profile["parent_id"])
+            .limit(1)
+            .execute()
+        )
+        if parent_result.data and parent_result.data[0].get("email"):
+            parent_email = parent_result.data[0]["email"]
+            if parent_email not in emails_to_notify:
+                emails_to_notify.append(parent_email)
+
+    # Send reset emails (non-fatal — never block on email failure)
+    sent_to = []
+    for email in emails_to_notify:
+        try:
+            anon_client.auth.reset_password_for_email(
+                email,
+                options={"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
+            )
+            sent_to.append(email)
+        except Exception:
+            pass
+
+    # Also try Supabase admin link for the student's own email
+    try:
+        admin_client.auth.admin.generate_link({
+            "type": "recovery",
+            "email": profile["email"],
+            "options": {"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
+        })
+    except Exception:
+        pass
+
+    return {
+        "success": True,
+        "message": "If this account exists, a reset link was sent.",
+        "sent_to_count": len(sent_to),
+    }
+
+
 @router.get("/lookup-email/{username}")
 def lookup_email(username: str):
     """

@@ -178,7 +178,11 @@ function LoginPage({ onLogin, onShowSignup }) {
   }
 
   async function handleForgotPassword() {
-    /** Send a Supabase password reset email without exposing whether the account exists. */
+    /**
+     * Send a password reset email.
+     * For students: also sends to the parent's email so parents can help their
+     * child reset without the child needing access to their own inbox.
+     */
     setError("");
     setInfoMessage("");
 
@@ -190,16 +194,14 @@ function LoginPage({ onLogin, onShowSignup }) {
     setLoading(true);
 
     try {
-      const resetEmail = await resolveLoginEmail(username);
-
-      if (resetEmail) {
-        await supabase.auth.resetPasswordForEmail(resetEmail, {
-          redirectTo: PASSWORD_RESET_REDIRECT_URL,
-        });
-      }
-
+      // Use the backend endpoint which handles parent-email forwarding for children
+      await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: username.trim() }),
+      });
       setInfoMessage(
-        "If this account exists, a password reset link has been sent."
+        "If this account exists, a reset link has been sent. For student accounts, the link is also sent to the parent's email."
       );
     } catch {
       setInfoMessage(
