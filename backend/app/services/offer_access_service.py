@@ -74,19 +74,40 @@ def is_offer_code_user(user_id: str) -> bool:
         ):
             return False
 
-        # Check for a valid (non-expired) offer redemption
+        # Check for a valid (non-expired) offer redemption that is a FREE TRIAL.
+        # Discount-type codes should NOT trigger the DKB-only gate because the
+        # user has already paid (at a discount); they get full LLM access.
         now_iso = datetime.now(timezone.utc).isoformat()
         redemption_result = (
             admin_client
             .table("offer_redemptions")
-            .select("id")
+            .select("id, code_id")
             .eq("user_id", user_id)
             .gte("valid_until", now_iso)
-            .limit(1)
+            .limit(10)
             .execute()
         )
 
-        return bool(redemption_result.data)
+        if not redemption_result.data:
+            return False
+
+        # Check all redeemed codes — if any is a 'discount' type, do not gate.
+        code_ids = [r["code_id"] for r in redemption_result.data if r.get("code_id")]
+        if not code_ids:
+            return True  # has redemption but no code_id — treat as free trial
+
+        codes_result = (
+            admin_client
+            .table("offer_codes")
+            .select("id, code_type")
+            .in_("id", code_ids)
+            .execute()
+        )
+        for code in (codes_result.data or []):
+            if code.get("code_type") == "discount":
+                return False  # paid user (discounted) — no gate
+
+        return True  # all codes are free_trial → apply gate
 
     except Exception as exc:
         # If the check fails for any reason, do not gate — fail open to avoid

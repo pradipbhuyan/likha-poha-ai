@@ -97,7 +97,7 @@ def enforce_profile_board(profile: dict, requested_board: str):
         )
 
 
-def enforce_mock_access(profile: dict, mode: str, subject: str):
+def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = ""):
     """
     Enforce mock-test access for CBSE and each SOF Olympiad subject.
 
@@ -121,7 +121,10 @@ def enforce_mock_access(profile: dict, mode: str, subject: str):
         )
 
     if is_school_board(mode):
-        if not profile.get("access_cbse"):
+        # Offer-code users (free_trial) bypass access_cbse check — they can use
+        # mock tests. The LLM is still called; offer gate only applies to doubts.
+        from app.services.offer_access_service import is_offer_code_user as _is_offer  # noqa: PLC0415
+        if not profile.get("access_cbse") and not _is_offer(user_id):
             access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
@@ -209,6 +212,7 @@ def generate_mock_test(
         profile,
         data.mode,
         data.subject,
+        user_id=user.id,
     )
 
     enforce_ai_token_limit(profile.get("username"))

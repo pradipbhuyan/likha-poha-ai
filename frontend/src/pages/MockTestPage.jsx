@@ -280,7 +280,8 @@ function MockTestPage({ user }) {
       isSchoolBoardMode(mode) &&
       user?.role !== "admin" &&
       !isAllAccessTestUser(user) &&
-      !user.accessCbse
+      !user.accessCbse &&
+      !user.offerAccess   // offer-code users can use mock tests (LLM is called normally)
     ) {
       setError(
         `You do not have access to ${mode} mock tests.`
