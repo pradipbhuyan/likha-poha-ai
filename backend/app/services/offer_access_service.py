@@ -58,12 +58,8 @@ def is_offer_code_user(user_id: str) -> bool:
         if not profile:
             return False
 
-        # Admins and test accounts are never gated
+        # Admins are never offer-gated
         if profile.get("role") == "admin":
-            return False
-
-        username = str(profile.get("username") or "").strip().casefold()
-        if username == "akshita.teststudent":
             return False
 
         # If user has any paid access flag → not offer-only
