@@ -44,6 +44,7 @@ function ParentDashboardPage() {
   const [studentName, setStudentName] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPassword, setStudentPassword] = useState("");
+  const [studentGrade, setStudentGrade] = useState("");
   const [creatingStudent, setCreatingStudent] = useState(false);
 
   const [parentName, setParentName] = useState("");
@@ -128,15 +129,23 @@ function ParentDashboardPage() {
     setCreatingStudent(true);
 
     try {
+      if (!studentGrade) {
+        alert("Please select your child's class before creating the account.");
+        setCreatingStudent(false);
+        return;
+      }
+
       await createStudent({
         username: studentName,
         email: studentEmail,
         password: studentPassword,
+        grade: studentGrade,
       });
 
       setStudentName("");
       setStudentEmail("");
       setStudentPassword("");
+      setStudentGrade("");
       setShowAddChild(false);
 
       await loadFamily();
@@ -559,6 +568,22 @@ function ParentDashboardPage() {
               <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
                 Leave blank if the student does not have an email — they can still log in with their username and password.
               </small>
+
+              <label style={{ display:"block", marginBottom:4, fontSize:".85rem", fontWeight:600 }}>
+                Child's Class *
+              </label>
+              <select
+                value={studentGrade}
+                onChange={(e) => setStudentGrade(e.target.value)}
+                required
+                style={{ marginBottom:12 }}
+              >
+                <option value="">— Select class —</option>
+                {["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5",
+                  "Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"].map(g => (
+                  <option key={g} value={g}>{g}</option>
+                ))}
+              </select>
 
               <input
                 type="password"

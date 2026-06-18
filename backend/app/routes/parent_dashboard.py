@@ -45,6 +45,7 @@ class CreateStudentRequest(BaseModel):
     password: str
     username: str
     board: str = "CBSE"
+    grade: str = "Grade 9"   # required from the parent form — defaults kept for API compat
 
 
 class InviteParentRequest(BaseModel):
@@ -176,6 +177,9 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         password=data.password,
     )
 
+    from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: PLC0415
+    grade = data.grade if data.grade in ALL_GRADES_INCLUDING_HIDDEN else "Grade 9"
+
     child_profile = {
         "id": auth_user.id,
         # Store the resolved email (real or synthetic) so the username→email
@@ -186,6 +190,17 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "parent_id": parent_profile["id"],
         "family_id": parent_profile["family_id"],
         "board": normalize_board(data.board),
+        "grade": grade,
+        "subscription_plan": parent_profile.get("subscription_plan", "free"),
+        "account_status": "active",
+        "access_cbse": parent_profile.get("access_cbse", False),
+        "access_sof_science": parent_profile.get("access_sof_science", False),
+        "access_sof_maths": parent_profile.get("access_sof_maths", False),
+        "access_sof_english": parent_profile.get("access_sof_english", False),
+        "cbse_subjects": [],
+        "daily_token_limit": parent_profile.get("daily_token_limit", 50000),
+        "monthly_token_limit": parent_profile.get("monthly_token_limit", 1000000),
+        "ai_model_preference": "default",
     }
 
     response = (
