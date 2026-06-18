@@ -40,7 +40,7 @@ const ANSWER_STYLE_OPTIONS = [
   },
 ];
 
-function DoubtPage({ user }) {
+function DoubtPage({ user, setActivePage }) {
   /** Student doubt-solving page with syllabus context, RAG/LLM answers, images, and follow-ups. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
@@ -841,8 +841,9 @@ Important:
                   To ask the AI anything — any subject, any chapter, any question —
                   a paid subscription unlocks it all.
                 </p>
-                <a
-                  href="/subscription-plans"
+                <button
+                  type="button"
+                  onClick={() => setActivePage?.("subscriptionPlans")}
                   style={{
                     display: "inline-block",
                     background: "var(--accent, #6366f1)",
@@ -851,11 +852,12 @@ Important:
                     padding: "10px 24px",
                     fontWeight: 600,
                     fontSize: "0.92rem",
-                    textDecoration: "none",
+                    border: "none",
+                    cursor: "pointer",
                   }}
                 >
                   See plans →
-                </a>
+                </button>
               </div>
             </section>
           )}

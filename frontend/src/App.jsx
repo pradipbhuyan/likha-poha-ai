@@ -366,9 +366,9 @@ function App() {
       case "adminControl":
         return <AdminControlPage user={user} />;
       case "lessons":
-        return <LessonsPage user={user} />;
+        return <LessonsPage user={user} setActivePage={handlePageChange} />;
       case "doubt":
-        return <DoubtPage user={user} />;
+        return <DoubtPage user={user} setActivePage={handlePageChange} />;
       case "mockTest":
         return <MockTestPage user={user} />;
       case "resources":

@@ -189,7 +189,7 @@ function normalizePracticeQuestion(question, subject) {
   };
 }
 
-function LessonsPage({ user }) {
+function LessonsPage({ user, setActivePage }) {
   /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and coaching practice. */
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
@@ -1944,8 +1944,9 @@ function LessonsPage({ user }) {
                                   To ask the AI anything — any subject, any chapter, any question —
                                   a paid subscription unlocks it all.
                                 </p>
-                                <a
-                                  href="/subscription-plans"
+                                <button
+                                  type="button"
+                                  onClick={() => setActivePage?.("subscriptionPlans")}
                                   style={{
                                     display: "inline-block",
                                     background: "var(--accent, #6366f1)",
@@ -1954,11 +1955,12 @@ function LessonsPage({ user }) {
                                     padding: "8px 20px",
                                     fontWeight: 600,
                                     fontSize: "0.85rem",
-                                    textDecoration: "none",
+                                    border: "none",
+                                    cursor: "pointer",
                                   }}
                                 >
                                   See plans →
-                                </a>
+                                </button>
                               </div>
                             ) : (
                               <ReactMarkdown
