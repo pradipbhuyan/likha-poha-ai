@@ -823,7 +823,44 @@ Important:
             </section>
           )}
 
-          {answer && (
+          {answer && sourceInfo?.sourceType === "OFFER_GATE" && (
+            <section ref={answerRef} className="premium-section premium-doubt-answer">
+              <div style={{
+                background: "rgba(99,102,241,.07)",
+                border: "1.5px solid rgba(99,102,241,.3)",
+                borderRadius: "14px",
+                padding: "24px 28px",
+                textAlign: "center",
+              }}>
+                <p style={{ fontSize: "1.5rem", marginBottom: 8 }}>🔒</p>
+                <h3 style={{ margin: "0 0 10px", fontSize: "1.05rem" }}>
+                  This doubt is outside your current access
+                </h3>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", marginBottom: 20, lineHeight: 1.6 }}>
+                  Your offer gives you a taste of Likha Poha AI across select topics.
+                  To ask the AI anything — any subject, any chapter, any question —
+                  a paid subscription unlocks it all.
+                </p>
+                <a
+                  href="/subscription-plans"
+                  style={{
+                    display: "inline-block",
+                    background: "var(--accent, #6366f1)",
+                    color: "#fff",
+                    borderRadius: "8px",
+                    padding: "10px 24px",
+                    fontWeight: 600,
+                    fontSize: "0.92rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  See plans →
+                </a>
+              </div>
+            </section>
+          )}
+
+          {answer && sourceInfo?.sourceType !== "OFFER_GATE" && (
             <section ref={answerRef} className="premium-section lesson-output premium-doubt-answer">
               <div className="premium-header">
                 <p className="eyebrow">

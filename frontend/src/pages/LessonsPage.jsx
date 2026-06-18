@@ -892,6 +892,7 @@ function LessonsPage({ user }) {
           content: result.answer,
           sourceType: result.source_type,
           textbookVisuals: result.textbook_visuals || [],
+          offerGate: result.source_type === "OFFER_GATE",
         },
       ]);
 
@@ -1925,35 +1926,71 @@ function LessonsPage({ user }) {
                               {msg.role === "user" ? "You" : "AI Tutor"}
                             </strong>
 
-                            <ReactMarkdown
-                              remarkPlugins={[remarkGfm, remarkMath]}
-                              rehypePlugins={[rehypeKatex]}
-                              components={{
-                                code({ className, children }) {
-                                  const language = className || "";
+                            {msg.offerGate ? (
+                              <div style={{
+                                background: "rgba(99,102,241,.07)",
+                                border: "1.5px solid rgba(99,102,241,.3)",
+                                borderRadius: "12px",
+                                padding: "18px 20px",
+                                textAlign: "center",
+                                marginTop: 8,
+                              }}>
+                                <p style={{ fontSize: "1.3rem", marginBottom: 6 }}>🔒</p>
+                                <p style={{ fontWeight: 600, marginBottom: 8, fontSize: "0.95rem" }}>
+                                  This doubt is outside your current access
+                                </p>
+                                <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: 16, lineHeight: 1.6 }}>
+                                  Your offer gives you a taste of Likha Poha AI across select topics.
+                                  To ask the AI anything — any subject, any chapter, any question —
+                                  a paid subscription unlocks it all.
+                                </p>
+                                <a
+                                  href="/subscription-plans"
+                                  style={{
+                                    display: "inline-block",
+                                    background: "var(--accent, #6366f1)",
+                                    color: "#fff",
+                                    borderRadius: "8px",
+                                    padding: "8px 20px",
+                                    fontWeight: 600,
+                                    fontSize: "0.85rem",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  See plans →
+                                </a>
+                              </div>
+                            ) : (
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm, remarkMath]}
+                                rehypePlugins={[rehypeKatex]}
+                                components={{
+                                  code({ className, children }) {
+                                    const language = className || "";
 
-                                  if (/language-visual-json/.test(language)) {
+                                    if (/language-visual-json/.test(language)) {
+                                      return (
+                                        <StructuredVisualBlock
+                                          raw={String(children).replace(/\n$/, "")}
+                                        />
+                                      );
+                                    }
+
+                                    if (/language-mermaid/.test(language)) {
+                                      return null;
+                                    }
+
                                     return (
-                                      <StructuredVisualBlock
-                                        raw={String(children).replace(/\n$/, "")}
-                                      />
+                                      <code className={className}>{children}</code>
                                     );
-                                  }
+                                  },
+                                }}
+                              >
+                                {normalizeTutorMarkdown(msg.content)}
+                              </ReactMarkdown>
+                            )}
 
-                                  if (/language-mermaid/.test(language)) {
-                                    return null;
-                                  }
-
-                                  return (
-                                    <code className={className}>{children}</code>
-                                  );
-                                },
-                              }}
-                            >
-                              {normalizeTutorMarkdown(msg.content)}
-                            </ReactMarkdown>
-
-                            {msg.sourceType && (
+                            {msg.sourceType && !msg.offerGate && (
                               <span className="chat-source-chip">
                                 {msg.sourceType === "PLATFORM_RAG"
                                   ? "🏷 Platform"

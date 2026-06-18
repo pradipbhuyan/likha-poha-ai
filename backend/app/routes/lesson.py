@@ -25,6 +25,8 @@ from app.services.platform_info_service import (
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
+from app.services.offer_access_service import is_offer_code_user, build_offer_gate_response
+from app.services.doubt_kb_service import search_doubt_kb
 
 router = APIRouter()
 
@@ -400,6 +402,37 @@ def lesson_follow_up(
             textbook_visuals=[],
             history_id=history_item.get("id") if history_item else None,
             message="Platform information answered successfully",
+        )
+
+    # ── Offer-code gate: DKB-only, no LLM calls ──────────────────────────────
+    if is_offer_code_user(user.id):
+        dkb_result = search_doubt_kb(
+            question=data.question,
+            grade=data.grade,
+            subject=data.subject or "",
+            chapter=data.chapter or None,
+            mode=data.mode,
+            board=request_board,
+        )
+        if dkb_result:
+            return LessonFollowUpResponse(
+                success=True,
+                answer=dkb_result["answer"],
+                source_type="DOUBT_KB",
+                sources=[],
+                textbook_visuals=[],
+                history_id=None,
+                message="Answered from knowledge base",
+            )
+        gate = build_offer_gate_response()
+        return LessonFollowUpResponse(
+            success=True,
+            answer=gate["answer"],
+            source_type=gate["source_type"],
+            sources=[],
+            textbook_visuals=[],
+            history_id=None,
+            message="Offer gate: upgrade required for full AI access",
         )
 
     enforce_ai_token_limit(profile.get("username") or data.username)
