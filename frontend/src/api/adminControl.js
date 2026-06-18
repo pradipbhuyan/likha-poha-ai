@@ -357,6 +357,23 @@ export async function deactivateOfferCode(codeId, accessToken) {
   return response.json();
 }
 
+export async function reactivateOfferCode(codeId, accessToken) {
+  /** Reactivate a previously deactivated offer code. */
+  const response = await adminFetch(
+    `/api/admin-control/offer-codes/${codeId}/reactivate`,
+    {
+      method: "PATCH",
+      headers: authHeaders(accessToken),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to reactivate offer code"));
+  }
+
+  return response.json();
+}
+
 export async function getInfluencerSummary(accessToken) {
   /** Load per-influencer redemption stats and incentive totals. */
   const response = await adminFetch("/api/admin-control/offer-codes/influencer-summary", {

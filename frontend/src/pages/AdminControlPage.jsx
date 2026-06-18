@@ -15,6 +15,7 @@ import {
   listOfferCodes,
   createOfferCode,
   deactivateOfferCode,
+  reactivateOfferCode,
   getInfluencerSummary,
   markInfluencerIncentivePaid,
   regeneratePromoImages,
@@ -429,8 +430,20 @@ function AdminControlPage({ user }) {
     try {
       await deactivateOfferCode(codeId, user.accessToken);
       await loadOfferCodes();
+      setOfferMsg("✅ Offer code deactivated.");
     } catch (err) {
       setOfferErr(err.message || "Unable to deactivate.");
+    }
+  }
+
+  async function handleReactivateOfferCode(codeId) {
+    if (!window.confirm("Reactivate this offer code? It will accept new redemptions again.")) return;
+    try {
+      await reactivateOfferCode(codeId, user.accessToken);
+      await loadOfferCodes();
+      setOfferMsg("✅ Offer code reactivated.");
+    } catch (err) {
+      setOfferErr(err.message || "Unable to reactivate.");
     }
   }
 
@@ -1574,23 +1587,32 @@ function AdminControlPage({ user }) {
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {offerCodes.map(oc => {
                   const isExpired = new Date(oc.valid_until) < new Date();
+                  const statusColor = isExpired ? "#ef4444" : oc.is_active ? "#22c55e" : "#f59e0b";
+                  const statusLabel = isExpired ? "⛔ Expired" : oc.is_active ? "✅ Active" : "⏸️ Deactivated";
                   return (
                     <div key={oc.id} className="premium-rag-result-row success" style={{ flexWrap: "wrap", gap: 8 }}>
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <strong style={{ fontFamily: "monospace", fontSize: "1.1rem", letterSpacing: 2 }}>{oc.code}</strong>
                         <p style={{ margin: "2px 0", fontSize: "0.82rem" }}>{oc.description || "No description"}</p>
-                        <small style={{ color: isExpired ? "#ef4444" : "#22c55e" }}>
-                          {isExpired ? "⛔ Expired" : "✅ Active"} · Valid until {oc.valid_until?.slice(0, 10)}
+                        <small style={{ color: statusColor, fontWeight: 600 }}>
+                          {statusLabel} · Valid until {oc.valid_until?.slice(0, 10)}
                         </small>
-                        <small style={{ display: "block" }}>
+                        <small style={{ display: "block", color: "var(--muted)" }}>
                           Used: {oc.uses_count}/{oc.max_uses}
                         </small>
                       </div>
-                      {oc.is_active && !isExpired && (
-                        <button className="danger-btn" style={{ alignSelf: "center" }}
-                          onClick={() => handleDeactivateOfferCode(oc.id)}>
-                          Deactivate
-                        </button>
+                      {!isExpired && (
+                        oc.is_active ? (
+                          <button className="danger-btn" style={{ alignSelf: "center" }}
+                            onClick={() => handleDeactivateOfferCode(oc.id)}>
+                            Deactivate
+                          </button>
+                        ) : (
+                          <button className="secondary-btn" style={{ alignSelf: "center", color: "#22c55e", borderColor: "#22c55e" }}
+                            onClick={() => handleReactivateOfferCode(oc.id)}>
+                            ✅ Reactivate
+                          </button>
+                        )
                       )}
                     </div>
                   );
