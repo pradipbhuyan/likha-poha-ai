@@ -54,10 +54,21 @@ export function filterAllowedSubjects(user, allSubjects, selectedMode) {
   if (user?.role === "admin" || isAllAccessTestUser(user)) return allSubjects;
 
   if (isSchoolBoardMode(selectedMode)) {
-    // Offer-code users have accessCbse=false but offerAccess=true.
-    // The backend enforces DKB-only for doubts; the frontend should still
-    // show CBSE subjects so they can generate lessons and browse chapters.
-    if (user?.accessCbse === false && !user?.offerAccess) return [];
+    // Offer-code users have accessCbse=false. The backend server-side gate
+    // (DKB-only for doubts, cache-only for lessons) is the real access control.
+    // The frontend should always show CBSE subjects for free-plan users so
+    // they can browse and generate lessons — don't block on the frontend.
+    //
+    // We only hide subjects when access_cbse=false AND the user has a non-free
+    // paid plan (which would be a misconfiguration — show nothing rather than
+    // serving content they haven't paid for).
+    const hasPaidPlan = user?.subscriptionPlan && user.subscriptionPlan !== "free";
+    if (user?.accessCbse === false && !user?.offerAccess && hasPaidPlan) return [];
+    if (user?.accessCbse === false && !user?.offerAccess && !hasPaidPlan) {
+      // Free-plan student with access_cbse=false — offer-code user.
+      // Show all CBSE subjects; server enforces DKB/cache-only gate.
+      return allSubjects;
+    }
     return allSubjects.filter((subjectName) =>
       hasCbseSubjectAccess(user, subjectName)
     );
