@@ -278,7 +278,10 @@ def generate_lesson(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    enforce_learning_access(profile, data.mode, data.subject)
+    # Offer-code users bypass the standard CBSE access gate — their redemption
+    # grants limited platform access; lesson generation uses cached content.
+    if not is_offer_code_user(user.id):
+        enforce_learning_access(profile, data.mode, data.subject)
 
     enforce_ai_token_limit(profile.get("username") or data.username)
 
@@ -372,7 +375,9 @@ def lesson_follow_up(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    enforce_learning_access(profile, data.mode, data.subject)
+    # Offer-code users bypass the standard CBSE access gate.
+    if not is_offer_code_user(user.id):
+        enforce_learning_access(profile, data.mode, data.subject)
 
     if is_platform_info_question(data.question):
         result = answer_platform_info(data.question)

@@ -230,7 +230,11 @@ def answer_student_doubt(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    enforce_learning_access(profile, data.mode, data.subject)
+    # Offer-code users bypass the standard CBSE access gate — they have a valid
+    # offer redemption that grants them limited (DKB-only) platform access.
+    # The offer gate further downstream handles the DKB-only restriction.
+    if not is_offer_code_user(user.id):
+        enforce_learning_access(profile, data.mode, data.subject)
 
     if is_platform_info_question(data.question):
         result = answer_platform_info(data.question)
