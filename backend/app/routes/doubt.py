@@ -17,6 +17,10 @@ from app.services.offer_access_service import (
     build_offer_gate_response,
 )
 from app.services.doubt_kb_service import search_doubt_kb
+from app.services.academic_guardrail_service import (
+    is_non_academic_question,
+    build_non_academic_response,
+)
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
@@ -268,6 +272,23 @@ def answer_student_doubt(
             "mentor_suggestions": result.get("mentor_suggestions", []),
             "history_id": history_item.get("id") if history_item else None,
             "message": "Platform information answered successfully",
+        }
+
+    # ── Academic guardrail: block non-academic questions before LLM ──────────
+    # Detects current-affairs, political, sports, and financial questions that
+    # the LLM cannot answer accurately (stale training data) and returns a
+    # polished redirect message at zero token cost.
+    if is_non_academic_question(data.question):
+        guard = build_non_academic_response()
+        return {
+            "success": True,
+            "answer": guard["answer"],
+            "source_type": guard["source_type"],
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+            "history_id": None,
+            "message": "Academic guardrail: non-academic question redirected",
         }
 
     # ── Offer-code gate: DKB-only, no LLM calls ──────────────────────────────
