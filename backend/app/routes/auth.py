@@ -520,7 +520,10 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
     except Exception:
         pass  # Email send failure must not block account creation
 
-    # 4. Create profile (free plan — offer grants time-limited access separately)
+    # 4. Create profile — offer-code users start with access_cbse=False so the
+    #    offer gate (DKB-only mode) activates correctly.  The offer_redemptions row
+    #    is their access token; access_cbse is set to True only when they upgrade
+    #    to a paid subscription.
     base_profile = {
         "id": auth_user.id,
         "email": email_clean,
@@ -530,7 +533,7 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
         "family_id": None,
         "subscription_plan": "free",
         "account_status": "active",
-        "access_cbse": True,
+        "access_cbse": False,   # Must be False so offer gate activates
         "access_sof_science": False,
         "access_sof_maths": False,
         "access_sof_english": False,
