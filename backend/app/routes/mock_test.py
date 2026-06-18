@@ -20,6 +20,7 @@ from app.services.usage_service import enforce_token_limits
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
+from app.services.offer_access_service import is_offer_code_user
 
 router = APIRouter()
 
@@ -243,6 +244,7 @@ def generate_mock_test(
                 exam_type=data.exam_type or "Class Test",
                 num_questions=data.question_count,
                 difficulty=data.difficulty,
+                cache_only=is_offer_code_user(user.id),
             )
 
         return MockTestResponse(

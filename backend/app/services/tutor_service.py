@@ -320,7 +320,7 @@ def remove_mermaid_blocks(text: str) -> str:
     return "\n".join(output).strip()
 
 def generate_step_lesson(
-    grade: str,
+grade: str,
     subject: str,
     chapter: str,
     mode: str,
@@ -329,6 +329,7 @@ def generate_step_lesson(
     username: str = "unknown",
     board: str = "CBSE",
     model: str = DEFAULT_TEXT_MODEL,
+    cache_only: bool = False,
 ):
     """
     Generate one focused lesson step using RAG when uploaded context exists.
@@ -442,6 +443,20 @@ def generate_step_lesson(
             "from_cache": True,
         }
     # --------------------------------------------------------------- end cache
+
+    # Free-trial offer users are limited to pre-warmed content only.
+    # If the lesson is not in the cache, do NOT call the LLM — return a
+    # clear message so the user knows the content will be available soon.
+    if cache_only:
+        from fastapi import HTTPException  # noqa: PLC0415
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "🔒 This lesson step is being prepared and will be available shortly. "
+                "All other chapters are available now. "
+                "To generate any lesson on demand, upgrade to a paid plan."
+            ),
+        )
 
     rag_query = f"""
     {grade} {subject} {chapter}

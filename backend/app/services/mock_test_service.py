@@ -512,13 +512,14 @@ def calculate_score(questions, user_answers):
 
 
 def generate_cbse_mock_test(
-    grade,
+grade,
     subject,
     chapter,
     exam_type="Class Test",
     num_questions=10,
     difficulty="Medium",
     board="CBSE",
+    cache_only: bool = False,
 ):
     """
     Generate a CBSE mock test.
@@ -543,6 +544,20 @@ def generate_cbse_mock_test(
     if bank_questions:
         return bank_questions
     # --------------------------------------------------------------- end bank
+
+    # Free-trial offer users are limited to pre-banked questions only.
+    # If the question bank has no questions for this chapter, do NOT call
+    # the LLM — return an empty list so the caller shows a "not available" message.
+    if cache_only:
+        from fastapi import HTTPException  # noqa: PLC0415
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "🔒 Practice questions for this chapter are being prepared. "
+                "Most chapters are already available. "
+                "To generate any test on demand, upgrade to a paid plan."
+            ),
+        )
 
     prompt = f"""
 Create a {board} {grade} mock test.

@@ -296,6 +296,7 @@ def generate_lesson(
             step_title=data.step_title,
             teacher_persona=data.teacher_persona,
             username=profile.get("username") or data.username,
+            cache_only=is_offer_code_user(user.id),
         )
 
         if isinstance(result, dict):
