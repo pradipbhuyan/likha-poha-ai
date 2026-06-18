@@ -18,6 +18,7 @@ import {
 import {
   getAdminSubscriptionPlans,
   updateAdminSubscriptionPlans,
+  adminOfferGateTest,
 } from "../api/adminControl";
 import "./AdminPerformanceTestsPage.css";
 
@@ -429,6 +430,7 @@ function AdminPerformanceTestsPage({ user }) {
       </section>
 
       <PaymentTestSection user={user} />
+      <OfferGateTestSection user={user} />
     </div>
   );
 }
@@ -608,6 +610,155 @@ function PaymentTestSection({ user }) {
             </p>
           </div>
         )}
+      </div>
+    </section>
+  );
+}
+
+function OfferGateTestSection({ user }) {
+  /**
+   * Admin-only offer-gate test harness.
+   * Lets you put any user into DKB-only mode (offer gate enabled) or
+   * restore their full LLM access — all without touching Supabase manually.
+   */
+  const [testUsername, setTestUsername] = useState("akshita.teststudent");
+  const [gateStatus, setGateStatus] = useState(null);
+  const [gateLoading, setGateLoading] = useState(false);
+  const [gateMessage, setGateMessage] = useState("");
+  const [gateError, setGateError] = useState("");
+
+  async function callGate(action) {
+    setGateLoading(true);
+    setGateMessage("");
+    setGateError("");
+    setGateStatus(null);
+    try {
+      const result = await adminOfferGateTest(
+        { username: testUsername.trim(), action },
+        user.accessToken
+      );
+      setGateStatus(result);
+      setGateMessage(result.message || `Action '${action}' completed.`);
+    } catch (err) {
+      setGateError(err.message || `Failed to ${action} offer gate.`);
+    } finally {
+      setGateLoading(false);
+    }
+  }
+
+  return (
+    <section className="premium-section" style={{ marginTop: 24 }}>
+      <div className="premium-header">
+        <p className="eyebrow">Offer Gate — Admin Test Harness</p>
+        <h3>🔒 Offer-Code Gate Test</h3>
+        <p>
+          Toggle any user into DKB-only mode to test the offer-gate experience
+          without touching Supabase. Restores full access in one click.
+        </p>
+      </div>
+
+      <div className="premium-card" style={{ maxWidth: 560 }}>
+        <div style={{
+          background: "rgba(99,102,241,.07)",
+          border: "1px solid rgba(99,102,241,.25)",
+          borderRadius: 8,
+          padding: "10px 14px",
+          marginBottom: 16,
+          fontSize: ".82rem",
+        }}>
+          <strong>🔒 Admin-only</strong> — Enable sets <code>access_cbse=false</code> +
+          adds a 30-day test redemption (<code>ADMTST01</code>).
+          Disable restores <code>access_cbse=true</code> and removes the redemption.
+        </div>
+
+        <label style={{ display: "block", marginBottom: 16 }}>
+          <strong style={{ fontSize: ".85rem" }}>Test username</strong>
+          <input
+            type="text"
+            value={testUsername}
+            onChange={(e) => setTestUsername(e.target.value)}
+            placeholder="akshita.teststudent"
+            style={{ width: "100%", marginTop: 6 }}
+          />
+          <small style={{ color: "var(--muted)" }}>
+            Default: akshita.teststudent — works for any student username
+          </small>
+        </label>
+
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
+          <button
+            className="secondary-btn"
+            onClick={() => callGate("status")}
+            disabled={gateLoading || !testUsername.trim()}
+          >
+            🔍 Check Status
+          </button>
+          <button
+            className="primary-btn"
+            onClick={() => callGate("enable")}
+            disabled={gateLoading || !testUsername.trim()}
+            style={{ background: "var(--accent, #6366f1)" }}
+          >
+            {gateLoading ? "Working…" : "🔒 Enable Offer Gate"}
+          </button>
+          <button
+            className="secondary-btn"
+            onClick={() => callGate("disable")}
+            disabled={gateLoading || !testUsername.trim()}
+          >
+            ✅ Restore Full Access
+          </button>
+        </div>
+
+        {gateStatus && (
+          <div style={{
+            background: gateStatus.is_offer_gated
+              ? "rgba(99,102,241,.07)"
+              : "rgba(4,120,87,.07)",
+            border: `1px solid ${gateStatus.is_offer_gated ? "rgba(99,102,241,.3)" : "rgba(4,120,87,.3)"}`,
+            borderRadius: 8,
+            padding: "10px 14px",
+            fontSize: ".82rem",
+            marginBottom: 8,
+          }}>
+            <strong>{gateStatus.username}</strong>
+            <p style={{ margin: "4px 0 0" }}>
+              Gate active: <strong>{gateStatus.is_offer_gated ? "🔒 YES — DKB only" : "✅ NO — Full LLM access"}</strong><br />
+              Paid access flags: <code>{gateStatus.has_paid_access ? "true" : "false"}</code><br />
+              Active redemptions: <code>{gateStatus.active_redemptions}</code>
+            </p>
+          </div>
+        )}
+
+        {gateMessage && (
+          <div className="info-box" style={{ marginTop: 8, fontSize: ".82rem" }}>
+            {gateMessage}
+          </div>
+        )}
+        {gateError && (
+          <div className="error-box" style={{ marginTop: 8, fontSize: ".82rem" }}>
+            {gateError}
+          </div>
+        )}
+
+        <div style={{
+          marginTop: 16,
+          padding: "10px 14px",
+          background: "rgba(245,158,11,.07)",
+          border: "1px solid rgba(245,158,11,.25)",
+          borderRadius: 8,
+          fontSize: ".78rem",
+          color: "var(--text-muted)",
+          lineHeight: 1.6,
+        }}>
+          <strong>How to test:</strong>
+          <ol style={{ margin: "6px 0 0 16px", padding: 0 }}>
+            <li>Click <strong>Enable Offer Gate</strong> — access_cbse becomes false</li>
+            <li>Log in as the test user and ask a doubt in Ask Doubt or Lessons</li>
+            <li>Questions in the DKB → answered instantly. Others → upgrade card shown</li>
+            <li>Click <strong>Restore Full Access</strong> when done</li>
+          </ol>
+        </div>
       </div>
     </section>
   );

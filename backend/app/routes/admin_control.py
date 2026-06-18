@@ -1564,3 +1564,155 @@ def delete_user(user_id: str, admin=Depends(require_admin)):
         "success": True,
         "message": "User deleted successfully.",
     }
+
+
+# ── Offer-gate test harness (admin only) ─────────────────────────────────────
+
+@router.post("/offer-gate-test")
+def offer_gate_test(
+    payload: dict,
+    admin=Depends(require_admin),
+):
+    """
+    Admin-only endpoint to toggle offer-gate mode on any user without touching
+    Supabase directly.
+
+    Actions:
+      enable  — strip paid access flags, insert a 30-day test offer redemption.
+      disable — restore access_cbse=True, delete all test offer redemptions.
+      status  — return current gate state without changing anything.
+
+    Payload: {"username": "akshita.teststudent", "action": "enable|disable|status"}
+    """
+    from datetime import datetime, timezone, timedelta  # noqa: PLC0415
+
+    username = str(payload.get("username") or "").strip().casefold()
+    action = str(payload.get("action") or "status").strip().lower()
+
+    if not username:
+        raise HTTPException(status_code=400, detail="username is required.")
+
+    if action not in ("enable", "disable", "status"):
+        raise HTTPException(status_code=400, detail="action must be enable, disable, or status.")
+
+    # Resolve user profile
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english")
+        .ilike("username", username)
+        .limit(1)
+        .execute()
+    )
+    if not profile_resp.data:
+        raise HTTPException(status_code=404, detail=f"User '{username}' not found.")
+
+    profile = profile_resp.data[0]
+    user_id = profile["id"]
+
+    # Determine current state
+    has_paid_access = bool(
+        profile.get("access_cbse")
+        or profile.get("access_sof_science")
+        or profile.get("access_sof_maths")
+        or profile.get("access_sof_english")
+    )
+    now_iso = datetime.now(timezone.utc).isoformat()
+    redemption_resp = (
+        admin_client
+        .table("offer_redemptions")
+        .select("id, valid_until, code_id")
+        .eq("user_id", user_id)
+        .gte("valid_until", now_iso)
+        .limit(1)
+        .execute()
+    )
+    is_currently_gated = not has_paid_access and bool(redemption_resp.data)
+
+    if action == "status":
+        return {
+            "success": True,
+            "username": profile.get("username"),
+            "is_offer_gated": is_currently_gated,
+            "has_paid_access": has_paid_access,
+            "active_redemptions": len(redemption_resp.data or []),
+        }
+
+    if action == "enable":
+        # 1. Strip all paid access flags
+        admin_client.table("profiles").update({
+            "access_cbse": False,
+            "access_sof_science": False,
+            "access_sof_maths": False,
+            "access_sof_english": False,
+        }).eq("id", user_id).execute()
+
+        # 2. Ensure a test offer code exists
+        test_code_label = "ADMTST01"
+        existing_code = (
+            admin_client
+            .table("offer_codes")
+            .select("id")
+            .eq("code", test_code_label)
+            .limit(1)
+            .execute()
+        )
+        if existing_code.data:
+            code_id = existing_code.data[0]["id"]
+        else:
+            valid_until_far = (datetime.now(timezone.utc) + timedelta(days=365)).isoformat()
+            new_code = admin_client.table("offer_codes").insert({
+                "code": test_code_label,
+                "label": "Admin Offer-Gate Test Code",
+                "is_active": True,
+                "valid_from": datetime.now(timezone.utc).isoformat(),
+                "valid_until": valid_until_far,
+                "max_uses": 9999,
+                "uses_count": 0,
+            }).execute()
+            code_id = new_code.data[0]["id"]
+
+        # 3. Upsert a 30-day test redemption for this user
+        valid_until = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
+        # Remove any existing redemptions for this code+user first to avoid duplicates
+        admin_client.table("offer_redemptions").delete().eq("user_id", user_id).eq("code_id", code_id).execute()
+        admin_client.table("offer_redemptions").insert({
+            "user_id": user_id,
+            "code_id": code_id,
+            "valid_until": valid_until,
+        }).execute()
+
+        return {
+            "success": True,
+            "action": "enabled",
+            "username": profile.get("username"),
+            "message": f"Offer gate ENABLED for {profile.get('username')}. "
+                       f"access_cbse=False, test redemption valid until {valid_until[:10]}. "
+                       "Ask Doubt and Lesson follow-up are now DKB-only.",
+        }
+
+    if action == "disable":
+        # 1. Restore paid access
+        admin_client.table("profiles").update({
+            "access_cbse": True,
+        }).eq("id", user_id).execute()
+
+        # 2. Delete the test redemption for ADMTST01 if it exists
+        test_code = (
+            admin_client
+            .table("offer_codes")
+            .select("id")
+            .eq("code", "ADMTST01")
+            .limit(1)
+            .execute()
+        )
+        if test_code.data:
+            admin_client.table("offer_redemptions").delete().eq("user_id", user_id).eq("code_id", test_code.data[0]["id"]).execute()
+
+        return {
+            "success": True,
+            "action": "disabled",
+            "username": profile.get("username"),
+            "message": f"Offer gate DISABLED for {profile.get('username')}. "
+                       "access_cbse restored to True. Full LLM access is back.",
+        }

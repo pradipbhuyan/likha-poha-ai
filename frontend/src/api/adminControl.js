@@ -462,3 +462,18 @@ export async function getMyOfferAccess(accessToken) {
   if (!response.ok) return { has_offer_access: false, valid_until: null };
   return response.json();
 }
+
+export async function adminOfferGateTest(payload, accessToken) {
+  /** Toggle offer-gate mode on a test user without touching Supabase directly.
+   *  payload: { username: string, action: "enable"|"disable"|"status" }
+   */
+  const response = await adminFetch("/api/admin-control/offer-gate-test", {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, `Offer gate test failed (${response.status})`));
+  }
+  return response.json();
+}
