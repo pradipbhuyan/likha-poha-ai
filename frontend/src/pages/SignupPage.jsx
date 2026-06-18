@@ -3,7 +3,7 @@ import logoImg from "../assets/AITutorLogo1.png";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-const PLANS = ["free","starter","family_premium"].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
+const PLANS = ["free","starter","standard_6month","standard_annual","family_premium","family_annual"].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
 function loadRazorpay() {
