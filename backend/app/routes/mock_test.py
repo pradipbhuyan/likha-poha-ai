@@ -26,13 +26,31 @@ router = APIRouter()
 
 
 def call_with_optional_board(func, board: str, **kwargs):
-    """Call upgraded mock-test services with board, while tolerating old doubles."""
+    """
+    Call upgraded mock-test services with board, while tolerating old doubles.
+
+    Also strips cache_only gracefully when the target function (e.g. a test
+    double) does not accept it.
+    """
     try:
         return func(board=board, **kwargs)
     except TypeError as error:
-        if "unexpected keyword argument 'board'" not in str(error):
-            raise
-        return func(**kwargs)
+        err = str(error)
+        if "unexpected keyword argument 'board'" in err:
+            try:
+                return func(**kwargs)
+            except TypeError as inner:
+                if "unexpected keyword argument 'cache_only'" in str(inner):
+                    kwargs.pop("cache_only", None)
+                    return func(**kwargs)
+                raise
+        if "unexpected keyword argument 'cache_only'" in err:
+            kwargs.pop("cache_only", None)
+            try:
+                return func(board=board, **kwargs)
+            except TypeError:
+                return func(**kwargs)
+        raise
 
 
 def get_profile_by_user_id(user_id: str):
