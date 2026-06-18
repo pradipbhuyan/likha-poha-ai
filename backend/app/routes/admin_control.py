@@ -1633,9 +1633,15 @@ def offer_gate_test(
         return {
             "success": True,
             "username": profile.get("username"),
+            "user_id": user_id,
             "is_offer_gated": is_currently_gated,
             "has_paid_access": has_paid_access,
+            "access_cbse": bool(profile.get("access_cbse")),
+            "access_sof_science": bool(profile.get("access_sof_science")),
+            "access_sof_maths": bool(profile.get("access_sof_maths")),
+            "access_sof_english": bool(profile.get("access_sof_english")),
             "active_redemptions": len(redemption_resp.data or []),
+            "redemption_ids": [r["id"] for r in (redemption_resp.data or [])],
         }
 
     if action == "enable":

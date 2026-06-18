@@ -11,9 +11,12 @@ cost at zero for free users.
 
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timezone
 
 from app.services.auth_service import admin_client
+
+logger = logging.getLogger(__name__)
 
 # Message shown to offer-code users when a doubt is outside the DKB (Option 2)
 OFFER_GATE_MESSAGE = (
@@ -85,9 +88,10 @@ def is_offer_code_user(user_id: str) -> bool:
 
         return bool(redemption_result.data)
 
-    except Exception:
+    except Exception as exc:
         # If the check fails for any reason, do not gate — fail open to avoid
         # blocking legitimate users.
+        logger.warning("is_offer_code_user check failed for user_id=%s: %s", user_id, exc)
         return False
 
 

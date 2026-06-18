@@ -722,10 +722,17 @@ function OfferGateTestSection({ user }) {
             marginBottom: 8,
           }}>
             <strong>{gateStatus.username}</strong>
-            <p style={{ margin: "4px 0 0" }}>
+            <p style={{ margin: "4px 0 0", lineHeight: 1.8 }}>
               Gate active: <strong>{gateStatus.is_offer_gated ? "🔒 YES — DKB only" : "✅ NO — Full LLM access"}</strong><br />
-              Paid access flags: <code>{gateStatus.has_paid_access ? "true" : "false"}</code><br />
+              <code>access_cbse</code>: <code>{String(gateStatus.access_cbse)}</code> &nbsp;|&nbsp;
+              <code>access_sof_science</code>: <code>{String(gateStatus.access_sof_science)}</code><br />
               Active redemptions: <code>{gateStatus.active_redemptions}</code>
+              {gateStatus.redemption_ids?.length > 0 && (
+                <><br />Redemption IDs: <code style={{ fontSize: ".72rem" }}>{gateStatus.redemption_ids.join(", ")}</code></>
+              )}
+              {gateStatus.user_id && (
+                <><br />User ID: <code style={{ fontSize: ".72rem" }}>{gateStatus.user_id}</code></>
+              )}
             </p>
           </div>
         )}
