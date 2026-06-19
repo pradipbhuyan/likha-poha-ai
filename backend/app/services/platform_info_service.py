@@ -56,38 +56,11 @@ def answer_platform_info(question: str):
     Answer app/founder questions from curated platform content.
 
     The answer intentionally does not call the LLM. It uses the approved story
-    text directly so students, parents, and teachers receive the same facts.
+    text from platform_info.py so all responses are consistent and controllable.
+    To update what the AI says about LikhaPoha, edit platform_info.py only.
     """
-    text = str(question or "").lower()
-
-    if "akshita" in text or "daughter" in text:
-        answer = (
-            "Likha Poha AI was initially developed by Pradip Bhuyan to help his "
-            "daughter, Akshita, with her studies. That personal need shaped the "
-            "platform into a patient AI learning companion for CBSE preparation "
-            "from Grade 5 to Grade 10."
-        )
-    elif "founder" in text or "who created" in text or "who made" in text:
-        answer = (
-            "Likha Poha AI was created by Pradip Bhuyan. It began as a way to "
-            "help his daughter Akshita study with step-by-step explanations, "
-            "doubt solving, practice, and progress visibility for CBSE students."
-        )
-    else:
-        answer = (
-            "Likha Poha AI is an independent AI learning companion created by "
-            "Pradip Bhuyan for CBSE students from Grade 5 to Grade 10. It "
-            "supports Science, Maths, English, Social Science, and Hindi using "
-            "lessons, doubt solving, mock tests, uploaded textbook RAG content, "
-            "and parent/teacher progress tracking. It was initially developed to "
-            "help the founder's daughter, Akshita, with her studies."
-        )
-
-    answer += (
-        "\n\nIt is not an official CBSE product, and it is not meant to "
-        "replace teachers or parents. It is designed to support revision, "
-        "practice, confidence building, and personalized learning."
-    )
+    # Always use the canonical story from platform_info.py — never hardcode here.
+    answer = LIKHA_POHA_FOUNDER_STORY
 
     return {
         "answer": answer,
