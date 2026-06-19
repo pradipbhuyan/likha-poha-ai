@@ -26,9 +26,7 @@ export const SUBSCRIPTION_PLANS = {
       "Mock tests with scoring",
       "Parent dashboard",
     ],
-    notIncluded: [
-      "SOF Olympiad content",
-    ],
+    notIncluded: [],
     comparison: {
       children: "1",
       aiUsage: "Unlimited",
