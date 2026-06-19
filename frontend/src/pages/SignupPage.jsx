@@ -167,8 +167,9 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
   ];
 
   async function handleOfferCodeSignup(e) {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     setError("");
+    if (!role) { setError("Please select your role first."); setStep("role"); return; }
     if (!name.trim() || !email.trim()) { setError("Please fill in your name and email."); return; }
     if (offerCodeInput.trim().length !== 8) { setError("Offer code must be exactly 8 characters."); return; }
     setLoading(true);
@@ -451,7 +452,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               </div>
               <p style={{ textAlign:"center", marginTop:20, color:"#475569", fontSize:".78rem" }}>
                 🔒 Secure Razorpay checkout &nbsp;·&nbsp;
-                <span style={{ color:"#6366f1", cursor:"pointer" }} onClick={() => setStep("form")}>
+                <span style={{ color:"#6366f1", cursor:"pointer" }} onClick={() => { setUseOfferCode(true); setStep("form"); }}>
                   Have an offer code? Skip payment →
                 </span>
               </p>
@@ -469,6 +470,12 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               <p style={{ color:"#64748b", fontSize:".9rem", marginBottom:26 }}>
                 We'll use your email to send a verification link
               </p>
+              {useOfferCode && (
+                <div style={{ background:"rgba(5,150,105,.08)", border:"1px solid rgba(5,150,105,.25)",
+                              borderRadius:10, padding:"10px 14px", marginBottom:16, fontSize:".82rem", color:"#6ee7b7" }}>
+                  🎟️ <strong>Offer code signup</strong> — no payment needed. Just fill in your details and enter your code below.
+                </div>
+              )}
               <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
                 <div>
                   <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>Full Name *</label>
@@ -501,10 +508,40 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
                       value={school} onChange={e => setSchool(e.target.value)} />
                   </div>
                 )}
+                {useOfferCode && (
+                  <div>
+                    <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
+                      Offer Code *
+                    </label>
+                    <input
+                      style={{ ...S.input, fontFamily:"monospace", letterSpacing:4,
+                               textTransform:"uppercase", fontSize:"1.1rem", textAlign:"center" }}
+                      type="text" maxLength={8} placeholder="XXXXXXXX"
+                      value={offerCodeInput}
+                      onChange={e => setOfferCodeInput(e.target.value.toUpperCase())}
+                    />
+                  </div>
+                )}
                 {error && <div style={S.errorBox}>{error}</div>}
-                <button style={S.primBtn} onClick={() => { setError(""); setStep("plan"); }}>
-                  Continue to Plan Selection →
-                </button>
+                {useOfferCode ? (
+                  <>
+                    <button
+                      style={{ ...S.primBtn, background:"linear-gradient(135deg,#059669,#0d9488)" }}
+                      disabled={loading || offerCodeInput.length !== 8 || !name.trim() || !email.trim()}
+                      onClick={handleOfferCodeSignup}
+                    >
+                      {loading ? "Creating account…" : "🎟️ Create Account with Offer Code"}
+                    </button>
+                    <p style={{ textAlign:"center", marginTop:8, fontSize:".77rem", color:"#475569", cursor:"pointer" }}
+                       onClick={() => { setUseOfferCode(false); setOfferCodeInput(""); setError(""); }}>
+                      💳 Pay with Razorpay instead
+                    </p>
+                  </>
+                ) : (
+                  <button style={S.primBtn} onClick={() => { setError(""); setStep("plan"); }}>
+                    Continue to Plan Selection →
+                  </button>
+                )}
               </div>
               <p style={{ textAlign:"center", marginTop:14, color:"#475569", fontSize:".78rem", cursor:"pointer" }}
                 onClick={() => setStep("role")}>← Back to role selection</p>
