@@ -464,18 +464,30 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
             <div>
               <p style={{ fontSize:".71rem", fontWeight:700, letterSpacing:".1em",
                           textTransform:"uppercase", color:"#6366f1", marginBottom:8 }}>
-                Step 2 of 3 — Account Details
+                {useOfferCode ? "Step 2 of 2 — Your Details" : "Step 2 of 3 — Account Details"}
               </p>
               <h2 style={{ fontSize:"1.75rem", fontWeight:900, marginBottom:6 }}>Create your account</h2>
-              <p style={{ color:"#64748b", fontSize:".9rem", marginBottom:26 }}>
-                We'll use your email to send a verification link
-              </p>
-              {useOfferCode && (
-                <div style={{ background:"rgba(5,150,105,.08)", border:"1px solid rgba(5,150,105,.25)",
-                              borderRadius:10, padding:"10px 14px", marginBottom:16, fontSize:".82rem", color:"#6ee7b7" }}>
-                  🎟️ <strong>Offer code signup</strong> — no payment needed. Just fill in your details and enter your code below.
-                </div>
-              )}
+
+              {/* Offer code / payment toggle — always visible */}
+              <div style={{ display:"flex", gap:0, background:"#111827", border:"1px solid #1e293b",
+                            borderRadius:10, padding:3, marginBottom:20 }}>
+                <button
+                  onClick={() => { setUseOfferCode(false); setError(""); }}
+                  style={{ flex:1, padding:"9px 10px", borderRadius:8, border:"none",
+                           background: !useOfferCode ? "linear-gradient(135deg,#2563eb,#7c3aed)" : "transparent",
+                           color: !useOfferCode ? "#fff" : "#64748b",
+                           fontFamily:"inherit", fontSize:".82rem", fontWeight:600, cursor:"pointer" }}>
+                  💳 Pay & Sign Up
+                </button>
+                <button
+                  onClick={() => { setUseOfferCode(true); setError(""); }}
+                  style={{ flex:1, padding:"9px 10px", borderRadius:8, border:"none",
+                           background: useOfferCode ? "linear-gradient(135deg,#059669,#0d9488)" : "transparent",
+                           color: useOfferCode ? "#fff" : "#64748b",
+                           fontFamily:"inherit", fontSize:".82rem", fontWeight:600, cursor:"pointer" }}>
+                  🎟️ I Have an Offer Code
+                </button>
+              </div>
               <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
                 <div>
                   <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>Full Name *</label>
