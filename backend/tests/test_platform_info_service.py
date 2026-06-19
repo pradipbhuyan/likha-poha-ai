@@ -13,11 +13,17 @@ def test_platform_info_question_detection():
 
 
 def test_platform_info_answer_uses_founder_story():
-    """The curated answer should include the approved founder and Akshita story."""
+    """The curated answer should use the approved platform story from platform_info.py.
+    Personal names must not appear in the answer — the story is anonymous.
+    """
     result = answer_platform_info("Who created Likha Poha AI?")
 
     assert result["source_type"] == "PLATFORM_RAG"
-    assert "Pradip Bhuyan" in result["answer"]
-    assert "Akshita" in result["answer"]
+    # Personal names must NOT appear — privacy requirement
+    assert "Pradip Bhuyan" not in result["answer"]
+    assert "Akshita" not in result["answer"]
+    # Anonymous origin story keywords must be present
+    assert "parent-engineer" in result["answer"] or "Bangalore" in result["answer"]
+    # Must identify as independent (not official CBSE)
     assert "not an official CBSE product" in result["answer"]
     assert result["sources"][0]["document"]["title"] == "Likha Poha AI Founder Story"
