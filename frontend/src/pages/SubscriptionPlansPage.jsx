@@ -219,7 +219,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
                 : offerAccess?.has_offer_access && offerAccess?.valid_until
                   ? offerAccess.expiring_soon
                     ? `⚠️ Expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""} — ${new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`
-                    : `🟢 Valid until ${new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · ${offerAccess.days_remaining} days left`
+                    : `🟢 Valid until ${new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · ${offerAccess.days_remaining} days remaining`
                   : offerAccess?.expired_on
                     ? `🔴 Expired on ${new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`
                     : "🔒 Limited — upgrade to unlock all features"}
@@ -262,7 +262,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
                 <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
                   Valid until {new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
                   {offerAccess.days_remaining > 7 ? ` · ${offerAccess.days_remaining} days remaining` : ""}
-                  {offerAccess.expiring_soon ? " — upgrade now to keep your access" : " · Lessons and mock tests available from pre-loaded content"}
+                  {offerAccess.expiring_soon ? " — upgrade now to keep your access" : ""}
                 </span>
               </>
             ) : (
