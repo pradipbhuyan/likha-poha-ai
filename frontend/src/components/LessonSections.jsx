@@ -99,12 +99,13 @@ function getQuestionPrompt(section) {
     if (/^would you like (that|to|me to)\??$/i.test(prompt)) {
       return "";
     }
-
-    return prompt.slice(0, 420);
+    // No truncation — worked examples and multi-step questions must show completely.
+    return prompt;
   }
 
   if (isQuestionSection) {
-    return content.slice(0, 420);
+    // No truncation — the full question text must be visible.
+    return content;
   }
 
   const finalQuestionMatch = content.match(/([^.!?]*\?)\s*$/);
@@ -116,7 +117,7 @@ function getQuestionPrompt(section) {
       prompt.length >= 12 &&
       !/^would you like (that|to|me to)\??$/i.test(prompt)
     ) {
-      return prompt.slice(0, 420);
+      return prompt;
     }
   }
 
