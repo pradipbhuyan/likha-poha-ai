@@ -2,6 +2,24 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import SignupPage from "../pages/SignupPage";
 
+// Mock supabaseClient so tests don't require real Supabase env vars
+vi.mock("../api/supabaseClient", () => ({
+  supabase: {
+    auth: {
+      signOut: vi.fn().mockResolvedValue({}),
+      signInWithPassword: vi.fn().mockResolvedValue({
+        data: { session: null, user: null },
+        error: null,
+      }),
+    },
+    from: vi.fn().mockReturnValue({
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    }),
+  },
+}));
+
 // Mock logo import
 vi.mock("../assets/AITutorLogo1.png", () => ({ default: "logo.png" }));
 
