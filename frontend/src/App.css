@@ -2602,9 +2602,24 @@ body.dark-mode .status-pill,
 body.dark-mode .profile-pill,
 body.dark-mode .lesson-source-badge,
 body.dark-mode .chat-source-chip {
-  background: #111827 !important;
+  background: #1e293b !important;
   border-color: #334155 !important;
-  color: #93c5fd !important;
+  color: #e2e8f0 !important;
+}
+
+/* Performance run health/status pills */
+body.dark-mode [class*="health-"],
+body.dark-mode [class*="run-status"],
+body.dark-mode [class*="status-pill"],
+body.dark-mode [class*="perf-badge"],
+body.dark-mode .sales-status-pill {
+  color: inherit !important;
+}
+
+/* Warning badge — ensure readable in dark mode */
+body.dark-mode [style*="background: #fef3c7"],
+body.dark-mode [style*="background: rgb(254, 243, 199)"] {
+  color: #78350f !important;
 }
 
 body.dark-mode .review-card.correct {
@@ -12817,6 +12832,12 @@ body.dark-mode .structured-visual-note {
   font-weight: 800;
 }
 
+body.dark-mode .performance-badge {
+  background: rgba(99, 102, 241, 0.2) !important;
+  color: #a5b4fc !important;
+  border: 1px solid rgba(99, 102, 241, 0.35) !important;
+}
+
 .performance-form {
   display: grid;
   gap: 16px;
@@ -12986,6 +13007,41 @@ body.dark-mode .structured-visual-note {
 .performance-status.completed {
   background: #dcfce7;
   color: #047857;
+}
+
+/* Dark mode overrides for all performance/classification/status pills */
+body.dark-mode .performance-badge {
+  background: rgba(99, 102, 241, 0.18) !important;
+  color: #c7d2fe !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+}
+
+body.dark-mode .performance-classification,
+body.dark-mode .performance-status {
+  background: rgba(14, 116, 144, 0.2) !important;
+  color: #67e8f9 !important;
+}
+
+body.dark-mode .performance-classification.good,
+body.dark-mode .performance-status.completed {
+  background: rgba(4, 120, 87, 0.2) !important;
+  color: #6ee7b7 !important;
+}
+
+body.dark-mode .performance-classification.warning {
+  background: rgba(180, 83, 9, 0.22) !important;
+  color: #fcd34d !important;
+}
+
+body.dark-mode .performance-classification.degrading {
+  background: rgba(194, 65, 12, 0.22) !important;
+  color: #fdba74 !important;
+}
+
+body.dark-mode .performance-classification.critical,
+body.dark-mode .performance-status.failed {
+  background: rgba(185, 28, 28, 0.22) !important;
+  color: #fca5a5 !important;
 }
 
 .performance-results-table-wrap {
