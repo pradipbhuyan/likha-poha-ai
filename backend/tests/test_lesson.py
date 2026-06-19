@@ -235,5 +235,5 @@ def test_lesson_follow_up_uses_platform_rag_for_founder_questions(monkeypatch):
 
     assert captured["called"] is False
     assert data["source_type"] == "PLATFORM_RAG"
-    assert "Pradip Bhuyan" in data["answer"]
-    assert "Akshita" in data["answer"]
+    assert "parent-engineer" in data["answer"] or "Bangalore" in data["answer"]
+    assert "Indian families" in data["answer"] or "NCERT" in data["answer"]

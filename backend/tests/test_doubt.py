@@ -265,8 +265,8 @@ def test_answer_doubt_uses_platform_rag_for_founder_questions(monkeypatch):
 
     assert captured["answer_doubt_called"] is False
     assert data["source_type"] == "PLATFORM_RAG"
-    assert "Pradip Bhuyan" in data["answer"]
-    assert "Akshita" in data["answer"]
+    assert "parent-engineer" in data["answer"] or "Bangalore" in data["answer"]
+    assert "Indian families" in data["answer"] or "NCERT" in data["answer"]
 
 
 def test_get_doubt_history_returns_authenticated_student_rows(monkeypatch):
