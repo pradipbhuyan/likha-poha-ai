@@ -91,7 +91,7 @@ function getQuestionPrompt(section) {
     title.includes("practice");
 
   const labelledQuestionMatch = content.match(
-    /(?:^|\s)(?:question|quick check(?: question)?|try this|your turn)\s*:\s*([^]+?)(?=(?:\s(?:answer|hint|solution)\s*:)|$)/i
+    /(?:^|\s)(?:question|quick check(?: question)?|try this|your turn)\s*:\s*([^]+?)(?=(?:\s(?:step\s*\d+|answer|hint|solution)\s*:)|$)/i
   );
 
   if (labelledQuestionMatch) {
@@ -99,7 +99,7 @@ function getQuestionPrompt(section) {
     if (/^would you like (that|to|me to)\??$/i.test(prompt)) {
       return "";
     }
-    // No truncation — worked examples and multi-step questions must show completely.
+    // Return just the problem statement — no truncation, but stop before solution steps.
     return prompt;
   }
 
