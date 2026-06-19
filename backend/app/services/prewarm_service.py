@@ -603,7 +603,13 @@ def _get_rag_chapters_for_grade(grade: str) -> set:
                 .execute()
             )
             _rag_chapters_cache[grade] = {
-                (doc.get("subject") or "", doc.get("chapter") or "")
+                (
+                    doc.get("subject") or "",
+                    # Strip non-printable characters (e.g. \x08 backspace from PDF
+                    # uploads) so the lookup always matches the cleaned chapter name
+                    # used by make_lesson_cache_key and has_rag_content_for_chapter.
+                    "".join(c for c in (doc.get("chapter") or "") if c.isprintable()).strip(),
+                )
                 for doc in result.data or []
                 if doc.get("subject") and doc.get("chapter")
             }

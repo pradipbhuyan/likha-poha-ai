@@ -669,9 +669,15 @@ def merge_uploaded_rag_chapters(syllabus):
     for document in response.data or []:
         grade = document.get("grade")
         subject = document.get("subject")
-        chapter = document.get("chapter")
+        raw_chapter = document.get("chapter")
 
-        if not grade or not subject or not chapter:
+        if not grade or not subject or not raw_chapter:
+            continue
+
+        # Strip non-printable characters (e.g. \x08 backspace from PDF uploads)
+        # so chapter names display and match cleanly everywhere.
+        chapter = "".join(c for c in raw_chapter if c.isprintable()).strip()
+        if not chapter:
             continue
 
         grade_data = merged.setdefault(grade, {"CBSE": {}})
