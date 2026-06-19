@@ -2517,6 +2517,21 @@ textarea:focus {
 }
 
 body.dark-mode {
+  /* Override all CSS variables for dark mode */
+  --bg: #020617;
+  --panel: #0f172a;
+  --panel-soft: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --muted: #64748b;
+  --border: #1e293b;
+  --border-soft: #0f172a;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --accent: #7c3aed;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+
   background: #020617;
   color: #f8fafc;
 }
