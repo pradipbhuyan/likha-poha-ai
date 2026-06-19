@@ -6,8 +6,8 @@ import "./SignupPage.css";
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const PLANS = [
-  "free", "starter", "standard_6month", "standard_annual",
-  "family_premium", "family_annual",
+  "free", "starter",
+  "family_premium",
 ].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
 
 // Platform currently supports Grade 5–10.
@@ -18,8 +18,6 @@ const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
 const PLAN_FILTER_GROUPS = {
   monthly:   ["free", "starter", "family_premium"],
-  sixmonth:  ["standard_6month"],
-  annual:    ["standard_annual", "family_annual"],
 };
 
 function loadRazorpay() {
@@ -529,7 +527,7 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
               {/* Plan filter tabs */}
               <div style={{ display:"flex", background:"#111827", border:"1px solid #1e293b",
                             borderRadius:9, padding:3, marginBottom:14, gap:3 }}>
-                {[["monthly","Monthly"],["sixmonth","6-Month 🎁"],["annual","Annual 🏆"]].map(([k,l]) => (
+                {[["monthly","Monthly"]].map(([k,l]) => (
                   <button key={k} onClick={() => { setPlanFilter(k); }}
                     style={{ flex:1, padding:"7px 6px", borderRadius:7, border:"none",
                              background: planFilter===k ? "#1e293b" : "transparent",
