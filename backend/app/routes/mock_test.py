@@ -262,7 +262,7 @@ def generate_mock_test(
                 exam_type=data.exam_type or "Class Test",
                 num_questions=data.question_count,
                 difficulty=data.difficulty,
-                cache_only=is_offer_code_user(user.id),
+                cache_only=False,  # Free-trial offer users get full mock test access during validity
             )
 
         return MockTestResponse(
