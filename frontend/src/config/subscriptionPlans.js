@@ -306,7 +306,9 @@ export function normalizeSubscriptionPlan(rawPlan = {}) {
       rawPlan.discountPercent ?? rawPlan.discount_percent ?? fallback.discountPercent ?? 0,
     discountLabel:
       rawPlan.discountLabel ?? rawPlan.discount_label ?? fallback.discountLabel ?? "",
-    isPublic: rawPlan.isPublic ?? rawPlan.is_public ?? fallback.isPublic ?? true,
+    // Frontend config's isPublic: false always wins — it's an intentional
+    // hide decision and should not be overridden by stale DB values.
+    isPublic: fallback.isPublic === false ? false : (rawPlan.isPublic ?? rawPlan.is_public ?? fallback.isPublic ?? true),
     displayOrder:
       rawPlan.displayOrder ?? rawPlan.display_order ?? fallback.displayOrder ?? 999,
     access_cbse: rawPlan.access_cbse ?? fallback.access_cbse ?? true,
