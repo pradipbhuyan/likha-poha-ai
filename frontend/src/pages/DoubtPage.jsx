@@ -136,11 +136,16 @@ function DoubtPage({ user, setActivePage }) {
   const modes = Object.keys(syllabusData[grade]);
 
   function hasModeAccess(selectedMode) {
-    /** Check whether the signed-in user may use CBSE or at least one SOF subject. */
+    /** Check whether the signed-in user may use CBSE or at least one SOF subject.
+     *  Offer-code / free-trial users have accessCbse=false but are still allowed
+     *  into CBSE mode — the backend applies the DKB-only gate for their doubts.
+     */
     if (user.role === "admin" || isAllAccessTestUser(user)) return true;
 
     if (isSchoolBoardMode(selectedMode)) {
-      return !!user.accessCbse;
+      // Paid CBSE access OR free-plan offer user (backend gates via DKB)
+      const isFreeTrialUser = !user.accessCbse && (!user.subscriptionPlan || user.subscriptionPlan === "free");
+      return !!user.accessCbse || isFreeTrialUser || !!user.offerAccess;
     }
 
     if (selectedMode === "SOF") {
