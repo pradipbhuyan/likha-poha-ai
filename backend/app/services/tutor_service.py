@@ -84,9 +84,15 @@ PEDAGOGY RULES:
 - Avoid generic textbook paraphrasing.
 - Explain ideas like an expert teacher teaching a real classroom.
 - Every explanation should deepen understanding.
-- Only the "Quick check question" section may ask a question.
+- Only the "Quick check question" section may ask the student an open-ended
+  conversational question inviting them to respond.
+- The "Worked example" section MUST begin with "Question: <data> <task instruction>"
+  where the task instruction tells the student what to DO (e.g. "Draw a pictograph.",
+  "Find the value of x.", "Calculate the area."). This is the problem being solved,
+  NOT a conversational prompt.
 - Do not add a "Quick check question:" line inside any other section or after a visual.
-- All other sections must end with a statement or instruction, not a question.
+- Sections other than "Worked example" and "Quick check question" must end with a
+  statement or instruction, not a question.
 - Do not ask conversational questions such as "Would you like that?" or
   "Should we continue?" because the app will not process those as answers.
 - In Summary, tell the student what to do next, for example:
