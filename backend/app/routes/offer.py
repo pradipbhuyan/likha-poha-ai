@@ -154,8 +154,17 @@ def get_my_offer_access(user=Depends(get_current_user)):
       expiring_soon: bool (<=7 days)
       expired_on: ISO string or null
     """
-    user_id = user["profile"]["id"]
-    parent_id = user["profile"].get("parent_id")
+    user_id = user.id
+    # Load profile to get parent_id (for child accounts inheriting parent's offer)
+    profile_result = (
+        admin_client
+        .table("profiles")
+        .select("parent_id")
+        .eq("id", user_id)
+        .limit(1)
+        .execute()
+    )
+    parent_id = (profile_result.data[0].get("parent_id") if profile_result.data else None)
     now_iso = datetime.now(timezone.utc).isoformat()
 
     try:
