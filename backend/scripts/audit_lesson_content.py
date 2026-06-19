@@ -158,23 +158,37 @@ ALL_CHECKS = [
 # ---------------------------------------------------------------------------
 
 def load_all_active_lessons(grade_filter=None):
-    """Fetch all active lesson_cache rows, optionally filtered by grade."""
-    query = (
-        admin_client.table("lesson_cache")
-        .select("id, grade, subject, chapter, step_title, mode, board, status, lesson_content, created_at")
-        .eq("status", "active")
-    )
-    if grade_filter:
-        query = query.eq("grade", grade_filter)
-    result = (
-        query
-        .order("grade")
-        .order("subject")
-        .order("chapter")
-        .order("step_title")
-        .execute()
-    )
-    return result.data or []
+    """
+    Fetch all active lesson_cache rows, paginating in 1000-row chunks to
+    bypass the Supabase default row limit.
+    """
+    FIELDS = "id, grade, subject, chapter, step_title, mode, board, status, lesson_content, created_at"
+    all_rows = []
+    page_size = 1000
+    offset = 0
+    while True:
+        query = (
+            admin_client.table("lesson_cache")
+            .select(FIELDS)
+            .eq("status", "active")
+        )
+        if grade_filter:
+            query = query.eq("grade", grade_filter)
+        result = (
+            query
+            .order("grade")
+            .order("subject")
+            .order("chapter")
+            .order("step_title")
+            .range(offset, offset + page_size - 1)
+            .execute()
+        )
+        page = result.data or []
+        all_rows.extend(page)
+        if len(page) < page_size:
+            break
+        offset += page_size
+    return all_rows
 
 
 def audit_lessons(rows):
