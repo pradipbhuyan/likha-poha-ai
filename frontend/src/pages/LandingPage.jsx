@@ -11,7 +11,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
     }
   }
   const [openFaq, setOpenFaq] = useState(null);
-  const [contactEmail, setContactEmail] = useState("hello@likhapoha.in");
+  const [contactEmail, setContactEmail] = useState("likhapohaai@gmail.com");
 
   function toggleFaq(i) { setOpenFaq(p => p === i ? null : i); }
 

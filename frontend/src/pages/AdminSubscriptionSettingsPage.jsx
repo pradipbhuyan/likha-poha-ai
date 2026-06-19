@@ -30,7 +30,7 @@ function textToList(value) {
 }
 
 const DEFAULT_SUBSCRIPTION_CONTACT = {
-  email: "lilhapohaai@gmail.com",
+  email: "likhapohaai@gmail.com",
   phone: "",
   whatsapp: "",
   availability: "We usually respond within one business day.",

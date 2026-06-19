@@ -4,28 +4,22 @@ LIKHA_POHA_PLATFORM_SUBJECT = "About Likha Poha AI"
 LIKHA_POHA_PLATFORM_CHAPTER = "Founder Story"
 
 LIKHA_POHA_FOUNDER_STORY = """
-Likha Poha AI Founder Story
+Likha Poha AI — About the Platform
 
-Likha Poha AI was created by developer in Bangalore to help students get patient,
-personalized learning support for CBSE preparation from Grade 5 to Grade 10.
+Likha Poha AI was created by a parent-engineer in Bangalore to solve a real
+problem: good CBSE tutoring is expensive, generic video content doesn't follow
+the syllabus, and parents have no visibility into what their child is learning.
 
-The platform was initially developed to help the founder's daughter 
-with her studies. That personal need shaped the product: it had to explain
-lessons step by step, answer doubts patiently, support practice, and help a
-parent understand progress without overwhelming the child.
+The platform was built on a simple idea — what if a student had a patient AI
+teacher available any time, one that actually uses their NCERT textbook, not
+random internet content?
 
-The idea came from the need for an affordable AI tutor that can explain lessons
-clearly, answer doubts, create mock tests, use uploaded textbook and workbook
-material through RAG, and help parents and teachers track student progress.
+Today, Likha Poha AI supports Grade 5 to Grade 10 CBSE students across all
+core subjects — Science, Maths, English, Social Science, and Hindi. It
+provides step-wise AI lessons, instant doubt answering, 42,000+ practice
+questions, CBSE mock tests, and a parent dashboard with real-time progress
+tracking and weak-area alerts.
 
-Likha Poha AI is designed for CBSE students from Grade 5 to Grade 10, with
-support for all core subjects including Science, Maths, English, Social Science,
-and Hindi.
-
-The platform is not a replacement for teachers or parents. It is a learning
-companion that helps students revise, practice, ask questions, build confidence,
-and receive support at their own pace.
-
-Likha Poha AI should not claim to be an official CBSE product. It should
-describe itself as an independent AI learning companion for CBSE preparation.
+Likha Poha AI is not an official CBSE product. It is an independent,
+affordable AI learning companion built for Indian families.
 """.strip()

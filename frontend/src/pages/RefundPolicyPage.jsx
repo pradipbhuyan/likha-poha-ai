@@ -1,10 +1,25 @@
+import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const FALLBACK_EMAIL = "likhapohaai@gmail.com";
 
 /**
  * Standalone Refund Policy page accessible at /refund-policy.
  * Rendered outside the authenticated app shell — no login required.
+ * Contact email is fetched from /api/payments/contact (subscription settings)
+ * so it never needs to be hardcoded here.
  */
 export default function RefundPolicyPage({ onBackToHome }) {
+  const [contactEmail, setContactEmail] = useState(FALLBACK_EMAIL);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/payments/contact`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.email) setContactEmail(data.email); })
+      .catch(() => {});
+  }, []);
+
   return (
     <div style={{fontFamily:"Inter,sans-serif",background:"#0f172a",color:"#f8fafc",minHeight:"100vh",lineHeight:1.7}}>
       <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 40px",background:"rgba(15,23,42,.96)",backdropFilter:"blur(16px)",borderBottom:"1px solid #334155",position:"sticky",top:0,zIndex:99}}>
@@ -41,7 +56,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
 
         <Section title="3. Monthly Plans — Standard (₹299/month) and Family (₹499/month)">
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
-            <li style={{marginBottom:8}}><strong>Within 24 hours of first purchase:</strong> If you have not used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
+            <li style={{marginBottom:8}}><strong>Within 24 hours of first purchase:</strong> If you have not used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a>.</li>
             <li style={{marginBottom:8}}><strong>After 24 hours:</strong> Subscriptions are <strong>non-refundable</strong> once the billing cycle has started and platform features have been accessed.</li>
             <li style={{marginBottom:8}}><strong>Recurring billing:</strong> If you wish to cancel, please do so before your next renewal date. Cancellation stops future charges but does not entitle you to a refund for the current billing period already paid.</li>
             <li>If a technical failure on our platform prevented you from accessing paid features for a significant portion of your billing cycle, we will assess each case individually and may issue a prorated credit or refund.</li>
@@ -51,7 +66,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
         <Section title="4. 6-Month Plan — Standard (₹1,495 / 6 months)">
           The 6-month plan is a single upfront payment covering 6 months of access (equivalent to paying for 5 months — 1 month is included free).
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
-            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform, you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
+            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform, you may request a full refund by writing to <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a>.</li>
             <li style={{marginBottom:8}}><strong>After 7 days:</strong> The 6-month plan is <strong>non-refundable</strong> once the platform has been accessed.</li>
             <li>There is no partial refund for the unused portion of the 6-month period once the refund window has passed.</li>
           </ul>
@@ -60,7 +75,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
         <Section title="5. Annual Plans — Standard Annual (₹2,999/year) and Family Annual (₹4,999/year)">
           Annual plans are single upfront payments covering 12 months of access (equivalent to 10 months' billing — 2 months are included free).
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
-            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>.</li>
+            <li style={{marginBottom:8}}><strong>Within 7 days of purchase:</strong> If you have not materially used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a>.</li>
             <li style={{marginBottom:8}}><strong>After 7 days:</strong> Annual plans are <strong>non-refundable</strong> once the platform has been accessed or the 7-day window has passed.</li>
             <li style={{marginBottom:8}}>There is no partial refund for the unused portion of the annual period once the refund window has passed.</li>
             <li>If a prolonged technical failure on our part prevented you from using the platform for a significant period, we will assess the case individually and may issue a prorated credit.</li>
@@ -68,7 +83,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="6. How to Request a Refund">
-          To request a refund, email us at <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a> with:
+          To request a refund, email us at <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a> with:
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}>Your registered email address or username</li>
             <li style={{marginBottom:8}}>The plan you subscribed to and the date of purchase</li>
@@ -89,7 +104,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="8. Disputed or Fraudulent Transactions">
-          If you believe an unauthorised charge was made to your account, contact us immediately at <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a>. We will investigate and resolve legitimate disputes as quickly as possible.
+          If you believe an unauthorised charge was made to your account, contact us immediately at <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a>. We will investigate and resolve legitimate disputes as quickly as possible.
         </Section>
 
         <Section title="9. Changes to This Policy">
@@ -100,7 +115,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
           For any questions about this policy or your subscription:
           <br /><br />
           <strong>LikhaPoha AI</strong><br />
-          Email: <a href="mailto:hello@likhapoha.in" style={{color:"#93c5fd"}}>hello@likhapoha.in</a><br />
+          Email: <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a><br />
           Website: <a href="https://www.likhapoha.in" style={{color:"#93c5fd"}}>www.likhapoha.in</a>
         </Section>
 

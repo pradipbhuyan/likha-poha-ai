@@ -132,7 +132,7 @@ class UpdateSubscriptionPlanSettingsRequest(BaseModel):
 
 
 class SubscriptionContactSettings(BaseModel):
-    email: str = "lilhapohaai@gmail.com"
+    email: str = "likhapohaai@gmail.com"
     phone: str = ""
     whatsapp: str = ""
     availability: str = "We usually respond within one business day."
@@ -142,7 +142,7 @@ class SubscriptionContactSettings(BaseModel):
 
 
 DEFAULT_SUBSCRIPTION_CONTACT_SETTINGS = {
-    "email": "lilhapohaai@gmail.com",
+    "email": "likhapohaai@gmail.com",
     "phone": "",
     "whatsapp": "",
     "availability": "We usually respond within one business day.",
