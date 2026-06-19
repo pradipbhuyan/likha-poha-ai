@@ -1,6 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
+// Mock supabaseClient so tests don't require real Supabase env vars
+vi.mock("../api/supabaseClient", () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null } }),
+    },
+  },
+}));
+
 import SubscriptionPlansPage from "../pages/SubscriptionPlansPage";
 import {
   createPaymentOrder,
