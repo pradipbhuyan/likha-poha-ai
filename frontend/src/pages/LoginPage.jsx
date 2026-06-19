@@ -50,16 +50,25 @@ function LoginPage({ onLogin, onShowSignup }) {
       accountStatus: profile.account_status || "active",
       // Offer-code users have access_cbse=False — fetch their offer redemption
       // status so the frontend can show subjects and chapters correctly.
-      offerAccess: !profile.access_cbse ? await (async () => {
+      // Fetch full offer access data and store it on the user object.
+      // This avoids a second fetch on SubscriptionPlansPage which may fail
+      // if the Supabase JWT has rotated since login.
+      ...(!profile.access_cbse ? await (async () => {
         try {
           const r = await fetch(`${API_BASE_URL}/api/offer/my-access`, {
             headers: { Authorization: `Bearer ${accessToken}` },
           });
-          if (!r.ok) return false;
+          if (!r.ok) return { offerAccess: false };
           const d = await r.json();
-          return !!d.has_offer_access;
-        } catch { return false; }
-      })() : false,
+          return {
+            offerAccess: !!d.has_offer_access,
+            offerValidUntil: d.valid_until || null,
+            offerDaysRemaining: d.days_remaining ?? null,
+            offerExpiringSoon: !!d.expiring_soon,
+            offerExpiredOn: d.expired_on || null,
+          };
+        } catch { return { offerAccess: false }; }
+      })() : { offerAccess: false }),
     };
   }
 

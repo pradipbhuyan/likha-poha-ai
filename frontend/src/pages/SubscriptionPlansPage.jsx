@@ -68,17 +68,25 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
     ? hasSof ? "CBSE + SOF Plan" : "CBSE Plan"
     : "Offer / Free Access";
 
-  // Offer validity state — fetched fresh on mount
-  const [offerAccess, setOfferAccess] = useState(null);
-  useEffect(() => {
-    if (!user?.accessToken) return;
-    fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
-      headers: { Authorization: `Bearer ${user.accessToken}` },
-    })
-      .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data) setOfferAccess(data); })
-      .catch(() => {});
-  }, [user?.accessToken]);
+  // Offer validity — read from user object (stored at login time in buildLoginUser).
+  // Avoids a secondary fetch that may fail if the JWT has rotated since login.
+  const offerAccess = user?.offerAccess
+    ? {
+        has_offer_access: user.offerAccess,
+        valid_until: user.offerValidUntil || null,
+        days_remaining: user.offerDaysRemaining ?? null,
+        expiring_soon: !!user.offerExpiringSoon,
+        expired_on: user.offerExpiredOn || null,
+      }
+    : user?.offerExpiredOn
+      ? {
+          has_offer_access: false,
+          valid_until: null,
+          days_remaining: 0,
+          expiring_soon: false,
+          expired_on: user.offerExpiredOn,
+        }
+      : null;
 
   // Self-service payment state (standalone students only)
   const [selectedPlanKey, setSelectedPlanKey] = useState(planOrder[0] || "premium");
