@@ -1,3 +1,21 @@
 :root {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+html {
+  /* Force high-quality text rendering on HiDPI/Retina displays */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  /* Subpixel antialiasing — critical for sharp text on Retina/HiDPI displays */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Logo and icon images: ensure high-quality downscaling on Retina displays */
+img[class*="logo"], img[alt*="Logo"], img[alt*="logo"] {
+  image-rendering: auto;
 }
