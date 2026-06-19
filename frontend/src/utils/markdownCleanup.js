@@ -237,11 +237,52 @@ function isPlainMathExpression(expression) {
   return words.length === 0;
 }
 
+export function normalizeSquareBracketMath(text) {
+  /**
+   * Convert LaTeX display-math written with square-bracket notation to $$ delimiters.
+   *
+   * The LLM sometimes outputs:
+   *   [ \text{Per Capita Income} = \frac{\text{Total Income}}{\text{Population}} ]
+   *   \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+   *
+   * Both forms are valid LaTeX but remark-math only recognises $$ for display math.
+   * This pass converts them so KaTeX can render them correctly.
+   */
+  if (!text) return "";
+
+  return transformOutsideCodeFences(text, (content) => {
+    // 1. \[ ... \] escaped bracket notation (most standard LaTeX form)
+    let result = content.replace(
+      /\\\[\s*([\s\S]*?)\s*\\\]/g,
+      (_match, inner) => {
+        if (/\\[a-zA-Z]/.test(inner) || /[=^_{}/]/.test(inner)) {
+          return `$$${inner.trim()}$$`;
+        }
+        return _match;
+      }
+    );
+
+    // 2. [ ... ] single square brackets where content contains a LaTeX command
+    // Careful not to match markdown links [text](url) or list items
+    result = result.replace(
+      /(?<![!])\[\s*((?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+)\s*\]/g,
+      (_match, inner) => {
+        // Skip if it looks like a markdown link (has following parenthesis)
+        return `$$${inner.trim()}$$`;
+      }
+    );
+
+    return result;
+  });
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it. */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
-      normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+      normalizeSquareBracketMath(
+        normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+      )
     )
   );
 }
