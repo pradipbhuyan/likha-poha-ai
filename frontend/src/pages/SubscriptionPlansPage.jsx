@@ -859,8 +859,6 @@ function SubscriptionPlansPage({ user }) {
                   ["Child profiles", "children"],
                   ["AI lessons and doubts", "aiUsage"],
                   ["CBSE mock tests", "cbse"],
-                  ["SOF Science, Maths, English", "sof"],
-                  ["RAG-based SOF mock tests", "ragSof"],
                   ["Parent dashboard", "parentDashboard"],
                 ].map(([label, key]) => (
                   <tr key={key}>

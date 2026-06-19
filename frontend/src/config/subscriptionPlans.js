@@ -325,7 +325,10 @@ export function normalizeSubscriptionPlan(rawPlan = {}) {
     included: rawPlan.included || fallback.included || [],
     notIncluded:
       rawPlan.notIncluded || rawPlan.not_included || fallback.notIncluded || [],
-    comparison: rawPlan.comparison || fallback.comparison || {},
+    // Deep-merge: frontend fallback comparison is the base, DB values overlay.
+    // This ensures newly added/updated comparison keys from the frontend config
+    // always show even when the DB has stale data.
+    comparison: { ...(fallback.comparison || {}), ...(rawPlan.comparison || {}) },
   };
 }
 
