@@ -259,7 +259,12 @@ export function normalizePlainExponents(text) {
     transformOutsideInlineMath(content, (part) =>
       part.replace(
         /\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
-        (_match, base, exp) => `$${base}^${exp}$`
+        (_match, base, exp) => {
+          // Wrap multi-digit exponents in {} so KaTeX renders all digits
+          // e.g. 10^11 → $10^{11}$ not $10^1$1
+          const wrappedExp = /^\d{2,}$/.test(exp) ? `{${exp}}` : exp;
+          return `$${base}^${wrappedExp}$`;
+        }
       )
     )
   );
@@ -305,11 +310,24 @@ export function normalizeSquareBracketMath(text) {
 }
 
 export function normalizeTutorMarkdown(text) {
-  /** Normalize common model markdown mistakes before ReactMarkdown renders it. */
+  /** Normalize common model markdown mistakes before ReactMarkdown renders it.
+   *
+   * Order matters:
+   *  1. normalizeMermaidBlocks      — wrap loose graph TD blocks
+   *  2. normalizeLatexParentheses   — (\frac{}{}) → $...$
+   *  3. normalizePlainAlgebra       — (a+b)^2 → $...$
+   *  4. normalizeSquareBracketMath  — [ \LaTeX ] and \[...\] → $$...$$
+   *                                  MUST run before normalizePlainExponents so
+   *                                  10^{11} inside bracket formulas isn't
+   *                                  pre-converted to $ 10^{11} $ first
+   *  5. normalizePlainExponents     — 10^7 → $10^{7}$ (outside existing math)
+   *  6. normalizeDollarMath         — fix $10...$ currency-lookalike spacing
+   *  7. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
-      normalizeSquareBracketMath(
-        normalizePlainExponents(
+      normalizePlainExponents(
+        normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
         )
       )
