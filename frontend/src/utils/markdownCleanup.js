@@ -19,10 +19,12 @@ function transformOutsideCodeFences(text, transform) {
 }
 
 function transformOutsideInlineMath(text, transform) {
-  /** Apply cleanup only outside already-normalized inline math spans. */
+  /** Apply cleanup only outside already-normalized math spans.
+   *  Protects both $...$ inline math AND $$...$$ display math blocks.
+   */
   return text
-    .split(/(\$[^$\n]*\$)/g)
-    .map((part) => (part.startsWith("$") && part.endsWith("$") ? part : transform(part)))
+    .split(/(\$\$[\s\S]*?\$\$|\$[^$\n]*\$)/g)
+    .map((part) => (part.startsWith("$") ? part : transform(part)))
     .join("");
 }
 
