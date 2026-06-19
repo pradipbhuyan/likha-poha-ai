@@ -534,8 +534,19 @@ function PaymentTestSection({ user }) {
             });
             const vd = await verifyResp.json();
             if (verifyResp.ok && vd.success) {
-              setCheckoutResult({ success: true, email: testEmail, paymentId: response.razorpay_payment_id });
-              setStatus("✅ Full payment test PASSED! Account created. Check your email for the set-password link.");
+              setCheckoutResult({
+                success: true,
+                email: testEmail,
+                paymentId: response.razorpay_payment_id,
+                emailSent: vd.email_sent,
+                emailError: vd.email_error,
+                recoveryLink: vd.recovery_link,
+              });
+              if (vd.email_sent) {
+                setStatus("✅ Full payment test PASSED! Account created. Check your email for the set-password link.");
+              } else {
+                setStatus("⚠️ Account created but set-password email failed to send. See details below.");
+              }
             } else {
               setStatus("❌ Verification failed: " + (vd.detail || JSON.stringify(vd)));
             }
@@ -606,8 +617,25 @@ function PaymentTestSection({ user }) {
             <p style={{margin:"4px 0 0",fontSize:".82rem"}}>
               Account: <code>{checkoutResult.email}</code><br/>
               Payment ID: <code>{checkoutResult.paymentId}</code><br/>
-              Check your inbox for the "Set your password" email.
+              {checkoutResult.emailSent
+                ? <span style={{color:"#22c55e"}}>✅ Set-password email sent — check your inbox.</span>
+                : <span style={{color:"#f59e0b"}}>
+                    ⚠️ Email NOT sent
+                    {checkoutResult.emailError && <> — <em>{checkoutResult.emailError}</em></>}.
+                    {" "}This is usually a Supabase email rate limit (max 4/hr on free tier).
+                    Try again after a few minutes, or use Forgot Password on the login page.
+                  </span>
+              }
             </p>
+            {checkoutResult.recoveryLink && (
+              <p style={{margin:"8px 0 0",fontSize:".82rem"}}>
+                <strong>🔗 Admin recovery link</strong> (use this to set password manually):<br/>
+                <a href={checkoutResult.recoveryLink} target="_blank" rel="noreferrer"
+                   style={{wordBreak:"break-all",fontSize:".78rem"}}>
+                  {checkoutResult.recoveryLink}
+                </a>
+              </p>
+            )}
           </div>
         )}
       </div>

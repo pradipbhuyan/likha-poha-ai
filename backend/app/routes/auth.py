@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+import logging
 import time
 
 from fastapi import APIRouter, HTTPException
@@ -392,13 +393,37 @@ def complete_signup(data: CompleteSignupRequest):
         email_confirm=True,   # account immediately active
     )
     # Send the "set your password" email — user clicks the link → ResetPasswordPage → logs in
+    email_sent = False
+    email_error = None
+    recovery_link = None
     try:
         anon_client.auth.reset_password_for_email(
             data.email.strip().lower(),
             options={"redirect_to": "https://likhapoha.in"},
         )
-    except Exception:
-        pass  # non-fatal: user can use Forgot Password if email doesn't arrive
+        email_sent = True
+    except Exception as exc:
+        email_error = str(exc)
+        logging.warning(
+            "reset_password_for_email failed for %s: %s — trying generate_link fallback",
+            data.email.strip().lower(),
+            email_error,
+        )
+        # Fallback: generate recovery link via admin API (no email quota used).
+        # Useful when the anon-key reset is rate-limited or mis-configured.
+        try:
+            link_resp = admin_client.auth.admin.generate_link({
+                "type": "recovery",
+                "email": data.email.strip().lower(),
+                "options": {"redirect_to": "https://likhapoha.in"},
+            })
+            recovery_link = getattr(link_resp, "properties", {}) or {}
+            recovery_link = (
+                recovery_link.get("action_link")
+                or getattr(link_resp, "action_link", None)
+            )
+        except Exception as link_exc:
+            logging.warning("generate_link fallback also failed: %s", link_exc)
 
     base_profile = {
         "id": auth_user.id,
@@ -476,6 +501,9 @@ def complete_signup(data: CompleteSignupRequest):
             "Please check your email to verify your account before signing in."
         ),
         "role": role,
+        "email_sent": email_sent,
+        "email_error": email_error,
+        "recovery_link": recovery_link,  # non-None only when reset email failed + admin fallback worked
     }
 
 
