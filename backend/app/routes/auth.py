@@ -205,6 +205,7 @@ class OfferCodeSignupRequest(BaseModel):
     offer_code: str  # 8-char alphanumeric
     grade: Optional[str] = None   # for students
     school: Optional[str] = None  # for teachers
+    password: Optional[str] = None  # when provided, skips email verification and enables direct login
 
 
 def _razorpay_is_configured() -> bool:
@@ -588,46 +589,49 @@ def signup_with_offer_code(data: OfferCodeSignupRequest):
     # (e.g. mail.com, gmail.com aliases, etc).
     from app.services.auth_service import create_auth_user  # noqa: PLC0415
     import secrets  # noqa: PLC0415
-    temp_password = secrets.token_urlsafe(16)  # user will reset this via the email link
+    # Use provided password for direct-login flow; otherwise generate a temp one
+    # that the user will replace via the set-password email link.
+    user_password = (data.password.strip() if data.password and data.password.strip() else None)
+    temp_password = user_password or secrets.token_urlsafe(16)
     auth_user = create_auth_user(
         email=email_clean,
         password=temp_password,
         email_confirm=True,  # immediately active
     )
 
-    # Generate a one-time password-set link (works even if SMTP is not configured)
-    # This link lets the user set their own password by clicking it directly.
-    # We also try to send a password-reset email as a backup.
+    # When a password was provided (direct-login flow), skip email entirely.
+    # When no password, generate a set-password link and send reset email.
     password_set_link = None
-    try:
-        link_response = admin_client.auth.admin.generate_link(
-            {
-                "type": "recovery",
-                "email": email_clean,
-                "options": {
-                    "redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"
-                },
-            }
-        )
-        password_set_link = getattr(link_response, "properties", {})
-        if hasattr(password_set_link, "action_link"):
-            password_set_link = password_set_link.action_link
-        elif isinstance(password_set_link, dict):
-            password_set_link = password_set_link.get("action_link") or password_set_link.get("hashed_token")
-        else:
-            password_set_link = None
-    except Exception:
-        pass  # Link generation failure must not block account creation
+    if not user_password:
+        try:
+            link_response = admin_client.auth.admin.generate_link(
+                {
+                    "type": "recovery",
+                    "email": email_clean,
+                    "options": {
+                        "redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"
+                    },
+                }
+            )
+            password_set_link = getattr(link_response, "properties", {})
+            if hasattr(password_set_link, "action_link"):
+                password_set_link = password_set_link.action_link
+            elif isinstance(password_set_link, dict):
+                password_set_link = password_set_link.get("action_link") or password_set_link.get("hashed_token")
+            else:
+                password_set_link = None
+        except Exception:
+            pass  # Link generation failure must not block account creation
 
-    # Also try email as backup (may not arrive if SMTP is not configured)
-    try:
-        from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
-        anon_client.auth.reset_password_for_email(
-            email_clean,
-            options={"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
-        )
-    except Exception:
-        pass  # Email send failure must not block account creation
+        # Also try email as backup (may not arrive if SMTP is not configured)
+        try:
+            from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
+            anon_client.auth.reset_password_for_email(
+                email_clean,
+                options={"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
+            )
+        except Exception:
+            pass  # Email send failure must not block account creation
 
     # 4. Create profile.
     # free_trial codes → access_cbse=False so the DKB-only offer gate activates.

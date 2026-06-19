@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
 import { SUBSCRIPTION_PLANS } from "../config/subscriptionPlans";
+import { supabase } from "../api/supabaseClient";
 import "./SignupPage.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -137,9 +138,16 @@ function TrustRow({ icon, title, sub, bg }) {
   );
 }
 
-export default function SignupPage({ onBackToLogin, initialPlan }) {
-  const [step, setStep] = useState("role");
-  const [role, setRole] = useState("");
+export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
+  // Read URL params once at init time (lazy state) — avoids useEffect setState pattern
+  const _urlParams = new URLSearchParams(window.location.search);
+  const _urlCode = (_urlParams.get("code") || "").toUpperCase();
+  const _urlRole = (_urlParams.get("role") || "").toLowerCase();
+  const _fromLink = _urlCode.length === 8;
+  const _validRoles = ["parent", "student", "teacher"];
+
+  const [step, setStep] = useState(() => (_fromLink && _validRoles.includes(_urlRole)) ? "form" : "role");
+  const [role, setRole] = useState(() => (_fromLink && _validRoles.includes(_urlRole)) ? _urlRole : "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [grade, setGrade] = useState("Grade 9");
@@ -148,8 +156,9 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
   const [planFilter, setPlanFilter] = useState("monthly");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [useOfferCode, setUseOfferCode] = useState(false);
-  const [offerCodeInput, setOfferCodeInput] = useState("");
+  const [useOfferCode, setUseOfferCode] = useState(_fromLink);
+  const [offerCodeInput, setOfferCodeInput] = useState(_fromLink ? _urlCode : "");
+  const [password, setPassword] = useState("");
   const [passwordSetLink, setPasswordSetLink] = useState("");
 
   useEffect(() => { loadRazorpay(); }, []);
@@ -181,12 +190,51 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
           offer_code:offerCodeInput.trim().toUpperCase(),
           grade: role==="student" ? grade : undefined,
           school: role==="teacher" ? school.trim() : undefined,
+          password: password.trim() || undefined,
         }),
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
         setError(data.detail || data.message || "Could not create account. Please check your offer code.");
         return;
+      }
+      // Direct-login flow: if a password was set, sign in immediately → go to dashboard
+      if (password.trim() && onLogin) {
+        await supabase.auth.signOut().catch(() => {});
+        const { data: authData, error: authErr } = await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password: password.trim(),
+        });
+        if (!authErr && authData.session) {
+          const { data: profile } = await supabase
+            .from("profiles").select("*").eq("id", authData.user.id).single();
+          if (profile) {
+            onLogin({
+              id: authData.user.id,
+              email: authData.user.email,
+              username: profile.username || authData.user.email,
+              role: profile.role,
+              grade: profile.grade || "Grade 9",
+              board: profile.board || "CBSE",
+              parentId: profile.parent_id,
+              familyId: profile.family_id,
+              accessToken: authData.session.access_token,
+              accessCbse: !!profile.access_cbse,
+              accessSofScience: !!profile.access_sof_science,
+              accessSofMaths: !!profile.access_sof_maths,
+              accessSofEnglish: !!profile.access_sof_english,
+              cbseSubjects: Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
+              dailyTokenLimit: profile.daily_token_limit,
+              monthlyTokenLimit: profile.monthly_token_limit,
+              subscriptionPlan: profile.subscription_plan || "free",
+              accountStatus: profile.account_status || "active",
+              offerAccess: false,
+            });
+            return; // onLogin handles routing to dashboard
+          }
+        }
+        // Sign-in failed after account creation — fall through to done screen
+        setError("Account created but auto-login failed. Please log in manually.");
       }
       if (data.password_set_link) setPasswordSetLink(data.password_set_link);
       setStep("done");
@@ -521,28 +569,43 @@ export default function SignupPage({ onBackToLogin, initialPlan }) {
                   </div>
                 )}
                 {useOfferCode && (
-                  <div>
-                    <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
-                      Offer Code *
-                    </label>
-                    <input
-                      style={{ ...S.input, fontFamily:"monospace", letterSpacing:4,
-                               textTransform:"uppercase", fontSize:"1.1rem", textAlign:"center" }}
-                      type="text" maxLength={8} placeholder="XXXXXXXX"
-                      value={offerCodeInput}
-                      onChange={e => setOfferCodeInput(e.target.value.toUpperCase())}
-                    />
-                  </div>
+                  <>
+                    <div>
+                      <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
+                        Offer Code *
+                      </label>
+                      <input
+                        style={{ ...S.input, fontFamily:"monospace", letterSpacing:4,
+                                 textTransform:"uppercase", fontSize:"1.1rem", textAlign:"center" }}
+                        type="text" maxLength={8} placeholder="XXXXXXXX"
+                        value={offerCodeInput}
+                        onChange={e => setOfferCodeInput(e.target.value.toUpperCase())}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
+                        Password *
+                      </label>
+                      <input
+                        style={S.input} type="password" placeholder="Set your password (min 8 characters)"
+                        value={password} onChange={e => setPassword(e.target.value)}
+                        minLength={8}
+                      />
+                      <small style={{ color:"#64748b", fontSize:".75rem" }}>
+                        You'll use this to log in after signup — no email verification needed.
+                      </small>
+                    </div>
+                  </>
                 )}
                 {error && <div style={S.errorBox}>{error}</div>}
                 {useOfferCode ? (
                   <>
                     <button
                       style={{ ...S.primBtn, background:"linear-gradient(135deg,#059669,#0d9488)" }}
-                      disabled={loading || offerCodeInput.length !== 8 || !name.trim() || !email.trim()}
+                      disabled={loading || offerCodeInput.length !== 8 || !name.trim() || !email.trim() || password.length < 8}
                       onClick={handleOfferCodeSignup}
                     >
-                      {loading ? "Creating account…" : "🎟️ Create Account with Offer Code"}
+                      {loading ? "Creating account…" : "🎟️ Create Account & Go to Dashboard"}
                     </button>
                     <p style={{ textAlign:"center", marginTop:8, fontSize:".77rem", color:"#475569", cursor:"pointer" }}
                        onClick={() => { setUseOfferCode(false); setOfferCodeInput(""); setError(""); }}>

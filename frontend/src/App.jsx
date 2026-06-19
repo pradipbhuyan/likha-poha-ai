@@ -312,6 +312,7 @@ function App() {
     return (
       <SignupPage
         initialPlan={planFromUrl}
+        onLogin={handleLogin}
         onBackToLogin={() => {
           setShowSignup(false);
           setShowLanding(false);
