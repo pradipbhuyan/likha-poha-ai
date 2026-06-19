@@ -358,7 +358,7 @@ export async function deactivateOfferCode(codeId, accessToken) {
 }
 
 export async function reactivateOfferCode(codeId, accessToken) {
-  /** Reactivate a previously deactivated offer code. */
+/** Reactivate a previously deactivated offer code. */
   const response = await adminFetch(
     `/api/admin-control/offer-codes/${codeId}/reactivate`,
     {
@@ -369,6 +369,27 @@ export async function reactivateOfferCode(codeId, accessToken) {
 
   if (!response.ok) {
     throw new Error(await parseError(response, "Failed to reactivate offer code"));
+  }
+
+  return response.json();
+}
+
+export async function extendOfferCodeValidity(codeId, validUntil, accessToken) {
+  /**
+   * Extend the valid_until date for an offer code and cascade to all redemptions.
+   * validUntil: ISO string e.g. "2026-12-31T23:59:59"
+   */
+  const response = await adminFetch(
+    `/api/admin-control/offer-codes/${codeId}/extend-validity`,
+    {
+      method: "PATCH",
+      headers: { ...authHeaders(accessToken), "Content-Type": "application/json" },
+      body: JSON.stringify({ valid_until: validUntil }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to extend offer code validity"));
   }
 
   return response.json();

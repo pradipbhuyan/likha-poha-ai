@@ -16,6 +16,7 @@ import {
   createOfferCode,
   deactivateOfferCode,
   reactivateOfferCode,
+  extendOfferCodeValidity,
   getInfluencerSummary,
   markInfluencerIncentivePaid,
   regeneratePromoImages,
@@ -422,6 +423,29 @@ function AdminControlPage({ user }) {
       setRegenMsg(`❌ ${err.message}`);
     } finally {
       setRegenLoading(false);
+    }
+  }
+
+  // Track which offer code has the extend-validity form open + the new date value
+  const [extendingCodeId, setExtendingCodeId] = useState(null);
+  const [extendDate, setExtendDate] = useState("");
+  const [extendErr, setExtendErr] = useState("");
+
+  async function handleExtendValidity(codeId) {
+    if (!extendDate) { setExtendErr("Please pick a new expiry date."); return; }
+    setExtendErr("");
+    try {
+      // Convert local datetime-local value to ISO string
+      const isoDate = new Date(extendDate).toISOString();
+      await extendOfferCodeValidity(codeId, isoDate, user.accessToken);
+      setExtendingCodeId(null);
+      setExtendDate("");
+      // Refresh offer codes list — the updated valid_until is visible immediately
+      const data = await listOfferCodes(user.accessToken);
+      setOfferCodes(data.offer_codes || []);
+      setOfferMsg("✅ Validity extended. All existing redemptions updated.");
+    } catch (err) {
+      setExtendErr(err.message || "Failed to extend validity.");
     }
   }
 
@@ -1601,19 +1625,51 @@ function AdminControlPage({ user }) {
                           Used: {oc.uses_count}/{oc.max_uses}
                         </small>
                       </div>
-                      {!isExpired && (
-                        oc.is_active ? (
-                          <button className="danger-btn" style={{ alignSelf: "center" }}
-                            onClick={() => handleDeactivateOfferCode(oc.id)}>
-                            Deactivate
-                          </button>
+                      <div style={{ display:"flex", flexDirection:"column", gap:6, alignSelf:"center" }}>
+                        {/* Extend validity button */}
+                        {extendingCodeId === oc.id ? (
+                          <div style={{ display:"flex", flexDirection:"column", gap:4, minWidth:220 }}>
+                            <input
+                              type="datetime-local"
+                              value={extendDate}
+                              min={new Date().toISOString().slice(0,16)}
+                              onChange={e => { setExtendDate(e.target.value); setExtendErr(""); }}
+                              style={{ fontSize:".82rem", padding:"5px 8px", borderRadius:7,
+                                       border:"1px solid #6366f1", background:"#1e293b", color:"#f8fafc" }}
+                            />
+                            {extendErr && <small style={{ color:"#ef4444" }}>{extendErr}</small>}
+                            <div style={{ display:"flex", gap:6 }}>
+                              <button className="primary-btn" style={{ padding:"5px 12px", fontSize:".8rem" }}
+                                onClick={() => handleExtendValidity(oc.id)}>
+                                ✅ Confirm
+                              </button>
+                              <button className="secondary-btn" style={{ padding:"5px 12px", fontSize:".8rem" }}
+                                onClick={() => { setExtendingCodeId(null); setExtendDate(""); setExtendErr(""); }}>
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
                         ) : (
-                          <button className="secondary-btn" style={{ alignSelf: "center", color: "#22c55e", borderColor: "#22c55e" }}
-                            onClick={() => handleReactivateOfferCode(oc.id)}>
-                            ✅ Reactivate
+                          <button className="secondary-btn" style={{ fontSize:".8rem", padding:"5px 12px", color:"#6366f1", borderColor:"#6366f1" }}
+                            onClick={() => { setExtendingCodeId(oc.id); setExtendDate(oc.valid_until?.slice(0,16) || ""); setExtendErr(""); }}>
+                            📅 Extend Validity
                           </button>
-                        )
-                      )}
+                        )}
+                        {/* Deactivate / Reactivate */}
+                        {!isExpired && (
+                          oc.is_active ? (
+                            <button className="danger-btn" style={{ fontSize:".8rem", padding:"5px 12px" }}
+                              onClick={() => handleDeactivateOfferCode(oc.id)}>
+                              Deactivate
+                            </button>
+                          ) : (
+                            <button className="secondary-btn" style={{ fontSize:".8rem", padding:"5px 12px", color: "#22c55e", borderColor: "#22c55e" }}
+                              onClick={() => handleReactivateOfferCode(oc.id)}>
+                              ✅ Reactivate
+                            </button>
+                          )
+                        )}
+                      </div>
                     </div>
                   );
                 })}

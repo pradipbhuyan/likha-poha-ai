@@ -1072,6 +1072,54 @@ def regenerate_promo_images(payload: dict, admin=Depends(require_admin)):
     }
 
 
+@router.patch("/offer-codes/{code_id}/extend-validity")
+def extend_offer_code_validity(code_id: str, payload: dict, admin=Depends(require_admin)):
+    """
+    Extend the valid_until date for an offer code AND propagate the new date
+    to every existing redemption linked to that code.
+
+    Payload: { "valid_until": "2026-12-31T23:59:59" }
+
+    This means any student or parent who already redeemed the code will
+    automatically get the extended access window — no manual update needed.
+    """
+    new_valid_until = (payload.get("valid_until") or "").strip()
+    if not new_valid_until:
+        raise HTTPException(status_code=400, detail="valid_until is required.")
+
+    # 1. Update the offer code itself
+    code_resp = (
+        admin_client
+        .table("offer_codes")
+        .update({"valid_until": new_valid_until})
+        .eq("id", code_id)
+        .execute()
+    )
+    if not code_resp.data:
+        raise HTTPException(status_code=404, detail="Offer code not found.")
+
+    # 2. Cascade: update all redemptions linked to this code
+    redemption_resp = (
+        admin_client
+        .table("offer_redemptions")
+        .update({"valid_until": new_valid_until})
+        .eq("code_id", code_id)
+        .execute()
+    )
+    updated_redemptions = len(redemption_resp.data or [])
+
+    return {
+        "success": True,
+        "code_id": code_id,
+        "valid_until": new_valid_until,
+        "redemptions_updated": updated_redemptions,
+        "message": (
+            f"Validity extended to {new_valid_until[:10]}. "
+            f"{updated_redemptions} existing redemption(s) updated."
+        ),
+    }
+
+
 @router.patch("/offer-codes/{code_id}/deactivate")
 def deactivate_offer_code(code_id: str, admin=Depends(require_admin)):
     """Deactivate an offer code so it can no longer be redeemed."""
