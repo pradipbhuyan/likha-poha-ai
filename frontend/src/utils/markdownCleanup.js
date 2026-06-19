@@ -237,6 +237,34 @@ function isPlainMathExpression(expression) {
   return words.length === 0;
 }
 
+export function normalizePlainExponents(text) {
+  /**
+   * Convert plain-text caret exponents to inline KaTeX math.
+   *
+   * The LLM writes things like:
+   *   Rs 50,000 x 10^7 = Rs 5 x 10^11
+   *   Population = 50 x 10^6
+   *   n^2 + 2n + 1
+   *
+   * These are outside any math delimiters so KaTeX ignores them.
+   * This pass wraps only caret expressions in $...$ so they render as
+   * proper superscripts. Handles:
+   *   digit^digit  →  $10^7$
+   *   letter^digit →  $n^2$
+   *   word^{expr}  →  $x^{n+1}$
+   */
+  if (!text) return "";
+
+  return transformOutsideCodeFences(text, (content) =>
+    transformOutsideInlineMath(content, (part) =>
+      part.replace(
+        /\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
+        (_match, base, exp) => `$${base}^${exp}$`
+      )
+    )
+  );
+}
+
 export function normalizeSquareBracketMath(text) {
   /**
    * Convert LaTeX display-math written with square-bracket notation to $$ delimiters.
@@ -281,7 +309,9 @@ export function normalizeTutorMarkdown(text) {
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
       normalizeSquareBracketMath(
-        normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+        normalizePlainExponents(
+          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+        )
       )
     )
   );
