@@ -282,12 +282,16 @@ function MockTestPage({ user }) {
     /** Validate access and request a fresh mock test for the selected topic and settings. */
     setLoading(true);
 
+    // Block CBSE mock tests only for non-offer, non-paid users.
+    // Free-plan students with accessCbse=false are offer-code users — allow them.
+    const hasPaidPlan = user?.subscriptionPlan && user.subscriptionPlan !== "free";
     if (
       isSchoolBoardMode(mode) &&
       user?.role !== "admin" &&
       !isAllAccessTestUser(user) &&
       !user.accessCbse &&
-      !user.offerAccess   // offer-code users can use mock tests (LLM is called normally)
+      !user.offerAccess &&
+      hasPaidPlan  // only block if paid plan with no CBSE access (misconfiguration)
     ) {
       setError(
         `You do not have access to ${mode} mock tests.`
