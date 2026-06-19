@@ -45,10 +45,10 @@ export default function RefundPolicyPage({ onBackToHome }) {
           By subscribing to any paid plan, you agree to this Refund Policy. Please read it carefully before making a purchase.
         </Section>
 
-        <Section title="2. Trial Plan — Try It Out (₹100 / 14 Days)">
-          The ₹100 trial plan is a <strong>paid introductory offer</strong> designed to let you explore LikhaPoha AI at minimal cost before committing to a monthly plan.
+        <Section title="2. Trial Plan — Try It Out (₹99 / 8 Days)">
+          The ₹99 trial plan is a <strong>paid introductory offer</strong> designed to let you experience the full LikhaPoha AI platform at minimal cost before committing to a monthly plan.
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
-            <li style={{marginBottom:8}}>The trial fee of ₹100 is <strong>non-refundable</strong> once access has been activated.</li>
+            <li style={{marginBottom:8}}>The trial fee of ₹99 is <strong>non-refundable</strong> once access has been activated.</li>
             <li style={{marginBottom:8}}>If access was not activated due to a technical error on our side, a full refund will be issued within 5–7 business days.</li>
             <li>Trial plans do not auto-renew.</li>
           </ul>
@@ -99,7 +99,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
             <li style={{marginBottom:8}}>The platform was used (lessons generated, doubts asked, or tests taken)</li>
             <li style={{marginBottom:8}}>The refund request is made after the eligible window</li>
             <li style={{marginBottom:8}}>Account suspension or termination due to a violation of our Terms of Service</li>
-            <li>Dissatisfaction due to AI-generated content quality — we encourage using the 14-day trial to evaluate the platform before upgrading</li>
+            <li>Dissatisfaction due to AI-generated content quality — we encourage using the 8-day trial to evaluate the full platform before upgrading</li>
           </ul>
         </Section>
 
