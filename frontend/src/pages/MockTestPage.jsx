@@ -174,7 +174,13 @@ function MockTestPage({ user }) {
   }
 
   const grades = getVisibleGrades(syllabusData, user);
-  const modes = Object.keys(syllabusData[grade]);
+  // SOF/Olympiad mode is only available for Grade 9.
+  // All other grades show CBSE only.
+  // To enable SOF for additional grades, add them to this list.
+  const SOF_ENABLED_GRADES = ["Grade 9"];
+  const modes = Object.keys(syllabusData[grade]).filter(
+    m => m !== "SOF" || SOF_ENABLED_GRADES.includes(grade)
+  );
   
   function getAllowedSubjects(allSubjects, selectedMode) {
     /** Enforce subscription access when showing CBSE and SOF subjects. */
