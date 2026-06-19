@@ -10,6 +10,10 @@ const PLANS = [
   "family_premium", "family_annual",
 ].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
 
+// Platform currently supports Grade 5–10.
+// To add new grades when the platform expands, add them here AND in:
+//   - backend/app/data/product_catalogue.py (set visible: True)
+//   - backend/app/routes/parent_dashboard.py (ParentDashboardPage grade list)
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
 const PLAN_FILTER_GROUPS = {
