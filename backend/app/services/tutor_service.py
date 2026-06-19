@@ -575,7 +575,12 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 {DIAGRAM_HINT}
 
 Worked example requirements:
-- Solve examples step-by-step.
+- Start the worked example with "Question: <complete problem statement>".
+  The question must be COMPLETE and self-contained — include both the data AND
+  the task instruction (e.g. "The following data shows... Draw a pictograph to
+  represent this data." or "Find the area of a rectangle with length 8 cm and
+  breadth 5 cm."). A student must be able to attempt it with no other context.
+- After the question, show the solution step-by-step starting with "Step 1:".
 - Explain the reasoning behind each step.
 - Explain why each formula or method is used.
 - Include conceptual interpretation of the final answer.
