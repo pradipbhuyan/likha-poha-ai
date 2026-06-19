@@ -28,6 +28,7 @@ function ResetPasswordPage({ onBackToLogin }) {
   /** Handles the Supabase recovery-link landing page and stores a new password. */
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [sessionReady, setSessionReady] = useState(false);
   const [error, setError] = useState("");
@@ -158,18 +159,26 @@ function ResetPasswordPage({ onBackToLogin }) {
               <div className="ait-input-row">
                 <span>🔒</span>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="New password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
               </div>
 
               <div className="ait-input-row">
                 <span>✅</span>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Confirm new password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
