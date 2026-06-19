@@ -3,7 +3,7 @@ import hmac
 from datetime import datetime, timezone
 
 import requests
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 
 from app.config import settings
@@ -502,6 +502,107 @@ def student_verify_payment(
         "payment": saved_payment,
         "plan": plan,
     }
+
+
+@router.post("/webhook")
+async def razorpay_webhook(request: Request):
+    """
+    Receive Razorpay webhook events and process payment.captured.
+
+    Razorpay sends a POST with JSON body and X-Razorpay-Signature header.
+    We verify the signature with HMAC-SHA256 using RAZORPAY_WEBHOOK_SECRET,
+    then activate the subscription for the order if not already done.
+
+    This is a safety net for cases where:
+    - The student's browser closed before /verify was called
+    - Network errors prevented the frontend from completing signup
+    - Any payment that Razorpay captured but we never processed
+
+    Always returns 200 so Razorpay stops retrying (even on errors).
+    """
+    import hashlib
+    import hmac as hmac_lib
+    import logging
+
+    logger = logging.getLogger(__name__)
+
+    try:
+        raw_body = await request.body()
+        signature = request.headers.get("X-Razorpay-Signature", "")
+
+        # If webhook secret is configured, verify signature
+        webhook_secret = settings.RAZORPAY_WEBHOOK_SECRET
+        if webhook_secret:
+            expected = hmac_lib.new(
+                webhook_secret.encode("utf-8"),
+                raw_body,
+                hashlib.sha256,
+            ).hexdigest()
+            if not hmac_lib.compare_digest(expected, signature):
+                logger.warning("Razorpay webhook: invalid signature — ignoring")
+                return {"status": "ignored", "reason": "invalid_signature"}
+
+        payload = await request.json() if not raw_body else __import__("json").loads(raw_body)
+        event = payload.get("event", "")
+        logger.info("Razorpay webhook received: %s", event)
+
+        if event != "payment.captured":
+            # We only care about payment.captured; acknowledge all others
+            return {"status": "ok", "event": event}
+
+        # Extract order id from webhook payload
+        payment_entity = (
+            payload.get("payload", {})
+            .get("payment", {})
+            .get("entity", {})
+        )
+        order_id   = payment_entity.get("order_id")
+        payment_id = payment_entity.get("id")
+
+        if not order_id:
+            logger.warning("Razorpay webhook: payment.captured has no order_id")
+            return {"status": "ok", "note": "no_order_id"}
+
+        # Check if we already processed this payment
+        payment = get_payment_by_order_id(order_id)
+        if not payment:
+            logger.warning("Razorpay webhook: order %s not in local DB — ignoring", order_id)
+            return {"status": "ok", "note": "order_not_found"}
+
+        if payment.get("status") == "paid":
+            logger.info("Razorpay webhook: order %s already paid — skipping", order_id)
+            return {"status": "ok", "note": "already_processed"}
+
+        # Activate the plan
+        try:
+            plan = get_public_plan(payment["plan_key"])
+            parent_profile_resp = (
+                admin_client
+                .table("profiles")
+                .select("*")
+                .eq("id", payment["parent_id"])
+                .limit(1)
+                .execute()
+            )
+            parent_profile = (parent_profile_resp.data or [{}])[0]
+            activate_plan_for_payment(payment, plan, parent_profile)
+
+            save_payment_record({
+                **payment,
+                "razorpay_payment_id": payment_id,
+                "status": "paid",
+                "verified_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
+                "metadata": {**(payment.get("metadata") or {}), "webhook_confirmed": True},
+            })
+            logger.info("Razorpay webhook: activated plan %s for order %s", payment["plan_key"], order_id)
+        except Exception as activation_err:
+            logger.error("Razorpay webhook: activation failed for order %s: %s", order_id, activation_err)
+
+    except Exception as exc:
+        # Always return 200 so Razorpay stops retrying
+        logging.getLogger(__name__).error("Razorpay webhook error: %s", exc)
+
+    return {"status": "ok"}
 
 
 @router.get("/contact")
