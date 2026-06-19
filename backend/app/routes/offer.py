@@ -144,40 +144,51 @@ def get_my_offer_access(user=Depends(get_current_user)):
     """
     Check whether the current user has a valid (non-expired) offer redemption.
 
+    Child accounts inherit offer validity from their parent — if the parent
+    has a valid redemption, the child sees the same valid_until date.
+
     Returns:
       has_offer_access: bool
       valid_until: ISO string or null
+      days_remaining: int
+      expiring_soon: bool (<=7 days)
+      expired_on: ISO string or null
     """
     user_id = user["profile"]["id"]
+    parent_id = user["profile"].get("parent_id")
     now_iso = datetime.now(timezone.utc).isoformat()
 
     try:
-        # Check for valid (non-expired) redemption
-        result = (
-            admin_client
-            .table("offer_redemptions")
-            .select("id, valid_until, code_id")
-            .eq("user_id", user_id)
-            .gte("valid_until", now_iso)
-            .order("valid_until", desc=True)
-            .limit(1)
-            .execute()
-        )
+        # Check own redemptions first, then parent's (for child accounts)
+        candidate_ids = [user_id]
+        if parent_id:
+            candidate_ids.append(parent_id)
 
-        if result.data:
-            redemption = result.data[0]
-            valid_until = redemption["valid_until"]
-            expiry = datetime.fromisoformat(valid_until.replace("Z", "+00:00"))
-            days_left = (expiry - datetime.now(timezone.utc)).days
-            return {
-                "has_offer_access": True,
-                "valid_until": valid_until,
-                "days_remaining": max(0, days_left),
-                "expiring_soon": days_left <= 7,
-                "expired_on": None,
-            }
+        # Active redemption — check each candidate in order
+        for cid in candidate_ids:
+            r = (
+                admin_client
+                .table("offer_redemptions")
+                .select("id, valid_until, code_id")
+                .eq("user_id", cid)
+                .gte("valid_until", now_iso)
+                .order("valid_until", desc=True)
+                .limit(1)
+                .execute()
+            )
+            if r.data:
+                valid_until = r.data[0]["valid_until"]
+                expiry = datetime.fromisoformat(valid_until.replace("Z", "+00:00"))
+                days_left = (expiry - datetime.now(timezone.utc)).days
+                return {
+                    "has_offer_access": True,
+                    "valid_until": valid_until,
+                    "days_remaining": max(0, days_left),
+                    "expiring_soon": days_left <= 7,
+                    "expired_on": None,
+                }
 
-        # Check for most recent expired redemption (to show "expired on DATE" message)
+        # No active redemption — check for most recent expired one to show expiry date
         expired_result = (
             admin_client
             .table("offer_redemptions")
