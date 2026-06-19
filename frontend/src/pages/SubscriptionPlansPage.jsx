@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { supabase } from "../api/supabaseClient";
 import {
   Check,
   CreditCard,
@@ -88,15 +89,25 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
   useEffect(() => {
     // If full offer data already present from login, no fetch needed
     if (user?.offerAccess && user?.offerValidUntil) return;
-    // Fetch for users with older cached sessions that don't have offerValidUntil
-    if (!user?.accessToken) return;
-    fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
-      headers: { Authorization: `Bearer ${user.accessToken}` },
-    })
-      .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data) setOfferAccess(data); })
-      .catch(() => {});
-  }, [user?.accessToken, user?.offerValidUntil]);
+    // Fallback: fetch with a fresh Supabase session token (avoids stale JWT issue)
+    async function fetchOfferAccess() {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        const token = session?.access_token || user?.accessToken;
+        if (!token) return;
+        const r = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (r.ok) {
+          const data = await r.json();
+          if (data) setOfferAccess(data);
+        }
+      } catch {
+        // Offer validity is a display feature — never block the page
+      }
+    }
+    fetchOfferAccess();
+  }, [user?.offerValidUntil]);
 
   // Self-service payment state (standalone students only)
   const [selectedPlanKey, setSelectedPlanKey] = useState(planOrder[0] || "premium");
