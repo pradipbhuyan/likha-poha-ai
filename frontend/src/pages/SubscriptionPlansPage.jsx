@@ -68,6 +68,18 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
     ? hasSof ? "CBSE + SOF Plan" : "CBSE Plan"
     : "Offer / Free Access";
 
+  // Offer validity state — fetched fresh on mount
+  const [offerAccess, setOfferAccess] = useState(null);
+  useEffect(() => {
+    if (!user?.accessToken) return;
+    fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
+    })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data) setOfferAccess(data); })
+      .catch(() => {});
+  }, [user?.accessToken]);
+
   // Self-service payment state (standalone students only)
   const [selectedPlanKey, setSelectedPlanKey] = useState(planOrder[0] || "premium");
   const [paymentConfig, setPaymentConfig] = useState({ configured: false });
@@ -180,6 +192,58 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
           </div>
         </div>
       </section>
+
+      {/* Offer validity banner — shown when user has a free-trial offer redemption */}
+      {offerAccess && (offerAccess.has_offer_access || offerAccess.expired_on) && (
+        <div style={{
+          margin: "0 0 24px",
+          padding: "14px 20px",
+          borderRadius: 12,
+          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+          background: offerAccess.expired_on && !offerAccess.has_offer_access
+            ? "rgba(239,68,68,.1)"
+            : offerAccess.expiring_soon
+            ? "rgba(245,158,11,.1)"
+            : "rgba(16,185,129,.1)",
+          border: `1px solid ${
+            offerAccess.expired_on && !offerAccess.has_offer_access
+              ? "rgba(239,68,68,.35)"
+              : offerAccess.expiring_soon
+              ? "rgba(245,158,11,.35)"
+              : "rgba(16,185,129,.35)"
+          }`,
+        }}>
+          <span style={{ fontSize: "1.4rem" }}>
+            {offerAccess.expired_on && !offerAccess.has_offer_access ? "🔴" : offerAccess.expiring_soon ? "⚠️" : "🎟️"}
+          </span>
+          <div style={{ flex: 1 }}>
+            {offerAccess.has_offer_access ? (
+              <>
+                <strong style={{ color: offerAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
+                  {offerAccess.expiring_soon
+                    ? `⚠️ Your free trial expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""}`
+                    : "Free trial access active"}
+                </strong>
+                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+                  Valid until {new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                  {offerAccess.days_remaining > 7 ? ` · ${offerAccess.days_remaining} days remaining` : ""}
+                  {offerAccess.expiring_soon ? " — upgrade now to keep your access" : " · Lessons and mock tests available from pre-loaded content"}
+                </span>
+              </>
+            ) : (
+              <>
+                <strong style={{ color: "#f87171", display: "block", marginBottom: 2 }}>
+                  Free trial expired
+                </strong>
+                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+                  Your free access expired on {new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                  {" "}— upgrade to a paid plan to regain full access
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Parent-linked: read-only notice */}
       {!isStandaloneStudent && (

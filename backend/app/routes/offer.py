@@ -152,6 +152,7 @@ def get_my_offer_access(user=Depends(get_current_user)):
     now_iso = datetime.now(timezone.utc).isoformat()
 
     try:
+        # Check for valid (non-expired) redemption
         result = (
             admin_client
             .table("offer_redemptions")
@@ -165,18 +166,41 @@ def get_my_offer_access(user=Depends(get_current_user)):
 
         if result.data:
             redemption = result.data[0]
+            valid_until = redemption["valid_until"]
+            expiry = datetime.fromisoformat(valid_until.replace("Z", "+00:00"))
+            days_left = (expiry - datetime.now(timezone.utc)).days
             return {
                 "has_offer_access": True,
-                "valid_until": redemption["valid_until"],
+                "valid_until": valid_until,
+                "days_remaining": max(0, days_left),
+                "expiring_soon": days_left <= 7,
+                "expired_on": None,
             }
+
+        # Check for most recent expired redemption (to show "expired on DATE" message)
+        expired_result = (
+            admin_client
+            .table("offer_redemptions")
+            .select("id, valid_until")
+            .eq("user_id", user_id)
+            .lt("valid_until", now_iso)
+            .order("valid_until", desc=True)
+            .limit(1)
+            .execute()
+        )
 
         return {
             "has_offer_access": False,
             "valid_until": None,
+            "expired_on": expired_result.data[0]["valid_until"] if expired_result.data else None,
+            "days_remaining": 0,
+            "expiring_soon": False,
         }
     except Exception:
-        # Table not yet created — return no access gracefully
         return {
             "has_offer_access": False,
             "valid_until": None,
+            "expired_on": None,
+            "days_remaining": 0,
+            "expiring_soon": False,
         }
