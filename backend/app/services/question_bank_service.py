@@ -66,13 +66,14 @@ def get_questions_from_bank(
             excluded_set = {str(eid) for eid in excluded_ids}
             questions = [q for q in questions if str(q.get("id", "")) not in excluded_set]
 
-        # Filter out malformed questions (< 4 options or empty options)
+        # Filter out malformed questions (< 4 options, short explanation, bad answer)
         questions = [
             q for q in questions
             if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) >= 4
             and all(str(v).strip() for v in q["options"].values())
             and q.get("answer") in ("A", "B", "C", "D")
             and q.get("question") and len(str(q.get("question", ""))) >= 10
+            and q.get("explanation") and len(str(q.get("explanation", ""))) >= 15
         ]
 
         # Deduplicate by question text (keep first occurrence) to prevent
