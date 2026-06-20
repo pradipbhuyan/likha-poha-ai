@@ -109,12 +109,10 @@ useEffect(() => {
       monthlyTokenLimit: profile.monthly_token_limit,
       subscriptionPlan: profile.subscription_plan || "free",
       accountStatus: profile.account_status || "active",
-      // Offer-code users have access_cbse=False — fetch their offer redemption
-      // status so the frontend can show subjects and chapters correctly.
-      // Fetch full offer access data and store it on the user object.
-      // This avoids a second fetch on SubscriptionPlansPage which may fail
-      // if the Supabase JWT has rotated since login.
-      ...(!profile.access_cbse ? await (async () => {
+      // Always fetch offer validity for all users — offer code users can have
+      // access_cbse = true AND a valid offer redemption. We need the expiry date
+      // to show in SubscriptionPlansPage and to know when to revoke access.
+      ...(await (async () => {
         try {
           const r = await fetch(`${API_BASE_URL}/api/offer/my-access`, {
             headers: { Authorization: `Bearer ${accessToken}` },
@@ -129,7 +127,7 @@ useEffect(() => {
             offerExpiredOn: d.expired_on || null,
           };
         } catch { return { offerAccess: false }; }
-      })() : { offerAccess: false }),
+      })()),
     };
   }
 
