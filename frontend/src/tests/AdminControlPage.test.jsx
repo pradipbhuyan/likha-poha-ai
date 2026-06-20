@@ -268,10 +268,10 @@ describe("AdminControlPage teacher management", () => {
     fireEvent.change(parentControls.getByLabelText(/child name/i), {
       target: { value: "Child One" },
     });
-    fireEvent.change(parentControls.getByLabelText(/child email/i), {
+    fireEvent.change(parentControls.getByLabelText(/child login email/i), {
       target: { value: "child@example.com" },
     });
-    fireEvent.change(parentControls.getByLabelText(/temporary password/i), {
+    fireEvent.change(parentControls.getByLabelText(/set password/i), {
       target: { value: "password456" },
     });
     fireEvent.change(parentControls.getByLabelText(/^class$/i), {
@@ -288,6 +288,7 @@ describe("AdminControlPage teacher management", () => {
           grade: "Grade 5",
           parent_id: "parent-1",
           family_id: "family-1",
+          skip_email_confirmation: true,
         },
         "admin-token"
       );

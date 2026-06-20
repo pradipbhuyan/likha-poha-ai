@@ -147,7 +147,7 @@ def _strip_source_prefix(chapter: str) -> str:
 
 
 def fake_bank_grade9_only(board, grade, subject, chapter,
-                          difficulty, num_questions, exam_type="General"):
+difficulty, num_questions, exam_type="General", excluded_ids=None):
     """
     Realistic bank mock: Grade 9 always works.
     Grade 10: simulates bank built with PLAIN chapter names (no source prefix).

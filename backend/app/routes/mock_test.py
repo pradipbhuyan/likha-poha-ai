@@ -40,6 +40,27 @@ def call_with_optional_board(func, board: str, **kwargs):
             try:
                 return func(**kwargs)
             except TypeError as inner:
+                inner_err = str(inner)
+                if "unexpected keyword argument 'cache_only'" in inner_err:
+                    kwargs.pop("cache_only", None)
+                    try:
+                        return func(**kwargs)
+                    except TypeError as inner2:
+                        if "unexpected keyword argument 'excluded_ids'" in str(inner2):
+                            kwargs.pop("excluded_ids", None)
+                            return func(**kwargs)
+                        raise inner2
+                if "unexpected keyword argument 'excluded_ids'" in inner_err:
+                    kwargs.pop("excluded_ids", None)
+                    return func(**kwargs)
+                raise
+        if "unexpected keyword argument 'excluded_ids'" in err:
+            kwargs.pop("excluded_ids", None)
+            try:
+                return func(board=board, **kwargs)
+            except TypeError as inner:
+                if "unexpected keyword argument 'board'" in str(inner):
+                    return func(**kwargs)
                 if "unexpected keyword argument 'cache_only'" in str(inner):
                     kwargs.pop("cache_only", None)
                     return func(**kwargs)
