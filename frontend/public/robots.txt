@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /lessons
+Disallow: /doubt
+Disallow: /mock-test
+Disallow: /analytics
+Disallow: /admin
+
+Sitemap: https://likhapoha.in/sitemap.xml
