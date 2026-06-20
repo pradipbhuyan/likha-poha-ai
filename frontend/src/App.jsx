@@ -192,7 +192,12 @@ function App() {
   /** Owns global session, navigation, and theme state for the single-page app shell. */
   const [user, setUser] = useState(null);
   const [showLanding, setShowLanding] = useState(
-    () => !localStorage.getItem("tutor_user")
+    () => {
+      // Skip landing page if ?u= (pre-filled login link) or ?code= (offer signup) is in URL
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("u") || params.get("code")) return false;
+      return !localStorage.getItem("tutor_user");
+    }
   );
   const [showSignup, setShowSignup] = useState(false);
   const [signupInitialPlan, setSignupInitialPlan] = useState("free");
