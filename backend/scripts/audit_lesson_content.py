@@ -157,6 +157,101 @@ def check_missing_section(content, section, step_title=""):
     return None
 
 
+def check_broken_latex(content):
+    """
+    Return defect if LaTeX math delimiters are unmatched or malformed.
+
+    Checks:
+    1. Odd number of standalone LaTeX $ signs (unmatched inline math)
+    2. \\begin{ without a corresponding \\end{
+
+    False-positive guards:
+    - \\$ (escaped dollar sign) is not a delimiter — skip it
+    - $$ (display math) counts as 0 inline delimiters (pair)
+    - $ followed immediately by a digit is a CURRENCY sign, not LaTeX ($50, $100)
+    - $ at line start before a number is currency (e.g. "$5 billion")
+    - Ignore $ inside code blocks (``` ... ```)
+    - Social Science / Economics lessons legitimately use $ as currency
+    """
+    # Strip code blocks first to avoid false positives
+    stripped = re.sub(r'```.*?```', '', content, flags=re.DOTALL)
+    # Replace escaped dollars so they don't count
+    stripped = stripped.replace(r'\$', '')
+    # Replace $$ display math so they don't affect inline count
+    stripped = re.sub(r'\$\$[^$]*\$\$', '', stripped, flags=re.DOTALL)
+    # Remove currency usages: $ followed by a digit or space+digit (e.g. $50, $ 100)
+    stripped = re.sub(r'\$\s*\d', '', stripped)
+
+    # Count remaining $ — must be even for matched inline math
+    dollar_count = stripped.count('$')
+    if dollar_count % 2 != 0:
+        return f"Unmatched $ delimiter — {dollar_count} math $ signs (must be even)"
+
+    # \\begin{ without \\end{
+    begins = re.findall(r'\\begin\{(\w+)\}', stripped)
+    ends   = re.findall(r'\\end\{(\w+)\}',   stripped)
+    if len(begins) != len(ends):
+        return f"Mismatched \\begin/\\end blocks: {len(begins)} opens vs {len(ends)} closes"
+
+    return None
+
+
+def check_empty_section(content):
+    """
+    Return defect if a LEAF section heading (###) has no content.
+
+    Only checks ### (depth-3) headings because ## headings are container
+    sections whose content IS the sub-headings — they are never "empty"
+    by themselves.  A ### heading is empty if the text between it and the
+    next heading (of any level) is fewer than 15 non-whitespace characters.
+
+    False-positive guards:
+    - Skip ## headings entirely (they are section containers)
+    - Skip headings whose body is followed immediately by a ### child
+      (parent headings use sub-headings for structure)
+    """
+    # Only look at ### leaf headings (3-hash)
+    headings_all = [(m.start(), m.end(), len(m.group(1))) for m in
+                    re.finditer(r'^(#{2,3})\s+.+$', content, re.MULTILINE)]
+
+    for i, (hstart, hend, depth) in enumerate(headings_all):
+        # Only check leaf headings (###, depth=3)
+        if depth != 3:
+            continue
+        next_start = headings_all[i + 1][0] if i + 1 < len(headings_all) else len(content)
+        section_body = content[hend:next_start].strip()
+        # Strip horizontal rules (---) — they are dividers not content
+        section_body_no_hr = re.sub(r'^-{3,}\s*$', '', section_body, flags=re.MULTILINE).strip()
+        if len(section_body_no_hr) < 15:
+            heading_text = content[hstart:hend].strip()
+            return f"Section appears empty: '{heading_text[:60]}'"
+    return None
+
+
+def check_placeholder_text(content):
+    """
+    Return defect if content contains LLM stub/placeholder patterns.
+
+    Matches patterns that indicate the LLM left unfinished content.
+
+    False-positive guards:
+    - ___ (underscores) are VALID in English grammar fill-in-the-blank
+      exercises (cloze tests). Do NOT flag them.
+    - [...] is valid for quoted text ellipsis
+    - Only flag explicit LLM stub markers like [INSERT], [TODO], PLACEHOLDER
+    """
+    PLACEHOLDER_PATTERNS = re.compile(
+        r'(\[INSERT\s|\[TODO\]|\[PLACEHOLDER\]|\[FILL\s|\[ADD\s|\[EXAMPLE HERE\]'
+        r'|TODO:\s|^PLACEHOLDER$)',
+        re.IGNORECASE | re.MULTILINE
+    )
+    m = PLACEHOLDER_PATTERNS.search(content)
+    if m:
+        preview = content[max(0, m.start()-20):m.start()+40].replace('\n', ' ')
+        return f"Placeholder text found: <<{preview}>>"
+    return None
+
+
 def check_worked_step_truncation(content):
     """
     Return defect if a step inside the Worked example ends mid-sentence.
@@ -197,6 +292,10 @@ ALL_CHECKS = [
     ("MISSING_QUICK_CHECK",    lambda c, r=None: check_missing_section(c, "quick_check",    r.get("step_title","") if r else "")),
     ("MISSING_SUMMARY",        lambda c, r=None: check_missing_section(c, "summary",         r.get("step_title","") if r else "")),
     ("INCOMPLETE_WORKED_STEP", check_worked_step_truncation),
+    # New checks for formula integrity and completeness
+    ("BROKEN_LATEX",           check_broken_latex),
+    ("EMPTY_SECTION",          check_empty_section),
+    ("PLACEHOLDER_TEXT",       check_placeholder_text),
 ]
 
 
