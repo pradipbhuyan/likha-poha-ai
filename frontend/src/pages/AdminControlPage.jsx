@@ -173,6 +173,9 @@ function AdminControlPage({ user }) {
 
   const [childForms, setChildForms] = useState({});
   const [assignmentForms, setAssignmentForms] = useState({});
+  // Stores { [parentId]: { email, password, username } } after child is created
+  // so admin can show credentials to parent and next-step instructions.
+  const [createdChildren, setCreatedChildren] = useState({});
 
   async function loadFamilies() {
     /** Fetch all families with their parents and children for admin editing. */
@@ -303,9 +306,21 @@ function AdminControlPage({ user }) {
           ...form,
           parent_id: parentId,
           family_id: familyId,
+          skip_email_confirmation: true,
         },
         user.accessToken
       );
+
+      // Save credentials so we can show next-step instructions to the parent
+      setCreatedChildren((prev) => ({
+        ...prev,
+        [parentId]: {
+          email: form.email,
+          password: form.password,
+          username: form.username,
+          grade: form.grade || "Grade 9",
+        },
+      }));
 
       setChildForms((prev) => ({
         ...prev,
@@ -1976,7 +1991,56 @@ function AdminControlPage({ user }) {
                 </div>
 
                 <div style={{ marginTop: 18 }}>
-                  <h4>Create Child Under {parent.username}</h4>
+                  <h4>➕ Add Child for {parent.username}</h4>
+
+                  {/* ── Credentials card shown AFTER child creation ── */}
+                  {createdChildren[parent.id] && (
+                    <div style={{ background:"rgba(34,197,94,.07)", border:"1.5px solid rgba(34,197,94,.3)", borderRadius:12, padding:"14px 16px", marginBottom:16 }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:8 }}>
+                        <strong style={{ color:"#22c55e", fontSize:".9rem" }}>
+                          ✅ Child account created for {createdChildren[parent.id].username}!
+                        </strong>
+                        <button onClick={() => setCreatedChildren(p => ({ ...p, [parent.id]: null }))}
+                          style={{ background:"none", border:"none", cursor:"pointer", color:"var(--muted)", fontSize:"1rem" }}>✕</button>
+                      </div>
+
+                      {/* Login credentials */}
+                      <div style={{ background:"rgba(0,0,0,.15)", borderRadius:8, padding:"10px 12px", marginBottom:12, fontFamily:"monospace", fontSize:".82rem" }}>
+                        <div style={{ marginBottom:4 }}>
+                          <span style={{ color:"var(--muted)" }}>Login Email: </span>
+                          <strong style={{ color:"#f8fafc" }}>{createdChildren[parent.id].email}</strong>
+                          <button onClick={() => navigator.clipboard.writeText(createdChildren[parent.id].email)}
+                            style={{ marginLeft:8, background:"none", border:"none", cursor:"pointer", color:"#a5b4fc", fontSize:".7rem", fontWeight:700 }}>📋</button>
+                        </div>
+                        <div>
+                          <span style={{ color:"var(--muted)" }}>Password: </span>
+                          <strong style={{ color:"#fbbf24" }}>{createdChildren[parent.id].password}</strong>
+                          <button onClick={() => navigator.clipboard.writeText(createdChildren[parent.id].password)}
+                            style={{ marginLeft:8, background:"none", border:"none", cursor:"pointer", color:"#a5b4fc", fontSize:".7rem", fontWeight:700 }}>📋</button>
+                        </div>
+                      </div>
+
+                      {/* Next steps */}
+                      <div style={{ fontSize:".82rem", lineHeight:1.6 }}>
+                        <p style={{ fontWeight:700, marginBottom:6, color:"#f8fafc" }}>📋 What to do next:</p>
+                        <ol style={{ paddingLeft:18, margin:0, color:"var(--muted)" }}>
+                          <li>Share the <strong>email and password</strong> above with your child</li>
+                          <li>Child logs in at <strong>likhapoha.in</strong> with these credentials</li>
+                          <li>Child can <strong>change their password</strong> from their profile settings anytime</li>
+                          <li style={{ color:"#a5b4fc", fontWeight:600 }}>💡 We recommend sitting with your child for their first login and giving them a quick walkthrough of the platform</li>
+                        </ol>
+                      </div>
+
+                      {/* Video walkthrough placeholder */}
+                      <div style={{ marginTop:12, background:"rgba(99,102,241,.1)", border:"1px dashed rgba(99,102,241,.4)", borderRadius:8, padding:"12px 14px", textAlign:"center" }}>
+                        <div style={{ fontSize:"2rem", marginBottom:4 }}>▶️</div>
+                        <p style={{ fontSize:".8rem", color:"#a5b4fc", margin:0, fontWeight:600 }}>Platform Walkthrough Video</p>
+                        <p style={{ fontSize:".72rem", color:"var(--muted)", margin:"4px 0 0" }}>
+                          Coming soon — a 3-minute video showing how to use LikhaPoha AI
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
                   <form
                     onSubmit={(e) =>
@@ -1992,32 +2056,43 @@ function AdminControlPage({ user }) {
                         onChange={(e) =>
                           updateChildForm(parent.id, "username", e.target.value)
                         }
+                        placeholder="Child's full name"
                         required
                       />
                     </label>
 
                     <label>
-                      Child Email
+                      Child Login Email
                       <input
                         type="email"
                         value={childForm.email}
                         onChange={(e) =>
                           updateChildForm(parent.id, "email", e.target.value)
                         }
+                        placeholder="child@example.com"
+                        autoComplete="off"
                         required
                       />
+                      <small style={{ color:"var(--muted)", fontSize:".75rem", marginTop:3, display:"block" }}>
+                        This will be the child's login username
+                      </small>
                     </label>
 
                     <label>
-                      Temporary Password
+                      Set Password
                       <input
-                        type="password"
+                        type="text"
                         value={childForm.password}
                         onChange={(e) =>
                           updateChildForm(parent.id, "password", e.target.value)
                         }
+                        placeholder="Create a password for the child"
+                        autoComplete="new-password"
                         required
                       />
+                      <small style={{ color:"var(--muted)", fontSize:".75rem", marginTop:3, display:"block" }}>
+                        👁️ Visible so you can confirm it — share this with your child
+                      </small>
                     </label>
 
                     <label>
@@ -2053,7 +2128,7 @@ function AdminControlPage({ user }) {
                     </label>
 
                     <button className="secondary-btn" type="submit">
-                      Create Child
+                      ✅ Create Child Account
                     </button>
                   </form>
                 </div>
