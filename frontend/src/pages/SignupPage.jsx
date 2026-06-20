@@ -160,6 +160,7 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
   const [offerCodeInput, setOfferCodeInput] = useState(_fromLink ? _urlCode : "");
   const [password, setPassword] = useState("");
   const [passwordSetLink, setPasswordSetLink] = useState("");
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
 
   useEffect(() => { loadRazorpay(); }, []);
 
@@ -586,11 +587,21 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                       <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
                         Password *
                       </label>
-                      <input
-                        style={S.input} type="password" placeholder="Set your password (min 8 characters)"
-                        value={password} onChange={e => setPassword(e.target.value)}
-                        minLength={8}
-                      />
+                      <div style={{ position:"relative" }}>
+                        <input
+                          style={{ ...S.input, paddingRight: 40 }}
+                          type={showSignupPassword ? "text" : "password"}
+                          placeholder="Set your password (min 8 characters)"
+                          value={password}
+                          onChange={e => setPassword(e.target.value)}
+                          minLength={8}
+                        />
+                        <button type="button"
+                          onClick={() => setShowSignupPassword(p => !p)}
+                          style={{ position:"absolute", right:10, top:"50%", transform:"translateY(-50%)", background:"none", border:"none", cursor:"pointer", color:"#64748b", fontSize:"1.1rem", padding:0, lineHeight:1 }}>
+                          {showSignupPassword ? "🙈" : "👁️"}
+                        </button>
+                      </div>
                       <small style={{ color:"#64748b", fontSize:".75rem" }}>
                         You'll use this to log in after signup — no email verification needed.
                       </small>

@@ -324,29 +324,40 @@ function ParentDashboardPage() {
                 </div>
               ) : (
                 children.map((child) => (
-                  <button
-                    key={child.id}
-                    className={
-                      selectedChild?.id === child.id
-                        ? "family-person-card child selected"
-                        : "family-person-card child"
-                    }
-                    onClick={() => setSelectedChild(child)}
-                  >
-                    <div className="family-avatar child-avatar">
-                      {(child.username || child.email || "S")[0].toUpperCase()}
-                    </div>
+                  <div key={child.id} style={{ display:"flex", flexDirection:"column", gap:6 }}>
+                    <button
+                      className={
+                        selectedChild?.id === child.id
+                          ? "family-person-card child selected"
+                          : "family-person-card child"
+                      }
+                      onClick={() => setSelectedChild(child)}
+                    >
+                      <div className="family-avatar child-avatar">
+                        {(child.username || child.email || "S")[0].toUpperCase()}
+                      </div>
 
-                    <div>
-                      <strong>{child.username || "Student"}</strong>
-                      <small>Student</small>
-                      <small>{child.email}</small>
-                    </div>
+                      <div>
+                        <strong>{child.username || "Student"}</strong>
+                        <small>Student</small>
+                        <small>{child.email || child.username}</small>
+                      </div>
 
-                    {selectedChild?.id === child.id && (
-                      <em className="selected-child-badge">Viewing</em>
+                      {selectedChild?.id === child.id && (
+                        <em className="selected-child-badge">Viewing</em>
+                      )}
+                    </button>
+                    {/* Persistent sign-in-as-child link */}
+                    {child.email && (
+                      <a
+                        href={`https://likhapoha.in/?u=${encodeURIComponent(child.email)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.3)", borderRadius:8, padding:"5px 10px", fontSize:".72rem", color:"#a5b4fc", fontWeight:600, textDecoration:"none", cursor:"pointer" }}>
+                        🔑 Sign in as {child.username || "child"}
+                      </a>
                     )}
-                  </button>
+                  </div>
                 ))
               )}
             </div>
@@ -652,25 +663,28 @@ function ParentDashboardPage() {
               </div>
             </div>
 
-            {/* One-click login link */}
+            {/* One-click auto-login link (includes encoded password) */}
             {(() => {
               const loginId = createdChildInfo.email || createdChildInfo.username;
-              const loginLink = `https://likhapoha.in/?u=${encodeURIComponent(loginId)}`;
+              const encodedPass = btoa(createdChildInfo.password);
+              const autoLoginLink = `https://likhapoha.in/?u=${encodeURIComponent(loginId)}&p=${encodedPass}`;
               return (
                 <div style={{ marginBottom: 14 }}>
                   <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: "0 0 6px", fontWeight: 600 }}>
-                    🔗 One-click login link (pre-fills username/email)
+                    🔗 One-click login link (logs in directly to child's dashboard)
                   </p>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,.1)", borderRadius: 8, padding: "6px 10px", flexWrap: "wrap" }}>
-                    <code style={{ fontSize: ".7rem", color: "#c7d2fe", fontFamily: "monospace", flex: 1, wordBreak: "break-all" }}>{loginLink}</code>
-                    <button onClick={() => navigator.clipboard.writeText(loginLink)}
+                    <a href={autoLoginLink} target="_blank" rel="noreferrer"
+                      style={{ fontSize: ".7rem", color: "#c7d2fe", fontFamily: "monospace", flex: 1, wordBreak: "break-all", textDecoration: "underline", cursor: "pointer" }}>
+                      {autoLoginLink.substring(0, 60)}…
+                    </a>
+                    <button onClick={() => navigator.clipboard.writeText(autoLoginLink)}
                       style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "3px 10px", color: "#c7d2fe", cursor: "pointer", fontSize: ".72rem", fontWeight: 700, fontFamily: "inherit", whiteSpace: "nowrap" }}>
-                      📋 Copy Link
+                      📋 Copy
                     </button>
                   </div>
                   <p style={{ fontSize: ".72rem", color: "var(--muted)", margin: "4px 0 0" }}>
-                    Open this link to go straight to the login page with the username pre-filled.
-                    You can also sign in to your child's account any time using this link + password.
+                    Click this link to sign in directly to your child's account — no username or password needed.
                   </p>
                 </div>
               );

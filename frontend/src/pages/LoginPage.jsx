@@ -22,12 +22,64 @@ function LoginPage({ onLogin, onShowSignup }) {
   const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Pre-fill username from URL param ?u= (used by parent-to-child login links)
-  useEffect(() => {
+// Pre-fill username AND auto-login from URL params
+// ?u= pre-fills the username field
+// ?p= (base64-encoded password) + ?u= triggers auto-login → lands on child dashboard
+useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const prefilledUser = params.get("u");
+    const encodedPass = params.get("p");
     if (prefilledUser) {
-      setUsername(decodeURIComponent(prefilledUser));
+      const decoded = decodeURIComponent(prefilledUser);
+      setUsername(decoded);
+      // Auto-login if password is also provided (parent launching child's account)
+      if (encodedPass) {
+        try {
+          const decodedPass = atob(encodedPass);
+          setPassword(decodedPass);
+          // Trigger login automatically after a brief render tick
+          setTimeout(async () => {
+            try {
+              setLoading(true);
+              setError("");
+              let loginEmail = decoded;
+              if (!loginEmail.includes("@")) {
+                const resp = await fetch(
+                  `${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginEmail)}`
+                );
+                if (resp.ok) {
+                  const r = await resp.json();
+                  loginEmail = r.email || loginEmail;
+                }
+              }
+              await supabase.auth.signOut().catch(() => {});
+              const { data, error: signInErr } = await supabase.auth.signInWithPassword({
+                email: loginEmail,
+                password: decodedPass,
+              });
+              if (!signInErr && data?.session) {
+                const { data: profile } = await supabase
+                  .from("profiles").select("*").eq("id", data.user.id).single();
+                if (profile) {
+                  onLogin(await buildLoginUser({
+                    authUser: data.user,
+                    profile,
+                    accessToken: data.session.access_token,
+                  }));
+                }
+              } else {
+                setError("Auto-login failed. Please sign in manually.");
+                setLoading(false);
+              }
+            } catch {
+              setError("Auto-login failed. Please sign in manually.");
+              setLoading(false);
+            }
+          }, 200);
+        } catch {
+          // Invalid base64 — just pre-fill username
+        }
+      }
     }
   }, []);
 

@@ -194,7 +194,7 @@ function App() {
     // If ?u= is in URL, the link is a "sign in as child" link.
     // Force the session clear so the login page renders with the pre-filled username.
     const params = new URLSearchParams(window.location.search);
-    if (params.get("u")) {
+    if (params.get("u") || params.get("p")) {
       localStorage.removeItem("tutor_user");
       localStorage.removeItem("tutor_active_page");
       return null;
@@ -205,7 +205,7 @@ function App() {
     () => {
       // Skip landing page if ?u= (pre-filled login link) or ?code= (offer signup) is in URL
       const params = new URLSearchParams(window.location.search);
-      if (params.get("u") || params.get("code")) return false;
+      if (params.get("u") || params.get("p") || params.get("code")) return false;
       return !localStorage.getItem("tutor_user");
     }
   );
