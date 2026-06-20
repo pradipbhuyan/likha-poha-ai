@@ -193,6 +193,12 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
+      key: "platformWalkthrough",
+      label: "Platform Walkthrough",
+      icon: Video,
+      roles: ["student", "parent", "teacher", "sales"],
+    },
+    {
       key: "subscriptionPlans",
       label: "Subscription",
       icon: CreditCard,

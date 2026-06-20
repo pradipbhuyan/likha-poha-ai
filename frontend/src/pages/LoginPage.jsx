@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/AITutorLogo1.png";
 
 import { BookOpen, Brain, ClipboardList, BarChart3 } from "lucide-react";
@@ -21,6 +21,15 @@ function LoginPage({ onLogin, onShowSignup }) {
   const [error, setError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Pre-fill username from URL param ?u= (used by parent-to-child login links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prefilledUser = params.get("u");
+    if (prefilledUser) {
+      setUsername(decodeURIComponent(prefilledUser));
+    }
+  }, []);
 
   async function buildLoginUser({ authUser, profile, accessToken }) {
     /** Convert Supabase auth/profile rows into the app's normalized user object. */

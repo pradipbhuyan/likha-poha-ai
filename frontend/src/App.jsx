@@ -24,6 +24,7 @@ import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
+import WalkthroughPage from "./pages/WalkthroughPage";
 import SalesLeadPage from "./pages/SalesLeadPage";
 import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
@@ -164,6 +165,11 @@ const PAGE_META = {
     title: "Teacher Dashboard",
     subtitle: "Track assigned students, progress, AI usage, and teacher notes.",
     icon: "🎓",
+  },
+  platformWalkthrough: {
+    title: "Platform Walkthrough",
+    subtitle: "Learn how to use LikhaPoha AI — coming soon.",
+    icon: "🎬",
   },
   subscriptionPlans: {
     title: "Subscription",
@@ -410,6 +416,8 @@ function App() {
         return <TeacherDashboardPage user={user} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} />;
+      case "platformWalkthrough":
+        return <WalkthroughPage user={user} />;
       case "changePassword":
         return <ChangePasswordPage user={user} />;
       case "paymentLogs":

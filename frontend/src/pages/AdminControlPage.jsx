@@ -2007,6 +2007,12 @@ function AdminControlPage({ user }) {
                       {/* Login credentials */}
                       <div style={{ background:"rgba(0,0,0,.15)", borderRadius:8, padding:"10px 12px", marginBottom:12, fontFamily:"monospace", fontSize:".82rem" }}>
                         <div style={{ marginBottom:4 }}>
+                          <span style={{ color:"var(--muted)" }}>Username: </span>
+                          <strong style={{ color:"#f8fafc" }}>{createdChildren[parent.id].username}</strong>
+                          <button onClick={() => navigator.clipboard.writeText(createdChildren[parent.id].username)}
+                            style={{ marginLeft:8, background:"none", border:"none", cursor:"pointer", color:"#a5b4fc", fontSize:".7rem", fontWeight:700 }}>📋</button>
+                        </div>
+                        <div style={{ marginBottom:4 }}>
                           <span style={{ color:"var(--muted)" }}>Login Email: </span>
                           <strong style={{ color:"#f8fafc" }}>{createdChildren[parent.id].email}</strong>
                           <button onClick={() => navigator.clipboard.writeText(createdChildren[parent.id].email)}
@@ -2020,12 +2026,30 @@ function AdminControlPage({ user }) {
                         </div>
                       </div>
 
+                      {/* One-click login link */}
+                      {(() => {
+                        const loginLink = `https://likhapoha.in/?u=${encodeURIComponent(createdChildren[parent.id].email)}`;
+                        return (
+                          <div style={{ marginBottom:12 }}>
+                            <p style={{ fontSize:".75rem", color:"#a5b4fc", margin:"0 0 4px", fontWeight:600 }}>🔗 One-click login link (pre-fills email)</p>
+                            <div style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(99,102,241,.1)", borderRadius:7, padding:"5px 8px", flexWrap:"wrap" }}>
+                              <code style={{ fontSize:".7rem", color:"#c7d2fe", fontFamily:"monospace", flex:1, wordBreak:"break-all" }}>{loginLink}</code>
+                              <button onClick={() => navigator.clipboard.writeText(loginLink)}
+                                style={{ background:"rgba(99,102,241,.3)", border:"none", borderRadius:5, padding:"2px 8px", color:"#c7d2fe", cursor:"pointer", fontSize:".7rem", fontWeight:700, fontFamily:"inherit" }}>📋 Copy</button>
+                            </div>
+                            <p style={{ fontSize:".7rem", color:"var(--muted)", margin:"3px 0 0" }}>
+                              Child can also sign in using their <strong>username</strong> OR <strong>email</strong> at likhapoha.in
+                            </p>
+                          </div>
+                        );
+                      })()}
+
                       {/* Next steps */}
                       <div style={{ fontSize:".82rem", lineHeight:1.6 }}>
                         <p style={{ fontWeight:700, marginBottom:6, color:"#f8fafc" }}>📋 What to do next:</p>
                         <ol style={{ paddingLeft:18, margin:0, color:"var(--muted)" }}>
-                          <li>Share the <strong>email and password</strong> above with your child</li>
-                          <li>Child logs in at <strong>likhapoha.in</strong> with these credentials</li>
+                          <li>Share the <strong>username or email + password</strong> above with your child</li>
+                          <li>Child logs in at <strong>likhapoha.in</strong> — can use <em>username</em> OR <em>email</em> to sign in</li>
                           <li>Child can <strong>change their password</strong> from their profile settings anytime</li>
                           <li style={{ color:"#a5b4fc", fontWeight:600 }}>💡 We recommend sitting with your child for their first login and giving them a quick walkthrough of the platform</li>
                         </ol>
