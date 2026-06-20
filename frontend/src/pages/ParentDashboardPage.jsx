@@ -46,6 +46,7 @@ function ParentDashboardPage() {
   const [studentPassword, setStudentPassword] = useState("");
   const [studentGrade, setStudentGrade] = useState("");
   const [creatingStudent, setCreatingStudent] = useState(false);
+  const [createStudentError, setCreateStudentError] = useState("");
   // Stores credentials after child creation to show the "What to do next" card
   const [createdChildInfo, setCreatedChildInfo] = useState(null);
 
@@ -131,8 +132,9 @@ function ParentDashboardPage() {
     setCreatingStudent(true);
 
     try {
+      setCreateStudentError("");
       if (!studentGrade) {
-        alert("Please select your child's class before creating the account.");
+        setCreateStudentError("Please select your child's class before creating the account.");
         setCreatingStudent(false);
         return;
       }
@@ -161,7 +163,19 @@ function ParentDashboardPage() {
       await loadFamily();
     } catch (err) {
       console.error(err);
-      alert(err.message || "Unable to create student.");
+      const msg = err.message || "Unable to create student.";
+      const isAuthErr = msg.toLowerCase().includes("parent") ||
+                        msg.toLowerCase().includes("access") ||
+                        msg.toLowerCase().includes("auth") ||
+                        msg.toLowerCase().includes("token") ||
+                        msg.toLowerCase().includes("unauthorized") ||
+                        msg.toLowerCase().includes("403") ||
+                        msg.toLowerCase().includes("401");
+      setCreateStudentError(
+        isAuthErr
+          ? "⚠️ Session expired or access issue detected.\n\nPlease log out and log back in to fix this. Your family data is safe."
+          : msg
+      );
     } finally {
       setCreatingStudent(false);
     }
@@ -570,6 +584,21 @@ function ParentDashboardPage() {
             <p>Create a student login under this family.</p>
 
             <form onSubmit={handleCreateStudent}>
+              {createStudentError && (
+                <div style={{ background:"rgba(239,68,68,.1)", border:"1px solid rgba(239,68,68,.3)", borderRadius:10, padding:"12px 14px", marginBottom:14, fontSize:".85rem", color:"#fca5a5", whiteSpace:"pre-line" }}>
+                  {createStudentError}
+                  {(createStudentError.includes("log out") || createStudentError.includes("Session")) && (
+                    <div style={{ marginTop:8 }}>
+                      <button
+                        type="button"
+                        onClick={() => { window.location.href = "/"; localStorage.removeItem("tutor_user"); localStorage.removeItem("tutor_active_page"); window.location.reload(); }}
+                        style={{ background:"rgba(239,68,68,.2)", border:"1px solid rgba(239,68,68,.4)", borderRadius:7, padding:"6px 14px", color:"#fca5a5", cursor:"pointer", fontFamily:"inherit", fontSize:".8rem", fontWeight:700 }}>
+                        🔒 Log out now
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
               <input
                 type="text"
                 placeholder="Student Name"
