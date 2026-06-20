@@ -46,6 +46,8 @@ function ParentDashboardPage() {
   const [studentPassword, setStudentPassword] = useState("");
   const [studentGrade, setStudentGrade] = useState("");
   const [creatingStudent, setCreatingStudent] = useState(false);
+  // Stores credentials after child creation to show the "What to do next" card
+  const [createdChildInfo, setCreatedChildInfo] = useState(null);
 
   const [parentName, setParentName] = useState("");
   const [parentEmail, setParentEmail] = useState("");
@@ -142,6 +144,14 @@ function ParentDashboardPage() {
         grade: studentGrade,
       });
 
+      // Save credentials for the "What to do next" card
+      setCreatedChildInfo({
+        username: studentName,
+        email: studentEmail,
+        password: studentPassword,
+        grade: studentGrade,
+      });
+
       setStudentName("");
       setStudentEmail("");
       setStudentPassword("");
@@ -149,8 +159,6 @@ function ParentDashboardPage() {
       setShowAddChild(false);
 
       await loadFamily();
-
-      alert("Student created successfully.");
     } catch (err) {
       console.error(err);
       alert(err.message || "Unable to create student.");
@@ -564,9 +572,10 @@ function ParentDashboardPage() {
                 placeholder="Student Email (optional)"
                 value={studentEmail}
                 onChange={(e) => setStudentEmail(e.target.value)}
+                autoComplete="off"
               />
               <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
-                Leave blank if the student does not have an email — they can still log in with their username and password.
+                Leave blank if the student does not have an email — they can log in with their username and password.
               </small>
 
               <label style={{ display:"block", marginBottom:4, fontSize:".85rem", fontWeight:600 }}>
@@ -586,12 +595,16 @@ function ParentDashboardPage() {
               </select>
 
               <input
-                type="password"
-                placeholder="Temporary Password"
+                type="text"
+                placeholder="Set a password for your child"
                 value={studentPassword}
                 onChange={(e) => setStudentPassword(e.target.value)}
+                autoComplete="new-password"
                 required
               />
+              <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
+                👁️ Visible so you can confirm it — you will share this with your child
+              </small>
 
               <button
                 className="primary-btn"
@@ -601,6 +614,89 @@ function ParentDashboardPage() {
                 {creatingStudent ? "Creating..." : "Create Student"}
               </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── Child credentials card shown after successful creation ── */}
+      {createdChildInfo && (
+        <div className="modal-backdrop">
+          <div className="premium-modal" style={{ maxWidth: 480 }}>
+            <button className="modal-close" onClick={() => setCreatedChildInfo(null)}>×</button>
+            <h3 style={{ color: "#22c55e", marginBottom: 8 }}>✅ Child account created!</h3>
+            <p style={{ fontSize: ".9rem", marginBottom: 16, color: "var(--muted)" }}>
+              Share these details with your child so they can log in.
+            </p>
+
+            {/* Credentials */}
+            <div style={{ background: "rgba(0,0,0,.15)", borderRadius: 10, padding: "12px 14px", marginBottom: 14, fontFamily: "monospace", fontSize: ".85rem" }}>
+              <div style={{ marginBottom: 6 }}>
+                <span style={{ color: "var(--muted)" }}>Name (username): </span>
+                <strong style={{ color: "#f8fafc" }}>{createdChildInfo.username}</strong>
+                <button onClick={() => navigator.clipboard.writeText(createdChildInfo.username)}
+                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+              </div>
+              {createdChildInfo.email && (
+                <div style={{ marginBottom: 6 }}>
+                  <span style={{ color: "var(--muted)" }}>Email: </span>
+                  <strong style={{ color: "#f8fafc" }}>{createdChildInfo.email}</strong>
+                  <button onClick={() => navigator.clipboard.writeText(createdChildInfo.email)}
+                    style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+                </div>
+              )}
+              <div>
+                <span style={{ color: "var(--muted)" }}>Password: </span>
+                <strong style={{ color: "#fbbf24" }}>{createdChildInfo.password}</strong>
+                <button onClick={() => navigator.clipboard.writeText(createdChildInfo.password)}
+                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+              </div>
+            </div>
+
+            {/* One-click login link */}
+            {(() => {
+              const loginId = createdChildInfo.email || createdChildInfo.username;
+              const loginLink = `https://likhapoha.in/?u=${encodeURIComponent(loginId)}`;
+              return (
+                <div style={{ marginBottom: 14 }}>
+                  <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: "0 0 6px", fontWeight: 600 }}>
+                    🔗 One-click login link (pre-fills username/email)
+                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,.1)", borderRadius: 8, padding: "6px 10px", flexWrap: "wrap" }}>
+                    <code style={{ fontSize: ".7rem", color: "#c7d2fe", fontFamily: "monospace", flex: 1, wordBreak: "break-all" }}>{loginLink}</code>
+                    <button onClick={() => navigator.clipboard.writeText(loginLink)}
+                      style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "3px 10px", color: "#c7d2fe", cursor: "pointer", fontSize: ".72rem", fontWeight: 700, fontFamily: "inherit", whiteSpace: "nowrap" }}>
+                      📋 Copy Link
+                    </button>
+                  </div>
+                  <p style={{ fontSize: ".72rem", color: "var(--muted)", margin: "4px 0 0" }}>
+                    Open this link to go straight to the login page with the username pre-filled.
+                    You can also sign in to your child's account any time using this link + password.
+                  </p>
+                </div>
+              );
+            })()}
+
+            {/* Next steps */}
+            <div style={{ fontSize: ".83rem", lineHeight: 1.7, marginBottom: 16 }}>
+              <strong style={{ display: "block", marginBottom: 6 }}>📋 What to do next:</strong>
+              <ol style={{ paddingLeft: 18, margin: 0, color: "var(--muted)" }}>
+                <li>Share the <strong>username or email + password</strong> with your child</li>
+                <li>Child can log in at <strong>likhapoha.in</strong> using username OR email</li>
+                <li>Child can <strong>change their password</strong> from their profile anytime</li>
+                <li style={{ color: "#a5b4fc", fontWeight: 600 }}>💡 Sit with your child for their first login and give a quick walkthrough</li>
+              </ol>
+            </div>
+
+            {/* Video walkthrough placeholder */}
+            <div style={{ background: "rgba(99,102,241,.07)", border: "1px dashed rgba(99,102,241,.3)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
+              <div style={{ fontSize: "1.4rem", marginBottom: 3 }}>▶️</div>
+              <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: 0, fontWeight: 600 }}>Platform Walkthrough Video — Coming Soon</p>
+              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0" }}>A 3-minute video guide to help your child get started</p>
+            </div>
+
+            <button className="primary-btn" style={{ width: "100%" }} onClick={() => setCreatedChildInfo(null)}>
+              Done ✓
+            </button>
           </div>
         </div>
       )}
