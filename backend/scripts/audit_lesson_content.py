@@ -71,9 +71,32 @@ TASK_VERB_PATTERN = re.compile(
 )
 
 SECTION_PATTERNS = {
-    "worked_example": re.compile(r"(?i)\bworked\s+example\b"),
-    "quick_check":    re.compile(r"(?i)\bquick\s+check\b"),
-    "summary":        re.compile(r"(?i)\bsummary\b"),
+    # English + Hindi section headings for each required section
+    "worked_example": re.compile(
+        r"(?i)(\bworked\s+example\b"
+        r"|हल\s+किया\s+गया\s+उदाहरण|कार्य\s+उदाहरण|हल\s+उदाहरण"
+        r"|उदाहरण|कार्य-उदाहरण)"
+    ),
+    "quick_check": re.compile(
+        r"(?i)(\bquick\s+check\b"
+        r"|त्वरित\s+जाँच|त्वरित\s+परीक्षण|स्वयं\s+जाँचें|त्वरित\s+प्रश्न)"
+    ),
+    "summary": re.compile(
+        r"(?i)(\bsummary\b"
+        r"|सारांश|संक्षेप|निष्कर्ष)"
+    ),
+}
+
+# Step types that are specialized and do NOT require all 7 TUTOR_SYSTEM sections.
+# "Revision and recap" is a review step. "Exam-style problems" is practice only.
+# "Exam preparation" is tips/strategies. Checking for Worked example in these is wrong.
+STEPS_EXEMPT_FROM_SECTION_CHECKS = {
+    "revision and recap",
+    "exam-style problems",
+    "exam preparation",
+    "worked examples",   # this IS the worked example — skip MISSING_WORKED_EXAMPLE check
+    "recap",
+    "what we learn",
 }
 
 # Characters that are not ordinary text or standard whitespace/Unicode
@@ -124,8 +147,11 @@ def check_too_short(content):
     return None
 
 
-def check_missing_section(content, section):
+def check_missing_section(content, section, step_title=""):
     """Return defect if a required section heading is absent."""
+    # Skip section checks for specialized step types
+    if step_title.strip().lower() in STEPS_EXEMPT_FROM_SECTION_CHECKS:
+        return None
     if not SECTION_PATTERNS[section].search(content):
         return "Missing '{}' section".format(section.replace("_", " "))
     return None
@@ -167,9 +193,9 @@ ALL_CHECKS = [
     ("TRUNCATED_CONTENT",      check_truncated_content),
     ("CONTROL_CHARS",          check_control_chars),
     ("TOO_SHORT",              check_too_short),
-    ("MISSING_WORKED_EXAMPLE", lambda c: check_missing_section(c, "worked_example")),
-    ("MISSING_QUICK_CHECK",    lambda c: check_missing_section(c, "quick_check")),
-    ("MISSING_SUMMARY",        lambda c: check_missing_section(c, "summary")),
+    ("MISSING_WORKED_EXAMPLE", lambda c, r=None: check_missing_section(c, "worked_example", r.get("step_title","") if r else "")),
+    ("MISSING_QUICK_CHECK",    lambda c, r=None: check_missing_section(c, "quick_check",    r.get("step_title","") if r else "")),
+    ("MISSING_SUMMARY",        lambda c, r=None: check_missing_section(c, "summary",         r.get("step_title","") if r else "")),
     ("INCOMPLETE_WORKED_STEP", check_worked_step_truncation),
 ]
 
@@ -218,7 +244,11 @@ def audit_lessons(rows):
     for row in rows:
         content = row.get("lesson_content") or ""
         for defect_type, check_fn in ALL_CHECKS:
-            message = check_fn(content)
+            # Pass row to checks that need step_title context
+            try:
+                message = check_fn(content, row)
+            except TypeError:
+                message = check_fn(content)
             if message:
                 defects.append({
                     "id":          row["id"],
