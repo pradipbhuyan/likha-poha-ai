@@ -150,9 +150,19 @@ function AdminControlPage({ user }) {
 
   const [offerCodes, setOfferCodes] = useState([]);
   const [offerCodesLoading, setOfferCodesLoading] = useState(false);
+  // Default valid_until = 30 days from now at 23:59 in local datetime-local format
+  const defaultValidUntil = (() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 30);
+    d.setHours(23, 59, 0, 0);
+    // Format as YYYY-MM-DDTHH:mm required by datetime-local input
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  })();
+
   const [offerForm, setOfferForm] = useState({
     description: "",
-    valid_until: "",
+    valid_until: defaultValidUntil,
     max_uses: 100,
     influencer_name: "",
     influencer_email: "",
@@ -430,7 +440,13 @@ function AdminControlPage({ user }) {
         incentive_inr: Number(offerForm.incentive_inr) || 0,
       }, user.accessToken);
       setOfferMsg(`✅ Code created: ${data.offer_code?.code || "—"}`);
-      setOfferForm({ description: "", valid_until: "", max_uses: 100, influencer_name: "", influencer_email: "", code_type: "free_trial", discount_percent: 0, incentive_inr: 0 });
+      // Reset with a fresh default date (30 days from now)
+      const freshDate = (() => {
+        const d = new Date(); d.setDate(d.getDate() + 30); d.setHours(23, 59, 0, 0);
+        const pad = (n) => String(n).padStart(2, "0");
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      })();
+      setOfferForm({ description: "", valid_until: freshDate, max_uses: 100, influencer_name: "", influencer_email: "", code_type: "free_trial", discount_percent: 0, incentive_inr: 0 });
       await loadOfferCodes();
       await loadInfluencers();
     } catch (err) {
