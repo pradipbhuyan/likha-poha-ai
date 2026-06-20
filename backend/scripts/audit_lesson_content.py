@@ -127,7 +127,15 @@ def check_missing_section(content, section):
 
 
 def check_worked_step_truncation(content):
-    """Return defect if a step inside the Worked example ends mid-sentence."""
+    """
+    Return defect if a step inside the Worked example ends mid-sentence.
+
+    False-positive guard: skip lines that are:
+    - Bullet/list items  (start with - * + or a number+dot)
+    - Data table rows    (contain : or →)
+    - Single-word lines  (< 10 chars — too short to judge)
+    These patterns legitimately end without sentence-final punctuation.
+    """
     steps = re.findall(
         r"(?i)step\s*\d+\s*:.*?(?=step\s*\d+\s*:|##|\Z)",
         content,
@@ -135,9 +143,17 @@ def check_worked_step_truncation(content):
     )
     for step in steps:
         last = step.rstrip().split("\n")[-1].strip()
-        if last and len(last) > 3 and len(last) < 60:
-            if not re.search(r'[.!?)\]"\u201d]$', last):
-                return "Step appears truncated — ends: <<{}>>".format(last)
+        if not last or len(last) < 10 or len(last) >= 60:
+            continue
+        # Skip list items, data rows, table entries — these never end with "."
+        if re.match(r"^[-*+]", last):          # bullet point
+            continue
+        if re.match(r"^\d+[.)]\s", last):       # numbered list item
+            continue
+        if "→" in last or ":" in last:          # data/table row
+            continue
+        if not re.search(r'[.!?)\]"\u201d]$', last):
+            return "Step appears truncated — ends: <<{}>>".format(last)
     return None
 
 
