@@ -406,7 +406,7 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                 </p>
                 <div style={{ display:"flex", flexDirection:"column", gap:11 }}>
                   <TrustRow icon="📚" bg="rgba(37,99,235,.2)" title="700+ Chapters covered" sub="All CBSE subjects, Grade 5–10" />
-                  <TrustRow icon="🧠" bg="rgba(16,185,129,.2)" title="42,000+ Practice Questions" sub="Instantly available for mock tests" />
+                  <TrustRow icon="🧠" bg="rgba(16,185,129,.2)" title="70,000+ Practice Questions" sub="Instantly available for mock tests" />
                   <TrustRow icon="🔒" bg="rgba(124,58,237,.2)" title="Safe for children" sub="Academic guardrail blocks off-topic content" />
                   <TrustRow icon="👨‍👩‍👧" bg="rgba(245,158,11,.2)" title="Real-time parent insights" sub="Weak-area alerts, score trends, usage tracking" />
                 </div>

@@ -24,7 +24,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
   const faqs = [
     { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Class 5 to 10 for CBSE across all core subjects — Science, Maths, English, Social Science, and Hindi. State Board content can be uploaded by admins for custom deployments." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
-    { q: "How many practice questions are available?", a: "LikhaPoha AI has 42,000+ practice questions covering all chapters from Grade 5 to Grade 10 across CBSE subjects, available instantly for mock tests and practice." },
+    { q: "How many practice questions are available?", a: "LikhaPoha AI has 70,000+ practice questions covering all chapters from Grade 5 to Grade 10 across CBSE subjects, available instantly for mock tests and practice." },
     { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
     { q: "Can I manage multiple children on the Parent Dashboard?", a: "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
     { q: "What does the Parent Dashboard show?", a: "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children, invite co-parents, and manage subscription plans." },
@@ -58,7 +58,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div className="lp-stat"><div className="lp-sn">700+</div><div className="lp-sl">Chapters (Gr 5&ndash;10)</div></div>
           <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Classes (5&ndash;10)</div></div>
           <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Core Subjects</div></div>
-          <div className="lp-stat"><div className="lp-sn">42,000+</div><div className="lp-sl">Practice Questions</div></div>
+          <div className="lp-stat"><div className="lp-sn">70,000+</div><div className="lp-sl">Practice Questions</div></div>
         </div>
       </div>
       <div className="lp-sf"><div className="lp-si">
@@ -76,7 +76,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
             <div className="lp-pitem"><span>&#10003;</span> Parent dashboard shows daily progress and weak areas</div>
             <div className="lp-pitem"><span>&#10003;</span> Lessons grounded in uploaded NCERT textbooks</div>
             <div className="lp-pitem"><span>&#10003;</span> Smart evaluation flags revision topics automatically</div>
-            <div className="lp-pitem"><span>&#10003;</span> CBSE mock tests and 42,000+ practice questions included</div>
+            <div className="lp-pitem"><span>&#10003;</span> CBSE mock tests and 70,000+ practice questions included</div>
           </div>
         </div>
       </div></div>
@@ -94,7 +94,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}>&#128218;</div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}>&#10067;</div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}>&#129514;</div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 42,000+ practice questions covering every chapter.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}>&#129514;</div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 70,000+ practice questions covering every chapter.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}>&#128106;</div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
