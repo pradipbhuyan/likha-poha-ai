@@ -168,7 +168,7 @@ const PAGE_META = {
   },
   platformWalkthrough: {
     title: "Platform Walkthrough",
-    subtitle: "Learn how to use LikhaPoha AI — coming soon.",
+    subtitle: "Watch the student platform walkthrough in English and Hindi.",
     icon: "🎬",
   },
   subscriptionPlans: {
