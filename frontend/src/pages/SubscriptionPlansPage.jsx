@@ -816,7 +816,7 @@ function SubscriptionPlansPage({ user }) {
                 <strong style={{ color: parentOfferAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
                   {parentOfferAccess.expiring_soon
                     ? `⚠️ Your free trial expires in ${parentOfferAccess.days_remaining} day${parentOfferAccess.days_remaining !== 1 ? "s" : ""}`
-                    : "🎟️ Free trial access active"}
+                    : "Free trial access active"}
                 </strong>
                 <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
                   Valid until {new Date(parentOfferAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
