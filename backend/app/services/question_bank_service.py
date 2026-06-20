@@ -24,12 +24,17 @@ def get_questions_from_bank(
     difficulty: str,
     num_questions: int,
     exam_type: str = "General",
+    excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """
     Sample random questions from the bank for a mock test.
 
     Returns a randomly sampled list of num_questions questions if the bank
     has enough active questions, otherwise returns [] to trigger LLM fallback.
+
+    excluded_ids: database row IDs (as strings) of questions shown in recent
+    tests for this user.  These are filtered out before sampling so the same
+    question cannot appear in the same test or the next 30 tests.
 
     The caller should always handle the empty-list case.
     """
@@ -52,27 +57,37 @@ def get_questions_from_bank(
         if clean_chapter:
             query = query.eq("chapter", clean_chapter)
 
-        result = query.limit(500).execute()
+        # Fetch a large pool so exclusion still leaves enough candidates
+        result = query.limit(1000).execute()
         questions = result.data or []
 
+        # Filter out recently-shown questions to prevent repetition
+        if excluded_ids:
+            excluded_set = {str(eid) for eid in excluded_ids}
+            questions = [q for q in questions if str(q.get("id", "")) not in excluded_set]
+
         if len(questions) < num_questions:
-            return []  # Not enough — caller falls back to LLM
+            return []  # Not enough after exclusion — caller falls back to LLM
 
         sampled = random.sample(questions, num_questions)
 
-        # Renumber questions for the test (1-based id expected by frontend)
+        # Store original DB ids BEFORE renumbering so the frontend can send them
+        # back as excluded_ids in the next test request.
+        for q in sampled:
+            q["db_id"] = str(q.get("id", ""))
+
+        # Renumber questions for the test (1-based id expected by frontend UI)
         for index, q in enumerate(sampled, start=1):
             q["id"] = index
 
-        # Increment times_shown fire-and-forget
+        # Increment times_shown fire-and-forget (fixed: use rpc or raw update)
         try:
-            ids = [q.get("id") for q in result.data[:num_questions] if q.get("id")]
-            if ids:
-                supabase.table("question_bank").update({
-                    "times_shown": supabase.table("question_bank").select("times_shown"),
-                }).in_("id", ids).execute()
+            db_ids = [q.get("db_id") for q in sampled if q.get("db_id")]
+            if db_ids:
+                # Use SQL expression via RPC to safely increment the counter
+                supabase.rpc("increment_times_shown", {"question_ids": db_ids}).execute()
         except Exception:
-            pass
+            pass  # times_shown is advisory — never fail the test for this
 
         return sampled
 

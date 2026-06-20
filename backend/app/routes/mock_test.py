@@ -237,6 +237,10 @@ def generate_mock_test(
     enforce_ai_token_limit(profile.get("username"))
 
     try:
+        # Clamp question_count to safe limits
+        question_count = max(1, min(100, int(data.question_count or 10)))
+        excluded_ids = list(data.excluded_ids or [])
+
         if data.mock_type == "SOF Olympiad Mock Test":
             model = resolve_student_feature_model(
                 profile,
@@ -246,7 +250,7 @@ def generate_mock_test(
                 olympiad=data.subject,
                 chapter=data.chapter,
                 grade=data.grade,
-                num_questions=data.question_count,
+                num_questions=question_count,
                 difficulty=data.difficulty,
                 username=profile.get("username") or "admin",
                 model=model,
@@ -260,9 +264,10 @@ def generate_mock_test(
                 subject=data.subject,
                 chapter=data.chapter,
                 exam_type=data.exam_type or "Class Test",
-                num_questions=data.question_count,
+                num_questions=question_count,
                 difficulty=data.difficulty,
-                cache_only=False,  # Free-trial offer users get full mock test access during validity
+                cache_only=False,
+                excluded_ids=excluded_ids,
             )
 
         return MockTestResponse(

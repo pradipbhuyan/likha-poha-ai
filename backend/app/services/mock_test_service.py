@@ -44,15 +44,13 @@ def get_questions_from_bank_with_fallback(
     difficulty: str,
     num_questions: int,
     exam_type: str = "General",
+    excluded_ids: list[str] | None = None,
 ) -> list[dict]:
     """
     Look up bank questions with automatic display-prefix fallback.
 
-    The question bank stores chapters with the exact name used at build time.
-    If the bank was built before multi-book display prefixes were introduced
-    (e.g. 'Text Book - Chapter 1: A Letter to God' vs 'Chapter 1: A Letter to God'),
-    the prefixed lookup will miss.  We automatically retry with the stripped
-    chapter name so both naming schemes hit the same bank entries.
+    excluded_ids: DB row IDs of questions already shown in recent tests.
+    These are filtered out before sampling to prevent repetition across tests.
     """
     questions = get_questions_from_bank(
         board=board,
@@ -62,6 +60,7 @@ def get_questions_from_bank_with_fallback(
         difficulty=difficulty,
         num_questions=num_questions,
         exam_type=exam_type,
+        excluded_ids=excluded_ids,
     )
     if questions:
         return questions
@@ -77,6 +76,7 @@ def get_questions_from_bank_with_fallback(
             difficulty=difficulty,
             num_questions=num_questions,
             exam_type=exam_type,
+            excluded_ids=excluded_ids,
         )
 
     return questions
@@ -512,7 +512,7 @@ def calculate_score(questions, user_answers):
 
 
 def generate_cbse_mock_test(
-grade,
+    grade,
     subject,
     chapter,
     exam_type="Class Test",
@@ -520,6 +520,7 @@ grade,
     difficulty="Medium",
     board="CBSE",
     cache_only: bool = False,
+    excluded_ids: list[str] | None = None,
 ):
     """
     Generate a CBSE mock test.
@@ -540,6 +541,7 @@ grade,
         difficulty=difficulty,
         num_questions=num_questions,
         exam_type=exam_type,
+        excluded_ids=excluded_ids,
     )
     if bank_questions:
         return bank_questions

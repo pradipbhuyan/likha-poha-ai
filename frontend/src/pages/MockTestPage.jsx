@@ -92,6 +92,11 @@ function MockTestPage({ user }) {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
 
+  // Accumulate question bank IDs shown to this user across tests in this session.
+  // Sent back to the backend as excluded_ids so the same question is never
+  // repeated within the same test or the next 30 tests.
+  const [excludedIds, setExcludedIds] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -338,6 +343,7 @@ function MockTestPage({ user }) {
         difficulty,
         question_count: Number(questionCount),
         exam_type: examType,
+        excluded_ids: excludedIds,   // prevent repeating recently shown questions
       });
 
       if (!response.success) {
@@ -345,7 +351,18 @@ function MockTestPage({ user }) {
         return;
       }
 
-      setQuestions(response.questions || []);
+      const newQuestions = response.questions || [];
+      setQuestions(newQuestions);
+
+      // Accumulate db_ids for exclusion in future tests (persistent across tests in session)
+      const newIds = newQuestions.map(q => q.db_id).filter(Boolean);
+      if (newIds.length > 0) {
+        setExcludedIds(prev => {
+          const merged = [...new Set([...prev, ...newIds])];
+          // Keep at most 30 tests × 100 questions = 3000 IDs to avoid huge payloads
+          return merged.slice(-3000);
+        });
+      }
 
       if (timerEnabled) {
         setSecondsLeft(durationMinutes * 60);
@@ -572,24 +589,25 @@ function MockTestPage({ user }) {
           </label>
 
           <label>
-            Questions
+            Questions <small style={{color:"var(--muted)"}}>(max 100)</small>
             <input
               type="number"
               min="5"
-              max="30"
+              max="100"
               value={questionCount}
-              onChange={(e) => setQuestionCount(e.target.value)}
+              onChange={(e) => setQuestionCount(Math.min(100, Math.max(1, Number(e.target.value))))}
             />
           </label>
 
           <label>
-            Test Duration Minutes
+            Test Duration Minutes <small style={{color:"var(--muted)"}}>(max 180 = 3 hrs)</small>
             <input
               type="number"
               min="5"
-              max="120"
+              max="180"
+              step="5"
               value={durationMinutes}
-              onChange={(e) => setDurationMinutes(Number(e.target.value))}
+              onChange={(e) => setDurationMinutes(Math.min(180, Math.max(5, Number(e.target.value))))}
             />
           </label>
 

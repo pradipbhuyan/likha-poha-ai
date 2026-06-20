@@ -45,8 +45,26 @@ class MockTestRequest(BaseModel):
     chapter: str | None = None
     mock_type: str
     difficulty: str
-    question_count: int
+    question_count: int = 10
     exam_type: str | None = None
+    # IDs of questions already shown in recent tests — excluded from sampling
+    # so the same question doesn't appear in the same or next 30 tests.
+    excluded_ids: list[str] = []
+
+    @classmethod
+    def __get_validators__(cls):
+        yield cls._validate
+
+    @classmethod
+    def _validate(cls, v):
+        return v
+
+    def model_post_init(self, __context) -> None:
+        # Clamp question_count to 1–100 and duration guard is in frontend
+        if self.question_count < 1:
+            object.__setattr__(self, 'question_count', 1)
+        if self.question_count > 100:
+            object.__setattr__(self, 'question_count', 100)
 
 
 class MockTestQuestion(BaseModel):
@@ -57,6 +75,7 @@ class MockTestQuestion(BaseModel):
     answer: str
     explanation: str
     marks: int
+    db_id: str | None = None   # Original question_bank row ID for exclusion tracking
 
 
 class MockTestResponse(BaseModel):
