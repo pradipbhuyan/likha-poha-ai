@@ -730,11 +730,21 @@ function ParentDashboardPage() {
               </ol>
             </div>
 
-            {/* Video walkthrough placeholder */}
-              <div style={{ background: "rgba(99,102,241,.07)", border: "1px dashed rgba(99,102,241,.3)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
+            {/* Video walkthrough — now live */}
+            <div style={{ background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.35)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
               <div style={{ fontSize: "1.4rem", marginBottom: 3 }}>▶️</div>
-              <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: 0, fontWeight: 600 }}>Platform Walkthrough Video — Coming Soon</p>
-              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0" }}>A video guide to help your child get started on LikhaPoha AI</p>
+              <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: 0, fontWeight: 600 }}>Watch the Platform Walkthrough Video</p>
+              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0 0" }}>Available in English and Hindi — helps your child get started on Likha Poha AI</p>
+              <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 8 }}>
+                <a href="https://youtu.be/N82gfHBJm00" target="_blank" rel="noreferrer"
+                  style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "4px 12px", color: "#c7d2fe", fontSize: ".72rem", fontWeight: 700, textDecoration: "none" }}>
+                  🇬🇧 English
+                </a>
+                <a href="https://youtu.be/y0YHnMrmR3k" target="_blank" rel="noreferrer"
+                  style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "4px 12px", color: "#c7d2fe", fontSize: ".72rem", fontWeight: 700, textDecoration: "none" }}>
+                  🇮🇳 Hindi
+                </a>
+              </div>
             </div>
 
             <button className="primary-btn" style={{ width: "100%" }} onClick={() => setCreatedChildInfo(null)}>
