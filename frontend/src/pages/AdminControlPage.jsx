@@ -1683,6 +1683,49 @@ function AdminControlPage({ user }) {
                         <small style={{ display: "block", color: "var(--muted)" }}>
                           Used: {oc.uses_count}/{oc.max_uses}
                         </small>
+
+                        {/* Signup link + share buttons */}
+                        {(() => {
+                          const signupLink = `https://likhapoha.in/signup?code=${oc.code}&role=student`;
+                          const waText = encodeURIComponent(
+                            `🎓 Join LikhaPoha AI — CBSE AI Tutor for Class 5–10!\n\nGet instant lessons, doubt answers & mock tests powered by AI.\n\n✅ Use this exclusive link to sign up:\n${signupLink}\n\n⏰ Valid until ${oc.valid_until?.slice(0,10)}`
+                          );
+                          const emailSubject = encodeURIComponent("LikhaPoha AI — CBSE AI Tutor Invitation");
+                          const emailBody = encodeURIComponent(
+                            `Hi,\n\nI'd like to invite you to try LikhaPoha AI — India's smartest CBSE AI Tutor for Class 5–10.\n\nUse this exclusive signup link:\n${signupLink}\n\nValid until: ${oc.valid_until?.slice(0,10)}\n\nFeatures:\n• Instant step-by-step CBSE lessons\n• AI doubt solving\n• Mock tests with 70,000+ questions\n\nBest regards`
+                          );
+                          return (
+                            <div style={{ marginTop: 8 }}>
+                              {/* Signup link display */}
+                              <div style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(99,102,241,.07)", borderRadius:7, padding:"5px 8px", marginBottom:6, flexWrap:"wrap" }}>
+                                <code style={{ fontSize:".72rem", color:"#a5b4fc", fontFamily:"monospace", flex:1, wordBreak:"break-all" }}>
+                                  {signupLink}
+                                </code>
+                                <button
+                                  onClick={() => { navigator.clipboard.writeText(signupLink); }}
+                                  style={{ background:"rgba(99,102,241,.2)", border:"none", borderRadius:5, padding:"3px 8px", color:"#a5b4fc", cursor:"pointer", fontSize:".72rem", fontWeight:700, fontFamily:"inherit", whiteSpace:"nowrap" }}
+                                  title="Copy link">
+                                  📋 Copy
+                                </button>
+                              </div>
+                              {/* Share buttons */}
+                              <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                                <a
+                                  href={`https://wa.me/?text=${waText}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  style={{ display:"inline-flex", alignItems:"center", gap:4, background:"#25d366", color:"#fff", borderRadius:6, padding:"4px 10px", fontSize:".78rem", fontWeight:700, textDecoration:"none", fontFamily:"inherit" }}>
+                                  💬 Share on WhatsApp
+                                </a>
+                                <a
+                                  href={`mailto:?subject=${emailSubject}&body=${emailBody}`}
+                                  style={{ display:"inline-flex", alignItems:"center", gap:4, background:"rgba(59,130,246,.15)", color:"#60a5fa", border:"1px solid rgba(59,130,246,.3)", borderRadius:6, padding:"4px 10px", fontSize:".78rem", fontWeight:700, textDecoration:"none", fontFamily:"inherit" }}>
+                                  📧 Send Email
+                                </a>
+                              </div>
+                            </div>
+                          );
+                        })()}
                       </div>
                       <div style={{ display:"flex", flexDirection:"column", gap:6, alignSelf:"center" }}>
                         {/* Extend validity button */}
