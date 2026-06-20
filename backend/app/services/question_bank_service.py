@@ -66,8 +66,28 @@ def get_questions_from_bank(
             excluded_set = {str(eid) for eid in excluded_ids}
             questions = [q for q in questions if str(q.get("id", "")) not in excluded_set]
 
+        # Filter out malformed questions (< 4 options or empty options)
+        questions = [
+            q for q in questions
+            if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) >= 4
+            and all(str(v).strip() for v in q["options"].values())
+            and q.get("answer") in ("A", "B", "C", "D")
+            and q.get("question") and len(str(q.get("question", ""))) >= 10
+        ]
+
+        # Deduplicate by question text (keep first occurrence) to prevent
+        # the same question appearing twice in one test when the bank has duplicates.
+        seen_texts: set = set()
+        deduped: list = []
+        for q in questions:
+            text_key = str(q.get("question", "")).strip().lower()[:120]
+            if text_key not in seen_texts:
+                seen_texts.add(text_key)
+                deduped.append(q)
+        questions = deduped
+
         if len(questions) < num_questions:
-            return []  # Not enough after exclusion — caller falls back to LLM
+            return []  # Not enough after filtering — caller falls back to LLM
 
         sampled = random.sample(questions, num_questions)
 
@@ -107,9 +127,9 @@ def add_questions_to_bank(
     """
     Add LLM-generated questions to the bank for future use.
 
-    Questions added here become available for random sampling in the next
-    test request for the same chapter/difficulty, gradually reducing LLM
-    dependency as the bank grows.
+    Before inserting, validates each question has 4 options and deduplicates
+    against existing bank entries to prevent the bank growing with near-identical
+    questions.
 
     Failures are silently ignored.
     """
@@ -118,9 +138,43 @@ def add_questions_to_bank(
 
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-        rows = []
 
-        for q in questions:
+        # Only insert well-formed questions with 4 complete options
+        valid_questions = [
+            q for q in questions
+            if q.get("options") and isinstance(q.get("options"), dict) and len(q["options"]) >= 4
+            and all(str(v).strip() for v in q["options"].values())
+            and q.get("answer") in ("A", "B", "C", "D")
+            and q.get("question") and len(str(q.get("question", ""))) >= 10
+        ]
+
+        if not valid_questions:
+            return
+
+        # Fetch existing question texts for this chapter to skip duplicates
+        try:
+            existing = supabase.table("question_bank").select("question").eq(
+                "board", board
+            ).eq("grade", grade).eq("subject", subject).eq(
+                "chapter", clean_chapter
+            ).eq("status", "active").limit(500).execute()
+            existing_texts = {
+                row["question"].strip().lower()[:120]
+                for row in (existing.data or [])
+                if row.get("question")
+            }
+        except Exception:
+            existing_texts = set()
+
+        rows = []
+        seen_in_batch: set = set()
+
+        for q in valid_questions:
+            text_key = str(q.get("question", "")).strip().lower()[:120]
+            # Skip if already in bank OR duplicated within this batch
+            if text_key in existing_texts or text_key in seen_in_batch:
+                continue
+            seen_in_batch.add(text_key)
             rows.append({
                 "board": board,
                 "grade": grade,
