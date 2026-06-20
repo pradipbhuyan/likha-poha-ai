@@ -61,7 +61,12 @@ TASK_VERB_PATTERN = re.compile(
     r"state|explain|using the data|use the data|what is|how many|how much|which|"
     r"compare|prove|verify|convert|simplify|evaluate|expand|factorise|factorize|"
     r"fill|complete|match|classify|label|shade|measure|estimate|approximate|"
-    r"justify|define|give|name|suggest|predict|comment|summarise|summarize)\b",
+    r"justify|define|give|name|suggest|predict|comment|summarise|summarize|"
+    # English / humanities verbs
+    r"rewrite|read|answer|analyse|analyze|discuss|interpret|examine|assess|"
+    r"how|why|what|who|when|where|based on|refer to|support your|"
+    r"translate|paraphrase|annotate|infer|deduce|contrast|highlight|"
+    r"summarize|narrate|compose|draft|edit|correct|rearrange|sequence)\b",
     re.IGNORECASE,
 )
 
