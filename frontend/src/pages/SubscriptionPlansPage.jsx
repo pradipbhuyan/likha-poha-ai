@@ -491,6 +491,20 @@ function SubscriptionPlansPage({ user }) {
   /** Parent-facing plan comparison and payment entry page. */
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
+  // Offer validity — fetch for all parents regardless of access_cbse value
+  const [parentOfferAccess, setParentOfferAccess] = useState(
+    user?.offerAccess && user?.offerValidUntil
+      ? {
+          has_offer_access: user.offerAccess,
+          valid_until: user.offerValidUntil,
+          days_remaining: user.offerDaysRemaining ?? null,
+          expiring_soon: !!user.offerExpiringSoon,
+          expired_on: user.offerExpiredOn || null,
+        }
+      : user?.offerExpiredOn
+        ? { has_offer_access: false, valid_until: null, days_remaining: 0, expiring_soon: false, expired_on: user.offerExpiredOn }
+        : null
+  );
   const [selectedPlanKey, setSelectedPlanKey] = useState("premium");
   const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
   const [contact, setContact] = useState(DEFAULT_SUBSCRIPTION_CONTACT);
@@ -552,7 +566,7 @@ function SubscriptionPlansPage({ user }) {
       }
     }
 
-    if (user?.role === "parent") {
+  if (user?.role === "parent") {
       loadChildren();
     } else if (user?.role === "student") {
       // Students get read-only plan data — no children or payment config needed
@@ -578,6 +592,27 @@ function SubscriptionPlansPage({ user }) {
       setLoading(false);
     }
   }, [user?.role]);
+
+  // Fallback fetch for parent offer validity — must be a top-level useEffect, not nested
+  useEffect(() => {
+    if (user?.role !== "parent") return;
+    if (user?.offerAccess && user?.offerValidUntil) return;
+    async function fetchParentOffer() {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        const token = session?.access_token || user?.accessToken;
+        if (!token) return;
+        const r = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (r.ok) {
+          const d = await r.json();
+          if (d) setParentOfferAccess(d);
+        }
+      } catch { /* non-critical */ }
+    }
+    fetchParentOffer();
+  }, [user?.role, user?.offerValidUntil]);
 
   const selectedChild = useMemo(
     () => children.find((child) => child.id === selectedChildId),
@@ -762,6 +797,45 @@ function SubscriptionPlansPage({ user }) {
 
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
+
+      {/* Offer validity banner — shows parent's free-trial access + expiry date */}
+      {parentOfferAccess && (parentOfferAccess.has_offer_access || parentOfferAccess.expired_on) && (
+        <div style={{
+          marginBottom: 24, padding: "14px 20px", borderRadius: 12,
+          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+          background: parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access
+            ? "rgba(239,68,68,.1)" : parentOfferAccess.expiring_soon ? "rgba(245,158,11,.1)" : "rgba(16,185,129,.1)",
+          border: `1px solid ${parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access ? "rgba(239,68,68,.35)" : parentOfferAccess.expiring_soon ? "rgba(245,158,11,.35)" : "rgba(16,185,129,.35)"}`,
+        }}>
+          <span style={{ fontSize: "1.4rem" }}>
+            {parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access ? "🔴" : parentOfferAccess.expiring_soon ? "⚠️" : "🎟️"}
+          </span>
+          <div style={{ flex: 1 }}>
+            {parentOfferAccess.has_offer_access ? (
+              <>
+                <strong style={{ color: parentOfferAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
+                  {parentOfferAccess.expiring_soon
+                    ? `⚠️ Your free trial expires in ${parentOfferAccess.days_remaining} day${parentOfferAccess.days_remaining !== 1 ? "s" : ""}`
+                    : "🎟️ Free trial access active"}
+                </strong>
+                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+                  Valid until {new Date(parentOfferAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                  {parentOfferAccess.days_remaining > 7 ? ` · ${parentOfferAccess.days_remaining} days remaining` : ""}
+                  {parentOfferAccess.expiring_soon ? " — upgrade to a paid plan to keep access" : ""}
+                </span>
+              </>
+            ) : (
+              <>
+                <strong style={{ color: "#f87171", display: "block", marginBottom: 2 }}>Free trial expired</strong>
+                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+                  Your free access expired on {new Date(parentOfferAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                  {" "}— subscribe to a paid plan to restore access for your children.
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <section className="subscription-plan-grid">
         {planOrder.map((planKey) => {

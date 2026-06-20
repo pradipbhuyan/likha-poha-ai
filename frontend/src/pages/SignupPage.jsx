@@ -210,6 +210,23 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
           const { data: profile } = await supabase
             .from("profiles").select("*").eq("id", authData.user.id).single();
           if (profile) {
+            // Fetch offer validity — critical for showing expiry date on Subscription page
+            let offerData = { offerAccess: false };
+            try {
+              const or = await fetch(`${API_BASE}/api/offer/my-access`, {
+                headers: { Authorization: `Bearer ${authData.session.access_token}` },
+              });
+              if (or.ok) {
+                const od = await or.json();
+                offerData = {
+                  offerAccess: !!od.has_offer_access,
+                  offerValidUntil: od.valid_until || null,
+                  offerDaysRemaining: od.days_remaining ?? null,
+                  offerExpiringSoon: !!od.expiring_soon,
+                  offerExpiredOn: od.expired_on || null,
+                };
+              }
+            } catch { /* non-critical — offer display only */ }
             onLogin({
               id: authData.user.id,
               email: authData.user.email,
@@ -229,7 +246,7 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
               monthlyTokenLimit: profile.monthly_token_limit,
               subscriptionPlan: profile.subscription_plan || "free",
               accountStatus: profile.account_status || "active",
-              offerAccess: false,
+              ...offerData,
             });
             return; // onLogin handles routing to dashboard
           }
