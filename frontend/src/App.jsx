@@ -190,7 +190,17 @@ const PAGE_META = {
 
 function App() {
   /** Owns global session, navigation, and theme state for the single-page app shell. */
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // If ?u= is in URL, the link is a "sign in as child" link.
+    // Force the session clear so the login page renders with the pre-filled username.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("u")) {
+      localStorage.removeItem("tutor_user");
+      localStorage.removeItem("tutor_active_page");
+      return null;
+    }
+    return null;
+  });
   const [showLanding, setShowLanding] = useState(
     () => {
       // Skip landing page if ?u= (pre-filled login link) or ?code= (offer signup) is in URL

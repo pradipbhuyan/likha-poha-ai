@@ -688,10 +688,10 @@ function ParentDashboardPage() {
             </div>
 
             {/* Video walkthrough placeholder */}
-            <div style={{ background: "rgba(99,102,241,.07)", border: "1px dashed rgba(99,102,241,.3)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
+              <div style={{ background: "rgba(99,102,241,.07)", border: "1px dashed rgba(99,102,241,.3)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
               <div style={{ fontSize: "1.4rem", marginBottom: 3 }}>▶️</div>
               <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: 0, fontWeight: 600 }}>Platform Walkthrough Video — Coming Soon</p>
-              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0" }}>A 3-minute video guide to help your child get started</p>
+              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0" }}>A video guide to help your child get started on LikhaPoha AI</p>
             </div>
 
             <button className="primary-btn" style={{ width: "100%" }} onClick={() => setCreatedChildInfo(null)}>
