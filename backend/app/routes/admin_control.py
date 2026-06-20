@@ -1376,6 +1376,9 @@ def update_child_limits(
 class UpdateAiSettingsRequest(BaseModel):
     api_enabled: bool
     openai_api_key: str | None = None
+    provider: str = "openai"           # "openai" | "venice"
+    venice_api_key: str | None = None
+    venice_model: str = "llama-3.3-70b"
 
 
 def _load_ai_settings_row() -> dict | None:
@@ -1409,11 +1412,15 @@ def get_ai_settings(admin=Depends(require_admin)):
     if row:
         stored_key = (row.get("openai_api_key") or "").strip()
         effective_key = stored_key if stored_key else (settings.OPENAI_API_KEY or "")
+        stored_venice_key = (row.get("venice_api_key") or "").strip()
         return {
             "success": True,
             "api_enabled": row.get("api_enabled", True),
             "api_key_prefix": effective_key[:12] if effective_key else "",
             "key_source": "database" if stored_key else "environment",
+            "provider": row.get("provider", "openai") or "openai",
+            "venice_key_prefix": stored_venice_key[:12] if stored_venice_key else "",
+            "venice_model": row.get("venice_model") or "llama-3.3-70b",
         }
 
     # Table exists but no row yet — fall back to env key
@@ -1423,6 +1430,9 @@ def get_ai_settings(admin=Depends(require_admin)):
         "api_enabled": True,
         "api_key_prefix": env_key[:12] if env_key else "",
         "key_source": "environment",
+        "provider": "openai",
+        "venice_key_prefix": "",
+        "venice_model": "llama-3.3-70b",
     }
 
 
@@ -1447,9 +1457,17 @@ def update_ai_settings(
     new_key = (data.openai_api_key or "").strip()
     effective_key = new_key if new_key else existing_key
 
+    # Venice key — preserve existing if blank
+    existing_venice_key = (row.get("venice_api_key") or "").strip() if row else ""
+    new_venice_key = (data.venice_api_key or "").strip()
+    effective_venice_key = new_venice_key if new_venice_key else existing_venice_key
+
     value = {
         "api_enabled": data.api_enabled,
         "openai_api_key": effective_key,
+        "provider": data.provider or "openai",
+        "venice_api_key": effective_venice_key,
+        "venice_model": (data.venice_model or "llama-3.3-70b").strip(),
     }
 
     try:
@@ -1480,6 +1498,9 @@ def update_ai_settings(
         "api_enabled": data.api_enabled,
         "api_key_prefix": display_key[:12] if display_key else "",
         "key_source": "database" if effective_key else "environment",
+        "provider": data.provider or "openai",
+        "venice_key_prefix": effective_venice_key[:12] if effective_venice_key else "",
+        "venice_model": value["venice_model"],
         "message": "AI settings saved successfully.",
     }
 

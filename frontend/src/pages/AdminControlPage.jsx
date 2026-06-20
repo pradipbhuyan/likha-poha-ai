@@ -110,6 +110,10 @@ function AdminControlPage({ user }) {
   const [aiKeyPrefix, setAiKeyPrefix] = useState("");
   const [aiKeySource, setAiKeySource] = useState("environment");
   const [newApiKey, setNewApiKey] = useState("");
+  const [aiProvider, setAiProvider] = useState("openai");
+  const [veniceKeyPrefix, setVeniceKeyPrefix] = useState("");
+  const [veniceModel, setVeniceModel] = useState("llama-3.3-70b");
+  const [newVeniceKey, setNewVeniceKey] = useState("");
   const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
   const [aiSettingsMessage, setAiSettingsMessage] = useState("");
@@ -191,6 +195,9 @@ function AdminControlPage({ user }) {
       setAiEnabled(data.api_enabled ?? true);
       setAiKeyPrefix(data.api_key_prefix || "");
       setAiKeySource(data.key_source || "environment");
+      setAiProvider(data.provider || "openai");
+      setVeniceKeyPrefix(data.venice_key_prefix || "");
+      setVeniceModel(data.venice_model || "llama-3.3-70b");
     } catch (err) {
       console.error(err);
     } finally {
@@ -205,18 +212,26 @@ function AdminControlPage({ user }) {
     setAiSettingsMessage("");
     setAiSettingsError("");
     try {
-      const payload = { api_enabled: enabledValue };
-      if (newApiKey.trim()) {
-        payload.openai_api_key = newApiKey.trim();
-      }
+      const payload = {
+        api_enabled: enabledValue,
+        provider: aiProvider,
+        venice_model: veniceModel,
+      };
+      if (newApiKey.trim()) payload.openai_api_key = newApiKey.trim();
+      if (newVeniceKey.trim()) payload.venice_api_key = newVeniceKey.trim();
       const data = await updateAiSettings(payload, user.accessToken);
       setAiEnabled(data.api_enabled ?? true);
       setAiKeyPrefix(data.api_key_prefix || "");
       setAiKeySource(data.key_source || "database");
+      setAiProvider(data.provider || "openai");
+      setVeniceKeyPrefix(data.venice_key_prefix || "");
+      setVeniceModel(data.venice_model || "llama-3.3-70b");
       setNewApiKey("");
+      setNewVeniceKey("");
+      const providerLabel = data.provider === "venice" ? `Venice AI (${data.venice_model})` : "OpenAI";
       setAiSettingsMessage(
         data.api_enabled
-          ? "AI API is ON — lessons and doubts work normally."
+          ? `AI API is ON — using ${providerLabel}.`
           : "AI API is OFF — all AI features are disabled for all users."
       );
     } catch (err) {
@@ -882,43 +897,87 @@ function AdminControlPage({ user }) {
             )}
           </div>
 
-          {/* Active key indicator */}
+          {/* Provider selector */}
           <div style={{ marginBottom: 20 }}>
-            <strong>Active Key</strong>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6 }}>
-              <code
-                style={{
-                  background: "var(--surface2, #f5f5f5)",
-                  padding: "6px 12px",
-                  borderRadius: 6,
-                  fontFamily: "monospace",
-                  fontSize: "0.95rem",
-                  letterSpacing: 2,
-                }}
-              >
-                {aiKeyPrefix ? `${aiKeyPrefix}••••••••••••••••` : "No key stored"}
-              </code>
-              <span style={{ fontSize: "0.8rem", color: "#888" }}>
-                ({aiKeySource === "database" ? "set via admin console" : "from environment variable"})
-              </span>
+            <strong>AI Provider</strong>
+            <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
+              Switch between OpenAI and Venice AI. Venice uses your Venice credits.
+            </p>
+            <div style={{ display: "flex", gap: 0, background: "var(--surface2,#111827)", border: "1px solid var(--border)", borderRadius: 9, padding: 3 }}>
+              {[["openai", "🤖 OpenAI"], ["venice", "🎨 Venice AI"]].map(([val, label]) => (
+                <button key={val} onClick={() => setAiProvider(val)}
+                  style={{ flex: 1, padding: "8px 10px", borderRadius: 7, border: "none",
+                    background: aiProvider === val ? "var(--accent, #6366f1)" : "transparent",
+                    color: aiProvider === val ? "#fff" : "var(--muted)",
+                    fontFamily: "inherit", fontSize: ".85rem", fontWeight: 600, cursor: "pointer" }}>
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* New key input */}
-          <label style={{ display: "block", marginBottom: 16 }}>
-            <strong>Update API Key</strong>
-            <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
-              Paste a new OpenAI key to replace the current one. Leave blank to keep the existing key.
-            </p>
-            <input
-              type="password"
-              value={newApiKey}
-              onChange={(e) => setNewApiKey(e.target.value)}
-              placeholder="sk-proj-… or sk-…"
-              style={{ width: "100%", fontFamily: "monospace" }}
-              autoComplete="new-password"
-            />
-          </label>
+          {/* Active key indicator */}
+          {aiProvider === "openai" && (
+            <div style={{ marginBottom: 20 }}>
+              <strong>Active OpenAI Key</strong>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6 }}>
+                <code style={{ background: "var(--surface2, #f5f5f5)", padding: "6px 12px", borderRadius: 6, fontFamily: "monospace", fontSize: "0.95rem", letterSpacing: 2 }}>
+                  {aiKeyPrefix ? `${aiKeyPrefix}••••••••••••••••` : "No key stored"}
+                </code>
+                <span style={{ fontSize: "0.8rem", color: "#888" }}>
+                  ({aiKeySource === "database" ? "set via admin console" : "from environment variable"})
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* New OpenAI key input */}
+          {aiProvider === "openai" && (
+            <label style={{ display: "block", marginBottom: 16 }}>
+              <strong>Update OpenAI API Key</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
+                Paste a new OpenAI key to replace the current one. Leave blank to keep the existing key.
+              </p>
+              <input type="password" value={newApiKey} onChange={(e) => setNewApiKey(e.target.value)}
+                placeholder="sk-proj-… or sk-…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+            </label>
+          )}
+
+          {/* Venice settings */}
+          {aiProvider === "venice" && (
+            <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>Venice AI Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                Venice credits are used for all lessons, doubts, and pre-warm generation when Venice is active.
+                Get your API key at <a href="https://venice.ai" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>venice.ai</a>.
+              </p>
+
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>Venice API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {veniceKeyPrefix ? `${veniceKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newVeniceKey} onChange={(e) => setNewVeniceKey(e.target.value)}
+                  placeholder="your-venice-api-key" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>Venice Model</strong>
+                <select value={veniceModel} onChange={(e) => setVeniceModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="llama-3.3-70b">Llama 3.3 70B — Best quality (recommended)</option>
+                  <option value="llama-3.2-3b">Llama 3.2 3B — Fastest + cheapest (prewarm)</option>
+                  <option value="mistral-31-24b">Mistral 3.1 24B — Mid-size, fast</option>
+                  <option value="qwen-2.5-72b">Qwen 2.5 72B — Strong STEM</option>
+                  <option value="deepseek-r1-671b">DeepSeek R1 671B — Best reasoning</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
+                  💡 Use Llama 3.2 3B for prewarm (cheap). Use Llama 3.3 70B for live student requests.
+                </p>
+              </label>
+            </div>
+          )}
 
           <button
             className="primary-btn"

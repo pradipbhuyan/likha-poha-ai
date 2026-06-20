@@ -7,6 +7,7 @@ load_dotenv()
 class Settings:
 
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    VENICE_API_KEY = os.getenv("VENICE_API_KEY")  # Optional — used when provider=venice
 
     AKSHITA_PASSWORD = os.getenv("AKSHITA_PASSWORD")
     PRADIP_PASSWORD = os.getenv("PRADIP_PASSWORD")

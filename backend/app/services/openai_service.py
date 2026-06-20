@@ -24,10 +24,19 @@ PREWARM_TEXT_MODEL = "gpt-4.1-nano"
 GPT5_TEXT_MODEL = GPT_MINI_TEXT_MODEL
 GPT5_MINI_TEXT_MODEL = DEFAULT_TEXT_MODEL
 
+VENICE_BASE_URL = "https://api.venice.ai/api/v1"
+
 _MODEL_PRICING = {
+    # OpenAI models
     "gpt-4.1-mini": {"input": 0.0004, "output": 0.0016},
     "gpt-4.1-nano": {"input": 0.0001, "output": 0.0004},
     "gpt-4.1":      {"input": 0.002,  "output": 0.008},
+    # Venice models (prices as of June 2026 — update when Venice pricing changes)
+    "llama-3.3-70b":          {"input": 0.0003, "output": 0.0007},
+    "llama-3.2-3b":           {"input": 0.00003,"output": 0.00006},
+    "mistral-31-24b":         {"input": 0.00012,"output": 0.00024},
+    "qwen-2.5-72b":           {"input": 0.0003, "output": 0.0006},
+    "deepseek-r1-671b":       {"input": 0.0008, "output": 0.0024},
 }
 
 INPUT_COST_PER_1K = 0.0001
@@ -45,9 +54,16 @@ _active_key: str | None = None
 _settings_cache: dict = {
     "api_key": None,
     "api_enabled": True,
+    "provider": "openai",       # "openai" | "venice"
+    "venice_api_key": None,
+    "venice_model": "llama-3.3-70b",
     "loaded_at": 0.0,
 }
 _SETTINGS_TTL = 60.0  # seconds
+
+# ── Venice client cache (separate from OpenAI client) ────────────────────────
+_venice_client: OpenAI | None = None
+_venice_key: str | None = None
 
 
 def _load_db_settings() -> dict | None:
@@ -94,9 +110,15 @@ def get_effective_settings() -> dict:
             db_key = (db.get("openai_api_key") or "").strip()
             _settings_cache["api_key"] = db_key if db_key else settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = db.get("api_enabled", True)
+            _settings_cache["provider"] = db.get("provider", "openai") or "openai"
+            _settings_cache["venice_api_key"] = db.get("venice_api_key") or settings.VENICE_API_KEY
+            _settings_cache["venice_model"] = db.get("venice_model") or "llama-3.3-70b"
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
+            _settings_cache["provider"] = "openai"
+            _settings_cache["venice_api_key"] = settings.VENICE_API_KEY
+            _settings_cache["venice_model"] = "llama-3.3-70b"
         _settings_cache["loaded_at"] = now
 
     return _settings_cache
@@ -122,6 +144,48 @@ def get_openai_client() -> OpenAI:
                 _active_key = effective_key
 
     return _active_client
+
+
+def get_venice_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at Venice AI.
+
+    Venice uses the OpenAI Chat Completions API format so the same
+    openai Python SDK works — just with a different base_url and API key.
+    """
+    global _venice_client, _venice_key
+
+    current_settings = get_effective_settings()
+    venice_key = (
+        current_settings.get("venice_api_key")
+        or settings.VENICE_API_KEY
+        or ""
+    )
+
+    if _venice_client is None or venice_key != _venice_key:
+        with _client_lock:
+            if _venice_client is None or venice_key != _venice_key:
+                _venice_client = OpenAI(
+                    api_key=venice_key,
+                    base_url=VENICE_BASE_URL,
+                    timeout=90.0,  # Venice can be slower on larger models
+                )
+                _venice_key = venice_key
+
+    return _venice_client
+
+
+def get_chat_client() -> OpenAI:
+    """
+    Return the active LLM client based on the admin-configured provider.
+
+    Returns Venice client when provider == 'venice', OpenAI client otherwise.
+    This is the function that ask_llm() should use.
+    """
+    current = get_effective_settings()
+    if current.get("provider") == "venice":
+        return get_venice_client()
+    return get_openai_client()
 
 
 # Backward-compat alias used by rag_service and any other direct importers.
@@ -185,37 +249,42 @@ def ask_llm(
             detail="AI API is currently disabled. The admin can re-enable it from the Admin Control page.",
         )
 
-    request_payload = {
-        "model": model,
-        "input": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.4,
-    }
+    current = get_effective_settings()
+    provider = current.get("provider", "openai")
 
-    response = get_openai_client().responses.create(**request_payload)
+    # When Venice is active, override the model with the configured Venice model
+    # unless the caller already specified a Venice model name explicitly.
+    active_model = model
+    if provider == "venice":
+        active_model = current.get("venice_model") or "llama-3.3-70b"
+
+    # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
+
+    response = get_chat_client().chat.completions.create(
+        model=active_model,
+        messages=messages,
+        temperature=0.4,
+    )
 
     usage = getattr(response, "usage", None)
-    prompt_tokens = 0
-    completion_tokens = 0
-    total_tokens = 0
+    prompt_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
+    completion_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
+    total_tokens = prompt_tokens + completion_tokens
 
-    if usage:
-        prompt_tokens = getattr(usage, "input_tokens", 0)
-        completion_tokens = getattr(usage, "output_tokens", 0)
-        total_tokens = prompt_tokens + completion_tokens
-
-    estimated_cost = estimate_cost(prompt_tokens, completion_tokens, model=model)
+    estimated_cost = estimate_cost(prompt_tokens, completion_tokens, model=active_model)
 
     log_ai_usage(
         username=username,
         feature=feature,
-        model=model,
+        model=active_model,
         prompt_tokens=prompt_tokens,
         completion_tokens=completion_tokens,
         total_tokens=total_tokens,
         estimated_cost=estimated_cost,
     )
 
-    return response.output_text
+    return response.choices[0].message.content
