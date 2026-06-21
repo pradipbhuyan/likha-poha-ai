@@ -93,10 +93,10 @@ GRADE_11_BOOK_CODES = [
     "keec1", "kest1",   # Economics
     "kebs1", "kebs2",   # Business Studies
     "keac1", "keac2",   # Accountancy
-    "keh01",            # History
+    "kehe1", "kehe2",   # History Part 1 & 2
     "kegy1", "kegy2",   # Geography
-    "kepp1", "kepp2",   # Political Science
-    "kes01", "kes02",   # Sociology
+    "keps1", "keps2",   # Political Science
+    # Sociology: PDFs not available on NCERT portal yet (2024 curriculum)
 ]
 
 GRADE_12_BOOK_CODES = [
@@ -109,10 +109,10 @@ GRADE_12_BOOK_CODES = [
     "leec1", "lema1",   # Economics
     "lebs1", "lebs2",   # Business Studies
     "leac1", "leac2",   # Accountancy
-    "leh01", "leh02", "leh03",  # History
+    "lehe1", "lehe2",   # History Part 1 & 2
     "legy1", "legz1",   # Geography
-    "lepp1", "lepp2",   # Political Science
-    "les01", "les02",   # Sociology
+    "leps1", "leps2",   # Political Science
+    # Sociology: PDFs not available on NCERT portal yet (2024 curriculum)
 ]
 
 # book code → subject folder mapping
@@ -126,10 +126,9 @@ BOOK_TO_FOLDER = {
     "keec1": "Economics", "kest1": "Economics",
     "kebs1": "Business_Studies", "kebs2": "Business_Studies",
     "keac1": "Accountancy", "keac2": "Accountancy",
-    "keh01": "History",
+    "kehe1": "History", "kehe2": "History",
     "kegy1": "Geography", "kegy2": "Geography",
-    "kepp1": "Political_Science", "kepp2": "Political_Science",
-    "kes01": "Sociology", "kes02": "Sociology",
+    "keps1": "Political_Science", "keps2": "Political_Science",
     "leph1": "Physics", "leph2": "Physics",
     "lech1": "Chemistry", "lech2": "Chemistry",
     "lemh1": "Mathematics", "lemh2": "Mathematics",
@@ -139,10 +138,9 @@ BOOK_TO_FOLDER = {
     "leec1": "Economics", "lema1": "Economics",
     "lebs1": "Business_Studies", "lebs2": "Business_Studies",
     "leac1": "Accountancy", "leac2": "Accountancy",
-    "leh01": "History", "leh02": "History", "leh03": "History",
+    "lehe1": "History", "lehe2": "History",
     "legy1": "Geography", "legz1": "Geography",
-    "lepp1": "Political_Science", "lepp2": "Political_Science",
-    "les01": "Sociology", "les02": "Sociology",
+    "leps1": "Political_Science", "leps2": "Political_Science",
 }
 
 # book code → grade label
@@ -310,20 +308,22 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         4: "Computers in Accounting",
         5: "Accounting Software: Tally",
     },
-    "keh01": {
+    "kehe1": {
         1: "From the Beginning of Time",
-        2: "Early Societies",
+        2: "Writing and City Life",
         3: "An Empire Across Three Continents",
         4: "The Central Islamic Lands",
         5: "Nomadic Empires",
         6: "The Three Orders",
         7: "Changing Cultural Traditions",
-        8: "Confrontation of Cultures",
-        9: "The Industrial Revolution",
-        10: "Displacing Indigenous Peoples",
-        11: "Paths to Modernisation",
     },
-    "kepp1": {
+    "kehe2": {
+        1: "Confrontation of Cultures",
+        2: "The Industrial Revolution",
+        3: "Displacing Indigenous Peoples",
+        4: "Paths to Modernisation",
+    },
+    "keps1": {
         1: "Political Theory: An Introduction",
         2: "Freedom",
         3: "Equality",
@@ -332,10 +332,8 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         6: "Citizenship",
         7: "Nationalism",
         8: "Secularism",
-        9: "Peace",
-        10: "Development",
     },
-    "kepp2": {
+    "keps2": {
         1: "Constitution: Why and How?",
         2: "Rights in the Indian Constitution",
         3: "Election and Representation",
@@ -531,25 +529,42 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         5: "Accounting Ratios",
         6: "Cash Flow Statement",
     },
-    "leh01": {
+    "lehe1": {
         1: "Bricks, Beads and Bones",
         2: "Kings, Farmers and Towns",
         3: "Kinship, Caste and Class",
         4: "Thinkers, Beliefs and Buildings",
         5: "Through the Eyes of Travellers",
+        6: "Bhakti-Sufi Traditions",
+        7: "An Imperial Capital: Vijayanagara",
     },
-    "leh02": {
-        1: "Bhakti-Sufi Traditions",
-        2: "An Imperial Capital: Vijayanagara",
-        3: "Peasants, Zamindars and the State",
-        4: "Colonialism and the Countryside",
-        5: "Rebels and the Raj",
+    "lehe2": {
+        1: "Peasants, Zamindars and the State",
+        2: "Colonialism and the Countryside",
+        3: "Rebels and the Raj",
+        4: "Colonial Cities",
+        5: "Mahatma Gandhi and the Nationalist Movement",
+        6: "Partition: Understanding and Interpreting",
+        7: "The Making of the Constitution",
     },
-    "leh03": {
-        1: "Colonial Cities",
-        2: "Mahatma Gandhi and the Nationalist Movement",
-        3: "Partition: Understanding and Interpreting",
-        4: "The Making of the Constitution",
+    "leps1": {
+        1: "The Cold War Era",
+        2: "The End of Bipolarity",
+        3: "US Hegemony in World Politics",
+        4: "Alternative Centres of Power",
+        5: "Contemporary South Asia",
+        6: "International Organisations",
+        7: "Security in the Contemporary World",
+    },
+    "leps2": {
+        1: "Challenges of Nation-Building",
+        2: "Era of One-Party Dominance",
+        3: "Politics of Planned Development",
+        4: "India's External Relations",
+        5: "Challenges to and Restoration of the Congress System",
+        6: "The Crisis of Democratic Order",
+        7: "Rise of Popular Movements",
+        8: "Regional Aspirations",
     },
     "legy1": {
         1: "Human Geography: Nature and Scope",
@@ -576,28 +591,6 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         10: "Transport and Communication",
         11: "International Trade",
         12: "Geographical Perspective on Selected Issues and Problems",
-    },
-    "lepp1": {
-        1: "The Cold War Era",
-        2: "The End of Bipolarity",
-        3: "US Hegemony in World Politics",
-        4: "Alternative Centres of Power",
-        5: "Contemporary South Asia",
-        6: "International Organisations",
-        7: "Security in the Contemporary World",
-        8: "Environment and Natural Resources",
-        9: "Globalisation",
-    },
-    "lepp2": {
-        1: "Challenges of Nation-Building",
-        2: "Era of One-Party Dominance",
-        3: "Politics of Planned Development",
-        4: "India's External Relations",
-        5: "Challenges to and Restoration of the Congress System",
-        6: "The Crisis of Democratic Order",
-        7: "Rise of Popular Movements",
-        8: "Regional Aspirations",
-        9: "Recent Developments in Indian Politics",
     },
     "les01": {
         1: "Indian Society: A Profile",

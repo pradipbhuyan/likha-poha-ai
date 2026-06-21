@@ -72,13 +72,15 @@ GRADE_11_BOOKS = [
     ("Business_Studies", "kebs2",  "Business Studies Part 2",                  10),
     ("Accountancy",      "keac1",  "Accountancy Part 1",                       10),
     ("Accountancy",      "keac2",  "Accountancy Part 2",                       10),
-    ("History",          "keh01",  "Themes in World History Part 1",           20),
+    ("History",          "kehe1",  "Themes in World History Part 1",            7),
+    ("History",          "kehe2",  "Themes in World History Part 2",            4),
     ("Geography",        "kegy1",  "Fundamentals of Physical Geography",       10),
     ("Geography",        "kegy2",  "India Physical Environment",               10),
-    ("Political_Science","kepp1",  "Political Theory",                         10),
-    ("Political_Science","kepp2",  "Indian Constitution at Work",              10),
-    ("Sociology",        "kes01",  "Introducing Sociology",                    10),
-    ("Sociology",        "kes02",  "Understanding Society",                    10),
+    ("Political_Science","keps1",  "Political Theory",                          8),
+    ("Political_Science","keps2",  "Indian Constitution at Work",              10),
+    # Sociology PDFs not yet on NCERT portal (2024 revised curriculum)
+    # ("Sociology",     "kes01",  "Introducing Sociology",                    10),
+    # ("Sociology",     "kes02",  "Understanding Society",                    10),
 ]
 
 GRADE_12_BOOKS = [
@@ -99,15 +101,15 @@ GRADE_12_BOOKS = [
     ("Business_Studies", "lebs2",  "Business Studies Part 2",                  10),
     ("Accountancy",      "leac1",  "Accountancy Part 1",                       10),
     ("Accountancy",      "leac2",  "Accountancy Part 2",                       10),
-    ("History",          "leh01",  "Themes in Indian History Part 1",          10),
-    ("History",          "leh02",  "Themes in Indian History Part 2",          10),
-    ("History",          "leh03",  "Themes in Indian History Part 3",          10),
+    ("History",          "lehe1",  "Themes in Indian History Part 1",           7),
+    ("History",          "lehe2",  "Themes in Indian History Part 2",           7),
     ("Geography",        "legy1",  "Fundamentals of Human Geography",          10),
     ("Geography",        "legz1",  "India People and Economy",                 10),
-    ("Political_Science","lepp1",  "Contemporary World Politics",              10),
-    ("Political_Science","lepp2",  "Politics in India since Independence",     10),
-    ("Sociology",        "les01",  "Indian Society",                           10),
-    ("Sociology",        "les02",  "Social Change and Development in India",   10),
+    ("Political_Science","leps1",  "Contemporary World Politics",               7),
+    ("Political_Science","leps2",  "Politics in India since Independence",      8),
+    # Sociology PDFs not yet on NCERT portal (2024 revised curriculum)
+    # ("Sociology",     "les01",  "Indian Society",                           10),
+    # ("Sociology",     "les02",  "Social Change and Development in India",   10),
 ]
 
 GRADE_BOOKS: dict[int, tuple[str, list]] = {
