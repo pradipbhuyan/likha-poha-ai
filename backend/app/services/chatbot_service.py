@@ -435,18 +435,11 @@ def answer_chatbot_question(question: str) -> dict:
     except Exception:
         pass
 
-    # 4. Default: redirect to platform topics — no LLM call
-    # The LLM fallback was removed to prevent model name leakage and off-topic answers.
-    # All legitimate platform questions are covered by the 18 FAQ topics above.
+    # 4. Default: honest scope statement — no LLM call
     return {
         "answer": (
-            "I specialise in answering questions about the **LikhaPoha AI platform** — "
-            "grades, subjects, lessons, pricing, and how to get started.\n\n"
-            "Try asking:\n"
-            "- *How do lessons work?*\n"
-            "- *Which classes are supported?*\n"
-            "- *How much does it cost?*\n\n"
-            "Or email us at **likhapohaai@gmail.com** for anything else! 😊"
+            "I'm designed to answer questions about the **LikhaPoha AI platform** only.\n\n"
+            "For anything else, please email **likhapohaai@gmail.com** and we'll help you."
         ),
         "source": "faq",
         "suggestions": DEFAULT_SUGGESTIONS,
