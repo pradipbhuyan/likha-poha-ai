@@ -48,8 +48,8 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       </nav>
       <div className="lp-hero">
         <div className="lp-badge">&#127470;&#127475; Built for India &middot; Class 5&ndash;10 &middot; CBSE</div>
-        <h1>Your Child&#39;s Personal<br /><span className="lp-gr">AI Study Tutor</span></h1>
-        <p>Step-wise textbook lessons, instant doubt answers, mock tests, and real-time parent insights &mdash; all in one place.</p>
+        <h1>Every Child Deserves a<br /><span className="lp-gr">Personal Tutor</span></h1>
+        <p>AI-powered lessons, instant doubt solving, exam-ready practice, and real-time parent insights &mdash; available anytime, anywhere.</p>
         <div className="lp-hcta">
           <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try Today</button>
           <a href="#features" className="lp-bol">See Features &rarr;</a>
@@ -64,21 +64,49 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">The Real Problem</div><h2>Why Students Struggle at Home</h2></div>
         <div className="lp-pvs">
+          {/* Problem column */}
           <div className="lp-pcard prob"><div className="lp-ptitle bad">&#8855; The Problem</div>
             <div className="lp-pitem"><span>&#10007;</span> Tuition is expensive &mdash; &#8377;2,000&ndash;8,000/month per subject</div>
             <div className="lp-pitem"><span>&#10007;</span> Parents cannot track what the child actually studied</div>
-            <div className="lp-pitem"><span>&#10007;</span> Generic YouTube videos do not follow CBSE syllabus</div>
+            <div className="lp-pitem"><span>&#10007;</span> Generic YouTube videos do not follow the CBSE syllabus</div>
             <div className="lp-pitem"><span>&#10007;</span> No personalised feedback on weak areas</div>
-            <div className="lp-pitem"><span>&#10007;</span> Practice questions do not match actual exam patterns</div>
+            <div className="lp-pitem"><span>&#10007;</span> Practice questions often do not match actual exam patterns</div>
+            <div className="lp-pitem"><span>&#10007;</span> Students lose motivation when they don&rsquo;t understand concepts immediately</div>
+            <div className="lp-pitem"><span>&#10007;</span> Teachers cannot provide one-on-one attention to every child</div>
           </div>
+          {/* Solution column */}
           <div className="lp-pcard sol"><div className="lp-ptitle good">&#10003; LikhaPoha AI Solution</div>
-            <div className="lp-pitem"><span>&#10003;</span> AI lesson for every chapter &mdash; instant, free of charge</div>
+            <div className="lp-pitem"><span>&#10003;</span> AI lesson for every chapter &mdash; instant and accessible</div>
             <div className="lp-pitem"><span>&#10003;</span> Parent dashboard shows daily progress and weak areas</div>
             <div className="lp-pitem"><span>&#10003;</span> Lessons grounded in uploaded NCERT textbooks</div>
-            <div className="lp-pitem"><span>&#10003;</span> Smart evaluation flags revision topics automatically</div>
-            <div className="lp-pitem"><span>&#10003;</span> CBSE mock tests and 70,000+ practice questions included</div>
+            <div className="lp-pitem"><span>&#10003;</span> Smart evaluation automatically identifies revision topics</div>
+            <div className="lp-pitem"><span>&#10003;</span> Personalised learning path based on each student&rsquo;s performance</div>
+            <div className="lp-pitem"><span>&#10003;</span> CBSE-aligned practice questions and mock tests</div>
+            <div className="lp-pitem"><span>&#10003;</span> Available 24&times;7 &mdash; learn anytime, anywhere</div>
+            <div className="lp-pitem"><span>&#10003;</span> Instant doubt-solving with AI tutor support</div>
           </div>
         </div>
+
+        {/* Results grid */}
+        <div style={{marginTop:"28px",marginBottom:"28px"}}>
+          <div className="lp-ey" style={{marginBottom:"14px"}}>&#127919; Results for Students & Parents</div>
+          <div className="lp-results">
+            <div className="lp-rcard"><span>&#128200;</span> Better exam preparation through <strong>targeted revision</strong></div>
+            <div className="lp-rcard"><span>&#128200;</span> Faster improvement in <strong>weak subjects</strong></div>
+            <div className="lp-rcard"><span>&#128200;</span> Increased learning <strong>confidence and engagement</strong></div>
+            <div className="lp-rcard"><span>&#128200;</span> Reduced dependence on <strong>costly tuition classes</strong></div>
+            <div className="lp-rcard"><span>&#128200;</span> Complete visibility for parents on <strong>learning progress</strong></div>
+            <div className="lp-rcard"><span>&#128200;</span> <strong>Personalised</strong> learning experience for every child</div>
+          </div>
+        </div>
+
+        {/* Closing statement */}
+        <div className="lp-closing">
+          <p>&ldquo;Every child deserves a personal tutor. <strong>LikhaPoha AI makes high-quality,
+          syllabus-aligned learning accessible to every student</strong> &mdash; anytime, anywhere,
+          at minimal cost.&rdquo;</p>
+        </div>
+
       </div></div>
       <div className="lp-sw">
         <div className="lp-sh"><div className="lp-ey">See It In Action</div><h2>A Glimpse of What Students Experience Daily</h2><p>Everything works on phone &mdash; no app download needed</p></div>
