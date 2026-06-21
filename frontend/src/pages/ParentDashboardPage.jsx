@@ -635,7 +635,7 @@ function ParentDashboardPage() {
                 style={{ marginBottom:12 }}
               >
                 <option value="">— Select class —</option>
-                {["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"].map(g => (
+                {["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"].map(g => (
                   <option key={g} value={g}>{g}</option>
                 ))}
               </select>

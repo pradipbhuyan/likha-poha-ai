@@ -11,10 +11,11 @@ const PLANS = [
   "family_premium",
 ].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
 
-// Platform supports Grade 5–12. Grade 11 & 12 require stream selection.
+// Platform publicly supports Grade 5–10. Grade 11 & 12 hidden until content is fully ready.
+// To re-enable: add "Grade 11","Grade 12" back to GRADES array and restore stream picker UI.
 import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 
-const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
 const PLAN_FILTER_GROUPS = {
   monthly:   ["free", "starter", "family_premium"],
