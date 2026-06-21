@@ -45,7 +45,7 @@ router = APIRouter()
 # Cache & Question Bank management only covers Grades 5–10.
 # Grades 1–4 don't have uploaded RAG content yet so showing them
 # in the prewarm panel would be misleading.
-ALL_GRADES = [f"Grade {n}" for n in range(5, 11)]
+ALL_GRADES = [f"Grade {n}" for n in range(5, 13)]
 
 
 @router.get("/status")

@@ -26,12 +26,12 @@ DEFAULT_PRODUCT_CATALOGUE: dict = {
         "Grade 10": {"visible": True,  "boards": ["CBSE"], "streams": []},
         # ── Ready in code, hidden until content is uploaded ─────────────────
         "Grade 11": {
-            "visible": False,
+            "visible": True,
             "boards": ["CBSE"],
             "streams": ["Science (PCM)", "Science (PCB)", "Commerce", "Arts"],
         },
         "Grade 12": {
-            "visible": False,
+            "visible": True,
             "boards": ["CBSE"],
             "streams": ["Science (PCM)", "Science (PCB)", "Commerce", "Arts"],
         },

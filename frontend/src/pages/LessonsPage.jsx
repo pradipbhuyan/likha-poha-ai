@@ -233,7 +233,7 @@ function LessonsPage({ user, setActivePage }) {
     if (g === "grade 6" || g === "grade 7" || g === "grade 8") {
       return ["Concept introduction", "Core explanation", "Worked examples", "Revision and recap"];
     }
-    if (g === "grade 10") {
+    if (g === "grade 10" || g === "grade 11" || g === "grade 12") {
       return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap", "Exam preparation"];
     }
     // Grade 9 + fallback

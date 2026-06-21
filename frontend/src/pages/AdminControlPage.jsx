@@ -33,7 +33,7 @@ import {
 } from "../utils/subjectAccess";
 
 const STUDENT_GRADE_OPTIONS = Array.from(
-  { length: 10 },
+  { length: 12 },
   (_, index) => `Grade ${index + 1}`
 );
 

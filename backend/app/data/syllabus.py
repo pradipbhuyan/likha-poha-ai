@@ -374,6 +374,41 @@ def build_upload_ready_cbse_catalog(grade_number):
     return UPPER_PRIMARY_CBSE_SUBJECTS
 
 
+# ── Grade 11 & 12 subject scaffold ────────────────────────────────────────────
+# Chapters come from RAG (rag_documents) after PDF upload.
+# This scaffold lists the subjects so the Lessons dropdown shows them.
+GRADE_11_CBSE_SUBJECTS = {
+    "Physics":          ["Uploaded Chapter Content"],
+    "Chemistry":        ["Uploaded Chapter Content"],
+    "Mathematics":      ["Uploaded Chapter Content"],
+    "Biology":          ["Uploaded Chapter Content"],
+    "English":          ["Uploaded Chapter Content"],
+    "Hindi":            ["Uploaded Chapter Content"],
+    "Economics":        ["Uploaded Chapter Content"],
+    "Business Studies": ["Uploaded Chapter Content"],
+    "Accountancy":      ["Uploaded Chapter Content"],
+    "History":          ["Uploaded Chapter Content"],
+    "Geography":        ["Uploaded Chapter Content"],
+    "Political Science":["Uploaded Chapter Content"],
+    "Sociology":        ["Uploaded Chapter Content"],
+}
+
+GRADE_12_CBSE_SUBJECTS = {
+    "Physics":          ["Uploaded Chapter Content"],
+    "Chemistry":        ["Uploaded Chapter Content"],
+    "Mathematics":      ["Uploaded Chapter Content"],
+    "Biology":          ["Uploaded Chapter Content"],
+    "English":          ["Uploaded Chapter Content"],
+    "Hindi":            ["Uploaded Chapter Content"],
+    "Economics":        ["Uploaded Chapter Content"],
+    "Business Studies": ["Uploaded Chapter Content"],
+    "Accountancy":      ["Uploaded Chapter Content"],
+    "History":          ["Uploaded Chapter Content"],
+    "Geography":        ["Uploaded Chapter Content"],
+    "Political Science":["Uploaded Chapter Content"],
+    "Sociology":        ["Uploaded Chapter Content"],
+}
+
 SYLLABUS = {
     **{
         f"Grade {grade_number}": {
@@ -385,5 +420,13 @@ SYLLABUS = {
     "Grade 9": {
         "CBSE": CBSE_9,
         "SOF": SOF_9,
+    },
+    "Grade 11": {
+        "CBSE": GRADE_11_CBSE_SUBJECTS,
+        "SOF": GENERIC_SOF,
+    },
+    "Grade 12": {
+        "CBSE": GRADE_12_CBSE_SUBJECTS,
+        "SOF": GENERIC_SOF,
     },
 }
