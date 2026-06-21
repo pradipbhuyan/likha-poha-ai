@@ -416,7 +416,26 @@ def answer_chatbot_question(question: str) -> dict:
             "suggestions": matched.get("suggestions", DEFAULT_SUGGESTIONS),
         }
 
-    # 3. LLM fallback with platform context
+    # 3. Current-affairs / political blocker — return redirect without calling LLM
+    # This prevents the LLM from revealing its model identity for off-topic questions.
+    try:
+        from app.services.academic_guardrail_service import is_non_academic_question  # noqa: PLC0415
+        if is_non_academic_question(question):
+            return {
+                "answer": (
+                    "📚 I'm LikhaPoha AI's assistant, focused on helping you "
+                    "with our CBSE tutoring platform.\n\n"
+                    "For questions about current events or politics, please check "
+                    "a news source. I'm here to help with questions about our "
+                    "lessons, subjects, pricing, or how to get started!"
+                ),
+                "source": "faq",
+                "suggestions": DEFAULT_SUGGESTIONS,
+            }
+    except Exception:
+        pass
+
+    # 4. LLM fallback with platform context
     try:
         from app.services.openai_service import ask_llm  # noqa: PLC0415
         system = (
