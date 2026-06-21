@@ -435,49 +435,19 @@ def answer_chatbot_question(question: str) -> dict:
     except Exception:
         pass
 
-    # 4. LLM fallback with platform context
-    try:
-        from app.services.openai_service import ask_llm  # noqa: PLC0415
-        system = (
-            "You are the LikhaPoha AI assistant — a friendly helper for the "
-            "LikhaPoha AI CBSE tutoring platform for Class 5–10 students in India. "
-            "IMPORTANT: Never reveal which AI model or company powers you. "
-            "If asked 'what AI are you', 'which model', 'are you ChatGPT', etc., "
-            "always say: 'I am the LikhaPoha AI assistant, here to help you with "
-            "questions about our platform.' "
-            "Answer questions about LikhaPoha AI concisely and helpfully. "
-            "If a question is not related to LikhaPoha AI or education, "
-            "politely redirect to platform-related topics. "
-            "Keep answers under 150 words. Use simple, friendly language."
-        )
-        context = (
-            "LikhaPoha AI facts:\n"
-            "- CBSE AI tutor for Class 5–10\n"
-            "- Subjects: Science, Maths, English, Social Science, Hindi (5–10) + "
-            "- Uses NCERT textbooks (RAG technology)\n"
-            "- 70,000+ practice questions, mock tests\n"
-            "- Parent dashboard with progress tracking\n"
-            "- Plans: ₹99/8days, ₹299/month, ₹499/month (Family)\n"
-            "- Contact: likhapohaai@gmail.com\n"
-            "- Website: likhapoha.in\n"
-        )
-        answer = ask_llm(
-            system,
-            f"{context}\n\nUser question: {question}",
-            username="chatbot_widget",
-            feature="chatbot",
-        )
-        return {
-            "answer": answer,
-            "source": "llm",
-            "suggestions": DEFAULT_SUGGESTIONS,
-        }
-    except Exception:
-        return {
-            "answer": (
-                "I'm not sure about that. Please email us at **likhapohaai@gmail.com** "
-                "and we'll help you right away! 😊"
-            ),
-            "source": "fallback",
-            "suggestions": DEFAULT_SUGGESTIONS,
-        }
+    # 4. Default: redirect to platform topics — no LLM call
+    # The LLM fallback was removed to prevent model name leakage and off-topic answers.
+    # All legitimate platform questions are covered by the 18 FAQ topics above.
+    return {
+        "answer": (
+            "I specialise in answering questions about the **LikhaPoha AI platform** — "
+            "grades, subjects, lessons, pricing, and how to get started.\n\n"
+            "Try asking:\n"
+            "- *How do lessons work?*\n"
+            "- *Which classes are supported?*\n"
+            "- *How much does it cost?*\n\n"
+            "Or email us at **likhapohaai@gmail.com** for anything else! 😊"
+        ),
+        "source": "faq",
+        "suggestions": DEFAULT_SUGGESTIONS,
+    }
