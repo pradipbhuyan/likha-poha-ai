@@ -11,11 +11,10 @@ const PLANS = [
   "family_premium",
 ].map(k => SUBSCRIPTION_PLANS[k]).filter(Boolean);
 
-// Platform currently supports Grade 5–10.
-// To add new grades when the platform expands, add them here AND in:
-//   - backend/app/data/product_catalogue.py (set visible: True)
-//   - backend/app/routes/parent_dashboard.py (ParentDashboardPage grade list)
-const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+// Platform supports Grade 5–12. Grade 11 & 12 require stream selection.
+import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
+
+const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
 const PLAN_FILTER_GROUPS = {
   monthly:   ["free", "starter", "family_premium"],
@@ -161,6 +160,7 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
   const [password, setPassword] = useState("");
   const [passwordSetLink, setPasswordSetLink] = useState("");
   const [showSignupPassword, setShowSignupPassword] = useState(false);
+  const [stream, setStream] = useState("");
 
   useEffect(() => { loadRazorpay(); }, []);
 
@@ -192,6 +192,10 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
           grade: role==="student" ? grade : undefined,
           school: role==="teacher" ? school.trim() : undefined,
           password: password.trim() || undefined,
+          // Pass stream-derived subjects so backend saves them to cbse_subjects
+          cbse_subjects: (role==="student" && isStreamGrade(grade) && stream)
+            ? getSubjectsForStream(stream)
+            : undefined,
         }),
       });
       const data = await res.json();
@@ -566,10 +570,11 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                     value={email} onChange={e => setEmail(e.target.value)} />
                 </div>
                 {role === "student" && (
+                  <>
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:13 }}>
                     <div>
                       <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>Class *</label>
-                      <select style={S.select} value={grade} onChange={e => setGrade(e.target.value)}>
+                      <select style={S.select} value={grade} onChange={e => { setGrade(e.target.value); setStream(""); }}>
                         {GRADES.map(g => <option key={g}>{g}</option>)}
                       </select>
                     </div>
@@ -578,6 +583,24 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                       <select style={S.select}><option>CBSE</option></select>
                     </div>
                   </div>
+                  {isStreamGrade(grade) && (
+                    <div>
+                      <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>Stream *</label>
+                      <select
+                        style={S.select}
+                        value={stream}
+                        onChange={e => setStream(e.target.value)}
+                        required
+                      >
+                        <option value="">— Select your stream —</option>
+                        {GRADE_11_12_STREAMS.map(s => <option key={s}>{s}</option>)}
+                      </select>
+                      <small style={{ color:"#64748b", fontSize:".75rem", marginTop:4, display:"block" }}>
+                        Your stream determines which subjects appear in your lessons.
+                      </small>
+                    </div>
+                  )}
+                  </>
                 )}
                 {role === "teacher" && (
                   <div>

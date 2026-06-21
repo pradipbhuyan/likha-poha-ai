@@ -28,12 +28,12 @@ DEFAULT_PRODUCT_CATALOGUE: dict = {
         "Grade 11": {
             "visible": True,
             "boards": ["CBSE"],
-            "streams": ["Science (PCM)", "Science (PCB)", "Commerce", "Arts"],
+            "streams": ["Science (PCM)", "Science (PCB)", "Science (PCMB)", "Commerce", "Arts / Humanities"],
         },
         "Grade 12": {
             "visible": True,
             "boards": ["CBSE"],
-            "streams": ["Science (PCM)", "Science (PCB)", "Commerce", "Arts"],
+            "streams": ["Science (PCM)", "Science (PCB)", "Science (PCMB)", "Commerce", "Arts / Humanities"],
         },
     },
     "coaching_programs": {

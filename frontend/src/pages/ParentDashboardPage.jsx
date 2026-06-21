@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 
 import { getUserHistory } from "../api/analytics";
 import { getUsageSummary } from "../api/usage";
@@ -45,6 +46,7 @@ function ParentDashboardPage() {
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPassword, setStudentPassword] = useState("");
   const [studentGrade, setStudentGrade] = useState("");
+  const [studentStream, setStudentStream] = useState("");
   const [creatingStudent, setCreatingStudent] = useState(false);
   const [createStudentError, setCreateStudentError] = useState("");
   // Stores credentials after child creation to show the "What to do next" card
@@ -144,6 +146,10 @@ function ParentDashboardPage() {
         email: studentEmail,
         password: studentPassword,
         grade: studentGrade,
+        // For Grade 11/12: set cbse_subjects from stream so only stream subjects show
+        cbse_subjects: (isStreamGrade(studentGrade) && studentStream)
+          ? getSubjectsForStream(studentStream)
+          : undefined,
       });
 
       // Save credentials for the "What to do next" card
@@ -158,6 +164,7 @@ function ParentDashboardPage() {
       setStudentEmail("");
       setStudentPassword("");
       setStudentGrade("");
+      setStudentStream("");
       setShowAddChild(false);
 
       await loadFamily();
@@ -623,16 +630,36 @@ function ParentDashboardPage() {
               </label>
               <select
                 value={studentGrade}
-                onChange={(e) => setStudentGrade(e.target.value)}
+                onChange={(e) => { setStudentGrade(e.target.value); setStudentStream(""); }}
                 required
                 style={{ marginBottom:12 }}
               >
                 <option value="">— Select class —</option>
-                {/* Platform supports Grade 5–10. Add new grades here when platform expands. */}
-                {["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"].map(g => (
+                {["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"].map(g => (
                   <option key={g} value={g}>{g}</option>
                 ))}
               </select>
+              {isStreamGrade(studentGrade) && (
+                <>
+                  <label style={{ display:"block", marginBottom:4, fontSize:".85rem", fontWeight:600 }}>
+                    Stream *
+                  </label>
+                  <select
+                    value={studentStream}
+                    onChange={(e) => setStudentStream(e.target.value)}
+                    required
+                    style={{ marginBottom:6 }}
+                  >
+                    <option value="">— Select stream —</option>
+                    {GRADE_11_12_STREAMS.map(s => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                  <small style={{ color: "#888", fontSize: "0.75rem", marginBottom:10, display:"block" }}>
+                    Stream determines which subjects appear in your child's lessons.
+                  </small>
+                </>
+              )}
 
               <input
                 type="text"

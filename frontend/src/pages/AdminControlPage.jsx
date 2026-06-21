@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 import {
   getAdminFamilies,
   createAdminParent,
@@ -2524,6 +2525,29 @@ function AdminControlPage({ user }) {
                     subjects included in a custom lower-cost plan.
                   </p>
                 </div>
+
+                {/* Grade 11/12: stream shortcut auto-fills subject checkboxes */}
+                {isStreamGrade(child.grade || "") && (
+                  <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+                    <label style={{ fontSize:".85rem", fontWeight:600, minWidth:60 }}>Stream:</label>
+                    <select
+                      style={{ flex:1, fontSize:".85rem", padding:"6px 10px", borderRadius:8,
+                               border:"1px solid var(--border)", background:"var(--surface2)", color:"var(--text)" }}
+                      defaultValue=""
+                      onChange={(e) => {
+                        const subjects = getSubjectsForStream(e.target.value);
+                        if (subjects.length > 0) {
+                          updateLocalChild(family.family_id, child.id, "cbse_subjects", subjects);
+                        }
+                      }}
+                    >
+                      <option value="">— Apply stream shortcut —</option>
+                      {GRADE_11_12_STREAMS.map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 <div className="admin-cbse-subject-chip-grid">
                   {COMMON_CBSE_SUBJECTS.map((subjectName) => {
