@@ -274,28 +274,29 @@ def get_doubt_kb_stats() -> dict:
     at ~1500 tokens × $0.0001/1K = ~$0.00015 per hit.
     """
     try:
-        # Total + breakdown by source
-        all_rows = supabase.table("doubt_kb").select(
-            "source, hit_count, status"
-        ).execute()
-        rows = all_rows.data or []
+        # Use server-side counts to avoid the 1000-row default page limit.
+        prewarmed_res = supabase.table("doubt_kb") \
+            .select("id", count="exact") \
+            .eq("status", "active").eq("source", "prewarmed").execute()
+        prewarmed = prewarmed_res.count or 0
 
-        active = [r for r in rows if r.get("status") == "active"]
-        prewarmed = sum(1 for r in active if r.get("source") == "prewarmed")
-        llm_generated = sum(1 for r in active if r.get("source") == "llm")
-        total_hits = sum(r.get("hit_count") or 0 for r in active)
+        llm_res = supabase.table("doubt_kb") \
+            .select("id", count="exact") \
+            .eq("status", "active").eq("source", "llm").execute()
+        llm_generated = llm_res.count or 0
+
+        hits_res = supabase.table("doubt_kb") \
+            .select("hit_count") \
+            .eq("status", "active").execute()
+        total_hits = sum((r.get("hit_count") or 0) for r in (hits_res.data or []))
 
         # Estimated savings: each hit saves ~1500 input + 800 output tokens
         # gpt-4.1-nano: $0.0001/1K input, $0.0004/1K output
         saved_per_hit = (1500 / 1000) * 0.0001 + (800 / 1000) * 0.0004
         estimated_savings = round(total_hits * saved_per_hit, 4)
 
-        # Grade-level breakdown
+        # Grade-level breakdown — separate query
         grade_breakdown = {}
-        for r in active:
-            # grade not in select — do a second query for breakdown
-            pass
-
         grade_result = supabase.table("doubt_kb").select(
             "grade, hit_count"
         ).eq("status", "active").execute()
@@ -305,7 +306,7 @@ def get_doubt_kb_stats() -> dict:
             grade_breakdown[g] = grade_breakdown.get(g, 0) + (r.get("hit_count") or 0)
 
         return {
-            "total_entries": len(active),
+            "total_entries": prewarmed + llm_generated,
             "prewarmed": prewarmed,
             "llm_generated": llm_generated,
             "total_hits": total_hits,
