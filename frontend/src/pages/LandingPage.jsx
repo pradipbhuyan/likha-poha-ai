@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
+import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp } from "lucide-react";
 import "./LandingPage.css";
 
 export default function LandingPage({ onShowLogin, onShowSignup }) {
@@ -65,7 +66,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <div className="lp-sh"><div className="lp-ey">The Real Problem</div><h2>Why Students Struggle at Home</h2></div>
         <div className="lp-pvs">
           {/* Problem column */}
-          <div className="lp-pcard prob"><div className="lp-ptitle bad">&#8855; The Problem</div>
+          <div className="lp-pcard prob"><div className="lp-ptitle bad">The Problem</div>
             <div className="lp-pitem"><span>&#10007;</span> Tuition is expensive &mdash; &#8377;2,000&ndash;8,000/month per subject</div>
             <div className="lp-pitem"><span>&#10007;</span> Parents cannot track what the child actually studied</div>
             <div className="lp-pitem"><span>&#10007;</span> Generic YouTube videos do not follow the CBSE syllabus</div>
@@ -75,7 +76,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
             <div className="lp-pitem"><span>&#10007;</span> Teachers cannot provide one-on-one attention to every child</div>
           </div>
           {/* Solution column */}
-          <div className="lp-pcard sol"><div className="lp-ptitle good">&#10003; LikhaPoha AI Solution</div>
+          <div className="lp-pcard sol"><div className="lp-ptitle good">LikhaPoha AI Solution</div>
             <div className="lp-pitem"><span>&#10003;</span> AI lesson for every chapter &mdash; instant and accessible</div>
             <div className="lp-pitem"><span>&#10003;</span> Parent dashboard shows daily progress and weak areas</div>
             <div className="lp-pitem"><span>&#10003;</span> Lessons grounded in uploaded NCERT textbooks</div>
@@ -89,14 +90,14 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
 
         {/* Results grid */}
         <div style={{marginTop:"28px",marginBottom:"28px"}}>
-          <div className="lp-ey" style={{marginBottom:"14px"}}>&#127919; Results for Students & Parents</div>
+          <div className="lp-ey" style={{marginBottom:"14px"}}>Results for Students & Parents</div>
           <div className="lp-results">
-            <div className="lp-rcard"><span>&#128200;</span> Better exam preparation through <strong>targeted revision</strong></div>
-            <div className="lp-rcard"><span>&#128200;</span> Faster improvement in <strong>weak subjects</strong></div>
-            <div className="lp-rcard"><span>&#128200;</span> Increased learning <strong>confidence and engagement</strong></div>
-            <div className="lp-rcard"><span>&#128200;</span> Reduced dependence on <strong>costly tuition classes</strong></div>
-            <div className="lp-rcard"><span>&#128200;</span> Complete visibility for parents on <strong>learning progress</strong></div>
-            <div className="lp-rcard"><span>&#128200;</span> <strong>Personalised</strong> learning experience for every child</div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Better exam preparation through <strong>targeted revision</strong></div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Faster improvement in <strong>weak subjects</strong></div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Increased learning <strong>confidence and engagement</strong></div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Reduced dependence on <strong>costly tuition classes</strong></div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Complete visibility for parents on <strong>learning progress</strong></div>
+            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> <strong>Personalised</strong> learning experience for every child</div>
           </div>
         </div>
 
@@ -120,10 +121,10 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <div className="lp-sh"><div className="lp-ey">Everything You Need</div><h2>Complete Study Toolkit for CBSE</h2><p>Powerful AI tools designed for Indian students</p></div>
         <div className="lp-fg">
           <div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}>&#128218;</div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}>&#10067;</div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}>&#129514;</div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 70,000+ practice questions covering every chapter.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}>&#128106;</div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}><BookOpen size={22} strokeWidth={2} /></div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 70,000+ practice questions covering every chapter.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
             <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#10067;</div>INSTANT DOUBT SOLVING</div><img src="/screenshots/doubt.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
