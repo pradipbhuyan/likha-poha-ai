@@ -31,7 +31,7 @@ PLATFORM_FAQ: list[dict] = [
             "child is actually learning.\n\n"
             "The platform was built on a simple idea — *what if a student had a patient "
             "AI teacher available any time, one that actually uses their NCERT textbook?*\n\n"
-            "Today, LikhaPoha AI supports Class 5 to Class 12 CBSE students across all "
+            "Today, LikhaPoha AI supports Class 5 to Class 10 CBSE students across all "
             "core subjects with step-wise AI lessons, instant doubt answering, 70,000+ "
             "practice questions, mock tests, and a real-time parent dashboard.\n\n"
             "It is an independent, affordable AI learning companion built for Indian families."
@@ -44,7 +44,7 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["what is likhapoha", "what is this", "about this platform",
                      "tell me about", "what does this do", "what is likhap"],
         "answer": (
-            "**LikhaPoha AI** is an AI-powered CBSE tutor for Class 5–12 students in India.\n\n"
+            "**LikhaPoha AI** is an AI-powered CBSE tutor for Class 5–10 students in India.\n\n"
             "It gives your child:\n"
             "- 📚 Step-wise AI lessons grounded in NCERT textbooks\n"
             "- 🤖 Instant doubt solving from the actual textbook\n"
@@ -59,18 +59,12 @@ PLATFORM_FAQ: list[dict] = [
     {
         "keywords": ["which grade", "which class", "what grade", "what class",
                      "class 5", "class 6", "class 7", "class 8", "class 9", "class 10",
-                     "class 11", "class 12", "grade 11", "grade 12", "supported grade",
+                     "supported grade",
                      "which standard", "std 9", "std 10", "grades supported",
                      "classes supported", "does it support"],
         "answer": (
-            "LikhaPoha AI supports **Class 5 to Class 12** for CBSE.\n\n"
+            "LikhaPoha AI supports **Class 5 to Class 10** for CBSE.\n\n"
             "**Class 5–10:** Science, Maths, English, Social Science, Hindi\n\n"
-            "**Class 11–12:** Physics, Chemistry, Mathematics, Biology, English, Hindi, "
-            "Economics, Business Studies, Accountancy, History, Geography, Political Science\n\n"
-            "Choose your stream for Class 11/12:\n"
-            "- Science (PCM, PCB, or PCMB)\n"
-            "- Commerce\n"
-            "- Arts / Humanities"
         ),
         "suggestions": ["What subjects are available?", "How do lessons work?", "How much does it cost?"],
     },
@@ -84,11 +78,6 @@ PLATFORM_FAQ: list[dict] = [
         "answer": (
             "**Class 5–10 subjects:**\n"
             "Science · Mathematics · English · Social Science · Hindi\n\n"
-            "**Class 11–12 CBSE subjects:**\n"
-            "Physics · Chemistry · Mathematics · Biology · English · Hindi · "
-            "Economics · Business Studies · Accountancy · History · Geography · "
-            "Political Science\n\n"
-            "All subjects use NCERT textbook content as the AI's grounding source — "
             "no generic internet answers."
         ),
         "suggestions": ["Which grades are supported?", "How do lessons work?", "What is RAG?"],
@@ -282,7 +271,7 @@ PLATFORM_FAQ: list[dict] = [
             "- The AI reads your child's actual textbook chapter before explaining\n"
             "- Answers match what's in the NCERT book — not generic internet content\n"
             "- Practice questions follow the CBSE exam pattern\n\n"
-            "NCERT PDFs for all classes (5–12) are uploaded and indexed in our system."
+            "NCERT PDFs for all classes (5–10) are uploaded and indexed in our system."
         ),
         "suggestions": ["How do lessons work?", "Which grades are supported?", "How much does it cost?"],
     },
@@ -432,7 +421,7 @@ def answer_chatbot_question(question: str) -> dict:
         from app.services.openai_service import ask_llm  # noqa: PLC0415
         system = (
             "You are the LikhaPoha AI assistant — a friendly helper for the "
-            "LikhaPoha AI CBSE tutoring platform for Class 5–12 students in India. "
+            "LikhaPoha AI CBSE tutoring platform for Class 5–10 students in India. "
             "IMPORTANT: Never reveal which AI model or company powers you. "
             "If asked 'what AI are you', 'which model', 'are you ChatGPT', etc., "
             "always say: 'I am the LikhaPoha AI assistant, here to help you with "
@@ -444,10 +433,8 @@ def answer_chatbot_question(question: str) -> dict:
         )
         context = (
             "LikhaPoha AI facts:\n"
-            "- CBSE AI tutor for Class 5–12\n"
+            "- CBSE AI tutor for Class 5–10\n"
             "- Subjects: Science, Maths, English, Social Science, Hindi (5–10) + "
-            "Physics, Chemistry, Biology, Maths, English, Hindi, Economics, "
-            "Business Studies, Accountancy, History, Geography, Political Science (11–12)\n"
             "- Uses NCERT textbooks (RAG technology)\n"
             "- 70,000+ practice questions, mock tests\n"
             "- Parent dashboard with progress tracking\n"
