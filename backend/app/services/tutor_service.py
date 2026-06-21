@@ -846,18 +846,22 @@ $$
 
     # Auto-store the new LLM answer in DKB so future identical/similar questions
     # are served instantly without another LLM call.
+    # Skip off-topic / current-affairs questions — they contain stale data and
+    # must never be cached.
     try:
         from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
-        store_in_doubt_kb(
-            question=question,
-            answer=answer,
-            grade=grade,
-            subject=subject,
-            chapter=chapter if chapter else None,
-            mode=mode,
-            board=board,
-            source="llm",
-        )
+        from app.services.academic_guardrail_service import is_non_academic_question  # noqa: PLC0415
+        if not is_non_academic_question(question):
+            store_in_doubt_kb(
+                question=question,
+                answer=answer,
+                grade=grade,
+                subject=subject,
+                chapter=chapter if chapter else None,
+                mode=mode,
+                board=board,
+                source="llm",
+            )
     except Exception:
         pass  # DKB store failure must never break doubt delivery
 
