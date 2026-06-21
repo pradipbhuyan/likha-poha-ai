@@ -223,6 +223,10 @@ app.include_router(
     tags=["Product Catalogue"],
 )
 
+# Public chatbot widget — no auth required
+from app.routes.chatbot import router as chatbot_router  # noqa: E402
+app.include_router(chatbot_router, prefix="/api/chatbot", tags=["Chatbot"])
+
 @app.get("/api/health")
 def health_check():
     """Return a detailed health response for frontend/API uptime checks."""

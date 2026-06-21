@@ -35,6 +35,7 @@ import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
+import ChatWidget from "./components/ChatWidget";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import SignupPage from "./pages/SignupPage";
 
@@ -518,6 +519,7 @@ function App() {
       </main>
 
       <FirstTimeGuide user={user} activePage={activePage} />
+      <ChatWidget />
     </div>
     </ToastProvider>
   );
