@@ -354,7 +354,7 @@ function Sidebar({
                   setShowAvatarPicker(false);
                   // Open webcam using getUserMedia inline
                   const modal = document.createElement("div");
-                  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:flex;align-items:center;justify-content:center;";
+                  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2147483647;display:flex;align-items:center;justify-content:center;";
                   modal.innerHTML = `<div style="background:#1e293b;border-radius:16px;padding:20px;max-width:420px;width:90%;text-align:center">
                     <p style="color:#f1f5f9;font-weight:700;margin-bottom:12px">📸 Take a Photo</p>
                     <video id="avatarCamVideo" autoplay playsinline muted style="width:100%;border-radius:10px;background:#000;max-height:300px"></video>
