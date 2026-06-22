@@ -345,7 +345,7 @@ function Sidebar({
             {/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
               <label style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#6ee7b7", fontWeight: 600 }}>
                 📸 Camera
-                <input type="file" accept="image/*" style={{ display: "none" }}
+                <input type="file" accept="image/*" capture="environment" style={{ display: "none" }}
                   onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => saveAvatar(ev.target.result); r.readAsDataURL(f); }} />
               </label>
             ) : (
