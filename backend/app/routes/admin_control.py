@@ -1812,3 +1812,79 @@ def offer_gate_test(
             "message": f"Offer gate DISABLED for {profile.get('username')}. "
                        "access_cbse restored to True. Full LLM access is back.",
         }
+
+
+# ── Logging settings ──────────────────────────────────────────────────────────
+
+def _load_logging_settings() -> dict:
+    """Load logging_settings from admin_settings table. Returns defaults if absent."""
+    try:
+        row = (
+            admin_client
+            .table("admin_settings")
+            .select("value")
+            .eq("key", "logging_settings")
+            .limit(1)
+            .execute()
+        )
+        if row.data:
+            return row.data[0]["value"] or {}
+    except Exception:
+        pass
+    return {}
+
+
+@router.get("/logging-settings")
+def get_logging_settings(admin=Depends(require_admin)):
+    """Return current logging configuration."""
+    settings = _load_logging_settings()
+    return {
+        "success": True,
+        "logging_enabled": settings.get("logging_enabled", True),
+        "log_level": settings.get("log_level", "INFO"),
+    }
+
+
+class LoggingSettingsRequest(BaseModel):
+    logging_enabled: bool
+    log_level: str = "INFO"   # DEBUG | INFO | WARN | ERROR
+
+
+@router.post("/logging-settings")
+def update_logging_settings(data: LoggingSettingsRequest, admin=Depends(require_admin)):
+    """Enable or disable platform logging and set the log level."""
+    import logging as _logging  # noqa: PLC0415
+    from app.services.logger_service import _root  # noqa: PLC0415
+
+    valid_levels = {"DEBUG", "INFO", "WARN", "WARNING", "ERROR", "CRITICAL"}
+    log_level = data.log_level.upper()
+    if log_level not in valid_levels:
+        log_level = "INFO"
+
+    # Persist to DB
+    admin_client.table("admin_settings").upsert(
+        {
+            "key": "logging_settings",
+            "value": {
+                "logging_enabled": data.logging_enabled,
+                "log_level": log_level,
+            },
+        },
+        on_conflict="key",
+    ).execute()
+
+    # Apply immediately to the running process
+    if data.logging_enabled:
+        _root.setLevel(getattr(_logging, log_level, _logging.INFO))
+        _root.disabled = False
+    else:
+        _root.disabled = True
+
+    admin_profile = admin.get("profile", {})
+    return {
+        "success": True,
+        "logging_enabled": data.logging_enabled,
+        "log_level": log_level,
+        "message": f"Logging {'enabled' if data.logging_enabled else 'disabled'} at {log_level} level.",
+        "changed_by": admin_profile.get("username", "admin"),
+    }

@@ -120,6 +120,12 @@ function AdminControlPage({ user }) {
   const [aiSettingsMessage, setAiSettingsMessage] = useState("");
   const [aiSettingsError, setAiSettingsError] = useState("");
 
+  // Logging settings
+  const [loggingEnabled, setLoggingEnabled] = useState(true);
+  const [logLevel, setLogLevel] = useState("INFO");
+  const [loggingLoading, setLoggingLoading] = useState(true);
+  const [loggingMsg, setLoggingMsg] = useState("");
+
   const [parentForm, setParentForm] = useState({
     email: "",
     password: "",
@@ -862,9 +868,37 @@ function AdminControlPage({ user }) {
     }));
   }
 
+  async function loadLoggingSettings() {
+    setLoggingLoading(true);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/logging-settings`, {
+        headers: { Authorization: `Bearer ${user?.accessToken}` },
+      });
+      const data = await res.json();
+      setLoggingEnabled(data.logging_enabled ?? true);
+      setLogLevel(data.log_level || "INFO");
+    } catch { /* silently ignore */ }
+    finally { setLoggingLoading(false); }
+  }
+
+  async function saveLoggingSettings(enabled, level) {
+    setLoggingMsg("");
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/logging-settings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
+        body: JSON.stringify({ logging_enabled: enabled, log_level: level }),
+      });
+      const data = await res.json();
+      setLoggingEnabled(data.logging_enabled ?? enabled);
+      setLogLevel(data.log_level || level);
+      setLoggingMsg(data.message || (enabled ? "Logging enabled." : "Logging disabled."));
+    } catch (err) { setLoggingMsg(err.message || "Failed to save."); }
+  }
+
   // Load offer codes, influencer summary, and enrollments on mount
   useEffect(() => {
-    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); }
+    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); loadLoggingSettings(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken]);
 
@@ -1091,6 +1125,65 @@ function AdminControlPage({ user }) {
   return (
     <div className="premium-page admin-control-page">
       {aiSettingsPanel}
+
+      {/* ── Logging Settings Panel ── */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Platform Configuration</p>
+          <h3>📋 Logging Settings</h3>
+          <p>Control structured request/event logging for the backend. Disable to reduce log noise in production.</p>
+        </div>
+        {loggingLoading ? <p>Loading…</p> : (
+          <div className="premium-card" style={{ maxWidth: 520 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+              <strong>Platform Logging</strong>
+              <div
+                onClick={() => {
+                  const next = !loggingEnabled;
+                  setLoggingEnabled(next);
+                  saveLoggingSettings(next, logLevel);
+                }}
+                style={{
+                  width: 52, height: 28, borderRadius: 14,
+                  background: loggingEnabled ? "#10b981" : "#ccc",
+                  position: "relative", cursor: "pointer", transition: "background 0.2s", flexShrink: 0,
+                }}>
+                <div style={{
+                  position: "absolute", top: 3, left: loggingEnabled ? 27 : 3,
+                  width: 22, height: 22, borderRadius: "50%", background: "#fff",
+                  transition: "left 0.2s", boxShadow: "0 1px 4px rgba(0,0,0,.2)",
+                }} />
+              </div>
+              <span style={{ fontWeight: 600, color: loggingEnabled ? "#10b981" : "#999" }}>
+                {loggingEnabled ? "Logging ON" : "Logging OFF"}
+              </span>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <label style={{ fontWeight: 600, minWidth: 80 }}>Log Level</label>
+              <select value={logLevel} onChange={e => { setLogLevel(e.target.value); saveLoggingSettings(loggingEnabled, e.target.value); }}
+                style={{ flex: 1, padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface2)", color: "var(--text)", fontFamily: "inherit" }}>
+                <option value="DEBUG">DEBUG — everything (verbose)</option>
+                <option value="INFO">INFO — requests + LLM calls (recommended)</option>
+                <option value="WARNING">WARNING — only warnings + errors</option>
+                <option value="ERROR">ERROR — errors only (minimal)</option>
+              </select>
+            </div>
+
+            <div style={{ background: "rgba(16,185,129,.06)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 8, padding: "10px 14px", fontSize: ".8rem", color: "var(--muted)" }}>
+              <strong style={{ color: "#10b981" }}>What gets logged at INFO level:</strong>
+              <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
+                <li>Every HTTP request: method, path, status, duration_ms, trace_id</li>
+                <li>Every LLM call: provider, model, tokens, cost, duration_ms</li>
+                <li>Lesson generation: grade, subject, source (cache/RAG/LLM)</li>
+                <li>Payment events: order_id, plan_key, success/failure with LP error codes</li>
+              </ul>
+            </div>
+
+            {loggingMsg && <div className="info-box" style={{ marginTop: 12 }}>{loggingMsg}</div>}
+          </div>
+        )}
+      </section>
 
       <section className="premium-section admin-control-hero">
         <div className="premium-header">
