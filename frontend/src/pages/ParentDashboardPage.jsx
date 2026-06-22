@@ -393,10 +393,21 @@ function ParentDashboardPage() {
               ) : (
                 parents.map((parent) => (
                   <div key={parent.id} className="family-person-card parent">
-                    <div className="family-avatar">
-                      {(parent.username ||
-                        parent.email ||
-                        "P")[0].toUpperCase()}
+                    <div className="family-avatar" style={{
+                      overflow: "hidden",
+                      fontSize: parent.avatar && parent.avatar.startsWith("data:") ? 0
+                               : parent.avatar ? "1.5rem" : undefined,
+                      background: parent.avatar ? "transparent" : undefined,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      {parent.avatar && parent.avatar.startsWith("data:") ? (
+                        <img src={parent.avatar} alt={parent.username} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+                      ) : parent.avatar ? (
+                        PRESET_AVATARS.find(a => a.key === parent.avatar)?.emoji ||
+                        (parent.username || parent.email || "P")[0].toUpperCase()
+                      ) : (
+                        (parent.username || parent.email || "P")[0].toUpperCase()
+                      )}
                     </div>
 
                     <div>
