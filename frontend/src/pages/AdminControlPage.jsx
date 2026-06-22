@@ -868,6 +868,59 @@ function AdminControlPage({ user }) {
     }));
   }
 
+  const [collaborators, setCollaborators] = useState([]);
+  const [collabLoading, setCollabLoading] = useState(false);
+  const [collabUsername, setCollabUsername] = useState("");
+  const [collabMsg, setCollabMsg] = useState("");
+  const [collabErr, setCollabErr] = useState("");
+  const [githubTokenMissing, setGithubTokenMissing] = useState(false);
+
+  async function loadCollaborators() {
+    setCollabLoading(true);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators`, {
+        headers: { Authorization: `Bearer ${user?.accessToken}` },
+      });
+      const data = await res.json();
+      if (!data.success && data.error?.includes("GITHUB_TOKEN")) {
+        setGithubTokenMissing(true);
+      } else {
+        setGithubTokenMissing(false);
+        setCollaborators(data.collaborators || []);
+      }
+    } catch { /* silently ignore */ }
+    finally { setCollabLoading(false); }
+  }
+
+  async function inviteCollaborator(e) {
+    e.preventDefault();
+    setCollabMsg(""); setCollabErr("");
+    if (!collabUsername.trim()) return;
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
+        body: JSON.stringify({ github_username: collabUsername.trim(), permission: "push" }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Failed");
+      setCollabMsg(data.message || "Invitation sent!");
+      setCollabUsername("");
+      await loadCollaborators();
+    } catch (err) { setCollabErr(err.message || "Failed to invite."); }
+  }
+
+  async function removeCollaborator(ghUsername) {
+    if (!window.confirm(`Remove @${ghUsername} as blog collaborator?`)) return;
+    try {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators/${ghUsername}`, {
+        method: "DELETE", headers: { Authorization: `Bearer ${user?.accessToken}` },
+      });
+      setCollabMsg(`@${ghUsername} removed.`);
+      await loadCollaborators();
+    } catch (err) { setCollabErr(err.message || "Failed to remove."); }
+  }
+
   async function loadLoggingSettings() {
     setLoggingLoading(true);
     try {
@@ -898,7 +951,7 @@ function AdminControlPage({ user }) {
 
   // Load offer codes, influencer summary, and enrollments on mount
   useEffect(() => {
-    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); loadLoggingSettings(); }
+    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); loadLoggingSettings(); loadCollaborators(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken]);
 
@@ -1125,6 +1178,80 @@ function AdminControlPage({ user }) {
   return (
     <div className="premium-page admin-control-page">
       {aiSettingsPanel}
+
+      {/* ── Blog Collaborators Panel ── */}
+      <section className="premium-section">
+        <div className="premium-header">
+          <p className="eyebrow">Content Management</p>
+          <h3>✍️ Blog Collaborators</h3>
+          <p>Invite GitHub users to edit blog posts directly on GitHub. They can create, edit, and delete <code>.md</code> files in <code>frontend/src/blog/posts/</code>.</p>
+        </div>
+
+        {githubTokenMissing ? (
+          <div className="premium-card" style={{ maxWidth: 560 }}>
+            <div className="error-box" style={{ marginBottom: 14 }}>
+              ⚠️ <strong>GITHUB_TOKEN not configured</strong> — add it to your backend <code>.env</code> to enable collaborator management.
+            </div>
+            <p style={{ fontSize: ".85rem", color: "var(--muted)", marginBottom: 8 }}>Add this to <code>backend/.env</code>:</p>
+            <pre style={{ background: "var(--surface2,#111827)", borderRadius: 8, padding: "10px 14px", fontSize: ".82rem", overflow: "auto" }}>
+{`GITHUB_TOKEN=ghp_your_token_here
+GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
+            </pre>
+            <p style={{ fontSize: ".78rem", color: "var(--muted)", marginTop: 8 }}>
+              Create a token at <a href="https://github.com/settings/tokens" target="_blank" rel="noreferrer" style={{ color: "#6366f1" }}>github.com/settings/tokens</a> with <strong>repo</strong> scope.
+            </p>
+          </div>
+        ) : (
+          <div className="premium-card" style={{ maxWidth: 620 }}>
+            {/* Invite form */}
+            <form onSubmit={inviteCollaborator} style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+              <input
+                type="text"
+                value={collabUsername}
+                onChange={e => setCollabUsername(e.target.value)}
+                placeholder="GitHub username (e.g. blogwriter123)"
+                style={{ flex: 1, minWidth: 200 }}
+                required
+              />
+              <button className="primary-btn" type="submit" style={{ whiteSpace: "nowrap" }}>
+                📨 Invite Collaborator
+              </button>
+            </form>
+
+            {collabMsg && <div className="info-box" style={{ marginBottom: 12 }}>{collabMsg}</div>}
+            {collabErr && <div className="error-box" style={{ marginBottom: 12 }}>{collabErr}</div>}
+
+            {/* Current collaborators */}
+            <h4 style={{ margin: "0 0 12px", fontSize: ".9rem" }}>Current Collaborators</h4>
+            {collabLoading ? <p>Loading…</p> : collaborators.length === 0 ? (
+              <p style={{ color: "var(--muted)", fontSize: ".85rem" }}>No collaborators yet. Invite someone above.</p>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {collaborators.map(c => (
+                  <div key={c.username} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", background: "var(--surface2,#111827)", borderRadius: 8 }}>
+                    {c.avatar && <img src={c.avatar} alt={c.username} style={{ width: 28, height: 28, borderRadius: "50%" }} />}
+                    <div style={{ flex: 1 }}>
+                      <strong>@{c.username}</strong>
+                      <a href={c.profile_url} target="_blank" rel="noreferrer" style={{ marginLeft: 8, fontSize: ".75rem", color: "#6366f1" }}>View profile →</a>
+                    </div>
+                    <button onClick={() => removeCollaborator(c.username)} className="danger-btn" style={{ fontSize: ".78rem", padding: "4px 10px" }}>
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div style={{ marginTop: 16, padding: "10px 14px", background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, fontSize: ".8rem", color: "var(--muted)" }}>
+              <strong style={{ color: "#a5b4fc" }}>How it works:</strong> The collaborator gets an email invitation. Once accepted, they can go to{" "}
+              <a href="https://github.com/pradipbhuyan/likha-poha-ai/tree/main/frontend/src/blog/posts" target="_blank" rel="noreferrer" style={{ color: "#6366f1" }}>
+                GitHub → blog/posts
+              </a>{" "}
+              and click ✏️ to edit any post, or create new <code>.md</code> files. Changes auto-deploy in ~3 minutes.
+            </div>
+          </div>
+        )}
+      </section>
 
       {/* ── Logging Settings Panel ── */}
       <section className="premium-section">

@@ -39,6 +39,8 @@ import ChatWidget from "./components/ChatWidget";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import SignupPage from "./pages/SignupPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 import "./App.css";
 
@@ -347,6 +349,27 @@ function App() {
           window.history.replaceState({}, "", "/");
           setRoutePath("/");
         }}
+      />
+    );
+  }
+
+  if (routePath === "/blog" || routePath.startsWith("/blog/")) {
+    const slug = routePath.startsWith("/blog/") ? routePath.replace("/blog/", "") : null;
+    if (slug) {
+      return (
+        <BlogPostPage
+          slug={slug}
+          onShowLogin={() => { window.history.replaceState({}, "", "/"); setRoutePath("/"); setShowLanding(false); }}
+          onShowSignup={(plan) => { setSignupInitialPlan(plan || "free"); setShowSignup(true); window.history.replaceState({}, "", "/"); setRoutePath("/signup"); }}
+          onBack={() => { window.history.replaceState({}, "", "/blog"); setRoutePath("/blog"); }}
+        />
+      );
+    }
+    return (
+      <BlogPage
+        onShowLogin={() => { window.history.replaceState({}, "", "/"); setRoutePath("/"); setShowLanding(false); }}
+        onShowSignup={(plan) => { setSignupInitialPlan(plan || "free"); setShowSignup(true); window.history.replaceState({}, "", "/"); setRoutePath("/signup"); }}
+        onViewPost={(postSlug) => { window.history.pushState({}, "", `/blog/${postSlug}`); setRoutePath(`/blog/${postSlug}`); }}
       />
     );
   }

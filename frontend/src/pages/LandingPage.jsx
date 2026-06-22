@@ -43,6 +43,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <nav className="lp-nav">
         <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
         <div className="lp-nav-r">
+          <a href="/blog" className="lp-btn-ghost" style={{textDecoration:"none",display:"inline-flex",alignItems:"center"}}>Blog</a>
           <button className="lp-btn-ghost" onClick={onShowLogin}>Login</button>
           <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try Today</button>
         </div>
@@ -187,6 +188,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <a href="#">Home</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
+          <a href="/blog">Blog</a>
           <a href={`mailto:${contactEmail}`}>Contact</a>
           <a href="/refund-policy">Refund Policy</a>
         </div>
