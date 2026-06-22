@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LikhaPoha AI — Landing Page with Promo Video (Mockup)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+       background: #0f172a; color: #f8fafc; line-height: 1.6; }
+
+/* ── NAV ── */
+nav { display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px; background: rgba(15,23,42,.97);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: sticky; top: 0; z-index: 99; }
+.nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; }
+.nav-logo { width: 36px; height: 36px; border-radius: 8px;
+            background: linear-gradient(135deg,#2563eb,#7c3aed);
+            display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.nav-cta { background: linear-gradient(135deg,#2563eb,#7c3aed); color: #fff;
+           padding: 9px 20px; border-radius: 9px; border: none;
+           font-weight: 700; font-size: .9rem; cursor: pointer; }
+
+/* ── HERO ── */
+.hero { text-align: center; padding: 80px 24px 60px;
+        background: linear-gradient(180deg,#0f172a 0%,#1e1b4b 100%); }
+.hero-badge { display: inline-flex; align-items: center; gap: 7px;
+              background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.4);
+              color: #a5b4fc; font-size: .75rem; font-weight: 700;
+              padding: 5px 14px; border-radius: 99px; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(2.2rem,5vw,3.8rem); font-weight: 900;
+           line-height: 1.08; margin-bottom: 20px; }
+.hero h1 span { background: linear-gradient(135deg,#6366f1,#10b981);
+                -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: #94a3b8; font-size: 1.1rem; max-width: 580px; margin: 0 auto 36px; }
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: linear-gradient(135deg,#2563eb,#7c3aed); color: #fff;
+               padding: 14px 28px; border-radius: 11px; border: none;
+               font-weight: 700; font-size: 1rem; cursor: pointer; }
+.btn-ghost { background: transparent; border: 2px solid #334155; color: #93c5fd;
+             padding: 13px 24px; border-radius: 11px;
+             font-weight: 700; font-size: 1rem; cursor: pointer; }
+.hero-stats { display: flex; gap: 40px; justify-content: center;
+              margin-top: 48px; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat strong { display: block; font-size: 1.8rem; font-weight: 900; color: #f8fafc; }
+.stat span { font-size: .8rem; color: #64748b; }
+
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO SECTION — The new promo video section
+   Positioned between hero stats and problem/solution panels.
+   ══════════════════════════════════════════════════════════════════ */
+.video-section {
+  padding: 80px 24px;
+  background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+  text-align: center;
+}
+.video-section .eyebrow {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: #6366f1; margin-bottom: 12px;
+}
+.video-section h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900;
+  margin-bottom: 14px;
+}
+.video-section h2 span {
+  background: linear-gradient(135deg,#6366f1,#10b981);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.video-section .sub {
+  color: #64748b; font-size: 1rem; margin-bottom: 40px;
+  max-width: 560px; margin-left: auto; margin-right: auto;
+}
+/* Video wrapper — 16:9 responsive container */
+.video-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(99,102,241,.2);
+}
+/* Gradient border effect */
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #6366f1, #10b981, #2563eb);
+  z-index: -1;
+}
+/* Placeholder — replace src with real YouTube embed */
+.video-wrapper iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+/* Thumbnail placeholder (shown when no real video yet) */
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.video-placeholder:hover { transform: scale(1.01); }
+.play-btn {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg,#2563eb,#7c3aed);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; box-shadow: 0 8px 32px rgba(37,99,235,.5);
+  transition: transform .2s, box-shadow .2s;
+}
+.play-btn:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,99,235,.7); }
+.video-placeholder p { color: #64748b; font-size: .9rem; }
+.video-duration {
+  position: absolute; bottom: 14px; right: 14px;
+  background: rgba(0,0,0,.75); color: #fff;
+  font-size: .78rem; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+}
+.video-caption {
+  margin-top: 20px; text-align: center;
+  color: #475569; font-size: .85rem;
+}
+/* OPTION B: Modal player (click thumbnail → modal) */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.85); z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-content {
+  position: relative; width: 100%; max-width: 900px;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,.8);
+}
+.modal-content iframe { display: block; width: 100%; aspect-ratio: 16/9; border: none; }
+.modal-close {
+  position: absolute; top: -44px; right: 0;
+  background: transparent; border: 1px solid #334155;
+  color: #f8fafc; border-radius: 8px; padding: 6px 12px;
+  font-size: .85rem; cursor: pointer; font-family: inherit;
+}
+
+/* LAYOUT OPTION LABELS */
+.option-label {
+  display: inline-block; background: rgba(99,102,241,.2);
+  border: 1px solid rgba(99,102,241,.4); color: #a5b4fc;
+  font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+/* ── PROBLEM/SOLUTION (abbreviated) ── */
+.ps-section { padding: 60px 24px; }
+.ps-section h2 { text-align: center; font-size: 1.8rem; font-weight: 900; margin-bottom: 36px; }
+.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 960px; margin: 0 auto; }
+.ps-card { background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 28px; }
+.ps-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+.ps-card h3.bad { color: #ef4444; }
+.ps-card h3.good { color: #22c55e; }
+.ps-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: .88rem; color: #94a3b8; }
+
+/* ── NOTE BOX ── */
+.note-box {
+  background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.3);
+  border-radius: 14px; padding: 28px 32px; max-width: 860px; margin: 0 auto 40px;
+  font-size: .92rem; color: #a5b4fc; line-height: 1.8;
+}
+.note-box h3 { font-size: 1.1rem; color: #f8fafc; margin-bottom: 12px; }
+.note-box table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.note-box th { text-align: left; font-size: .78rem; color: #6366f1; padding: 6px 12px; border-bottom: 1px solid #1e293b; }
+.note-box td { padding: 8px 12px; font-size: .85rem; color: #cbd5e1; border-bottom: 1px solid #1e293b; }
+.note-box td:first-child { color: #94a3b8; }
+
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .hero { padding: 60px 16px 40px; }
+  .ps-grid { grid-template-columns: 1fr; }
+  .video-section { padding: 60px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><div class="nav-logo">✏️</div> LikhaPoha AI</div>
+  <button class="nav-cta">🚀 Try Today</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇮🇳 Built for India · Class 5–10 · CBSE</div>
+  <h1>Your Child's Personal<br /><span>AI Study Tutor</span></h1>
+  <p>Step-wise textbook lessons, instant doubt answers, mock tests, and real-time parent insights — all in one place.</p>
+  <div class="hero-btns">
+    <button class="btn-primary">🚀 Try Today</button>
+    <button class="btn-ghost" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})">▶ Watch Demo</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><strong>700+</strong><span>Chapters (Gr 5–10)</span></div>
+    <div class="stat"><strong>6</strong><span>Core Subjects</span></div>
+    <div class="stat"><strong>42,000+</strong><span>Practice Questions</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     VIDEO SECTION — OPTION A: Inline embedded player
+     Video plays directly on the page. Best for desktop users.
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="video-section" id="video">
+  <p class="eyebrow">See It In Action</p>
+  <span class="option-label">Option A — Inline Player (recommended)</span>
+  <h2>Watch how <span>LikhaPoha AI</span> works</h2>
+  <p class="sub">5-minute walkthrough — from first lesson to parent dashboard, mock tests, and doubt solving</p>
+
+  <div class="video-wrapper">
+    <!--
+      PRODUCTION: Replace this placeholder div with the YouTube iframe below.
+      Upload video to YouTube as "Unlisted" → Get embed link → Paste here.
+
+      <iframe
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1"
+        title="LikhaPoha AI — 5 Minute Demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+
+      Or Vimeo:
+      <iframe
+        src="https://player.vimeo.com/video/YOUR_VIMEO_ID?title=0&byline=0&portrait=0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    -->
+    <!-- LOCAL PREVIEW — HTML5 video tag with actual file -->
+    <video
+      controls
+      preload="metadata"
+      style="width:100%; display:block; background:#000;"
+      poster=""
+    >
+      <source src="file:///Users/a0247716/Pradips_Project/LikhaPohaAI-ReelBot/likha-poha-reel-factory/output/videos/LikhaPoha_AI.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="video-duration">~5 min · 34 MB</div>
+  </div>
+  <p class="video-caption">
+    ⚠️ <strong>LOCAL PREVIEW ONLY</strong> — using local file path for mockup review.
+    Production: host on <strong>YouTube (Unlisted)</strong> for adaptive streaming.
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     VIDEO SECTION — OPTION B: Thumbnail → Modal Player
+     Video thumbnail inline, click to open full-screen modal.
+     Better for mobile.
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="video-section" style="padding-top:20px; background:#0f172a;">
+  <span class="option-label">Option B — Thumbnail + Click-to-Play Modal (recommended for mobile)</span>
+  <h2>See <span>LikhaPoha AI</span> in action</h2>
+  <p class="sub">Click the thumbnail — video opens full-screen. Better experience on phone.</p>
+
+  <div class="video-wrapper" style="cursor:pointer;" onclick="openModal()">
+    <!-- Shows first frame of video as poster when loaded -->
+    <video
+      id="thumb-video"
+      preload="metadata"
+      style="width:100%; display:block; pointer-events:none;"
+      muted
+    >
+      <source src="file:///Users/a0247716/Pradips_Project/LikhaPohaAI-ReelBot/likha-poha-reel-factory/output/videos/LikhaPoha_AI.mp4" type="video/mp4" />
+    </video>
+    <!-- Play button overlay -->
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.3);">
+      <div class="play-btn">▶</div>
+    </div>
+    <div class="video-duration">~5 min</div>
+  </div>
+  <p class="video-caption">Click thumbnail → full-screen modal · ESC or ✕ to close</p>
+</div>
+
+<!-- Modal overlay for Option B -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕ Close</button>
+    <video
+      id="modal-video"
+      controls
+      style="width:100%; display:block; background:#000;"
+    >
+      <source src="file:///Users/a0247716/Pradips_Project/LikhaPohaAI-ReelBot/likha-poha-reel-factory/output/videos/LikhaPoha_AI.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<!-- ── ADVISOR NOTE ── -->
+<div style="padding: 60px 24px 0;">
+  <div class="note-box">
+    <h3>📋 Implementation Plan — Hosting Recommendation</h3>
+    <p>For a 35MB / 5-minute promo video, <strong style="color:#f8fafc">YouTube Unlisted</strong> is the strongly recommended approach. Here's why:</p>
+    <table>
+      <tr><th>Option</th><th>Cost</th><th>Streaming Quality</th><th>Mobile</th><th>Notes</th></tr>
+      <tr><td>YouTube (Unlisted) ✅</td><td>Free</td><td>Adaptive bitrate (360p–4K auto)</td><td>✅ Perfect</td><td>Best choice. No ads on embedded videos.</td></tr>
+      <tr><td>Vimeo Basic</td><td>Free</td><td>Good (fixed quality)</td><td>✅ Good</td><td>5GB/week upload limit. Cleaner player.</td></tr>
+      <tr><td>Cloudinary</td><td>Free tier</td><td>Good with transformations</td><td>✅ Good</td><td>25GB free storage. Auto-transcodes.</td></tr>
+      <tr><td>Supabase Storage</td><td>1GB free</td><td>❌ No adaptive streaming</td><td>⚠️ May buffer</td><td>Not recommended for video.</td></tr>
+    </table>
+    <p style="margin-top:16px; color:#64748b; font-size:.85rem;">
+      <strong style="color:#a5b4fc">Steps to go live:</strong><br/>
+      1. Upload video to <strong>YouTube Studio</strong> → set visibility to <strong>Unlisted</strong><br/>
+      2. Copy the embed URL: <code style="background:#1e293b;padding:2px 6px;border-radius:4px;">https://www.youtube.com/embed/VIDEO_ID</code><br/>
+      3. Replace the placeholder in <code>LandingPage.jsx</code> with the YouTube iframe<br/>
+      4. Add <code>?rel=0&modestbranding=1</code> to hide related videos and reduce YouTube branding
+    </p>
+  </div>
+</div>
+
+<!-- ── PROBLEM/SOLUTION (abbreviated for mockup) ── -->
+<div class="ps-section">
+  <h2>Why Students Struggle at Home</h2>
+  <div class="ps-grid">
+    <div class="ps-card">
+      <h3 class="bad">✗ The Problem</h3>
+      <div class="ps-item"><span>✗</span><span>Tuition costs ₹2,000–8,000/month per subject</span></div>
+      <div class="ps-item"><span>✗</span><span>Parents cannot track what the child studied</span></div>
+      <div class="ps-item"><span>✗</span><span>YouTube videos don't follow CBSE syllabus</span></div>
+    </div>
+    <div class="ps-card">
+      <h3 class="good">✓ LikhaPoha AI Solution</h3>
+      <div class="ps-item"><span>✓</span><span>AI lesson for every chapter — instant, free</span></div>
+      <div class="ps-item"><span>✓</span><span>Parent dashboard shows daily progress</span></div>
+      <div class="ps-item"><span>✓</span><span>Grounded in uploaded NCERT textbooks</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding: 40px 24px 60px; color: #475569; font-size: .85rem;">
+  <p>This is a design mockup. The video placeholder will be replaced with the actual YouTube embed.</p>
+  <p style="margin-top:8px; color:#334155;">Approve placement → implement in <code>LandingPage.jsx</code></p>
+</div>
+
+<script>
+function openModal() {
+  const modal = document.getElementById('modal');
+  const video = document.getElementById('modal-video');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  video.play();
+}
+function closeModal() {
+  const modal = document.getElementById('modal');
+  const video = document.getElementById('modal-video');
+  video.pause();
+  video.currentTime = 0;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Seek thumbnail video to 2s to show a meaningful preview frame
+window.addEventListener('load', () => {
+  const thumb = document.getElementById('thumb-video');
+  if (thumb) { thumb.currentTime = 2; }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>

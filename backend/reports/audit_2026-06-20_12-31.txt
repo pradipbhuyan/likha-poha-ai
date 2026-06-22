@@ -1,0 +1,27 @@
+Lesson Content Audit — With auto-fix | Grade 9
+Generated: 2026-06-20 12:31
+Total defects: 3
+
+── By defect type ──
+  INCOMPLETE_QUESTION               3
+
+── By grade ──
+  Grade 9         3 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 9
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 1: दो बैलों की कथा > Core explanation
+  'Question:' has no task instruction. Preview: <<** हीरा और मेोती बैल अपने घर लौटने के बाद अपने स्वभाव और मित्रता का प्रदर्शन करते हैं। यदि हीरा शांत और सहिष्णु है, और म>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  'Question:' has no task instruction. Preview: <<** झाँसी की रानी लक्ष्मीबाई ने अपने राज्य की रक्षा के लिए युद्ध किया। यदि उन्होंने 1857 में अपने सैनिकों के साथ 10 युद्ध>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   कहानी में ताई और श्मट््ठू का संबंध किस तरह का है? उनके बीच संवाद का अभाव क्यों हुआ? इससे उनके रिश्ते पर क्या प्रभाव>>

@@ -1,0 +1,577 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-20 14:23
+Total defects: 134
+
+── By defect type ──
+  BROKEN_LATEX                     80
+  EMPTY_SECTION                    54
+
+── By grade ──
+  Grade 10       39 defects
+  Grade 5         7 defects
+  Grade 6        13 defects
+  Grade 7        17 defects
+  Grade 8        14 defects
+  Grade 9        44 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in "The Thief's Story"'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for "The Midnight Visitor"'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 7: The Necklace > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples from "The Necklace"'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from "Madam Rides the Bus"'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from "Madam Rides the Bus"'
+
+  [BROKEN_LATEX]
+  Maths > Chapter 1: Real Numbers > Exam-style problems
+  Unmatched $ delimiter — 41 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 10: Circles > Exam-style problems
+  Unmatched $ delimiter — 9 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 12: Surface Areas and Volumes > Concept introduction
+  Unmatched $ delimiter — 25 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 12: Surface Areas and Volumes > Revision and recap
+  Unmatched $ delimiter — 13 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 14: Probability > Worked examples
+  Unmatched $ delimiter — 15 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Polynomials > Revision and recap
+  Unmatched $ delimiter — 73 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Polynomials > Worked examples
+  Unmatched $ delimiter — 53 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Core explanation
+  Unmatched $ delimiter — 53 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Exam-style problems
+  Unmatched $ delimiter — 37 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Revision and recap
+  Unmatched $ delimiter — 45 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 4: Quadratic Equations > Exam preparation
+  Unmatched $ delimiter — 89 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Revision and recap
+  Section appears empty: '### Chapter 5: Arithmetic Progressions - Revision and Recap'
+
+  [BROKEN_LATEX]
+  Maths > Chapter 7: Coordinate Geometry > Concept introduction
+  Unmatched $ delimiter — 13 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 7: Coordinate Geometry > Worked examples
+  Unmatched $ delimiter — 47 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 9: Some Applications of Trigonometry > Concept introduction
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 9: Some Applications of Trigonometry > Revision and recap
+  Unmatched $ delimiter — 5 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Life Processes > Exam-style problems
+  Section appears empty: '### Lesson on Transport in Human Beings and Plants'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Heredity > Revision and recap
+  Section appears empty: '### Sub-topic: Revision and Recap of Heredity'
+
+  [BROKEN_LATEX]
+  Science > Chapter 9: Light – Reflection and Refraction > Exam-style problems
+  Unmatched $ delimiter — 9 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Science > Chapter 9: Light – Reflection and Refraction > Revision and recap
+  Unmatched $ delimiter — 13 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Refraction of Light'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 1: Resources and Development > Exam preparation
+  Section appears empty: '### Lesson on Resources and Development for Class 10'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for Geography - Chapter 7:'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Core explanation
+  Section appears empty: '### Core Explanation: The Impact of Print Culture on Society'
+
+  [BROKEN_LATEX]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Exam preparation
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Exam preparation
+  Section appears empty: '### Lesson on Print Culture and Its Impact in the Modern Wor'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 1: Power-sharing > Exam preparation
+  Section appears empty: '### Lesson on Power-Sharing in Democracy'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 2: Federalism > Exam preparation
+  Section appears empty: '### Lesson on Federalism for Class 10 - Exam Preparation'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Exam preparation
+  Section appears empty: '### Lesson on Political Parties for Class 10 CBSE'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Political Science - Cha'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Exam-style problems
+  Section appears empty: '### Lesson on Outcomes of Democracy for Class 10'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Exam preparation
+  Section appears empty: '### Lesson on Money and Credit: Exam Preparation for Class 1'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples in Money and Credit'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Exam preparation
+  Section appears empty: '### Lesson on Consumer Rights for Class 10 – Exam Preparatio'
+
+
+============================================================
+  Grade 5
+============================================================
+  [EMPTY_SECTION]
+  English > 5. The Frog > Worked Examples
+  Section appears empty: '### Lesson on "The Frog" – Focused Explanation and Worked Ex'
+
+  [BROKEN_LATEX]
+  English > 6. What a Tank! > Worked Examples
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  EVS > Chapter 4: Our School — A Happy Place > Recap
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  EVS > Chapter 9: Rhythms of Nature > Recap
+  Section appears empty: '### Lesson on Rhythms of Nature: Understanding the Pattern o'
+
+  [BROKEN_LATEX]
+  Maths > Chapter 11: Grandmother’s Quilt > What We Learn
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Fractions > Recap
+  Unmatched $ delimiter — 45 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Fractions > Worked Examples
+  Unmatched $ delimiter — 49 math $ signs (must be even)
+
+
+============================================================
+  Grade 6
+============================================================
+  [BROKEN_LATEX]
+  Maths > Chapter 1 Patterns in Mathematics > Worked examples
+  Unmatched $ delimiter — 5 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 5 Prime Time > Revision and recap
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 6 Perimeter and Area > Concept introduction
+  Unmatched $ delimiter — 3 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 6 Perimeter and Area > Revision and recap
+  Unmatched $ delimiter — 5 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 7 Fractions > Worked examples
+  Unmatched $ delimiter — 55 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Nature’s Treasures > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Natural Resources'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Diversity in the Living World > Worked examples
+  Section appears empty: '### Lesson on Grouping Plants and Animals'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Temperature and its Measurement > Concept introduction
+  Section appears empty: '### Lesson on Concept of Temperature and Its Measurement'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Worked examples
+  Section appears empty: '### Lesson on Urban Local Bodies and Their Functions'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Revision and recap
+  Section appears empty: '### Lesson on Oceans and Continents for Grade 6'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Worked examples
+  Section appears empty: '### Lesson on Landforms and Their Significance'
+
+  [BROKEN_LATEX]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Worked examples
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Section appears empty: '### Lesson on Family and Community for Grade 6'
+
+
+============================================================
+  Grade 7
+============================================================
+  [EMPTY_SECTION]
+  English > Unit 1: LEARNING TOGETHER > Worked examples
+  Section appears empty: '### Lesson on Worked Examples for "Learning Together" (Grade'
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 5: Parallel and Intersecting Lines > Concept introduction
+  Unmatched $ delimiter — 23 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 8: Working with Fractions > Concept introduction
+  Unmatched $ delimiter — 21 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Geometric Twins > Worked examples
+  Section appears empty: '### Lesson on Congruence of Triangles Based on the Textbook '
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Concept introduction
+  Unmatched $ delimiter — 11 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Core explanation
+  Unmatched $ delimiter — 9 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Core explanation
+  Unmatched $ delimiter — 23 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Worked examples
+  Section appears empty: '### Sub-topic: Constructing and Bisecting Angles'
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Concept introduction
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Revision and recap
+  Unmatched $ delimiter — 43 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Life Processes in Plants > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Photosynthesis and Respira'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Worked examples
+  Section appears empty: '### Lesson on Adolescence: Changes and Responsibilities'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 3: Climates of India > Core explanation
+  Section appears empty: '### Lesson on Natural Disasters Caused by Climate and Weathe'
+
+  [BROKEN_LATEX]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Concept introduction
+  Unmatched $ delimiter — 3 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Worked examples
+  Section appears empty: '### Lesson on "The Age of Reorganisation" — Focused Explanat'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Worked examples
+  Section appears empty: '### Lesson on Empires and Kingdoms: 6th to 10th Centuries'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Revision and recap
+  Section appears empty: '### Lesson on the Transition Period in Indian History (11th '
+
+
+============================================================
+  Grade 8
+============================================================
+  [EMPTY_SECTION]
+  Hindi > Chapter 7: मत बाँधो > Revision and recap
+  Section appears empty: '### Lesson on "Revision and Recap of Chapter 7: मत बाँधो"'
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 1: A Square and A Cube > Core explanation
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 2: Power Play > Concept introduction
+  Unmatched $ delimiter — 37 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 2: Power Play > Revision and recap
+  Unmatched $ delimiter — 55 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Concept introduction
+  Unmatched $ delimiter — 43 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Core explanation
+  Unmatched $ delimiter — 61 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Worked examples
+  Unmatched $ delimiter — 67 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Core explanation
+  Unmatched $ delimiter — 31 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 2: The Baudhayana-Pythagoras Theorem > Core explanation
+  Unmatched $ delimiter — 27 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 3: Proportional Reasoning-2 > Core explanation
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 3: Proportional Reasoning-2 > Worked examples
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 4: Exploring Some Geometric Themes > Revision and recap
+  Unmatched $ delimiter — 13 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 2 - Chapter 7: Area > Concept introduction
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Exploring the Investigative World of Science > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples in Scientific Investigation'
+
+
+============================================================
+  Grade 9
+============================================================
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Combinatorics > Exam-style problems
+  Unmatched $ delimiter — 9 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Combinatorics > Revision and recap
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Core explanation
+  Unmatched $ delimiter — 163 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Concept introduction
+  Unmatched $ delimiter — 55 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Worked examples
+  Unmatched $ delimiter — 41 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Logarithms > Concept introduction
+  Unmatched $ delimiter — 61 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Mathematics > Advanced - Logarithms > Exam-style problems
+  Unmatched $ delimiter — 31 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Core explanation
+  Unmatched $ delimiter — 55 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Advanced Science > Advanced - Understanding Motion through Experience > Revision and recap
+  Unmatched $ delimiter — 27 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  English > Chapter 7: Packing > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Packing (Grade 9)'
+
+  [EMPTY_SECTION]
+  English > Chapter 8: Follow That Dream > Exam-style problems
+  Section appears empty: '### Lesson on "Follow That Dream" – Exam-Style Problems for '
+
+  [EMPTY_SECTION]
+  English Supplementary Reader > Chapter 4: In the Kingdom of Fools > Concept introduction
+  Section appears empty: '### Concept Introduction: In the Kingdom of Fools'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for "संवादहीन" (Silent/Non'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from राम-लक्षमण-परशुराम सं'
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Core explanation
+  Unmatched $ delimiter — 43 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Revision and recap
+  Unmatched $ delimiter — 85 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Worked examples
+  Unmatched $ delimiter — 73 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 3: The World of Numbers > Revision and recap
+  Unmatched $ delimiter — 33 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 4: Exploring Algebraic Identities > Core explanation
+  Unmatched $ delimiter — 61 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 4: Exploring Algebraic Identities > Revision and recap
+  Unmatched $ delimiter — 89 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Concept introduction
+  Unmatched $ delimiter — 7 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Core explanation
+  Section appears empty: '### Core Explanation: Understanding Sequences and Their Form'
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Algebraic Identities > Core explanation
+  Unmatched $ delimiter — 67 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Area and Perimeter > Revision and recap
+  Unmatched $ delimiter — 3 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Area and Perimeter > Worked examples
+  Unmatched $ delimiter — 9 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Constructions > Worked examples
+  Unmatched $ delimiter — 5 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Linear Equations in Two Variables > Exam-style problems
+  Unmatched $ delimiter — 33 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Number Systems > Exam-style problems
+  Section appears empty: '### Sub-topic: Exam-Style Problems on Repeating Decimals and'
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Polynomials > Concept introduction
+  Unmatched $ delimiter — 53 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Quadrilaterals > Exam-style problems
+  Section appears empty: '### Lesson on Properties of a Parallelogram and Related Theo'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Worked examples
+  Section appears empty: '### Lesson on Worked Examples for SOF-IMO Model Test Paper-1'
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Statistics > Worked examples
+  Unmatched $ delimiter — 7 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths Olympiad > Surface Areas and Volumes > Revision and recap
+  Unmatched $ delimiter — 43 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Revision and recap
+  Unmatched $ delimiter — 3 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Reproduction: How Life Continues > Worked examples
+  Section appears empty: '### Reproduction in Animals: A Focused Lesson'
+
+  [BROKEN_LATEX]
+  Science > Chapter 4: Describing Motion Around Us > Core explanation
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Science > Chapter 6: How Forces Affect Motion > Worked examples
+  Unmatched $ delimiter — 19 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Concept introduction
+  Unmatched $ delimiter — 23 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Journey Inside the Atom > Exam-style problems
+  Section appears empty: '### Sub-topic: Exam-Style Problems on Atomic Structure'
+
+  [BROKEN_LATEX]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Concept introduction
+  Unmatched $ delimiter — 3 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Revision and recap
+  Unmatched $ delimiter — 1 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science Olympiad > Colloids and Solutions > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Colloids and Solutions'
+
+  [BROKEN_LATEX]
+  Science Olympiad > Matter in Our Surroundings > Revision and recap
+  Unmatched $ delimiter — 7 math $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Science Olympiad > Physical and Chemical Changes > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems: Distinguishing Physical a'

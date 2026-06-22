@@ -1,0 +1,1446 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-20 11:26
+Total defects: 353
+
+── By defect type ──
+  INCOMPLETE_WORKED_STEP          226
+  INCOMPLETE_QUESTION              65
+  MISSING_QUICK_CHECK              24
+  MISSING_WORKED_EXAMPLE           21
+  MISSING_SUMMARY                  17
+
+── By grade ──
+  Grade 10      152 defects
+  Grade 7        26 defects
+  Grade 8        37 defects
+  Grade 9       138 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Exam preparation
+  'Question:' has no task instruction. Preview: <<**   Ashish said, "I feel sleepy all the time." Rewrite this in reported speech.  **Solution:**  - **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Core explanation
+  'Question:' has no task instruction. Preview: <<**   Hari Singh, a young thief, is employed by Anil. One night, Hari Singh steals 600 rupees from Anil but later feels g>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Worked examples
+  'Question:' has no task instruction. Preview: <<does stealing always mean a person is dishonest, or can there be circumstances where it is justified?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 6: The Making of a Scientist > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Richard Ebright participated in a science fair with slides of frog tissues. He did not win any prize. What lessons di>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 6: The Making of a Scientist > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 7: The Necklace > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Based on the story "The Necklace," why did Mme Loisel decide to borrow the necklace instead of buying her own? How >>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 8: Bholi > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 8: Bholi > Worked examples
+  'Question:' has no task instruction. Preview: <<Bholi was initially shy and afraid to speak in front of others because of her speech problem. Her teacher encouraged her>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 8: Bholi > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Worked examples
+  'Question:' has no task instruction. Preview: <<**   In the story "The Book That Saved the Earth," how does the Great and Mighty Think-Tank interpret the alien's discov>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 1: A Letter to God > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 3: Two Stories about Flying > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The story describes a young seagull who is afraid to fly. Why does he feel afraid, and how does he overcome his fea>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 3: Two Stories about Flying > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   Valli's wish was to ride the bus at least once. Based on the story, what does her wish tell us about her personalit>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 8: The Sermon at Benares > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 1: A Letter to God > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 3: Two Stories About Flying > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The story describes a young seagull who is afraid to fly. Why does he feel afraid, and how does he overcome his fea>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 3: Two Stories About Flying > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   Valli's wish was to ride the bus at least once. Based on the story, what does her wish tell us about her personalit>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 8: The Sermon at Benares > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 1: सूरदास > Exam preparation
+  'Question:' has no task instruction. Preview: <<** सूरदास की कविता में गोपियों ने उद्धव को यह क्यों कहा कि कृष्ण ने अब राजनीति पढ़ ली है? इस प्रश्न का उत्तर विस्तार से >>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 1: सूरदास > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** सूरदास के पद में गोपियों ने उद्धव को यह क्यों कहा कि "हरि हैं राजनीती पढ़ि आए"? इस वाक्य का अर्थ और संदर्भ स्पष्ट कीज>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 1: सूरदास > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 10: मन्नू भंडारी > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   *How did the influence of different persons shape मन्नू भंडारी's personality as described in her autobiography?*  *>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 11: यतींद्र मिश्र > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   The shahnai is made from a reed called 'narkat' found near rivers. If the reed is 30 cm long and has 6 holes for pl>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   मानव ने आग का आविष्कार किया। इस आविष्कार का क्या अर्थ है? इसे सभ्यता और संस्कृति के संदर्भ में समझाइए।  **Solution:>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 2: तुलसीदास > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Exam preparation
+  'Question:' has no task instruction. Preview: <<**   आपकी जन्म की कहानी, स्कूल की यादें, और जीवन में आई चुनौतियों को लेकर एक आत्मकथा लिखिए। इसमें अपने अनुभवों को सरल और>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   The poet says, "मिला कहाँ वह सुख जिसका मैं स्वप्न देखकर जाग गया।" What does this line mean, and how does it reflect>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   जयशंकर प्रसाद की आत्मकथा में उन्होंने अपने जीवन के अनुभवों को किस तरह व्यक्त किया है? अपने शब्दों में समझाइए।  **So>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  'Question:' has no task instruction. Preview: <<**   सूर्यकांत त्रिपाठी 'निराला' की कविता का मुख्य विषय क्या है? अपने उत्तर में उनके कविता के विषय और संदेश को संक्षेप म>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 5: नागार्जुन > Worked examples
+  'Question:' has no task instruction. Preview: <<**   निम्नलिखित कविता में कवि ने बच्चे की मुस्कान को कैसे व्यक्त किया है? उसके भाव और प्रतीकों का विश्लेषण कीजिए।    **S>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 6: मंगलेश डबराल > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 9: यशपाल > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 1: Real Numbers > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam preparation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 13: Statistics > Core explanation
+  'Question:' has no task instruction. Preview: <<**   The following distribution shows the number of students scoring less than certain marks in an exam:  | Marks (less >>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 13: Statistics > Core explanation
+  Step appears truncated — ends: <<- \( n \) = total number of observations>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 13: Statistics > Worked examples
+  Step appears truncated — ends: <<- \( h \) = class width>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Polynomials > Concept introduction
+  Step appears truncated — ends: <<- Product of zeroes = $-\frac{d}{a}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Polynomials > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Exam preparation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Coordinate Geometry > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  Maths > Chapter 7: Coordinate Geometry > Exam preparation
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Coordinate Geometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Exam-style problems
+  Step appears truncated — ends: <<- **cot A** = adjacent side / opposite side>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 8: Introduction to Trigonometry > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Core explanation
+  Step appears truncated — ends: <<- Balanced: 2Mg + O₂ → 2MgO>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Exam preparation
+  Step appears truncated — ends: <<- Formula: Mg + O₂ → MgO>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 10: The Human Eye and the Colourful World > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 13: Our Environment > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 13: Our Environment > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 2: Acids, Bases and Salts > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 2: Acids, Bases and Salts > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Carbon and Its Compounds > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Carbon and Its Compounds > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Life Processes > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Life Processes > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Life Processes > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Control and Coordination > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Control and Coordination > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: How do Organisms Reproduce? > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: How do Organisms Reproduce? > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Heredity > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 8: Heredity > Exam preparation
+  'Question:' has no task instruction. Preview: <<**   A pea plant with round yellow seeds is crossed with a wrinkled green seed plant. The F1 generation all have round y>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 1: Resources and Development > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 3: Water Resources > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 3: Water Resources > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 4: Agriculture > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Worked examples
+  Step appears truncated — ends: <<- Labour issues>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  Social Science > History - Chapter 2: Nationalism in India > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 1: Power-sharing > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 2: Federalism > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 4: Political Parties > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 4: Political Parties > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 1: Development > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 1: Development > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Salim is a shoe manufacturer who receives an order for 3,000 pairs of shoes. To fulfill this order, he needs to buy>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 3: Money and Credit > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+
+============================================================
+  Grade 7
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: LEARNING TOGETHER > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: LEARNING TOGETHER > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 2: WIT AND HUMOUR > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 3: DREAMS AND DISCOVERIES > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 5: Bravehearts > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 3: फ ू ल और काँटा > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 3: फ ू ल और काँटा > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Worked examples
+  Step appears truncated — ends: <<Step 4: Practical Examples and Activities>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Concept introduction
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Concept introduction
+  Step appears truncated — ends: <<- 360 = 2 × 2 × 2 × 3 × 3 × 5>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Divide 18.7 by 100.  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 1: The Ever-Evolving World of Science > Concept introduction
+  'Question:' has no task instruction. Preview: <<** A scientist wants to understand why some fruits taste sour while others taste sweet. What questions might the scienti>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 1: The Ever-Evolving World of Science > Core explanation
+  'Question:' has no task instruction. Preview: <<**   The following data shows that a paper plane flies farther when it has a longer wingspan. How can asking questions a>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: The Ever-Evolving World of Science > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: The World of Metals and Non-metals > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Shalu notices that her skin has developed pimples, and she feels uncomfortable about her body odour. What personal >>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   The Chola king Rājarāja Chola (985–1014) expanded his kingdom and built a famous temple at Thanjavur. Suppose Rājar>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 2 - Chapter 5: India, a Home to Many > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 2 - Chapter 6: The State, the Government, and You > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+
+============================================================
+  Grade 8
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: Wit and Wisdom > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 1: स्वदेश > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 10: तरुण केे स्वप्न > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > Chapter 2: दो गौरैैयाा > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 3: एक आशीर्वाद > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 3: एक आशीर्वाद > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 4: हरिद्वार > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 6: एक टोकरी भर > Worked examples
+  Step appears truncated — ends: <<$$ 12 - 4 = 8 \text{ kg} $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 7: मत बाँधो > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > Chapter 8: नए मेहेमाान > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   एक कहानी में बताया गया है कि गरमी का मौसम है। रात का समय है। कमरे में पंखा जोर-जोर से चल रहा है। वि�श्‍�नाथा गरमी स>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 8: नए मेहेमाान > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > Chapter 8: नए मेहेमाान > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The story describes a very hot summer day in a house. The room is very warm, and a woman is trying to sleep but fee>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > Chapter 8: नए मेहेमाान > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 1 - Chapter 3: A Story of Numbers > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Add the Egyptian numerals for 15 (represented as three tens and five ones) and 25 (two tens and five ones). Use the>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 5: Tales by Dots and Lines > Worked examples
+  Step appears truncated — ends: <<Median = (41 + 41) / 2 = 41>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Exploring the Investigative World of Science > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Exploring the Investigative World of Science > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Exploring the Investigative World of Science > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 11: Keeping Time with the Skies > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: How Nature Works in Harmony > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 3: Interpreting Health: The Ultimate Treasure > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Interpreting Health: The Ultimate Treasure > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The following data shows the number of dengue cases reported in a hospital over a year:  | Month     | Cases | |--->>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 3: Interpreting Health: The Ultimate Treasure > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Exploring Forces > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: Particulate Nature of Matter > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: The Amazing World of Solutes, Solvents, and Solutions > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: The Amazing World of Solutes, Solvents, and Solutions > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Chapter 1: Natural Resources and Their Use > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Chapter 4: The Colonial Era in India > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Chapter 4: The Colonial Era in India > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   The British built a railway network in India primarily to move raw materials from interior regions to ports for exp>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Chapter 5: Universal Franchise and India’s Electoral System > Revision and recap
+  'Question:' has no task instruction. Preview: <<** The population of eligible voters in India is 900 million. If 720 million people vote in an election, what percentage>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Chapter 5: Universal Franchise and India’s Electoral System > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Chapter 7: Factors of Production > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Chapter 7: Factors of Production > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+
+============================================================
+  Grade 9
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Logarithms > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Sets > Exam-style problems
+  Step appears truncated — ends: <<- $A - B = A \cap B'$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Microscope and Microscopy > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Mixtures and their Separation > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Mixtures and their Separation > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Structure of Atom > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Worked examples
+  Step appears truncated — ends: <<$$ T = W = m \times g $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Work and Energy > Concept introduction
+  Step appears truncated — ends: <<$$ U = \frac{1}{2} k x^2 $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Work and Energy > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 1: How I Taught My Grandmother to Read > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   Why does the narrator initially laugh at her grandmother’s determination to learn at the age of sixty-two?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 1: How I Taught My Grandmother to Read > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 1: How I Taught My Grandmother to Read > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The grandmother in the story decides to learn the Kannada alphabet at age 62, with a goal to read a novel on her ow>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 1: How I Taught My Grandmother to Read > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 1: The Fun They Had > Revision and recap
+  Step appears truncated — ends: <<- **Directed**: guided or led>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 10: Kathmandu > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English > Chapter 10: Kathmandu > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 11: If I Were You > Concept introduction
+  'Question:' has no task instruction. Preview: <<** In "If I Were You," the man pretends to be a threat to the young man. Why does he do this, and how does understanding>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 11: If I Were You > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 11: If I Were You > Exam-style problems
+  Step appears truncated — ends: <<- Application of vocabulary in context>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 12: A Visit to Kaziranga and Sivasagar > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   The chapter mentions Kaziranga as a famous national park. If a question asks, "Why is Kaziranga considered an impor>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 12: A Visit to Kaziranga and Sivasagar > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 2: The Pot Maker > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 2: The Sound of Music > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 3: The Little Girl > Core explanation
+  'Question:' has no task instruction. Preview: <<**   Read the following situation: A grandmother, at the age of sixty-two, decides to learn the Kannada alphabet. She is>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 3: The Little Girl > Worked examples
+  'Question:' has no task instruction. Preview: <<**"Why does the narrator initially laugh at her grandmother’s determination to learn at the age of sixty-two?"**  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 3: Winds of Change > Concept introduction
+  'Question:' has no task instruction. Preview: <<** The chapter discusses how traditional pankhas (fans) have evolved over time due to technological advances and changin>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 4: A Truly Beautiful Mind > Core explanation
+  'Question:' has no task instruction. Preview: <<** The story mentions a grandmother who decides to learn the Kannada alphabet at the age of sixty-two. Why is her decisi>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 4: A Truly Beautiful Mind > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 4: A Truly Beautiful Mind > Worked examples
+  'Question:' has no task instruction. Preview: <<**   In the story "How I Taught My Grandmother to Read," the grandmother's determination to learn at the age of sixty-tw>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 4: Vitamin-M > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Ravi's grandmother often forgets where she puts her glasses. His mother suggests giving her a special "Vitamin-M" to >>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 5: The Snake and the Mirror > Concept introduction
+  'Question:' has no task instruction. Preview: <<** The doctor sees a snake in his room and wants to scare it away without harming it. He notices that the snake is looki>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 5: The Snake and the Mirror > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 5: The Snake and the Mirror > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   In the story "The Snake and the Mirror," the narrator initially laughs at his grandmother’s determination to learn >>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 5: The Snake and the Mirror > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   The story mentions the idiom "passed with flying colours." What does this idiom mean? Use it in a sentence related >>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 5: The Snake and the Mirror > Worked examples
+  'Question:' has no task instruction. Preview: <<**   In "The Snake and the Mirror," the narrator initially laughs at his grandmother’s determination to learn at the age>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 6: My Childhood > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   In the story "My Childhood," the grandmother decides to learn the Kannada alphabet at the age of sixty-two. Why doe>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 6: My Childhood > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 6: Twin Melodies > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 7: Carrier of Words > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 7: Packing > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 8: Follow That Dream > Worked examples
+  'Question:' has no task instruction. Preview: <<** A student dreams of becoming a professional musician. She plans to practice 4 hours daily, attend music classes, and >>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 8: Follow That Dream > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 8: Reach for the Top > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Rina wants to become a scientist, but she finds difficult to understand complex experiments. She feels like giving up>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 8: Reach for the Top > Core explanation
+  'Question:' has no task instruction. Preview: <<** A student wants to participate in a school sports event but is nervous about competing. She doubts her abilities. How>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 8: Reach for the Top > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English > Chapter 8: Reach for the Top > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 9: The Bond of Love > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   The story "The Bond of Love" describes a girl’s affection for her dog. Based on the story, why does the girl consid>>
+
+  [INCOMPLETE_QUESTION]
+  English Supplementary Reader > Chapter 1: The Lost Child > Core explanation
+  'Question:' has no task instruction. Preview: <<Why did the boy feel scared when he was lost, and how did the adults help him? Think about the boy’s feelings and the ac>>
+
+  [INCOMPLETE_QUESTION]
+  English Supplementary Reader > Chapter 1: The Lost Child > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   In the story "The Lost Child," the child is very shy and afraid of losing his parents. Why does the child feel scar>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 1: The Lost Child > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 10: The Beggar > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 10: The Beggar > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 2: The Adventures of Toto > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 2: The Adventures of Toto > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English Supplementary Reader > Chapter 2: The Adventures of Toto > Worked examples
+  'Question:' has no task instruction. Preview: <<**   In the story "The Adventures of Toto," Toto is a mischievous monkey who causes trouble in the house. One day, Toto >>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 3: Iswaran the Storyteller > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English Supplementary Reader > Chapter 3: Iswaran the Storyteller > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   In the story "Iswaran the Storyteller," why does Iswaran enjoy telling stories to the family? Support your answer w>>
+
+  [MISSING_QUICK_CHECK]
+  English Supplementary Reader > Chapter 3: Iswaran the Storyteller > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English Supplementary Reader > Chapter 5: The Happy Prince > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   In "The Happy Prince," the statue of the prince is covered with gold and jewels. Why does the prince decide to help>>
+
+  [MISSING_QUICK_CHECK]
+  English Supplementary Reader > Chapter 5: The Happy Prince > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 6: Weathering the Storm in Ersama > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 7: The Last Leaf > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 7: The Last Leaf > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English Supplementary Reader > Chapter 7: The Last Leaf > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 8: A House Is Not a Home > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 8: A House Is Not a Home > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 8: A House Is Not a Home > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English Supplementary Reader > Chapter 8: A House Is Not a Home > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 9: The Accidental Tourist > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English Supplementary Reader > Chapter 9: The Accidental Tourist > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_QUICK_CHECK]
+  English Supplementary Reader > Chapter 9: The Accidental Tourist > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 1: दो बैलों की कथा > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 1: दो बैलों की कथा > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 1: दो बैलों की कथा > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 11: झाँसी की रानी > Core explanation
+  'Question:' has no task instruction. Preview: <<** Lakshmi Bai was born on November 22, 1830, and she fought in the 1857 rebellion. How old was she during the rebellion>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: घर की याद > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: घर की याद > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 2:  क््या लिखू > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   कहानी में ताई और श्मट््ठू का संबंध संवादहीन क्यों दिखाया गया है? कहानी में संवादहीनता का क्या असर पड़ा है? उदाहरण द>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   The story describes a scene where Tayi (Aunt) is worried about Shmtu (the parrot) and feels sad because it is silen>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: संवादहीन > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   In the story, Tayi and Shamtthu share a special bond. Tayi often talks to Shamtthu, and Shamtthu responds with gest>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: संवादहीन > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 4: ऐसी भी बातीें होती हैं > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Worked examples
+  'Question:' has no task instruction. Preview: <<The following data shows a scene at "हववेकानंद चट्टान" and surrounding environment. Based on the description, analyze th>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 7: मैं और मेरा देश > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 7: मैं और मेरा देश > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 8: पद > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 8: पद > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The chapter describes परशुराम's anger when he sees राम with the bow. Suppose परशुराम yells, "Who dares to break my >>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: Exploring Algebraic Identities > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: Exploring Algebraic Identities > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: The Mathematics of Maybe: Introduction to Probability > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Area and Perimeter > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Area and Perimeter > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Circles > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Coordinate Geometry > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Coordinate Geometry > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Logical Reasoning > Worked examples
+  Step appears truncated — ends: <<- Relationships between figures or numbers>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Quadrilaterals > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Sequences and Progressions > Concept introduction
+  Step appears truncated — ends: <<- General term: $a_n = n^2$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Statistics > Exam-style problems
+  Step appears truncated — ends: <<$$ \bar{x} = \frac{157}{10} = 15.7 $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Statistics > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Statistics > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 13: Earth as a System: Energy, Matter, and Life > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 13: Earth as a System: Energy, Matter, and Life > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 13: Earth as a System: Energy, Matter, and Life > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Revision and recap
+  Step appears truncated — ends: <<$$ W = F \times s $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Journey Inside the Atom > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Atomic Foundations of Matter > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Atomic Foundations of Matter > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 2 - Is Matter Pure Around Us > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 3 - Atoms and Molecules > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 5 - Cell The Fundamental Unit of Life > Exam-style problems
+  Step appears truncated — ends: <<- **>>

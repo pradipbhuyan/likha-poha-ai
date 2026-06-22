@@ -1,0 +1,9 @@
+Lesson Content Audit — Audit-only
+Generated: 2026-06-19 20:06
+Total defects: 0
+
+── By defect type ──
+
+── By grade ──
+
+── Defect details ──

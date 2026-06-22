@@ -1,0 +1,68 @@
+{
+  "run_label": "With auto-fix",
+  "generated_at": "2026-06-20T11:38:09.308445",
+  "total_defects": 5,
+  "defects_by_type": {
+    "INCOMPLETE_QUESTION": 5
+  },
+  "defects_by_grade": {
+    "Grade 7": 5
+  },
+  "defects": [
+    {
+      "id": "3093532c-67ac-45bf-b86b-e8f2d3dddec4",
+      "grade": "Grade 7",
+      "subject": "Social Science",
+      "chapter": "Part 1 - Chapter 6: The Age of Reorganisation",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   The Udayagiri caves feature intricate carvings made nearly two thousand years ago. Suppose an artisan used a chisel>>",
+      "created_at": "2026-06-14T05:50:14.085085+00:00"
+    },
+    {
+      "id": "863486de-4d3f-4563-9fc5-3709bb9cdd3d",
+      "grade": "Grade 7",
+      "subject": "Social Science",
+      "chapter": "Part 1 - Chapter 7: The Gupta Era: An Age of Tireless Creativity",
+      "step_title": "Revision and recap",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   The Gupta ruler Samudragupta is celebrated for his military conquests and cultural achievements. Suppose he fought >>",
+      "created_at": "2026-06-14T05:51:38.573026+00:00"
+    },
+    {
+      "id": "39a7f893-439e-43cc-a3a5-f0a7fa40cbaf",
+      "grade": "Grade 7",
+      "subject": "Social Science",
+      "chapter": "Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   The Chola dynasty was a powerful kingdom in South India during the 9th and 10th centuries. They built grand temples>>",
+      "created_at": "2026-06-14T06:00:12.666705+00:00"
+    },
+    {
+      "id": "a635fc34-c8c8-4a02-9355-8c8bc89263dc",
+      "grade": "Grade 7",
+      "subject": "Social Science",
+      "chapter": "Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   Suppose a king rules over a large region but wants to keep control over distant parts of his kingdom. He appoints t>>",
+      "created_at": "2026-06-14T06:00:35.594983+00:00"
+    },
+    {
+      "id": "2aebc451-d74b-4dc1-8198-82738073a931",
+      "grade": "Grade 7",
+      "subject": "Social Science",
+      "chapter": "Part 2 - Chapter 7: Infrastructure: Engine of India’s Development",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** The Indian Railway network in 2024 covers over 1,30,000 km, making it the fourth-largest in the world. If a new railw>>",
+      "created_at": "2026-06-14T06:04:58.441694+00:00"
+    }
+  ]
+}

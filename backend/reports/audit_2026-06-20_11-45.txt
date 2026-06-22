@@ -1,0 +1,9 @@
+Lesson Content Audit — Audit-only | Grade 10
+Generated: 2026-06-20 11:45
+Total defects: 0
+
+── By defect type ──
+
+── By grade ──
+
+── Defect details ──

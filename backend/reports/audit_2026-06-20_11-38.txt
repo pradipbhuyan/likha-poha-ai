@@ -1,0 +1,35 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-20 11:38
+Total defects: 5
+
+── By defect type ──
+  INCOMPLETE_QUESTION               5
+
+── By grade ──
+  Grade 7         5 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 7
+============================================================
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Worked examples
+  'Question:' has no task instruction. Preview: <<**   The Udayagiri caves feature intricate carvings made nearly two thousand years ago. Suppose an artisan used a chisel>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 7: The Gupta Era: An Age of Tireless Creativity > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   The Gupta ruler Samudragupta is celebrated for his military conquests and cultural achievements. Suppose he fought >>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Core explanation
+  'Question:' has no task instruction. Preview: <<**   The Chola dynasty was a powerful kingdom in South India during the 9th and 10th centuries. They built grand temples>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Worked examples
+  'Question:' has no task instruction. Preview: <<**   Suppose a king rules over a large region but wants to keep control over distant parts of his kingdom. He appoints t>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Concept introduction
+  'Question:' has no task instruction. Preview: <<** The Indian Railway network in 2024 covers over 1,30,000 km, making it the fourth-largest in the world. If a new railw>>

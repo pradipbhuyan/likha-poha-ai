@@ -1,0 +1,3746 @@
+Lesson Content Audit — Audit-only
+Generated: 2026-06-20 14:20
+Total defects: 926
+
+── By defect type ──
+  EMPTY_SECTION                   893
+  PLACEHOLDER_TEXT                 31
+  BROKEN_LATEX                      2
+
+── By grade ──
+  Grade 10      264 defects
+  Grade 5        62 defects
+  Grade 6       102 defects
+  Grade 7       134 defects
+  Grade 8       112 defects
+  Grade 9       252 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in "The Thief's Story"'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for "The Midnight Visitor"'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Revision and recap
+  Placeholder text found: <<ictionary is a book ________________________________.  **Sol>>
+
+  [PLACEHOLDER_TEXT]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Worked examples
+  Placeholder text found: <<ictionary is a book ________________________________"  **Ste>>
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 6: The Making of a Scientist > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 6: The Making of a Scientist > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [PLACEHOLDER_TEXT]
+  English > Supplementary Reader - Chapter 7: The Necklace > Exam preparation
+  Placeholder text found: <<ronoun: - "The girl ________ won the best actor award is my >>
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 7: The Necklace > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples from "The Necklace"'
+
+  [EMPTY_SECTION]
+  English > Supplementary Reader - Chapter 8: Bholi > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 1: A Letter to God > Concept introduction
+  Placeholder text found: <<d Lencho the letter ______________."  **Solution**: - Step 1>>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 1: A Letter to God > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown of exam preparation'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 1: A Letter to God > Exam-style problems
+  Placeholder text found: <<s about a scientist __________________________."  **Options >>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 1: A Letter to God > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 1: A Letter to God > Revision and recap
+  Placeholder text found: <<ictionary is a book ________________________________."   - F>>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 4: From the Diary of Anne Frank > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 4: From the Diary of Anne Frank > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 4: From the Diary of Anne Frank > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 5: Glimpses of India > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 5: Glimpses of India > Exam preparation
+  Placeholder text found: <<le:   "The students __________ (watch) the documentary when >>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 5: Glimpses of India > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 5: Glimpses of India > Exam-style problems
+  Placeholder text found: << "The children have __________ (use) the new computers for t>>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 5: Glimpses of India > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 5: Glimpses of India > Revision and recap
+  Placeholder text found: <<articiple:   People __________ (infect) the water with waste>>
+
+  [PLACEHOLDER_TEXT]
+  English > Text Book - Chapter 5: Glimpses of India > Worked examples
+  Placeholder text found: <<against the changes ______________.  **Step 1:** Identify th>>
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 6: Mijbil the Otter > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from "Madam Rides the Bus"'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 8: The Sermon at Benares > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 9: The Proposal > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Text Book - Chapter 9: The Proposal > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 1: A Letter to God > Concept introduction
+  Placeholder text found: <<d Lencho the letter ______________."  **Solution**: - Step 1>>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 1: A Letter to God > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown of exam preparation'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 1: A Letter to God > Exam-style problems
+  Placeholder text found: <<s about a scientist __________________________."  **Options >>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 1: A Letter to God > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 1: A Letter to God > Revision and recap
+  Placeholder text found: <<ictionary is a book ________________________________."   - F>>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown of answering exam questions'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 5: Glimpses of India > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 5: Glimpses of India > Exam preparation
+  Placeholder text found: <<le:   "The students __________ (watch) the documentary when >>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 5: Glimpses of India > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 5: Glimpses of India > Exam-style problems
+  Placeholder text found: << "The children have __________ (use) the new computers for t>>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 5: Glimpses of India > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 5: Glimpses of India > Revision and recap
+  Placeholder text found: <<articiple:   People __________ (infect) the water with waste>>
+
+  [PLACEHOLDER_TEXT]
+  English > Workbook - Chapter 5: Glimpses of India > Worked examples
+  Placeholder text found: <<against the changes ______________.  **Step 1:** Identify th>>
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 6: Mijbil the Otter > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from "Madam Rides the Bus"'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 8: The Sermon at Benares > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 9: The Proposal > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Workbook - Chapter 9: The Proposal > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Core explanation
+  Section appears empty: '## Core Explanation: मन्नू भंडारी का आत्मकथ्य'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 5: नागार्जुन > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 6: मंगलेश डबराल > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam-style problems
+  Section appears empty: '## परीक्षा-शैली समस्या का अभ्यास'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 9: यशपाल > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 9: यशपाल > Worked examples
+  Section appears empty: '## Step-by-step Explanation of a Typical Worked Example:'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Real Numbers > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Real Numbers > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Real Numbers > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Real Numbers > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10: Circles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10: Circles > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown of solving exam-style problems'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10: Circles > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Areas Related to Circles > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam preparation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam-style problems
+  Section appears empty: '## Step-by-step breakdown for solving exam-style problems'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Surface Areas and Volumes > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Statistics > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 14: Probability > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 14: Probability > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 14: Probability > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 14: Probability > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Polynomials > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Polynomials > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Polynomials > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Polynomials > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Polynomials > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Concept introduction
+  Section appears empty: '## Algebraic Methods for Solving'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Core explanation
+  Section appears empty: '## Step-by-step Explanation'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Exam preparation
+  Section appears empty: '## Step 4: Algebraic Methods to Solve the Pair'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Exam-style problems
+  Section appears empty: '## Step-by-step explanation'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Worked examples
+  Section appears empty: '## Algebraic Methods for Solving'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Quadratic Equations > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Quadratic Equations > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Quadratic Equations > Exam preparation
+  Section appears empty: '## Step-by-step teaching'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Quadratic Equations > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Quadratic Equations > Revision and recap
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Revision and recap
+  Section appears empty: '### Chapter 5: Arithmetic Progressions - Revision and Recap'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Arithmetic Progressions > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Triangles > Worked examples
+  Section appears empty: '## How to Prove Two Triangles are Similar'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: Coordinate Geometry > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: Coordinate Geometry > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: Coordinate Geometry > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Introduction to Trigonometry > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Introduction to Trigonometry > Exam preparation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Introduction to Trigonometry > Worked examples
+  Section appears empty: '## Step-by-step breakdown of key concepts and examples'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9: Some Applications of Trigonometry > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9: Some Applications of Trigonometry > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Chemical Reactions and Equations > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Chemical Reactions and Equations > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Chemical Reactions and Equations > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Chemical Reactions and Equations > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: The Human Eye and the Colourful World > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: The Human Eye and the Colourful World > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: The Human Eye and the Colourful World > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: The Human Eye and the Colourful World > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: The Human Eye and the Colourful World > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Electricity > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Electricity > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Electricity > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Electricity > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Electricity > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Magnetic Effects of Electric Current > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Magnetic Effects of Electric Current > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Magnetic Effects of Electric Current > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Magnetic Effects of Electric Current > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Magnetic Effects of Electric Current > Worked examples
+  Section appears empty: '## 4. Step-by-step breakdown of a typical worked example'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Our Environment > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Our Environment > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Our Environment > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Our Environment > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Acids, Bases and Salts > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Acids, Bases and Salts > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Acids, Bases and Salts > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Metals and Non-metals > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Metals and Non-metals > Exam-style problems
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Metals and Non-metals > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Carbon and Its Compounds > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Life Processes > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Life Processes > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Life Processes > Exam-style problems
+  Section appears empty: '### Lesson on Transport in Human Beings and Plants'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Life Processes > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Control and Coordination > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: How do Organisms Reproduce? > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: How do Organisms Reproduce? > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Heredity > Revision and recap
+  Section appears empty: '### Sub-topic: Revision and Recap of Heredity'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Heredity > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Light – Reflection and Refraction > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Refraction of Light'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 1: Resources and Development > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 1: Resources and Development > Exam preparation
+  Section appears empty: '### Lesson on Resources and Development for Class 10'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 1: Resources and Development > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 1: Resources and Development > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 2: Forest and Wildlife Resources > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 2: Forest and Wildlife Resources > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 2: Forest and Wildlife Resources > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 3: Water Resources > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 3: Water Resources > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 3: Water Resources > Worked examples
+  Section appears empty: '## Step-by-step Breakdown of a Worked Example'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 4: Agriculture > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 4: Agriculture > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 4: Agriculture > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 5: Minerals and Energy Resources > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for Geography - Chapter 7:'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 2: Nationalism in India > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 2: Nationalism in India > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 3: The Making of a Global World > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 3: The Making of a Global World > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 3: The Making of a Global World > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Core explanation
+  Section appears empty: '### Core Explanation: The Impact of Print Culture on Society'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Exam preparation
+  Section appears empty: '### Lesson on Print Culture and Its Impact in the Modern Wor'
+
+  [EMPTY_SECTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 1: Power-sharing > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 1: Power-sharing > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 1: Power-sharing > Exam preparation
+  Section appears empty: '### Lesson on Power-Sharing in Democracy'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 1: Power-sharing > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 2: Federalism > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 2: Federalism > Exam preparation
+  Section appears empty: '### Lesson on Federalism for Class 10 - Exam Preparation'
+
+  [PLACEHOLDER_TEXT]
+  Social Science > Political Science - Chapter 2: Federalism > Revision and recap
+  Placeholder text found: <<nited States is a **__________** type of federation, all the>>
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Revision and recap
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Exam preparation
+  Section appears empty: '### Lesson on Political Parties for Class 10 CBSE'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 4: Political Parties > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Political Science - Cha'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Political Science - Chapter 5: Outcomes of Democracy > Exam-style problems
+  Section appears empty: '### Lesson on Outcomes of Democracy for Class 10'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 1: Development > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 1: Development > Exam-style problems
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 1: Development > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 2: Sectors of the Indian Economy > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 2: Sectors of the Indian Economy > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 2: Sectors of the Indian Economy > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 2: Sectors of the Indian Economy > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Exam preparation
+  Section appears empty: '### Lesson on Money and Credit: Exam Preparation for Class 1'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 3: Money and Credit > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples in Money and Credit'
+
+  [BROKEN_LATEX]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Concept introduction
+  Unmatched $ delimiter — 7 standalone $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [BROKEN_LATEX]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Core explanation
+  Unmatched $ delimiter — 5 standalone $ signs (must be even)
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Exam preparation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Exam preparation
+  Section appears empty: '### Lesson on Consumer Rights for Class 10 – Exam Preparatio'
+
+  [PLACEHOLDER_TEXT]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Exam preparation
+  Placeholder text found: <<essal Commission,   [Address],*  *Subject: Complaint regardi>>
+
+
+============================================================
+  Grade 5
+============================================================
+  [EMPTY_SECTION]
+  English > 1. Papa’s Spectacles > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 10. Glass Bangles > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > 10. Glass Bangles > Recap
+  Placeholder text found: <<each:  - Festivals: ______________, ______________, ________>>
+
+  [EMPTY_SECTION]
+  English > 2. Gone with the Scooter > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 3. The Rainbow > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 3. The Rainbow > What We Learn
+  Section appears empty: '## Step-by-Step Breakdown'
+
+  [EMPTY_SECTION]
+  English > 3. The Rainbow > Worked Examples
+  Section appears empty: '## Focused Step-by-Step Lesson on "Worked Examples" for "The'
+
+  [PLACEHOLDER_TEXT]
+  English > 4. The Wise Parrot > Worked Examples
+  Placeholder text found: <<erfect tense.  a) I __________ (visit) Delhi many times.   b>>
+
+  [EMPTY_SECTION]
+  English > 5. The Frog > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 5. The Frog > What We Learn
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  English > 5. The Frog > Worked Examples
+  Section appears empty: '### Lesson on "The Frog" – Focused Explanation and Worked Ex'
+
+  [EMPTY_SECTION]
+  English > 6. What a Tank! > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 6. What a Tank! > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 6. What a Tank! > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 7. Gilli Danda > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 7. Gilli Danda > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 9. Vocation > Recap
+  Section appears empty: '## Lesson on Recap of Common Errors in Sentences (Grade 5, C'
+
+  [EMPTY_SECTION]
+  English > 9. Vocation > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > 9. Vocation > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 1: Water — The Essence of Life > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 10: Earth — Our Shared Home > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 2: Journey of a River > Recap
+  Section appears empty: '## Lesson on the Journey of a River: How Rivers Support Life'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 2: Journey of a River > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 2: Journey of a River > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 4: Our School — A Happy Place > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 5: Our Vibrant Country > Worked Examples
+  Section appears empty: '## 4. Step-by-step Breakdown of a Worked Example'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 6: Some Unique Places > Recap
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 6: Some Unique Places > What We Learn
+  Section appears empty: '## 3. Step-by-Step Breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 6: Some Unique Places > Worked Examples
+  Section appears empty: '## Step-by-step approach to solving questions'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 7: Energy — How Things Work > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 8: Clothes — How Things are Made > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  EVS > Chapter 9: Rhythms of Nature > Recap
+  Section appears empty: '### Lesson on Rhythms of Nature: Understanding the Pattern o'
+
+  [EMPTY_SECTION]
+  Hindi > 5. सुंदरिया > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 5. सुंदरिया > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 5. सुंदरिया > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: We the Travellers — I > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: We the Travellers — I > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10: Symmetrical Designs > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Grandmother’s Quilt > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 11: Grandmother’s Quilt > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 12: Racing Seconds > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 13: Animal Jumps > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 15: Data Through Pictures > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 15: Data Through Pictures > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 15: Data Through Pictures > Worked Examples
+  Section appears empty: '## Step-by-step explanation of how to solve pictograph probl'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Fractions > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Fractions > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Fractions > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: We the Travellers — II > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  Maths > Chapter 4: We the Travellers — II > Worked Examples
+  Placeholder text found: <<t:   1301   - 839   ______  **Step 4:**   Subtract units: 1 >>
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Far and Near > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: Far and Near > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: The Dairy Farm > Recap
+  Section appears empty: '## Step-by-Step Learning'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: The Dairy Farm > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: The Dairy Farm > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: Shapes and Patterns > Recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: Shapes and Patterns > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Weight and Capacity > Recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Weight and Capacity > What We Learn
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Weight and Capacity > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9: Coconut Farm > What We Learn
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9: Coconut Farm > Worked Examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+
+============================================================
+  Grade 6
+============================================================
+  [EMPTY_SECTION]
+  English > Unit 1: Fables and Folk Tales > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 2: Friendship > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: Nurturing Nature > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: Nurturing Nature > Worked examples
+  Section appears empty: '## Step-by-step Breakdown of a Worked Example'
+
+  [PLACEHOLDER_TEXT]
+  English > Unit 4: Sports and Wellness > Worked examples
+  Placeholder text found: <<xibility and mental _____________. It also increases muscula>>
+
+  [EMPTY_SECTION]
+  Hindi > 11. चेतक की वीरता > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Worked examples
+  Section appears empty: '## Step-by-step breakdown of a typical worked example'
+
+  [EMPTY_SECTION]
+  Hindi > 13. पेड़ की बात > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 13. पेड़ की बात > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > 13. पेड़ की बात > Worked examples
+  Section appears empty: '## Step-by-step Breakdown of a Typical Worked Example'
+
+  [EMPTY_SECTION]
+  Hindi > 8. समरिया और मबहू नृत्य > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Hindi > 9. मैया मैं नमहं माखन खायो > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1 Patterns in Mathematics > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1 Patterns in Mathematics > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1 Patterns in Mathematics > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1 Patterns in Mathematics > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10 The Other Side of Zero > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10 The Other Side of Zero > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 10 The Other Side of Zero > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2 Lines and Angles > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2 Lines and Angles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2 Lines and Angles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2 Lines and Angles > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3 Number Play > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3 Number Play > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3 Number Play > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3 Number Play > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4 Data Handling and Presentation > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4 Data Handling and Presentation > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4 Data Handling and Presentation > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4 Data Handling and Presentation > Worked examples
+  Section appears empty: '## Step-by-step breakdown of a typical worked example'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5 Prime Time > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5 Prime Time > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5 Prime Time > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6 Perimeter and Area > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6 Perimeter and Area > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6 Perimeter and Area > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6 Perimeter and Area > Worked examples
+  Section appears empty: '## Step-by-step breakdown of solving perimeter and area prob'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7 Fractions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7 Fractions > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7 Fractions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7 Fractions > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8 Playing with Constructions > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8 Playing with Constructions > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8 Playing with Constructions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9 Symmetry > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9 Symmetry > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 9 Symmetry > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Living Creatures: Exploring their Characteristics > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Living Creatures: Exploring their Characteristics > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Living Creatures: Exploring their Characteristics > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Nature’s Treasures > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Natural Resources'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Beyond Earth > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Diversity in the Living World > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Diversity in the Living World > Worked examples
+  Section appears empty: '### Lesson on Grouping Plants and Animals'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Exploring Magnets > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Exploring Magnets > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Exploring Magnets > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Measurement of Length and Motion > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Measurement of Length and Motion > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Measurement of Length and Motion > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Materials Around Us > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Materials Around Us > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Temperature and its Measurement > Concept introduction
+  Section appears empty: '### Lesson on Concept of Temperature and Its Measurement'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Temperature and its Measurement > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Temperature and its Measurement > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Temperature and its Measurement > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: A Journey through States of Water > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: A Journey through States of Water > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Methods of Separation in Everyday Life > Core explanation
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Part 4 - 4. Timeline and Sources of History > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Part 4 - 4. Timeline and Sources of History > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Part 4 - 4. Timeline and Sources of History > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > History - Part 4 - 4. Timeline and Sources of History > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 1 - 1. Locating Places on the Earth > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 1 - 1. Locating Places on the Earth > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 1 - 1. Locating Places on the Earth > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Revision and recap
+  Section appears empty: '## Lesson on Grassroots Democracy and Governance'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Worked examples
+  Section appears empty: '### Lesson on Urban Local Bodies and Their Functions'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 14 - 14. Economic Activities Around Us > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Revision and recap
+  Section appears empty: '### Lesson on Oceans and Continents for Grade 6'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Worked examples
+  Section appears empty: '## 5. Step-by-step breakdown of a worked example'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Worked examples
+  Section appears empty: '### Lesson on Landforms and Their Significance'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 5 - 5. India, That Is Bharat > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 5 - 5. India, That Is Bharat > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 5 - 5. India, That Is Bharat > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Section appears empty: '### Lesson on Family and Community for Grade 6'
+
+
+============================================================
+  Grade 7
+============================================================
+  [EMPTY_SECTION]
+  English > Unit 1: LEARNING TOGETHER > Worked examples
+  Section appears empty: '### Lesson on Worked Examples for "Learning Together" (Grade'
+
+  [EMPTY_SECTION]
+  English > Unit 2: WIT AND HUMOUR > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: DREAMS AND DISCOVERIES > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: DREAMS AND DISCOVERIES > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 5: Bravehearts > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > पाठ 10: मुीरा का़े पाद > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > पाठ 10: मुीरा का़े पाद > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > पाठ 7: वषार्-बहार > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > पाठ 8: िबरजू महाराज से साक्षाार > Core explanation
+  Section appears empty: '## Step-by-step breakdown:'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: Large Numbers Around Us > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: Large Numbers Around Us > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: Large Numbers Around Us > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: Large Numbers Around Us > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Arithmetic Expressions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Arithmetic Expressions > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Arithmetic Expressions > Revision and recap
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Peek Beyond the Point > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Peek Beyond the Point > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Peek Beyond the Point > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Peek Beyond the Point > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Expressions using Letter-Numbers > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Expressions using Letter-Numbers > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Expressions using Letter-Numbers > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Parallel and Intersecting Lines > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Parallel and Intersecting Lines > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: Number Play > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: Number Play > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: Number Play > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: Number Play > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 7: A Tale of Three Intersecting Lines > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 7: A Tale of Three Intersecting Lines > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 8: Working with Fractions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 8: Working with Fractions > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 8: Working with Fractions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 8: Working with Fractions > Worked examples
+  Section appears empty: '## Step-by-step breakdown of solving problems with fractions'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Geometric Twins > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Geometric Twins > Worked examples
+  Section appears empty: '### Lesson on Congruence of Triangles Based on the Textbook '
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Concept introduction
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Worked examples
+  Section appears empty: '## Step-by-step Explanation'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Connecting the Dots… > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Connecting the Dots… > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Connecting the Dots… > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Worked examples
+  Section appears empty: '### Sub-topic: Constructing and Bisecting Angles'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Revision and recap
+  Section appears empty: '## Step-by-step Lesson'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Life Processes in Plants > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Life Processes in Plants > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Life Processes in Plants > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples on Photosynthesis and Respira'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Light: Shadows and Reflections > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Light: Shadows and Reflections > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Light: Shadows and Reflections > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: Earth, Moon, and the Sun > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Exploring Substances: Acids, Bases and Neutral > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Exploring Substances: Acids, Bases and Neutral > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Electricity: Circuits and Their Components > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Electricity: Circuits and Their Components > Revision and recap
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: The World of Metals and Non-metals > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: The World of Metals and Non-metals > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Changes Around Us: Physical and Chemical > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Changes Around Us: Physical and Chemical > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Changes Around Us: Physical and Chemical > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Changes Around Us: Physical and Chemical > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Worked examples
+  Section appears empty: '### Lesson on Adolescence: Changes and Responsibilities'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Heat Transfer in Nature > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Measurement of Time and Motion > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Measurement of Time and Motion > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Measurement of Time and Motion > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Measurement of Time and Motion > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Life Processes in Animals > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Life Processes in Animals > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 10: The Constitution of India — An Introduction > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 10: The Constitution of India — An Introduction > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 10: The Constitution of India — An Introduction > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 11: From Barter to Money > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 11: From Barter to Money > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 12: Understanding Markets > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 12: Understanding Markets > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 2: Understanding the Weather > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 2: Understanding the Weather > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 2: Understanding the Weather > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 3: Climates of India > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 3: Climates of India > Core explanation
+  Section appears empty: '### Lesson on Natural Disasters Caused by Climate and Weathe'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 3: Climates of India > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 4: New Beginnings: Cities and States > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 5: The Rise of Empires > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 5: The Rise of Empires > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Worked examples
+  Section appears empty: '### Lesson on "The Age of Reorganisation" — Focused Explanat'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 7: The Gupta Era: An Age of Tireless Creativity > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 8: How the Land Becomes Sacred > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 8: How the Land Becomes Sacred > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 8: How the Land Becomes Sacred > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 9: From the Rulers to the Ruled: Types > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 9: From the Rulers to the Ruled: Types > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 1 - Chapter 9: From the Rulers to the Ruled: Types > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 1: The Story of Indian Farming > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 2: India and Her Neighbours > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 2: India and Her Neighbours > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 2: India and Her Neighbours > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Worked examples
+  Section appears empty: '### Lesson on Empires and Kingdoms: 6th to 10th Centuries'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Revision and recap
+  Section appears empty: '### Lesson on the Transition Period in Indian History (11th '
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 4: Turning Tides: 11th and 12th Centuries > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 5: India, a Home to Many > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 5: India, a Home to Many > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 6: The State, the Government, and You > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 6: The State, the Government, and You > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 6: The State, the Government, and You > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 7: Infrastructure: Engine of India’s Development > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 8: Banks and the Magic of Finance > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 8: Banks and the Magic of Finance > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 8: Banks and the Magic of Finance > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Part 2 - Chapter 8: Banks and the Magic of Finance > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+
+============================================================
+  Grade 8
+============================================================
+  [EMPTY_SECTION]
+  English > Unit 1: Wit and Wisdom > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 1: Wit and Wisdom > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 2: Values and Dispositions > Concept introduction
+  Section appears empty: '## 3. Step-by-Step Breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: Mystery and Magic > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: Mystery and Magic > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 3: Mystery and Magic > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Unit 4: Environment > Concept introduction
+  Placeholder text found: << oxygen helps us to ____________ and keeps the ____________ >>
+
+  [PLACEHOLDER_TEXT]
+  English > Unit 4: Environment > Revision and recap
+  Placeholder text found: <<ue to the fact that ________________."  **Answer:**   The ‘d>>
+
+  [PLACEHOLDER_TEXT]
+  English > Unit 4: Environment > Worked examples
+  Placeholder text found: <<ue to the fact that ________________  ---  ## 1. What you wi>>
+
+  [EMPTY_SECTION]
+  English > Unit 5: Science and Curiosity > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Unit 5: Science and Curiosity > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 2: दो गौरैैयाा > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 3: एक आशीर्वाद > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 5: कबीर के दोहे > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 5: कबीर के दोहे > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 6: एक टोकरी भर > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 7: मत बाँधो > Revision and recap
+  Section appears empty: '### Lesson on "Revision and Recap of Chapter 7: मत बाँधो"'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 8: नए मेहेमाान > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > Chapter 9: आदमी का अनुपात > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: A Square and A Cube > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: A Square and A Cube > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: A Square and A Cube > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 1: A Square and A Cube > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Power Play > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Power Play > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 2: Power Play > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Story of Numbers > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  Maths > Part 1 - Chapter 3: A Story of Numbers > Core explanation
+  Placeholder text found: << system uses 0 as a placeholder to indicate the absence of a>>
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 3: A Story of Numbers > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  Maths > Part 1 - Chapter 3: A Story of Numbers > Revision and recap
+  Placeholder text found: <<was introduced as a placeholder, which is crucial for repres>>
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Quadrilaterals > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Quadrilaterals > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Quadrilaterals > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 4: Quadrilaterals > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Number Play > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Number Play > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Number Play > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 5: Number Play > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 7: Proportional Reasoning > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 7: Proportional Reasoning > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 1 - Chapter 7: Proportional Reasoning > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  Maths > Part 1 - Chapter 7: Proportional Reasoning > Worked examples
+  Placeholder text found: <<ol? Write it below: ______ : ______  **Solution:**   *Step 1>>
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Worked examples
+  Section appears empty: '## Step-by-step explanation'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 2: The Baudhayana-Pythagoras Theorem > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Proportional Reasoning-2 > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Proportional Reasoning-2 > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 3: Proportional Reasoning-2 > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Exploring Some Geometric Themes > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Exploring Some Geometric Themes > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Exploring Some Geometric Themes > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 4: Exploring Some Geometric Themes > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Tales by Dots and Lines > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Tales by Dots and Lines > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 5: Tales by Dots and Lines > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Algebra Play > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Algebra Play > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Algebra Play > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 6: Algebra Play > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 7: Area > Concept introduction
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 7: Area > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Part 2 - Chapter 7: Area > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Exploring the Investigative World of Science > Worked examples
+  Section appears empty: '### Sub-topic: Worked Examples in Scientific Investigation'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Light: Mirrors and Lenses > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Light: Mirrors and Lenses > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Light: Mirrors and Lenses > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Light: Mirrors and Lenses > Worked examples
+  Section appears empty: '## Focused Lesson: Worked Example on Image Formation by Sphe'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Keeping Time with the Skies > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: How Nature Works in Harmony > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 12: How Nature Works in Harmony > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: The Invisible Living World: Beyond Our Naked Eye > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: The Invisible Living World: Beyond Our Naked Eye > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: The Invisible Living World: Beyond Our Naked Eye > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: The Invisible Living World: Beyond Our Naked Eye > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Interpreting Health: The Ultimate Treasure > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Electricity: Magnetic and Heating Effects > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Electricity: Magnetic and Heating Effects > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Electricity: Magnetic and Heating Effects > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Forces > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Forces > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Forces > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Pressure, Winds, Storms, and Cyclones > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Pressure, Winds, Storms, and Cyclones > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Pressure, Winds, Storms, and Cyclones > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: Pressure, Winds, Storms, and Cyclones > Worked examples
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Particulate Nature of Matter > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Particulate Nature of Matter > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Particulate Nature of Matter > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Particulate Nature of Matter > Worked examples
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: The Amazing World of Solutes, Solvents, and Solutions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 2: Reshaping India’s Political Map > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 2: Reshaping India’s Political Map > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 2: Reshaping India’s Political Map > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 3: The Rise of the Marathas > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 3: The Rise of the Marathas > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 3: The Rise of the Marathas > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 5: Universal Franchise and India’s Electoral System > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 5: Universal Franchise and India’s Electoral System > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 6: The Parliamentary System: Legislature and Executive > Concept introduction
+  Section appears empty: '## 3. Step-by-Step Breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 6: The Parliamentary System: Legislature and Executive > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 6: The Parliamentary System: Legislature and Executive > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown of the lawmaking process (based'
+
+  [EMPTY_SECTION]
+  Social Science > Chapter 7: Factors of Production > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+
+============================================================
+  Grade 9
+============================================================
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Combinatorics > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Combinatorics > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Combinatorics > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Combinatorics > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Combinatorics > Worked examples
+  Section appears empty: '## Focused Lesson on Worked Examples in Combinatorics'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Exam-style problems
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Coordinate Geometry > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Logarithms > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Logarithms > Worked examples
+  Section appears empty: '## 4. Worked Example'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Relations and Functions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Relations and Functions > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Relations and Functions > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Relations and Functions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Sets > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Sets > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Sets > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Mathematics > Advanced - Sets > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Chemical Bonding > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Chemical Bonding > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Chemical Bonding > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Chemical Bonding > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Chemical Bonding > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Exam-style problems
+  Section appears empty: '## Sub-topic: Exam-Style Problems'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Microscope and Microscopy > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Microscope and Microscopy > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Mixtures and their Separation > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Mixtures and their Separation > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Mixtures and their Separation > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Newton's Laws of Motion > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Newton's Laws of Motion > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Newton's Laws of Motion > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Newton's Laws of Motion > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Structure of Atom > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Structure of Atom > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Understanding Motion through Experience > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Understanding Motion through Experience > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Understanding Motion through Experience > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Understanding Motion through Experience > Worked examples
+  Section appears empty: '## Lesson on Worked Examples: Understanding Motion through E'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Work and Energy > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Advanced Science > Advanced - Work and Energy > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 1: How I Taught My Grandmother to Read > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 1: How I Taught My Grandmother to Read > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 10: Kathmandu > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 11: If I Were You > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 12: A Visit to Kaziranga and Sivasagar > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Pot Maker > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown of the pot-making process'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Pot Maker > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Sound of Music > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Sound of Music > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Sound of Music > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 2: The Sound of Music > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 3: Winds of Change > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 3: Winds of Change > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 3: Winds of Change > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 4: Vitamin-M > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 4: Vitamin-M > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 4: Vitamin-M > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 5: The World of Limitless Possibilities > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 5: The World of Limitless Possibilities > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 5: The World of Limitless Possibilities > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 5: The World of Limitless Possibilities > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown of analyzing a worked example'
+
+  [EMPTY_SECTION]
+  English > Chapter 6: My Childhood > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 6: Twin Melodies > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English > Chapter 6: Twin Melodies > Exam-style problems
+  Placeholder text found: <<theatre club was 1. _______________________ their practice,">>
+
+  [EMPTY_SECTION]
+  English > Chapter 7: Carrier of Words > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 7: Carrier of Words > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 7: Packing > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Packing (Grade 9)'
+
+  [EMPTY_SECTION]
+  English > Chapter 7: Packing > Worked examples
+  Section appears empty: '## 3. Example problem and step-by-step solution'
+
+  [EMPTY_SECTION]
+  English > Chapter 8: Follow That Dream > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 8: Follow That Dream > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English > Chapter 8: Follow That Dream > Exam-style problems
+  Section appears empty: '### Lesson on "Follow That Dream" – Exam-Style Problems for '
+
+  [EMPTY_SECTION]
+  English Olympiad > Nouns > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English Olympiad > Nouns > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  English Olympiad > Nouns > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [PLACEHOLDER_TEXT]
+  English Olympiad > Nouns > Worked examples
+  Placeholder text found: << consists of twenty __________."*    **Step 1:**   The blank>>
+
+  [EMPTY_SECTION]
+  English Supplementary Reader > Chapter 4: In the Kingdom of Fools > Concept introduction
+  Section appears empty: '### Concept Introduction: In the Kingdom of Fools'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 1: दो बैलों की कथा > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 1: दो बैलों की कथा > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 11: झाँसी की रानी > Core explanation
+  Section appears empty: '## Core Explanation: झाँसी की रानी'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 12: घर की याद > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems for "संवादहीन" (Silent/Non'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 6: रीढ़ की हड्डी > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 7: मैं और मेरा देश > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 7: मैं और मेरा देश > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 7: मैं और मेरा देश > Worked examples
+  Section appears empty: '## 3. Step-by-step Breakdown of a Typical Worked Example'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 8: पद > Core explanation
+  Section appears empty: '## 3. Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 8: पद > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems from राम-लक्षमण-परशुराम सं'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Orienting Yourself: The Use of Coordinates > Concept introduction
+  Section appears empty: '## Step-by-step Teaching'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Orienting Yourself: The Use of Coordinates > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 1: Orienting Yourself: The Use of Coordinates > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Concept introduction
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Worked examples
+  Section appears empty: '## Lesson: Introduction to Linear Polynomials – Worked Examp'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: The World of Numbers > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: The World of Numbers > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: The World of Numbers > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: The World of Numbers > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 3: The World of Numbers > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Exploring Algebraic Identities > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Exploring Algebraic Identities > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Exploring Algebraic Identities > Exam-style problems
+  Section appears empty: '## Step-by-step Lesson on Exam-Style Problems'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 4: Exploring Algebraic Identities > Revision and recap
+  Section appears empty: '## Lesson: Exploring Algebraic Identities – Revision and Dee'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Measuring Space: Perimeter and Area > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Measuring Space: Perimeter and Area > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Measuring Space: Perimeter and Area > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 6: Measuring Space: Perimeter and Area > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: The Mathematics of Maybe: Introduction to Probability > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: The Mathematics of Maybe: Introduction to Probability > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: The Mathematics of Maybe: Introduction to Probability > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 7: The Mathematics of Maybe: Introduction to Probability > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Core explanation
+  Section appears empty: '### Core Explanation: Understanding Sequences and Their Form'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Algebraic Identities > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Algebraic Identities > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown of key identities'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Algebraic Identities > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Algebraic Identities > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Area and Perimeter > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Area and Perimeter > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Area and Perimeter > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Area and Perimeter > Worked examples
+  Section appears empty: '## Worked Example'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Areas of Parallelograms and Triangles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Areas of Parallelograms and Triangles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Areas of Parallelograms and Triangles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Areas of Parallelograms and Triangles > Worked examples
+  Section appears empty: '## 3. Step-by-Step Breakdown of a Typical Worked Example'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Circles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Circles > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Circles > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Constructions > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Constructions > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown of a typical construction probl'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Coordinate Geometry > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Coordinate Geometry > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Coordinate Geometry > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Euclid's Geometry > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Euclid's Geometry > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Euclid's Geometry > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Euclid's Geometry > Worked examples
+  Section appears empty: '## Step-by-step breakdown of a worked example'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Probability > Concept introduction
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Probability > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Probability > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Introduction to Probability > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Linear Equations in Two Variables > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Linear Equations in Two Variables > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Linear Equations in Two Variables > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Linear Equations in Two Variables > Revision and recap
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Linear Equations in Two Variables > Worked examples
+  Section appears empty: '## Step-by-step breakdown of solving linear equations in two'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Lines and Angles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Lines and Angles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Lines and Angles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Logical Reasoning > Worked examples
+  Section appears empty: '## Step-by-step breakdown of solving logical reasoning probl'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Number Systems > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Number Systems > Exam-style problems
+  Section appears empty: '### Sub-topic: Exam-Style Problems on Repeating Decimals and'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Number Systems > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Polynomials > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Polynomials > Core explanation
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Polynomials > Exam-style problems
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Polynomials > Revision and recap
+  Section appears empty: '## Step-by-step Breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Quadrilaterals > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Quadrilaterals > Exam-style problems
+  Section appears empty: '### Lesson on Properties of a Parallelogram and Related Theo'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Quadrilaterals > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Sequences and Progressions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Sequences and Progressions > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Sequences and Progressions > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Worked examples
+  Section appears empty: '### Lesson on Worked Examples for SOF-IMO Model Test Paper-1'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Statistics > Concept introduction
+  Section appears empty: '## Concept Introduction: Graphical Representation of Data in'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Statistics > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Statistics > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Surface Areas and Volumes > Concept introduction
+  Section appears empty: '## Step-by-step breakdown of the concepts'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Surface Areas and Volumes > Core explanation
+  Section appears empty: '## Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Surface Areas and Volumes > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Triangles > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Triangles > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Triangles > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Triangles > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Maths Olympiad > Triangles > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Exploration: Entering the World of Secondary Science > Concept introduction
+  Section appears empty: '## Lesson: Estimating Quantities in Science'
+
+  [EMPTY_SECTION]
+  Science > Chapter 1: Exploration: Entering the World of Secondary Science > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Exam-style problems
+  Section appears empty: '## Step-wise lesson'
+
+  [EMPTY_SECTION]
+  Science > Chapter 10: Sound Waves: Characteristics and Applications > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Reproduction: How Life Continues > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Reproduction: How Life Continues > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 11: Reproduction: How Life Continues > Worked examples
+  Section appears empty: '### Reproduction in Animals: A Focused Lesson'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Earth as a System: Energy, Matter, and Life > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 13: Earth as a System: Energy, Matter, and Life > Worked examples
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Cell: The Building Block of Life > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Cell: The Building Block of Life > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Cell: The Building Block of Life > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 2: Cell: The Building Block of Life > Worked examples
+  Section appears empty: '## Lesson on Worked Examples for Cell: The Building Block of'
+
+  [EMPTY_SECTION]
+  Science > Chapter 3: Tissues in Action > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Describing Motion Around Us > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Describing Motion Around Us > Core explanation
+  Section appears empty: '## 3. Step-by-Step Breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Describing Motion Around Us > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 4: Describing Motion Around Us > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown of solving exam problems'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Worked examples
+  Section appears empty: '## 4. Worked example'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: How Forces Affect Motion > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: How Forces Affect Motion > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: How Forces Affect Motion > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 6: How Forces Affect Motion > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 8: Journey Inside the Atom > Exam-style problems
+  Section appears empty: '### Sub-topic: Exam-Style Problems on Atomic Structure'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Atomic Foundations of Matter > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Atomic Foundations of Matter > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science > Chapter 9: Atomic Foundations of Matter > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Atoms and Molecules > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Exam-style problems
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 1 - Matter in Our Surroundings > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 2 - Is Matter Pure Around Us > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 3 - Atoms and Molecules > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 3 - Atoms and Molecules > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 5 - Cell The Fundamental Unit of Life > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Chapter 5 - Cell The Fundamental Unit of Life > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Colloids and Solutions > Concept introduction
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Colloids and Solutions > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Colloids and Solutions > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems in Colloids and Solutions'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Matter in Our Surroundings > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Matter in Our Surroundings > Revision and recap
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Physical and Chemical Changes > Concept introduction
+  Section appears empty: '## Lesson on Concept Introduction: Physical and Chemical Cha'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Physical and Chemical Changes > Core explanation
+  Section appears empty: '## 3. Step-by-step breakdown'
+
+  [EMPTY_SECTION]
+  Science Olympiad > Physical and Chemical Changes > Exam-style problems
+  Section appears empty: '### Lesson on Exam-Style Problems: Distinguishing Physical a'

@@ -1,0 +1,50 @@
+Lesson Content Audit — Audit-only | Grade 10
+Generated: 2026-06-20 12:13
+Total defects: 8
+
+── By defect type ──
+  INCOMPLETE_QUESTION               5
+  MISSING_QUICK_CHECK               1
+  MISSING_SUMMARY                   1
+  INCOMPLETE_WORKED_STEP            1
+
+── By grade ──
+  Grade 10        8 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Core explanation
+  'Question:' has no task instruction. Preview: <<** मन्नू भंडारी के जीवन और रचनाओं का संक्षिप्त सारांश लिखिए।  **Solution:** - **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   राम और लक्ष्मण का संवाद पढ़िए। लक्ष्मण ने परशुराम के क्रोध का सामना कैसे किया और उसकी प्रतिक्रिया में क्या विशेषता >>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Exam preparation
+  'Question:' has no task instruction. Preview: <<**   गुड़गाँव में घरेलू सहायिका बेबी लालदार ने अपनी आत्मकथा लिखी है। वह अपने जीवन के संघर्ष और अनुभवों को सरल भाषा में ल>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  'Question:' has no task instruction. Preview: <<**   सूर्यकांत त्रिपाठी 'निराला' के जीवन और साहित्यिक योगदान का संक्षिप्त परिचय लिखिए।    **Solution:**   **>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  'Question:' has no task instruction. Preview: <<** यशपाल की रचनाओं में सामाजिक विषमताओं और रूढ़ियों के खिलाफ उनके विचारों को दर्शाने वाले मुख्य तत्व क्या हैं? इन रचनाओं>>
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Concept introduction
+  Step appears truncated — ends: <<$$ \text{height} = \text{distance} \times \tan \theta $$>>

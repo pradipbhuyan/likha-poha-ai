@@ -1,0 +1,1903 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-19 20:02
+Total defects: 467
+
+── By defect type ──
+  INCOMPLETE_WORKED_STEP          140
+  MISSING_SUMMARY                 119
+  INCOMPLETE_QUESTION              86
+  MISSING_WORKED_EXAMPLE           81
+  MISSING_QUICK_CHECK              40
+  TRUNCATED_CONTENT                 1
+
+── By grade ──
+  Grade 10      231 defects
+  Grade 5        56 defects
+  Grade 6        83 defects
+  Grade 7        97 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [MISSING_SUMMARY]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Core explanation
+  'Question:' has no task instruction. Preview: <<** Should Hari Singh return the money? Why or why not?  **Answer:** - **Yes,** because returning the money shows honesty>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** *"Do you think Horace Danby was unfairly punished, or did he deserve what he got? Support your answer with reasons fr>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam preparation
+  'Question:' has no task instruction. Preview: <<**Question:** How does Ausable manage to outwit Max?    **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**Question:** Why does the visitor come to the house at midnight? What does this reveal about his character?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Supplementary Reader - Chapter 4: A Question of Trust > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Why did Griffin, the scientist, set fire to his laboratory?  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 5: Footprints without Feet > Revision and recap
+  'Question:' has no task instruction. Preview: <<** How did Griffin become invisible? **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 6: The Making of a Scientist > Exam-style problems
+  'Question:' has no task instruction. Preview: <<- Richard Ebright’s curiosity, perseverance, and experiments. - The importance of doing real experiments, not just makin>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 7: The Necklace > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** *"Why did Matilda Loisel refuse to confess that she had lost the necklace?"*  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 8: Bholi > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Why is Bholi considered a symbol of social change? Support your answer with examples from the story.  **Answer:** Bho>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 8: Bholi > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why did Bholi's teacher call her "Bholi" and how did her attitude change after coming to school?  **>>
+
+  [MISSING_SUMMARY]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Why was the twentieth century called the "Era of the Book"?  **Answer:** The twentieth century was called the "Era of>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 9: The Book That Saved the Earth > Revision and recap
+  'Question:' has no task instruction. Preview: <<** How did the nursery rhymes in the book help save Earth?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 1: A Letter to God > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  English > Text Book - Chapter 1: A Letter to God > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 1: A Letter to God > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Text Book - Chapter 3: Two Stories about Flying > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  English > Text Book - Chapter 3: Two Stories about Flying > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Why did the young seagull initially refuse to fly?  **>>
+
+  [MISSING_SUMMARY]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Why was the young seagull afraid to fly initially?  **>>
+
+  [MISSING_SUMMARY]
+  English > Text Book - Chapter 3: Two Stories about Flying > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 3: Two Stories about Flying > Revision and recap
+  'Question:' has no task instruction. Preview: <<**Question:** Why was the young seagull afraid to fly?  **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Text Book - Chapter 4: From the Diary of Anne Frank > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 6: Mijbil the Otter > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Text Book - Chapter 6: Mijbil the Otter > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Core explanation
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Text Book - Chapter 9: The Proposal > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > Text Book - Chapter 9: The Proposal > Core explanation
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 1: A Letter to God > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  English > Workbook - Chapter 1: A Letter to God > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 1: A Letter to God > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 2: Nelson Mandela — Long Walk to Freedom > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why does Mandela say that “chains on anyone of my people were the chains on all of them”?   **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Workbook - Chapter 3: Two Stories About Flying > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  English > Workbook - Chapter 3: Two Stories About Flying > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Why did the young seagull initially refuse to fly?  **>>
+
+  [MISSING_SUMMARY]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**Question:** Why did the young seagull feel afraid to fly for the first time? - (a) He felt his wings would not support>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 3: Two Stories About Flying > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 3: Two Stories About Flying > Revision and recap
+  'Question:' has no task instruction. Preview: <<**Question:** Why was the young seagull afraid to fly?  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why does Anne Frank treat her diary as her friend?   **Answer:** Because she finds it difficult to confide in people >>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 4: From the Diary of Anne Frank > Exam preparation
+  'Question:' has no task instruction. Preview: <<** How does Anne Frank treat her diary, and what does this reveal about her personality?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 6: Mijbil the Otter > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 6: Mijbil the Otter > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Why did Maxwell say the airhostess was “the very queen of her kind” when she took Mij back into the aircraft?  **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Workbook - Chapter 6: Mijbil the Otter > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Core explanation
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** Why does Valli refuse to look out of the window on her way back from the bus ride?  **>>
+
+  [MISSING_SUMMARY]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Workbook - Chapter 7: Madam Rides the Bus > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Workbook - Chapter 8: The Sermon at Benares > Revision and recap
+  'Question:' has no task instruction. Preview: <<** How does the metaphor of "ripe fruits falling" help us understand the concept of death in the lesson?  **Answer:** - >>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Workbook - Chapter 9: The Proposal > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > Workbook - Chapter 9: The Proposal > Core explanation
+  Missing 'quick check' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Exam preparation
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Exam preparation
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: सूरदास > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: सूरदास > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 10: मन्नू भंडारी > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 10: मन्नू भंडारी > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 10: मन्नू भंडारी > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 10: मन्नू भंडारी > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** "What are the major literary works of मन्नू भंडारी mentioned in the chapter?"  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 10: मन्नू भंडारी > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: यतींद्र मिश्र > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: यतींद्र मिश्र > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: यतींद्र मिश्र > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 11: यतींद्र मिश्र > Revision and recap
+  Step appears truncated — ends: <<- 16वीं शताब्दी में यह राग कल्पना से प्राप्त माना गया।>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 12: भदंत आनंद कौसल्यायन > Worked examples
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 2: तुलसीदास > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 2: तुलसीदास > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 2: तुलसीदास > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 2: तुलसीदास > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 2: तुलसीदास > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 2: तुलसीदास > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Revision and recap
+  Step appears truncated — ends: <<- पुरस्कार: मंगला प्रसाद पारितोषिक।>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 3: जयशंकर प्रसाद > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Exam preparation
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 5: नागार्जुन > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 5: नागार्जुन > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 5: नागार्जुन > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 5: नागार्जुन > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 6: मंगलेश डबराल > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 6: मंगलेश डबराल > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** How does the poet depict the role of संगतकार in supporting the main singer?   **Answer:**   The poet depicts संगतकार >>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 8: रामवृक्ष बेनीपुरी > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Exam preparation
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Exam preparation
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 9: यशपाल > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 1: Real Numbers > Concept introduction
+  Step appears truncated — ends: <<- 32760 = 2 × 2 × 2 × 3 × 3 × 5 × 7 × 13>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 10: Circles > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 10: Circles > Exam preparation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 10: Circles > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 12: Surface Areas and Volumes > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam preparation
+  Step appears truncated — ends: <<- **Hemisphere:** Surface Area = 3πr², Volume = (2/3)πr³>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 12: Surface Areas and Volumes > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 13: Statistics > Core explanation
+  Step appears truncated — ends: <<- \( h \) = class width>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 13: Statistics > Worked examples
+  Step appears truncated — ends: <<- \(h\) = class width>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Polynomials > Concept introduction
+  Step appears truncated — ends: <<- $\alpha \beta \gamma = -\frac{d}{a}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Polynomials > Exam-style problems
+  Step appears truncated — ends: <<- Zeroes: $x = 4$ and $x = -2$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Concept introduction
+  Step appears truncated — ends: <<- Parallel: no intersection>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Exam preparation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 3: Pair of Linear Equations in Two Variables > Worked examples
+  Step appears truncated — ends: <<Step 3: Algebraic Methods for Solving>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 4: Quadratic Equations > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 5: Arithmetic Progressions > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 5: Arithmetic Progressions > Concept introduction
+  Step appears truncated — ends: <<- $n$ = position of the term>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 5: Arithmetic Progressions > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 5: Arithmetic Progressions > Exam-style problems
+  Step appears truncated — ends: <<- nth term: $a_n = a + (n-1)d$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 5: Arithmetic Progressions > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Coordinate Geometry > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Coordinate Geometry > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Coordinate Geometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 8: Introduction to Trigonometry > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Concept introduction
+  Step appears truncated — ends: <<- $\cosec^2 A = 1 + \cot^2 A$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Exam preparation
+  Step appears truncated — ends: <<- **cot A** = 1 / tan A>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Exam-style problems
+  Step appears truncated — ends: <<- $\cot A = \frac{1}{\tan A}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Introduction to Trigonometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Some Applications of Trigonometry > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 9: Some Applications of Trigonometry > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Core explanation
+  Step appears truncated — ends: <<- The equation becomes: Mg + O₂ → MgO>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Exam preparation
+  Step appears truncated — ends: <<- Symbolic form: Mg + O₂ → MgO>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: Chemical Reactions and Equations > Worked examples
+  Step appears truncated — ends: <<- Chemical formula: Mg + O₂ → MgO>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 10: The Human Eye and the Colourful World > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 11: Electricity > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 11: Electricity > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 3: Metals and Non-metals > Exam preparation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 4: Carbon and Its Compounds > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Carbon and Its Compounds > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 5: Life Processes > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 5: Life Processes > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 6: Control and Coordination > Exam preparation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 6: Control and Coordination > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: How do Organisms Reproduce? > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 8: Heredity > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 8: Heredity > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 8: Heredity > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Heredity > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 8: Heredity > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Science > Chapter 8: Heredity > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 9: Light – Reflection and Refraction > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Light – Reflection and Refraction > Worked examples
+  Step appears truncated — ends: <<- $n_{water} = 1.33$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 1: Resources and Development > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Geography - Chapter 1: Resources and Development > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Geography - Chapter 3: Water Resources > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Social Science > Geography - Chapter 4: Agriculture > Exam preparation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Geography - Chapter 4: Agriculture > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Social Science > Geography - Chapter 6: Manufacturing Industries > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Exam-style problems
+  'Question:' has no task instruction. Preview: <<- For transport problems: types of transport, their advantages/disadvantages.   - For resources: renewable vs non-renewa>>
+
+  [MISSING_SUMMARY]
+  Social Science > Geography - Chapter 7: Lifelines of National Economy > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Exam preparation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 1: The Rise of Nationalism in Europe > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > History - Chapter 2: Nationalism in India > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why was the Salt March an effective symbol of resistance?  **Answer:** - The Salt March, led by Mahatma Gandhi in 193>>
+
+  [MISSING_SUMMARY]
+  Social Science > History - Chapter 2: Nationalism in India > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 2: Nationalism in India > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > History - Chapter 4: The Age of Industrialisation > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Core explanation
+  'Question:' has no task instruction. Preview: <<** How did print culture contribute to the French Revolution?  **>>
+
+  [MISSING_SUMMARY]
+  Social Science > History - Chapter 5: Print Culture and the Modern World > Worked examples
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 1: Power-sharing > Exam preparation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 1: Power-sharing > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 1: Power-sharing > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 2: Federalism > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Political Science - Chapter 2: Federalism > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Suppose the Chief Ministers of Andhra Pradesh, Chhattisgarh, and Orissa have different policies on how their police r>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Political Science - Chapter 2: Federalism > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** "Point out one feature in the practice of federalism in India that is similar to and one feature that is different fr>>
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 2: Federalism > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Political Science - Chapter 2: Federalism > Exam-style problems
+  Step appears truncated — ends: <<- No unilateral changes>>
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 2: Federalism > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Social Science > Political Science - Chapter 3: Gender, Religion and Caste > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 1: Development > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 1: Development > Worked examples
+  Step appears truncated — ends: <<- Growth rate = (New value - Old value) / Old value × 100%>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 3: Money and Credit > Worked examples
+  Step appears truncated — ends: <<- Time (T) = 3 years>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Chapter 4: Globalisation and the Indian Economy > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Chapter 5: Consumer Rights > Exam preparation
+  Step appears truncated — ends: <<- Denying choice or giving poor service>>
+
+
+============================================================
+  Grade 5
+============================================================
+  [MISSING_SUMMARY]
+  English > 10. Glass Bangles > Recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > 10. Glass Bangles > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > 2. Gone with the Scooter > Recap
+  'Question:' has no task instruction. Preview: <<** Gopi finds a hockey ball. He asks his friends if they lost it. Manoj says he lost his ball four months ago. Gopi then>>
+
+  [INCOMPLETE_QUESTION]
+  English > 2. Gone with the Scooter > Worked Examples
+  'Question:' has no task instruction. Preview: <<** Gopi finds a hockey ball in the garden. He remembers Manoj said he lost his ball four months ago. What should Gopi do>>
+
+  [MISSING_SUMMARY]
+  English > 2. Gone with the Scooter > Worked Examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  English > 3. The Rainbow > What We Learn
+  'Question:' has no task instruction. Preview: <<What are the seven colors of the rainbow, and how do they appear in order?>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > 3. The Rainbow > What We Learn
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > 3. The Rainbow > What We Learn
+  Step appears truncated — ends: <<Step 1: Understanding the Colors of the Rainbow>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > 3. The Rainbow > Worked Examples
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > 3. The Rainbow > Worked Examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  English > 5. The Frog > Recap
+  'Question:' has no task instruction. Preview: <<** Where does a frog like to spend its time, and how does it catch its food?  **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > 5. The Frog > Worked Examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  English > 7. Gilli Danda > What We Learn
+  'Question:' has no task instruction. Preview: <<"When will you return my book?">>
+
+  [INCOMPLETE_QUESTION]
+  English > 8. The Decision of the Panchayat > Worked Examples
+  'Question:' has no task instruction. Preview: <<** Why did the farmer become upset?  **>>
+
+  [MISSING_SUMMARY]
+  English > 8. The Decision of the Panchayat > Worked Examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 1: Water — The Essence of Life > Recap
+  'Question:' has no task instruction. Preview: <<** How does water change from vapour to rain?  **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  EVS > Chapter 1: Water — The Essence of Life > Worked Examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  EVS > Chapter 1: Water — The Essence of Life > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 10: Earth — Our Shared Home > Worked Examples
+  'Question:' has no task instruction. Preview: <<**   *The marigold flower is from Mexico. It was brought to India by traders. Now, it is used in festivals and celebrati>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 3: The Mystery of Food > What We Learn
+  'Question:' has no task instruction. Preview: <<** Why does drying food help in preservation?  **>>
+
+  [MISSING_SUMMARY]
+  EVS > Chapter 3: The Mystery of Food > What We Learn
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 3: The Mystery of Food > Worked Examples
+  'Question:' has no task instruction. Preview: <<**   *A slice of bread left outside develops coloured patches after two days. What method can be used to prevent this sp>>
+
+  [MISSING_SUMMARY]
+  EVS > Chapter 4: Our School — A Happy Place > Recap
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 4: Our School — A Happy Place > What We Learn
+  'Question:' has no task instruction. Preview: <<**   Riya sees her friend Rahul drop his trash on the ground. What should she do?  **>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 5: Our Vibrant Country > Recap
+  'Question:' has no task instruction. Preview: <<** Why is the Ashoka Chakra on the Indian flag?  **Answer:** The Ashoka Chakra, with its 24 spokes, represents the idea >>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 6: Some Unique Places > Recap
+  'Question:' has no task instruction. Preview: <<** Why are the mangroves in the Sundarbans important? **Solution:** - Mangroves hold the soil together and prevent erosi>>
+
+  [INCOMPLETE_WORKED_STEP]
+  EVS > Chapter 6: Some Unique Places > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 7: Energy — How Things Work > Recap
+  'Question:' has no task instruction. Preview: <<** How does a water wheel produce energy?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  EVS > Chapter 7: Energy — How Things Work > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  EVS > Chapter 8: Clothes — How Things are Made > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 9: Rhythms of Nature > What We Learn
+  'Question:' has no task instruction. Preview: <<**   In your region, you notice that flowers bloom in March and April, and the weather gets very hot in May. What season>>
+
+  [INCOMPLETE_QUESTION]
+  EVS > Chapter 9: Rhythms of Nature > Worked Examples
+  'Question:' has no task instruction. Preview: <<** What pattern do you see in these observations? **Answer:** The pattern repeats every year, with each season bringing >>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 1. किरन > Recap
+  'Question:' has no task instruction. Preview: <<** How do we know that किरन has gone to sleep?   **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 10. तीन मछलियाँ > Recap
+  'Question:' has no task instruction. Preview: <<** Why do you think the fish left the lake early?  **Answer:** Because they knew the fishermen were coming to catch fish>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 11. हमारे ये कलामंदिर > What We Learn
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 11. हमारे ये कलामंदिर > Worked Examples
+  'Question:' has no task instruction. Preview: <<**   Nisha saw many paintings and sculptures in the caves of Ajanta and Ellora. She noticed that the colors used in the >>
+
+  [MISSING_SUMMARY]
+  Hindi > 11. हमारे ये कलामंदिर > Worked Examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 2. न्याय की कु सी > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 4. साङके न > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 6. चतुर चित्रकार > What We Learn
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 6. चतुर चित्रकार > Worked Examples
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 6. चतुर चित्रकार > Worked Examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 7. मेरा बचपन > Worked Examples
+  'Question:' has no task instruction. Preview: <<**   "एक बदन और एक रात में कितने पहर होते हैं?"    **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 8. काजीरंगा राष्ट्ीय उद्ान की यात् > What We Learn
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 8. काजीरंगा राष्ट्ीय उद्ान की यात् > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 9. न्याय > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 12: Racing Seconds > Recap
+  'Question:' has no task instruction. Preview: <<** Jyoti went to play at 06:15 PM. She came back after 1 hour 45 minutes. What time did she reach home?  **>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 12: Racing Seconds > What We Learn
+  'Question:' has no task instruction. Preview: <<** Jyoti went to play at 06:15 PM. She came back after 1 hour 45 minutes. What time did she reach home?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 13: Animal Jumps > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 14: Maps and Locations > What We Learn
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: We the Travellers — II > Recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: We the Travellers — II > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 6: The Dairy Farm > Recap
+  Step appears truncated — ends: <<- Add all: 800 + 240 + 32 = 1072>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 7: Shapes and Patterns > What We Learn
+  'Question:' has no task instruction. Preview: <<** Can five regular pentagons fit together around a point without gaps?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7: Shapes and Patterns > Worked Examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 9: Coconut Farm > Recap
+  Step appears truncated — ends: <<**N = D × Q + R**>>
+
+
+============================================================
+  Grade 6
+============================================================
+  [MISSING_WORKED_EXAMPLE]
+  English > Unit 2: Friendship > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 2: Friendship > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Unit 3: Nurturing Nature > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why is it important to protect trees and birds?  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Unit 3: Nurturing Nature > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why did the baby bird think the world was small and made of straw?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 5: Culture and Tradition > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 1. मातृभूमि > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 10. परीक्ा > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 10. परीक्ा > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 11. चेतक की वीरता > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 11. चेतक की वीरता > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 3. पहली बूँद > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 3. पहली बूँद > Worked examples
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 4. हार की जीत > Core explanation
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 5. रहीम के दोहे > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 6. मेरी माँ > Revision and recap
+  'Question:' has no task instruction. Preview: <<** What does "माताजी" mean?   **Answer:** "माताजी" is a respectful word for mother, showing love and respect.   **Why:**>>
+
+  [MISSING_SUMMARY]
+  Hindi > 6. मेरी माँ > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 9. मैया मैं नमहं माखन खायो > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 9. मैया मैं नमहं माखन खायो > Worked examples
+  'Question:' has no task instruction. Preview: <<Krishna's activities are described as: "भोर भयो गैयन के पीछे, मधुबन मोहि पठायो।"   **Question**: What time of the day di>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 3 Number Play > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 6 Perimeter and Area > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 7 Fractions > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 9 Symmetry > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: The Wonderful World of Science > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 10: Living Creatures: Exploring their Characteristics > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Is coal a renewable or non-renewable resource? Why?  **Solution:** - Coal is a non-renewable resource because it take>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why is petroleum considered a non-renewable resource?  **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   Suppose we have a forest that is being cut down rapidly. What will happen if this continues?    **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 12: Beyond Earth > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why do stars appear as tiny points of light, while the Sun appears large and bright?  **Answer:** - Stars are extreme>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 2: Diversity in the Living World > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 2: Diversity in the Living World > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Does this meal contain all essential nutrients?   - **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Core explanation
+  'Question:' has no task instruction. Preview: <<** How do we test if a potato contains starch? **Solution:** - Take a small piece of potato. - Drop a few drops of iodin>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Revision and recap
+  'Question:' has no task instruction. Preview: <<** How can we test if a food item like potato contains starch?  **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 4: Exploring Magnets > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Exploring Magnets > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Measurement of Length and Motion > Worked examples
+  Step appears truncated — ends: <<- Speed = 150 km / 3 hours = **50 km/h**>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Materials Around Us > Revision and recap
+  Step appears truncated — ends: <<- Colour>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 6: Materials Around Us > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 7: Temperature and its Measurement > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 8: A Journey through States of Water > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   If you leave a glass of water outside on a hot sunny day, what changes will happen to the water over time?    **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Methods of Separation in Everyday Life > Concept introduction
+  Step appears truncated — ends: <<- Lightness: Winnowing>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 9: Methods of Separation in Everyday Life > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 1 - 1. Locating Places on the Earth > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Concept introduction
+  'Question:' has no task instruction. Preview: <<Why do we need a government, and how does democracy help in running the country?>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas > Worked examples
+  Step appears truncated — ends: <<- The process of elections and community participation>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Worked examples
+  Step appears truncated — ends: <<- Planning for future urban development>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Worked examples
+  Step appears truncated — ends: <<Value added = ₹1,000 – ₹600 = ₹400>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 14 - 14. Economic Activities Around Us > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 14 - 14. Economic Activities Around Us > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   Why are oceans called the "planet's lungs"?  **>>
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 5 - 5. India, That Is Bharat > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why do you think the cities were built with straight roads and drainage systems? (Answer: To keep the city clean and >>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Core explanation
+  'Question:' has no task instruction. Preview: <<** How did tribal traditions influence the worship of deities like Jagannath?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Worked examples
+  'Question:' has no task instruction. Preview: <<** How does the sari reflect both unity and diversity in India?  **Answer:** The sari is a traditional dress worn by wom>>
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Missing 'summary' section
+
+
+============================================================
+  Grade 7
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  English > Chapter Travel and Adventure > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter Travel and Adventure > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: LEARNING TOGETHER > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: LEARNING TOGETHER > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 1: LEARNING TOGETHER > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  English > Unit 2: WIT AND HUMOUR > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 2: WIT AND HUMOUR > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  English > Unit 3: DREAMS AND DISCOVERIES > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 5: Bravehearts > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 5: Bravehearts > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [TRUNCATED_CONTENT]
+  Hindi > पाठ 1: माँ, कह एक कहानी > Concept introduction
+  Content may be truncated — last line: <<**अगले कदम पर जाएं, जब आप तैयार हों।**>>
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 10: मुीरा का़े पाद > Worked examples
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 2: तीन बुद्धमान > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 2: तीन बुद्धमान > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 2: तीन बुद्धमान > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 2: तीन बुद्धमान > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 2: तीन बुद्धमान > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 2: तीन बुद्धमान > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > पाठ 2: तीन बुद्धमान > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 3: फ ू ल और काँटा > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 3: फ ू ल और काँटा > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 3: फ ू ल और काँटा > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 3: फ ू ल और काँटा > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 4: पानी रे पानी > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 4: पानी रे पानी > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > पाठ 4: पानी रे पानी > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 6: िगरधर किवराय की क ुं डिलया > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 6: िगरधर किवराय की क ुं डिलया > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 6: िगरधर किवराय की क ुं डिलया > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 7: वषार्-बहार > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 7: वषार्-बहार > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 7: वषार्-बहार > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 7: वषार्-बहार > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 7: वषार्-बहार > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 7: वषार्-बहार > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > पाठ 7: वषार्-बहार > Worked examples
+  Step appears truncated — ends: <<उत्तर: फूलों वाले बाग, जिनमें सुगंध फैल रही है।>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > पाठ 9: धिधड़या > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 9: धिधड़या > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > पाठ 9: धिधड़या > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 1: Large Numbers Around Us > Concept introduction
+  Step appears truncated — ends: <<- Nearest crore: 7,00,00,000>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 2: Arithmetic Expressions > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 3: A Peek Beyond the Point > Revision and recap
+  Step appears truncated — ends: <<- Example: 2.7 + 3.45 = 6.15>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Part 1 - Chapter 4: Expressions using Letter-Numbers > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths > Part 1 - Chapter 5: Parallel and Intersecting Lines > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 6: Number Play > Concept introduction
+  Step appears truncated — ends: <<- 0, 0, 0, 3, 3, 3, 3>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 7: A Tale of Three Intersecting Lines > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Part 2 - Chapter 1: Geometric Twins > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 2 - Chapter 1: Geometric Twins > Worked examples
+  'Question:' has no task instruction. Preview: <<Given two triangles, one with sides 6 cm, 5 cm, 4 cm, and the other with sides 6 cm, 5 cm, 4 cm, are these triangles con>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 2: Operations with Integers > Worked examples
+  Step appears truncated — ends: <<- Negative × Positive = Negative>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Concept introduction
+  Step appears truncated — ends: <<- 360 = 2 × 2 × 2 × 3 × 3 × 5>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 3: Finding Common Ground > Worked examples
+  Step appears truncated — ends: <<- 75 = 3 × 5 × 5>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 4: Another Peek Beyond the Point > Worked examples
+  Step appears truncated — ends: <<- 1000 has 3 zeros>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Core explanation
+  Step appears truncated — ends: <<- Final answer: $x = 2$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 2 - Chapter 7: Finding the Unknown > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 10: Life Processes in Plants > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 11: Light: Shadows and Reflections > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 12: Earth, Moon, and the Sun > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why do we have day and night on Earth?  **Solution:** - The Earth spins around its axis (rotation). - As the Earth sp>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 12: Earth, Moon, and the Sun > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   If it is 8 PM now and you see the Big Dipper overhead, when will you see it overhead again?  **Solution:**   - The >>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 12: Earth, Moon, and the Sun > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 2: Exploring Substances: Acids, Bases and Neutral > Core explanation
+  'Question:' has no task instruction. Preview: <<**   You mix lemon juice with baking soda solution. What will happen, and what are the products?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 2: Exploring Substances: Acids, Bases and Neutral > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 3: Electricity: Circuits and Their Components > Core explanation
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 4: The World of Metals and Non-metals > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 4: The World of Metals and Non-metals > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 4: The World of Metals and Non-metals > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Adolescence: A Stage of Growth and Change > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 7: Heat Transfer in Nature > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 7: Heat Transfer in Nature > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why does a metal spoon in a hot cup of tea get hot quickly?  **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 8: Measurement of Time and Motion > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why does the Western Ghats influence the climate of the western coast of India?  **Answer:** - The Western Ghats are >>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why does the Himalayas act as a barrier for cold winds from Central Asia? **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why is the Western Ghats important for India?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 1 -  Chapter 1: Geographical Diversity of India > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 1 - Chapter 11: From Barter to Money > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Part 1 - Chapter 2: Understanding the Weather > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 3: Climates of India > Core explanation
+  'Question:' has no task instruction. Preview: <<**   A city experiences heavy rainfall during the monsoon season, causing flooding. What steps can the city take to redu>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Part 1 - Chapter 3: Climates of India > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 4: New Beginnings: Cities and States > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why did some mahājanapadas have a council that chose the ruler instead of a hereditary king?  **Answer:** - In some m>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 4: New Beginnings: Cities and States > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why was the development of iron metallurgy so important for the growth of urbanism in India during the second urbanis>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 1 - Chapter 5: The Rise of Empires > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why did the Mauryan Empire decline after Aśhoka's death?  **>>
+
+  [MISSING_SUMMARY]
+  Social Science > Part 1 - Chapter 5: The Rise of Empires > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 1 - Chapter 5: The Rise of Empires > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Part 1 - Chapter 6: The Age of Reorganisation > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Part 1 - Chapter 7: The Gupta Era: An Age of Tireless Creativity > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 1 - Chapter 8: How the Land Becomes Sacred > Concept introduction
+  Step appears truncated — ends: <<- Pilgrimage routes: Char Dham, Kumbh Mela sites>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Part 1 - Chapter 9: From the Rulers to the Ruled: Types > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 1: The Story of Indian Farming > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why is rice grown mainly in areas with abundant water, and wheat in drier regions?  **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 2: India and Her Neighbours > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   India shares a long land border with China. How does this relationship influence their cooperation and conflicts?  >>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Part 2 - Chapter 3: Empires and Kingdoms: 6th to 10th Centuries > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Part 2 - Chapter 5: India, a Home to Many > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why did the Parsis come to India, and how did they integrate into Indian society?  **Answer:** - The Parsis migrated >>

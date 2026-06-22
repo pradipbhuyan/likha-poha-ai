@@ -1,0 +1,31 @@
+Lesson Content Audit — Audit-only | Grade 10
+Generated: 2026-06-20 11:44
+Total defects: 4
+
+── By defect type ──
+  INCOMPLETE_QUESTION               4
+
+── By grade ──
+  Grade 10        4 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 1: A Triumph of Surgery > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Rewrite the following direct speech into reported speech: "Neha: I get pain in my legs when I run."  **Solution:**  ->>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 2: The Thief's Story > Worked examples
+  'Question:' has no task instruction. Preview: <<**   In "The Thief's Story," how does Hari Singh's character challenge the common perception of thieves? Use examples fr>>
+
+  [INCOMPLETE_QUESTION]
+  English > Supplementary Reader - Chapter 3: The Midnight Visitor > Exam preparation
+  'Question:' has no task instruction. Preview: <<** Read the following extract from "The Midnight Visitor" and answer the question: "Why does the visitor come to the nar>>
+
+  [INCOMPLETE_QUESTION]
+  English > Text Book - Chapter 7: Madam Rides the Bus > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   Valli is eager to ride the bus for the first time. Based on her actions and dialogues in the story, what does her e>>

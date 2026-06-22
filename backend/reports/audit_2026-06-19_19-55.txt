@@ -1,0 +1,351 @@
+Lesson Content Audit — Audit-only | Grade 6
+Generated: 2026-06-19 19:55
+Total defects: 83
+
+── By defect type ──
+  INCOMPLETE_WORKED_STEP           23
+  MISSING_WORKED_EXAMPLE           20
+  MISSING_SUMMARY                  19
+  INCOMPLETE_QUESTION              17
+  MISSING_QUICK_CHECK               4
+
+── By grade ──
+  Grade 6        83 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 6
+============================================================
+  [MISSING_WORKED_EXAMPLE]
+  English > Unit 2: Friendship > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 2: Friendship > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Unit 3: Nurturing Nature > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why is it important to protect trees and birds?  **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Unit 3: Nurturing Nature > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why did the baby bird think the world was small and made of straw?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Unit 5: Culture and Tradition > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 1. मातृभूमि > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 10. परीक्ा > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 10. परीक्ा > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 11. चेतक की वीरता > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 11. चेतक की वीरता > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 12. हिंद महासागर में छोटा-सा हिंदुस्ान > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 2. गोल > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 3. पहली बूँद > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 3. पहली बूँद > Worked examples
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 4. हार की जीत > Core explanation
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 4. हार की जीत > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > 5. रहीम के दोहे > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 6. मेरी माँ > Revision and recap
+  'Question:' has no task instruction. Preview: <<** What does "माताजी" mean?   **Answer:** "माताजी" is a respectful word for mother, showing love and respect.   **Why:**>>
+
+  [MISSING_SUMMARY]
+  Hindi > 6. मेरी माँ > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 7. जलाते चलो > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > 7. जलाते चलो > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > 9. मैया मैं नमहं माखन खायो > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_QUESTION]
+  Hindi > 9. मैया मैं नमहं माखन खायो > Worked examples
+  'Question:' has no task instruction. Preview: <<Krishna's activities are described as: "भोर भयो गैयन के पीछे, मधुबन मोहि पठायो।"   **Question**: What time of the day di>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 3 Number Play > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 6 Perimeter and Area > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 7 Fractions > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 9 Symmetry > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 1: The Wonderful World of Science > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 10: Living Creatures: Exploring their Characteristics > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Is coal a renewable or non-renewable resource? Why?  **Solution:** - Coal is a non-renewable resource because it take>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Core explanation
+  'Question:' has no task instruction. Preview: <<** Why is petroleum considered a non-renewable resource?  **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 11: Nature’s Treasures > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   Suppose we have a forest that is being cut down rapidly. What will happen if this continues?    **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 12: Beyond Earth > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why do stars appear as tiny points of light, while the Sun appears large and bright?  **Answer:** - Stars are extreme>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 2: Diversity in the Living World > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 2: Diversity in the Living World > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Does this meal contain all essential nutrients?   - **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Core explanation
+  'Question:' has no task instruction. Preview: <<** How do we test if a potato contains starch? **Solution:** - Take a small piece of potato. - Drop a few drops of iodin>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 3: Mindful Eating: A Path to a Healthy Body > Revision and recap
+  'Question:' has no task instruction. Preview: <<** How can we test if a food item like potato contains starch?  **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 4: Exploring Magnets > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Exploring Magnets > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 5: Measurement of Length and Motion > Worked examples
+  Step appears truncated — ends: <<- Speed = 150 km / 3 hours = **50 km/h**>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 6: Materials Around Us > Revision and recap
+  Step appears truncated — ends: <<- Colour>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 6: Materials Around Us > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 7: Temperature and its Measurement > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 8: A Journey through States of Water > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   If you leave a glass of water outside on a hot sunny day, what changes will happen to the water over time?    **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Methods of Separation in Everyday Life > Concept introduction
+  Step appears truncated — ends: <<- Lightness: Winnowing>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 9: Methods of Separation in Everyday Life > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 1 - 1. Locating Places on the Earth > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Concept introduction
+  'Question:' has no task instruction. Preview: <<Why do we need a government, and how does democracy help in running the country?>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas > Worked examples
+  Step appears truncated — ends: <<- The process of elections and community participation>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas > Worked examples
+  Step appears truncated — ends: <<- Planning for future urban development>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 13 - 13. The Value of Work > Worked examples
+  Step appears truncated — ends: <<Value added = ₹1,000 – ₹600 = ₹400>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 14 - 14. Economic Activities Around Us > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 14 - 14. Economic Activities Around Us > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   Why are oceans called the "planet's lungs"?  **>>
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 3 - 3. Landforms and Life > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 5 - 5. India, That Is Bharat > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Revision and recap
+  'Question:' has no task instruction. Preview: <<** Why do you think the cities were built with straight roads and drainage systems? (Answer: To keep the city clean and >>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 6 - 6. The Beginnings of Indian Civilisation > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Core explanation
+  'Question:' has no task instruction. Preview: <<** How did tribal traditions influence the worship of deities like Jagannath?  **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Text Book - Part 7 - 7. India's Cultural Roots > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Revision and recap
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 8 - 8. Unity in Diversity, or 'Many in the One' > Worked examples
+  'Question:' has no task instruction. Preview: <<** How does the sari reflect both unity and diversity in India?  **Answer:** The sari is a traditional dress worn by wom>>
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Social Science > Text Book - Part 9 - 9. Family and Community > Revision and recap
+  Missing 'summary' section

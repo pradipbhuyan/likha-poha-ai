@@ -1,0 +1,57 @@
+{
+  "run_label": "Audit-only | Grade 10",
+  "generated_at": "2026-06-20T11:44:47.118905",
+  "total_defects": 4,
+  "defects_by_type": {
+    "INCOMPLETE_QUESTION": 4
+  },
+  "defects_by_grade": {
+    "Grade 10": 4
+  },
+  "defects": [
+    {
+      "id": "3d3e5c82-1841-475d-8250-8f46ff6d94dc",
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Supplementary Reader - Chapter 1: A Triumph of Surgery",
+      "step_title": "Exam preparation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** Rewrite the following direct speech into reported speech: \"Neha: I get pain in my legs when I run.\"  **Solution:**  ->>",
+      "created_at": "2026-06-15T04:42:45.263468+00:00"
+    },
+    {
+      "id": "35c9342d-5cdc-46da-ac6b-26890ef1a3a9",
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Supplementary Reader - Chapter 2: The Thief's Story",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   In \"The Thief's Story,\" how does Hari Singh's character challenge the common perception of thieves? Use examples fr>>",
+      "created_at": "2026-06-15T04:43:51.70527+00:00"
+    },
+    {
+      "id": "39e6bc4d-33c8-42c1-b807-8117070f2dbc",
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Supplementary Reader - Chapter 3: The Midnight Visitor",
+      "step_title": "Exam preparation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** Read the following extract from \"The Midnight Visitor\" and answer the question: \"Why does the visitor come to the nar>>",
+      "created_at": "2026-06-15T04:46:56.040865+00:00"
+    },
+    {
+      "id": "bf30ff1b-58a4-4dfc-b9af-38c33ee8483d",
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Text Book - Chapter 7: Madam Rides the Bus",
+      "step_title": "Exam-style problems",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   Valli is eager to ride the bus for the first time. Based on her actions and dialogues in the story, what does her e>>",
+      "created_at": "2026-06-15T04:35:32.627241+00:00"
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "run_label": "With auto-fix",
+  "generated_at": "2026-06-20T16:45:49.644880",
+  "total_defects": 20,
+  "defects_by_type": {
+    "MISSING_QUICK_CHECK": 1,
+    "INCOMPLETE_WORKED_STEP": 7,
+    "INCOMPLETE_QUESTION": 10,
+    "BROKEN_LATEX": 2
+  },
+  "defects_by_grade": {
+    "Grade 10": 5,
+    "Grade 5": 3,
+    "Grade 6": 2,
+    "Grade 7": 2,
+    "Grade 8": 7,
+    "Grade 9": 1
+  },
+  "defects": [
+    {
+      "id": "b59dea3f-876f-49dc-80d6-3c741469e818",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 4: सूर्यकांत त्रिपाठी 'निराला'",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "MISSING_QUICK_CHECK",
+      "message": "Missing 'quick check' section",
+      "created_at": "2026-06-13T17:04:35.203988+00:00"
+    },
+    {
+      "id": "0aef4367-9359-4707-b293-48d1ac05853f",
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Chapter 1: Real Numbers",
+      "step_title": "Exam-style problems",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<21 = 3 * 7>>",
+      "created_at": "2026-06-13T19:48:57.894096+00:00"
+    },
+    {
+      "id": "059d33f5-04ff-48be-b922-a0bb4dfab55e",
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Chapter 4: Quadratic Equations",
+      "step_title": "Exam preparation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Check whether the equation (x - 2)^2 + 1 = 2x - 3 is a quadratic equation.>>",
+      "created_at": "2026-06-13T19:56:00.679057+00:00"
+    },
+    {
+      "id": "a22303d7-e48c-4c68-a92f-ef2e05dcf2e8",
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Chapter 9: Light – Reflection and Refraction",
+      "step_title": "Exam-style problems",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<di = 20 cm>>",
+      "created_at": "2026-06-13T20:33:13.179268+00:00"
+    },
+    {
+      "id": "3b404658-a56d-4070-a9b1-15df81767345",
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Chapter 9: Light – Reflection and Refraction",
+      "step_title": "Revision and recap",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<1/v - 1/20 = 1/10>>",
+      "created_at": "2026-06-13T20:33:36.685683+00:00"
+    },
+    {
+      "id": "3d45f48a-67d0-43c3-bbae-40fef9d2b29f",
+      "grade": "Grade 5",
+      "subject": "Maths",
+      "chapter": "Chapter 11: Grandmother’s Quilt",
+      "step_title": "What We Learn",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<Area = length × breadth = 8 × 5 = 40 square cm>>",
+      "created_at": "2026-06-14T12:44:27.129368+00:00"
+    },
+    {
+      "id": "7dab4447-1c09-46eb-8a5f-2ada4ff5626c",
+      "grade": "Grade 5",
+      "subject": "Maths",
+      "chapter": "Chapter 2: Fractions",
+      "step_title": "Recap",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<1/2 + 1/4 = ?>>",
+      "created_at": "2026-06-14T12:38:51.11119+00:00"
+    },
+    {
+      "id": "ec0f94ae-30e4-454c-ad54-f891fbd1c228",
+      "grade": "Grade 5",
+      "subject": "Maths",
+      "chapter": "Chapter 2: Fractions",
+      "step_title": "Worked Examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<1/6 = 2/12, 3/18, and 4/24>>",
+      "created_at": "2026-06-14T12:38:37.850542+00:00"
+    },
+    {
+      "id": "5a63d663-61be-49d5-92ec-74a58d544505",
+      "grade": "Grade 6",
+      "subject": "Maths",
+      "chapter": "Chapter 7 Fractions",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<6 8 + 4 8 = 10 8>>",
+      "created_at": "2026-06-14T08:52:12.949107+00:00"
+    },
+    {
+      "id": "2a12a66d-4b51-460a-b5d8-243aa6a11ecb",
+      "grade": "Grade 6",
+      "subject": "Social Science",
+      "chapter": "Text Book - Part 2 - 2. Oceans and Continents",
+      "step_title": "Revision and recap",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Locate the five oceans and mark the hemisphere or hemispheres they belong to.>>",
+      "created_at": "2026-06-15T06:32:50.762597+00:00"
+    },
+    {
+      "id": "363a8d0e-70a9-41c2-af4a-49e22cc3eb8b",
+      "grade": "Grade 7",
+      "subject": "Maths",
+      "chapter": "Part 1 - Chapter 7: A Tale of Three Intersecting Lines",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Can a triangle exist with side lengths 4 cm, 5 cm, and 8 cm?>>",
+      "created_at": "2026-06-14T05:15:59.461582+00:00"
+    },
+    {
+      "id": "4f9c20a9-4df0-45f5-9f2d-a8282a528cbe",
+      "grade": "Grade 7",
+      "subject": "Maths",
+      "chapter": "Part 2 - Chapter 6: Constructions and Tilings",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Can a 4 × 6 grid be tiled using 2 × 1 tiles? If yes, come up with a general strategy to tile it.>>",
+      "created_at": "2026-06-14T05:25:07.8245+00:00"
+    },
+    {
+      "id": "5ad8acca-4903-4457-85fc-c71d47f9151b",
+      "grade": "Grade 8",
+      "subject": "Hindi",
+      "chapter": "Chapter 7: मत बाँधो",
+      "step_title": "Revision and recap",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<कविता में सपनों की स्वतंत्रता को कैसे दर्शाया गया है?>>",
+      "created_at": "2026-06-11T15:46:20.496983+00:00"
+    },
+    {
+      "id": "f8698c81-0d72-4c90-8255-b1a551baa42f",
+      "grade": "Grade 8",
+      "subject": "Hindi",
+      "chapter": "Chapter 8: नए मेहेमाान",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<एकांकी \"नए मेहमान\" में क्र्चर्नाथ और रेर्ती के बीच की बातचीत को समझाएं।>>",
+      "created_at": "2026-06-11T15:46:40.229948+00:00"
+    },
+    {
+      "id": "a0e81516-8036-49da-b91d-76ff25e93dcb",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Part 1 - Chapter 2: Power Play",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "BROKEN_LATEX",
+      "message": "Unmatched $ delimiter — 27 math $ signs (must be even)",
+      "created_at": "2026-06-11T16:34:09.502912+00:00"
+    },
+    {
+      "id": "c81722da-d952-4a5e-8097-cddd00510062",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Part 1 - Chapter 2: Power Play",
+      "step_title": "Revision and recap",
+      "mode": "CBSE",
+      "defect_type": "BROKEN_LATEX",
+      "message": "Unmatched $ delimiter — 15 math $ signs (must be even)",
+      "created_at": "2026-06-11T16:35:18.944816+00:00"
+    },
+    {
+      "id": "1d404d09-84a6-4180-ae18-c501335df48c",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Part 1 - Chapter 6: We Distribute, Yet Things Multiply",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<2x(x + 4) + 3(x + 4) = 2x^2 + 8x + 3x + 12>>",
+      "created_at": "2026-06-11T16:42:27.725477+00:00"
+    },
+    {
+      "id": "828f272a-4964-4685-9242-76ae5ab2631c",
+      "grade": "Grade 8",
+      "subject": "Maths",
+      "chapter": "Part 2 - Chapter 1: Fractions in Disguise",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Express the fraction 2/5 as a percentage.>>",
+      "created_at": "2026-06-11T16:45:12.140484+00:00"
+    },
+    {
+      "id": "69c24e98-8f14-44ce-9cdd-1ee088434330",
+      "grade": "Grade 8",
+      "subject": "Science",
+      "chapter": "Chapter 1: Exploring the Investigative World of Science",
+      "step_title": "Worked examples",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Design an experiment to investigate the effect of oil temperature on the puffing of a puri. The experiment should includ>>",
+      "created_at": "2026-06-11T15:49:50.724486+00:00"
+    },
+    {
+      "id": "f7f6598a-a102-4844-a918-b07a64e0c986",
+      "grade": "Grade 9",
+      "subject": "Advanced Mathematics",
+      "chapter": "Advanced - Logarithms",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<Express $\\log_7 3 + \\log_7 5$ as a single logarithm.>>",
+      "created_at": "2026-06-16T04:13:31.508373+00:00"
+    }
+  ]
+}

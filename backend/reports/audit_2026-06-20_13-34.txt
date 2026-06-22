@@ -1,0 +1,76 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-20 13:34
+Total defects: 11
+
+── By defect type ──
+  INCOMPLETE_QUESTION               8
+  MISSING_QUICK_CHECK               2
+  INCOMPLETE_WORKED_STEP            1
+
+── By grade ──
+  Grade 10        2 defects
+  Grade 7         6 defects
+  Grade 8         1 defects
+  Grade 9         2 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  'Question:' has no task instruction. Preview: <<**   सूर्यकांत त्रिपाठी 'निराला' के जीवन और साहित्यिक योगदान का संक्षेप में वर्णन कीजिए। उनके कविता के मुख्य विषय क्या थ>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: स्वयं प्रकाश > Concept introduction
+  Missing 'quick check' section
+
+
+============================================================
+  Grade 7
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > पाठ 1: माँ, कह एक कहानी > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   एक गाँव में बहुत पुरानी एक लोककथा प्रचलित है। इसमें एक राजा था, जो बहुत न्यायप्रिय था। एक बार उसके पास एक पक्षी आया>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > पाठ 6: िगरधर किवराय की क ुं डिलया > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   गरधर कविराय की कविता "बिना विचार किए काम" का मुख्य संदेश क्या है? इस कविता में कवि ने जीवन में क्या सीख दी है?  **S>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > पाठ 8: िबरजू महाराज से साक्षाार > Core explanation
+  'Question:' has no task instruction. Preview: <<**   पंक्तियों में से एक कहती है, "नृत्य में शरीर, ध्यान और तपस्या का साधन होता है।" इस वाक्य का अर्थ स्पष्ट कीजिए और बत>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > पाठ 9: धिधड़या > Concept introduction
+  Missing 'quick check' section
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 1 - Chapter 6: Number Play > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   Suppose there are 5 children standing in a line. The rule is: each child calls out the number of children taller th>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 1 - Chapter 7: A Tale of Three Intersecting Lines > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Can a triangle be formed with side lengths 5 cm, 7 cm, and 10 cm?  **>>
+
+
+============================================================
+  Grade 8
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > Chapter 8: नए मेहेमाान > Concept introduction
+  'Question:' has no task instruction. Preview: <<**   यहाँ एक कहानी दी गई है जिसमें गरमी का मौसम है। कहानी में पात्र, स्थान, समय, और घटनाओं का सही वर्णन करें।    **Solut>>
+
+
+============================================================
+  Grade 9
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Exam-style problems
+  Step appears truncated — ends: <<$$ S_\infty = \frac{a}{1 - r} $$>>
+
+  [INCOMPLETE_QUESTION]
+  Maths Olympiad > Logical Reasoning > Worked examples
+  'Question:' has no task instruction. Preview: <<**   _Complete the following letter series:   _ _ bcc _ ac _ aabb _ ab _ cc_   Options:   A. aabca   B. abaca   C. bacab>>

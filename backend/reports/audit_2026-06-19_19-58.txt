@@ -1,0 +1,843 @@
+Lesson Content Audit — Audit-only | Grade 9
+Generated: 2026-06-19 19:58
+Total defects: 206
+
+── By defect type ──
+  INCOMPLETE_WORKED_STEP           79
+  MISSING_SUMMARY                  56
+  MISSING_WORKED_EXAMPLE           45
+  MISSING_QUICK_CHECK              19
+  INCOMPLETE_QUESTION               7
+
+── By grade ──
+  Grade 9       206 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 9
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Combinatorics > Worked examples
+  Step appears truncated — ends: <<$$ C(n, r) = \frac{n!}{r!(n - r)!} $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Exam-style problems
+  Step appears truncated — ends: <<$$ a = 0.15 $$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Advanced Mathematics > Advanced - Exploring some more Progressions > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Logarithms > Core explanation
+  Step appears truncated — ends: <<**Final answer:** $\boxed{5}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Logarithms > Exam-style problems
+  Step appears truncated — ends: <<- Use **power rule**: $\log_a (M^k) = k \log_a M$>>
+
+  [MISSING_SUMMARY]
+  Advanced Mathematics > Advanced - Logarithms > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Advanced Mathematics > Advanced - Relations and Functions > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Mathematics > Advanced - Sets > Exam-style problems
+  Step appears truncated — ends: <<- $(A \cup B)' = A' \cap B'$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Advanced Mathematics > Advanced - Sets > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_QUESTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Concept introduction
+  'Question:' has no task instruction. Preview: <<** How is insulin produced using modern biotechnology?  **>>
+
+  [INCOMPLETE_QUESTION]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Core explanation
+  'Question:' has no task instruction. Preview: <<** How is insulin produced using modern biotechnology? - **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Engineering Life: Miracles in Biotechnology > Exam-style problems
+  Step appears truncated — ends: <<- Gene transfer and genetic modification>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Concept introduction
+  Step appears truncated — ends: <<- 1 N (Newton) = 1 kg·m/s²>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Core explanation
+  Step appears truncated — ends: <<- 1 hour = 3600 seconds>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Exam-style problems
+  Step appears truncated — ends: <<- Force = Mass × Acceleration>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Measurement: Foundation of Science > Worked examples
+  Step appears truncated — ends: <<- 1 Newton (N) = 1 kg·m/s²>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Microscope and Microscopy > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Advanced Science > Advanced - Microscope and Microscopy > Revision and recap
+  'Question:' has no task instruction. Preview: <<**   A student uses a microscope with an 10X eyepiece and a 40X objective lens. The field of view at this setting is 0.4>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Mixtures and their Separation > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Mixtures and their Separation > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Newton's Laws of Motion > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  Advanced Science > Advanced - Structure of Atom > Concept introduction
+  'Question:' has no task instruction. Preview: <<** Why does an atom of helium remain neutral even though it contains positively charged protons?  **Solution:** - Helium>>
+
+  [INCOMPLETE_QUESTION]
+  Advanced Science > Advanced - Structure of Atom > Exam-style problems
+  'Question:' has no task instruction. Preview: <<** An atom has 11 protons, 12 neutrons, and 11 electrons.   **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Structure of Atom > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Concept introduction
+  Step appears truncated — ends: <<$$ T = m_1(g + a) = m_2(g - a) $$>>
+
+  [MISSING_SUMMARY]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - The Geometry of Power: Advanced Simple Machines > Worked examples
+  Step appears truncated — ends: <<- So, $T = m(g - a)$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Understanding Motion through Experience > Worked examples
+  Step appears truncated — ends: <<- Time interval, $t = 6\, \text{seconds}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Work and Energy > Concept introduction
+  Step appears truncated — ends: <<- Drag force>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Work and Energy > Core explanation
+  Step appears truncated — ends: <<$$ W = - \Delta U $$>>
+
+  [MISSING_SUMMARY]
+  Advanced Science > Advanced - Work and Energy > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Advanced Science > Advanced - Work and Energy > Exam-style problems
+  Step appears truncated — ends: <<$$ x = \frac{F}{k} $$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 1: How I Taught My Grandmother to Read > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 1: How I Taught My Grandmother to Read > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English > Chapter 1: How I Taught My Grandmother to Read > Worked examples
+  Missing 'quick check' section
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 2: The Pot Maker > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  English > Chapter 2: The Pot Maker > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  English > Chapter 2: The Pot Maker > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  English > Chapter 3: Winds of Change > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  English > Chapter 3: Winds of Change > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  English > Chapter 4: Vitamin-M > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 5: The World of Limitless Possibilities > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 5: The World of Limitless Possibilities > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 6: Twin Melodies > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 7: Carrier of Words > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_QUESTION]
+  English > Chapter 7: Carrier of Words > Core explanation
+  'Question:' has no task instruction. Preview: <<** How do letters carry words from one person to another? **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English > Chapter 7: Carrier of Words > Exam-style problems
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English > Chapter 7: Carrier of Words > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  English Olympiad > Nouns > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  English Olympiad > Nouns > Core explanation
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  English Olympiad > Nouns > Exam-style problems
+  Step appears truncated — ends: <<- Neuter: chair, table>>
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: दो बैलों की कथा > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: दो बैलों की कथा > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 1: दो बैलों की कथा > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 1: दो बैलों की कथा > Core explanation
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 1: दो बैलों की कथा > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 1: दो बैलों की कथा > Revision and recap
+  Step appears truncated — ends: <<- सहनशीलता और धैर्य का महत्व।>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 10: भारत्त, जय, विजयकरे! > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: झाँसी की रानी > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 11: झाँसी की रानी > Core explanation
+  Step appears truncated — ends: <<- उनकी कहानी आज भी देशभक्ति का प्रतीक है।>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: झाँसी की रानी > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: झाँसी की रानी > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 11: झाँसी की रानी > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 12: घर की याद > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 12: घर की याद > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 12: घर की याद > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 2:  क््या लिखू > Concept introduction
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 2:  क््या लिखू > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 3: संवादहीन > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 3: संवादहीन > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 3: संवादहीन > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 3: संवादहीन > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 3: संवादहीन > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 5: आलखरी चट्टान तक > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 6: रीढ़ की हड्डी > Core explanation
+  Missing 'summary' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 6: रीढ़ की हड्डी > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 6: रीढ़ की हड्डी > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 7: मैं और मेरा देश > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 7: मैं और मेरा देश > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 7: मैं और मेरा देश > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 7: मैं और मेरा देश > Exam-style problems
+  Step appears truncated — ends: <<- The significance of national unity and pride>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 7: मैं और मेरा देश > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 8: पद > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 8: पद > Concept introduction
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 8: पद > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 8: पद > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 8: पद > Exam-style problems
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 8: पद > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 8: पद > Revision and recap
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 8: पद > Revision and recap
+  Missing 'quick check' section
+
+  [MISSING_SUMMARY]
+  Hindi > अध्याय 8: पद > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 9: राम-लक्षमण-परशुराम संवाद > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 1: Orienting Yourself: The Use of Coordinates > Exam-style problems
+  Step appears truncated — ends: <<$$ (x_2 - x_1)(y_3 - y_1) = (y_2 - y_1)(x_3 - x_1) $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 1: Orienting Yourself: The Use of Coordinates > Revision and recap
+  Step appears truncated — ends: <<- Quadrant IV: x > 0, y < 0>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Core explanation
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Exam-style problems
+  Step appears truncated — ends: <<$$ m = \frac{11 - 3}{6 - 2} = \frac{8}{4} = 2 $$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 2: Introduction to Linear Polynomials > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: Exploring Algebraic Identities > Core explanation
+  Step appears truncated — ends: <<$$(x + 3)^2 = x^2 + 2 \times x \times 3 + 3^2$$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: Exploring Algebraic Identities > Exam-style problems
+  Step appears truncated — ends: <<- $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca$>>
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 4: Exploring Algebraic Identities > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 4: Exploring Algebraic Identities > Revision and recap
+  Step appears truncated — ends: <<- $(a + b)(a - b) = a^2 - b^2$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 4: Exploring Algebraic Identities > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 5: I’m Up and Down, and Round and Round > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Concept introduction
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Concept introduction
+  Step appears truncated — ends: <<Step 3: Special Sequences and Their Formulas>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_QUICK_CHECK]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Worked examples
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions > Worked examples
+  Step appears truncated — ends: <<Step 1: Understanding Explicit and Recursive Rules>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Algebraic Identities > Revision and recap
+  Step appears truncated — ends: <<- $(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$>>
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Area and Perimeter > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Area and Perimeter > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Area and Perimeter > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Area and Perimeter > Worked examples
+  Step appears truncated — ends: <<- Area of circle = πr²>>
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Areas of Parallelograms and Triangles > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Circles > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Constructions > Exam-style problems
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Coordinate Geometry > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Coordinate Geometry > Exam-style problems
+  Step appears truncated — ends: <<- Along origin: $(a, b) \to (-a, -b)$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Coordinate Geometry > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Introduction to Euclid's Geometry > Concept introduction
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Introduction to Euclid's Geometry > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Introduction to Probability > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Introduction to Probability > Core explanation
+  Step appears truncated — ends: <<**Answer:** $\boxed{\frac{1}{3}}$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Introduction to Probability > Exam-style problems
+  Step appears truncated — ends: <<- Specific conditions or ranges>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Introduction to Probability > Revision and recap
+  Step appears truncated — ends: <<- $P(\overline{E}) = 1 - P(E)$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Lines and Angles > Worked examples
+  Step appears truncated — ends: <<- Co-interior (consecutive interior) angles>>
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Logical Reasoning > Revision and recap
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Logical Reasoning > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Number Systems > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Polynomials > Revision and recap
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Polynomials > Worked examples
+  Step appears truncated — ends: <<- Simplification>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Quadrilaterals > Core explanation
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Quadrilaterals > Worked examples
+  Step appears truncated — ends: <<- Diagonals are equal in length: AC = BD = 10 cm>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Sequences and Progressions > Concept introduction
+  Step appears truncated — ends: <<- \(r\) = common ratio>>
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Sequences and Progressions > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Sequences and Progressions > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Sequences and Progressions > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Sequences and Progressions > Worked examples
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Core explanation
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Exam-style problems
+  Step appears truncated — ends: <<- $(a + b)(a - b) = a^2 - b^2$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Revision and recap
+  Step appears truncated — ends: <<- $a^2 - b^2 = (a + b)(a - b)$>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > SOF-IMO Model Test Paper-1 > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Statistics > Concept introduction
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Statistics > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Statistics > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Statistics > Exam-style problems
+  Step appears truncated — ends: <<$$ \bar{x} = \frac{200}{13} \approx 15.38 $$>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths Olympiad > Statistics > Revision and recap
+  Step appears truncated — ends: <<12, 12, 13, 13, 14, 14, 14, 14, 15>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Maths Olympiad > Statistics > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Maths Olympiad > Statistics > Worked examples
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 1: Exploration: Entering the World of Secondary Science > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 11: Reproduction: How Life Continues > Worked examples
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Core explanation
+  Step appears truncated — ends: <<- Ecological role: producer, consumer, decomposer>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Exam-style problems
+  Step appears truncated — ends: <<- Habitat: aquatic, terrestrial, or host-dependent>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Revision and recap
+  Step appears truncated — ends: <<- Ecological role>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 12: Patterns in Life: Diversity and Classification > Worked examples
+  Step appears truncated — ends: <<- **>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 2: Cell: The Building Block of Life > Worked examples
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 3: Tissues in Action > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 4: Describing Motion Around Us > Worked examples
+  Step appears truncated — ends: <<- $t$ = time>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 5: Exploring Mixtures and Their Separation > Core explanation
+  Missing 'worked example' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Chapter 6: How Forces Affect Motion > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Core explanation
+  Missing 'summary' section
+
+  [MISSING_SUMMARY]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Revision and recap
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 7: Work, Energy, and Simple Machines > Revision and recap
+  Step appears truncated — ends: <<$$ \text{Work done} = \text{Change in energy} $$>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 8: Journey Inside the Atom > Concept introduction
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Journey Inside the Atom > Core explanation
+  Step appears truncated — ends: <<- **M-shell (n=3)**: 18 electrons>>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 8: Journey Inside the Atom > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 8: Journey Inside the Atom > Exam-style problems
+  Step appears truncated — ends: <<- Isotope information, if provided>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 9: Atomic Foundations of Matter > Exam-style problems
+  'Question:' has no task instruction. Preview: <<**   Does this experiment support the Law of Conservation of Mass?    **Solution:**   - Initial mass of reactants = 5 g >>
+
+  [MISSING_SUMMARY]
+  Science > Chapter 9: Atomic Foundations of Matter > Exam-style problems
+  Missing 'summary' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Atomic Foundations of Matter > Worked examples
+  Step appears truncated — ends: <<- Sulfur (S) = 32 u>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science > Matter in Our Surroundings > What is matter?
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Atoms and Molecules > Core explanation
+  Step appears truncated — ends: <<- Molecular mass of H₂O = (2 × 1) + 16 = 18 amu>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science Olympiad > Atoms and Molecules > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Atoms and Molecules > Worked examples
+  Step appears truncated — ends: <<- O = 16 u>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 2 - Is Matter Pure Around Us > Exam-style problems
+  Step appears truncated — ends: <<- **>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 3 - Atoms and Molecules > Worked examples
+  Step appears truncated — ends: <<Step 1: Write the formula: HNO₃>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science Olympiad > Chapter 5 - Cell The Fundamental Unit of Life > Exam-style problems
+  Step appears truncated — ends: <<- Functions of different cell parts>>
+
+  [MISSING_WORKED_EXAMPLE]
+  Science Olympiad > Colloids and Solutions > Worked examples
+  Missing 'worked example' section
+
+  [MISSING_SUMMARY]
+  Science Olympiad > Matter in Our Surroundings > Exam-style problems
+  Missing 'summary' section
+
+  [MISSING_WORKED_EXAMPLE]
+  Science Olympiad > Matter in Our Surroundings > Worked examples
+  Missing 'worked example' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Social Science > Uploaded Book Content > Concept introduction
+  Step appears truncated — ends: <<- **>>

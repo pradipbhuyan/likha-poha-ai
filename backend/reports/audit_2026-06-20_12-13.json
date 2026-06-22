@@ -1,0 +1,104 @@
+{
+  "run_label": "Audit-only | Grade 10",
+  "generated_at": "2026-06-20T12:13:55.859889",
+  "total_defects": 8,
+  "defects_by_type": {
+    "INCOMPLETE_QUESTION": 5,
+    "MISSING_QUICK_CHECK": 1,
+    "MISSING_SUMMARY": 1,
+    "INCOMPLETE_WORKED_STEP": 1
+  },
+  "defects_by_grade": {
+    "Grade 10": 8
+  },
+  "defects": [
+    {
+      "id": "0d1bae3d-4d45-4988-984b-464d3a448971",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 10: मन्नू भंडारी",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** मन्नू भंडारी के जीवन और रचनाओं का संक्षिप्त सारांश लिखिए।  **Solution:** - **>>",
+      "created_at": "2026-06-13T17:12:38.600917+00:00"
+    },
+    {
+      "id": "ceafc33b-4f6c-4382-b721-372bce7d7365",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 2: तुलसीदास",
+      "step_title": "Exam-style problems",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   राम और लक्ष्मण का संवाद पढ़िए। लक्ष्मण ने परशुराम के क्रोध का सामना कैसे किया और उसकी प्रतिक्रिया में क्या विशेषता >>",
+      "created_at": "2026-06-13T17:02:30.016867+00:00"
+    },
+    {
+      "id": "99850f28-07ca-46a3-b6c5-41e6f4128059",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 3: जयशंकर प्रसाद",
+      "step_title": "Exam preparation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   गुड़गाँव में घरेलू सहायिका बेबी लालदार ने अपनी आत्मकथा लिखी है। वह अपने जीवन के संघर्ष और अनुभवों को सरल भाषा में ल>>",
+      "created_at": "2026-06-13T17:04:14.539201+00:00"
+    },
+    {
+      "id": "b59dea3f-876f-49dc-80d6-3c741469e818",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 4: सूर्यकांत त्रिपाठी 'निराला'",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   सूर्यकांत त्रिपाठी 'निराला' के जीवन और साहित्यिक योगदान का संक्षिप्त परिचय लिखिए।    **Solution:**   **>>",
+      "created_at": "2026-06-13T17:04:35.203988+00:00"
+    },
+    {
+      "id": "80fdad79-8d5a-42df-879d-d3401b45e250",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 7: स्वयं प्रकाश",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "MISSING_QUICK_CHECK",
+      "message": "Missing 'quick check' section",
+      "created_at": "2026-06-13T17:08:08.938813+00:00"
+    },
+    {
+      "id": "f3cf1c47-7d8d-4e7c-812b-5e9d9f739ba7",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 9: यशपाल",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** यशपाल की रचनाओं में सामाजिक विषमताओं और रूढ़ियों के खिलाफ उनके विचारों को दर्शाने वाले मुख्य तत्व क्या हैं? इन रचनाओं>>",
+      "created_at": "2026-06-13T17:11:00.360437+00:00"
+    },
+    {
+      "id": "f3cf1c47-7d8d-4e7c-812b-5e9d9f739ba7",
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "अध्याय 9: यशपाल",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "MISSING_SUMMARY",
+      "message": "Missing 'summary' section",
+      "created_at": "2026-06-13T17:11:00.360437+00:00"
+    },
+    {
+      "id": "f0f86697-c1cd-4891-84b6-e8e58ec9f83e",
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Chapter 9: Some Applications of Trigonometry",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_WORKED_STEP",
+      "message": "Step appears truncated — ends: <<$$ \\text{height} = \\text{distance} \\times \\tan \\theta $$>>",
+      "created_at": "2026-06-13T20:04:57.474731+00:00"
+    }
+  ]
+}

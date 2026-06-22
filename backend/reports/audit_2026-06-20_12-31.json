@@ -1,0 +1,46 @@
+{
+  "run_label": "With auto-fix | Grade 9",
+  "generated_at": "2026-06-20T12:31:24.718901",
+  "total_defects": 3,
+  "defects_by_type": {
+    "INCOMPLETE_QUESTION": 3
+  },
+  "defects_by_grade": {
+    "Grade 9": 3
+  },
+  "defects": [
+    {
+      "id": "74f4956e-3ef9-499c-b792-f4d8561c4cb6",
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "अध्याय 1: दो बैलों की कथा",
+      "step_title": "Core explanation",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** हीरा और मेोती बैल अपने घर लौटने के बाद अपने स्वभाव और मित्रता का प्रदर्शन करते हैं। यदि हीरा शांत और सहिष्णु है, और म>>",
+      "created_at": "2026-06-11T05:40:27.05752+00:00"
+    },
+    {
+      "id": "5a2aecf0-faa3-49ad-ae85-6596f17cbbd8",
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "अध्याय 11: झाँसी की रानी",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<** झाँसी की रानी लक्ष्मीबाई ने अपने राज्य की रक्षा के लिए युद्ध किया। यदि उन्होंने 1857 में अपने सैनिकों के साथ 10 युद्ध>>",
+      "created_at": "2026-06-11T14:32:11.593999+00:00"
+    },
+    {
+      "id": "898418b0-9c70-4ae3-9c0b-ce5436ff7b0c",
+      "grade": "Grade 9",
+      "subject": "Hindi",
+      "chapter": "अध्याय 3: संवादहीन",
+      "step_title": "Concept introduction",
+      "mode": "CBSE",
+      "defect_type": "INCOMPLETE_QUESTION",
+      "message": "'Question:' has no task instruction. Preview: <<**   कहानी में ताई और श्मट््ठू का संबंध किस तरह का है? उनके बीच संवाद का अभाव क्यों हुआ? इससे उनके रिश्ते पर क्या प्रभाव>>",
+      "created_at": "2026-06-11T14:19:21.123411+00:00"
+    }
+  ]
+}

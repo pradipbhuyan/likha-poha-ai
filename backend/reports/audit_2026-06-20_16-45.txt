@@ -1,0 +1,123 @@
+Lesson Content Audit — With auto-fix
+Generated: 2026-06-20 16:45
+Total defects: 20
+
+── By defect type ──
+  INCOMPLETE_QUESTION              10
+  INCOMPLETE_WORKED_STEP            7
+  BROKEN_LATEX                      2
+  MISSING_QUICK_CHECK               1
+
+── By grade ──
+  Grade 10        5 defects
+  Grade 5         3 defects
+  Grade 6         2 defects
+  Grade 7         2 defects
+  Grade 8         7 defects
+  Grade 9         1 defects
+
+── Defect details ──
+
+
+============================================================
+  Grade 10
+============================================================
+  [MISSING_QUICK_CHECK]
+  Hindi > अध्याय 4: सूर्यकांत त्रिपाठी 'निराला' > Core explanation
+  Missing 'quick check' section
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 1: Real Numbers > Exam-style problems
+  Step appears truncated — ends: <<21 = 3 * 7>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 4: Quadratic Equations > Exam preparation
+  'Question:' has no task instruction. Preview: <<Check whether the equation (x - 2)^2 + 1 = 2x - 3 is a quadratic equation.>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Light – Reflection and Refraction > Exam-style problems
+  Step appears truncated — ends: <<di = 20 cm>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Science > Chapter 9: Light – Reflection and Refraction > Revision and recap
+  Step appears truncated — ends: <<1/v - 1/20 = 1/10>>
+
+
+============================================================
+  Grade 5
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 11: Grandmother’s Quilt > What We Learn
+  Step appears truncated — ends: <<Area = length × breadth = 8 × 5 = 40 square cm>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Chapter 2: Fractions > Recap
+  'Question:' has no task instruction. Preview: <<1/2 + 1/4 = ?>>
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 2: Fractions > Worked Examples
+  Step appears truncated — ends: <<1/6 = 2/12, 3/18, and 4/24>>
+
+
+============================================================
+  Grade 6
+============================================================
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Chapter 7 Fractions > Worked examples
+  Step appears truncated — ends: <<6 8 + 4 8 = 10 8>>
+
+  [INCOMPLETE_QUESTION]
+  Social Science > Text Book - Part 2 - 2. Oceans and Continents > Revision and recap
+  'Question:' has no task instruction. Preview: <<Locate the five oceans and mark the hemisphere or hemispheres they belong to.>>
+
+
+============================================================
+  Grade 7
+============================================================
+  [INCOMPLETE_QUESTION]
+  Maths > Part 1 - Chapter 7: A Tale of Three Intersecting Lines > Concept introduction
+  'Question:' has no task instruction. Preview: <<Can a triangle exist with side lengths 4 cm, 5 cm, and 8 cm?>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 2 - Chapter 6: Constructions and Tilings > Worked examples
+  'Question:' has no task instruction. Preview: <<Can a 4 × 6 grid be tiled using 2 × 1 tiles? If yes, come up with a general strategy to tile it.>>
+
+
+============================================================
+  Grade 8
+============================================================
+  [INCOMPLETE_QUESTION]
+  Hindi > Chapter 7: मत बाँधो > Revision and recap
+  'Question:' has no task instruction. Preview: <<कविता में सपनों की स्वतंत्रता को कैसे दर्शाया गया है?>>
+
+  [INCOMPLETE_QUESTION]
+  Hindi > Chapter 8: नए मेहेमाान > Concept introduction
+  'Question:' has no task instruction. Preview: <<एकांकी "नए मेहमान" में क्र्चर्नाथ और रेर्ती के बीच की बातचीत को समझाएं।>>
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 2: Power Play > Concept introduction
+  Unmatched $ delimiter — 27 math $ signs (must be even)
+
+  [BROKEN_LATEX]
+  Maths > Part 1 - Chapter 2: Power Play > Revision and recap
+  Unmatched $ delimiter — 15 math $ signs (must be even)
+
+  [INCOMPLETE_WORKED_STEP]
+  Maths > Part 1 - Chapter 6: We Distribute, Yet Things Multiply > Worked examples
+  Step appears truncated — ends: <<2x(x + 4) + 3(x + 4) = 2x^2 + 8x + 3x + 12>>
+
+  [INCOMPLETE_QUESTION]
+  Maths > Part 2 - Chapter 1: Fractions in Disguise > Core explanation
+  'Question:' has no task instruction. Preview: <<Express the fraction 2/5 as a percentage.>>
+
+  [INCOMPLETE_QUESTION]
+  Science > Chapter 1: Exploring the Investigative World of Science > Worked examples
+  'Question:' has no task instruction. Preview: <<Design an experiment to investigate the effect of oil temperature on the puffing of a puri. The experiment should includ>>
+
+
+============================================================
+  Grade 9
+============================================================
+  [INCOMPLETE_QUESTION]
+  Advanced Mathematics > Advanced - Logarithms > Concept introduction
+  'Question:' has no task instruction. Preview: <<Express $\log_7 3 + \log_7 5$ as a single logarithm.>>
