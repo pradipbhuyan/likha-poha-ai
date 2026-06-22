@@ -46,6 +46,8 @@ class CreateStudentRequest(BaseModel):
     username: str
     board: str = "CBSE"
     grade: str = "Grade 9"   # required from the parent form — defaults kept for API compat
+    avatar: Optional[str] = None  # emoji key (e.g. 'boy1') or data: URL
+    cbse_subjects: Optional[list] = None
 
 
 class InviteParentRequest(BaseModel):
@@ -197,11 +199,15 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "access_sof_science": parent_profile.get("access_sof_science", False),
         "access_sof_maths": parent_profile.get("access_sof_maths", False),
         "access_sof_english": parent_profile.get("access_sof_english", False),
-        "cbse_subjects": [],
+        "cbse_subjects": data.cbse_subjects or [],
         "daily_token_limit": parent_profile.get("daily_token_limit", 50000),
         "monthly_token_limit": parent_profile.get("monthly_token_limit", 1000000),
         "ai_model_preference": "default",
     }
+
+    # Save avatar if provided (emoji key or data: URL)
+    if data.avatar:
+        child_profile["avatar"] = data.avatar[:400000]  # cap at ~300KB
 
     response = (
         admin_client
@@ -214,6 +220,20 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         "success": True,
         "child": response.data[0] if response.data else child_profile,
     }
+
+
+class UpdateAvatarRequest(BaseModel):
+    avatar: str  # emoji key or data: URL
+
+
+@router.post("/update-avatar")
+def update_avatar(data: UpdateAvatarRequest, parent=Depends(require_parent)):
+    """Parent updates their own avatar."""
+    parent_profile = parent["profile"]
+    admin_client.table("profiles").update(
+        {"avatar": data.avatar[:400000]}
+    ).eq("id", parent_profile["id"]).execute()
+    return {"success": True}
 
 
 @router.post("/invite-parent")

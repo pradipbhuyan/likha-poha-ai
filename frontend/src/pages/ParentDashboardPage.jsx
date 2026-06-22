@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 
 import { getUserHistory } from "../api/analytics";
@@ -25,6 +25,63 @@ import {
   CartesianGrid,
 } from "recharts";
 
+/** Desktop webcam capture component using getUserMedia */
+function WebcamCaptureModal({ onCapture, onClose }) {
+  const videoRef = React.useRef(null);
+  const canvasRef = React.useRef(null);
+  const [stream, setStream] = React.useState(null);
+  const [error, setError] = React.useState("");
+
+  React.useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+      .then(s => {
+        setStream(s);
+        if (videoRef.current) videoRef.current.srcObject = s;
+      })
+      .catch(() => setError("Camera not available or permission denied."));
+    return () => {
+      // Stop camera when modal closes
+      setStream(prev => { prev?.getTracks().forEach(t => t.stop()); return null; });
+    };
+  }, []);
+
+  function capture() {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    if (!video || !canvas) return;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+    stream?.getTracks().forEach(t => t.stop());
+    onCapture(dataUrl);
+  }
+
+  return (
+    <div className="modal-backdrop" style={{ zIndex: 1100 }}>
+      <div className="premium-modal" style={{ maxWidth: 480, textAlign: "center" }}>
+        <button className="modal-close" onClick={() => { stream?.getTracks().forEach(t => t.stop()); onClose(); }}>×</button>
+        <h3 style={{ marginBottom: 12 }}>📸 Take a Photo</h3>
+        {error ? (
+          <div className="error-box">{error}</div>
+        ) : (
+          <>
+            <video ref={videoRef} autoPlay playsInline muted
+              style={{ width: "100%", borderRadius: 12, background: "#111827", maxHeight: 320 }} />
+            <canvas ref={canvasRef} style={{ display: "none" }} />
+            <button className="primary-btn" onClick={capture} style={{ marginTop: 14, width: "100%" }}>
+              📷 Capture Photo
+            </button>
+          </>
+        )}
+        <p style={{ fontSize: ".75rem", color: "var(--muted)", marginTop: 10 }}>
+          Browser will ask for camera permission. Allow it to take the photo.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function ParentDashboardPage() {
   /** Parent view for managing family members and monitoring child progress and usage. */
   const [familyId, setFamilyId] = useState(null);
@@ -48,6 +105,7 @@ function ParentDashboardPage() {
   const [studentGrade, setStudentGrade] = useState("");
   const [studentStream, setStudentStream] = useState("");
   const [studentAvatar, setStudentAvatar] = useState(""); // emoji key or data: URL
+  const [showWebcam, setShowWebcam] = useState(false);
   const [creatingStudent, setCreatingStudent] = useState(false);
   const [createStudentError, setCreateStudentError] = useState("");
 
@@ -608,7 +666,7 @@ function ParentDashboardPage() {
 
       {showAddChild && (
         <div className="modal-backdrop">
-          <div className="premium-modal">
+          <div className="premium-modal" style={{ maxHeight: "90vh", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
             <button
               className="modal-close"
               onClick={() => setShowAddChild(false)}
@@ -679,6 +737,7 @@ function ParentDashboardPage() {
                 {/* Upload / Camera */}
                 <p style={{ fontSize:".75rem", color:"#64748b", marginBottom:6, fontWeight:600 }}>Or upload a photo:</p>
                 <div style={{ display:"flex", gap:8 }}>
+                  {/* Upload from gallery — always available */}
                   <label style={{
                     flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
                     background:"rgba(99,102,241,.08)", border:"1px solid rgba(99,102,241,.2)",
@@ -694,21 +753,37 @@ function ParentDashboardPage() {
                         reader.readAsDataURL(file);
                       }} />
                   </label>
-                  <label style={{
-                    flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                    background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
-                    borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
-                  }}>
-                    📸 Take Photo
-                    <input type="file" accept="image/*" capture="user" style={{ display:"none" }}
-                      onChange={e => {
-                        const file = e.target.files?.[0];
-                        if (!file) return;
-                        const reader = new FileReader();
-                        reader.onload = ev => setStudentAvatar(ev.target.result);
-                        reader.readAsDataURL(file);
-                      }} />
-                  </label>
+
+                  {/* Take Photo:
+                      Mobile → no capture attr so OS shows camera chooser (front + back + gallery)
+                      Desktop → open webcam modal via getUserMedia */}
+                  {/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
+                    <label style={{
+                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                      background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
+                      borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
+                    }}>
+                      📸 Take Photo
+                      <input type="file" accept="image/*" style={{ display:"none" }}
+                        onChange={e => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          const reader = new FileReader();
+                          reader.onload = ev => setStudentAvatar(ev.target.result);
+                          reader.readAsDataURL(file);
+                        }} />
+                    </label>
+                  ) : (
+                    <button type="button"
+                      onClick={() => setShowWebcam(true)}
+                      style={{
+                        flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                        background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
+                        borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
+                      }}>
+                      📸 Take Photo
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -811,32 +886,32 @@ function ParentDashboardPage() {
         <div className="modal-backdrop">
           <div className="premium-modal" style={{ maxWidth: 480 }}>
             <button className="modal-close" onClick={() => setCreatedChildInfo(null)}>×</button>
-            <h3 style={{ color: "#22c55e", marginBottom: 8 }}>✅ Child account created!</h3>
-            <p style={{ fontSize: ".9rem", marginBottom: 16, color: "var(--muted)" }}>
+            <h3 style={{ color: "#16a34a", marginBottom: 8 }}>✅ Child account created!</h3>
+            <p style={{ fontSize: ".9rem", marginBottom: 16 }}>
               Share these details with your child so they can log in.
             </p>
 
             {/* Credentials */}
-            <div style={{ background: "rgba(0,0,0,.15)", borderRadius: 10, padding: "12px 14px", marginBottom: 14, fontFamily: "monospace", fontSize: ".85rem" }}>
+            <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: "12px 14px", marginBottom: 14, fontFamily: "monospace", fontSize: ".85rem" }}>
               <div style={{ marginBottom: 6 }}>
-                <span style={{ color: "var(--muted)" }}>Name (username): </span>
-                <strong style={{ color: "#f8fafc" }}>{createdChildInfo.username}</strong>
+                <span style={{ fontWeight: 600 }}>Name (username): </span>
+                <strong style={{ color: "#4f46e5" }}>{createdChildInfo.username}</strong>
                 <button onClick={() => navigator.clipboard.writeText(createdChildInfo.username)}
-                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
               </div>
               {createdChildInfo.email && (
                 <div style={{ marginBottom: 6 }}>
-                  <span style={{ color: "var(--muted)" }}>Email: </span>
-                  <strong style={{ color: "#f8fafc" }}>{createdChildInfo.email}</strong>
+                  <span style={{ fontWeight: 600 }}>Email: </span>
+                  <strong style={{ color: "#4f46e5" }}>{createdChildInfo.email}</strong>
                   <button onClick={() => navigator.clipboard.writeText(createdChildInfo.email)}
-                    style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+                    style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
                 </div>
               )}
               <div>
-                <span style={{ color: "var(--muted)" }}>Password: </span>
-                <strong style={{ color: "#fbbf24" }}>{createdChildInfo.password}</strong>
+                <span style={{ fontWeight: 600 }}>Password: </span>
+                <strong style={{ color: "#d97706" }}>{createdChildInfo.password}</strong>
                 <button onClick={() => navigator.clipboard.writeText(createdChildInfo.password)}
-                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#a5b4fc", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
+                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
               </div>
             </div>
 
@@ -847,20 +922,20 @@ function ParentDashboardPage() {
               const autoLoginLink = `https://likhapoha.in/?u=${encodeURIComponent(loginId)}&p=${encodedPass}`;
               return (
                 <div style={{ marginBottom: 14 }}>
-                  <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: "0 0 6px", fontWeight: 600 }}>
+                  <p style={{ fontSize: ".78rem", color: "#4f46e5", margin: "0 0 6px", fontWeight: 700 }}>
                     🔗 One-click login link (logs in directly to child's dashboard)
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,.1)", borderRadius: 8, padding: "6px 10px", flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: "6px 10px", flexWrap: "wrap" }}>
                     <a href={autoLoginLink} target="_blank" rel="noreferrer"
-                      style={{ fontSize: ".7rem", color: "#c7d2fe", fontFamily: "monospace", flex: 1, wordBreak: "break-all", textDecoration: "underline", cursor: "pointer" }}>
+                      style={{ fontSize: ".7rem", color: "#4f46e5", fontFamily: "monospace", flex: 1, wordBreak: "break-all", textDecoration: "underline", cursor: "pointer" }}>
                       {autoLoginLink.substring(0, 60)}…
                     </a>
                     <button onClick={() => navigator.clipboard.writeText(autoLoginLink)}
-                      style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "3px 10px", color: "#c7d2fe", cursor: "pointer", fontSize: ".72rem", fontWeight: 700, fontFamily: "inherit", whiteSpace: "nowrap" }}>
+                      style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "3px 10px", color: "#fff", cursor: "pointer", fontSize: ".72rem", fontWeight: 700, fontFamily: "inherit", whiteSpace: "nowrap" }}>
                       📋 Copy
                     </button>
                   </div>
-                  <p style={{ fontSize: ".72rem", color: "var(--muted)", margin: "4px 0 0" }}>
+                  <p style={{ fontSize: ".72rem", color: "#64748b", margin: "4px 0 0" }}>
                     Click this link to sign in directly to your child's account — no username or password needed.
                   </p>
                 </div>
@@ -870,26 +945,26 @@ function ParentDashboardPage() {
             {/* Next steps */}
             <div style={{ fontSize: ".83rem", lineHeight: 1.7, marginBottom: 16 }}>
               <strong style={{ display: "block", marginBottom: 6 }}>📋 What to do next:</strong>
-              <ol style={{ paddingLeft: 18, margin: 0, color: "var(--muted)" }}>
+              <ol style={{ paddingLeft: 18, margin: 0 }}>
                 <li>Share the <strong>username or email + password</strong> with your child</li>
                 <li>Child can log in at <strong>likhapoha.in</strong> using username OR email</li>
                 <li>Child can <strong>change their password</strong> from their profile anytime</li>
-                <li style={{ color: "#a5b4fc", fontWeight: 600 }}>💡 Sit with your child for their first login and give a quick walkthrough</li>
+                <li style={{ color: "#4f46e5", fontWeight: 600 }}>💡 Sit with your child for their first login and give a quick walkthrough</li>
               </ol>
             </div>
 
             {/* Video walkthrough — now live */}
-            <div style={{ background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.35)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
+            <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
               <div style={{ fontSize: "1.4rem", marginBottom: 3 }}>▶️</div>
-              <p style={{ fontSize: ".78rem", color: "#a5b4fc", margin: 0, fontWeight: 600 }}>Watch the Platform Walkthrough Video</p>
-              <p style={{ fontSize: ".7rem", color: "var(--muted)", margin: "3px 0 0 0" }}>Available in English and Hindi — helps your child get started on Likha Poha AI</p>
+              <p style={{ fontSize: ".78rem", color: "#4f46e5", margin: 0, fontWeight: 700 }}>Watch the Platform Walkthrough Video</p>
+              <p style={{ fontSize: ".7rem", color: "#475569", margin: "3px 0 0 0" }}>Available in English and Hindi — helps your child get started on Likha Poha AI</p>
               <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 8 }}>
                 <a href="https://youtu.be/N82gfHBJm00" target="_blank" rel="noreferrer"
-                  style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "4px 12px", color: "#c7d2fe", fontSize: ".72rem", fontWeight: 700, textDecoration: "none" }}>
+                  style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 14px", color: "#fff", fontSize: ".75rem", fontWeight: 700, textDecoration: "none" }}>
                   🇬🇧 English
                 </a>
                 <a href="https://youtu.be/y0YHnMrmR3k" target="_blank" rel="noreferrer"
-                  style={{ background: "rgba(99,102,241,.3)", border: "none", borderRadius: 6, padding: "4px 12px", color: "#c7d2fe", fontSize: ".72rem", fontWeight: 700, textDecoration: "none" }}>
+                  style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 14px", color: "#fff", fontSize: ".75rem", fontWeight: 700, textDecoration: "none" }}>
                   🇮🇳 Hindi
                 </a>
               </div>
@@ -900,6 +975,14 @@ function ParentDashboardPage() {
             </button>
           </div>
         </div>
+      )}
+
+      {/* ── Desktop webcam capture modal ── */}
+      {showWebcam && (
+        <WebcamCaptureModal
+          onCapture={(dataUrl) => { setStudentAvatar(dataUrl); setShowWebcam(false); }}
+          onClose={() => setShowWebcam(false)}
+        />
       )}
 
       {showInviteParent && (

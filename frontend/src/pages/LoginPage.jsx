@@ -104,6 +104,7 @@ useEffect(() => {
       cbseSubjects: Array.isArray(profile.cbse_subjects)
         ? profile.cbse_subjects
         : [],
+      avatar: profile.avatar || "",
 
       dailyTokenLimit: profile.daily_token_limit,
       monthlyTokenLimit: profile.monthly_token_limit,
