@@ -133,6 +133,9 @@ jobs:
           echo "Smoke:  ${{ needs.smoke-test.result }}"
           if [[ "${{ needs.smoke-test.result }}" == "success" ]]; then
             echo "🎉 Production deployment complete!"
+          elif [[ "${{ needs.deploy.result }}" == "skipped" || "${{ needs.smoke-test.result }}" == "skipped" ]]; then
+            echo "⏭️  Deployment skipped — CI did not pass or no deploy was triggered. Nothing to do."
+            exit 0
           else
             echo "⚠️  Deployment or smoke tests failed. Review the logs."
             exit 1
