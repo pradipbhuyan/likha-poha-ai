@@ -24,6 +24,7 @@ import {
   Sparkles,
   Database,
   Package,
+  BrainCircuit,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -112,6 +113,12 @@ function Sidebar({
       key: "productCatalogue",
       label: "Product Catalogue",
       icon: Package,
+      roles: ["admin"],
+    },
+    {
+      key: "unansweredReview",
+      label: "AI Learning Review",
+      icon: BrainCircuit,
       roles: ["admin"],
     },
     {
@@ -237,8 +244,8 @@ function Sidebar({
         <img src={logo} alt="AI Tutor" className="brand-logo" />
 
         <div>
-          <h2>AI Tutor</h2>
-          <p>CBSE</p>
+          <p style={{ fontSize: "1.05rem", fontWeight: 700, lineHeight: 1.25, color: "#f1f5f9" }}>Your Personal Tutor</p>
+          <p style={{ fontSize: "0.82rem", fontWeight: 600, marginTop: 3, background: "linear-gradient(135deg,#6366f1,#10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>AI Powered ✦</p>
         </div>
       </div>
 

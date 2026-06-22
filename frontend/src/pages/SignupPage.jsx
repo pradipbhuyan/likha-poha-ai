@@ -72,9 +72,11 @@ function LeftBrand() {
         style={{ width:72, height:72, borderRadius:16, objectFit:"cover",
                  background:"#fff", boxShadow:"0 4px 20px rgba(37,99,235,.35)" }} />
       <div>
-        <div style={{ fontSize:"1.6rem", fontWeight:900, lineHeight:1.1 }}>LikhaPoha AI</div>
-        <div style={{ fontSize:".8rem", color:"#64748b", marginTop:3 }}>
-          CBSE · Class 5–10 · AI Tutor
+        <div style={{ fontSize:"1rem", fontWeight:700, color:"#f1f5f9", lineHeight:1.2 }}>
+          Your Personal Tutor
+        </div>
+        <div style={{ fontSize:".82rem", color:"#94a3b8", marginTop:3 }}>
+          AI Powered
         </div>
       </div>
     </div>

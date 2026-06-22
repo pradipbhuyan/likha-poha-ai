@@ -36,6 +36,7 @@ import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
+import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import SignupPage from "./pages/SignupPage";
 
@@ -186,6 +187,11 @@ const PAGE_META = {
     title: "Payment Logs",
     subtitle: "Revenue analytics, transaction history, and Excel export.",
     icon: "💳",
+  },
+  unansweredReview: {
+    title: "AI Learning Review",
+    subtitle: "Review unanswered questions and approve answers to grow platform intelligence.",
+    icon: "🧠",
   },
 };
 
@@ -438,6 +444,8 @@ function App() {
         return <ChangePasswordPage user={user} />;
       case "paymentLogs":
         return <AdminPaymentsPage user={user} />;
+      case "unansweredReview":
+        return <AdminUnansweredQuestionsPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }
@@ -464,7 +472,7 @@ function App() {
             ☰
           </button>
           <div>
-            <p className="eyebrow">Class 5-10 CBSE</p>
+            <p className="eyebrow">Your Personal Tutor - AI Powered</p>
             <h1>
               {(() => {
                 const PageIcon = PAGE_ICONS[activePage];

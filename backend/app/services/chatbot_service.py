@@ -435,7 +435,37 @@ def answer_chatbot_question(question: str) -> dict:
     except Exception:
         pass
 
-    # 4. Default: honest scope statement — no LLM call
+    # 3b. Check admin-approved Q&A from chatbot_approved_qa table
+    try:
+        from app.services.auth_service import admin_client as _sb  # noqa: PLC0415
+        approved = _sb.table("chatbot_approved_qa").select("question,answer").eq("status","active").execute()
+        for row in (approved.data or []):
+            kw_norm = _normalise(row.get("question",""))
+            # Simple word overlap matching
+            q_words = set(q_norm.split())
+            kw_words = set(kw_norm.split())
+            overlap = len(q_words & kw_words)
+            if overlap >= 2 and len(kw_words) > 0:
+                if overlap / len(kw_words) >= 0.6:
+                    return {
+                        "answer": row["answer"],
+                        "source": "faq",
+                        "suggestions": DEFAULT_SUGGESTIONS,
+                    }
+    except Exception:
+        pass
+
+    # 4. Default: honest scope statement — log this unanswered question for admin review
+    try:
+        from app.services.auth_service import admin_client as _sb2  # noqa: PLC0415
+        _sb2.table("unanswered_questions").insert({
+            "question": question[:500],
+            "source": "chatbot",
+            "status": "pending",
+        }).execute()
+    except Exception:
+        pass  # Never block the response
+
     return {
         "answer": (
             "I'm designed to answer questions about the **LikhaPoha AI platform** only.\n\n"

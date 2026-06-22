@@ -852,6 +852,21 @@ $$
         from app.services.doubt_kb_service import store_in_doubt_kb  # noqa: PLC0415
         from app.services.academic_guardrail_service import is_non_academic_question  # noqa: PLC0415
         if not is_non_academic_question(question):
+            # Also log to unanswered_questions so admin can review and improve DKB quality
+            try:
+                from app.services.auth_service import admin_client as _sb_log  # noqa: PLC0415
+                _sb_log.table("unanswered_questions").insert({
+                    "question": question[:500],
+                    "source": "doubt",
+                    "grade": grade,
+                    "subject": subject,
+                    "chapter": chapter if chapter else None,
+                    "mode": mode,
+                    "username": username,
+                    "status": "pending",
+                }).execute()
+            except Exception:
+                pass  # Never block doubt delivery
             store_in_doubt_kb(
                 question=question,
                 answer=answer,

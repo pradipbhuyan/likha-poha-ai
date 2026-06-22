@@ -47,8 +47,23 @@ function ParentDashboardPage() {
   const [studentPassword, setStudentPassword] = useState("");
   const [studentGrade, setStudentGrade] = useState("");
   const [studentStream, setStudentStream] = useState("");
+  const [studentAvatar, setStudentAvatar] = useState(""); // emoji key or data: URL
   const [creatingStudent, setCreatingStudent] = useState(false);
   const [createStudentError, setCreateStudentError] = useState("");
+
+  // Free preset avatars — boy, girl, and gender-neutral options
+  const PRESET_AVATARS = [
+    { key:"boy1",   emoji:"👦" },
+    { key:"boy2",   emoji:"🧒" },
+    { key:"boy3",   emoji:"👨‍🎓" },
+    { key:"girl1",  emoji:"👧" },
+    { key:"girl2",  emoji:"🧒‍♀️" },
+    { key:"girl3",  emoji:"👩‍🎓" },
+    { key:"star",   emoji:"⭐" },
+    { key:"rocket", emoji:"🚀" },
+    { key:"book",   emoji:"📚" },
+    { key:"brain",  emoji:"🧠" },
+  ];
   // Stores credentials after child creation to show the "What to do next" card
   const [createdChildInfo, setCreatedChildInfo] = useState(null);
 
@@ -146,6 +161,7 @@ function ParentDashboardPage() {
         email: studentEmail,
         password: studentPassword,
         grade: studentGrade,
+        avatar: studentAvatar || undefined,
         // For Grade 11/12: set cbse_subjects from stream so only stream subjects show
         cbse_subjects: (isStreamGrade(studentGrade) && studentStream)
           ? getSubjectsForStream(studentStream)
@@ -158,6 +174,7 @@ function ParentDashboardPage() {
         email: studentEmail,
         password: studentPassword,
         grade: studentGrade,
+        avatar: studentAvatar || "",
       });
 
       setStudentName("");
@@ -165,6 +182,7 @@ function ParentDashboardPage() {
       setStudentPassword("");
       setStudentGrade("");
       setStudentStream("");
+      setStudentAvatar("");
       setShowAddChild(false);
 
       await loadFamily();
@@ -354,8 +372,19 @@ function ParentDashboardPage() {
                       }
                       onClick={() => setSelectedChild(child)}
                     >
-                      <div className="family-avatar child-avatar">
-                        {(child.username || child.email || "S")[0].toUpperCase()}
+                      <div className="family-avatar child-avatar" style={{
+                        overflow: "hidden",
+                        fontSize: child.avatar && child.avatar.startsWith("data:") ? 0
+                                 : child.avatar ? "1.5rem" : undefined,
+                        background: child.avatar ? "transparent" : undefined,
+                      }}>
+                        {child.avatar && child.avatar.startsWith("data:") ? (
+                          <img src={child.avatar} alt={child.username} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+                        ) : child.avatar ? (
+                          PRESET_AVATARS.find(a => a.key === child.avatar)?.emoji || child.username?.[0]?.toUpperCase() || "S"
+                        ) : (
+                          (child.username || child.email || "S")[0].toUpperCase()
+                        )}
                       </div>
 
                       <div>
@@ -454,12 +483,12 @@ function ParentDashboardPage() {
           )}
 
           <section className="premium-grid premium-grid-4 premium-parent-stats">
-            <div className="premium-card premium-glow-card glow-blue">
-              <div className="dashboard-stat-icon blue">
-                <ClipboardList size={28} strokeWidth={2.4} />
+            <div className="premium-card premium-glow-card glow-red">
+              <div className="dashboard-stat-icon red">
+                <Target size={28} strokeWidth={2.4} />
               </div>
-              <h3>{totalTests}</h3>
-              <p>Mock tests completed</p>
+              <h3>{latestScore}%</h3>
+              <p>Latest score</p>
             </div>
 
             <div className="premium-card premium-glow-card glow-green">
@@ -478,12 +507,12 @@ function ParentDashboardPage() {
               <p>Best score</p>
             </div>
 
-            <div className="premium-card premium-glow-card glow-red">
-              <div className="dashboard-stat-icon red">
-                <Target size={28} strokeWidth={2.4} />
+            <div className="premium-card premium-glow-card glow-blue">
+              <div className="dashboard-stat-icon blue">
+                <ClipboardList size={28} strokeWidth={2.4} />
               </div>
-              <h3>{latestScore}%</h3>
-              <p>Latest score</p>
+              <h3>{totalTests}</h3>
+              <p>Mock tests completed</p>
             </div>
           </section>
 
@@ -591,6 +620,98 @@ function ParentDashboardPage() {
             <p>Create a student login under this family.</p>
 
             <form onSubmit={handleCreateStudent}>
+              {/* ── Avatar picker ── */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display:"block", fontSize:".85rem", fontWeight:600, marginBottom:8 }}>
+                  Profile Picture <span style={{ color:"#64748b", fontWeight:400 }}>(optional)</span>
+                </label>
+
+                {/* Current avatar preview */}
+                <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
+                  <div style={{
+                    width:60, height:60, borderRadius:"50%",
+                    background:"rgba(99,102,241,.15)", border:"2px solid rgba(99,102,241,.3)",
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontSize: studentAvatar && studentAvatar.startsWith("data:") ? 0 : "2rem",
+                    overflow:"hidden", flexShrink:0,
+                  }}>
+                    {studentAvatar && studentAvatar.startsWith("data:") ? (
+                      <img src={studentAvatar} alt="avatar" style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+                    ) : studentAvatar ? (
+                      PRESET_AVATARS.find(a => a.key === studentAvatar)?.emoji || "🧒"
+                    ) : (
+                      <span style={{ fontSize:"1.6rem", color:"#64748b" }}>👤</span>
+                    )}
+                  </div>
+                  <div>
+                    <p style={{ fontSize:".78rem", color:"#94a3b8", margin:0 }}>
+                      {studentAvatar ? "Avatar selected ✓" : "No avatar chosen"}
+                    </p>
+                    {studentAvatar && (
+                      <button type="button" onClick={() => setStudentAvatar("")}
+                        style={{ background:"none", border:"none", color:"#f87171", fontSize:".72rem", cursor:"pointer", padding:0, marginTop:2 }}>
+                        × Remove
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Preset emoji avatars */}
+                <p style={{ fontSize:".75rem", color:"#64748b", marginBottom:6, fontWeight:600 }}>Choose a preset avatar:</p>
+                <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:12 }}>
+                  {PRESET_AVATARS.map(av => (
+                    <button
+                      key={av.key}
+                      type="button"
+                      onClick={() => setStudentAvatar(av.key)}
+                      style={{
+                        width:44, height:44, borderRadius:"50%", border:`2px solid ${studentAvatar === av.key ? "#6366f1" : "rgba(99,102,241,.2)"}`,
+                        background: studentAvatar === av.key ? "rgba(99,102,241,.2)" : "rgba(99,102,241,.06)",
+                        fontSize:"1.5rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
+                        transition:"all .15s",
+                        boxShadow: studentAvatar === av.key ? "0 0 0 3px rgba(99,102,241,.35)" : "none",
+                      }}
+                      title={av.key}
+                    >{av.emoji}</button>
+                  ))}
+                </div>
+
+                {/* Upload / Camera */}
+                <p style={{ fontSize:".75rem", color:"#64748b", marginBottom:6, fontWeight:600 }}>Or upload a photo:</p>
+                <div style={{ display:"flex", gap:8 }}>
+                  <label style={{
+                    flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                    background:"rgba(99,102,241,.08)", border:"1px solid rgba(99,102,241,.2)",
+                    borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#a5b4fc", fontWeight:600,
+                  }}>
+                    📁 Upload Photo
+                    <input type="file" accept="image/*" style={{ display:"none" }}
+                      onChange={e => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        const reader = new FileReader();
+                        reader.onload = ev => setStudentAvatar(ev.target.result);
+                        reader.readAsDataURL(file);
+                      }} />
+                  </label>
+                  <label style={{
+                    flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                    background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
+                    borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
+                  }}>
+                    📸 Take Photo
+                    <input type="file" accept="image/*" capture="user" style={{ display:"none" }}
+                      onChange={e => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        const reader = new FileReader();
+                        reader.onload = ev => setStudentAvatar(ev.target.result);
+                        reader.readAsDataURL(file);
+                      }} />
+                  </label>
+                </div>
+              </div>
+
               {createStudentError && (
                 <div style={{ background:"rgba(239,68,68,.1)", border:"1px solid rgba(239,68,68,.3)", borderRadius:10, padding:"12px 14px", marginBottom:14, fontSize:".85rem", color:"#fca5a5", whiteSpace:"pre-line" }}>
                   {createStudentError}

@@ -9,11 +9,22 @@ const INITIAL_MESSAGE = {
   text: "Hi! 👋 I'm LikhaPoha AI's assistant. Ask me anything about our CBSE tutoring platform — grades, subjects, pricing, or how to get started!",
 };
 
+// All FAQ topics from the landing page — preloaded as clickable chips
 const QUICK_CHIPS = [
   "Which classes are supported?",
   "How much does it cost?",
   "How do lessons work?",
   "Is there a free trial?",
+  "Is the AI safe for children?",
+  "What subjects are available?",
+  "How many practice questions are available?",
+  "What does the Parent Dashboard show?",
+  "How do I add a child?",
+  "Is there a mobile app?",
+  "Does the AI use real NCERT textbooks?",
+  "How do I reset my password?",
+  "How do I contact support?",
+  "Tell me about LikhaPoha AI",
 ];
 
 export default function ChatWidget() {

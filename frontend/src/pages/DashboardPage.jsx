@@ -206,9 +206,28 @@ function DashboardPage({ user, setActivePage }) {
           </h2>
 
           <p>
-            You have completed <strong>{profile?.lessons_completed || 0}</strong> lessons,
-            attempted <strong>{stats.testsTaken}</strong> mock tests and currently hold a{" "}
-            <strong>{stats.averageScore}%</strong> average score.
+            {(profile?.lessons_completed || 0) === 0 && stats.testsTaken === 0 ? (
+              <>
+                Your AI tutor is ready. Start with your first lesson — pick a
+                subject, choose a chapter, and let the AI teach it step by step.
+              </>
+            ) : (profile?.lessons_completed || 0) > 0 && stats.testsTaken === 0 ? (
+              <>
+                You have completed{" "}
+                <strong>{profile.lessons_completed}</strong> lesson
+                {profile.lessons_completed === 1 ? "" : "s"} — great start! 🎉
+                Now try a mock test to see how much you have retained.
+              </>
+            ) : (
+              <>
+                You have completed{" "}
+                <strong>{profile?.lessons_completed || 0}</strong> lesson
+                {(profile?.lessons_completed || 0) === 1 ? "" : "s"},
+                attempted <strong>{stats.testsTaken}</strong> mock test
+                {stats.testsTaken === 1 ? "" : "s"} and currently hold a{" "}
+                <strong>{stats.averageScore}%</strong> average score.
+              </>
+            )}
           </p>
 
           <div className="dashboard-actions premium-hero-actions">
@@ -279,30 +298,17 @@ function DashboardPage({ user, setActivePage }) {
       </section>
 
       <section className="dashboard-grid premium-stat-grid">
-        <div className="dashboard-stat-card premium-stat-card blue">
-          <div className="dashboard-stat-icon blue">
-            <ClipboardList size={28} strokeWidth={2.4} />
+        <div className="dashboard-stat-card premium-stat-card red">
+          <div className="dashboard-stat-icon red">
+            <BookOpen size={28} strokeWidth={2.4} />
           </div>
 
           <div>
-            <h3>{stats.testsTaken}</h3>
-            <p>Mock tests completed</p>
+            <h3>{stats.lastScore}%</h3>
+            <p>Latest test score</p>
           </div>
 
-          <div className="mini-sparkline blue-line" />
-        </div>
-
-        <div className="dashboard-stat-card premium-stat-card purple">
-          <div className="dashboard-stat-icon purple">
-            <Target size={28} strokeWidth={2.4} />
-          </div>
-
-          <div>
-            <h3>{stats.bestScore}%</h3>
-            <p>Best mock test score</p>
-          </div>
-
-          <div className="mini-sparkline purple-line" />
+          <div className="mini-sparkline red-line" />
         </div>
 
         <div className="dashboard-stat-card premium-stat-card green">
@@ -318,17 +324,30 @@ function DashboardPage({ user, setActivePage }) {
           <div className="mini-bars" />
         </div>
 
-        <div className="dashboard-stat-card premium-stat-card red">
-          <div className="dashboard-stat-icon red">
-            <BookOpen size={28} strokeWidth={2.4} />
+        <div className="dashboard-stat-card premium-stat-card purple">
+          <div className="dashboard-stat-icon purple">
+            <Target size={28} strokeWidth={2.4} />
           </div>
 
           <div>
-            <h3>{stats.lastScore}%</h3>
-            <p>Latest test score</p>
+            <h3>{stats.bestScore}%</h3>
+            <p>Best mock test score</p>
           </div>
 
-          <div className="mini-sparkline red-line" />
+          <div className="mini-sparkline purple-line" />
+        </div>
+
+        <div className="dashboard-stat-card premium-stat-card blue">
+          <div className="dashboard-stat-icon blue">
+            <ClipboardList size={28} strokeWidth={2.4} />
+          </div>
+
+          <div>
+            <h3>{stats.testsTaken}</h3>
+            <p>Mock tests completed</p>
+          </div>
+
+          <div className="mini-sparkline blue-line" />
         </div>
       </section>
 

@@ -227,6 +227,10 @@ app.include_router(
 from app.routes.chatbot import router as chatbot_router  # noqa: E402
 app.include_router(chatbot_router, prefix="/api/chatbot", tags=["Chatbot"])
 
+# Unanswered questions review (admin intelligence management)
+from app.routes.unanswered_review import router as unanswered_router  # noqa: E402
+app.include_router(unanswered_router, prefix="/api/unanswered-review", tags=["Unanswered Review"])
+
 @app.get("/api/health")
 def health_check():
     """Return a detailed health response for frontend/API uptime checks."""
