@@ -54,21 +54,23 @@ jobs:
           RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
 
-      - name: "Wait for backend to be ready (max 5 min)"
+      - name: "Wait for backend to be ready (max 10 min)"
         run: |
-          echo "Waiting for backend health check..."
-          for i in $(seq 1 30); do
+          echo "Giving Render 30 seconds to register the deploy..."
+          sleep 30
+          echo "Polling backend health check (max 10 minutes)..."
+          for i in $(seq 1 60); do
             # -L follows HTTP→HTTPS redirects (307/301) that Render may issue
             STATUS=$(curl -s -L -o /dev/null -w "%{http_code}" \
               "${{ secrets.PRODUCTION_URL }}/api/health" 2>/dev/null || echo "000")
-            echo "Attempt $i: HTTP $STATUS"
+            echo "Attempt $i/60: HTTP $STATUS"
             if [ "$STATUS" = "200" ]; then
               echo "✅ Backend is healthy!"
               exit 0
             fi
             sleep 10
           done
-          echo "❌ Backend health check timed out after 5 minutes"
+          echo "❌ Backend health check timed out after 10 minutes"
           exit 1
 
   # ── Post-deploy smoke tests ─────────────────────────────────────────────────
