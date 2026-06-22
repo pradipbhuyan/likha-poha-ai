@@ -13572,15 +13572,17 @@ body.dark-mode .admin-guide-toggle-grid label {
 
 @media (max-width: 640px) {
   .first-guide-launcher {
-    top: auto;
-    right: 16px;
-    bottom: 18px;
+    bottom: auto;
+    top: 12px;
+    right: 12px;
+    padding: 9px 13px;
+    font-size: .8rem;
   }
 
   .first-guide-layer {
-    top: auto;
+    bottom: auto;
+    top: 58px;
     right: 12px;
-    bottom: 76px;
     left: 12px;
     max-width: none;
   }
