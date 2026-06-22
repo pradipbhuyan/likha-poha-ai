@@ -36,7 +36,7 @@ jobs:
         run: pip install ruff
 
       - name: Ruff lint
-        run: ruff check app/ --select E,F,W --ignore E501
+        run: ruff check app/
 
   # ── 2. Backend tests ───────────────────────────────────────────────────────
   backend-tests:

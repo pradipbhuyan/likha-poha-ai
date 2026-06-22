@@ -1,0 +1,48 @@
+# Ruff configuration for LikhaPoha AI backend
+# Keeps CI lint fast while ignoring patterns that are intentional in this codebase.
+
+# Target Python 3.13 to match CI
+target-version = "py313"
+
+[lint]
+# Same selection as CI: E (pycodestyle errors), F (pyflakes), W (warnings)
+# E501 (line too long) is excluded — long lines are acceptable in this codebase.
+select = ["E", "F", "W"]
+ignore = [
+  "E501",   # line too long — acceptable for long strings and URLs
+
+  # ── Import ordering ──────────────────────────────────────────────────────
+  # E402: Module-level imports not at top of file.
+  # The backend uses conditional / deferred imports in many places to avoid
+  # circular import chains in FastAPI. These are intentional.
+  "E402",
+
+  # ── Unused imports ───────────────────────────────────────────────────────
+  # F401: Imported but unused.
+  # Many modules re-export symbols for convenience, or imports are used
+  # only at runtime (e.g. registered via side-effects). Suppressible here
+  # because individual files already use # noqa: F401 where appropriate.
+  "F401",
+
+  # ── Unused variables ─────────────────────────────────────────────────────
+  # F841: Local variable assigned but never used.
+  # Common in error-handling blocks where the exception is caught for
+  # control flow but the variable itself is not referenced.
+  "F841",
+
+  # ── Naming ───────────────────────────────────────────────────────────────
+  # E741: Ambiguous variable name (l, O, I).
+  # Legacy variable names in math/science contexts.
+  "E741",
+
+  # ── Redefinition ─────────────────────────────────────────────────────────
+  # F811: Redefinition of unused name from import.
+  # Occurs when a name is re-imported after conditional import blocks.
+  "F811",
+
+  # ── Whitespace ───────────────────────────────────────────────────────────
+  # W292: No newline at end of file — minor style issue.
+  # W293: Whitespace before a blank line — minor style issue.
+  "W292",
+  "W293",
+]
