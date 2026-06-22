@@ -1,4 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
+from app.services.logger_service import get_logger
+
+_log = get_logger("routes.lesson")
 
 from app.models.schemas import (
     LessonRequest,
@@ -304,6 +307,19 @@ def generate_lesson(
 
     enforce_ai_token_limit(profile.get("username") or data.username)
 
+    username_key = profile.get("username") or data.username
+    _log.info(
+        "lesson.generate.start",
+        username=username_key,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter[:60] if data.chapter else "",
+        step_title=data.step_title[:60] if data.step_title else "",
+        mode=data.mode,
+        board=request_board,
+    )
+    import time as _time
+    _t_lesson = _time.perf_counter()
     try:
         result = call_with_optional_board(
             generate_step_lesson,
@@ -314,10 +330,19 @@ def generate_lesson(
             mode=data.mode,
             step_title=data.step_title,
             teacher_persona=data.teacher_persona,
-            username=profile.get("username") or data.username,
+            username=username_key,
             cache_only=False,  # Free-trial offer users get full lesson access during validity
         )
 
+        _log.info(
+            "lesson.generate.complete",
+            username=username_key,
+            grade=data.grade,
+            subject=data.subject,
+            source_type=result.get("source_type", "LLM") if isinstance(result, dict) else "LLM",
+            from_cache=result.get("from_cache", False) if isinstance(result, dict) else False,
+            duration_ms=round((_time.perf_counter() - _t_lesson) * 1000),
+        )
         if isinstance(result, dict):
             lesson = result.get("lesson")
             source_type = result.get("source_type", "LLM")
@@ -359,6 +384,16 @@ def generate_lesson(
         raise
 
     except Exception as e:
+        from app.services.logger_service import PlatformError as _PE  # noqa: PLC0415
+        _log.error(
+            "lesson.generate.failed",
+            error_code=_PE.SYS_INTERNAL_ERROR,
+            username=username_key,
+            grade=data.grade,
+            subject=data.subject,
+            error=str(e),
+            exc_info=True,
+        )
         return {
             "success": False,
             "lesson": None,

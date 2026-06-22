@@ -4,6 +4,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.services.logger_service import get_logger, PlatformError  # noqa: F401 — PlatformError re-exported
+from app.middleware.tracing import TracingMiddleware
+
+_log = get_logger("main")
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
@@ -58,6 +62,9 @@ app = FastAPI(
     title="CBSE Tutor API",
     version="1.0.0",
 )
+
+# ── Tracing middleware (must be added BEFORE CORSMiddleware) ──────────────────
+app.add_middleware(TracingMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

@@ -2,6 +2,9 @@ import threading
 import time
 
 from openai import OpenAI
+from app.services.logger_service import get_logger, PlatformError
+
+_log = get_logger("openai_service")
 
 from app.config import settings
 from app.services.ssl_service import enable_system_truststore
@@ -264,18 +267,59 @@ def ask_llm(
         {"role": "user", "content": user_prompt},
     ]
 
-    response = get_chat_client().chat.completions.create(
-        model=active_model,
-        messages=messages,
-        temperature=0.4,
-    )
+    t_start = time.perf_counter()
+    try:
+        response = get_chat_client().chat.completions.create(
+            model=active_model,
+            messages=messages,
+            temperature=0.4,
+        )
+    except Exception as exc:
+        duration_ms = round((time.perf_counter() - t_start) * 1000)
+        err_str = str(exc).lower()
+        if "timeout" in err_str:
+            error_code = PlatformError.LLM_TIMEOUT
+        elif "rate" in err_str or "429" in err_str:
+            error_code = PlatformError.LLM_RATE_LIMIT
+        elif "quota" in err_str:
+            error_code = PlatformError.LLM_QUOTA_EXCEEDED
+        elif "context" in err_str or "token" in err_str:
+            error_code = PlatformError.LLM_CONTEXT_TOO_LONG
+        else:
+            error_code = PlatformError.SYS_EXTERNAL_API_FAILED
+        _log.error(
+            "llm.call_failed",
+            error_code=error_code,
+            provider=provider,
+            model=active_model,
+            feature=feature,
+            username=username,
+            duration_ms=duration_ms,
+            error=str(exc),
+            exc_info=True,
+        )
+        raise
 
+    duration_ms = round((time.perf_counter() - t_start) * 1000)
     usage = getattr(response, "usage", None)
     prompt_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
     completion_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
     total_tokens = prompt_tokens + completion_tokens
 
     estimated_cost = estimate_cost(prompt_tokens, completion_tokens, model=active_model)
+
+    _log.info(
+        "llm.call_success",
+        provider=provider,
+        model=active_model,
+        feature=feature,
+        username=username,
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=total_tokens,
+        estimated_cost_usd=estimated_cost,
+        duration_ms=duration_ms,
+    )
 
     log_ai_usage(
         username=username,

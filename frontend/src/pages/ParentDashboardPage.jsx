@@ -657,16 +657,27 @@ function ParentDashboardPage() {
                   {[...history]
                     .reverse()
                     .slice(0, 5)
-                    .map((item, index) => (
-                      <div key={index} className="premium-parent-activity-row">
-                        <div>
-                          <strong>{item.subject}</strong>
-                          <p>{item.chapter || item.mockType}</p>
-                        </div>
+                    .map((item, index) => {
+                      const dateStr = item.created_at || item.date || item.completed_at || item.timestamp;
+                      const formattedDate = dateStr
+                        ? new Date(dateStr).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
+                        : null;
+                      return (
+                        <div key={index} className="premium-parent-activity-row">
+                          <div>
+                            <strong>{item.subject}</strong>
+                            <p>{item.chapter || item.mockType}</p>
+                            {formattedDate && (
+                              <small style={{ color: "#64748b", fontSize: ".72rem", marginTop: 2, display: "block" }}>
+                                🗓 {formattedDate}
+                              </small>
+                            )}
+                          </div>
 
-                        <span>{item.percentage}%</span>
-                      </div>
-                    ))}
+                          <span>{item.percentage}%</span>
+                        </div>
+                      );
+                    })}
                 </div>
               )}
             </div>

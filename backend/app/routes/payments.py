@@ -1,6 +1,9 @@
 import hashlib
 import hmac
 from datetime import datetime, timezone
+from app.services.logger_service import get_logger, PlatformError
+
+_log = get_logger("routes.payments")
 
 import requests
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -300,6 +303,13 @@ def verify_payment(
             "razorpay_payment_id": data.razorpay_payment_id,
             "status": "signature_failed",
         })
+        _log.error(
+            "payment.verify.signature_failed",
+            error_code=PlatformError.PAY_VERIFY_FAILED,
+            order_id=data.razorpay_order_id,
+            payment_id=data.razorpay_payment_id,
+            parent_id=parent["profile"]["id"],
+        )
         raise HTTPException(status_code=400, detail="Payment verification failed.")
 
     plan = get_public_plan(payment["plan_key"])
@@ -311,6 +321,15 @@ def verify_payment(
         "status": "paid",
         "verified_at": verified_at,
     })
+
+    _log.info(
+        "payment.verify.success",
+        order_id=data.razorpay_order_id,
+        payment_id=data.razorpay_payment_id,
+        plan_key=payment["plan_key"],
+        parent_id=parent["profile"]["id"],
+        activated_count=len(activated_profiles),
+    )
 
     return {
         "success": True,
