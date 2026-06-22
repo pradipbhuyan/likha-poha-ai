@@ -58,7 +58,8 @@ jobs:
         run: |
           echo "Waiting for backend health check..."
           for i in $(seq 1 30); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            # -L follows HTTP→HTTPS redirects (307/301) that Render may issue
+            STATUS=$(curl -s -L -o /dev/null -w "%{http_code}" \
               "${{ secrets.PRODUCTION_URL }}/api/health" 2>/dev/null || echo "000")
             echo "Attempt $i: HTTP $STATUS"
             if [ "$STATUS" = "200" ]; then
