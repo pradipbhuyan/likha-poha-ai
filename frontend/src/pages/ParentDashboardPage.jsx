@@ -58,8 +58,8 @@ function WebcamCaptureModal({ onCapture, onClose }) {
   }
 
   return (
-    <div className="modal-backdrop" style={{ zIndex: 1100 }}>
-      <div className="premium-modal" style={{ maxWidth: 480, textAlign: "center" }}>
+    <div className="modal-backdrop" style={{ zIndex: 2147483647 }}>
+      <div className="premium-modal" style={{ maxWidth: 480, textAlign: "center", marginLeft: 0, marginRight: "auto", position: "relative", left: "max(16px, 220px)" }}>
         <button className="modal-close" onClick={() => { stream?.getTracks().forEach(t => t.stop()); onClose(); }}>×</button>
         <h3 style={{ marginBottom: 12 }}>📸 Take a Photo</h3>
         {error ? (

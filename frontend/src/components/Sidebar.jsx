@@ -63,6 +63,7 @@ function Sidebar({
   const [avatar, setAvatar] = useState(user?.avatar || "");
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const fileRef = useRef(null);
+  const cameraRef = useRef(null);
 
   async function saveAvatar(newAvatar) {
     setAvatar(newAvatar);
@@ -343,11 +344,22 @@ function Sidebar({
             </label>
             {/* Take Photo: mobile → file capture, desktop → getUserMedia */}
             {/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
-              <label style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#6ee7b7", fontWeight: 600 }}>
-                📸 Camera
-                <input type="file" accept="image/*" capture="environment" style={{ display: "none" }}
-                  onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => saveAvatar(ev.target.result); r.readAsDataURL(f); }} />
-              </label>
+              <>
+                <input
+                  ref={cameraRef}
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  style={{ display: "none" }}
+                  onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => saveAvatar(ev.target.result); r.readAsDataURL(f); }}
+                />
+                <button
+                  type="button"
+                  onClick={() => cameraRef.current?.click()}
+                  style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4, background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.2)", borderRadius: 7, padding: "6px 8px", cursor: "pointer", fontSize: ".72rem", color: "#6ee7b7", fontWeight: 600 }}>
+                  📸 Camera
+                </button>
+              </>
             ) : (
               <button
                 onClick={() => {
