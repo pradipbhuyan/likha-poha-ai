@@ -41,12 +41,18 @@ jobs:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
 
       - name: "Deploy frontend to Render (or Vercel)"
-        if: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL != '' }}
         run: |
+          if [ -z "$RENDER_FRONTEND_DEPLOY_HOOK_URL" ]; then
+            echo "⏭️  RENDER_FRONTEND_DEPLOY_HOOK_URL not set — skipping frontend deploy."
+            exit 0
+          fi
           echo "Triggering Render frontend deploy..."
-          curl -s -X POST "${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+          curl -s -X POST "$RENDER_FRONTEND_DEPLOY_HOOK_URL" \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
             -o /dev/null -w "HTTP %{http_code}"
+        env:
+          RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
 
       - name: "Wait for backend to be ready (max 5 min)"
         run: |
@@ -110,22 +116,34 @@ jobs:
 
     steps:
       - name: "Slack — deploy success"
-        if: ${{ needs.smoke-test.result == 'success' && secrets.SLACK_WEBHOOK_URL != '' }}
+        if: ${{ needs.smoke-test.result == 'success' }}
         run: |
-          curl -s -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "⏭️  SLACK_WEBHOOK_URL not set — skipping Slack notification."
+            exit 0
+          fi
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
               "text": "✅ *LikhaPoha AI deployed successfully* to production\n• Commit: `${{ github.sha }}`\n• Branch: `main`\n• All smoke tests passed."
             }'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: "Slack — deploy failure"
-        if: ${{ (needs.deploy.result == 'failure' || needs.smoke-test.result == 'failure') && secrets.SLACK_WEBHOOK_URL != '' }}
+        if: ${{ needs.deploy.result == 'failure' || needs.smoke-test.result == 'failure' }}
         run: |
-          curl -s -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "⏭️  SLACK_WEBHOOK_URL not set — skipping Slack notification."
+            exit 0
+          fi
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
               "text": "❌ *LikhaPoha AI deploy FAILED*\n• Commit: `${{ github.sha }}`\n• Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: "Log deploy outcome"
         run: |
