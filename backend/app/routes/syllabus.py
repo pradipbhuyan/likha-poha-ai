@@ -1,3 +1,4 @@
+import logging
 import re
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -7,6 +8,8 @@ from app.data.syllabus import SYLLABUS, LESSON_STEPS
 from app.services.auth_service import admin_client, require_admin
 from app.services.board_service import normalize_board
 from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
+
+_logger = logging.getLogger("likhapoha.syllabus")
 
 router = APIRouter()
 
@@ -512,19 +515,26 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
     """Fetch rag_documents from BOTH Supabase projects and return combined list."""
     from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
 
-    def _query(db, select_fields):
+    def _query(db, select_fields, label="primary"):
         try:
             r = db.table("rag_documents").select(select_fields).execute()
-            return r.data or []
-        except Exception:
+            rows = r.data or []
+            _logger.info("rag_documents query [%s]: %d rows returned.", label, len(rows))
+            return rows
+        except Exception as exc:
+            _logger.error("rag_documents query [%s] FAILED with %s: %s", label, type(exc).__name__, exc)
             try:
                 r = db.table("rag_documents").select("grade,subject,chapter").execute()
-                return r.data or []
-            except Exception:
+                rows = r.data or []
+                _logger.info("rag_documents fallback query [%s]: %d rows returned.", label, len(rows))
+                return rows
+            except Exception as exc2:
+                _logger.error("rag_documents fallback query [%s] also FAILED: %s", label, exc2)
                 return []
 
-    primary = _query(supabase, fields)
-    secondary = _query(grade_1112_client, fields)
+    primary = _query(supabase, fields, label="primary")
+    secondary = _query(grade_1112_client, fields, label="grade-1112")
+    _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
     return primary + secondary
 
 
