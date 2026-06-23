@@ -23,6 +23,7 @@ from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
 # prewarm_service performs admin-level reads (lesson counts, RAG chapters, question bank)
 # so it must use the service_role key which bypasses RLS.
 from app.services.auth_service import admin_client as supabase
+from app.services.grade_db_router import get_content_db as _get_db
 # search_textbook_content imported lazily inside functions to avoid circular imports
 
 # ------------------------------------------------------------------ constants
@@ -171,9 +172,10 @@ def get_syllabus_for_grade(grade: str) -> dict:
             if mode in _PREWARM_MODES
         }
     # Fallback: read raw rag_documents if syllabus merge fails
+    # Use get_content_db so Grade 11/12 queries hit the second Supabase
     try:
         response = (
-            supabase
+            _get_db(grade)
             .table("rag_documents")
             .select("subject, chapter, board")
             .eq("grade", grade)
@@ -272,10 +274,10 @@ def count_expected_questions(grade: str) -> int:
 
 
 def count_cached_lessons(grade: str) -> int:
-    """Count active cached lessons for a grade."""
+    """Count active cached lessons for a grade (uses correct DB for Grade 11/12)."""
     try:
         result = (
-            supabase
+            _get_db(grade)
             .table("lesson_cache")
             .select("id", count="exact")
             .eq("grade", grade)
@@ -288,10 +290,10 @@ def count_cached_lessons(grade: str) -> int:
 
 
 def count_banked_questions(grade: str) -> int:
-    """Count active question bank entries for a grade."""
+    """Count active question bank entries for a grade (uses correct DB for Grade 11/12)."""
     try:
         result = (
-            supabase
+            _get_db(grade)
             .table("question_bank")
             .select("id", count="exact")
             .eq("grade", grade)
@@ -309,7 +311,7 @@ def count_banked_questions_for_chapter_difficulty(
     """Count active questions for a specific chapter + difficulty combo."""
     try:
         result = (
-            supabase
+            _get_db(grade)
             .table("question_bank")
             .select("id", count="exact")
             .eq("grade", grade)
@@ -342,7 +344,7 @@ def clear_question_bank_for_grade(grade: str) -> int:
     """Delete all question bank rows for a grade. Returns count deleted."""
     try:
         result = (
-            supabase
+            _get_db(grade)
             .table("question_bank")
             .delete()
             .eq("grade", grade)
@@ -595,8 +597,9 @@ def _get_rag_chapters_for_grade(grade: str) -> set:
     now = time.time()
     if grade not in _rag_chapters_loaded or now - _rag_chapters_loaded[grade] > _RAG_CHAPTERS_TTL:
         try:
+            # Use get_content_db so Grade 11/12 queries hit the second Supabase
             result = (
-                supabase
+                _get_db(grade)
                 .table("rag_documents")
                 .select("subject, chapter")
                 .eq("grade", grade)
@@ -833,10 +836,11 @@ def get_grade_status_summary(grades: list[str]) -> list[dict]:
     # Fetch DKB counts per grade using count="exact" — avoids the Supabase
     # default 1000-row page limit that causes undercounting when a grade has
     # more than 1000 Q&A pairs (e.g. Grade 10 has 2200+).
+    # Uses _get_db(g) so Grade 11/12 queries hit the second Supabase.
     dkb_counts: dict[str, int] = {}
     for g in grades:
         try:
-            r = supabase.table("doubt_kb").select(
+            r = _get_db(g).table("doubt_kb").select(
                 "id", count="exact"
             ).eq("grade", g).eq("status", "active").execute()
             dkb_counts[g] = r.count or 0
