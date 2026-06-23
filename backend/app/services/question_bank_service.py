@@ -13,7 +13,8 @@ Design principles:
 
 import random
 
-from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
+from app.services.grade_db_router import get_content_db
+from app.services.auth_service import admin_client as _primary_client
 
 
 def get_questions_from_bank(
@@ -38,6 +39,7 @@ def get_questions_from_bank(
 
     The caller should always handle the empty-list case.
     """
+    supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(
             c for c in (chapter or "") if c.isprintable()
@@ -137,6 +139,7 @@ def add_questions_to_bank(
     if not questions:
         return
 
+    supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
 
@@ -212,6 +215,7 @@ def invalidate_bank_for_chapter(
     grounded in the old content are flagged for admin review before
     serving them again.
     """
+    supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
         supabase.table("question_bank").update(
@@ -227,21 +231,21 @@ def invalidate_bank_for_chapter(
 
 
 def get_bank_stats() -> dict:
-    """Return summary statistics for the admin question bank panel."""
-    try:
-        result = (
-            supabase
-            .table("question_bank")
-            .select("status, grade, subject, difficulty")
-            .execute()
-        )
-        rows = result.data or []
-        active = [r for r in rows if r.get("status") == "active"]
-        needs_review = [r for r in rows if r.get("status") == "needs_review"]
-        return {
-            "total": len(rows),
-            "active": len(active),
-            "needs_review": len(needs_review),
-        }
-    except Exception:
-        return {"total": 0, "active": 0, "needs_review": 0}
+    """Return summary statistics for the admin question bank panel (both DBs)."""
+    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+
+    def _fetch(db):
+        try:
+            r = db.table("question_bank").select("status, grade, subject, difficulty").execute()
+            return r.data or []
+        except Exception:
+            return []
+
+    rows = _fetch(_primary_client) + _fetch(grade_1112_client)
+    active = [r for r in rows if r.get("status") == "active"]
+    needs_review = [r for r in rows if r.get("status") == "needs_review"]
+    return {
+        "total": len(rows),
+        "active": len(active),
+        "needs_review": len(needs_review),
+    }

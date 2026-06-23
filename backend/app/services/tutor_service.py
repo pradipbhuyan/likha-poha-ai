@@ -361,7 +361,7 @@ grade: str,
         step_title=step_title,
         teacher_persona=teacher_persona or "",
     )
-    cached = get_cached_lesson(cache_key)
+    cached = get_cached_lesson(cache_key, grade=grade)
 
     # Fallback 1 (PERSONA): prewarm stores lessons with teacher_persona="".
     # Try the empty-persona key when the request has a non-empty persona.
@@ -375,7 +375,7 @@ grade: str,
             step_title=step_title,
             teacher_persona="",
         )
-        cached = get_cached_lesson(fallback_key)
+        cached = get_cached_lesson(fallback_key, grade=grade)
 
     # Fallback 2 (SOURCE-PREFIX): the lesson cache may have been built before
     # multi-book display prefixes were introduced (e.g. "Text Book - Chapter 7").
@@ -392,7 +392,7 @@ grade: str,
             step_title=step_title,
             teacher_persona=teacher_persona or "",
         )
-        cached = get_cached_lesson(stripped_key)
+        cached = get_cached_lesson(stripped_key, grade=grade)
 
         # Also try stripped chapter with empty persona
         if not cached and (teacher_persona or "").strip():
@@ -405,7 +405,7 @@ grade: str,
                 step_title=step_title,
                 teacher_persona="",
             )
-            cached = get_cached_lesson(stripped_empty_key)
+            cached = get_cached_lesson(stripped_empty_key, grade=grade)
 
     # Fallback 3 (TEXT SEARCH): the cache key is a hash so prefix mismatches
     # between prewarm time and request time produce different hashes even for

@@ -22,7 +22,8 @@ Pre-warm via the admin cache management panel:
 
 import logging
 
-from app.services.auth_service import admin_client as supabase
+from app.services.grade_db_router import get_content_db
+from app.services.auth_service import admin_client as _primary_client
 from app.services.rag_service import create_embedding
 
 logger = logging.getLogger(__name__)
@@ -71,6 +72,7 @@ def search_doubt_kb(
         {"answer": str, "question": str, "source_type": "DOUBT_KB",
          "id": str, "similarity": float}
     """
+    supabase = get_content_db(grade)
     try:
         embedding = create_embedding(question)
 
@@ -157,6 +159,7 @@ def store_in_doubt_kb(
 
     Returns the new row id, or None on failure.
     """
+    supabase = get_content_db(grade)
     try:
         embedding = create_embedding(question)
 
@@ -208,6 +211,7 @@ def get_lesson_doubt_suggestions(
     Returns list of {"id": str, "question": str} ordered by popularity.
     """
     import re as _re  # noqa: PLC0415
+    supabase = get_content_db(grade)
 
     def _call_rpc(ch):
         return supabase.rpc(
@@ -267,12 +271,67 @@ def get_lesson_doubt_suggestions(
 
 def get_doubt_kb_stats() -> dict:
     """
-    Return aggregate DKB stats for the admin analytics console.
+    Return aggregate DKB stats for the admin analytics console (both DBs).
 
     Shows total entries, prewarmed vs auto-generated, hit rate, and estimated
     token savings.  Estimated savings assume each DB hit saves one LLM call
     at ~1500 tokens × $0.0001/1K = ~$0.00015 per hit.
     """
+    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+
+    def _stats_for_db(db):
+        try:
+            prewarmed_res = db.table("doubt_kb") \
+                .select("id", count="exact") \
+                .eq("status", "active").eq("source", "prewarmed").execute()
+            prewarmed = prewarmed_res.count or 0
+            llm_res = db.table("doubt_kb") \
+                .select("id", count="exact") \
+                .eq("status", "active").eq("source", "llm").execute()
+            llm_gen = llm_res.count or 0
+            hits_res = db.table("doubt_kb").select("hit_count").eq("status", "active").execute()
+            total_hits = sum((r.get("hit_count") or 0) for r in (hits_res.data or []))
+            grade_result = db.table("doubt_kb").select("grade, hit_count").eq("status", "active").execute()
+            return prewarmed, llm_gen, total_hits, grade_result.data or []
+        except Exception:
+            return 0, 0, 0, []
+
+    try:
+        p1, l1, h1, g1 = _stats_for_db(_primary_client)
+        p2, l2, h2, g2 = _stats_for_db(grade_1112_client)
+        prewarmed = p1 + p2
+        llm_generated = l1 + l2
+        total_hits = h1 + h2
+        grade_data = g1 + g2
+
+        saved_per_hit = (1500 / 1000) * 0.0001 + (800 / 1000) * 0.0004
+        estimated_savings = round(total_hits * saved_per_hit, 4)
+
+        grade_breakdown = {}
+        for r in grade_data:
+            g = r.get("grade", "Unknown")
+            grade_breakdown[g] = grade_breakdown.get(g, 0) + (r.get("hit_count") or 0)
+
+        return {
+            "total_entries": prewarmed + llm_generated,
+            "prewarmed": prewarmed,
+            "llm_generated": llm_generated,
+            "total_hits": total_hits,
+            "estimated_savings_usd": estimated_savings,
+            "hits_by_grade": grade_breakdown,
+        }
+
+    except Exception as exc:
+        logger.warning("DKB stats failed: %s", exc)
+        return {
+            "total_entries": 0, "prewarmed": 0, "llm_generated": 0,
+            "total_hits": 0, "estimated_savings_usd": 0.0, "hits_by_grade": {},
+        }
+
+
+def _get_doubt_kb_stats_REMOVED() -> dict:
+    """(Replaced by the multi-DB version above — kept for reference.)"""
+    supabase = _primary_client
     try:
         # Use server-side counts to avoid the 1000-row default page limit.
         prewarmed_res = supabase.table("doubt_kb") \
@@ -328,6 +387,7 @@ def get_doubt_kb_stats() -> dict:
 
 def get_doubt_kb_grade_stats(grade: str) -> dict:
     """Return per-subject DKB entry counts for one grade."""
+    supabase = get_content_db(grade)
     try:
         result = supabase.table("doubt_kb").select(
             "subject, hit_count, source"
@@ -385,6 +445,7 @@ def prewarm_doubt_kb_for_chapter(
     import json  # noqa: PLC0415
 
     # Check how many Q&A pairs already exist for this chapter
+    supabase = get_content_db(grade)
     try:
         existing = supabase.table("doubt_kb").select(
             "id", count="exact"

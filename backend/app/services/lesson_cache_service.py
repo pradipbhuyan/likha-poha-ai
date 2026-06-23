@@ -14,7 +14,8 @@ Design principles:
 import hashlib
 import json
 
-from app.services.auth_service import admin_client as supabase
+from app.services.grade_db_router import get_content_db
+from app.services.auth_service import admin_client as _primary_client
 
 
 def make_lesson_cache_key(
@@ -45,13 +46,15 @@ def make_lesson_cache_key(
     return hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
 
 
-def get_cached_lesson(cache_key: str) -> dict | None:
+def get_cached_lesson(cache_key: str, grade: str | None = None) -> dict | None:
     """
     Return a cached lesson dict if it exists and is active, else None.
+    Pass grade so the correct Supabase project is queried for Grade 11/12.
 
     Returns: {"lesson_content": str, "practice_questions": list, "source_type": str}
     Returns None on cache miss, table-not-found, or any other error.
     """
+    supabase = get_content_db(grade)
     try:
         result = (
             supabase
@@ -88,7 +91,7 @@ def store_lesson_cache(
     lesson_content: str,
     source_type: str,
     board: str,
-    grade: str,
+    grade: str,  # noqa: used to route to correct DB
     subject: str,
     chapter: str,
     mode: str,
@@ -102,6 +105,7 @@ def store_lesson_cache(
     Failures are silently ignored — a failed cache store must never prevent
     the lesson from being delivered to the student.
     """
+    supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
         supabase.table("lesson_cache").upsert(
@@ -138,6 +142,7 @@ def invalidate_cache_for_chapter(
     Call this automatically when new RAG content is uploaded for a chapter
     so the next lesson request regenerates with updated textbook context.
     """
+    supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
         supabase.table("lesson_cache").update({"status": "stale"}).match({
@@ -178,6 +183,7 @@ def get_cached_lesson_by_chapter_text(
 ) -> dict | None:
     """
     Text-based chapter lookup for when the cache key hash misses.
+    Routes to the Grade 11/12 Supabase when applicable.
 
     The lesson cache was built with chapter names that may have had different
     source prefixes (e.g. 'Economics - Chapter 1: Development' vs the current
@@ -187,6 +193,7 @@ def get_cached_lesson_by_chapter_text(
 
     Falls back to None so the caller can continue to other strategies.
     """
+    supabase = get_content_db(grade)
     try:
         core = _normalize_chapter_for_search(chapter)
         if not core:
@@ -228,7 +235,7 @@ def get_cached_lesson_by_chapter_text(
         return None
 
 
-def archive_lesson_cache_for_grade(grade: str) -> int:
+def archive_lesson_cache_for_grade(grade: str) -> int:  # noqa: used to route DB
     """
     Archive (soft-delete) all cached lessons for a grade.
 
@@ -238,6 +245,7 @@ def archive_lesson_cache_for_grade(grade: str) -> int:
 
     Returns the number of lessons archived.
     """
+    supabase = get_content_db(grade)
     try:
         result = (
             supabase
@@ -259,6 +267,7 @@ def restore_archived_lessons_for_grade(grade: str) -> int:
     Allows recovery from an accidental 'Clear Lessons' without spending tokens.
     Returns the number of lessons restored.
     """
+    supabase = get_content_db(grade)
     try:
         result = (
             supabase
@@ -275,6 +284,7 @@ def restore_archived_lessons_for_grade(grade: str) -> int:
 
 def get_archived_lesson_count(grade: str) -> int:
     """Return count of archived (recoverable) lessons for a grade."""
+    supabase = get_content_db(grade)
     try:
         result = (
             supabase
@@ -290,22 +300,21 @@ def get_archived_lesson_count(grade: str) -> int:
 
 
 def get_cache_stats() -> dict:
-    """Return summary statistics for the admin cache health panel."""
-    try:
-        result = (
-            supabase
-            .table("lesson_cache")
-            .select("status, access_count, grade, subject")
-            .execute()
-        )
-        rows = result.data or []
-        active = [r for r in rows if r.get("status") == "active"]
-        stale = [r for r in rows if r.get("status") == "stale"]
-        return {
-            "total": len(rows),
-            "active": len(active),
-            "stale": len(stale),
-            "total_accesses": sum(r.get("access_count", 0) for r in active),
-        }
-    except Exception:
-        return {"total": 0, "active": 0, "stale": 0, "total_accesses": 0}
+    """Return summary statistics for the admin cache health panel (both DBs)."""
+    def _fetch(db):
+        try:
+            r = db.table("lesson_cache").select("status, access_count, grade, subject").execute()
+            return r.data or []
+        except Exception:
+            return []
+
+    from app.services.supabase_grade_1112_client import grade_1112_client
+    rows = _fetch(_primary_client) + _fetch(grade_1112_client)
+    active = [r for r in rows if r.get("status") == "active"]
+    stale  = [r for r in rows if r.get("status") == "stale"]
+    return {
+        "total": len(rows),
+        "active": len(active),
+        "stale": len(stale),
+        "total_accesses": sum(r.get("access_count", 0) for r in active),
+    }
