@@ -412,7 +412,7 @@ describe("LessonsPage", () => {
       expect(screen.queryByText(/ask a follow-up/i)).not.toBeInTheDocument();
     });
 
-    expect(screen.getByText(/Hindi gets two MCQs/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Hindi gets two MCQs/i)).toBeInTheDocument();
 
     fireEvent.click(
       screen.getByRole("button", {
