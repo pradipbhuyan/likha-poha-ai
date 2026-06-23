@@ -56,10 +56,10 @@ _MODEL_PRICING = {
     "mixtral-8x7b-32768":      {"input": 0.00024, "output": 0.00024},
     "gemma2-9b-it":            {"input": 0.00020, "output": 0.00020},
     # Cerebras models — free tier, no daily token cap
-    "llama-3.3-70b":           {"input": 0.00059, "output": 0.00079},
     "llama3.3-70b":            {"input": 0.00059, "output": 0.00079},
-    "llama-3.1-8b":            {"input": 0.00005, "output": 0.00008},
     "llama3.1-8b":             {"input": 0.00005, "output": 0.00008},
+    "gpt-oss-120b":            {"input": 0.00059, "output": 0.00079},
+    "zai-glm-4.7":             {"input": 0.00005, "output": 0.00008},
 }
 
 INPUT_COST_PER_1K = 0.0001
@@ -385,14 +385,43 @@ def ask_llm(
         {"role": "user", "content": user_prompt},
     ]
 
+    # Retry loop — Cerebras (and Groq) can return transient 429 queue_exceeded.
+    # Retry up to 3 times with exponential backoff before giving up.
+    _MAX_RETRIES = 3
+    _retry_delays = [5, 15, 30]  # seconds between retries
+
     t_start = time.perf_counter()
-    try:
-        response = get_chat_client().chat.completions.create(
-            model=active_model,
-            messages=messages,
-            temperature=0.4,
-        )
-    except Exception as exc:
+    last_exc: Exception | None = None
+    for _attempt in range(_MAX_RETRIES):
+        try:
+            response = get_chat_client().chat.completions.create(
+                model=active_model,
+                messages=messages,
+                temperature=0.4,
+            )
+            last_exc = None
+            break  # success
+        except Exception as exc:
+            err_str = str(exc).lower()
+            is_retryable = "429" in err_str or "queue" in err_str or "rate" in err_str
+            if is_retryable and _attempt < _MAX_RETRIES - 1:
+                _delay = _retry_delays[_attempt]
+                _log.warning(
+                    "llm.retrying",
+                    provider=provider,
+                    model=active_model,
+                    attempt=_attempt + 1,
+                    retry_after_s=_delay,
+                    error=str(exc)[:120],
+                )
+                time.sleep(_delay)
+                last_exc = exc
+            else:
+                last_exc = exc
+                break
+
+    if last_exc is not None:
+        exc = last_exc
         duration_ms = round((time.perf_counter() - t_start) * 1000)
         err_str = str(exc).lower()
         if "timeout" in err_str:
@@ -416,7 +445,7 @@ def ask_llm(
             error=str(exc),
             exc_info=True,
         )
-        raise
+        raise exc
 
     duration_ms = round((time.perf_counter() - t_start) * 1000)
     usage = getattr(response, "usage", None)
