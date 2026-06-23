@@ -1376,11 +1376,13 @@ def update_child_limits(
 class UpdateAiSettingsRequest(BaseModel):
     api_enabled: bool
     openai_api_key: str | None = None
-    provider: str = "openai"           # "openai" | "venice" | "groq"
+    provider: str = "openai"           # "openai" | "venice" | "groq" | "cerebras"
     venice_api_key: str | None = None
     venice_model: str = "llama-3.3-70b"
     groq_api_key: str | None = None
     groq_model: str = "llama-3.3-70b-versatile"
+    cerebras_api_key: str | None = None
+    cerebras_model: str = "llama-3.3-70b"
 
 
 def _load_ai_settings_row() -> dict | None:
@@ -1416,6 +1418,7 @@ def get_ai_settings(admin=Depends(require_admin)):
         effective_key = stored_key if stored_key else (settings.OPENAI_API_KEY or "")
         stored_venice_key = (row.get("venice_api_key") or "").strip()
         stored_groq_key = (row.get("groq_api_key") or "").strip()
+        stored_cerebras_key = (row.get("cerebras_api_key") or "").strip()
         return {
             "success": True,
             "api_enabled": row.get("api_enabled", True),
@@ -1426,11 +1429,14 @@ def get_ai_settings(admin=Depends(require_admin)):
             "venice_model": row.get("venice_model") or "llama-3.3-70b",
             "groq_key_prefix": stored_groq_key[:12] if stored_groq_key else "",
             "groq_model": row.get("groq_model") or "llama-3.3-70b-versatile",
+            "cerebras_key_prefix": stored_cerebras_key[:12] if stored_cerebras_key else "",
+            "cerebras_model": row.get("cerebras_model") or "llama-3.3-70b",
         }
 
     # Table exists but no row yet — fall back to env key
     env_key = settings.OPENAI_API_KEY or ""
     env_groq_key = settings.GROQ_API_KEY or ""
+    env_cerebras_key = settings.CEREBRAS_API_KEY or ""
     return {
         "success": True,
         "api_enabled": True,
@@ -1441,6 +1447,8 @@ def get_ai_settings(admin=Depends(require_admin)):
         "venice_model": "llama-3.3-70b",
         "groq_key_prefix": env_groq_key[:12] if env_groq_key else "",
         "groq_model": "llama-3.3-70b-versatile",
+        "cerebras_key_prefix": env_cerebras_key[:12] if env_cerebras_key else "",
+        "cerebras_model": "llama-3.3-70b",
     }
 
 
@@ -1475,6 +1483,11 @@ def update_ai_settings(
     new_groq_key = (data.groq_api_key or "").strip()
     effective_groq_key = new_groq_key if new_groq_key else existing_groq_key
 
+    # Cerebras key — preserve existing if blank
+    existing_cerebras_key = (row.get("cerebras_api_key") or "").strip() if row else ""
+    new_cerebras_key = (data.cerebras_api_key or "").strip()
+    effective_cerebras_key = new_cerebras_key if new_cerebras_key else existing_cerebras_key
+
     value = {
         "api_enabled": data.api_enabled,
         "openai_api_key": effective_key,
@@ -1483,6 +1496,8 @@ def update_ai_settings(
         "venice_model": (data.venice_model or "llama-3.3-70b").strip(),
         "groq_api_key": effective_groq_key,
         "groq_model": (data.groq_model or "llama-3.3-70b-versatile").strip(),
+        "cerebras_api_key": effective_cerebras_key,
+        "cerebras_model": (data.cerebras_model or "llama-3.3-70b").strip(),
     }
 
     try:
@@ -1518,6 +1533,8 @@ def update_ai_settings(
         "venice_model": value["venice_model"],
         "groq_key_prefix": effective_groq_key[:12] if effective_groq_key else "",
         "groq_model": value["groq_model"],
+        "cerebras_key_prefix": effective_cerebras_key[:12] if effective_cerebras_key else "",
+        "cerebras_model": value["cerebras_model"],
         "message": "AI settings saved successfully.",
     }
 

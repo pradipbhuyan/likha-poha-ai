@@ -29,9 +29,13 @@ GPT5_MINI_TEXT_MODEL = DEFAULT_TEXT_MODEL
 
 VENICE_BASE_URL = "https://api.venice.ai/api/v1"
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
 
 # Default Groq model — fast, high-quality, generous free tier
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
+
+# Default Cerebras model — Llama 3.3 70B, no daily token cap, 60 req/min free
+DEFAULT_CEREBRAS_MODEL = "llama-3.3-70b"
 
 _MODEL_PRICING = {
     # OpenAI models
@@ -50,6 +54,11 @@ _MODEL_PRICING = {
     "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
     "mixtral-8x7b-32768":      {"input": 0.00024, "output": 0.00024},
     "gemma2-9b-it":            {"input": 0.00020, "output": 0.00020},
+    # Cerebras models — free tier, no daily token cap
+    "llama-3.3-70b":           {"input": 0.00059, "output": 0.00079},
+    "llama3.3-70b":            {"input": 0.00059, "output": 0.00079},
+    "llama-3.1-8b":            {"input": 0.00005, "output": 0.00008},
+    "llama3.1-8b":             {"input": 0.00005, "output": 0.00008},
 }
 
 INPUT_COST_PER_1K = 0.0001
@@ -72,6 +81,8 @@ _settings_cache: dict = {
     "venice_model": "llama-3.3-70b",
     "groq_api_key": None,
     "groq_model": DEFAULT_GROQ_MODEL,
+    "cerebras_api_key": None,
+    "cerebras_model": DEFAULT_CEREBRAS_MODEL,
     "loaded_at": 0.0,
 }
 _SETTINGS_TTL = 60.0  # seconds
@@ -83,6 +94,10 @@ _venice_key: str | None = None
 # ── Groq client cache ─────────────────────────────────────────────────────────
 _groq_client: OpenAI | None = None
 _groq_key: str | None = None
+
+# ── Cerebras client cache ─────────────────────────────────────────────────────
+_cerebras_client: OpenAI | None = None
+_cerebras_key: str | None = None
 
 
 def _load_db_settings() -> dict | None:
@@ -134,6 +149,8 @@ def get_effective_settings() -> dict:
             _settings_cache["venice_model"] = db.get("venice_model") or "llama-3.3-70b"
             _settings_cache["groq_api_key"] = db.get("groq_api_key") or settings.GROQ_API_KEY
             _settings_cache["groq_model"] = db.get("groq_model") or DEFAULT_GROQ_MODEL
+            _settings_cache["cerebras_api_key"] = db.get("cerebras_api_key") or settings.CEREBRAS_API_KEY
+            _settings_cache["cerebras_model"] = db.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
@@ -142,6 +159,8 @@ def get_effective_settings() -> dict:
             _settings_cache["venice_model"] = "llama-3.3-70b"
             _settings_cache["groq_api_key"] = settings.GROQ_API_KEY
             _settings_cache["groq_model"] = DEFAULT_GROQ_MODEL
+            _settings_cache["cerebras_api_key"] = settings.CEREBRAS_API_KEY
+            _settings_cache["cerebras_model"] = DEFAULT_CEREBRAS_MODEL
         _settings_cache["loaded_at"] = now
 
     return _settings_cache
@@ -228,11 +247,41 @@ def get_groq_client() -> OpenAI:
     return _groq_client
 
 
+def get_cerebras_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at Cerebras.
+
+    Cerebras uses the OpenAI Chat Completions API format — same SDK, different
+    base_url and API key (starts with csk_...).  Cerebras free tier has no daily
+    token cap and runs Llama 3.3 70B at 2,000+ tokens/sec — ideal for prewarming.
+    """
+    global _cerebras_client, _cerebras_key
+
+    current_settings = get_effective_settings()
+    cerebras_key = (
+        current_settings.get("cerebras_api_key")
+        or settings.CEREBRAS_API_KEY
+        or ""
+    )
+
+    if _cerebras_client is None or cerebras_key != _cerebras_key:
+        with _client_lock:
+            if _cerebras_client is None or cerebras_key != _cerebras_key:
+                _cerebras_client = OpenAI(
+                    api_key=cerebras_key,
+                    base_url=CEREBRAS_BASE_URL,
+                    timeout=60.0,
+                )
+                _cerebras_key = cerebras_key
+
+    return _cerebras_client
+
+
 def get_chat_client() -> OpenAI:
     """
     Return the active LLM client based on the admin-configured provider.
 
-    Supported providers: openai | venice | groq
+    Supported providers: openai | venice | groq | cerebras
     This is the function that ask_llm() should use.
     """
     current = get_effective_settings()
@@ -241,6 +290,8 @@ def get_chat_client() -> OpenAI:
         return get_venice_client()
     if provider == "groq":
         return get_groq_client()
+    if provider == "cerebras":
+        return get_cerebras_client()
     return get_openai_client()
 
 
@@ -315,6 +366,8 @@ def ask_llm(
         active_model = current.get("venice_model") or "llama-3.3-70b"
     elif provider == "groq":
         active_model = current.get("groq_model") or DEFAULT_GROQ_MODEL
+    elif provider == "cerebras":
+        active_model = current.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
 
     # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
     messages = [

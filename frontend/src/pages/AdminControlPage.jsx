@@ -118,6 +118,9 @@ function AdminControlPage({ user }) {
   const [groqKeyPrefix, setGroqKeyPrefix] = useState("");
   const [groqModel, setGroqModel] = useState("llama-3.3-70b-versatile");
   const [newGroqKey, setNewGroqKey] = useState("");
+  const [cerebrasKeyPrefix, setCerebrasKeyPrefix] = useState("");
+  const [cerebrasModel, setCerebrasModel] = useState("llama-3.3-70b");
+  const [newCerebrasKey, setNewCerebrasKey] = useState("");
   const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
   const [aiSettingsMessage, setAiSettingsMessage] = useState("");
@@ -223,6 +226,8 @@ function AdminControlPage({ user }) {
       setVeniceModel(data.venice_model || "llama-3.3-70b");
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
+      setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
+      setCerebrasModel(data.cerebras_model || "llama-3.3-70b");
     } catch (err) {
       console.error(err);
     } finally {
@@ -242,10 +247,12 @@ function AdminControlPage({ user }) {
         provider: aiProvider,
         venice_model: veniceModel,
         groq_model: groqModel,
+        cerebras_model: cerebrasModel,
       };
       if (newApiKey.trim()) payload.openai_api_key = newApiKey.trim();
       if (newVeniceKey.trim()) payload.venice_api_key = newVeniceKey.trim();
       if (newGroqKey.trim()) payload.groq_api_key = newGroqKey.trim();
+      if (newCerebrasKey.trim()) payload.cerebras_api_key = newCerebrasKey.trim();
       const data = await updateAiSettings(payload, user.accessToken);
       setAiEnabled(data.api_enabled ?? true);
       setAiKeyPrefix(data.api_key_prefix || "");
@@ -255,12 +262,16 @@ function AdminControlPage({ user }) {
       setVeniceModel(data.venice_model || "llama-3.3-70b");
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
+      setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
+      setCerebrasModel(data.cerebras_model || "llama-3.3-70b");
       setNewApiKey("");
       setNewVeniceKey("");
       setNewGroqKey("");
+      setNewCerebrasKey("");
       const providerLabel =
         data.provider === "venice" ? `Venice AI (${data.venice_model})` :
-        data.provider === "groq" ? `Groq (${data.groq_model})` : "OpenAI";
+        data.provider === "groq" ? `Groq (${data.groq_model})` :
+        data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` : "OpenAI";
       setAiSettingsMessage(
         data.api_enabled
           ? `AI API is ON — using ${providerLabel}.`
@@ -1032,10 +1043,10 @@ function AdminControlPage({ user }) {
           <div style={{ marginBottom: 20 }}>
             <strong>AI Provider</strong>
             <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
-              Switch between OpenAI, Venice AI, or Groq. Groq has a free tier (14,400 req/day).
+              Switch between OpenAI, Venice AI, Groq, or Cerebras. Groq and Cerebras are free — no credit card.
             </p>
             <div style={{ display: "flex", gap: 0, background: "var(--surface2,#111827)", border: "1px solid var(--border)", borderRadius: 9, padding: 3 }}>
-              {[["openai", "🤖 OpenAI"], ["venice", "🎨 Venice AI"], ["groq", "⚡ Groq (Free)"]].map(([val, label]) => (
+              {[["openai", "🤖 OpenAI"], ["venice", "🎨 Venice AI"], ["groq", "⚡ Groq (Free)"], ["cerebras", "🧠 Cerebras (Free)"]].map(([val, label]) => (
                 <button key={val} onClick={() => setAiProvider(val)}
                   style={{ flex: 1, padding: "8px 10px", borderRadius: 7, border: "none",
                     background: aiProvider === val ? "var(--accent, #6366f1)" : "transparent",
@@ -1105,6 +1116,44 @@ function AdminControlPage({ user }) {
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 Use <strong>8B Instant</strong> for prewarming (highest throughput). Use <strong>70B</strong> for live student responses.
+                </p>
+              </label>
+            </div>
+          )}
+
+          {/* Cerebras settings */}
+          {aiProvider === "cerebras" && (
+            <div style={{ background: "rgba(139,92,246,.07)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>Cerebras Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                Cerebras runs Llama 3.3 70B with <strong>no daily token cap</strong> — ideal for prewarming all grades.
+                Free, no credit card. Get your key at{" "}
+                <a href="https://cloud.cerebras.ai" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>cloud.cerebras.ai</a>.
+                Your OpenAI key is <strong>never used</strong> when Cerebras is active.
+              </p>
+
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>Cerebras API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {cerebrasKeyPrefix ? `${cerebrasKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newCerebrasKey} onChange={(e) => setNewCerebrasKey(e.target.value)}
+                  placeholder="csk_…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>Cerebras Model</strong>
+                <select value={cerebrasModel} onChange={(e) => setCerebrasModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="llama-3.3-70b">Llama 3.3 70B — Best quality, no token cap (recommended)</option>
+                  <option value="llama3.3-70b">Llama 3.3 70B (alt name)</option>
+                  <option value="llama-3.1-8b">Llama 3.1 8B — Lightweight, ultra-fast</option>
+                  <option value="llama3.1-8b">Llama 3.1 8B (alt name)</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
+                  💡 Use <strong>Llama 3.3 70B</strong> for all tasks — no token cap means you never get blocked during prewarming.
+                  2,000+ tokens/sec — fastest inference available.
                 </p>
               </label>
             </div>
