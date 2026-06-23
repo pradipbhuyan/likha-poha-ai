@@ -119,7 +119,7 @@ function AdminControlPage({ user }) {
   const [groqModel, setGroqModel] = useState("llama-3.3-70b-versatile");
   const [newGroqKey, setNewGroqKey] = useState("");
   const [cerebrasKeyPrefix, setCerebrasKeyPrefix] = useState("");
-  const [cerebrasModel, setCerebrasModel] = useState("llama-3.3-70b");
+  const [cerebrasModel, setCerebrasModel] = useState("llama3.3-70b");
   const [newCerebrasKey, setNewCerebrasKey] = useState("");
   const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
@@ -227,7 +227,7 @@ function AdminControlPage({ user }) {
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
       setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
-      setCerebrasModel(data.cerebras_model || "llama-3.3-70b");
+      setCerebrasModel(data.cerebras_model || "llama3.3-70b");
     } catch (err) {
       console.error(err);
     } finally {
@@ -263,7 +263,7 @@ function AdminControlPage({ user }) {
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
       setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
-      setCerebrasModel(data.cerebras_model || "llama-3.3-70b");
+      setCerebrasModel(data.cerebras_model || "llama3.3-70b");
       setNewApiKey("");
       setNewVeniceKey("");
       setNewGroqKey("");
@@ -1146,10 +1146,8 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>Cerebras Model</strong>
                 <select value={cerebrasModel} onChange={(e) => setCerebrasModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="llama-3.3-70b">Llama 3.3 70B — Best quality, no token cap (recommended)</option>
-                  <option value="llama3.3-70b">Llama 3.3 70B (alt name)</option>
-                  <option value="llama-3.1-8b">Llama 3.1 8B — Lightweight, ultra-fast</option>
-                  <option value="llama3.1-8b">Llama 3.1 8B (alt name)</option>
+                  <option value="llama3.3-70b">Llama 3.3 70B — Best quality, no token cap (recommended)</option>
+                  <option value="llama3.1-8b">Llama 3.1 8B — Lightweight, ultra-fast</option>
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 Use <strong>Llama 3.3 70B</strong> for all tasks — no token cap means you never get blocked during prewarming.

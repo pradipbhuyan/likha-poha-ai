@@ -35,7 +35,8 @@ CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 
 # Default Cerebras model — Llama 3.3 70B, no daily token cap, 60 req/min free
-DEFAULT_CEREBRAS_MODEL = "llama-3.3-70b"
+# NOTE: Cerebras uses condensed model names WITHOUT hyphens in the version (llama3.3-70b not llama-3.3-70b)
+DEFAULT_CEREBRAS_MODEL = "llama3.3-70b"
 
 _MODEL_PRICING = {
     # OpenAI models

@@ -1382,7 +1382,7 @@ class UpdateAiSettingsRequest(BaseModel):
     groq_api_key: str | None = None
     groq_model: str = "llama-3.3-70b-versatile"
     cerebras_api_key: str | None = None
-    cerebras_model: str = "llama-3.3-70b"
+    cerebras_model: str = "llama3.3-70b"
 
 
 def _load_ai_settings_row() -> dict | None:
@@ -1430,7 +1430,7 @@ def get_ai_settings(admin=Depends(require_admin)):
             "groq_key_prefix": stored_groq_key[:12] if stored_groq_key else "",
             "groq_model": row.get("groq_model") or "llama-3.3-70b-versatile",
             "cerebras_key_prefix": stored_cerebras_key[:12] if stored_cerebras_key else "",
-            "cerebras_model": row.get("cerebras_model") or "llama-3.3-70b",
+            "cerebras_model": row.get("cerebras_model") or "llama3.3-70b",
         }
 
     # Table exists but no row yet — fall back to env key
@@ -1448,7 +1448,7 @@ def get_ai_settings(admin=Depends(require_admin)):
         "groq_key_prefix": env_groq_key[:12] if env_groq_key else "",
         "groq_model": "llama-3.3-70b-versatile",
         "cerebras_key_prefix": env_cerebras_key[:12] if env_cerebras_key else "",
-        "cerebras_model": "llama-3.3-70b",
+        "cerebras_model": "llama3.3-70b",
     }
 
 
@@ -1497,7 +1497,7 @@ def update_ai_settings(
         "groq_api_key": effective_groq_key,
         "groq_model": (data.groq_model or "llama-3.3-70b-versatile").strip(),
         "cerebras_api_key": effective_cerebras_key,
-        "cerebras_model": (data.cerebras_model or "llama-3.3-70b").strip(),
+        "cerebras_model": (data.cerebras_model or "llama3.3-70b").strip(),
     }
 
     try:
