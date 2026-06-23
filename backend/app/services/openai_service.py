@@ -403,7 +403,7 @@ def ask_llm(
             break  # success
         except Exception as exc:
             err_str = str(exc).lower()
-            is_retryable = "429" in err_str or "queue" in err_str or "rate" in err_str
+            is_retryable = "429" in err_str or "queue" in err_str or "rate" in err_str or "token_quota" in err_str or "too_many_tokens" in err_str
             if is_retryable and _attempt < _MAX_RETRIES - 1:
                 _delay = _retry_delays[_attempt]
                 _log.warning(
