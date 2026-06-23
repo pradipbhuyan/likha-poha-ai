@@ -137,7 +137,7 @@ def fake_ai_off(*args, **kwargs):
     )
 
 
-def fake_cache_prewarm_only(cache_key):
+def fake_cache_prewarm_only(cache_key, grade=None):
     """Hit only for keys stored by the prewarm script (empty persona)."""
     if cache_key in PREWARM_KEYS:
         return {
@@ -676,7 +676,7 @@ class TestGrade10LessonSourcePrefixFix:
         "Workbook - Chapter 7: Madam Rides the Bus",
     ]
 
-    def _fake_cache_plain_names_only(self, cache_key):
+    def _fake_cache_plain_names_only(self, cache_key, grade=None):
         """
         Cache stores entries with PLAIN chapter names (no source prefix).
         A prefixed cache key misses; the stripped-prefix key hits.
