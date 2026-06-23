@@ -34,9 +34,9 @@ CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
 # Default Groq model — fast, high-quality, generous free tier
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 
-# Default Cerebras model — Llama 3.3 70B, no daily token cap, 60 req/min free
-# NOTE: Cerebras uses condensed model names WITHOUT hyphens in the version (llama3.3-70b not llama-3.3-70b)
-DEFAULT_CEREBRAS_MODEL = "llama3.3-70b"
+# Default Cerebras model — use whichever model is available on the account.
+# This key's account has: gpt-oss-120b, zai-glm-4.7
+DEFAULT_CEREBRAS_MODEL = "gpt-oss-120b"
 
 _MODEL_PRICING = {
     # OpenAI models
@@ -153,7 +153,14 @@ def get_effective_settings() -> dict:
             _settings_cache["cerebras_api_key"] = db.get("cerebras_api_key") or settings.CEREBRAS_API_KEY
             # Normalize stale model names: Cerebras uses llama3.3-70b (no hyphen before version)
             raw_cerebras_model = db.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
-            _settings_cache["cerebras_model"] = raw_cerebras_model.replace("llama-3.3-70b", "llama3.3-70b").replace("llama-3.1-8b", "llama3.1-8b")
+            # Normalize stale Llama model names to the available model on this account
+            _settings_cache["cerebras_model"] = (
+                raw_cerebras_model
+                .replace("llama-3.3-70b", DEFAULT_CEREBRAS_MODEL)
+                .replace("llama3.3-70b", DEFAULT_CEREBRAS_MODEL)
+                .replace("llama-3.1-8b", DEFAULT_CEREBRAS_MODEL)
+                .replace("llama3.1-8b", DEFAULT_CEREBRAS_MODEL)
+            )
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
