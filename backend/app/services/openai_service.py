@@ -151,7 +151,9 @@ def get_effective_settings() -> dict:
             _settings_cache["groq_api_key"] = db.get("groq_api_key") or settings.GROQ_API_KEY
             _settings_cache["groq_model"] = db.get("groq_model") or DEFAULT_GROQ_MODEL
             _settings_cache["cerebras_api_key"] = db.get("cerebras_api_key") or settings.CEREBRAS_API_KEY
-            _settings_cache["cerebras_model"] = db.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
+            # Normalize stale model names: Cerebras uses llama3.3-70b (no hyphen before version)
+            raw_cerebras_model = db.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
+            _settings_cache["cerebras_model"] = raw_cerebras_model.replace("llama-3.3-70b", "llama3.3-70b").replace("llama-3.1-8b", "llama3.1-8b")
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
