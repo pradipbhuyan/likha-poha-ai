@@ -299,16 +299,15 @@ def start_doubt_kb_prewarm(
         finally:
             set_job_status(job_key, "idle")
 
-    background_tasks.add_task(_run_doubt_kb_prewarm, grade)
+    # Run in a dedicated OS thread so blocking time.sleep() calls inside
+    # ask_llm() retry logic do NOT block the FastAPI event loop or uvicorn
+    # worker threads, which would freeze the admin panel and all other API calls.
+    import threading as _threading  # noqa: PLC0415
+    t = _threading.Thread(target=_run_doubt_kb_prewarm, args=(grade,), daemon=True)
+    t.start()
+    return {"success": True, "message": f"DKB prewarm started for {grade}.", "job_key": job_key}
 
-    return {
-        "success": True,
-        "message": (
-            f"Doubt KB pre-warming started for {grade}. "
-            "Generates 25 Q&A pairs per chapter. Poll /status for progress."
-        ),
-        "grade": grade,
-    }
+
 
 
 @router.delete("/cache/lessons/{grade_slug}")
