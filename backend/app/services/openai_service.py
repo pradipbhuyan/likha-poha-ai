@@ -28,6 +28,10 @@ GPT5_TEXT_MODEL = GPT_MINI_TEXT_MODEL
 GPT5_MINI_TEXT_MODEL = DEFAULT_TEXT_MODEL
 
 VENICE_BASE_URL = "https://api.venice.ai/api/v1"
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+
+# Default Groq model — fast, high-quality, generous free tier
+DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 
 _MODEL_PRICING = {
     # OpenAI models
@@ -40,6 +44,12 @@ _MODEL_PRICING = {
     "mistral-31-24b":         {"input": 0.00012,"output": 0.00024},
     "qwen-2.5-72b":           {"input": 0.0003, "output": 0.0006},
     "deepseek-r1-671b":       {"input": 0.0008, "output": 0.0024},
+    # Groq models — free tier available; pricing shown for paid overage
+    "llama-3.3-70b-versatile": {"input": 0.00059, "output": 0.00079},
+    "llama-3.1-70b-versatile": {"input": 0.00059, "output": 0.00079},
+    "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
+    "mixtral-8x7b-32768":      {"input": 0.00024, "output": 0.00024},
+    "gemma2-9b-it":            {"input": 0.00020, "output": 0.00020},
 }
 
 INPUT_COST_PER_1K = 0.0001
@@ -60,6 +70,8 @@ _settings_cache: dict = {
     "provider": "openai",       # "openai" | "venice"
     "venice_api_key": None,
     "venice_model": "llama-3.3-70b",
+    "groq_api_key": None,
+    "groq_model": DEFAULT_GROQ_MODEL,
     "loaded_at": 0.0,
 }
 _SETTINGS_TTL = 60.0  # seconds
@@ -67,6 +79,10 @@ _SETTINGS_TTL = 60.0  # seconds
 # ── Venice client cache (separate from OpenAI client) ────────────────────────
 _venice_client: OpenAI | None = None
 _venice_key: str | None = None
+
+# ── Groq client cache ─────────────────────────────────────────────────────────
+_groq_client: OpenAI | None = None
+_groq_key: str | None = None
 
 
 def _load_db_settings() -> dict | None:
@@ -116,12 +132,16 @@ def get_effective_settings() -> dict:
             _settings_cache["provider"] = db.get("provider", "openai") or "openai"
             _settings_cache["venice_api_key"] = db.get("venice_api_key") or settings.VENICE_API_KEY
             _settings_cache["venice_model"] = db.get("venice_model") or "llama-3.3-70b"
+            _settings_cache["groq_api_key"] = db.get("groq_api_key") or settings.GROQ_API_KEY
+            _settings_cache["groq_model"] = db.get("groq_model") or DEFAULT_GROQ_MODEL
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
             _settings_cache["provider"] = "openai"
             _settings_cache["venice_api_key"] = settings.VENICE_API_KEY
             _settings_cache["venice_model"] = "llama-3.3-70b"
+            _settings_cache["groq_api_key"] = settings.GROQ_API_KEY
+            _settings_cache["groq_model"] = DEFAULT_GROQ_MODEL
         _settings_cache["loaded_at"] = now
 
     return _settings_cache
@@ -178,16 +198,49 @@ def get_venice_client() -> OpenAI:
     return _venice_client
 
 
+def get_groq_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at Groq.
+
+    Groq uses the OpenAI Chat Completions API format — same SDK, different
+    base_url and API key (starts with gsk_...).  Groq has a free tier with
+    14,400 req/day; overage returns a 429 which ask_llm() handles gracefully.
+    """
+    global _groq_client, _groq_key
+
+    current_settings = get_effective_settings()
+    groq_key = (
+        current_settings.get("groq_api_key")
+        or settings.GROQ_API_KEY
+        or ""
+    )
+
+    if _groq_client is None or groq_key != _groq_key:
+        with _client_lock:
+            if _groq_client is None or groq_key != _groq_key:
+                _groq_client = OpenAI(
+                    api_key=groq_key,
+                    base_url=GROQ_BASE_URL,
+                    timeout=60.0,
+                )
+                _groq_key = groq_key
+
+    return _groq_client
+
+
 def get_chat_client() -> OpenAI:
     """
     Return the active LLM client based on the admin-configured provider.
 
-    Returns Venice client when provider == 'venice', OpenAI client otherwise.
+    Supported providers: openai | venice | groq
     This is the function that ask_llm() should use.
     """
     current = get_effective_settings()
-    if current.get("provider") == "venice":
+    provider = current.get("provider", "openai")
+    if provider == "venice":
         return get_venice_client()
+    if provider == "groq":
+        return get_groq_client()
     return get_openai_client()
 
 
@@ -255,11 +308,13 @@ def ask_llm(
     current = get_effective_settings()
     provider = current.get("provider", "openai")
 
-    # When Venice is active, override the model with the configured Venice model
-    # unless the caller already specified a Venice model name explicitly.
+    # When an alternative provider is active, override the model with the
+    # admin-configured model for that provider.
     active_model = model
     if provider == "venice":
         active_model = current.get("venice_model") or "llama-3.3-70b"
+    elif provider == "groq":
+        active_model = current.get("groq_model") or DEFAULT_GROQ_MODEL
 
     # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
     messages = [
