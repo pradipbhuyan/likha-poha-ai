@@ -262,6 +262,7 @@ def uploaded_chapter_sort_key(item):
         part_number,
         section_rank,
         chapter_rank,
+        item.get("created_at", ""),   # insertion order as tiebreaker (chapters uploaded in order)
         chapter.lower(),
     )
 

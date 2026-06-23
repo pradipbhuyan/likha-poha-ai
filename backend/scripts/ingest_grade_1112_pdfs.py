@@ -25,6 +25,14 @@ import time
 import re
 from pathlib import Path
 
+# Inject system trust store so corporate MITM certificates are accepted.
+# Must happen before any HTTPS library (openai, supabase, httpx) is imported.
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass  # truststore not installed — fall back to default cert bundle
+
 # ── Add project root to path so app.services imports work ────────────────────
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "backend"))
@@ -163,6 +171,64 @@ CHAPTER_TITLES: dict[str, list[str]] = {
         "Bill of Exchange",
         "Financial Statements – I",
     ],
+    "Grade_11/Hindi": [
+        # Vitan Bhag 1 — Supplementary Reader (khvt101–105)
+        "Namak",
+        "Husain Ki Kahani Apni Zubani",
+        "Awara Masiha",
+        "Mera Baap Bada Na Mera Chacha",
+        "Anubhav",
+    ],
+    "Grade_11/History": [
+        # Themes in World History Part 1 (kehe101–107)
+        "From the Beginning of Time",
+        "Writing and City Life",
+        "An Empire Across Three Continents",
+        "The Central Islamic Lands",
+        "Nomadic Empires",
+        "The Three Orders",
+        "Changing Cultural Traditions",
+        # Themes in World History Part 2 (kehe201–204)
+        "Confrontation of Cultures",
+        "The Industrial Revolution",
+        "Displacing Indigenous Peoples",
+        "Paths to Modernisation",
+    ],
+    "Grade_11/Political_Science": [
+        # Indian Constitution at Work (keps101–108)
+        "Constitution: Why and How?",
+        "Rights in the Indian Constitution",
+        "Election and Representation",
+        "Executive",
+        "Legislature",
+        "Judiciary",
+        "Federalism",
+        "Local Governments",
+        # Political Theory (keps201–210)
+        "Political Theory: An Introduction",
+        "Freedom",
+        "Equality",
+        "Social Justice",
+        "Rights",
+        "Citizenship",
+        "Nationalism",
+        "Secularism",
+        "Peace",
+        "Development",
+    ],
+    "Grade_11/Sociology": [
+        # Introducing Sociology (keso101–105)
+        "Society and Sociology",
+        "Terms, Concepts and their Use in Sociology",
+        "Understanding Social Institutions",
+        "Culture and Socialisation",
+        "Doing Sociology: Research Methods",
+        # Understanding Society (keso201–206)
+        "Social Structure, Stratification and Social Processes in Society",
+        "Social Change and Social Order in Rural and Urban Society",
+        "Environment and Society",
+        "Suggestions for Project Work",
+    ],
     "Grade_11/Geography": [
         # Fundamentals of Physical Geography (kegy101–106)
         "Geography as a Discipline",
@@ -295,6 +361,69 @@ CHAPTER_TITLES: dict[str, list[str]] = {
         "Financial Statements of a Company",
         "Analysis of Financial Statements",
         "Accounting Ratios",
+    ],
+    "Grade_12/Hindi": [
+        # Vitan Bhag 2 — Supplementary Reader (lhvt101–103)
+        "Silver Wedding",
+        "Jooze",
+        "Ateet Mein Dab Paon",
+    ],
+    "Grade_12/History": [
+        # Themes in Indian History Part 1 (lehe101–107)
+        "Bricks, Beads and Bones: The Harappan Civilisation",
+        "Kings, Farmers and Towns: Early States and Economies",
+        "Kinship, Caste and Class: Early Societies",
+        "Thinkers, Beliefs and Buildings: Cultural Developments",
+        "Through the Eyes of Travellers: Perceptions of Society",
+        "Bhakti-Sufi Traditions: Changes in Religious Beliefs",
+        "An Imperial Capital: Vijayanagara",
+        # Themes in Indian History Part 2 (lehe201–207)
+        "Peasants, Zamindars and the State: Agrarian Society and the Mughal Empire",
+        "Kings and Chronicles: The Mughal Courts",
+        "Colonialism and the Countryside: Exploring Official Archives",
+        "Rebels and the Raj: The Revolt of 1857 and its Representations",
+        "Colonial Cities: Urbanisation, Planning and Architecture",
+        "Mahatma Gandhi and the Nationalist Movement: Civil Disobedience and Beyond",
+        "Understanding Partition: Politics, Memories, Experiences",
+        "Framing the Constitution: The Beginning of a New Era",
+    ],
+    "Grade_12/Political_Science": [
+        # Contemporary World Politics (leps101–107)
+        "The Cold War Era",
+        "The End of Bipolarity",
+        "US Hegemony in World Politics",
+        "Alternative Centres of Power",
+        "Contemporary South Asia",
+        "International Organisations",
+        "Security in the Contemporary World",
+        "Environment and Natural Resources",
+        # Politics in India since Independence (leps201–208)
+        "Challenges of Nation Building",
+        "Era of One-Party Dominance",
+        "Politics of Planned Development",
+        "India's External Relations",
+        "Challenges to and Restoration of the Congress System",
+        "The Crisis of Democratic Order",
+        "Rise of Popular Movements",
+        "Regional Aspirations and Recent Developments in Indian Politics",
+    ],
+    "Grade_12/Sociology": [
+        # Indian Society (leso101–106)
+        "Introducing Indian Society",
+        "The Demographic Structure of the Indian Society",
+        "Social Institutions: Continuity and Change",
+        "The Market as a Social Institution",
+        "Patterns of Social Inequality and Exclusion",
+        "The Challenges of Cultural Diversity",
+        # Social Change and Development in India (leso201–208)
+        "Structural Change",
+        "Cultural Change",
+        "The Story of Indian Democracy",
+        "Change and Development in Rural Society",
+        "Change and Development in Industrial Society",
+        "Globalisation and Social Change",
+        "Mass Media and Communications",
+        "Social Movements",
     ],
     "Grade_12/Geography": [
         "Human Geography: Nature and Scope",
