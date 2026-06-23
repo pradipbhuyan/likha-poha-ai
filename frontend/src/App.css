@@ -1110,13 +1110,31 @@ textarea:focus {
 .lesson-section-body {
   padding: 18px 22px;
   min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.lesson-section-body * {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.lesson-section-body pre,
+.lesson-section-body code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .lesson-section-body p {
   font-size: 16px;
   line-height: 1.75;
   color: #334155;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .lesson-inline-question-box {

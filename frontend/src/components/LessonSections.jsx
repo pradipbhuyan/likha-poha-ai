@@ -233,7 +233,13 @@ function LessonSections({ lesson, onEvaluateQuestion, subject }) {
                 </span>
 
                 <span>
-                  {index + 1}. {section.title}
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                    components={{ p: ({ children }) => <>{children}</> }}
+                  >
+                    {`${index + 1}. ${section.title}`}
+                  </ReactMarkdown>
                 </span>
               </div>
 

@@ -42,7 +42,7 @@ function StatusBadge({ complete, running }) {
   return <span className="status-pill" style={{ background: "#6b7280", color: "#fff" }}>⬜ Ready</span>;
 }
 
-const ALL_GRADE_OPTIONS = Array.from({ length: 10 }, (_, i) => `Grade ${i + 1}`);
+const ALL_GRADE_OPTIONS = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
 
 // Models available for pre-warming (admin choice, default nano)
 const PREWARM_MODEL_OPTIONS = [
