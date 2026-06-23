@@ -33,20 +33,22 @@ _key = os.getenv(
 
 _logger.info("Grade 11/12 Supabase client initialising → %s", _url)
 
+# Service-role client — used by all backend services to bypass RLS
+grade_1112_client = create_client(_url, _key)
+_logger.info("Grade 11/12 Supabase client created successfully.")
+
+# Quick connectivity test — log but never raise so startup is not blocked
 try:
-    # Service-role client — used by all backend services to bypass RLS
-    grade_1112_client = create_client(_url, _key)
-    _logger.info("Grade 11/12 Supabase client created successfully.")
-    # Quick connectivity test — log but never raise so startup is not blocked
     _test = grade_1112_client.table("rag_documents").select("id").limit(1).execute()
     _logger.info(
         "Grade 11/12 connectivity test: %d row(s) returned from rag_documents.",
         len(_test.data or []),
     )
 except Exception as _exc:  # noqa: BLE001
-    _logger.error("Grade 11/12 Supabase client FAILED to initialise: %s", _exc)
-    # Re-raise so misconfiguration is visible in Render logs at startup
-    raise
+    _logger.error(
+        "Grade 11/12 connectivity test FAILED (check SUPABASE_GRADE_1112_SERVICE_KEY in Render): %s",
+        _exc,
+    )
 
 # Convenience alias used by the grade router
 supabase_1112 = grade_1112_client
