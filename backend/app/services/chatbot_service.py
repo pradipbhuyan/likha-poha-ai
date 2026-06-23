@@ -157,18 +157,37 @@ PLATFORM_FAQ: list[dict] = [
     # ── Add child ─────────────────────────────────────────────────────────────
     {
         "keywords": ["add child", "create child", "second child", "child account",
-                     "add student", "how many children", "two children", "multiple children"],
+                     "add student", "how many children", "two children", "multiple children",
+                     "create student", "student account", "child login"],
         "answer": (
-            "**Adding a child is easy:**\n\n"
-            "1. Log in as a Parent\n"
-            "2. Go to **Parent Dashboard → Family Hub**\n"
-            "3. Click **+ Add Child**\n"
-            "4. Enter your child's name, email (optional), class, and set a password\n"
-            "5. Share the login details with your child\n\n"
-            "The **Family plan** supports up to **2 children** under one account.\n\n"
-            "Your child can log in at **likhapoha.in** using their username or email."
+            "**How to add a child on LikhaPoha AI:**\n\n"
+            "**Step 1 — Log in as Parent**\n"
+            "Go to [likhapoha.in](https://likhapoha.in) and sign in with your parent account.\n\n"
+            "**Step 2 — Open the Parent Dashboard**\n"
+            "Click **Parent Dashboard** in the left sidebar.\n\n"
+            "**Step 3 — Go to Family Learning Center**\n"
+            "Scroll to the **Family Hub** section. You will see your linked children and parents.\n\n"
+            "**Step 4 — Click + Add Child**\n"
+            "Click the **+ Add Child** button (disabled if you already have 2 children — Family plan limit).\n\n"
+            "**Step 5 — Fill in the child's details**\n"
+            "- **Profile picture** (optional) — choose a preset avatar emoji or upload a photo\n"
+            "- **Student Name** (required) — this becomes their username\n"
+            "- **Student Email** (optional) — leave blank if your child has no email address; "
+            "they can log in with username + password instead\n"
+            "- **Child's Class** (required) — select Grade 5 to Grade 12\n"
+            "- **Password** (required) — set a password you will share with your child\n\n"
+            "**Step 6 — Click Create Student**\n"
+            "A confirmation screen will appear with:\n"
+            "- Username and password\n"
+            "- A **one-click login link** — share this with your child for instant sign-in\n\n"
+            "**Step 7 — Share login with your child**\n"
+            "Your child can log in at **likhapoha.in** using their username OR email + password.\n\n"
+            "💡 **Tips:**\n"
+            "- You can add up to **2 children** under one Family account\n"
+            "- The child can change their password anytime from their profile\n"
+            "- Sit with your child for their first login and give a quick walkthrough"
         ),
-        "suggestions": ["What is the parent dashboard?", "How much does it cost?", "How do lessons work?"],
+        "suggestions": ["What does the Parent Dashboard show?", "How much does the Family plan cost?", "How do lessons work?"],
     },
 
     # ── Pricing / Cost ────────────────────────────────────────────────────────
