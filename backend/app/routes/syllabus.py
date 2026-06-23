@@ -507,29 +507,35 @@ def build_rag_only_syllabus_shell(syllabus):
     return shell
 
 
-def fetch_rag_chapter_counts():
-    """Count live RAG documents by grade/mode/subject/chapter label."""
-    try:
-        response = (
-            supabase
-            .table("rag_documents")
-            .select("grade,subject,chapter,board")
-            .execute()
-        )
-    except Exception:
+def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
+    """Fetch rag_documents from BOTH Supabase projects and return combined list."""
+    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+
+    def _query(db, select_fields):
         try:
-            response = (
-                supabase
-                .table("rag_documents")
-                .select("grade,subject,chapter")
-                .execute()
-            )
+            r = db.table("rag_documents").select(select_fields).execute()
+            return r.data or []
         except Exception:
-            return {}
+            try:
+                r = db.table("rag_documents").select("grade,subject,chapter").execute()
+                return r.data or []
+            except Exception:
+                return []
+
+    primary = _query(supabase, fields)
+    secondary = _query(grade_1112_client, fields)
+    return primary + secondary
+
+
+def fetch_rag_chapter_counts():
+    """Count live RAG documents by grade/mode/subject/chapter label (both DBs)."""
+    all_docs = _fetch_all_rag_documents()
+    if not all_docs:
+        return {}
 
     counts = {}
 
-    for document in response.data or []:
+    for document in all_docs:
         grade = document.get("grade")
         subject = document.get("subject")
         chapter = document.get("chapter")
@@ -646,27 +652,11 @@ def merge_uploaded_rag_chapters(syllabus):
     """
     merged = build_rag_only_syllabus_shell(syllabus)
 
-    try:
-        response = (
-            supabase
-            .table("rag_documents")
-            .select("grade,subject,chapter,title,created_at,board")
-            .execute()
-        )
-    except Exception:
-        try:
-            response = (
-                supabase
-                .table("rag_documents")
-                .select("grade,subject,chapter,title,created_at")
-                .execute()
-            )
-        except Exception:
-            return merged
+    all_docs = _fetch_all_rag_documents("grade,subject,chapter,title,created_at,board")
 
     uploaded_by_subject = {}
 
-    for document in response.data or []:
+    for document in all_docs:
         grade = document.get("grade")
         subject = document.get("subject")
         raw_chapter = document.get("chapter")
