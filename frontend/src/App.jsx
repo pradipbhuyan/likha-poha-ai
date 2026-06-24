@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
+import { supabase } from "./api/supabaseClient";
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
@@ -232,6 +233,91 @@ function App() {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("tutor_dark_mode") === "true"
   );
+  const [oauthLoading, setOauthLoading] = useState(false);
+
+  // ── Google OAuth callback handler ──────────────────────────────────────────
+  // Supabase redirects back to the app after Google auth with a session in the
+  // URL fragment. onAuthStateChange fires with event=SIGNED_IN; we build the
+  // normalized user object here and call handleLogin.
+  useEffect(() => {
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        // Only handle OAuth sign-ins (not password-based logins, which are
+        // handled directly in LoginPage / SignupPage).
+        if (event !== "SIGNED_IN" || !session) return;
+        const provider = session.user?.app_metadata?.provider;
+        if (provider === "email") return;      // email/password — skip
+        if (user) return;                       // already logged in — skip
+
+        setOauthLoading(true);
+        try {
+          // Fetch or wait for the profile row (the DB trigger creates it async)
+          let profile = null;
+          for (let attempt = 0; attempt < 6; attempt++) {
+            const { data } = await supabase
+              .from("profiles")
+              .select("*")
+              .eq("id", session.user.id)
+              .maybeSingle();
+            if (data) { profile = data; break; }
+            await new Promise(r => setTimeout(r, 600));  // wait 600 ms then retry
+          }
+
+          if (!profile) {
+            console.error("Google OAuth: profile row not found after 6 attempts");
+            return;
+          }
+
+          // Fetch offer validity (best-effort)
+          let offerData = { offerAccess: false };
+          try {
+            const r = await fetch(`${API_BASE}/api/offer/my-access`, {
+              headers: { Authorization: `Bearer ${session.access_token}` },
+            });
+            if (r.ok) {
+              const d = await r.json();
+              offerData = {
+                offerAccess: !!d.has_offer_access,
+                offerValidUntil: d.valid_until || null,
+                offerDaysRemaining: d.days_remaining ?? null,
+                offerExpiringSoon: !!d.expiring_soon,
+                offerExpiredOn: d.expired_on || null,
+              };
+            }
+          } catch { /* non-critical */ }
+
+          handleLogin({
+            id: session.user.id,
+            email: session.user.email,
+            username: profile.username || session.user.email,
+            role: profile.role || "student",
+            grade: profile.grade || "Grade 9",
+            board: profile.board || "CBSE",
+            parentId: profile.parent_id,
+            familyId: profile.family_id,
+            accessToken: session.access_token,
+            accessCbse: !!profile.access_cbse,
+            accessSofScience: !!profile.access_sof_science,
+            accessSofMaths: !!profile.access_sof_maths,
+            accessSofEnglish: !!profile.access_sof_english,
+            cbseSubjects: Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
+            avatar: profile.avatar || session.user.user_metadata?.avatar_url || "",
+            dailyTokenLimit: profile.daily_token_limit,
+            monthlyTokenLimit: profile.monthly_token_limit,
+            subscriptionPlan: profile.subscription_plan || "free",
+            accountStatus: profile.account_status || "active",
+            ...offerData,
+          });
+        } finally {
+          setOauthLoading(false);
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // ──────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
     function handlePopState() {
@@ -382,6 +468,31 @@ function App() {
           setRoutePath("/");
         }}
       />
+    );
+  }
+
+  // Show a full-screen spinner while the OAuth callback is being processed
+  if (oauthLoading) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0f172a",
+        color: "#f8fafc",
+        gap: 16,
+        fontFamily: "-apple-system, sans-serif",
+      }}>
+        <div style={{
+          width: 48, height: 48, border: "4px solid #334155",
+          borderTopColor: "#6366f1", borderRadius: "50%",
+          animation: "spin 0.8s linear infinite",
+        }} />
+        <p style={{ fontSize: "1rem", color: "#94a3b8" }}>Signing you in with Google…</p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
     );
   }
 
