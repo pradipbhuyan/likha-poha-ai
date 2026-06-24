@@ -767,10 +767,25 @@ function App() {
   // Students who signed in (via Google or email) but have never paid / applied
   // a promo code are shown ONLY the Subscription page.  They cannot navigate
   // to any other part of the platform until payment or offer-code redemption.
+  //
+  // A student is considered "active" (bypass gate) if ANY of the following is true:
+  //   • They have a paid subscription plan (not "free")
+  //   • They have an active offer/promo code (offerAccess)
+  //   • They were granted CBSE access directly by admin (accessCbse)
+  //   • They were granted SOF access directly by admin (accessSofScience/Maths/English)
+  //   • They are a parent-linked child (parentId set) — parent controls access
+  const hasDirectAccess =
+    user.accessCbse ||
+    user.accessSofScience ||
+    user.accessSofMaths ||
+    user.accessSofEnglish;
+
   const needsSubscription =
     user.role === "student" &&
     user.subscriptionPlan === "free" &&
-    !user.offerAccess;
+    !user.offerAccess &&
+    !hasDirectAccess &&
+    !user.parentId; // parent-linked children don't self-subscribe
 
   if (needsSubscription) {
     return (
