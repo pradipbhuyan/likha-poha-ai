@@ -122,15 +122,17 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
     setOfferCodeMsg("");
     setOfferCodeErr("");
     try {
-      const res = await redeemOfferCode(offerCodeInput, user.accessToken);
+      // Always get a fresh token — the token stored in user.accessToken at login
+      // may have expired, especially for new Google OAuth users.
+      const { data: { session } } = await supabase.auth.getSession();
+      const freshToken = session?.access_token || user.accessToken;
+      const res = await redeemOfferCode(offerCodeInput, freshToken);
       setOfferCodeMsg(res.message || "✅ Offer code applied! Your access has been activated.");
       setOfferCodeInput("");
-      // Refresh offer access display
-      const { data: { session } } = await supabase.auth.getSession();
-      const token = session?.access_token || user?.accessToken;
-      if (token) {
+      // Refresh offer access display — reuse freshToken already obtained above
+      if (freshToken) {
         const r = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/offer/my-access`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${freshToken}` },
         });
         if (r.ok) { const d = await r.json(); if (d) setOfferAccess(d); }
       }
