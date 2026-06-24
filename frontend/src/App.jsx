@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
 import { supabase } from "./api/supabaseClient";
+import logo from "./assets/AITutorLogo1.png";
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
@@ -242,6 +243,8 @@ function App() {
   const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
   const [oauthSaving, setOauthSaving] = useState(false);
   const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+  // Prevent double-firing of onAuthStateChange on mobile (Supabase OAuth redirect behaviour)
+  const oauthProcessed = useRef(false);
 
   // ── Google OAuth callback handler ──────────────────────────────────────────
   // Supabase redirects back to the app after Google auth with a session in the
@@ -258,6 +261,8 @@ function App() {
         const provider = session.user?.app_metadata?.provider;
         if (provider === "email") return;      // email/password — skip
         if (user) return;                       // already logged in — skip
+        if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
+        oauthProcessed.current = true;
 
         setOauthLoading(true);
         try {
@@ -772,10 +777,7 @@ function App() {
             justifyContent: "space-between",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ fontSize: "1.6rem" }}>🎓</span>
-              <span style={{ color: "#f8fafc", fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.02em" }}>
-                LikhaPoha AI
-              </span>
+              <img src={logo} alt="LikhaPoha AI" style={{ height: 36, width: "auto", objectFit: "contain" }} />
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <span style={{ color: "#94a3b8", fontSize: "0.82rem" }}>
