@@ -571,12 +571,14 @@ function App() {
                 if (oauthRole === "student") {
                   setOauthStep("grade"); // students need to pick grade next
                 } else {
-                  // Parents and teachers go straight to dashboard
+                  // Parents and teachers — save role then send to Subscription page
                   setOauthSaving(true);
                   supabase.from("profiles").update({ role: oauthRole }).eq("id", pendingOauthUser.id).then(() => {
                     handleLogin({ ...pendingOauthUser, role: oauthRole });
                     setPendingOauthUser(null);
                     setOauthSaving(false);
+                    // Give React one tick to mount the app shell, then navigate
+                    setTimeout(() => setActivePage("subscriptionPlans"), 100);
                   });
                 }
               }}
@@ -623,6 +625,8 @@ function App() {
               handleLogin({ ...pendingOauthUser, role: "student", grade: oauthGrade });
               setPendingOauthUser(null);
               setOauthSaving(false);
+              // Send new Google students to Subscription page to choose plan / offer code
+              setTimeout(() => setActivePage("subscriptionPlans"), 100);
             }}
             style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }}
           >
