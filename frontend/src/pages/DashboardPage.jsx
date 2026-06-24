@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { redeemOfferCode } from "../api/adminControl";
+import { getWeakChapters } from "../api/analytics";
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
 import { getRecommendations } from "../api/recommendations";
@@ -143,6 +144,16 @@ function DashboardPage({ user, setActivePage }) {
 
     loadDashboard();
   }, [user.username]);
+
+  const [weakChapters, setWeakChapters] = useState([]);
+  useEffect(() => {
+    if (!user?.username) return;
+    getWeakChapters(user.username).then((res) => {
+      if (res.success && res.weak_chapters?.length) {
+        setWeakChapters(res.weak_chapters.slice(0, 5));
+      }
+    });
+  }, [user?.username]);
 
   const profileStats = [
     {
@@ -526,6 +537,76 @@ function DashboardPage({ user, setActivePage }) {
             <li>Attempt at least one quiz after every lesson.</li>
             <li>Review weak topics from mock test results.</li>
           </ul>
+
+          {/* Weak Chapters Retest Reminder */}
+          {weakChapters.length > 0 && (
+            <div
+              style={{
+                background: "linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)",
+                border: "1px solid #fdba74",
+                borderRadius: 12,
+                padding: "16px 20px",
+                marginTop: 20,
+              }}
+            >
+              <h4 style={{ margin: "0 0 4px", color: "#c2410c", fontSize: "0.95rem" }}>
+                🔁 Weak Chapters — Retest Reminder
+              </h4>
+              <p style={{ margin: "0 0 12px", fontSize: "0.82rem", color: "#78350f" }}>
+                You have made mistakes in these chapters. Study the explanations and take a retest to improve.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {weakChapters.map((wc, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      background: "#fff",
+                      border: "1px solid #fed7aa",
+                      borderRadius: 8,
+                      padding: "8px 12px",
+                      gap: 10,
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <div style={{ fontSize: "0.85rem", flex: 1 }}>
+                      <strong style={{ color: "#92400e" }}>{wc.subject}</strong>
+                      <span style={{ color: "#6b7280", margin: "0 6px" }}>›</span>
+                      <span style={{ color: "#374151" }}>{wc.chapter}</span>
+                      <span
+                        style={{
+                          marginLeft: 8,
+                          fontSize: "0.75rem",
+                          background: "#fee2e2",
+                          color: "#991b1b",
+                          borderRadius: 4,
+                          padding: "1px 6px",
+                        }}
+                      >
+                        {wc.wrong_count} wrong
+                      </span>
+                    </div>
+                    <a
+                      href="/mock-test"
+                      style={{
+                        fontSize: "0.78rem",
+                        background: "#ea580c",
+                        color: "#fff",
+                        borderRadius: 6,
+                        padding: "4px 10px",
+                        textDecoration: "none",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      🔁 Retest
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="card">

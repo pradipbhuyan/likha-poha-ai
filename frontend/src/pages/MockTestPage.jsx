@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
-import { saveTestHistory } from "../api/analytics";
+import { saveTestHistory, saveWrongAnswers } from "../api/analytics";
 import { logStudentActivity } from "../api/profile";
 import {
   getDefaultSelection,
@@ -442,6 +442,20 @@ function MockTestPage({ user }) {
 
     setResults(resultPayload);
 
+    // Persist wrong answers for weak-chapter tracking (best-effort, non-blocking)
+    const wrongItems = review
+      .filter((r) => !r.isCorrect)
+      .map((r) => ({
+        question_id: r.id,
+        question: r.question,
+        selected: r.selected || null,
+        correct: r.correct,
+        options: r.options || null,
+        explanation: r.explanation || "",
+        section: r.section || "",
+        marks: r.marks,
+      }));
+
     saveTestHistory(resultPayload)
       .then(() =>
         logStudentActivity({
@@ -452,6 +466,17 @@ function MockTestPage({ user }) {
       .catch(() => {
         setError("Test submitted, but history/activity could not be saved.");
       });
+
+    if (wrongItems.length > 0) {
+      saveWrongAnswers({
+        username: user?.username,
+        grade,
+        mode,
+        subject,
+        chapter,
+        wrongAnswers: wrongItems,
+      }).catch(() => {}); // silent — wrong-answer tracking is best-effort
+    }
 
     setSecondsLeft(0);
   }
@@ -791,6 +816,45 @@ function MockTestPage({ user }) {
             </p>
           </div>
 
+          {/* Retest reminder for wrong answers */}
+          {results.wrongCount > 0 && (
+            <div
+              className="info-box premium-retest-reminder"
+              style={{
+                background: "linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)",
+                border: "1px solid #fdba74",
+                borderRadius: 12,
+                padding: "16px 20px",
+                marginBottom: 24,
+                display: "flex",
+                alignItems: "center",
+                gap: 16,
+                flexWrap: "wrap",
+              }}
+            >
+              <span style={{ fontSize: "1.5rem" }}>🔁</span>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <strong style={{ color: "#c2410c" }}>
+                  {results.wrongCount} question{results.wrongCount > 1 ? "s" : ""} need revision
+                </strong>
+                <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "#78350f" }}>
+                  Study the detailed explanations below carefully, then take a fresh retest on <strong>{chapter}</strong> to improve.
+                </p>
+              </div>
+              <button
+                className="primary-btn"
+                style={{ background: "#ea580c", border: "none", whiteSpace: "nowrap" }}
+                onClick={() => {
+                  // Pre-fill the test form with the same chapter and start a retest
+                  clearTest();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                🔁 Take Retest
+              </button>
+            </div>
+          )}
+
           <div className="premium-review-list">
             {results.review.map((r) => (
               <div
@@ -807,23 +871,51 @@ function MockTestPage({ user }) {
 
                 <p><MathText text={r.question} /></p>
 
-                <p>
-                  Your Answer:{" "}
-                  <strong>
-                    {r.selected
-                      ? <><>{r.selected}. </><MathText text={r.options?.[r.selected] || ""} /></>
-                      : "Not answered"}
-                  </strong>
-                </p>
+                {/* Show all options with highlighting */}
+                {r.options && (
+                  <div style={{ margin: "10px 0", display: "flex", flexDirection: "column", gap: 6 }}>
+                    {Object.entries(r.options).map(([key, val]) => {
+                      const isCorrect = key === r.correct;
+                      const isSelected = key === r.selected;
+                      let bg = "transparent";
+                      let border = "1px solid #d1d5db";
+                      let color = "inherit";
+                      if (isCorrect) { bg = "#dcfce7"; border = "1px solid #86efac"; color = "#166534"; }
+                      else if (isSelected && !isCorrect) { bg = "#fee2e2"; border = "1px solid #fca5a5"; color = "#991b1b"; }
+                      return (
+                        <div key={key} style={{ padding: "6px 10px", borderRadius: 6, background: bg, border, color, fontSize: "0.88rem" }}>
+                          <strong>{key}.</strong> <MathText text={val} />
+                          {isCorrect && <span style={{ marginLeft: 8, fontWeight: 700 }}>✓ Correct</span>}
+                          {isSelected && !isCorrect && <span style={{ marginLeft: 8, fontWeight: 700 }}>✗ Your answer</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
 
-                <p>
-                  Correct Answer:{" "}
-                  <strong>
-                    {r.correct}. <MathText text={r.options?.[r.correct]} />
-                  </strong>
-                </p>
+                {/* Detailed explanation — more prominent for wrong answers */}
+                {!r.isCorrect && r.explanation && (
+                  <div style={{
+                    background: "#eff6ff",
+                    border: "1px solid #bfdbfe",
+                    borderRadius: 8,
+                    padding: "12px 14px",
+                    marginTop: 8,
+                  }}>
+                    <strong style={{ color: "#1d4ed8", fontSize: "0.85rem", display: "block", marginBottom: 4 }}>
+                      📖 Detailed Explanation
+                    </strong>
+                    <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.6, color: "#1e3a5f" }}>
+                      <MathText text={r.explanation} />
+                    </p>
+                  </div>
+                )}
 
-                <p>Explanation: <MathText text={r.explanation} /></p>
+                {r.isCorrect && r.explanation && (
+                  <p style={{ fontSize: "0.85rem", color: "#6b7280", marginTop: 6 }}>
+                    <em>Explanation: <MathText text={r.explanation} /></em>
+                  </p>
+                )}
               </div>
             ))}
           </div>

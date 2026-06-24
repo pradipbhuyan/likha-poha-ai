@@ -79,3 +79,45 @@ export async function getAnalytics(username) {
 
   return response.json();
 }
+
+export async function saveWrongAnswers({ username, grade, mode, subject, chapter, wrongAnswers }) {
+  /**
+   * Persist per-question wrong answers after a mock test is submitted.
+   * wrongAnswers: array of { question_id, question, selected, correct, options, explanation, section, marks }
+   */
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/analytics/wrong-answers`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        grade,
+        mode,
+        subject,
+        chapter,
+        wrong_answers: wrongAnswers,
+      }),
+    });
+    if (!response.ok) return { success: false };
+    return response.json();
+  } catch {
+    return { success: false };
+  }
+}
+
+export async function getWeakChapters(username) {
+  /**
+   * Fetch the student's weak chapters (chapters with the most wrong answers),
+   * ordered by error count descending.
+   * Returns: { success, weak_chapters: [{ grade, mode, subject, chapter, wrong_count }] }
+   */
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/analytics/weak-chapters/${encodeURIComponent(username)}`
+    );
+    if (!response.ok) return { success: false, weak_chapters: [] };
+    return response.json();
+  } catch {
+    return { success: false, weak_chapters: [] };
+  }
+}
