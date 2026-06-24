@@ -90,7 +90,7 @@ def redeem_offer_code(data: RedeemCodeRequest, user=Depends(get_current_user)):
         raise HTTPException(status_code=400, detail="This offer code has reached its maximum number of uses.")
 
     # 4. Check if user already redeemed this code
-    user_id = user["profile"]["id"]
+    user_id = user.id
     code_id = offer["id"]
 
     existing_redemption = (
