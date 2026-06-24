@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { redeemOfferCode } from "../api/adminControl";
 import { getWeakChapters, getWrongAnswersForChapter } from "../api/analytics";
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
@@ -34,12 +33,6 @@ function DashboardPage({ user, setActivePage }) {
   /** Student dashboard that summarizes progress, recommendations, and quick entry points. */
   const [achievements, setAchievements] = useState([]);
   const [profile, setProfile] = useState(null);
-  const [offerCode, setOfferCode] = useState("");
-  const [offerMsg, setOfferMsg] = useState("");
-  const [offerErr, setOfferErr] = useState("");
-  const [offerAccess, setOfferAccess] = useState(null); // { has_offer_access, valid_until }
-  const [offerLoading, setOfferLoading] = useState(false);
-
   const [stats, setStats] = useState({
     testsTaken: 0,
     bestScore: 0,
@@ -571,53 +564,6 @@ function DashboardPage({ user, setActivePage }) {
           </p>
         </div>
 
-        <div className="card" style={{ gridColumn: "1 / -1" }}>
-          <h3>🎟️ Have an Offer Code?</h3>
-          {offerAccess?.has_offer_access ? (
-            <div className="info-box" style={{ margin: 0 }}>
-              ✅ Offer access active until <strong>{offerAccess.valid_until?.slice(0, 10)}</strong>
-            </div>
-          ) : (
-            <>
-              <p style={{ fontSize: "0.9rem", color: "#94a3b8", marginBottom: 12 }}>
-                Enter your 8-character offer code to unlock platform access for the code's validity period.
-              </p>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <input
-                  type="text"
-                  maxLength={8}
-                  value={offerCode}
-                  onChange={e => setOfferCode(e.target.value.toUpperCase())}
-                  placeholder="XXXXXXXX"
-                  style={{ fontFamily: "monospace", letterSpacing: 3, textTransform: "uppercase", flex: 1, minWidth: 160, maxWidth: 220 }}
-                />
-                <button
-                  className="primary-btn"
-                  disabled={offerLoading || offerCode.length !== 8}
-                  onClick={async () => {
-                    setOfferLoading(true);
-                    setOfferMsg("");
-                    setOfferErr("");
-                    try {
-                      const res = await redeemOfferCode(offerCode, user.accessToken);
-                      setOfferMsg(res.message || "✅ Offer code applied!");
-                      setOfferAccess({ has_offer_access: true, valid_until: res.valid_until });
-                      setOfferCode("");
-                    } catch (err) {
-                      setOfferErr(err.message || "Invalid or expired offer code.");
-                    } finally {
-                      setOfferLoading(false);
-                    }
-                  }}
-                >
-                  {offerLoading ? "Applying…" : "Apply Code"}
-                </button>
-              </div>
-              {offerMsg && <div className="info-box" style={{ marginTop: 10 }}>{offerMsg}</div>}
-              {offerErr && <div className="error-box" style={{ marginTop: 10 }}>{offerErr}</div>}
-            </>
-          )}
-        </div>
       </section>
 
       {/* ── Expandable Weak Areas card — always shown when student has taken tests ── */}
