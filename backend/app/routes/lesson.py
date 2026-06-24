@@ -397,6 +397,18 @@ def generate_lesson(
         err_str = str(e).lower()
         if "429" in err_str or "rate" in err_str or "quota" in err_str or "too_many" in err_str or "limit" in err_str:
             user_msg = "Our AI tutoring service is experiencing high demand right now. Please try again in a few minutes."
+            try:
+                from app.services.alert_service import alert_rate_limit  # noqa: PLC0415
+                alert_rate_limit(
+                    feature="lesson_generate",
+                    username=username_key,
+                    error_detail=str(e),
+                    grade=data.grade,
+                    subject=data.subject,
+                    chapter=data.chapter or "",
+                )
+            except Exception:
+                pass
         elif "timeout" in err_str or "timed out" in err_str:
             user_msg = "The AI took too long to respond. Please try again."
         else:
@@ -574,6 +586,18 @@ def lesson_follow_up(
         err_str = str(e).lower()
         if "429" in err_str or "rate" in err_str or "quota" in err_str or "too_many" in err_str or "limit" in err_str:
             user_msg = "Our AI tutoring service is experiencing high demand right now. Please try again in a few minutes."
+            try:
+                from app.services.alert_service import alert_rate_limit  # noqa: PLC0415
+                alert_rate_limit(
+                    feature="lesson_followup",
+                    username=profile.get("username") or data.username if profile else data.username,
+                    error_detail=str(e),
+                    grade=data.grade,
+                    subject=data.subject,
+                    chapter=data.chapter or "",
+                )
+            except Exception:
+                pass
         elif "timeout" in err_str or "timed out" in err_str:
             user_msg = "The AI took too long to respond. Please try again."
         else:

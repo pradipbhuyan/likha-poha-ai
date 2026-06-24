@@ -403,6 +403,19 @@ def answer_student_doubt(
                 "Our AI tutoring service is experiencing high demand right now. "
                 "Please try again in a few minutes — your question hasn't been lost."
             )
+            # Alert admin — fire-and-forget, never blocks response
+            try:
+                from app.services.alert_service import alert_rate_limit  # noqa: PLC0415
+                alert_rate_limit(
+                    feature="doubt",
+                    username=canonical_username if "canonical_username" in dir() else data.username,
+                    error_detail=str(e),
+                    grade=data.grade,
+                    subject=data.subject,
+                    chapter=data.chapter or "",
+                )
+            except Exception:
+                pass
         elif "timeout" in err_str or "timed out" in err_str:
             user_message = (
                 "The AI took too long to respond. Please try again."
