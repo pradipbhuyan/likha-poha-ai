@@ -319,13 +319,14 @@ function App() {
             ...offerData,
           };
 
-          // Detect first-time Google sign-in by comparing created_at vs last_sign_in_at.
-          // If they are within 90 seconds of each other this is the very first login
-          // and the user hasn't confirmed their role yet — show the setup screen.
-          // Returning users (last_sign_in_at > created_at + 90s) go straight to dashboard.
-          const createdAt = new Date(session.user.created_at).getTime();
-          const lastSignIn = new Date(session.user.last_sign_in_at || session.user.created_at).getTime();
-          const isFirstLogin = (lastSignIn - createdAt) < 90_000; // < 90 seconds
+          // Detect first-time Google sign-in: check if the OAuth identity was
+          // created within the last 3 minutes. This is more reliable than comparing
+          // created_at vs last_sign_in_at (which can differ due to OAuth redirect time).
+          const identityCreatedAt = session.user.identities?.[0]?.created_at;
+          const identityAgeMs = identityCreatedAt
+            ? Date.now() - new Date(identityCreatedAt).getTime()
+            : Infinity;
+          const isFirstLogin = identityAgeMs < 3 * 60 * 1000; // identity created < 3 min ago
 
           if (isFirstLogin) {
             setPendingOauthUser(normalizedUser);
