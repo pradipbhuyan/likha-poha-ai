@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { redeemOfferCode } from "../api/adminControl";
-import { getWeakChapters } from "../api/analytics";
+import { getWeakChapters, getWrongAnswersForChapter } from "../api/analytics";
 import { getAnalytics } from "../api/analytics";
 import { calculateAchievements } from "../utils/achievements";
 import { getRecommendations } from "../api/recommendations";
@@ -146,6 +146,11 @@ function DashboardPage({ user, setActivePage }) {
   }, [user.username]);
 
   const [weakChapters, setWeakChapters] = useState([]);
+  const [weakCardOpen, setWeakCardOpen] = useState(false);
+  const [expandedChapter, setExpandedChapter] = useState(null); // "subject||chapter"
+  const [chapterWrongAnswers, setChapterWrongAnswers] = useState({}); // keyed by "subject||chapter"
+  const [loadingChapter, setLoadingChapter] = useState(null);
+
   useEffect(() => {
     if (!user?.username) return;
     getWeakChapters(user.username).then((res) => {
@@ -154,6 +159,24 @@ function DashboardPage({ user, setActivePage }) {
       }
     });
   }, [user?.username]);
+
+  async function handleExpandChapter(subject, chapter) {
+    const key = `${subject}||${chapter}`;
+    if (expandedChapter === key) {
+      setExpandedChapter(null);
+      return;
+    }
+    setExpandedChapter(key);
+    if (!chapterWrongAnswers[key]) {
+      setLoadingChapter(key);
+      const res = await getWrongAnswersForChapter(user.username, { subject, chapter });
+      setChapterWrongAnswers((prev) => ({
+        ...prev,
+        [key]: res.wrong_answers || [],
+      }));
+      setLoadingChapter(null);
+    }
+  }
 
   const profileStats = [
     {
@@ -537,76 +560,6 @@ function DashboardPage({ user, setActivePage }) {
             <li>Attempt at least one quiz after every lesson.</li>
             <li>Review weak topics from mock test results.</li>
           </ul>
-
-          {/* Weak Chapters Retest Reminder */}
-          {weakChapters.length > 0 && (
-            <div
-              style={{
-                background: "linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)",
-                border: "1px solid #fdba74",
-                borderRadius: 12,
-                padding: "16px 20px",
-                marginTop: 20,
-              }}
-            >
-              <h4 style={{ margin: "0 0 4px", color: "#c2410c", fontSize: "0.95rem" }}>
-                🔁 Weak Chapters — Retest Reminder
-              </h4>
-              <p style={{ margin: "0 0 12px", fontSize: "0.82rem", color: "#78350f" }}>
-                You have made mistakes in these chapters. Study the explanations and take a retest to improve.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {weakChapters.map((wc, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      background: "#fff",
-                      border: "1px solid #fed7aa",
-                      borderRadius: 8,
-                      padding: "8px 12px",
-                      gap: 10,
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <div style={{ fontSize: "0.85rem", flex: 1 }}>
-                      <strong style={{ color: "#92400e" }}>{wc.subject}</strong>
-                      <span style={{ color: "#6b7280", margin: "0 6px" }}>›</span>
-                      <span style={{ color: "#374151" }}>{wc.chapter}</span>
-                      <span
-                        style={{
-                          marginLeft: 8,
-                          fontSize: "0.75rem",
-                          background: "#fee2e2",
-                          color: "#991b1b",
-                          borderRadius: 4,
-                          padding: "1px 6px",
-                        }}
-                      >
-                        {wc.wrong_count} wrong
-                      </span>
-                    </div>
-                    <a
-                      href="/mock-test"
-                      style={{
-                        fontSize: "0.78rem",
-                        background: "#ea580c",
-                        color: "#fff",
-                        borderRadius: 6,
-                        padding: "4px 10px",
-                        textDecoration: "none",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      🔁 Retest
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="card">
@@ -666,6 +619,186 @@ function DashboardPage({ user, setActivePage }) {
           )}
         </div>
       </section>
+
+      {/* ── Expandable Weak Areas card ─────────────────────────────────────── */}
+      {weakChapters.length > 0 && (
+        <section style={{ marginTop: 0, paddingBottom: 40 }}>
+          {/* Clickable summary card */}
+          <div
+            onClick={() => setWeakCardOpen((o) => !o)}
+            style={{
+              cursor: "pointer",
+              background: "linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)",
+              border: "1px solid #fdba74",
+              borderRadius: 12,
+              padding: "16px 20px",
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              userSelect: "none",
+            }}
+          >
+            <span style={{ fontSize: "1.6rem" }}>📊</span>
+            <div style={{ flex: 1 }}>
+              <strong style={{ color: "#c2410c", fontSize: "1rem", display: "block" }}>
+                Improve Your Weak Areas
+              </strong>
+              <p style={{ margin: "3px 0 0", fontSize: "0.82rem", color: "#78350f" }}>
+                You have mistakes in <strong>{weakChapters.length}</strong> chapter{weakChapters.length > 1 ? "s" : ""}.
+                {" "}Click to review incorrect answers and take a retest.
+              </p>
+            </div>
+            <span style={{ fontSize: "1.2rem", color: "#c2410c", transition: "transform 0.2s", transform: weakCardOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
+              ▾
+            </span>
+          </div>
+
+          {/* Expanded panel */}
+          {weakCardOpen && (
+            <div
+              style={{
+                border: "1px solid #fdba74",
+                borderTop: "none",
+                borderRadius: "0 0 12px 12px",
+                background: "#fffbf5",
+                padding: "0 0 8px",
+              }}
+            >
+              {weakChapters.map((wc, i) => {
+                const key = `${wc.subject}||${wc.chapter}`;
+                const isOpen = expandedChapter === key;
+                const answers = chapterWrongAnswers[key] || [];
+                const isLoading = loadingChapter === key;
+
+                return (
+                  <div key={i} style={{ borderTop: i > 0 ? "1px solid #fed7aa" : "none" }}>
+                    {/* Chapter row — click to expand wrong answers */}
+                    <div
+                      onClick={() => handleExpandChapter(wc.subject, wc.chapter)}
+                      style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        padding: "12px 20px",
+                        gap: 12,
+                        background: isOpen ? "#fff3e0" : "transparent",
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <strong style={{ color: "#92400e", fontSize: "0.88rem" }}>{wc.subject}</strong>
+                        <span style={{ color: "#6b7280", margin: "0 6px", fontSize: "0.85rem" }}>›</span>
+                        <span style={{ color: "#374151", fontSize: "0.88rem" }}>{wc.chapter}</span>
+                        <span style={{
+                          marginLeft: 10,
+                          fontSize: "0.73rem",
+                          background: "#fee2e2",
+                          color: "#991b1b",
+                          borderRadius: 4,
+                          padding: "1px 7px",
+                          fontWeight: 600,
+                        }}>
+                          {wc.wrong_count} mistake{wc.wrong_count > 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setActivePage("mockTest"); }}
+                        style={{
+                          fontSize: "0.75rem",
+                          background: "#ea580c",
+                          color: "#fff",
+                          border: "none",
+                          borderRadius: 6,
+                          padding: "4px 10px",
+                          cursor: "pointer",
+                          whiteSpace: "nowrap",
+                          flexShrink: 0,
+                        }}
+                      >
+                        🔁 Retest
+                      </button>
+                      <span style={{ fontSize: "0.9rem", color: "#c2410c", marginLeft: 4, transform: isOpen ? "rotate(180deg)" : "none", display: "inline-block", transition: "transform 0.15s" }}>▾</span>
+                    </div>
+
+                    {/* Wrong answers accordion */}
+                    {isOpen && (
+                      <div style={{ padding: "0 20px 14px" }}>
+                        {isLoading && (
+                          <p style={{ fontSize: "0.82rem", color: "#78350f" }}>Loading mistakes…</p>
+                        )}
+                        {!isLoading && answers.length === 0 && (
+                          <p style={{ fontSize: "0.82rem", color: "#6b7280" }}>No details stored yet. Take a mock test to record mistakes.</p>
+                        )}
+                        {!isLoading && answers.length > 0 && (
+                          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 6 }}>
+                            {answers.map((ans, qi) => (
+                              <div key={qi} style={{
+                                background: "#fff",
+                                border: "1px solid #fed7aa",
+                                borderRadius: 8,
+                                padding: "10px 14px",
+                                fontSize: "0.84rem",
+                              }}>
+                                <p style={{ margin: "0 0 6px", fontWeight: 600, color: "#1f2937" }}>
+                                  Q{qi + 1}. {ans.question}
+                                </p>
+                                <p style={{ margin: "0 0 2px", color: "#991b1b" }}>
+                                  ✗ Your answer: <strong>{ans.selected_answer || "Not answered"}</strong>
+                                  {ans.options && ans.selected_answer && ans.options[ans.selected_answer]
+                                    ? ` — ${ans.options[ans.selected_answer]}`
+                                    : ""}
+                                </p>
+                                <p style={{ margin: "0 0 6px", color: "#166534" }}>
+                                  ✓ Correct: <strong>{ans.correct_answer}</strong>
+                                  {ans.options && ans.correct_answer && ans.options[ans.correct_answer]
+                                    ? ` — ${ans.options[ans.correct_answer]}`
+                                    : ""}
+                                </p>
+                                {ans.explanation && (
+                                  <div style={{
+                                    background: "#eff6ff",
+                                    border: "1px solid #bfdbfe",
+                                    borderRadius: 6,
+                                    padding: "8px 10px",
+                                    color: "#1e40af",
+                                    fontSize: "0.81rem",
+                                    lineHeight: 1.55,
+                                  }}>
+                                    📖 {ans.explanation}
+                                  </div>
+                                )}
+                                <p style={{ margin: "6px 0 0", fontSize: "0.72rem", color: "#9ca3af" }}>
+                                  Recorded: {new Date(ans.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                                </p>
+                              </div>
+                            ))}
+                            <button
+                              onClick={() => setActivePage("mockTest")}
+                              style={{
+                                alignSelf: "flex-start",
+                                marginTop: 4,
+                                background: "#ea580c",
+                                color: "#fff",
+                                border: "none",
+                                borderRadius: 8,
+                                padding: "8px 18px",
+                                cursor: "pointer",
+                                fontWeight: 600,
+                                fontSize: "0.85rem",
+                              }}
+                            >
+                              🔁 Take Retest on {wc.chapter}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 }

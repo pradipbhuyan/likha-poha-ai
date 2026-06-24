@@ -138,6 +138,37 @@ def save_wrong_answers(data: SaveWrongAnswersRequest):
         return {"success": False, "error": str(exc), "saved": 0}
 
 
+@router.get("/wrong-answers/{username}")
+def get_wrong_answers_for_chapter(
+    username: str,
+    subject: str | None = None,
+    chapter: str | None = None,
+    limit: int = 50,
+):
+    """
+    Return the stored wrong-answer rows for one student, optionally filtered by
+    subject and chapter. Used by the Dashboard expandable review card to show
+    per-question mistakes with explanations.
+    """
+    try:
+        query = (
+            supabase
+            .table("mock_test_wrong_answers")
+            .select("id, subject, chapter, grade, mode, question, correct_answer, selected_answer, options, explanation, created_at")
+            .eq("username", username)
+            .order("created_at", desc=True)
+            .limit(limit)
+        )
+        if subject:
+            query = query.eq("subject", subject)
+        if chapter:
+            query = query.eq("chapter", chapter)
+        resp = query.execute()
+        return {"success": True, "wrong_answers": resp.data or []}
+    except Exception as exc:
+        return {"success": False, "error": str(exc), "wrong_answers": []}
+
+
 @router.get("/weak-chapters/{username}")
 def get_weak_chapters(username: str, limit: int = 10):
     """

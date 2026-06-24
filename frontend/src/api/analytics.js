@@ -105,6 +105,26 @@ export async function saveWrongAnswers({ username, grade, mode, subject, chapter
   }
 }
 
+export async function getWrongAnswersForChapter(username, { subject, chapter } = {}) {
+  /**
+   * Fetch stored wrong-answer rows for a student, optionally filtered by subject+chapter.
+   * Returns: { success, wrong_answers: [{ question, correct_answer, selected_answer, options, explanation, created_at }] }
+   */
+  try {
+    const params = new URLSearchParams();
+    if (subject) params.set("subject", subject);
+    if (chapter) params.set("chapter", chapter);
+    const qs = params.toString() ? `?${params.toString()}` : "";
+    const response = await fetch(
+      `${API_BASE_URL}/api/analytics/wrong-answers/${encodeURIComponent(username)}${qs}`
+    );
+    if (!response.ok) return { success: false, wrong_answers: [] };
+    return response.json();
+  } catch {
+    return { success: false, wrong_answers: [] };
+  }
+}
+
 export async function getWeakChapters(username) {
   /**
    * Fetch the student's weak chapters (chapters with the most wrong answers),
