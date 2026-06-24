@@ -471,8 +471,17 @@ function App() {
       };
       setUser(updatedUser);
       localStorage.setItem("tutor_user", JSON.stringify(updatedUser));
-      setActivePage("dashboard");
-      localStorage.setItem("tutor_active_page", "dashboard");
+
+      // Route to the correct role-specific landing page after subscription unlock
+      const role = updatedUser.role;
+      const targetPage =
+        role === "admin" ? "adminControl" :
+        role === "parent" ? "parentDashboard" :
+        role === "teacher" ? "teacherDashboard" :
+        role === "sales" ? "salesLeads" :
+        "dashboard"; // students go to their dashboard
+      setActivePage(targetPage);
+      localStorage.setItem("tutor_active_page", targetPage);
     } catch (err) {
       console.error("handleSubscriptionComplete:", err);
     }
