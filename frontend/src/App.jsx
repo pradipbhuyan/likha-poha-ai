@@ -319,10 +319,21 @@ function App() {
             ...offerData,
           };
 
-          // New Google users always get role='student' from the DB trigger.
-          // Show a role-selection screen so parent/teacher/student can self-identify.
-          setPendingOauthUser(normalizedUser);
-          setOauthStep("role");
+          // Detect first-time Google sign-in by comparing created_at vs last_sign_in_at.
+          // If they are within 90 seconds of each other this is the very first login
+          // and the user hasn't confirmed their role yet — show the setup screen.
+          // Returning users (last_sign_in_at > created_at + 90s) go straight to dashboard.
+          const createdAt = new Date(session.user.created_at).getTime();
+          const lastSignIn = new Date(session.user.last_sign_in_at || session.user.created_at).getTime();
+          const isFirstLogin = (lastSignIn - createdAt) < 90_000; // < 90 seconds
+
+          if (isFirstLogin) {
+            setPendingOauthUser(normalizedUser);
+            setOauthStep("role");
+          } else {
+            // Returning Google user — profile already has correct role/grade
+            handleLogin(normalizedUser);
+          }
         } finally {
           setOauthLoading(false);
         }
