@@ -2605,9 +2605,30 @@ body.dark-mode select {
   color: #f8fafc !important;
 }
 
-body.dark-mode .lesson-section-header {
-  background: #111827 !important;
-  color: #f8fafc !important;
+body.dark-mode .lesson-section-header,
+body.dark-mode .section-1 .lesson-section-header,
+body.dark-mode .section-2 .lesson-section-header,
+body.dark-mode .section-3 .lesson-section-header,
+body.dark-mode .section-4 .lesson-section-header,
+body.dark-mode .section-5 .lesson-section-header,
+body.dark-mode .section-6 .lesson-section-header,
+body.dark-mode .section-7 .lesson-section-header {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .lesson-section-icon {
+  background: #334155 !important;
+}
+
+body.dark-mode .section-1 .lesson-section-body,
+body.dark-mode .section-2 .lesson-section-body,
+body.dark-mode .section-3 .lesson-section-body,
+body.dark-mode .section-4 .lesson-section-body,
+body.dark-mode .section-5 .lesson-section-body,
+body.dark-mode .section-6 .lesson-section-body {
+  background: #0f172a !important;
+  border-top-color: #334155 !important;
 }
 
 body.dark-mode .markdown-content,
