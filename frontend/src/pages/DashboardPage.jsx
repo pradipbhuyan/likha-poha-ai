@@ -620,8 +620,8 @@ function DashboardPage({ user, setActivePage }) {
         </div>
       </section>
 
-      {/* ── Expandable Weak Areas card ─────────────────────────────────────── */}
-      {weakChapters.length > 0 && (
+      {/* ── Expandable Weak Areas card — always shown when student has taken tests ── */}
+      {stats.testsTaken > 0 && (
         <section style={{ marginTop: 0, paddingBottom: 40 }}>
           {/* Clickable summary card */}
           <div
@@ -641,11 +641,12 @@ function DashboardPage({ user, setActivePage }) {
             <span style={{ fontSize: "1.6rem" }}>📊</span>
             <div style={{ flex: 1 }}>
               <strong style={{ color: "#c2410c", fontSize: "1rem", display: "block" }}>
-                Improve Your Weak Areas
+                📊 Improve Your Weak Areas
               </strong>
               <p style={{ margin: "3px 0 0", fontSize: "0.82rem", color: "#78350f" }}>
-                You have mistakes in <strong>{weakChapters.length}</strong> chapter{weakChapters.length > 1 ? "s" : ""}.
-                {" "}Click to review incorrect answers and take a retest.
+                {weakChapters.length > 0
+                  ? <>You have mistakes in <strong>{weakChapters.length}</strong> chapter{weakChapters.length > 1 ? "s" : ""}. Click to review incorrect answers and take a retest.</>
+                  : <>Great work! No weak chapters detected yet. Keep taking mock tests to track your mistakes here.</>}
               </p>
             </div>
             <span style={{ fontSize: "1.2rem", color: "#c2410c", transition: "transform 0.2s", transform: weakCardOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -664,6 +665,16 @@ function DashboardPage({ user, setActivePage }) {
                 padding: "0 0 8px",
               }}
             >
+              {weakChapters.length === 0 && (
+                <div style={{ padding: "16px 20px", fontSize: "0.85rem", color: "#78350f" }}>
+                  <p style={{ margin: 0 }}>
+                    No mistakes recorded yet. After you submit a mock test, any incorrectly answered questions will appear here so you can study and retry them.
+                  </p>
+                  <p style={{ margin: "8px 0 0", fontSize: "0.78rem", color: "#9ca3af" }}>
+                    Note: This feature requires the <code>mock_test_wrong_answers</code> table in Supabase. Run the migration in <code>backend/migrations/20260624_mock_test_wrong_answers.sql</code> if you haven't already.
+                  </p>
+                </div>
+              )}
               {weakChapters.map((wc, i) => {
                 const key = `${wc.subject}||${wc.chapter}`;
                 const isOpen = expandedChapter === key;
