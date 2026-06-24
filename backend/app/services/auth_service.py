@@ -37,29 +37,59 @@ def get_current_user(
 
     All protected routes depend on this function, so failures are deliberately
     normalized to HTTP 401 instead of leaking provider-specific auth errors.
+
+    Retries up to 2 times on transient HTTP/2 connection drops (Render free tier
+    occasionally terminates the connection pool mid-request, causing ConnectionTerminated
+    or ReadError errors that are not auth failures).
     """
+    import time as _time  # noqa: PLC0415
+
     token = credentials.credentials
+    last_exc = None
 
-    try:
-        response = admin_client.auth.get_user(token)
+    for attempt in range(3):
+        try:
+            response = admin_client.auth.get_user(token)
 
-        if not response.user:
+            if not response.user:
+                raise HTTPException(
+                    status_code=401,
+                    detail="Invalid token",
+                )
+
+            print("AUTH USER ID:", response.user.id)
+            print("AUTH USER EMAIL:", response.user.email)
+
+            return response.user
+
+        except HTTPException:
+            raise  # Auth failures are not retried
+
+        except Exception as e:
+            err_str = str(e).lower()
+            # Retry only on transient network errors, not real auth failures
+            is_transient = any(k in err_str for k in (
+                "connectionterminated", "connection terminated",
+                "read error", "errno 11", "resource temporarily unavailable",
+                "reset by peer", "broken pipe", "connection reset",
+            ))
+            if is_transient and attempt < 2:
+                last_exc = e
+                print(f"AUTH ERROR (retry {attempt + 1}): {e}")
+                _time.sleep(0.3 * (attempt + 1))
+                continue
+            print("AUTH ERROR:", str(e))
             raise HTTPException(
                 status_code=401,
-                detail="Invalid token",
+                detail="Invalid or expired token",
             )
 
-        print("AUTH USER ID:", response.user.id)
-        print("AUTH USER EMAIL:", response.user.email)
-
-        return response.user
-
-    except Exception as e:
-        print("AUTH ERROR:", str(e))
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid or expired token",
-        )
+    # All retries exhausted — still a transient error, return 401
+    print("AUTH ERROR (all retries failed):", str(last_exc))
+    raise HTTPException(
+        status_code=401,
+        detail="Invalid or expired token",
+    )
 
 def get_user_profile(user_id: str):
     """
