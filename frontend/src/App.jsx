@@ -234,6 +234,12 @@ function App() {
     localStorage.getItem("tutor_dark_mode") === "true"
   );
   const [oauthLoading, setOauthLoading] = useState(false);
+  // When a student signs in via Google for the first time their grade is unknown.
+  // We store their partial user object here and show a grade-picker before calling handleLogin.
+  const [pendingOauthUser, setPendingOauthUser] = useState(null);
+  const [oauthGrade, setOauthGrade] = useState("Grade 9");
+  const [oauthGradeSaving, setOauthGradeSaving] = useState(false);
+  const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
   // ── Google OAuth callback handler ──────────────────────────────────────────
   // Supabase redirects back to the app after Google auth with a session in the
@@ -288,7 +294,7 @@ function App() {
             }
           } catch { /* non-critical */ }
 
-          handleLogin({
+          const normalizedUser = {
             id: session.user.id,
             email: session.user.email,
             username: profile.username || session.user.email,
@@ -309,7 +315,15 @@ function App() {
             subscriptionPlan: profile.subscription_plan || "free",
             accountStatus: profile.account_status || "active",
             ...offerData,
-          });
+          };
+
+          // For students the DB trigger defaults grade to "Grade 9" — ask them to confirm.
+          // Parents have no grade, so they go straight through.
+          if (normalizedUser.role === "student") {
+            setPendingOauthUser(normalizedUser);
+          } else {
+            handleLogin(normalizedUser);
+          }
         } finally {
           setOauthLoading(false);
         }
@@ -468,6 +482,102 @@ function App() {
           setRoutePath("/");
         }}
       />
+    );
+  }
+
+  // Grade picker overlay for new Google-authenticated students
+  if (pendingOauthUser) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0f172a",
+        padding: "24px",
+        fontFamily: "-apple-system, sans-serif",
+      }}>
+        <div style={{
+          width: "100%",
+          maxWidth: 420,
+          background: "#1e293b",
+          borderRadius: 16,
+          padding: "36px 32px",
+          color: "#f8fafc",
+          boxShadow: "0 20px 60px rgba(0,0,0,.5)",
+        }}>
+          {/* Google avatar if available */}
+          {pendingOauthUser.avatar && (
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <img
+                src={pendingOauthUser.avatar}
+                alt="Profile"
+                style={{ width: 64, height: 64, borderRadius: "50%", border: "3px solid #6366f1" }}
+              />
+            </div>
+          )}
+          <h2 style={{ margin: "0 0 6px", fontSize: "1.4rem", fontWeight: 800, textAlign: "center" }}>
+            Welcome, {pendingOauthUser.username.split(" ")[0]}! 👋
+          </h2>
+          <p style={{ margin: "0 0 24px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
+            Which class are you in? We'll personalise your lessons and practice tests.
+          </p>
+          <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 8 }}>
+            Select your class
+          </label>
+          <select
+            value={oauthGrade}
+            onChange={e => setOauthGrade(e.target.value)}
+            style={{
+              width: "100%",
+              background: "#111827",
+              border: "2px solid #334155",
+              borderRadius: 10,
+              padding: "12px 14px",
+              color: "#f8fafc",
+              fontSize: "1rem",
+              fontFamily: "inherit",
+              marginBottom: 20,
+              cursor: "pointer",
+            }}
+          >
+            {OAUTH_GRADES.map(g => <option key={g}>{g}</option>)}
+          </select>
+          <button
+            disabled={oauthGradeSaving}
+            onClick={async () => {
+              setOauthGradeSaving(true);
+              try {
+                // Persist the chosen grade to Supabase profiles
+                await supabase
+                  .from("profiles")
+                  .update({ grade: oauthGrade })
+                  .eq("id", pendingOauthUser.id);
+              } catch { /* non-critical — grade is updated optimistically */ }
+              handleLogin({ ...pendingOauthUser, grade: oauthGrade });
+              setPendingOauthUser(null);
+              setOauthGradeSaving(false);
+            }}
+            style={{
+              width: "100%",
+              padding: "13px",
+              borderRadius: 10,
+              border: "none",
+              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+              color: "#fff",
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              cursor: oauthGradeSaving ? "not-allowed" : "pointer",
+              fontFamily: "inherit",
+            }}
+          >
+            {oauthGradeSaving ? "Saving…" : `Continue as ${oauthGrade} student →`}
+          </button>
+          <p style={{ textAlign: "center", marginTop: 14, fontSize: "0.75rem", color: "#475569" }}>
+            You can change your grade later from account settings.
+          </p>
+        </div>
+      </div>
     );
   }
 
