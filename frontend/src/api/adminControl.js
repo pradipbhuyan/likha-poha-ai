@@ -470,8 +470,11 @@ export async function redeemOfferCode(code, accessToken) {
   /**
    * Redeem an 8-char offer code for the currently logged-in user.
    * Returns { success, valid_until, message, already_redeemed }
+   *
+   * NOTE: must use the absolute API base URL — relative /api/ paths are
+   * caught by Vercel's catch-all rewrite and return the React app HTML.
    */
-  const response = await fetch("/api/offer/redeem", {
+  const response = await fetch(`${API_BASE_URL}/api/offer/redeem`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -492,8 +495,10 @@ export async function getMyOfferAccess(accessToken) {
   /**
    * Check if the current user has a valid (non-expired) offer redemption.
    * Returns { has_offer_access: bool, valid_until: string|null }
+   *
+   * NOTE: must use the absolute API base URL (same Vercel rewrite reason).
    */
-  const response = await fetch("/api/offer/my-access", {
+  const response = await fetch(`${API_BASE_URL}/api/offer/my-access`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 
