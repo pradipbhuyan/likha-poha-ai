@@ -63,9 +63,12 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# ── Tracing middleware (must be added BEFORE CORSMiddleware) ──────────────────
-app.add_middleware(TracingMiddleware)
-
+# ── Middleware stack ──────────────────────────────────────────────────────────
+# Starlette applies middleware in REVERSE registration order on responses.
+# CORSMiddleware must be registered FIRST so it runs LAST on the response path,
+# guaranteeing CORS headers are present even on 4xx/5xx error responses.
+# If TracingMiddleware is registered first it wraps CORSMiddleware and
+# error responses produced inside route handlers never get CORS headers.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list(set(allowed_origins)),
@@ -73,6 +76,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.add_middleware(TracingMiddleware)
 
 origins = allowed_origins
 
