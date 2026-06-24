@@ -9,12 +9,37 @@ Endpoints:
   GET  /api/offer/my-access — check if current user has valid offer access
 """
 
+import time
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.services.auth_service import get_current_user, admin_client
+
+
+def _supabase_query_with_retry(fn, retries=3, delay=0.4):
+    """
+    Execute a Supabase/PostgREST query with simple retry logic.
+
+    Render's free tier occasionally drops HTTP/2 connections to Supabase,
+    causing httpx.ReadError / [Errno 11] Resource temporarily unavailable.
+    Retrying 2-3 times resolves the transient socket issue in practice.
+    """
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            return fn()
+        except Exception as exc:
+            last_exc = exc
+            err = str(exc).lower()
+            # Only retry on transient network errors
+            if any(k in err for k in ("resource temporarily unavailable", "read error", "connection", "errno 11", "reset by peer", "broken pipe")):
+                if attempt < retries - 1:
+                    time.sleep(delay * (attempt + 1))
+                    continue
+            raise  # Non-network error — don't retry
+    raise last_exc
 
 router = APIRouter()
 
@@ -42,14 +67,14 @@ def redeem_offer_code(data: RedeemCodeRequest, user=Depends(get_current_user)):
         raise HTTPException(status_code=400, detail="Offer code must be exactly 8 characters.")
 
     # 1. Look up the code
-    result = (
+    result = _supabase_query_with_retry(lambda: (
         admin_client
         .table("offer_codes")
         .select("*")
         .eq("code", code)
         .limit(1)
         .execute()
-    )
+    ))
 
     if not result.data:
         raise HTTPException(status_code=404, detail="Invalid offer code.")
@@ -93,7 +118,7 @@ def redeem_offer_code(data: RedeemCodeRequest, user=Depends(get_current_user)):
     user_id = user.id
     code_id = offer["id"]
 
-    existing_redemption = (
+    existing_redemption = _supabase_query_with_retry(lambda: (
         admin_client
         .table("offer_redemptions")
         .select("id, valid_until")
@@ -101,7 +126,7 @@ def redeem_offer_code(data: RedeemCodeRequest, user=Depends(get_current_user)):
         .eq("code_id", code_id)
         .limit(1)
         .execute()
-    )
+    ))
 
     if existing_redemption.data:
         # Already redeemed — return their existing access info
@@ -115,21 +140,24 @@ def redeem_offer_code(data: RedeemCodeRequest, user=Depends(get_current_user)):
 
     # 5. Create redemption record
     try:
-        admin_client.table("offer_redemptions").insert({
+        _supabase_query_with_retry(lambda: admin_client.table("offer_redemptions").insert({
             "code_id": code_id,
             "user_id": user_id,
             "valid_until": valid_until_str,
-        }).execute()
+        }).execute())
     except Exception as exc:
         raise HTTPException(
             status_code=500,
             detail=f"Unable to redeem offer code. Error: {str(exc)}",
         )
 
-    # 6. Increment uses_count on offer_codes
-    admin_client.table("offer_codes").update({
-        "uses_count": uses_count + 1,
-    }).eq("id", code_id).execute()
+    # 6. Increment uses_count on offer_codes (best-effort — don't fail redemption if this errors)
+    try:
+        _supabase_query_with_retry(lambda: admin_client.table("offer_codes").update({
+            "uses_count": uses_count + 1,
+        }).eq("id", code_id).execute())
+    except Exception:
+        pass
 
     return {
         "success": True,
