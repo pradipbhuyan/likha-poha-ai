@@ -899,7 +899,7 @@ function App() {
       case "teacherDashboard":
         return <TeacherDashboardPage user={user} />;
       case "subscriptionPlans":
-        return <SubscriptionPlansPage user={user} />;
+        return <SubscriptionPlansPage user={user} onSubscriptionComplete={handleSubscriptionComplete} />;
       case "platformWalkthrough":
         return <WalkthroughPage user={user} />;
       case "changePassword":
