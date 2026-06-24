@@ -15,6 +15,7 @@ import {
   Sparkles,
   Target,
   Trophy,
+  TrendingUp,
 } from "lucide-react";
 
 import {
@@ -406,6 +407,191 @@ function DashboardPage({ user, setActivePage }) {
         </div>
       </section>
 
+      {/* ── Improve Your Weak Areas card — just below AI Recommendations ── */}
+      {stats.testsTaken > 0 && (
+        <section className="dashboard-chart-card" style={{ marginBottom: 0 }}>
+          {/* Clickable header row */}
+          <div
+            onClick={() => setWeakCardOpen((o) => !o)}
+            style={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              userSelect: "none",
+            }}
+          >
+            <div style={{
+              width: 40, height: 40, borderRadius: 10,
+              background: "linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+            }}>
+              <TrendingUp size={22} strokeWidth={2.4} color="#fff" />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ margin: 0, fontSize: "1rem" }}>Improve Your Weak Areas</h3>
+              <p style={{ margin: "2px 0 0", fontSize: "0.82rem", color: "var(--text-muted, #6b7280)" }}>
+                {weakChapters.length > 0
+                  ? `${weakChapters.length} chapter${weakChapters.length > 1 ? "s" : ""} with recorded mistakes — click to review and retest`
+                  : "No weak chapters yet. Keep taking mock tests to track your mistakes."}
+              </p>
+            </div>
+            <span style={{
+              fontSize: "1.1rem",
+              color: "var(--text-muted, #6b7280)",
+              transition: "transform 0.2s",
+              transform: weakCardOpen ? "rotate(180deg)" : "rotate(0deg)",
+              display: "inline-block",
+            }}>▾</span>
+          </div>
+
+          {/* Expanded panel */}
+          {weakCardOpen && (
+            <div style={{ marginTop: 16 }}>
+              {weakChapters.length === 0 && (
+                <div style={{
+                  padding: "14px 16px",
+                  borderRadius: 8,
+                  background: "var(--card-inner-bg, #f8fafc)",
+                  border: "1px solid var(--border-color, #e2e8f0)",
+                  fontSize: "0.85rem",
+                  color: "var(--text-muted, #6b7280)",
+                }}>
+                  <p style={{ margin: 0 }}>
+                    No mistakes recorded yet. After you submit a mock test, incorrectly answered questions will appear here.
+                  </p>
+                  <p style={{ margin: "6px 0 0", fontSize: "0.75rem", color: "#9ca3af" }}>
+                    Note: Run the migration in <code>backend/migrations/20260624_mock_test_wrong_answers.sql</code> in Supabase if this feature is not active.
+                  </p>
+                </div>
+              )}
+              {weakChapters.map((wc, i) => {
+                const key = `${wc.subject}||${wc.chapter}`;
+                const isOpen = expandedChapter === key;
+                const answers = chapterWrongAnswers[key] || [];
+                const isLoading = loadingChapter === key;
+
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      borderTop: i > 0 ? "1px solid var(--border-color, #e2e8f0)" : "none",
+                      paddingTop: i > 0 ? 10 : 0,
+                      marginTop: i > 0 ? 10 : 0,
+                    }}
+                  >
+                    {/* Chapter row */}
+                    <div
+                      onClick={() => handleExpandChapter(wc.subject, wc.chapter)}
+                      style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        padding: "8px 12px",
+                        borderRadius: 8,
+                        background: isOpen ? "var(--card-inner-bg, #f1f5f9)" : "transparent",
+                        transition: "background 0.15s",
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <span style={{ fontWeight: 600, fontSize: "0.88rem" }}>{wc.subject}</span>
+                        <span style={{ color: "var(--text-muted, #6b7280)", margin: "0 6px" }}>›</span>
+                        <span style={{ fontSize: "0.88rem" }}>{wc.chapter}</span>
+                        <span style={{
+                          marginLeft: 10,
+                          fontSize: "0.72rem",
+                          background: "rgba(239,68,68,.12)",
+                          color: "#dc2626",
+                          borderRadius: 4,
+                          padding: "1px 7px",
+                          fontWeight: 600,
+                        }}>
+                          {wc.wrong_count} mistake{wc.wrong_count > 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      <button
+                        className="primary-btn"
+                        onClick={(e) => { e.stopPropagation(); setActivePage("mockTest"); }}
+                        style={{ fontSize: "0.75rem", padding: "4px 12px", whiteSpace: "nowrap" }}
+                      >
+                        Retest
+                      </button>
+                      <span style={{
+                        fontSize: "0.85rem",
+                        color: "var(--text-muted, #6b7280)",
+                        transform: isOpen ? "rotate(180deg)" : "none",
+                        display: "inline-block",
+                        transition: "transform 0.15s",
+                        marginLeft: 2,
+                      }}>▾</span>
+                    </div>
+
+                    {/* Wrong answer detail */}
+                    {isOpen && (
+                      <div style={{ padding: "8px 12px 4px" }}>
+                        {isLoading && (
+                          <p style={{ fontSize: "0.82rem", color: "var(--text-muted, #6b7280)" }}>Loading…</p>
+                        )}
+                        {!isLoading && answers.length === 0 && (
+                          <p style={{ fontSize: "0.82rem", color: "var(--text-muted, #6b7280)" }}>No details stored yet.</p>
+                        )}
+                        {!isLoading && answers.length > 0 && (
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            {answers.map((ans, qi) => (
+                              <div key={qi} style={{
+                                background: "var(--card-inner-bg, #f8fafc)",
+                                border: "1px solid var(--border-color, #e2e8f0)",
+                                borderRadius: 8,
+                                padding: "10px 14px",
+                                fontSize: "0.83rem",
+                              }}>
+                                <p style={{ margin: "0 0 5px", fontWeight: 600 }}>Q{qi + 1}. {ans.question}</p>
+                                <p style={{ margin: "0 0 2px", color: "#dc2626" }}>
+                                  ✗ Your answer: <strong>{ans.selected_answer || "Not answered"}</strong>
+                                  {ans.options?.[ans.selected_answer] ? ` — ${ans.options[ans.selected_answer]}` : ""}
+                                </p>
+                                <p style={{ margin: "0 0 6px", color: "#16a34a" }}>
+                                  ✓ Correct: <strong>{ans.correct_answer}</strong>
+                                  {ans.options?.[ans.correct_answer] ? ` — ${ans.options[ans.correct_answer]}` : ""}
+                                </p>
+                                {ans.explanation && (
+                                  <div style={{
+                                    background: "rgba(99,102,241,.06)",
+                                    border: "1px solid rgba(99,102,241,.2)",
+                                    borderRadius: 6,
+                                    padding: "7px 10px",
+                                    fontSize: "0.8rem",
+                                    lineHeight: 1.55,
+                                  }}>
+                                    📖 {ans.explanation}
+                                  </div>
+                                )}
+                                <p style={{ margin: "5px 0 0", fontSize: "0.7rem", color: "#9ca3af" }}>
+                                  {new Date(ans.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                                </p>
+                              </div>
+                            ))}
+                            <button
+                              className="primary-btn"
+                              onClick={() => setActivePage("mockTest")}
+                              style={{ alignSelf: "flex-start", marginTop: 4, fontSize: "0.85rem" }}
+                            >
+                              Take Retest on {wc.chapter}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      )}
+
       <section className="recommendation-section">
         <div className="section-heading-row">
           <div>
@@ -566,196 +752,6 @@ function DashboardPage({ user, setActivePage }) {
 
       </section>
 
-      {/* ── Expandable Weak Areas card — always shown when student has taken tests ── */}
-      {stats.testsTaken > 0 && (
-        <section style={{ marginTop: 0, paddingBottom: 40 }}>
-          {/* Clickable summary card */}
-          <div
-            onClick={() => setWeakCardOpen((o) => !o)}
-            style={{
-              cursor: "pointer",
-              background: "linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%)",
-              border: "1px solid #fdba74",
-              borderRadius: 12,
-              padding: "16px 20px",
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-              userSelect: "none",
-            }}
-          >
-            <span style={{ fontSize: "1.6rem" }}>📊</span>
-            <div style={{ flex: 1 }}>
-              <strong style={{ color: "#c2410c", fontSize: "1rem", display: "block" }}>
-                📊 Improve Your Weak Areas
-              </strong>
-              <p style={{ margin: "3px 0 0", fontSize: "0.82rem", color: "#78350f" }}>
-                {weakChapters.length > 0
-                  ? <>You have mistakes in <strong>{weakChapters.length}</strong> chapter{weakChapters.length > 1 ? "s" : ""}. Click to review incorrect answers and take a retest.</>
-                  : <>Great work! No weak chapters detected yet. Keep taking mock tests to track your mistakes here.</>}
-              </p>
-            </div>
-            <span style={{ fontSize: "1.2rem", color: "#c2410c", transition: "transform 0.2s", transform: weakCardOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
-              ▾
-            </span>
-          </div>
-
-          {/* Expanded panel */}
-          {weakCardOpen && (
-            <div
-              style={{
-                border: "1px solid #fdba74",
-                borderTop: "none",
-                borderRadius: "0 0 12px 12px",
-                background: "#fffbf5",
-                padding: "0 0 8px",
-              }}
-            >
-              {weakChapters.length === 0 && (
-                <div style={{ padding: "16px 20px", fontSize: "0.85rem", color: "#78350f" }}>
-                  <p style={{ margin: 0 }}>
-                    No mistakes recorded yet. After you submit a mock test, any incorrectly answered questions will appear here so you can study and retry them.
-                  </p>
-                  <p style={{ margin: "8px 0 0", fontSize: "0.78rem", color: "#9ca3af" }}>
-                    Note: This feature requires the <code>mock_test_wrong_answers</code> table in Supabase. Run the migration in <code>backend/migrations/20260624_mock_test_wrong_answers.sql</code> if you haven't already.
-                  </p>
-                </div>
-              )}
-              {weakChapters.map((wc, i) => {
-                const key = `${wc.subject}||${wc.chapter}`;
-                const isOpen = expandedChapter === key;
-                const answers = chapterWrongAnswers[key] || [];
-                const isLoading = loadingChapter === key;
-
-                return (
-                  <div key={i} style={{ borderTop: i > 0 ? "1px solid #fed7aa" : "none" }}>
-                    {/* Chapter row — click to expand wrong answers */}
-                    <div
-                      onClick={() => handleExpandChapter(wc.subject, wc.chapter)}
-                      style={{
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        padding: "12px 20px",
-                        gap: 12,
-                        background: isOpen ? "#fff3e0" : "transparent",
-                      }}
-                    >
-                      <div style={{ flex: 1 }}>
-                        <strong style={{ color: "#92400e", fontSize: "0.88rem" }}>{wc.subject}</strong>
-                        <span style={{ color: "#6b7280", margin: "0 6px", fontSize: "0.85rem" }}>›</span>
-                        <span style={{ color: "#374151", fontSize: "0.88rem" }}>{wc.chapter}</span>
-                        <span style={{
-                          marginLeft: 10,
-                          fontSize: "0.73rem",
-                          background: "#fee2e2",
-                          color: "#991b1b",
-                          borderRadius: 4,
-                          padding: "1px 7px",
-                          fontWeight: 600,
-                        }}>
-                          {wc.wrong_count} mistake{wc.wrong_count > 1 ? "s" : ""}
-                        </span>
-                      </div>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setActivePage("mockTest"); }}
-                        style={{
-                          fontSize: "0.75rem",
-                          background: "#ea580c",
-                          color: "#fff",
-                          border: "none",
-                          borderRadius: 6,
-                          padding: "4px 10px",
-                          cursor: "pointer",
-                          whiteSpace: "nowrap",
-                          flexShrink: 0,
-                        }}
-                      >
-                        🔁 Retest
-                      </button>
-                      <span style={{ fontSize: "0.9rem", color: "#c2410c", marginLeft: 4, transform: isOpen ? "rotate(180deg)" : "none", display: "inline-block", transition: "transform 0.15s" }}>▾</span>
-                    </div>
-
-                    {/* Wrong answers accordion */}
-                    {isOpen && (
-                      <div style={{ padding: "0 20px 14px" }}>
-                        {isLoading && (
-                          <p style={{ fontSize: "0.82rem", color: "#78350f" }}>Loading mistakes…</p>
-                        )}
-                        {!isLoading && answers.length === 0 && (
-                          <p style={{ fontSize: "0.82rem", color: "#6b7280" }}>No details stored yet. Take a mock test to record mistakes.</p>
-                        )}
-                        {!isLoading && answers.length > 0 && (
-                          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 6 }}>
-                            {answers.map((ans, qi) => (
-                              <div key={qi} style={{
-                                background: "#fff",
-                                border: "1px solid #fed7aa",
-                                borderRadius: 8,
-                                padding: "10px 14px",
-                                fontSize: "0.84rem",
-                              }}>
-                                <p style={{ margin: "0 0 6px", fontWeight: 600, color: "#1f2937" }}>
-                                  Q{qi + 1}. {ans.question}
-                                </p>
-                                <p style={{ margin: "0 0 2px", color: "#991b1b" }}>
-                                  ✗ Your answer: <strong>{ans.selected_answer || "Not answered"}</strong>
-                                  {ans.options && ans.selected_answer && ans.options[ans.selected_answer]
-                                    ? ` — ${ans.options[ans.selected_answer]}`
-                                    : ""}
-                                </p>
-                                <p style={{ margin: "0 0 6px", color: "#166534" }}>
-                                  ✓ Correct: <strong>{ans.correct_answer}</strong>
-                                  {ans.options && ans.correct_answer && ans.options[ans.correct_answer]
-                                    ? ` — ${ans.options[ans.correct_answer]}`
-                                    : ""}
-                                </p>
-                                {ans.explanation && (
-                                  <div style={{
-                                    background: "#eff6ff",
-                                    border: "1px solid #bfdbfe",
-                                    borderRadius: 6,
-                                    padding: "8px 10px",
-                                    color: "#1e40af",
-                                    fontSize: "0.81rem",
-                                    lineHeight: 1.55,
-                                  }}>
-                                    📖 {ans.explanation}
-                                  </div>
-                                )}
-                                <p style={{ margin: "6px 0 0", fontSize: "0.72rem", color: "#9ca3af" }}>
-                                  Recorded: {new Date(ans.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
-                                </p>
-                              </div>
-                            ))}
-                            <button
-                              onClick={() => setActivePage("mockTest")}
-                              style={{
-                                alignSelf: "flex-start",
-                                marginTop: 4,
-                                background: "#ea580c",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: 8,
-                                padding: "8px 18px",
-                                cursor: "pointer",
-                                fontWeight: 600,
-                                fontSize: "0.85rem",
-                              }}
-                            >
-                              🔁 Take Retest on {wc.chapter}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </section>
-      )}
     </div>
   );
 }
