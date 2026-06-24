@@ -453,10 +453,8 @@ function DashboardPage({ user, setActivePage }) {
                 <div style={{
                   padding: "14px 16px",
                   borderRadius: 8,
-                  background: "var(--card-inner-bg, #f8fafc)",
-                  border: "1px solid var(--border-color, #e2e8f0)",
                   fontSize: "0.85rem",
-                  color: "var(--text-muted, #6b7280)",
+                  opacity: 0.7,
                 }}>
                   <p style={{ margin: 0 }}>
                     No mistakes recorded yet. After you submit a mock test, incorrectly answered questions will appear here.
@@ -491,7 +489,7 @@ function DashboardPage({ user, setActivePage }) {
                         gap: 10,
                         padding: "8px 12px",
                         borderRadius: 8,
-                        background: isOpen ? "var(--card-inner-bg, #f1f5f9)" : "transparent",
+                        background: isOpen ? "rgba(99,102,241,.08)" : "transparent",
                         transition: "background 0.15s",
                       }}
                     >
@@ -541,34 +539,35 @@ function DashboardPage({ user, setActivePage }) {
                           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             {answers.map((ans, qi) => (
                               <div key={qi} style={{
-                                background: "var(--card-inner-bg, #f8fafc)",
-                                border: "1px solid var(--border-color, #e2e8f0)",
+                                background: "rgba(99,102,241,.06)",
+                                border: "1px solid rgba(99,102,241,.15)",
                                 borderRadius: 8,
                                 padding: "10px 14px",
                                 fontSize: "0.83rem",
                               }}>
-                                <p style={{ margin: "0 0 5px", fontWeight: 600 }}>Q{qi + 1}. {ans.question}</p>
-                                <p style={{ margin: "0 0 2px", color: "#dc2626" }}>
+                                <p style={{ margin: "0 0 5px", fontWeight: 600 }}>{qi + 1}. {ans.question}</p>
+                                <p style={{ margin: "0 0 2px", color: "#f87171" }}>
                                   ✗ Your answer: <strong>{ans.selected_answer || "Not answered"}</strong>
                                   {ans.options?.[ans.selected_answer] ? ` — ${ans.options[ans.selected_answer]}` : ""}
                                 </p>
-                                <p style={{ margin: "0 0 6px", color: "#16a34a" }}>
+                                <p style={{ margin: "0 0 6px", color: "#4ade80" }}>
                                   ✓ Correct: <strong>{ans.correct_answer}</strong>
                                   {ans.options?.[ans.correct_answer] ? ` — ${ans.options[ans.correct_answer]}` : ""}
                                 </p>
                                 {ans.explanation && (
                                   <div style={{
-                                    background: "rgba(99,102,241,.06)",
-                                    border: "1px solid rgba(99,102,241,.2)",
+                                    background: "rgba(99,102,241,.1)",
+                                    border: "1px solid rgba(99,102,241,.25)",
                                     borderRadius: 6,
                                     padding: "7px 10px",
                                     fontSize: "0.8rem",
                                     lineHeight: 1.55,
+                                    opacity: 0.9,
                                   }}>
                                     📖 {ans.explanation}
                                   </div>
                                 )}
-                                <p style={{ margin: "5px 0 0", fontSize: "0.7rem", color: "#9ca3af" }}>
+                                <p style={{ margin: "5px 0 0", fontSize: "0.7rem", opacity: 0.5 }}>
                                   {new Date(ans.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                                 </p>
                               </div>
