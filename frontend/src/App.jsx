@@ -237,8 +237,10 @@ function App() {
   // When a student signs in via Google for the first time their grade is unknown.
   // We store their partial user object here and show a grade-picker before calling handleLogin.
   const [pendingOauthUser, setPendingOauthUser] = useState(null);
+  const [oauthRole, setOauthRole] = useState("student");   // role chosen on setup screen
   const [oauthGrade, setOauthGrade] = useState("Grade 9");
-  const [oauthGradeSaving, setOauthGradeSaving] = useState(false);
+  const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
+  const [oauthSaving, setOauthSaving] = useState(false);
   const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
   // ── Google OAuth callback handler ──────────────────────────────────────────
@@ -317,13 +319,10 @@ function App() {
             ...offerData,
           };
 
-          // For students the DB trigger defaults grade to "Grade 9" — ask them to confirm.
-          // Parents have no grade, so they go straight through.
-          if (normalizedUser.role === "student") {
-            setPendingOauthUser(normalizedUser);
-          } else {
-            handleLogin(normalizedUser);
-          }
+          // New Google users always get role='student' from the DB trigger.
+          // Show a role-selection screen so parent/teacher/student can self-identify.
+          setPendingOauthUser(normalizedUser);
+          setOauthStep("role");
         } finally {
           setOauthLoading(false);
         }
@@ -485,97 +484,145 @@ function App() {
     );
   }
 
-  // Grade picker overlay for new Google-authenticated students
+  // Profile setup overlay for new Google-authenticated users
   if (pendingOauthUser) {
+    const cardStyle = {
+      minHeight: "100vh",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      background: "#0f172a", padding: "24px",
+      fontFamily: "-apple-system, sans-serif",
+    };
+    const boxStyle = {
+      width: "100%", maxWidth: 420,
+      background: "#1e293b", borderRadius: 16,
+      padding: "36px 32px", color: "#f8fafc",
+      boxShadow: "0 20px 60px rgba(0,0,0,.5)",
+    };
+    const btnBase = {
+      width: "100%", padding: "13px", borderRadius: 10,
+      border: "none", fontSize: "0.95rem", fontWeight: 700,
+      cursor: "pointer", fontFamily: "inherit",
+    };
+    const selectStyle = {
+      width: "100%", background: "#111827",
+      border: "2px solid #334155", borderRadius: 10,
+      padding: "12px 14px", color: "#f8fafc",
+      fontSize: "1rem", fontFamily: "inherit",
+      marginBottom: 20, cursor: "pointer",
+    };
+    const avatar = pendingOauthUser.avatar;
+    const firstName = pendingOauthUser.username.split(" ")[0];
+
+    // Step 1: Role selection
+    if (oauthStep === "role") {
+      return (
+        <div style={cardStyle}>
+          <div style={boxStyle}>
+            {avatar && (
+              <div style={{ textAlign: "center", marginBottom: 16 }}>
+                <img src={avatar} alt="Profile"
+                  style={{ width: 60, height: 60, borderRadius: "50%", border: "3px solid #6366f1" }} />
+              </div>
+            )}
+            <h2 style={{ margin: "0 0 6px", fontSize: "1.3rem", fontWeight: 800, textAlign: "center" }}>
+              Welcome, {firstName}! 👋
+            </h2>
+            <p style={{ margin: "0 0 24px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
+              How are you using LikhaPoha AI?
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 8 }}>
+              {[
+                { r: "student", icon: "🎓", label: "Student", desc: "I want to learn and take practice tests" },
+                { r: "parent",  icon: "👨‍👩‍👧", label: "Parent",  desc: "I want to track my child's learning" },
+                { r: "teacher", icon: "📋", label: "Teacher", desc: "I monitor my students' progress" },
+              ].map(({ r, icon, label, desc }) => (
+                <div key={r}
+                  onClick={() => setOauthRole(r)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 14,
+                    padding: "14px 16px", borderRadius: 10, cursor: "pointer",
+                    background: oauthRole === r ? "rgba(99,102,241,.15)" : "#111827",
+                    border: `2px solid ${oauthRole === r ? "#6366f1" : "#1e293b"}`,
+                    transition: "all .15s",
+                  }}
+                >
+                  <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>{icon}</span>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{label}</div>
+                    <div style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", marginTop: 16 }}
+              onClick={() => {
+                if (oauthRole === "student") {
+                  setOauthStep("grade"); // students need to pick grade next
+                } else {
+                  // Parents and teachers go straight to dashboard
+                  setOauthSaving(true);
+                  supabase.from("profiles").update({ role: oauthRole }).eq("id", pendingOauthUser.id).then(() => {
+                    handleLogin({ ...pendingOauthUser, role: oauthRole });
+                    setPendingOauthUser(null);
+                    setOauthSaving(false);
+                  });
+                }
+              }}
+              disabled={oauthSaving}
+            >
+              {oauthSaving ? "Setting up…" : "Continue →"}
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // Step 2: Grade selection (students only)
     return (
-      <div style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#0f172a",
-        padding: "24px",
-        fontFamily: "-apple-system, sans-serif",
-      }}>
-        <div style={{
-          width: "100%",
-          maxWidth: 420,
-          background: "#1e293b",
-          borderRadius: 16,
-          padding: "36px 32px",
-          color: "#f8fafc",
-          boxShadow: "0 20px 60px rgba(0,0,0,.5)",
-        }}>
-          {/* Google avatar if available */}
-          {pendingOauthUser.avatar && (
-            <div style={{ textAlign: "center", marginBottom: 20 }}>
-              <img
-                src={pendingOauthUser.avatar}
-                alt="Profile"
-                style={{ width: 64, height: 64, borderRadius: "50%", border: "3px solid #6366f1" }}
-              />
+      <div style={cardStyle}>
+        <div style={boxStyle}>
+          {avatar && (
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <img src={avatar} alt="Profile"
+                style={{ width: 60, height: 60, borderRadius: "50%", border: "3px solid #6366f1" }} />
             </div>
           )}
-          <h2 style={{ margin: "0 0 6px", fontSize: "1.4rem", fontWeight: 800, textAlign: "center" }}>
-            Welcome, {pendingOauthUser.username.split(" ")[0]}! 👋
+          <h2 style={{ margin: "0 0 6px", fontSize: "1.3rem", fontWeight: 800, textAlign: "center" }}>
+            Which class are you in? 📚
           </h2>
-          <p style={{ margin: "0 0 24px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
-            Which class are you in? We'll personalise your lessons and practice tests.
+          <p style={{ margin: "0 0 20px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
+            We'll personalise your lessons and practice tests.
           </p>
           <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 8 }}>
             Select your class
           </label>
-          <select
-            value={oauthGrade}
-            onChange={e => setOauthGrade(e.target.value)}
-            style={{
-              width: "100%",
-              background: "#111827",
-              border: "2px solid #334155",
-              borderRadius: 10,
-              padding: "12px 14px",
-              color: "#f8fafc",
-              fontSize: "1rem",
-              fontFamily: "inherit",
-              marginBottom: 20,
-              cursor: "pointer",
-            }}
-          >
+          <select value={oauthGrade} onChange={e => setOauthGrade(e.target.value)} style={selectStyle}>
             {OAUTH_GRADES.map(g => <option key={g}>{g}</option>)}
           </select>
           <button
-            disabled={oauthGradeSaving}
+            disabled={oauthSaving}
             onClick={async () => {
-              setOauthGradeSaving(true);
+              setOauthSaving(true);
               try {
-                // Persist the chosen grade to Supabase profiles
-                await supabase
-                  .from("profiles")
-                  .update({ grade: oauthGrade })
+                await supabase.from("profiles")
+                  .update({ grade: oauthGrade, role: "student" })
                   .eq("id", pendingOauthUser.id);
-              } catch { /* non-critical — grade is updated optimistically */ }
-              handleLogin({ ...pendingOauthUser, grade: oauthGrade });
+              } catch { /* non-critical */ }
+              handleLogin({ ...pendingOauthUser, role: "student", grade: oauthGrade });
               setPendingOauthUser(null);
-              setOauthGradeSaving(false);
+              setOauthSaving(false);
             }}
-            style={{
-              width: "100%",
-              padding: "13px",
-              borderRadius: 10,
-              border: "none",
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              color: "#fff",
-              fontSize: "0.95rem",
-              fontWeight: 700,
-              cursor: oauthGradeSaving ? "not-allowed" : "pointer",
-              fontFamily: "inherit",
-            }}
+            style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }}
           >
-            {oauthGradeSaving ? "Saving…" : `Continue as ${oauthGrade} student →`}
+            {oauthSaving ? "Saving…" : `Continue as ${oauthGrade} student →`}
           </button>
-          <p style={{ textAlign: "center", marginTop: 14, fontSize: "0.75rem", color: "#475569" }}>
-            You can change your grade later from account settings.
-          </p>
+          <button
+            style={{ ...btnBase, background: "transparent", color: "#94a3b8", marginTop: 8, fontSize: "0.82rem" }}
+            onClick={() => setOauthStep("role")}
+          >
+            ← Back
+          </button>
         </div>
       </div>
     );
