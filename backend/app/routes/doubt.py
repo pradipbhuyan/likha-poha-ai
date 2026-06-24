@@ -396,6 +396,27 @@ def answer_student_doubt(
         raise
 
     except Exception as e:
+        # Sanitize error messages — never leak raw provider errors to students.
+        err_str = str(e).lower()
+        if "429" in err_str or "rate" in err_str or "quota" in err_str or "token" in err_str or "too_many" in err_str or "limit" in err_str:
+            user_message = (
+                "Our AI tutoring service is experiencing high demand right now. "
+                "Please try again in a few minutes — your question hasn't been lost."
+            )
+        elif "timeout" in err_str or "timed out" in err_str:
+            user_message = (
+                "The AI took too long to respond. Please try again."
+            )
+        elif "context" in err_str:
+            user_message = (
+                "Your question or chapter context is too long. "
+                "Try a shorter, more focused question."
+            )
+        else:
+            user_message = (
+                "Something went wrong while answering your doubt. "
+                "Please try again in a moment."
+            )
         return {
             "success": False,
             "answer": None,
@@ -404,7 +425,7 @@ def answer_student_doubt(
             "textbook_visuals": [],
             "mentor_suggestions": [],
             "history_id": None,
-            "message": f"Doubt answering failed: {str(e)}",
+            "message": user_message,
         }
 
 

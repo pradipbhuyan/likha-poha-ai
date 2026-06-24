@@ -394,13 +394,20 @@ def generate_lesson(
             error=str(e),
             exc_info=True,
         )
+        err_str = str(e).lower()
+        if "429" in err_str or "rate" in err_str or "quota" in err_str or "too_many" in err_str or "limit" in err_str:
+            user_msg = "Our AI tutoring service is experiencing high demand right now. Please try again in a few minutes."
+        elif "timeout" in err_str or "timed out" in err_str:
+            user_msg = "The AI took too long to respond. Please try again."
+        else:
+            user_msg = "Lesson generation failed. Please try again in a moment."
         return {
             "success": False,
             "lesson": None,
             "source_type": "LLM",
             "sources": [],
             "textbook_visuals": [],
-            "message": f"Lesson generation failed: {str(e)}",
+            "message": user_msg,
         }
 
 
@@ -564,6 +571,13 @@ def lesson_follow_up(
         raise
 
     except Exception as e:
+        err_str = str(e).lower()
+        if "429" in err_str or "rate" in err_str or "quota" in err_str or "too_many" in err_str or "limit" in err_str:
+            user_msg = "Our AI tutoring service is experiencing high demand right now. Please try again in a few minutes."
+        elif "timeout" in err_str or "timed out" in err_str:
+            user_msg = "The AI took too long to respond. Please try again."
+        else:
+            user_msg = "Something went wrong. Please try again in a moment."
         return LessonFollowUpResponse(
             success=False,
             answer=None,
@@ -571,7 +585,7 @@ def lesson_follow_up(
             sources=[],
             textbook_visuals=[],
             history_id=None,
-            message=f"Follow-up failed: {str(e)}",
+            message=user_msg,
         )
 
 
