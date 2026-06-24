@@ -2617,6 +2617,15 @@ body.dark-mode .section-7 .lesson-section-header {
   color: #e2e8f0 !important;
 }
 
+/* Kill the white pill rendered by ReactMarkdown <p> inside the header button */
+body.dark-mode .lesson-section-header *,
+body.dark-mode .lesson-section-title *,
+body.dark-mode .lesson-section-title p,
+body.dark-mode .lesson-section-title span {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+}
+
 body.dark-mode .lesson-section-icon {
   background: #334155 !important;
 }
