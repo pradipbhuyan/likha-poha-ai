@@ -313,52 +313,43 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
       )}
 
       {/* Offer code redeem widget */}
-      <div style={{
-        margin: "0 0 24px",
-        padding: "16px 20px",
-        borderRadius: 12,
-        background: "rgba(99,102,241,.06)",
-        border: "1px solid rgba(99,102,241,.2)",
-      }}>
-        <h4 style={{ margin: "0 0 6px", fontSize: "0.95rem", color: "var(--text-primary, #f8fafc)" }}>
-          🎟️ Have an Offer Code?
-        </h4>
-        <p style={{ margin: "0 0 12px", fontSize: "0.82rem", color: "var(--text-muted, #94a3b8)" }}>
-          Enter your 8-character offer code to unlock platform access for the code's validity period.
-        </p>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-          <input
-            type="text"
-            maxLength={8}
-            value={offerCodeInput}
-            onChange={(e) => setOfferCodeInput(e.target.value.toUpperCase())}
-            placeholder="XXXXXXXX"
-            style={{
-              fontFamily: "monospace",
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              flex: 1,
-              minWidth: 160,
-              maxWidth: 220,
-              padding: "8px 12px",
-              borderRadius: 8,
-              border: "1px solid rgba(99,102,241,.35)",
-              background: "var(--card-bg, #1e293b)",
-              color: "var(--text-primary, #f8fafc)",
-              fontSize: "1rem",
-            }}
-          />
-          <button
-            className="primary-btn"
-            disabled={offerCodeLoading || offerCodeInput.length !== 8}
-            onClick={handleRedeemOfferCode}
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {offerCodeLoading ? "Applying…" : "Apply Code"}
-          </button>
+      <div className="subscription-hero" style={{ marginBottom: 24, padding: "20px 24px" }}>
+        <div style={{ flex: 1 }}>
+          <h4 style={{ margin: "0 0 4px", fontSize: "0.95rem" }}>
+            🎟️ Have an Offer Code?
+          </h4>
+          <p style={{ margin: "0 0 14px", fontSize: "0.84rem", color: "var(--text-muted)" }}>
+            Enter your 8-character offer code to unlock platform access for the code's validity period.
+          </p>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+            <input
+              type="text"
+              maxLength={8}
+              value={offerCodeInput}
+              onChange={(e) => setOfferCodeInput(e.target.value.toUpperCase())}
+              placeholder="XXXXXXXX"
+              style={{
+                fontFamily: "monospace",
+                letterSpacing: 4,
+                textTransform: "uppercase",
+                flex: 1,
+                minWidth: 160,
+                maxWidth: 220,
+                fontSize: "1rem",
+              }}
+            />
+            <button
+              className="primary-btn"
+              disabled={offerCodeLoading || offerCodeInput.length !== 8}
+              onClick={handleRedeemOfferCode}
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {offerCodeLoading ? "Applying…" : "Apply Code"}
+            </button>
+          </div>
+          {offerCodeMsg && <div className="info-box" style={{ marginTop: 10 }}>{offerCodeMsg}</div>}
+          {offerCodeErr && <div className="error-box" style={{ marginTop: 10 }}>{offerCodeErr}</div>}
         </div>
-        {offerCodeMsg && <div className="info-box" style={{ marginTop: 10 }}>{offerCodeMsg}</div>}
-        {offerCodeErr && <div className="error-box" style={{ marginTop: 10 }}>{offerCodeErr}</div>}
       </div>
 
       {/* Parent-linked: read-only notice */}
