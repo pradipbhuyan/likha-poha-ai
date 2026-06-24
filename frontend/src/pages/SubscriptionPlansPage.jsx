@@ -48,7 +48,7 @@ function cleanContactNumber(value = "") {
   return `${prefix}${trimmed.replace(/[^\d]/g, "")}`;
 }
 
-function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
+function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onSubscriptionComplete }) {
   /**
    * Student subscription page — branches on whether the student has a parent.
    *
@@ -134,6 +134,10 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
         });
         if (r.ok) { const d = await r.json(); if (d) setOfferAccess(d); }
       }
+      // Notify App shell to refresh user profile and unlock platform
+      if (typeof onSubscriptionComplete === "function") {
+        setTimeout(onSubscriptionComplete, 800);
+      }
     } catch (err) {
       setOfferCodeErr(err.message || "Invalid or expired offer code.");
     } finally {
@@ -202,8 +206,12 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
               razorpay_signature: response.razorpay_signature,
             });
             setPaymentMessage(
-              `✅ ${plan.label} activated! Refresh the page to see your updated access.`
+              `✅ ${plan.label} activated! Taking you to your dashboard…`
             );
+            // Notify App shell to refresh user profile and unlock platform
+            if (typeof onSubscriptionComplete === "function") {
+              setTimeout(onSubscriptionComplete, 1200);
+            }
           } catch (err) {
             setPaymentError(err.message || "Payment verification failed.");
           } finally {
@@ -559,7 +567,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading }) {
   );
 }
 
-function SubscriptionPlansPage({ user }) {
+function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
   /** Parent-facing plan comparison and payment entry page. */
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
@@ -809,6 +817,7 @@ function SubscriptionPlansPage({ user }) {
         planOrder={planOrder}
         contact={contact}
         loading={loading}
+        onSubscriptionComplete={onSubscriptionComplete}
       />
     );
   }

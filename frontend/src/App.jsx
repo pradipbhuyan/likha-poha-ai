@@ -411,8 +411,65 @@ function App() {
       setActivePage("salesLeads");
       localStorage.setItem("tutor_active_page", "salesLeads");
     } else {
+      // Students: will be gated to subscriptionPlans if unpaid
       setActivePage("dashboard");
       localStorage.setItem("tutor_active_page", "dashboard");
+    }
+  }
+
+  /** Refresh user profile from DB after a successful payment or promo-code redemption.
+   *  Called by SubscriptionPlansPage via the onSubscriptionComplete prop.
+   */
+  async function handleSubscriptionComplete() {
+    try {
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (!profile) return;
+
+      let offerData = { offerAccess: false };
+      try {
+        const r = await fetch(`${API_BASE}/api/offer/my-access`, {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        });
+        if (r.ok) {
+          const d = await r.json();
+          offerData = {
+            offerAccess: !!d.has_offer_access,
+            offerValidUntil: d.valid_until || null,
+            offerDaysRemaining: d.days_remaining ?? null,
+            offerExpiringSoon: !!d.expiring_soon,
+            offerExpiredOn: d.expired_on || null,
+          };
+        }
+      } catch { /* non-critical */ }
+
+      const updatedUser = {
+        ...user,
+        accessToken: session.access_token,
+        subscriptionPlan: profile.subscription_plan || "free",
+        accessCbse: !!profile.access_cbse,
+        accessSofScience: !!profile.access_sof_science,
+        accessSofMaths: !!profile.access_sof_maths,
+        accessSofEnglish: !!profile.access_sof_english,
+        cbseSubjects: Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
+        dailyTokenLimit: profile.daily_token_limit,
+        monthlyTokenLimit: profile.monthly_token_limit,
+        accountStatus: profile.account_status || "active",
+        ...offerData,
+      };
+      setUser(updatedUser);
+      localStorage.setItem("tutor_user", JSON.stringify(updatedUser));
+      setActivePage("dashboard");
+      localStorage.setItem("tutor_active_page", "dashboard");
+    } catch (err) {
+      console.error("handleSubscriptionComplete:", err);
     }
   }
 
@@ -691,6 +748,78 @@ function App() {
       />
     );
   }
+
+  // ── Subscription gate ─────────────────────────────────────────────────────
+  // Students who signed in (via Google or email) but have never paid / applied
+  // a promo code are shown ONLY the Subscription page.  They cannot navigate
+  // to any other part of the platform until payment or offer-code redemption.
+  const needsSubscription =
+    user.role === "student" &&
+    user.subscriptionPlan === "free" &&
+    !user.offerAccess;
+
+  if (needsSubscription) {
+    return (
+      <ToastProvider>
+        <div style={{ minHeight: "100vh", background: "#0f172a", fontFamily: "-apple-system, sans-serif" }}>
+          {/* Minimal locked header */}
+          <div style={{
+            background: "#1e293b",
+            borderBottom: "1px solid #334155",
+            padding: "12px 24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ fontSize: "1.6rem" }}>🎓</span>
+              <span style={{ color: "#f8fafc", fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.02em" }}>
+                LikhaPoha AI
+              </span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ color: "#94a3b8", fontSize: "0.82rem" }}>
+                {user.username}
+              </span>
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "transparent",
+                  border: "1px solid #475569",
+                  borderRadius: 8,
+                  padding: "5px 14px",
+                  color: "#94a3b8",
+                  cursor: "pointer",
+                  fontSize: "0.82rem",
+                  fontFamily: "inherit",
+                }}
+              >
+                Sign out
+              </button>
+            </div>
+          </div>
+
+          {/* Gate notice */}
+          <div style={{
+            textAlign: "center",
+            padding: "14px 16px",
+            background: "linear-gradient(135deg, rgba(99,102,241,.12), rgba(139,92,246,.12))",
+            borderBottom: "1px solid #334155",
+          }}>
+            <p style={{ margin: 0, fontSize: "0.88rem", color: "#a5b4fc", fontWeight: 600 }}>
+              🔐 Choose a plan or enter your promo code below to unlock lessons, practice tests & AI tutoring
+            </p>
+          </div>
+
+          <SubscriptionPlansPage
+            user={user}
+            onSubscriptionComplete={handleSubscriptionComplete}
+          />
+        </div>
+      </ToastProvider>
+    );
+  }
+  // ──────────────────────────────────────────────────────────────────────────
 
   const pageMeta = PAGE_META[activePage] || PAGE_META.lessons;
 
