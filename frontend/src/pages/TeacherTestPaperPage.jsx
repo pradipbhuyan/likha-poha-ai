@@ -120,6 +120,10 @@ export default function TeacherTestPaperPage({ user }) {
   const [error, setError] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
 
+  // Session history of generated papers
+  const [history, setHistory] = useState([]);
+  const [historyOpen, setHistoryOpen] = useState(false);
+
   useEffect(() => {
     async function loadSyllabus() {
       setSyllabusLoading(true);
@@ -182,9 +186,17 @@ export default function TeacherTestPaperPage({ user }) {
       });
       const data = await res.json();
       if (!res.ok || !data.success) throw new Error(data.detail || data.message || "Generation failed");
-      setQuestions(data.questions || []);
+      const qs = data.questions || [];
+      setQuestions(qs);
       setPreviewMode(true);
       if (freeTeacher) incrementTeacherDailyCount(user?.username, "testpaper");
+      // Save to session history
+      setHistory(prev => [{
+        grade, subject, chapter, difficulty, questionType, count,
+        ts: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }),
+        date: new Date().toLocaleDateString("en-IN"),
+        questions: qs,
+      }, ...prev.slice(0, 9)]);
     } catch (err) {
       setError(err.message || "Failed to generate test paper. Please try again.");
     } finally {
@@ -296,10 +308,54 @@ export default function TeacherTestPaperPage({ user }) {
           </div>
         )}
 
-        <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || testLimitReached} style={{ maxWidth: 260 }}>
-          {testLimitReached ? "🚫 Daily Limit Reached" : generating ? "⏳ Generating Questions…" : "✨ Generate Test Paper"}
-        </button>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || testLimitReached} style={{ maxWidth: 260 }}>
+            {testLimitReached ? "🚫 Daily Limit Reached" : generating ? "⏳ Generating Questions…" : "✨ Generate Test Paper"}
+          </button>
+          {history.length > 0 && (
+            <button onClick={() => setHistoryOpen(h => !h)}
+              style={{ padding: "11px 18px", borderRadius: 10, border: "1.5px solid var(--border)", background: "transparent", color: "var(--muted)", fontFamily: "inherit", fontSize: ".85rem", cursor: "pointer" }}>
+              🕘 History ({history.length})
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* History panel */}
+      {historyOpen && history.length > 0 && (
+        <div className="premium-card" style={{ marginBottom: 20 }}>
+          <h4 style={{ marginBottom: 12 }}>🕘 Recently Generated Test Papers</h4>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {history.map((h, i) => (
+              <button key={i}
+                onClick={() => {
+                  setQuestions(h.questions);
+                  setPreviewMode(true);
+                  setGrade(h.grade);
+                  setSubject(h.subject);
+                  setChapter(h.chapter);
+                  setDifficulty(h.difficulty);
+                  setHistoryOpen(false);
+                }}
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--card-bg)", cursor: "pointer", fontFamily: "inherit", textAlign: "left" }}>
+                <div>
+                  <span style={{ fontWeight: 700, fontSize: ".85rem" }}>{h.grade} — {h.subject}</span>
+                  <span style={{ fontSize: ".75rem", color: "var(--muted)", marginLeft: 8 }}>
+                    {h.chapter.length > 40 ? h.chapter.slice(0, 38) + "…" : h.chapter}
+                  </span>
+                  <div style={{ fontSize: ".72rem", color: "var(--muted)", marginTop: 2 }}>
+                    {h.difficulty} · {h.count} questions · {h.questionType}
+                  </div>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <div style={{ fontSize: ".75rem", color: "var(--muted)" }}>{h.date}</div>
+                  <div style={{ fontSize: ".72rem", color: "var(--muted)" }}>{h.ts}</div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Preview */}
       {previewMode && questions.length > 0 && (
