@@ -86,10 +86,12 @@ def normalize_grade(value: str | None):
 
 
 def enforce_profile_grade(profile: dict, requested_grade: str):
-    """Prevent students from asking doubts outside their onboarded grade."""
+    """Prevent students from asking doubts outside their onboarded grade.
+    Teachers can ask doubts for any grade — needed for lesson planning.
+    """
     if (
         not profile
-        or profile.get("role") in ["admin", "parent"]
+        or profile.get("role") in ["admin", "parent", "teacher"]
         or is_all_access_test_user(profile)
     ):
         return
@@ -105,10 +107,12 @@ def enforce_profile_grade(profile: dict, requested_grade: str):
 
 
 def enforce_profile_board(profile: dict, requested_board: str):
-    """Prevent students from asking school-board doubts outside onboarding."""
+    """Prevent students from asking school-board doubts outside onboarding.
+    Teachers can ask doubts on any board.
+    """
     if (
         not profile
-        or profile.get("role") in ["admin", "parent"]
+        or profile.get("role") in ["admin", "parent", "teacher"]
         or is_all_access_test_user(profile)
     ):
         return
@@ -141,7 +145,7 @@ def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
             detail="Profile not found",
         )
 
-    if profile.get("role") == "admin" or is_all_access_test_user(profile):
+    if profile.get("role") in ["admin", "teacher", "parent"] or is_all_access_test_user(profile):
         return
 
     if profile.get("account_status") not in [None, "active", "trial"]:
