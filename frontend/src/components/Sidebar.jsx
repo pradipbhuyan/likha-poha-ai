@@ -136,6 +136,14 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
+      key: "exemplarResearch",
+      label: "Exemplar Research",
+      icon: Sparkles,
+      roles: ["student", "teacher"],
+      gradeFilter: ["Grade 8", "Grade 9", "Grade 10"],
+      hideForAdmin: true,
+    },
+    {
       key: "teacherTestPaper",
       label: "Create Test Paper",
       icon: ClipboardList,
@@ -298,7 +306,12 @@ function Sidebar({
   const visiblePages = pages.filter((page) => {
     /** Hide student/parent-only destinations from admin while keeping admin tools visible. */
     if (isAdmin) return !page.parentOnly && !page.hideForAdmin;
-    return page.roles?.includes(user?.role);
+    if (!page.roles?.includes(user?.role)) return false;
+    // Grade-gated pages: students must be in one of the allowed grades
+    if (page.gradeFilter && user?.role === "student") {
+      return page.gradeFilter.includes(user?.grade);
+    }
+    return true;
   });
 
   return (

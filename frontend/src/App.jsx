@@ -25,6 +25,7 @@ import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
 import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import TeacherTestPaperPage from "./pages/TeacherTestPaperPage";
 import TeacherStudentAnalyticsPage from "./pages/TeacherStudentAnalyticsPage";
+import ExemplarResearchPage from "./pages/ExemplarResearchPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
@@ -208,6 +209,11 @@ const PAGE_META = {
     title: "Student Analytics",
     subtitle: "Track every assigned student's mock test scores, subject performance and progress trends.",
     icon: "📊",
+  },
+  exemplarResearch: {
+    title: "Exemplar Research",
+    subtitle: "Explore hard and tricky CBSE Science & Maths topics from NCERT Exemplar books. Instant AI explanations + practice links.",
+    icon: "🔬",
   },
 };
 
@@ -914,6 +920,8 @@ function App() {
         return <TeacherTestPaperPage user={user} />;
       case "teacherStudentAnalytics":
         return <TeacherStudentAnalyticsPage user={user} />;
+      case "exemplarResearch":
+        return <ExemplarResearchPage user={user} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} onSubscriptionComplete={handleSubscriptionComplete} />;
       case "platformWalkthrough":
