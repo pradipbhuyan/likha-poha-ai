@@ -512,9 +512,13 @@ def build_rag_only_syllabus_shell(syllabus):
 
 
 def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
-    """Fetch rag_documents from BOTH Supabase projects and return combined list."""
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+    """Fetch rag_documents from BOTH Supabase projects and return combined list.
 
+    Falls back to primary DB only when SUPABASE_GRADE_1112_URL /
+    SUPABASE_GRADE_1112_SERVICE_KEY are not configured (e.g. local dev without
+    Grade 11/12 credentials). The server continues running normally — Grade 11/12
+    chapters simply will not appear in the syllabus dropdown.
+    """
     def _query(db, select_fields, label="primary"):
         try:
             r = db.table("rag_documents").select(select_fields).execute()
@@ -533,7 +537,19 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
                 return []
 
     primary = _query(supabase, fields, label="primary")
-    secondary = _query(grade_1112_client, fields, label="grade-1112")
+
+    # Grade 11/12 client is None when its env vars are not set (local dev / CI).
+    # _query() gracefully returns [] when called with None, so Grade 11/12 content
+    # simply won't appear in syllabus dropdowns rather than crashing.
+    try:
+        from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+        secondary = _query(grade_1112_client, fields, label="grade-1112")
+    except Exception as exc:
+        _logger.error(
+            "_fetch_all_rag_documents: Grade 11/12 import failed unexpectedly: %s", exc
+        )
+        secondary = []
+
     _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
     return primary + secondary
 
