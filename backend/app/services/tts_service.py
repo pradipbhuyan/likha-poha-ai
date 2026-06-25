@@ -6,7 +6,7 @@ import uuid
 import edge_tts
 
 
-AUDIO_DIR = "generated_audio"
+AUDIO_DIR = os.getenv("AUDIO_DIR", "generated_audio")
 
 
 def clean_text_for_tts(text: str) -> str:
