@@ -5,20 +5,13 @@ import { answerDoubt } from "../api/doubt";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
-// ── NCERT Exemplar PDF links ──────────────────────────────────────────────────
-const EXEMPLAR_PDFS = {
-  "Grade 8": {
-    Maths:   "https://ncert.nic.in/pdf/publication/exemplarproblem/classviii/mathematics/gemh1dd.pdf",
-    Science: "https://ncert.nic.in/pdf/publication/exemplarproblem/classviii/science/gesc1dd.pdf",
-  },
-  "Grade 9": {
-    Maths:   "https://ncert.nic.in/pdf/publication/exemplarproblem/classix/mathematics/gemh1dd.pdf",
-    Science: "https://ncert.nic.in/pdf/publication/exemplarproblem/classix/science/gesc1dd.pdf",
-  },
-  "Grade 10": {
-    Maths:   "https://ncert.nic.in/pdf/publication/exemplarproblem/classx/mathematics/gemh1dd.pdf",
-    Science: "https://ncert.nic.in/pdf/publication/exemplarproblem/classx/science/gesc1dd.pdf",
-  },
+// ── NCERT Exemplar link (main browse page — more reliable than direct PDFs) ──
+const EXEMPLAR_URL = "https://ncert.nic.in/exemplar-problems.php";
+// Grade-specific hint text for the PDF button
+const EXEMPLAR_HINTS = {
+  "Grade 8":  "Class 8 Exemplar Books",
+  "Grade 9":  "Class 9 Exemplar Books",
+  "Grade 10": "Class 10 Exemplar Books",
 };
 
 // ── Curated topic cards by grade / subject ────────────────────────────────────
@@ -126,13 +119,15 @@ function UpgradeCard({ onClose, onUpgrade }) {
   );
 }
 
-// Returns true if the user has a paid subscription (not free/promo)
+// Returns true if the user has a paid subscription.
+// Teachers and all other roles on a FREE plan are also gated.
+// Only admin always bypasses.
 function hasPaidAccess(user) {
   if (!user) return false;
-  if (user.role === "teacher" || user.role === "admin") return true;
-  if (user.subscriptionPlan && user.subscriptionPlan !== "free") return true;
-  if (user.accessCbse) return true;
-  if (user.parentId) return true; // parent-linked child inherits parent's plan
+  if (user.role === "admin") return true;                              // admin only
+  if (user.subscriptionPlan && user.subscriptionPlan !== "free") return true; // paid plan
+  if (user.accessCbse) return true;                                    // admin-granted CBSE access
+  if (user.parentId) return true;                                      // parent-linked child
   return false;
 }
 
@@ -230,7 +225,7 @@ Make it concise, exam-focused and easy to understand.`,
     }
   }
 
-  const exemplarLinks = EXEMPLAR_PDFS[selectedGrade] || {};
+  const exemplarHint = EXEMPLAR_HINTS[selectedGrade] || "NCERT Exemplar Books";
 
   return (
     <div className="premium-page" style={{ maxWidth: 1100 }}>
@@ -285,15 +280,13 @@ Make it concise, exam-focused and easy to understand.`,
           <option value="Medium">🔵 Medium Only</option>
         </select>
 
-        {/* Exemplar PDF links */}
-        {exemplarLinks[selectedSubject] && (
-          <a href={exemplarLinks[selectedSubject]} target="_blank" rel="noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 14px", borderRadius: 8,
-              background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)",
-              color: "#10b981", fontWeight: 700, fontSize: ".82rem", textDecoration: "none" }}>
-            📄 Open Exemplar Book PDF
-          </a>
-        )}
+        {/* Exemplar link — main NCERT browse page (reliable) */}
+        <a href={EXEMPLAR_URL} target="_blank" rel="noreferrer"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 14px", borderRadius: 8,
+            background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)",
+            color: "#10b981", fontWeight: 700, fontSize: ".82rem", textDecoration: "none" }}>
+          📄 Browse {exemplarHint}
+        </a>
       </div>
 
       {/* ── Search bar ── */}
@@ -396,14 +389,12 @@ Make it concise, exam-focused and easy to understand.`,
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{explanation}</ReactMarkdown>
                   </div>
                   <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid var(--border)", display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {exemplarLinks[selectedSubject] && (
-                      <a href={exemplarLinks[selectedSubject]} target="_blank" rel="noreferrer"
-                        style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8,
-                          background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)",
-                          color: "#10b981", fontWeight: 700, fontSize: ".78rem", textDecoration: "none" }}>
-                        📄 Practice in Exemplar
-                      </a>
-                    )}
+                    <a href={EXEMPLAR_URL} target="_blank" rel="noreferrer"
+                      style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8,
+                        background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)",
+                        color: "#10b981", fontWeight: 700, fontSize: ".78rem", textDecoration: "none" }}>
+                      📄 Practice in Exemplar
+                    </a>
                     <button onClick={() => explainTopic(activeTopic)}
                       style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid rgba(99,102,241,.3)", background: "rgba(99,102,241,.08)", color: "#a5b4fc", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
                       🔄 Refresh
