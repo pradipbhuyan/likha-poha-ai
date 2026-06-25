@@ -467,22 +467,26 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               <ShieldCheck size={22} strokeWidth={2.4} />
               <h3>What you get</h3>
             </div>
-            <div className="premium-grid premium-grid-4" style={{ marginTop: 12 }}>
+            <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 14 }}>
               <div className="premium-card premium-glow-card glow-blue">
                 <h3>📚 All Lessons</h3>
-                <p>5-step AI lessons for every CBSE chapter, Grade 5–10.</p>
+                <p>5-step AI lessons for every CBSE chapter, Grade 5–10. Audio, visuals, and practice included.</p>
               </div>
               <div className="premium-card premium-glow-card glow-purple">
-                <h3>❓ Unlimited Doubts</h3>
-                <p>Ask any question — textbook-aligned AI answers instantly.</p>
+                <h3>❓ Unlimited Ask Doubts</h3>
+                <p>Ask any question, any chapter, any subject — unlimited AI answers, textbook-aligned, instantly.</p>
               </div>
               <div className="premium-card premium-glow-card glow-green">
-                <h3>🧪 Mock Tests</h3>
-                <p>Chapter-wise timed tests with scoring and revision guidance.</p>
+                <h3>🧪 Unlimited Mock Tests</h3>
+                <p>Unlimited chapter-wise timed tests with scoring, review, and difficulty guidance. No daily cap.</p>
               </div>
               <div className="premium-card premium-glow-card glow-red">
                 <h3>🔬 Exemplar Research</h3>
                 <p>AI explanations for hard & tricky Science and Maths topics from NCERT Exemplar — Grade 8, 9 & 10.</p>
+              </div>
+              <div className="premium-card premium-glow-card glow-blue">
+                <h3>📖 Exemplar Lessons</h3>
+                <p>Generate full 5-step AI lessons for all NCERT Exemplar chapters (Grade 8, 9, 10) — locked on free plan.</p>
               </div>
             </div>
           </div>
