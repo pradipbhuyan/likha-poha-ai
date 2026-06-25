@@ -23,6 +23,8 @@ import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
 import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
 import TeacherDashboardPage from "./pages/TeacherDashboardPage";
+import TeacherTestPaperPage from "./pages/TeacherTestPaperPage";
+import TeacherStudentAnalyticsPage from "./pages/TeacherStudentAnalyticsPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
@@ -196,6 +198,16 @@ const PAGE_META = {
     title: "AI Learning Review",
     subtitle: "Review unanswered questions and approve answers to grow platform intelligence.",
     icon: "🧠",
+  },
+  teacherTestPaper: {
+    title: "Create Test Paper",
+    subtitle: "Generate AI-powered MCQ and subjective test papers for any grade. Download question paper + answer key.",
+    icon: "📝",
+  },
+  teacherStudentAnalytics: {
+    title: "Student Analytics",
+    subtitle: "Track every assigned student's mock test scores, subject performance and progress trends.",
+    icon: "📊",
   },
 };
 
@@ -898,6 +910,10 @@ function App() {
         return <ParentDashboardPage user={user} />;
       case "teacherDashboard":
         return <TeacherDashboardPage user={user} />;
+      case "teacherTestPaper":
+        return <TeacherTestPaperPage user={user} />;
+      case "teacherStudentAnalytics":
+        return <TeacherStudentAnalyticsPage user={user} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} onSubscriptionComplete={handleSubscriptionComplete} />;
       case "platformWalkthrough":
