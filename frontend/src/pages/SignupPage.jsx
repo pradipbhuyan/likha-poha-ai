@@ -175,6 +175,8 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
   const [passwordSetLink, setPasswordSetLink] = useState("");
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [stream, setStream] = useState("");
+  const [settingUp, setSettingUp] = useState(false); // "Setting up your dashboard..." screen
+  const [settingUpRole, setSettingUpRole] = useState("");
 
   useEffect(() => { loadRazorpay(); }, []);
 
@@ -217,66 +219,70 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
         setError(data.detail || data.message || "Could not create account. Please check your offer code.");
         return;
       }
-      // Direct-login flow: if a password was set, sign in immediately → go to dashboard
+      // Direct-login flow: sign in → build user from form data → store in localStorage → reload
+      // Most reliable approach — bypasses all profile-fetch timing/race conditions.
+      // On reload, App.jsx reads tutor_user from localStorage and routes to correct dashboard.
       if (password.trim() && onLogin) {
         await supabase.auth.signOut().catch(() => {});
         const { data: authData, error: authErr } = await supabase.auth.signInWithPassword({
           email: email.trim(),
           password: password.trim(),
         });
+
         if (!authErr && authData.session) {
-          // Retry profile fetch — DB trigger / insert may need a moment to propagate
-          // (same retry pattern used in the Google OAuth flow in App.jsx)
+          // Show the "Setting you up..." screen immediately
+          const signupRole = role;
+          setSettingUpRole(signupRole);
+          setSettingUp(true);
+          setLoading(false);
+
+          // Best-effort profile fetch (up to 3s) — richer data if available
           let profile = null;
           for (let attempt = 0; attempt < 6; attempt++) {
-            const { data: profileData } = await supabase
+            const { data: pd } = await supabase
               .from("profiles").select("*").eq("id", authData.user.id).maybeSingle();
-            if (profileData) { profile = profileData; break; }
+            if (pd) { profile = pd; break; }
             await new Promise(r => setTimeout(r, 500));
           }
-          if (profile) {
-            // Fetch offer validity — critical for showing expiry date on Subscription page
-            let offerData = { offerAccess: false };
-            try {
-              const or = await fetch(`${API_BASE}/api/offer/my-access`, {
-                headers: { Authorization: `Bearer ${authData.session.access_token}` },
-              });
-              if (or.ok) {
-                const od = await or.json();
-                offerData = {
-                  offerAccess: !!od.has_offer_access,
-                  offerValidUntil: od.valid_until || null,
-                  offerDaysRemaining: od.days_remaining ?? null,
-                  offerExpiringSoon: !!od.expiring_soon,
-                  offerExpiredOn: od.expired_on || null,
-                };
-              }
-            } catch { /* non-critical — offer display only */ }
-            onLogin({
-              id: authData.user.id,
-              email: authData.user.email,
-              username: profile.username || authData.user.email,
-              role: profile.role,
-              grade: profile.grade || "Grade 9",
-              board: profile.board || "CBSE",
-              parentId: profile.parent_id,
-              familyId: profile.family_id,
-              accessToken: authData.session.access_token,
-              accessCbse: !!profile.access_cbse,
-              accessSofScience: !!profile.access_sof_science,
-              accessSofMaths: !!profile.access_sof_maths,
-              accessSofEnglish: !!profile.access_sof_english,
-              cbseSubjects: Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
-              dailyTokenLimit: profile.daily_token_limit,
-              monthlyTokenLimit: profile.monthly_token_limit,
-              subscriptionPlan: profile.subscription_plan || "free",
-              accountStatus: profile.account_status || "active",
-              ...offerData,
-            });
-            return; // onLogin handles routing to dashboard
-          }
+
+          const targetPage =
+            signupRole === "parent"  ? "parentDashboard" :
+            signupRole === "teacher" ? "teacherDashboard" :
+            "dashboard";
+
+          // Build user object (profile if fetched, else fallback from form data)
+          const userData = {
+            id: authData.user.id,
+            email: email.trim(),
+            username: profile ? (profile.username || name.trim()) : name.trim(),
+            role: profile ? profile.role : signupRole,
+            grade: profile ? (profile.grade || grade || "Grade 9") : (grade || "Grade 9"),
+            board: profile ? (profile.board || "CBSE") : "CBSE",
+            parentId: profile?.parent_id || null,
+            familyId: profile?.family_id || null,
+            accessToken: authData.session.access_token,
+            accessCbse: profile ? !!profile.access_cbse : false,
+            accessSofScience: false,
+            accessSofMaths: false,
+            accessSofEnglish: false,
+            cbseSubjects: profile && Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
+            dailyTokenLimit: profile?.daily_token_limit || null,
+            monthlyTokenLimit: profile?.monthly_token_limit || null,
+            subscriptionPlan: profile ? (profile.subscription_plan || "free") : "free",
+            accountStatus: profile ? (profile.account_status || "active") : "active",
+            offerAccess: true,  // they just redeemed a valid offer code
+          };
+
+          // Persist to localStorage so App.jsx reads it on reload
+          localStorage.setItem("tutor_user", JSON.stringify(userData));
+          localStorage.setItem("tutor_active_page", targetPage);
+
+          // Reload — App.jsx reads tutor_user + active_page → routes to correct dashboard
+          setTimeout(() => window.location.reload(), 1800);
+          return;
         }
-        // Sign-in failed after account creation — fall through to done screen
+
+        // Sign-in failed — fall through to done screen with set-password link
         setError("Account created but auto-login failed. Please log in manually.");
       }
       if (data.password_set_link) setPasswordSetLink(data.password_set_link);
@@ -350,6 +356,44 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
   const glow2 = { position:"absolute", width:260, height:260, borderRadius:"50%",
                   background:"radial-gradient(circle,rgba(16,185,129,.13) 0%,transparent 70%)",
                   bottom:-70, right:-50, pointerEvents:"none" };
+
+  /* ── SETTING UP SCREEN — shown while storing session + waiting for reload ── */
+  if (settingUp) {
+    const dashboardLabel =
+      settingUpRole === "parent"  ? "Parent Dashboard" :
+      settingUpRole === "teacher" ? "Teacher Dashboard" :
+      "Student Dashboard";
+    const roleIcon =
+      settingUpRole === "parent"  ? "👨‍👩‍👧" :
+      settingUpRole === "teacher" ? "📋" : "🎓";
+    return (
+      <div style={{ ...S.page, alignItems:"center", justifyContent:"center", gap:28 }}>
+        {/* Pulsing ring spinner */}
+        <div style={{
+          width:72, height:72, borderRadius:"50%",
+          border:"5px solid rgba(99,102,241,.2)",
+          borderTopColor:"#6366f1",
+          animation:"spin 0.9s linear infinite",
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+
+        <div style={{ textAlign:"center" }}>
+          <div style={{ fontSize:"2.8rem", marginBottom:10 }}>{roleIcon}</div>
+          <h2 style={{ fontSize:"1.6rem", fontWeight:900, marginBottom:8, color:"#f8fafc" }}>
+            Setting up your account…
+          </h2>
+          <p style={{ color:"#94a3b8", fontSize:"1rem", marginBottom:6 }}>
+            You will be taken to your{" "}
+            <strong style={{ color:"#a5b4fc" }}>{dashboardLabel}</strong>{" "}
+            in just a moment.
+          </p>
+          <p style={{ color:"#475569", fontSize:".82rem" }}>
+            Please do not close this tab.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   /* ── DONE SCREEN ── */
   if (step === "done") {
