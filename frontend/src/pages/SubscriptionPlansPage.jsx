@@ -467,7 +467,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               <ShieldCheck size={22} strokeWidth={2.4} />
               <h3>What you get</h3>
             </div>
-            <div className="premium-grid premium-grid-3" style={{ marginTop: 12 }}>
+            <div className="premium-grid premium-grid-4" style={{ marginTop: 12 }}>
               <div className="premium-card premium-glow-card glow-blue">
                 <h3>📚 All Lessons</h3>
                 <p>5-step AI lessons for every CBSE chapter, Grade 5–10.</p>
@@ -479,6 +479,10 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               <div className="premium-card premium-glow-card glow-green">
                 <h3>🧪 Mock Tests</h3>
                 <p>Chapter-wise timed tests with scoring and revision guidance.</p>
+              </div>
+              <div className="premium-card premium-glow-card glow-red">
+                <h3>🔬 Exemplar Research</h3>
+                <p>AI explanations for hard & tricky Science and Maths topics from NCERT Exemplar — Grade 8, 9 & 10.</p>
               </div>
             </div>
           </div>

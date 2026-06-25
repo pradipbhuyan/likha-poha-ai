@@ -319,11 +319,11 @@ Make it concise, exam-focused and easy to understand.`,
         <UpgradeCard onClose={() => { setSearchResult(""); }} onUpgrade={() => setActivePage?.("subscriptionPlans")} />
       )}
 
-      {/* ── Main layout: cards + explanation panel ── */}
-      <div style={{ display: "grid", gridTemplateColumns: activeTopic ? "1fr 420px" : "1fr", gap: 20, alignItems: "flex-start" }}>
+      {/* ── Main layout: cards + explanation panel — flex-wrap for mobile ── */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-start" }}>
 
-        {/* Topic cards grid */}
-        <div>
+        {/* Topic cards grid — grows to fill space, min 300px */}
+        <div style={{ flex: "1 1 300px", minWidth: 0 }}>
           <p style={{ fontSize: ".75rem", fontWeight: 700, color: "var(--muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: ".08em" }}>
             {filteredCards.length} topics · click any card to get instant AI explanation
           </p>
@@ -361,9 +361,9 @@ Make it concise, exam-focused and easy to understand.`,
           </div>
         </div>
 
-        {/* Explanation panel */}
+        {/* Explanation panel — fixed 420px on desktop, full-width on mobile */}
         {activeTopic && (
-          <div style={{ position: "sticky", top: 80 }}>
+          <div style={{ flex: "0 1 420px", minWidth: "min(420px, 100%)", position: "sticky", top: 80 }}>
             <div className="premium-card" style={{ borderLeft: "4px solid #6366f1" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
                 <div>
