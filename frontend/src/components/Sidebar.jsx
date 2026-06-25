@@ -144,6 +144,13 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
+      key: "teacherLessonPlan",
+      label: "Lesson Plans",
+      icon: BookOpen,
+      roles: ["teacher"],
+      hideForAdmin: true,
+    },
+    {
       key: "teacherTestPaper",
       label: "Create Test Paper",
       icon: ClipboardList,

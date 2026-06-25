@@ -26,6 +26,7 @@ import TeacherDashboardPage from "./pages/TeacherDashboardPage";
 import TeacherTestPaperPage from "./pages/TeacherTestPaperPage";
 import TeacherStudentAnalyticsPage from "./pages/TeacherStudentAnalyticsPage";
 import ExemplarResearchPage from "./pages/ExemplarResearchPage";
+import TeacherLessonPlanPage from "./pages/TeacherLessonPlanPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SalesIncentivePage from "./pages/SalesIncentivePage";
@@ -214,6 +215,11 @@ const PAGE_META = {
     title: "Exemplar Research",
     subtitle: "Explore hard and tricky CBSE Science & Maths topics from NCERT Exemplar books. Instant AI explanations + practice links.",
     icon: "🔬",
+  },
+  teacherLessonPlan: {
+    title: "Lesson Plans",
+    subtitle: "Generate detailed CBSE-aligned lesson plans for any grade, subject and chapter. Download as PDF.",
+    icon: "📋",
   },
 };
 
@@ -916,6 +922,8 @@ function App() {
         return <ParentDashboardPage user={user} />;
       case "teacherDashboard":
         return <TeacherDashboardPage user={user} />;
+      case "teacherLessonPlan":
+        return <TeacherLessonPlanPage user={user} />;
       case "teacherTestPaper":
         return <TeacherTestPaperPage user={user} />;
       case "teacherStudentAnalytics":

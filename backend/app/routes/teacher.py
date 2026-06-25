@@ -202,6 +202,142 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     }
 
 
+class LessonPlanRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    duration_minutes: int = 45
+
+
+_LESSON_PLAN_PROMPT = """You are an experienced CBSE school teacher creating a detailed lesson plan.
+
+Grade: {grade}
+Subject: {subject}
+Chapter/Topic: {chapter}
+Duration: {duration} minutes
+
+{context}
+
+Create a comprehensive, structured lesson plan in the following exact format (use Markdown):
+
+## 📋 Lesson Overview
+- **Topic:** {chapter}
+- **Grade:** {grade}
+- **Subject:** {subject}
+- **Duration:** {duration} minutes
+- **CBSE Unit:** (identify the unit/chapter from NCERT)
+
+## 🎯 Learning Objectives
+By the end of this lesson, students will be able to:
+1. (recall/understand level objective)
+2. (application level objective)
+3. (analysis/evaluation level objective — HOTS)
+
+## 📚 Prerequisites
+Students should already know:
+- (prerequisite 1)
+- (prerequisite 2)
+
+## 🛠️ Materials & Resources
+- NCERT Textbook {grade} {subject}
+- Blackboard / Whiteboard
+- (additional materials specific to this topic)
+
+## 📝 Lesson Plan (Step-by-Step)
+
+### 🔔 Introduction & Hook (5 minutes)
+- (attention-grabbing opening activity or question)
+- Connect to prior knowledge
+
+### 📖 Direct Instruction (15 minutes)
+- (key concept explanation step by step)
+- Include the main formula/rule/concept
+
+### 🔬 Guided Practice (10 minutes)
+- (worked example with student participation)
+- Solve one problem together on the board
+
+### 🏃 Student Activity (10 minutes)
+- (individual or pair activity)
+- Practice problems from NCERT
+
+### ✅ Assessment & Closure (5 minutes)
+- Quick oral questions to check understanding
+- Summary of key points
+- Exit ticket: (one question to assess learning)
+
+## 📘 Homework Assignment
+- NCERT Exercise: (specific exercise numbers)
+- (any additional practice)
+
+## 🎯 Differentiation Strategies
+- **For slow learners:** (simplified approach or extra support)
+- **For advanced learners:** (extension or HOTS challenge)
+
+## 📌 Common Misconceptions to Address
+1. (common student mistake 1)
+2. (common student mistake 2)
+
+## 🔗 NCERT Alignment
+- Chapter reference, Exercise numbers, Example numbers
+
+Keep it practical, concise, and classroom-ready. Use bullet points throughout."""
+
+
+@router.post("/lesson-plan/generate")
+async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current_user)):
+    """
+    Generate a structured CBSE lesson plan for a teacher.
+    Returns Markdown that the frontend renders and can print as PDF.
+    """
+    if user.role not in ("teacher", "admin"):
+        raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
+
+    # Pull RAG context for the chapter
+    try:
+        rag_results = search_textbook_content(
+            query=f"{data.chapter} {data.subject} CBSE {data.grade} lesson",
+            grade=data.grade,
+            subject=data.subject,
+            chapter=data.chapter,
+            match_count=6,
+        )
+        context = "\n\n".join(r.get("chunk_text", "") for r in rag_results[:4] if r.get("chunk_text"))
+        context = f"Reference textbook content:\n{context[:2000]}" if context else ""
+    except Exception:
+        context = ""
+
+    prompt = _LESSON_PLAN_PROMPT.format(
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        duration=data.duration_minutes,
+        context=context,
+    )
+
+    try:
+        client = get_openai_client()
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.6,
+            max_tokens=3000,
+        )
+        plan = resp.choices[0].message.content or ""
+    except Exception as exc:
+        _logger.error("Lesson plan generation failed: %s", exc)
+        raise HTTPException(status_code=500, detail="Could not generate lesson plan. Please try again.")
+
+    return {
+        "success": True,
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
+        "duration_minutes": data.duration_minutes,
+        "lesson_plan": plan,
+    }
+
+
 @router.get("/student-analytics")
 async def get_teacher_student_analytics(user=Depends(get_current_user)):
     """
