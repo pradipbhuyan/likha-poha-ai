@@ -15,6 +15,7 @@ from app.services.auth_service import get_current_user, admin_client
 from app.services.openai_service import get_openai_client
 from app.services.model_routing_service import resolve_student_feature_model
 from app.services.rag_service import search_textbook_content
+from app.services.question_bank_service import get_questions_from_bank
 
 _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
@@ -111,6 +112,28 @@ Respond ONLY with a valid JSON array:
 No markdown, no explanation, only the JSON array."""
 
 
+def _bank_questions_to_test_paper_format(bank_questions: list) -> list:
+    """Convert question_bank row format to the test-paper MCQ format."""
+    result = []
+    for q in bank_questions:
+        opts_dict = q.get("options") or {}
+        if isinstance(opts_dict, dict):
+            option_list = [opts_dict.get(k, "") for k in ("A", "B", "C", "D")]
+        else:
+            continue
+        answer_letter = q.get("answer", "A")
+        answer_text = opts_dict.get(answer_letter, option_list[0] if option_list else "")
+        result.append({
+            "question":    q.get("question", ""),
+            "options":     option_list,
+            "answer":      answer_text,
+            "explanation": q.get("explanation", ""),
+            "type":        "mcq",
+            "source":      "question_bank",
+        })
+    return result
+
+
 def _safe_parse_questions(raw: str, expected_type: str) -> list:
     """Extract a JSON array from the LLM response robustly."""
     text = raw.strip()
@@ -179,31 +202,57 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
 
     questions: list = []
     last_error: str = ""
+    bank_source_count = 0
 
-    # Generate MCQs
+    # ── MCQ generation: question bank first → LLM for shortfall ──────────────
     if mcq_count > 0:
+        # 1. Try the question bank — zero token cost
+        bank_difficulty = data.difficulty if data.difficulty != "Mixed" else "Medium"
         try:
-            resp = client.chat.completions.create(
-                model=ai_model,
-                messages=[{"role": "user", "content": _build_mcq_prompt(
-                    data.grade, data.subject, data.chapter, data.difficulty, mcq_count, context
-                )}],
-                temperature=0.7,
-                max_tokens=4000,
+            bank_qs = get_questions_from_bank(
+                board="CBSE",
+                grade=data.grade,
+                subject=data.subject,
+                chapter=data.chapter,
+                difficulty=bank_difficulty,
+                num_questions=mcq_count,
             )
-            raw = resp.choices[0].message.content or ""
-            mcqs = _safe_parse_questions(raw, "mcq")
-            if mcqs:
-                questions.extend(mcqs[:mcq_count])
-            else:
-                last_error = f"MCQ parsing failed. Model returned: {raw[:200]}"
-                _logger.warning("MCQ parse empty. Raw: %s", raw[:300])
+            bank_mcqs = _bank_questions_to_test_paper_format(bank_qs)
+            if bank_mcqs:
+                questions.extend(bank_mcqs[:mcq_count])
+                bank_source_count = len(questions)
+                _logger.info(
+                    "test-paper: served %d/%d MCQs from question_bank for %s %s %s",
+                    len(bank_mcqs), mcq_count, data.grade, data.subject, data.chapter[:40]
+                )
         except Exception as exc:
-            last_error = str(exc)
-            err_lower = last_error.lower()
-            if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
-                raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
-            _logger.error("MCQ generation failed: %s", exc)
+            _logger.warning("Question bank lookup failed: %s — falling back to LLM", exc)
+
+        # 2. Fill any shortfall with LLM
+        llm_needed = mcq_count - len([q for q in questions if q.get("type") == "mcq"])
+        if llm_needed > 0:
+            try:
+                resp = client.chat.completions.create(
+                    model=ai_model,
+                    messages=[{"role": "user", "content": _build_mcq_prompt(
+                        data.grade, data.subject, data.chapter, data.difficulty, llm_needed, context
+                    )}],
+                    temperature=0.7,
+                    max_tokens=4000,
+                )
+                raw = resp.choices[0].message.content or ""
+                mcqs = _safe_parse_questions(raw, "mcq")
+                if mcqs:
+                    questions.extend(mcqs[:llm_needed])
+                else:
+                    last_error = f"MCQ LLM fallback parse failed. Model returned: {raw[:200]}"
+                    _logger.warning("MCQ LLM parse empty. Raw: %s", raw[:300])
+            except Exception as exc:
+                last_error = str(exc)
+                err_lower = last_error.lower()
+                if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
+                    raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
+                _logger.error("MCQ LLM generation failed: %s", exc)
 
     # Generate subjective questions
     if subj_count > 0:
