@@ -2,11 +2,18 @@
 # LikhaPoha AI — Continuous Deployment
 #
 # Triggers ONLY when all CI jobs pass on a push to main.
-# Flow: CI passes → Trigger Railway deploy → Smoke test → Notify
+# Flow: CI passes → Deploy to Render (primary) + Railway (parallel) → Smoke test → Notify
 #
-# Required GitHub Secrets (set in repo → Settings → Secrets → Actions):
+# ── Render secrets (existing — keep these) ───────────────────────────────────
+#   RENDER_BACKEND_DEPLOY_HOOK_URL  — Render dashboard → backend service → Deploy hook
+#   RENDER_FRONTEND_DEPLOY_HOOK_URL — Render dashboard → frontend service → Deploy hook (optional)
+#   RENDER_API_KEY                  — Render Account → API Keys
+#
+# ── Railway secrets (add these when Railway is ready) ────────────────────────
 #   RAILWAY_BACKEND_DEPLOY_HOOK_URL — Railway dashboard → service → Settings → Deploy Hooks
-#   PRODUCTION_URL                  — https://likhapoha.in
+#
+# ── Shared secrets ────────────────────────────────────────────────────────────
+#   PRODUCTION_URL                  — https://likhapoha.in  (points to active production)
 #   SLACK_WEBHOOK_URL               — (optional) Slack incoming webhook for notifications
 ##############################################################################
 name: CD
@@ -19,7 +26,7 @@ on:
 
 jobs:
   deploy:
-    name: "🚀 Deploy to Production (Railway)"
+    name: "🚀 Deploy to Production"
     runs-on: ubuntu-latest
     # Only deploy when CI fully succeeded
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -27,24 +34,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Deploy backend to Railway"
+      # ── Deploy to Render (primary / current production) ────────────────────
+      - name: "Deploy backend to Render"
         run: |
+          echo "Triggering Render backend deploy..."
+          curl -s -X POST "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}" \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -o /dev/null -w "HTTP %{http_code}"
+        env:
+          RENDER_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+
+      - name: "Deploy frontend to Render (optional)"
+        run: |
+          if [ -z "$RENDER_FRONTEND_DEPLOY_HOOK_URL" ]; then
+            echo "⏭️  RENDER_FRONTEND_DEPLOY_HOOK_URL not set — skipping."
+            exit 0
+          fi
+          echo "Triggering Render frontend deploy..."
+          curl -s -X POST "$RENDER_FRONTEND_DEPLOY_HOOK_URL" \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
+            -o /dev/null -w "HTTP %{http_code}"
+        env:
+          RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+
+      # ── Deploy to Railway (parallel / migration staging) ───────────────────
+      # This step is skipped automatically if the secret is not yet configured.
+      - name: "Deploy backend to Railway (parallel)"
+        run: |
+          if [ -z "$RAILWAY_BACKEND_DEPLOY_HOOK_URL" ]; then
+            echo "⏭️  RAILWAY_BACKEND_DEPLOY_HOOK_URL not set — skipping Railway deploy."
+            exit 0
+          fi
           echo "Triggering Railway backend deploy..."
-          HTTP=$(curl -s -X POST "${{ secrets.RAILWAY_BACKEND_DEPLOY_HOOK_URL }}" \
+          HTTP=$(curl -s -X POST "$RAILWAY_BACKEND_DEPLOY_HOOK_URL" \
             -o /dev/null -w "%{http_code}")
           echo "HTTP $HTTP"
           if [ "$HTTP" != "200" ] && [ "$HTTP" != "202" ]; then
-            echo "❌ Railway deploy hook returned HTTP $HTTP"
-            exit 1
+            echo "⚠️  Railway deploy hook returned HTTP $HTTP — non-fatal, Render is primary."
+          else
+            echo "✅ Railway deploy triggered"
           fi
-          echo "✅ Railway deploy triggered"
         env:
           RAILWAY_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_BACKEND_DEPLOY_HOOK_URL }}
 
-      - name: "Wait for backend to be ready (max 10 min)"
+      # ── Wait for PRIMARY production (Render) to be healthy ─────────────────
+      - name: "Wait for Render backend to be ready (max 10 min)"
         run: |
-          echo "Giving Railway 45 seconds to start the build..."
-          sleep 45
+          echo "Giving Render 30 seconds to register the deploy..."
+          sleep 30
           echo "Polling backend health check (max 10 minutes)..."
           for i in $(seq 1 60); do
             STATUS=$(curl -s -L -o /dev/null -w "%{http_code}" \
@@ -59,7 +98,7 @@ jobs:
           echo "❌ Backend health check timed out after 10 minutes"
           exit 1
 
-  # ── Post-deploy smoke tests ─────────────────────────────────────────────────
+  # ── Post-deploy smoke tests (against primary Render production) ─────────────
   smoke-test:
     name: "🔍 Smoke Tests"
     runs-on: ubuntu-latest
@@ -128,7 +167,7 @@ jobs:
           curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "✅ *LikhaPoha AI deployed successfully* to production (Railway)\n• Commit: `${{ github.sha }}`\n• Branch: `main`\n• All smoke tests passed."
+              "text": "✅ *LikhaPoha AI deployed successfully* to production\n• Commit: `${{ github.sha }}`\n• Branch: `main`\n• All smoke tests passed."
             }'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -143,7 +182,7 @@ jobs:
           curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "❌ *LikhaPoha AI deploy FAILED* (Railway)\n• Commit: `${{ github.sha }}`\n• Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              "text": "❌ *LikhaPoha AI deploy FAILED*\n• Commit: `${{ github.sha }}`\n• Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
