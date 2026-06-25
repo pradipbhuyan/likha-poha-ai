@@ -12,7 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.services.auth_service import get_current_user, admin_client
-from app.services.openai_service import get_openai_client
+from app.services.openai_service import get_openai_client, GPT_MINI_TEXT_MODEL
 from app.services.rag_service import search_textbook_content
 
 _logger = logging.getLogger("likhapoha.teacher")
@@ -161,43 +161,75 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     except Exception:
         context = ""
 
-    client = get_openai_client()
+    try:
+        client = get_openai_client()
+    except Exception as exc:
+        _logger.error("OpenAI client init failed: %s", exc)
+        raise HTTPException(status_code=500, detail="AI service is not configured. Please check OPENAI_API_KEY on the server.")
+
     questions: list = []
+    last_error: str = ""
 
     # Generate MCQs
     if mcq_count > 0:
         try:
             resp = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=GPT_MINI_TEXT_MODEL,
                 messages=[{"role": "user", "content": _build_mcq_prompt(
                     data.grade, data.subject, data.chapter, data.difficulty, mcq_count, context
                 )}],
                 temperature=0.7,
                 max_tokens=4000,
             )
-            mcqs = _safe_parse_questions(resp.choices[0].message.content, "mcq")
-            questions.extend(mcqs[:mcq_count])
+            raw = resp.choices[0].message.content or ""
+            mcqs = _safe_parse_questions(raw, "mcq")
+            if mcqs:
+                questions.extend(mcqs[:mcq_count])
+            else:
+                last_error = f"MCQ parsing failed. Model returned: {raw[:200]}"
+                _logger.warning("MCQ parse empty. Raw: %s", raw[:300])
         except Exception as exc:
+            last_error = str(exc)
+            err_lower = last_error.lower()
+            if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
+                raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
             _logger.error("MCQ generation failed: %s", exc)
 
     # Generate subjective questions
     if subj_count > 0:
         try:
             resp = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=GPT_MINI_TEXT_MODEL,
                 messages=[{"role": "user", "content": _build_subjective_prompt(
                     data.grade, data.subject, data.chapter, data.difficulty, subj_count, context
                 )}],
                 temperature=0.7,
                 max_tokens=4000,
             )
-            subjs = _safe_parse_questions(resp.choices[0].message.content, "subjective")
-            questions.extend(subjs[:subj_count])
+            raw = resp.choices[0].message.content or ""
+            subjs = _safe_parse_questions(raw, "subjective")
+            if subjs:
+                questions.extend(subjs[:subj_count])
+            else:
+                last_error = f"Subjective parsing failed. Model returned: {raw[:200]}"
+                _logger.warning("Subjective parse empty. Raw: %s", raw[:300])
         except Exception as exc:
+            last_error = str(exc)
+            err_lower = last_error.lower()
+            if "429" in last_error or "rate" in err_lower or "quota" in err_lower:
+                raise HTTPException(status_code=429, detail="AI service is busy. Please try again in a moment.")
             _logger.error("Subjective generation failed: %s", exc)
 
     if not questions:
-        raise HTTPException(status_code=500, detail="Could not generate questions. Please try again.")
+        detail = "Could not generate questions."
+        if last_error:
+            if "api key" in last_error.lower() or "authentication" in last_error.lower():
+                detail = "AI service is not configured. Please check the server's OPENAI_API_KEY."
+            elif "model" in last_error.lower():
+                detail = f"AI model error: {last_error[:120]}"
+            else:
+                detail = f"Generation failed: {last_error[:120]}"
+        raise HTTPException(status_code=500, detail=detail)
 
     return {
         "success": True,
@@ -329,7 +361,7 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
     try:
         client = get_openai_client()
         resp = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=GPT_MINI_TEXT_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.6,
             max_tokens=3000,
