@@ -1575,8 +1575,8 @@ function LessonsPage({ user, setActivePage }) {
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 6,
                       padding: "9px 14px", borderRadius: 999,
-                      background: "#eff6ff", border: "1px solid #bfdbfe",
-                      color: "#1d4ed8", fontWeight: 800, fontSize: 13,
+                      background: "rgba(37,99,235,.15)", border: "1px solid rgba(147,197,253,.4)",
+                      color: "#93c5fd", fontWeight: 800, fontSize: 13,
                       textDecoration: "none",
                     }}
                   >
@@ -1591,8 +1591,8 @@ function LessonsPage({ user, setActivePage }) {
                       style={{
                         display: "inline-flex", alignItems: "center", gap: 6,
                         padding: "9px 14px", borderRadius: 999,
-                        background: "#f0fdf4", border: "1px solid #bbf7d0",
-                        color: "#065f46", fontWeight: 800, fontSize: 13,
+                        background: "rgba(16,185,129,.15)", border: "1px solid rgba(110,231,183,.4)",
+                        color: "#6ee7b7", fontWeight: 800, fontSize: 13,
                         textDecoration: "none",
                       }}
                     >
