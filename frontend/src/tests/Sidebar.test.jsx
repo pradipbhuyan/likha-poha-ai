@@ -51,7 +51,7 @@ describe("Sidebar role visibility", () => {
 
     expect(screen.getByRole("button", { name: /teacher dashboard/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /admin control/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /subscription/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /subscription/i })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /teacher dashboard/i }));
     expect(setActivePage).toHaveBeenCalledWith("teacherDashboard");
