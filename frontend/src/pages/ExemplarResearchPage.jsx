@@ -14,7 +14,7 @@ const EXEMPLAR_HINTS = {
   "Grade 10": "Class 10 Exemplar Books",
 };
 
-// ── Curated topic cards by grade / subject ────────────────────────────────────
+// ── Curated topic cards — 12 per grade / subject (NCERT Exemplar focus) ──────
 const TOPIC_CARDS = {
   "Grade 8": {
     Maths: [
@@ -23,9 +23,13 @@ const TOPIC_CARDS = {
       { topic: "Cubes and Cube Roots", difficulty: "Hard", emoji: "³√", hint: "Prime factorisation and cube root tricks" },
       { topic: "Algebraic Expressions and Identities", difficulty: "Tricky", emoji: "📐", hint: "(a+b)² = a²+2ab+b² and other key identities" },
       { topic: "Mensuration — Area and Volume", difficulty: "Hard", emoji: "📦", hint: "Surface area of cubes, cuboids, and cylinders" },
-      { topic: "Linear Equations in One Variable", difficulty: "Tricky", emoji: "x", hint: "Word problems involving equations" },
+      { topic: "Linear Equations in One Variable", difficulty: "Tricky", emoji: "✏️", hint: "Word problems and transposing terms" },
       { topic: "Comparing Quantities — Percentage, Profit Loss", difficulty: "Tricky", emoji: "💹", hint: "Simple interest and compound interest" },
       { topic: "Data Handling — Bar Graphs and Probability", difficulty: "Medium", emoji: "📊", hint: "Reading data and computing simple probability" },
+      { topic: "Direct and Inverse Proportions", difficulty: "Tricky", emoji: "⚖️", hint: "Identify direct vs inverse, cross-multiplication shortcuts" },
+      { topic: "Understanding Quadrilaterals", difficulty: "Hard", emoji: "◻️", hint: "Angle sum, properties of parallelogram, rhombus, trapezium" },
+      { topic: "Playing with Numbers — Divisibility", difficulty: "Medium", emoji: "🎯", hint: "Divisibility rules for 2,3,4,5,6,9,11 and puzzles" },
+      { topic: "Introduction to Graphs — Line and Bar", difficulty: "Medium", emoji: "📉", hint: "Reading coordinates, plotting and interpreting bar/line graphs" },
     ],
     Science: [
       { topic: "Microorganisms — Friend and Foe", difficulty: "Tricky", emoji: "🦠", hint: "Bacteria, fungi, viruses and their roles" },
@@ -36,6 +40,10 @@ const TOPIC_CARDS = {
       { topic: "Sound — Nature and Propagation", difficulty: "Tricky", emoji: "🔊", hint: "Frequency, amplitude, audible range and vibrations" },
       { topic: "Light — Reflection and Refraction", difficulty: "Hard", emoji: "💡", hint: "Laws of reflection, types of mirrors and lenses" },
       { topic: "Pollution of Air and Water", difficulty: "Medium", emoji: "🌫️", hint: "Causes, effects and measures to control pollution" },
+      { topic: "Reproduction in Animals", difficulty: "Medium", emoji: "🐣", hint: "Sexual vs asexual reproduction, human reproduction basics" },
+      { topic: "Metals and Non-Metals", difficulty: "Tricky", emoji: "⚙️", hint: "Physical and chemical properties, uses, reactions with acids" },
+      { topic: "Friction — Types and Effects", difficulty: "Tricky", emoji: "🛝", hint: "Static, sliding, rolling friction; ways to increase/decrease" },
+      { topic: "Stars and the Solar System", difficulty: "Medium", emoji: "⭐", hint: "Planets, stars, constellations, moon phases, satellites" },
     ],
   },
   "Grade 9": {
@@ -48,6 +56,10 @@ const TOPIC_CARDS = {
       { topic: "Surface Area and Volume of Solids", difficulty: "Hard", emoji: "📦", hint: "Cone, cylinder, sphere — curved surface vs total surface" },
       { topic: "Statistics — Mean, Median, Mode", difficulty: "Tricky", emoji: "📊", hint: "Grouped data, frequency tables, bar vs histogram" },
       { topic: "Probability — Basic Concepts", difficulty: "Medium", emoji: "🎲", hint: "Sample space, events, P(E) = n(E)/n(S)" },
+      { topic: "Quadrilaterals — Properties and Proofs", difficulty: "Hard", emoji: "◻️", hint: "Mid-point theorem, properties of parallelogram, proving quadrilateral types" },
+      { topic: "Circles — Arcs, Chords and Angles", difficulty: "Hard", emoji: "⭕", hint: "Equal chords, angles subtended at centre vs circumference" },
+      { topic: "Heron's Formula — Area of Triangle", difficulty: "Tricky", emoji: "△", hint: "s = (a+b+c)/2, A = √[s(s-a)(s-b)(s-c)]" },
+      { topic: "Constructions — Bisectors and Triangles", difficulty: "Medium", emoji: "📏", hint: "Perpendicular bisector, angle bisector, triangle constructions" },
     ],
     Science: [
       { topic: "Matter in Our Surroundings — States of Matter", difficulty: "Tricky", emoji: "🌊", hint: "Evaporation, sublimation, latent heat and inter-conversion" },
@@ -58,18 +70,26 @@ const TOPIC_CARDS = {
       { topic: "Sound — Wave Properties", difficulty: "Tricky", emoji: "🔊", hint: "Speed, frequency, wavelength, echo, ultrasound" },
       { topic: "Tissues — Plant and Animal", difficulty: "Hard", emoji: "🔬", hint: "Meristematic vs permanent, types of animal tissues" },
       { topic: "Natural Resources — Atmosphere and Water", difficulty: "Medium", emoji: "🌎", hint: "Nitrogen cycle, water cycle, air composition" },
+      { topic: "Motion — Distance, Speed, Velocity", difficulty: "Hard", emoji: "🚀", hint: "Scalar vs vector, v=u+at, s=ut+½at², v²=u²+2as" },
+      { topic: "Diversity in Living Organisms", difficulty: "Tricky", emoji: "🦋", hint: "Kingdoms, classification criteria, Whittaker's 5-kingdom system" },
+      { topic: "Why Do We Fall Ill — Health and Disease", difficulty: "Medium", emoji: "🏥", hint: "Infectious vs non-infectious, immune system, prevention" },
+      { topic: "Improvement in Food Resources", difficulty: "Medium", emoji: "🌾", hint: "Crop production, manures, irrigation, animal husbandry" },
     ],
   },
   "Grade 10": {
     Maths: [
       { topic: "Real Numbers — Euclid's Algorithm & HCF", difficulty: "Hard", emoji: "🔢", hint: "Division algorithm, HCF via Euclid, prime factorisation" },
       { topic: "Polynomials — Relationship of Zeroes", difficulty: "Hard", emoji: "📉", hint: "Sum and product of zeroes, quadratic and cubic polynomials" },
-      { topic: "Quadratic Equations — Discriminant", difficulty: "Hard", emoji: "b²-4ac", hint: "D>0 two roots, D=0 equal roots, D<0 no real roots" },
-      { topic: "Arithmetic Progressions — nth Term", difficulty: "Tricky", emoji: "…", hint: "a_n = a+(n-1)d, sum S_n = n/2(2a+(n-1)d)" },
+      { topic: "Quadratic Equations — Discriminant", difficulty: "Hard", emoji: "🔺", hint: "D>0 two roots, D=0 equal roots, D<0 no real roots" },
+      { topic: "Arithmetic Progressions — nth Term", difficulty: "Tricky", emoji: "🔁", hint: "a_n = a+(n-1)d, sum S_n = n/2(2a+(n-1)d)" },
       { topic: "Triangles — Similarity and Pythagoras", difficulty: "Hard", emoji: "△", hint: "BPT theorem, AA, SAS, SSS similarity criteria" },
       { topic: "Coordinate Geometry — Section Formula", difficulty: "Tricky", emoji: "📍", hint: "Distance, section, midpoint formulas and area of triangle" },
-      { topic: "Introduction to Trigonometry", difficulty: "Hard", emoji: "sin/cos", hint: "sin²θ+cos²θ=1, ratios in right triangles, values at 30/45/60°" },
+      { topic: "Introduction to Trigonometry", difficulty: "Hard", emoji: "📐", hint: "sin²θ+cos²θ=1, ratios in right triangles, values at 30/45/60°" },
       { topic: "Areas Related to Circles", difficulty: "Tricky", emoji: "⭕", hint: "Sector area, arc length, segment area — mixed problems" },
+      { topic: "Surface Areas and Volumes — Combined Solids", difficulty: "Hard", emoji: "📦", hint: "Cone on cylinder, hemisphere on sphere — combined SA and volume" },
+      { topic: "Statistics — Grouped Data, Median, Mode", difficulty: "Tricky", emoji: "📊", hint: "Median from cumulative frequency, mode from frequency table" },
+      { topic: "Probability — Playing Cards and Dice", difficulty: "Medium", emoji: "🎲", hint: "Deck of 52 cards, two-dice problems, compound events" },
+      { topic: "Constructions — Tangents and Similar Triangles", difficulty: "Tricky", emoji: "📏", hint: "Tangent from external point, triangle construction with ratio" },
     ],
     Science: [
       { topic: "Chemical Reactions and Equations", difficulty: "Hard", emoji: "⚗️", hint: "Balancing equations, types of reactions — combination, displacement" },
@@ -80,6 +100,10 @@ const TOPIC_CARDS = {
       { topic: "Refraction of Light — Lenses", difficulty: "Hard", emoji: "🔭", hint: "Lens formula 1/v−1/u=1/f, magnification, power of lens" },
       { topic: "Heredity and Evolution — Mendel's Laws", difficulty: "Tricky", emoji: "🧬", hint: "Dominant/recessive traits, Punnett square, natural selection" },
       { topic: "Our Environment — Food Chains", difficulty: "Medium", emoji: "🌿", hint: "Trophic levels, biomagnification, ozone depletion" },
+      { topic: "Carbon and Its Compounds", difficulty: "Hard", emoji: "⚛️", hint: "Covalent bonding, functional groups, homologous series, reactions" },
+      { topic: "Control and Coordination — Nervous System", difficulty: "Tricky", emoji: "🧠", hint: "Reflex arc, brain parts, hormones and their functions" },
+      { topic: "Light — Reflection and Spherical Mirrors", difficulty: "Hard", emoji: "💡", hint: "Mirror formula, sign convention, ray diagrams for concave/convex" },
+      { topic: "Sources of Energy — Conventional and New", difficulty: "Medium", emoji: "☀️", hint: "Fossil fuels, solar, wind, nuclear — advantages and limitations" },
     ],
   },
 };
