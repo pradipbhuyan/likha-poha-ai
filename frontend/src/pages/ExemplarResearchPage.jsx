@@ -251,6 +251,45 @@ Make it concise, exam-focused and easy to understand.`,
 
   const exemplarHint = EXEMPLAR_HINTS[selectedGrade] || "NCERT Exemplar Books";
 
+  // ── Inline practice questions state ──────────────────────────────────────
+  const [practiceQs, setPracticeQs] = useState([]);
+  const [practiceLoading, setPracticeLoading] = useState(false);
+  const [practiceAnswers, setPracticeAnswers] = useState({});
+  const [practiceRevealed, setPracticeRevealed] = useState({});
+
+  async function generatePractice(topic) {
+    if (!paidAccess) { setActiveTopic(topic); return; }
+    setPracticeQs([]);
+    setPracticeAnswers({});
+    setPracticeRevealed({});
+    setPracticeLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/doubt/answer`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
+        body: JSON.stringify({
+          username: user?.username,
+          grade: selectedGrade,
+          mode: "CBSE",
+          board: "CBSE",
+          subject: selectedSubject,
+          chapter: topic.topic,
+          question: `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question. Respond ONLY with valid JSON array:
+[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ..."}]
+No extra text, only the JSON array.`,
+          save_to_history: false,
+        }),
+      });
+      const data = await res.json();
+      const raw = (data.answer || "").trim();
+      const start = raw.indexOf("["), end = raw.lastIndexOf("]");
+      if (start !== -1 && end !== -1) {
+        try { setPracticeQs(JSON.parse(raw.slice(start, end + 1))); } catch { setPracticeQs([]); }
+      }
+    } catch { setPracticeQs([]); }
+    finally { setPracticeLoading(false); }
+  }
+
   return (
     <div className="premium-page" style={{ maxWidth: 1100 }}>
 
@@ -413,17 +452,79 @@ Make it concise, exam-focused and easy to understand.`,
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{explanation}</ReactMarkdown>
                   </div>
                   <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid var(--border)", display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    <a href={EXEMPLAR_URL} target="_blank" rel="noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8,
-                        background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)",
-                        color: "#10b981", fontWeight: 700, fontSize: ".78rem", textDecoration: "none" }}>
-                      📄 Practice in Exemplar
-                    </a>
+                    <button
+                      onClick={() => generatePractice(activeTopic)}
+                      disabled={practiceLoading}
+                      style={{ padding: "7px 12px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#059669,#0891b2)", color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+                      {practiceLoading ? "Generating…" : "🎯 Generate Practice Questions"}
+                    </button>
                     <button onClick={() => explainTopic(activeTopic)}
                       style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid rgba(99,102,241,.3)", background: "rgba(99,102,241,.08)", color: "#a5b4fc", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
                       🔄 Refresh
                     </button>
                   </div>
+
+                  {/* ── Inline MCQ practice panel ── */}
+                  {practiceLoading && (
+                    <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
+                      <div style={{ width: 18, height: 18, border: "2px solid rgba(16,185,129,.3)", borderTopColor: "#10b981", borderRadius: "50%", animation: "spin 0.9s linear infinite", flexShrink: 0 }} />
+                      <span style={{ color: "var(--muted)", fontSize: ".8rem" }}>Generating Exemplar-level practice questions…</span>
+                    </div>
+                  )}
+                  {practiceQs.length > 0 && (
+                    <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 14 }}>
+                      <div style={{ fontSize: ".72rem", fontWeight: 700, color: "#10b981", textTransform: "uppercase", letterSpacing: ".07em" }}>
+                        🎯 {practiceQs.length} Practice Questions · {activeTopic.topic}
+                      </div>
+                      {practiceQs.map((q, qi) => {
+                        const selected = practiceAnswers[qi];
+                        const revealed = practiceRevealed[qi];
+                        return (
+                          <div key={qi} style={{ padding: "12px 14px", borderRadius: 10, background: "rgba(16,185,129,.06)", border: "1px solid rgba(16,185,129,.2)" }}>
+                            <div style={{ fontWeight: 700, fontSize: ".83rem", marginBottom: 8, color: "var(--text)", lineHeight: 1.4 }}>
+                              Q{qi + 1}. {q.q}
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                              {(q.options || []).map((opt, oi) => {
+                                const isCorrect = opt === q.answer;
+                                const isSelected = selected === opt;
+                                let bg = "transparent", border = "1px solid var(--border)", color = "var(--text)";
+                                if (revealed) {
+                                  if (isCorrect) { bg = "rgba(16,185,129,.15)"; border = "1px solid #10b981"; color = "#10b981"; }
+                                  else if (isSelected && !isCorrect) { bg = "rgba(239,68,68,.1)"; border = "1px solid #ef4444"; color = "#ef4444"; }
+                                } else if (isSelected) {
+                                  bg = "rgba(99,102,241,.12)"; border = "1px solid #6366f1"; color = "#a5b4fc";
+                                }
+                                return (
+                                  <button key={oi}
+                                    onClick={() => { if (!revealed) setPracticeAnswers(p => ({...p, [qi]: opt})); }}
+                                    style={{ textAlign: "left", padding: "7px 10px", borderRadius: 7, cursor: revealed ? "default" : "pointer", fontFamily: "inherit", fontSize: ".8rem", background: bg, border, color, transition: "all .12s" }}>
+                                    {opt}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                            {!revealed && selected && (
+                              <button
+                                onClick={() => setPracticeRevealed(p => ({...p, [qi]: true}))}
+                                style={{ marginTop: 8, padding: "5px 12px", borderRadius: 7, border: "none", background: "#10b981", color: "#fff", fontWeight: 700, fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
+                                Check Answer
+                              </button>
+                            )}
+                            {revealed && (
+                              <div style={{ marginTop: 7, fontSize: ".76rem", fontWeight: 700, color: selected === q.answer ? "#10b981" : "#ef4444" }}>
+                                {selected === q.answer ? "✅ Correct!" : `❌ Incorrect — correct: ${q.answer}`}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                      <button onClick={() => { setPracticeQs([]); setPracticeAnswers({}); setPracticeRevealed({}); }}
+                        style={{ alignSelf: "flex-start", padding: "6px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "transparent", color: "var(--muted)", fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
+                        Clear practice
+                      </button>
+                    </div>
+                  )}
                 </>
               ) : null}
             </div>
