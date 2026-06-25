@@ -225,8 +225,15 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
           password: password.trim(),
         });
         if (!authErr && authData.session) {
-          const { data: profile } = await supabase
-            .from("profiles").select("*").eq("id", authData.user.id).single();
+          // Retry profile fetch — DB trigger / insert may need a moment to propagate
+          // (same retry pattern used in the Google OAuth flow in App.jsx)
+          let profile = null;
+          for (let attempt = 0; attempt < 6; attempt++) {
+            const { data: profileData } = await supabase
+              .from("profiles").select("*").eq("id", authData.user.id).maybeSingle();
+            if (profileData) { profile = profileData; break; }
+            await new Promise(r => setTimeout(r, 500));
+          }
           if (profile) {
             // Fetch offer validity — critical for showing expiry date on Subscription page
             let offerData = { offerAccess: false };
