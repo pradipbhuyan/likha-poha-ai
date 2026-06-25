@@ -1583,22 +1583,47 @@ function LessonsPage({ user, setActivePage }) {
                     📖 Open Textbook
                   </a>
                   {(subject === "Maths" || subject === "Science" || subject === "Mathematics") &&
-                   (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (
-                    <a
-                      href="https://ncert.nic.in/exemplar-problems.php"
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{
-                        display: "inline-flex", alignItems: "center", gap: 6,
-                        padding: "9px 14px", borderRadius: 999,
-                        background: "rgba(16,185,129,.15)", border: "1px solid rgba(110,231,183,.4)",
-                        color: "#6ee7b7", fontWeight: 800, fontSize: 13,
-                        textDecoration: "none",
-                      }}
-                    >
-                      🔬 Practice Exemplar Problems
-                    </a>
-                  )}
+                   (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (() => {
+                    // Paid access gate — same logic as ExemplarResearchPage
+                    const hasPaid = user?.role === "admin" ||
+                      (user?.subscriptionPlan && user.subscriptionPlan !== "free") ||
+                      user?.accessCbse ||
+                      user?.parentId;
+                    if (hasPaid) {
+                      return (
+                        <a
+                          href="https://ncert.nic.in/exemplar-problems.php"
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            display: "inline-flex", alignItems: "center", gap: 6,
+                            padding: "9px 14px", borderRadius: 999,
+                            background: "rgba(16,185,129,.15)", border: "1px solid rgba(110,231,183,.4)",
+                            color: "#6ee7b7", fontWeight: 800, fontSize: 13,
+                            textDecoration: "none",
+                          }}
+                        >
+                          🔬 Practice Exemplar Problems
+                        </a>
+                      );
+                    }
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => setActivePage?.("subscriptionPlans")}
+                        title="Upgrade to a paid plan to access Exemplar Problems"
+                        style={{
+                          display: "inline-flex", alignItems: "center", gap: 6,
+                          padding: "9px 14px", borderRadius: 999, cursor: "pointer",
+                          background: "rgba(99,102,241,.1)", border: "1px solid rgba(167,139,250,.35)",
+                          color: "#a78bfa", fontWeight: 800, fontSize: 13,
+                          fontFamily: "inherit",
+                        }}
+                      >
+                        🔐 Exemplar Problems — Paid Only
+                      </button>
+                    );
+                  })()}
                 </div>
 
                 <div className="lesson-audio-section premium-card">
