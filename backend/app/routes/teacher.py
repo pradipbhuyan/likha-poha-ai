@@ -19,6 +19,15 @@ _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
 
 
+def _get_profile_role(user_id: str) -> str:
+    """Return the application role ('teacher', 'admin', 'student', etc.) for a user."""
+    try:
+        resp = admin_client.table("profiles").select("role").eq("id", user_id).single().execute()
+        return (resp.data or {}).get("role") or ""
+    except Exception:
+        return ""
+
+
 # ── Schemas ────────────────────────────────────────────────────────────────────
 
 class TestPaperRequest(BaseModel):
@@ -129,7 +138,8 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     Called by the Teacher Test Paper page. Returns structured question objects
     that the frontend formats as a printable HTML page.
     """
-    if user.role not in ("teacher", "admin"):
+    role = _get_profile_role(user.id)
+    if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate test papers.")
 
     mcq_count  = min(max(int(data.mcq_count or 0), 0), 30)
@@ -290,7 +300,8 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
     Generate a structured CBSE lesson plan for a teacher.
     Returns Markdown that the frontend renders and can print as PDF.
     """
-    if user.role not in ("teacher", "admin"):
+    role = _get_profile_role(user.id)
+    if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
 
     # Pull RAG context for the chapter
@@ -345,7 +356,8 @@ async def get_teacher_student_analytics(user=Depends(get_current_user)):
 
     The frontend uses this data to show a per-student progress view.
     """
-    if user.role not in ("teacher", "admin"):
+    role = _get_profile_role(user.id)
+    if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can view student analytics.")
 
     try:
