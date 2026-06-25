@@ -147,24 +147,35 @@ def search_textbook_content(
     """
     Search uploaded RAG chunks using vector similarity and optional metadata.
     Automatically targets the correct Supabase project based on grade.
+
+    Returns [] on any DB error (e.g. Grade 11/12 Supabase key rotation) so
+    the AI tutor falls back to LLM-only generation rather than crashing.
     """
     db = get_content_db(grade)
-    query_embedding = create_embedding(query)
+    try:
+        query_embedding = create_embedding(query)
+    except Exception:
+        return []
+
     requested_board = normalize_board(board)
     rpc_match_count = match_count * 4 if board else match_count
 
-    response = db.rpc(
-        "match_rag_chunks",
-        {
-            "query_embedding": query_embedding,
-            "match_count": rpc_match_count,
-            "filter_grade": grade,
-            "filter_subject": subject,
-            "filter_chapter": strip_chapter_display_prefix(chapter) if chapter else chapter,
-        },
-    ).execute()
-
-    results = response.data or []
+    try:
+        response = db.rpc(
+            "match_rag_chunks",
+            {
+                "query_embedding": query_embedding,
+                "match_count": rpc_match_count,
+                "filter_grade": grade,
+                "filter_subject": subject,
+                "filter_chapter": strip_chapter_display_prefix(chapter) if chapter else chapter,
+            },
+        ).execute()
+        results = response.data or []
+    except Exception:
+        # DB unavailable (e.g. Grade 11/12 key rotation) — return empty so
+        # the tutor falls back to LLM generation rather than crashing.
+        return []
 
     for item in results:
         doc_id = item.get("document_id")
@@ -229,10 +240,15 @@ def list_rag_documents(grade: str | None = None):
 
     # No grade filter — merge both databases for the admin overview
     from app.services.auth_service import admin_client
-    from app.services.supabase_grade_1112_client import grade_1112_client
-
     primary_docs = _fetch(admin_client)
-    grade_1112_docs = _fetch(grade_1112_client)
+
+    # Grade 11/12 DB may be unavailable during key rotation — import safely
+    grade_1112_docs: list = []
+    try:
+        from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+        grade_1112_docs = _fetch(grade_1112_client)
+    except (SystemExit, Exception):
+        pass  # Grade 11/12 temporarily unavailable — show primary docs only
 
     # Combine and sort by created_at descending
     all_docs = primary_docs + grade_1112_docs

@@ -941,6 +941,51 @@ Important:
                 </button>
               </div>
 
+              {/* ── Trust signal: NCERT source + Exemplar link ── */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
+                {sourceInfo?.sourceType === "RAG" && (
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    padding: "9px 14px", background: "white",
+                    border: "1px solid #bbf7d0", borderRadius: 999,
+                    fontSize: 13, fontWeight: 800, color: "#047857",
+                  }}>
+                    📖 This answer is based on your {grade}{subject ? ` ${subject}` : ""} textbook
+                  </span>
+                )}
+                <a
+                  href="https://ncert.nic.in/textbook.php"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    padding: "9px 14px", background: "#eff6ff",
+                    border: "1px solid #bfdbfe", borderRadius: 999,
+                    fontSize: 13, fontWeight: 800, color: "#1d4ed8",
+                    textDecoration: "none",
+                  }}
+                >
+                  Read original textbook →
+                </a>
+                {(subject === "Maths" || subject === "Science" || subject === "Mathematics") &&
+                 (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (
+                  <a
+                    href="https://ncert.nic.in/exemplar-problems.php"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 6,
+                      padding: "9px 14px", background: "#f0fdf4",
+                      border: "1px solid #bbf7d0", borderRadius: 999,
+                      fontSize: 13, fontWeight: 800, color: "#065f46",
+                      textDecoration: "none",
+                    }}
+                  >
+                    🔬 Try Exemplar Practice →
+                  </a>
+                )}
+              </div>
+
               {activeSuggestion === "Ask a follow-up" && (
                 <div className="mentor-followup-panel mentor-common-followup-panel">
                   <h4>Ask a follow-up</h4>

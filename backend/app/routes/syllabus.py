@@ -624,6 +624,11 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBS
     ])
 
     if not live:
+        # When live RAG is unavailable (e.g. secondary Supabase key rotation),
+        # use the admin-reviewed chapter list stored in syllabus_chapter_overrides
+        # so students still see the correct chapters in their dropdown.
+        if reviewed:
+            return reviewed
         return [placeholder_chapter_for_mode(mode)]
 
     live_lookup = {

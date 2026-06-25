@@ -1560,6 +1560,47 @@ function LessonsPage({ user, setActivePage }) {
                   />
                 </div>
 
+                {/* ── Reference Materials footer: NCERT source badge + Exemplar/Textbook links ── */}
+                <div className="lesson-action-footer" style={{ flexWrap: "wrap", gap: 10, marginBottom: 0 }}>
+                  {sourceInfo?.sourceType === "RAG" && (
+                    <span className="lesson-source-badge" style={{ fontSize: 13 }}>
+                      📚 Based on NCERT {grade} {subject}
+                      {chapter ? ` — ${chapter.length > 50 ? chapter.slice(0, 47) + "…" : chapter}` : ""}
+                    </span>
+                  )}
+                  <a
+                    href="https://ncert.nic.in/textbook.php"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 6,
+                      padding: "9px 14px", borderRadius: 999,
+                      background: "#eff6ff", border: "1px solid #bfdbfe",
+                      color: "#1d4ed8", fontWeight: 800, fontSize: 13,
+                      textDecoration: "none",
+                    }}
+                  >
+                    📖 Open Textbook
+                  </a>
+                  {(subject === "Maths" || subject === "Science" || subject === "Mathematics") &&
+                   (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (
+                    <a
+                      href="https://ncert.nic.in/exemplar-problems.php"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: "inline-flex", alignItems: "center", gap: 6,
+                        padding: "9px 14px", borderRadius: 999,
+                        background: "#f0fdf4", border: "1px solid #bbf7d0",
+                        color: "#065f46", fontWeight: 800, fontSize: 13,
+                        textDecoration: "none",
+                      }}
+                    >
+                      🔬 Practice Exemplar Problems
+                    </a>
+                  )}
+                </div>
+
                 <div className="lesson-audio-section premium-card">
                   <button
                     className="primary-btn lesson-audio-btn"

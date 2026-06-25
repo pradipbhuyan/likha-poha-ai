@@ -297,22 +297,390 @@ for _subject in LEARNING_RESOURCES:
         )
 
 
-def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
-    """Return curated resources if present; otherwise return free fallback links."""
-    # Strip invisible control characters (e.g. \x08 backspace) that can sneak
-    # in from PDF/RAG uploads so the chapter key lookup always matches cleanly.
-    cleaned_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-    resources = LEARNING_RESOURCES.get(subject, {}).get(cleaned_chapter, [])
-    if resources:
-        return add_ncert_link(resources)
+# ── NCERT Exemplar Problem links (Grade 8, 9, 10) ────────────────────────────
+# These are grade-level resources — shown for any chapter of the subject.
+# Direct PDFs verified from ncert.nic.in/exemplar-problems.php (June 2026)
 
-    grade_query = grade.lower().replace("grade", "class")
-    query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
-    return [
-        {
-            "title": f"YouTube Search - {subject}: {chapter}",
+NCERT_EXEMPLAR_BASE = "https://ncert.nic.in/pdf/publication/exemplarproblem"
+
+EXEMPLAR_GRADE_RESOURCES = {
+    "Grade 8": {
+        "Maths": {
+            "title": "NCERT Exemplar Problems — Class 8 Mathematics",
             "type": "website",
-            "url": f"https://www.youtube.com/results?search_query={query}",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classVIII/mathematics/heep201.pdf",
+            "description": "13 units of practice problems with solutions (NCERT official)",
         },
-        NCERT_RESOURCE,
-    ]
+        "Science": {
+            "title": "NCERT Exemplar Problems — Class 8 Science",
+            "type": "website",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classVIII/science/heep101.pdf",
+            "description": "18 chapters of practice problems with solutions (NCERT official)",
+        },
+    },
+    "Grade 9": {
+        "Maths": {
+            "title": "NCERT Exemplar Problems — Class 9 Mathematics",
+            "type": "website",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classIX/mathematics/ieep201.pdf",
+            "description": "16 units covering all Class 9 Maths topics (NCERT official)",
+        },
+        "Science": {
+            "title": "NCERT Exemplar Problems — Class 9 Science",
+            "type": "website",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classIX/science/ieep101.pdf",
+            "description": "17 chapters of higher-order problems with solutions (NCERT official)",
+        },
+    },
+    "Grade 10": {
+        "Maths": {
+            "title": "NCERT Exemplar Problems — Class 10 Mathematics",
+            "type": "website",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classX/mathematics/jeep201.pdf",
+            "description": "15 units of board-exam level problems with solutions (NCERT official)",
+        },
+        "Science": {
+            "title": "NCERT Exemplar Problems — Class 10 Science",
+            "type": "website",
+            "url": f"{NCERT_EXEMPLAR_BASE}/classX/science/jeep101.pdf",
+            "description": "18 chapters of practice problems including MCQs (NCERT official)",
+        },
+    },
+}
+
+# Full exemplar book page (browse all units)
+EXEMPLAR_PAGE = {
+    "title": "NCERT Exemplar Problems — Browse All",
+    "type": "website",
+    "url": "https://ncert.nic.in/exemplar-problems.php",
+}
+
+# ── English Grammar resources (Grade 8, 9, 10) ────────────────────────────────
+# Free reference sources for CBSE English Grammar topics
+
+GRAMMAR_RESOURCES = [
+    {
+        "title": "BBC Learning English — Grammar",
+        "type": "website",
+        "url": "https://www.bbc.co.uk/learningenglish/grammar",
+        "description": "Free grammar guides with examples: tenses, voice, reported speech",
+    },
+    {
+        "title": "British Council — LearnEnglish Grammar",
+        "type": "website",
+        "url": "https://learnenglish.britishcouncil.org/grammar",
+        "description": "Interactive grammar lessons: A1 to C1 level, with exercises",
+    },
+    {
+        "title": "NCERT English Textbook (Honeydew / Beehive / First Flight)",
+        "type": "website",
+        "url": "https://ncert.nic.in/textbook.php",
+        "description": "Official NCERT English textbooks — grammar sections included",
+    },
+    {
+        "title": "CBSE Sample Papers — English",
+        "type": "website",
+        "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html",
+        "description": "Grammar questions from official CBSE sample papers",
+    },
+]
+
+# Grammar topic links per CBSE Grade 8-10 syllabus
+GRAMMAR_TOPIC_RESOURCES = {
+    "Tenses": [
+        {"title": "BBC — Tenses Overview", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/tenses"},
+        {"title": "British Council — Tenses", "type": "website",
+         "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/tenses"},
+    ],
+    "Active and Passive Voice": [
+        {"title": "BBC — Passive Voice", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/active-and-passive-voice"},
+        {"title": "British Council — Passive Voice", "type": "website",
+         "url": "https://learnenglish.britishcouncil.org/grammar/b2-c1-grammar/passive-voice-introduction"},
+    ],
+    "Reported Speech": [
+        {"title": "BBC — Reported Speech", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/reported-speech"},
+        {"title": "British Council — Reported Speech", "type": "website",
+         "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/reported-speech"},
+    ],
+    "Modals": [
+        {"title": "BBC — Modal Verbs", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/modals"},
+        {"title": "British Council — Modal Verbs", "type": "website",
+         "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/modal-verbs"},
+    ],
+    "Grammar": [
+        *GRAMMAR_RESOURCES[:2],
+        {"title": "CBSE English Grammar — Sample Papers", "type": "website",
+         "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html"},
+    ],
+    "Writing Skills": [
+        {"title": "British Council — Writing Skills", "type": "website",
+         "url": "https://learnenglish.britishcouncil.org/skills/writing"},
+        {"title": "CBSE English Writing — Sample Papers", "type": "website",
+         "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html"},
+    ],
+}
+
+# ── Grade 8 resources ─────────────────────────────────────────────────────────
+GRADE_8_RESOURCES: dict[str, dict[str, list]] = {
+    "Maths": {
+        # Ganita Prakash Grade 8 chapters (NEW curriculum)
+        "A Square and a Cube": [
+            {"title": "NCERT Ganita Prakash Grade 8 — A Square and a Cube", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp101.pdf"},
+        ],
+        "Power Play": [
+            {"title": "NCERT Ganita Prakash Grade 8 — Power Play", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp102.pdf"},
+        ],
+        "A Story of Numbers": [
+            {"title": "NCERT Ganita Prakash Grade 8 — A Story of Numbers", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp103.pdf"},
+        ],
+        "Quadrilaterals": [
+            {"title": "NCERT Ganita Prakash Grade 8 — Quadrilaterals", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp104.pdf"},
+        ],
+        "Number Play": [
+            {"title": "NCERT Ganita Prakash Grade 8 — Number Play", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp105.pdf"},
+        ],
+        "We Distribute, Yet Things Multiply": [
+            {"title": "NCERT Ganita Prakash Grade 8 — We Distribute Yet Things Multiply", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp106.pdf"},
+        ],
+        "Fractions in Disguise": [
+            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Fractions in Disguise", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp201.pdf"},
+        ],
+        "The Baudhayana-Pythagoras Theorem": [
+            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Baudhayana-Pythagoras Theorem", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp202.pdf"},
+        ],
+        "Proportional Reasoning-2": [
+            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Proportional Reasoning", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hegp203.pdf"},
+        ],
+    },
+    "Science": {
+        "Exploring the Investigative World of Science": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 1", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu101.pdf"},
+        ],
+        "The Invisible Living World: Beyond Our Naked Eye": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 2", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu102.pdf"},
+        ],
+        "Health: the Ultimate Treasure": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 3", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu103.pdf"},
+        ],
+        "Electricity: Magnetic and Heating Effects": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 4", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu104.pdf"},
+        ],
+        "Exploring Forces": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 5", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu105.pdf"},
+        ],
+        "Pressure, Winds, Storms, and Cyclones": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 6", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu106.pdf"},
+        ],
+        "Reaching the Age of Adolescence": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 7", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"},
+        ],
+        "Our Changing Earth": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 8", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu108.pdf"},
+        ],
+        "Chemical Reactions and Equations": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 9", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu109.pdf"},
+        ],
+        "Stars and the Solar System": [
+            {"title": "NCERT Curiosity Science Grade 8 — Chapter 10", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/hecu110.pdf"},
+        ],
+    },
+    "English": {
+        "Grammar": list(GRAMMAR_RESOURCES),
+        "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
+        "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
+        "Active and Passive Voice": GRAMMAR_TOPIC_RESOURCES.get("Active and Passive Voice", []),
+        "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
+        "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
+    },
+}
+
+# ── Grade 10 resources ────────────────────────────────────────────────────────
+GRADE_10_RESOURCES: dict[str, dict[str, list]] = {
+    "Maths": {
+        "Real Numbers": [
+            {"title": "NCERT Mathematics Grade 10 — Real Numbers", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh101.pdf"},
+        ],
+        "Polynomials": [
+            {"title": "NCERT Mathematics Grade 10 — Polynomials", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh102.pdf"},
+        ],
+        "Pair of Linear Equations in Two Variables": [
+            {"title": "NCERT Mathematics Grade 10 — Pair of Linear Equations", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh103.pdf"},
+        ],
+        "Quadratic Equations": [
+            {"title": "NCERT Mathematics Grade 10 — Quadratic Equations", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh104.pdf"},
+        ],
+        "Arithmetic Progressions": [
+            {"title": "NCERT Mathematics Grade 10 — Arithmetic Progressions", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh105.pdf"},
+        ],
+        "Triangles": [
+            {"title": "NCERT Mathematics Grade 10 — Triangles", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh106.pdf"},
+        ],
+        "Coordinate Geometry": [
+            {"title": "NCERT Mathematics Grade 10 — Coordinate Geometry", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh107.pdf"},
+        ],
+        "Introduction to Trigonometry": [
+            {"title": "NCERT Mathematics Grade 10 — Introduction to Trigonometry", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh108.pdf"},
+        ],
+        "Circles": [
+            {"title": "NCERT Mathematics Grade 10 — Circles", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh110.pdf"},
+        ],
+        "Statistics": [
+            {"title": "NCERT Mathematics Grade 10 — Statistics", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh113.pdf"},
+        ],
+        "Probability": [
+            {"title": "NCERT Mathematics Grade 10 — Probability", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jemh114.pdf"},
+        ],
+    },
+    "Science": {
+        "Chemical Reactions and Equations": [
+            {"title": "NCERT Science Grade 10 — Chemical Reactions", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc101.pdf"},
+        ],
+        "Acids, Bases and Salts": [
+            {"title": "NCERT Science Grade 10 — Acids, Bases and Salts", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc102.pdf"},
+        ],
+        "Metals and Non-metals": [
+            {"title": "NCERT Science Grade 10 — Metals and Non-metals", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc103.pdf"},
+        ],
+        "Life Processes": [
+            {"title": "NCERT Science Grade 10 — Life Processes", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc105.pdf"},
+        ],
+        "Control and Coordination": [
+            {"title": "NCERT Science Grade 10 — Control and Coordination", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc106.pdf"},
+        ],
+        "Heredity": [
+            {"title": "NCERT Science Grade 10 — Heredity", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc108.pdf"},
+        ],
+        "Light – Reflection and Refraction": [
+            {"title": "NCERT Science Grade 10 — Light Reflection and Refraction", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc109.pdf"},
+        ],
+        "Electricity": [
+            {"title": "NCERT Science Grade 10 — Electricity", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc111.pdf"},
+        ],
+        "Our Environment": [
+            {"title": "NCERT Science Grade 10 — Our Environment", "type": "website",
+             "url": "https://ncert.nic.in/textbook/pdf/jesc113.pdf"},
+        ],
+    },
+    "English": {
+        "Grammar": list(GRAMMAR_RESOURCES),
+        "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
+        "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
+        "Active and Passive Voice": GRAMMAR_TOPIC_RESOURCES.get("Active and Passive Voice", []),
+        "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
+        "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
+    },
+}
+
+# ── Grade-aware resource lookup ───────────────────────────────────────────────
+GRADE_RESOURCES_MAP = {
+    "Grade 8": GRADE_8_RESOURCES,
+    "Grade 10": GRADE_10_RESOURCES,
+}
+
+# Grade 9 English Grammar (extends existing LEARNING_RESOURCES)
+LEARNING_RESOURCES["English"].update({
+    "Grammar": list(GRAMMAR_RESOURCES),
+    "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
+    "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
+    "Active and Passive Voice": GRAMMAR_TOPIC_RESOURCES.get("Active and Passive Voice", []),
+    "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
+    "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
+})
+
+
+def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
+    """Return curated resources if present; otherwise return free fallback links.
+
+    Lookup priority:
+    1. Grade-specific resource map (Grade 8, Grade 10)
+    2. Legacy LEARNING_RESOURCES (Grade 9 + generic)
+    3. Grammar topic resources (English, any grade)
+    4. Fallback YouTube search
+    All results include the NCERT Exemplar link for Maths/Science (Grade 8-10).
+    """
+    cleaned_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
+
+    # Priority 1: Grade-specific resources
+    grade_map = GRADE_RESOURCES_MAP.get(grade, {})
+    resources = grade_map.get(subject, {}).get(cleaned_chapter, [])
+
+    # Priority 2: Legacy Grade 9 / shared resources
+    if not resources:
+        resources = LEARNING_RESOURCES.get(subject, {}).get(cleaned_chapter, [])
+
+    # Priority 3: Grammar topic match for English
+    if not resources and subject == "English":
+        resources = GRAMMAR_TOPIC_RESOURCES.get(cleaned_chapter, [])
+
+    # Build final list
+    if resources:
+        result = add_ncert_link(list(resources))
+    else:
+        grade_query = grade.lower().replace("grade", "class")
+        query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
+        result = [
+            {
+                "title": f"YouTube Search - {subject}: {chapter}",
+                "type": "website",
+                "url": f"https://www.youtube.com/results?search_query={query}",
+            },
+            NCERT_RESOURCE,
+        ]
+
+    # Append NCERT Exemplar link for Maths/Science (Grade 8-10)
+    if subject in ("Maths", "Science") and grade in EXEMPLAR_GRADE_RESOURCES:
+        exemplar = EXEMPLAR_GRADE_RESOURCES[grade].get(subject)
+        if exemplar:
+            result = [r for r in result if r.get("url") != exemplar["url"]]
+            result.append({
+                "title": exemplar["title"],
+                "type": "website",
+                "url": exemplar["url"],
+            })
+        # Always add the browse-all page
+        if not any(r.get("url") == EXEMPLAR_PAGE["url"] for r in result):
+            result.append(EXEMPLAR_PAGE)
+
+    return result

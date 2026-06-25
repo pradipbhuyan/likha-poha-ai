@@ -178,6 +178,36 @@ function ResourcesPage({ user }) {
     return url.includes("youtube.com/watch");
   }
 
+  function getResourceIcon(resource) {
+    /** Return an emoji icon based on the resource title/URL for quick visual identification. */
+    const title = (resource.title || "").toLowerCase();
+    const url = (resource.url || "").toLowerCase();
+    if (resource.type === "youtube" || url.includes("youtube")) return "▶️";
+    if (title.includes("exemplar")) return "🔬";
+    if (title.includes("grammar") || title.includes("bbc") || title.includes("british council")) return "✍️";
+    if (title.includes("phet") || title.includes("simulation")) return "🧪";
+    if (title.includes("ncert")) return "📚";
+    if (title.includes("cbse")) return "📋";
+    if (title.includes("sample paper")) return "📝";
+    return "🔗";
+  }
+
+  function getResourceLabel(resource) {
+    /** Short badge label shown under the resource icon. */
+    const title = (resource.title || "").toLowerCase();
+    if (resource.type === "youtube" || (resource.url || "").includes("youtube")) return "Video";
+    if (title.includes("exemplar")) return "Practice Problems";
+    if (title.includes("bbc") || title.includes("british council")) return "Grammar Guide";
+    if (title.includes("phet")) return "Interactive Sim";
+    if (title.includes("ncert")) return "NCERT Textbook";
+    if (title.includes("cbse") || title.includes("sample paper")) return "CBSE Resource";
+    return "Reference";
+  }
+
+  const isGrammarSubject = subject === "English";
+  const isExemplarSubject = (subject === "Maths" || subject === "Science") &&
+    ["Grade 8", "Grade 9", "Grade 10"].includes(grade);
+
   return (
     <div className="resources-page premium-page premium-resources-page">
       <section className="premium-section premium-resources-hero">
@@ -294,10 +324,10 @@ function ResourcesPage({ user }) {
             {resources.map((resource, index) => (
               <div key={index} className="resource-card premium-resource-card">
                 <div className="premium-resource-card-header">
-                  <span>{resource.type === "youtube" ? "▶️" : "🔗"}</span>
+                  <span>{getResourceIcon(resource)}</span>
                   <div>
                     <h4>{resource.title}</h4>
-                    <p>{resource.type === "youtube" ? "Video resource" : "External resource"}</p>
+                    <p className="resource-type-badge">{getResourceLabel(resource)}</p>
                   </div>
                 </div>
 
@@ -318,7 +348,7 @@ function ResourcesPage({ user }) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Open Free Resource →
+                    Open Resource →
                   </a>
                 )}
               </div>
@@ -326,6 +356,119 @@ function ResourcesPage({ user }) {
           </div>
         )}
       </section>
+
+      {/* ── Exemplar Problems callout for Maths/Science Grade 8-10 ── */}
+      {isExemplarSubject && !resourcesLoading && (
+        <section className="premium-section premium-resource-exemplar-section">
+          <div className="premium-header">
+            <h3>🔬 NCERT Exemplar Practice Problems</h3>
+            <p>
+              Official NCERT higher-order thinking problems for {grade} {subject}.
+              These are ideal for board exam preparation and SOF Olympiad practice.
+            </p>
+          </div>
+          <div className="premium-resource-grid">
+            <div className="resource-card premium-resource-card premium-resource-card--exemplar">
+              <div className="premium-resource-card-header">
+                <span>🔬</span>
+                <div>
+                  <h4>NCERT Exemplar — {grade} {subject} (Full Book)</h4>
+                  <p className="resource-type-badge">Practice Problems</p>
+                </div>
+              </div>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
+                Official NCERT exemplar with MCQs, short-answer and long-answer problems with solutions.
+                Free from NCERT — no login required.
+              </p>
+              <a
+                className="premium-resource-link"
+                href="https://ncert.nic.in/exemplar-problems.php"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse All Exemplar Problems →
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Grammar reference section for English ── */}
+      {isGrammarSubject && !resourcesLoading && (
+        <section className="premium-section premium-resource-grammar-section">
+          <div className="premium-header">
+            <h3>✍️ English Grammar Reference Library</h3>
+            <p>
+              Free grammar guides and exercises from trusted sources.
+              Covers all CBSE {grade} grammar topics.
+            </p>
+          </div>
+          <div className="premium-resource-grid">
+            <div className="resource-card premium-resource-card">
+              <div className="premium-resource-card-header">
+                <span>✍️</span>
+                <div>
+                  <h4>BBC Learning English — Grammar</h4>
+                  <p className="resource-type-badge">Grammar Guide</p>
+                </div>
+              </div>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
+                Tenses, Voice, Reported Speech, Clauses, Modals — free interactive lessons with examples.
+              </p>
+              <a
+                className="premium-resource-link"
+                href="https://www.bbc.co.uk/learningenglish/grammar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open BBC Grammar →
+              </a>
+            </div>
+
+            <div className="resource-card premium-resource-card">
+              <div className="premium-resource-card-header">
+                <span>✍️</span>
+                <div>
+                  <h4>British Council — LearnEnglish Grammar</h4>
+                  <p className="resource-type-badge">Grammar Guide</p>
+                </div>
+              </div>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
+                A1 to C1 level grammar lessons with practice exercises. Covers all CBSE grammar topics.
+              </p>
+              <a
+                className="premium-resource-link"
+                href="https://learnenglish.britishcouncil.org/grammar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open British Council Grammar →
+              </a>
+            </div>
+
+            <div className="resource-card premium-resource-card">
+              <div className="premium-resource-card-header">
+                <span>📋</span>
+                <div>
+                  <h4>CBSE Sample Papers — English</h4>
+                  <p className="resource-type-badge">CBSE Resource</p>
+                </div>
+              </div>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
+                Official CBSE sample papers with grammar and writing sections — best for board exam prep.
+              </p>
+              <a
+                className="premium-resource-link"
+                href="https://cbseacademic.nic.in/SampleQuestion_Papers.html"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open CBSE Sample Papers →
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -8,6 +8,14 @@ from app.services.logger_service import get_logger, PlatformError  # noqa: F401 
 from app.middleware.tracing import TracingMiddleware
 
 _log = get_logger("main")
+
+# Fix macOS SSL certificate verification before any HTTPS connections are made.
+# Uses the system trust store (truststore package) which handles local and
+# corporate-network certs. Silent no-op when truststore is unavailable.
+from app.services.ssl_service import enable_system_truststore as _enable_ssl
+_enable_ssl()
+_log.info("SSL trust store initialised.")
+
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
