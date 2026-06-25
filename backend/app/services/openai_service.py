@@ -63,7 +63,6 @@ _MODEL_PRICING = {
     "llama-3.1-70b-versatile": {"input": 0.00059, "output": 0.00079},
     "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
     "gemma2-9b-it":            {"input": 0.00020, "output": 0.00020},
-    "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
     # Gemini models — 1M tokens/day free, OpenAI-compatible
     "gemini-2.0-flash-lite-001": {"input": 0.000075, "output": 0.0003},
     "gemini-2.0-flash-lite":     {"input": 0.000075, "output": 0.0003},  # legacy alias
