@@ -136,14 +136,6 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
-      key: "exemplarResearch",
-      label: "Exemplar Research",
-      icon: Sparkles,
-      roles: ["student", "teacher"],
-      gradeFilter: ["Grade 8", "Grade 9", "Grade 10"],
-      hideForAdmin: true,
-    },
-    {
       key: "teacherLessonPlan",
       label: "Lesson Plans",
       icon: BookOpen,
@@ -261,6 +253,14 @@ function Sidebar({
       label: "Mock Test",
       icon: ClipboardList,
       roles: ["student", "admin"],
+      hideForAdmin: true,
+    },
+    {
+      key: "exemplarResearch",
+      label: "Exemplar Research",
+      icon: Sparkles,
+      roles: ["student", "teacher"],
+      gradeFilter: ["Grade 8", "Grade 9", "Grade 10"],
       hideForAdmin: true,
     },
     {
