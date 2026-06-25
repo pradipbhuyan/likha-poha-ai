@@ -329,16 +329,64 @@ PLATFORM_FAQ: list[dict] = [
     # ── Teacher dashboard ─────────────────────────────────────────────────────
     {
         "keywords": ["teacher", "teacher dashboard", "teacher account",
-                     "assign student", "school teacher"],
+                     "assign student", "school teacher", "teacher features", "teacher tools"],
         "answer": (
-            "**Teachers** get a dedicated dashboard on LikhaPoha AI:\n\n"
-            "- View progress of all assigned students\n"
-            "- See test scores, subject performance, and weak areas\n"
-            "- Track daily study activity\n\n"
-            "**For schools:** Contact us at likhapohaai@gmail.com for bulk school accounts "
-            "and a free demo. We offer customised pricing for schools with 50+ students."
+            "**Teachers** get a full AI-powered workspace on LikhaPoha AI with 6 key features:\n\n"
+            "📋 **Teacher Dashboard** — View assigned students, class progress, subject performance, and add teacher notes for any student.\n\n"
+            "📖 **Lessons** — Browse AI step-wise lessons for any grade (5–10) and subject. Useful for lesson planning and checking content before teaching.\n\n"
+            "❓ **Ask Doubt** — Use the AI doubt solver for any chapter — great for checking explanations you'll give in class.\n\n"
+            "📝 **Create Test Paper** — Generate CBSE-aligned MCQ and subjective test papers for any grade/subject/chapter in seconds. Download the question paper + answer key.\n\n"
+            "📊 **Student Analytics** — See each student's score trend, subject performance (best/average/latest), and recent test activity. Sort by weakest students first.\n\n"
+            "🎥 **Learn More** — Access NCERT reference videos, Exemplar problems, and Grammar resources for every subject.\n\n"
+            "**For schools:** Contact us at likhapohaai@gmail.com for bulk accounts and a free demo."
         ),
-        "suggestions": ["How do I contact support?", "How much does it cost?", "How do I sign up?"],
+        "suggestions": ["How do I create a test paper?", "How does student analytics work?", "How do I sign up as a teacher?"],
+    },
+
+    # ── Test paper creation ───────────────────────────────────────────────────
+    {
+        "keywords": ["test paper", "create test", "generate test", "exam paper",
+                     "question paper", "mcq paper", "subjective questions", "print test",
+                     "test paper download", "answer key"],
+        "answer": (
+            "**Create Test Paper** is an AI-powered teacher tool that generates CBSE-aligned test papers in seconds.\n\n"
+            "**How it works:**\n"
+            "1. Select **Grade** (5–10), **Subject**, and **Chapter**\n"
+            "2. Choose **Question Type**: MCQ Only / Subjective Only / Mixed (60:40 split)\n"
+            "3. Set **Difficulty**: Easy / Medium / Hard / Mixed\n"
+            "4. Select **Number of Questions**: 5 to 30\n"
+            "5. Optionally add School Name and Time Limit\n"
+            "6. Click **Generate Test Paper** — AI creates questions using NCERT textbook content\n\n"
+            "**Output:**\n"
+            "- Live preview with answers highlighted\n"
+            "- 🖨️ **Print Question Paper** — CBSE-format with Section A (MCQ) and Section B (Subjective + answer lines)\n"
+            "- 🔑 **Print Answer Key** — Teacher-only sheet with correct answers and model answers\n\n"
+            "Questions are grounded in NCERT textbook content for accuracy."
+        ),
+        "suggestions": ["How does student analytics work?", "What grades does it support?", "How do I sign up as a teacher?"],
+    },
+
+    # ── Teacher student analytics ─────────────────────────────────────────────
+    {
+        "keywords": ["student analytics", "student progress", "student performance",
+                     "class analytics", "track students", "student scores", "weak students",
+                     "class performance", "student report"],
+        "answer": (
+            "**Student Analytics** lets teachers monitor every assigned student's performance at a glance.\n\n"
+            "**Class Overview (top of page):**\n"
+            "- Total students, class average score, total tests taken, students needing attention (<50%)\n"
+            "- Class subject chart showing average score per subject across all students\n\n"
+            "**Per-Student Detail:**\n"
+            "- Click any student from the roster to see their full analytics\n"
+            "- Score trend line chart (test-by-test history)\n"
+            "- Subject performance grouped bars: Best 🟢 / Average 🔵 / Latest 🟡 score\n"
+            "- Recent test activity with subject, chapter, date, and score\n\n"
+            "**Smart Sorting:**\n"
+            "- Name A–Z · Best Score ↓ · Weakest First · Most Active\n"
+            "- Filter by grade to focus on one class group\n\n"
+            "Student scores are colour-coded: 🟢 Good (≥75%) · 🟡 Average (50–74%) · 🔴 Needs Help (<50%)"
+        ),
+        "suggestions": ["How do I create a test paper?", "What is the Teacher Dashboard?", "How do I sign up as a teacher?"],
     },
 
     # ── Refund ────────────────────────────────────────────────────────────────

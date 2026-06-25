@@ -114,18 +114,33 @@ const ROLE_STEPS = {
   teacher: [
     {
       title: "Teacher Dashboard",
-      text: "View assigned students, subjects, and class progress from your workspace.",
+      text: "View assigned students, subjects, class progress, and add teacher notes from your workspace.",
       icon: Users,
     },
     {
-      title: "Spot Weak Areas",
-      text: "Use progress and practice signals to find students who need attention.",
-      icon: LineChart,
+      title: "AI Lessons & Ask Doubt",
+      text: "Browse NCERT step-wise lessons for any grade (5–10) and answer student doubts using the AI tutor.",
+      icon: BookOpen,
     },
     {
-      title: "Guide Revision",
-      text: "Add notes and help students revise the areas where they are not strong yet.",
-      icon: BookOpen,
+      title: "Create Test Paper",
+      text: "Generate MCQ and subjective test papers for any grade and chapter in seconds. Download the question paper and answer key for printing.",
+      icon: ClipboardList,
+    },
+    {
+      title: "Student Analytics",
+      text: "See each student's score trend, subject performance (best/average/latest bars), and recent test activity. Sort by weakest first to spot students who need help.",
+      icon: BarChart3,
+    },
+    {
+      title: "Learn More Resources",
+      text: "Access NCERT reference videos, exemplar materials, and grammar guides for any subject you teach.",
+      icon: Sparkles,
+    },
+    {
+      title: "Spot Weak Areas",
+      text: "The class overview chart shows the average score per subject across all your students — identify which topic needs the most revision.",
+      icon: LineChart,
     },
   ],
 };
