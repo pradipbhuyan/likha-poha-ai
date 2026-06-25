@@ -929,7 +929,7 @@ function App() {
       case "teacherStudentAnalytics":
         return <TeacherStudentAnalyticsPage user={user} />;
       case "exemplarResearch":
-        return <ExemplarResearchPage user={user} />;
+        return <ExemplarResearchPage user={user} setActivePage={handlePageChange} />;
       case "subscriptionPlans":
         return <SubscriptionPlansPage user={user} onSubscriptionComplete={handleSubscriptionComplete} />;
       case "platformWalkthrough":

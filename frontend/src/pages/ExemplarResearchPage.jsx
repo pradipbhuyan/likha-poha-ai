@@ -102,9 +102,44 @@ const SUBJECT_COLORS = {
   Science: { icon: "🔬", gradient: "linear-gradient(135deg,#059669,#0891b2)", tag: "Science" },
 };
 
-export default function ExemplarResearchPage({ user }) {
+/** Friendly upgrade prompt shown when a free/promo user clicks a topic card */
+function UpgradeCard({ onClose, onUpgrade }) {
+  return (
+    <div style={{ textAlign: "center", padding: "20px 16px" }}>
+      <div style={{ fontSize: "2.4rem", marginBottom: 10 }}>🔐</div>
+      <h4 style={{ margin: "0 0 8px", fontSize: "1rem" }}>This feature is for paid subscribers</h4>
+      <p style={{ fontSize: ".82rem", color: "var(--muted)", lineHeight: 1.6, marginBottom: 16 }}>
+        AI-powered topic explanations, formula breakdowns, and exam tips are available with a paid plan.
+        <br />Your current plan does not include this feature.
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <button onClick={onUpgrade}
+          style={{ padding: "10px 20px", borderRadius: 9, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+          🚀 See Plans & Upgrade
+        </button>
+        <button onClick={onClose}
+          style={{ padding: "8px 16px", borderRadius: 9, border: "1px solid var(--border)", background: "transparent", color: "var(--muted)", fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
+          Maybe later
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Returns true if the user has a paid subscription (not free/promo)
+function hasPaidAccess(user) {
+  if (!user) return false;
+  if (user.role === "teacher" || user.role === "admin") return true;
+  if (user.subscriptionPlan && user.subscriptionPlan !== "free") return true;
+  if (user.accessCbse) return true;
+  if (user.parentId) return true; // parent-linked child inherits parent's plan
+  return false;
+}
+
+export default function ExemplarResearchPage({ user, setActivePage }) {
   const isTeacher = user?.role === "teacher";
   const userGrade = user?.grade || "Grade 9";
+  const paidAccess = hasPaidAccess(user);
 
   // Grade selector — teachers can view any grade; students see only their own
   const [selectedGrade, setSelectedGrade] = useState(isTeacher ? "Grade 10" : userGrade);
@@ -125,6 +160,7 @@ export default function ExemplarResearchPage({ user }) {
   async function explainTopic(topic) {
     setActiveTopic(topic);
     setExplanation("");
+    if (!paidAccess) return; // gate — upgrade card shown in panel
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/api/doubt/answer`, {
@@ -161,6 +197,10 @@ Make it concise, exam-focused and easy to understand.`,
   async function handleSearch(e) {
     e?.preventDefault();
     if (!searchQuery.trim()) return;
+    if (!paidAccess) {
+      setSearchResult("__upgrade__");
+      return;
+    }
     setSearchResult("");
     setSearchLoading(true);
     try {
@@ -269,8 +309,8 @@ Make it concise, exam-focused and easy to understand.`,
         </button>
       </form>
 
-      {/* Search result */}
-      {searchResult && (
+      {/* Search result (or upgrade gate) */}
+      {searchResult && searchResult !== "__upgrade__" && (
         <div className="premium-card" style={{ marginBottom: 24, borderLeft: "4px solid #6366f1" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
             <h4 style={{ margin: 0, color: "#6366f1" }}>🔍 Research Result: {searchQuery}</h4>
@@ -281,6 +321,9 @@ Make it concise, exam-focused and easy to understand.`,
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{searchResult}</ReactMarkdown>
           </div>
         </div>
+      )}
+      {searchResult === "__upgrade__" && (
+        <UpgradeCard onClose={() => { setSearchResult(""); }} onUpgrade={() => setActivePage?.("subscriptionPlans")} />
       )}
 
       {/* ── Main layout: cards + explanation panel ── */}
@@ -339,7 +382,9 @@ Make it concise, exam-focused and easy to understand.`,
                   style={{ background: "none", border: "none", cursor: "pointer", color: "var(--muted)", fontSize: "1.3rem", lineHeight: 1 }}>×</button>
               </div>
 
-              {loading ? (
+              {!paidAccess ? (
+                <UpgradeCard onClose={() => setActiveTopic(null)} onUpgrade={() => setActivePage?.("subscriptionPlans")} />
+              ) : loading ? (
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, padding: "24px 0" }}>
                   <div style={{ width: 32, height: 32, border: "3px solid rgba(99,102,241,.2)", borderTopColor: "#6366f1", borderRadius: "50%", animation: "spin 0.9s linear infinite" }} />
                   <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
