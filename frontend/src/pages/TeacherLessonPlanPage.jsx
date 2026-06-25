@@ -56,7 +56,20 @@ export default function TeacherLessonPlanPage({ user }) {
   useEffect(() => { setSubject(subjects[0] || ""); setChapter(""); }, [grade]);
   useEffect(() => { setChapter(chapters[0] || ""); }, [subject, grade]);
 
+  // ── Free-tier daily limit ──────────────────────────────────────────────────
+  const freeTeacher = user?.role === "teacher" &&
+    (!user?.subscriptionPlan || user.subscriptionPlan === "free") &&
+    !user?.accessCbse;
+  const todayPlanCount = freeTeacher
+    ? (() => { try { return parseInt(localStorage.getItem(`teacher_lessonplan_${user?.username}_${new Date().toISOString().slice(0,10)}`)||"0",10); } catch(e) { return 0; } })()
+    : 0;
+  const planLimitReached = freeTeacher && todayPlanCount >= 2;
+  function incrementPlanCount() {
+    try { const k=`teacher_lessonplan_${user?.username}_${new Date().toISOString().slice(0,10)}`; localStorage.setItem(k,String(parseInt(localStorage.getItem(k)||"0",10)+1)); } catch(e) { /* non-critical */ }
+  }
+
   async function handleGenerate() {
+    if (planLimitReached) return;
     if (!grade || !subject || !chapter) {
       setError("Please select Grade, Subject and Chapter.");
       return;
@@ -80,6 +93,7 @@ export default function TeacherLessonPlanPage({ user }) {
       const meta = { grade, subject, chapter, duration, ts: new Date().toLocaleTimeString() };
       setPlanMeta(meta);
       setHistory(prev => [{ ...meta, plan: data.lesson_plan }, ...prev.slice(0, 9)]);
+      if (freeTeacher) incrementPlanCount();
     } catch (err) {
       setError(err.message || "Failed to generate lesson plan. Please try again.");
     } finally {
@@ -158,9 +172,21 @@ export default function TeacherLessonPlanPage({ user }) {
 
         {error && <div className="error-box" style={{ marginBottom: 12 }}>{error}</div>}
 
+        {/* Daily limit banner for free-tier teachers */}
+        {freeTeacher && (
+          <div style={{ marginBottom: 10, padding: "8px 12px", borderRadius: 8, fontSize: ".82rem", fontWeight: 600,
+            background: planLimitReached ? "rgba(239,68,68,.08)" : "rgba(99,102,241,.07)",
+            border: `1px solid ${planLimitReached ? "rgba(239,68,68,.3)" : "rgba(167,139,250,.25)"}`,
+            color: planLimitReached ? "#f87171" : "#a78bfa" }}>
+            {planLimitReached
+              ? "🚫 Daily limit reached (2/2 lesson plans today). Upgrade for unlimited or come back tomorrow."
+              : `📊 ${todayPlanCount}/2 free lesson plans used today`}
+          </div>
+        )}
+
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading} style={{ maxWidth: 260 }}>
-            {generating ? "⏳ Generating Lesson Plan…" : "✨ Generate Lesson Plan"}
+          <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || planLimitReached} style={{ maxWidth: 260 }}>
+            {planLimitReached ? "🚫 Daily Limit Reached" : generating ? "⏳ Generating Lesson Plan…" : "✨ Generate Lesson Plan"}
           </button>
           {history.length > 0 && (
             <button onClick={() => setHistoryOpen(h => !h)}

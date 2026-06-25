@@ -85,6 +85,23 @@ function generateAnswerKeyHTML({ schoolName, className, subject, chapter, questi
     </body></html>`;
 }
 
+// ── Daily limit helpers for free-tier teachers ───────────────────────────────
+const FREE_TEACHER_DAILY_LIMIT = 2;
+function getTeacherDailyKey(username, feature) {
+  return `teacher_${feature}_${username}_${new Date().toISOString().slice(0,10)}`;
+}
+function getTeacherDailyCount(username, feature) {
+  try { return parseInt(localStorage.getItem(getTeacherDailyKey(username, feature)) || "0", 10); } catch { return 0; }
+}
+function incrementTeacherDailyCount(username, feature) {
+  try { const k = getTeacherDailyKey(username, feature); localStorage.setItem(k, String(parseInt(localStorage.getItem(k)||"0",10)+1)); } catch { /* non-critical */ }
+}
+function isTeacherFree(user) {
+  return user?.role === "teacher" &&
+    (!user?.subscriptionPlan || user.subscriptionPlan === "free") &&
+    !user?.accessCbse;
+}
+
 export default function TeacherTestPaperPage({ user }) {
   const [syllabus, setSyllabus] = useState({});
   const [syllabusLoading, setSyllabusLoading] = useState(true);
@@ -128,7 +145,13 @@ export default function TeacherTestPaperPage({ user }) {
     setChapter(chapters[0] || "");
   }, [subject, grade]);
 
+  // ── Free-tier daily limit ──────────────────────────────────────────────────
+  const freeTeacher = isTeacherFree(user);
+  const todayTestCount = freeTeacher ? getTeacherDailyCount(user?.username, "testpaper") : 0;
+  const testLimitReached = freeTeacher && todayTestCount >= FREE_TEACHER_DAILY_LIMIT;
+
   async function handleGenerate() {
+    if (testLimitReached) return;
     if (!grade || !subject || !chapter) {
       setError("Please select Grade, Subject and Chapter.");
       return;
@@ -161,6 +184,7 @@ export default function TeacherTestPaperPage({ user }) {
       if (!res.ok || !data.success) throw new Error(data.detail || data.message || "Generation failed");
       setQuestions(data.questions || []);
       setPreviewMode(true);
+      if (freeTeacher) incrementTeacherDailyCount(user?.username, "testpaper");
     } catch (err) {
       setError(err.message || "Failed to generate test paper. Please try again.");
     } finally {
@@ -260,8 +284,20 @@ export default function TeacherTestPaperPage({ user }) {
 
         {error && <div className="error-box" style={{ marginBottom: 12 }}>{error}</div>}
 
-        <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading} style={{ maxWidth: 260 }}>
-          {generating ? "⏳ Generating Questions…" : "✨ Generate Test Paper"}
+        {/* Daily limit banner for free-tier teachers */}
+        {freeTeacher && (
+          <div style={{ marginBottom: 10, padding: "8px 12px", borderRadius: 8, fontSize: ".82rem", fontWeight: 600,
+            background: testLimitReached ? "rgba(239,68,68,.08)" : "rgba(99,102,241,.07)",
+            border: `1px solid ${testLimitReached ? "rgba(239,68,68,.3)" : "rgba(167,139,250,.25)"}`,
+            color: testLimitReached ? "#f87171" : "#a78bfa" }}>
+            {testLimitReached
+              ? `🚫 Daily limit reached (${FREE_TEACHER_DAILY_LIMIT}/${FREE_TEACHER_DAILY_LIMIT} test papers today). Upgrade for unlimited or come back tomorrow.`
+              : `📊 ${todayTestCount}/${FREE_TEACHER_DAILY_LIMIT} free test papers used today`}
+          </div>
+        )}
+
+        <button className="primary-btn" onClick={handleGenerate} disabled={generating || syllabusLoading || testLimitReached} style={{ maxWidth: 260 }}>
+          {testLimitReached ? "🚫 Daily Limit Reached" : generating ? "⏳ Generating Questions…" : "✨ Generate Test Paper"}
         </button>
       </div>
 

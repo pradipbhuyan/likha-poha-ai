@@ -1198,9 +1198,9 @@ function LessonsPage({ user, setActivePage }) {
 
   // ── Exemplar chapter gate ──────────────────────────────────────────────────
   const isExemplarChapter = chapter?.startsWith("Exemplar:");
+  // Free-tier teachers also blocked from Exemplar chapters — admin only bypasses unconditionally
   const hasPaidAccessForLessons =
     user?.role === "admin" ||
-    user?.role === "teacher" ||
     (user?.subscriptionPlan && user.subscriptionPlan !== "free") ||
     user?.accessCbse ||
     user?.parentId;
