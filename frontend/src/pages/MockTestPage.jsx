@@ -34,7 +34,27 @@ function MathText({ text }) {
   );
 }
 
-function MockTestPage({ user }) {
+// ── Daily mock test limit for free-tier students ─────────────────────────────
+const FREE_DAILY_MOCK_LIMIT = 5;
+
+function getDailyMockKey(username) {
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  return `mock_daily_${username}_${today}`;
+}
+
+function getDailyMockCount(username) {
+  try { return parseInt(localStorage.getItem(getDailyMockKey(username)) || "0", 10); } catch { return 0; }
+}
+
+function incrementDailyMockCount(username) {
+  try {
+    const key = getDailyMockKey(username);
+    const count = parseInt(localStorage.getItem(key) || "0", 10);
+    localStorage.setItem(key, String(count + 1));
+  } catch { /* non-critical */ }
+}
+
+function MockTestPage({ user, setActivePage }) {
   /** Builds, runs, scores, and stores CBSE/SOF mock tests for the signed-in student. */
   function getPerformanceSummary(percentage) {
     /** Choose summary text based on the submitted test percentage. */
@@ -283,8 +303,19 @@ function MockTestPage({ user }) {
     setSecondsLeft(0);
   }
 
+  // ── Compute free-tier daily limit state ──────────────────────────────────
+  const isFreeUser = user?.role === "student" &&
+    (!user?.subscriptionPlan || user.subscriptionPlan === "free") &&
+    !user?.accessCbse && !user?.parentId;
+  const todayMockCount = isFreeUser ? getDailyMockCount(user?.username) : 0;
+  const dailyLimitReached = isFreeUser && todayMockCount >= FREE_DAILY_MOCK_LIMIT;
+
   async function handleGenerateMockTest() {
     /** Validate access and request a fresh mock test for the selected topic and settings. */
+
+    // Daily limit gate for free-tier students
+    if (dailyLimitReached) return;
+
     setLoading(true);
 
     // Block CBSE mock tests only for non-offer, non-paid users.
@@ -367,6 +398,9 @@ function MockTestPage({ user }) {
       if (timerEnabled) {
         setSecondsLeft(durationMinutes * 60);
       }
+
+      // Increment free-tier daily counter after successful generation
+      if (isFreeUser) incrementDailyMockCount(user?.username);
     } catch {
       setError("Could not generate mock test. Check backend.");
     } finally {
@@ -550,7 +584,7 @@ function MockTestPage({ user }) {
           </label>
 
           <label>
-            Subject / Olympiad
+            Subject
             <select
               value={subject}
               onChange={(e) => handleSubjectChange(e.target.value)}
@@ -670,12 +704,37 @@ function MockTestPage({ user }) {
           </label>
         </div>
 
+        {/* Daily limit banner for free-tier students */}
+        {isFreeUser && (
+          <div style={{ marginBottom: 10, padding: "8px 12px", borderRadius: 8,
+            background: dailyLimitReached ? "rgba(239,68,68,.08)" : "rgba(99,102,241,.07)",
+            border: `1px solid ${dailyLimitReached ? "rgba(239,68,68,.3)" : "rgba(167,139,250,.25)"}`,
+            display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <span style={{ fontSize: ".82rem", color: dailyLimitReached ? "#f87171" : "#a78bfa", fontWeight: 600 }}>
+              {dailyLimitReached
+                ? `🚫 Daily limit reached (${FREE_DAILY_MOCK_LIMIT}/${FREE_DAILY_MOCK_LIMIT} tests used today)`
+                : `📊 ${todayMockCount}/${FREE_DAILY_MOCK_LIMIT} free mock tests used today`}
+            </span>
+            {dailyLimitReached && (
+              <div style={{ display: "flex", gap: 8 }}>
+                <button type="button" onClick={() => setActivePage?.("subscriptionPlans")}
+                  style={{ padding: "4px 12px", borderRadius: 7, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  🚀 Upgrade for unlimited
+                </button>
+                <span style={{ fontSize: ".72rem", color: "var(--muted)", alignSelf: "center" }}>or come back tomorrow</span>
+              </div>
+            )}
+          </div>
+        )}
+
         <button
           className="primary-btn premium-mock-generate-btn"
           onClick={handleGenerateMockTest}
-          disabled={loading}
+          disabled={loading || dailyLimitReached}
         >
-          {loading ? "Generating..." : "✨ Generate Mock Test"}
+          {dailyLimitReached
+            ? "🚫 Daily Limit Reached — Come Back Tomorrow"
+            : loading ? "Generating..." : "✨ Generate Mock Test"}
         </button>
 
         {error && <div className="error-box">{error}</div>}

@@ -885,7 +885,7 @@ function App() {
       case "doubt":
         return <DoubtPage user={user} setActivePage={handlePageChange} />;
       case "mockTest":
-        return <MockTestPage user={user} />;
+        return <MockTestPage user={user} setActivePage={handlePageChange} />;
       case "resources":
         return <ResourcesPage user={user} />;
       case "analytics":
