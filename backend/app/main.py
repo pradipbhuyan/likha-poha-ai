@@ -258,6 +258,13 @@ app.include_router(
     tags=["Teacher"],
 )
 
+@app.get("/api/platform-settings/lesson-card")
+def get_lesson_card_settings_public():
+    """Return the active lesson card style and theme — public, no auth required."""
+    from app.routes.admin_control import _load_lesson_card_settings  # noqa: PLC0415
+    return {"success": True, **_load_lesson_card_settings()}
+
+
 @app.get("/api/health")
 def health_check():
     """Return a detailed health response for frontend/API uptime checks."""

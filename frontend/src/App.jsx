@@ -36,6 +36,7 @@ import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
+import AdminLessonCardPage from "./pages/AdminLessonCardPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import AdminPaymentsPage from "./pages/AdminPaymentsPage";
@@ -904,6 +905,8 @@ function App() {
         return <AdminPerformanceTestsPage user={user} />;
       case "guideThemes":
         return <AdminGuideSettingsPage user={user} />;
+      case "lessonCardStyle":
+        return <AdminLessonCardPage user={user} />;
       case "productCatalogue":
         return <AdminProductCataloguePage user={user} />;
       case "cacheManagement":

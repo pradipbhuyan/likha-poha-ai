@@ -1376,13 +1376,17 @@ def update_child_limits(
 class UpdateAiSettingsRequest(BaseModel):
     api_enabled: bool
     openai_api_key: str | None = None
-    provider: str = "openai"           # "openai" | "venice" | "groq" | "cerebras"
+    provider: str = "openai"    # "openai"|"venice"|"groq"|"cerebras"|"gemini"|"sambanova"
     venice_api_key: str | None = None
     venice_model: str = "llama-3.3-70b"
     groq_api_key: str | None = None
     groq_model: str = "llama-3.3-70b-versatile"
     cerebras_api_key: str | None = None
     cerebras_model: str = "llama3.3-70b"
+    gemini_api_key: str | None = None
+    gemini_model: str = "gemini-2.0-flash-lite"
+    sambanova_api_key: str | None = None
+    sambanova_model: str = "Meta-Llama-3.3-70B-Instruct"
 
 
 def _load_ai_settings_row() -> dict | None:
@@ -1419,6 +1423,8 @@ def get_ai_settings(admin=Depends(require_admin)):
         stored_venice_key = (row.get("venice_api_key") or "").strip()
         stored_groq_key = (row.get("groq_api_key") or "").strip()
         stored_cerebras_key = (row.get("cerebras_api_key") or "").strip()
+        stored_gemini_key = (row.get("gemini_api_key") or "").strip()
+        stored_sambanova_key = (row.get("sambanova_api_key") or "").strip()
         return {
             "success": True,
             "api_enabled": row.get("api_enabled", True),
@@ -1431,6 +1437,10 @@ def get_ai_settings(admin=Depends(require_admin)):
             "groq_model": row.get("groq_model") or "llama-3.3-70b-versatile",
             "cerebras_key_prefix": stored_cerebras_key[:12] if stored_cerebras_key else "",
             "cerebras_model": row.get("cerebras_model") or "llama3.3-70b",
+            "gemini_key_prefix": stored_gemini_key[:12] if stored_gemini_key else "",
+            "gemini_model": row.get("gemini_model") or "gemini-2.0-flash-lite",
+            "sambanova_key_prefix": stored_sambanova_key[:12] if stored_sambanova_key else "",
+            "sambanova_model": row.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
         }
 
     # Table exists but no row yet — fall back to env key
@@ -1449,6 +1459,10 @@ def get_ai_settings(admin=Depends(require_admin)):
         "groq_model": "llama-3.3-70b-versatile",
         "cerebras_key_prefix": env_cerebras_key[:12] if env_cerebras_key else "",
         "cerebras_model": "llama3.3-70b",
+        "gemini_key_prefix": "",
+        "gemini_model": "gemini-2.0-flash-lite",
+        "sambanova_key_prefix": "",
+        "sambanova_model": "Meta-Llama-3.3-70B-Instruct",
     }
 
 
@@ -1488,6 +1502,16 @@ def update_ai_settings(
     new_cerebras_key = (data.cerebras_api_key or "").strip()
     effective_cerebras_key = new_cerebras_key if new_cerebras_key else existing_cerebras_key
 
+    # Gemini key — preserve existing if blank
+    existing_gemini_key = (row.get("gemini_api_key") or "").strip() if row else ""
+    new_gemini_key = (data.gemini_api_key or "").strip()
+    effective_gemini_key = new_gemini_key if new_gemini_key else existing_gemini_key
+
+    # SambaNova key — preserve existing if blank
+    existing_sambanova_key = (row.get("sambanova_api_key") or "").strip() if row else ""
+    new_sambanova_key = (data.sambanova_api_key or "").strip()
+    effective_sambanova_key = new_sambanova_key if new_sambanova_key else existing_sambanova_key
+
     value = {
         "api_enabled": data.api_enabled,
         "openai_api_key": effective_key,
@@ -1498,6 +1522,10 @@ def update_ai_settings(
         "groq_model": (data.groq_model or "llama-3.3-70b-versatile").strip(),
         "cerebras_api_key": effective_cerebras_key,
         "cerebras_model": (data.cerebras_model or "llama3.3-70b").strip(),
+        "gemini_api_key": effective_gemini_key,
+        "gemini_model": (data.gemini_model or "gemini-2.0-flash-lite").strip(),
+        "sambanova_api_key": effective_sambanova_key,
+        "sambanova_model": (data.sambanova_model or "Meta-Llama-3.3-70B-Instruct").strip(),
     }
 
     try:
@@ -1535,6 +1563,10 @@ def update_ai_settings(
         "groq_model": value["groq_model"],
         "cerebras_key_prefix": effective_cerebras_key[:12] if effective_cerebras_key else "",
         "cerebras_model": value["cerebras_model"],
+        "gemini_key_prefix": effective_gemini_key[:12] if effective_gemini_key else "",
+        "gemini_model": value["gemini_model"],
+        "sambanova_key_prefix": effective_sambanova_key[:12] if effective_sambanova_key else "",
+        "sambanova_model": value["sambanova_model"],
         "message": "AI settings saved successfully.",
     }
 
@@ -1980,6 +2012,74 @@ def _load_logging_settings() -> dict:
     except Exception:
         pass
     return {}
+
+
+# ── Lesson Card Style Settings ────────────────────────────────────────────────
+
+LESSON_CARD_DEFAULTS = {
+    "card_style": "default",   # "default" | "A" | "B" | "C"
+    "card_theme": "brand",     # "brand" | "forest"
+}
+
+
+def _load_lesson_card_settings() -> dict:
+    """Read lesson_card_settings from admin_settings. Returns defaults if absent."""
+    try:
+        row = (
+            admin_client
+            .table("admin_settings")
+            .select("value")
+            .eq("key", "lesson_card_settings")
+            .limit(1)
+            .execute()
+        )
+        if row.data:
+            return {**LESSON_CARD_DEFAULTS, **(row.data[0]["value"] or {})}
+    except Exception:
+        pass
+    return dict(LESSON_CARD_DEFAULTS)
+
+
+@router.get("/lesson-card-settings")
+def get_lesson_card_settings(admin=Depends(require_admin)):
+    """Return current lesson section card style and colour theme."""
+    return {"success": True, **_load_lesson_card_settings()}
+
+
+class LessonCardSettingsRequest(BaseModel):
+    card_style: str = "default"   # "default" | "A" | "B" | "C"
+    card_theme: str = "brand"     # "brand" | "forest"
+
+
+@router.put("/lesson-card-settings")
+def update_lesson_card_settings(
+    data: LessonCardSettingsRequest,
+    admin=Depends(require_admin),
+):
+    """Persist the active lesson section card style and colour theme."""
+    valid_styles = {"default", "A", "B", "C"}
+    valid_themes = {"brand", "forest"}
+    card_style = data.card_style if data.card_style in valid_styles else "default"
+    card_theme = data.card_theme if data.card_theme in valid_themes else "brand"
+
+    value = {"card_style": card_style, "card_theme": card_theme}
+
+    try:
+        admin_client.table("admin_settings").upsert(
+            {"key": "lesson_card_settings", "value": value, "updated_at": "now()"},
+            on_conflict="key",
+        ).execute()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Unable to save lesson card settings. Make sure "
+                "backend/sql/add_admin_settings.sql has been run. "
+                f"Original error: {str(exc)}"
+            ),
+        )
+
+    return {"success": True, **value, "message": "Lesson card settings saved."}
 
 
 @router.get("/logging-settings")

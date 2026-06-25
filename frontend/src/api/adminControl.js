@@ -506,6 +506,30 @@ export async function getMyOfferAccess(accessToken) {
   return response.json();
 }
 
+export async function getLessonCardSettings(accessToken) {
+  /** Load the active lesson card style and colour theme for the admin console. */
+  const response = await adminFetch("/api/admin-control/lesson-card-settings", {
+    headers: authHeaders(accessToken),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to load lesson card settings"));
+  }
+  return response.json();
+}
+
+export async function updateLessonCardSettings(payload, accessToken) {
+  /** Persist the active lesson card style ("default"|"A"|"B"|"C") and theme ("brand"|"forest"). */
+  const response = await adminFetch("/api/admin-control/lesson-card-settings", {
+    method: "PUT",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Failed to save lesson card settings"));
+  }
+  return response.json();
+}
+
 export async function adminOfferGateTest(payload, accessToken) {
   /** Toggle offer-gate mode on a test user without touching Supabase directly.
    *  payload: { username: string, action: "enable"|"disable"|"status" }

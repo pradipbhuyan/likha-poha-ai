@@ -158,7 +158,7 @@ function isHindiSubject(subject) {
   return s.includes("hindi") || s.includes("हिंदी") || s.includes("हिन्दी");
 }
 
-function LessonSections({ lesson, onEvaluateQuestion, subject }) {
+function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "default", cardTheme = "brand" }) {
   /** Presents a generated lesson as expandable sections with validated visual support. */
   const sections = parseSections(normalizeTutorMarkdown(lesson));
 
@@ -208,7 +208,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject }) {
   }
 
   return (
-    <div className="lesson-sections">
+    <div className={`lesson-sections style-${cardStyle} theme-${cardTheme}`}>
       {sections.map((section, index) => {
         const questionPrompt = getQuestionPrompt(section);
         const renderableContent = getRenderableContent(section, questionPrompt);
@@ -221,10 +221,12 @@ function LessonSections({ lesson, onEvaluateQuestion, subject }) {
           <div
             key={index}
             className={`lesson-section-card section-${index + 1}`}
+          data-step={index + 1}
           >
             <button
               type="button"
               className="lesson-section-header"
+              data-step={index + 1}
               onClick={() => toggleSection(index)}
             >
               <div className="lesson-section-title">

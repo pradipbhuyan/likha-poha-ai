@@ -17,6 +17,7 @@ import { generateSpeech } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import LessonSections from "../components/LessonSections";
 import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
+import { getLessonCardPublicSettings } from "../api/platformSettings";
 
 import {
   evaluateStudentAnswer,
@@ -267,6 +268,15 @@ function LessonsPage({ user, setActivePage }) {
   const [practiceModeActive, setPracticeModeActive] = useState(false);
   const [practiceFocusWarnings, setPracticeFocusWarnings] = useState(0);
   const [gifFading, setGifFading] = useState(false);
+  const [cardStyle, setCardStyle] = useState("default");
+  const [cardTheme, setCardTheme] = useState("brand");
+
+  useEffect(() => {
+    getLessonCardPublicSettings().then(s => {
+      setCardStyle(s.card_style || "default");
+      setCardTheme(s.card_theme || "brand");
+    });
+  }, []);
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -1586,6 +1596,8 @@ function LessonsPage({ user, setActivePage }) {
                     lesson={lesson}
                     onEvaluateQuestion={handleEvaluateInlineLessonQuestion}
                     subject={subject}
+                    cardStyle={cardStyle}
+                    cardTheme={cardTheme}
                   />
                 </div>
 

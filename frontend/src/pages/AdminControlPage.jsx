@@ -121,6 +121,12 @@ function AdminControlPage({ user }) {
   const [cerebrasKeyPrefix, setCerebrasKeyPrefix] = useState("");
   const [cerebrasModel, setCerebrasModel] = useState("gpt-oss-120b");
   const [newCerebrasKey, setNewCerebrasKey] = useState("");
+  const [geminiKeyPrefix, setGeminiKeyPrefix] = useState("");
+  const [geminiModel, setGeminiModel] = useState("gemini-2.5-flash");
+  const [newGeminiKey, setNewGeminiKey] = useState("");
+  const [sambanovaKeyPrefix, setSambanovaKeyPrefix] = useState("");
+  const [sambanovaModel, setSambanovaModel] = useState("Meta-Llama-3.3-70B-Instruct");
+  const [newSambanovaKey, setNewSambanovaKey] = useState("");
   const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
   const [aiSettingsMessage, setAiSettingsMessage] = useState("");
@@ -228,6 +234,10 @@ function AdminControlPage({ user }) {
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
       setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
       setCerebrasModel(data.cerebras_model || "gpt-oss-120b");
+      setGeminiKeyPrefix(data.gemini_key_prefix || "");
+      setGeminiModel(data.gemini_model || "gemini-2.0-flash-lite");
+      setSambanovaKeyPrefix(data.sambanova_key_prefix || "");
+      setSambanovaModel(data.sambanova_model || "Meta-Llama-3.3-70B-Instruct");
     } catch (err) {
       console.error(err);
     } finally {
@@ -253,6 +263,10 @@ function AdminControlPage({ user }) {
       if (newVeniceKey.trim()) payload.venice_api_key = newVeniceKey.trim();
       if (newGroqKey.trim()) payload.groq_api_key = newGroqKey.trim();
       if (newCerebrasKey.trim()) payload.cerebras_api_key = newCerebrasKey.trim();
+      if (newGeminiKey.trim()) payload.gemini_api_key = newGeminiKey.trim();
+      if (newSambanovaKey.trim()) payload.sambanova_api_key = newSambanovaKey.trim();
+      payload.gemini_model = geminiModel;
+      payload.sambanova_model = sambanovaModel;
       const data = await updateAiSettings(payload, user.accessToken);
       setAiEnabled(data.api_enabled ?? true);
       setAiKeyPrefix(data.api_key_prefix || "");
@@ -271,7 +285,9 @@ function AdminControlPage({ user }) {
       const providerLabel =
         data.provider === "venice" ? `Venice AI (${data.venice_model})` :
         data.provider === "groq" ? `Groq (${data.groq_model})` :
-        data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` : "OpenAI";
+        data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` :
+        data.provider === "gemini" ? `Gemini (${data.gemini_model})` :
+        data.provider === "sambanova" ? `SambaNova (${data.sambanova_model})` : "OpenAI";
       setAiSettingsMessage(
         data.api_enabled
           ? `AI API is ON — using ${providerLabel}.`
@@ -1039,20 +1055,33 @@ function AdminControlPage({ user }) {
             )}
           </div>
 
-          {/* Provider selector */}
+          {/* Provider selector — horizontal grid */}
           <div style={{ marginBottom: 20 }}>
             <strong>AI Provider</strong>
-            <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
-              Switch between OpenAI, Venice AI, Groq, or Cerebras. Groq and Cerebras are free — no credit card.
+            <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 10px" }}>
+              Groq, Cerebras, Gemini and SambaNova are <strong style={{color:"#22c55e"}}>100% free</strong> — no credit card needed.
             </p>
-            <div style={{ display: "flex", gap: 0, background: "var(--surface2,#111827)", border: "1px solid var(--border)", borderRadius: 9, padding: 3 }}>
-              {[["openai", "🤖 OpenAI"], ["venice", "🎨 Venice AI"], ["groq", "⚡ Groq (Free)"], ["cerebras", "🧠 Cerebras (Free)"]].map(([val, label]) => (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+              {[
+                ["openai",     "🤖 OpenAI",          "#6366f1"],
+                ["venice",     "🎨 Venice AI",        "#8b5cf6"],
+                ["groq",       "⚡ Groq",             "#10b981"],
+                ["cerebras",   "🧠 Cerebras",         "#a855f7"],
+                ["gemini",     "✨ Gemini",            "#f59e0b"],
+                ["sambanova",  "🚀 SambaNova",        "#06b6d4"],
+              ].map(([val, label, color]) => (
                 <button key={val} onClick={() => setAiProvider(val)}
-                  style={{ flex: 1, padding: "8px 10px", borderRadius: 7, border: "none",
-                    background: aiProvider === val ? "var(--accent, #6366f1)" : "transparent",
-                    color: aiProvider === val ? "#fff" : "var(--muted)",
-                    fontFamily: "inherit", fontSize: ".85rem", fontWeight: 600, cursor: "pointer" }}>
+                  style={{
+                    padding: "10px 8px", borderRadius: 10, border: `2px solid ${aiProvider === val ? color : "var(--border)"}`,
+                    background: aiProvider === val ? `${color}18` : "var(--surface2,#111827)",
+                    color: aiProvider === val ? color : "var(--muted)",
+                    fontFamily: "inherit", fontSize: ".82rem", fontWeight: 700, cursor: "pointer",
+                    transition: "all .18s", textAlign: "center",
+                  }}>
                   {label}
+                  {["groq","cerebras","gemini","sambanova"].includes(val) && (
+                    <span style={{ display:"block", fontSize:".68rem", color:"#22c55e", fontWeight:800, marginTop:2 }}>FREE</span>
+                  )}
                 </button>
               ))}
             </div>
@@ -1109,10 +1138,8 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>Groq Model</strong>
                 <select value={groqModel} onChange={(e) => setGroqModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="llama-3.3-70b-versatile">Llama 3.3 70B — Best quality (live students)</option>
-                  <option value="llama-3.1-8b-instant">Llama 3.1 8B Instant — Fastest (prewarm)</option>
-                  <option value="mixtral-8x7b-32768">Mixtral 8x7B — Mid-size, fast</option>
-                  <option value="gemma2-9b-it">Gemma 2 9B — Lightweight</option>
+                  <option value="llama-3.3-70b-versatile">Llama 3.3 70B Versatile — Best quality (recommended)</option>
+                  <option value="llama-3.1-8b-instant">Llama 3.1 8B Instant — Fastest, highest throughput (prewarm)</option>
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 Use <strong>8B Instant</strong> for prewarming (highest throughput). Use <strong>70B</strong> for live student responses.
@@ -1151,6 +1178,72 @@ function AdminControlPage({ user }) {
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 Use <strong>GPT-OSS 120B</strong> for all tasks — no token cap means you never get blocked during prewarming.
+                </p>
+              </label>
+            </div>
+          )}
+
+          {/* Gemini settings */}
+          {aiProvider === "gemini" && (
+            <div style={{ background: "rgba(245,158,11,.07)", border: "1px solid rgba(245,158,11,.3)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>Google Gemini Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                Gemini Flash has a <strong>1M token/day free tier</strong> — no credit card.
+                Get your key at{" "}
+                <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>aistudio.google.com/apikey</a>.
+                Key starts with <code>AIza…</code>
+              </p>
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>Gemini API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {geminiKeyPrefix ? `${geminiKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newGeminiKey} onChange={(e) => setNewGeminiKey(e.target.value)}
+                  placeholder="AIza…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>Gemini Model</strong>
+                <select value={geminiModel} onChange={(e) => setGeminiModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="gemini-2.5-flash">Gemini 2.5 Flash — Fast, free, best quality (recommended ✅)</option>
+                  <option value="gemini-2.5-pro">Gemini 2.5 Pro — Highest quality, more thoughtful</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
+                  💡 Use <strong>Flash Lite</strong> for everything — 1M tokens/day free. Flash has 1M token context window — great for long lessons.
+                </p>
+              </label>
+            </div>
+          )}
+
+          {/* SambaNova settings */}
+          {aiProvider === "sambanova" && (
+            <div style={{ background: "rgba(6,182,212,.07)", border: "1px solid rgba(6,182,212,.3)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>SambaNova Cloud Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                SambaNova provides Llama 4 Scout with a <strong>generous free tier</strong> (~1M tokens/day).
+                Get your key at{" "}
+                <a href="https://cloud.sambanova.ai" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>cloud.sambanova.ai</a>.
+                Key starts with <code>sn-</code>
+              </p>
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>SambaNova API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {sambanovaKeyPrefix ? `${sambanovaKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newSambanovaKey} onChange={(e) => setNewSambanovaKey(e.target.value)}
+                  placeholder="sn-…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>SambaNova Model</strong>
+                <select value={sambanovaModel} onChange={(e) => setSambanovaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="Meta-Llama-3.3-70B-Instruct">Llama 3.3 70B — Best quality (recommended)</option>
+                  <option value="Meta-Llama-4-Scout-17B-16E-Instruct">Llama 4 Scout 17B — Fastest, free</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
+                  💡 <strong>Llama 4 Scout</strong> is blazing fast and completely free. Use <strong>Llama 3.3 70B</strong> for best lesson quality.
                 </p>
               </label>
             </div>

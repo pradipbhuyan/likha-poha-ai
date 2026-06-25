@@ -1247,10 +1247,111 @@ textarea:focus {
   margin: 10px 0;
 }
 
-.section-1 .lesson-section-header {
-  background: #ecfdf5;
-  color: #047857;
+/* ═══════════════════════════════════════════════════════════════
+   LESSON SECTION CARD STYLES — A, B, C  ×  brand, forest themes
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Style A: Gradient Glow ─────────────────────────────────── */
+/* Brand theme */
+.lesson-sections.style-A.theme-brand .section-1 .lesson-section-header { background: linear-gradient(135deg,#dbeafe,#eff6ff); color:#1e3a8a; border-bottom:1px solid rgba(37,99,235,.12); }
+.lesson-sections.style-A.theme-brand .section-1 { border-color:rgba(37,99,235,.22); box-shadow:0 4px 18px rgba(37,99,235,.14); }
+.lesson-sections.style-A.theme-brand .section-1 .lesson-section-icon { background:rgba(37,99,235,.12); }
+.lesson-sections.style-A.theme-brand .section-2 .lesson-section-header { background: linear-gradient(135deg,#eef2ff,#ede9fe); color:#312e81; border-bottom:1px solid rgba(79,70,229,.12); }
+.lesson-sections.style-A.theme-brand .section-2 { border-color:rgba(79,70,229,.22); box-shadow:0 4px 18px rgba(79,70,229,.13); }
+.lesson-sections.style-A.theme-brand .section-2 .lesson-section-icon { background:rgba(79,70,229,.12); }
+.lesson-sections.style-A.theme-brand .section-3 .lesson-section-header { background: linear-gradient(135deg,#f5f3ff,#ede9fe); color:#3730a3; border-bottom:1px solid rgba(124,58,237,.12); }
+.lesson-sections.style-A.theme-brand .section-3 { border-color:rgba(124,58,237,.22); box-shadow:0 4px 18px rgba(124,58,237,.13); }
+.lesson-sections.style-A.theme-brand .section-3 .lesson-section-icon { background:rgba(124,58,237,.12); }
+.lesson-sections.style-A.theme-brand .section-4 .lesson-section-header { background: linear-gradient(135deg,#fff7ed,#fef9c3); color:#92400e; border-bottom:1px solid rgba(217,119,6,.12); }
+.lesson-sections.style-A.theme-brand .section-4 { border-color:rgba(217,119,6,.22); box-shadow:0 4px 18px rgba(217,119,6,.13); }
+.lesson-sections.style-A.theme-brand .section-4 .lesson-section-icon { background:rgba(217,119,6,.12); }
+.lesson-sections.style-A.theme-brand .section-5 .lesson-section-header { background: linear-gradient(135deg,#fff1f2,#ffe4e6); color:#9f1239; border-bottom:1px solid rgba(225,29,72,.12); }
+.lesson-sections.style-A.theme-brand .section-5 { border-color:rgba(225,29,72,.22); box-shadow:0 4px 18px rgba(225,29,72,.12); }
+.lesson-sections.style-A.theme-brand .section-5 .lesson-section-icon { background:rgba(225,29,72,.12); }
+.lesson-sections.style-A.theme-brand .section-6 .lesson-section-header { background: linear-gradient(135deg,#d1fae5,#ecfdf5); color:#064e3b; border-bottom:1px solid rgba(5,150,105,.12); }
+.lesson-sections.style-A.theme-brand .section-6 { border-color:rgba(5,150,105,.22); box-shadow:0 4px 18px rgba(5,150,105,.13); }
+.lesson-sections.style-A.theme-brand .section-6 .lesson-section-icon { background:rgba(5,150,105,.12); }
+.lesson-sections.style-A.theme-brand .section-7 .lesson-section-header { background: linear-gradient(135deg,#ccfbf1,#d1fae5); color:#134e4a; border-bottom:1px solid rgba(15,118,110,.12); }
+.lesson-sections.style-A.theme-brand .section-7 { border-color:rgba(15,118,110,.22); box-shadow:0 4px 18px rgba(15,118,110,.13); }
+
+/* Forest theme */
+.lesson-sections.style-A.theme-forest .section-1 .lesson-section-header,.lesson-sections.style-A.theme-forest .section-3 .lesson-section-header,.lesson-sections.style-A.theme-forest .section-5 .lesson-section-header { background:linear-gradient(135deg,#d1fae5,#ecfdf5); color:#064e3b; border-bottom:1px solid rgba(5,150,105,.12); }
+.lesson-sections.style-A.theme-forest .section-1,.lesson-sections.style-A.theme-forest .section-3,.lesson-sections.style-A.theme-forest .section-5 { border-color:rgba(5,150,105,.22); box-shadow:0 4px 18px rgba(5,150,105,.14); }
+.lesson-sections.style-A.theme-forest .section-2 .lesson-section-header,.lesson-sections.style-A.theme-forest .section-4 .lesson-section-header,.lesson-sections.style-A.theme-forest .section-6 .lesson-section-header { background:linear-gradient(135deg,#ccfbf1,#d1fae5); color:#134e4a; border-bottom:1px solid rgba(15,118,110,.12); }
+.lesson-sections.style-A.theme-forest .section-2,.lesson-sections.style-A.theme-forest .section-4,.lesson-sections.style-A.theme-forest .section-6 { border-color:rgba(15,118,110,.22); box-shadow:0 4px 18px rgba(15,118,110,.14); }
+.lesson-sections.style-A.theme-forest .section-7 .lesson-section-header { background:linear-gradient(135deg,#dcfce7,#d1fae5); color:#166534; border-bottom:1px solid rgba(22,163,74,.12); }
+.lesson-sections.style-A.theme-forest .section-7 { border-color:rgba(22,163,74,.22); box-shadow:0 4px 18px rgba(22,163,74,.13); }
+.lesson-sections.style-A.theme-forest .lesson-section-icon { background:rgba(5,150,105,.12) !important; }
+
+/* Dark mode overrides for Style A */
+body.dark-mode .lesson-sections.style-A .lesson-section-header { border-bottom-color:rgba(255,255,255,.06) !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-1 .lesson-section-header { background:linear-gradient(135deg,#0c1a3a,#1e3a8a) !important; color:#bfdbfe !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-2 .lesson-section-header { background:linear-gradient(135deg,#1e1b4b,#312e81) !important; color:#c7d2fe !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-3 .lesson-section-header { background:linear-gradient(135deg,#2e1065,#4c1d95) !important; color:#ddd6fe !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-4 .lesson-section-header { background:linear-gradient(135deg,#451a03,#78350f) !important; color:#fde68a !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-5 .lesson-section-header { background:linear-gradient(135deg,#4c0519,#881337) !important; color:#fecdd3 !important; }
+body.dark-mode .lesson-sections.style-A.theme-brand .section-6 .lesson-section-header { background:linear-gradient(135deg,#022c22,#064e3b) !important; color:#a7f3d0 !important; }
+body.dark-mode .lesson-sections.style-A.theme-forest .lesson-section-header { background:linear-gradient(135deg,#022c22,#064e3b) !important; color:#a7f3d0 !important; }
+body.dark-mode .lesson-sections.style-A.theme-forest .section-2 .lesson-section-header,.body.dark-mode .lesson-sections.style-A.theme-forest .section-4 .lesson-section-header { background:linear-gradient(135deg,#042f2e,#134e4a) !important; color:#99f6e4 !important; }
+
+/* ── Style B: Game Cards ─────────────────────────────────────── */
+.lesson-sections.style-B .lesson-section-card::before {
+  content: ""; display: block; height: 5px; width: 100%;
 }
+/* Brand top stripes */
+.lesson-sections.style-B.theme-brand .section-1::before { background:linear-gradient(90deg,#2563eb,#1d4ed8); }
+.lesson-sections.style-B.theme-brand .section-2::before { background:linear-gradient(90deg,#4f46e5,#4338ca); }
+.lesson-sections.style-B.theme-brand .section-3::before { background:linear-gradient(90deg,#7c3aed,#6d28d9); }
+.lesson-sections.style-B.theme-brand .section-4::before { background:linear-gradient(90deg,#d97706,#b45309); }
+.lesson-sections.style-B.theme-brand .section-5::before { background:linear-gradient(90deg,#e11d48,#be123c); }
+.lesson-sections.style-B.theme-brand .section-6::before { background:linear-gradient(90deg,#059669,#047857); }
+.lesson-sections.style-B.theme-brand .section-7::before { background:linear-gradient(90deg,#0f766e,#0d9488); }
+/* Forest top stripes */
+.lesson-sections.style-B.theme-forest .section-1::before,.lesson-sections.style-B.theme-forest .section-3::before,.lesson-sections.style-B.theme-forest .section-5::before,.lesson-sections.style-B.theme-forest .section-7::before { background:linear-gradient(90deg,#059669,#047857); }
+.lesson-sections.style-B.theme-forest .section-2::before,.lesson-sections.style-B.theme-forest .section-4::before,.lesson-sections.style-B.theme-forest .section-6::before { background:linear-gradient(90deg,#0f766e,#0d9488); }
+/* Style B resets the header so the section-N colour classes don't interfere */
+.lesson-sections.style-B .lesson-section-header { background:#fff !important; border-bottom:1px solid #f1f5f9 !important; }
+body.dark-mode .lesson-sections.style-B .lesson-section-header { background:#111827 !important; border-bottom:1px solid #1e293b !important; }
+.lesson-sections.style-B .lesson-section-header { color:var(--text) !important; }
+
+/* ── Style C: Bold Header ────────────────────────────────────── */
+/* Number badge via data-step on the header button */
+.lesson-sections.style-C .lesson-section-header { position:relative; padding-left:52px !important; }
+.lesson-sections.style-C .lesson-section-header::before {
+  content: attr(data-step);
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 900; flex-shrink: 0;
+  background: currentColor; color: #fff;
+  opacity: 1;
+}
+/* Brand coloured header bands for Style C */
+.lesson-sections.style-C.theme-brand .section-1 .lesson-section-header { background:rgba(37,99,235,.1) !important; color:#1e3a8a !important; }
+.lesson-sections.style-C.theme-brand .section-2 .lesson-section-header { background:rgba(79,70,229,.1) !important; color:#312e81 !important; }
+.lesson-sections.style-C.theme-brand .section-3 .lesson-section-header { background:rgba(124,58,237,.1) !important; color:#3730a3 !important; }
+.lesson-sections.style-C.theme-brand .section-4 .lesson-section-header { background:rgba(217,119,6,.1) !important; color:#92400e !important; }
+.lesson-sections.style-C.theme-brand .section-5 .lesson-section-header { background:rgba(225,29,72,.1) !important; color:#9f1239 !important; }
+.lesson-sections.style-C.theme-brand .section-6 .lesson-section-header { background:rgba(5,150,105,.1) !important; color:#064e3b !important; }
+.lesson-sections.style-C.theme-brand .section-7 .lesson-section-header { background:rgba(15,118,110,.1) !important; color:#134e4a !important; }
+/* Forest coloured header bands for Style C */
+.lesson-sections.style-C.theme-forest .section-1 .lesson-section-header,.lesson-sections.style-C.theme-forest .section-3 .lesson-section-header,.lesson-sections.style-C.theme-forest .section-5 .lesson-section-header { background:rgba(5,150,105,.1) !important; color:#064e3b !important; }
+.lesson-sections.style-C.theme-forest .section-2 .lesson-section-header,.lesson-sections.style-C.theme-forest .section-4 .lesson-section-header,.lesson-sections.style-C.theme-forest .section-6 .lesson-section-header { background:rgba(15,118,110,.1) !important; color:#134e4a !important; }
+.lesson-sections.style-C.theme-forest .section-7 .lesson-section-header { background:rgba(22,163,74,.1) !important; color:#166534 !important; }
+/* Dark mode Style C */
+body.dark-mode .lesson-sections.style-C.theme-brand .section-1 .lesson-section-header { background:rgba(37,99,235,.18) !important; color:#bfdbfe !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-2 .lesson-section-header { background:rgba(79,70,229,.18) !important; color:#c7d2fe !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-3 .lesson-section-header { background:rgba(124,58,237,.18) !important; color:#ddd6fe !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-4 .lesson-section-header { background:rgba(217,119,6,.18) !important; color:#fde68a !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-5 .lesson-section-header { background:rgba(225,29,72,.18) !important; color:#fecdd3 !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-6 .lesson-section-header { background:rgba(5,150,105,.18) !important; color:#a7f3d0 !important; }
+body.dark-mode .lesson-sections.style-C.theme-brand .section-7 .lesson-section-header { background:rgba(15,118,110,.18) !important; color:#99f6e4 !important; }
+body.dark-mode .lesson-sections.style-C.theme-forest .lesson-section-header { background:rgba(5,150,105,.18) !important; color:#a7f3d0 !important; }
+body.dark-mode .lesson-sections.style-C.theme-forest .section-2 .lesson-section-header,
+body.dark-mode .lesson-sections.style-C.theme-forest .section-4 .lesson-section-header,
+body.dark-mode .lesson-sections.style-C.theme-forest .section-6 .lesson-section-header { background:rgba(15,118,110,.18) !important; color:#99f6e4 !important; }
+/* Style C number badge colour fix in dark mode */
+body.dark-mode .lesson-sections.style-C .lesson-section-header::before { background:currentColor; }
 
 .section-2 .lesson-section-header {
   background: #eff6ff;

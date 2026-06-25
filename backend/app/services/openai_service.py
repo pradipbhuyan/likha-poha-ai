@@ -30,6 +30,8 @@ GPT5_MINI_TEXT_MODEL = DEFAULT_TEXT_MODEL
 VENICE_BASE_URL = "https://api.venice.ai/api/v1"
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
+SAMBANOVA_BASE_URL = "https://api.sambanova.ai/v1"
 
 # Default Groq model — fast, high-quality, generous free tier
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
@@ -37,6 +39,13 @@ DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 # Default Cerebras model — use whichever model is available on the account.
 # This key's account has: gpt-oss-120b, zai-glm-4.7
 DEFAULT_CEREBRAS_MODEL = "gpt-oss-120b"
+
+# Google Gemini — OpenAI-compatible endpoint, free tier
+# All gemini-2.0-* models deprecated June 2026; use gemini-2.5-flash
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
+
+# SambaNova — OpenAI-compatible, generous free tier with Llama 4
+DEFAULT_SAMBANOVA_MODEL = "Meta-Llama-3.3-70B-Instruct"
 
 _MODEL_PRICING = {
     # OpenAI models
@@ -53,8 +62,18 @@ _MODEL_PRICING = {
     "llama-3.3-70b-versatile": {"input": 0.00059, "output": 0.00079},
     "llama-3.1-70b-versatile": {"input": 0.00059, "output": 0.00079},
     "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
-    "mixtral-8x7b-32768":      {"input": 0.00024, "output": 0.00024},
     "gemma2-9b-it":            {"input": 0.00020, "output": 0.00020},
+    "llama-3.1-8b-instant":    {"input": 0.00005, "output": 0.00008},
+    # Gemini models — 1M tokens/day free, OpenAI-compatible
+    "gemini-2.0-flash-lite-001": {"input": 0.000075, "output": 0.0003},
+    "gemini-2.0-flash-lite":     {"input": 0.000075, "output": 0.0003},  # legacy alias
+    "gemini-2.0-flash-001":      {"input": 0.0001,   "output": 0.0004},
+    "gemini-2.0-flash":          {"input": 0.0001,   "output": 0.0004},  # legacy alias
+    "gemini-1.5-flash":          {"input": 0.000075, "output": 0.0003},
+    "gemini-1.5-flash-8b-001":   {"input": 0.0000375,"output": 0.00015},
+    # SambaNova — free tier with Llama 4
+    "Meta-Llama-3.3-70B-Instruct":       {"input": 0.0006, "output": 0.0012},
+    "Meta-Llama-4-Scout-17B-16E-Instruct":{"input": 0.0004, "output": 0.0008},
     # Cerebras models — free tier, no daily token cap
     "llama3.3-70b":            {"input": 0.00059, "output": 0.00079},
     "llama3.1-8b":             {"input": 0.00005, "output": 0.00008},
@@ -77,13 +96,17 @@ _active_key: str | None = None
 _settings_cache: dict = {
     "api_key": None,
     "api_enabled": True,
-    "provider": "openai",       # "openai" | "venice"
+    "provider": "openai",
     "venice_api_key": None,
     "venice_model": "llama-3.3-70b",
     "groq_api_key": None,
     "groq_model": DEFAULT_GROQ_MODEL,
     "cerebras_api_key": None,
     "cerebras_model": DEFAULT_CEREBRAS_MODEL,
+    "gemini_api_key": None,
+    "gemini_model": DEFAULT_GEMINI_MODEL,
+    "sambanova_api_key": None,
+    "sambanova_model": DEFAULT_SAMBANOVA_MODEL,
     "loaded_at": 0.0,
 }
 _SETTINGS_TTL = 60.0  # seconds
@@ -99,6 +122,14 @@ _groq_key: str | None = None
 # ── Cerebras client cache ─────────────────────────────────────────────────────
 _cerebras_client: OpenAI | None = None
 _cerebras_key: str | None = None
+
+# ── Gemini client cache ───────────────────────────────────────────────────────
+_gemini_client: OpenAI | None = None
+_gemini_key: str | None = None
+
+# ── SambaNova client cache ────────────────────────────────────────────────────
+_sambanova_client: OpenAI | None = None
+_sambanova_key: str | None = None
 
 
 def _load_db_settings() -> dict | None:
@@ -149,7 +180,14 @@ def get_effective_settings() -> dict:
             _settings_cache["venice_api_key"] = db.get("venice_api_key") or settings.VENICE_API_KEY
             _settings_cache["venice_model"] = db.get("venice_model") or "llama-3.3-70b"
             _settings_cache["groq_api_key"] = db.get("groq_api_key") or settings.GROQ_API_KEY
-            _settings_cache["groq_model"] = db.get("groq_model") or DEFAULT_GROQ_MODEL
+            # Normalize decommissioned Groq models to the current default
+            raw_groq_model = db.get("groq_model") or DEFAULT_GROQ_MODEL
+            _settings_cache["groq_model"] = (
+                raw_groq_model
+                .replace("mixtral-8x7b-32768", DEFAULT_GROQ_MODEL)
+                .replace("llama-3.1-70b-versatile", DEFAULT_GROQ_MODEL)
+                .replace("gemma2-9b-it", DEFAULT_GROQ_MODEL)
+            )
             _settings_cache["cerebras_api_key"] = db.get("cerebras_api_key") or settings.CEREBRAS_API_KEY
             # Normalize stale model names: Cerebras uses llama3.3-70b (no hyphen before version)
             raw_cerebras_model = db.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
@@ -161,6 +199,27 @@ def get_effective_settings() -> dict:
                 .replace("llama-3.1-8b", DEFAULT_CEREBRAS_MODEL)
                 .replace("llama3.1-8b", DEFAULT_CEREBRAS_MODEL)
             )
+            _settings_cache["gemini_api_key"] = db.get("gemini_api_key") or getattr(settings, "GEMINI_API_KEY", None)
+            # Normalize deprecated/removed Gemini model names to current working models
+            raw_gemini_model = db.get("gemini_model") or DEFAULT_GEMINI_MODEL
+            _DEPRECATED_GEMINI = {
+                "gemini-2.0-flash-lite",
+                "gemini-2.0-flash-lite-001",
+                "gemini-2.0-flash",
+                "gemini-2.0-flash-001",
+                "gemini-1.5-flash",
+                "gemini-1.5-flash-001",
+                "gemini-1.5-flash-latest",
+                "gemini-1.5-flash-8b",
+                "gemini-1.5-flash-8b-001",
+                "gemini-2.0-flash-exp",
+            }
+            if raw_gemini_model in _DEPRECATED_GEMINI:
+                _settings_cache["gemini_model"] = DEFAULT_GEMINI_MODEL
+            else:
+                _settings_cache["gemini_model"] = raw_gemini_model
+            _settings_cache["sambanova_api_key"] = db.get("sambanova_api_key") or getattr(settings, "SAMBANOVA_API_KEY", None)
+            _settings_cache["sambanova_model"] = db.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
@@ -171,6 +230,10 @@ def get_effective_settings() -> dict:
             _settings_cache["groq_model"] = DEFAULT_GROQ_MODEL
             _settings_cache["cerebras_api_key"] = settings.CEREBRAS_API_KEY
             _settings_cache["cerebras_model"] = DEFAULT_CEREBRAS_MODEL
+            _settings_cache["gemini_api_key"] = getattr(settings, "GEMINI_API_KEY", None)
+            _settings_cache["gemini_model"] = DEFAULT_GEMINI_MODEL
+            _settings_cache["sambanova_api_key"] = getattr(settings, "SAMBANOVA_API_KEY", None)
+            _settings_cache["sambanova_model"] = DEFAULT_SAMBANOVA_MODEL
         _settings_cache["loaded_at"] = now
 
     return _settings_cache
@@ -287,11 +350,70 @@ def get_cerebras_client() -> OpenAI:
     return _cerebras_client
 
 
+def get_gemini_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at Google Gemini.
+
+    Gemini exposes an OpenAI-compatible endpoint so the same SDK works.
+    Free tier: 1M tokens/day, no credit card required.
+    API key starts with AIza...
+    """
+    global _gemini_client, _gemini_key
+
+    current_settings = get_effective_settings()
+    gemini_key = (
+        current_settings.get("gemini_api_key")
+        or getattr(settings, "GEMINI_API_KEY", None)
+        or ""
+    )
+
+    if _gemini_client is None or gemini_key != _gemini_key:
+        with _client_lock:
+            if _gemini_client is None or gemini_key != _gemini_key:
+                _gemini_client = OpenAI(
+                    api_key=gemini_key,
+                    base_url=GEMINI_BASE_URL,
+                    timeout=90.0,
+                )
+                _gemini_key = gemini_key
+
+    return _gemini_client
+
+
+def get_sambanova_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at SambaNova Cloud.
+
+    SambaNova uses the OpenAI API format. Free tier with Llama 4.
+    API key starts with sn-...
+    """
+    global _sambanova_client, _sambanova_key
+
+    current_settings = get_effective_settings()
+    sambanova_key = (
+        current_settings.get("sambanova_api_key")
+        or getattr(settings, "SAMBANOVA_API_KEY", None)
+        or ""
+    )
+
+    if _sambanova_client is None or sambanova_key != _sambanova_key:
+        with _client_lock:
+            if _sambanova_client is None or sambanova_key != _sambanova_key:
+                _sambanova_client = OpenAI(
+                    api_key=sambanova_key,
+                    base_url=SAMBANOVA_BASE_URL,
+                    timeout=90.0,
+                )
+                _sambanova_key = sambanova_key
+
+    return _sambanova_client
+
+
 def get_chat_client() -> OpenAI:
     """
     Return the active LLM client based on the admin-configured provider.
 
-    Supported providers: openai | venice | groq | cerebras
+    Supported providers: openai | venice | groq | cerebras | gemini | sambanova
     This is the function that ask_llm() should use.
     """
     current = get_effective_settings()
@@ -302,6 +424,10 @@ def get_chat_client() -> OpenAI:
         return get_groq_client()
     if provider == "cerebras":
         return get_cerebras_client()
+    if provider == "gemini":
+        return get_gemini_client()
+    if provider == "sambanova":
+        return get_sambanova_client()
     return get_openai_client()
 
 
@@ -378,6 +504,10 @@ def ask_llm(
         active_model = current.get("groq_model") or DEFAULT_GROQ_MODEL
     elif provider == "cerebras":
         active_model = current.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
+    elif provider == "gemini":
+        active_model = current.get("gemini_model") or DEFAULT_GEMINI_MODEL
+    elif provider == "sambanova":
+        active_model = current.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
 
     # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
     messages = [

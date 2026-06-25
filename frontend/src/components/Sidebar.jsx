@@ -26,6 +26,7 @@ import {
   Database,
   Package,
   BrainCircuit,
+  Layers,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -184,6 +185,12 @@ function Sidebar({
       key: "guideThemes",
       label: "LikhaPoha AI Guide",
       icon: Sparkles,
+      roles: ["admin"],
+    },
+    {
+      key: "lessonCardStyle",
+      label: "Lesson Card Style",
+      icon: Layers,
       roles: ["admin"],
     },
     {
