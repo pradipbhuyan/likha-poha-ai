@@ -29,9 +29,13 @@ export const SUBSCRIPTION_PLANS = {
     notIncluded: [],
     comparison: {
       children: "1",
-      aiUsage: "Unlimited",
+      aiUsage: "Limited",
       cbse: "All subjects",
       parentDashboard: "Full",
+      mockTests: "5/day (trial)",
+      askDoubts: "Limited",
+      exemplarResearch: "❌ Locked",
+      exemplarLessons: "❌ Locked",
     },
   },
   starter: {
@@ -67,6 +71,10 @@ export const SUBSCRIPTION_PLANS = {
       aiUsage: "Unlimited",
       cbse: "All subjects",
       parentDashboard: "Full + alerts",
+      mockTests: "Unlimited",
+      askDoubts: "Unlimited",
+      exemplarResearch: "✅ Full access",
+      exemplarLessons: "✅ Full access",
     },
   },
   premium: {
@@ -102,6 +110,10 @@ export const SUBSCRIPTION_PLANS = {
       aiUsage: "Unlimited",
       cbse: "All subjects",
       parentDashboard: "Full + alerts",
+      mockTests: "Unlimited",
+      askDoubts: "Unlimited",
+      exemplarResearch: "✅ Full access",
+      exemplarLessons: "✅ Full access",
     },
   },
   family_premium: {
@@ -137,6 +149,10 @@ export const SUBSCRIPTION_PLANS = {
       aiUsage: "Family limit",
       cbse: "All subjects",
       parentDashboard: "Full + analytics",
+      mockTests: "Unlimited",
+      askDoubts: "Unlimited",
+      exemplarResearch: "✅ Full access",
+      exemplarLessons: "✅ Full access",
     },
   },
   standard_6month: {

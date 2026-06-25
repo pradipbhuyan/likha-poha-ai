@@ -1019,7 +1019,11 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
                 {[
                   ["Child profiles", "children"],
                   ["AI lessons and doubts", "aiUsage"],
+                  ["Ask Doubts (per day)", "askDoubts"],
                   ["CBSE mock tests", "cbse"],
+                  ["Daily mock test limit", "mockTests"],
+                  ["Exemplar Research (Science & Maths)", "exemplarResearch"],
+                  ["Exemplar Lessons (Grades 8–10)", "exemplarLessons"],
                   ["Parent dashboard", "parentDashboard"],
                 ].map(([label, key]) => (
                   <tr key={key}>
