@@ -2,13 +2,10 @@
 # LikhaPoha AI — Continuous Deployment
 #
 # Triggers ONLY when all CI jobs pass on a push to main.
-# Flow: CI passes → Trigger Render deploys → Smoke test → Notify
+# Flow: CI passes → Trigger Railway deploy → Smoke test → Notify
 #
 # Required GitHub Secrets (set in repo → Settings → Secrets → Actions):
-#   RENDER_BACKEND_DEPLOY_HOOK_URL  — from Render dashboard → backend service → Deploy hook
-#   RENDER_FRONTEND_DEPLOY_HOOK_URL — from Render dashboard → frontend service → Deploy hook
-#   RENDER_BACKEND_SERVICE_ID       — Render backend service ID (srv-xxx)
-#   RENDER_API_KEY                  — Render API key (Account → API Keys)
+#   RAILWAY_BACKEND_DEPLOY_HOOK_URL — Railway dashboard → service → Settings → Deploy Hooks
 #   PRODUCTION_URL                  — https://likhapoha.in
 #   SLACK_WEBHOOK_URL               — (optional) Slack incoming webhook for notifications
 ##############################################################################
@@ -22,7 +19,7 @@ on:
 
 jobs:
   deploy:
-    name: "🚀 Deploy to Production"
+    name: "🚀 Deploy to Production (Railway)"
     runs-on: ubuntu-latest
     # Only deploy when CI fully succeeded
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -30,37 +27,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Deploy backend to Render"
+      - name: "Deploy backend to Railway"
         run: |
-          echo "Triggering Render backend deploy..."
-          curl -s -X POST "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -o /dev/null -w "HTTP %{http_code}"
-        env:
-          RENDER_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-
-      - name: "Deploy frontend to Render (or Vercel)"
-        run: |
-          if [ -z "$RENDER_FRONTEND_DEPLOY_HOOK_URL" ]; then
-            echo "⏭️  RENDER_FRONTEND_DEPLOY_HOOK_URL not set — skipping frontend deploy."
-            exit 0
+          echo "Triggering Railway backend deploy..."
+          HTTP=$(curl -s -X POST "${{ secrets.RAILWAY_BACKEND_DEPLOY_HOOK_URL }}" \
+            -o /dev/null -w "%{http_code}")
+          echo "HTTP $HTTP"
+          if [ "$HTTP" != "200" ] && [ "$HTTP" != "202" ]; then
+            echo "❌ Railway deploy hook returned HTTP $HTTP"
+            exit 1
           fi
-          echo "Triggering Render frontend deploy..."
-          curl -s -X POST "$RENDER_FRONTEND_DEPLOY_HOOK_URL" \
-            -H "Authorization: Bearer $RENDER_API_KEY" \
-            -o /dev/null -w "HTTP %{http_code}"
+          echo "✅ Railway deploy triggered"
         env:
-          RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RAILWAY_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_BACKEND_DEPLOY_HOOK_URL }}
 
       - name: "Wait for backend to be ready (max 10 min)"
         run: |
-          echo "Giving Render 30 seconds to register the deploy..."
-          sleep 30
+          echo "Giving Railway 45 seconds to start the build..."
+          sleep 45
           echo "Polling backend health check (max 10 minutes)..."
           for i in $(seq 1 60); do
-            # -L follows HTTP→HTTPS redirects (307/301) that Render may issue
             STATUS=$(curl -s -L -o /dev/null -w "%{http_code}" \
               "${{ secrets.PRODUCTION_URL }}/api/health" 2>/dev/null || echo "000")
             echo "Attempt $i/60: HTTP $STATUS"
@@ -85,7 +71,6 @@ jobs:
       - name: "API health check"
         run: |
           echo "--- /api/health ---"
-          # -L follows redirects; -s silent; capture body and status separately
           BODY=$(curl -s -L "${{ secrets.PRODUCTION_URL }}/api/health" 2>/dev/null || true)
           HTTP=$(curl -s -L -o /dev/null -w "%{http_code}" \
             "${{ secrets.PRODUCTION_URL }}/api/health" 2>/dev/null || echo "000")
@@ -143,7 +128,7 @@ jobs:
           curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "✅ *LikhaPoha AI deployed successfully* to production\n• Commit: `${{ github.sha }}`\n• Branch: `main`\n• All smoke tests passed."
+              "text": "✅ *LikhaPoha AI deployed successfully* to production (Railway)\n• Commit: `${{ github.sha }}`\n• Branch: `main`\n• All smoke tests passed."
             }'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -158,7 +143,7 @@ jobs:
           curl -s -X POST "$SLACK_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "❌ *LikhaPoha AI deploy FAILED*\n• Commit: `${{ github.sha }}`\n• Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              "text": "❌ *LikhaPoha AI deploy FAILED* (Railway)\n• Commit: `${{ github.sha }}`\n• Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
