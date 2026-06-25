@@ -828,6 +828,124 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
     );
   }
 
+  if (user?.role === "teacher") {
+    const supportEmail = contact.email || DEFAULT_SUBSCRIPTION_CONTACT.email;
+    const supportPhone = cleanContactNumber(contact.phone);
+    const supportWhatsapp = cleanContactNumber(contact.whatsapp);
+    const isFree = !user?.subscriptionPlan || user.subscriptionPlan === "free";
+
+    const freeFeatures = [
+      { icon: "📝", label: "Test Paper Generator", free: "2/day", paid: "Unlimited" },
+      { icon: "📋", label: "Lesson Plan Creator", free: "2/day", paid: "Unlimited" },
+      { icon: "🔬", label: "Exemplar Research (AI explanations)", free: "❌ Locked", paid: "✅ Full access" },
+      { icon: "📚", label: "Exemplar Lessons (Grade 8–10)", free: "❌ Locked", paid: "✅ Full access" },
+      { icon: "📊", label: "Student Analytics Dashboard", free: "✅ Available", paid: "✅ Available" },
+      { icon: "🧪", label: "Question Bank (for test papers)", free: "✅ Available", paid: "✅ Full bank" },
+      { icon: "❓", label: "Ask Doubt (AI-assisted)", free: "Limited tokens", paid: "Unlimited" },
+      { icon: "🎒", label: "All CBSE Grades 5–10", free: "✅ Available", paid: "✅ Available" },
+    ];
+
+    return (
+      <div className="premium-page subscription-page">
+        {/* Hero */}
+        <section className="subscription-hero" style={{ marginBottom: 32 }}>
+          <div>
+            <p className="eyebrow">Teacher Subscription</p>
+            <h2>Unlock the full Teacher Toolkit</h2>
+            <p>You are currently on the <strong>{isFree ? "Free Trial" : "Paid"}</strong> plan.
+              Upgrade to get unlimited test papers, lesson plans, and full Exemplar access.</p>
+          </div>
+          <div className="subscription-current-panel">
+            <div className="subscription-current-plan">
+              <span>Your current plan</span>
+              <strong>{isFree ? "Free Trial" : "Paid Teacher"}</strong>
+              <small>{isFree ? "🔒 Limited daily access" : "✅ Full access active"}</small>
+            </div>
+          </div>
+        </section>
+
+        {/* Free vs Paid comparison table */}
+        <section className="premium-section" style={{ marginBottom: 32 }}>
+          <div className="subscription-section-heading">
+            <ShieldCheck size={22} strokeWidth={2.4} />
+            <h3>Free Trial vs Paid — Feature Comparison</h3>
+          </div>
+
+          <div className="subscription-table-wrap" style={{ marginTop: 16 }}>
+            <table>
+              <thead>
+                <tr>
+                  <th style={{ textAlign: "left" }}>Feature</th>
+                  <th style={{ textAlign: "center" }}>🆓 Free Trial</th>
+                  <th style={{ textAlign: "center" }}>⭐ Paid Plan</th>
+                </tr>
+              </thead>
+              <tbody>
+                {freeFeatures.map(({ icon, label, free, paid }) => (
+                  <tr key={label}>
+                    <td>{icon} {label}</td>
+                    <td style={{ textAlign: "center", color: free.startsWith("❌") ? "#ef4444" : free.startsWith("✅") ? "#10b981" : "var(--muted)", fontWeight: 600, fontSize: ".88rem" }}>{free}</td>
+                    <td style={{ textAlign: "center", color: paid.startsWith("✅") ? "#10b981" : "#6366f1", fontWeight: 700, fontSize: ".88rem" }}>{paid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* What's included in paid */}
+        <section className="premium-section" style={{ marginBottom: 32 }}>
+          <div className="subscription-section-heading">
+            <Sparkles size={22} strokeWidth={2.4} />
+            <h3>What paid teachers get</h3>
+          </div>
+          <div className="premium-grid premium-grid-3" style={{ marginTop: 16 }}>
+            <div className="premium-card premium-glow-card glow-blue">
+              <h3>📝 Unlimited Test Papers</h3>
+              <p>Generate as many test papers as you need daily — MCQ, Subjective, or Mixed for any CBSE chapter.</p>
+            </div>
+            <div className="premium-card premium-glow-card glow-purple">
+              <h3>📋 Unlimited Lesson Plans</h3>
+              <p>Create detailed CBSE-aligned lesson plans for any chapter, instantly downloadable as PDF.</p>
+            </div>
+            <div className="premium-card premium-glow-card glow-green">
+              <h3>🔬 Exemplar Research & Lessons</h3>
+              <p>AI explanations for hard NCERT Exemplar topics (Grade 8–10) + generate lessons for all Exemplar chapters.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact to upgrade */}
+        <section className="premium-section subscription-contact-card">
+          <div>
+            <p className="eyebrow">Ready to upgrade?</p>
+            <h3>Contact us to activate your Teacher Plan</h3>
+            <p>{contact.message || DEFAULT_SUBSCRIPTION_CONTACT.message}</p>
+            <small>{contact.availability || DEFAULT_SUBSCRIPTION_CONTACT.availability}</small>
+          </div>
+          <div className="subscription-contact-actions">
+            <a href={`mailto:${supportEmail}`}>
+              <Mail size={20} strokeWidth={2.4} />
+              <span>Email<strong>{supportEmail}</strong></span>
+            </a>
+            {supportPhone ? (
+              <a href={`tel:${supportPhone}`}>
+                <Phone size={20} strokeWidth={2.4} />
+                <span>Call<strong>{contact.phone}</strong></span>
+              </a>
+            ) : null}
+            {supportWhatsapp ? (
+              <a href={`https://wa.me/${supportWhatsapp.replace("+","")}`} target="_blank" rel="noreferrer">
+                <MessageCircle size={20} strokeWidth={2.4} />
+                <span>WhatsApp<strong>{contact.whatsapp}</strong></span>
+              </a>
+            ) : null}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   if (user?.role !== "parent") {
     return (
       <div className="premium-page subscription-page">
