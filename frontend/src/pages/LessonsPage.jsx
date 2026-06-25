@@ -1196,6 +1196,16 @@ function LessonsPage({ user, setActivePage }) {
     return text.trim().split(/\s+/).filter(Boolean).length;
   }
 
+  // ── Exemplar chapter gate ──────────────────────────────────────────────────
+  const isExemplarChapter = chapter?.startsWith("Exemplar:");
+  const hasPaidAccessForLessons =
+    user?.role === "admin" ||
+    user?.role === "teacher" ||
+    (user?.subscriptionPlan && user.subscriptionPlan !== "free") ||
+    user?.accessCbse ||
+    user?.parentId;
+  const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
+
   return (
     <div className="lesson-workspace premium-page premium-lessons-page">
       <div className="lesson-layout premium-lesson-layout">
@@ -1288,11 +1298,14 @@ function LessonsPage({ user, setActivePage }) {
                     resetPracticeState();
                   }}
                 >
-                  {chapters.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
+                  {chapters.map((c) => {
+                    const isLockedOption = c.startsWith("Exemplar:") && !hasPaidAccessForLessons;
+                    return (
+                      <option key={c} value={c}>
+                        {isLockedOption ? `🔒 ${c}` : c}
+                      </option>
+                    );
+                  })}
                 </select>
               </label>
 
@@ -1339,12 +1352,28 @@ function LessonsPage({ user, setActivePage }) {
               )}
             </div>
 
+            {/* Exemplar locked notice for free/promo students */}
+            {isExemplarLocked && (
+              <div style={{ padding: "12px 14px", borderRadius: 10, background: "rgba(99,102,241,.1)", border: "1px solid rgba(167,139,250,.3)", marginBottom: 8 }}>
+                <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a78bfa", marginBottom: 4 }}>🔐 Exemplar Lesson — Paid Only</div>
+                <div style={{ fontSize: ".74rem", color: "var(--muted)", lineHeight: 1.5, marginBottom: 8 }}>Lessons for NCERT Exemplar chapters are available to paid subscribers.</div>
+                <button
+                  type="button"
+                  onClick={() => setActivePage?.("subscriptionPlans")}
+                  style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  🚀 Upgrade to Unlock
+                </button>
+              </div>
+            )}
+
             <button
               className="primary-btn premium-generate-btn"
               onClick={handleGenerateLesson}
-              disabled={generating || hasSavedLesson}
+              disabled={generating || hasSavedLesson || isExemplarLocked}
             >
-              {hasSavedLesson
+              {isExemplarLocked
+                ? "🔒 Upgrade to Generate Lesson"
+                : hasSavedLesson
                 ? "Lesson Already Generated"
                 : generating
                 ? "Generating..."
