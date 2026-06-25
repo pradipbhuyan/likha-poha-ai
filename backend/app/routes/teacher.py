@@ -12,20 +12,26 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.services.auth_service import get_current_user, admin_client
-from app.services.openai_service import get_openai_client, GPT_MINI_TEXT_MODEL
+from app.services.openai_service import get_openai_client
+from app.services.model_routing_service import resolve_student_feature_model
 from app.services.rag_service import search_textbook_content
 
 _logger = logging.getLogger("likhapoha.teacher")
 router = APIRouter()
 
 
+def _get_profile(user_id: str) -> dict:
+    """Return the full application profile for role and model-preference checks."""
+    try:
+        resp = admin_client.table("profiles").select("role,ai_model_preference,subscription_plan").eq("id", user_id).single().execute()
+        return resp.data or {}
+    except Exception:
+        return {}
+
+
 def _get_profile_role(user_id: str) -> str:
     """Return the application role ('teacher', 'admin', 'student', etc.) for a user."""
-    try:
-        resp = admin_client.table("profiles").select("role").eq("id", user_id).single().execute()
-        return (resp.data or {}).get("role") or ""
-    except Exception:
-        return ""
+    return _get_profile(user_id).get("role") or ""
 
 
 # ── Schemas ────────────────────────────────────────────────────────────────────
@@ -138,9 +144,13 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     Called by the Teacher Test Paper page. Returns structured question objects
     that the frontend formats as a printable HTML page.
     """
-    role = _get_profile_role(user.id)
+    profile = _get_profile(user.id)
+    role = profile.get("role") or ""
     if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate test papers.")
+
+    # Use admin-configured model — honours whatever model admin has selected in Admin Control
+    ai_model = resolve_student_feature_model(profile, feature="teacher_tool")
 
     mcq_count  = min(max(int(data.mcq_count or 0), 0), 30)
     subj_count = min(max(int(data.subjective_count or 0), 0), 20)
@@ -174,7 +184,7 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     if mcq_count > 0:
         try:
             resp = client.chat.completions.create(
-                model=GPT_MINI_TEXT_MODEL,
+                model=ai_model,
                 messages=[{"role": "user", "content": _build_mcq_prompt(
                     data.grade, data.subject, data.chapter, data.difficulty, mcq_count, context
                 )}],
@@ -199,7 +209,7 @@ async def generate_test_paper(data: TestPaperRequest, user=Depends(get_current_u
     if subj_count > 0:
         try:
             resp = client.chat.completions.create(
-                model=GPT_MINI_TEXT_MODEL,
+                model=ai_model,
                 messages=[{"role": "user", "content": _build_subjective_prompt(
                     data.grade, data.subject, data.chapter, data.difficulty, subj_count, context
                 )}],
@@ -332,9 +342,13 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
     Generate a structured CBSE lesson plan for a teacher.
     Returns Markdown that the frontend renders and can print as PDF.
     """
-    role = _get_profile_role(user.id)
+    profile = _get_profile(user.id)
+    role = profile.get("role") or ""
     if role not in ("teacher", "admin"):
         raise HTTPException(status_code=403, detail="Only teachers can generate lesson plans.")
+
+    # Use admin-configured model — honours whatever model admin has selected in Admin Control
+    ai_model = resolve_student_feature_model(profile, feature="teacher_tool")
 
     # Pull RAG context for the chapter
     try:
@@ -361,7 +375,7 @@ async def generate_lesson_plan(data: LessonPlanRequest, user=Depends(get_current
     try:
         client = get_openai_client()
         resp = client.chat.completions.create(
-            model=GPT_MINI_TEXT_MODEL,
+            model=ai_model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.6,
             max_tokens=3000,
