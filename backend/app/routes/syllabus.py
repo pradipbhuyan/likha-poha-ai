@@ -624,11 +624,6 @@ def merge_reviewed_and_live_chapters(reviewed_chapters, live_chapters, mode="CBS
     ])
 
     if not live:
-        # When live RAG is unavailable (e.g. secondary Supabase key rotation),
-        # use the admin-reviewed chapter list stored in syllabus_chapter_overrides
-        # so students still see the correct chapters in their dropdown.
-        if reviewed:
-            return reviewed
         return [placeholder_chapter_for_mode(mode)]
 
     live_lookup = {
@@ -721,7 +716,46 @@ def merge_uploaded_rag_chapters(syllabus):
             uploaded_items,
         )
 
-    merged = apply_syllabus_overrides(merged, fetch_syllabus_overrides())
+    overrides = fetch_syllabus_overrides()
+
+    # ── Grade 11/12 secondary-DB fallback ────────────────────────────────────
+    # merge_reviewed_and_live_chapters correctly returns a placeholder when
+    # there are no live RAG docs (e.g. no upload yet for a subject). However,
+    # Grade 11/12 content lives in the secondary Supabase which may be
+    # temporarily unavailable (key rotation, maintenance). In that case
+    # uploaded_by_subject has no Grade 11/12 entries, so the normal path would
+    # hide the chapters under "Uploaded Book Content".
+    #
+    # When we detect that the secondary DB is down (no Grade 11/12 docs fetched)
+    # we inject the saved chapter overrides DIRECTLY — bypassing
+    # merge_reviewed_and_live_chapters — so students continue seeing their
+    # correct chapter dropdowns. This does NOT affect Grade 1-10 subjects which
+    # always go through the normal merge path.
+    _secondary_grades_in_docs = {
+        grade
+        for (grade, _, _) in uploaded_by_subject.keys()
+        if grade in ("Grade 11", "Grade 12")
+    }
+    _grade_1112_overrides = {}
+    _other_overrides = {}
+    for key, val in overrides.items():
+        if key[0] in ("Grade 11", "Grade 12") and key[0] not in _secondary_grades_in_docs:
+            # Secondary DB unavailable for this grade → inject directly
+            _grade_1112_overrides[key] = val
+        else:
+            _other_overrides[key] = val
+
+    # Direct injection: set chapters without requiring live RAG docs
+    for (grade, mode, subject), override in _grade_1112_overrides.items():
+        chapters = clean_chapter_list(override.get("chapters") or [])
+        if not chapters:
+            continue
+        grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
+        mode_data = grade_data.setdefault(mode, {})
+        mode_data[subject] = chapters
+
+    # Normal path for all other grades (Grade 1-10 + Grade 11/12 when DB is up)
+    merged = apply_syllabus_overrides(merged, _other_overrides)
 
     return apply_subject_overrides(merged, fetch_subject_overrides())
 
