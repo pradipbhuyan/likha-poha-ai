@@ -7,6 +7,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  Legend,
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
@@ -17,6 +18,60 @@ import {
   clearAllHistory,
 } from "../api/analytics";
 
+/** Consistent color palette for subjects across charts */
+const SUBJECT_COLORS = [
+  "#3b82f6", "#10b981", "#f59e0b", "#ef4444",
+  "#8b5cf6", "#06b6d4", "#ec4899", "#f97316",
+];
+
+/**
+ * Build per-subject score sequences for the multi-line trend chart.
+ * Returns { trendData: [{name, Subject1: score, ...}], subjects: [str] }
+ */
+function buildSubjectTrend(history) {
+  const subjectScores = {};
+  history.forEach((item) => {
+    const subj = item.subject || "Unknown";
+    if (!subjectScores[subj]) subjectScores[subj] = [];
+    subjectScores[subj].push(Number(item.percentage || 0));
+  });
+
+  const subjects = Object.keys(subjectScores);
+  if (subjects.length === 0) return { trendData: [], subjects: [] };
+
+  const maxLen = Math.max(...subjects.map((s) => subjectScores[s].length));
+  const trendData = Array.from({ length: maxLen }, (_, i) => {
+    const point = { name: `Test ${i + 1}` };
+    subjects.forEach((subj) => {
+      if (i < subjectScores[subj].length) point[subj] = subjectScores[subj][i];
+    });
+    return point;
+  });
+
+  return { trendData, subjects };
+}
+
+/**
+ * Build grouped bar data: best / average / latest score per subject.
+ */
+function buildSubjectPerformance(history) {
+  const subjectData = {};
+  history.forEach((item) => {
+    const subj = item.subject || "Unknown";
+    const score = Number(item.percentage || 0);
+    if (!subjectData[subj]) subjectData[subj] = { scores: [], latest: score };
+    subjectData[subj].scores.push(score);
+    subjectData[subj].latest = score; // last occurrence wins
+  });
+
+  return Object.entries(subjectData).map(([subject, d]) => ({
+    subject,
+    Best: Math.max(...d.scores),
+    Average: Math.round(d.scores.reduce((a, b) => a + b, 0) / d.scores.length),
+    Latest: d.latest,
+  }));
+}
+
 function AnalyticsPage({ user }) {
   /** Shows a student's test history trends and provides admin cleanup actions. */
   const [history, setHistory] = useState([]);
@@ -24,9 +79,7 @@ function AnalyticsPage({ user }) {
   const [message, setMessage] = useState("");
 
   async function loadHistory() {
-    /** Fetch the selected user's stored test attempts for charts and summary cards. */
     setLoading(true);
-
     try {
       const data = await getUserHistory(user.username);
       setHistory(data.history || []);
@@ -37,92 +90,44 @@ function AnalyticsPage({ user }) {
     }
   }
 
-  useEffect(() => {
-    loadHistory();
-  }, [user.username]);
+  useEffect(() => { loadHistory(); }, [user.username]);
 
   async function handleClearMyHistory() {
-    /** Remove only the current user's test history after confirmation. */
     if (!confirm("Clear your test history?")) return;
-
     await clearUserHistory(user.username);
     setMessage("Your history cleared.");
     loadHistory();
   }
 
   async function handleClearAkshitaHistory() {
-    /** Convenience admin action for clearing Akshita's test history. */
     if (!confirm("Clear Akshita's test history?")) return;
-
     await clearUserHistory("akshita");
     setMessage("Akshita's history cleared.");
     loadHistory();
   }
 
   async function handleClearAllHistory() {
-    /** Remove all stored test history after an explicit confirmation. */
     if (!confirm("Clear ALL test history?")) return;
-
     await clearAllHistory();
     setMessage("All history cleared.");
     loadHistory();
   }
 
-  if (loading) {
-    return <p>Loading analytics...</p>;
-  }
+  if (loading) return <p>Loading analytics...</p>;
 
   const totalTests = history.length;
+  const averageScore = totalTests > 0
+    ? Math.round(history.reduce((sum, i) => sum + Number(i.percentage || 0), 0) / totalTests)
+    : 0;
+  const bestScore = totalTests > 0
+    ? Math.max(...history.map((i) => Number(i.percentage || 0)))
+    : 0;
+  const latestScore = totalTests > 0
+    ? Number(history[history.length - 1].percentage || 0)
+    : 0;
 
-  const averageScore =
-    totalTests > 0
-      ? Math.round(
-          history.reduce(
-            (sum, item) => sum + Number(item.percentage || 0),
-            0
-          ) / totalTests
-        )
-      : 0;
-
-  const bestScore =
-    totalTests > 0
-      ? Math.max(...history.map((item) => Number(item.percentage || 0)))
-      : 0;
-
-  const latestScore =
-    totalTests > 0
-      ? Number(history[history.length - 1].percentage || 0)
-      : 0;
-
-  const scoreTrend = history.map((item, index) => ({
-    name: `Test ${index + 1}`,
-    score: Number(item.percentage || 0),
-  }));
-
-  const subjectMap = {};
-
-  history.forEach((item) => {
-    const subject = item.subject || "Unknown";
-    const percentage = Number(item.percentage || 0);
-
-    if (!subjectMap[subject]) {
-      subjectMap[subject] = {
-        total: 0,
-        tests: 0,
-      };
-    }
-
-    subjectMap[subject].total += percentage;
-    subjectMap[subject].tests += 1;
-  });
-
-  const subjectPerformance = Object.entries(subjectMap).map(
-    ([subject, data]) => ({
-      subject,
-      average: Math.round(data.total / data.tests),
-      tests: data.tests,
-    })
-  );
+  const { trendData, subjects } = buildSubjectTrend(history);
+  const subjectPerformance = buildSubjectPerformance(history);
 
   const insightText =
     averageScore >= 85
@@ -130,6 +135,17 @@ function AnalyticsPage({ user }) {
       : averageScore >= 65
       ? "Good progress. Focus on weaker subjects and review mistakes after every mock test."
       : "Revision needed. Start with concept review, then attempt short quizzes before mock tests.";
+
+  const tooltipStyle = {
+    contentStyle: {
+      background: "#0f172a",
+      border: "1px solid #334155",
+      borderRadius: "14px",
+      color: "#f8fafc",
+    },
+    labelStyle: { color: "#f8fafc" },
+    itemStyle: { color: "#93c5fd" },
+  };
 
   return (
     <div className="analytics-page premium-page premium-analytics-page">
@@ -164,18 +180,15 @@ function AnalyticsPage({ user }) {
               subject performance, recent history, and AI learning insights.
             </p>
           </div>
-
           <div className="premium-grid premium-grid-3">
             <div className="premium-card premium-glow-card glow-blue">
               <h3>📈 Score Trends</h3>
               <p>See whether performance is improving over time.</p>
             </div>
-
             <div className="premium-card premium-glow-card glow-purple">
               <h3>📚 Subject Strength</h3>
               <p>Identify strong and weak subjects from test history.</p>
             </div>
-
             <div className="premium-card premium-glow-card glow-green">
               <h3>🧠 Smart Insights</h3>
               <p>Use analytics to guide revision and practice.</p>
@@ -189,94 +202,83 @@ function AnalyticsPage({ user }) {
               <strong>Tests Taken</strong>
               <p>{totalTests}</p>
             </div>
-
             <div className="premium-card premium-glow-card glow-green">
               <strong>Average Score</strong>
               <p>{averageScore}%</p>
             </div>
-
             <div className="premium-card premium-glow-card glow-purple">
               <strong>Best Score</strong>
               <p>{bestScore}%</p>
             </div>
-
             <div className="premium-card premium-glow-card glow-red">
               <strong>Latest Score</strong>
               <p>{latestScore}%</p>
             </div>
           </section>
 
+          {/* ── Charts row ── */}
           <section className="analytics-chart-grid premium-analytics-chart-grid">
+
+            {/* Score Trend — one line per subject */}
             <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📈 Score Trend</h3>
-                  <p>Your mock test performance over time.</p>
+                  <p>Performance per subject over successive tests.</p>
                 </div>
               </div>
-
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
-                  <LineChart data={scoreTrend}>
+                  <LineChart data={trendData}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
                     <XAxis dataKey="name" stroke="#94a3b8" />
                     <YAxis domain={[0, 100]} stroke="#94a3b8" />
-                    <Tooltip
-                      contentStyle={{
-                        background: "#0f172a",
-                        border: "1px solid #334155",
-                        borderRadius: "14px",
-                        color: "#f8fafc",
-                      }}
-                      labelStyle={{ color: "#f8fafc" }}
-                      itemStyle={{ color: "#93c5fd" }}
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="score"
-                      stroke="#3b82f6"
-                      strokeWidth={3}
-                    />
+                    <Tooltip {...tooltipStyle} />
+                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
+                    {subjects.map((subj, i) => (
+                      <Line
+                        key={subj}
+                        type="monotone"
+                        dataKey={subj}
+                        stroke={SUBJECT_COLORS[i % SUBJECT_COLORS.length]}
+                        strokeWidth={2.5}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        connectNulls
+                      />
+                    ))}
                   </LineChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
+            {/* Subject Performance — grouped bars: Best / Average / Latest */}
             <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📚 Subject Performance</h3>
-                  <p>Average score by subject.</p>
+                  <p>Best, average and latest score per subject.</p>
                 </div>
               </div>
-
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
-                  <BarChart data={subjectPerformance}>
+                  <BarChart data={subjectPerformance} barCategoryGap="30%" barGap={3}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-                    <XAxis dataKey="subject" stroke="#94a3b8" />
+                    <XAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 11 }} />
                     <YAxis domain={[0, 100]} stroke="#94a3b8" />
                     <Tooltip
-                      cursor={{ fill: "rgba(59, 130, 246, 0.08)" }}
-                      contentStyle={{
-                        background: "#0f172a",
-                        border: "1px solid #334155",
-                        borderRadius: "14px",
-                        color: "#f8fafc",
-                      }}
-                      labelStyle={{ color: "#f8fafc" }}
-                      itemStyle={{ color: "#93c5fd" }}
+                      cursor={{ fill: "rgba(59,130,246,0.06)" }}
+                      {...tooltipStyle}
                     />
-                    <Bar
-                      dataKey="average"
-                      fill="#3b82f6"
-                      radius={[10, 10, 0, 0]}
-                      activeBar={{ fill: "#60a5fa" }}
-                    />
+                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
+                    <Bar dataKey="Best"    fill="#10b981" radius={[6,6,0,0]} />
+                    <Bar dataKey="Average" fill="#3b82f6" radius={[6,6,0,0]} />
+                    <Bar dataKey="Latest"  fill="#f59e0b" radius={[6,6,0,0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
+
           </section>
 
           <section className="premium-section premium-history-section">
@@ -284,27 +286,16 @@ function AnalyticsPage({ user }) {
               <h3>🕘 Recent Test History</h3>
               <p>Your latest mock test attempts and performance snapshots.</p>
             </div>
-
             <div className="premium-history-list">
-              {[...history]
-                .reverse()
-                .slice(0, 10)
-                .map((item, index) => (
-                  <div key={index} className="premium-history-row">
-                    <div>
-                      <strong>
-                        {item.subject} - {item.chapter || item.mockType}
-                      </strong>
-
-                      <p>
-                        {item.difficulty} |{" "}
-                        {(item.submittedAt || item.saved_at || "").slice(0, 10)}
-                      </p>
-                    </div>
-
-                    <span>{item.percentage}%</span>
+              {[...history].reverse().slice(0, 10).map((item, index) => (
+                <div key={index} className="premium-history-row">
+                  <div>
+                    <strong>{item.subject} - {item.chapter || item.mockType}</strong>
+                    <p>{item.difficulty} | {(item.submittedAt || item.saved_at || "").slice(0, 10)}</p>
                   </div>
-                ))}
+                  <span>{item.percentage}%</span>
+                </div>
+              ))}
             </div>
           </section>
         </>
@@ -316,19 +307,10 @@ function AnalyticsPage({ user }) {
             <h3>🧹 Admin: Clear Test History</h3>
             <p>Use carefully. These actions remove analytics history.</p>
           </div>
-
           <div className="premium-danger-actions">
-            <button className="danger-btn" onClick={handleClearMyHistory}>
-              Clear My History
-            </button>
-
-            <button className="danger-btn" onClick={handleClearAkshitaHistory}>
-              Clear Akshita History
-            </button>
-
-            <button className="danger-btn" onClick={handleClearAllHistory}>
-              Clear All History
-            </button>
+            <button className="danger-btn" onClick={handleClearMyHistory}>Clear My History</button>
+            <button className="danger-btn" onClick={handleClearAkshitaHistory}>Clear Akshita History</button>
+            <button className="danger-btn" onClick={handleClearAllHistory}>Clear All History</button>
           </div>
         </section>
       )}

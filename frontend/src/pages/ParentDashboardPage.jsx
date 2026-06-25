@@ -21,9 +21,53 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  Legend,
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+
+/** Consistent color palette for per-subject lines */
+const SUBJECT_COLORS = [
+  "#3b82f6", "#10b981", "#f59e0b", "#ef4444",
+  "#8b5cf6", "#06b6d4", "#ec4899", "#f97316",
+];
+
+function buildSubjectTrend(history) {
+  const subjectScores = {};
+  history.forEach((item) => {
+    const subj = item.subject || "Unknown";
+    if (!subjectScores[subj]) subjectScores[subj] = [];
+    subjectScores[subj].push(Number(item.percentage || 0));
+  });
+  const subjects = Object.keys(subjectScores);
+  if (subjects.length === 0) return { trendData: [], subjects: [] };
+  const maxLen = Math.max(...subjects.map((s) => subjectScores[s].length));
+  const trendData = Array.from({ length: maxLen }, (_, i) => {
+    const point = { name: `Test ${i + 1}` };
+    subjects.forEach((subj) => {
+      if (i < subjectScores[subj].length) point[subj] = subjectScores[subj][i];
+    });
+    return point;
+  });
+  return { trendData, subjects };
+}
+
+function buildSubjectPerformance(history) {
+  const subjectData = {};
+  history.forEach((item) => {
+    const subj = item.subject || "Unknown";
+    const score = Number(item.percentage || 0);
+    if (!subjectData[subj]) subjectData[subj] = { scores: [], latest: score };
+    subjectData[subj].scores.push(score);
+    subjectData[subj].latest = score;
+  });
+  return Object.entries(subjectData).map(([subject, d]) => ({
+    subject,
+    Best: Math.max(...d.scores),
+    Average: Math.round(d.scores.reduce((a, b) => a + b, 0) / d.scores.length),
+    Latest: d.latest,
+  }));
+}
 
 /** Desktop webcam capture component using getUserMedia */
 function WebcamCaptureModal({ onCapture, onClose }) {
@@ -309,31 +353,8 @@ function ParentDashboardPage() {
   const bestScore = scores.length ? Math.max(...scores) : 0;
   const latestScore = scores.length ? scores[scores.length - 1] : 0;
 
-  const scoreTrend = history.map((item, index) => ({
-    name: `Test ${index + 1}`,
-    score: Number(item.percentage || 0),
-  }));
-
-  const subjectMap = {};
-
-  history.forEach((item) => {
-    const subject = item.subject || "Unknown";
-    const score = Number(item.percentage || 0);
-
-    if (!subjectMap[subject]) {
-      subjectMap[subject] = { total: 0, count: 0 };
-    }
-
-    subjectMap[subject].total += score;
-    subjectMap[subject].count += 1;
-  });
-
-  const subjectPerformance = Object.entries(subjectMap).map(
-    ([subject, value]) => ({
-      subject,
-      average: Math.round(value.total / value.count),
-    })
-  );
+  const { trendData, subjects: trendSubjects } = buildSubjectTrend(history);
+  const subjectPerformance = buildSubjectPerformance(history);
 
   const parentInsight =
     latestScore >= 85
@@ -586,52 +607,58 @@ function ParentDashboardPage() {
           </section>
 
           <section className="analytics-chart-grid premium-parent-chart-grid">
+            {/* Score Trend — one line per subject */}
             <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📈 Score Trend</h3>
-                  <p>Student performance over time.</p>
+                  <p>Performance per subject over successive tests.</p>
                 </div>
               </div>
-
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
-                  <LineChart data={scoreTrend}>
+                  <LineChart data={trendData}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
                     <XAxis dataKey="name" stroke="#94a3b8" />
                     <YAxis domain={[0, 100]} stroke="#94a3b8" />
                     <Tooltip />
-                    <Line
-                      type="monotone"
-                      dataKey="score"
-                      stroke="#3b82f6"
-                      strokeWidth={3}
-                    />
+                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
+                    {trendSubjects.map((subj, i) => (
+                      <Line
+                        key={subj}
+                        type="monotone"
+                        dataKey={subj}
+                        stroke={SUBJECT_COLORS[i % SUBJECT_COLORS.length]}
+                        strokeWidth={2.5}
+                        dot={{ r: 3 }}
+                        activeDot={{ r: 5 }}
+                        connectNulls
+                      />
+                    ))}
                   </LineChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
+            {/* Subject Performance — grouped bars: Best / Average / Latest */}
             <div className="dashboard-chart-card premium-card premium-chart-card">
               <div className="section-heading-row">
                 <div>
                   <h3>📚 Subject Performance</h3>
-                  <p>Average score by subject.</p>
+                  <p>Best, average and latest score per subject.</p>
                 </div>
               </div>
-
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={280}>
-                  <BarChart data={subjectPerformance}>
+                  <BarChart data={subjectPerformance} barCategoryGap="30%" barGap={3}>
                     <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-                    <XAxis dataKey="subject" stroke="#94a3b8" />
+                    <XAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 11 }} />
                     <YAxis domain={[0, 100]} stroke="#94a3b8" />
-                    <Tooltip />
-                    <Bar
-                      dataKey="average"
-                      fill="#3b82f6"
-                      radius={[10, 10, 0, 0]}
-                    />
+                    <Tooltip cursor={{ fill: "rgba(59,130,246,0.06)" }} />
+                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
+                    <Bar dataKey="Best"    fill="#10b981" radius={[6,6,0,0]} />
+                    <Bar dataKey="Average" fill="#3b82f6" radius={[6,6,0,0]} />
+                    <Bar dataKey="Latest"  fill="#f59e0b" radius={[6,6,0,0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
