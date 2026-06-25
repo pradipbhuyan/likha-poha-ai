@@ -2668,6 +2668,18 @@ body.dark-mode .lesson-output .markdown-content blockquote {
   color: #bfdbfe !important;
 }
 
+/* ol and ul — the main white pill shown inside AI explanations */
+body.dark-mode .markdown-content ul,
+body.dark-mode .markdown-content ol {
+  background: rgba(30,41,59,.7) !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .markdown-content li {
+  color: #e2e8f0 !important;
+}
+
 body.dark-mode .status-pill,
 body.dark-mode .profile-pill,
 body.dark-mode .lesson-source-badge,
