@@ -237,7 +237,8 @@ class TestSavedViews:
 class TestAnalytics:
     def test_summary_returns_aggregate_structure(self, monkeypatch):
         """analytics_summary returns users + payments + period_days."""
-        monkeypatch.setattr(analytics, "_safe", lambda fn: ([], None))
+        # _safe now takes (fn, *, context="") — mock must accept **kw
+        monkeypatch.setattr(analytics, "_safe", lambda fn, **kw: ([], None, "ok"))
         # analytics_summary doesn't call get_counters — patch admin_client instead
         monkeypatch.setattr(analytics, "admin_client", MagicMock())
         result = analytics.analytics_summary(days=30, admin=ADMIN_CTX)
@@ -249,6 +250,8 @@ class TestAnalytics:
     def test_trends_returns_signup_and_payment(self, monkeypatch):
         """analytics_trends returns signup_trend and payment_trend."""
         _stub_client(monkeypatch)
+        # _safe returns 3-tuple now
+        monkeypatch.setattr(analytics, "_safe", lambda fn, **kw: ([], None, "ok"))
         result = analytics.analytics_trends(days=7, bucket="day", admin=ADMIN_CTX)
         assert result["success"] is True
         assert "signup_trend" in result
@@ -256,7 +259,7 @@ class TestAnalytics:
 
     def test_trends_graceful_for_missing_ai_table(self, monkeypatch):
         """ai_usage_trend is None or empty when table absent — no crash."""
-        _stub_client(monkeypatch)
+        monkeypatch.setattr(analytics, "_safe", lambda fn, **kw: ([], None, "ok"))
         result = analytics.analytics_trends(days=7, bucket="day", admin=ADMIN_CTX)
         assert result["success"] is True
         # ai_usage_trend may be None or empty — that's fine
