@@ -30,6 +30,7 @@ class SaveTestResultRequest(BaseModel):
     wrongCount: int | None = None
     penalty: float | None = None
     percentage: float
+    timeTakenSeconds: int | None = None  # elapsed seconds from test start to submit
     submittedAt: str | None = None
 
 

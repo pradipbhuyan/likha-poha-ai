@@ -18,6 +18,7 @@ def save_test_result(result):
         "wrong_count": result.get("wrongCount"),
         "penalty": result.get("penalty"),
         "percentage": result.get("percentage"),
+        "time_taken_seconds": result.get("timeTakenSeconds"),
         "submitted_at": result.get("submittedAt"),
     }
 

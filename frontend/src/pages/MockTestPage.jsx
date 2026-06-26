@@ -111,6 +111,8 @@ function MockTestPage({ user, setActivePage }) {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
+  // Track when the test starts so we can compute time taken on submit
+  const [testStartedAt, setTestStartedAt] = useState(null);
 
   // Accumulate question bank IDs shown to this user across tests in this session.
   // Sent back to the backend as excluded_ids so the same question is never
@@ -301,6 +303,7 @@ function MockTestPage({ user, setActivePage }) {
     setAnswers({});
     setResults(null);
     setSecondsLeft(0);
+    setTestStartedAt(null);
   }
 
   // ── Compute free-tier daily limit state ──────────────────────────────────
@@ -384,6 +387,7 @@ function MockTestPage({ user, setActivePage }) {
 
       const newQuestions = response.questions || [];
       setQuestions(newQuestions);
+      setTestStartedAt(Date.now()); // record start time
 
       // Accumulate db_ids for exclusion in future tests (persistent across tests in session)
       const newIds = newQuestions.map(q => q.db_id).filter(Boolean);
@@ -455,6 +459,11 @@ function MockTestPage({ user, setActivePage }) {
       ? Math.round((finalScore / maxScore) * 10000) / 100
       : 0;
 
+    // Calculate time taken (seconds) — null if start was never recorded
+    const timeTakenSeconds = testStartedAt
+      ? Math.round((Date.now() - testStartedAt) / 1000)
+      : null;
+
     const resultPayload = {
       username: user?.username,
       grade,
@@ -470,6 +479,7 @@ function MockTestPage({ user, setActivePage }) {
       wrongCount,
       penalty,
       percentage,
+      timeTakenSeconds,
       submittedAt: new Date().toISOString(),
       review,
     };
@@ -861,6 +871,17 @@ function MockTestPage({ user, setActivePage }) {
               <strong>Penalty</strong>
               <p>-{results.penalty}</p>
             </div>
+
+            {results.timeTakenSeconds != null && (
+              <div className="premium-card" style={{ borderTop: "3px solid #0891b2" }}>
+                <strong style={{ color: "var(--muted)" }}>⏱️ Time Taken</strong>
+                <p style={{ color: "#0891b2" }}>
+                  {results.timeTakenSeconds >= 60
+                    ? `${Math.floor(results.timeTakenSeconds / 60)}m ${results.timeTakenSeconds % 60}s`
+                    : `${results.timeTakenSeconds}s`}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="info-box premium-next-step-box">
