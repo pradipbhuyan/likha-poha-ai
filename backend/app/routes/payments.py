@@ -19,8 +19,24 @@ from app.services.rate_limit_service import (
     PAYMENT_VERIFY_LIMITER,
     ADMIN_TEST_PAYMENT_LIMITER,
 )
+from app.services.audit_log_service import write_audit_event
+from app.services.subscription_timeline_service import (
+    write_timeline_event,
+    activation_idempotency_key,
+)
+from app.services.metrics_service import increment as metrics_increment
 
 router = APIRouter()
+
+
+def _plan_key_to_canonical(plan_key: str) -> str:
+    """Map raw DB plan key to canonical event prefix for timeline events."""
+    mapping = {
+        "free": "NANO",
+        "starter": "PREMIUM",
+        "family_premium": "FAMILY_PREMIUM",
+    }
+    return mapping.get(plan_key, "PREMIUM")
 
 
 class CreatePaymentOrderRequest(BaseModel):
@@ -380,6 +396,37 @@ def verify_payment(
         parent_id=parent["profile"]["id"],
         activated_count=len(activated_profiles),
     )
+
+    # ── Audit + timeline + metrics (fire-and-forget — never block main flow) ──
+    try:
+        metrics_increment("payment.verified", plan_key=payment["plan_key"])
+        write_audit_event(
+            event_type="payment.verified",
+            actor_user_id=parent["profile"]["id"],
+            target_user_id=payment.get("child_id"),
+            entity_type="payment",
+            entity_id=data.razorpay_order_id,
+            metadata={
+                "plan_key": payment["plan_key"],
+                "amount": payment.get("amount"),
+                "razorpay_order_id": data.razorpay_order_id,
+            },
+        )
+        write_timeline_event(
+            user_id=payment["child_id"],
+            event_type=f"{_plan_key_to_canonical(payment['plan_key'])}.activated",
+            to_plan=payment["plan_key"],
+            source="PAID",
+            payment_id=data.razorpay_payment_id,
+            order_id=data.razorpay_order_id,
+            expires_at=saved_payment.get("metadata", {}).get("subscription_expires_at"),
+            idempotency_key=activation_idempotency_key(
+                data.razorpay_order_id, data.razorpay_payment_id
+            ),
+            metadata={"plan_key": payment["plan_key"], "amount": payment.get("amount")},
+        )
+    except Exception as _obs_err:
+        _log.warning("payment.verify.observability_failed", error=str(_obs_err))
 
     return {
         "success": True,
@@ -940,6 +987,36 @@ def admin_test_verify(
     })
 
     plan_meta = ADMIN_TEST_UPGRADE_PLANS.get(payment["plan_key"], {})
+
+    # ── Audit + timeline + metrics (fire-and-forget — never block main flow) ──
+    try:
+        metrics_increment("payment.admin_test_verified", plan_key=payment["plan_key"])
+        write_audit_event(
+            event_type="payment.admin_test_verified",
+            actor_user_id=admin["profile"]["id"],
+            target_user_id=target_user_id,
+            entity_type="payment",
+            entity_id=data.razorpay_order_id,
+            metadata={
+                "plan_key": payment["plan_key"],
+                "intendedPlanLabel": plan_meta.get("label"),
+                "chargedAmount": meta.get("chargedAmount"),
+            },
+        )
+        write_timeline_event(
+            user_id=target_user_id,
+            event_type="admin_test.activated",
+            to_plan=payment["plan_key"],
+            source="PAID",
+            payment_id=data.razorpay_payment_id,
+            order_id=data.razorpay_order_id,
+            idempotency_key=activation_idempotency_key(
+                data.razorpay_order_id, data.razorpay_payment_id
+            ),
+            metadata={"chargedAmount": meta.get("chargedAmount"), "intended": payment["plan_key"]},
+        )
+    except Exception as _obs_err:
+        _log.warning("payment.admin_test_verify.observability_failed", error=str(_obs_err))
 
     return {
         "success": True,

@@ -11,7 +11,7 @@ GET /api/subscription/resolve
 """
 from fastapi import APIRouter, Depends
 
-from app.services.auth_service import get_current_user
+from app.services.auth_service import get_current_user, require_admin
 from app.services.subscription_resolver_service import (
     resolve_user_subscription,
     _PLAN_LIMITS,
@@ -108,6 +108,31 @@ def resolve_subscription(user=Depends(get_current_user)):
     """
     result = resolve_user_subscription(user.id)
     return {"success": True, **result}
+
+
+@router.post("/run-expiry-job")
+def run_expiry_job(admin=Depends(require_admin)):
+    """
+    Admin-only: trigger the subscription expiry job manually.
+
+    Finds all expired paid subscriptions, revokes access flags, and writes
+    audit + timeline events.  Safe to run multiple times (idempotent).
+    """
+    from app.services.expiry_job_service import run_expiry_job as _run  # noqa: PLC0415
+    summary = _run()
+    return {"success": True, **summary}
+
+
+@router.get("/metrics")
+def get_metrics(admin=Depends(require_admin)):
+    """
+    Admin-only: return current in-process metric counters.
+
+    These counters are process-local and reset on server restart.
+    Use for quick diagnostics — not a replacement for persistent analytics.
+    """
+    from app.services.metrics_service import get_counters  # noqa: PLC0415
+    return {"success": True, "counters": get_counters()}
 
 
 @router.get("/catalog")
