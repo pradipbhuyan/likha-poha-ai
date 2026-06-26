@@ -82,8 +82,8 @@ describe("AdminAnalytics — state: ok (data present)", () => {
 
   test("shows total users count", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    expect(await screen.findByText("Total Users")).toBeInTheDocument();
-    expect(screen.getByText("42")).toBeInTheDocument();
+    // Wait for the value "42" — confirms data has fully loaded
+    expect(await screen.findByText("42")).toBeInTheDocument();
   });
 
   test("shows paid active count", async () => {
@@ -94,8 +94,8 @@ describe("AdminAnalytics — state: ok (data present)", () => {
 
   test("shows payment paid count", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    // Use testid to avoid ambiguity with new_signups_in_period which is also 8
+    // Wait for the total users VALUE "42" to confirm data has loaded
+    await screen.findByText("42");
     const paidCard = screen.getByTestId("stat-paid");
     expect(paidCard).toHaveTextContent("8");
   });
@@ -126,8 +126,9 @@ describe("AdminAnalytics — state: ok (data present)", () => {
 
   test("shows success rate percent", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText(/80%/)).toBeInTheDocument();
+    // Wait for data to load first (value "42" confirms fetch complete)
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-success-rate")).toHaveTextContent("80%");
   });
 
   test("renders signup trend bars", async () => {
