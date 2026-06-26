@@ -119,14 +119,19 @@ export default function AdminQuickActions({
       >
         {QUICK_ACTIONS.map((action) => {
           const isPinned = pinnedIds.has(action.id);
+          const isHov = hovered === action.id;
           return (
-            <button
+            // Use div+role="button" so the optional pin <button> doesn't nest inside a <button>
+            <div
               key={action.id}
+              role="button"
+              tabIndex={0}
               data-testid={`quick-action-${action.id}`}
               aria-label={action.label}
               onMouseEnter={() => setHovered(action.id)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => handleAction(action)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleAction(action); } }}
               style={{
                 position: "relative",
                 display: "flex",
@@ -134,10 +139,8 @@ export default function AdminQuickActions({
                 alignItems: "flex-start",
                 gap: 6,
                 padding: "12px 14px",
-                background: hovered === action.id
-                  ? `${action.color}14`
-                  : "var(--panel, #fff)",
-                border: `1.5px solid ${hovered === action.id ? action.color : "var(--border, #e5e7eb)"}`,
+                background: isHov ? `${action.color}14` : "var(--panel, #fff)",
+                border: `1.5px solid ${isHov ? action.color : "var(--border, #e5e7eb)"}`,
                 borderRadius: 10,
                 cursor: "pointer",
                 fontFamily: "inherit",
@@ -147,14 +150,14 @@ export default function AdminQuickActions({
               }}
             >
               <span style={{ fontSize: "1.4rem", lineHeight: 1 }}>{action.icon}</span>
-              <span style={{ fontSize: ".82rem", fontWeight: 700, color: hovered === action.id ? action.color : "var(--text, #1e293b)", lineHeight: 1.2 }}>
+              <span style={{ fontSize: ".82rem", fontWeight: 700, color: isHov ? action.color : "var(--text, #1e293b)", lineHeight: 1.2 }}>
                 {action.label}
               </span>
               <span style={{ fontSize: ".72rem", color: "var(--muted, #64748b)", lineHeight: 1.3 }}>
                 {action.description}
               </span>
 
-              {/* Pin/unpin button */}
+              {/* Pin/unpin — proper <button> since it's no longer inside a <button> */}
               {onPinToggle && (
                 <button
                   aria-label={isPinned ? `Unpin ${action.label}` : `Pin ${action.label}`}
@@ -171,7 +174,7 @@ export default function AdminQuickActions({
                     border: "none",
                     cursor: "pointer",
                     fontSize: ".75rem",
-                    opacity: isPinned || hovered === action.id ? 1 : 0.3,
+                    opacity: isPinned || isHov ? 1 : 0.3,
                     transition: "opacity 0.15s",
                     padding: 2,
                   }}
@@ -179,7 +182,7 @@ export default function AdminQuickActions({
                   {isPinned ? "📌" : "📍"}
                 </button>
               )}
-            </button>
+            </div>
           );
         })}
       </div>

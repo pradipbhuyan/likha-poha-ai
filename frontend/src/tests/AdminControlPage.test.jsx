@@ -15,6 +15,22 @@ import {
   updateChildLimits,
 } from "../api/adminControl";
 
+// Mock adminOperations so the new widget imports don't trigger supabaseClient.js
+// on CI where VITE_SUPABASE_URL is not set.
+vi.mock("../api/adminOperations", () => ({
+  getRecentActivity: vi.fn().mockResolvedValue({ activities: [], total: 0, error: null }),
+  getNotifications:  vi.fn().mockResolvedValue({ notifications: [], total: 0, unread_count: 0 }),
+  getOperationsSummary: vi.fn(),
+  getOperationsHealth: vi.fn(),
+  getOperationsPayments: vi.fn(),
+  getOperationsWebhooks: vi.fn(),
+  getOperationsSubscriptions: vi.fn(),
+  getOperationsUsage: vi.fn(),
+  getOperationsAlerts: vi.fn(),
+  getExpiryJobStatus: vi.fn(),
+  runExpiryJob: vi.fn(),
+}));
+
 vi.mock("../api/adminControl", () => ({
   getAdminFamilies: vi.fn(),
   createAdminParent: vi.fn(),
