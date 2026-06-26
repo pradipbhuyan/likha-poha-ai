@@ -1053,8 +1053,10 @@ function App() {
           </div>
         </header>
 
-        {/* Premium Nano expiry banner — shown for students with a time-limited subscription */}
-        {user?.role === "student" && user?.subscriptionExpiresAt && (
+        {/* Premium Nano / Premium expiry banner — shown ONLY for PAID subscriptions.
+            Must NOT show for offer-code users (offerAccess=true) — they see their
+            own offer validity in the Subscription page instead. */}
+        {user?.role === "student" && user?.subscriptionExpiresAt && !user?.offerAccess && (
           <div style={{
             padding: "10px 20px",
             background: user.subscriptionExpiringSoon

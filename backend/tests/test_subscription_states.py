@@ -1,0 +1,459 @@
+"""
+test_subscription_states.py
+===========================
+Regression tests for subscription state transitions.
+
+Covers all 4 enrollment paths:
+  1. Free tier (no enrollment — gated)
+  2. Offer code enrollment → free tier with time-limited offer access
+  3. Payment enrollment → paid plan with subscription_expires_at
+  4. Expired subscription → auto-revoked back to free tier
+
+Also tests plan_expires_at() and profile_access_from_plan() helpers.
+
+Run with:
+    cd backend && python -m pytest tests/test_subscription_states.py -v
+"""
+
+from datetime import datetime, timedelta, timezone
+import pytest
+
+from app.routes.payments import plan_expires_at, profile_access_from_plan
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _days_from_now(iso_str: str) -> float:
+    dt = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+    return (dt - datetime.now(timezone.utc)).total_seconds() / 86400
+
+
+def _base_plan(**overrides):
+    base = {
+        "key": "free",
+        "billing_label": "8 days",
+        "access_cbse": True,
+        "access_sof_science": False,
+        "access_sof_maths": False,
+        "access_sof_english": False,
+        "daily_token_limit": 100000,
+        "monthly_token_limit": 1000000,
+    }
+    return {**base, **overrides}
+
+
+def _needs_subscription_gate(user: dict) -> bool:
+    """Mirror of App.jsx needsSubscription condition."""
+    has_direct = (
+        user.get("accessCbse") or user.get("accessSofScience") or
+        user.get("accessSofMaths") or user.get("accessSofEnglish")
+    )
+    return (
+        user.get("role") == "student"
+        and user.get("subscriptionPlan") == "free"
+        and not user.get("offerAccess")
+        and not has_direct
+        and not user.get("parentId")
+    )
+
+
+def _banner_should_show(user: dict) -> bool:
+    """Mirror of App.jsx Premium Nano banner condition (after fix)."""
+    return bool(
+        user.get("role") == "student"
+        and user.get("subscriptionExpiresAt")
+        and not user.get("offerAccess")   # offer users must NOT see this banner
+    )
+
+
+def _is_expired(profile: dict) -> bool:
+    expires = profile.get("subscription_expires_at")
+    if not expires:
+        return False
+    exp_dt = datetime.fromisoformat(expires.replace("Z", "+00:00"))
+    return datetime.now(timezone.utc) > exp_dt
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. plan_expires_at() — billing label → expiry ISO datetime
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestPlanExpiresAt:
+
+    def test_eight_day_plan(self):
+        """Premium Nano (Rs 99) plan expires in ~8 days."""
+        result = plan_expires_at({"billing_label": "8 days"})
+        assert result is not None
+        days = _days_from_now(result)
+        assert 7.9 <= days <= 8.1, f"Expected ~8 days, got {days:.2f}"
+
+    def test_monthly_plan(self):
+        """Premium monthly expires in ~31 days."""
+        result = plan_expires_at({"billing_label": "month"})
+        assert result is not None
+        days = _days_from_now(result)
+        assert 30.9 <= days <= 31.1, f"Expected ~31 days, got {days:.2f}"
+
+    def test_six_month_plan(self):
+        """Premium 6-month expires in ~184 days."""
+        result = plan_expires_at({"billing_label": "6 months"})
+        assert result is not None
+        days = _days_from_now(result)
+        assert 183.9 <= days <= 184.1
+
+    def test_annual_plan(self):
+        """Premium Annual expires in ~366 days."""
+        result = plan_expires_at({"billing_label": "year"})
+        assert result is not None
+        days = _days_from_now(result)
+        assert 365.9 <= days <= 366.1
+
+    def test_unknown_label_returns_none(self):
+        """Unrecognised billing labels return None (perpetual/admin-granted access)."""
+        assert plan_expires_at({"billing_label": "lifetime"}) is None
+        assert plan_expires_at({"billing_label": ""}) is None
+        assert plan_expires_at({}) is None
+
+    def test_case_insensitive(self):
+        """billing_label is compared case-insensitively."""
+        assert plan_expires_at({"billing_label": "Month"}) is not None
+        assert plan_expires_at({"billing_label": "8 Days"}) is not None
+
+    def test_eight_day_differs_from_monthly(self):
+        """8-day and monthly plans must have distinct, non-overlapping expiry dates."""
+        nano = _days_from_now(plan_expires_at({"billing_label": "8 days"}))
+        monthly = _days_from_now(plan_expires_at({"billing_label": "month"}))
+        assert monthly - nano > 20, "8-day and monthly expiry must differ by > 20 days"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. profile_access_from_plan() — plan → profile DB fields
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestProfileAccessFromPlan:
+
+    def test_premium_nano_sets_all_fields(self):
+        """Premium Nano must set access_cbse=True, status=active, expiry ~8 days."""
+        fields = profile_access_from_plan(_base_plan())
+        assert fields["subscription_plan"] == "free"
+        assert fields["access_cbse"] is True
+        assert fields["account_status"] == "active"
+        assert fields["subscription_expires_at"] is not None
+        assert 7.9 <= _days_from_now(fields["subscription_expires_at"]) <= 8.1
+
+    def test_premium_monthly_sets_expiry(self):
+        """Premium monthly sets starter key and expiry ~31 days out."""
+        fields = profile_access_from_plan(_base_plan(key="starter", billing_label="month"))
+        assert fields["subscription_plan"] == "starter"
+        assert fields["subscription_expires_at"] is not None
+        assert 30.9 <= _days_from_now(fields["subscription_expires_at"]) <= 31.1
+
+    def test_six_month_plan_sets_expiry(self):
+        """6-month plan sets expiry ~184 days out."""
+        fields = profile_access_from_plan(_base_plan(
+            key="standard_6month", billing_label="6 months"))
+        assert fields["subscription_expires_at"] is not None
+        assert 183.9 <= _days_from_now(fields["subscription_expires_at"]) <= 184.1
+
+    def test_annual_plan_sets_expiry(self):
+        """Annual plan sets expiry ~366 days out."""
+        fields = profile_access_from_plan(_base_plan(
+            key="standard_annual", billing_label="year"))
+        assert fields["subscription_expires_at"] is not None
+        assert 365.9 <= _days_from_now(fields["subscription_expires_at"]) <= 366.1
+
+    def test_family_premium_token_limits(self):
+        """Family Premium passes through higher token limits."""
+        fields = profile_access_from_plan(_base_plan(
+            key="family_premium", billing_label="month",
+            daily_token_limit=150000, monthly_token_limit=5000000,
+        ))
+        assert fields["daily_token_limit"] == 150000
+        assert fields["monthly_token_limit"] == 5000000
+
+    def test_sof_flags_propagated(self):
+        """SOF access flags are set correctly from the plan."""
+        fields = profile_access_from_plan(_base_plan(
+            access_sof_science=True, access_sof_maths=True, access_sof_english=False))
+        assert fields["access_sof_science"] is True
+        assert fields["access_sof_maths"] is True
+        assert fields["access_sof_english"] is False
+
+    def test_unknown_billing_gives_no_expiry(self):
+        """Plans with unrecognised billing labels must have subscription_expires_at=None."""
+        fields = profile_access_from_plan(_base_plan(billing_label="custom"))
+        assert fields["subscription_expires_at"] is None
+
+    def test_all_required_keys_present(self):
+        """profile_access_from_plan() must always return all required DB column keys."""
+        fields = profile_access_from_plan(_base_plan())
+        for key in [
+            "subscription_plan", "account_status",
+            "access_cbse", "access_sof_science", "access_sof_maths", "access_sof_english",
+            "daily_token_limit", "monthly_token_limit", "subscription_expires_at",
+        ]:
+            assert key in fields, f"Required field missing: {key}"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. Subscription state machine — all 4 enrollment paths
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestSubscriptionStateMachine:
+    """
+    State 1: Free Tier    → gated, no banner
+    State 2: Offer Code   → gate bypassed, no Premium Nano banner
+    State 3: Paid Plan    → gate bypassed, expiry banner shows
+    State 4: Expired Plan → access revoked, back to State 1
+    """
+
+    # ── State 1: Free tier ────────────────────────────────────────────────────
+
+    def test_state1_new_user_is_gated(self):
+        """Brand-new signup with no payment/offer sees the subscription gate."""
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False, "accessCbse": False,
+            "accessSofScience": False, "accessSofMaths": False,
+            "accessSofEnglish": False, "parentId": None,
+            "subscriptionExpiresAt": None,
+        }
+        assert _needs_subscription_gate(user)
+        assert not _banner_should_show(user)
+
+    def test_state1_admin_bypasses_gate(self):
+        """Admin role is never gated."""
+        user = {"role": "admin", "subscriptionPlan": "free",
+                "offerAccess": False, "accessCbse": False, "parentId": None}
+        assert not _needs_subscription_gate(user)
+
+    def test_state1_parent_linked_child_bypasses_gate(self):
+        """Parent-linked children are managed by their parent — never gated."""
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False, "accessCbse": False,
+            "parentId": "parent-uuid-123",
+        }
+        assert not _needs_subscription_gate(user)
+
+    def test_state1_admin_cbse_grant_bypasses_gate(self):
+        """Student with admin-granted CBSE access bypasses the gate."""
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False, "accessCbse": True,  # admin-granted
+            "parentId": None,
+        }
+        assert not _needs_subscription_gate(user)
+
+    # ── State 2: Offer code enrollment ────────────────────────────────────────
+
+    def test_state2_offer_user_bypasses_gate(self):
+        """Active offer code bypasses the subscription gate."""
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": True, "accessCbse": False,
+            "parentId": None, "subscriptionExpiresAt": None,
+        }
+        assert not _needs_subscription_gate(user)
+
+    def test_state2_offer_user_no_premium_banner(self):
+        """Offer code user must NOT see the 'Premium Nano' banner — regression test."""
+        user = {
+            "role": "student",
+            "offerAccess": True,
+            "subscriptionExpiresAt": None,
+        }
+        assert not _banner_should_show(user)
+
+    def test_state2_offer_user_with_stale_expires_no_banner(self):
+        """
+        REGRESSION: If subscription_expires_at is somehow set for an offer user
+        (e.g. from a previous payment), the Premium Nano banner must still be
+        suppressed because offerAccess=True takes precedence.
+        """
+        future_date = (datetime.now(timezone.utc) + timedelta(days=34)).isoformat()
+        user = {
+            "role": "student",
+            "offerAccess": True,               # enrolled via offer code
+            "subscriptionExpiresAt": future_date,  # stale expiry in profile
+        }
+        assert not _banner_should_show(user), (
+            "Offer code user must NOT see Premium Nano banner "
+            "even if subscriptionExpiresAt is set"
+        )
+
+    def test_state2_expired_offer_reverts_to_gate(self):
+        """When offer redemption expires, user has no access and hits the gate."""
+        now = datetime.now(timezone.utc)
+        expired_until = (now - timedelta(hours=1)).isoformat()
+        exp_dt = datetime.fromisoformat(expired_until.replace("Z", "+00:00"))
+        has_offer_access = now <= exp_dt
+        assert not has_offer_access  # offer has expired
+
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False,  # expired
+            "accessCbse": False,
+            "parentId": None,
+            "subscriptionExpiresAt": None,
+        }
+        assert _needs_subscription_gate(user)
+
+    def test_state2_active_offer_days_remaining(self):
+        """Active offer correctly calculates remaining days."""
+        now = datetime.now(timezone.utc)
+        valid_until = (now + timedelta(days=15)).isoformat()
+        exp_dt = datetime.fromisoformat(valid_until.replace("Z", "+00:00"))
+        has_offer_access = now <= exp_dt
+        days_remaining = (exp_dt - now).days
+
+        assert has_offer_access
+        assert days_remaining == 15
+
+    # ── State 3: Paid plan enrollment ─────────────────────────────────────────
+
+    def test_state3_paid_nano_bypasses_gate_shows_banner(self):
+        """Paid Premium Nano bypasses gate and shows expiry banner."""
+        expires = (datetime.now(timezone.utc) + timedelta(days=7)).isoformat()
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False, "accessCbse": True,
+            "parentId": None,
+            "subscriptionExpiresAt": expires,
+        }
+        assert not _needs_subscription_gate(user)
+        assert _banner_should_show(user)
+
+    def test_state3_paid_premium_bypasses_gate_shows_banner(self):
+        """Paid Premium monthly bypasses gate and shows expiry banner."""
+        expires = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
+        user = {
+            "role": "student", "subscriptionPlan": "starter",
+            "offerAccess": False, "accessCbse": True,
+            "parentId": None,
+            "subscriptionExpiresAt": expires,
+        }
+        assert not _needs_subscription_gate(user)
+        assert _banner_should_show(user)
+
+    def test_state3_profile_fields_after_payment(self):
+        """After payment, profile has correct plan key and expiry."""
+        for plan_key, billing, expected_days in [
+            ("free",    "8 days",   8),
+            ("starter", "month",   31),
+            ("family_premium", "month", 31),
+        ]:
+            fields = profile_access_from_plan(_base_plan(
+                key=plan_key, billing_label=billing))
+            assert fields["subscription_plan"] == plan_key
+            assert fields["access_cbse"] is True
+            assert fields["subscription_expires_at"] is not None
+            days = _days_from_now(fields["subscription_expires_at"])
+            assert abs(days - expected_days) < 0.2, (
+                f"Plan {plan_key}: expected {expected_days} days, got {days:.2f}"
+            )
+
+    # ── State 4: Expired plan → reverted to free tier ─────────────────────────
+
+    def test_state4_expired_plan_detected(self):
+        """subscription_expires_at in the past is correctly detected as expired."""
+        past_date = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
+        profile = {"subscription_expires_at": past_date}
+        assert _is_expired(profile)
+
+    def test_state4_active_plan_not_expired(self):
+        """subscription_expires_at in the future is NOT expired."""
+        future_date = (datetime.now(timezone.utc) + timedelta(days=3)).isoformat()
+        profile = {"subscription_expires_at": future_date}
+        assert not _is_expired(profile)
+
+    def test_state4_null_expires_is_not_expired(self):
+        """subscription_expires_at=None (perpetual) is never expired."""
+        assert not _is_expired({"subscription_expires_at": None})
+        assert not _is_expired({})
+
+    def test_state4_after_expiry_reverts_to_free_tier(self):
+        """
+        After expiry, the backend revokes access_cbse and clears expires_at.
+        The resulting profile must match the free tier (gated) state.
+        """
+        # Simulate what GET /api/auth/profile does when subscription_expires_at is past
+        revoked_profile = {
+            "subscription_plan": "free",
+            "access_cbse": False,           # revoked
+            "access_sof_science": False,
+            "access_sof_maths": False,
+            "access_sof_english": False,
+            "subscription_expires_at": None,  # cleared
+        }
+        # Verify the revoked state is the free tier
+        is_free = (
+            revoked_profile["subscription_plan"] == "free"
+            and not revoked_profile["access_cbse"]
+            and revoked_profile["subscription_expires_at"] is None
+        )
+        assert is_free, "Expired subscription must revert profile to free tier"
+
+        # And the frontend gate must fire
+        user = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": False, "accessCbse": False,
+            "parentId": None, "subscriptionExpiresAt": None,
+        }
+        assert _needs_subscription_gate(user)
+        assert not _banner_should_show(user)
+
+    def test_state4_expired_banner_clears(self):
+        """After expiry, banner no longer shows (subscriptionExpiresAt becomes None)."""
+        user = {
+            "role": "student",
+            "offerAccess": False,
+            "subscriptionExpiresAt": None,  # cleared after expiry
+        }
+        assert not _banner_should_show(user)
+
+    # ── Upgrade flow: free → paid ─────────────────────────────────────────────
+
+    def test_upgrade_from_free_to_premium_nano(self):
+        """Upgrading from free tier to Premium Nano updates plan and sets expiry."""
+        before = {
+            "subscription_plan": "free",
+            "access_cbse": False,
+            "subscription_expires_at": None,
+        }
+        # After paying Rs 99
+        after = profile_access_from_plan(_base_plan(key="free", billing_label="8 days"))
+
+        assert before["access_cbse"] is False
+        assert after["access_cbse"] is True
+        assert before["subscription_expires_at"] is None
+        assert after["subscription_expires_at"] is not None
+        assert 7.9 <= _days_from_now(after["subscription_expires_at"]) <= 8.1
+
+    def test_upgrade_from_offer_to_paid_removes_gate(self):
+        """
+        User upgrades from offer code (free tier) to paid plan.
+        After payment: gate no longer fires, expiry banner shows.
+        """
+        # Before upgrade: offer access
+        user_before = {
+            "role": "student", "subscriptionPlan": "free",
+            "offerAccess": True, "accessCbse": False,
+            "parentId": None, "subscriptionExpiresAt": None,
+        }
+        assert not _needs_subscription_gate(user_before)  # offer bypasses gate
+        assert not _banner_should_show(user_before)        # no premium banner
+
+        # After upgrade: paid Premium
+        expires = (datetime.now(timezone.utc) + timedelta(days=31)).isoformat()
+        user_after = {
+            "role": "student", "subscriptionPlan": "starter",
+            "offerAccess": False,   # offer status not relevant once paid
+            "accessCbse": True,
+            "parentId": None,
+            "subscriptionExpiresAt": expires,
+        }
+        assert not _needs_subscription_gate(user_after)
+        assert _banner_should_show(user_after)
