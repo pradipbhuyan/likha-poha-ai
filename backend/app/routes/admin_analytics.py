@@ -16,6 +16,7 @@ Endpoints:
 from __future__ import annotations
 
 import logging
+import os
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, Query
@@ -26,9 +27,10 @@ router = APIRouter()
 logger = logging.getLogger("likhapoha.analytics")
 
 # ── State constants ───────────────────────────────────────────────────────────
-STATE_OK      = "ok"
-STATE_MISSING = "table_missing"   # PGRST205 / relation does not exist
-STATE_ERROR   = "query_error"     # real failure — should be logged + surfaced
+STATE_OK         = "ok"
+STATE_MISSING    = "table_missing"    # PGRST205 / relation does not exist
+STATE_ERROR      = "query_error"      # real failure — logged + surfaced
+STATE_PERMISSION = "permission_error" # 403 / RLS block / insufficient privilege
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -47,8 +49,20 @@ def _is_missing_table(err: str) -> bool:
     return (
         "PGRST205" in err
         or "schema cache" in err_lower
-        or "relation" in err_lower and "does not exist" in err_lower
+        or ("relation" in err_lower and "does not exist" in err_lower)
         or "undefined_table" in err_lower
+    )
+
+
+def _is_permission_error(err: str) -> bool:
+    """Return True if error is a permission / RLS / 403 issue."""
+    err_lower = err.lower()
+    return (
+        "permission denied" in err_lower
+        or "insufficient_privilege" in err_lower
+        or "42501" in err           # PostgreSQL permission denied code
+        or "pgrst301" in err_lower  # PostgREST 401 / JWT expired
+        or "403" in err
     )
 
 
@@ -57,9 +71,10 @@ def _safe(fn, *, context: str = ""):
     Execute a Supabase query and return (data, error_message, state).
 
     States:
-      STATE_OK       — query succeeded; data may be empty list
-      STATE_MISSING  — table doesn't exist (PGRST205 / relation not found)
-      STATE_ERROR    — unexpected failure; error is logged server-side
+      STATE_OK         — query succeeded; data may be empty list
+      STATE_MISSING    — table doesn't exist (PGRST205 / relation not found)
+      STATE_PERMISSION — permission denied / RLS / insufficient privilege
+      STATE_ERROR      — unexpected failure; error is logged server-side
     """
     try:
         r = fn()
@@ -68,9 +83,33 @@ def _safe(fn, *, context: str = ""):
         err = str(exc)
         if _is_missing_table(err):
             return [], None, STATE_MISSING
+        if _is_permission_error(err):
+            logger.warning("analytics permission error [%s]: %s", context or "?", err[:200])
+            return [], err[:200], STATE_PERMISSION
         # Real error — log it so it doesn't vanish silently
         logger.warning("analytics query error [%s]: %s", context or "?", err[:300])
         return [], err[:200], STATE_ERROR
+
+
+def _count_rows(table: str) -> tuple[int | None, str, str]:
+    """
+    Return (count, error_message, state) for a table.
+    Uses limit(1) + count to avoid fetching all data.
+    Falls back to a full select if count API not available.
+    """
+    try:
+        # Try PostgREST count query first (most efficient)
+        r = admin_client.table(table).select("id", count="exact").limit(1).execute()
+        count = r.count if hasattr(r, "count") and r.count is not None else len(r.data or [])
+        return count, None, STATE_OK
+    except Exception as exc:
+        err = str(exc)
+        if _is_missing_table(err):
+            return None, None, STATE_MISSING
+        if _is_permission_error(err):
+            return None, err[:200], STATE_PERMISSION
+        logger.warning("diagnostics count error [%s]: %s", table, err[:200])
+        return None, err[:200], STATE_ERROR
 
 
 def _date_bucket(iso_ts: str, bucket: str = "day") -> str:
@@ -406,4 +445,130 @@ def analytics_trends(
             "offer_redemptions_state": redemptions_state,
             "teacher_assignments": True,  # always from profiles/assignments
         },
+    }
+
+
+# ── Diagnostics ───────────────────────────────────────────────────────────────
+
+@router.get("/analytics/diagnostics")
+def analytics_diagnostics(admin=Depends(require_admin)):
+    """
+    Admin-only endpoint that probes the database connection and
+    reports which tables exist, their row counts, and the Supabase
+    project ref.
+
+    NEVER exposes secrets — only reports boolean key presence and
+    project ref (first 8 chars of URL host).
+    """
+    supabase_url: str = os.getenv("SUPABASE_URL", "")
+    service_role_set: bool = bool(os.getenv("SUPABASE_SERVICE_ROLE_KEY", ""))
+
+    # Extract project ref safely (no secrets)
+    project_ref = "unknown"
+    try:
+        # URL format: https://<ref>.supabase.co
+        host = supabase_url.split("//")[-1].split(".")[0]
+        project_ref = host[:12] + "…" if len(host) > 12 else host
+    except Exception:
+        pass
+
+    # Tables to probe: (table_name, description, is_required)
+    TABLE_PROBES = [
+        ("profiles",                   "User profiles",          True),
+        ("subscription_payments",      "Subscription payments",  True),
+        ("offer_redemptions",          "Offer redemptions",      False),
+        ("offer_codes",                "Offer codes",            False),
+        ("teacher_student_assignments","Teacher assignments",     False),
+        ("ai_usage_logs",              "AI usage logs",          False),
+        ("test_history",               "Mock test history",      False),
+        ("subscription_timeline",      "Subscription timeline",  False),
+        ("platform_audit_logs",        "Platform audit logs",    False),
+        ("families",                   "Families",               False),
+    ]
+
+    tables = []
+    profiles_count = None
+
+    for table, label, required in TABLE_PROBES:
+        count, err, state = _count_rows(table)
+        entry = {
+            "table": table,
+            "label": label,
+            "required": required,
+            "state": state,
+            "row_count": count,
+            "error_category": None,
+        }
+        if state == STATE_PERMISSION:
+            entry["error_category"] = "permission_denied"
+        elif state == STATE_ERROR:
+            entry["error_category"] = "query_error"
+        elif state == STATE_MISSING:
+            entry["error_category"] = "table_missing"
+
+        if table == "profiles" and state == STATE_OK:
+            profiles_count = count
+
+        tables.append(entry)
+
+    # Build summary warnings
+    warnings = []
+    profiles_entry = next((t for t in tables if t["table"] == "profiles"), None)
+
+    if profiles_entry and profiles_entry["state"] == STATE_OK and (profiles_count or 0) == 0:
+        warnings.append({
+            "level": "critical",
+            "code": "profiles_empty",
+            "message": (
+                "profiles table exists but has 0 rows. "
+                "The backend may be connected to the wrong Supabase project, "
+                "or users have not been created yet."
+            ),
+        })
+    elif profiles_entry and profiles_entry["state"] == STATE_PERMISSION:
+        warnings.append({
+            "level": "critical",
+            "code": "profiles_permission_denied",
+            "message": (
+                "Cannot read profiles table — permission denied. "
+                "Check that SUPABASE_SERVICE_ROLE_KEY is the service role key "
+                "(not the anon key). Service role bypasses RLS."
+            ),
+        })
+    elif profiles_entry and profiles_entry["state"] in (STATE_ERROR, STATE_MISSING):
+        warnings.append({
+            "level": "critical",
+            "code": "profiles_unavailable",
+            "message": f"profiles table is {profiles_entry['state']}. Analytics will show 0.",
+        })
+
+    missing_required = [t for t in tables if t["required"] and t["state"] != STATE_OK]
+    if missing_required:
+        warnings.append({
+            "level": "error",
+            "code": "required_tables_unavailable",
+            "message": f"Required tables unavailable: {', '.join(t['table'] for t in missing_required)}",
+        })
+
+    missing_optional = [t for t in tables if not t["required"] and t["state"] == STATE_MISSING]
+    if missing_optional:
+        warnings.append({
+            "level": "info",
+            "code": "optional_tables_missing",
+            "message": (
+                f"Optional tables not yet migrated: {', '.join(t['table'] for t in missing_optional)}. "
+                "These features will show 'Not yet enabled'."
+            ),
+        })
+
+    return {
+        "success": True,
+        "project_ref": project_ref,
+        "service_role_configured": service_role_set,
+        "tables": tables,
+        "warnings": warnings,
+        "profiles_row_count": profiles_count,
+        "data_source_appears_correct": (
+            profiles_count is not None and profiles_count > 0
+        ),
     }

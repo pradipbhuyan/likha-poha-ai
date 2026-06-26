@@ -14,10 +14,11 @@ import { useCallback, useEffect, useState } from "react";
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 // ── State constants (mirror backend) ─────────────────────────────────────────
-const STATE_OK      = "ok";
-const STATE_MISSING = "table_missing";
-const STATE_ERROR   = "query_error";
-const STATE_LOADING = "loading";
+const STATE_OK         = "ok";
+const STATE_MISSING    = "table_missing";
+const STATE_ERROR      = "query_error";
+const STATE_PERMISSION = "permission_error";
+const STATE_LOADING    = "loading";
 
 // ── StatCard ─────────────────────────────────────────────────────────────────
 
@@ -40,6 +41,14 @@ function StatCard({ label, value, state = STATE_OK, sub, format = "number" }) {
       <span data-testid="badge-not-enabled"
         style={{ display: "inline-block", fontSize: ".68rem", padding: "2px 6px", borderRadius: 4, background: "rgba(148,163,184,.15)", color: "#94a3b8", fontWeight: 600 }}>
         Not yet enabled
+      </span>
+    );
+  } else if (state === STATE_PERMISSION) {
+    display = null;
+    badge = (
+      <span data-testid="badge-permission"
+        style={{ display: "inline-block", fontSize: ".68rem", padding: "2px 6px", borderRadius: 4, background: "rgba(239,68,68,.1)", color: "#dc2626", fontWeight: 600 }}>
+        Permission issue
       </span>
     );
   } else if (state === STATE_ERROR) {
@@ -96,6 +105,13 @@ function TrendChart({ title, data, state = STATE_OK, valueKey = "count", color =
         Not yet enabled
       </div>
     );
+  } else if (state === STATE_PERMISSION) {
+    body = (
+      <div data-testid="trend-permission"
+        style={{ fontSize: ".75rem", color: "#dc2626", padding: "8px 0" }}>
+        Permission issue — check service role key
+      </div>
+    );
   } else if (state === STATE_ERROR) {
     body = (
       <div data-testid="trend-error"
@@ -143,6 +159,128 @@ function SectionLabel({ children }) {
   );
 }
 
+// ── DiagnosticsPanel ─────────────────────────────────────────────────────────
+
+function DiagnosticsPanel({ accessToken }) {
+  const [open, setOpen]         = useState(false);
+  const [diag, setDiag]         = useState(null);
+  const [loading, setLoading]   = useState(false);
+  const [error, setError]       = useState(null);
+
+  async function load() {
+    setLoading(true); setError(null);
+    try {
+      const r = await fetch(`${API}/api/admin/analytics/diagnostics`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      const d = await r.json();
+      setDiag(d);
+    } catch (e) { setError(e.message); }
+    setLoading(false);
+  }
+
+  const STATE_COLOR = {
+    ok:               { bg: "rgba(34,197,94,.1)",  color: "#166534", label: "✓" },
+    table_missing:    { bg: "rgba(148,163,184,.1)", color: "#64748b", label: "—" },
+    permission_error: { bg: "rgba(239,68,68,.1)",  color: "#dc2626", label: "🔒" },
+    query_error:      { bg: "rgba(245,158,11,.1)",  color: "#b45309", label: "!" },
+  };
+
+  return (
+    <div data-testid="diagnostics-panel"
+      style={{ marginTop: 16, border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, overflow: "hidden" }}>
+      <button onClick={() => { setOpen(o => !o); if (!open && !diag) load(); }}
+        style={{ width: "100%", padding: "10px 14px", background: "var(--surface2,#f8fafc)", border: "none", cursor: "pointer", textAlign: "left", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: ".82rem", fontWeight: 700, color: "#64748b" }}>🔍 Connection Diagnostics</span>
+        <span style={{ fontSize: ".72rem", color: "#94a3b8", flex: 1 }}>Admin-only · Safe · No secrets</span>
+        <span style={{ fontSize: ".78rem", color: "#6366f1" }}>{open ? "▲ Hide" : "▼ Show"}</span>
+      </button>
+
+      {open && (
+        <div style={{ padding: "12px 14px", background: "var(--panel,#fff)" }}>
+          {loading && <div style={{ color: "#94a3b8", fontSize: ".82rem" }}>Running diagnostics…</div>}
+          {error   && <div style={{ color: "#dc2626", fontSize: ".82rem" }}>⚠ {error}</div>}
+          {diag && (
+            <>
+              {/* Connection summary */}
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 12, fontSize: ".82rem" }}>
+                <span><strong>Project:</strong> {diag.project_ref}</span>
+                <span>
+                  <strong>Service role key:</strong>{" "}
+                  <span style={{ color: diag.service_role_configured ? "#166534" : "#dc2626", fontWeight: 700 }}>
+                    {diag.service_role_configured ? "✓ Configured" : "✗ Missing"}
+                  </span>
+                </span>
+                <span>
+                  <strong>Data source:</strong>{" "}
+                  {diag.data_source_appears_correct
+                    ? <span style={{ color: "#166534", fontWeight: 700 }}>✓ Has data ({diag.profiles_row_count} profiles)</span>
+                    : <span style={{ color: "#dc2626", fontWeight: 700 }}>⚠ profiles = {diag.profiles_row_count ?? "unknown"} rows</span>
+                  }
+                </span>
+              </div>
+
+              {/* Warnings */}
+              {(diag.warnings || []).map((w, i) => (
+                <div key={i} data-testid={`diag-warning-${w.code}`}
+                  style={{
+                    padding: "8px 12px", borderRadius: 7, marginBottom: 8, fontSize: ".8rem",
+                    background: w.level === "critical" ? "rgba(239,68,68,.07)"
+                               : w.level === "error" ? "rgba(245,158,11,.08)"
+                               : "rgba(99,102,241,.07)",
+                    borderLeft: `3px solid ${w.level === "critical" ? "#dc2626" : w.level === "error" ? "#b45309" : "#6366f1"}`,
+                    color: w.level === "critical" ? "#7f1d1d" : w.level === "error" ? "#78350f" : "#1e1b4b",
+                  }}>
+                  {w.message}
+                </div>
+              ))}
+
+              {/* Table probes */}
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: ".78rem" }}>
+                  <thead>
+                    <tr style={{ color: "#64748b", borderBottom: "1px solid var(--border,#e5e7eb)" }}>
+                      <th style={{ textAlign: "left", padding: "4px 8px" }}>Table</th>
+                      <th style={{ textAlign: "left", padding: "4px 8px" }}>Status</th>
+                      <th style={{ textAlign: "right", padding: "4px 8px" }}>Rows</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(diag.tables || []).map(t => {
+                      const sc = STATE_COLOR[t.state] || STATE_COLOR.query_error;
+                      return (
+                        <tr key={t.table} style={{ borderBottom: "1px solid var(--border,#f1f5f9)" }}>
+                          <td style={{ padding: "5px 8px" }}>
+                            <code style={{ fontSize: ".75rem" }}>{t.table}</code>
+                            {t.required && <span style={{ marginLeft: 4, fontSize: ".65rem", color: "#94a3b8" }}>required</span>}
+                          </td>
+                          <td style={{ padding: "5px 8px" }}>
+                            <span style={{ display: "inline-block", padding: "1px 6px", borderRadius: 4, background: sc.bg, color: sc.color, fontWeight: 600, fontSize: ".72rem" }}>
+                              {sc.label} {t.state}
+                            </span>
+                          </td>
+                          <td style={{ padding: "5px 8px", textAlign: "right", color: t.row_count === 0 ? "#f59e0b" : "#64748b" }}>
+                            {t.row_count != null ? t.row_count.toLocaleString() : "—"}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              <button onClick={load} disabled={loading}
+                style={{ marginTop: 10, padding: "4px 10px", borderRadius: 6, border: "1px solid var(--border,#e5e7eb)", background: "var(--panel,#fff)", cursor: "pointer", fontSize: ".75rem", fontFamily: "inherit", color: "#6366f1" }}>
+                {loading ? "…" : "↺ Refresh diagnostics"}
+              </button>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── AdminAnalytics ────────────────────────────────────────────────────────────
 
 export default function AdminAnalytics({ accessToken }) {
@@ -181,7 +319,7 @@ export default function AdminAnalytics({ accessToken }) {
   const ai  = summary?.ai_usage || {};
 
   // Per-metric states from backend
-  const usersState       = loading ? STATE_LOADING : (u.query_ok === false ? STATE_ERROR : STATE_OK);
+  const usersState       = loading ? STATE_LOADING : (u.query_ok === false ? (p.query_state === STATE_PERMISSION ? STATE_PERMISSION : STATE_ERROR) : STATE_OK);
   const paymentsState    = loading ? STATE_LOADING : (p.query_ok === false ? (p.query_state || STATE_ERROR) : STATE_OK);
   const offerState       = loading ? STATE_LOADING : (summary?.offer_redemptions_state || STATE_MISSING);
   const assignState      = loading ? STATE_LOADING : (summary?.teacher_assignments_state || STATE_MISSING);
@@ -294,6 +432,9 @@ export default function AdminAnalytics({ accessToken }) {
             color="#0ea5e9" />
         </div>
       )}
+
+      {/* ── Diagnostics panel ────────────────────────────────────────── */}
+      <DiagnosticsPanel accessToken={accessToken} />
 
       {/* ── Data availability note ───────────────────────────────────── */}
       {trends && !loading && (() => {
