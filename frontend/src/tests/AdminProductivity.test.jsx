@@ -193,7 +193,12 @@ describe("AdminAnalytics", () => {
     ai_usage_trend: null,
     mock_test_trend: null,
     subscription_activation_trend: [],
-    data_availability: { ai_usage_logs: false, test_history: true, subscription_timeline: true },
+    data_availability: {
+      ai_usage_logs: false, ai_usage_logs_state: "table_missing",
+      test_history: true, test_history_state: "ok",
+      subscription_timeline: true, subscription_timeline_state: "ok",
+      offer_redemptions: true, offer_redemptions_state: "ok",
+    },
   };
 
   beforeEach(() => {
@@ -212,11 +217,12 @@ describe("AdminAnalytics", () => {
     expect(screen.getByText("50")).toBeInTheDocument();
   });
 
-  test("shows N/A for unavailable AI data", async () => {
+  test("shows Not yet enabled for unavailable AI data", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
-    const naElements = screen.getAllByText("N/A");
-    expect(naElements.length).toBeGreaterThan(0);
+    // New component uses "Not yet enabled" badge instead of "N/A"
+    const badges = screen.getAllByTestId("badge-not-enabled");
+    expect(badges.length).toBeGreaterThan(0);
   });
 
   test("renders trend bar chart for signups", async () => {
@@ -234,7 +240,8 @@ describe("AdminAnalytics", () => {
 
   test("shows unavailability note for missing AI table", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    expect(await screen.findByText(/AI usage trends unavailable/i)).toBeInTheDocument();
+    // New component shows "AI usage logs: not yet enabled" in the footnotes
+    expect(await screen.findByText(/AI usage logs: not yet enabled/i)).toBeInTheDocument();
   });
 });
 
