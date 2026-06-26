@@ -179,7 +179,9 @@ class TestAnalyticsDiagnostics:
 
     def test_diagnostics_does_not_expose_supabase_url(self, monkeypatch):
         """project_ref is only the first ~12 chars of the host — never full URL."""
+        # Must patch both env var AND _SUPABASE_URL (imported from auth_service)
         monkeypatch.setenv("SUPABASE_URL", "https://abcdefghij1234567890.supabase.co")
+        monkeypatch.setattr(analytics, "_SUPABASE_URL", "https://abcdefghij1234567890.supabase.co")
         monkeypatch.setattr(analytics, "_count_rows", self._make_count_fn({}))
         result = analytics_diagnostics(admin=ADMIN_CTX)
         assert "abcdefghij1234567890" not in result["project_ref"]  # truncated
