@@ -287,8 +287,10 @@ Make it concise, exam-focused and easy to understand.`,
     setPracticeAnswers({});
     setPracticeRevealed({});
     setPracticeLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/api/doubt/answer`, {
+
+    /** Helper: call the doubt API and return the answer text */
+    async function callDoubt(questionText) {
+      const r = await fetch(`${API_BASE}/api/doubt/answer`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
         body: JSON.stringify({
@@ -298,36 +300,73 @@ Make it concise, exam-focused and easy to understand.`,
           board: "CBSE",
           subject: selectedSubject,
           chapter: topic.topic,
-          question: `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question.
-
-IMPORTANT RULES:
-- Do NOT use LaTeX, dollar signs, or math notation like $x^2$. Write all math in plain text (e.g. x squared, x^2, or x² using Unicode).
-- Each question MUST have a detailed step-by-step explanation showing HOW to arrive at the correct answer.
-
-Respond ONLY with a valid JSON array (no markdown, no extra text):
-[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ...","explanation":"Step-by-step solution: ..."}]`,
+          question: questionText,
           save_to_history: false,
         }),
       });
-      const data = await res.json();
-      const raw = (data.answer || "").trim();
+      const d = await r.json();
+      return (d.answer || "").trim();
+    }
+
+    try {
+      // ── Pass 1: generate questions ────────────────────────────────────────
+      const raw = await callDoubt(
+        `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question.
+
+IMPORTANT RULES:
+- Do NOT use LaTeX, dollar signs, or math notation. Write all math in plain text (e.g. x^2, P(x), (x-2)(x-3)).
+- You MUST include a detailed explanation of at least 3 sentences for EVERY question. NEVER leave explanation blank or short.
+- The explanation must show the complete step-by-step working to reach the correct answer.
+
+Respond ONLY with a valid JSON array (no markdown):
+[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ...","explanation":"Step 1: ... Step 2: ... Therefore the answer is A because ..."}]`
+      );
       const start = raw.indexOf("["), end = raw.lastIndexOf("]");
-      if (start !== -1 && end !== -1) {
-        try {
-          const parsed = JSON.parse(raw.slice(start, end + 1));
-          // Clean LaTeX from all text fields in the parsed questions
-          const cleanedQs = parsed.map(q => ({
-            ...q,
-            q: cleanMathText(q.q),
-            options: q.options
-              ? q.options.map(o => cleanMathText(o))
-              : q.options,
-            answer: cleanMathText(q.answer),
-            explanation: q.explanation ? cleanMathText(q.explanation) : "",
-          }));
-          setPracticeQs(cleanedQs);
-        } catch { setPracticeQs([]); }
+      if (start === -1 || end === -1) { setPracticeQs([]); return; }
+
+      let parsed;
+      try { parsed = JSON.parse(raw.slice(start, end + 1)); } catch { setPracticeQs([]); return; }
+
+      // Clean LaTeX from all fields
+      let cleanedQs = parsed.map(q => ({
+        ...q,
+        q: cleanMathText(q.q),
+        options: q.options ? q.options.map(o => cleanMathText(o)) : q.options,
+        answer: cleanMathText(q.answer),
+        explanation: q.explanation ? cleanMathText(q.explanation) : "",
+      }));
+
+      // ── Pass 2: if any explanation is missing or too short, fetch all explanations ─
+      const needsExplanations = cleanedQs.some(q => !q.explanation || q.explanation.length < 40);
+      if (needsExplanations) {
+        const questionsText = cleanedQs
+          .map((q, i) => `Q${i+1}: ${q.q}\nCorrect answer: ${q.answer}`)
+          .join("\n\n");
+
+        const explRaw = await callDoubt(
+          `For each of these ${selectedSubject} questions about "${topic.topic}" (Grade ${selectedGrade}), provide a detailed explanation of at least 3 sentences showing the complete working.
+
+${questionsText}
+
+Do NOT use dollar signs or LaTeX. Write all math in plain text.
+Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation strings:
+["Full explanation for Q1 showing step by step working...", "Full explanation for Q2...", ...]`
+        );
+        const es = explRaw.indexOf("["), ee = explRaw.lastIndexOf("]");
+        if (es !== -1 && ee !== -1) {
+          try {
+            const explanations = JSON.parse(explRaw.slice(es, ee + 1));
+            cleanedQs = cleanedQs.map((q, i) => ({
+              ...q,
+              explanation: (explanations[i] && typeof explanations[i] === "string")
+                ? cleanMathText(explanations[i])
+                : q.explanation,
+            }));
+          } catch { /* keep existing explanations */ }
+        }
       }
+
+      setPracticeQs(cleanedQs);
     } catch { setPracticeQs([]); }
     finally { setPracticeLoading(false); }
   }
@@ -555,15 +594,16 @@ Respond ONLY with a valid JSON array (no markdown, no extra text):
                             )}
                             {revealed && (
                               <div style={{ marginTop: 7 }}>
-                                <div style={{ fontSize: ".76rem", fontWeight: 700, color: selected === q.answer ? "#10b981" : "#ef4444", marginBottom: q.explanation ? 6 : 0 }}>
+                                <div style={{ fontSize: ".76rem", fontWeight: 700, color: selected === q.answer ? "#10b981" : "#ef4444", marginBottom: 8 }}>
                                   {selected === q.answer ? "✅ Correct!" : `❌ Incorrect — correct: ${q.answer}`}
                                 </div>
-                                {q.explanation && (
-                                  <div style={{ padding: "10px 12px", borderRadius: 8, background: "rgba(16,185,129,.06)", border: "1px solid rgba(16,185,129,.2)", fontSize: ".78rem", color: "var(--text)", lineHeight: 1.55 }}>
-                                    <strong style={{ color: "#059669", display: "block", marginBottom: 4 }}>💡 Explanation</strong>
-                                    {q.explanation}
-                                  </div>
-                                )}
+                                {/* Always show explanation on reveal — for both correct and incorrect answers */}
+                                <div style={{ padding: "10px 12px", borderRadius: 8, background: selected === q.answer ? "rgba(16,185,129,.06)" : "rgba(37,99,235,.06)", border: `1px solid ${selected === q.answer ? "rgba(16,185,129,.2)" : "rgba(37,99,235,.2)"}`, fontSize: ".78rem", color: "var(--text)", lineHeight: 1.65 }}>
+                                  <strong style={{ color: selected === q.answer ? "#059669" : "#2563eb", display: "block", marginBottom: 4 }}>💡 Explanation</strong>
+                                  {q.explanation
+                                    ? q.explanation
+                                    : `The correct answer is ${q.answer}. Review the concept of ${activeTopic?.topic} and work through this problem step by step to understand why this option is correct.`}
+                                </div>
                               </div>
                             )}
                           </div>
