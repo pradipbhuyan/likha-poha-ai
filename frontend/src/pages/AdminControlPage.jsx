@@ -2363,6 +2363,12 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
         )}
       </section>
 
+      {/* ── Parent-Child Association Section ── */}
+      <ParentChildAssociationSection accessToken={user?.accessToken} />
+
+      {/* ── Teacher-Student Association Section ── */}
+      <TeacherStudentAssociationSection accessToken={user?.accessToken} />
+
       {families.map((family) => (
         <section key={family.family_id} className="premium-section admin-family-section">
           {/* ── Credentials card shown OUTSIDE <details> so it's always visible after creation ── */}
@@ -3057,6 +3063,504 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </details>
         </section>
       ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parent-Child Association Component (used inside AdminControlPage)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function ParentChildAssociationSection({ accessToken }) {
+  /**
+   * Admin-only section for linking parents to students.
+   * Allows searching parents and students by name/email, then linking them.
+   * Also shows all existing associations and allows unlinking.
+   */
+  const [parentQuery, setParentQuery] = useState("");
+  const [studentQuery, setStudentQuery] = useState("");
+  const [parentResults, setParentResults] = useState([]);
+  const [studentResults, setStudentResults] = useState([]);
+  const [selectedParent, setSelectedParent] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [linking, setLinking] = useState(false);
+  const [linkMsg, setLinkMsg] = useState("");
+  const [linkErr, setLinkErr] = useState("");
+  const [associations, setAssociations] = useState([]);
+  const [assocLoading, setAssocLoading] = useState(false);
+  const [assocQuery, setAssocQuery] = useState("");
+
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+  async function authGet(path) {
+    const r = await fetch(`${API_BASE}${path}`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function authPost(path, body) {
+    const r = await fetch(`${API_BASE}${path}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function authDelete(path) {
+    const r = await fetch(`${API_BASE}${path}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function searchParents(q) {
+    if (!q.trim()) { setParentResults([]); return; }
+    try {
+      const data = await authGet(`/api/admin-control/search-users?q=${encodeURIComponent(q)}&role=parent`);
+      setParentResults(data.users || []);
+    } catch { setParentResults([]); }
+  }
+
+  async function searchStudents(q) {
+    if (!q.trim()) { setStudentResults([]); return; }
+    try {
+      const data = await authGet(`/api/admin-control/search-users?q=${encodeURIComponent(q)}&role=student`);
+      setStudentResults(data.users || []);
+    } catch { setStudentResults([]); }
+  }
+
+  async function loadAssociations() {
+    setAssocLoading(true);
+    try {
+      const data = await authGet(`/api/admin-control/parent-child-associations?q=${encodeURIComponent(assocQuery)}`);
+      setAssociations(data.associations || []);
+    } catch { setAssociations([]); }
+    finally { setAssocLoading(false); }
+  }
+
+  // Debounce search
+  const { useState: _us, useEffect: _ue } = { useState, useEffect };
+  useEffect(() => { const t = setTimeout(() => searchParents(parentQuery), 300); return () => clearTimeout(t); }, [parentQuery]);
+  useEffect(() => { const t = setTimeout(() => searchStudents(studentQuery), 300); return () => clearTimeout(t); }, [studentQuery]);
+  useEffect(() => { loadAssociations(); }, [assocQuery]);
+
+  async function handleLink() {
+    if (!selectedParent || !selectedStudent) { setLinkErr("Select both a parent and a student."); return; }
+    setLinking(true); setLinkErr(""); setLinkMsg("");
+    try {
+      const result = await authPost("/api/admin-control/link-parent-child", {
+        parent_id: selectedParent.id,
+        child_id: selectedStudent.id,
+      });
+      setLinkMsg(result.message || "✅ Linked successfully.");
+      setSelectedParent(null); setSelectedStudent(null);
+      setParentQuery(""); setStudentQuery("");
+      setParentResults([]); setStudentResults([]);
+      loadAssociations();
+    } catch (err) { setLinkErr(err.message || "Linking failed."); }
+    finally { setLinking(false); }
+  }
+
+  async function handleUnlink(childId, childName) {
+    if (!window.confirm(`Remove parent association from ${childName}?`)) return;
+    try {
+      await authDelete(`/api/admin-control/link-parent-child/${childId}`);
+      setLinkMsg("✅ Association removed.");
+      loadAssociations();
+    } catch (err) { setLinkErr(err.message || "Failed to unlink."); }
+  }
+
+  const inputStyle = {
+    width: "100%", background: "var(--surface2, #f8f9fa)", border: "1px solid var(--border, #e2e8f0)",
+    borderRadius: 8, padding: "9px 12px", fontSize: ".88rem",
+    fontFamily: "inherit", color: "inherit", outline: "none",
+  };
+  const resultItemStyle = (selected) => ({
+    padding: "8px 12px", borderRadius: 8, cursor: "pointer", fontSize: ".85rem",
+    background: selected ? "rgba(99,102,241,.15)" : "transparent",
+    border: `1px solid ${selected ? "#6366f1" : "transparent"}`,
+    marginBottom: 3,
+  });
+
+  return (
+    <div className="premium-section" style={{ marginTop: 24 }}>
+      <div className="premium-header">
+        <h3>🔗 Parent-Child Association</h3>
+        <p>Link an existing parent account to a student. Only admins can create or change these links.</p>
+      </div>
+
+      {linkMsg && <div className="info-box" style={{ marginBottom: 12 }}>{linkMsg}</div>}
+      {linkErr && <div className="error-box" style={{ marginBottom: 12 }}>{linkErr}</div>}
+
+      {/* Search + Link panel */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
+        {/* Parent search */}
+        <div className="premium-card">
+          <h4 style={{ margin: "0 0 10px" }}>Search Parent</h4>
+          <input
+            style={inputStyle}
+            placeholder="Search by name or email…"
+            value={parentQuery}
+            onChange={(e) => setParentQuery(e.target.value)}
+          />
+          {parentResults.length > 0 && (
+            <div style={{ marginTop: 8, maxHeight: 200, overflowY: "auto" }}>
+              {parentResults.map((u) => (
+                <div key={u.id}
+                  style={resultItemStyle(selectedParent?.id === u.id)}
+                  onClick={() => setSelectedParent(u)}
+                >
+                  <strong>{u.username}</strong>
+                  <small style={{ display: "block", color: "var(--muted, #64748b)" }}>{u.email}</small>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedParent && (
+            <div style={{ marginTop: 8, padding: "8px 12px", background: "rgba(99,102,241,.1)", borderRadius: 8, fontSize: ".85rem" }}>
+              ✅ Selected: <strong>{selectedParent.username}</strong>
+              <button onClick={() => setSelectedParent(null)}
+                style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#94a3b8", fontSize: ".9rem" }}>×</button>
+            </div>
+          )}
+        </div>
+
+        {/* Student search */}
+        <div className="premium-card">
+          <h4 style={{ margin: "0 0 10px" }}>Search Student</h4>
+          <input
+            style={inputStyle}
+            placeholder="Search by name or email…"
+            value={studentQuery}
+            onChange={(e) => setStudentQuery(e.target.value)}
+          />
+          {studentResults.length > 0 && (
+            <div style={{ marginTop: 8, maxHeight: 200, overflowY: "auto" }}>
+              {studentResults.map((u) => (
+                <div key={u.id}
+                  style={resultItemStyle(selectedStudent?.id === u.id)}
+                  onClick={() => setSelectedStudent(u)}
+                >
+                  <strong>{u.username}</strong>
+                  <small style={{ display: "block", color: "var(--muted, #64748b)" }}>
+                    {u.email} · {u.grade || "—"}
+                    {u.parent_id ? " · (has parent)" : ""}
+                  </small>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedStudent && (
+            <div style={{ marginTop: 8, padding: "8px 12px", background: "rgba(99,102,241,.1)", borderRadius: 8, fontSize: ".85rem" }}>
+              ✅ Selected: <strong>{selectedStudent.username}</strong> ({selectedStudent.grade || "—"})
+              <button onClick={() => setSelectedStudent(null)}
+                style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#94a3b8", fontSize: ".9rem" }}>×</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <button
+        className="primary-btn"
+        style={{ maxWidth: 280 }}
+        disabled={linking || !selectedParent || !selectedStudent}
+        onClick={handleLink}
+      >
+        {linking ? "Linking…" : "🔗 Link Parent to Student"}
+      </button>
+
+      {/* Existing associations */}
+      <div style={{ marginTop: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
+          <h4 style={{ margin: 0 }}>Existing Associations ({associations.length})</h4>
+          <input
+            style={{ ...inputStyle, maxWidth: 260 }}
+            placeholder="Filter by student name…"
+            value={assocQuery}
+            onChange={(e) => setAssocQuery(e.target.value)}
+          />
+        </div>
+
+        {assocLoading ? (
+          <p>Loading…</p>
+        ) : associations.length === 0 ? (
+          <div className="info-box">No parent-child associations found.</div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {associations.map((a, i) => (
+              <div key={`${a.child.id}-${i}`} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "10px 14px", background: "var(--surface2, #f8f9fa)",
+                borderRadius: 9, border: "1px solid var(--border, #e2e8f0)", flexWrap: "wrap", gap: 8,
+              }}>
+                <div style={{ fontSize: ".85rem" }}>
+                  <strong>{a.child.username}</strong>
+                  <span style={{ color: "var(--muted, #64748b)", marginLeft: 6 }}>({a.child.grade || "—"})</span>
+                  <span style={{ margin: "0 8px", color: "var(--muted, #64748b)" }}>→</span>
+                  <strong>{a.parent.username || "(unknown parent)"}</strong>
+                  <span style={{ color: "var(--muted, #64748b)", marginLeft: 6, fontSize: ".78rem" }}>{a.parent.email || ""}</span>
+                </div>
+                <button
+                  onClick={() => handleUnlink(a.child.id, a.child.username)}
+                  style={{
+                    background: "rgba(239,68,68,.1)", border: "1px solid rgba(239,68,68,.25)",
+                    color: "#f87171", borderRadius: 7, padding: "4px 12px",
+                    cursor: "pointer", fontSize: ".78rem", fontWeight: 600, fontFamily: "inherit",
+                  }}
+                >
+                  Unlink
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Teacher-Student Association Component (used inside AdminControlPage)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function TeacherStudentAssociationSection({ accessToken }) {
+  const [teacherQuery, setTeacherQuery] = useState("");
+  const [studentQuery, setStudentQuery] = useState("");
+  const [teacherResults, setTeacherResults] = useState([]);
+  const [studentResults, setStudentResults] = useState([]);
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [subject, setSubject] = useState("");
+  const [grade, setGrade] = useState("Grade 9");
+  const [linking, setLinking] = useState(false);
+  const [linkMsg, setLinkMsg] = useState("");
+  const [linkErr, setLinkErr] = useState("");
+  const [associations, setAssociations] = useState([]);
+  const [assocLoading, setAssocLoading] = useState(false);
+  const [assocQuery, setAssocQuery] = useState("");
+
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+  async function authGet(path) {
+    const r = await fetch(`${API_BASE}${path}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function authPost(path, body) {
+    const r = await fetch(`${API_BASE}${path}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function authDelete(path) {
+    const r = await fetch(`${API_BASE}${path}`, { method: "DELETE", headers: { Authorization: `Bearer ${accessToken}` } });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.detail || "Request failed");
+    return data;
+  }
+
+  async function searchTeachers(q) {
+    if (!q.trim()) { setTeacherResults([]); return; }
+    try {
+      const data = await authGet(`/api/admin-control/search-users?q=${encodeURIComponent(q)}&role=teacher`);
+      setTeacherResults(data.users || []);
+    } catch { setTeacherResults([]); }
+  }
+
+  async function searchStudents(q) {
+    if (!q.trim()) { setStudentResults([]); return; }
+    try {
+      const data = await authGet(`/api/admin-control/search-users?q=${encodeURIComponent(q)}&role=student`);
+      setStudentResults(data.users || []);
+    } catch { setStudentResults([]); }
+  }
+
+  async function loadAssociations() {
+    setAssocLoading(true);
+    try {
+      const data = await authGet(`/api/admin-control/teacher-student-associations?q=${encodeURIComponent(assocQuery)}`);
+      setAssociations(data.associations || []);
+    } catch { setAssociations([]); }
+    finally { setAssocLoading(false); }
+  }
+
+  useEffect(() => { const t = setTimeout(() => searchTeachers(teacherQuery), 300); return () => clearTimeout(t); }, [teacherQuery]);
+  useEffect(() => { const t = setTimeout(() => searchStudents(studentQuery), 300); return () => clearTimeout(t); }, [studentQuery]);
+  useEffect(() => { loadAssociations(); }, [assocQuery]);
+
+  async function handleLink() {
+    if (!selectedTeacher || !selectedStudent) { setLinkErr("Select both a teacher and a student."); return; }
+    setLinking(true); setLinkErr(""); setLinkMsg("");
+    try {
+      const result = await authPost("/api/admin-control/teacher-assignments", {
+        teacher_id: selectedTeacher.id,
+        student_id: selectedStudent.id,
+        grade: grade || selectedStudent.grade || "Grade 9",
+        subject: subject || "General",
+        section: "",
+      });
+      setLinkMsg(`✅ ${selectedStudent.username} assigned to teacher ${selectedTeacher.username}.`);
+      setSelectedTeacher(null); setSelectedStudent(null);
+      setTeacherQuery(""); setStudentQuery("");
+      setTeacherResults([]); setStudentResults([]);
+      setSubject(""); setGrade("Grade 9");
+      loadAssociations();
+    } catch (err) { setLinkErr(err.message || "Assignment failed."); }
+    finally { setLinking(false); }
+  }
+
+  async function handleUnlink(assignmentId, studentName, teacherName) {
+    if (!window.confirm(`Remove ${studentName} from teacher ${teacherName}?`)) return;
+    try {
+      await authDelete(`/api/admin-control/teacher-assignments/${assignmentId}`);
+      setLinkMsg("✅ Assignment removed.");
+      loadAssociations();
+    } catch (err) { setLinkErr(err.message || "Failed to remove."); }
+  }
+
+  const inputStyle = {
+    width: "100%", background: "var(--surface2, #f8f9fa)", border: "1px solid var(--border, #e2e8f0)",
+    borderRadius: 8, padding: "9px 12px", fontSize: ".88rem", fontFamily: "inherit", color: "inherit", outline: "none",
+  };
+  const resultItemStyle = (selected) => ({
+    padding: "8px 12px", borderRadius: 8, cursor: "pointer", fontSize: ".85rem",
+    background: selected ? "rgba(16,185,129,.15)" : "transparent",
+    border: `1px solid ${selected ? "#10b981" : "transparent"}`,
+    marginBottom: 3,
+  });
+
+  return (
+    <div className="premium-section" style={{ marginTop: 24 }}>
+      <div className="premium-header">
+        <h3>🎓 Teacher-Student Association</h3>
+        <p>Assign an existing student to a teacher. Only admins can create or remove these assignments.</p>
+      </div>
+
+      {linkMsg && <div className="info-box" style={{ marginBottom: 12 }}>{linkMsg}</div>}
+      {linkErr && <div className="error-box" style={{ marginBottom: 12 }}>{linkErr}</div>}
+
+      {/* Search panel */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 16 }}>
+        <div className="premium-card">
+          <h4 style={{ margin: "0 0 10px" }}>Search Teacher</h4>
+          <input style={inputStyle} placeholder="Search by name or email…" value={teacherQuery} onChange={(e) => setTeacherQuery(e.target.value)} />
+          {teacherResults.length > 0 && (
+            <div style={{ marginTop: 8, maxHeight: 200, overflowY: "auto" }}>
+              {teacherResults.map((u) => (
+                <div key={u.id} style={resultItemStyle(selectedTeacher?.id === u.id)} onClick={() => setSelectedTeacher(u)}>
+                  <strong>{u.username}</strong>
+                  <small style={{ display: "block", color: "var(--muted, #64748b)" }}>{u.email}</small>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedTeacher && (
+            <div style={{ marginTop: 8, padding: "8px 12px", background: "rgba(16,185,129,.1)", borderRadius: 8, fontSize: ".85rem" }}>
+              ✅ Selected: <strong>{selectedTeacher.username}</strong>
+              <button onClick={() => setSelectedTeacher(null)} style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>×</button>
+            </div>
+          )}
+        </div>
+
+        <div className="premium-card">
+          <h4 style={{ margin: "0 0 10px" }}>Search Student</h4>
+          <input style={inputStyle} placeholder="Search by name or email…" value={studentQuery} onChange={(e) => setStudentQuery(e.target.value)} />
+          {studentResults.length > 0 && (
+            <div style={{ marginTop: 8, maxHeight: 200, overflowY: "auto" }}>
+              {studentResults.map((u) => (
+                <div key={u.id} style={resultItemStyle(selectedStudent?.id === u.id)} onClick={() => setSelectedStudent(u)}>
+                  <strong>{u.username}</strong>
+                  <small style={{ display: "block", color: "var(--muted, #64748b)" }}>{u.email} · {u.grade || "—"}</small>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedStudent && (
+            <div style={{ marginTop: 8, padding: "8px 12px", background: "rgba(16,185,129,.1)", borderRadius: 8, fontSize: ".85rem" }}>
+              ✅ Selected: <strong>{selectedStudent.username}</strong> ({selectedStudent.grade || "—"})
+              <button onClick={() => setSelectedStudent(null)} style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>×</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Subject + Grade for assignment */}
+      <div style={{ display: "flex", gap: 12, marginBottom: 16, flexWrap: "wrap" }}>
+        <label style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1, minWidth: 160 }}>
+          <span style={{ fontSize: ".85rem", fontWeight: 600 }}>Subject</span>
+          <input style={{ ...inputStyle }} placeholder="e.g. Science" value={subject} onChange={(e) => setSubject(e.target.value)} />
+        </label>
+        <label style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1, minWidth: 160 }}>
+          <span style={{ fontSize: ".85rem", fontWeight: 600 }}>Grade</span>
+          <select style={{ ...inputStyle }} value={grade} onChange={(e) => setGrade(e.target.value)}>
+            {Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`).map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <button
+        className="primary-btn"
+        style={{ maxWidth: 320, background: "linear-gradient(135deg,#10b981,#059669)" }}
+        disabled={linking || !selectedTeacher || !selectedStudent}
+        onClick={handleLink}
+      >
+        {linking ? "Assigning…" : "🎓 Assign Student to Teacher"}
+      </button>
+
+      {/* Existing assignments */}
+      <div style={{ marginTop: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
+          <h4 style={{ margin: 0 }}>Existing Assignments ({associations.length})</h4>
+          <input style={{ ...inputStyle, maxWidth: 260 }} placeholder="Filter by teacher or student…" value={assocQuery} onChange={(e) => setAssocQuery(e.target.value)} />
+        </div>
+        {assocLoading ? <p>Loading…</p> : associations.length === 0 ? (
+          <div className="info-box">No teacher-student assignments found.</div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {associations.map((a, i) => (
+              <div key={`${a.id}-${i}`} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "10px 14px", background: "var(--surface2, #f8f9fa)",
+                borderRadius: 9, border: "1px solid var(--border, #e2e8f0)", flexWrap: "wrap", gap: 8,
+              }}>
+                <div style={{ fontSize: ".85rem" }}>
+                  <strong>{a.teacher.username || "(unknown teacher)"}</strong>
+                  <span style={{ margin: "0 8px", color: "var(--muted, #64748b)" }}>→</span>
+                  <strong>{a.student.username || "(unknown student)"}</strong>
+                  <span style={{ color: "var(--muted, #64748b)", marginLeft: 6 }}>({a.student.grade || a.grade || "—"})</span>
+                  {a.subject && <span style={{ marginLeft: 6, fontSize: ".78rem", color: "var(--muted, #64748b)" }}>· {a.subject}</span>}
+                </div>
+                <button
+                  onClick={() => handleUnlink(a.id, a.student.username, a.teacher.username)}
+                  style={{
+                    background: "rgba(239,68,68,.1)", border: "1px solid rgba(239,68,68,.25)",
+                    color: "#f87171", borderRadius: 7, padding: "4px 12px",
+                    cursor: "pointer", fontSize: ".78rem", fontWeight: 600, fontFamily: "inherit",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

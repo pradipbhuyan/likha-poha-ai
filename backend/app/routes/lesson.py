@@ -28,7 +28,10 @@ from app.services.platform_info_service import (
 from app.services.subject_access_service import has_cbse_subject_access
 from app.services.board_service import is_school_board, normalize_board, resolve_request_board
 from app.services.test_account_service import is_all_access_test_user
-from app.services.offer_access_service import is_offer_code_user, build_offer_gate_response
+from app.services.offer_access_service import is_free_tier_user, build_offer_gate_response
+
+# Keep legacy alias so any remaining is_offer_code_user calls still resolve
+is_offer_code_user = is_free_tier_user
 from app.services.doubt_kb_service import search_doubt_kb
 from app.services.academic_guardrail_service import (
     is_non_academic_question,

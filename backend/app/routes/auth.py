@@ -208,6 +208,16 @@ class OfferCodeSignupRequest(BaseModel):
     password: Optional[str] = None  # when provided, skips email verification and enables direct login
 
 
+class FreeSignupRequest(BaseModel):
+    """Request body for creating a Free Tier account — no payment or offer code required."""
+    role: str
+    name: str
+    email: str
+    grade: Optional[str] = None    # for students
+    school: Optional[str] = None   # for teachers
+    password: Optional[str] = None # when provided, enables direct login without email verification
+
+
 def _razorpay_is_configured() -> bool:
     return bool(settings.RAZORPAY_KEY_ID and settings.RAZORPAY_KEY_SECRET)
 
@@ -595,6 +605,154 @@ def complete_signup(data: CompleteSignupRequest):
         "email_sent": email_sent,
         "email_error": email_error,
         "recovery_link": recovery_link,  # non-None only when reset email failed + admin fallback worked
+    }
+
+
+@router.post("/signup-free")
+def signup_free(data: FreeSignupRequest):
+    """
+    Create a new Free Tier account — no payment or offer code required.
+
+    Any user can call this endpoint to create an account and immediately
+    access the platform at the Free Tier (limited access):
+      - subscription_plan = "free"
+      - access_cbse = False  (triggers DKB-only gate in lesson/doubt routes)
+      - account_status = "active"
+
+    Users can upgrade to a paid plan (Nano/Premium/Family) at any time through
+    the payment flow.  Offer codes remain available as an optional upgrade path.
+
+    If a password is provided, the user can log in immediately without
+    email verification.  Otherwise a set-password email is sent.
+    """
+    from app.services.auth_service import create_auth_user  # noqa: PLC0415
+
+    role = (data.role or "").lower().strip()
+    if role not in VALID_SIGNUP_ROLES:
+        raise HTTPException(status_code=400, detail="Invalid role.")
+
+    email_clean = (data.email or "").strip().lower()
+    if not email_clean:
+        raise HTTPException(status_code=400, detail="Email is required.")
+    if not data.name or not data.name.strip():
+        raise HTTPException(status_code=400, detail="Name is required.")
+
+    # Prevent duplicate accounts
+    existing = (
+        admin_client
+        .table("profiles")
+        .select("id")
+        .eq("email", email_clean)
+        .limit(1)
+        .execute()
+    )
+    if existing.data:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "An account with this email already exists. "
+                "Please log in instead."
+            ),
+        )
+
+    # Create auth user — use provided password or generate a temp one
+    import secrets as _secrets  # noqa: PLC0415
+    from app.services.supabase_client import supabase as anon_client  # noqa: PLC0415
+
+    user_password = (data.password.strip() if data.password and data.password.strip() else None)
+    temp_password = user_password or _secrets.token_urlsafe(16)
+
+    auth_user = create_auth_user(
+        email=email_clean,
+        password=temp_password,
+        email_confirm=True,  # account immediately active
+    )
+
+    # Build Free Tier profile — no access flags, no expiry
+    base_profile = {
+        "id": auth_user.id,
+        "email": email_clean,
+        "username": data.name.strip(),
+        "role": role,
+        "parent_id": None,
+        "family_id": None,
+        "subscription_plan": "free",
+        "account_status": "active",
+        "access_cbse": False,        # Free Tier: DKB-only access
+        "access_sof_science": False,
+        "access_sof_maths": False,
+        "access_sof_english": False,
+        "daily_token_limit": 0,
+        "monthly_token_limit": 0,
+        # subscription_expires_at intentionally absent — free tier has no expiry
+    }
+
+    if role == "parent":
+        family_resp = (
+            admin_client
+            .table("families")
+            .insert({"family_name": f"{data.name.strip()}'s Family"})
+            .execute()
+        )
+        if family_resp.data:
+            base_profile["family_id"] = family_resp.data[0]["id"]
+
+    elif role == "student":
+        grade = data.grade or "Grade 9"
+        if grade not in VALID_GRADES:
+            grade = "Grade 9"
+        base_profile["grade"] = grade
+        base_profile["board"] = "CBSE"
+        base_profile["cbse_subjects"] = []
+        base_profile["ai_model_preference"] = "default"
+
+    elif role == "teacher":
+        if data.school:
+            base_profile["school_name"] = data.school.strip()
+
+    admin_client.table("profiles").insert(base_profile).execute()
+
+    # If no password provided, send a set-password email
+    password_set_link = None
+    if not user_password:
+        try:
+            link_response = admin_client.auth.admin.generate_link(
+                {
+                    "type": "recovery",
+                    "email": email_clean,
+                    "options": {
+                        "redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"
+                    },
+                }
+            )
+            password_set_link = getattr(link_response, "properties", {})
+            if hasattr(password_set_link, "action_link"):
+                password_set_link = password_set_link.action_link
+            elif isinstance(password_set_link, dict):
+                password_set_link = password_set_link.get("action_link")
+            else:
+                password_set_link = None
+        except Exception:
+            pass
+
+        try:
+            anon_client.auth.reset_password_for_email(
+                email_clean,
+                options={"redirect_to": f"{settings.FRONTEND_URL or 'https://likhapoha.in'}/reset-password"},
+            )
+        except Exception:
+            pass
+
+    return {
+        "success": True,
+        "message": (
+            "Free account created! "
+            + ("Log in with your password to start learning." if user_password
+               else "Check your email to set your password, then log in.")
+        ),
+        "role": role,
+        "tier": "free",
+        "password_set_link": password_set_link,
     }
 
 

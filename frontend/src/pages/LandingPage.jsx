@@ -48,7 +48,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
         <div className="lp-nav-r">
           <button className="lp-btn-ghost" onClick={onShowLogin}>Login</button>
-          <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try Today</button>
+          <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try for Free</button>
         </div>
       </nav>
       <div className="lp-hero">
@@ -56,7 +56,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <h1>Every Child Deserves a<br /><span className="lp-gr">Personal Tutor</span></h1>
         <p>AI-powered lessons, instant doubt solving, exam-ready practice, and real-time parent insights &mdash; available anytime, anywhere.</p>
         <div className="lp-hcta">
-          <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try Today</button>
+          <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try for Free</button>
           <a href="#features" className="lp-bol">See Features &rarr;</a>
         </div>
         <div className="lp-stats">
@@ -181,8 +181,8 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div className="lp-ctasec">
         <h2>Start Your Child's AI Learning Journey Today</h2>
         <p>Join hundreds of families already studying smarter with LikhaPoha AI</p>
-        <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex"}}>&#128640; Try Today</button>
-        <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Start today &middot; Cancel anytime</p>
+        <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex"}}>&#128640; Try for Free</button>
+        <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Free to start &middot; Upgrade anytime</p>
       </div>
       <footer className="lp-footer">
         <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>

@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { resolveSubscription, ACCESS_SOURCE, TIER } from "../utils/resolveSubscription";
 
 import {
   getParentChildren,
@@ -30,6 +31,8 @@ import {
   getSubscriptionPlan,
   mergeSubscriptionPlans,
   SUBSCRIPTION_PLANS,
+  COMPARISON_PLAN_ORDER,
+  COMPARISON_TABLE_ROWS,
 } from "../config/subscriptionPlans";
 
 const DEFAULT_SUBSCRIPTION_CONTACT = {
@@ -63,13 +66,6 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
   const supportPhone = cleanContactNumber(contact.phone);
   const supportWhatsapp = cleanContactNumber(contact.whatsapp);
 
-  // Access level display
-  const hasCbse = user?.accessCbse;
-  const hasSof = user?.accessSofScience || user?.accessSofMaths || user?.accessSofEnglish;
-  const currentPlanLabel = hasCbse
-    ? hasSof ? "CBSE + SOF Plan" : "CBSE Plan"
-    : "Offer / Free Access";
-
   // Offer validity state
   // Primary: read from user object (stored at login time in buildLoginUser — no fetch needed)
   // Fallback: fetch fresh from API (handles sessions cached before offerValidUntil was added)
@@ -86,6 +82,18 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
         ? { has_offer_access: false, valid_until: null, days_remaining: 0, expiring_soon: false, expired_on: user.offerExpiredOn }
         : null
   );
+
+  // ── Canonical subscription resolver ─────────────────────────────────────
+  // Single source of truth for what plan/tier to display. Both the "current
+  // access" card and the validity banner derive from this — they can never
+  // disagree with each other.
+  const resolvedSub = resolveSubscription(user, offerAccess);
+  const currentPlanLabel =
+    resolvedSub.accessSource === ACCESS_SOURCE.OFFER_CODE
+      ? "Offer / Free Access"
+      : resolvedSub.accessSource === ACCESS_SOURCE.NONE
+        ? "Free Tier"
+        : resolvedSub.planName;
 
   useEffect(() => {
     // If full offer data already present from login, no fetch needed
@@ -256,68 +264,77 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
             <span>Your current access</span>
             <strong>{currentPlanLabel}</strong>
             <small>
-              {hasCbse
-                ? "✅ CBSE access active"
-                : offerAccess?.has_offer_access && offerAccess?.valid_until
-                  ? offerAccess.expiring_soon
-                    ? `⚠️ Expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""} — ${new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`
-                    : `🟢 Valid until ${new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · ${offerAccess.days_remaining} days remaining`
-                  : offerAccess?.expired_on
-                    ? `🔴 Expired on ${new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`
-                    : "🔒 Limited — upgrade to unlock all features"}
+              {resolvedSub.accessSource === ACCESS_SOURCE.PAID
+                ? resolvedSub.validUntil
+                  ? `✅ ${resolvedSub.planName} · ${resolvedSub.daysRemaining ?? ""} days remaining`
+                  : `✅ ${resolvedSub.planName} active`
+                : resolvedSub.accessSource === ACCESS_SOURCE.ADMIN_GRANT
+                  ? "✅ CBSE access active"
+                  : resolvedSub.accessSource === ACCESS_SOURCE.OFFER_CODE && resolvedSub.validUntil
+                    ? resolvedSub.expiringSoon
+                      ? `⚠️ Expires in ${resolvedSub.daysRemaining} day${resolvedSub.daysRemaining !== 1 ? "s" : ""} — ${new Date(resolvedSub.validUntil).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}`
+                      : `🟢 Valid until ${new Date(resolvedSub.validUntil).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · ${resolvedSub.daysRemaining} days remaining`
+                    : offerAccess?.expired_on
+                      ? `🔴 Expired on ${new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`
+                      : "active"}
             </small>
           </div>
         </div>
       </section>
 
-      {/* Offer validity banner — shown when user has a free-trial offer redemption */}
-      {offerAccess && (offerAccess.has_offer_access || offerAccess.expired_on) && (
+      {/* ── Canonical subscription validity banner ─────────────────────────
+          Uses resolvedSub (from resolveSubscription utility) so this banner
+          and the "current access" card above always show the same state.
+
+          Scenarios:
+            PAID        → "✨ Premium Nano active" / "✨ Premium active" (with expiry)
+            OFFER_CODE  → "🎟️ Offer access active" (NOT "Premium Nano")
+            expired     → "🔴 Free trial expired" (from offerAccess.expired_on)
+      ──────────────────────────────────────────────────────────────────── */}
+
+      {/* Active paid subscription banner */}
+      {resolvedSub.accessSource === ACCESS_SOURCE.PAID && resolvedSub.validUntil && (
         <div style={{
-          margin: "0 0 24px",
-          padding: "14px 20px",
-          borderRadius: 12,
+          margin: "0 0 24px", padding: "14px 20px", borderRadius: 12,
           display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
-          background: offerAccess.expired_on && !offerAccess.has_offer_access
-            ? "rgba(239,68,68,.1)"
-            : offerAccess.expiring_soon
-            ? "rgba(245,158,11,.1)"
-            : "rgba(16,185,129,.1)",
-          border: `1px solid ${
-            offerAccess.expired_on && !offerAccess.has_offer_access
-              ? "rgba(239,68,68,.35)"
-              : offerAccess.expiring_soon
-              ? "rgba(245,158,11,.35)"
-              : "rgba(16,185,129,.35)"
-          }`,
+          background: resolvedSub.expiringSoon
+            ? "rgba(245,158,11,.1)" : "rgba(99,102,241,.1)",
+          border: `1px solid ${resolvedSub.expiringSoon ? "rgba(245,158,11,.35)" : "rgba(99,102,241,.35)"}`,
         }}>
-          <span style={{ fontSize: "1.4rem" }}>
-            {offerAccess.expired_on && !offerAccess.has_offer_access ? "🔴" : offerAccess.expiring_soon ? "⚠️" : "🎟️"}
-          </span>
+          <span style={{ fontSize: "1.4rem" }}>{resolvedSub.expiringSoon ? "⚠️" : "✨"}</span>
           <div style={{ flex: 1 }}>
-            {offerAccess.has_offer_access ? (
-              <>
-                <strong style={{ color: offerAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
-                  {offerAccess.expiring_soon
-                    ? `⚠️ Your Premium Nano access expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""}`
-                    : "✨ Premium Nano access active"}
-                </strong>
-                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
-                  Valid until {new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                  {offerAccess.days_remaining > 7 ? ` · ${offerAccess.days_remaining} days remaining` : ""}
-                  {offerAccess.expiring_soon ? " — upgrade now to keep your access" : ""}
-                </span>
-              </>
-            ) : (
-              <>
-                <strong style={{ color: "#f87171", display: "block", marginBottom: 2 }}>
-                  Free trial expired
-                </strong>
-                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
-                  Your free access expired on {new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                  {" "}— upgrade to a paid plan to regain full access
-                </span>
-              </>
-            )}
+            <strong style={{ color: resolvedSub.expiringSoon ? "#fbbf24" : "#a5b4fc", display: "block", marginBottom: 2 }}>
+              {resolvedSub.expiringSoon
+                ? `⚠️ ${resolvedSub.planName} expires in ${resolvedSub.daysRemaining} day${resolvedSub.daysRemaining !== 1 ? "s" : ""}`
+                : `✨ ${resolvedSub.planName} active`}
+            </strong>
+            <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+              Valid until {new Date(resolvedSub.validUntil).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+              {resolvedSub.daysRemaining > 7 ? ` · ${resolvedSub.daysRemaining} days remaining` : ""}
+              {resolvedSub.expiringSoon ? " — upgrade now to keep your access" : ""}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Expired offer banner — shown only when offer has expired and no paid plan */}
+      {offerAccess?.expired_on && !offerAccess.has_offer_access
+        && resolvedSub.accessSource !== ACCESS_SOURCE.PAID && (
+        <div style={{
+          margin: "0 0 24px", padding: "14px 20px", borderRadius: 12,
+          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+          background: "rgba(239,68,68,.1)",
+          border: "1px solid rgba(239,68,68,.35)",
+        }}>
+          <span style={{ fontSize: "1.4rem" }}>🔴</span>
+          <div style={{ flex: 1 }}>
+            <strong style={{ color: "#f87171", display: "block", marginBottom: 2 }}>
+              Free trial expired
+            </strong>
+            <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
+              Your free access expired on {new Date(offerAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+              {" "}— upgrade to a paid plan to regain full access
+            </span>
           </div>
         </div>
       )}
@@ -1007,45 +1024,6 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
       {message && <div className="info-box">{message}</div>}
       {error && <div className="error-box">{error}</div>}
 
-      {/* Offer validity banner — shows parent's free-trial access + expiry date */}
-      {parentOfferAccess && (parentOfferAccess.has_offer_access || parentOfferAccess.expired_on) && (
-        <div style={{
-          marginBottom: 24, padding: "14px 20px", borderRadius: 12,
-          display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
-          background: parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access
-            ? "rgba(239,68,68,.1)" : parentOfferAccess.expiring_soon ? "rgba(245,158,11,.1)" : "rgba(16,185,129,.1)",
-          border: `1px solid ${parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access ? "rgba(239,68,68,.35)" : parentOfferAccess.expiring_soon ? "rgba(245,158,11,.35)" : "rgba(16,185,129,.35)"}`,
-        }}>
-          <span style={{ fontSize: "1.4rem" }}>
-            {parentOfferAccess.expired_on && !parentOfferAccess.has_offer_access ? "🔴" : parentOfferAccess.expiring_soon ? "⚠️" : "🎟️"}
-          </span>
-          <div style={{ flex: 1 }}>
-            {parentOfferAccess.has_offer_access ? (
-              <>
-                <strong style={{ color: parentOfferAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
-                  {parentOfferAccess.expiring_soon
-                    ? `⚠️ Your Premium Nano access expires in ${parentOfferAccess.days_remaining} day${parentOfferAccess.days_remaining !== 1 ? "s" : ""}`
-                    : "✨ Premium Nano access active"}
-                </strong>
-                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
-                  Valid until {new Date(parentOfferAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                  {parentOfferAccess.days_remaining > 7 ? ` · ${parentOfferAccess.days_remaining} days remaining` : ""}
-                  {parentOfferAccess.expiring_soon ? " — upgrade to a paid plan to keep access" : ""}
-                </span>
-              </>
-            ) : (
-              <>
-                <strong style={{ color: "#f87171", display: "block", marginBottom: 2 }}>Free trial expired</strong>
-                <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
-                  Your free access expired on {new Date(parentOfferAccess.expired_on).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                  {" "}— subscribe to a paid plan to restore access for your children.
-                </span>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
       <section className="subscription-plan-grid">
         {planOrder.map((planKey) => {
           const plan = plans[planKey];
@@ -1127,34 +1105,67 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <h3>Compare plans</h3>
           </div>
 
+          {/* Comparison table always shows all 4 tiers using COMPARISON_PLAN_ORDER:
+              Feature | Free Tier | Nano | Premium | Family Premium
+              free_tier is display-only (isPublic=false) — never a purchasable card. */}
           <div className="subscription-table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Feature</th>
-                  {planOrder.map((planKey) => (
-                    <th key={planKey}>{plans[planKey].shortLabel}</th>
-                  ))}
+                  <th style={{ textAlign: "left" }}>Feature</th>
+                  {COMPARISON_PLAN_ORDER.map((planKey) => {
+                    const p = plans[planKey] || SUBSCRIPTION_PLANS[planKey];
+                    const isFree = planKey === "free_tier";
+                    return (
+                      <th
+                        key={planKey}
+                        style={{
+                          textAlign: "center",
+                          color: isFree ? "var(--text-muted, #94a3b8)" : undefined,
+                          fontWeight: isFree ? 500 : 700,
+                        }}
+                      >
+                        {p?.shortLabel ?? planKey}
+                        {!isFree && (
+                          <div style={{ fontSize: "0.72rem", fontWeight: 500, color: "#94a3b8", marginTop: 2 }}>
+                            {planKey === "free" ? "₹99 / 8 days"
+                              : planKey === "starter" ? "₹299 / mo"
+                              : planKey === "family_premium" ? "₹499 / mo"
+                              : ""}
+                          </div>
+                        )}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody>
-                {[
-                  ["Child profiles", "children"],
-                  ["AI lessons and doubts", "aiUsage"],
-                  ["Ask Doubts (per day)", "askDoubts"],
-                  ["CBSE mock tests", "cbse"],
-                  ["Daily mock test limit", "mockTests"],
-                  ["Exemplar Research (Science & Maths)", "exemplarResearch"],
-                  ["Exemplar Lessons (Grades 8–10)", "exemplarLessons"],
-                  ["Parent dashboard", "parentDashboard"],
-                ].map(([label, key]) => (
+                {COMPARISON_TABLE_ROWS.map(([label, key]) => (
                   <tr key={key}>
                     <td>{label}</td>
-                    {planOrder.map((planKey) => (
-                      <td key={planKey}>
-                        {plans[planKey].comparison[key]}
-                      </td>
-                    ))}
+                    {COMPARISON_PLAN_ORDER.map((planKey) => {
+                      const p = plans[planKey] || SUBSCRIPTION_PLANS[planKey];
+                      const value = p?.comparison?.[key] ?? "—";
+                      const isLocked = String(value).startsWith("❌");
+                      const isGood = String(value).startsWith("✅");
+                      const isLimited = value === "Limited" || value === "5/day";
+                      return (
+                        <td
+                          key={planKey}
+                          style={{
+                            textAlign: "center",
+                            color: isLocked ? "#ef4444"
+                              : isGood ? "#10b981"
+                              : isLimited ? "#f59e0b"
+                              : undefined,
+                            fontWeight: isGood ? 600 : undefined,
+                            fontSize: ".88rem",
+                          }}
+                        >
+                          {value}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>

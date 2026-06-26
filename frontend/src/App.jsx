@@ -50,6 +50,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 
 import "./App.css";
+import { resolveSubscription, ACCESS_SOURCE } from "./utils/resolveSubscription";
 
 const PAGE_META = {
   dashboard: {
@@ -832,88 +833,14 @@ function App() {
     );
   }
 
-  // ── Subscription gate ─────────────────────────────────────────────────────
-  // Students who signed in (via Google or email) but have never paid / applied
-  // a promo code are shown ONLY the Subscription page.  They cannot navigate
-  // to any other part of the platform until payment or offer-code redemption.
+  // ── Free Tier access ──────────────────────────────────────────────────────
+  // All registered users automatically access the platform on the Free Tier.
+  // There is no subscription gate — users see the dashboard immediately and
+  // can upgrade to a paid plan (Nano / Premium / Family) at any time.
   //
-  // A student is considered "active" (bypass gate) if ANY of the following is true:
-  //   • They have a paid subscription plan (not "free")
-  //   • They have an active offer/promo code (offerAccess)
-  //   • They were granted CBSE access directly by admin (accessCbse)
-  //   • They were granted SOF access directly by admin (accessSofScience/Maths/English)
-  //   • They are a parent-linked child (parentId set) — parent controls access
-  const hasDirectAccess =
-    user.accessCbse ||
-    user.accessSofScience ||
-    user.accessSofMaths ||
-    user.accessSofEnglish;
-
-  const needsSubscription =
-    user.role === "student" &&
-    user.subscriptionPlan === "free" &&
-    !user.offerAccess &&
-    !hasDirectAccess &&
-    !user.parentId; // parent-linked children don't self-subscribe
-
-  if (needsSubscription) {
-    return (
-      <ToastProvider>
-        <div style={{ minHeight: "100vh", background: "#0f172a", fontFamily: "-apple-system, sans-serif" }}>
-          {/* Minimal locked header */}
-          <div style={{
-            background: "#1e293b",
-            borderBottom: "1px solid #334155",
-            padding: "12px 24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <img src={logo} alt="LikhaPoha AI" style={{ height: 36, width: "auto", objectFit: "contain" }} />
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <span style={{ color: "#94a3b8", fontSize: "0.82rem" }}>
-                {user.username}
-              </span>
-              <button
-                onClick={handleLogout}
-                style={{
-                  background: "transparent",
-                  border: "1px solid #475569",
-                  borderRadius: 8,
-                  padding: "5px 14px",
-                  color: "#94a3b8",
-                  cursor: "pointer",
-                  fontSize: "0.82rem",
-                  fontFamily: "inherit",
-                }}
-              >
-                Sign out
-              </button>
-            </div>
-          </div>
-
-          {/* Gate notice */}
-          <div style={{
-            textAlign: "center",
-            padding: "14px 16px",
-            background: "linear-gradient(135deg, rgba(99,102,241,.12), rgba(139,92,246,.12))",
-            borderBottom: "1px solid #334155",
-          }}>
-            <p style={{ margin: 0, fontSize: "0.88rem", color: "#a5b4fc", fontWeight: 600 }}>
-              🔐 Choose a plan or enter your promo code below to unlock lessons, practice tests & AI tutoring
-            </p>
-          </div>
-
-          <SubscriptionPlansPage
-            user={user}
-            onSubscriptionComplete={handleSubscriptionComplete}
-          />
-        </div>
-      </ToastProvider>
-    );
-  }
+  // Free Tier limitations (limited lessons, 5/day mock tests & doubts) are
+  // enforced by the backend route handlers (lesson.py, doubt.py, mock_test.py)
+  // via is_free_tier_user(), not by blocking UI access here.
   // ──────────────────────────────────────────────────────────────────────────
 
   const pageMeta = PAGE_META[activePage] || PAGE_META.lessons;
@@ -1053,45 +980,57 @@ function App() {
           </div>
         </header>
 
-        {/* Premium Nano / Premium expiry banner — shown ONLY for PAID subscriptions.
-            Must NOT show for offer-code users (offerAccess=true) — they see their
-            own offer validity in the Subscription page instead. */}
-        {user?.role === "student" && user?.subscriptionExpiresAt && !user?.offerAccess && (
-          <div style={{
-            padding: "10px 20px",
-            background: user.subscriptionExpiringSoon
-              ? "linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.1))"
-              : "linear-gradient(135deg, rgba(99,102,241,.12), rgba(139,92,246,.1))",
-            borderBottom: `1px solid ${user.subscriptionExpiringSoon ? "rgba(245,158,11,.4)" : "rgba(99,102,241,.3)"}`,
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            flexWrap: "wrap", gap: 8,
-          }}>
-            <span style={{ fontSize: ".85rem", fontWeight: 600, color: user.subscriptionExpiringSoon ? "#fbbf24" : "#a5b4fc" }}>
-              {user.subscriptionExpiringSoon ? "⚠️" : "✨"}{" "}
-              <strong>Premium Nano active</strong>
-              {" — "}
-              {user.subscriptionDaysRemaining != null
-                ? user.subscriptionDaysRemaining === 0
-                  ? "expires today"
-                  : `${user.subscriptionDaysRemaining} day${user.subscriptionDaysRemaining !== 1 ? "s" : ""} remaining`
-                : `until ${new Date(user.subscriptionExpiresAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}`}
-              {user.subscriptionExpiringSoon && " — upgrade to keep your access"}
-            </span>
-            <button
-              onClick={() => handlePageChange("subscriptionPlans")}
-              style={{
-                background: user.subscriptionExpiringSoon ? "rgba(245,158,11,.2)" : "rgba(99,102,241,.2)",
-                border: `1px solid ${user.subscriptionExpiringSoon ? "rgba(245,158,11,.5)" : "rgba(99,102,241,.5)"}`,
-                borderRadius: 6, padding: "4px 12px", cursor: "pointer",
-                fontSize: ".78rem", fontWeight: 700, fontFamily: "inherit",
-                color: user.subscriptionExpiringSoon ? "#fbbf24" : "#a5b4fc",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {user.subscriptionExpiringSoon ? "Upgrade now →" : "View plans →"}
-            </button>
-          </div>
-        )}
+        {/* Paid subscription expiry banner — driven by the canonical resolver.
+            Only shown for PAID users with a validUntil date.
+            Offer-code users are never shown this banner (they see offer status
+            on the Subscription page instead). */}
+        {user?.role === "student" && (() => {
+          // Resolve using the same canonical function as SubscriptionPlansPage
+          // so App.jsx and the subscription page can never show conflicting states.
+          const resolved = resolveSubscription(user,
+            user?.offerAccess && user?.offerValidUntil
+              ? { has_offer_access: user.offerAccess, valid_until: user.offerValidUntil,
+                  days_remaining: user.offerDaysRemaining, expiring_soon: !!user.offerExpiringSoon }
+              : null
+          );
+          if (resolved.accessSource !== ACCESS_SOURCE.PAID || !resolved.validUntil) return null;
+          return (
+            <div style={{
+              padding: "10px 20px",
+              background: resolved.expiringSoon
+                ? "linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.1))"
+                : "linear-gradient(135deg, rgba(99,102,241,.12), rgba(139,92,246,.1))",
+              borderBottom: `1px solid ${resolved.expiringSoon ? "rgba(245,158,11,.4)" : "rgba(99,102,241,.3)"}`,
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              flexWrap: "wrap", gap: 8,
+            }}>
+              <span style={{ fontSize: ".85rem", fontWeight: 600, color: resolved.expiringSoon ? "#fbbf24" : "#a5b4fc" }}>
+                {resolved.expiringSoon ? "⚠️" : "✨"}{" "}
+                <strong>{resolved.planName} active</strong>
+                {" — "}
+                {resolved.daysRemaining != null
+                  ? resolved.daysRemaining === 0
+                    ? "expires today"
+                    : `${resolved.daysRemaining} day${resolved.daysRemaining !== 1 ? "s" : ""} remaining`
+                  : `until ${new Date(resolved.validUntil).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}`}
+                {resolved.expiringSoon && " — upgrade to keep your access"}
+              </span>
+              <button
+                onClick={() => handlePageChange("subscriptionPlans")}
+                style={{
+                  background: resolved.expiringSoon ? "rgba(245,158,11,.2)" : "rgba(99,102,241,.2)",
+                  border: `1px solid ${resolved.expiringSoon ? "rgba(245,158,11,.5)" : "rgba(99,102,241,.5)"}`,
+                  borderRadius: 6, padding: "4px 12px", cursor: "pointer",
+                  fontSize: ".78rem", fontWeight: 700, fontFamily: "inherit",
+                  color: resolved.expiringSoon ? "#fbbf24" : "#a5b4fc",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {resolved.expiringSoon ? "Upgrade now →" : "View plans →"}
+              </button>
+            </div>
+          );
+        })()}
 
         <AnimatePresence mode="wait">
           <motion.section

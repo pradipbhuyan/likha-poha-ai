@@ -1,12 +1,18 @@
 """
 offer_access_service.py
 ───────────────────────
-Helpers for determining whether a user is on an offer-code (free-tier) access
-rather than a paid subscription.
+Helpers for determining whether a user is on Free Tier (limited access).
 
-Offer-code users get DKB-only doubt answers.  If the DKB cannot answer, the
-platform returns an upgrade prompt instead of calling the LLM, keeping token
-cost at zero for free users.
+Free Tier users get DKB-only lesson and doubt answers.  If the DKB cannot
+answer, the platform returns an upgrade prompt instead of calling the LLM,
+keeping token cost at zero for free users.
+
+Free Tier = any user who does NOT have an active paid subscription:
+  - No access_cbse / SOF flags set from payment
+  - No subscription_expires_at in the future
+
+Offer codes are kept as an optional upgrade path but are NOT required for
+free access.  All new users start on the Free Tier automatically.
 """
 
 from __future__ import annotations
@@ -29,17 +35,19 @@ OFFER_GATE_MESSAGE = (
 OFFER_GATE_SOURCE_TYPE = "OFFER_GATE"
 
 
-def is_offer_code_user(user_id: str) -> bool:
+def is_free_tier_user(user_id: str) -> bool:
     """
-    Return True if the user's only active access is via an offer-code redemption
-    and they do NOT have a paid CBSE or SOF subscription.
+    Return True if the user is on the Free Tier (limited, DKB-only access).
 
-    Logic:
-      1. Profile must NOT have access_cbse, access_sof_science,
-         access_sof_maths, or access_sof_english set to True.
-      2. User must have at least one non-expired offer_redemptions row.
+    Free Tier = user has NO active paid subscription:
+      • access_cbse / SOF flags are all False (not set by payment or admin)
+      • subscription_expires_at is absent or in the past
 
-    Admins and test accounts always return False (no gating).
+    This replaces the old is_offer_code_user() gate.  Now ALL free users get
+    DKB-only access regardless of whether they have an offer code.  Offer codes
+    remain available as an optional upgrade path but are not required.
+
+    Admins and test accounts always return False (never gated).
     """
     if not user_id:
         return False
@@ -49,9 +57,9 @@ def is_offer_code_user(user_id: str) -> bool:
             admin_client
             .table("profiles")
             .select(
-                "id, role, username, access_cbse, "
+                "id, role, access_cbse, "
                 "access_sof_science, access_sof_maths, access_sof_english, "
-                "parent_id, subscription_plan"
+                "subscription_expires_at"
             )
             .eq("id", user_id)
             .single()
@@ -62,72 +70,51 @@ def is_offer_code_user(user_id: str) -> bool:
         if not profile:
             return False
 
-        # Admins are never offer-gated
+        # Admins are never gated
         if profile.get("role") == "admin":
             return False
 
-        now_iso = datetime.now(timezone.utc).isoformat()
-        parent_id = profile.get("parent_id")
-        subscription_plan = profile.get("subscription_plan") or "free"
-
-        # ── Child-of-offer-parent shortcut ──────────────────────────────────
-        # Children may have been created by admin with access_cbse=True, but if
-        # their parent enrolled via a free_trial offer code (and the child has
-        # not been explicitly upgraded to a paid plan), the child must be gated.
-        if parent_id and subscription_plan == "free":
-            if _parent_is_free_trial_offer_user(parent_id, now_iso):
-                return True
-        # ─────────────────────────────────────────────────────────────────────
-
-        # If user has any paid access flag → not offer-only
-        has_paid_access = (
+        # If user has any paid access flag → not free tier
+        has_paid_access = bool(
             profile.get("access_cbse")
             or profile.get("access_sof_science")
             or profile.get("access_sof_maths")
             or profile.get("access_sof_english")
         )
         if has_paid_access:
-            return False
+            # Also verify subscription_expires_at is still in the future
+            # (the profile endpoint revokes flags on expiry, but check here too)
+            expires_at_str = profile.get("subscription_expires_at")
+            if not expires_at_str:
+                return False  # perpetual paid access (admin grant or monthly)
+            try:
+                from datetime import datetime, timezone  # noqa: PLC0415
+                expires_at = datetime.fromisoformat(
+                    expires_at_str.replace("Z", "+00:00")
+                )
+                if expires_at > datetime.now(timezone.utc):
+                    return False  # active paid subscription
+                # Subscription expired — treat as free tier
+            except Exception:
+                return False  # If parse fails, don't gate
 
-        # Check for a valid (non-expired) offer redemption that is a FREE TRIAL.
-        # Discount-type codes should NOT trigger the DKB-only gate because the
-        # user has already paid (at a discount); they get full LLM access.
-        redemption_result = (
-            admin_client
-            .table("offer_redemptions")
-            .select("id, code_id")
-            .eq("user_id", user_id)
-            .gte("valid_until", now_iso)
-            .limit(10)
-            .execute()
-        )
-
-        if not redemption_result.data:
-            return False
-
-        # Check all redeemed codes — if any is a 'discount' type, do not gate.
-        code_ids = [r["code_id"] for r in redemption_result.data if r.get("code_id")]
-        if not code_ids:
-            return True  # has redemption but no code_id — treat as free trial
-
-        codes_result = (
-            admin_client
-            .table("offer_codes")
-            .select("id, code_type")
-            .in_("id", code_ids)
-            .execute()
-        )
-        for code in (codes_result.data or []):
-            if code.get("code_type") == "discount":
-                return False  # paid user (discounted) — no gate
-
-        return True  # all codes are free_trial → apply gate
+        return True  # No paid access → Free Tier
 
     except Exception as exc:
-        # If the check fails for any reason, do not gate — fail open to avoid
-        # blocking legitimate users.
-        logger.warning("is_offer_code_user check failed for user_id=%s: %s", user_id, exc)
+        # Fail open: never block a user if the check itself errors
+        logger.warning("is_free_tier_user check failed for user_id=%s: %s", user_id, exc)
         return False
+
+
+def is_offer_code_user(user_id: str) -> bool:
+    """
+    Backwards-compatible alias for is_free_tier_user().
+
+    The old name is kept so existing callers continue to work without changes.
+    The semantics have broadened: any free-tier user (including those without
+    an offer code) is now gated in the same way as the old offer-code-only gate.
+    """
+    return is_free_tier_user(user_id)
 
 
 def _parent_is_free_trial_offer_user(parent_id: str, now_iso: str) -> bool:

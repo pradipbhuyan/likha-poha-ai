@@ -169,6 +169,9 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
   const [planFilter, setPlanFilter] = useState("monthly");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // signupMode: "free" | "pay" | "offer"
+  // Default: "free" (no payment or offer code required for basic access)
+  const [signupMode, setSignupMode] = useState(_fromLink ? "offer" : "free");
   const [useOfferCode, setUseOfferCode] = useState(_fromLink);
   const [offerCodeInput, setOfferCodeInput] = useState(_fromLink ? _urlCode : "");
   const [password, setPassword] = useState("");
@@ -191,6 +194,80 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
     { r:"teacher", icon:"📋", label:"Teacher",
       desc:"Monitor assigned students, view their progress reports, and provide personalised guidance" },
   ];
+
+  async function handleFreeSignup(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    setError("");
+    if (!role) { setError("Please select your role first."); setStep("role"); return; }
+    if (!name.trim() || !email.trim()) { setError("Please fill in your name and email."); return; }
+    if (password && password.length > 0 && password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/signup-free`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          role, name: name.trim(), email: email.trim(),
+          grade: role === "student" ? grade : undefined,
+          school: role === "teacher" ? school.trim() : undefined,
+          password: password.trim() || undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setError(data.detail || data.message || "Could not create account. Please try again.");
+        return;
+      }
+      // Direct-login flow: sign in immediately if password was provided
+      if (password.trim() && onLogin) {
+        await supabase.auth.signOut().catch(() => {});
+        const { data: authData, error: authErr } = await supabase.auth.signInWithPassword({
+          email: email.trim(), password: password.trim(),
+        });
+        if (!authErr && authData.session) {
+          const signupRole = role;
+          setSettingUpRole(signupRole);
+          setSettingUp(true);
+          setLoading(false);
+          let profile = null;
+          for (let attempt = 0; attempt < 6; attempt++) {
+            const { data: pd } = await supabase.from("profiles").select("*").eq("id", authData.user.id).maybeSingle();
+            if (pd) { profile = pd; break; }
+            await new Promise(r => setTimeout(r, 500));
+          }
+          const targetPage = signupRole === "parent" ? "parentDashboard" : signupRole === "teacher" ? "teacherDashboard" : "dashboard";
+          const userData = {
+            id: authData.user.id,
+            email: email.trim(),
+            username: profile ? (profile.username || name.trim()) : name.trim(),
+            role: profile ? profile.role : signupRole,
+            grade: profile ? (profile.grade || grade || "Grade 9") : (grade || "Grade 9"),
+            board: "CBSE",
+            parentId: profile?.parent_id || null,
+            familyId: profile?.family_id || null,
+            accessToken: authData.session.access_token,
+            accessCbse: false, // Free Tier
+            accessSofScience: false, accessSofMaths: false, accessSofEnglish: false,
+            cbseSubjects: [],
+            subscriptionPlan: "free",
+            accountStatus: "active",
+            offerAccess: false,
+          };
+          localStorage.setItem("tutor_user", JSON.stringify(userData));
+          localStorage.setItem("tutor_active_page", targetPage);
+          setTimeout(() => window.location.reload(), 1800);
+          return;
+        }
+        setError("Account created but auto-login failed. Please log in manually.");
+      }
+      if (data.password_set_link) setPasswordSetLink(data.password_set_link);
+      setStep("done");
+    } catch (err) {
+      setError(err.message || "Signup failed. Please try again.");
+    } finally { setLoading(false); }
+  }
 
   async function handleOfferCodeSignup(e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -640,24 +717,32 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                 — or sign up with email —
               </div>
 
-              {/* Offer code / payment toggle — always visible */}
+              {/* Signup mode selector — Free (default), Pay, Offer Code */}
               <div style={{ display:"flex", gap:0, background:"#111827", border:"1px solid #1e293b",
                             borderRadius:10, padding:3, marginBottom:20 }}>
                 <button
-                  onClick={() => { setUseOfferCode(false); setError(""); }}
-                  style={{ flex:1, padding:"9px 10px", borderRadius:8, border:"none",
-                           background: !useOfferCode ? "linear-gradient(135deg,#2563eb,#7c3aed)" : "transparent",
-                           color: !useOfferCode ? "#fff" : "#64748b",
-                           fontFamily:"inherit", fontSize:".82rem", fontWeight:600, cursor:"pointer" }}>
+                  onClick={() => { setSignupMode("free"); setUseOfferCode(false); setError(""); }}
+                  style={{ flex:1, padding:"9px 6px", borderRadius:8, border:"none",
+                           background: signupMode==="free" ? "linear-gradient(135deg,#10b981,#059669)" : "transparent",
+                           color: signupMode==="free" ? "#fff" : "#64748b",
+                           fontFamily:"inherit", fontSize:".78rem", fontWeight:600, cursor:"pointer" }}>
+                  🆓 Start Free
+                </button>
+                <button
+                  onClick={() => { setSignupMode("pay"); setUseOfferCode(false); setError(""); }}
+                  style={{ flex:1, padding:"9px 6px", borderRadius:8, border:"none",
+                           background: signupMode==="pay" ? "linear-gradient(135deg,#2563eb,#7c3aed)" : "transparent",
+                           color: signupMode==="pay" ? "#fff" : "#64748b",
+                           fontFamily:"inherit", fontSize:".78rem", fontWeight:600, cursor:"pointer" }}>
                   💳 Pay & Sign Up
                 </button>
                 <button
-                  onClick={() => { setUseOfferCode(true); setError(""); }}
-                  style={{ flex:1, padding:"9px 10px", borderRadius:8, border:"none",
-                           background: useOfferCode ? "linear-gradient(135deg,#059669,#0d9488)" : "transparent",
-                           color: useOfferCode ? "#fff" : "#64748b",
-                           fontFamily:"inherit", fontSize:".82rem", fontWeight:600, cursor:"pointer" }}>
-                  🎟️ I Have an Offer Code
+                  onClick={() => { setSignupMode("offer"); setUseOfferCode(true); setError(""); }}
+                  style={{ flex:1, padding:"9px 6px", borderRadius:8, border:"none",
+                           background: signupMode==="offer" ? "linear-gradient(135deg,#059669,#0d9488)" : "transparent",
+                           color: signupMode==="offer" ? "#fff" : "#64748b",
+                           fontFamily:"inherit", fontSize:".78rem", fontWeight:600, cursor:"pointer" }}>
+                  🎟️ Offer Code
                 </button>
               </div>
               <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
@@ -711,15 +796,41 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                       value={school} onChange={e => setSchool(e.target.value)} />
                   </div>
                 )}
-                {useOfferCode && (
+                {/* Free signup: password field (optional) */}
+                {signupMode === "free" && (
+                  <div>
+                    <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
+                      Password <span style={{ color:"#64748b", fontWeight:400 }}>(optional — or we'll email you a link)</span>
+                    </label>
+                    <div style={{ position:"relative" }}>
+                      <input
+                        style={{ ...S.input, paddingRight:40 }}
+                        type={showSignupPassword ? "text" : "password"}
+                        placeholder="Set your password (min 8 characters)"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                      />
+                      <button type="button"
+                        onClick={() => setShowSignupPassword(p => !p)}
+                        style={{ position:"absolute", right:10, top:"50%", transform:"translateY(-50%)", background:"none", border:"none", cursor:"pointer", color:"#64748b", fontSize:"1.1rem", padding:0, lineHeight:1 }}>
+                        {showSignupPassword ? "🙈" : "👁️"}
+                      </button>
+                    </div>
+                    <small style={{ color:"#64748b", fontSize:".75rem" }}>
+                      Enter a password to log in instantly, or skip and we'll email you a login link.
+                    </small>
+                  </div>
+                )}
+
+                {/* Offer code fields */}
+                {signupMode === "offer" && (
                   <>
                     <div>
                       <label style={{ display:"block", fontSize:".85rem", fontWeight:600, color:"#cbd5e1", marginBottom:7 }}>
                         Offer Code *
                       </label>
                       <input
-                        style={{ ...S.input, fontFamily:"monospace", letterSpacing:4,
-                                 textTransform:"uppercase", fontSize:"1.1rem", textAlign:"center" }}
+                        style={{ ...S.input, fontFamily:"monospace", letterSpacing:4, textTransform:"uppercase", fontSize:"1.1rem", textAlign:"center" }}
                         type="text" maxLength={8} placeholder="XXXXXXXX"
                         value={offerCodeInput}
                         onChange={e => setOfferCodeInput(e.target.value.toUpperCase())}
@@ -731,7 +842,7 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                       </label>
                       <div style={{ position:"relative" }}>
                         <input
-                          style={{ ...S.input, paddingRight: 40 }}
+                          style={{ ...S.input, paddingRight:40 }}
                           type={showSignupPassword ? "text" : "password"}
                           placeholder="Set your password (min 8 characters)"
                           value={password}
@@ -750,8 +861,30 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                     </div>
                   </>
                 )}
+
                 {error && <div style={S.errorBox}>{error}</div>}
-                {useOfferCode ? (
+
+                {/* Action buttons based on signup mode */}
+                {signupMode === "free" && (
+                  <>
+                    <button
+                      style={{ ...S.primBtn, background:"linear-gradient(135deg,#10b981,#059669)" }}
+                      disabled={loading || !name.trim() || !email.trim()}
+                      onClick={handleFreeSignup}
+                    >
+                      {loading ? "Creating account…" : "🆓 Start for Free →"}
+                    </button>
+                    <p style={{ textAlign:"center", marginTop:6, fontSize:".74rem", color:"#475569" }}>
+                      Free Tier access · Upgrade anytime
+                    </p>
+                  </>
+                )}
+                {signupMode === "pay" && (
+                  <button style={S.primBtn} onClick={() => { setError(""); setStep("plan"); }}>
+                    Continue to Plan Selection →
+                  </button>
+                )}
+                {signupMode === "offer" && (
                   <>
                     <button
                       style={{ ...S.primBtn, background:"linear-gradient(135deg,#059669,#0d9488)" }}
@@ -761,14 +894,10 @@ export default function SignupPage({ onBackToLogin, onLogin, initialPlan }) {
                       {loading ? "Creating account…" : "🎟️ Create Account & Go to Dashboard"}
                     </button>
                     <p style={{ textAlign:"center", marginTop:8, fontSize:".77rem", color:"#475569", cursor:"pointer" }}
-                       onClick={() => { setUseOfferCode(false); setOfferCodeInput(""); setError(""); }}>
+                       onClick={() => { setSignupMode("pay"); setUseOfferCode(false); setOfferCodeInput(""); setError(""); }}>
                       💳 Pay with Razorpay instead
                     </p>
                   </>
-                ) : (
-                  <button style={S.primBtn} onClick={() => { setError(""); setStep("plan"); }}>
-                    Continue to Plan Selection →
-                  </button>
                 )}
               </div>
               <p style={{ textAlign:"center", marginTop:14, color:"#475569", fontSize:".78rem", cursor:"pointer" }}

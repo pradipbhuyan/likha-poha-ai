@@ -44,6 +44,7 @@ from app.routes.onboarding_guide import router as onboarding_guide_router
 from app.routes.cache_management import router as cache_management_router
 from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
+from app.routes.subscription import router as subscription_router
 
 
 frontend_url = os.getenv(
@@ -256,6 +257,12 @@ app.include_router(
     teacher_router,
     prefix="/api/teacher",
     tags=["Teacher"],
+)
+
+app.include_router(
+    subscription_router,
+    prefix="/api/subscription",
+    tags=["Subscription"],
 )
 
 @app.get("/api/platform-settings/lesson-card")

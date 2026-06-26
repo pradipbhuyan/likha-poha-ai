@@ -13,9 +13,12 @@ from app.services.platform_info_service import (
     is_platform_info_question,
 )
 from app.services.offer_access_service import (
-    is_offer_code_user,
+    is_free_tier_user,
     build_offer_gate_response,
 )
+
+# Keep legacy alias so existing code continues to work
+is_offer_code_user = is_free_tier_user
 from app.services.doubt_kb_service import search_doubt_kb
 from app.services.academic_guardrail_service import (
     is_non_academic_question,
