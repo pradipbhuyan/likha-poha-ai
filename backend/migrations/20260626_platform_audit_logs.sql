@@ -18,9 +18,24 @@ CREATE TABLE IF NOT EXISTS public.platform_audit_logs (
 -- Audit logs are append-only — no UPDATE or DELETE allowed via normal roles.
 ALTER TABLE public.platform_audit_logs ENABLE ROW LEVEL SECURITY;
 
--- Read-only for service_role (backend)
-CREATE POLICY "audit_logs_service_read" ON public.platform_audit_logs
-  FOR SELECT USING (true);
+-- No permissive SELECT policy for normal users.
+-- service_role bypasses RLS automatically in Supabase — backend can always read.
+-- Normal authenticated and anon users have NO access (RLS blocks them).
+-- If you need an admin UI to query audit logs, create a server-side function
+-- with SECURITY DEFINER and call it via service_role, never expose raw SELECT.
+DO $$
+BEGIN
+  -- Idempotent: drop the old permissive policy if it exists from a prior run
+  IF EXISTS (
+    SELECT 1 FROM pg_policies
+    WHERE schemaname = 'public'
+      AND tablename = 'platform_audit_logs'
+      AND policyname = 'audit_logs_service_read'
+  ) THEN
+    DROP POLICY "audit_logs_service_read" ON public.platform_audit_logs;
+  END IF;
+END;
+$$;
 
 -- Efficient queries by actor, target, event type, and time
 CREATE INDEX IF NOT EXISTS audit_logs_actor_idx    ON public.platform_audit_logs (actor_user_id);

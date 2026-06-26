@@ -20,8 +20,21 @@ CREATE TABLE IF NOT EXISTS public.subscription_timeline (
 -- Append-only — no UPDATE or DELETE
 ALTER TABLE public.subscription_timeline ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "timeline_service_read" ON public.subscription_timeline
-  FOR SELECT USING (true);
+-- No permissive SELECT policy. service_role bypasses RLS automatically.
+-- Normal users cannot read subscription history.
+-- Idempotent: drop old permissive policy if it exists from a prior run.
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM pg_policies
+    WHERE schemaname = 'public'
+      AND tablename = 'subscription_timeline'
+      AND policyname = 'timeline_service_read'
+  ) THEN
+    DROP POLICY "timeline_service_read" ON public.subscription_timeline;
+  END IF;
+END;
+$$;
 
 -- Idempotency: prevent duplicate events for the same payment
 CREATE UNIQUE INDEX IF NOT EXISTS subscription_timeline_idempotency_uniq

@@ -1320,6 +1320,10 @@ def update_child_access(
             "ai_model_preference": normalize_model_preference(
                 data.ai_model_preference,
             ),
+            # Clear subscription_expires_at when admin explicitly sets access flags.
+            # Without this, a stale expires_at from a previous paid plan would cause
+            # the expiry job to revoke this admin-granted access.
+            "subscription_expires_at": None,
         })
         .eq("id", child_id)
         .eq("role", "student")
