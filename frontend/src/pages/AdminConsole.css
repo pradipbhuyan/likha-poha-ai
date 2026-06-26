@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Admin Console — Tab Navigation CSS
+   Mobile-first, responsive, accessible tab bar for the Admin Control page.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tab navigation bar ──────────────────────────────────────────────────── */
+.admin-tab-nav {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px 0;
+  border-bottom: 2px solid var(--border, #e5e7eb);
+  background: var(--panel, #fff);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  flex-wrap: nowrap;
+}
+
+.admin-tab-nav::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* ── Individual tab button ───────────────────────────────────────────────── */
+.admin-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--muted, #64748b);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+  min-height: 44px; /* WCAG touch target */
+}
+
+.admin-tab-btn:hover {
+  color: var(--primary, #6366f1);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.admin-tab-btn.active {
+  color: var(--primary, #6366f1);
+  border-bottom-color: var(--primary, #6366f1);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.admin-tab-btn[aria-selected="true"] {
+  color: var(--primary, #6366f1);
+  border-bottom-color: var(--primary, #6366f1);
+}
+
+.admin-tab-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.admin-tab-label {
+  line-height: 1;
+}
+
+/* ── Tab panel ───────────────────────────────────────────────────────────── */
+[role="tabpanel"] {
+  outline: none;
+  animation: fadeInTab 0.18s ease-out;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile: smaller text, larger touch targets ──────────────────────────── */
+@media (max-width: 640px) {
+  .admin-tab-nav {
+    padding: 8px 8px 0;
+    gap: 2px;
+  }
+
+  .admin-tab-btn {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    gap: 4px;
+    min-height: 44px;
+  }
+
+  .admin-tab-icon {
+    font-size: 0.9rem;
+  }
+
+  /* On very small screens (< 400px), hide labels and show icons only */
+  @media (max-width: 400px) {
+    .admin-tab-label {
+      display: none;
+    }
+
+    .admin-tab-btn {
+      padding: 8px 12px;
+      font-size: 1rem;
+    }
+  }
+}
+
+/* ── Tablet: normal layout ───────────────────────────────────────────────── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .admin-tab-btn {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+  }
+}
+
+/* ── Dark mode ───────────────────────────────────────────────────────────── */
+.dark-mode .admin-tab-nav {
+  background: var(--panel, #1e293b);
+  border-bottom-color: var(--border, #334155);
+}
+
+.dark-mode .admin-tab-btn:hover {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.dark-mode .admin-tab-btn.active {
+  background: rgba(99, 102, 241, 0.12);
+}

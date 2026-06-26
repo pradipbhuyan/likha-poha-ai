@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./AdminConsole.css";
 import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 import {
   getAdminFamilies,
@@ -299,6 +300,29 @@ function AdminControlPage({ user }) {
       setAiSettingsSaving(false);
     }
   }
+
+  // ── Tab state (moved before early return to satisfy Rules of Hooks) ────────
+  const [activeTab, setActiveTab] = useState(() => {
+    try { const p = new URLSearchParams(window.location.search); return p.get("tab") || "overview"; }
+    catch { return "overview"; }
+  });
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    try {
+      const u = new URL(window.location.href);
+      u.searchParams.set("tab", tab);
+      window.history.replaceState({}, "", u.toString());
+    } catch { /* ignore */ }
+  };
+  const ADMIN_TABS = [
+    { key: "overview",     label: "Overview",         icon: "🏠" },
+    { key: "accounts",     label: "Accounts",         icon: "👤" },
+    { key: "families",     label: "Families & Access", icon: "👨‍👩‍👧" },
+    { key: "associations", label: "Associations",     icon: "🔗" },
+    { key: "offers",       label: "Offers",           icon: "🎟️" },
+    { key: "ai",           label: "AI & Settings",    icon: "🔑" },
+    { key: "operations",   label: "Operations",       icon: "🖥️" },
+  ];
 
   useEffect(() => {
     if (user?.accessToken) {
@@ -1363,7 +1387,31 @@ function AdminControlPage({ user }) {
   }
 
   return (
-    <div className="premium-page admin-control-page">
+    <div className="premium-page admin-control-page" data-testid="admin-control-page">
+
+      {/* ── Tab Navigation ─────────────────────────────────────────────── */}
+      <nav className="admin-tab-nav" role="tablist" aria-label="Admin Console" data-testid="admin-tab-nav">
+        {ADMIN_TABS.map((t) => (
+          <button key={t.key} role="tab"
+            aria-selected={activeTab === t.key}
+            aria-controls={`admin-tab-panel-${t.key}`}
+            id={`admin-tab-btn-${t.key}`}
+            className={`admin-tab-btn${activeTab === t.key ? " active" : ""}`}
+            onClick={() => handleTabChange(t.key)}
+            data-testid={`admin-tab-${t.key}`}>
+            <span className="admin-tab-icon" aria-hidden="true">{t.icon}</span>
+            <span className="admin-tab-label">{t.label}</span>
+          </button>
+        ))}
+      </nav>
+
+      {/* ── Global message/error banners (always visible) ─────────────── */}
+      {message && <div className="info-box" style={{ margin: "8px 16px 0" }}>{message}</div>}
+      {error && <div className="error-box" style={{ margin: "8px 16px 0" }}>{error}</div>}
+
+      {/* ── AI & Settings Tab ──────────────────────────────────────────── */}
+      {activeTab === "ai" && (
+      <div id="admin-tab-panel-ai" role="tabpanel" aria-labelledby="admin-tab-btn-ai" data-testid="tab-panel-ai">
       {aiSettingsPanel}
 
       {/* ── Blog Collaborators Panel ── */}
@@ -1498,7 +1546,11 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </div>
         )}
       </section>
+      </div>)}
 
+      {/* ── Overview Tab ───────────────────────────────────────────────── */}
+      {activeTab === "overview" && (
+      <div id="admin-tab-panel-overview" role="tabpanel" aria-labelledby="admin-tab-btn-overview" data-testid="tab-panel-overview">
       <section className="premium-section admin-control-hero">
         <div className="premium-header">
           <p className="eyebrow">Admin Operations</p>
@@ -1537,10 +1589,11 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </div>
         </div>
       </section>
+      </div>)}
 
-      {message && <div className="info-box">{message}</div>}
-      {error && <div className="error-box">{error}</div>}
-
+      {/* ── Account Creation Tab ───────────────────────────────────────── */}
+      {activeTab === "accounts" && (
+      <div id="admin-tab-panel-accounts" role="tabpanel" aria-labelledby="admin-tab-btn-accounts" data-testid="tab-panel-accounts">
       <section className="premium-section admin-create-section">
         <div className="premium-header">
           <p className="eyebrow">Quick Create</p>
@@ -2005,7 +2058,11 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           )}
         </details>
       </section>
+      </div>)}
 
+      {/* ── Offers & Influencers Tab ────────────────────────────────────── */}
+      {activeTab === "offers" && (
+      <div id="admin-tab-panel-offers" role="tabpanel" aria-labelledby="admin-tab-btn-offers" data-testid="tab-panel-offers">
       {/* ── Offer Codes Section ── */}
       <section className="premium-section">
         <div className="premium-header">
@@ -2362,13 +2419,21 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </div>
         )}
       </section>
+      </div>)}
 
+      {/* ── Associations Tab ───────────────────────────────────────────── */}
+      {activeTab === "associations" && (
+      <div id="admin-tab-panel-associations" role="tabpanel" aria-labelledby="admin-tab-btn-associations" data-testid="tab-panel-associations">
       {/* ── Parent-Child Association Section ── */}
       <ParentChildAssociationSection accessToken={user?.accessToken} />
 
       {/* ── Teacher-Student Association Section ── */}
       <TeacherStudentAssociationSection accessToken={user?.accessToken} />
+      </div>)}
 
+      {/* ── Families & Access Tab ──────────────────────────────────────── */}
+      {activeTab === "families" && (
+      <div id="admin-tab-panel-families" role="tabpanel" aria-labelledby="admin-tab-btn-families" data-testid="tab-panel-families">
       {families.map((family) => (
         <section key={family.family_id} className="premium-section admin-family-section">
           {/* ── Credentials card shown OUTSIDE <details> so it's always visible after creation ── */}
@@ -3063,8 +3128,27 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </details>
         </section>
       ))}
+      </div>)}
+
+      {/* ── Operations Tab ─────────────────────────────────────────────── */}
+      {activeTab === "operations" && (
+      <div id="admin-tab-panel-operations" role="tabpanel" aria-labelledby="admin-tab-btn-operations" data-testid="tab-panel-operations">
+        <AdminOperationsEmbed user={user} />
+      </div>)}
+
     </div>
   );
+}
+
+// ── Lightweight Operations embed (reuses AdminOperationsPage) ────────────────
+function AdminOperationsEmbed({ user }) {
+  // Lazy import AdminOperationsPage to avoid circular deps
+  const [Page, setPage] = useState(null);
+  useEffect(() => {
+    import("./AdminOperationsPage").then((m) => setPage(() => m.default));
+  }, []);
+  if (!Page) return <div style={{padding:32,color:"#94a3b8"}}>Loading Operations Dashboard…</div>;
+  return <Page user={user} />;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

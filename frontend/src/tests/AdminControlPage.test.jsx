@@ -58,6 +58,12 @@ describe("AdminControlPage teacher management", () => {
     });
   });
 
+  /** Helper to click a tab by its data-testid */
+  async function clickTab(tabKey) {
+    const tab = await screen.findByTestId(`admin-tab-${tabKey}`);
+    fireEvent.click(tab);
+  }
+
   test("creates a teacher from the admin-only teacher form", async () => {
     createAdminTeacher.mockResolvedValue({
       success: true,
@@ -68,6 +74,9 @@ describe("AdminControlPage teacher management", () => {
     });
 
     renderPage();
+
+    // Navigate to Accounts tab where teacher form is
+    await clickTab("accounts");
 
     expect(await screen.findByText("Teacher Accounts")).toBeInTheDocument();
 
@@ -166,6 +175,9 @@ describe("AdminControlPage teacher management", () => {
 
     renderPage();
 
+    // Navigate to Accounts tab where Current Teachers roster is
+    await clickTab("accounts");
+
     const teacherCard = (await screen.findByText("Teacher One")).closest(".premium-card");
     const controls = within(teacherCard);
 
@@ -211,6 +223,7 @@ describe("AdminControlPage teacher management", () => {
 
     renderPage();
 
+    // Error is shown globally above all tabs (no need to switch tabs)
     expect(await screen.findByText(/unable to load admin control data/i)).toBeInTheDocument();
   });
 
@@ -239,8 +252,19 @@ describe("AdminControlPage teacher management", () => {
 
     renderPage();
 
+    // Navigate to Accounts tab to use Create Parent form
+    const tab = await screen.findByTestId("admin-tab-accounts");
+    fireEvent.click(tab);
+
+    // Now navigate to Families tab to see the existing family
+    const familiesTab = screen.getByTestId("admin-tab-families");
+    fireEvent.click(familiesTab);
+
     expect(await screen.findByText("Parent One Family")).toBeInTheDocument();
     expect(await screen.findByText("Parent One")).toBeInTheDocument();
+
+    // Go back to Accounts tab to use Create Parent form
+    fireEvent.click(screen.getByTestId("admin-tab-accounts"));
 
     fireEvent.change(screen.getByLabelText(/parent name/i), {
       target: { value: "New Parent" },
@@ -262,7 +286,10 @@ describe("AdminControlPage teacher management", () => {
       );
     });
 
-    const parentCard = screen.getByText("Parent One").closest(".premium-card");
+    // Go to Families tab to see parent card with child form
+    fireEvent.click(screen.getByTestId("admin-tab-families"));
+
+    const parentCard = (await screen.findByText("Parent One")).closest(".premium-card");
     const parentControls = within(parentCard);
 
     fireEvent.change(parentControls.getByLabelText(/child name/i), {
@@ -341,6 +368,10 @@ describe("AdminControlPage teacher management", () => {
     deleteUser.mockResolvedValue({ success: true });
 
     renderPage();
+
+    // Navigate to Families tab where student access controls are
+    const tab = await screen.findByTestId("admin-tab-families");
+    fireEvent.click(tab);
 
     const childCard = (await screen.findByText("Akshita")).closest(".premium-card");
     const controls = within(childCard);
