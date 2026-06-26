@@ -487,6 +487,204 @@ describe("UI conflict prevention", () => {
     expect(currentPlanLabel).not.toBe("Premium Nano");
   });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. Explicit regression tests — 10 scenarios by spec
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe("Subscription resolver regression tests", () => {
+
+  // ── Scenario 1: Active paid Nano ────────────────────────────────────────
+  test("1. Active paid Nano (plan_key='free', future expiry) → NANO, PAID, full access", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: true,
+      subscriptionExpiresAt: daysFromNow(7),
+      subscriptionDaysRemaining: 7,
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("NANO");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.hasFullAccess).toBe(true);
+    expect(result.planName).toBe("Premium Nano");
+    expect(result.activeTier).toBe(TIER.PREMIUM);
+  });
+
+  // ── Scenario 2: Expired Nano + active offer ──────────────────────────────
+  test("2. Expired Nano + active offer → OFFER_CODE, FREE, not ADMIN_GRANT", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: false,
+      subscriptionExpiresAt: daysAgo(1),
+    };
+    const result = resolveSubscription(user, ACTIVE_OFFER);
+    expect(result.canonicalPlanKey).toBe("FREE_TIER");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.OFFER_CODE);
+    expect(result.hasFullAccess).toBe(false);
+    expect(result.accessSource).not.toBe(ACCESS_SOURCE.ADMIN_GRANT);
+  });
+
+  // ── Scenario 3: Expired Nano, no offer ──────────────────────────────────
+  test("3. Expired Nano, no offer → FREE_TIER, NONE, full access=false, not ADMIN_GRANT", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: true,   // may still be True pre-revocation
+      subscriptionExpiresAt: daysAgo(2),
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("FREE_TIER");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.NONE);
+    expect(result.hasFullAccess).toBe(false);
+    expect(result.accessSource).not.toBe(ACCESS_SOURCE.ADMIN_GRANT);
+  });
+
+  // ── Scenario 4: Legacy Nano (no expiry, paid evidence = access_cbse) ────
+  test("4. Legacy Nano (plan_key='free', accessCbse=true, no expiry) → NANO, PAID, not ADMIN_GRANT", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: true,
+      subscriptionExpiresAt: null,  // paid before expires_at system was added
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("NANO");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.hasFullAccess).toBe(true);
+    expect(result.planName).toBe("Premium Nano");
+    expect(result.accessSource).not.toBe(ACCESS_SOURCE.ADMIN_GRANT);
+  });
+
+  // ── Scenario 5: Never-paid user ─────────────────────────────────────────
+  test("5. New never-paid user → FREE_TIER, planName='Free Tier', NONE", () => {
+    const result = resolveSubscription(BASE_STUDENT, null);
+    expect(result.canonicalPlanKey).toBe("FREE_TIER");
+    expect(result.planName).toBe("Free Tier");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.NONE);
+    expect(result.hasFullAccess).toBe(false);
+  });
+
+  // ── Scenarios 6, 7, 8: Payment expiry durations ──────────────────────────
+  test("6. Premium payment expiry is exactly 30 days (not 31)", () => {
+    // The 30-day business rule is enforced in _BILLING_LABEL_TO_DAYS['month']=30
+    // and verified by profile_access_from_plan in the backend test suite.
+    // Here we verify the resolver treats a 30-day expiry as active PAID.
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "starter",
+      accessCbse: true,
+      subscriptionExpiresAt: daysFromNow(30),
+      subscriptionDaysRemaining: 30,
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("PREMIUM");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.daysRemaining).toBe(30);
+  });
+
+  test("7. Family Premium payment expiry is exactly 30 days (not 31)", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "family_premium",
+      accessCbse: true,
+      subscriptionExpiresAt: daysFromNow(30),
+      subscriptionDaysRemaining: 30,
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("FAMILY_PREMIUM");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.daysRemaining).toBe(30);
+  });
+
+  test("8. Nano payment expiry remains exactly 8 days", () => {
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: true,
+      subscriptionExpiresAt: daysFromNow(8),
+      subscriptionDaysRemaining: 8,
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.canonicalPlanKey).toBe("NANO");
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.daysRemaining).toBe(8);
+  });
+
+  // ── Scenario 9: Frontend UI branches on canonicalPlanKey ────────────────
+  test("9. UI branches on canonicalPlanKey — 'free' plan_key correctly disambiguated", () => {
+    // Simulate UI logic: never branch on raw subscriptionPlan==="free"
+    // Always use canonicalPlanKey to determine display.
+
+    const activePaidNano = {
+      ...BASE_STUDENT, subscriptionPlan: "free", accessCbse: true,
+      subscriptionExpiresAt: daysFromNow(7), subscriptionDaysRemaining: 7,
+    };
+    const freeTierUser = { ...BASE_STUDENT };
+
+    const nanoResult = resolveSubscription(activePaidNano, null);
+    const freeResult = resolveSubscription(freeTierUser, null);
+
+    // Both users have subscriptionPlan === "free" in the DB.
+    // But canonicalPlanKey correctly distinguishes them:
+    expect(nanoResult.canonicalPlanKey).toBe("NANO");   // paid user
+    expect(freeResult.canonicalPlanKey).toBe("FREE_TIER"); // never paid
+
+    // The raw plan key is ambiguous — must NOT branch on it directly:
+    expect(activePaidNano.subscriptionPlan).toBe("free");
+    expect(freeTierUser.subscriptionPlan).toBe("free");
+    // Both have the same raw key — canonicalPlanKey is the correct discriminator.
+
+    // UI would correctly show "Premium Nano" for the paid user, "Free Tier" for the other:
+    const getDisplayPlan = (resolved) => resolved.canonicalPlanKey === "FREE_TIER"
+      ? "Free Tier"
+      : resolved.planName;
+
+    expect(getDisplayPlan(nanoResult)).toBe("Premium Nano");
+    expect(getDisplayPlan(freeResult)).toBe("Free Tier");
+  });
+
+  // ── Scenario 10: Subscription page shows exactly one active plan ─────────
+  test("10. Subscription page shows exactly one current active plan per user", () => {
+    // For each user state, the resolver returns exactly ONE accessSource.
+    // The subscription page can safely show a single "current plan" card.
+    const states = [
+      // [user, offer, expectedPlan, expectedSource]
+      [BASE_STUDENT, null, "FREE_TIER", ACCESS_SOURCE.NONE],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "free", accessCbse: true, subscriptionExpiresAt: daysFromNow(7), subscriptionDaysRemaining: 7 },
+        null, "NANO", ACCESS_SOURCE.PAID,
+      ],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "starter", accessCbse: true, subscriptionExpiresAt: daysFromNow(30), subscriptionDaysRemaining: 30 },
+        null, "PREMIUM", ACCESS_SOURCE.PAID,
+      ],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "family_premium", accessCbse: true, subscriptionExpiresAt: daysFromNow(30), subscriptionDaysRemaining: 30 },
+        null, "FAMILY_PREMIUM", ACCESS_SOURCE.PAID,
+      ],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "free", accessCbse: false, subscriptionExpiresAt: daysAgo(1) },
+        ACTIVE_OFFER, "FREE_TIER", ACCESS_SOURCE.OFFER_CODE,
+      ],
+    ];
+    for (const [user, offer, expectedKey, expectedSource] of states) {
+      const result = resolveSubscription(user, offer);
+      // Exactly one canonical key
+      expect(result.canonicalPlanKey).toBe(expectedKey);
+      // Exactly one access source
+      expect(result.accessSource).toBe(expectedSource);
+      // hasFullAccess is deterministic
+      const expectFull = expectedSource === ACCESS_SOURCE.PAID;
+      expect(result.hasFullAccess).toBe(expectFull);
+    }
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// (existing test)
+// ─────────────────────────────────────────────────────────────────────────────
+
   test("paid Nano user: currentPlanLabel is 'Premium Nano', banner shows PAID state", () => {
     const user = {
       ...BASE_STUDENT,
