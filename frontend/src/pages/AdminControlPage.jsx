@@ -301,19 +301,7 @@ function AdminControlPage({ user }) {
     }
   }
 
-  // ── Tab state (moved before early return to satisfy Rules of Hooks) ────────
-  const [activeTab, setActiveTab] = useState(() => {
-    try { const p = new URLSearchParams(window.location.search); return p.get("tab") || "overview"; }
-    catch { return "overview"; }
-  });
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    try {
-      const u = new URL(window.location.href);
-      u.searchParams.set("tab", tab);
-      window.history.replaceState({}, "", u.toString());
-    } catch { /* ignore */ }
-  };
+  // ── Tab definitions (kept outside useState so it can validate URL params) ──
   const ADMIN_TABS = [
     { key: "overview",     label: "Overview",         icon: "🏠" },
     { key: "accounts",     label: "Accounts",         icon: "👤" },
@@ -323,6 +311,26 @@ function AdminControlPage({ user }) {
     { key: "ai",           label: "AI & Settings",    icon: "🔑" },
     { key: "operations",   label: "Operations",       icon: "🖥️" },
   ];
+  const VALID_TAB_KEYS = new Set(ADMIN_TABS.map((t) => t.key));
+
+  // ── Tab state (moved before early return to satisfy Rules of Hooks) ────────
+  const [activeTab, setActiveTab] = useState(() => {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const tabFromUrl = p.get("tab") || "overview";
+      // Fall back to "overview" for any invalid/unknown tab value
+      return VALID_TAB_KEYS.has(tabFromUrl) ? tabFromUrl : "overview";
+    } catch { return "overview"; }
+  });
+  const handleTabChange = (tab) => {
+    if (!VALID_TAB_KEYS.has(tab)) return;   // ignore invalid tab keys
+    setActiveTab(tab);
+    try {
+      const u = new URL(window.location.href);
+      u.searchParams.set("tab", tab);
+      window.history.replaceState({}, "", u.toString());
+    } catch { /* ignore */ }
+  };
 
   useEffect(() => {
     if (user?.accessToken) {
