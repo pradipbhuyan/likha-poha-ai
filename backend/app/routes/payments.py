@@ -13,6 +13,12 @@ from app.config import settings
 from app.routes.admin_control import list_subscription_contact_settings, list_subscription_plan_settings
 from app.services.auth_service import admin_client, require_parent, require_admin, get_current_user
 from app.services.parent_dashboard_service import get_child_by_id, get_children
+from app.services.rate_limit_service import (
+    rate_limit_dependency,
+    PAYMENT_CREATE_LIMITER,
+    PAYMENT_VERIFY_LIMITER,
+    ADMIN_TEST_PAYMENT_LIMITER,
+)
 
 router = APIRouter()
 
@@ -231,6 +237,7 @@ def get_payment_config(parent=Depends(require_parent)):
 def create_payment_order(
     data: CreatePaymentOrderRequest,
     parent=Depends(require_parent),
+    _rl=Depends(rate_limit_dependency(PAYMENT_CREATE_LIMITER)),
 ):
     """
     Create a paid subscription order for one child under the signed-in parent.
@@ -306,6 +313,7 @@ def create_payment_order(
 def verify_payment(
     data: VerifyPaymentRequest,
     parent=Depends(require_parent),
+    _rl=Depends(rate_limit_dependency(PAYMENT_VERIFY_LIMITER)),
 ):
     """
     Verify Razorpay callback data, mark payment paid, and activate access.
@@ -320,6 +328,20 @@ def verify_payment(
 
     if not payment or payment.get("parent_id") != parent["profile"]["id"]:
         raise HTTPException(status_code=404, detail="Payment order not found.")
+
+    # ── Idempotency guard: already verified → return existing result ─────────
+    if payment.get("status") == "paid":
+        _log.info(
+            "payment.verify.already_paid",
+            order_id=data.razorpay_order_id,
+            parent_id=parent["profile"]["id"],
+        )
+        return {
+            "success": True,
+            "payment": payment,
+            "activated_profiles": [],   # already activated on first verify
+            "idempotent": True,
+        }
 
     if not verify_razorpay_signature(
         data.razorpay_order_id,
@@ -407,6 +429,7 @@ def get_student_payment_config(user=Depends(get_current_user)):
 def student_create_payment_order(
     data: StudentCreateOrderRequest,
     user=Depends(get_current_user),
+    _rl=Depends(rate_limit_dependency(PAYMENT_CREATE_LIMITER)),
 ):
     """
     Create a Razorpay subscription order for a standalone student paying for themselves.
@@ -490,6 +513,7 @@ def student_create_payment_order(
 def student_verify_payment(
     data: VerifyPaymentRequest,
     user=Depends(get_current_user),
+    _rl=Depends(rate_limit_dependency(PAYMENT_VERIFY_LIMITER)),
 ):
     """
     Verify Razorpay callback for a standalone student self-service payment.
@@ -516,6 +540,10 @@ def student_verify_payment(
 
     if not payment or payment.get("child_id") != user.id:
         raise HTTPException(status_code=404, detail="Payment order not found.")
+
+    # ── Idempotency guard ────────────────────────────────────────────────────
+    if payment.get("status") == "paid":
+        return {"success": True, "payment": payment, "plan": None, "idempotent": True}
 
     if not verify_razorpay_signature(
         data.razorpay_order_id,
@@ -709,6 +737,7 @@ def get_plan_any(plan_key: str):
 def admin_test_create_order(
     data: AdminTestOrderRequest,
     admin=Depends(require_admin),
+    _rl=Depends(rate_limit_dependency(ADMIN_TEST_PAYMENT_LIMITER)),
 ):
     """
     Admin-only: create a Razorpay order for ₹1 that will activate a real paid plan.
@@ -825,6 +854,7 @@ def admin_test_create_order(
 def admin_test_verify(
     data: AdminTestVerifyRequest,
     admin=Depends(require_admin),
+    _rl=Depends(rate_limit_dependency(ADMIN_TEST_PAYMENT_LIMITER)),
 ):
     """
     Admin-only: verify a ₹1 test payment and activate the intended paid plan.
@@ -852,6 +882,25 @@ def admin_test_verify(
             status_code=403,
             detail="This endpoint only processes admin test payments.",
         )
+
+    # ── Idempotency guard ────────────────────────────────────────────────────
+    if payment.get("status") == "paid":
+        plan_meta = ADMIN_TEST_UPGRADE_PLANS.get(payment["plan_key"], {})
+        return {
+            "success": True,
+            "payment": payment,
+            "activated_profile": {},
+            "intended_plan": {
+                "key": payment["plan_key"],
+                "label": plan_meta.get("label", payment["plan_key"]),
+                "validity": plan_meta.get("validity_label", ""),
+                "child_limit": plan_meta.get("child_limit", 1),
+            },
+            "target_user_id": payment.get("child_id"),
+            "charged_amount": meta.get("chargedAmount", 1),
+            "intended_amount": meta.get("intendedPlanAmount"),
+            "idempotent": True,
+        }
 
     if not verify_razorpay_signature(
         data.razorpay_order_id,

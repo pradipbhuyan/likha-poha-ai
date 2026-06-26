@@ -10,6 +10,12 @@ from typing import Optional
 from app.models.schemas import LoginRequest, LoginResponse
 from app.config import settings
 from app.services.auth_service import admin_client, get_current_user
+from app.services.rate_limit_service import (
+    rate_limit_dependency,
+    LOGIN_LIMITER,
+    SIGNUP_LIMITER,
+    PASSWORD_RESET_LIMITER,
+)
 
 router = APIRouter()
 
@@ -30,7 +36,7 @@ USERS = {
 
 
 @router.post("/login", response_model=LoginResponse)
-def login(data: LoginRequest):
+def login(data: LoginRequest, _rl=Depends(rate_limit_dependency(LOGIN_LIMITER))):
     """
     Legacy username/password login endpoint for seeded demo users.
 
@@ -51,7 +57,7 @@ def login(data: LoginRequest):
 
 
 @router.post("/forgot-password")
-def forgot_password(payload: dict):
+def forgot_password(payload: dict, _rl=Depends(rate_limit_dependency(PASSWORD_RESET_LIMITER))):
     """
     Send a password reset email for a student.
 
@@ -373,7 +379,7 @@ def get_my_profile(user=Depends(get_current_user)):
 
 
 @router.post("/signup-order")
-def create_signup_order(data: SignupOrderRequest):
+def create_signup_order(data: SignupOrderRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
     """
     Create a Razorpay payment order for a new self-signup (no auth required).
 
@@ -609,7 +615,7 @@ def complete_signup(data: CompleteSignupRequest):
 
 
 @router.post("/signup-free")
-def signup_free(data: FreeSignupRequest):
+def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
     """
     Create a new Free Tier account — no payment or offer code required.
 
@@ -757,7 +763,7 @@ def signup_free(data: FreeSignupRequest):
 
 
 @router.post("/signup-with-offer-code")
-def signup_with_offer_code(data: OfferCodeSignupRequest):
+def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
     """
     Create a new account using a valid offer code instead of paying.
 

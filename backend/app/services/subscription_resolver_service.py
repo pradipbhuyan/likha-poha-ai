@@ -46,6 +46,39 @@ class Tier:
     PREMIUM = "PREMIUM"
 
 
+# ── Canonical plan limits keyed by canonical_plan_key ────────────────────────
+# child_limit   — max children per parent subscription (None = unlimited)
+# student_limit — max students per teacher roster
+# restrictions  — list of feature restriction labels for limited-access tiers
+_PLAN_LIMITS: dict[str, dict] = {
+    "FREE_TIER": {
+        "child_limit": None,
+        "student_limit": None,
+        "restrictions": ["lessons_limited", "mock_tests_5_per_day", "no_exemplar"],
+    },
+    "NANO": {
+        "child_limit": 1,
+        "student_limit": None,
+        "restrictions": [],
+    },
+    "PREMIUM": {
+        "child_limit": 1,
+        "student_limit": None,
+        "restrictions": [],
+    },
+    "FAMILY_PREMIUM": {
+        "child_limit": 2,
+        "student_limit": None,
+        "restrictions": [],
+    },
+    "ADMIN_GRANT": {
+        "child_limit": None,
+        "student_limit": None,
+        "restrictions": [],
+    },
+}
+
+
 def resolve_user_subscription(user_id: str) -> dict:
     """
     Return the canonical subscription state for a single user.
@@ -92,6 +125,8 @@ def resolve_user_subscription(user_id: str) -> dict:
         # ── 1. Active paid subscription (time-limited) ──────────────────────
         # subscription_expires_at is ONLY written by profile_access_from_plan()
         # after a confirmed Razorpay payment — never by offer-code redemption.
+        # subscription_expires_at is ONLY written by profile_access_from_plan()
+        # after a confirmed Razorpay payment — never by offer-code redemption.
         expires_at_str = profile.get("subscription_expires_at")
         had_expired_subscription = False
         if expires_at_str:
@@ -102,19 +137,18 @@ def resolve_user_subscription(user_id: str) -> dict:
                 if expires_at > now:
                     plan_key = profile.get("subscription_plan") or "free"
                     days_left = (expires_at - now).days
+                    ck = _canonical_plan_key(plan_key)
                     return {
                         "active_tier": Tier.PREMIUM,
                         "plan_name": _paid_plan_name(plan_key),
-                        "canonical_plan_key": _canonical_plan_key(plan_key),
+                        "canonical_plan_key": ck,
                         "access_source": AccessSource.PAID,
                         "has_full_access": True,
                         "valid_until": expires_at_str,
                         "days_remaining": max(0, days_left),
                         "expiring_soon": days_left <= 3,
+                        **_plan_limits(ck),
                     }
-                # Paid subscription expired — mark flag and continue.
-                # An active offer redemption should still provide access (step 3).
-                # The flag prevents ADMIN_GRANT (step 4) from firing incorrectly.
                 had_expired_subscription = True
             except Exception:
                 pass
@@ -128,15 +162,17 @@ def resolve_user_subscription(user_id: str) -> dict:
             or profile.get("access_sof_english")
         )
         if has_access_flag and plan_key != "free" and not expires_at_str:
+            ck = _canonical_plan_key(plan_key)
             return {
                 "active_tier": Tier.PREMIUM,
                 "plan_name": _paid_plan_name(plan_key),
-                "canonical_plan_key": _canonical_plan_key(plan_key),
+                "canonical_plan_key": ck,
                 "access_source": AccessSource.PAID,
                 "has_full_access": True,
                 "valid_until": None,
                 "days_remaining": None,
                 "expiring_soon": False,
+                **_plan_limits(ck),
             }
 
         # ── 2b. Legacy Nano user: plan_key="free" + access_cbse + no expiry ─
@@ -160,6 +196,7 @@ def resolve_user_subscription(user_id: str) -> dict:
                 "valid_until": None,
                 "days_remaining": None,
                 "expiring_soon": False,
+                **_plan_limits("NANO"),
             }
 
         # ── 3. Valid offer / free-trial access ──────────────────────────────
@@ -196,6 +233,7 @@ def resolve_user_subscription(user_id: str) -> dict:
                     "valid_until": valid_until,
                     "days_remaining": max(0, days_left),
                     "expiring_soon": days_left <= 7,
+                    **_plan_limits("FREE_TIER"),
                 }
 
         # ── 4. Admin-granted access (access flags set, no expiry, no offer) ─
@@ -211,6 +249,7 @@ def resolve_user_subscription(user_id: str) -> dict:
                 "valid_until": None,
                 "days_remaining": None,
                 "expiring_soon": False,
+                **_plan_limits("ADMIN_GRANT"),
             }
 
         # ── 5. Default free tier ────────────────────────────────────────────
@@ -235,6 +274,17 @@ def _free_result() -> dict:
         "valid_until": None,
         "days_remaining": None,
         "expiring_soon": False,
+        **_plan_limits("FREE_TIER"),
+    }
+
+
+def _plan_limits(canonical_key: str) -> dict:
+    """Return child_limit, student_limit, restrictions for a canonical plan key."""
+    limits = _PLAN_LIMITS.get(canonical_key, _PLAN_LIMITS["FREE_TIER"])
+    return {
+        "child_limit": limits["child_limit"],
+        "student_limit": limits["student_limit"],
+        "restrictions": limits["restrictions"],
     }
 
 
