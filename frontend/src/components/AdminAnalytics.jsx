@@ -312,8 +312,6 @@ export default function AdminAnalytics({ accessToken }) {
 
   useEffect(() => { load(); }, [load]);
 
-  const cardState = loading ? STATE_LOADING : STATE_OK;
-
   const u   = summary?.users    || {};
   const p   = summary?.payments || {};
   const ai  = summary?.ai_usage || {};

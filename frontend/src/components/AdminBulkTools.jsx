@@ -11,7 +11,7 @@
  *  allParents    — in-memory parents array
  */
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -102,7 +102,6 @@ export default function AdminBulkTools({ accessToken, allStudents = [], allTeach
   // CSV import
   const [csvText, setCsvText]           = useState("");
   const [csvPreview, setCsvPreview]     = useState(null);
-  const [csvConfirmed, setCsvConfirmed] = useState(false);
 
   const allUsers = [...allStudents, ...allParents];
 
@@ -202,7 +201,6 @@ export default function AdminBulkTools({ accessToken, allStudents = [], allTeach
       errors: !r.name ? ["name required"] : !r.grade.startsWith("Grade ") ? ["invalid grade"] : [],
     }));
     setCsvPreview(preview);
-    setCsvConfirmed(false);
     setResult(null);
   }
 
