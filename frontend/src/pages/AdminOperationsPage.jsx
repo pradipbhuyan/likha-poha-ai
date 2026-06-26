@@ -222,15 +222,16 @@ export default function AdminOperationsPage({ user }) {
         return null;
       }
     };
+    // authFetch already returns parsed JSON — no .json() call needed
     const [s, h, p, w, sub, u, a, es] = await Promise.all([
-      safe("summary", () => getOperationsSummary().then((r) => r.json())),
-      safe("health", () => getOperationsHealth().then((r) => r.json())),
-      safe("payments", () => getOperationsPayments(days).then((r) => r.json())),
-      safe("webhooks", () => getOperationsWebhooks(days).then((r) => r.json())),
-      safe("subscriptions", () => getOperationsSubscriptions(days).then((r) => r.json())),
-      safe("usage", () => getOperationsUsage().then((r) => r.json())),
-      safe("alerts", () => getOperationsAlerts(days).then((r) => r.json())),
-      safe("expiryStatus", () => getExpiryJobStatus().then((r) => r.json())),
+      safe("summary", () => getOperationsSummary()),
+      safe("health", () => getOperationsHealth()),
+      safe("payments", () => getOperationsPayments(days)),
+      safe("webhooks", () => getOperationsWebhooks(days)),
+      safe("subscriptions", () => getOperationsSubscriptions(days)),
+      safe("usage", () => getOperationsUsage()),
+      safe("alerts", () => getOperationsAlerts(days)),
+      safe("expiryStatus", () => getExpiryJobStatus()),
     ]);
     setSummary(s);
     setHealth(h);
@@ -253,8 +254,8 @@ export default function AdminOperationsPage({ user }) {
     setExpiryRunning(true);
     setExpiryResult(null);
     try {
-      const res = await runExpiryJob();
-      const data = await res.json();
+      // authFetch already returns parsed JSON
+      const data = await runExpiryJob();
       setExpiryResult(data);
       setRefreshKey((k) => k + 1);
     } catch (e) {
