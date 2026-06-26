@@ -3149,8 +3149,11 @@ function ParentChildAssociationSection({ accessToken }) {
 
   // Debounce search
   const { useState: _us, useEffect: _ue } = { useState, useEffect };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { const t = setTimeout(() => searchParents(parentQuery), 300); return () => clearTimeout(t); }, [parentQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { const t = setTimeout(() => searchStudents(studentQuery), 300); return () => clearTimeout(t); }, [studentQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadAssociations(); }, [assocQuery]);
 
   async function handleLink() {
@@ -3400,15 +3403,18 @@ function TeacherStudentAssociationSection({ accessToken }) {
     finally { setAssocLoading(false); }
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { const t = setTimeout(() => searchTeachers(teacherQuery), 300); return () => clearTimeout(t); }, [teacherQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { const t = setTimeout(() => searchStudents(studentQuery), 300); return () => clearTimeout(t); }, [studentQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadAssociations(); }, [assocQuery]);
 
   async function handleLink() {
     if (!selectedTeacher || !selectedStudent) { setLinkErr("Select both a teacher and a student."); return; }
     setLinking(true); setLinkErr(""); setLinkMsg("");
     try {
-      const result = await authPost("/api/admin-control/teacher-assignments", {
+      await authPost("/api/admin-control/teacher-assignments", {
         teacher_id: selectedTeacher.id,
         student_id: selectedStudent.id,
         grade: grade || selectedStudent.grade || "Grade 9",

@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { resolveSubscription, ACCESS_SOURCE, TIER } from "../utils/resolveSubscription";
+import { resolveSubscription, ACCESS_SOURCE } from "../utils/resolveSubscription";
 
 import {
   getParentChildren,
@@ -599,7 +599,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
   const [children, setChildren] = useState([]);
   const [selectedChildId, setSelectedChildId] = useState("");
   // Offer validity — fetch for all parents regardless of access_cbse value
-  const [parentOfferAccess, setParentOfferAccess] = useState(
+  const [, setParentOfferAccess] = useState(
     user?.offerAccess && user?.offerValidUntil
       ? {
           has_offer_access: user.offerAccess,
