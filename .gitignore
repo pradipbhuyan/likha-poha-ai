@@ -53,3 +53,4 @@ backend/generated_audio/
 backend/student_progress.json
 backend/test_history.json
 backend/backups/
+backend/app/data/*.db
