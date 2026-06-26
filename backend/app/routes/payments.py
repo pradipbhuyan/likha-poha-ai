@@ -1,6 +1,6 @@
 import hashlib
 import hmac
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from app.services.logger_service import get_logger, PlatformError
 
 _log = get_logger("routes.payments")
@@ -140,14 +140,40 @@ def get_payment_by_order_id(order_id: str):
     return rows[0] if rows else None
 
 
+# Maps billing_label values to duration in days for subscription expiry.
+# Plans without an entry here are treated as non-expiring (NULL expires_at).
+_BILLING_LABEL_TO_DAYS: dict[str, int] = {
+    "8 days": 8,
+    "month": 31,
+    "6 months": 184,
+    "year": 366,
+}
+
+
+def plan_expires_at(plan) -> str | None:
+    """
+    Calculate the UTC ISO-8601 expiry timestamp for a plan, or None if perpetual.
+
+    Only time-limited plans (those with a known billing_label) get an expiry.
+    Perpetual/admin-granted access leaves subscription_expires_at as NULL.
+    """
+    billing_label = (plan.get("billing_label") or "").strip().lower()
+    days = _BILLING_LABEL_TO_DAYS.get(billing_label)
+    if not days:
+        return None
+    return (datetime.now(timezone.utc) + timedelta(days=days)).isoformat()
+
+
 def profile_access_from_plan(plan):
     """
     Convert a subscription plan row into profile access fields.
 
     This is the single mapping that decides which CBSE/SOF flags and AI token
     limits are applied after a successful payment or family premium activation.
+    Includes subscription_expires_at so time-limited plans (e.g. ₹99/8-day
+    Premium Nano) revert to free tier automatically after the access window.
     """
-    return {
+    fields = {
         "subscription_plan": plan["key"],
         "account_status": "active",
         "access_cbse": bool(plan.get("access_cbse")),
@@ -156,7 +182,9 @@ def profile_access_from_plan(plan):
         "access_sof_english": bool(plan.get("access_sof_english")),
         "daily_token_limit": int(plan.get("daily_token_limit") or 0),
         "monthly_token_limit": int(plan.get("monthly_token_limit") or 0),
+        "subscription_expires_at": plan_expires_at(plan),
     }
+    return fields
 
 
 def activate_plan_for_payment(payment, plan, parent_profile):

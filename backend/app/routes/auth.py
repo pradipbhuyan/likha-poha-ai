@@ -3,13 +3,13 @@ import hmac
 import logging
 import time
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 
 from app.models.schemas import LoginRequest, LoginResponse
 from app.config import settings
-from app.services.auth_service import admin_client
+from app.services.auth_service import admin_client, get_current_user
 
 router = APIRouter()
 
@@ -259,7 +259,8 @@ def _plan_amount(plan: dict) -> int:
 
 
 def _profile_access_fields(plan: dict) -> dict:
-    """Convert plan row into profile access fields."""
+    """Convert plan row into profile access fields (including subscription expiry)."""
+    from app.routes.payments import plan_expires_at  # noqa: PLC0415
     return {
         "subscription_plan": plan["key"],
         "account_status": "active",
@@ -269,6 +270,95 @@ def _profile_access_fields(plan: dict) -> dict:
         "access_sof_english": bool(plan.get("access_sof_english")),
         "daily_token_limit": int(plan.get("daily_token_limit") or 50000),
         "monthly_token_limit": int(plan.get("monthly_token_limit") or 1000000),
+        "subscription_expires_at": plan_expires_at(plan),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Authenticated profile endpoint — returns full profile + subscription status
+# ---------------------------------------------------------------------------
+
+@router.get("/profile")
+def get_my_profile(user=Depends(get_current_user)):
+    """
+    Return the authenticated user's full profile including subscription_expires_at.
+
+    Also auto-revokes access for expired time-limited plans (e.g. ₹99 / 8-day
+    Premium Nano) so the student is reverted to the free tier on next login.
+    Called by the frontend on app load to get fresh access state.
+    """
+    from datetime import datetime, timezone  # noqa: PLC0415
+
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .limit(1)
+        .execute()
+    )
+    if not profile_resp.data:
+        raise HTTPException(status_code=404, detail="Profile not found.")
+
+    profile = profile_resp.data[0]
+
+    # ── Auto-revoke expired time-limited subscriptions ───────────────────────
+    # If subscription_expires_at is set and is in the past, revoke CBSE/SOF
+    # access flags so the student hits the subscription gate again.
+    expires_at_str = profile.get("subscription_expires_at")
+    if expires_at_str:
+        try:
+            expires_at = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
+            if datetime.now(timezone.utc) > expires_at:
+                # Subscription expired — revoke access flags
+                admin_client.table("profiles").update({
+                    "access_cbse": False,
+                    "access_sof_science": False,
+                    "access_sof_maths": False,
+                    "access_sof_english": False,
+                    "subscription_expires_at": None,  # clear so it doesn't trigger again
+                }).eq("id", user.id).execute()
+                # Update local profile dict to reflect revoked state
+                profile["access_cbse"] = False
+                profile["access_sof_science"] = False
+                profile["access_sof_maths"] = False
+                profile["access_sof_english"] = False
+                profile["subscription_expires_at"] = None
+        except Exception:
+            pass  # Never block profile load on expiry check failure
+
+    # Calculate days_remaining for the frontend expiry banner
+    sub_expires_at = profile.get("subscription_expires_at")
+    days_remaining = None
+    expiring_soon = False
+    if sub_expires_at:
+        try:
+            exp = datetime.fromisoformat(sub_expires_at.replace("Z", "+00:00"))
+            days_remaining = max(0, (exp - datetime.now(timezone.utc)).days)
+            expiring_soon = days_remaining <= 3
+        except Exception:
+            pass
+
+    return {
+        "success": True,
+        "id": profile.get("id"),
+        "email": profile.get("email"),
+        "username": profile.get("username"),
+        "role": profile.get("role"),
+        "grade": profile.get("grade"),
+        "board": profile.get("board"),
+        "subscription_plan": profile.get("subscription_plan"),
+        "access_cbse": bool(profile.get("access_cbse")),
+        "access_sof_science": bool(profile.get("access_sof_science")),
+        "access_sof_maths": bool(profile.get("access_sof_maths")),
+        "access_sof_english": bool(profile.get("access_sof_english")),
+        "cbse_subjects": profile.get("cbse_subjects") or [],
+        "daily_token_limit": profile.get("daily_token_limit"),
+        "monthly_token_limit": profile.get("monthly_token_limit"),
+        "account_status": profile.get("account_status"),
+        "subscription_expires_at": sub_expires_at,
+        "subscription_days_remaining": days_remaining,
+        "subscription_expiring_soon": expiring_soon,
     }
 
 

@@ -443,22 +443,45 @@ function App() {
     localStorage.setItem("tutor_dark_mode", darkMode);
   }, [darkMode]);
 
-  function handleLogin(userData) {
+  async function handleLogin(userData) {
     /** Persist the authenticated user and send them to the right role-specific landing page. */
-    setUser(userData);
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+    // For students, fetch fresh profile to get subscription_expires_at and check expiry
+    let enrichedUser = userData;
+    if (userData.role === "student" && userData.accessToken) {
+      try {
+        const r = await fetch(`${API_BASE}/api/auth/profile`, {
+          headers: { Authorization: `Bearer ${userData.accessToken}` },
+        });
+        if (r.ok) {
+          const p = await r.json();
+          enrichedUser = {
+            ...userData,
+            accessCbse: p.access_cbse ?? userData.accessCbse,
+            subscriptionPlan: p.subscription_plan ?? userData.subscriptionPlan,
+            subscriptionExpiresAt: p.subscription_expires_at || null,
+            subscriptionDaysRemaining: p.subscription_days_remaining ?? null,
+            subscriptionExpiringSoon: !!p.subscription_expiring_soon,
+          };
+        }
+      } catch { /* non-critical */ }
+    }
+
+    setUser(enrichedUser);
     setRoutePath("/");
-    localStorage.setItem("tutor_user", JSON.stringify(userData));
+    localStorage.setItem("tutor_user", JSON.stringify(enrichedUser));
   
-    if (userData.role === "admin") {
+    if (enrichedUser.role === "admin") {
       setActivePage("adminControl");
       localStorage.setItem("tutor_active_page", "adminControl");
-    } else if (userData.role === "parent") {
+    } else if (enrichedUser.role === "parent") {
       setActivePage("parentDashboard");
       localStorage.setItem("tutor_active_page", "parentDashboard");
-    } else if (userData.role === "teacher") {
+    } else if (enrichedUser.role === "teacher") {
       setActivePage("teacherDashboard");
       localStorage.setItem("tutor_active_page", "teacherDashboard");
-    } else if (userData.role === "sales") {
+    } else if (enrichedUser.role === "sales") {
       setActivePage("salesLeads");
       localStorage.setItem("tutor_active_page", "salesLeads");
     } else {
@@ -1029,6 +1052,44 @@ function App() {
             <div className="profile-pill">{user.username}</div>
           </div>
         </header>
+
+        {/* Premium Nano expiry banner — shown for students with a time-limited subscription */}
+        {user?.role === "student" && user?.subscriptionExpiresAt && (
+          <div style={{
+            padding: "10px 20px",
+            background: user.subscriptionExpiringSoon
+              ? "linear-gradient(135deg, rgba(245,158,11,.15), rgba(239,68,68,.1))"
+              : "linear-gradient(135deg, rgba(99,102,241,.12), rgba(139,92,246,.1))",
+            borderBottom: `1px solid ${user.subscriptionExpiringSoon ? "rgba(245,158,11,.4)" : "rgba(99,102,241,.3)"}`,
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            flexWrap: "wrap", gap: 8,
+          }}>
+            <span style={{ fontSize: ".85rem", fontWeight: 600, color: user.subscriptionExpiringSoon ? "#fbbf24" : "#a5b4fc" }}>
+              {user.subscriptionExpiringSoon ? "⚠️" : "✨"}{" "}
+              <strong>Premium Nano active</strong>
+              {" — "}
+              {user.subscriptionDaysRemaining != null
+                ? user.subscriptionDaysRemaining === 0
+                  ? "expires today"
+                  : `${user.subscriptionDaysRemaining} day${user.subscriptionDaysRemaining !== 1 ? "s" : ""} remaining`
+                : `until ${new Date(user.subscriptionExpiresAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}`}
+              {user.subscriptionExpiringSoon && " — upgrade to keep your access"}
+            </span>
+            <button
+              onClick={() => handlePageChange("subscriptionPlans")}
+              style={{
+                background: user.subscriptionExpiringSoon ? "rgba(245,158,11,.2)" : "rgba(99,102,241,.2)",
+                border: `1px solid ${user.subscriptionExpiringSoon ? "rgba(245,158,11,.5)" : "rgba(99,102,241,.5)"}`,
+                borderRadius: 6, padding: "4px 12px", cursor: "pointer",
+                fontSize: ".78rem", fontWeight: 700, fontFamily: "inherit",
+                color: user.subscriptionExpiringSoon ? "#fbbf24" : "#a5b4fc",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {user.subscriptionExpiringSoon ? "Upgrade now →" : "View plans →"}
+            </button>
+          </div>
+        )}
 
         <AnimatePresence mode="wait">
           <motion.section

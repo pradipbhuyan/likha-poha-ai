@@ -1,12 +1,12 @@
 export const SUBSCRIPTION_PLANS = {
   free: {
     key: "free",
-    label: "Try It Out",
-    shortLabel: "Trial",
+    label: "Premium Nano",
+    shortLabel: "Nano",
     price: 99,
     billingLabel: "8 days",
     audience:
-      "Try the full platform for 8 days — same access as the Standard plan, no restrictions.",
+      "Full platform access for 8 days — all CBSE subjects, unlimited doubts, mock tests. No restrictions.",
     badge: "Start here",
     recommended: false,
     discountPercent: 0,
@@ -40,8 +40,8 @@ export const SUBSCRIPTION_PLANS = {
   },
   starter: {
     key: "starter",
-    label: "Standard",
-    shortLabel: "Standard",
+    label: "Premium",
+    shortLabel: "Premium",
     price: 299,
     billingLabel: "month",
     audience:
@@ -79,8 +79,8 @@ export const SUBSCRIPTION_PLANS = {
   },
   premium: {
     key: "premium",
-    label: "Standard",
-    shortLabel: "Standard",
+    label: "Premium",
+    shortLabel: "Premium",
     price: 299,
     billingLabel: "month",
     audience:
@@ -118,7 +118,7 @@ export const SUBSCRIPTION_PLANS = {
   },
   family_premium: {
     key: "family_premium",
-    label: "Family",
+    label: "Family Premium",
     shortLabel: "Family",
     price: 499,
     billingLabel: "month",
@@ -157,7 +157,7 @@ export const SUBSCRIPTION_PLANS = {
   },
   standard_6month: {
     key: "standard_6month",
-    label: "Standard — 6 Months",
+    label: "Premium — 6 Months",
     shortLabel: "6-Month",
     price: 1495,
     billingLabel: "6 months",
@@ -193,7 +193,7 @@ export const SUBSCRIPTION_PLANS = {
   },
   standard_annual: {
     key: "standard_annual",
-    label: "Standard — Annual",
+    label: "Premium — Annual",
     shortLabel: "Annual",
     price: 2999,
     billingLabel: "year",
@@ -229,7 +229,7 @@ export const SUBSCRIPTION_PLANS = {
   },
   family_annual: {
     key: "family_annual",
-    label: "Family — Annual",
+    label: "Family Premium — Annual",
     shortLabel: "Family Annual",
     price: 4999,
     billingLabel: "year",

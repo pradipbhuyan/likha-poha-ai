@@ -298,8 +298,8 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               <>
                 <strong style={{ color: offerAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
                   {offerAccess.expiring_soon
-                    ? `⚠️ Your free trial expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""}`
-                    : "Free trial access active"}
+                    ? `⚠️ Your Premium Nano access expires in ${offerAccess.days_remaining} day${offerAccess.days_remaining !== 1 ? "s" : ""}`
+                    : "✨ Premium Nano access active"}
                 </strong>
                 <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
                   Valid until {new Date(offerAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
@@ -856,13 +856,13 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           <div>
             <p className="eyebrow">Teacher Subscription</p>
             <h2>Unlock the full Teacher Toolkit</h2>
-            <p>You are currently on the <strong>{isFree ? "Free Trial" : "Paid"}</strong> plan.
+            <p>You are currently on the <strong>{isFree ? "Free Tier" : "Paid"}</strong> plan.
               Upgrade to get unlimited test papers, lesson plans, and full Exemplar access.</p>
           </div>
           <div className="subscription-current-panel">
             <div className="subscription-current-plan">
               <span>Your current plan</span>
-              <strong>{isFree ? "Free Trial" : "Paid Teacher"}</strong>
+              <strong>{isFree ? "Free Tier" : "Paid Teacher"}</strong>
               <small>{isFree ? "🔒 Limited daily access" : "✅ Full access active"}</small>
             </div>
           </div>
@@ -1024,8 +1024,8 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
               <>
                 <strong style={{ color: parentOfferAccess.expiring_soon ? "#fbbf24" : "#34d399", display: "block", marginBottom: 2 }}>
                   {parentOfferAccess.expiring_soon
-                    ? `⚠️ Your free trial expires in ${parentOfferAccess.days_remaining} day${parentOfferAccess.days_remaining !== 1 ? "s" : ""}`
-                    : "Free trial access active"}
+                    ? `⚠️ Your Premium Nano access expires in ${parentOfferAccess.days_remaining} day${parentOfferAccess.days_remaining !== 1 ? "s" : ""}`
+                    : "✨ Premium Nano access active"}
                 </strong>
                 <span style={{ color: "#94a3b8", fontSize: ".88rem" }}>
                   Valid until {new Date(parentOfferAccess.valid_until).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
