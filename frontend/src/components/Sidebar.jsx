@@ -176,6 +176,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "adminOperations",
+      label: "Operations Dashboard",
+      icon: Activity,
+      roles: ["admin"],
+    },
+    {
       key: "performanceTests",
       label: "Performance Tests",
       icon: Activity,

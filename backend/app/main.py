@@ -45,6 +45,7 @@ from app.routes.cache_management import router as cache_management_router
 from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
 from app.routes.subscription import router as subscription_router
+from app.routes.admin_operations import router as admin_operations_router
 
 
 frontend_url = os.getenv(
@@ -237,6 +238,12 @@ app.include_router(
     cache_management_router,
     prefix="/api/cache-management",
     tags=["Cache Management"],
+)
+
+app.include_router(
+    admin_operations_router,
+    prefix="/api/admin/operations",
+    tags=["Admin Operations"],
 )
 
 app.include_router(

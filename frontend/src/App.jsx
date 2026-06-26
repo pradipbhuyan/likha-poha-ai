@@ -40,6 +40,7 @@ import AdminLessonCardPage from "./pages/AdminLessonCardPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import AdminPaymentsPage from "./pages/AdminPaymentsPage";
+import AdminOperationsPage from "./pages/AdminOperationsPage";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
@@ -912,6 +913,8 @@ function App() {
         return <ChangePasswordPage user={user} />;
       case "paymentLogs":
         return <AdminPaymentsPage user={user} />;
+      case "adminOperations":
+        return <AdminOperationsPage user={user} />;
       case "unansweredReview":
         return <AdminUnansweredQuestionsPage user={user} />;
       default:
