@@ -62,7 +62,10 @@ export function filterAllowedSubjects(user, allSubjects, selectedMode) {
     // We only hide subjects when access_cbse=false AND the user has a non-free
     // paid plan (which would be a misconfiguration — show nothing rather than
     // serving content they haven't paid for).
-    const hasPaidPlan = user?.subscriptionPlan && user.subscriptionPlan !== "free";
+    // Use hasPaidAccess() — do NOT branch on subscriptionPlan !== "free" because
+    // the "free" DB key is shared by both Free Tier users and Nano paid users.
+    // accessCbse is the authoritative signal for "has paid plan access".
+    const hasPaidPlan = user?.accessCbse === true;
     if (user?.accessCbse === false && !user?.offerAccess && hasPaidPlan) return [];
     if (user?.accessCbse === false && !user?.offerAccess && !hasPaidPlan) {
       // Free-plan student with access_cbse=false — offer-code user.

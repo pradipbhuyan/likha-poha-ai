@@ -2,6 +2,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { answerDoubt } from "../api/doubt";
+import { hasPaidAccess } from "../utils/resolveSubscription";
 
 /**
  * Strip LaTeX $...$ delimiters so math like $P(x)$, $(x-2)$ displays as plain text.
@@ -162,18 +163,6 @@ function UpgradeCard({ onClose, onUpgrade }) {
       </div>
     </div>
   );
-}
-
-// Returns true if the user has a paid subscription.
-// Teachers and all other roles on a FREE plan are also gated.
-// Only admin always bypasses.
-function hasPaidAccess(user) {
-  if (!user) return false;
-  if (user.role === "admin") return true;                              // admin only
-  if (user.subscriptionPlan && user.subscriptionPlan !== "free") return true; // paid plan
-  if (user.accessCbse) return true;                                    // admin-granted CBSE access
-  if (user.parentId) return true;                                      // parent-linked child
-  return false;
 }
 
 export default function ExemplarResearchPage({ user, setActivePage }) {

@@ -215,6 +215,30 @@ function _canonicalPlanKey(planKey) {
 }
 
 /**
+ * Returns true when the user has paid access (any active paid tier).
+ *
+ * Use this instead of raw `subscriptionPlan !== "free"` comparisons.
+ * The "free" DB key is shared by both Free Tier and the Nano paid plan, so
+ * `subscriptionPlan === "free"` is ambiguous — `accessCbse` is the
+ * authoritative signal for "has paid plan access".
+ *
+ * Hierarchy:
+ *   1. Admin → always has access
+ *   2. accessCbse=true → paid, admin-granted, or active legacy Nano
+ *   3. parentId set → parent-managed child (parent controls access)
+ *   4. Otherwise → no paid access
+ *
+ * @param {object} user
+ */
+export function hasPaidAccess(user = {}) {
+  if (!user) return false;
+  if (user.role === "admin") return true;
+  if (user.accessCbse) return true;   // paid, admin-granted, or legacy Nano
+  if (user.parentId) return true;     // parent-managed child
+  return false;
+}
+
+/**
  * Returns true when the subscription gate should be shown to a student.
  * Mirrors the `needsSubscription` condition in App.jsx exactly.
  *
