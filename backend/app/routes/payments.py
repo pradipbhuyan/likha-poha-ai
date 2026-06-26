@@ -11,7 +11,7 @@ from pydantic import BaseModel
 
 from app.config import settings
 from app.routes.admin_control import list_subscription_contact_settings, list_subscription_plan_settings
-from app.services.auth_service import admin_client, require_parent, get_current_user
+from app.services.auth_service import admin_client, require_parent, require_admin, get_current_user
 from app.services.parent_dashboard_service import get_child_by_id, get_children
 
 router = APIRouter()
@@ -650,6 +650,301 @@ async def razorpay_webhook(request: Request):
         logging.getLogger(__name__).error("Razorpay webhook error: %s", exc)
 
     return {"status": "ok"}
+
+
+# ── Admin ₹1 Test Upgrade endpoints ─────────────────────────────────────────
+# Admin-only: simulate real plan upgrades using ₹1 test transactions.
+# The Razorpay order is for ₹1; the intended plan (Nano / Premium / Family)
+# is stored in metadata and used for subscription activation — not the charge amount.
+
+# Allowed plan keys for admin test upgrades and their display metadata
+ADMIN_TEST_UPGRADE_PLANS = {
+    "free": {
+        "label": "Premium Nano",
+        "test_description": "₹99 / 8 days",
+        "validity_label": "8 days",
+        "child_limit": 1,
+    },
+    "starter": {
+        "label": "Premium",
+        "test_description": "₹299 / 30 days",
+        "validity_label": "30 days",
+        "child_limit": 1,
+    },
+    "family_premium": {
+        "label": "Family Premium",
+        "test_description": "₹499 / 30 days",
+        "validity_label": "30 days",
+        "child_limit": 2,
+    },
+}
+
+ADMIN_TEST_CHARGE_RUPEES = 1   # ₹1 — the only override vs the real flow
+
+
+class AdminTestOrderRequest(BaseModel):
+    target_user_id: str
+    intended_plan_key: str   # "free" | "starter" | "family_premium"
+
+
+class AdminTestVerifyRequest(BaseModel):
+    razorpay_order_id: str
+    razorpay_payment_id: str
+    razorpay_signature: str
+
+
+def get_plan_any(plan_key: str):
+    """
+    Look up a plan by key regardless of is_public flag.
+    Used only by admin test endpoints — never exposed to normal user flows.
+    """
+    settings_payload = list_subscription_plan_settings()
+    plan = (settings_payload.get("plans") or {}).get(plan_key)
+    if not plan:
+        raise HTTPException(status_code=404, detail=f"Plan '{plan_key}' not found.")
+    return plan
+
+
+@router.post("/admin-test-create-order")
+def admin_test_create_order(
+    data: AdminTestOrderRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Admin-only: create a Razorpay order for ₹1 that will activate a real paid plan.
+
+    Security:
+    - Admin role required — normal users cannot call this endpoint.
+    - Normal checkout endpoints are unaffected; they still charge the full plan price.
+    - The ₹1 override is ONLY applied here; all other payment paths use plan_display_amount().
+    - Payment record stores full audit metadata: testMode, adminTriggered, intendedPlan, chargedAmount.
+    """
+    if not razorpay_is_configured():
+        raise HTTPException(
+            status_code=503,
+            detail="Razorpay is not configured. Cannot run test upgrade.",
+        )
+
+    intended_plan_key = data.intended_plan_key
+    if intended_plan_key not in ADMIN_TEST_UPGRADE_PLANS:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Invalid intended_plan_key '{intended_plan_key}'. "
+                f"Allowed: {list(ADMIN_TEST_UPGRADE_PLANS.keys())}"
+            ),
+        )
+
+    # Verify target user exists and is a Free Tier student
+    target_resp = (
+        admin_client
+        .table("profiles")
+        .select("id, username, email, role, subscription_plan, access_cbse")
+        .eq("id", data.target_user_id)
+        .limit(1)
+        .execute()
+    )
+    target_rows = target_resp.data or []
+    if not target_rows:
+        raise HTTPException(status_code=404, detail="Target user not found.")
+
+    target = target_rows[0]
+    if target.get("role") not in ("student", "parent"):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Target user role must be student or parent (got '{target.get('role')}').",
+        )
+
+    # Look up the INTENDED plan (to store its real price in metadata for audit)
+    intended_plan = get_plan_any(intended_plan_key)
+    intended_amount = plan_display_amount(intended_plan)
+    plan_meta = ADMIN_TEST_UPGRADE_PLANS[intended_plan_key]
+
+    admin_id = admin["profile"]["id"]
+    amount_paise = ADMIN_TEST_CHARGE_RUPEES * 100
+    receipt = f"admtest_{data.target_user_id[:8]}_{int(datetime.now(timezone.utc).timestamp())}"
+    notes = {
+        "admin_id": admin_id,
+        "target_user_id": data.target_user_id,
+        "intended_plan_key": intended_plan_key,
+        "test_mode": "true",
+    }
+    order = create_razorpay_order(amount_paise, receipt, notes)
+
+    payment = save_payment_record({
+        "razorpay_order_id": order["id"],
+        "razorpay_payment_id": None,
+        "parent_id": admin_id,          # admin is the payer for audit
+        "child_id": data.target_user_id,
+        "family_id": None,
+        "plan_key": intended_plan_key,  # REAL plan key — used by activation logic
+        "amount": ADMIN_TEST_CHARGE_RUPEES,
+        "amount_paise": amount_paise,
+        "currency": "INR",
+        "status": "created",
+        "provider": "razorpay",
+        "metadata": {
+            "testMode": True,
+            "adminTriggered": True,
+            "adminId": admin_id,
+            "targetUserId": data.target_user_id,
+            "targetUsername": target.get("username"),
+            "intendedPlanKey": intended_plan_key,
+            "intendedPlanLabel": plan_meta["label"],
+            "intendedPlanAmount": intended_amount,
+            "chargedAmount": ADMIN_TEST_CHARGE_RUPEES,
+            "receipt": receipt,
+        },
+    })
+
+    return {
+        "success": True,
+        "configured": True,
+        "provider": "razorpay",
+        "key_id": settings.RAZORPAY_KEY_ID,
+        "order": order,
+        "payment": payment,
+        "intended_plan": {
+            "key": intended_plan_key,
+            "label": plan_meta["label"],
+            "description": plan_meta["test_description"],
+            "validity": plan_meta["validity_label"],
+            "child_limit": plan_meta["child_limit"],
+            "actual_price": intended_amount,
+        },
+        "charged_amount": ADMIN_TEST_CHARGE_RUPEES,
+        "target_user": {
+            "id": target["id"],
+            "username": target.get("username"),
+            "email": target.get("email"),
+        },
+    }
+
+
+@router.post("/admin-test-verify")
+def admin_test_verify(
+    data: AdminTestVerifyRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Admin-only: verify a ₹1 test payment and activate the intended paid plan.
+
+    Uses the REAL subscription activation logic (profile_access_from_plan).
+    The plan is resolved from the payment record's plan_key (the intended plan),
+    NOT from the charged amount — so the correct access window and flags are applied.
+
+    Security:
+    - Admin role required.
+    - Rejects payments where metadata.testMode != True or metadata.adminTriggered != True.
+    - Normal /verify and /student-verify endpoints are unaffected.
+    """
+    if not razorpay_is_configured():
+        raise HTTPException(status_code=503, detail="Payment gateway is not configured.")
+
+    payment = get_payment_by_order_id(data.razorpay_order_id)
+    if not payment:
+        raise HTTPException(status_code=404, detail="Payment order not found.")
+
+    # Guard: only process admin test payments on this endpoint
+    meta = payment.get("metadata") or {}
+    if not meta.get("testMode") or not meta.get("adminTriggered"):
+        raise HTTPException(
+            status_code=403,
+            detail="This endpoint only processes admin test payments.",
+        )
+
+    if not verify_razorpay_signature(
+        data.razorpay_order_id,
+        data.razorpay_payment_id,
+        data.razorpay_signature,
+    ):
+        save_payment_record({
+            **payment,
+            "razorpay_payment_id": data.razorpay_payment_id,
+            "status": "signature_failed",
+        })
+        raise HTTPException(status_code=400, detail="Payment verification failed.")
+
+    # Activate the INTENDED plan (plan_key = intended plan key, NOT the ₹1 test plan)
+    intended_plan = get_plan_any(payment["plan_key"])
+    target_user_id = payment["child_id"]
+
+    activated = (
+        admin_client
+        .table("profiles")
+        .update(profile_access_from_plan(intended_plan))
+        .eq("id", target_user_id)
+        .execute()
+    )
+    activated_profile = (activated.data or [{}])[0]
+
+    verified_at = datetime.now(timezone.utc).isoformat()
+    saved_payment = save_payment_record({
+        **payment,
+        "razorpay_payment_id": data.razorpay_payment_id,
+        "status": "paid",
+        "verified_at": verified_at,
+        "metadata": {
+            **meta,
+            "webhook_source": "admin_test_verify",
+        },
+    })
+
+    plan_meta = ADMIN_TEST_UPGRADE_PLANS.get(payment["plan_key"], {})
+
+    return {
+        "success": True,
+        "payment": saved_payment,
+        "activated_profile": activated_profile,
+        "intended_plan": {
+            "key": payment["plan_key"],
+            "label": plan_meta.get("label", payment["plan_key"]),
+            "validity": plan_meta.get("validity_label", ""),
+            "child_limit": plan_meta.get("child_limit", 1),
+        },
+        "target_user_id": target_user_id,
+        "charged_amount": meta.get("chargedAmount", 1),
+        "intended_amount": meta.get("intendedPlanAmount"),
+    }
+
+
+@router.get("/admin-test-user-status/{user_id}")
+def admin_test_user_status(user_id: str, admin=Depends(require_admin)):
+    """
+    Admin-only: fetch current subscription state for a user after a test upgrade.
+
+    Returns the profile fields that the subscription resolver uses so the admin
+    can confirm the upgrade took effect correctly.
+    """
+    resp = (
+        admin_client
+        .table("profiles")
+        .select(
+            "id, username, email, role, subscription_plan, "
+            "access_cbse, access_sof_science, access_sof_maths, "
+            "subscription_expires_at, account_status"
+        )
+        .eq("id", user_id)
+        .limit(1)
+        .execute()
+    )
+    rows = resp.data or []
+    if not rows:
+        raise HTTPException(status_code=404, detail="User not found.")
+
+    profile = rows[0]
+    expires_at = profile.get("subscription_expires_at")
+    is_active = (
+        profile.get("access_cbse")
+        and (not expires_at or expires_at > datetime.now(timezone.utc).isoformat())
+    )
+
+    return {
+        "success": True,
+        "profile": profile,
+        "subscription_active": is_active,
+        "expires_at": expires_at,
+    }
 
 
 @router.get("/contact")

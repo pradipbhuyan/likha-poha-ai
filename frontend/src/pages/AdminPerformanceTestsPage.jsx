@@ -430,6 +430,7 @@ function AdminPerformanceTestsPage({ user }) {
       </section>
 
       <PaymentTestSection user={user} />
+      <PlanUpgradeTestSection user={user} />
       <OfferGateTestSection user={user} />
     </div>
   );
@@ -793,6 +794,373 @@ function OfferGateTestSection({ user }) {
             <li>Questions in the DKB → answered instantly. Others → upgrade card shown</li>
             <li>Click <strong>Restore Full Access</strong> when done</li>
           </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Plan upgrade test scenarios ───────────────────────────────────────────
+const UPGRADE_SCENARIOS = [
+  {
+    planKey: "free",
+    label: "Premium Nano",
+    actualPrice: "₹99",
+    validity: "8 days",
+    childLimit: 1,
+    description: "Full CBSE access · 8 days · 1 child profile",
+    color: "#6366f1",
+  },
+  {
+    planKey: "starter",
+    label: "Premium",
+    actualPrice: "₹299",
+    validity: "30 days",
+    childLimit: 1,
+    description: "Full CBSE access · 30 days · 1 child profile",
+    color: "#10b981",
+  },
+  {
+    planKey: "family_premium",
+    label: "Family Premium",
+    actualPrice: "₹499",
+    validity: "30 days",
+    childLimit: 2,
+    description: "Full CBSE access · 30 days · 2 child profiles",
+    color: "#f59e0b",
+  },
+];
+
+function PlanUpgradeTestSection({ user }) {
+  /**
+   * Admin-only: simulate real plan upgrades (Nano / Premium / Family Premium)
+   * using ₹1 test transactions via Razorpay.
+   *
+   * Flow:
+   *   1. Admin searches for a Free Tier user by username/email
+   *   2. Selects one of the 3 paid plan scenarios
+   *   3. Clicks "Open ₹1 Checkout"
+   *   4. Pays ₹1 in Razorpay (real transaction, real gateway)
+   *   5. Backend verifies signature, activates the INTENDED plan (not ₹1)
+   *   6. Subscription state is displayed after activation
+   *
+   * Security: both create-order and verify endpoints require admin role.
+   * Normal users cannot access these endpoints.
+   */
+  const [userQuery, setUserQuery] = useState("");
+  const [userResults, setUserResults] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedScenario, setSelectedScenario] = useState(UPGRADE_SCENARIOS[0]);
+  const [status, setStatus] = useState("");
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [subscriptionState, setSubscriptionState] = useState(null);
+
+  // Debounced user search
+  useEffect(() => {
+    if (!userQuery.trim()) { setUserResults([]); return; }
+    const t = setTimeout(async () => {
+      try {
+        const r = await fetch(
+          `${API_BASE_URL}/api/admin-control/search-users?q=${encodeURIComponent(userQuery)}&role=student&limit=10`,
+          { headers: { Authorization: `Bearer ${user.accessToken}` } }
+        );
+        const d = await r.json();
+        setUserResults(d.users || []);
+      } catch { setUserResults([]); }
+    }, 300);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userQuery]);
+
+  function ensureRazorpay(cb) {
+    if (window.Razorpay) { cb(); return; }
+    const s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  async function fetchUserStatus(userId) {
+    try {
+      const r = await fetch(`${API_BASE_URL}/api/payments/admin-test-user-status/${userId}`, {
+        headers: { Authorization: `Bearer ${user.accessToken}` },
+      });
+      const d = await r.json();
+      if (d.success) setSubscriptionState(d);
+    } catch { /* non-critical */ }
+  }
+
+  async function handleStartUpgradeTest() {
+    if (!selectedUser) { setStatus("❌ Select a user first."); return; }
+    setCheckoutLoading(true);
+    setStatus("Creating ₹1 test order…");
+    setSubscriptionState(null);
+
+    try {
+      // Step 1: Create ₹1 order via admin endpoint
+      const orderResp = await fetch(`${API_BASE_URL}/api/payments/admin-test-create-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+        body: JSON.stringify({
+          target_user_id: selectedUser.id,
+          intended_plan_key: selectedScenario.planKey,
+        }),
+      });
+      if (!orderResp.ok) {
+        const e = await orderResp.json().catch(() => ({}));
+        throw new Error(e.detail || "Order creation failed.");
+      }
+      const od = await orderResp.json();
+      setStatus("Opening ₹1 Razorpay checkout…");
+
+      // Step 2: Open Razorpay checkout for ₹1
+      ensureRazorpay(() => {
+        const rzp = new window.Razorpay({
+          key: od.key_id,
+          amount: 100,  // ₹1 = 100 paise
+          currency: "INR",
+          name: "Likha Poha AI",
+          description: `Admin Test: ${selectedScenario.label} (${selectedScenario.actualPrice}) — ₹1 test charge`,
+          order_id: od.order.id,
+          prefill: {
+            name: "Admin Test",
+            email: user.email || "admin@likhapoha.in",
+          },
+          notes: {
+            test_mode: "true",
+            intended_plan: selectedScenario.planKey,
+            target_user: selectedUser.username,
+          },
+          theme: { color: selectedScenario.color },
+          handler: async (response) => {
+            setStatus("Payment captured — verifying and activating plan…");
+            try {
+              // Step 3: Verify via admin endpoint (activates intended plan)
+              const verifyResp = await fetch(`${API_BASE_URL}/api/payments/admin-test-verify`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${user.accessToken}`,
+                },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                }),
+              });
+              const vd = await verifyResp.json();
+              if (verifyResp.ok && vd.success) {
+                setStatus(
+                  `✅ Test upgrade PASSED! ${selectedUser.username} → ${selectedScenario.label} · ` +
+                  `₹1 charged · ${selectedScenario.actualPrice} plan activated · Valid ${selectedScenario.validity}`
+                );
+                await fetchUserStatus(selectedUser.id);
+              } else {
+                setStatus("❌ Verification failed: " + (vd.detail || JSON.stringify(vd)));
+              }
+            } catch (err) {
+              setStatus("❌ Verify error: " + err.message);
+            } finally {
+              setCheckoutLoading(false);
+            }
+          },
+          modal: {
+            ondismiss: () => {
+              setStatus("⚠️ Checkout cancelled — plan NOT upgraded.");
+              setCheckoutLoading(false);
+            },
+          },
+        });
+        rzp.open();
+      });
+    } catch (err) {
+      setStatus("❌ " + (err.message || "Test upgrade failed."));
+      setCheckoutLoading(false);
+    }
+  }
+
+  return (
+    <section className="premium-section" style={{ marginTop: 24 }}>
+      <div className="premium-header">
+        <p className="eyebrow">Subscription Upgrade — Admin Test · ₹1 Real Transactions</p>
+        <h3>🚀 Plan Upgrade Flow Test</h3>
+        <p>
+          Simulate real user upgrades from Free Tier to each paid plan using ₹1 test transactions.
+          The <strong>real payment + verification + subscription activation</strong> logic runs end-to-end.
+          Only the charge amount is overridden to ₹1.
+        </p>
+      </div>
+
+      <div className="premium-card" style={{ maxWidth: 640 }}>
+        {/* Security badge */}
+        <div style={{
+          background: "rgba(239,68,68,.07)", border: "1px solid rgba(239,68,68,.25)",
+          borderRadius: 8, padding: "10px 14px", marginBottom: 18, fontSize: ".82rem",
+        }}>
+          <strong>🔒 Admin-only endpoints</strong> — <code>POST /api/payments/admin-test-create-order</code> and{" "}
+          <code>POST /api/payments/admin-test-verify</code> require <strong>admin</strong> role.
+          Normal users on the checkout page are never affected — they always pay the full plan price.
+        </div>
+
+        {/* Step 1: User search */}
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ fontSize: ".88rem", display: "block", marginBottom: 8 }}>
+            Step 1 — Select a Free Tier user to upgrade
+          </strong>
+          <input
+            type="text"
+            value={userQuery}
+            onChange={e => { setUserQuery(e.target.value); setSelectedUser(null); setSubscriptionState(null); }}
+            placeholder="Search by username or email…"
+            style={{ width: "100%", marginBottom: 6 }}
+          />
+          {userResults.length > 0 && !selectedUser && (
+            <div style={{ border: "1px solid var(--border)", borderRadius: 8, overflow: "hidden", maxHeight: 180, overflowY: "auto" }}>
+              {userResults.map(u => (
+                <div key={u.id} onClick={() => { setSelectedUser(u); setUserQuery(u.username); setUserResults([]); }}
+                  style={{ padding: "8px 12px", cursor: "pointer", fontSize: ".85rem", borderBottom: "1px solid var(--border)" }}>
+                  <strong>{u.username}</strong>
+                  <span style={{ color: "var(--muted)", marginLeft: 8, fontSize: ".78rem" }}>
+                    {u.email} · {u.grade || "—"}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedUser && (
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "8px 12px", background: "rgba(99,102,241,.08)",
+              border: "1px solid rgba(99,102,241,.3)", borderRadius: 8, fontSize: ".85rem",
+            }}>
+              <span>✅ <strong>{selectedUser.username}</strong> — {selectedUser.email} · {selectedUser.grade || "—"}</span>
+              <button onClick={() => { setSelectedUser(null); setUserQuery(""); setSubscriptionState(null); }}
+                style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>×</button>
+            </div>
+          )}
+        </div>
+
+        {/* Step 2: Plan scenario selection */}
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ fontSize: ".88rem", display: "block", marginBottom: 8 }}>
+            Step 2 — Choose plan scenario to test
+          </strong>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {UPGRADE_SCENARIOS.map(scenario => {
+              const sel = selectedScenario.planKey === scenario.planKey;
+              return (
+                <div key={scenario.planKey}
+                  onClick={() => setSelectedScenario(scenario)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "12px 14px", borderRadius: 10, cursor: "pointer",
+                    border: `2px solid ${sel ? scenario.color : "var(--border)"}`,
+                    background: sel ? `${scenario.color}11` : "var(--surface2, #111827)",
+                  }}>
+                  <div style={{
+                    width: 16, height: 16, borderRadius: "50%", flexShrink: 0,
+                    border: `2px solid ${sel ? scenario.color : "#334155"}`,
+                    background: sel ? scenario.color : "transparent",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    {sel && <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#fff" }} />}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <strong style={{ fontSize: ".9rem" }}>{scenario.label}</strong>
+                    <span style={{ marginLeft: 8, fontSize: ".78rem", color: "var(--muted)" }}>{scenario.description}</span>
+                  </div>
+                  <div style={{ textAlign: "right", flexShrink: 0 }}>
+                    <div style={{ fontSize: ".72rem", color: "var(--muted)" }}>Actual plan price</div>
+                    <strong style={{ color: scenario.color }}>{scenario.actualPrice}</strong>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Charge summary */}
+        <div style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          padding: "10px 14px", background: "rgba(16,185,129,.07)",
+          border: "1px solid rgba(16,185,129,.25)", borderRadius: 9, marginBottom: 16, fontSize: ".85rem",
+        }}>
+          <div>
+            <div style={{ fontWeight: 700 }}>Test charge: <span style={{ color: "#10b981" }}>₹1</span></div>
+            <div style={{ color: "var(--muted)", fontSize: ".78rem" }}>
+              Actual plan being validated: <strong>{selectedScenario.label}</strong> ({selectedScenario.actualPrice} / {selectedScenario.validity})
+            </div>
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <div style={{ fontSize: ".72rem", color: "var(--muted)" }}>Child limit</div>
+            <strong>{selectedScenario.childLimit}</strong>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <button
+          className="primary-btn"
+          onClick={handleStartUpgradeTest}
+          disabled={checkoutLoading || !selectedUser}
+          style={{ width: "100%", background: `linear-gradient(135deg, ${selectedScenario.color}, #059669)` }}
+        >
+          {checkoutLoading ? "Opening checkout…" : `🚀 Open ₹1 Checkout → Upgrade to ${selectedScenario.label}`}
+        </button>
+
+        {status && (
+          <div
+            className={status.startsWith("✅") ? "info-box" : status.startsWith("⚠️") ? "info-box" : "error-box"}
+            style={{ marginTop: 12, fontSize: ".85rem" }}
+          >
+            {status}
+          </div>
+        )}
+
+        {/* Post-upgrade subscription state */}
+        {subscriptionState && (
+          <div style={{
+            marginTop: 14, padding: "12px 14px",
+            background: subscriptionState.subscription_active ? "rgba(16,185,129,.08)" : "rgba(239,68,68,.07)",
+            border: `1px solid ${subscriptionState.subscription_active ? "rgba(16,185,129,.3)" : "rgba(239,68,68,.25)"}`,
+            borderRadius: 9, fontSize: ".82rem",
+          }}>
+            <strong>📊 Post-upgrade subscription state for {subscriptionState.profile.username}</strong>
+            <div style={{ marginTop: 8, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", lineHeight: 1.8 }}>
+              <div>Plan: <code>{subscriptionState.profile.subscription_plan}</code></div>
+              <div>Access active: <strong style={{ color: subscriptionState.subscription_active ? "#10b981" : "#ef4444" }}>
+                {subscriptionState.subscription_active ? "✅ YES" : "❌ NO"}
+              </strong></div>
+              <div>CBSE access: <code>{String(subscriptionState.profile.access_cbse)}</code></div>
+              <div>Account status: <code>{subscriptionState.profile.account_status}</code></div>
+              {subscriptionState.expires_at && (
+                <div style={{ gridColumn: "1/-1" }}>
+                  Expires: <code>{String(subscriptionState.expires_at).slice(0, 19)}</code>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        <div style={{
+          marginTop: 16, padding: "10px 14px",
+          background: "rgba(245,158,11,.07)", border: "1px solid rgba(245,158,11,.25)",
+          borderRadius: 8, fontSize: ".78rem", color: "var(--text-muted)", lineHeight: 1.6,
+        }}>
+          <strong>How this test works:</strong>
+          <ol style={{ margin: "6px 0 0 16px", padding: 0 }}>
+            <li>Select a Free Tier student above (search by name or email)</li>
+            <li>Choose the paid plan to validate (Nano / Premium / Family Premium)</li>
+            <li>Click the ₹1 checkout button — Razorpay opens with a ₹1 charge</li>
+            <li>Pay ₹1 (real UPI or card) — the admin-test-verify endpoint activates the <em>intended</em> plan</li>
+            <li>Subscription state below updates showing the new plan, expiry, and access flags</li>
+          </ol>
+          <p style={{ marginTop: 8 }}>
+            <strong>Normal users always pay full price</strong> — the ₹1 override exists only on
+            <code> /api/payments/admin-test-create-order</code> (admin role required).
+          </p>
         </div>
       </div>
     </section>
