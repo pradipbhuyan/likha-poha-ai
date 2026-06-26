@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import "./AdminConsole.css";
+import AdminQuickActions from "../components/AdminQuickActions";
+import AdminRecentActivity from "../components/AdminRecentActivity";
+import AdminGlobalSearch from "../components/AdminGlobalSearch";
+import AdminFavorites, { usePinnedIds } from "../components/AdminFavorites";
+import AdminNotificationCenter from "../components/AdminNotificationCenter";
 import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 import {
   getAdminFamilies,
@@ -300,6 +305,9 @@ function AdminControlPage({ user }) {
       setAiSettingsSaving(false);
     }
   }
+
+  // ── Favorites / pinned actions shared between QuickActions + Favorites ─────
+  const { pinnedIds, togglePin } = usePinnedIds();
 
   // ── Tab definitions (kept outside useState so it can validate URL params) ──
   const ADMIN_TABS = [
@@ -1397,7 +1405,20 @@ function AdminControlPage({ user }) {
   return (
     <div className="premium-page admin-control-page" data-testid="admin-control-page">
 
-      {/* ── Tab Navigation ─────────────────────────────────────────────── */}
+      {/* ── Tab Navigation + Search + Notifications ─────────────────────── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px 0", flexWrap: "wrap" }}>
+        <AdminGlobalSearch
+          handleTabChange={handleTabChange}
+          allStudents={allStudents}
+          allParents={allParents}
+          allTeachers={allTeachers}
+          offerCodes={offerCodes}
+        />
+        <AdminNotificationCenter
+          accessToken={user?.accessToken}
+          onNavigate={handleTabChange}
+        />
+      </div>
       <nav className="admin-tab-nav" role="tablist" aria-label="Admin Console" data-testid="admin-tab-nav">
         {ADMIN_TABS.map((t) => (
           <button key={t.key} role="tab"
@@ -1597,12 +1618,39 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </div>
         </div>
       </section>
+
+      {/* ── Quick Actions ── */}
+      <section className="premium-section">
+        <AdminQuickActions
+          handleTabChange={handleTabChange}
+          exportUsersCSV={exportUsersCSV}
+          onPinToggle={togglePin}
+          pinnedIds={pinnedIds}
+        />
+      </section>
+
+      {/* ── Pinned Favorites ── */}
+      <section className="premium-section">
+        <AdminFavorites
+          handleTabChange={handleTabChange}
+          exportUsersCSV={exportUsersCSV}
+        />
+      </section>
+
+      {/* ── Recent Activity ── */}
+      <section className="premium-section">
+        <AdminRecentActivity
+          accessToken={user?.accessToken}
+          onViewMore={() => handleTabChange("operations")}
+        />
+      </section>
+
       </div>)}
 
       {/* ── Account Creation Tab ───────────────────────────────────────── */}
       {activeTab === "accounts" && (
       <div id="admin-tab-panel-accounts" role="tabpanel" aria-labelledby="admin-tab-btn-accounts" data-testid="tab-panel-accounts">
-      <section className="premium-section admin-create-section">
+      <section id="create-parent-form" className="premium-section admin-create-section">
         <div className="premium-header">
           <p className="eyebrow">Quick Create</p>
           <h3>Accounts</h3>
@@ -1708,6 +1756,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
             </div>
 
             <form
+              id="create-teacher-form"
               onSubmit={handleCreateTeacher}
               className="form-grid premium-rag-form-grid admin-compact-form"
             >
@@ -1849,7 +1898,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
           </div>
           <div className="admin-create-grid">
             <div className="admin-create-card" style={{ gridColumn: "1 / -1" }}>
-              <form onSubmit={handleCreateStudent} className="form-grid premium-rag-form-grid admin-compact-form">
+              <form id="create-student-form" onSubmit={handleCreateStudent} className="form-grid premium-rag-form-grid admin-compact-form">
                 <label>
                   Student Name
                   <input type="text" value={studentForm.username} onChange={e => setStudentForm(p => ({ ...p, username: e.target.value }))} required />
@@ -2072,7 +2121,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       {activeTab === "offers" && (
       <div id="admin-tab-panel-offers" role="tabpanel" aria-labelledby="admin-tab-btn-offers" data-testid="tab-panel-offers">
       {/* ── Offer Codes Section ── */}
-      <section className="premium-section">
+      <section id="create-offer-form" className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Access Management</p>
           <h3>🎟️ Offer Codes</h3>

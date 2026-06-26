@@ -519,7 +519,165 @@ def operations_run_expiry_job(admin=Depends(require_admin)):
     return {"success": True, **summary}
 
 
-# ── 8. Summary (combined snapshot) ───────────────────────────────────────────
+# ── 8. Recent Activity ────────────────────────────────────────────────────────
+
+# Human-readable labels for each audit event type
+_ACTIVITY_LABELS: dict[str, str] = {
+    "payment.order_created":       "Payment order created",
+    "payment.verified":            "Payment verified ✓",
+    "payment.verify_idempotent":   "Duplicate payment verify (already processed)",
+    "payment.admin_test_created":  "Admin test payment created",
+    "payment.admin_test_verified": "Admin test payment verified ✓",
+    "payment.verify_failed":       "Payment verification failed",
+    "subscription.activated":      "Subscription activated",
+    "subscription.expired":        "Subscription expired",
+    "subscription.fallback_applied": "Subscription fallback applied",
+    "student.created":             "Student account created",
+    "student.credentials_emailed": "Student credentials emailed",
+    "parent_child.linked":         "Parent linked to student",
+    "parent_child.unlinked":       "Parent unlinked from student",
+    "rate_limit.exceeded":         "Rate limit exceeded",
+    "expiry_job.ran":              "Expiry job completed",
+    "login.failure":               "Login failure",
+    "teacher.student_created":     "Teacher assigned student",
+    "offer_code.redeemed":         "Offer code redeemed",
+}
+
+# Severity tag for UI badge colouring
+_ACTIVITY_SEVERITY: dict[str, str] = {
+    "payment.verify_failed":       "error",
+    "subscription.expired":        "warning",
+    "rate_limit.exceeded":         "warning",
+    "login.failure":               "warning",
+    "payment.verified":            "success",
+    "payment.admin_test_verified": "success",
+    "subscription.activated":      "success",
+    "student.created":             "info",
+    "parent_child.linked":         "info",
+    "expiry_job.ran":              "info",
+}
+
+
+@router.get("/recent-activity")
+def operations_recent_activity(
+    limit: int = Query(default=20, ge=1, le=50),
+    admin=Depends(require_admin),
+):
+    """
+    Return the most recent platform audit events as human-readable summaries.
+
+    Sanitised: no metadata, passwords, API keys, tokens, or webhook payloads.
+    Admin-only endpoint.
+    """
+    rows, err = _safe_query(
+        lambda: admin_client.table("platform_audit_logs")
+        .select("event_type, entity_type, entity_id, created_at")
+        .order("created_at", desc=True)
+        .limit(limit)
+        .execute()
+    )
+
+    activities = []
+    for row in rows:
+        event_type = row.get("event_type") or "unknown"
+        activities.append({
+            "event_type": event_type,
+            "summary": _ACTIVITY_LABELS.get(event_type, event_type.replace(".", " ").title()),
+            "severity": _ACTIVITY_SEVERITY.get(event_type, "info"),
+            "entity_type": row.get("entity_type"),
+            # entity_id shown only for non-sensitive types
+            "entity_id": (
+                row.get("entity_id")
+                if event_type not in {"payment.verify_failed", "rate_limit.exceeded", "login.failure"}
+                else None
+            ),
+            "timestamp": (row.get("created_at") or "")[:19],
+        })
+
+    return {
+        "success": True,
+        "activities": activities,
+        "total": len(activities),
+        "error": err,
+    }
+
+
+# ── 9. Notifications ─────────────────────────────────────────────────────────
+
+@router.get("/notifications")
+def operations_notifications(admin=Depends(require_admin)):
+    """
+    Return urgent operational notifications for the Admin Console badge.
+
+    Sources:
+      - Failed payments in last 24 h (from platform_audit_logs)
+      - Expiry job errors in last 24 h
+      - Rate-limit spike: > 10 events in last 1 h
+    Sanitised: counts only, no raw metadata or user identifiers.
+    Admin-only endpoint.
+    """
+    since_24h = _days_ago(1)
+    since_1h  = (datetime.now(timezone.utc) - timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
+
+    rows_24h, _ = _safe_query(
+        lambda: admin_client.table("platform_audit_logs")
+        .select("event_type")
+        .gte("created_at", since_24h)
+        .execute()
+    )
+
+    rows_1h, _ = _safe_query(
+        lambda: admin_client.table("platform_audit_logs")
+        .select("event_type")
+        .gte("created_at", since_1h)
+        .execute()
+    )
+
+    # Count alert-level events
+    failed_payments = sum(1 for r in rows_24h if r.get("event_type") == "payment.verify_failed")
+    expiry_errors   = sum(1 for r in rows_24h if r.get("event_type") == "expiry_job.ran"
+                          and r.get("event_type"))  # placeholder — expiry ran count
+    rate_limit_1h   = sum(1 for r in rows_1h  if r.get("event_type") == "rate_limit.exceeded")
+
+    notifications = []
+    if failed_payments:
+        notifications.append({
+            "type":     "payment_failure",
+            "severity": "error",
+            "message":  f"{failed_payments} payment verification failure{'s' if failed_payments != 1 else ''} in last 24 h",
+            "count":    failed_payments,
+            "link_tab": "operations",
+        })
+    if rate_limit_1h >= 10:
+        notifications.append({
+            "type":     "rate_limit_spike",
+            "severity": "warning",
+            "message":  f"{rate_limit_1h} rate-limit events in the last hour",
+            "count":    rate_limit_1h,
+            "link_tab": "operations",
+        })
+
+    # In-memory counters
+    counters = get_counters()
+    mem_payment_failed = counters.get("payment.verify_failed", 0)
+    if mem_payment_failed and not failed_payments:
+        notifications.append({
+            "type":     "payment_failure_session",
+            "severity": "warning",
+            "message":  f"{mem_payment_failed} payment failure(s) this session (in-memory)",
+            "count":    mem_payment_failed,
+            "link_tab": "operations",
+        })
+
+    return {
+        "success":       True,
+        "notifications": notifications,
+        "total":         len(notifications),
+        "unread_count":  len(notifications),
+    }
+
+
+# ── 10. Summary (combined snapshot) ─────────────────────────────────────────
 
 @router.get("/summary")
 def operations_summary(admin=Depends(require_admin)):

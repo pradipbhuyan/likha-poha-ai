@@ -28,3 +28,9 @@ export const getExpiryJobStatus = () =>
 
 export const runExpiryJob = () =>
   authFetch(`${BASE}/run-expiry-job`, { method: "POST" });
+
+export const getRecentActivity = (limit = 20) =>
+  authFetch(`${BASE}/recent-activity?limit=${limit}`);
+
+export const getNotifications = () =>
+  authFetch(`${BASE}/notifications`);
