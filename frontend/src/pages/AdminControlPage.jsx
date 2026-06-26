@@ -1428,41 +1428,20 @@ function AdminControlPage({ user }) {
         />
       </div>
 
-      {/* Tab picker dropdown for overflow — always visible shortcut */}
-      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "4px 12px 0", borderBottom: "2px solid var(--border, #e5e7eb)" }}>
-        <nav className="admin-tab-nav" role="tablist" aria-label="Admin Console" data-testid="admin-tab-nav"
-          style={{ borderBottom: "none", flex: 1, padding: "6px 0 0" }}>
-          {ADMIN_TABS.map((t) => (
-            <button key={t.key} role="tab"
-              aria-selected={activeTab === t.key}
-              aria-controls={`admin-tab-panel-${t.key}`}
-              id={`admin-tab-btn-${t.key}`}
-              className={`admin-tab-btn${activeTab === t.key ? " active" : ""}`}
-              onClick={() => handleTabChange(t.key)}
-              data-testid={`admin-tab-${t.key}`}>
-              <span className="admin-tab-icon" aria-hidden="true">{t.icon}</span>
-              <span className="admin-tab-label">{t.label}</span>
-            </button>
-          ))}
-        </nav>
-        {/* Overflow picker — shows all tabs in a select for narrow screens */}
-        <select
-          value={activeTab}
-          onChange={(e) => handleTabChange(e.target.value)}
-          aria-label="Select admin tab"
-          style={{
-            display: "none",   /* shown via CSS below 640px */
-            padding: "6px 10px", borderRadius: 7, border: "1px solid var(--border,#e5e7eb)",
-            background: "var(--surface2,#f8fafc)", fontFamily: "inherit", fontSize: ".82rem",
-            color: "var(--text,#1e293b)", cursor: "pointer",
-          }}
-          className="admin-tab-mobile-select"
-        >
-          {ADMIN_TABS.map((t) => (
-            <option key={t.key} value={t.key}>{t.icon} {t.label}</option>
-          ))}
-        </select>
-      </div>
+      <nav className="admin-tab-nav" role="tablist" aria-label="Admin Console" data-testid="admin-tab-nav">
+        {ADMIN_TABS.map((t) => (
+          <button key={t.key} role="tab"
+            aria-selected={activeTab === t.key}
+            aria-controls={`admin-tab-panel-${t.key}`}
+            id={`admin-tab-btn-${t.key}`}
+            className={`admin-tab-btn${activeTab === t.key ? " active" : ""}`}
+            onClick={() => handleTabChange(t.key)}
+            data-testid={`admin-tab-${t.key}`}>
+            <span className="admin-tab-icon" aria-hidden="true">{t.icon}</span>
+            <span className="admin-tab-label">{t.label}</span>
+          </button>
+        ))}
+      </nav>
 
       {/* ── Global message/error banners (always visible) ─────────────── */}
       {message && <div className="info-box" style={{ margin: "8px 16px 0" }}>{message}</div>}

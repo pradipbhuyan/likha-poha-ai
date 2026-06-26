@@ -7,28 +7,15 @@
 .admin-tab-nav {
   display: flex;
   gap: 4px;
-  padding: 12px 16px 0;
+  padding: 8px 12px 0;
   border-bottom: 2px solid var(--border, #e5e7eb);
   background: var(--panel, #fff);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  overflow-x: visible;
   position: sticky;
   top: 0;
   z-index: 40;
-  flex-wrap: nowrap;
-}
-
-/* Show a thin scrollbar so users can see more tabs are available */
-.admin-tab-nav::-webkit-scrollbar {
-  height: 3px;
-}
-.admin-tab-nav::-webkit-scrollbar-track {
-  background: transparent;
-}
-.admin-tab-nav::-webkit-scrollbar-thumb {
-  background: var(--border, #e5e7eb);
-  border-radius: 2px;
+  /* Wrap tabs to a second line when they don't fit — no overflow */
+  flex-wrap: wrap;
 }
 
 /* ── Individual tab button ───────────────────────────────────────────────── */
@@ -91,31 +78,19 @@
 /* ── Mobile: smaller text, larger touch targets ──────────────────────────── */
 @media (max-width: 640px) {
   .admin-tab-nav {
-    padding: 8px 8px 0;
+    padding: 6px 6px 0;
     gap: 2px;
   }
 
   .admin-tab-btn {
-    padding: 8px 10px;
-    font-size: 0.78rem;
-    gap: 4px;
-    min-height: 44px;
+    padding: 7px 9px;
+    font-size: 0.76rem;
+    gap: 3px;
+    min-height: 40px;
   }
 
   .admin-tab-icon {
-    font-size: 0.9rem;
-  }
-
-  /* On very small screens (< 400px), hide labels and show icons only */
-  @media (max-width: 400px) {
-    .admin-tab-label {
-      display: none;
-    }
-
-    .admin-tab-btn {
-      padding: 8px 12px;
-      font-size: 1rem;
-    }
+    font-size: 0.88rem;
   }
 }
 
