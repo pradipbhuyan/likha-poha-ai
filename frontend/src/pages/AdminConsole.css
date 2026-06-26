@@ -19,8 +19,16 @@
   flex-wrap: nowrap;
 }
 
+/* Show a thin scrollbar so users can see more tabs are available */
 .admin-tab-nav::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  height: 3px;
+}
+.admin-tab-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-tab-nav::-webkit-scrollbar-thumb {
+  background: var(--border, #e5e7eb);
+  border-radius: 2px;
 }
 
 /* ── Individual tab button ───────────────────────────────────────────────── */
