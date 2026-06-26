@@ -21,7 +21,12 @@ from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, Query
 
-from app.services.auth_service import admin_client, require_admin
+from app.services.auth_service import (
+    admin_client,
+    require_admin,
+    SUPABASE_SERVICE_ROLE_KEY as _SERVICE_ROLE_KEY,
+    SUPABASE_URL as _SUPABASE_URL,
+)
 
 router = APIRouter()
 logger = logging.getLogger("likhapoha.analytics")
@@ -460,8 +465,23 @@ def analytics_diagnostics(admin=Depends(require_admin)):
     NEVER exposes secrets — only reports boolean key presence and
     project ref (first 8 chars of URL host).
     """
-    supabase_url: str = os.getenv("SUPABASE_URL", "")
-    service_role_set: bool = bool(os.getenv("SUPABASE_SERVICE_ROLE_KEY", ""))
+    # Use the exact same variables that created admin_client — most reliable
+    supabase_url: str = _SUPABASE_URL or os.getenv("SUPABASE_URL", "")
+
+    # Service role key: use the auth_service value (same as admin_client)
+    # Fall back to alias env vars if the import is somehow None
+    service_role_value = (
+        _SERVICE_ROLE_KEY
+        or os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
+        or os.getenv("SUPABASE_SERVICE_KEY", "")     # common alias
+    )
+    service_role_set: bool = bool(service_role_value)
+
+    # Which alias is active (no value exposed — boolean per alias)
+    service_key_aliases = {
+        "SUPABASE_SERVICE_ROLE_KEY": bool(_SERVICE_ROLE_KEY or os.getenv("SUPABASE_SERVICE_ROLE_KEY")),
+        "SUPABASE_SERVICE_KEY":      bool(os.getenv("SUPABASE_SERVICE_KEY")),
+    }
 
     # Extract project ref safely (no secrets)
     project_ref = "unknown"
@@ -565,6 +585,7 @@ def analytics_diagnostics(admin=Depends(require_admin)):
         "success": True,
         "project_ref": project_ref,
         "service_role_configured": service_role_set,
+        "service_key_aliases": service_key_aliases,   # which alias is active
         "tables": tables,
         "warnings": warnings,
         "profiles_row_count": profiles_count,

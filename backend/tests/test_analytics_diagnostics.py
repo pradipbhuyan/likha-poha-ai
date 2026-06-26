@@ -133,12 +133,49 @@ class TestAnalyticsDiagnostics:
     def test_diagnostics_does_not_expose_service_key(self, monkeypatch):
         """Response must never contain the actual service role key value."""
         monkeypatch.setenv("SUPABASE_SERVICE_ROLE_KEY", "super-secret-key-12345")
+        monkeypatch.setattr(analytics, "_SERVICE_ROLE_KEY", "super-secret-key-12345")
         monkeypatch.setattr(analytics, "_count_rows", self._make_count_fn({}))
         result = analytics_diagnostics(admin=ADMIN_CTX)
         result_str = str(result)
         assert "super-secret-key-12345" not in result_str
         assert "service_role_configured" in result
         assert result["service_role_configured"] is True  # just boolean
+        # Aliases dict present — boolean only, no values
+        assert "service_key_aliases" in result
+        assert isinstance(result["service_key_aliases"]["SUPABASE_SERVICE_ROLE_KEY"], bool)
+
+    def test_diagnostics_configured_true_when_auth_service_has_key(self, monkeypatch):
+        """service_role_configured=True uses the auth_service variable directly."""
+        # Simulate: env var not in os.environ but _SERVICE_ROLE_KEY is set
+        # (deployment loaded it at startup via a different mechanism)
+        monkeypatch.setattr(analytics, "_SERVICE_ROLE_KEY", "eyJhbGciOiJIUzI1NiJ9.test")
+        monkeypatch.delenv("SUPABASE_SERVICE_ROLE_KEY", raising=False)
+        monkeypatch.delenv("SUPABASE_SERVICE_KEY", raising=False)
+        monkeypatch.setattr(analytics, "_count_rows", self._make_count_fn({}))
+        result = analytics_diagnostics(admin=ADMIN_CTX)
+        # Must be True because _SERVICE_ROLE_KEY is set (= admin_client is configured)
+        assert result["service_role_configured"] is True
+
+    def test_diagnostics_configured_via_alias(self, monkeypatch):
+        """service_role_configured=True when SUPABASE_SERVICE_KEY alias is set."""
+        monkeypatch.setattr(analytics, "_SERVICE_ROLE_KEY", None)
+        monkeypatch.delenv("SUPABASE_SERVICE_ROLE_KEY", raising=False)
+        monkeypatch.setenv("SUPABASE_SERVICE_KEY", "alias-service-key-value")
+        monkeypatch.setattr(analytics, "_count_rows", self._make_count_fn({}))
+        result = analytics_diagnostics(admin=ADMIN_CTX)
+        assert result["service_role_configured"] is True
+        assert result["service_key_aliases"]["SUPABASE_SERVICE_KEY"] is True
+        # Alias value must NOT appear in response
+        assert "alias-service-key-value" not in str(result)
+
+    def test_diagnostics_missing_when_no_key_set(self, monkeypatch):
+        """service_role_configured=False when no alias is set."""
+        monkeypatch.setattr(analytics, "_SERVICE_ROLE_KEY", None)
+        monkeypatch.delenv("SUPABASE_SERVICE_ROLE_KEY", raising=False)
+        monkeypatch.delenv("SUPABASE_SERVICE_KEY", raising=False)
+        monkeypatch.setattr(analytics, "_count_rows", self._make_count_fn({}))
+        result = analytics_diagnostics(admin=ADMIN_CTX)
+        assert result["service_role_configured"] is False
 
     def test_diagnostics_does_not_expose_supabase_url(self, monkeypatch):
         """project_ref is only the first ~12 chars of the host — never full URL."""
