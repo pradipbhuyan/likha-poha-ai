@@ -88,8 +88,8 @@ describe("AdminAnalytics — state: ok (data present)", () => {
 
   test("shows paid active count", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("20")).toBeInTheDocument(); // paid_active
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-paid-active")).toHaveTextContent("20");
   });
 
   test("shows payment paid count", async () => {
@@ -102,26 +102,27 @@ describe("AdminAnalytics — state: ok (data present)", () => {
 
   test("shows offer redemptions", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("5")).toBeInTheDocument(); // offer_redemptions
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-offer-redemptions")).toHaveTextContent("5");
   });
 
   test("shows teacher assignments total", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("12")).toBeInTheDocument();
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-teacher-assignments")).toHaveTextContent("12");
   });
 
   test("shows AI requests count", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("300")).toBeInTheDocument();
+    // Wait for data load confirmed by value "42"
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-ai-requests")).toHaveTextContent("300");
   });
 
   test("shows mock tests count", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("60")).toBeInTheDocument();
+    await screen.findByText("42");
+    expect(screen.getByTestId("stat-mock-tests")).toHaveTextContent("60");
   });
 
   test("shows success rate percent", async () => {
