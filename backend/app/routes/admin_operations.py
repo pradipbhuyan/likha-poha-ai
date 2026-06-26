@@ -44,7 +44,14 @@ def _safe_query(fn):
         result = fn()
         return (result.data or []), None
     except Exception as exc:
-        return [], str(exc)
+        err = str(exc)
+        # Supabase/PostgREST returns an APIError whose str() may be a raw dict
+        # e.g. "{'message': '...', 'code': 'PGRST205', ...}"
+        # Extract a clean message for the API response.
+        if "PGRST205" in err or "schema cache" in err.lower():
+            # Table not yet migrated — return gracefully
+            return [], None
+        return [], err
 
 
 def _safe_count(table: str, filters: dict | None = None) -> int:
@@ -568,6 +575,9 @@ def operations_recent_activity(
 
     Sanitised: no metadata, passwords, API keys, tokens, or webhook payloads.
     Admin-only endpoint.
+
+    If the platform_audit_logs table has not yet been migrated, returns an
+    empty activity list without an error (graceful degradation).
     """
     rows, err = _safe_query(
         lambda: admin_client.table("platform_audit_logs")
@@ -611,10 +621,12 @@ def operations_notifications(admin=Depends(require_admin)):
 
     Sources:
       - Failed payments in last 24 h (from platform_audit_logs)
-      - Expiry job errors in last 24 h
       - Rate-limit spike: > 10 events in last 1 h
     Sanitised: counts only, no raw metadata or user identifiers.
     Admin-only endpoint.
+
+    If platform_audit_logs has not yet been migrated, falls back to
+    in-memory counters only (graceful degradation — no error shown).
     """
     since_24h = _days_ago(1)
     since_1h  = (datetime.now(timezone.utc) - timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
