@@ -254,13 +254,13 @@ function TeacherDashboardPage({ user }) {
 
         {filteredStudents.length === 0 ? (
           <div className="info-box">
-            No students assigned yet.{" "}
+            No students assigned yet. Ask an admin to assign students, or{" "}
             {!atLimit && (
               <span
                 style={{ color: "var(--accent-blue, #6366f1)", cursor: "pointer", fontWeight: 600 }}
                 onClick={() => setShowAddStudent(true)}
               >
-                Add your first student →
+                add your first student →
               </span>
             )}
           </div>

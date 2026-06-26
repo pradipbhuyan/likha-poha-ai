@@ -124,6 +124,8 @@ describe("SignupPage", () => {
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
     await screen.findByText(/Create your account/i);
+    // Switch to "Pay & Sign Up" mode to reveal the "Continue to Plan Selection" button
+    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
     fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
 
     expect(await screen.findByText("Try It Out")).toBeInTheDocument();
@@ -136,7 +138,8 @@ describe("SignupPage", () => {
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
     await screen.findByText(/Create your account/i);
-    // Navigate to plan step with empty fields — validation happens on Pay button
+    // Switch to "Pay & Sign Up" mode then navigate to plan step
+    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
     fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
     await screen.findByText(/Choose Your Plan/i);
     await act(async () => { fireEvent.click(screen.getByText(/Pay ₹/i)); });
@@ -426,6 +429,8 @@ describe("SignupPage", () => {
     await screen.findByText("Parent");
     fireEvent.click(screen.getByText("Parent"));
     await screen.findByText(/Create your account/i);
+    // Switch to "Pay & Sign Up" mode to reveal the "Continue to Plan Selection" button
+    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
     fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
     await screen.findByText(/Choose Your Plan/i);
 
