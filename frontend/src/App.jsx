@@ -235,7 +235,12 @@ function App() {
       localStorage.removeItem("tutor_active_page");
       return null;
     }
-    return null;
+    // ── KEY FIX: initialize user from localStorage immediately ────────────
+    // Without this, user=null is captured in the onAuthStateChange closure,
+    // causing a returning Google-auth user to see the "Signing you in with
+    // Google…" spinner on every new page load (even though they never logged out).
+    const saved = localStorage.getItem("tutor_user");
+    return saved ? JSON.parse(saved) : null;
   });
   const [showLanding, setShowLanding] = useState(
     () => {
@@ -260,6 +265,12 @@ function App() {
     localStorage.getItem("tutor_dark_mode") === "true"
   );
   const [oauthLoading, setOauthLoading] = useState(false);
+  // Safety-net: if the OAuth spinner is somehow stuck, auto-clear after 8 s
+  useEffect(() => {
+    if (!oauthLoading) return;
+    const t = setTimeout(() => setOauthLoading(false), 8000);
+    return () => clearTimeout(t);
+  }, [oauthLoading]);
   // When a student signs in via Google for the first time their grade is unknown.
   // We store their partial user object here and show a grade-picker before calling handleLogin.
   const [pendingOauthUser, setPendingOauthUser] = useState(null);
@@ -285,7 +296,19 @@ function App() {
         if (event !== "SIGNED_IN" || !session) return;
         const provider = session.user?.app_metadata?.provider;
         if (provider === "email") return;      // email/password — skip
-        if (user) return;                       // already logged in — skip
+        // Use localStorage directly (not the stale `user` closure) so returning
+        // Google users with an active session are never re-processed on reload.
+        if (localStorage.getItem("tutor_user")) {
+          // Silently refresh the access token in the saved session without
+          // showing the spinner — the user is already logged in.
+          try {
+            const saved = JSON.parse(localStorage.getItem("tutor_user"));
+            const refreshed = { ...saved, accessToken: session.access_token };
+            setUser(refreshed);
+            localStorage.setItem("tutor_user", JSON.stringify(refreshed));
+          } catch { /* non-critical */ }
+          return;
+        }
         if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
         oauthProcessed.current = true;
 
@@ -386,16 +409,14 @@ function App() {
 
     window.addEventListener("popstate", handlePopState);
 
+    // user is already initialized from localStorage in useState() above.
+    // Only restore activePage here (setUser is not needed).
     const savedUser = localStorage.getItem("tutor_user");
     const savedPage = localStorage.getItem("tutor_active_page");
 
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-
-    if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
-    
+
       if (savedPage && !(parsedUser.role === "admin" && savedPage === "dashboard")) {
         setActivePage(savedPage);
       } else if (parsedUser.role === "admin") {
