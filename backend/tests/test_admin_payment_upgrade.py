@@ -551,14 +551,28 @@ def test_profile_access_from_plan_nano_expires_in_8_days():
     assert 7 <= delta_days <= 8
 
 
-def test_profile_access_from_plan_premium_expires_in_31_days():
+def test_profile_access_from_plan_premium_expires_in_exactly_30_days():
+    """Business rule: monthly plans expire in exactly 30 days (not 31)."""
     fields = profile_access_from_plan(PREMIUM_PLAN)
     assert fields["subscription_expires_at"] is not None
     from datetime import datetime, timezone
     expiry = datetime.fromisoformat(fields["subscription_expires_at"])
     now = datetime.now(timezone.utc)
-    delta_days = (expiry - now).days
-    assert 30 <= delta_days <= 31
+    delta_seconds = (expiry - now).total_seconds()
+    delta_days = delta_seconds / 86400
+    assert 29.9 <= delta_days <= 30.1, f"Expected ~30 days, got {delta_days:.4f}"
+
+
+def test_profile_access_from_plan_family_premium_expires_in_exactly_30_days():
+    """Family Premium must also expire in exactly 30 days (not 31)."""
+    fields = profile_access_from_plan(FAMILY_PLAN)
+    assert fields["subscription_expires_at"] is not None
+    from datetime import datetime, timezone
+    expiry = datetime.fromisoformat(fields["subscription_expires_at"])
+    now = datetime.now(timezone.utc)
+    delta_seconds = (expiry - now).total_seconds()
+    delta_days = delta_seconds / 86400
+    assert 29.9 <= delta_days <= 30.1, f"Expected ~30 days, got {delta_days:.4f}"
 
 
 # ── Test: normal checkout is UNAFFECTED by admin test endpoints ───────────────

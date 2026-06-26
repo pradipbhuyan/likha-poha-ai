@@ -144,7 +144,7 @@ def get_payment_by_order_id(order_id: str):
 # Plans without an entry here are treated as non-expiring (NULL expires_at).
 _BILLING_LABEL_TO_DAYS: dict[str, int] = {
     "8 days": 8,
-    "month": 31,
+    "month": 30,      # Business rule: 30 days (not 31)
     "6 months": 184,
     "year": 366,
 }

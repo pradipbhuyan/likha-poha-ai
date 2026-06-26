@@ -90,11 +90,11 @@ class TestPlanExpiresAt:
         assert 7.9 <= days <= 8.1, f"Expected ~8 days, got {days:.2f}"
 
     def test_monthly_plan(self):
-        """Premium monthly expires in ~31 days."""
+        """Premium monthly expires in exactly 30 days (business rule: not 31)."""
         result = plan_expires_at({"billing_label": "month"})
         assert result is not None
         days = _days_from_now(result)
-        assert 30.9 <= days <= 31.1, f"Expected ~31 days, got {days:.2f}"
+        assert 29.9 <= days <= 30.1, f"Expected ~30 days, got {days:.2f}"
 
     def test_six_month_plan(self):
         """Premium 6-month expires in ~184 days."""
@@ -144,11 +144,11 @@ class TestProfileAccessFromPlan:
         assert 7.9 <= _days_from_now(fields["subscription_expires_at"]) <= 8.1
 
     def test_premium_monthly_sets_expiry(self):
-        """Premium monthly sets starter key and expiry ~31 days out."""
+        """Premium monthly sets starter key and expiry ~30 days out (business rule)."""
         fields = profile_access_from_plan(_base_plan(key="starter", billing_label="month"))
         assert fields["subscription_plan"] == "starter"
         assert fields["subscription_expires_at"] is not None
-        assert 30.9 <= _days_from_now(fields["subscription_expires_at"]) <= 31.1
+        assert 29.9 <= _days_from_now(fields["subscription_expires_at"]) <= 30.1
 
     def test_six_month_plan_sets_expiry(self):
         """6-month plan sets expiry ~184 days out."""
@@ -342,8 +342,8 @@ class TestSubscriptionStateMachine:
         """After payment, profile has correct plan key and expiry."""
         for plan_key, billing, expected_days in [
             ("free",    "8 days",   8),
-            ("starter", "month",   31),
-            ("family_premium", "month", 31),
+            ("starter", "month",   30),   # business rule: 30 days
+            ("family_premium", "month", 30),  # business rule: 30 days
         ]:
             fields = profile_access_from_plan(_base_plan(
                 key=plan_key, billing_label=billing))
@@ -447,7 +447,7 @@ class TestSubscriptionStateMachine:
         assert not _banner_should_show(user_before)        # no premium banner
 
         # After upgrade: paid Premium
-        expires = (datetime.now(timezone.utc) + timedelta(days=31)).isoformat()
+        expires = (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
         user_after = {
             "role": "student", "subscriptionPlan": "starter",
             "offerAccess": False,   # offer status not relevant once paid
@@ -515,7 +515,7 @@ class TestResolverService:
 
     def test_free_result_plan_name(self):
         result = _free_result()
-        assert result["plan_name"] == "Free"
+        assert result["plan_name"] == "Free Tier"
 
     # ── resolve_user_subscription() — invalid / missing user ─────────────────
 

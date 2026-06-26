@@ -367,10 +367,32 @@ describe("Free tier (no enrollment)", () => {
     expect(needsSubscriptionGate(admin, null)).toBe(false);
   });
 
-  test("admin-granted CBSE access resolves to ADMIN_GRANT and bypasses gate", () => {
+  test("admin-granted CBSE access on non-'free' plan resolves to PAID (perpetual)", () => {
+    // A user with accessCbse=True + non-"free" plan + no expiry is caught by
+    // step 2 (perpetual paid plan). It's indistinguishable from a paid plan
+    // activated without an expiry — both return PAID with full access.
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "starter",
+      accessCbse: true,
+      subscriptionExpiresAt: null,
+      offerAccess: false,
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.activeTier).toBe(TIER.PREMIUM);
+    expect(result.hasFullAccess).toBe(true);
+    expect(needsSubscriptionGate(user, null)).toBe(false);
+  });
+
+  test("legacy Nano user (plan_key='free' + accessCbse + no expiry) resolves to NANO", () => {
+    // Users who paid for Nano before subscription_expires_at was added.
+    // plan_key="free" + access_cbse=True + no expiry → step 2b catches as NANO.
     const user = { ...BASE_STUDENT, accessCbse: true, subscriptionExpiresAt: null, offerAccess: false };
     const result = resolveSubscription(user, null);
-    expect(result.accessSource).toBe(ACCESS_SOURCE.ADMIN_GRANT);
+    expect(result.accessSource).toBe(ACCESS_SOURCE.PAID);
+    expect(result.planName).toBe("Premium Nano");
+    expect(result.canonicalPlanKey).toBe("NANO");
     expect(result.activeTier).toBe(TIER.PREMIUM);
     expect(result.hasFullAccess).toBe(true);
     expect(needsSubscriptionGate(user, null)).toBe(false);
@@ -388,7 +410,7 @@ describe("UI conflict prevention", () => {
       [{ ...BASE_STUDENT, offerAccess: true, offerValidUntil: daysFromNow(34) }, ACTIVE_OFFER],
       [{ ...BASE_STUDENT, accessCbse: true, subscriptionExpiresAt: daysFromNow(7) }, null],
       [{ ...BASE_STUDENT, accessCbse: true, subscriptionPlan: "starter", subscriptionExpiresAt: daysFromNow(30) }, null],
-      [{ ...BASE_STUDENT, accessCbse: true, subscriptionExpiresAt: null }, null],
+      [{ ...BASE_STUDENT, accessCbse: true, subscriptionExpiresAt: null }, null],  // step 2b → PAID/NANO
     ];
     const validSources = Object.values(ACCESS_SOURCE);
     for (const [user, offer] of scenarios) {
@@ -401,6 +423,54 @@ describe("UI conflict prevention", () => {
         expect(result.activeTier).toBe(TIER.FREE);
       }
     }
+  });
+
+  test("resolver always returns canonicalPlanKey", () => {
+    const scenarios = [
+      [BASE_STUDENT, null, "FREE_TIER"],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "free", accessCbse: true, subscriptionExpiresAt: daysFromNow(7) },
+        null, "NANO",
+      ],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "starter", accessCbse: true, subscriptionExpiresAt: daysFromNow(30) },
+        null, "PREMIUM",
+      ],
+      [
+        { ...BASE_STUDENT, subscriptionPlan: "family_premium", accessCbse: true, subscriptionExpiresAt: daysFromNow(30) },
+        null, "FAMILY_PREMIUM",
+      ],
+      [
+        { ...BASE_STUDENT, offerAccess: true, offerValidUntil: daysFromNow(34) },
+        ACTIVE_OFFER, "FREE_TIER",
+      ],
+    ];
+    for (const [user, offer, expectedKey] of scenarios) {
+      const result = resolveSubscription(user, offer);
+      expect(result.canonicalPlanKey).toBe(expectedKey);
+    }
+  });
+
+  test("free tier resolves to planName 'Free Tier' (not 'Free')", () => {
+    const result = resolveSubscription(BASE_STUDENT, null);
+    expect(result.planName).toBe("Free Tier");
+    expect(result.canonicalPlanKey).toBe("FREE_TIER");
+  });
+
+  test("expired paid plan + no offer resolves to FREE_TIER (not ADMIN_GRANT)", () => {
+    // Critical: access_cbse may still be True in the DB until cron revokes it.
+    // hadExpiredSubscription flag prevents ADMIN_GRANT from firing.
+    const user = {
+      ...BASE_STUDENT,
+      subscriptionPlan: "free",
+      accessCbse: true,              // still True — backend hasn't revoked yet
+      subscriptionExpiresAt: daysAgo(1),
+    };
+    const result = resolveSubscription(user, null);
+    expect(result.accessSource).toBe(ACCESS_SOURCE.NONE);
+    expect(result.canonicalPlanKey).toBe("FREE_TIER");
+    expect(result.planName).toBe("Free Tier");
+    expect(result.hasFullAccess).toBe(false);
   });
 
   test("offer user: currentPlanLabel !== 'Premium Nano' (the original bug)", () => {

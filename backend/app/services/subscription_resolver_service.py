@@ -93,6 +93,7 @@ def resolve_user_subscription(user_id: str) -> dict:
         # subscription_expires_at is ONLY written by profile_access_from_plan()
         # after a confirmed Razorpay payment — never by offer-code redemption.
         expires_at_str = profile.get("subscription_expires_at")
+        had_expired_subscription = False
         if expires_at_str:
             try:
                 expires_at = datetime.fromisoformat(
@@ -104,13 +105,17 @@ def resolve_user_subscription(user_id: str) -> dict:
                     return {
                         "active_tier": Tier.PREMIUM,
                         "plan_name": _paid_plan_name(plan_key),
+                        "canonical_plan_key": _canonical_plan_key(plan_key),
                         "access_source": AccessSource.PAID,
                         "has_full_access": True,
                         "valid_until": expires_at_str,
                         "days_remaining": max(0, days_left),
                         "expiring_soon": days_left <= 3,
                     }
-                # Past expiry — fall through (backend revokes flags on /profile load)
+                # Paid subscription expired — mark flag and continue.
+                # An active offer redemption should still provide access (step 3).
+                # The flag prevents ADMIN_GRANT (step 4) from firing incorrectly.
+                had_expired_subscription = True
             except Exception:
                 pass
 
@@ -126,6 +131,30 @@ def resolve_user_subscription(user_id: str) -> dict:
             return {
                 "active_tier": Tier.PREMIUM,
                 "plan_name": _paid_plan_name(plan_key),
+                "canonical_plan_key": _canonical_plan_key(plan_key),
+                "access_source": AccessSource.PAID,
+                "has_full_access": True,
+                "valid_until": None,
+                "days_remaining": None,
+                "expiring_soon": False,
+            }
+
+        # ── 2b. Legacy Nano user: plan_key="free" + access_cbse + no expiry ─
+        # These users paid for Nano before subscription_expires_at was introduced.
+        # They would incorrectly show "Admin Access" without this check.
+        # Safety rule: only resolve as NANO if plan_key is "free" AND access_cbse=True.
+        # Parents with access_cbse=True + plan_key="free" are excluded because
+        # role="parent" does not go through the student subscription resolver path.
+        if (
+            has_access_flag
+            and plan_key == "free"
+            and not expires_at_str
+            and profile.get("role") not in ("parent",)
+        ):
+            return {
+                "active_tier": Tier.PREMIUM,
+                "plan_name": "Premium Nano",
+                "canonical_plan_key": "NANO",
                 "access_source": AccessSource.PAID,
                 "has_full_access": True,
                 "valid_until": None,
@@ -161,6 +190,7 @@ def resolve_user_subscription(user_id: str) -> dict:
                 return {
                     "active_tier": Tier.FREE,
                     "plan_name": "Offer / Free Access",
+                    "canonical_plan_key": "FREE_TIER",
                     "access_source": AccessSource.OFFER_CODE,
                     "has_full_access": False,
                     "valid_until": valid_until,
@@ -169,10 +199,13 @@ def resolve_user_subscription(user_id: str) -> dict:
                 }
 
         # ── 4. Admin-granted access (access flags set, no expiry, no offer) ─
-        if has_access_flag:
+        # Skip if subscription_expires_at was set — access_cbse may still be
+        # True pending backend revocation; don't show "Admin Access" for that.
+        if has_access_flag and not had_expired_subscription:
             return {
                 "active_tier": Tier.PREMIUM,
                 "plan_name": "Admin Access",
+                "canonical_plan_key": "ADMIN_GRANT",
                 "access_source": AccessSource.ADMIN_GRANT,
                 "has_full_access": True,
                 "valid_until": None,
@@ -195,7 +228,8 @@ def resolve_user_subscription(user_id: str) -> dict:
 def _free_result() -> dict:
     return {
         "active_tier": Tier.FREE,
-        "plan_name": "Free",
+        "plan_name": "Free Tier",
+        "canonical_plan_key": "FREE_TIER",
         "access_source": AccessSource.NONE,
         "has_full_access": False,
         "valid_until": None,
@@ -213,3 +247,25 @@ def _paid_plan_name(plan_key: str) -> str:
         "standard_annual": "Premium — Annual",
     }
     return names.get(plan_key, "Premium")
+
+
+def _canonical_plan_key(plan_key: str) -> str:
+    """
+    Map raw DB plan key to canonical unambiguous key.
+
+    The "free" DB key is shared by Free Tier users (never paid) and Nano paid
+    users (subscription_plan="free" after ₹99 payment). The resolver determines
+    which is which from subscription_expires_at and access_cbse before calling
+    this — so callers of _canonical_plan_key always know the user IS on a paid
+    plan; "free" here means Nano.
+    """
+    mapping = {
+        "free": "NANO",
+        "starter": "PREMIUM",
+        "premium": "PREMIUM",
+        "family_premium": "FAMILY_PREMIUM",
+        "family_annual": "FAMILY_ANNUAL",
+        "standard_6month": "PREMIUM_6MONTH",
+        "standard_annual": "PREMIUM_ANNUAL",
+    }
+    return mapping.get(plan_key, "PREMIUM")

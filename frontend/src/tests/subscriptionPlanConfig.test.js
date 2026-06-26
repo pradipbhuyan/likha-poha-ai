@@ -227,11 +227,11 @@ describe("Free Tier user state", () => {
     expect(result.hasFullAccess).toBe(false);
   });
 
-  test("Free Tier label is 'Free', NOT 'Free Tier' or 'Premium'", () => {
+  test("Free Tier label is 'Free Tier', NOT 'Free' or 'Premium'", () => {
     const result = resolveSubscription(BASE_STUDENT, null);
-    expect(result.planName).toBe("Free");
+    expect(result.planName).toBe("Free Tier");
     expect(result.planName).not.toContain("Premium");
-    expect(result.planName).not.toBe("Free Tier");
+    expect(result.planName).not.toBe("Free");
   });
 });
 
