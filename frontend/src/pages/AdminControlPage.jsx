@@ -5,6 +5,11 @@ import AdminRecentActivity from "../components/AdminRecentActivity";
 import AdminGlobalSearch from "../components/AdminGlobalSearch";
 import AdminFavorites, { usePinnedIds } from "../components/AdminFavorites";
 import AdminNotificationCenter from "../components/AdminNotificationCenter";
+import AdminBulkTools from "../components/AdminBulkTools";
+import AdminSavedViews from "../components/AdminSavedViews";
+import AdminAnalytics from "../components/AdminAnalytics";
+import AdminViewAsUser from "../components/AdminViewAsUser";
+import AdminSupportTools from "../components/AdminSupportTools";
 import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
 import {
   getAdminFamilies,
@@ -318,6 +323,9 @@ function AdminControlPage({ user }) {
     { key: "offers",       label: "Offers",           icon: "🎟️" },
     { key: "ai",           label: "AI & Settings",    icon: "🔑" },
     { key: "operations",   label: "Operations",       icon: "🖥️" },
+    { key: "bulk",         label: "Bulk Tools",       icon: "⚡" },
+    { key: "analytics",   label: "Analytics",        icon: "📊" },
+    { key: "support",     label: "Support",          icon: "🛟" },
   ];
   const VALID_TAB_KEYS = new Set(ADMIN_TABS.map((t) => t.key));
 
@@ -3191,6 +3199,61 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       {activeTab === "operations" && (
       <div id="admin-tab-panel-operations" role="tabpanel" aria-labelledby="admin-tab-btn-operations" data-testid="tab-panel-operations">
         <AdminOperationsEmbed user={user} />
+      </div>)}
+
+      {/* ── Bulk Tools Tab ─────────────────────────────────────────────── */}
+      {activeTab === "bulk" && (
+      <div id="admin-tab-panel-bulk" role="tabpanel" aria-labelledby="admin-tab-btn-bulk" data-testid="tab-panel-bulk">
+        <section className="premium-section">
+          <div className="premium-header">
+            <p className="eyebrow">Admin Tools</p>
+            <h3>⚡ Bulk Operations</h3>
+            <p>Assign teachers, reset passwords, grant access, export users, and import students at scale.</p>
+          </div>
+          <AdminBulkTools
+            accessToken={user?.accessToken}
+            allStudents={allStudents}
+            allTeachers={allTeachers}
+            allParents={allParents}
+          />
+        </section>
+      </div>)}
+
+      {/* ── Analytics Tab ──────────────────────────────────────────────── */}
+      {activeTab === "analytics" && (
+      <div id="admin-tab-panel-analytics" role="tabpanel" aria-labelledby="admin-tab-btn-analytics" data-testid="tab-panel-analytics">
+        <section className="premium-section">
+          <AdminAnalytics accessToken={user?.accessToken} />
+        </section>
+        <section className="premium-section" style={{ marginTop: 0 }}>
+          <div className="premium-header">
+            <p className="eyebrow">Admin Views</p>
+            <h3>🔍 Saved Views</h3>
+            <p>Prebuilt filtered views for common operational queries — live data on each request.</p>
+          </div>
+          <AdminSavedViews accessToken={user?.accessToken} />
+        </section>
+      </div>)}
+
+      {/* ── Support Tab ────────────────────────────────────────────────── */}
+      {activeTab === "support" && (
+      <div id="admin-tab-panel-support" role="tabpanel" aria-labelledby="admin-tab-btn-support" data-testid="tab-panel-support">
+        <section className="premium-section">
+          <div className="premium-header">
+            <p className="eyebrow">Support Tools</p>
+            <h3>🛟 User Support</h3>
+            <p>Look up users, view resolved subscription state, subscription history, audit events, and reset passwords.</p>
+          </div>
+          <AdminSupportTools accessToken={user?.accessToken} />
+        </section>
+        <section className="premium-section" style={{ marginTop: 0 }}>
+          <div className="premium-header">
+            <p className="eyebrow">Support Tools</p>
+            <h3>👁 View as User</h3>
+            <p>Read-only simulation of any user context. No JWT exchange. All admin actions remain restricted.</p>
+          </div>
+          <AdminViewAsUser accessToken={user?.accessToken} />
+        </section>
       </div>)}
 
     </div>

@@ -46,6 +46,10 @@ from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
 from app.routes.subscription import router as subscription_router
 from app.routes.admin_operations import router as admin_operations_router
+from app.routes.admin_bulk import router as admin_bulk_router
+from app.routes.admin_views import router as admin_views_router
+from app.routes.admin_analytics import router as admin_analytics_router
+from app.routes.admin_support import router as admin_support_router
 
 
 frontend_url = os.getenv(
@@ -244,6 +248,30 @@ app.include_router(
     admin_operations_router,
     prefix="/api/admin/operations",
     tags=["Admin Operations"],
+)
+
+app.include_router(
+    admin_bulk_router,
+    prefix="/api/admin/bulk",
+    tags=["Admin Bulk Operations"],
+)
+
+app.include_router(
+    admin_views_router,
+    prefix="/api/admin",
+    tags=["Admin Saved Views"],
+)
+
+app.include_router(
+    admin_analytics_router,
+    prefix="/api/admin",
+    tags=["Admin Analytics"],
+)
+
+app.include_router(
+    admin_support_router,
+    prefix="/api/admin",
+    tags=["Admin Support Tools"],
 )
 
 app.include_router(
