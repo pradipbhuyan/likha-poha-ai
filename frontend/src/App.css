@@ -13920,3 +13920,57 @@ body.dark-mode .toast {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ── Exemplar Research — mobile layout ──────────────────────────────────── */
+.exemplar-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.exemplar-card-panel  { flex: 1 1 300px; min-width: 0; }
+.exemplar-expl-panel  {
+  flex: 0 1 420px;
+  min-width: min(420px, 100%);
+  position: sticky;
+  top: 80px;
+}
+
+@media (max-width: 720px) {
+  .exemplar-layout {
+    flex-direction: column;
+  }
+  .exemplar-card-panel,
+  .exemplar-expl-panel {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+  }
+  .exemplar-expl-panel {
+    position: static;   /* no sticky on mobile — explanation sits below cards */
+    order: 2;           /* always after the card grid */
+  }
+}
+
+/* ── Global markdown / lesson text — prevent horizontal overflow on mobile ── */
+.markdown-content {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.markdown-content p,
+.markdown-content li,
+.markdown-content td,
+.markdown-content th {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.markdown-content pre,
+.markdown-content code {
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-width: 100%;
+  overflow-x: auto;
+}

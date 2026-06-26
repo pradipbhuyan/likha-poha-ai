@@ -274,9 +274,14 @@ Make it concise, exam-focused and easy to understand.`,
           board: "CBSE",
           subject: selectedSubject,
           chapter: topic.topic,
-          question: `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question. Respond ONLY with valid JSON array:
-[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ..."}]
-No extra text, only the JSON array.`,
+          question: `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question.
+
+IMPORTANT RULES:
+- Do NOT use LaTeX, dollar signs, or math notation like $x^2$. Write all math in plain text (e.g. x squared, x^2, or x² using Unicode).
+- Each question MUST have a detailed step-by-step explanation showing HOW to arrive at the correct answer.
+
+Respond ONLY with a valid JSON array (no markdown, no extra text):
+[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ...","explanation":"Step-by-step solution: ..."}]`,
           save_to_history: false,
         }),
       });
@@ -383,10 +388,10 @@ No extra text, only the JSON array.`,
       )}
 
       {/* ── Main layout: cards + explanation panel — flex-wrap for mobile ── */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-start" }}>
+      <div className="exemplar-layout">
 
-        {/* Topic cards grid — grows to fill space, min 300px */}
-        <div style={{ flex: "1 1 300px", minWidth: 0 }}>
+        {/* Topic cards grid */}
+        <div className="exemplar-card-panel">
           <p style={{ fontSize: ".75rem", fontWeight: 700, color: "var(--muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: ".08em" }}>
             {filteredCards.length} topics · click any card to get instant AI explanation
           </p>
@@ -424,9 +429,9 @@ No extra text, only the JSON array.`,
           </div>
         </div>
 
-        {/* Explanation panel — fixed 420px on desktop, full-width on mobile */}
+        {/* Explanation panel — sticky on desktop, stacks below cards on mobile */}
         {activeTopic && (
-          <div style={{ flex: "0 1 420px", minWidth: "min(420px, 100%)", position: "sticky", top: 80 }}>
+          <div className="exemplar-expl-panel">
             <div className="premium-card" style={{ borderLeft: "4px solid #6366f1" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
                 <div>
@@ -512,8 +517,16 @@ No extra text, only the JSON array.`,
                               </button>
                             )}
                             {revealed && (
-                              <div style={{ marginTop: 7, fontSize: ".76rem", fontWeight: 700, color: selected === q.answer ? "#10b981" : "#ef4444" }}>
-                                {selected === q.answer ? "✅ Correct!" : `❌ Incorrect — correct: ${q.answer}`}
+                              <div style={{ marginTop: 7 }}>
+                                <div style={{ fontSize: ".76rem", fontWeight: 700, color: selected === q.answer ? "#10b981" : "#ef4444", marginBottom: q.explanation ? 6 : 0 }}>
+                                  {selected === q.answer ? "✅ Correct!" : `❌ Incorrect — correct: ${q.answer}`}
+                                </div>
+                                {q.explanation && (
+                                  <div style={{ padding: "10px 12px", borderRadius: 8, background: "rgba(16,185,129,.06)", border: "1px solid rgba(16,185,129,.2)", fontSize: ".78rem", color: "var(--text)", lineHeight: 1.55 }}>
+                                    <strong style={{ color: "#059669", display: "block", marginBottom: 4 }}>💡 Explanation</strong>
+                                    {q.explanation}
+                                  </div>
+                                )}
                               </div>
                             )}
                           </div>
