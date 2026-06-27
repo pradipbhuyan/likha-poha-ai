@@ -1366,7 +1366,7 @@ function AdminControlPage({ user }) {
     /** Export all students, parents, teachers with subscription info to CSV. */
     const headers = [
       "Role","Name","Email","Grade","Board","Subscription Plan","Account Status",
-      "CBSE Access","Daily Token Limit","Monthly Token Limit","Created At",
+      "Platform Access","Daily Token Limit","Monthly Token Limit","Created At",
     ];
 
     const studentRows = allStudents.map(u => [
@@ -3035,7 +3035,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
 
               <div style={{ marginTop: 16 }}>
                 {[
-                  ["access_cbse", schoolBoardLabel],
+                  ["access_cbse", "Platform Access"],
                   ["access_sof_science", "SOF Science"],
                   ["access_sof_maths", "SOF Maths"],
                   ["access_sof_english", "SOF English"],

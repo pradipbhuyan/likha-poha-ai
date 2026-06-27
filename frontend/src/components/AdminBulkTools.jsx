@@ -148,7 +148,7 @@ export default function AdminBulkTools({ accessToken, allStudents = [], allTeach
 
   async function runBulkGrant() {
     if (selectedUsers.size === 0) return;
-    if (!window.confirm(`Grant access_cbse to ${selectedUsers.size} user(s)? Active paid subscriptions will be skipped.`)) return;
+    if (!window.confirm(`Grant Platform Access to ${selectedUsers.size} user(s)? Active paid subscriptions will be skipped.`)) return;
     setLoading(true);
     setResult(null);
     const data = await apiFetch("/api/admin/bulk/grant-access", {
@@ -304,12 +304,12 @@ export default function AdminBulkTools({ accessToken, allStudents = [], allTeach
         <div style={cardStyle}>
           <h4 style={{ margin: "0 0 12px", fontSize: ".92rem" }}>Bulk Grant Access</h4>
           <p style={{ color: "var(--muted, #64748b)", fontSize: ".82rem", marginBottom: 10 }}>
-            Sets <code>access_cbse=true</code> and <code>subscription_plan=free</code>. Active paid subscriptions are skipped by default.
+            Sets <strong>Platform Access</strong> on selected users. Active paid subscriptions are skipped. Use this to manually enable access for users who need it.
           </p>
           <CheckList items={allUsers} selected={selectedUsers} onToggle={toggleUser} />
           <button onClick={runBulkGrant} disabled={loading || selectedUsers.size === 0}
             className="primary-btn" style={{ marginTop: 12 }}>
-            {loading ? "Granting…" : `Grant Access to ${selectedUsers.size} User(s)`}
+            {loading ? "Granting…" : `Grant Platform Access to ${selectedUsers.size} User(s)`}
           </button>
         </div>
       )}

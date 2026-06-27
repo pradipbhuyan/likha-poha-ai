@@ -277,7 +277,7 @@ export default function AdminSupportTools({ accessToken }) {
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {[
                   ["Plan", rs.plan_name || rs.subscription_plan],
-                  ["Access CBSE", rs.access_cbse ? "✓" : "✗"],
+                  ["Platform Access", rs.access_cbse ? "✓ Active" : "✗ Restricted"],
                   ["Source", rs.source],
                   ["Expires", rs.expires_at ? rs.expires_at.slice(0, 10) : "No expiry"],
                 ].map(([k, v]) => (

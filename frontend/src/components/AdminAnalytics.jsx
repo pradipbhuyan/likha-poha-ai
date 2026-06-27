@@ -359,7 +359,7 @@ export default function AdminAnalytics({ accessToken }) {
         <StatCard label="Total Users"     value={u.total}                    state={usersState} />
         <StatCard label="New Signups"     value={u.new_signups_in_period}    state={usersState} sub={`Last ${days}d`} />
         <StatCard label="Paid Active"     value={u.paid_active}              state={usersState} />
-        <StatCard label="Admin Granted"   value={u.admin_granted_access}     state={usersState} />
+        <StatCard label="Admin Override"  value={u.admin_granted_access}     state={usersState} />
         <StatCard label="Free (No Access)" value={u.free_no_access}          state={usersState} />
       </div>
 
