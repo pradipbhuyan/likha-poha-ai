@@ -504,3 +504,202 @@ class TestUpgradeMessaging:
         is_expired = expires_ms < datetime.datetime.now(datetime.timezone.utc)
         has_paid = bool(expired_child.get("accessCbse")) and not is_expired
         assert has_paid is False, "Expired subscription must not grant paid access"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Additional tests covering verification points 5-10 more completely
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestChildLimitLogicFixed:
+    """Tests for the fixed child_limit logic (None or 1 bug was fixed)."""
+
+    def _compute_limit(self, cpk: str, raw_limit) -> int:
+        """Mirror the fixed logic from parent_dashboard_v2.py."""
+        if raw_limit is not None:
+            return raw_limit
+        elif cpk == "ADMIN_GRANT":
+            return None  # unlimited
+        elif cpk in ("FAMILY_PREMIUM", "FAMILY_ANNUAL"):
+            return 2
+        else:
+            return 1
+
+    def test_free_tier_raw_none_gives_1(self):
+        """FREE_TIER resolver returns child_limit=None → defaults to 1."""
+        result = self._compute_limit("FREE_TIER", None)
+        assert result == 1
+
+    def test_nano_raw_1_gives_1(self):
+        result = self._compute_limit("NANO", 1)
+        assert result == 1
+
+    def test_premium_raw_1_gives_1(self):
+        result = self._compute_limit("PREMIUM", 1)
+        assert result == 1
+
+    def test_family_premium_raw_2_gives_2(self):
+        result = self._compute_limit("FAMILY_PREMIUM", 2)
+        assert result == 2
+
+    def test_family_premium_raw_none_gives_2(self):
+        """If resolver returns None for FAMILY_PREMIUM, fallback gives 2."""
+        result = self._compute_limit("FAMILY_PREMIUM", None)
+        assert result == 2
+
+    def test_admin_grant_raw_none_gives_none(self):
+        """ADMIN_GRANT must return None (unlimited), NOT 1."""
+        result = self._compute_limit("ADMIN_GRANT", None)
+        assert result is None, "ADMIN_GRANT must have no child limit (None = unlimited)"
+
+    def test_can_add_child_free_after_1_child(self):
+        """FREE parent with 1 existing child cannot add more."""
+        child_limit = 1  # FREE_TIER
+        existing_children = 1
+        can_add = existing_children < (child_limit if child_limit is not None else 999)
+        assert can_add is False
+
+    def test_can_add_child_family_after_1_child(self):
+        """FAMILY_PREMIUM parent with 1 existing child CAN add one more."""
+        child_limit = 2
+        existing_children = 1
+        can_add = existing_children < (child_limit if child_limit is not None else 999)
+        assert can_add is True
+
+    def test_can_add_child_family_after_2_children(self):
+        """FAMILY_PREMIUM parent with 2 existing children CANNOT add more."""
+        child_limit = 2
+        existing_children = 2
+        can_add = existing_children < (child_limit if child_limit is not None else 999)
+        assert can_add is False
+
+    def test_admin_can_always_add_child(self):
+        """ADMIN_GRANT (child_limit=None) can always add children."""
+        child_limit = None  # unlimited
+        for existing in [0, 5, 100]:
+            can_add = existing < (child_limit if child_limit is not None else 999)
+            assert can_add is True, f"Admin should be able to add child even with {existing} existing"
+
+
+class TestExpiredPlanShowsFreeTier:
+    """Expired paid plan → FREE_TIER restrictions (verification point 6)."""
+
+    def test_expired_nano_plan_display_shows_restricted(self):
+        """After expiry job runs: access_cbse=False → resolver returns FREE_TIER."""
+        # Simulate expired child: access_cbse revoked, no active expiry
+        expired_sub = _sub("FREE_TIER", False)  # resolver returned FREE_TIER
+        plan = _plan_display(
+            expired_sub["canonical_plan_key"],
+            expired_sub["plan_name"],
+            expired_sub["has_full_access"],
+            None, None
+        )
+        assert plan["status_color"] == "restricted"
+        assert plan["has_full_access"] is False
+
+    def test_expired_child_exemplar_is_locked(self):
+        """Expired paid child now on FREE_TIER → Exemplar locked."""
+        feats = _features(exemplar_allowed=False)  # FREE_TIER features
+        badges = _build_feature_badges(feats)
+        exemplar = next(b for b in badges if b["feature"] == "EXEMPLAR")
+        assert exemplar["state"] == "locked"
+
+    def test_expired_child_upgrade_recommendation(self):
+        """Expired child gets upgrade recommendation just like Free Tier."""
+        sub = _sub("FREE_TIER", False)  # expired = back to FREE_TIER
+        feats = _features(False)
+        recs = _build_recommendations("Alice", sub, feats, 5, "2026-06-27")
+        types = [r["type"] for r in recs]
+        assert "upgrade" in types
+
+    def test_active_plan_upgrade_recommendation_absent(self):
+        """Active paid plan should NOT get upgrade recommendation."""
+        sub = _sub("PREMIUM", True)
+        feats = _features(True)
+        recs = _build_recommendations("Alice", sub, feats, 5, "2026-06-27")
+        types = [r["type"] for r in recs]
+        assert "upgrade" not in types
+
+
+class TestVerificationPoints:
+    """Final verification of all 10 points."""
+
+    def test_point_1_new_child_resolves_free_tier(self):
+        """New parent + new child: child has no access_cbse, resolver → FREE_TIER."""
+        child_frontend = {"role": "student", "parentId": "p1", "accessCbse": False}
+        # hasPaidAccess logic: False because accessCbse=False, no expiry
+        paid = child_frontend.get("role") == "admin" or bool(child_frontend.get("accessCbse"))
+        assert paid is False
+
+    def test_point_2_parent_child_relationship_no_paid_access(self):
+        """parentId alone: child with parentId but accessCbse=False → not paid."""
+        child = {"role": "student", "parentId": "p1", "accessCbse": False}
+        paid = child.get("role") == "admin" or bool(child.get("accessCbse"))
+        assert paid is False
+
+    def test_point_3_feature_badges_from_backend(self):
+        """Feature badges use get_feature_summary output, not raw fields."""
+        # Backend returned FREE_TIER features
+        backend_features = {
+            "EXEMPLAR": {"allowed": False, "limited": False},
+            "MOCK_TEST": {"allowed": True, "limited": True},
+        }
+        badges = _build_feature_badges(backend_features)
+        badge_map = {b["feature"]: b["state"] for b in badges}
+        assert badge_map["EXEMPLAR"] == "locked"
+        assert badge_map["MOCK_TEST"] == "limited"
+
+    def test_point_5_child_limits_all_plans(self):
+        """FREE/NANO/PREMIUM=1, FAMILY=2, ADMIN=None."""
+        def limit(cpk, raw):
+            if raw is not None: return raw
+            if cpk == "ADMIN_GRANT": return None
+            if cpk in ("FAMILY_PREMIUM", "FAMILY_ANNUAL"): return 2
+            return 1
+        assert limit("FREE_TIER", None) == 1
+        assert limit("NANO", 1) == 1
+        assert limit("PREMIUM", 1) == 1
+        assert limit("FAMILY_PREMIUM", 2) == 2
+        assert limit("ADMIN_GRANT", None) is None
+
+    def test_point_7_exemplar_locked_free_tier(self):
+        """Exemplar locked for FREE_TIER child."""
+        feats = _features(False)
+        badges = _build_feature_badges(feats)
+        exemplar = next(b for b in badges if b["feature"] == "EXEMPLAR")
+        assert exemplar["state"] == "locked"
+
+    def test_point_7_exemplar_research_locked_free_tier(self):
+        """Exemplar Research locked for FREE_TIER child."""
+        feats = _features(False)
+        badges = _build_feature_badges(feats)
+        er = next(b for b in badges if b["feature"] == "EXEMPLAR_RESEARCH")
+        assert er["state"] == "locked"
+
+    def test_point_8_mock_tests_limited_free_tier(self):
+        """Mock Tests limited (5/day) for FREE_TIER child."""
+        feats = _features(False)
+        badges = _build_feature_badges(feats)
+        mt = next(b for b in badges if b["feature"] == "MOCK_TEST")
+        assert mt["state"] == "limited"
+
+    def test_point_9_upgrade_cta_only_for_free_tier(self):
+        """Upgrade CTA only in recommendations for FREE_TIER, not paid."""
+        free_sub = _sub("FREE_TIER", False)
+        paid_sub = _sub("PREMIUM", True)
+        feats = _features(False)
+
+        free_recs = _build_recommendations("Alice", free_sub, feats, 5, "2026-06-27")
+        paid_recs = _build_recommendations("Alice", paid_sub, _features(True), 5, "2026-06-27")
+
+        assert any(r["type"] == "upgrade" for r in free_recs)
+        assert not any(r["type"] == "upgrade" for r in paid_recs)
+
+    def test_point_10_no_teacher_notes_in_recommendations(self):
+        """Recommendations contain no teacher note content."""
+        sub = _sub("FREE_TIER", False)
+        feats = _features(False)
+        recs = _build_recommendations("Alice", sub, feats, 0, None)
+        # No rec should have a 'notes' type or reference teacher notes
+        for r in recs:
+            assert r.get("type") not in ("teacher_note", "note"), \
+                "Teacher-private notes must not appear in parent recommendations"

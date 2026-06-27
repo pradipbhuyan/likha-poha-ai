@@ -280,13 +280,24 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
     parent_profile = parent["profile"]
     parent_id = parent_profile["id"]
 
-    # Resolve parent's own subscription to determine child limit
+    # Resolve parent's own subscription to determine child limit.
+    # child_limit from resolver:
+    #   FREE_TIER  → None (no explicit limit in resolver, defaults to 1 below)
+    #   NANO       → 1
+    #   PREMIUM    → 1
+    #   FAMILY_PREMIUM → 2
+    #   ADMIN_GRANT → None (unlimited — do NOT convert to 1)
     parent_sub = resolve_user_subscription(parent_id)
     parent_cpk = parent_sub.get("canonical_plan_key", "FREE_TIER")
-    child_limit = parent_sub.get("child_limit") or 1  # None = no limit (admin)
-    # Map canonical key to child limit if not set in resolver
-    if child_limit is None:
-        child_limit = 2 if parent_cpk in ("FAMILY_PREMIUM", "FAMILY_ANNUAL") else 1
+    raw_child_limit = parent_sub.get("child_limit")  # may be None
+    if raw_child_limit is not None:
+        child_limit = raw_child_limit  # explicit value from resolver (1 or 2)
+    elif parent_cpk == "ADMIN_GRANT":
+        child_limit = None  # unlimited — admin can add any number of children
+    elif parent_cpk in ("FAMILY_PREMIUM", "FAMILY_ANNUAL"):
+        child_limit = 2
+    else:
+        child_limit = 1  # FREE_TIER, NANO, PREMIUM, expired = 1 child
 
     # Load children
     children_rows, _ = _safe_query(

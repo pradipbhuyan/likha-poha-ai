@@ -9,7 +9,6 @@ import {
   getParentDashboardSummary,
   getChildDetail,
   createStudent,
-  getParentSubscriptionPlans,
 } from "../api/parentDashboard";
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
@@ -331,8 +330,7 @@ function ChildActivity({detail}){
 }
 
 function ChildAccess({detail, plan, onUpgrade}){
-  var sub=detail?.subscription||{};
-  var features=detail?.features||{};
+  // subscription and features available via detail?.subscription and detail?.features
   return(
     <div data-testid="child-section-access">
       <div style={{...card(),background:STATUS_STYLE[plan.status_color||"restricted"].bg,border:"1px solid "+STATUS_STYLE[plan.status_color||"restricted"].border}}>
