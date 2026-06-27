@@ -190,3 +190,68 @@ export async function unlinkParentFromChild(childId) {
     method: "DELETE",
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Teacher Success Platform — Phase 2  (/api/teacher/*)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Feature 1: Student Timeline ───────────────────────────────────────────────
+export async function getStudentTimeline(studentId) {
+  return authFetch(`/api/teacher/students/${studentId}/timeline`, { method: "GET" });
+}
+
+// ── Feature 2: Intervention Queue ────────────────────────────────────────────
+export async function getInterventions() {
+  return authFetch("/api/teacher/interventions", { method: "GET" });
+}
+
+// ── Feature 3: Teacher Tasks ──────────────────────────────────────────────────
+export async function listTeacherTasks(status = "open") {
+  const qs = status ? `?status=${encodeURIComponent(status)}` : "";
+  return authFetch(`/api/teacher/tasks${qs}`, { method: "GET" });
+}
+export async function createTeacherTask(payload) {
+  return authFetch("/api/teacher/tasks", { method: "POST", body: JSON.stringify(payload) });
+}
+export async function updateTeacherTask(taskId, payload) {
+  return authFetch(`/api/teacher/tasks/${taskId}`, { method: "PATCH", body: JSON.stringify(payload) });
+}
+export async function completeTeacherTask(taskId) {
+  return authFetch(`/api/teacher/tasks/${taskId}/complete`, { method: "POST" });
+}
+export async function dismissTeacherTask(taskId) {
+  return authFetch(`/api/teacher/tasks/${taskId}/dismiss`, { method: "POST" });
+}
+
+// ── Feature 4: Classroom Analytics ───────────────────────────────────────────
+export async function getClassroomAnalytics(classroomId) {
+  return authFetch(`/api/teacher/classrooms/${classroomId}/analytics`, { method: "GET" });
+}
+
+// ── Feature 5: Teacher Notes ──────────────────────────────────────────────────
+export async function listStudentNotes(studentId) {
+  return authFetch(`/api/teacher/students/${studentId}/notes`, { method: "GET" });
+}
+export async function createStudentNote(studentId, note) {
+  return authFetch(`/api/teacher/students/${studentId}/notes`, {
+    method: "POST", body: JSON.stringify({ note }),
+  });
+}
+export async function updateStudentNote(studentId, noteId, note) {
+  return authFetch(`/api/teacher/students/${studentId}/notes/${noteId}`, {
+    method: "PATCH", body: JSON.stringify({ note }),
+  });
+}
+export async function deleteStudentNote(studentId, noteId) {
+  return authFetch(`/api/teacher/students/${studentId}/notes/${noteId}`, { method: "DELETE" });
+}
+
+// ── Feature 6: Parent Communication ──────────────────────────────────────────
+export async function getParentContact(studentId) {
+  return authFetch(`/api/teacher/students/${studentId}/parent-contact`, { method: "GET" });
+}
+export async function messageParent(studentId, payload) {
+  return authFetch(`/api/teacher/students/${studentId}/message-parent`, {
+    method: "POST", body: JSON.stringify(payload),
+  });
+}

@@ -31,6 +31,20 @@ import {
   addStudentToClassroom,
   removeStudentFromClassroom,
   createTeacherStudent,
+  // Phase 2
+  getStudentTimeline,
+  getInterventions,
+  listTeacherTasks,
+  createTeacherTask,
+  completeTeacherTask,
+  dismissTeacherTask,
+  getClassroomAnalytics,
+  listStudentNotes,
+  createStudentNote,
+  updateStudentNote,
+  deleteStudentNote,
+  getParentContact,
+  messageParent,
 } from "../api/teacherDashboard";
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -95,6 +109,7 @@ export default function TeacherDashboardPage({ user }) {
     { key: "invitations",  label: "Invitations",  icon: "✉️" },
     { key: "classrooms",   label: "Classrooms",   icon: "🏫" },
     { key: "insights",     label: "Insights",     icon: "📊" },
+    { key: "tasks",        label: "Tasks",        icon: "✅" },
   ];
 
   const isPaid = user?.isPaid ?? false;
@@ -132,7 +147,7 @@ export default function TeacherDashboardPage({ user }) {
       {activeTab === "invitations" && <InvitationsTab user={user} isPaid={isPaid} />}
       {activeTab === "classrooms"  && <ClassroomsTab  user={user} />}
       {activeTab === "insights"    && <InsightsTab    user={user} />}
-      {/* InsightsTab uses summary cached in OverviewTab — see shared cache below */}
+      {activeTab === "tasks"       && <TasksTab       user={user} isPaid={isPaid} onNavigate={setActiveTab} />}
     </div>
   );
 }
@@ -770,6 +785,115 @@ function InsightsTab({ user }) {
           If a data source is not yet set up, "Not available yet" is displayed instead of an error.
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tasks Tab
+// ─────────────────────────────────────────────────────────────────────────────
+const PRIORITY_COLOR = { critical: "#dc2626", medium: "#f59e0b", low: "#64748b" };
+const PRIORITY_BG    = { critical: "rgba(239,68,68,.07)", medium: "rgba(245,158,11,.07)", low: "rgba(148,163,184,.07)" };
+
+function TasksTab({ user, isPaid, onNavigate }) {
+  const [tasks, setTasks]       = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm]         = useState({ title: "", description: "", priority: "medium" });
+  const [msg, setMsg]           = useState(null);
+  const [statusFilter, setStatusFilter] = useState("open");
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const d = await listTeacherTasks(statusFilter).catch(() => null);
+    setTasks(d?.tasks || []);
+    setLoading(false);
+  }, [statusFilter]);
+
+  useEffect(() => { load(); }, [load]);
+
+  async function doCreate(e) {
+    e.preventDefault();
+    if (!form.title.trim()) { setMsg("Title is required."); return; }
+    const d = await createTeacherTask({ ...form, source: "manual" }).catch(e => ({ success: false, error: e.message }));
+    if (d.success) { setMsg("✅ Task created."); setForm({ title: "", description: "", priority: "medium" }); setShowForm(false); load(); }
+    else setMsg("⚠ " + d.error);
+  }
+
+  async function doComplete(t) {
+    await completeTeacherTask(t.id);
+    load();
+  }
+
+  async function doDismiss(t) {
+    if (!window.confirm("Dismiss this task?")) return;
+    await dismissTeacherTask(t.id);
+    load();
+  }
+
+  return (
+    <div data-testid="teacher-tasks-tab">
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <button onClick={() => setShowForm(v => !v)} className="primary-btn">
+          {showForm ? "✕ Cancel" : "➕ New Task"}
+        </button>
+        {["open","completed","dismissed"].map(s => (
+          <button key={s} onClick={() => setStatusFilter(s)}
+            style={{ padding: "6px 12px", borderRadius: 6, border: "1px solid var(--border,#e5e7eb)", background: statusFilter === s ? "#6366f1" : "var(--panel,#fff)", color: statusFilter === s ? "#fff" : "var(--text,#374151)", fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+            {s.charAt(0).toUpperCase() + s.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {showForm && (
+        <div style={card}>
+          <form onSubmit={doCreate} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <input value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} placeholder="Task title *" required style={inputStyle} data-testid="task-title-input" />
+            <input value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))} placeholder="Description (optional)" style={inputStyle} />
+            <select value={form.priority} onChange={e => setForm(p => ({ ...p, priority: e.target.value }))} style={{ ...inputStyle, width: "auto" }}>
+              <option value="critical">🔴 Critical</option>
+              <option value="medium">🟡 Medium</option>
+              <option value="low">⚪ Low</option>
+            </select>
+            {msg && <div style={{ fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
+            <button type="submit" className="primary-btn">Create Task</button>
+          </form>
+        </div>
+      )}
+
+      {loading && <div style={{ color: "#94a3b8" }}>Loading tasks…</div>}
+      {!loading && tasks.length === 0 && (
+        <div style={{ padding: 20, textAlign: "center", color: "#94a3b8", fontSize: ".85rem" }}>
+          No tasks pending. {statusFilter === "open" && "Create one above."}
+        </div>
+      )}
+
+      {tasks.map(t => (
+        <div key={t.id} style={{ ...card, borderLeft: `3px solid ${PRIORITY_COLOR[t.priority] || "#64748b"}`, background: PRIORITY_BG[t.priority] || "var(--panel,#fff)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+            <div style={{ flex: 1 }}>
+              <strong style={{ fontSize: ".88rem", color: t.status === "completed" ? "#94a3b8" : "var(--text,#1e293b)", textDecoration: t.status === "completed" ? "line-through" : "none" }}>
+                {t.title}
+              </strong>
+              <span style={{ marginLeft: 8, fontSize: ".7rem", padding: "1px 6px", borderRadius: 4, background: PRIORITY_BG[t.priority], color: PRIORITY_COLOR[t.priority], fontWeight: 700 }}>
+                {t.priority}
+              </span>
+              {t.description && <div style={{ fontSize: ".78rem", color: "#64748b", marginTop: 2 }}>{t.description}</div>}
+              {t.due_date && <div style={{ fontSize: ".72rem", color: "#94a3b8", marginTop: 2 }}>Due: {t.due_date}</div>}
+            </div>
+            {t.status === "open" && (
+              <div style={{ display: "flex", gap: 6, alignSelf: "center" }}>
+                <button onClick={() => doComplete(t)} style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid #22c55e", background: "rgba(34,197,94,.08)", color: "#166534", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  ✓ Done
+                </button>
+                <button onClick={() => doDismiss(t)} style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid #94a3b8", background: "rgba(148,163,184,.08)", color: "#64748b", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  Dismiss
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

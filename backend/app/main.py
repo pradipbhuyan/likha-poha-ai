@@ -45,6 +45,7 @@ from app.routes.cache_management import router as cache_management_router
 from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
 from app.routes.teacher_classroom import router as teacher_classroom_router
+from app.routes.teacher_classroom_p2 import router as teacher_classroom_p2_router
 from app.routes.subscription import router as subscription_router
 from app.routes.admin_operations import router as admin_operations_router
 from app.routes.admin_bulk import router as admin_bulk_router
@@ -293,6 +294,12 @@ app.include_router(
     teacher_classroom_router,
     prefix="/api/teacher",
     tags=["Teacher Classroom"],
+)
+
+app.include_router(
+    teacher_classroom_p2_router,
+    prefix="/api/teacher",
+    tags=["Teacher Classroom Phase 2"],
 )
 
 app.include_router(
