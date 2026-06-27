@@ -16,7 +16,7 @@
  * - Report section includes "Teacher-private notes are not included."
  * - Print button exists and does not crash
  */
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
 const FREE_CHILD = {

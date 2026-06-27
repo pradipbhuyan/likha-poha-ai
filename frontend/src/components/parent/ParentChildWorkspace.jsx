@@ -34,7 +34,6 @@ var TABS=[
 ];
 
 // ── Overview section ──────────────────────────────────────────────────────────
-// eslint-disable-next-line no-unused-vars
 function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
   var plan=detail?.plan||child?.plan||{};
   var isFree=plan.canonical_plan_key==="FREE_TIER"||!plan.has_full_access;

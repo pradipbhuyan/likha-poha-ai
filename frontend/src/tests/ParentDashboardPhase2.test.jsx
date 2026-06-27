@@ -13,7 +13,7 @@
  * - Print report button exists
  * - Notifications section renders unread count
  */
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
 vi.mock("../api/parentDashboard", () => ({
