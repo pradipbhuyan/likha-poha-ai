@@ -315,8 +315,11 @@ def generate_lesson(
     # SECURITY: Exemplar chapters require paid access regardless of free-tier bypass.
     # Free users (is_offer_code_user=True) bypass enforce_learning_access above,
     # but Exemplar lessons are premium-only. Check chapter name prefix.
+    # Admins, teachers, and all-access test accounts are exempt from this check
+    # (they need full access for prewarm, content review, and testing).
     _chapter_name = (data.chapter or "").strip()
-    if _chapter_name.lower().startswith("exemplar") or ": exemplar" in _chapter_name.lower():
+    _is_privileged_role = (profile or {}).get("role") in ("admin", "teacher") or is_all_access_test_user(profile or {})
+    if not _is_privileged_role and (_chapter_name.lower().startswith("exemplar") or ": exemplar" in _chapter_name.lower()):
         from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
         _fauth = authorize_feature(user.id, Feature.EXEMPLAR)
         if not _fauth["allowed"]:
