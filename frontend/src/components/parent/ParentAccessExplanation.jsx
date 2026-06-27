@@ -35,7 +35,7 @@ export default function ParentAccessExplanation({plan, featureBadges, subscripti
         borderRadius:10,padding:"10px 14px",marginBottom:10
       }}>
         <div style={{fontWeight:700,fontSize:".88rem",color:isFree?"#dc2626":isExpiring?"#d97706":"#166534"}}>
-          {isFree?"🔒 Restricted Platform Access":isExpired?"⚠️ Plan Expired":isExpiring?"⚠️ Plan Expiring Soon":"✅ Full Platform Access"}
+          {isFree?"Restricted Platform Access":isExpired?"Plan Expired":isExpiring?"Plan Expiring Soon":"Full Platform Access"}
         </div>
         <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>{plan.description}</div>
         {isExpiring&&plan.days_remaining!=null&&(
@@ -75,7 +75,7 @@ export default function ParentAccessExplanation({plan, featureBadges, subscripti
               :"Your plan has expired. Renew to restore full access without interruption."}
           </div>
           <button onClick={onUpgrade} style={{padding:"6px 14px",borderRadius:7,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".78rem",fontWeight:600,cursor:"pointer"}}>
-            🚀 {isFree?"Upgrade Now":"Renew Plan"}
+            isFree?"Upgrade Now":"Renew Plan"
           </button>
         </div>
       )}

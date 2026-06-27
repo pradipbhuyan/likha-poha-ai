@@ -24,7 +24,7 @@ function SubjectProgressCard({subject,data}){
       <div style={{height:5,background:"var(--border,#e5e7eb)",borderRadius:3,overflow:"hidden",marginBottom:3}}>
         <div style={{height:"100%",width:pct+"%",background:"#6366f1",borderRadius:3,transition:"width .4s"}}/>
       </div>
-      <div style={{fontSize:".65rem",color:"#94a3b8"}}>{inProg>0?inProg+" in progress":completed===total&&total>0?"All done! 🎉":"Not started"}</div>
+      <div style={{fontSize:".65rem",color:"#94a3b8"}}>{inProg>0?inProg+" in progress":completed===total&&total>0?"All done":"Not started"}</div>
     </div>
   );
 }
@@ -71,7 +71,7 @@ export default function ParentProgressStory({analytics}){
       {/* Progress summary */}
       {progress.available?(
         <div style={{marginBottom:14}}>
-          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>📈 Learning Progress</div>
+          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Learning Progress</div>
           <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
             {[
               {label:"Completed",value:progress.completed_chapters?.value??0,color:"#22c55e"},
@@ -101,7 +101,7 @@ export default function ParentProgressStory({analytics}){
       {/* Mock test summary */}
       {mockTests.available?(
         <div style={{marginBottom:14}}>
-          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>📝 Mock Test Performance</div>
+          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Mock Test Performance</div>
           <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
             <div style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"7px 14px",textAlign:"center"}}>
               <div style={{fontWeight:800,fontSize:"1.1rem",color:"#0ea5e9"}}>{mockTests.total_tests?.value||0}</div>
@@ -125,7 +125,7 @@ export default function ParentProgressStory({analytics}){
       {/* Strengths */}
       {strengths.available&&strengths.strong_subjects?.length>0&&(
         <div style={{marginBottom:10}}>
-          <div style={{fontWeight:700,fontSize:".82rem",color:"#22c55e",marginBottom:5}}>✅ Strong Subjects</div>
+          <div style={{fontWeight:700,fontSize:".82rem",color:"#22c55e",marginBottom:5}}>Strong Subjects</div>
           <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
             {strengths.strong_subjects.map(function(s,i){return(
               <span key={i} style={{background:"rgba(34,197,94,.1)",color:"#166534",fontSize:".73rem",fontWeight:600,padding:"2px 8px",borderRadius:5}}>{s}</span>
@@ -137,7 +137,7 @@ export default function ParentProgressStory({analytics}){
       {/* Weaknesses */}
       {weaknesses.available&&(weaknesses.weak_subjects?.length>0||weaknesses.weak_topics?.length>0)&&(
         <div style={{marginBottom:10}}>
-          <div style={{fontWeight:700,fontSize:".82rem",color:"#ef4444",marginBottom:5}}>⚠ Needs Practice</div>
+          <div style={{fontWeight:700,fontSize:".82rem",color:"#ef4444",marginBottom:5}}>Needs Practice</div>
           {weaknesses.weak_topics?.slice(0,3).map(function(t,i){return(
             <div key={i} style={{fontSize:".75rem",padding:"3px 0",borderBottom:"1px solid var(--border,#f1f5f9)",display:"flex",justifyContent:"space-between"}}>
               <span>{t.subject} — {t.chapter}</span>
@@ -150,7 +150,7 @@ export default function ParentProgressStory({analytics}){
       {/* Activity */}
       {activity.available&&(
         <div>
-          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:5}}>⏱️ Recent Activity</div>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:5}}>Recent Activity</div>
           <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
             <div style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"5px 10px",textAlign:"center"}}>
               <div style={{fontWeight:700,fontSize:".88rem",color:"#6366f1"}}>{activity.lessons_this_month?.value||0}</div>

@@ -22,15 +22,15 @@ var card={background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)
 
 // ── Section tab bar ───────────────────────────────────────────────────────────
 var TABS=[
-  {key:"overview",    label:"Overview",         icon:"👤"},
-  {key:"plan",        label:"Today's Plan",     icon:"📋"},
-  {key:"progress",    label:"Progress",         icon:"📈"},
-  {key:"strengths",   label:"Strengths & Needs",icon:"🎯"},
-  {key:"mock",        label:"Mock Tests",       icon:"📝"},
-  {key:"homework",    label:"Homework & Exams", icon:"📚"},
-  {key:"notifs",      label:"Notifications",    icon:"🔔"},
-  {key:"access",      label:"Platform Access",  icon:"🔑"},
-  {key:"report",      label:"Report",           icon:"🖨️"},
+  {key:"overview",    label:"Overview"},
+  {key:"plan",        label:"Today's Plan"},
+  {key:"progress",    label:"Progress"},
+  {key:"strengths",   label:"Strengths"},
+  {key:"mock",        label:"Mock Tests"},
+  {key:"homework",    label:"Homework"},
+  {key:"notifs",      label:"Notifications"},
+  {key:"access",      label:"Access"},
+  {key:"report",      label:"Report"},
 ];
 
 // ── Overview section ──────────────────────────────────────────────────────────
@@ -52,10 +52,10 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
       {/* Hero status */}
       <div style={{...card,background:isFree?"rgba(239,68,68,.04)":"rgba(34,197,94,.04)",border:"1px solid "+(isFree?"#fca5a5":"#86efac")}}>
         <div style={{fontWeight:800,fontSize:".95rem",color:isFree?"#dc2626":"#166534"}}>
-          {isFree?"🔒 Restricted Access":"✅ Full Platform Access"}
+          {isFree?"Restricted Access":"Full Platform Access"}
         </div>
         <div style={{fontSize:".78rem",color:"#64748b",marginTop:2}}>{plan.description}</div>
-        {plan.expiry_warning&&<div style={{fontSize:".72rem",color:"#d97706",fontWeight:600,marginTop:2}}>⚠️ Expires in {plan.days_remaining} day{plan.days_remaining!==1?"s":""}</div>}
+        {plan.expiry_warning&&<div style={{fontSize:".72rem",color:"#d97706",fontWeight:600,marginTop:2}}>Expires in {plan.days_remaining} day{plan.days_remaining!==1?"s":""}</div>}
       </div>
 
       {/* Quick stats */}
@@ -75,7 +75,7 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
       {/* Top recommendation */}
       {topRec&&(
         <div style={{...card,borderLeft:"3px solid "+({high:"#ef4444",medium:"#f59e0b",low:"#22c55e"}[topRec.priority]||"#6366f1")}}>
-          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>💡 {topRec.title}</div>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>{topRec.title}</div>
           <div style={{fontSize:".76rem",color:"#64748b"}}>{topRec.body}</div>
           {topRec.action==="upgrade"&&onUpgrade&&(
             <button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade</button>
@@ -84,7 +84,7 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
       )}
       {!topRec&&plan.has_full_access&&(
         <div style={{...card,background:"rgba(34,197,94,.06)",border:"1px solid #86efac"}}>
-          <div style={{fontWeight:700,fontSize:".82rem",color:"#166534"}}>✅ All good!</div>
+          <div style={{fontWeight:700,fontSize:".82rem",color:"#166534"}}>All good!</div>
           <div style={{fontSize:".76rem",color:"#64748b",marginTop:2}}>Your child is on track. Keep encouraging regular practice.</div>
         </div>
       )}
@@ -92,7 +92,7 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
       {/* Weak topics preview */}
       {weakTopics.length>0&&(
         <div style={card}>
-          <div style={{fontWeight:700,marginBottom:6,fontSize:".82rem",color:"#ef4444"}}>⚠ Needs Practice</div>
+          <div style={{fontWeight:700,marginBottom:6,fontSize:".82rem",color:"#ef4444"}}>Needs Practice</div>
           {weakTopics.slice(0,2).map(function(t,i){return(
             <div key={i} style={{fontSize:".75rem",padding:"3px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>{t.subject} — {t.chapter}</div>
           );})}
@@ -113,13 +113,13 @@ function TodaysPlanSection({detail, onUpgrade, onSectionNav}){
       <div data-testid="workspace-section-plan">
         {plan.has_full_access?(
           <div style={{...card,background:"rgba(34,197,94,.06)",border:"1px solid #86efac"}}>
-            <div style={{fontWeight:700,color:"#166534"}}>🌟 Nothing urgent today!</div>
+            <div style={{fontWeight:700,color:"#166534"}}>Nothing urgent today</div>
             <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>Encourage daily practice. Try a mock test or lesson to keep the momentum going.</div>
             <button onClick={function(){onSectionNav("mock");}} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>📝 Start Mock Test</button>
           </div>
         ):(
           <div style={card}>
-            <div style={{fontWeight:700}}>🔒 Limited access today</div>
+            <div style={{fontWeight:700}}>Limited access — upgrade to unlock</div>
             <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>Upgrade to unlock all lessons, mock tests, and Exemplar practice.</div>
             {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>🚀 Upgrade</button>}
           </div>
@@ -131,15 +131,15 @@ function TodaysPlanSection({detail, onUpgrade, onSectionNav}){
   var prioColor={"high":"#ef4444","medium":"#f59e0b","low":"#22c55e"};
   return(
     <div data-testid="workspace-section-plan">
-      <div style={{fontWeight:700,marginBottom:10,fontSize:".85rem"}}>📋 Recommended for Today</div>
+      <div style={{fontWeight:700,marginBottom:10,fontSize:".85rem"}}>Recommended for Today</div>
       {recs.map(function(r,i){return(
         <div key={i} style={{...card,borderLeft:"3px solid "+(prioColor[r.priority]||"#6366f1"),marginBottom:8}}>
           <div style={{fontWeight:700,fontSize:".82rem",color:prioColor[r.priority]||"#6366f1"}}>{r.title}</div>
           <div style={{fontSize:".76rem",color:"#64748b",marginTop:2}}>{r.body}</div>
           <div style={{display:"flex",gap:6,marginTop:8,flexWrap:"wrap"}}>
             {r.action==="upgrade"&&onUpgrade&&<button onClick={onUpgrade} style={{...btn1,fontSize:".72rem",padding:"4px 10px"}}>🚀 Upgrade</button>}
-            {r.action==="mock_tests"&&<button onClick={function(){onSectionNav("mock");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#0ea5e9"}}>📝 Mock Tests</button>}
-            {r.action==="view_progress"&&<button onClick={function(){onSectionNav("progress");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#6366f1"}}>📈 Progress</button>}
+            {r.action==="mock_tests"&&<button onClick={function(){onSectionNav("mock");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#0ea5e9"}}>Mock Tests</button>}
+            {r.action==="view_progress"&&<button onClick={function(){onSectionNav("progress");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#6366f1"}}>Progress</button>}
           </div>
         </div>
       );})}
@@ -155,7 +155,7 @@ function MockTestsSection({detail, plan, onUpgrade}){
     <div data-testid="workspace-section-mock">
       {isFree&&mt.free_daily_limit&&(
         <div style={{...card,background:"rgba(245,158,11,.07)",border:"1px solid #fcd34d",marginBottom:8}}>
-          <div style={{fontWeight:600,color:"#d97706"}}>📊 Free Tier: {mt.free_daily_limit} mock tests/day</div>
+          <div style={{fontWeight:600,color:"#d97706"}}>Free Tier: {mt.free_daily_limit} mock tests/day</div>
           <div style={{fontSize:".75rem",color:"#64748b",marginTop:2}}>Upgrade for unlimited mock tests and full analysis.</div>
           {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade</button>}
         </div>
@@ -208,17 +208,17 @@ function HomeworkExamsSection({insights}){
   return(
     <div data-testid="workspace-section-homework">
       <div style={{...card,background:"rgba(148,163,184,.06)"}}>
-        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>📚 Homework</div>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>Homework</div>
         <div style={{fontSize:".78rem",color:"#94a3b8"}}>{insights.homework?.message||"Homework tracking is not enabled yet."}</div>
       </div>
       <div style={{...card,background:"rgba(148,163,184,.06)"}}>
-        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>📅 Exams</div>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>Exams</div>
 <div style={{fontSize:".78rem",color:"#94a3b8"}}>{insights.exams?.message||"Exam schedule is not available yet."}</div>
       </div>
       {/* Mock test recommendations from insights */}
       {(insights.mock_test_recommendations?.recommendations||[]).length>0&&(
         <div style={card}>
-          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📝 Mock Test Suggestions</div>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>Mock Test Suggestions</div>
           {insights.mock_test_recommendations.recommendations.map(function(r,i){return(
             <div key={i} style={{fontSize:".78rem",padding:"4px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
               <strong>{r.title}</strong>
@@ -230,7 +230,7 @@ function HomeworkExamsSection({insights}){
       {/* Revision suggestions */}
       {(insights.revision_suggestions?.topics||[]).length>0&&(
         <div style={card}>
-          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>🔄 Revision Suggestions</div>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>Revision Suggestions</div>
           {insights.revision_suggestions.topics.map(function(t,i){return(
             <div key={i} style={{fontSize:".75rem",padding:"3px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
               <strong>{t.subject}</strong> — {t.chapter}
@@ -249,7 +249,7 @@ function ReportSection({report, loading}){
   return(
     <div data-testid="workspace-section-report">
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-        <div style={{fontWeight:700,fontSize:".88rem"}}>🖨️ Progress Report</div>
+        <div style={{fontWeight:700,fontSize:".88rem"}}>Progress Report</div>
         <button onClick={function(){window.print();}} style={{...btn1,padding:"5px 14px",fontSize:".75rem"}}>🖨️ Print</button>
       </div>
       <div style={{fontSize:".7rem",color:"#94a3b8",marginBottom:10}}>Generated: {report.generated_at?new Date(report.generated_at).toLocaleString():""}</div>
@@ -260,7 +260,7 @@ function ReportSection({report, loading}){
       </div>
       {/* Progress */}
       <div style={card}>
-        <div style={{fontWeight:700,marginBottom:4}}>📈 Progress</div>
+        <div style={{fontWeight:700,marginBottom:4}}>Progress</div>
         {report.progress_summary?.available
           ?<div style={{fontSize:".78rem",color:"#64748b"}}>{report.progress_summary.completed_chapters} chapters completed of {report.progress_summary.total_tracked} tracked.</div>
           :<div style={{fontSize:".78rem",color:"#94a3b8"}}>No progress data yet.</div>
@@ -268,7 +268,7 @@ function ReportSection({report, loading}){
       </div>
       {/* Mock tests */}
       <div style={card}>
-        <div style={{fontWeight:700,marginBottom:4}}>📝 Mock Tests</div>
+        <div style={{fontWeight:700,marginBottom:4}}>Mock Tests</div>
         {report.mock_test_summary?.available
           ?<div style={{fontSize:".78rem",color:"#64748b"}}>{report.mock_test_summary.tests_taken} tests · Avg: {report.mock_test_summary.average_score!=null?report.mock_test_summary.average_score+"%":"—"}</div>
           :<div style={{fontSize:".78rem",color:"#94a3b8"}}>No mock test data yet.</div>
@@ -277,14 +277,14 @@ function ReportSection({report, loading}){
       {/* Strengths */}
       {(report.strengths||[]).length>0&&(
         <div style={card}>
-          <div style={{fontWeight:700,marginBottom:4,color:"#22c55e"}}>✅ Strengths</div>
+          <div style={{fontWeight:700,marginBottom:4,color:"#22c55e"}}>Strengths</div>
           {report.strengths.map(function(s,i){return <span key={i} style={{fontSize:".75rem",background:"rgba(34,197,94,.1)",color:"#166534",padding:"2px 7px",borderRadius:5,marginRight:5,display:"inline-block"}}>{s}</span>;})}
         </div>
       )}
       {/* Areas for improvement */}
       {(report.areas_for_improvement||[]).length>0&&(
         <div style={card}>
-          <div style={{fontWeight:700,marginBottom:4,color:"#ef4444"}}>⚠ Areas for Improvement</div>
+          <div style={{fontWeight:700,marginBottom:4,color:"#ef4444"}}>Areas for Improvement</div>
           {report.areas_for_improvement.slice(0,3).map(function(a,i){return(
             <div key={i} style={{fontSize:".75rem",padding:"2px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>{a.subject} — {a.chapter}</div>
           );})}
@@ -304,7 +304,7 @@ function StrengthsNeedsSection({analytics}){
   return(
     <div data-testid="workspace-section-strengths">
       <div style={{marginBottom:12}}>
-        <div style={{fontWeight:700,fontSize:".85rem",color:"#22c55e",marginBottom:6}}>✅ Strengths</div>
+        <div style={{fontWeight:700,fontSize:".85rem",color:"#22c55e",marginBottom:6}}>Strengths</div>
         {strengths.available&&strengths.strong_subjects?.length>0
           ?<div style={{display:"flex",flexWrap:"wrap",gap:5}}>
               {strengths.strong_subjects.map(function(s,i){return <span key={i} style={{background:"rgba(34,197,94,.1)",color:"#166534",fontSize:".75rem",fontWeight:600,padding:"3px 8px",borderRadius:5}}>{s}</span>;})}
@@ -313,7 +313,7 @@ function StrengthsNeedsSection({analytics}){
         }
       </div>
       <div>
-        <div style={{fontWeight:700,fontSize:".85rem",color:"#ef4444",marginBottom:6}}>⚠ Needs Practice</div>
+        <div style={{fontWeight:700,fontSize:".85rem",color:"#ef4444",marginBottom:6}}>Needs Practice</div>
         {weaknesses.available&&(weaknesses.weak_topics||[]).length>0&&(
           weaknesses.weak_topics.slice(0,5).map(function(t,i){return(
             <div key={i} style={{background:"rgba(239,68,68,.04)",border:"1px solid #fca5a5",borderRadius:8,padding:"8px 12px",marginBottom:6}}>
@@ -416,12 +416,18 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
           </div>
           <button onClick={onClose} style={{background:"none",border:"none",fontSize:"1.2rem",cursor:"pointer",padding:4}}>✕</button>
         </div>
-        {/* Tab bar */}
-        <div style={{display:"flex",gap:0,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
+        {/* Tab bar — horizontal scroll, hidden scrollbar, touch-friendly */}
+        <div style={{display:"flex",gap:0,overflowX:"auto",WebkitOverflowScrolling:"touch",
+          scrollbarWidth:"none",msOverflowStyle:"none",marginLeft:-2,marginRight:-2,paddingBottom:1}}>
           {TABS.map(function(t){return(
             <button key={t.key} data-testid={"ws-tab-"+t.key} onClick={function(){setTab(t.key);}}
-              style={{padding:"6px 10px",border:"none",background:"none",cursor:"pointer",fontFamily:"inherit",fontSize:".73rem",fontWeight:tab===t.key?700:400,color:tab===t.key?"#6366f1":"#64748b",borderBottom:tab===t.key?"2px solid #6366f1":"2px solid transparent",whiteSpace:"nowrap",marginBottom:-1,flexShrink:0}}>
-              {t.icon} {t.label}
+              style={{padding:"7px 12px",border:"none",background:"none",cursor:"pointer",
+                fontFamily:"inherit",fontSize:".72rem",fontWeight:tab===t.key?700:500,
+                color:tab===t.key?"#6366f1":"#64748b",
+                borderBottom:tab===t.key?"2px solid #6366f1":"2px solid transparent",
+                whiteSpace:"nowrap",marginBottom:-1,flexShrink:0,letterSpacing:"-.01em",
+                minWidth:0}}>
+              {t.label}
             </button>
           );})}
         </div>
