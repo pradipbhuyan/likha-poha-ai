@@ -45,6 +45,20 @@ vi.mock("../api/teacherDashboard", () => ({
   addStudentToClassroom:   vi.fn(async () => ({ success: true })),
   removeStudentFromClassroom: vi.fn(async () => ({ success: true })),
   createTeacherStudent: vi.fn(async () => ({ success: true, student: {} })),
+  // Phase 2
+  getStudentTimeline:    vi.fn(async () => ({ success: true, events: [], count: 0 })),
+  getInterventions:      vi.fn(async () => ({ success: true, interventions: [], count: 0 })),
+  listTeacherTasks:      vi.fn(async () => ({ success: true, tasks: [] })),
+  createTeacherTask:     vi.fn(async () => ({ success: true, task: {} })),
+  completeTeacherTask:   vi.fn(async () => ({ success: true })),
+  dismissTeacherTask:    vi.fn(async () => ({ success: true })),
+  getClassroomAnalytics: vi.fn(async () => ({ success: true, student_count: 0, active_count: 0, inactive_count: 0, mock_test: { available: false }, activity: { available: false } })),
+  listStudentNotes:      vi.fn(async () => ({ success: true, notes: [] })),
+  createStudentNote:     vi.fn(async () => ({ success: true, note: {} })),
+  updateStudentNote:     vi.fn(async () => ({ success: true })),
+  deleteStudentNote:     vi.fn(async () => ({ success: true })),
+  getParentContact:      vi.fn(async () => ({ success: true, has_parent: false, parent: null })),
+  messageParent:         vi.fn(async () => ({ success: true, status: "no_email" })),
 }));
 
 const teacherUser = {

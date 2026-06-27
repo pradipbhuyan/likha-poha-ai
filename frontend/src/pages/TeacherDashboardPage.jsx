@@ -15,11 +15,6 @@ import { useCallback, useEffect, useState } from "react";
 import {
   getTeacherClassroomSummary,
   listTeacherStudents,
-  getTeacherStudentDetail,
-  updateTeacherStudent,
-  archiveTeacherStudent,
-  resetTeacherStudentPassword,
-  emailTeacherStudentCredentials,
   listTeacherInvitations,
   createTeacherInvitation,
   resendTeacherInvitation,
@@ -35,6 +30,10 @@ import {
   completeTeacherTask,
   dismissTeacherTask,
 } from "../api/teacherDashboard";
+import StudentWorkspace       from "../components/teacher/StudentWorkspace";
+import TeacherAssistantCard   from "../components/teacher/TeacherAssistantCard";
+import InterventionQueue      from "../components/teacher/InterventionQueue";
+import ClassroomAnalyticsCard from "../components/teacher/ClassroomAnalyticsCard";
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
 const card = {
@@ -262,6 +261,9 @@ function OverviewTab({ user: _user, isPaid, onNavigate }) {
         </div>
       )}
 
+      {/* Teacher Assistant Card */}
+      <TeacherAssistantCard onNavigate={onNavigate} />
+
       {/* Quick actions */}
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <button onClick={() => onNavigate("students")}    className="primary-btn">🎓 Manage Students</button>
@@ -282,13 +284,8 @@ function StudentsTab({ user: _user, isPaid }) {
   const [filterGrade, setGrade] = useState("");
   const [filterStatus, setStatus] = useState("");
   const [sort, setSort]         = useState("name");
-  const [selected, setSelected] = useState(null);   // student detail drawer
-  const [detail, setDetail]     = useState(null);
-  const [detailLoading, setDL]  = useState(false);
+  const [selected, setSelected] = useState(null);   // student workspace
   const [msg, setMsg]           = useState(null);
-  const [pwResult, setPwResult] = useState(null);
-  const [editMode, setEditMode] = useState(false);
-  const [editData, setEditData] = useState({});
   const [showAddForm, setShowAdd] = useState(false);
 
   const load = useCallback(async () => {
@@ -299,43 +296,6 @@ function StudentsTab({ user: _user, isPaid }) {
   }, [q, filterGrade, filterStatus, sort]);
 
   useEffect(() => { load(); }, [load]);
-
-  async function openDetail(s) {
-    setSelected(s);
-    setDL(true);
-    setDetail(null);
-    setPwResult(null);
-    setMsg(null);
-    setEditMode(false);
-    const d = await getTeacherStudentDetail(s.id).catch(() => null);
-    setDetail(d);
-    setDL(false);
-  }
-
-  async function doArchive(s) {
-    if (!window.confirm(`Archive ${s.username}? They will be removed from your roster.`)) return;
-    const d = await archiveTeacherStudent(s.id).catch(e => ({ success: false, error: e.message }));
-    if (d.success) { setMsg("✅ Student archived."); load(); setSelected(null); }
-    else setMsg(`⚠ ${d.error}`);
-  }
-
-  async function doResetPassword(s) {
-    if (!window.confirm("Reset temporary password for " + s.username + "? Shown once only.")) return;
-    const d = await resetTeacherStudentPassword(s.id).catch(e => ({ success: false, error: e.message }));
-    setPwResult(d);
-  }
-
-  async function doEmailCredentials(s) {
-    const d = await emailTeacherStudentCredentials(s.id).catch(e => ({ success: false, error: e.message }));
-    if (d.invite_sent) setMsg("✅ Login credentials emailed.");
-    else setMsg("⚠ " + (d.error || d.note || "Could not send."));
-  }
-
-  async function doSaveEdit() {
-    const d = await updateTeacherStudent(selected.id, editData).catch(e => ({ success: false, error: e.message }));
-    if (d.success) { setMsg("✅ Saved."); setEditMode(false); load(); openDetail(selected); }
-    else setMsg("⚠ " + d.error);
-  }
 
   return (
     <div data-testid="teacher-students-tab">
@@ -386,100 +346,15 @@ function StudentsTab({ user: _user, isPaid }) {
               {s.email || "—"} · {s.grade || "—"}
             </div>
           </div>
-          <button onClick={() => openDetail(s)} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #6366f1", background: "rgba(99,102,241,.08)", color: "#6366f1", fontWeight: 600, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+          <button onClick={() => setSelected(s)} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #6366f1", background: "rgba(99,102,241,.08)", color: "#6366f1", fontWeight: 600, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
             View
           </button>
         </div>
       ))}
 
-      {/* ── Student detail drawer ── */}
+      {/* ── Student Workspace (replaces basic drawer) ── */}
       {selected && (
-        <div style={{ position: "fixed", top: 0, right: 0, width: Math.min(420, window.innerWidth), height: "100vh", background: "var(--panel,#fff)", boxShadow: "-4px 0 24px rgba(0,0,0,.12)", overflowY: "auto", zIndex: 200, padding: 20 }}>
-          <button onClick={() => setSelected(null)} style={{ float: "right", background: "none", border: "none", fontSize: "1.2rem", cursor: "pointer" }}>✕</button>
-          <h3 style={{ margin: "0 0 4px" }}>{selected.username}</h3>
-          {detailLoading && <div style={{ color: "#94a3b8" }}>Loading…</div>}
-
-          {detail && !detailLoading && (
-            <>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
-                {[["Grade", detail.student?.grade], ["Plan", detail.student?.subscription_plan], ["Status", detail.student?.account_status]].map(([k, v]) => (
-                  <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px" }}>
-                    <div style={{ fontSize: ".68rem", color: "#64748b" }}>{k}</div>
-                    <div style={{ fontSize: ".82rem", fontWeight: 700 }}>{v || "—"}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Learning signals */}
-              {detail.learning && (
-                <div style={{ ...card }}>
-                  <div style={{ fontWeight: 700, marginBottom: 6 }}>📊 Learning Signals</div>
-                  {detail.learning.last_active
-                    ? <div style={{ fontSize: ".78rem" }}>Last active: {new Date(detail.learning.last_active).toLocaleString()}</div>
-                    : <div style={{ fontSize: ".78rem", color: "#94a3b8" }}>No recent activity recorded.</div>}
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                    {[["Lessons", detail.learning.lessons_generated], ["Doubts", detail.learning.doubts_asked], ["Mock Tests", detail.learning.mock_tests_completed], ["Avg Score", detail.learning.mock_test_avg != null ? detail.learning.mock_test_avg + "%" : "—"]].map(([k, v]) => (
-                      <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px", textAlign: "center" }}>
-                        <div style={{ fontWeight: 700 }}>{v ?? 0}</div>
-                        <div style={{ fontSize: ".68rem", color: "#64748b" }}>{k}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Classrooms */}
-              {detail.classrooms?.length > 0 && (
-                <div style={{ marginBottom: 10 }}>
-                  <strong style={{ fontSize: ".8rem" }}>Classrooms: </strong>
-                  {detail.classrooms.map(c => <span key={c.id} style={{ marginRight: 6, fontSize: ".78rem", background: "rgba(99,102,241,.1)", color: "#6366f1", padding: "2px 7px", borderRadius: 5 }}>{c.name}</span>)}
-                </div>
-              )}
-
-              {/* Edit form */}
-              {editMode ? (
-                <div style={{ marginBottom: 10 }}>
-                  {["username", "grade", "email"].map(f => (
-                    <label key={f} style={{ display: "block", marginBottom: 6 }}>
-                      <span style={{ fontSize: ".78rem", fontWeight: 600 }}>{f}</span>
-                      <input value={editData[f] ?? (detail.student?.[f] || "")} onChange={e => setEditData(p => ({ ...p, [f]: e.target.value }))}
-                        style={{ ...inputStyle, marginTop: 2 }} />
-                    </label>
-                  ))}
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <button onClick={doSaveEdit} className="primary-btn">💾 Save</button>
-                    <button onClick={() => setEditMode(false)} className="secondary-btn">Cancel</button>
-                  </div>
-                </div>
-              ) : null}
-
-              {/* Actions */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 8 }}>
-                {!editMode && <button onClick={() => { setEditMode(true); setEditData({}); }} className="secondary-btn">✏️ Edit Details</button>}
-                <button onClick={() => doResetPassword(selected)} className="secondary-btn">🔑 Reset Password</button>
-
-                {/* Email credentials — paid only */}
-                {isPaid ? (
-                  <button onClick={() => doEmailCredentials(selected)} className="secondary-btn">📧 Email Login Details</button>
-                ) : (
-                  <button disabled title="Upgrade to a paid plan to email login details." style={{ opacity: .5, cursor: "not-allowed" }} className="secondary-btn">
-                    📧 Email Login Details (Paid only)
-                  </button>
-                )}
-
-                <button onClick={() => doArchive(selected)} className="danger-btn">🗑 Archive Student</button>
-              </div>
-
-              {/* Password result */}
-              {pwResult?.success && (
-                <div style={{ marginTop: 10, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem" }}>
-                  🔑 New temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code><br />
-                  <small style={{ color: "#64748b" }}>{pwResult.warning}</small>
-                </div>
-              )}
-            </>
-          )}
-        </div>
+        <StudentWorkspace student={selected} isPaid={isPaid} onClose={() => setSelected(null)} />
       )}
     </div>
   );
@@ -709,8 +584,11 @@ function ClassroomsTab({ user: _user }) {
             </div>
           )}
 
+          {/* Classroom analytics */}
+          <ClassroomAnalyticsCard classroomId={cls.id} classroomName={cls.name} />
+
           {/* Add student to classroom */}
-          <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
             <select onChange={async e => {
               if (!e.target.value) return;
               await addStudentToClassroom(cls.id, e.target.value);
@@ -760,6 +638,12 @@ function InsightsTab({ user: _user }) {
           ))}
         </div>
       )}
+
+      {/* Intervention Queue */}
+      <div style={card}>
+        <div style={{ fontWeight: 700, marginBottom: 10 }}>🚨 Intervention Queue</div>
+        <InterventionQueue isPaid={false} />
+      </div>
 
       {attention.length === 0 && (
         <div style={{ ...card, color: "#166534", background: "#f0fdf4", border: "1px solid #bbf7d0" }}>
