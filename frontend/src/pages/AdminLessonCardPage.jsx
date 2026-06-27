@@ -185,6 +185,7 @@ function AdminLessonCardPage({ user }) {
 
   if (loading) return <p>Loading lesson card settings...</p>;
 
+  // eslint-disable-next-line no-unused-vars
   const MiniCard = MINI_RENDERERS[settings.card_style] || MiniCardDefault;
   const themeNeedsColor = settings.card_style !== "default";
 
