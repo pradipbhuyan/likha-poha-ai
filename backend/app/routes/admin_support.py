@@ -30,10 +30,10 @@ from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 
 from app.services.auth_service import admin_client, require_admin
-
-logger = logging.getLogger("likhapoha.support")
 from app.services.audit_log_service import write_audit_event
 from app.services.subscription_resolver_service import resolve_user_subscription
+
+logger = logging.getLogger("likhapoha.support")
 
 router = APIRouter()
 
@@ -417,6 +417,14 @@ def support_view_as_user(user_id: str, admin=Depends(require_admin)):
     except Exception:
         resolved = None
 
+    # Activity summary (graceful — only available if ai_usage_logs exist)
+    activity = None
+    try:
+        from app.routes.admin_control import build_student_activity
+        activity = build_student_activity(profile.get("username", ""))
+    except Exception:
+        activity = None
+
     write_audit_event(
         event_type="impersonation.started",
         actor_user_id=admin.get("id"),
@@ -428,6 +436,7 @@ def support_view_as_user(user_id: str, admin=Depends(require_admin)):
 
     return {
         "success": True,
+        "activity": activity,
         "view_as": {
             "user_id": user_id,
             "username": profile.get("username"),

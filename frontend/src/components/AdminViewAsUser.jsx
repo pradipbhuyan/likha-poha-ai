@@ -258,12 +258,59 @@ export default function AdminViewAsUser({ accessToken }) {
             ))}
           </div>
 
+          {/* Subscription state — human-readable cards */}
           {viewAsCtx.resolved_subscription && (
             <div style={{ background: "var(--surface2, #f8fafc)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 9, padding: "12px 14px", marginBottom: 12 }}>
-              <h4 style={{ margin: "0 0 8px", fontSize: ".85rem" }}>Resolved Subscription State</h4>
-              <pre style={{ fontSize: ".75rem", margin: 0, overflow: "auto", maxHeight: 160, color: "var(--text, #374151)" }}>
-                {JSON.stringify(viewAsCtx.resolved_subscription, null, 2)}
-              </pre>
+              <h4 style={{ margin: "0 0 10px", fontSize: ".85rem", fontWeight: 700 }}>📋 Subscription Details</h4>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {[
+                  ["Source", viewAsCtx.resolved_subscription.source],
+                  ["Plan", viewAsCtx.resolved_subscription.plan_name || viewAsCtx.resolved_subscription.subscription_plan || "free"],
+                  ["Days Left", viewAsCtx.resolved_subscription.days_remaining != null ? `${viewAsCtx.resolved_subscription.days_remaining}d` : "—"],
+                  ["Valid Until", viewAsCtx.resolved_subscription.valid_until ? viewAsCtx.resolved_subscription.valid_until.slice(0,10) : "No expiry"],
+                  ["Expiring Soon", viewAsCtx.resolved_subscription.expiring_soon ? "⚠ Yes" : "No"],
+                ].map(([k, v]) => (
+                  <div key={k} style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px", minWidth: 80 }}>
+                    <div style={{ fontSize: ".68rem", color: "#64748b" }}>{k}</div>
+                    <div style={{ fontSize: ".82rem", fontWeight: 700 }}>{v ?? "—"}</div>
+                  </div>
+                ))}
+              </div>
+              {viewAsCtx.resolved_subscription.restrictions?.length > 0 && (
+                <div style={{ marginTop: 8, fontSize: ".72rem", color: "#94a3b8" }}>
+                  Feature limits: {viewAsCtx.resolved_subscription.restrictions.join(", ")}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Activity stats */}
+          {viewAsCtx.activity && (
+            <div style={{ background: "var(--surface2, #f8fafc)", border: "1px solid var(--border, #e5e7eb)", borderRadius: 9, padding: "12px 14px", marginBottom: 12 }}>
+              <h4 style={{ margin: "0 0 10px", fontSize: ".85rem", fontWeight: 700 }}>📊 Recent Activity</h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px,1fr))", gap: 8 }}>
+                {[
+                  ["📖 Lessons", viewAsCtx.activity.lessons_generated ?? 0],
+                  ["❓ Doubts", viewAsCtx.activity.doubts_asked ?? 0],
+                  ["📝 Mock Tests", viewAsCtx.activity.mock_tests_generated ?? 0],
+                  ["⚡ Tokens Today", (viewAsCtx.activity.tokens_today ?? 0).toLocaleString()],
+                  ["📅 Tokens Month", (viewAsCtx.activity.tokens_this_month ?? 0).toLocaleString()],
+                  ["💰 Total Cost", `$${(viewAsCtx.activity.cost_total ?? 0).toFixed(4)}`],
+                ].map(([label, val]) => (
+                  <div key={label} style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "8px 10px", textAlign: "center" }}>
+                    <div style={{ fontSize: ".78rem", fontWeight: 700, color: "var(--text,#1e293b)" }}>{val}</div>
+                    <div style={{ fontSize: ".65rem", color: "#64748b", marginTop: 2 }}>{label}</div>
+                  </div>
+                ))}
+              </div>
+              {viewAsCtx.activity.last_activity && (
+                <div style={{ marginTop: 8, fontSize: ".72rem", color: "#94a3b8" }}>
+                  Last active: {new Date(viewAsCtx.activity.last_activity).toLocaleString()}
+                </div>
+              )}
+              {!viewAsCtx.activity.last_activity && (
+                <div style={{ marginTop: 8, fontSize: ".72rem", color: "#94a3b8" }}>No recent activity recorded.</div>
+              )}
             </div>
           )}
 
