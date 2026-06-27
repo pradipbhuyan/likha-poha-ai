@@ -36,7 +36,7 @@ from app.services.feature_authorization_service import (
 )
 from app.routes.parent_dashboard_v2 import (
     _safe_query, _safe_one, _verify_child_ownership,
-    _build_recommendations, _plan_display,
+    _build_recommendations, _plan_display, _normalize_score_pct,
 )
 
 router = APIRouter()
@@ -80,17 +80,14 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
         .execute()
     )
     mock_count = len(test_rows)
-    pct_scores = [
-        round(r.get("percentage") or 0, 1)
-        for r in test_rows if r.get("percentage") is not None
-    ]
+    pct_scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
     # Subject averages
     subj_scores: dict = {}
     for r in test_rows:
         subj = r.get("subject") or "Unknown"
-        pct = round(r.get("percentage") or 0, 1) if r.get("percentage") is not None else None
+        pct = _normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score"))
         if pct is not None:
             subj_scores.setdefault(subj, []).append(pct)
     subject_avgs = {s: round(sum(v)/len(v), 1) for s, v in subj_scores.items()}
@@ -282,10 +279,7 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
         .execute()
     )
     mock_count = len(test_rows)
-    pct_scores = [
-        round(r.get("percentage") or 0, 1)
-        for r in test_rows if r.get("percentage") is not None
-    ]
+    pct_scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
     # Weak areas for revision suggestions
@@ -413,10 +407,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
         .limit(20)
         .execute()
     )
-    pct_scores = [
-        round(r.get("percentage") or 0, 1)
-        for r in test_rows if r.get("percentage") is not None
-    ]
+    pct_scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
     # Weak areas
@@ -433,7 +424,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     subj_scores: dict = {}
     for r in test_rows:
         subj = r.get("subject") or "Unknown"
-        pct = round(r.get("percentage") or 0, 1) if r.get("percentage") is not None else None
+        pct = _normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score"))
         if pct is not None:
             subj_scores.setdefault(subj, []).append(pct)
     subject_avgs = {s: round(sum(v)/len(v), 1) for s, v in subj_scores.items()}
@@ -484,7 +475,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
             "recent_tests": [
                 {
                     "subject": r.get("subject"),
-                    "score": round(r.get("percentage") or 0, 1),
+                    "score": _normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")),
                     "date": (r.get("created_at") or "")[:10],
                 }
                 for r in test_rows[:5]

@@ -486,7 +486,7 @@ function ChildAnalytics({childId}){
           :<>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
               <MetricCard label="Tests" value={data.mock_tests.total_tests?.value} available/>
-              <MetricCard label="Avg Score" value={data.mock_tests.average_score?.value} available explanation={data.mock_tests.average_score?.explanation}/>
+              <MetricCard label="Avg Score" value={data.mock_tests.average_score?.value??"—"} available explanation={data.mock_tests.average_score?.explanation}/>
             </div>
             {/* Score trend as simple bars */}
             {data.mock_tests.trend?.length>0&&(
@@ -494,9 +494,11 @@ function ChildAnalytics({childId}){
                 <div style={{fontSize:".72rem",fontWeight:600,marginBottom:4,color:"#64748b"}}>Score Trend</div>
                 <div style={{display:"flex",gap:3,alignItems:"flex-end",height:40}}>
                   {data.mock_tests.trend.map(function(t,i){
-                    var h=Math.max(4,Math.round(t.score/100*40));
-                    var col=t.score>=60?"#22c55e":t.score>=40?"#f59e0b":"#ef4444";
-                    return <div key={i} title={t.subject+": "+t.score+"%"} style={{flex:1,height:h,background:col,borderRadius:2,minWidth:8}}/>;
+                    var sc=t.score!=null?t.score:0;
+                    var h=Math.max(4,Math.round(sc/100*40));
+                    var col=sc>=60?"#22c55e":sc>=40?"#f59e0b":"#ef4444";
+                    var lbl=t.score!=null?t.subject+": "+sc+"%":t.subject+": N/A";
+                    return <div key={i} title={lbl} style={{flex:1,height:h,background:col,borderRadius:2,minWidth:8}}/>;
                   })}
                 </div>
               </div>
@@ -587,6 +589,10 @@ function ChildInsights({childId, onUpgrade: _onUpgrade}){
             </div>
           );})}
         </div>
+      )}
+      {/* Fallback: nothing available */}
+      {!data.mock_test_recommendations?.recommendations?.length&&!data.revision_suggestions?.available&&(
+        <div style={{color:"#64748b",fontSize:".78rem",padding:"8px 0"}}>No recommendations at this time.</div>
       )}
     </div>
   );

@@ -51,6 +51,33 @@ def _safe_one(fn):
     rows, err = _safe_query(fn)
     return (rows[0] if rows else None, err)
 
+def _normalize_score_pct(percentage=None, raw_score=None, max_score=None) -> float | None:
+    """
+    Canonical score normalizer for parent dashboard display.
+
+    Rules:
+    - If percentage is provided and 0 <= percentage <= 100 → use directly.
+    - If percentage > 100 → treat as invalid, try raw_score/max_score calculation.
+    - If raw_score and max_score both > 0 → (raw_score / max_score) * 100.
+    - If ambiguous or no valid data → return None (show "Score not available").
+    - Never multiply an already-percent value by 100.
+    """
+    # Preferred: percentage column (already 0-100)
+    if percentage is not None:
+        pct = float(percentage)
+        if 0.0 <= pct <= 100.0:
+            return round(pct, 1)
+        # pct > 100: invalid, fall through to raw calculation
+
+    # Fallback: raw_score / max_score
+    if raw_score is not None and max_score and float(max_score) > 0:
+        pct = (float(raw_score) / float(max_score)) * 100.0
+        if 0.0 <= pct <= 100.0:
+            return round(pct, 1)
+
+    return None  # Cannot determine a valid percentage
+
+
 
 def _plan_display(cpk: str, plan_name: str, has_full: bool, expires_at, days_remaining) -> dict:
     """Build a human-friendly plan summary for parent UI."""
@@ -353,8 +380,7 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
             .execute()
         )
         mock_count = len(test_rows)
-        scores = [(r.get("percentage") or 0)
-                  for r in test_rows if r.get("percentage") is not None]
+        scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
         avg_score = round(sum(scores) / len(scores), 1) if scores else None
 
         # Plan display
@@ -390,7 +416,7 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
                 "count": mock_count,
                 "average_score": avg_score,
                 "recent": [
-                    {"subject": r.get("subject"), "chapter": r.get("chapter"), "score": r.get("percentage"), "max_score": r.get("max_score"), "at": r.get("created_at")}
+                    {"subject": r.get("subject"), "chapter": r.get("chapter"), "score": _normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")), "max_score": r.get("max_score"), "at": r.get("created_at")}
                     for r in test_rows[:5]
                 ],
                 "free_daily_limit": FREE_MOCK_TEST_DAILY_LIMIT if child_cpk == "FREE_TIER" else None,

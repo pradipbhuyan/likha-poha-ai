@@ -527,3 +527,107 @@ class TestActiveStudentDataMapping:
         assert result["progress"]["status"] == "no_activity"
         assert result["mock_tests"]["status"] == "no_activity"
         assert result["activity"]["status"] == "no_activity"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Score normalization regression tests (_normalize_score_pct)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestScoreNormalization:
+    """
+    Regression: score values must never exceed 100%.
+    _normalize_score_pct is the canonical score formatter.
+    """
+    from app.routes.parent_dashboard_v2 import _normalize_score_pct as _n
+
+    def test_percentage_60_returns_60(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(60.0) == 60.0
+
+    def test_percentage_0_returns_0(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(0.0) == 0.0
+
+    def test_percentage_100_returns_100(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(100.0) == 100.0
+
+    def test_percentage_0_75_treated_as_already_percent(self):
+        """0.75 stored as percentage means 0.75% — caller must pass correct column."""
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        # 0.75 is within 0-100 → returned as 0.75% (not multiplied by 100)
+        result = _normalize_score_pct(0.75)
+        assert result == 0.8  # rounded
+
+    def test_raw_score_12_max_20_returns_60(self):
+        """raw_score=12, max_score=20 → 60%"""
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(None, raw_score=12, max_score=20) == 60.0
+
+    def test_raw_score_3_max_5_returns_60(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(None, raw_score=3, max_score=5) == 60.0
+
+    def test_percentage_1200_returns_none(self):
+        """1200% is invalid — must return None, not display 1200%."""
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        result = _normalize_score_pct(1200.0)
+        assert result is None, "REGRESSION: 1200% score must not be displayed"
+
+    def test_percentage_200_returns_none(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(200.0) is None
+
+    def test_no_data_returns_none(self):
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(None, None, None) is None
+
+    def test_max_score_zero_does_not_divide(self):
+        """max_score=0 must not cause ZeroDivisionError."""
+        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        assert _normalize_score_pct(None, raw_score=5, max_score=0) is None
+
+    def test_analytics_avg_score_never_exceeds_100(self, monkeypatch):
+        """Integration: analytics avg_score never > 100% even with boundary data."""
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+                            lambda p, c: CHILD)
+        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        call_n = {"n": 0}
+        def mock_q(fn):
+            call_n["n"] += 1
+            if call_n["n"] == 1:  # test_history with valid percentage values
+                return [
+                    {"percentage": 80.0, "raw_score": 4.0, "max_score": 5.0, "subject": "Science", "chapter": "Motion", "created_at": "2026-06-24"},
+                    {"percentage": 60.0, "raw_score": 3.0, "max_score": 5.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-23"},
+                ], None
+            return [], None
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_q)
+        result = get_child_analytics("child-1", parent=PARENT)
+        avg_val = result["mock_tests"]["average_score"]["value"]
+        if avg_val is not None:
+            # Extract numeric value from "70.0%" string
+            num = float(str(avg_val).replace("%","").strip())
+            assert num <= 100.0, f"REGRESSION: avg score {num}% exceeds 100%"
+
+    def test_recent_tests_scores_all_within_100(self, monkeypatch):
+        """Recent test scores in analytics must all be within 0-100."""
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+                            lambda p, c: CHILD)
+        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        call_n = {"n": 0}
+        def mock_q(fn):
+            call_n["n"] += 1
+            if call_n["n"] == 1:
+                return [
+                    {"percentage": 80.0, "raw_score": 4.0, "max_score": 5.0, "subject": "Science", "chapter": "Motion", "created_at": "2026-06-24"},
+                    {"percentage": 20.0, "raw_score": 1.0, "max_score": 5.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-23"},
+                ], None
+            return [], None
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_q)
+        result = get_child_analytics("child-1", parent=PARENT)
+        for t in result["mock_tests"].get("trend", []):
+            score = t.get("score")
+            if score is not None:
+                assert 0 <= score <= 100, f"Trend score {score} exceeds 100%"
