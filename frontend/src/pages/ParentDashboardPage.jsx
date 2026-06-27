@@ -1,1090 +1,519 @@
-import React, { useEffect, useState } from "react";
-import { GRADE_11_12_STREAMS, getSubjectsForStream, isStreamGrade } from "../utils/streamSubjects";
-
-import { getUserHistory } from "../api/analytics";
-import { getUsageSummary } from "../api/usage";
-
+/**
+ * ParentDashboardPage.jsx — Parent Experience Phase 1
+ * Design: clean parent-facing workspace showing each child's learning status
+ * Uses canonical /api/parent/dashboard/summary endpoint.
+ * Safety: parentId alone NEVER implies paid access — badge states from backend.
+ */
+import { useCallback, useEffect, useState } from "react";
 import {
-  getFamily,
+  getParentDashboardSummary,
+  getChildDetail,
   createStudent,
-  inviteParent,
-  getWeakAreaAlerts,
+  getParentSubscriptionPlans,
 } from "../api/parentDashboard";
 
-import { BarChart3, ClipboardList, Target, Trophy } from "lucide-react";
+// ── Design tokens ─────────────────────────────────────────────────────────────
+const STATUS_STYLE = {
+  restricted: { bg:"rgba(239,68,68,.07)",  border:"#fca5a5", text:"#dc2626", badge:"#ef4444" },
+  paid:       { bg:"rgba(34,197,94,.07)",  border:"#86efac", text:"#15803d", badge:"#22c55e" },
+  admin:      { bg:"rgba(99,102,241,.07)", border:"#c7d2fe", text:"#4f46e5", badge:"#6366f1" },
+};
+const BADGE_STATE = {
+  full:    { bg:"rgba(34,197,94,.1)",   color:"#166534", label:"✓" },
+  limited: { bg:"rgba(245,158,11,.1)",  color:"#92400e", label:"~" },
+  locked:  { bg:"rgba(239,68,68,.08)",  color:"#dc2626", label:"🔒" },
+};
+function card(x){return{background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:14,padding:"16px 18px",marginBottom:14,...(x||{})};}
+const inp  = {padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem",background:"var(--surface2,#f8fafc)",color:"var(--text,#1e293b)",width:"100%"};
+const btn1 = {padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"};
+const btn2 = {padding:"6px 12px",borderRadius:7,border:"1px solid var(--border,#e5e7eb)",background:"var(--panel,#fff)",fontFamily:"inherit",fontSize:".78rem",cursor:"pointer",color:"var(--text,#374151)"};
+const GRADES=Array.from({length:12},function(_,i){return"Grade "+(i+1);});
 
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  CartesianGrid,
-} from "recharts";
+function greet(){var h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening";}
 
-/** Consistent color palette for per-subject lines */
-const SUBJECT_COLORS = [
-  "#3b82f6", "#10b981", "#f59e0b", "#ef4444",
-  "#8b5cf6", "#06b6d4", "#ec4899", "#f97316",
-];
-
-function buildSubjectTrend(history) {
-  const subjectScores = {};
-  history.forEach((item) => {
-    const subj = item.subject || "Unknown";
-    if (!subjectScores[subj]) subjectScores[subj] = [];
-    subjectScores[subj].push(Number(item.percentage || 0));
-  });
-  const subjects = Object.keys(subjectScores);
-  if (subjects.length === 0) return { trendData: [], subjects: [] };
-  const maxLen = Math.max(...subjects.map((s) => subjectScores[s].length));
-  const trendData = Array.from({ length: maxLen }, (_, i) => {
-    const point = { name: `Test ${i + 1}` };
-    subjects.forEach((subj) => {
-      if (i < subjectScores[subj].length) point[subj] = subjectScores[subj][i];
-    });
-    return point;
-  });
-  return { trendData, subjects };
-}
-
-function buildSubjectPerformance(history) {
-  const subjectData = {};
-  history.forEach((item) => {
-    const subj = item.subject || "Unknown";
-    const score = Number(item.percentage || 0);
-    if (!subjectData[subj]) subjectData[subj] = { scores: [], latest: score };
-    subjectData[subj].scores.push(score);
-    subjectData[subj].latest = score;
-  });
-  return Object.entries(subjectData).map(([subject, d]) => ({
-    subject,
-    Best: Math.max(...d.scores),
-    Average: Math.round(d.scores.reduce((a, b) => a + b, 0) / d.scores.length),
-    Latest: d.latest,
-  }));
-}
-
-/** Desktop webcam capture component using getUserMedia */
-function WebcamCaptureModal({ onCapture, onClose }) {
-  const videoRef = React.useRef(null);
-  const canvasRef = React.useRef(null);
-  const [stream, setStream] = React.useState(null);
-  const [error, setError] = React.useState("");
-
-  React.useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
-      .then(s => {
-        setStream(s);
-        if (videoRef.current) videoRef.current.srcObject = s;
-      })
-      .catch(() => setError("Camera not available or permission denied."));
-    return () => {
-      // Stop camera when modal closes
-      setStream(prev => { prev?.getTracks().forEach(t => t.stop()); return null; });
-    };
-  }, []);
-
-  function capture() {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas) return;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0);
-    const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
-    stream?.getTracks().forEach(t => t.stop());
-    onCapture(dataUrl);
-  }
-
-  return (
-    <div className="modal-backdrop" style={{ zIndex: 2147483647 }}>
-      <div className="premium-modal" style={{ maxWidth: 480, textAlign: "center", marginLeft: 0, marginRight: "auto", position: "relative", left: "max(16px, 220px)" }}>
-        <button className="modal-close" onClick={() => { stream?.getTracks().forEach(t => t.stop()); onClose(); }}>×</button>
-        <h3 style={{ marginBottom: 12 }}>📸 Take a Photo</h3>
-        {error ? (
-          <div className="error-box">{error}</div>
-        ) : (
-          <>
-            <video ref={videoRef} autoPlay playsInline muted
-              style={{ width: "100%", borderRadius: 12, background: "#111827", maxHeight: 320 }} />
-            <canvas ref={canvasRef} style={{ display: "none" }} />
-            <button className="primary-btn" onClick={capture} style={{ marginTop: 14, width: "100%" }}>
-              📷 Capture Photo
-            </button>
-          </>
-        )}
-        <p style={{ fontSize: ".75rem", color: "var(--muted)", marginTop: 10 }}>
-          Browser will ask for camera permission. Allow it to take the photo.
-        </p>
+function Skel(){
+  return(
+    <div style={{maxWidth:960,margin:"0 auto",padding:"24px 14px"}}>
+      <div style={{height:26,background:"var(--border,#e5e7eb)",borderRadius:6,width:"40%",marginBottom:8}}/>
+      <div style={{height:14,background:"var(--border,#e5e7eb)",borderRadius:4,width:"60%",marginBottom:24}}/>
+      <div style={{display:"flex",gap:12}}>
+        {[1,2].map(i=><div key={i} style={{flex:1,height:220,background:"var(--border,#e5e7eb)",borderRadius:14}}/>)}
       </div>
     </div>
   );
 }
 
-function ParentDashboardPage() {
-  /** Parent view for managing family members and monitoring child progress and usage. */
-  const [familyId, setFamilyId] = useState(null);
-  const [parents, setParents] = useState([]);
-  const [children, setChildren] = useState([]);
-  const [selectedChild, setSelectedChild] = useState(null);
+// ── Feature Badge Row ─────────────────────────────────────────────────────────
+function FeatureBadges({badges}){
+  if(!badges||badges.length===0) return null;
+  return(
+    <div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:8}}>
+      {badges.map(function(b){
+        var st=BADGE_STATE[b.state]||BADGE_STATE.locked;
+        return(
+          <span key={b.feature} title={b.label+": "+b.state}
+            style={{fontSize:".7rem",fontWeight:700,padding:"2px 8px",borderRadius:999,background:st.bg,color:st.color,display:"inline-flex",alignItems:"center",gap:4}}>
+            {b.icon} {b.label}
+            {b.state==="limited"&&<span style={{fontSize:".62rem",opacity:.8}}>limited</span>}
+            {b.state==="locked"&&<span style={{fontSize:".62rem",opacity:.8}}>locked</span>}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
-  const [history, setHistory] = useState([]);
-  const [usage, setUsage] = useState(null);
-  const [weakAreaAlerts, setWeakAreaAlerts] = useState([]);
+// ── Plan Status Chip ──────────────────────────────────────────────────────────
+function PlanChip({plan}){
+  if(!plan) return null;
+  var color=plan.status_color||"restricted";
+  var st=STATUS_STYLE[color]||STATUS_STYLE.restricted;
+  return(
+    <span style={{fontSize:".72rem",fontWeight:700,padding:"3px 9px",borderRadius:999,background:st.bg,color:st.text,border:"1px solid "+st.border,display:"inline-block"}}>
+      {plan.has_full_access?"✓":"⊘"} {plan.status_label||plan.plan_name}
+    </span>
+  );
+}
 
-  const [familyLoading, setFamilyLoading] = useState(true);
-  const [childLoading, setChildLoading] = useState(false);
-
-  const [showAddChild, setShowAddChild] = useState(false);
-  const [showInviteParent, setShowInviteParent] = useState(false);
-
-  const [studentName, setStudentName] = useState("");
-  const [studentEmail, setStudentEmail] = useState("");
-  const [studentPassword, setStudentPassword] = useState("");
-  const [studentGrade, setStudentGrade] = useState("");
-  const [studentStream, setStudentStream] = useState("");
-  const [studentAvatar, setStudentAvatar] = useState(""); // emoji key or data: URL
-  const [showWebcam, setShowWebcam] = useState(false);
-  const [creatingStudent, setCreatingStudent] = useState(false);
-  const [createStudentError, setCreateStudentError] = useState("");
-
-  // Free preset avatars — boy, girl, and gender-neutral options
-  const PRESET_AVATARS = [
-    { key:"boy1",   emoji:"👦" },
-    { key:"boy2",   emoji:"🧒" },
-    { key:"boy3",   emoji:"👨‍🎓" },
-    { key:"girl1",  emoji:"👧" },
-    { key:"girl2",  emoji:"🧒‍♀️" },
-    { key:"girl3",  emoji:"👩‍🎓" },
-    { key:"star",   emoji:"⭐" },
-    { key:"rocket", emoji:"🚀" },
-    { key:"book",   emoji:"📚" },
-    { key:"brain",  emoji:"🧠" },
-  ];
-  // Stores credentials after child creation to show the "What to do next" card
-  const [createdChildInfo, setCreatedChildInfo] = useState(null);
-
-  const [parentName, setParentName] = useState("");
-  const [parentEmail, setParentEmail] = useState("");
-  const [parentPassword, setParentPassword] = useState("");
-  const [invitingParent, setInvitingParent] = useState(false);
-
-  async function loadFamily() {
-    /** Load parent and child records, preserving the currently selected child when possible. */
-    setFamilyLoading(true);
-
-    try {
-      const result = await getFamily();
-
-      const loadedParents = result.parents || [];
-      const loadedChildren = result.children || [];
-
-      setFamilyId(result.family_id);
-      setParents(loadedParents);
-      setChildren(loadedChildren);
-
-      if (loadedChildren.length > 0) {
-        setSelectedChild((current) => {
-          if (!current) return loadedChildren[0];
-
-          return (
-            loadedChildren.find((child) => child.id === current.id) ||
-            loadedChildren[0]
-          );
-        });
-      } else {
-        setSelectedChild(null);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFamilyLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    loadFamily();
-  }, []);
-
-  useEffect(() => {
-    async function loadChildData() {
-      /** Refresh analytics, usage, and weak-area alerts for the selected child. */
-      if (!selectedChild) {
-        setHistory([]);
-        setUsage(null);
-        setWeakAreaAlerts([]);
-        return;
-      }
-
-      setChildLoading(true);
-
-      try {
-        const username = selectedChild.username;
-
-        const historyData = await getUserHistory(username);
-        const usageData = await getUsageSummary(username);
-        const alertData = await getWeakAreaAlerts(selectedChild.id);
-
-        setHistory(historyData.history || []);
-        setUsage(usageData);
-        setWeakAreaAlerts(alertData.alerts || []);
-
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setChildLoading(false);
-      }
-    }
-
-    loadChildData();
-  }, [selectedChild]);
-
-  async function handleCreateStudent(e) {
-    /** Create a child account under the current family and refresh the dashboard. */
-    e.preventDefault();
-
-    setCreatingStudent(true);
-
-    try {
-      setCreateStudentError("");
-      if (!studentGrade) {
-        setCreateStudentError("Please select your child's class before creating the account.");
-        setCreatingStudent(false);
-        return;
-      }
-
-      await createStudent({
-        username: studentName,
-        email: studentEmail,
-        password: studentPassword,
-        grade: studentGrade,
-        avatar: studentAvatar || undefined,
-        // For Grade 11/12: set cbse_subjects from stream so only stream subjects show
-        cbse_subjects: (isStreamGrade(studentGrade) && studentStream)
-          ? getSubjectsForStream(studentStream)
-          : undefined,
-      });
-
-      // Save credentials for the "What to do next" card
-      setCreatedChildInfo({
-        username: studentName,
-        email: studentEmail,
-        password: studentPassword,
-        grade: studentGrade,
-        avatar: studentAvatar || "",
-      });
-
-      setStudentName("");
-      setStudentEmail("");
-      setStudentPassword("");
-      setStudentGrade("");
-      setStudentStream("");
-      setStudentAvatar("");
-      setShowAddChild(false);
-
-      await loadFamily();
-    } catch (err) {
-      console.error(err);
-      const msg = err.message || "Unable to create student.";
-      const isAuthErr = msg.toLowerCase().includes("parent") ||
-                        msg.toLowerCase().includes("access") ||
-                        msg.toLowerCase().includes("auth") ||
-                        msg.toLowerCase().includes("token") ||
-                        msg.toLowerCase().includes("unauthorized") ||
-                        msg.toLowerCase().includes("403") ||
-                        msg.toLowerCase().includes("401");
-      setCreateStudentError(
-        isAuthErr
-          ? "⚠️ Session expired or access issue detected.\n\nPlease log out and log back in to fix this. Your family data is safe."
-          : msg
-      );
-    } finally {
-      setCreatingStudent(false);
-    }
-  }
-
-  async function handleInviteParent(e) {
-    /** Add another parent login to the same family and reload the family roster. */
-    e.preventDefault();
-
-    setInvitingParent(true);
-
-    try {
-      await inviteParent({
-        username: parentName,
-        email: parentEmail,
-        password: parentPassword,
-      });
-
-      setParentName("");
-      setParentEmail("");
-      setParentPassword("");
-      setShowInviteParent(false);
-
-      await loadFamily();
-
-      alert("Parent invited successfully.");
-    } catch (err) {
-      console.error(err);
-      alert(err.message || "Unable to invite parent.");
-    } finally {
-      setInvitingParent(false);
-    }
-  }
-
-  if (familyLoading) {
-    return <p>Loading family dashboard...</p>;
-  }
-
-  const childName = selectedChild?.username || "Student";
-
-  const totalTests = history.length;
-  const scores = history.map((item) => Number(item.percentage || 0));
-
-  const averageScore = scores.length
-    ? Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
-    : 0;
-
-  const bestScore = scores.length ? Math.max(...scores) : 0;
-  const latestScore = scores.length ? scores[scores.length - 1] : 0;
-
-  const { trendData, subjects: trendSubjects } = buildSubjectTrend(history);
-  const subjectPerformance = buildSubjectPerformance(history);
-
-  const parentInsight =
-    latestScore >= 85
-      ? `${childName} is performing strongly. Encourage harder practice and Olympiad-style questions.`
-      : latestScore >= 60
-      ? `${childName} is progressing well. Weekly revision and mistake review will help improve consistency.`
-      : `${childName} may need guided revision. Start with weak chapters, then use short tests to rebuild confidence.`;
-
-  return (
-    <div className="parent-dashboard-page premium-page premium-parent-page">
-      <section className="premium-section parent-family-hub">
-        <div className="parent-family-copy">
-          <p className="eyebrow">Family Hub</p>
-
-          <h2>Family Learning Center</h2>
-
-          <p>
-            Manage parents, children, progress, test performance
-            from one clean dashboard.
-          </p>
-
-          <div className="family-summary-row">
-            <span>
-              {parents.length} Parent{parents.length === 1 ? "" : "s"}
-            </span>
-            <span>
-              {children.length} Child{children.length === 1 ? "" : "ren"}
-            </span>
+// ── Child Card (overview) ─────────────────────────────────────────────────────
+function ChildCard({child, onView}){
+  var plan=child.plan||{};
+  var st=STATUS_STYLE[plan.status_color]||STATUS_STYLE.restricted;
+  return(
+    <div style={{...card(),borderTop:"3px solid "+st.badge,cursor:"pointer"}} onClick={function(){onView(child);}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:8,flexWrap:"wrap"}}>
+        <div>
+          <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:4}}>
+            <strong style={{fontSize:"1rem"}}>{child.name||"Student"}</strong>
+            <span style={{fontSize:".75rem",color:"#64748b"}}>{child.grade||"—"}</span>
+            <PlanChip plan={plan}/>
           </div>
-
-          <div className="family-action-row">
-            <button
-              className="primary-btn"
-              onClick={() => setShowAddChild(true)}
-              disabled={children.length >= 2}
-            >
-              {children.length >= 2 ? "Child Limit Reached" : "+ Add Child"}
-            </button>
-
-            <button
-              className="secondary-btn"
-              onClick={() => setShowInviteParent(true)}
-              disabled={parents.length >= 2}
-            >
-              {parents.length >= 2 ? "Parent Limit Reached" : "+ Invite Parent"}
-            </button>
-          </div>
-        </div>
-
-        <div className="family-member-panel">
-          <div>
-            <h3>Parents</h3>
-
-            <div className="family-card-grid">
-              {parents.length === 0 ? (
-                <p className="muted">No parents found.</p>
-              ) : (
-                parents.map((parent) => (
-                  <div key={parent.id} className="family-person-card parent">
-                    <div className="family-avatar" style={{
-                      overflow: "hidden",
-                      fontSize: parent.avatar && parent.avatar.startsWith("data:") ? 0
-                               : parent.avatar ? "1.5rem" : undefined,
-                      background: parent.avatar ? "transparent" : undefined,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      {parent.avatar && parent.avatar.startsWith("data:") ? (
-                        <img src={parent.avatar} alt={parent.username} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                      ) : parent.avatar ? (
-                        PRESET_AVATARS.find(a => a.key === parent.avatar)?.emoji ||
-                        (parent.username || parent.email || "P")[0].toUpperCase()
-                      ) : (
-                        (parent.username || parent.email || "P")[0].toUpperCase()
-                      )}
-                    </div>
-
-                    <div>
-                      <strong>{parent.username || "Parent"}</strong>
-                      <small>Parent</small>
-                      <small>{parent.email}</small>
-                    </div>
-                  </div>
-                ))
-              )}
+          <div style={{fontSize:".78rem",color:"#64748b"}}>{plan.description}</div>
+          {plan.expiry_warning&&plan.days_remaining!=null&&(
+            <div style={{fontSize:".72rem",color:"#dc2626",fontWeight:600,marginTop:2}}>
+              ⚠️ Plan expires in {plan.days_remaining} day{plan.days_remaining!==1?"s":""}
             </div>
-          </div>
-
-          <div>
-            <h3>Children</h3>
-
-            <div className="family-card-grid">
-              {children.length === 0 ? (
-                <div className="family-empty-card">
-                  <strong>No children yet</strong>
-                  <small>Create your first student account.</small>
-                </div>
-              ) : (
-                children.map((child) => (
-                  <div key={child.id} style={{ display:"flex", flexDirection:"column", gap:6 }}>
-                    <button
-                      className={
-                        selectedChild?.id === child.id
-                          ? "family-person-card child selected"
-                          : "family-person-card child"
-                      }
-                      onClick={() => setSelectedChild(child)}
-                    >
-                      <div className="family-avatar child-avatar" style={{
-                        overflow: "hidden",
-                        fontSize: child.avatar && child.avatar.startsWith("data:") ? 0
-                                 : child.avatar ? "1.5rem" : undefined,
-                        background: child.avatar ? "transparent" : undefined,
-                      }}>
-                        {child.avatar && child.avatar.startsWith("data:") ? (
-                          <img src={child.avatar} alt={child.username} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                        ) : child.avatar ? (
-                          PRESET_AVATARS.find(a => a.key === child.avatar)?.emoji || child.username?.[0]?.toUpperCase() || "S"
-                        ) : (
-                          (child.username || child.email || "S")[0].toUpperCase()
-                        )}
-                      </div>
-
-                      <div>
-                        <strong>{child.username || "Student"}</strong>
-                        <small>Student</small>
-                        <small>{child.email || child.username}</small>
-                      </div>
-
-                      {selectedChild?.id === child.id && (
-                        <em className="selected-child-badge">Viewing</em>
-                      )}
-                    </button>
-                    {/* Persistent sign-in-as-child link */}
-                    {child.email && (
-                      <a
-                        href={`https://likhapoha.in/?u=${encodeURIComponent(child.email)}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.3)", borderRadius:8, padding:"5px 10px", fontSize:".72rem", color:"#a5b4fc", fontWeight:600, textDecoration:"none", cursor:"pointer" }}>
-                        🔑 Sign in as {child.username || "child"}
-                      </a>
-                    )}
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {!selectedChild ? (
-        <section className="premium-section premium-parent-empty">
-          <h3>No linked students found</h3>
-          <p>Create a student account to unlock progress insights.</p>
-          <button
-            className="primary-btn"
-            onClick={() => setShowAddChild(true)}
-            disabled={children.length >= 2}
-          >
-            {children.length >= 2 ? "Child Limit Reached" : "+ Add Child"}
-          </button>
-        </section>
-      ) : childLoading ? (
-        <p>Loading child analytics...</p>
-      ) : (
-        <>
-          <section className="premium-section selected-child-overview">
-            <div className="premium-header">
-              <p className="eyebrow">Selected Child</p>
-              <h2>{childName}&apos;s Learning Overview</h2>
-              <p>
-                Track learning progress, test performance, and
-                suggested next steps.
-              </p>
-            </div>
-
-            <div className="premium-parent-insight-card">
-              <span>💡</span>
-
-              <div>
-                <strong>Parent Suggestion</strong>
-                <p>{parentInsight}</p>
-              </div>
-            </div>
-          </section>
-
-          {weakAreaAlerts.length > 0 && (
-            <section className="premium-section">
-              <div className="premium-header">
-                <h3>⚠️ Learning Alerts</h3>
-                <p>
-                  These topics were continued without full mastery and should be
-                  revised.
-                </p>
-              </div>
-
-              <div className="premium-parent-activity-list">
-                {weakAreaAlerts.slice(0, 5).map((alert) => (
-                  <div key={alert.id} className="premium-parent-activity-row">
-                    <div>
-                      <strong>{alert.chapter}</strong>
-                      <p>
-                        {alert.subject} • {alert.step_title}
-                      </p>
-                      <small>
-                        Attempts: {alert.attempts} • Best Score:{" "}
-                        {alert.best_score}/10
-                      </small>
-                    </div>
-
-                    <span>Needs Revision</span>
-                  </div>
-                ))}
-              </div>
-            </section>
           )}
-
-          <section className="premium-grid premium-grid-4 premium-parent-stats">
-            <div className="premium-card premium-glow-card glow-red">
-              <div className="dashboard-stat-icon red">
-                <Target size={28} strokeWidth={2.4} />
-              </div>
-              <h3>{latestScore}%</h3>
-              <p>Latest score</p>
-            </div>
-
-            <div className="premium-card premium-glow-card glow-green">
-              <div className="dashboard-stat-icon green">
-                <BarChart3 size={28} strokeWidth={2.4} />
-              </div>
-              <h3>{averageScore}%</h3>
-              <p>Average score</p>
-            </div>
-
-            <div className="premium-card premium-glow-card glow-purple">
-              <div className="dashboard-stat-icon purple">
-                <Trophy size={28} strokeWidth={2.4} />
-              </div>
-              <h3>{bestScore}%</h3>
-              <p>Best score</p>
-            </div>
-
-            <div className="premium-card premium-glow-card glow-blue">
-              <div className="dashboard-stat-icon blue">
-                <ClipboardList size={28} strokeWidth={2.4} />
-              </div>
-              <h3>{totalTests}</h3>
-              <p>Mock tests completed</p>
-            </div>
-          </section>
-
-          <section className="analytics-chart-grid premium-parent-chart-grid">
-            {/* Score Trend — one line per subject */}
-            <div className="dashboard-chart-card premium-card premium-chart-card">
-              <div className="section-heading-row">
-                <div>
-                  <h3>📈 Score Trend</h3>
-                  <p>Performance per subject over successive tests.</p>
-                </div>
-              </div>
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={280}>
-                  <LineChart data={trendData}>
-                    <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-                    <XAxis dataKey="name" stroke="#94a3b8" />
-                    <YAxis domain={[0, 100]} stroke="#94a3b8" />
-                    <Tooltip />
-                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
-                    {trendSubjects.map((subj, i) => (
-                      <Line
-                        key={subj}
-                        type="monotone"
-                        dataKey={subj}
-                        stroke={SUBJECT_COLORS[i % SUBJECT_COLORS.length]}
-                        strokeWidth={2.5}
-                        dot={{ r: 3 }}
-                        activeDot={{ r: 5 }}
-                        connectNulls
-                      />
-                    ))}
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Subject Performance — grouped bars: Best / Average / Latest */}
-            <div className="dashboard-chart-card premium-card premium-chart-card">
-              <div className="section-heading-row">
-                <div>
-                  <h3>📚 Subject Performance</h3>
-                  <p>Best, average and latest score per subject.</p>
-                </div>
-              </div>
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={280}>
-                  <BarChart data={subjectPerformance} barCategoryGap="30%" barGap={3}>
-                    <CartesianGrid stroke="#334155" strokeDasharray="3 3" />
-                    <XAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                    <YAxis domain={[0, 100]} stroke="#94a3b8" />
-                    <Tooltip cursor={{ fill: "rgba(59,130,246,0.06)" }} />
-                    <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
-                    <Bar dataKey="Best"    fill="#10b981" radius={[6,6,0,0]} />
-                    <Bar dataKey="Average" fill="#3b82f6" radius={[6,6,0,0]} />
-                    <Bar dataKey="Latest"  fill="#f59e0b" radius={[6,6,0,0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </section>
-
-          <section className="dashboard-bottom-grid premium-parent-bottom-grid">
-            <div className="premium-section premium-parent-activity">
-              <div className="premium-header">
-                <h3>🕘 Recent Test Activity</h3>
-                <p>Latest mock tests completed.</p>
-              </div>
-
-              {history.length === 0 ? (
-                <div className="premium-parent-empty">
-                  <h3>No test history yet</h3>
-                  <p>
-                    Ask the student to complete a mock test to unlock insights.
-                  </p>
-                </div>
-              ) : (
-                <div className="premium-parent-activity-list">
-                  {[...history]
-                    .reverse()
-                    .slice(0, 5)
-                    .map((item, index) => {
-                      const dateStr = item.created_at || item.date || item.completed_at || item.timestamp;
-                      const formattedDate = dateStr
-                        ? new Date(dateStr).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
-                        : null;
-                      return (
-                        <div key={index} className="premium-parent-activity-row">
-                          <div>
-                            <strong>{item.subject}</strong>
-                            <p>{item.chapter || item.mockType}</p>
-                            {formattedDate && (
-                              <small style={{ color: "#64748b", fontSize: ".72rem", marginTop: 2, display: "block" }}>
-                                🗓 {formattedDate}
-                              </small>
-                            )}
-                          </div>
-
-                          <span>{item.percentage}%</span>
-                        </div>
-                      );
-                    })}
-                </div>
-              )}
-            </div>
-
-          </section>
-        </>
-      )}
-
-      {showAddChild && (
-        <div className="modal-backdrop">
-          <div className="premium-modal" style={{ maxHeight: "90vh", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
-            <button
-              className="modal-close"
-              onClick={() => setShowAddChild(false)}
-            >
-              ×
-            </button>
-
-            <h3>Add Child</h3>
-            <p>Create a student login under this family.</p>
-
-            <form onSubmit={handleCreateStudent}>
-              {/* ── Avatar picker ── */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display:"block", fontSize:".85rem", fontWeight:600, marginBottom:8 }}>
-                  Profile Picture <span style={{ color:"#64748b", fontWeight:400 }}>(optional)</span>
-                </label>
-
-                {/* Current avatar preview */}
-                <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
-                  <div style={{
-                    width:60, height:60, borderRadius:"50%",
-                    background:"rgba(99,102,241,.15)", border:"2px solid rgba(99,102,241,.3)",
-                    display:"flex", alignItems:"center", justifyContent:"center",
-                    fontSize: studentAvatar && studentAvatar.startsWith("data:") ? 0 : "2rem",
-                    overflow:"hidden", flexShrink:0,
-                  }}>
-                    {studentAvatar && studentAvatar.startsWith("data:") ? (
-                      <img src={studentAvatar} alt="avatar" style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                    ) : studentAvatar ? (
-                      PRESET_AVATARS.find(a => a.key === studentAvatar)?.emoji || "🧒"
-                    ) : (
-                      <span style={{ fontSize:"1.6rem", color:"#64748b" }}>👤</span>
-                    )}
-                  </div>
-                  <div>
-                    <p style={{ fontSize:".78rem", color:"#94a3b8", margin:0 }}>
-                      {studentAvatar ? "Avatar selected ✓" : "No avatar chosen"}
-                    </p>
-                    {studentAvatar && (
-                      <button type="button" onClick={() => setStudentAvatar("")}
-                        style={{ background:"none", border:"none", color:"#f87171", fontSize:".72rem", cursor:"pointer", padding:0, marginTop:2 }}>
-                        × Remove
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                {/* Preset emoji avatars */}
-                <p style={{ fontSize:".75rem", color:"#64748b", marginBottom:6, fontWeight:600 }}>Choose a preset avatar:</p>
-                <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:12 }}>
-                  {PRESET_AVATARS.map(av => (
-                    <button
-                      key={av.key}
-                      type="button"
-                      onClick={() => setStudentAvatar(av.key)}
-                      style={{
-                        width:44, height:44, borderRadius:"50%", border:`2px solid ${studentAvatar === av.key ? "#6366f1" : "rgba(99,102,241,.2)"}`,
-                        background: studentAvatar === av.key ? "rgba(99,102,241,.2)" : "rgba(99,102,241,.06)",
-                        fontSize:"1.5rem", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
-                        transition:"all .15s",
-                        boxShadow: studentAvatar === av.key ? "0 0 0 3px rgba(99,102,241,.35)" : "none",
-                      }}
-                      title={av.key}
-                    >{av.emoji}</button>
-                  ))}
-                </div>
-
-                {/* Upload / Camera */}
-                <p style={{ fontSize:".75rem", color:"#64748b", marginBottom:6, fontWeight:600 }}>Or upload a photo:</p>
-                <div style={{ display:"flex", gap:8 }}>
-                  {/* Upload from gallery — always available */}
-                  <label style={{
-                    flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                    background:"rgba(99,102,241,.08)", border:"1px solid rgba(99,102,241,.2)",
-                    borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#a5b4fc", fontWeight:600,
-                  }}>
-                    📁 Upload Photo
-                    <input type="file" accept="image/*" style={{ display:"none" }}
-                      onChange={e => {
-                        const file = e.target.files?.[0];
-                        if (!file) return;
-                        const reader = new FileReader();
-                        reader.onload = ev => setStudentAvatar(ev.target.result);
-                        reader.readAsDataURL(file);
-                      }} />
-                  </label>
-
-                  {/* Take Photo:
-                      Mobile → no capture attr so OS shows camera chooser (front + back + gallery)
-                      Desktop → open webcam modal via getUserMedia */}
-                  {/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
-                    <label style={{
-                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                      background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
-                      borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
-                    }}>
-                      📸 Take Photo
-                      <input type="file" accept="image/*" style={{ display:"none" }}
-                        onChange={e => {
-                          const file = e.target.files?.[0];
-                          if (!file) return;
-                          const reader = new FileReader();
-                          reader.onload = ev => setStudentAvatar(ev.target.result);
-                          reader.readAsDataURL(file);
-                        }} />
-                    </label>
-                  ) : (
-                    <button type="button"
-                      onClick={() => setShowWebcam(true)}
-                      style={{
-                        flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                        background:"rgba(16,185,129,.08)", border:"1px solid rgba(16,185,129,.2)",
-                        borderRadius:8, padding:"8px 12px", cursor:"pointer", fontSize:".8rem", color:"#6ee7b7", fontWeight:600,
-                      }}>
-                      📸 Take Photo
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {createStudentError && (
-                <div style={{ background:"rgba(239,68,68,.1)", border:"1px solid rgba(239,68,68,.3)", borderRadius:10, padding:"12px 14px", marginBottom:14, fontSize:".85rem", color:"#fca5a5", whiteSpace:"pre-line" }}>
-                  {createStudentError}
-                  {(createStudentError.includes("log out") || createStudentError.includes("Session")) && (
-                    <div style={{ marginTop:8 }}>
-                      <button
-                        type="button"
-                        onClick={() => { window.location.href = "/"; localStorage.removeItem("tutor_user"); localStorage.removeItem("tutor_active_page"); window.location.reload(); }}
-                        style={{ background:"rgba(239,68,68,.2)", border:"1px solid rgba(239,68,68,.4)", borderRadius:7, padding:"6px 14px", color:"#fca5a5", cursor:"pointer", fontFamily:"inherit", fontSize:".8rem", fontWeight:700 }}>
-                        🔒 Log out now
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-              <input
-                type="text"
-                placeholder="Student Name"
-                value={studentName}
-                onChange={(e) => setStudentName(e.target.value)}
-                required
-              />
-
-              <input
-                type="email"
-                placeholder="Student Email (optional)"
-                value={studentEmail}
-                onChange={(e) => setStudentEmail(e.target.value)}
-                autoComplete="off"
-              />
-              <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
-                Leave blank if the student does not have an email — they can log in with their username and password.
-              </small>
-
-              <label style={{ display:"block", marginBottom:4, fontSize:".85rem", fontWeight:600 }}>
-                Child's Class *
-              </label>
-              <select
-                value={studentGrade}
-                onChange={(e) => { setStudentGrade(e.target.value); setStudentStream(""); }}
-                required
-                style={{ marginBottom:12 }}
-              >
-                <option value="">— Select class —</option>
-                {["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"].map(g => (
-                  <option key={g} value={g}>{g}</option>
-                ))}
-              </select>
-              {isStreamGrade(studentGrade) && (
-                <>
-                  <label style={{ display:"block", marginBottom:4, fontSize:".85rem", fontWeight:600 }}>
-                    Stream *
-                  </label>
-                  <select
-                    value={studentStream}
-                    onChange={(e) => setStudentStream(e.target.value)}
-                    required
-                    style={{ marginBottom:6 }}
-                  >
-                    <option value="">— Select stream —</option>
-                    {GRADE_11_12_STREAMS.map(s => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                  <small style={{ color: "#888", fontSize: "0.75rem", marginBottom:10, display:"block" }}>
-                    Stream determines which subjects appear in your child's lessons.
-                  </small>
-                </>
-              )}
-
-              <input
-                type="text"
-                placeholder="Set a password for your child"
-                value={studentPassword}
-                onChange={(e) => setStudentPassword(e.target.value)}
-                autoComplete="new-password"
-                required
-              />
-              <small style={{ color: "#888", fontSize: "0.78rem", marginTop: -6 }}>
-                👁️ Visible so you can confirm it — you will share this with your child
-              </small>
-
-              <button
-                className="primary-btn"
-                type="submit"
-                disabled={creatingStudent || children.length >= 2}
-              >
-                {creatingStudent ? "Creating..." : "Create Student"}
-              </button>
-            </form>
-          </div>
+          <FeatureBadges badges={child.feature_badges}/>
         </div>
-      )}
+        <button style={btn2}>View →</button>
+      </div>
 
-      {/* ── Child credentials card shown after successful creation ── */}
-      {createdChildInfo && (
-        <div className="modal-backdrop">
-          <div className="premium-modal" style={{ maxWidth: 480 }}>
-            <button className="modal-close" onClick={() => setCreatedChildInfo(null)}>×</button>
-            <h3 style={{ color: "#16a34a", marginBottom: 8 }}>✅ Child account created!</h3>
-            <p style={{ fontSize: ".9rem", marginBottom: 16 }}>
-              Share these details with your child so they can log in.
-            </p>
-
-            {/* Credentials */}
-            <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: "12px 14px", marginBottom: 14, fontFamily: "monospace", fontSize: ".85rem" }}>
-              <div style={{ marginBottom: 6 }}>
-                <span style={{ fontWeight: 600 }}>Name (username): </span>
-                <strong style={{ color: "#4f46e5" }}>{createdChildInfo.username}</strong>
-                <button onClick={() => navigator.clipboard.writeText(createdChildInfo.username)}
-                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
-              </div>
-              {createdChildInfo.email && (
-                <div style={{ marginBottom: 6 }}>
-                  <span style={{ fontWeight: 600 }}>Email: </span>
-                  <strong style={{ color: "#4f46e5" }}>{createdChildInfo.email}</strong>
-                  <button onClick={() => navigator.clipboard.writeText(createdChildInfo.email)}
-                    style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
-                </div>
-              )}
-              <div>
-                <span style={{ fontWeight: 600 }}>Password: </span>
-                <strong style={{ color: "#d97706" }}>{createdChildInfo.password}</strong>
-                <button onClick={() => navigator.clipboard.writeText(createdChildInfo.password)}
-                  style={{ marginLeft: 8, background: "none", border: "none", cursor: "pointer", color: "#6366f1", fontSize: ".7rem", fontWeight: 700 }}>📋</button>
-              </div>
-            </div>
-
-            {/* One-click auto-login link (includes encoded password) */}
-            {(() => {
-              const loginId = createdChildInfo.email || createdChildInfo.username;
-              const encodedPass = btoa(createdChildInfo.password);
-              const autoLoginLink = `https://likhapoha.in/?u=${encodeURIComponent(loginId)}&p=${encodedPass}`;
-              return (
-                <div style={{ marginBottom: 14 }}>
-                  <p style={{ fontSize: ".78rem", color: "#4f46e5", margin: "0 0 6px", fontWeight: 700 }}>
-                    🔗 One-click login link (logs in directly to child's dashboard)
-                  </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: "6px 10px", flexWrap: "wrap" }}>
-                    <a href={autoLoginLink} target="_blank" rel="noreferrer"
-                      style={{ fontSize: ".7rem", color: "#4f46e5", fontFamily: "monospace", flex: 1, wordBreak: "break-all", textDecoration: "underline", cursor: "pointer" }}>
-                      {autoLoginLink.substring(0, 60)}…
-                    </a>
-                    <button onClick={() => navigator.clipboard.writeText(autoLoginLink)}
-                      style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "3px 10px", color: "#fff", cursor: "pointer", fontSize: ".72rem", fontWeight: 700, fontFamily: "inherit", whiteSpace: "nowrap" }}>
-                      📋 Copy
-                    </button>
-                  </div>
-                  <p style={{ fontSize: ".72rem", color: "#64748b", margin: "4px 0 0" }}>
-                    Click this link to sign in directly to your child's account — no username or password needed.
-                  </p>
-                </div>
-              );
-            })()}
-
-            {/* Next steps */}
-            <div style={{ fontSize: ".83rem", lineHeight: 1.7, marginBottom: 16 }}>
-              <strong style={{ display: "block", marginBottom: 6 }}>📋 What to do next:</strong>
-              <ol style={{ paddingLeft: 18, margin: 0 }}>
-                <li>Share the <strong>username or email + password</strong> with your child</li>
-                <li>Child can log in at <strong>likhapoha.in</strong> using username OR email</li>
-                <li>Child can <strong>change their password</strong> from their profile anytime</li>
-                <li style={{ color: "#4f46e5", fontWeight: 600 }}>💡 Sit with your child for their first login and give a quick walkthrough</li>
-              </ol>
-            </div>
-
-            {/* Video walkthrough — now live */}
-            <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 8, padding: "10px 14px", textAlign: "center", marginBottom: 16 }}>
-              <div style={{ fontSize: "1.4rem", marginBottom: 3 }}>▶️</div>
-              <p style={{ fontSize: ".78rem", color: "#4f46e5", margin: 0, fontWeight: 700 }}>Watch the Platform Walkthrough Video</p>
-              <p style={{ fontSize: ".7rem", color: "#475569", margin: "3px 0 0 0" }}>Available in English and Hindi — helps your child get started on Likha Poha AI</p>
-              <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 8 }}>
-                <a href="https://youtu.be/N82gfHBJm00" target="_blank" rel="noreferrer"
-                  style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 14px", color: "#fff", fontSize: ".75rem", fontWeight: 700, textDecoration: "none" }}>
-                  🇬🇧 English
-                </a>
-                <a href="https://youtu.be/y0YHnMrmR3k" target="_blank" rel="noreferrer"
-                  style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 14px", color: "#fff", fontSize: ".75rem", fontWeight: 700, textDecoration: "none" }}>
-                  🇮🇳 Hindi
-                </a>
-              </div>
-            </div>
-
-            <button className="primary-btn" style={{ width: "100%" }} onClick={() => setCreatedChildInfo(null)}>
-              Done ✓
-            </button>
+      {/* Quick stats */}
+      <div style={{display:"flex",gap:10,flexWrap:"wrap",marginTop:12}}>
+        {[{label:"Mock Tests",value:child.mock_test_summary?.count??0},
+          {label:"Avg Score",value:child.mock_test_summary?.average_score!=null?child.mock_test_summary.average_score+"%":"—"},
+          {label:"Last Active",value:child.activity_summary?.last_active?new Date(child.activity_summary.last_active).toLocaleDateString():"Never"},
+        ].map(function(k){return(
+          <div key={k.label} style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"6px 10px",textAlign:"center",minWidth:80}}>
+            <div style={{fontWeight:700,fontSize:".88rem"}}>{k.value}</div>
+            <div style={{fontSize:".65rem",color:"#64748b"}}>{k.label}</div>
           </div>
-        </div>
-      )}
+        );})}
+      </div>
 
-      {/* ── Desktop webcam capture modal ── */}
-      {showWebcam && (
-        <WebcamCaptureModal
-          onCapture={(dataUrl) => { setStudentAvatar(dataUrl); setShowWebcam(false); }}
-          onClose={() => setShowWebcam(false)}
-        />
-      )}
-
-      {showInviteParent && (
-        <div className="modal-backdrop">
-          <div className="premium-modal">
-            <button
-              className="modal-close"
-              onClick={() => setShowInviteParent(false)}
-            >
-              ×
-            </button>
-
-            <h3>Invite Parent</h3>
-            <p>Add another parent to the same family.</p>
-
-            <form onSubmit={handleInviteParent}>
-              <input
-                type="text"
-                placeholder="Parent Name"
-                value={parentName}
-                onChange={(e) => setParentName(e.target.value)}
-                required
-              />
-
-              <input
-                type="email"
-                placeholder="Parent Email"
-                value={parentEmail}
-                onChange={(e) => setParentEmail(e.target.value)}
-                required
-              />
-
-              <input
-                type="password"
-                placeholder="Temporary Password"
-                value={parentPassword}
-                onChange={(e) => setParentPassword(e.target.value)}
-                required
-              />
-
-              <button
-                className="primary-btn"
-                type="submit"
-                disabled={invitingParent || parents.length >= 2}
-              >
-                {invitingParent ? "Inviting..." : "Invite Parent"}
-              </button>
-            </form>
-          </div>
+      {/* Upgrade CTA for free tier */}
+      {plan.status_color==="restricted"&&(
+        <div style={{marginTop:10,padding:"8px 12px",background:"rgba(99,102,241,.07)",border:"1px solid rgba(167,139,250,.3)",borderRadius:8,display:"flex",gap:8,alignItems:"center"}}>
+          <span style={{fontSize:".78rem",color:"#6366f1",flex:1}}>🔒 This child is on Free Tier — limited access.</span>
         </div>
       )}
     </div>
   );
 }
 
-export default ParentDashboardPage;
+// ── Notification Card ─────────────────────────────────────────────────────────
+function NotificationPanel({notifications, onUpgrade}){
+  if(!notifications||notifications.length===0) return null;
+  var prio={"high":"#dc2626","medium":"#f59e0b","low":"#64748b"};
+  return(
+    <div style={card()}>
+      <div style={{fontWeight:700,marginBottom:8,fontSize:".9rem"}}>🔔 Notifications</div>
+      {notifications.slice(0,5).map(function(n,i){return(
+        <div key={i} style={{display:"flex",gap:8,padding:"6px 0",borderBottom:"1px solid var(--border,#f1f5f9)",alignItems:"flex-start"}}>
+          <span style={{fontSize:"1rem",flexShrink:0}}>{n.icon||"•"}</span>
+          <div style={{flex:1}}>
+            <div style={{fontSize:".82rem",fontWeight:600,color:prio[n.priority||"low"]}}>{n.title}</div>
+            <div style={{fontSize:".75rem",color:"#64748b"}}>{n.body}</div>
+          </div>
+          {n.type==="upgrade"&&onUpgrade&&(
+            <button onClick={onUpgrade} style={{...btn1,padding:"3px 10px",fontSize:".72rem",flexShrink:0,whiteSpace:"nowrap"}}>Upgrade</button>
+          )}
+        </div>
+      );})}
+    </div>
+  );
+}
+// ── Child Detail Drawer ───────────────────────────────────────────────────────
+function ChildDetailDrawer({child, onClose, onUpgrade}){
+  var [detail, setDetail]   = useState(null);
+  var [loading, setLoading] = useState(true);
+  var [section, setSection] = useState("overview");
+
+  useEffect(function(){
+    if(!child?.id) return;
+    setLoading(true);
+    setDetail(null);
+    getChildDetail(child.id)
+      .then(function(d){setDetail(d);setLoading(false);})
+      .catch(function(){setLoading(false);});
+  },[child?.id]);
+
+  var SECTIONS=[
+    {key:"overview",     label:"Overview",    icon:"👤"},
+    {key:"progress",     label:"Progress",    icon:"📈"},
+    {key:"mock_tests",   label:"Mock Tests",  icon:"📝"},
+    {key:"activity",     label:"Activity",    icon:"⏱️"},
+    {key:"access",       label:"Access",      icon:"🔑"},
+    {key:"recommend",    label:"Actions",     icon:"💡"},
+  ];
+
+  var plan=detail?.plan||child?.plan||{};
+  var st=STATUS_STYLE[plan.status_color||"restricted"]||STATUS_STYLE.restricted;
+
+  return(
+    <div data-testid="child-detail-drawer"
+      style={{position:"fixed",top:0,right:0,width:Math.min(620,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:300,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+      {/* Header */}
+      <div style={{padding:"14px 16px 0",borderBottom:"1px solid var(--border,#e5e7eb)",flexShrink:0}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
+          <div>
+            <h3 style={{margin:0,fontSize:"1rem"}}>{child?.name||"Student"}</h3>
+            <span style={{fontSize:".75rem",color:"#64748b"}}>{child?.grade||"—"} · </span>
+            <PlanChip plan={plan}/>
+          </div>
+          <button onClick={onClose} style={{background:"none",border:"none",fontSize:"1.2rem",cursor:"pointer"}}>✕</button>
+        </div>
+        {/* Section tabs */}
+        <div style={{display:"flex",gap:2,overflowX:"auto",WebkitOverflowScrolling:"touch"}}>
+          {SECTIONS.map(function(s){return(
+            <button key={s.key} data-testid={"child-tab-"+s.key} onClick={function(){setSection(s.key);}}
+              style={{padding:"6px 10px",border:"none",background:"none",cursor:"pointer",fontFamily:"inherit",fontSize:".78rem",fontWeight:section===s.key?700:400,color:section===s.key?"#6366f1":"#64748b",borderBottom:section===s.key?"2px solid #6366f1":"2px solid transparent",whiteSpace:"nowrap",marginBottom:-1}}>
+              {s.icon} {s.label}
+            </button>
+          );})}
+        </div>
+      </div>
+      {/* Body */}
+      <div style={{flex:1,overflowY:"auto",padding:16}}>
+        {loading&&<div style={{color:"#94a3b8",padding:20}}>Loading child details…</div>}
+        {!loading&&!detail&&<div style={{color:"#dc2626",padding:20}}>Could not load child details.</div>}
+        {!loading&&detail&&(
+          <>
+            {section==="overview"&&<ChildOverview child={child} detail={detail} plan={plan} st={st}/>}
+            {section==="progress"&&<ChildProgress detail={detail}/>}
+            {section==="mock_tests"&&<ChildMockTests detail={detail} plan={plan} onUpgrade={onUpgrade}/>}
+            {section==="activity"&&<ChildActivity detail={detail}/>}
+            {section==="access"&&<ChildAccess detail={detail} plan={plan} onUpgrade={onUpgrade}/>}
+            {section==="recommend"&&<ChildRecommendations detail={detail} onUpgrade={onUpgrade}/>}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NA(){return <div style={{color:"#94a3b8",fontSize:".8rem",padding:"8px 0"}}>Not available yet.</div>;}
+
+function ChildOverview({child, detail, plan, st}){
+  var info=detail?.child||child||{};
+  return(
+    <div data-testid="child-section-overview">
+      <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:12}}>
+        {[["Name",info.name||info.username||"—"],["Grade",info.grade||"—"],["Status",info.account_status||"active"],["Plan",plan.plan_name||"Free Tier"]].map(function([k,v]){return(
+          <div key={k} style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"7px 12px"}}>
+            <div style={{fontSize:".67rem",color:"#64748b"}}>{k}</div>
+            <div style={{fontSize:".82rem",fontWeight:700}}>{v}</div>
+          </div>
+        );})}
+      </div>
+      <div style={{...card(),background:st.bg,border:"1px solid "+st.border}}>
+        <div style={{fontWeight:700,fontSize:".88rem",color:st.text}}>{plan.status_label}</div>
+        <div style={{fontSize:".78rem",color:"#64748b",marginTop:2}}>{plan.description}</div>
+        {plan.expires_at&&<div style={{fontSize:".72rem",color:"#94a3b8",marginTop:4}}>Expires: {new Date(plan.expires_at).toLocaleDateString()}</div>}
+      </div>
+      {detail?.feature_badges&&<FeatureBadges badges={detail.feature_badges}/>}
+    </div>
+  );
+}
+
+function ChildProgress({detail}){
+  var prog=detail?.progress||{};
+  if(!prog.available) return <NA/>;
+  return(
+    <div data-testid="child-section-progress">
+      <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:12}}>
+        {[["Completed",prog.completed_chapters??0],["In Progress",prog.in_progress_chapters??0]].map(function([k,v]){return(
+          <div key={k} style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"8px 14px",textAlign:"center",flex:"1 1 80px"}}>
+            <div style={{fontWeight:800,fontSize:"1.4rem",color:"#6366f1"}}>{v}</div>
+            <div style={{fontSize:".7rem",color:"#64748b"}}>{k} chapters</div>
+          </div>
+        );})}
+      </div>
+      {(prog.weak_topics||[]).length>0&&(
+        <div style={card()}>
+          <div style={{fontWeight:700,marginBottom:6}}>⚠ Weak Topics</div>
+          {prog.weak_topics.map(function(t,i){return(
+            <div key={i} style={{fontSize:".8rem",padding:"3px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
+              {t.subject} — {t.chapter}{t.score!=null?" ("+t.score+"%)":""}
+            </div>
+          );})}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ChildMockTests({detail, plan, onUpgrade}){
+  var mt=detail?.mock_tests||{};
+  var isFree=plan?.canonical_plan_key==="FREE_TIER";
+  return(
+    <div data-testid="child-section-mock-tests">
+      {isFree&&mt.free_daily_limit&&(
+        <div style={{...card(),background:"rgba(245,158,11,.07)",border:"1px solid #fcd34d",marginBottom:8}}>
+          <div style={{fontSize:".82rem",fontWeight:600,color:"#d97706"}}>📊 Free Tier: {mt.free_daily_limit} mock tests per day</div>
+          <div style={{fontSize:".75rem",color:"#64748b",marginTop:3}}>Upgrade for unlimited mock tests and full score analysis.</div>
+          {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade for unlimited</button>}
+        </div>
+      )}
+      {!mt.available?<NA/>:(
+        <>
+          <div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:12}}>
+            {[["Tests Done",mt.count??0],["Avg Score",mt.average_score!=null?mt.average_score+"%":"—"]].map(function([k,v]){return(
+              <div key={k} style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"8px 14px",textAlign:"center",flex:"1 1 80px"}}>
+                <div style={{fontWeight:800,fontSize:"1.4rem",color:"#0ea5e9"}}>{v}</div>
+                <div style={{fontSize:".7rem",color:"#64748b"}}>{k}</div>
+              </div>
+            );})}
+          </div>
+          {(mt.recent||[]).length>0&&(
+            <div style={card()}>
+              <div style={{fontWeight:700,marginBottom:6}}>Recent Tests</div>
+              {mt.recent.map(function(t,i){var pct=t.total>0?Math.round((t.score/t.total)*100):0;return(
+                <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid var(--border,#f1f5f9)",fontSize:".78rem"}}>
+                  <span>{t.subject||"—"}</span>
+                  <span style={{fontWeight:700,color:pct>=60?"#166534":pct>=40?"#d97706":"#dc2626"}}>{pct}%</span>
+                </div>
+              );})}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function ChildActivity({detail}){
+  var act=detail?.ai_activity||{};
+  return(
+    <div data-testid="child-section-activity">
+      {!act.available?<NA/>:(
+        <>
+          <div style={{marginBottom:8,fontSize:".82rem",color:"#64748b"}}>
+            Last active: <strong>{act.last_active?new Date(act.last_active).toLocaleString():"Unknown"}</strong>
+          </div>
+          {act.is_limited&&<div style={{...card(),background:"rgba(245,158,11,.07)",border:"1px solid #fcd34d",fontSize:".78rem",color:"#d97706"}}>📊 Limited AI access (Free Tier — DKB only)</div>}
+          {Object.keys(act.feature_counts||{}).length>0&&(
+            <div style={card()}>
+              <div style={{fontWeight:700,marginBottom:6}}>Activity Breakdown</div>
+              {Object.entries(act.feature_counts||{}).map(function([f,c]){return(
+                <div key={f} style={{display:"flex",justifyContent:"space-between",padding:"3px 0",fontSize:".78rem"}}>
+                  <span style={{textTransform:"capitalize"}}>{f}</span>
+                  <span style={{fontWeight:700}}>{c}</span>
+                </div>
+              );})}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function ChildAccess({detail, plan, onUpgrade}){
+  var sub=detail?.subscription||{};
+  var features=detail?.features||{};
+  return(
+    <div data-testid="child-section-access">
+      <div style={{...card(),background:STATUS_STYLE[plan.status_color||"restricted"].bg,border:"1px solid "+STATUS_STYLE[plan.status_color||"restricted"].border}}>
+        <div style={{fontWeight:700}}>{plan.status_label||"—"}</div>
+        <div style={{fontSize:".78rem",color:"#64748b",marginTop:2}}>{plan.description}</div>
+        {plan.expires_at&&<div style={{fontSize:".72rem",color:"#94a3b8",marginTop:4}}>Expires: {new Date(plan.expires_at).toLocaleDateString()}</div>}
+      </div>
+      {detail?.feature_badges&&<FeatureBadges badges={detail.feature_badges}/>}
+      {plan.status_color==="restricted"&&onUpgrade&&(
+        <button onClick={onUpgrade} style={{...btn1,marginTop:12,width:"100%"}}>🚀 Upgrade for Full Access</button>
+      )}
+    </div>
+  );
+}
+
+function ChildRecommendations({detail, onUpgrade}){
+  var recs=detail?.recommendations||[];
+  if(recs.length===0) return <div style={{color:"#94a3b8",fontSize:".8rem",padding:"8px 0"}}>No recommendations at this time.</div>;
+  var prio={"high":"#dc2626","medium":"#f59e0b","low":"#64748b"};
+  return(
+    <div data-testid="child-section-recommendations">
+      {recs.map(function(r,i){return(
+        <div key={i} style={{...card(),borderLeft:"3px solid "+(prio[r.priority||"low"]||"#64748b")}}>
+          <div style={{fontWeight:700,fontSize:".85rem",color:prio[r.priority||"low"]}}>{r.title}</div>
+          <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>{r.body}</div>
+          {r.action==="upgrade"&&onUpgrade&&(
+            <button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade</button>
+          )}
+        </div>
+      );})}
+    </div>
+  );
+}
+
+// ── Add Child Form ────────────────────────────────────────────────────────────
+function AddChildModal({onClose, onAdded, canAdd, planName}){
+  var [form, setForm] = useState({username:"",grade:"Grade 9",password:"",email:""});
+  var [loading, setLoading] = useState(false);
+  var [msg, setMsg] = useState(null);
+
+  async function submit(e){
+    e.preventDefault();
+    if(!form.username||!form.password){setMsg("Name and password required.");return;}
+    setLoading(true);
+    var d=await createStudent({...form,email:form.email||undefined}).catch(function(e){return{success:false,error:e.message};});
+    setLoading(false);
+    if(d.success!==false){
+setMsg("✅ Child added! They are on Free Tier with limited access.");
+      setTimeout(function(){onAdded();onClose();},1500);
+    } else {
+      setMsg("⚠ "+(d.error||"Failed to add child."));
+    }
+  }
+
+  return(
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+      <div style={{...card(),width:"100%",maxWidth:420,maxHeight:"90vh",overflowY:"auto",boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
+        <div style={{display:"flex",justifyContent:"space-between",marginBottom:14}}>
+          <h4 style={{margin:0}}>➕ Add Child</h4>
+          <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
+        </div>
+        {!canAdd&&(
+          <div style={{...card(),background:"#fef2f2",border:"1px solid #fecaca",marginBottom:10}}>
+            <div style={{fontSize:".82rem",color:"#dc2626",fontWeight:600}}>Child limit reached for {planName}.</div>
+            <div style={{fontSize:".75rem",color:"#64748b",marginTop:3}}>Upgrade to Family Premium to add a second child.</div>
+          </div>
+        )}
+        <div data-testid="add-child-free-tier-notice" style={{...card(),background:"rgba(99,102,241,.07)",border:"1px solid rgba(167,139,250,.3)",marginBottom:10}}>
+          <div style={{fontSize:".78rem",color:"#6366f1",fontWeight:600}}>ℹ️ New children start on Free Tier</div>
+          <div style={{fontSize:".72rem",color:"#64748b",marginTop:2}}>The child will have limited access until you upgrade your plan.</div>
+        </div>
+        <form onSubmit={submit} style={{display:"flex",flexDirection:"column",gap:8}}>
+          <label><span style={{fontSize:".78rem",fontWeight:600}}>Child's Name *</span>
+            <input value={form.username} onChange={function(e){setForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
+          <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
+            <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}} disabled={!canAdd}>
+              {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
+          <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
+            <input type="text" value={form.password} onChange={function(e){setForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with child" style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
+          <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>
+            <input type="email" value={form.email} onChange={function(e){setForm(function(p){return{...p,email:e.target.value};});}} style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
+          {msg&&<div style={{fontSize:".82rem",color:msg.startsWith("✅")?"#166534":"#dc2626"}}>{msg}</div>}
+          <button type="submit" disabled={loading||!canAdd} style={btn1}>{loading?"Adding…":"Add Child"}</button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main Export
+// ─────────────────────────────────────────────────────────────────────────────
+export default function ParentDashboardPage({ user, setActivePage }) {
+  var [summary,     setSummary]     = useState(null);
+  var [loading,     setLoading]     = useState(true);
+  var [error,       setError]       = useState(null);
+  var [selected,    setSelected]    = useState(null); // open child detail
+  var [showAdd,     setShowAdd]     = useState(false);
+  var [flashMsg,    setFlashMsg]    = useState(null);
+
+  var loadSummary = useCallback(async function(){
+    setLoading(true);
+    var d = await getParentDashboardSummary().catch(function(e){return{success:false,error:e.message};});
+    if(d&&d.success!==false) setSummary(d);
+    else setError((d&&d.error)||"Could not load dashboard.");
+    setLoading(false);
+  },[]);
+
+  useEffect(function(){loadSummary();},[loadSummary]);
+
+  function flash(m){setFlashMsg(m);setTimeout(function(){setFlashMsg(null);},3000);}
+
+  function goUpgrade(){if(setActivePage) setActivePage("subscriptionPlans");}
+
+  if(loading) return <Skel/>;
+  if(error) return(
+    <div style={{maxWidth:960,margin:"0 auto",padding:"32px 14px"}}>
+      <div style={{...card(),background:"#fef2f2",border:"1px solid #fecaca",color:"#dc2626"}}>⚠ {error}</div>
+    </div>
+  );
+
+  var children   = summary?.children||[];
+  var notifs     = summary?.notifications||[];
+  var parentPlan = summary?.parent_plan||{};
+  var canAdd     = summary?.can_add_child!==false;
+  var parentName = (user?.username||summary?.parent?.username||"").split(" ")[0];
+
+  return(
+    <div style={{fontFamily:"inherit",maxWidth:960,margin:"0 auto",padding:"0 14px 60px"}}>
+
+      {/* Flash */}
+      {flashMsg&&<div style={{position:"fixed",top:16,left:"50%",transform:"translateX(-50%)",background:"#1e293b",color:"#fff",padding:"8px 20px",borderRadius:8,fontSize:".82rem",fontWeight:600,zIndex:999,boxShadow:"0 4px 24px rgba(0,0,0,.25)",whiteSpace:"nowrap"}}>{flashMsg}</div>}
+
+      {/* Overlays */}
+      {selected&&<ChildDetailDrawer child={selected} onClose={function(){setSelected(null);}} onUpgrade={goUpgrade}/>}
+      {showAdd&&<AddChildModal canAdd={canAdd} planName={parentPlan.plan_name||"your plan"} onClose={function(){setShowAdd(false);}} onAdded={function(){loadSummary();flash("✅ Child added — on Free Tier with limited access.");}}/>}
+
+      {/* Hero */}
+      <div style={{padding:"18px 0 4px",display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,flexWrap:"wrap",marginBottom:16}}>
+        <div>
+          <h1 style={{margin:0,fontSize:"1.2rem",fontWeight:800}}>{greet()}{parentName?", "+parentName:""} 👋</h1>
+          <p style={{margin:"4px 0 0",fontSize:".83rem",color:"#64748b"}}>
+            {children.length===0?"No children linked yet.":`Managing ${children.length} child${children.length>1?"ren":""}.`}
+            {" "}{parentPlan.plan_name&&<span><strong>{parentPlan.plan_name}</strong></span>}
+          </p>
+        </div>
+        <button onClick={function(){setShowAdd(true);}} style={{...btn1,display:"flex",alignItems:"center",gap:4}}>
+          ＋ Add Child
+        </button>
+      </div>
+
+      {/* Notifications */}
+      {notifs.length>0&&<NotificationPanel notifications={notifs} onUpgrade={goUpgrade}/>}
+
+      {/* No children */}
+      {children.length===0&&(
+        <div data-testid="parent-no-children" style={{...card(),textAlign:"center",padding:40,color:"#94a3b8"}}>
+          <div style={{fontSize:"2.5rem",marginBottom:8}}>🎓</div>
+          <div style={{fontWeight:600,marginBottom:4}}>No children linked yet</div>
+          <div style={{fontSize:".82rem",marginBottom:16}}>Add your child to track their progress and manage their learning.</div>
+          <button onClick={function(){setShowAdd(true);}} style={btn1}>＋ Add Child</button>
+        </div>
+      )}
+
+      {/* Child Cards */}
+      {children.length>0&&(
+        <div data-testid="parent-children-list">
+          <h2 style={{fontSize:".95rem",fontWeight:800,margin:"0 0 12px"}}>🎓 Your Children</h2>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:14}}>
+            {children.map(function(child){return(
+              <ChildCard key={child.id} child={child} onView={function(c){setSelected(c);}}/>
+            );})}
+          </div>
+          {!canAdd&&(
+            <div style={{fontSize:".78rem",color:"#64748b",marginTop:8}}>
+              Child limit reached for <strong>{parentPlan.plan_name}</strong>.
+              {" "}<button onClick={goUpgrade} style={{background:"none",border:"none",color:"#6366f1",cursor:"pointer",fontFamily:"inherit",fontWeight:600,fontSize:".78rem"}}>Upgrade to Family Premium</button> for a second child.
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

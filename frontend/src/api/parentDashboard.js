@@ -52,3 +52,17 @@ export async function getParentSubscriptionPlans() {
     method: "GET",
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parent Experience Phase 1 — /api/parent/*
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function getParentDashboardSummary() {
+  /** Canonical parent dashboard summary — children with subscription, features, activity, recommendations. */
+  return authFetch("/api/parent/dashboard/summary", { method: "GET" });
+}
+
+export async function getChildDetail(childId) {
+  /** Enriched child detail: subscription, features, progress, mock tests, recommendations. */
+  return authFetch(`/api/parent/children/${childId}/detail`, { method: "GET" });
+}

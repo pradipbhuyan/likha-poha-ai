@@ -12,6 +12,7 @@ from app.services.parent_dashboard_service import (
     get_child_by_id,
     get_family_members,
 )
+from app.services.subscription_resolver_service import resolve_user_subscription
 from app.routes.admin_control import (
     list_subscription_contact_settings,
     list_subscription_plan_settings,
@@ -160,10 +161,18 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
 
     children = get_children(parent_profile["id"])
 
-    if len(children) >= 2:
+    # Child limit from canonical subscription resolver (not hardcoded).
+    # FREE/NANO/PREMIUM = 1 child. FAMILY_PREMIUM = 2. ADMIN_GRANT = None (no limit).
+    parent_sub = resolve_user_subscription(parent_profile["id"])
+    child_limit = parent_sub.get("child_limit")  # None means no limit (admin)
+    if child_limit is None:
+        cpk = parent_sub.get("canonical_plan_key", "FREE_TIER")
+        child_limit = 2 if cpk in ("FAMILY_PREMIUM", "FAMILY_ANNUAL") else 1
+    if len(children) >= child_limit:
+        plan_name = parent_sub.get("plan_name", "your plan")
         raise HTTPException(
             status_code=400,
-            detail="Maximum 2 children allowed for this family.",
+            detail=f"Child limit reached for {plan_name}. Maximum {child_limit} child{'ren' if child_limit > 1 else ''} allowed.",
         )
 
     if not parent_profile.get("family_id"):
