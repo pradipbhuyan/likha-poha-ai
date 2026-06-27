@@ -154,3 +154,19 @@ def get_plan_catalog():
         "catalog": CANONICAL_PLAN_CATALOG,
         "version": "2",   # bump when catalog schema changes
     }
+
+
+@router.get("/features")
+def get_user_features(user=Depends(get_current_user)):
+    """
+    Return the canonical feature access summary for the current user.
+    
+    This is the single source of truth for frontend feature gating.
+    The frontend must use this instead of directly inspecting subscriptionPlan
+    or accessCbse fields.
+    
+    Returns per-feature: allowed (bool), limited (bool).
+    """
+    from app.services.feature_authorization_service import get_feature_summary  # noqa
+    summary = get_feature_summary(user.id)
+    return {"success": True, **summary}

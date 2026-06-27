@@ -11,6 +11,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess";
 import { isAllAccessTestUser } from "../utils/testAccounts";
+import { hasPaidAccess } from "../utils/resolveSubscription";
 
 /**
  * Renders text that may contain caret-notation exponents (x^2, a^{n+1}).
@@ -307,9 +308,10 @@ function MockTestPage({ user, setActivePage }) {
   }
 
   // ── Compute free-tier daily limit state ──────────────────────────────────
-  const isFreeUser = user?.role === "student" &&
-    (!user?.subscriptionPlan || user.subscriptionPlan === "free") &&
-    !user?.accessCbse && !user?.parentId;
+  // SECURITY FIX: parentId alone does NOT indicate paid access.
+  // A student created by a free-plan parent has parentId set but accessCbse=false.
+  // Use hasPaidAccess() which correctly checks accessCbse + subscriptionExpiresAt.
+  const isFreeUser = user?.role === "student" && !hasPaidAccess(user);
   const todayMockCount = isFreeUser ? getDailyMockCount(user?.username) : 0;
   const dailyLimitReached = isFreeUser && todayMockCount >= FREE_DAILY_MOCK_LIMIT;
 
@@ -321,19 +323,24 @@ function MockTestPage({ user, setActivePage }) {
 
     setLoading(true);
 
-    // Block CBSE mock tests only for non-offer, non-paid users.
-    // Free-plan students with accessCbse=false are offer-code users — allow them.
-    const hasPaidPlan = user?.subscriptionPlan && user.subscriptionPlan !== "free";
+    // SECURITY FIX: Free-tier users (including children of free-plan parents)
+    // are allowed mock tests but subject to the daily limit (enforced above).
+    // Do NOT block them here — the daily limit check at the top of this function
+    // handles free users. What we block here is paid users with the wrong plan
+    // (e.g. a SOF-only paid user trying CBSE mock tests).
+    // The old check `!user.accessCbse && !user.offerAccess && hasPaidPlan` was
+    // wrong: hasPaidPlan=false for free users → the entire condition was false
+    // → free users were never blocked even if logic intended to gate them.
     if (
       isSchoolBoardMode(mode) &&
       user?.role !== "admin" &&
       !isAllAccessTestUser(user) &&
+      !isFreeUser &&      // free users are handled by daily limit, not this gate
       !user.accessCbse &&
-      !user.offerAccess &&
-      hasPaidPlan  // only block if paid plan with no CBSE access (misconfiguration)
+      !user.offerAccess
     ) {
       setError(
-        `You do not have access to ${mode} mock tests.`
+        `You do not have access to ${mode} mock tests. Please check your subscription.`
       );
       setLoading(false);
       return;

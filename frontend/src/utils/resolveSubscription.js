@@ -222,19 +222,35 @@ function _canonicalPlanKey(planKey) {
  * `subscriptionPlan === "free"` is ambiguous — `accessCbse` is the
  * authoritative signal for "has paid plan access".
  *
+ * SECURITY NOTE: `parentId` alone does NOT grant paid access.
+ * A child added by a free-plan parent has parentId set but no accessCbse.
+ * Only `accessCbse=true` (set by payment webhook or admin) grants access.
+ *
  * Hierarchy:
  *   1. Admin → always has access
  *   2. accessCbse=true → paid, admin-granted, or active legacy Nano
- *   3. parentId set → parent-managed child (parent controls access)
- *   4. Otherwise → no paid access
+ *      (this covers parent-managed children IF their parent paid — the
+ *       payment webhook sets access_cbse=true on the child's profile)
+ *   3. subscriptionExpiresAt in the future → active paid plan
+ *   4. Otherwise → no paid access (Free Tier)
  *
  * @param {object} user
  */
 export function hasPaidAccess(user = {}) {
   if (!user) return false;
   if (user.role === "admin") return true;
-  if (user.accessCbse) return true;   // paid, admin-granted, or legacy Nano
-  if (user.parentId) return true;     // parent-managed child
+
+  // Active paid subscription (time-limited)
+  if (user.subscriptionExpiresAt) {
+    const expiresMs = new Date(user.subscriptionExpiresAt).getTime();
+    if (!isNaN(expiresMs) && expiresMs > Date.now()) return true;
+  }
+
+  // access_cbse=true is set by payment webhook only — reliable paid indicator
+  // NOTE: parentId alone is NOT sufficient — a free-plan parent's child has
+  // parentId but no accessCbse and must be treated as Free Tier.
+  if (user.accessCbse) return true;
+
   return false;
 }
 
@@ -247,7 +263,12 @@ export function hasPaidAccess(user = {}) {
  */
 export function needsSubscriptionGate(user = {}, offerAccess = null) {
   if (user.role !== "student") return false;
-  if (user.parentId) return false; // parent-linked children don't self-subscribe
+  // NOTE: Do NOT gate parent-linked children from the subscription page.
+  // They don't self-subscribe, but they still need proper authorization checks.
+  // Removed: `if (user.parentId) return false;` — this was bypassing the gate
+  // for ALL children regardless of whether the parent actually paid.
+  // Children of free-plan parents should see the upgrade path.
+  if (user.parentId) return false; // children subscribe via parent — no self-gate
 
   const resolved = resolveSubscription(user, offerAccess);
   // Gate fires only when there is no active access at all

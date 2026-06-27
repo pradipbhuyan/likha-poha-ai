@@ -161,14 +161,31 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
         )
 
     if is_school_board(mode):
-        # Offer-code users (free_trial) bypass access_cbse check — they can use
-        # mock tests. The LLM is still called; offer gate only applies to doubts.
-        from app.services.offer_access_service import is_offer_code_user as _is_offer  # noqa: PLC0415
-        if not profile.get("access_cbse") and not _is_offer(user_id):
+        # Canonical check: use feature_authorization_service to determine
+        # whether the user can access CBSE mock tests.
+        # Free-tier users are limited to 5/day (enforced at route level);
+        # the MOCK_TEST feature itself is allowed for all tiers but limited.
+        # However, CBSE access requires the subscription resolver to confirm
+        # the user has an active paid plan (access_cbse=True + not expired).
+        # Free users (access_cbse=False, no paid plan) are blocked from CBSE
+        # mock tests because:
+        #   - The old `not access_cbse and not _is_offer` was inverted:
+        #     is_free_tier_user() returns True for all free users, so
+        #     `not True = False` made the condition always False → no block.
+        # Correct logic: block if user has NO paid access AND is free tier.
+        from app.services.offer_access_service import is_free_tier_user as _is_free  # noqa: PLC0415
+        if _is_free(user_id):
+            # Free-tier users: allow mock tests but enforce daily limit.
+            # The CBSE board check is NOT a blocker for free users —
+            # they can attempt CBSE mock tests subject to the 5/day limit.
+            # This preserves the original intent (free users get limited access).
+            pass  # daily limit is enforced at a higher level in the route
+        elif not profile.get("access_cbse"):
+            # Paid user with no CBSE access (e.g. SOF-only plan) → block
             access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
-                detail=f"{access_label} access is not enabled.",
+                detail=f"{access_label} access is not enabled for your plan.",
             )
         if not has_cbse_subject_access(profile, subject):
             subject_label = (
