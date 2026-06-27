@@ -100,7 +100,7 @@ class TestPlanLimits:
         monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: FREE_TEACHER_MAX)
         from app.routes.teacher_classroom import CreateInvitationRequest
         req = CreateInvitationRequest(student_name="New", grade="Grade 9", email="new@example.com")
-        result = create_invitation(req, teacher=TEACHER_FREE)
+        result = create_invitation(req, teacher={"profile": TEACHER_FREE})
         assert result["success"] is False
         assert result.get("at_limit") is True
         assert "10" in result["error"]
@@ -111,7 +111,7 @@ class TestPlanLimits:
         monkeypatch.setattr(tc, "_count_active_assignments", lambda tid: PAID_TEACHER_MAX)
         from app.routes.teacher_classroom import CreateInvitationRequest
         req = CreateInvitationRequest(student_name="New", grade="Grade 9", email="new@example.com")
-        result = create_invitation(req, teacher=TEACHER_PAID)
+        result = create_invitation(req, teacher={"profile": TEACHER_PAID})
         assert result["success"] is False
         assert result.get("at_limit") is True
         assert "30" in result["error"]
@@ -129,7 +129,7 @@ class TestPlanLimits:
 
         from app.routes.teacher_classroom import CreateInvitationRequest
         req = CreateInvitationRequest(student_name="Arjun", grade="Grade 9", email="arjun@example.com")
-        result = create_invitation(req, teacher=TEACHER_FREE)
+        result = create_invitation(req, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
 
 
@@ -183,7 +183,7 @@ class TestAuthorization:
         mock_tbl.return_value.select.return_value.in_.return_value.execute.return_value = fake
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
 
-        result = list_students(q=None, grade=None, status=None, sort="name", teacher={"id": "teacher-own", "role": "teacher"})
+        result = list_students(q=None, grade=None, status=None, sort="name", teacher={"profile": {"id": "teacher-own", "role": "teacher"}})
         assert result["success"] is True
         assert result["count"] == 1
         assert result["students"][0]["id"] == STUDENT_ID
@@ -192,7 +192,7 @@ class TestAuthorization:
         """Free teacher cannot email credentials — backend enforces."""
         monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
         monkeypatch.setattr(tc, "_ensure_owns_student", lambda t, s: None)
-        result = email_student_credentials(STUDENT_ID, teacher=TEACHER_FREE)
+        result = email_student_credentials(STUDENT_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is False
         assert result.get("upgrade_required") is True
         assert "paid" in result["error"].lower()
@@ -206,7 +206,7 @@ class TestAuthorization:
         mock_auth.admin.invite_user_by_email.return_value = None
         monkeypatch.setattr(tc, "admin_client", MagicMock(auth=mock_auth, table=MagicMock()))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
-        result = email_student_credentials(STUDENT_ID, teacher=TEACHER_PAID)
+        result = email_student_credentials(STUDENT_ID, teacher={"profile": TEACHER_PAID})
         assert result["success"] is True
 
 
@@ -221,7 +221,7 @@ class TestStudentActions:
         mock_tbl.return_value.update.return_value.eq.return_value.eq.return_value.execute.return_value = MagicMock()
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
-        result = archive_student(STUDENT_ID, teacher=TEACHER_FREE)
+        result = archive_student(STUDENT_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert "archived_at" in result
 
@@ -233,7 +233,7 @@ class TestStudentActions:
         monkeypatch.setattr(tc, "admin_client", MagicMock(auth=mock_auth))
         audit_calls = []
         monkeypatch.setattr(tc, "write_audit_event", lambda **kw: audit_calls.append(kw))
-        result = reset_student_password(STUDENT_ID, teacher=TEACHER_FREE)
+        result = reset_student_password(STUDENT_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result.get("temp_password")  # password returned once to caller
         # Audit log must NOT contain the password
@@ -250,14 +250,14 @@ class TestInvitations:
     def test_resend_fails_for_accepted_invitation(self, monkeypatch):
         """Cannot resend an already-accepted invitation."""
         monkeypatch.setattr(tc, "_safe_one", lambda fn: ({"id": INV_ID, "status": "accepted", "teacher_id": TEACHER_FREE["id"]}, None))
-        result = resend_invitation(INV_ID, teacher=TEACHER_FREE)
+        result = resend_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is False
         assert "accepted" in result["error"]
 
     def test_cancel_fails_for_accepted_invitation(self, monkeypatch):
         """Cannot cancel an already-accepted invitation."""
         monkeypatch.setattr(tc, "_safe_one", lambda fn: ({"id": INV_ID, "status": "accepted", "teacher_id": TEACHER_FREE["id"]}, None))
-        result = cancel_invitation(INV_ID, teacher=TEACHER_FREE)
+        result = cancel_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is False
         assert "accepted" in result["error"]
 
@@ -267,7 +267,7 @@ class TestInvitations:
         mock_tbl.return_value.update.return_value.eq.return_value.execute.return_value = MagicMock()
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
-        result = cancel_invitation(INV_ID, teacher=TEACHER_FREE)
+        result = cancel_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result["status"] == "cancelled"
 
@@ -277,7 +277,7 @@ class TestInvitations:
         mock_tbl.return_value.update.return_value.eq.return_value.execute.return_value = MagicMock()
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
-        result = resend_invitation(INV_ID, teacher=TEACHER_FREE)
+        result = resend_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert "new_expiry" in result
 
@@ -294,7 +294,7 @@ class TestClassrooms:
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
         from app.routes.teacher_classroom import CreateClassroomRequest
         req = CreateClassroomRequest(name="9A")
-        result = create_classroom(req, teacher=TEACHER_FREE)
+        result = create_classroom(req, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result["classroom"]["id"] == CLASSROOM_ID
 
@@ -304,7 +304,7 @@ class TestClassrooms:
         mock_tbl.return_value.update.return_value.eq.return_value.execute.return_value = MagicMock()
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
-        result = archive_classroom(CLASSROOM_ID, teacher=TEACHER_FREE)
+        result = archive_classroom(CLASSROOM_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result["status"] == "archived"
 
@@ -321,7 +321,7 @@ class TestClassrooms:
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
         from app.routes.teacher_classroom import AddClassroomStudentRequest
         req = AddClassroomStudentRequest(student_id=STUDENT_ID)
-        result = add_student_to_classroom(CLASSROOM_ID, req, teacher=TEACHER_FREE)
+        result = add_student_to_classroom(CLASSROOM_ID, req, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
 
     def test_teacher_cannot_modify_foreign_classroom(self, monkeypatch):
@@ -395,7 +395,7 @@ class TestProductionReadiness:
             "accepted_at": None, "created_at": "2020-01-01T00:00:00+00:00",
         }
         monkeypatch.setattr(tc, "_safe_q", lambda fn: ([pending_past], None))
-        result = tc.list_invitations(status=None, teacher=TEACHER_FREE)
+        result = tc.list_invitations(status=None, teacher={"profile": TEACHER_FREE})
         assert result["invitations"][0]["status"] == "expired"
 
     def test_list_invitations_pending_future_stays_pending(self, monkeypatch):
@@ -407,7 +407,7 @@ class TestProductionReadiness:
             "accepted_at": None, "created_at": "2026-01-01T00:00:00+00:00",
         }
         monkeypatch.setattr(tc, "_safe_q", lambda fn: ([pending_future], None))
-        result = tc.list_invitations(status=None, teacher=TEACHER_FREE)
+        result = tc.list_invitations(status=None, teacher={"profile": TEACHER_FREE})
         assert result["invitations"][0]["status"] == "pending"
 
     # ── C. Classroom counts exclude archived students ────────────────────────
@@ -432,7 +432,7 @@ class TestProductionReadiness:
             return members_data, None              # classroom members queries
 
         monkeypatch.setattr(tc, "_safe_q", mock_safe_q)
-        result = tc.list_classrooms(status="active", teacher=TEACHER_FREE)
+        result = tc.list_classrooms(status="active", teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result["classrooms"][0]["student_count"] == 1  # only student-1 counted
 
@@ -447,7 +447,7 @@ class TestProductionReadiness:
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         monkeypatch.setattr(tc, "write_audit_event", MagicMock())
 
-        result = tc.archive_classroom(CLASSROOM_ID, teacher=TEACHER_FREE)
+        result = tc.archive_classroom(CLASSROOM_ID, teacher={"profile": TEACHER_FREE})
         assert result["success"] is True
         assert result["status"] == "archived"
         # Verify delete was never called (members preserved)
@@ -466,7 +466,7 @@ class TestAudit:
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         audit_calls = []
         monkeypatch.setattr(tc, "write_audit_event", lambda **kw: audit_calls.append(kw))
-        archive_student(STUDENT_ID, teacher=TEACHER_FREE)
+        archive_student(STUDENT_ID, teacher={"profile": TEACHER_FREE})
         assert len(audit_calls) == 1
         assert audit_calls[0]["event_type"] == "teacher.student.archived"
 
@@ -477,7 +477,7 @@ class TestAudit:
         audit_calls = []
         monkeypatch.setattr(tc, "write_audit_event", lambda **kw: audit_calls.append(kw))
         from app.routes.teacher_classroom import CreateClassroomRequest
-        create_classroom(CreateClassroomRequest(name="9A"), teacher=TEACHER_FREE)
+        create_classroom(CreateClassroomRequest(name="9A"), teacher={"profile": TEACHER_FREE})
         assert any(c["event_type"] == "teacher.classroom.created" for c in audit_calls)
 
     def test_invitation_cancelled_writes_audit_event(self, monkeypatch):
@@ -487,7 +487,7 @@ class TestAudit:
         monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
         audit_calls = []
         monkeypatch.setattr(tc, "write_audit_event", lambda **kw: audit_calls.append(kw))
-        cancel_invitation(INV_ID, teacher=TEACHER_FREE)
+        cancel_invitation(INV_ID, teacher={"profile": TEACHER_FREE})
         assert any(c["event_type"] == "teacher.invitation.cancelled" for c in audit_calls)
 
     def test_audit_event_type_signatures(self):
@@ -587,7 +587,7 @@ class TestDashboardConsistency:
         monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
         monkeypatch.setattr(tc, "_resolve_teacher_limit", lambda uid: 10)
 
-        result = tc.teacher_dashboard_summary(teacher={"id": "teacher-1"})
+        result = tc.teacher_dashboard_summary(teacher={"profile": {"id": "teacher-1"}})
         assert result["success"] is True
         # When archived_at absent, student is treated as active → should appear
         assert result["subscription"]["students_used"] == 1
@@ -600,7 +600,7 @@ class TestDashboardConsistency:
         monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
         monkeypatch.setattr(tc, "_resolve_teacher_limit", lambda uid: 10)
 
-        result = tc.teacher_dashboard_summary(teacher={"id": "teacher-1"})
+        result = tc.teacher_dashboard_summary(teacher={"profile": {"id": "teacher-1"}})
         assert result["success"] is True
         assert "subscription" in result
         assert "students" in result

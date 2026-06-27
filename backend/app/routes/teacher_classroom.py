@@ -211,7 +211,7 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
     """
     import logging
     _log = logging.getLogger("likhapoha.teacher.summary")
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     is_paid = not is_free_tier_user(teacher_id)
     plan_limit = _resolve_teacher_limit(teacher_id)
 
@@ -391,7 +391,7 @@ def list_students(
     Archived students only appear when status=archived is requested.
     Teacher can only see their own students.
     """
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
 
     # Load assignments — use select("*") to avoid PGRST205 on stale schema cache.
     # archived_at will be absent if migration hasn't been applied → treated as active.
@@ -471,7 +471,7 @@ def get_student_detail(student_id: str, teacher=Depends(require_teacher)):
     Includes learning signals if available (graceful fallbacks).
     Teacher can only view assigned students.
     """
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_student(teacher_id, student_id)
 
     profile, _ = _safe_one(
@@ -550,7 +550,7 @@ def get_student_detail(student_id: str, teacher=Depends(require_teacher)):
 @router.patch("/students/{student_id}")
 def update_student(student_id: str, data: UpdateStudentRequest, teacher=Depends(require_teacher)):
     """Update student name, grade, or email. Teacher must own the student."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_student(teacher_id, student_id)
 
     updates = {k: v for k, v in data.dict().items() if v is not None}
@@ -576,7 +576,7 @@ def update_student(student_id: str, data: UpdateStudentRequest, teacher=Depends(
 @router.post("/students/{student_id}/archive")
 def archive_student(student_id: str, teacher=Depends(require_teacher)):
     """Archive a student from this teacher's roster (soft delete)."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_student(teacher_id, student_id)
 
     now = _now_iso()
@@ -605,7 +605,7 @@ def reset_student_password(student_id: str, teacher=Depends(require_teacher)):
     Password shown once only — never logged or stored.
     Teacher must own the student.
     """
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_student(teacher_id, student_id)
 
     new_password = _gen_password(12)
@@ -635,7 +635,7 @@ def email_student_credentials(student_id: str, teacher=Depends(require_teacher))
     Email login credentials to a student.
     Paid teachers only — backend enforces this.
     """
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     if is_free_tier_user(teacher_id):
         return {
             "success": False,
@@ -688,7 +688,7 @@ def list_invitations(
     teacher=Depends(require_teacher),
 ):
     """List all invitations created by this teacher."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     query = (
         admin_client.table("teacher_invitations")
         .select("id, student_name, grade, email, status, expires_at, accepted_at, created_at")
@@ -713,7 +713,7 @@ def create_invitation(data: CreateInvitationRequest, teacher=Depends(require_tea
     Create a student invitation by email.
     Checks plan limit — cannot exceed student cap.
     """
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
 
     # Check plan limit
     current = _count_active_assignments(teacher_id)
@@ -753,7 +753,7 @@ def create_invitation(data: CreateInvitationRequest, teacher=Depends(require_tea
 @router.post("/invitations/{invitation_id}/resend")
 def resend_invitation(invitation_id: str, teacher=Depends(require_teacher)):
     """Resend an invitation and extend its expiry by 7 days."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     inv, _ = _safe_one(
         lambda: admin_client.table("teacher_invitations")
         .select("*")
@@ -788,7 +788,7 @@ def resend_invitation(invitation_id: str, teacher=Depends(require_teacher)):
 @router.post("/invitations/{invitation_id}/cancel")
 def cancel_invitation(invitation_id: str, teacher=Depends(require_teacher)):
     """Cancel a pending invitation."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     inv, _ = _safe_one(
         lambda: admin_client.table("teacher_invitations")
         .select("id, status, teacher_id")
@@ -829,7 +829,7 @@ def list_classrooms(
     teacher=Depends(require_teacher),
 ):
     """List teacher's classrooms with student counts."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     query = (
         admin_client.table("teacher_classrooms")
         .select("*")
@@ -869,7 +869,7 @@ def list_classrooms(
 @router.post("/classrooms")
 def create_classroom(data: CreateClassroomRequest, teacher=Depends(require_teacher)):
     """Create a new classroom."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     row = {
         "teacher_id": teacher_id,
         "name": data.name.strip(),
@@ -895,7 +895,7 @@ def create_classroom(data: CreateClassroomRequest, teacher=Depends(require_teach
 @router.patch("/classrooms/{classroom_id}")
 def update_classroom(classroom_id: str, data: UpdateClassroomRequest, teacher=Depends(require_teacher)):
     """Rename or update a classroom description."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_classroom(teacher_id, classroom_id)
 
     updates = {k: v for k, v in data.dict().items() if v is not None}
@@ -918,7 +918,7 @@ def update_classroom(classroom_id: str, data: UpdateClassroomRequest, teacher=De
 @router.post("/classrooms/{classroom_id}/archive")
 def archive_classroom(classroom_id: str, teacher=Depends(require_teacher)):
     """Archive a classroom (soft delete)."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_classroom(teacher_id, classroom_id)
 
     try:
@@ -945,7 +945,7 @@ def add_student_to_classroom(
     teacher=Depends(require_teacher),
 ):
     """Add an assigned student to a classroom. Duplicate is safely ignored."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_classroom(teacher_id, classroom_id)
     _ensure_owns_student(teacher_id, data.student_id)
 
@@ -983,7 +983,7 @@ def remove_student_from_classroom(
     teacher=Depends(require_teacher),
 ):
     """Remove a student from a classroom."""
-    teacher_id = teacher.get("id")
+    teacher_id = teacher["profile"]["id"]
     _ensure_owns_classroom(teacher_id, classroom_id)
 
     try:
