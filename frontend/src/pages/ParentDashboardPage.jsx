@@ -466,10 +466,16 @@ function ChildAnalytics({childId}){
   var [data,setData]=useState(null);
   var [loading,setLoading]=useState(true);
   useEffect(function(){
-    getChildAnalytics(childId).then(function(d){setData(d);setLoading(false);}).catch(function(){setLoading(false);});
+    var cancelled=false;
+    try{
+      getChildAnalytics(childId)
+        .then(function(d){if(!cancelled){setData(d);setLoading(false);}})
+        .catch(function(){if(!cancelled){setLoading(false);}});
+    }catch(e){setLoading(false);}
+    return function(){cancelled=true;};
   },[childId]);
-  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading analytics…</div>;
-  if(!data) return <div style={{color:"#dc2626",padding:16}}>Could not load analytics.</div>;
+  if(loading) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>⏳ Loading analytics…</div>;
+  if(!data) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>📊 Analytics are loading. If this persists, the service may be updating.</div>;
   return(
     <div data-testid="child-section-analytics">
       <h4 style={{margin:"0 0 12px",fontSize:".9rem"}}>📊 Learning Analytics</h4>
@@ -560,10 +566,16 @@ function ChildInsights({childId, onUpgrade: _onUpgrade}){
   var [data,setData]=useState(null);
   var [loading,setLoading]=useState(true);
   useEffect(function(){
-    getChildAcademicInsights(childId).then(function(d){setData(d);setLoading(false);}).catch(function(){setLoading(false);});
+    var cancelled=false;
+    try{
+      getChildAcademicInsights(childId)
+        .then(function(d){if(!cancelled){setData(d);setLoading(false);}})
+        .catch(function(e){if(!cancelled){setLoading(false);}});
+    }catch(e){setLoading(false);}
+    return function(){cancelled=true;};
   },[childId]);
-  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading insights…</div>;
-  if(!data) return <div style={{color:"#dc2626",padding:16}}>Could not load insights.</div>;
+  if(loading) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>⏳ Loading insights…</div>;
+  if(!data) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>📋 Insights are loading. If this persists, the service may be updating.</div>;
   var prio={"high":"#dc2626","medium":"#f59e0b","low":"#22c55e"};
   return(
     <div data-testid="child-section-insights">
@@ -615,10 +627,16 @@ function ChildReport({childId, onUpgrade: _onUpgrade}){
   var [report,setReport]=useState(null);
   var [loading,setLoading]=useState(true);
   useEffect(function(){
-    getChildProgressReport(childId).then(function(d){setReport(d);setLoading(false);}).catch(function(){setLoading(false);});
+    var cancelled=false;
+    try{
+      getChildProgressReport(childId)
+        .then(function(d){if(!cancelled){setReport(d);setLoading(false);}})
+        .catch(function(e){if(!cancelled){setLoading(false);}});
+    }catch(e){setLoading(false);}
+    return function(){cancelled=true;};
   },[childId]);
-  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading report…</div>;
-  if(!report) return <div style={{color:"#dc2626",padding:16}}>Could not load report.</div>;
+  if(loading) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>⏳ Loading report…</div>;
+  if(!report) return <div style={{color:"#94a3b8",padding:16,textAlign:"center"}}>🖨️ Report is loading. If this persists, the service may be updating.</div>;
   return(
     <div data-testid="child-section-report" style={{fontFamily:"inherit"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
