@@ -12,8 +12,6 @@ import {
   getChildAnalytics,
   getChildAcademicInsights,
   getChildProgressReport,
-  getParentNotifications,
-  markAllNotificationsRead,
 } from "../api/parentDashboard";
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
