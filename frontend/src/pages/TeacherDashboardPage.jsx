@@ -1,616 +1,740 @@
-import { useEffect, useMemo, useState } from "react";
-import { BookOpen, ClipboardList, GraduationCap, Users, UserPlus, Mail } from "lucide-react";
-
+/**
+ * TeacherDashboardPage.jsx — Teacher Success Platform
+ * ─────────────────────────────────────────────────────────────────────────────
+ * 5-tab classroom management system:
+ *   Overview | Students | Invitations | Classrooms | Insights
+ *
+ * Safety:
+ *  - Teacher only sees their own assigned students (backend enforced)
+ *  - Password actions use one-time display, never stored
+ *  - Plan limits enforced by backend; UI shows warnings
+ *  - Free tier teacher sees disabled Email Login Details with tooltip
+ *  - All destructive actions require confirmation
+ */
+import { useCallback, useEffect, useState } from "react";
 import {
-  createTeacherNote,
+  getTeacherClassroomSummary,
+  listTeacherStudents,
+  getTeacherStudentDetail,
+  updateTeacherStudent,
+  archiveTeacherStudent,
+  resetTeacherStudentPassword,
+  emailTeacherStudentCredentials,
+  listTeacherInvitations,
+  createTeacherInvitation,
+  resendTeacherInvitation,
+  cancelTeacherInvitation,
+  listTeacherClassrooms,
+  createTeacherClassroom,
+  updateTeacherClassroom,
+  archiveTeacherClassroom,
+  addStudentToClassroom,
+  removeStudentFromClassroom,
   createTeacherStudent,
-  emailStudentCredentials,
-  getTeacherDashboardSummary,
+  getTeacherStudentLimit,
 } from "../api/teacherDashboard";
 
-const GRADES = [
-  "Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10",
-];
-
-const DEFAULT_STUDENT_FORM = {
-  username: "",
-  grade: "Grade 9",
-  password: "",
-  email: "",
-  subject: "",
+// ── Style helpers ─────────────────────────────────────────────────────────────
+const card = {
+  background: "var(--panel,#fff)",
+  border: "1px solid var(--border,#e5e7eb)",
+  borderRadius: 10,
+  padding: "14px 16px",
+  marginBottom: 12,
 };
 
-function TeacherDashboardPage({ user }) {
-  /** Teacher workspace — assigned students, progress, notes, and student creation. */
-  const [summary, setSummary] = useState(null);
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [savingNote, setSavingNote] = useState(false);
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-  const [selectedGrade, setSelectedGrade] = useState("all");
-  const [selectedSubject, setSelectedSubject] = useState("all");
-  const [selectedStudentId, setSelectedStudentId] = useState("");
-  const [noteForm, setNoteForm] = useState({ subject: "", chapter: "", note: "" });
+const inputStyle = {
+  padding: "8px 10px",
+  borderRadius: 7,
+  border: "1px solid var(--border,#e5e7eb)",
+  fontFamily: "inherit",
+  fontSize: ".85rem",
+  background: "var(--surface2,#f8fafc)",
+  color: "var(--text,#1e293b)",
+  width: "100%",
+};
 
-  // ── Add Student modal state ──────────────────────────────────────────────
-  const [showAddStudent, setShowAddStudent] = useState(false);
-  const [studentForm, setStudentForm] = useState(DEFAULT_STUDENT_FORM);
-  const [addingStudent, setAddingStudent] = useState(false);
-  const [addStudentError, setAddStudentError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+const STATUS_COLOR = {
+  active:    { bg: "rgba(34,197,94,.1)",  color: "#166534" },
+  inactive:  { bg: "rgba(148,163,184,.1)", color: "#64748b" },
+  suspended: { bg: "rgba(239,68,68,.1)",  color: "#dc2626" },
+  pending:   { bg: "rgba(245,158,11,.1)",  color: "#92400e" },
+  accepted:  { bg: "rgba(34,197,94,.1)",  color: "#166534" },
+  expired:   { bg: "rgba(239,68,68,.1)",  color: "#dc2626" },
+  cancelled: { bg: "rgba(148,163,184,.1)", color: "#64748b" },
+};
 
-  // ── Email credentials state ──────────────────────────────────────────────
-  const [emailingId, setEmailingId] = useState("");
-  const [emailMsg, setEmailMsg] = useState("");
+function Badge({ status }) {
+  const sc = STATUS_COLOR[status] || STATUS_COLOR.inactive;
+  return (
+    <span style={{ ...sc, display: "inline-block", fontSize: ".72rem", padding: "2px 7px", borderRadius: 5, fontWeight: 600 }}>
+      {status}
+    </span>
+  );
+}
 
-  async function loadDashboard() {
-    setLoading(true);
-    setError("");
-    try {
-      const data = await getTeacherDashboardSummary();
-      setSummary(data.summary || {});
-      setStudents(data.students || []);
-      setSelectedStudentId((current) => {
-        if (current && (data.students || []).some((s) => s.profile.id === current)) return current;
-        return data.students?.[0]?.profile?.id || "";
-      });
-    } catch (err) {
-      setError(err.message || "Unable to load teacher dashboard.");
-    } finally {
-      setLoading(false);
-    }
-  }
+function KpiCard({ label, value, sub, color = "#6366f1" }) {
+  return (
+    <div style={{ ...card, flex: "1 1 130px", minWidth: 120, textAlign: "center" }}>
+      <div style={{ fontSize: "1.6rem", fontWeight: 800, color }}>{value ?? "—"}</div>
+      <div style={{ fontSize: ".78rem", fontWeight: 600, marginTop: 2 }}>{label}</div>
+      {sub && <div style={{ fontSize: ".7rem", color: "#94a3b8", marginTop: 2 }}>{sub}</div>}
+    </div>
+  );
+}
 
-  useEffect(() => { loadDashboard(); }, []);
+// ── Grade options ─────────────────────────────────────────────────────────────
+const GRADE_OPTIONS = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
 
-  const gradeOptions = summary?.active_grades || [];
-  const subjectOptions = summary?.subjects || [];
-  const studentLimit = summary?.student_limit || { count: 0, max: 10, is_paid: false, at_limit: false };
+// ── Main Component ────────────────────────────────────────────────────────────
+export default function TeacherDashboardPage({ user }) {
+  const [activeTab, setActiveTab] = useState("overview");
 
-  const filteredStudents = useMemo(() => students.filter((student) => {
-    const assignments = student.assignments || [];
-    const gradeMatch = selectedGrade === "all" || assignments.some((a) => a.grade === selectedGrade);
-    const subjectMatch = selectedSubject === "all" || assignments.some((a) => a.subject === selectedSubject);
-    return gradeMatch && subjectMatch;
-  }), [students, selectedGrade, selectedSubject]);
+  const TABS = [
+    { key: "overview",     label: "Overview",     icon: "🏠" },
+    { key: "students",     label: "Students",     icon: "🎓" },
+    { key: "invitations",  label: "Invitations",  icon: "✉️" },
+    { key: "classrooms",   label: "Classrooms",   icon: "🏫" },
+    { key: "insights",     label: "Insights",     icon: "📊" },
+  ];
 
-  const selectedStudent =
-    students.find((s) => s.profile.id === selectedStudentId) ||
-    filteredStudents[0] ||
-    null;
-
-  // ── Save note ────────────────────────────────────────────────────────────
-  async function handleSaveNote(e) {
-    e.preventDefault();
-    setMessage("");
-    setError("");
-    if (!selectedStudent) { setError("Select a student before saving a note."); return; }
-    setSavingNote(true);
-    try {
-      await createTeacherNote({
-        student_id: selectedStudent.profile.id,
-        subject: noteForm.subject,
-        chapter: noteForm.chapter,
-        note: noteForm.note,
-      });
-      setNoteForm({ subject: "", chapter: "", note: "" });
-      await loadDashboard();
-      setMessage("Teacher note saved.");
-    } catch (err) {
-      setError(err.message || "Unable to save note.");
-    } finally { setSavingNote(false); }
-  }
-
-  // ── Add student ──────────────────────────────────────────────────────────
-  async function handleAddStudent(e) {
-    e.preventDefault();
-    setAddStudentError("");
-    if (!studentForm.username.trim()) { setAddStudentError("Student name is required."); return; }
-    if (!studentForm.grade) { setAddStudentError("Grade is required."); return; }
-    if (!studentForm.password || studentForm.password.length < 6) {
-      setAddStudentError("Temporary password must be at least 6 characters.");
-      return;
-    }
-    setAddingStudent(true);
-    try {
-      const result = await createTeacherStudent({
-        username: studentForm.username.trim(),
-        grade: studentForm.grade,
-        password: studentForm.password,
-        email: studentForm.email.trim() || undefined,
-        subject: studentForm.subject.trim() || undefined,
-      });
-      setShowAddStudent(false);
-      setStudentForm(DEFAULT_STUDENT_FORM);
-      setMessage(
-        `✅ Student "${result.student?.username}" added! ` +
-        `(${result.student_count} / ${result.max_students} students)`
-      );
-      await loadDashboard();
-    } catch (err) {
-      setAddStudentError(err.message || "Could not add student. Please try again.");
-    } finally { setAddingStudent(false); }
-  }
-
-  // ── Email credentials ────────────────────────────────────────────────────
-  async function handleEmailCredentials(studentId) {
-    setEmailMsg("");
-    setEmailingId(studentId);
-    try {
-      const result = await emailStudentCredentials(studentId);
-      setEmailMsg(result.message || "Password reset link sent.");
-    } catch (err) {
-      setEmailMsg(`❌ ${err.message || "Failed to send email."}`);
-    } finally { setEmailingId(""); }
-  }
-
-  if (loading) return <p>Loading teacher dashboard...</p>;
-
-  const completedChapters = students.reduce((s, st) => s + Number(st.progress_summary?.completed_chapters || 0), 0);
-  const totalMockTests = students.reduce((s, st) => s + Number(st.test_summary?.total_tests || 0), 0);
-  const atLimit = studentLimit.at_limit;
+  const isPaid = user?.isPaid ?? false;
 
   return (
-    <div className="premium-page teacher-dashboard-page">
-      <section className="premium-section">
-        <div className="premium-header">
-          <p className="eyebrow">Teacher Workspace</p>
-          <h2>{user?.username || "Teacher"} Dashboard</h2>
-          <p>Track assigned students across school classrooms or independent tutoring groups.</p>
-        </div>
-      </section>
+    <div style={{ fontFamily: "inherit", maxWidth: 960, margin: "0 auto", padding: "0 12px 40px" }}>
+      <h2 style={{ margin: "16px 0 4px", fontSize: "1.15rem", fontWeight: 800 }}>
+        🏫 Teacher Dashboard
+      </h2>
+      <p style={{ margin: "0 0 16px", fontSize: ".82rem", color: "#64748b" }}>
+        Classroom management · Students · Invitations · Insights
+      </p>
 
-      {message && <div className="info-box">{message}</div>}
-      {error && <div className="error-box">{error}</div>}
-      {emailMsg && (
-        <div className={emailMsg.startsWith("❌") ? "error-box" : "info-box"} style={{ marginBottom: 12 }}>
-          {emailMsg}
-        </div>
-      )}
-
-      {/* Stats */}
-      <section className="premium-grid premium-grid-4 premium-parent-stats">
-        <div className="premium-card">
-          <div className="dashboard-stat-icon blue"><Users size={22} /></div>
-          <h3>{summary?.assigned_students || 0}</h3>
-          <p>Assigned Students</p>
-        </div>
-        <div className="premium-card">
-          <div className="dashboard-stat-icon green"><GraduationCap size={22} /></div>
-          <h3>{gradeOptions.length}</h3>
-          <p>Active Grades</p>
-        </div>
-        <div className="premium-card">
-          <div className="dashboard-stat-icon purple"><BookOpen size={22} /></div>
-          <h3>{completedChapters}</h3>
-          <p>Completed Chapters</p>
-        </div>
-        <div className="premium-card">
-          <div className="dashboard-stat-icon red"><ClipboardList size={22} /></div>
-          <h3>{totalMockTests}</h3>
-          <p>Mock Tests Taken</p>
-        </div>
-      </section>
-
-      {/* Assigned Roster */}
-      <section className="premium-section">
-        <div className="premium-header" style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-          <div>
-            <h3>Assigned Roster</h3>
-            <p>Filter by grade or subject to focus on one class group.</p>
-          </div>
-
-          {/* Student limit badge + Add button */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-            <div style={{
-              padding: "6px 14px", borderRadius: 20, fontSize: ".82rem", fontWeight: 600,
-              background: atLimit ? "rgba(239,68,68,.12)" : "rgba(99,102,241,.12)",
-              color: atLimit ? "#f87171" : "#a5b4fc",
-              border: `1px solid ${atLimit ? "rgba(239,68,68,.3)" : "rgba(99,102,241,.3)"}`,
+      {/* ── Tab nav ─────────────────────────────────────────────────────── */}
+      <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 20, borderBottom: "2px solid var(--border,#e5e7eb)", paddingBottom: 0 }}>
+        {TABS.map(t => (
+          <button key={t.key}
+            onClick={() => setActiveTab(t.key)}
+            data-testid={`teacher-tab-${t.key}`}
+            style={{
+              padding: "8px 16px", border: "none", background: "none", cursor: "pointer",
+              fontFamily: "inherit", fontSize: ".85rem", fontWeight: activeTab === t.key ? 700 : 500,
+              color: activeTab === t.key ? "#6366f1" : "var(--text,#374151)",
+              borderBottom: activeTab === t.key ? "2px solid #6366f1" : "2px solid transparent",
+              marginBottom: -2,
             }}>
-              {studentLimit.count} / {studentLimit.max} students
-              {studentLimit.is_paid ? " · Paid" : " · Free Tier"}
-            </div>
+            {t.icon} {t.label}
+          </button>
+        ))}
+      </div>
 
-            {atLimit ? (
-              <div style={{
-                padding: "8px 14px", borderRadius: 9, fontSize: ".8rem", fontWeight: 500,
-                background: "rgba(239,68,68,.1)", color: "#f87171",
-                border: "1px solid rgba(239,68,68,.25)", maxWidth: 320,
-              }}>
-                Student limit reached. Contact admin to add more students.
-              </div>
-            ) : (
-              <button
-                className="primary-btn"
-                style={{ display: "flex", alignItems: "center", gap: 7, padding: "9px 18px", fontSize: ".88rem" }}
-                onClick={() => { setShowAddStudent(true); setAddStudentError(""); setStudentForm(DEFAULT_STUDENT_FORM); }}
-              >
-                <UserPlus size={16} strokeWidth={2.5} />
-                Add Student
-              </button>
-            )}
+      {/* ── Panels ──────────────────────────────────────────────────────── */}
+      {activeTab === "overview"    && <OverviewTab    user={user} isPaid={isPaid} onNavigate={setActiveTab} />}
+      {activeTab === "students"    && <StudentsTab    user={user} isPaid={isPaid} />}
+      {activeTab === "invitations" && <InvitationsTab user={user} isPaid={isPaid} />}
+      {activeTab === "classrooms"  && <ClassroomsTab  user={user} />}
+      {activeTab === "insights"    && <InsightsTab    user={user} />}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Overview Tab
+// ─────────────────────────────────────────────────────────────────────────────
+function OverviewTab({ user, isPaid, onNavigate }) {
+  const [summary, setSummary] = useState(null);
+  const [loading, setLoading]   = useState(true);
+  const [error, setError]       = useState(null);
+  const [limit, setLimit]       = useState(null);
+
+  useEffect(() => {
+    Promise.all([
+      getTeacherClassroomSummary().catch(e => ({ error: e.message })),
+      getTeacherStudentLimit().catch(() => null),
+    ]).then(([s, l]) => {
+      setSummary(s);
+      setLimit(l);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div style={{ color: "#94a3b8", padding: 16 }}>Loading dashboard…</div>;
+  if (error || summary?.error) return <div style={{ color: "#dc2626" }}>⚠ {error || summary?.error}</div>;
+
+  const t = summary?.totals || {};
+  const avg = summary?.averages || {};
+
+  return (
+    <div data-testid="teacher-overview-tab">
+      {/* Plan usage bar */}
+      {limit && (
+        <div style={{ ...card, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, fontSize: ".88rem" }}>
+              Students: {limit.count} / {limit.max}
+              {limit.at_limit && <span style={{ marginLeft: 8, color: "#dc2626", fontSize: ".78rem" }}>Limit reached</span>}
+            </div>
+            <div style={{ marginTop: 6, background: "var(--border,#e5e7eb)", borderRadius: 4, height: 6 }}>
+              <div style={{ height: 6, borderRadius: 4, background: limit.at_limit ? "#dc2626" : "#6366f1", width: `${Math.min(100, (limit.count / limit.max) * 100)}%`, transition: "width .3s" }} />
+            </div>
           </div>
+          {!isPaid && (
+            <span style={{ fontSize: ".75rem", color: "#64748b" }}>
+              {limit.count}/{limit.max} · Upgrade to paid plan for {limit.max === 10 ? "30" : "more"} students
+            </span>
+          )}
         </div>
-
-        {/* Grade / Subject filters */}
-        <div className="form-grid premium-rag-form-grid">
-          <label>
-            Grade
-            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)}>
-              <option value="all">All grades</option>
-              {gradeOptions.map((g) => <option key={g} value={g}>{g}</option>)}
-            </select>
-          </label>
-          <label>
-            Subject
-            <select value={selectedSubject} onChange={(e) => setSelectedSubject(e.target.value)}>
-              <option value="all">All subjects</option>
-              {subjectOptions.map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </label>
-        </div>
-
-        {filteredStudents.length === 0 ? (
-          <div className="info-box">
-            No students assigned yet. Ask an admin to assign students, or{" "}
-            {!atLimit && (
-              <span
-                style={{ color: "var(--accent-blue, #6366f1)", cursor: "pointer", fontWeight: 600 }}
-                onClick={() => setShowAddStudent(true)}
-              >
-                add your first student →
-              </span>
-            )}
-          </div>
-        ) : (
-          <div className="teacher-roster-grid">
-            {filteredStudents.map((student) => {
-              const profile = student.profile;
-              const assignments = student.assignments || [];
-              const activity = student.activity || {};
-              const progressSummary = student.progress_summary || {};
-              const hasRealEmail = profile.has_real_email;
-
-              return (
-                <button
-                  key={profile.id}
-                  className={selectedStudent?.profile?.id === profile.id ? "teacher-student-card active" : "teacher-student-card"}
-                  onClick={() => setSelectedStudentId(profile.id)}
-                  style={{ position: "relative" }}
-                >
-                  <strong>{profile.username}</strong>
-                  <span>{profile.grade || assignments[0]?.grade || "Grade 9"}</span>
-                  <small>
-                    {assignments.map((a) => a.subject).filter(Boolean).join(", ") || "General"}
-                  </small>
-                  <div>
-                    <span>{progressSummary.completed_chapters || 0} complete</span>
-                    <span>{activity.requests_total || 0} AI requests</span>
-                  </div>
-
-                  {/* Email credentials button */}
-                  {studentLimit.is_paid ? (
-                    <div
-                      style={{ marginTop: 8 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (hasRealEmail && emailingId !== profile.id) {
-                          handleEmailCredentials(profile.id);
-                        }
-                      }}
-                    >
-                      {hasRealEmail ? (
-                        <span
-                          title="Send password reset link to student's email"
-                          style={{
-                            display: "inline-flex", alignItems: "center", gap: 4,
-                            fontSize: ".72rem", fontWeight: 600, cursor: "pointer",
-                            color: emailingId === profile.id ? "#64748b" : "#6366f1",
-                            padding: "3px 8px", borderRadius: 6,
-                            background: "rgba(99,102,241,.1)",
-                          }}
-                        >
-                          <Mail size={12} />
-                          {emailingId === profile.id ? "Sending…" : "Email Login"}
-                        </span>
-                      ) : (
-                        <span
-                          title="No email available for this student"
-                          style={{
-                            display: "inline-flex", alignItems: "center", gap: 4,
-                            fontSize: ".72rem", color: "#475569",
-                            padding: "3px 8px", borderRadius: 6,
-                            background: "rgba(71,85,105,.1)",
-                            cursor: "not-allowed",
-                          }}
-                        >
-                          <Mail size={12} />
-                          No email
-                        </span>
-                      )}
-                    </div>
-                  ) : (
-                    <div style={{ marginTop: 8 }}>
-                      <span
-                        title="Upgrade to a paid plan to email login details"
-                        style={{
-                          display: "inline-flex", alignItems: "center", gap: 4,
-                          fontSize: ".72rem", color: "#475569", cursor: "not-allowed",
-                          padding: "3px 8px", borderRadius: 6,
-                          background: "rgba(71,85,105,.08)",
-                        }}
-                      >
-                        <Mail size={12} />
-                        Paid plan needed
-                      </span>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
-      </section>
-
-      {/* Student detail + notes */}
-      {selectedStudent && (
-        <section className="premium-section teacher-detail-grid">
-          <div>
-            <div className="premium-header">
-              <h3>{selectedStudent.profile.username}</h3>
-              <p>{selectedStudent.profile.has_real_email ? selectedStudent.profile.email : "(no real email)"}</p>
-            </div>
-            <div className="premium-card" style={{ marginBottom: 18 }}>
-              <h4>Assignments</h4>
-              {(selectedStudent.assignments || []).map((a) => (
-                <p key={a.id || `${a.subject}-${a.grade}`}>
-                  {a.grade || "Grade 9"} • {a.subject || "General"}
-                  {a.section ? ` • ${a.section}` : ""}
-                </p>
-              ))}
-            </div>
-            <div className="premium-card">
-              <h4>Recent Progress</h4>
-              {(selectedStudent.recent_progress || []).length === 0 ? (
-                <p>No chapter progress recorded yet.</p>
-              ) : (
-                selectedStudent.recent_progress.map((progress) => (
-                  <div key={`${progress.subject}-${progress.chapter}-${progress.updated_at}`} className="teacher-progress-row">
-                    <strong>{progress.chapter}</strong>
-                    <span>{progress.subject} • Step {Number(progress.current_step_index || 0) + 1}
-                      {progress.completed ? " • Completed" : ""}</span>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {/* Mock Test Results */}
-            <div className="premium-card" style={{ marginTop: 16 }}>
-              <h4>🧪 Mock Test Results</h4>
-              {selectedStudent.test_summary?.total_tests > 0 && (
-                <div style={{
-                  display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10,
-                  marginBottom: 14, padding: "10px 14px",
-                  background: "rgba(99,102,241,.07)", borderRadius: 9,
-                }}>
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "1.3rem", fontWeight: 800 }}>{selectedStudent.test_summary.total_tests}</div>
-                    <div style={{ fontSize: ".75rem", color: "var(--muted)" }}>Tests taken</div>
-                  </div>
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "#10b981" }}>{selectedStudent.test_summary.best_score}%</div>
-                    <div style={{ fontSize: ".75rem", color: "var(--muted)" }}>Best score</div>
-                  </div>
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "#6366f1" }}>{selectedStudent.test_summary.average_score}%</div>
-                    <div style={{ fontSize: ".75rem", color: "var(--muted)" }}>Average</div>
-                  </div>
-                </div>
-              )}
-              {(selectedStudent.recent_tests || []).length === 0 ? (
-                <p>No mock tests taken yet.</p>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  {selectedStudent.recent_tests.map((test, i) => {
-                    const pct = Number(test.percentage || 0);
-                    const color = pct >= 80 ? "#10b981" : pct >= 50 ? "#f59e0b" : "#ef4444";
-                    return (
-                      <div key={i} style={{
-                        display: "flex", alignItems: "center", justifyContent: "space-between",
-                        padding: "8px 12px", background: "var(--surface2, #f8f9fa)",
-                        borderRadius: 8, flexWrap: "wrap", gap: 6,
-                      }}>
-                        <div style={{ flex: 1 }}>
-                          <strong style={{ fontSize: ".88rem" }}>{test.subject}</strong>
-                          {test.chapter && <span style={{ color: "var(--muted)", fontSize: ".78rem", marginLeft: 6 }}>• {test.chapter}</span>}
-                          <div style={{ fontSize: ".75rem", color: "var(--muted)", marginTop: 2 }}>
-                            {test.exam_type || "Class Test"} · {test.difficulty || "Medium"}
-                            {test.submitted_at && ` · ${String(test.submitted_at).slice(0, 10)}`}
-                          </div>
-                        </div>
-                        <div style={{ textAlign: "right", fontWeight: 800, fontSize: "1rem", color }}>
-                          {pct.toFixed(1)}%
-                          <div style={{ fontSize: ".72rem", fontWeight: 400, color: "var(--muted)" }}>
-                            {test.final_score ?? "—"}/{test.max_score ?? "—"}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <div className="premium-card" style={{ marginBottom: 18 }}>
-              <h4>Add Teacher Note</h4>
-              <form onSubmit={handleSaveNote} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                  <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".85rem", fontWeight: 600 }}>
-                    Subject
-                    <input value={noteForm.subject} onChange={(e) => setNoteForm((p) => ({ ...p, subject: e.target.value }))} placeholder="Science" style={{ marginTop: 0 }} />
-                  </label>
-                  <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".85rem", fontWeight: 600 }}>
-                    Chapter
-                    <input value={noteForm.chapter} onChange={(e) => setNoteForm((p) => ({ ...p, chapter: e.target.value }))} placeholder="Motion" style={{ marginTop: 0 }} />
-                  </label>
-                </div>
-                <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".85rem", fontWeight: 600 }}>
-                  Note
-                  <textarea
-                    value={noteForm.note}
-                    onChange={(e) => setNoteForm((p) => ({ ...p, note: e.target.value }))}
-                    placeholder="Add a follow-up, intervention, or parent update."
-                    required
-                    rows={4}
-                    style={{ width: "100%", boxSizing: "border-box", resize: "vertical", fontFamily: "inherit", fontSize: ".88rem" }}
-                  />
-                </label>
-                <button type="submit" className="primary-btn" disabled={savingNote} style={{ width: "100%", boxSizing: "border-box" }}>
-                  {savingNote ? "Saving..." : "Save Note"}
-                </button>
-              </form>
-            </div>
-            <div className="premium-card">
-              <h4>Recent Notes</h4>
-              {(selectedStudent.notes || []).length === 0 ? <p>No notes yet.</p> : (
-                selectedStudent.notes.map((note) => (
-                  <div key={note.id || note.created_at} className="teacher-note-row">
-                    <strong>{note.subject || "General"}{note.chapter ? ` • ${note.chapter}` : ""}</strong>
-                    <p>{note.note}</p>
-                    <small>{String(note.created_at || "").slice(0, 19)}</small>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </section>
       )}
 
-      {/* ── Add Student Modal ─────────────────────────────────────────────── */}
-      {showAddStudent && (
-        <div style={{
-          position: "fixed", inset: 0, zIndex: 999,
-          background: "rgba(0,0,0,.65)", display: "flex",
-          alignItems: "center", justifyContent: "center", padding: 20,
-        }}
-          onClick={(e) => { if (e.target === e.currentTarget) setShowAddStudent(false); }}
-        >
-          <div style={{
-            width: "100%", maxWidth: 480, background: "#1e293b",
-            borderRadius: 16, padding: "32px 28px", color: "#f8fafc",
-            boxShadow: "0 24px 80px rgba(0,0,0,.6)",
-          }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-              <h3 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800 }}>
-                <UserPlus size={18} style={{ marginRight: 8 }} />
-                Add New Student
-              </h3>
-              <button onClick={() => setShowAddStudent(false)}
-                style={{ background: "none", border: "none", color: "#94a3b8", fontSize: "1.4rem", cursor: "pointer" }}>
-                ×
-              </button>
-            </div>
+      {/* KPI row */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
+        <KpiCard label="Total Students"      value={t.total_students}        color="#6366f1" />
+        <KpiCard label="Active"              value={t.active_students}       color="#22c55e" />
+        <KpiCard label="Inactive"            value={t.inactive_students}     color="#94a3b8" />
+        <KpiCard label="Pending Invites"     value={t.pending_invitations}   color="#f59e0b" />
+        <KpiCard label="Needs Attention"     value={t.needs_attention_count} color="#ef4444" />
+        {avg.mock_test_avg != null && (
+          <KpiCard label="Class Avg Score" value={`${avg.mock_test_avg}%`} color="#0ea5e9" />
+        )}
+      </div>
 
-            <p style={{ fontSize: ".82rem", color: "#94a3b8", marginBottom: 18 }}>
-              Plan: {studentLimit.count} / {studentLimit.max} students used
-              {studentLimit.is_paid ? " (Paid)" : " (Free Tier — upgrade for 30 students)"}
-            </p>
-
-            {addStudentError && (
-              <div style={{
-                background: "rgba(239,68,68,.1)", border: "1px solid rgba(239,68,68,.3)",
-                color: "#fca5a5", borderRadius: 9, padding: "10px 14px", fontSize: ".85rem", marginBottom: 14,
-              }}>{addStudentError}</div>
-            )}
-
-            <form onSubmit={handleAddStudent} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <label style={{ display: "block", fontSize: ".85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 4 }}>
-                Student Name *
-                <input
-                  style={{ width: "100%", background: "#111827", border: "2px solid #1e293b", borderRadius: 10, padding: "11px 13px", color: "#f8fafc", fontFamily: "inherit", fontSize: ".92rem", outline: "none", marginTop: 5 }}
-                  type="text" placeholder="Full name" required
-                  value={studentForm.username}
-                  onChange={(e) => setStudentForm((p) => ({ ...p, username: e.target.value }))}
-                />
-              </label>
-
-              <label style={{ display: "block", fontSize: ".85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 4 }}>
-                Grade *
-                <select
-                  style={{ width: "100%", background: "#111827", border: "2px solid #1e293b", borderRadius: 10, padding: "11px 13px", color: "#f8fafc", fontFamily: "inherit", fontSize: ".92rem", outline: "none", marginTop: 5 }}
-                  required value={studentForm.grade}
-                  onChange={(e) => setStudentForm((p) => ({ ...p, grade: e.target.value }))}
-                >
-                  {GRADES.map((g) => <option key={g} value={g}>{g}</option>)}
-                </select>
-              </label>
-
-              <label style={{ display: "block", fontSize: ".85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 4 }}>
-                Email <span style={{ color: "#64748b", fontWeight: 400 }}>(optional)</span>
-                <input
-                  style={{ width: "100%", background: "#111827", border: "2px solid #1e293b", borderRadius: 10, padding: "11px 13px", color: "#f8fafc", fontFamily: "inherit", fontSize: ".92rem", outline: "none", marginTop: 5 }}
-                  type="email" placeholder="student@example.com"
-                  value={studentForm.email}
-                  onChange={(e) => setStudentForm((p) => ({ ...p, email: e.target.value }))}
-                />
-                <small style={{ color: "#64748b", fontSize: ".75rem" }}>
-                  Required for "Email Login" feature. If skipped, student logs in with username + password.
-                </small>
-              </label>
-
-              <label style={{ display: "block", fontSize: ".85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 4 }}>
-                Temporary Password *
-                <div style={{ position: "relative", marginTop: 5 }}>
-                  <input
-                    style={{ width: "100%", background: "#111827", border: "2px solid #1e293b", borderRadius: 10, padding: "11px 40px 11px 13px", color: "#f8fafc", fontFamily: "inherit", fontSize: ".92rem", outline: "none" }}
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Min 6 characters" required minLength={6}
-                    value={studentForm.password}
-                    onChange={(e) => setStudentForm((p) => ({ ...p, password: e.target.value }))}
-                  />
-                  <button type="button"
-                    onClick={() => setShowPassword((p) => !p)}
-                    style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#64748b", fontSize: "1.1rem", padding: 0 }}>
-                    {showPassword ? "🙈" : "👁️"}
-                  </button>
-                </div>
-                <small style={{ color: "#64748b", fontSize: ".75rem" }}>
-                  Share this with the student. Password is hashed immediately — never stored in plain text.
-                </small>
-              </label>
-
-              <label style={{ display: "block", fontSize: ".85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 4 }}>
-                Subject <span style={{ color: "#64748b", fontWeight: 400 }}>(optional)</span>
-                <input
-                  style={{ width: "100%", background: "#111827", border: "2px solid #1e293b", borderRadius: 10, padding: "11px 13px", color: "#f8fafc", fontFamily: "inherit", fontSize: ".92rem", outline: "none", marginTop: 5 }}
-                  type="text" placeholder="Science"
-                  value={studentForm.subject}
-                  onChange={(e) => setStudentForm((p) => ({ ...p, subject: e.target.value }))}
-                />
-              </label>
-
-              <button
-                type="submit"
-                style={{
-                  width: "100%", padding: "13px", borderRadius: 10, border: "none",
-                  background: "linear-gradient(135deg,#2563eb,#7c3aed)", color: "#fff",
-                  fontSize: ".95rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit",
-                  opacity: addingStudent ? 0.7 : 1,
-                }}
-                disabled={addingStudent}
-              >
-                {addingStudent ? "Creating student…" : "Create Student & Assign"}
-              </button>
-            </form>
+      {/* Needs attention */}
+      {summary?.needs_attention?.length > 0 && (
+        <div style={{ ...card, borderLeft: "3px solid #f59e0b" }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>⚠ Students needing attention (no activity 7+ days)</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {summary.needs_attention.map(n => (
+              <span key={n} style={{ fontSize: ".78rem", background: "rgba(245,158,11,.1)", color: "#92400e", padding: "3px 8px", borderRadius: 5, fontWeight: 600 }}>{n}</span>
+            ))}
           </div>
+        </div>
+      )}
+
+      {/* Recent activity */}
+      {summary?.recent_activity?.length > 0 && (
+        <div style={card}>
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>🕐 Recent Activity</div>
+          {summary.recent_activity.map((a, i) => (
+            <div key={i} style={{ display: "flex", gap: 10, padding: "4px 0", borderBottom: "1px solid var(--border,#f1f5f9)", fontSize: ".78rem" }}>
+              <span style={{ color: "#94a3b8", minWidth: 80 }}>{(a.at || "").slice(0, 16)}</span>
+              <span style={{ fontWeight: 600 }}>{a.username}</span>
+              <span style={{ color: "#64748b" }}>{a.feature}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Quick actions */}
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <button onClick={() => onNavigate("students")}    className="primary-btn">🎓 Manage Students</button>
+        <button onClick={() => onNavigate("invitations")} className="secondary-btn">✉️ Invite Student</button>
+        <button onClick={() => onNavigate("classrooms")}  className="secondary-btn">🏫 Classrooms</button>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Students Tab
+// ─────────────────────────────────────────────────────────────────────────────
+function StudentsTab({ user, isPaid }) {
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [q, setQ]               = useState("");
+  const [filterGrade, setGrade] = useState("");
+  const [filterStatus, setStatus] = useState("");
+  const [sort, setSort]         = useState("name");
+  const [selected, setSelected] = useState(null);   // student detail drawer
+  const [detail, setDetail]     = useState(null);
+  const [detailLoading, setDL]  = useState(false);
+  const [msg, setMsg]           = useState(null);
+  const [pwResult, setPwResult] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editData, setEditData] = useState({});
+  const [showAddForm, setShowAdd] = useState(false);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const d = await listTeacherStudents({ q, grade: filterGrade, status: filterStatus, sort }).catch(() => null);
+    setStudents(d?.students || []);
+    setLoading(false);
+  }, [q, filterGrade, filterStatus, sort]);
+
+  useEffect(() => { load(); }, [load]);
+
+  async function openDetail(s) {
+    setSelected(s);
+    setDL(true);
+    setDetail(null);
+    setPwResult(null);
+    setMsg(null);
+    setEditMode(false);
+    const d = await getTeacherStudentDetail(s.id).catch(() => null);
+    setDetail(d);
+    setDL(false);
+  }
+
+  async function doArchive(s) {
+    if (!window.confirm(`Archive ${s.username}? They will be removed from your roster.`)) return;
+    const d = await archiveTeacherStudent(s.id).catch(e => ({ success: false, error: e.message }));
+    if (d.success) { setMsg("✅ Student archived."); load(); setSelected(null); }
+    else setMsg(`⚠ ${d.error}`);
+  }
+
+  async function doResetPassword(s) {
+    if (!window.confirm("Reset temporary password for " + s.username + "? Shown once only.")) return;
+    const d = await resetTeacherStudentPassword(s.id).catch(e => ({ success: false, error: e.message }));
+    setPwResult(d);
+  }
+
+  async function doEmailCredentials(s) {
+    const d = await emailTeacherStudentCredentials(s.id).catch(e => ({ success: false, error: e.message }));
+    if (d.invite_sent) setMsg("✅ Login credentials emailed.");
+    else setMsg("⚠ " + (d.error || d.note || "Could not send."));
+  }
+
+  async function doSaveEdit() {
+    const d = await updateTeacherStudent(selected.id, editData).catch(e => ({ success: false, error: e.message }));
+    if (d.success) { setMsg("✅ Saved."); setEditMode(false); load(); openDetail(selected); }
+    else setMsg("⚠ " + d.error);
+  }
+
+  return (
+    <div data-testid="teacher-students-tab">
+      {/* ── Add student form ── */}
+      <div style={{ marginBottom: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <button onClick={() => setShowAdd(v => !v)} className="primary-btn">
+          {showAddForm ? "✕ Close" : "➕ Add Student"}
+        </button>
+      </div>
+      {showAddForm && <AddStudentForm onAdded={() => { setShowAdd(false); load(); }} />}
+
+      {/* ── Search / filter bar ── */}
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search by name or email…"
+          data-testid="student-search-input"
+          style={{ ...inputStyle, flex: 1, minWidth: 160 }} />
+        <select value={filterGrade} onChange={e => setGrade(e.target.value)} style={{ ...inputStyle, width: "auto" }}>
+          <option value="">All Grades</option>
+          {GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+        </select>
+        <select value={filterStatus} onChange={e => setStatus(e.target.value)} style={{ ...inputStyle, width: "auto" }}>
+          <option value="">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="archived">Archived</option>
+        </select>
+        <select value={sort} onChange={e => setSort(e.target.value)} style={{ ...inputStyle, width: "auto" }}>
+          <option value="name">Sort: Name</option>
+          <option value="grade">Sort: Grade</option>
+        </select>
+      </div>
+
+      {msg && <div style={{ marginBottom: 8, color: msg.startsWith("✅") ? "#166534" : "#dc2626", fontSize: ".82rem" }}>{msg}</div>}
+
+      {/* ── Roster ── */}
+      {loading && <div style={{ color: "#94a3b8" }}>Loading students…</div>}
+      {!loading && students.length === 0 && (
+        <div style={{ padding: 20, textAlign: "center", color: "#94a3b8", fontSize: ".85rem" }}>
+          No students found. Add a student or send an invitation.
+        </div>
+      )}
+      {students.map(s => (
+        <div key={s.id} style={{ ...card, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: 140 }}>
+            <strong style={{ fontSize: ".88rem" }}>{s.username}</strong>
+            <span style={{ marginLeft: 8 }}><Badge status={s.account_status || "active"} /></span>
+            <div style={{ fontSize: ".72rem", color: "#94a3b8", marginTop: 2 }}>
+              {s.email || "—"} · {s.grade || "—"}
+            </div>
+          </div>
+          <button onClick={() => openDetail(s)} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #6366f1", background: "rgba(99,102,241,.08)", color: "#6366f1", fontWeight: 600, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+            View
+          </button>
+        </div>
+      ))}
+
+      {/* ── Student detail drawer ── */}
+      {selected && (
+        <div style={{ position: "fixed", top: 0, right: 0, width: Math.min(420, window.innerWidth), height: "100vh", background: "var(--panel,#fff)", boxShadow: "-4px 0 24px rgba(0,0,0,.12)", overflowY: "auto", zIndex: 200, padding: 20 }}>
+          <button onClick={() => setSelected(null)} style={{ float: "right", background: "none", border: "none", fontSize: "1.2rem", cursor: "pointer" }}>✕</button>
+          <h3 style={{ margin: "0 0 4px" }}>{selected.username}</h3>
+          {detailLoading && <div style={{ color: "#94a3b8" }}>Loading…</div>}
+
+          {detail && !detailLoading && (
+            <>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+                {[["Grade", detail.student?.grade], ["Plan", detail.student?.subscription_plan], ["Status", detail.student?.account_status]].map(([k, v]) => (
+                  <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px" }}>
+                    <div style={{ fontSize: ".68rem", color: "#64748b" }}>{k}</div>
+                    <div style={{ fontSize: ".82rem", fontWeight: 700 }}>{v || "—"}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Learning signals */}
+              {detail.learning && (
+                <div style={{ ...card }}>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>📊 Learning Signals</div>
+                  {detail.learning.last_active
+                    ? <div style={{ fontSize: ".78rem" }}>Last active: {new Date(detail.learning.last_active).toLocaleString()}</div>
+                    : <div style={{ fontSize: ".78rem", color: "#94a3b8" }}>No recent activity recorded.</div>}
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
+                    {[["Lessons", detail.learning.lessons_generated], ["Doubts", detail.learning.doubts_asked], ["Mock Tests", detail.learning.mock_tests_completed], ["Avg Score", detail.learning.mock_test_avg != null ? detail.learning.mock_test_avg + "%" : "—"]].map(([k, v]) => (
+                      <div key={k} style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 7, padding: "6px 10px", textAlign: "center" }}>
+                        <div style={{ fontWeight: 700 }}>{v ?? 0}</div>
+                        <div style={{ fontSize: ".68rem", color: "#64748b" }}>{k}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Classrooms */}
+              {detail.classrooms?.length > 0 && (
+                <div style={{ marginBottom: 10 }}>
+                  <strong style={{ fontSize: ".8rem" }}>Classrooms: </strong>
+                  {detail.classrooms.map(c => <span key={c.id} style={{ marginRight: 6, fontSize: ".78rem", background: "rgba(99,102,241,.1)", color: "#6366f1", padding: "2px 7px", borderRadius: 5 }}>{c.name}</span>)}
+                </div>
+              )}
+
+              {/* Edit form */}
+              {editMode ? (
+                <div style={{ marginBottom: 10 }}>
+                  {["username", "grade", "email"].map(f => (
+                    <label key={f} style={{ display: "block", marginBottom: 6 }}>
+                      <span style={{ fontSize: ".78rem", fontWeight: 600 }}>{f}</span>
+                      <input value={editData[f] ?? (detail.student?.[f] || "")} onChange={e => setEditData(p => ({ ...p, [f]: e.target.value }))}
+                        style={{ ...inputStyle, marginTop: 2 }} />
+                    </label>
+                  ))}
+                  <div style={{ display: "flex", gap: 8 }}>
+                    <button onClick={doSaveEdit} className="primary-btn">💾 Save</button>
+                    <button onClick={() => setEditMode(false)} className="secondary-btn">Cancel</button>
+                  </div>
+                </div>
+              ) : null}
+
+              {/* Actions */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 8 }}>
+                {!editMode && <button onClick={() => { setEditMode(true); setEditData({}); }} className="secondary-btn">✏️ Edit Details</button>}
+                <button onClick={() => doResetPassword(selected)} className="secondary-btn">🔑 Reset Password</button>
+
+                {/* Email credentials — paid only */}
+                {isPaid ? (
+                  <button onClick={() => doEmailCredentials(selected)} className="secondary-btn">📧 Email Login Details</button>
+                ) : (
+                  <button disabled title="Upgrade to a paid plan to email login details." style={{ opacity: .5, cursor: "not-allowed" }} className="secondary-btn">
+                    📧 Email Login Details (Paid only)
+                  </button>
+                )}
+
+                <button onClick={() => doArchive(selected)} className="danger-btn">🗑 Archive Student</button>
+              </div>
+
+              {/* Password result */}
+              {pwResult?.success && (
+                <div style={{ marginTop: 10, padding: "8px 12px", background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: ".82rem" }}>
+                  🔑 New temp password: <code style={{ color: "#f59e0b", fontWeight: 700 }}>{pwResult.temp_password}</code><br />
+                  <small style={{ color: "#64748b" }}>{pwResult.warning}</small>
+                </div>
+              )}
+            </>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-export default TeacherDashboardPage;
+// ── Add Student form ──────────────────────────────────────────────────────────
+function AddStudentForm({ onAdded }) {
+  const [form, setForm] = useState({ username: "", grade: "Grade 9", password: "", email: "" });
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState(null);
+
+  async function submit(e) {
+    e.preventDefault();
+    if (!form.username || !form.grade || !form.password) {
+      setMsg("Name, grade and password are required."); return;
+    }
+    setLoading(true);
+    const d = await createTeacherStudent({ username: form.username, grade: form.grade, password: form.password, email: form.email || undefined })
+      .catch(e => ({ success: false, error: e.message }));
+    setLoading(false);
+    if (d.success !== false) { setMsg("✅ Student created!"); onAdded(); }
+    else setMsg("⚠ " + d.error);
+  }
+
+  return (
+    <div style={{ ...card }}>
+      <h4 style={{ margin: "0 0 10px" }}>➕ Add Student</h4>
+      <form onSubmit={submit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+        <label style={{ gridColumn: "1 / -1" }}>
+          <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Name *</span>
+          <input value={form.username} onChange={e => setForm(p => ({ ...p, username: e.target.value }))} required style={{ ...inputStyle, marginTop: 2 }} />
+        </label>
+        <label>
+          <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Grade *</span>
+          <select value={form.grade} onChange={e => setForm(p => ({ ...p, grade: e.target.value }))} style={{ ...inputStyle, marginTop: 2 }}>
+            {GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
+        </label>
+        <label>
+          <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Temp Password *</span>
+          <input type="text" value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required placeholder="Share with student" style={{ ...inputStyle, marginTop: 2 }} />
+        </label>
+        <label style={{ gridColumn: "1 / -1" }}>
+          <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Email (optional)</span>
+          <input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} style={{ ...inputStyle, marginTop: 2 }} />
+        </label>
+        {msg && <div style={{ gridColumn: "1 / -1", fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
+        <button type="submit" disabled={loading} className="primary-btn">{loading ? "Creating…" : "Create Student"}</button>
+      </form>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Invitations Tab
+// ─────────────────────────────────────────────────────────────────────────────
+function InvitationsTab({ user, isPaid }) {
+  const [invitations, setInvitations] = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [form, setForm]         = useState({ student_name: "", grade: "Grade 9", email: "" });
+  const [msg, setMsg]           = useState(null);
+  const [filterStatus, setStatus] = useState("");
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const d = await listTeacherInvitations(filterStatus || null).catch(() => null);
+    setInvitations(d?.invitations || []);
+    setLoading(false);
+  }, [filterStatus]);
+
+  useEffect(() => { load(); }, [load]);
+
+  async function doCreate(e) {
+    e.preventDefault();
+    if (!form.student_name || !form.email) { setMsg("Name and email are required."); return; }
+    const d = await createTeacherInvitation(form).catch(e => ({ success: false, error: e.message }));
+    if (d.success) { setMsg("✅ Invitation sent to " + form.email); setForm({ student_name: "", grade: "Grade 9", email: "" }); load(); }
+    else setMsg("⚠ " + d.error);
+  }
+
+  return (
+    <div data-testid="teacher-invitations-tab">
+      {/* Create invitation form */}
+      <div style={card}>
+        <h4 style={{ margin: "0 0 10px" }}>✉️ Invite a Student</h4>
+        <form onSubmit={doCreate} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          <label style={{ gridColumn: "1 / -1" }}>
+            <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Student Name *</span>
+            <input value={form.student_name} onChange={e => setForm(p => ({ ...p, student_name: e.target.value }))} required style={{ ...inputStyle, marginTop: 2 }} />
+          </label>
+          <label>
+            <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Grade</span>
+            <select value={form.grade} onChange={e => setForm(p => ({ ...p, grade: e.target.value }))} style={{ ...inputStyle, marginTop: 2 }}>
+              {GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+            </select>
+          </label>
+          <label>
+            <span style={{ fontSize: ".78rem", fontWeight: 600 }}>Email *</span>
+            <input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} required style={{ ...inputStyle, marginTop: 2 }} />
+          </label>
+          {msg && <div style={{ gridColumn: "1 / -1", fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
+          <button type="submit" className="primary-btn">Send Invitation</button>
+        </form>
+      </div>
+
+      {/* Filter */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
+        {["", "pending", "accepted", "expired", "cancelled"].map(s => (
+          <button key={s} onClick={() => setStatus(s)}
+            style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid var(--border,#e5e7eb)", background: filterStatus === s ? "#6366f1" : "var(--panel,#fff)", color: filterStatus === s ? "#fff" : "var(--text,#374151)", fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+            {s || "All"}
+          </button>
+        ))}
+      </div>
+
+      {loading && <div style={{ color: "#94a3b8" }}>Loading…</div>}
+      {!loading && invitations.length === 0 && (
+        <div style={{ padding: 20, textAlign: "center", color: "#94a3b8", fontSize: ".85rem" }}>No invitations yet.</div>
+      )}
+      {invitations.map(inv => (
+        <div key={inv.id} style={{ ...card, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+          <div>
+            <strong>{inv.student_name}</strong>
+            <span style={{ marginLeft: 8 }}><Badge status={inv.status} /></span>
+            <div style={{ fontSize: ".72rem", color: "#94a3b8", marginTop: 2 }}>
+              {inv.email} · {inv.grade} · Expires {(inv.expires_at || "").slice(0, 10)}
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 6 }}>
+            {(inv.status === "pending" || inv.status === "expired") && (
+              <button onClick={async () => { await resendTeacherInvitation(inv.id); setMsg("✅ Resent."); load(); }}
+                style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid #6366f1", background: "rgba(99,102,241,.08)", color: "#6366f1", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                Resend
+              </button>
+            )}
+            {inv.status === "pending" && (
+              <button onClick={async () => { if (!window.confirm("Cancel this invitation?")) return; await cancelTeacherInvitation(inv.id); setMsg("Cancelled."); load(); }}
+                style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid #ef4444", background: "rgba(239,68,68,.07)", color: "#dc2626", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                Cancel
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Classrooms Tab
+// ─────────────────────────────────────────────────────────────────────────────
+function ClassroomsTab({ user }) {
+  const [classrooms, setClassrooms] = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [form, setForm]         = useState({ name: "", description: "" });
+  const [msg, setMsg]           = useState(null);
+  const [renaming, setRenaming] = useState(null);
+  const [renameVal, setRenameVal] = useState("");
+  const [students, setStudents] = useState([]);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const [cls, stu] = await Promise.all([
+      listTeacherClassrooms("active").catch(() => null),
+      listTeacherStudents().catch(() => null),
+    ]);
+    setClassrooms(cls?.classrooms || []);
+    setStudents(stu?.students || []);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  async function doCreate(e) {
+    e.preventDefault();
+    if (!form.name.trim()) { setMsg("Name is required."); return; }
+    const d = await createTeacherClassroom(form).catch(e => ({ success: false, error: e.message }));
+    if (d.success) { setMsg("✅ Classroom created."); setForm({ name: "", description: "" }); load(); }
+    else setMsg("⚠ " + d.error);
+  }
+
+  return (
+    <div data-testid="teacher-classrooms-tab">
+      {/* Create form */}
+      <div style={card}>
+        <h4 style={{ margin: "0 0 10px" }}>🏫 Create Classroom</h4>
+        <form onSubmit={doCreate} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} placeholder="Classroom name *" required
+            data-testid="classroom-name-input"
+            style={{ ...inputStyle, flex: 1, minWidth: 160 }} />
+          <input value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))} placeholder="Description (optional)"
+            style={{ ...inputStyle, flex: 1, minWidth: 160 }} />
+          <button type="submit" className="primary-btn">Create</button>
+        </form>
+        {msg && <div style={{ marginTop: 6, fontSize: ".82rem", color: msg.startsWith("✅") ? "#166534" : "#dc2626" }}>{msg}</div>}
+      </div>
+
+      {loading && <div style={{ color: "#94a3b8" }}>Loading classrooms…</div>}
+      {!loading && classrooms.length === 0 && (
+        <div style={{ padding: 20, textAlign: "center", color: "#94a3b8", fontSize: ".85rem" }}>No classrooms yet. Create one above.</div>
+      )}
+
+      {classrooms.map(cls => (
+        <div key={cls.id} style={card}>
+          {renaming === cls.id ? (
+            <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+              <input value={renameVal} onChange={e => setRenameVal(e.target.value)} style={{ ...inputStyle, flex: 1 }} />
+              <button onClick={async () => { await updateTeacherClassroom(cls.id, { name: renameVal }); setRenaming(null); load(); }} className="primary-btn">Save</button>
+              <button onClick={() => setRenaming(null)} className="secondary-btn">Cancel</button>
+            </div>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 8 }}>
+              <div>
+                <strong>{cls.name}</strong>
+                <span style={{ marginLeft: 8, fontSize: ".72rem", color: "#94a3b8" }}>{cls.student_count || 0} students</span>
+              </div>
+              <div style={{ display: "flex", gap: 6 }}>
+                <button onClick={() => { setRenaming(cls.id); setRenameVal(cls.name); }}
+                  style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid var(--border,#e5e7eb)", background: "var(--panel,#fff)", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  Rename
+                </button>
+                <button onClick={async () => { if (!window.confirm("Archive " + cls.name + "?")) return; await archiveTeacherClassroom(cls.id); load(); }}
+                  style={{ padding: "3px 9px", borderRadius: 6, border: "1px solid #ef4444", background: "rgba(239,68,68,.07)", color: "#dc2626", fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  Archive
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Add student to classroom */}
+          <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+            <select onChange={async e => {
+              if (!e.target.value) return;
+              await addStudentToClassroom(cls.id, e.target.value);
+              e.target.value = "";
+              load();
+            }} style={{ ...inputStyle, width: "auto", flex: 1 }}>
+              <option value="">+ Add student…</option>
+              {students.map(s => <option key={s.id} value={s.id}>{s.username} ({s.grade || "—"})</option>)}
+            </select>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Insights Tab
+// ─────────────────────────────────────────────────────────────────────────────
+function InsightsTab({ user }) {
+  const [summary, setSummary] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getTeacherClassroomSummary().then(s => { setSummary(s); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div style={{ color: "#94a3b8", padding: 16 }}>Loading insights…</div>;
+
+  const attention = summary?.needs_attention || [];
+  const t = summary?.totals || {};
+  const avg = summary?.averages || {};
+
+  return (
+    <div data-testid="teacher-insights-tab">
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
+        <KpiCard label="Class Avg Score" value={avg.mock_test_avg != null ? avg.mock_test_avg + "%" : "Not available yet"} color="#0ea5e9" />
+        <KpiCard label="Inactive Students" value={t.inactive_students ?? 0} color="#94a3b8" />
+        <KpiCard label="Need Attention" value={t.needs_attention_count ?? 0} color="#ef4444" />
+      </div>
+
+      {attention.length > 0 && (
+        <div style={{ ...card, borderLeft: "3px solid #ef4444" }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>🚨 Students inactive 7+ days</div>
+          {attention.map(n => (
+            <div key={n} style={{ fontSize: ".82rem", padding: "4px 0", borderBottom: "1px solid var(--border,#f1f5f9)" }}>{n}</div>
+          ))}
+        </div>
+      )}
+
+      {attention.length === 0 && (
+        <div style={{ ...card, color: "#166534", background: "#f0fdf4", border: "1px solid #bbf7d0" }}>
+          ✅ All students have been active recently.
+        </div>
+      )}
+
+      <div style={{ ...card }}>
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>📊 Data availability</div>
+        <div style={{ fontSize: ".78rem", color: "#64748b" }}>
+          Mock test scores, lesson completion, and weak topics are shown when available.<br />
+          If a data source is not yet set up, "Not available yet" is displayed instead of an error.
+        </div>
+      </div>
+    </div>
+  );
+}
