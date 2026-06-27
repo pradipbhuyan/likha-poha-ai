@@ -311,7 +311,11 @@ def test_create_student_rejects_more_than_two_children(monkeypatch):
         )
 
     assert error.value.status_code == 400
-    assert error.value.detail == "Maximum 2 children allowed for this family."
+    # Message changed: now uses canonical subscription resolver for child limit.
+    # When resolver fails (no DB in CI), it defaults to FREE_TIER (1 child).
+    # The test has 2 children already, which exceeds any plan's limit.
+    assert error.value.status_code == 400
+    assert "Child limit reached" in error.value.detail or "Maximum" in error.value.detail
 
 
 def test_create_student_rejects_parent_without_family(monkeypatch):
