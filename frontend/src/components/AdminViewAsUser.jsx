@@ -248,7 +248,7 @@ export default function AdminViewAsUser({ accessToken }) {
               ["Role", viewAsCtx.view_as?.role],
               ["Grade", viewAsCtx.view_as?.grade || "—"],
               ["Plan", viewAsCtx.view_as?.subscription_plan],
-              ["CBSE Access", viewAsCtx.view_as?.access_cbse ? "✓ Yes" : "✗ No"],
+              ["CBSE Access", viewAsCtx.view_as?.access_cbse ? "✓ Enabled" : "✗ Restricted (free tier)"],
               ["Status", viewAsCtx.view_as?.account_status],
             ].map(([k, v]) => (
               <div key={k} style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 9, padding: "10px 12px" }}>
