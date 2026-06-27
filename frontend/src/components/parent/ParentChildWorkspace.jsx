@@ -402,7 +402,7 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
 
   return(
     <div data-testid="parent-child-workspace"
-      style={{position:"fixed",top:0,right:0,width:Math.min(640,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:300,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+      style={{position:"fixed",top:0,right:0,width:Math.min(640,window.innerWidth),height:"100vh",background:"var(--panel,#fff)",boxShadow:"-4px 0 32px rgba(0,0,0,.15)",zIndex:300,display:"flex",flexDirection:"column",overflowY:"hidden",overflowX:"clip"}}>
 
       {/* Header */}
       <div style={{padding:"14px 16px 0",borderBottom:"1px solid var(--border,#e5e7eb)",flexShrink:0}}>
@@ -416,9 +416,10 @@ export default function ParentChildWorkspace({child, onClose, onUpgrade}){
           </div>
           <button onClick={onClose} style={{background:"none",border:"none",fontSize:"1.2rem",cursor:"pointer",padding:4}}>✕</button>
         </div>
-        {/* Tab bar — horizontal scroll, hidden scrollbar, touch-friendly */}
-        <div style={{display:"flex",gap:0,overflowX:"auto",WebkitOverflowScrolling:"touch",
-          scrollbarWidth:"none",msOverflowStyle:"none",marginLeft:-2,marginRight:-2,paddingBottom:1}}>
+        {/* Tab bar — horizontal scroll with touch support */}
+        <div style={{display:"flex",gap:0,overflowX:"scroll",overflowY:"hidden",
+          WebkitOverflowScrolling:"touch",scrollbarWidth:"thin",scrollbarColor:"#e2e8f0 transparent",
+          marginLeft:-16,marginRight:-16,paddingLeft:16,paddingRight:16,paddingBottom:2}}>
           {TABS.map(function(t){return(
             <button key={t.key} data-testid={"ws-tab-"+t.key} onClick={function(){setTab(t.key);}}
               style={{padding:"7px 12px",border:"none",background:"none",cursor:"pointer",
