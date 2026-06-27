@@ -29,22 +29,11 @@ import {
   updateTeacherClassroom,
   archiveTeacherClassroom,
   addStudentToClassroom,
-  removeStudentFromClassroom,
   createTeacherStudent,
-  // Phase 2
-  getStudentTimeline,
-  getInterventions,
   listTeacherTasks,
   createTeacherTask,
   completeTeacherTask,
   dismissTeacherTask,
-  getClassroomAnalytics,
-  listStudentNotes,
-  createStudentNote,
-  updateStudentNote,
-  deleteStudentNote,
-  getParentContact,
-  messageParent,
 } from "../api/teacherDashboard";
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -155,7 +144,7 @@ export default function TeacherDashboardPage({ user }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Overview Tab
 // ─────────────────────────────────────────────────────────────────────────────
-function OverviewTab({ user, isPaid, onNavigate }) {
+function OverviewTab({ user: _user, isPaid, onNavigate }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
@@ -286,7 +275,7 @@ function OverviewTab({ user, isPaid, onNavigate }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Students Tab
 // ─────────────────────────────────────────────────────────────────────────────
-function StudentsTab({ user, isPaid }) {
+function StudentsTab({ user: _user, isPaid }) {
   const [students, setStudents] = useState([]);
   const [loading, setLoading]   = useState(true);
   const [q, setQ]               = useState("");
@@ -547,7 +536,7 @@ function AddStudentForm({ onAdded }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Invitations Tab
 // ─────────────────────────────────────────────────────────────────────────────
-function InvitationsTab({ user, isPaid }) {
+function InvitationsTab({ user: _user, isPaid }) {
   const [invitations, setInvitations] = useState([]);
   const [loading, setLoading]   = useState(true);
   const [form, setForm]         = useState({ student_name: "", grade: "Grade 9", email: "" });
@@ -642,7 +631,7 @@ function InvitationsTab({ user, isPaid }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Classrooms Tab
 // ─────────────────────────────────────────────────────────────────────────────
-function ClassroomsTab({ user }) {
+function ClassroomsTab({ user: _user }) {
   const [classrooms, setClassrooms] = useState([]);
   const [loading, setLoading]   = useState(true);
   const [form, setForm]         = useState({ name: "", description: "" });
@@ -741,7 +730,7 @@ function ClassroomsTab({ user }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Insights Tab
 // ─────────────────────────────────────────────────────────────────────────────
-function InsightsTab({ user }) {
+function InsightsTab({ user: _user }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -795,7 +784,7 @@ function InsightsTab({ user }) {
 const PRIORITY_COLOR = { critical: "#dc2626", medium: "#f59e0b", low: "#64748b" };
 const PRIORITY_BG    = { critical: "rgba(239,68,68,.07)", medium: "rgba(245,158,11,.07)", low: "rgba(148,163,184,.07)" };
 
-function TasksTab({ user, isPaid, onNavigate }) {
+function TasksTab({ user: _user, isPaid: _isPaid, onNavigate: _onNavigate }) {
   const [tasks, setTasks]       = useState([]);
   const [loading, setLoading]   = useState(true);
   const [showForm, setShowForm] = useState(false);

@@ -3,7 +3,6 @@ import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
 import { supabase } from "./api/supabaseClient";
-// eslint-disable-next-line no-unused-vars
 import logo from "./assets/AITutorLogo1.png"; // eslint-disable-line no-unused-vars
 
 import LessonsPage from "./pages/LessonsPage";
