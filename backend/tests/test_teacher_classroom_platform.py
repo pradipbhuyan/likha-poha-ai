@@ -566,22 +566,21 @@ class TestDashboardConsistency:
         assert s["students"]["total_students"] == 2
 
     def test_dashboard_summary_resilient_to_missing_archived_at(self, monkeypatch):
-        """If archived_at column missing, falls back and still returns correct counts."""
+        """
+        With select('*'), no PGRST205 is triggered for archived_at.
+        Rows without archived_at field are treated as active (archived_at=None → not archived).
+        """
         import app.routes.teacher_classroom as tc
 
         call_n = {"n": 0}
         def mock_safe_q(fn):
             call_n["n"] += 1
             if call_n["n"] == 1:
-                # First call: simulate schema error (archived_at missing)
-                return [], "column teacher_student_assignments.archived_at does not exist"
-            if call_n["n"] == 2:
-                # Fallback call: assignments without archived_at
+                # select("*") — archived_at absent from result (pre-migration state)
                 return [{"student_id": "s1", "grade": "Grade 9", "subject": "Maths", "created_at": "2026-01-01"}], None
-            if call_n["n"] == 3:
+            if call_n["n"] == 2:
                 # profiles call
                 return [{"id": "s1", "username": "Alice", "email": "a@a.com", "grade": "Grade 9", "account_status": "active", "created_at": "2026-01-01"}], None
-            # All remaining calls return empty
             return [], None
 
         monkeypatch.setattr(tc, "_safe_q", mock_safe_q)
@@ -590,7 +589,7 @@ class TestDashboardConsistency:
 
         result = tc.teacher_dashboard_summary(teacher={"id": "teacher-1"})
         assert result["success"] is True
-        # After fallback, should have 1 student
+        # When archived_at absent, student is treated as active → should appear
         assert result["subscription"]["students_used"] == 1
         assert result["students"]["total_students"] == 1
 
