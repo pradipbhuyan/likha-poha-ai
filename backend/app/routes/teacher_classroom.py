@@ -63,6 +63,29 @@ def _expiry_iso(days: int = INVITATION_EXPIRY_DAYS) -> str:
     return (datetime.now(timezone.utc) + timedelta(days=days)).isoformat()
 
 
+def _is_expired(expires_at_str: str | None) -> bool:
+    """Return True if the ISO timestamp is in the past (UTC-aware)."""
+    if not expires_at_str:
+        return False
+    try:
+        expires = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
+        if expires.tzinfo is None:
+            expires = expires.replace(tzinfo=timezone.utc)
+        return expires < datetime.now(timezone.utc)
+    except Exception:
+        return False
+
+
+def _grade_sort_key(grade_str: str | None) -> int:
+    """Extract numeric grade for correct sort: Grade 1 < Grade 9 < Grade 10."""
+    if not grade_str:
+        return 999
+    try:
+        return int("".join(filter(str.isdigit, grade_str)) or "999")
+    except Exception:
+        return 999
+
+
 def _gen_password(length: int = 12) -> str:
     alphabet = string.ascii_letters + string.digits + "!@#$"
     return "".join(secrets.choice(alphabet) for _ in range(length))
@@ -367,7 +390,7 @@ def list_students(
 
     # Sort
     if sort == "grade":
-        profiles.sort(key=lambda p: p.get("grade") or "")
+        profiles.sort(key=lambda p: _grade_sort_key(p.get("grade")))
     else:
         profiles.sort(key=lambda p: (p.get("username") or "").lower())
 
@@ -621,6 +644,12 @@ def list_invitations(
     if status:
         query = query.eq("status", status)
     invitations, err = _safe_q(lambda: query.execute())
+    # Check-on-read: mark pending invitations as expired if past their expiry date.
+    # This avoids needing a background expiry job.
+    now = datetime.now(timezone.utc)
+    for inv in invitations:
+        if inv.get("status") == "pending" and _is_expired(inv.get("expires_at")):
+            inv["status"] = "expired"
     return {"success": True, "invitations": invitations, "error": err}
 
 
@@ -757,16 +786,28 @@ def list_classrooms(
         query = query.eq("status", status)
     classrooms, err = _safe_q(lambda: query.execute())
 
-    # Enrich with student count
+    # Enrich with student count — exclude archived students
+    # Load non-archived assignment student_ids for this teacher (once)
+    active_assignments, _ = _safe_q(
+        lambda: admin_client.table("teacher_student_assignments")
+        .select("student_id")
+        .eq("teacher_id", teacher_id)
+        .is_("archived_at", "null")
+        .execute()
+    )
+    active_student_ids = {a["student_id"] for a in active_assignments if a.get("student_id")}
+
     enriched = []
     for cls in classrooms:
-        students, _ = _safe_q(
+        members, _ = _safe_q(
             lambda c=cls: admin_client.table("teacher_classroom_students")
             .select("student_id")
             .eq("classroom_id", c["id"])
             .execute()
         )
-        enriched.append({**cls, "student_count": len(students)})
+        # Only count members who are not archived
+        active_count = sum(1 for m in members if m.get("student_id") in active_student_ids)
+        enriched.append({**cls, "student_count": active_count})
 
     return {"success": True, "classrooms": enriched, "error": err}
 

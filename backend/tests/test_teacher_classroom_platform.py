@@ -334,6 +334,127 @@ class TestClassrooms:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Production-readiness regression tests
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestProductionReadiness:
+    """
+    Tests for the 3 issues fixed in the production-readiness review:
+    A) Classroom counts exclude archived students
+    B) Invitation expiry check-on-read (timezone-aware)
+    C) Grade sort is numeric not lexicographic
+    """
+
+    # ── A. Classroom counts ──────────────────────────────────────────────────
+
+    def test_grade_sort_numeric_not_lexicographic(self):
+        """Grade 10 must sort after Grade 9, not before (lexicographic bug)."""
+        from app.routes.teacher_classroom import _grade_sort_key
+        grades = ["Grade 10", "Grade 9", "Grade 1", "Grade 12", "Grade 2"]
+        sorted_grades = sorted(grades, key=_grade_sort_key)
+        assert sorted_grades == ["Grade 1", "Grade 2", "Grade 9", "Grade 10", "Grade 12"]
+
+    def test_grade_sort_key_handles_none(self):
+        from app.routes.teacher_classroom import _grade_sort_key
+        assert _grade_sort_key(None) == 999
+        assert _grade_sort_key("") == 999
+        assert _grade_sort_key("Grade 9") == 9
+        assert _grade_sort_key("Grade 10") == 10
+
+    # ── B. Invitation expiry check-on-read ───────────────────────────────────
+
+    def test_is_expired_past_datetime_returns_true(self):
+        from app.routes.teacher_classroom import _is_expired
+        past = "2020-01-01T00:00:00+00:00"
+        assert _is_expired(past) is True
+
+    def test_is_expired_future_datetime_returns_false(self):
+        from app.routes.teacher_classroom import _is_expired
+        future = "2099-01-01T00:00:00+00:00"
+        assert _is_expired(future) is False
+
+    def test_is_expired_none_returns_false(self):
+        from app.routes.teacher_classroom import _is_expired
+        assert _is_expired(None) is False
+
+    def test_is_expired_utc_naive_string(self):
+        """Naive ISO timestamp (no tzinfo) is treated as UTC."""
+        from app.routes.teacher_classroom import _is_expired
+        assert _is_expired("2020-01-01T00:00:00") is True
+
+    def test_is_expired_z_suffix(self):
+        from app.routes.teacher_classroom import _is_expired
+        assert _is_expired("2020-01-01T00:00:00Z") is True
+
+    def test_list_invitations_marks_expired_on_read(self, monkeypatch):
+        """Pending invitation past expiry date should show as 'expired' on read."""
+        pending_past = {
+            "id": INV_ID, "student_name": "Alice", "grade": "Grade 9",
+            "email": "a@a.com", "status": "pending",
+            "expires_at": "2020-01-01T00:00:00+00:00",  # in the past
+            "accepted_at": None, "created_at": "2020-01-01T00:00:00+00:00",
+        }
+        monkeypatch.setattr(tc, "_safe_q", lambda fn: ([pending_past], None))
+        result = tc.list_invitations(status=None, teacher=TEACHER_FREE)
+        assert result["invitations"][0]["status"] == "expired"
+
+    def test_list_invitations_pending_future_stays_pending(self, monkeypatch):
+        """Pending invitation with future expiry stays 'pending'."""
+        pending_future = {
+            "id": INV_ID, "student_name": "Alice", "grade": "Grade 9",
+            "email": "a@a.com", "status": "pending",
+            "expires_at": "2099-01-01T00:00:00+00:00",
+            "accepted_at": None, "created_at": "2026-01-01T00:00:00+00:00",
+        }
+        monkeypatch.setattr(tc, "_safe_q", lambda fn: ([pending_future], None))
+        result = tc.list_invitations(status=None, teacher=TEACHER_FREE)
+        assert result["invitations"][0]["status"] == "pending"
+
+    # ── C. Classroom counts exclude archived students ────────────────────────
+
+    def test_classroom_count_excludes_archived_students(self, monkeypatch):
+        """
+        A classroom with 2 members but 1 archived should show student_count=1.
+        """
+        classrooms_data = [{"id": CLASSROOM_ID, "name": "9A", "status": "active", "teacher_id": TEACHER_FREE["id"]}]
+        # 2 classroom members: student-1 (active) and student-2 (archived)
+        members_data = [{"student_id": "student-1"}, {"student_id": "student-2"}]
+        # Only student-1 has non-archived assignment
+        active_assignments_data = [{"student_id": "student-1"}]
+
+        call_n = {"n": 0}
+        def mock_safe_q(fn):
+            call_n["n"] += 1
+            if call_n["n"] == 1:
+                return classrooms_data, None       # classrooms query
+            if call_n["n"] == 2:
+                return active_assignments_data, None  # active assignments query
+            return members_data, None              # classroom members queries
+
+        monkeypatch.setattr(tc, "_safe_q", mock_safe_q)
+        result = tc.list_classrooms(status="active", teacher=TEACHER_FREE)
+        assert result["success"] is True
+        assert result["classrooms"][0]["student_count"] == 1  # only student-1 counted
+
+    def test_classroom_archive_preserves_member_history(self, monkeypatch):
+        """Archiving a classroom does not delete teacher_classroom_students rows."""
+        monkeypatch.setattr(tc, "_ensure_owns_classroom", lambda t, c: None)
+        deleted = {"called": False}
+        mock_tbl = MagicMock()
+        mock_tbl.return_value.update.return_value.eq.return_value.execute.return_value = MagicMock()
+        # delete should NOT be called
+        mock_tbl.return_value.delete.side_effect = lambda: (_ for _ in ()).throw(AssertionError("delete called on archive"))
+        monkeypatch.setattr(tc, "admin_client", MagicMock(table=mock_tbl))
+        monkeypatch.setattr(tc, "write_audit_event", MagicMock())
+
+        result = tc.archive_classroom(CLASSROOM_ID, teacher=TEACHER_FREE)
+        assert result["success"] is True
+        assert result["status"] == "archived"
+        # Verify delete was never called (members preserved)
+        assert not deleted["called"]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Audit tests
 # ─────────────────────────────────────────────────────────────────────────────
 
