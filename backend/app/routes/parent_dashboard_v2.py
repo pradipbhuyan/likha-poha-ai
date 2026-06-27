@@ -523,8 +523,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
         .execute()
     )
     mock_count = len(test_rows)
-    scores = [(r.get("score") or 0) / (r.get("total_questions") or 1) * 100
-              for r in test_rows if (r.get("total_questions") or 0) > 0]
+    scores = [s for s in (_normalize_score_pct(r.get("percentage"), r.get("raw_score"), r.get("max_score")) for r in test_rows) if s is not None]
     avg_score = round(sum(scores) / len(scores), 1) if scores else None
 
     # Progress (chapter completions)
