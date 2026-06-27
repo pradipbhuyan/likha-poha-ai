@@ -9,6 +9,11 @@ import {
   getParentDashboardSummary,
   getChildDetail,
   createStudent,
+  getChildAnalytics,
+  getChildAcademicInsights,
+  getChildProgressReport,
+  getParentNotifications,
+  markAllNotificationsRead,
 } from "../api/parentDashboard";
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
@@ -160,11 +165,14 @@ function ChildDetailDrawer({child, onClose, onUpgrade}){
 
   var SECTIONS=[
     {key:"overview",     label:"Overview",    icon:"👤"},
+    {key:"analytics",    label:"Analytics",   icon:"📊"},
     {key:"progress",     label:"Progress",    icon:"📈"},
     {key:"mock_tests",   label:"Mock Tests",  icon:"📝"},
+    {key:"insights",     label:"Insights",    icon:"📋"},
     {key:"activity",     label:"Activity",    icon:"⏱️"},
     {key:"access",       label:"Access",      icon:"🔑"},
     {key:"recommend",    label:"Actions",     icon:"💡"},
+    {key:"report",       label:"Report",      icon:"🖨️"},
   ];
 
   var plan=detail?.plan||child?.plan||{};
@@ -423,6 +431,235 @@ setMsg("✅ Child added! They are on Free Tier with limited access.");
 // ─────────────────────────────────────────────────────────────────────────────
 // Main Export
 // ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 2 Section Components
+// ─────────────────────────────────────────────────────────────────────────────
+
+function MetricCard({label, value, available, explanation}){
+  if(!available) return(
+    <div style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"8px 12px",textAlign:"center",minWidth:80}}>
+      <div style={{fontSize:".7rem",color:"#94a3b8",fontStyle:"italic"}}>Not available yet</div>
+      <div style={{fontSize:".65rem",color:"#64748b"}}>{label}</div>
+    </div>
+  );
+  return(
+    <div style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"8px 12px",textAlign:"center",minWidth:80}}>
+      <div style={{fontWeight:800,fontSize:".95rem",color:"#6366f1"}}>{value??0}</div>
+      <div style={{fontSize:".65rem",color:"#64748b"}}>{label}</div>
+      {explanation&&<div style={{fontSize:".6rem",color:"#94a3b8",marginTop:1}}>{explanation}</div>}
+    </div>
+  );
+}
+
+// ── ChildAnalytics ────────────────────────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
+function ChildAnalytics({childId}){
+  var [data,setData]=useState(null);
+  var [loading,setLoading]=useState(true);
+  useEffect(function(){
+    getChildAnalytics(childId).then(function(d){setData(d);setLoading(false);}).catch(function(){setLoading(false);});
+  },[childId]);
+  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading analytics…</div>;
+  if(!data) return <div style={{color:"#dc2626",padding:16}}>Could not load analytics.</div>;
+  return(
+    <div data-testid="child-section-analytics">
+      <h4 style={{margin:"0 0 12px",fontSize:".9rem"}}>📊 Learning Analytics</h4>
+      {/* Progress */}
+      <div style={{marginBottom:12}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📈 Progress</div>
+        {!data.progress?.available
+          ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+            <MetricCard label="Completed" value={data.progress.completed_chapters?.value} available={data.progress.available}/>
+            <MetricCard label="In Progress" value={data.progress.in_progress_chapters?.value} available={data.progress.available}/>
+          </div>
+        }
+      </div>
+      {/* Mock tests */}
+      <div style={{marginBottom:12}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📝 Mock Tests</div>
+        {!data.mock_tests?.available
+          ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :<>
+            <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
+              <MetricCard label="Tests" value={data.mock_tests.total_tests?.value} available/>
+              <MetricCard label="Avg Score" value={data.mock_tests.average_score?.value} available explanation={data.mock_tests.average_score?.explanation}/>
+            </div>
+            {/* Score trend as simple bars */}
+            {data.mock_tests.trend?.length>0&&(
+              <div style={{marginTop:8}}>
+                <div style={{fontSize:".72rem",fontWeight:600,marginBottom:4,color:"#64748b"}}>Score Trend</div>
+                <div style={{display:"flex",gap:3,alignItems:"flex-end",height:40}}>
+                  {data.mock_tests.trend.map(function(t,i){
+                    var h=Math.max(4,Math.round(t.score/100*40));
+                    var col=t.score>=60?"#22c55e":t.score>=40?"#f59e0b":"#ef4444";
+                    return <div key={i} title={t.subject+": "+t.score+"%"} style={{flex:1,height:h,background:col,borderRadius:2,minWidth:8}}/>;
+                  })}
+                </div>
+              </div>
+            )}
+          </>
+        }
+      </div>
+      {/* Strengths & Weaknesses */}
+      {(data.strengths?.available||data.weaknesses?.available)&&(
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
+          <div>
+            <div style={{fontWeight:700,fontSize:".78rem",color:"#22c55e",marginBottom:4}}>✅ Strong Subjects</div>
+            {data.strengths?.strong_subjects?.length>0
+              ?data.strengths.strong_subjects.map(function(s,i){return <div key={i} style={{fontSize:".75rem",background:"rgba(34,197,94,.08)",padding:"2px 7px",borderRadius:4,marginBottom:3}}>{s}</div>;})
+              :<div style={{fontSize:".72rem",color:"#94a3b8"}}>Not available yet</div>
+            }
+          </div>
+          <div>
+            <div style={{fontWeight:700,fontSize:".78rem",color:"#ef4444",marginBottom:4}}>⚠ Weak Subjects</div>
+            {data.weaknesses?.weak_subjects?.length>0
+              ?data.weaknesses.weak_subjects.map(function(s,i){return <div key={i} style={{fontSize:".75rem",background:"rgba(239,68,68,.08)",padding:"2px 7px",borderRadius:4,marginBottom:3}}>{s}</div>;})
+              :<div style={{fontSize:".72rem",color:"#94a3b8"}}>None identified yet</div>
+            }
+          </div>
+        </div>
+      )}
+      {/* Activity */}
+      <div>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>⏱️ Activity (30 days)</div>
+        {!data.activity?.available
+          ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+            <MetricCard label="Lessons" value={data.activity.lessons_this_month?.value} available/>
+            <MetricCard label="Doubts" value={data.activity.doubts_this_month?.value} available/>
+            <MetricCard label="Active Days" value={data.activity.active_days?.value} available/>
+          </div>
+        }
+      </div>
+    </div>
+  );
+}
+
+// ── ChildInsights ─────────────────────────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
+function ChildInsights({childId, onUpgrade: _onUpgrade}){
+  var [data,setData]=useState(null);
+  var [loading,setLoading]=useState(true);
+  useEffect(function(){
+    getChildAcademicInsights(childId).then(function(d){setData(d);setLoading(false);}).catch(function(){setLoading(false);});
+  },[childId]);
+  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading insights…</div>;
+  if(!data) return <div style={{color:"#dc2626",padding:16}}>Could not load insights.</div>;
+  var prio={"high":"#dc2626","medium":"#f59e0b","low":"#22c55e"};
+  return(
+    <div data-testid="child-section-insights">
+      <h4 style={{margin:"0 0 12px",fontSize:".9rem"}}>📋 Academic Insights</h4>
+      {/* Homework */}
+      <div style={{marginBottom:12,padding:"10px 14px",borderRadius:10,background:"rgba(148,163,184,.07)",border:"1px solid var(--border,#e5e7eb)"}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:3}}>📚 Homework</div>
+        <div style={{fontSize:".78rem",color:"#94a3b8"}}>{data.homework?.message||"Not available yet."}</div>
+      </div>
+      {/* Exams */}
+      <div style={{marginBottom:12,padding:"10px 14px",borderRadius:10,background:"rgba(148,163,184,.07)",border:"1px solid var(--border,#e5e7eb)"}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:3}}>📅 Exams</div>
+        <div style={{fontSize:".78rem",color:"#94a3b8"}}>{data.exams?.message||"Not available yet."}</div>
+      </div>
+      {/* Mock test recommendations */}
+      {data.mock_test_recommendations?.recommendations?.length>0&&(
+        <div style={{marginBottom:12}}>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📝 Mock Test Recommendations</div>
+          {data.mock_test_recommendations.recommendations.map(function(r,i){return(
+            <div key={i} style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"8px 12px",marginBottom:6,borderLeft:"3px solid "+(prio[r.priority]||"#64748b")}}>
+              <div style={{fontWeight:600,fontSize:".82rem"}}>{r.title}</div>
+              <div style={{fontSize:".75rem",color:"#64748b",marginTop:2}}>{r.description}</div>
+            </div>
+          );})}
+        </div>
+      )}
+      {/* Revision suggestions */}
+      {data.revision_suggestions?.available&&data.revision_suggestions?.topics?.length>0&&(
+        <div>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>🔄 Revision Suggestions</div>
+          {data.revision_suggestions.topics.map(function(t,i){return(
+            <div key={i} style={{fontSize:".78rem",padding:"4px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
+              <strong>{t.subject}</strong> — {t.chapter}
+            </div>
+          );})}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── ChildReport ───────────────────────────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
+function ChildReport({childId, onUpgrade: _onUpgrade}){
+  var [report,setReport]=useState(null);
+  var [loading,setLoading]=useState(true);
+  useEffect(function(){
+    getChildProgressReport(childId).then(function(d){setReport(d);setLoading(false);}).catch(function(){setLoading(false);});
+  },[childId]);
+  if(loading) return <div style={{color:"#94a3b8",padding:16}}>Loading report…</div>;
+  if(!report) return <div style={{color:"#dc2626",padding:16}}>Could not load report.</div>;
+  return(
+    <div data-testid="child-section-report" style={{fontFamily:"inherit"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+        <h4 style={{margin:0,fontSize:".9rem"}}>🖨️ Progress Report</h4>
+        <button onClick={function(){window.print();}} style={{padding:"5px 12px",borderRadius:7,border:"1px solid #6366f1",background:"rgba(99,102,241,.08)",color:"#6366f1",fontFamily:"inherit",fontSize:".75rem",fontWeight:600,cursor:"pointer"}}>
+          🖨️ Print
+        </button>
+      </div>
+      <div style={{fontSize:".7rem",color:"#94a3b8",marginBottom:10}}>Generated: {report.generated_at?new Date(report.generated_at).toLocaleString():""}</div>
+      {/* Child + Plan */}
+      <div style={{background:"var(--surface2,#f8fafc)",border:"1px solid var(--border,#e5e7eb)",borderRadius:8,padding:"10px 14px",marginBottom:10}}>
+        <div style={{fontWeight:700}}>{report.child?.name}</div>
+        <div style={{fontSize:".78rem",color:"#64748b"}}>{report.child?.grade} · {report.child?.board}</div>
+        <div style={{marginTop:6}}><PlanChip plan={report.access_summary?.plan}/></div>
+      </div>
+      {/* Progress */}
+      <div style={{marginBottom:10}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:4}}>📈 Progress Summary</div>
+        {!report.progress_summary?.available
+          ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :<div style={{fontSize:".78rem",color:"#64748b"}}>{report.progress_summary.completed_chapters} chapters completed of {report.progress_summary.total_tracked} tracked.</div>
+        }
+      </div>
+      {/* Mock tests */}
+      <div style={{marginBottom:10}}>
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:4}}>📝 Mock Tests</div>
+        {!report.mock_test_summary?.available
+          ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :<div style={{fontSize:".78rem",color:"#64748b"}}>{report.mock_test_summary.tests_taken} tests · Avg: {report.mock_test_summary.average_score!=null?report.mock_test_summary.average_score+"%":"—"}</div>
+        }
+      </div>
+      {/* Strengths */}
+      {report.strengths?.length>0&&(
+        <div style={{marginBottom:10}}>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:4,color:"#22c55e"}}>✅ Strengths</div>
+          {report.strengths.map(function(s,i){return <span key={i} style={{fontSize:".75rem",background:"rgba(34,197,94,.08)",padding:"2px 7px",borderRadius:4,marginRight:5}}>{s}</span>;})}
+        </div>
+      )}
+      {/* Areas for improvement */}
+      {report.areas_for_improvement?.length>0&&(
+        <div style={{marginBottom:10}}>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:4,color:"#ef4444"}}>⚠ Areas for Improvement</div>
+          {report.areas_for_improvement.slice(0,3).map(function(a,i){return(
+            <div key={i} style={{fontSize:".75rem",padding:"2px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>{a.subject} — {a.chapter}</div>
+          );})}
+        </div>
+      )}
+      {/* Recommendations */}
+      {report.recommendations?.length>0&&(
+        <div style={{marginBottom:10}}>
+          <div style={{fontWeight:700,fontSize:".82rem",marginBottom:4}}>💡 Recommendations</div>
+          {report.recommendations.slice(0,3).map(function(r,i){return(
+            <div key={i} style={{fontSize:".75rem",padding:"4px 8px",background:"rgba(99,102,241,.06)",borderRadius:5,marginBottom:4}}>{r.title}</div>
+          );})}
+        </div>
+      )}
+      <div style={{fontSize:".65rem",color:"#94a3b8",borderTop:"1px solid var(--border,#f1f5f9)",paddingTop:8}}>
+        {report.disclaimer}
+      </div>
+    </div>
+  );
+}
+
 export default function ParentDashboardPage({ user, setActivePage }) {
   var [summary,     setSummary]     = useState(null);
   var [loading,     setLoading]     = useState(true);

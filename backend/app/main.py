@@ -34,6 +34,7 @@ from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
 from app.routes.parent_dashboard import router as parent_dashboard_router
 from app.routes.parent_dashboard_v2 import router as parent_dashboard_v2_router
+from app.routes.parent_dashboard_p2 import router as parent_dashboard_p2_router
 from app.routes.admin_control import router as admin_control_router
 from app.routes.offer import router as offer_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
@@ -209,6 +210,12 @@ app.include_router(
     parent_dashboard_v2_router,
     prefix="/api/parent",
     tags=["Parent Dashboard Phase 1"],
+)
+
+app.include_router(
+    parent_dashboard_p2_router,
+    prefix="/api/parent",
+    tags=["Parent Dashboard Phase 2"],
 )
 
 app.include_router(

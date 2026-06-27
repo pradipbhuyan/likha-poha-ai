@@ -66,3 +66,30 @@ export async function getChildDetail(childId) {
   /** Enriched child detail: subscription, features, progress, mock tests, recommendations. */
   return authFetch(`/api/parent/children/${childId}/detail`, { method: "GET" });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parent Experience Phase 2 — /api/parent/*
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function getChildAnalytics(childId) {
+  return authFetch(`/api/parent/children/${childId}/analytics`, { method: "GET" });
+}
+export async function getChildAcademicInsights(childId) {
+  return authFetch(`/api/parent/children/${childId}/academic-insights`, { method: "GET" });
+}
+export async function getChildProgressReport(childId) {
+  return authFetch(`/api/parent/children/${childId}/progress-report`, { method: "GET" });
+}
+export async function getParentNotifications(status = "all", type = "all") {
+  const qs = new URLSearchParams();
+  if (status !== "all") qs.set("status", status);
+  if (type !== "all") qs.set("notif_type", type);
+  const q = qs.toString() ? "?" + qs.toString() : "";
+  return authFetch(`/api/parent/notifications${q}`, { method: "GET" });
+}
+export async function markNotificationRead(notificationId) {
+  return authFetch(`/api/parent/notifications/${notificationId}/read`, { method: "POST" });
+}
+export async function markAllNotificationsRead() {
+  return authFetch("/api/parent/notifications/read-all", { method: "POST" });
+}
