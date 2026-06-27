@@ -1,72 +1,116 @@
 /**
  * AdminViewAsUser.jsx — Frontend-only read-only View-as-User mode.
  * No JWT exchange. Admin sees user context with a persistent banner.
- * Props: accessToken, onNavigateTab(tab)
+ *
+ * UI states: idle | loading | results | no-results | error
+ * Props: accessToken
  */
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 async function apiFetch(path, token) {
-  const r = await fetch(`${API}${path}`, { headers: { Authorization: `Bearer ${token}` } });
+  const r = await fetch(`${API}${path}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!r.ok) {
+    const body = await r.json().catch(() => ({}));
+    throw new Error(body.detail || body.error || `HTTP ${r.status}`);
+  }
   return r.json();
 }
+
 async function apiPost(path, body, token) {
   const r = await fetch(`${API}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(body),
   });
+  if (!r.ok) {
+    const b = await r.json().catch(() => ({}));
+    throw new Error(b.detail || b.error || `HTTP ${r.status}`);
+  }
   return r.json();
 }
 
+const S_IDLE       = "idle";
+const S_LOADING    = "loading";
+const S_RESULTS    = "results";
+const S_NO_RESULTS = "no_results";
+const S_ERROR      = "error";
+
+const ROLE_COLOR = { student: "#6366f1", parent: "#10b981", teacher: "#f59e0b" };
+
 export default function AdminViewAsUser({ accessToken }) {
   const [query, setQuery]         = useState("");
+  const [searchState, setSearchState] = useState(S_IDLE);
+  const [searchErr, setSearchErr] = useState(null);
   const [results, setResults]     = useState([]);
-  const [viewAsCtx, setViewAsCtx] = useState(null);  // active view-as context
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState(null);
-  const searchRef                 = useRef(null);
+  const [lastQuery, setLastQuery] = useState("");
+  const [viewAsCtx, setViewAsCtx] = useState(null);
+  const [actionLoading, setActionLoading] = useState(false);
 
+  // ── Search ──────────────────────────────────────────────────────────────────
   async function doSearch() {
-    if (!query.trim()) return;
-    setLoading(true); setError(null);
+    const q = query.trim();
+    if (!q) return;
+    setSearchState(S_LOADING);
+    setSearchErr(null);
+    setLastQuery(q);
     try {
-      const d = await apiFetch(`/api/admin/support/user-search?q=${encodeURIComponent(query)}&limit=10`, accessToken);
-      setResults(d.users || []);
-      if (d.error) setError(d.error);
-    } catch (e) { setError(e.message); }
-    setLoading(false);
+      const d = await apiFetch(
+        `/api/admin/support/user-search?q=${encodeURIComponent(q)}&limit=10`,
+        accessToken,
+      );
+      const users = d.users || [];
+      setResults(users);
+      setSearchState(users.length > 0 ? S_RESULTS : S_NO_RESULTS);
+    } catch (e) {
+      setSearchErr(e.message || "Search failed");
+      setSearchState(S_ERROR);
+      setResults([]);
+    }
   }
 
+  // ── Start view-as ───────────────────────────────────────────────────────────
   async function startViewAs(user) {
-    setLoading(true); setError(null);
+    setActionLoading(true);
+    setSearchErr(null);
     try {
       const d = await apiFetch(`/api/admin/support/view-as/${user.id}`, accessToken);
-      if (!d.success) { setError(d.error); setLoading(false); return; }
+      if (!d.success) {
+        setSearchErr(d.error || "Could not start view-as");
+        setActionLoading(false);
+        return;
+      }
       setViewAsCtx(d);
       setResults([]);
       setQuery("");
-    } catch (e) { setError(e.message); }
-    setLoading(false);
+      setSearchState(S_IDLE);
+    } catch (e) {
+      setSearchErr(e.message);
+    }
+    setActionLoading(false);
   }
 
+  // ── Exit view-as ────────────────────────────────────────────────────────────
   async function exitViewAs() {
     if (viewAsCtx?.view_as?.user_id) {
-      await apiPost("/api/admin/support/log-impersonation-event", {
-        event_type: "impersonation.ended",
-        target_user_id: viewAsCtx.view_as.user_id,
-      }, accessToken).catch(() => {});
+      await apiPost(
+        "/api/admin/support/log-impersonation-event",
+        { event_type: "impersonation.ended", target_user_id: viewAsCtx.view_as.user_id },
+        accessToken,
+      ).catch(() => {});
     }
     setViewAsCtx(null);
-    setError(null);
+    setSearchErr(null);
+    setSearchState(S_IDLE);
   }
-
-  const ROLE_COLOR = { student: "#6366f1", parent: "#10b981", teacher: "#f59e0b" };
 
   return (
     <div data-testid="admin-view-as-user">
-      {/* Persistent banner when in view-as mode */}
+
+      {/* ── Persistent banner when in view-as mode ──────────────────────── */}
       {viewAsCtx && (
         <div
           data-testid="view-as-banner"
@@ -94,19 +138,14 @@ export default function AdminViewAsUser({ accessToken }) {
         </div>
       )}
 
+      {/* ── Search section (hidden while in view-as) ─────────────────────── */}
       {!viewAsCtx && (
         <>
-          <h3 style={{ margin: "0 0 12px", fontSize: ".95rem", fontWeight: 700 }}>👁 View as User</h3>
-          <p style={{ color: "var(--muted, #64748b)", fontSize: ".82rem", marginBottom: 12 }}>
-            Search for a user to start a read-only view of their context. No JWT exchange — admin actions are fully restricted while viewing.
-          </p>
-
           <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
             <input
-              ref={searchRef}
               value={query}
-              onChange={e => setQuery(e.target.value)}
-              onKeyDown={e => e.key === "Enter" && doSearch()}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && doSearch()}
               placeholder="Search by name or email…"
               data-testid="view-as-search-input"
               style={{
@@ -115,16 +154,53 @@ export default function AdminViewAsUser({ accessToken }) {
                 background: "var(--surface2, #f8fafc)", color: "var(--text, #1e293b)",
               }}
             />
-            <button onClick={doSearch} disabled={loading || !query.trim()}
-              className="primary-btn">
-              {loading ? "Searching…" : "Search"}
+            <button
+              onClick={doSearch}
+              disabled={searchState === S_LOADING || !query.trim()}
+              className="primary-btn"
+              aria-label="search">
+              {searchState === S_LOADING ? "Searching…" : "Search"}
             </button>
           </div>
 
-          {error && <div style={{ color: "#dc2626", fontSize: ".82rem", marginBottom: 8 }}>⚠ {error}</div>}
+          {/* ── Search state messages ──────────────────────────────────── */}
+          {searchState === S_IDLE && (
+            <div data-testid="view-as-idle"
+              style={{ color: "var(--muted,#94a3b8)", fontSize: ".82rem", padding: "8px 0" }}>
+              Enter a name or email address to find a user to view as.
+            </div>
+          )}
 
-          {results.map(u => (
-            <div key={u.id}
+          {searchState === S_LOADING && (
+            <div data-testid="view-as-loading"
+              style={{ color: "var(--muted,#94a3b8)", fontSize: ".82rem", padding: "8px 0" }}>
+              Searching…
+            </div>
+          )}
+
+          {searchState === S_ERROR && (
+            <div data-testid="view-as-error"
+              style={{ color: "#dc2626", fontSize: ".82rem", marginBottom: 8, padding: "8px 12px", background: "rgba(239,68,68,.07)", borderRadius: 7, border: "1px solid rgba(239,68,68,.2)" }}>
+              ⚠ {searchErr}
+            </div>
+          )}
+
+          {searchState === S_NO_RESULTS && (
+            <div data-testid="view-as-no-results"
+              style={{ color: "var(--muted,#94a3b8)", fontSize: ".82rem", padding: "10px 14px", background: "var(--surface2,#f8fafc)", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)" }}>
+              No users found matching <strong>"{lastQuery}"</strong>. Try a different name or email.
+            </div>
+          )}
+
+          {/* Action error (e.g. tried to view-as admin) */}
+          {searchState !== S_ERROR && searchErr && (
+            <div style={{ color: "#dc2626", fontSize: ".82rem", marginBottom: 8 }}>⚠ {searchErr}</div>
+          )}
+
+          {/* ── Results ────────────────────────────────────────────────── */}
+          {searchState === S_RESULTS && results.map((u) => (
+            <div
+              key={u.id}
               data-testid={`view-as-result-${u.id}`}
               style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -135,30 +211,35 @@ export default function AdminViewAsUser({ accessToken }) {
               }}>
               <div>
                 <strong style={{ fontSize: ".85rem" }}>{u.username}</strong>
-                <span style={{ marginLeft: 8, fontSize: ".75rem",
+                <span style={{
+                  marginLeft: 8, fontSize: ".75rem",
                   background: `${ROLE_COLOR[u.role] || "#94a3b8"}22`,
                   color: ROLE_COLOR[u.role] || "#64748b",
-                  padding: "2px 7px", borderRadius: 5, fontWeight: 600 }}>
+                  padding: "2px 7px", borderRadius: 5, fontWeight: 600,
+                }}>
                   {u.role}
                 </span>
-                <div style={{ fontSize: ".72rem", color: "var(--muted, #94a3b8)", marginTop: 2 }}>{u.email} · {u.grade || "—"}</div>
+                <div style={{ fontSize: ".72rem", color: "var(--muted, #94a3b8)", marginTop: 2 }}>
+                  {u.email} · {u.grade || "—"}
+                </div>
               </div>
               <button
                 onClick={() => startViewAs(u)}
+                disabled={actionLoading}
                 data-testid={`start-view-as-${u.id}`}
                 style={{
                   padding: "5px 12px", borderRadius: 6, border: "1px solid #f59e0b",
                   background: "rgba(245,158,11,.1)", color: "#92400e", fontWeight: 600,
-                  fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit",
+                  fontSize: ".8rem", cursor: actionLoading ? "not-allowed" : "pointer", fontFamily: "inherit",
                 }}>
-                👁 View as {u.username}
+                {actionLoading ? "…" : `👁 View as ${u.username}`}
               </button>
             </div>
           ))}
         </>
       )}
 
-      {/* View-as context panel */}
+      {/* ── View-as context panel ─────────────────────────────────────────── */}
       {viewAsCtx && (
         <div data-testid="view-as-context">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 10, marginBottom: 16 }}>

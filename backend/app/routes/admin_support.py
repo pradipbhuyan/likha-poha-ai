@@ -24,10 +24,14 @@ import secrets
 import string
 from datetime import datetime, timedelta, timezone
 
+import logging
+
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 
 from app.services.auth_service import admin_client, require_admin
+
+logger = logging.getLogger("likhapoha.support")
 from app.services.audit_log_service import write_audit_event
 from app.services.subscription_resolver_service import resolve_user_subscription
 
@@ -66,6 +70,11 @@ def _safe_one(fn):
 
 # ── 1. User Search ────────────────────────────────────────────────────────────
 
+_PROFILE_SELECT = (
+    "id, username, email, role, grade, subscription_plan, account_status, created_at"
+)
+
+
 @router.get("/support/user-search")
 def support_user_search(
     q: str = Query(..., min_length=2, max_length=100),
@@ -77,19 +86,39 @@ def support_user_search(
     Search users by name or email fragment.
     Returns id, username, email, role, grade — no secrets.
     Admin-only.
+
+    Uses two separate .ilike() queries and merges in Python to avoid
+    PostgREST .or_() wildcard encoding issues (% in URL → %25 mismatch).
     """
-    q_lower = q.lower().strip()
+    q_clean = q.strip()
 
-    query = (
-        admin_client.table("profiles")
-        .select("id, username, email, role, grade, subscription_plan, account_status, created_at")
-        .or_(f"username.ilike.%{q_lower}%,email.ilike.%{q_lower}%")
-        .limit(limit)
-    )
-    if role:
-        query = query.eq("role", role)
+    def _build(ilike_col: str, ilike_val: str):
+        base = (
+            admin_client.table("profiles")
+            .select(_PROFILE_SELECT)
+            .ilike(ilike_col, ilike_val)
+            .limit(limit)
+        )
+        if role:
+            base = base.eq("role", role)
+        return base.execute()
 
-    rows, err = _safe(lambda: query.execute())
+    by_name, err1 = _safe(lambda: _build("username", f"%{q_clean}%"))
+    by_email, err2 = _safe(lambda: _build("email", f"%{q_clean}%"))
+
+    # Merge and deduplicate by id, preserve order (name matches first)
+    seen: set = set()
+    rows: list = []
+    for u in by_name + by_email:
+        uid = u.get("id")
+        if uid and uid not in seen:
+            seen.add(uid)
+            rows.append(u)
+    rows = rows[:limit]
+
+    err = err1 or err2
+    if err:
+        logger.warning("support user-search error for q=%r: %s", q_clean, err)
 
     return {
         "success": True,
