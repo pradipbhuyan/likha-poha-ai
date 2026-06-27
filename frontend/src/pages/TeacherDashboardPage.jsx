@@ -31,7 +31,6 @@ import {
   addStudentToClassroom,
   removeStudentFromClassroom,
   createTeacherStudent,
-  getTeacherStudentLimit,
 } from "../api/teacherDashboard";
 
 // ── Style helpers ─────────────────────────────────────────────────────────────
@@ -133,6 +132,7 @@ export default function TeacherDashboardPage({ user }) {
       {activeTab === "invitations" && <InvitationsTab user={user} isPaid={isPaid} />}
       {activeTab === "classrooms"  && <ClassroomsTab  user={user} />}
       {activeTab === "insights"    && <InsightsTab    user={user} />}
+      {/* InsightsTab uses summary cached in OverviewTab — see shared cache below */}
     </div>
   );
 }
@@ -142,67 +142,102 @@ export default function TeacherDashboardPage({ user }) {
 // ─────────────────────────────────────────────────────────────────────────────
 function OverviewTab({ user, isPaid, onNavigate }) {
   const [summary, setSummary] = useState(null);
-  const [loading, setLoading]   = useState(true);
-  const [error, setError]       = useState(null);
-  const [limit, setLimit]       = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
-    Promise.all([
-      getTeacherClassroomSummary().catch(e => ({ error: e.message })),
-      getTeacherStudentLimit().catch(() => null),
-    ]).then(([s, l]) => {
-      setSummary(s);
-      setLimit(l);
-      setLoading(false);
-    });
+    // Single canonical fetch — no secondary student-limit call
+    getTeacherClassroomSummary()
+      .then(s => { setSummary(s); setLoading(false); })
+      .catch(e => { setFetchError(e.message || "Failed to load dashboard."); setLoading(false); });
   }, []);
 
-  if (loading) return <div style={{ color: "#94a3b8", padding: 16 }}>Loading dashboard…</div>;
-  if (error || summary?.error) return <div style={{ color: "#dc2626" }}>⚠ {error || summary?.error}</div>;
+  // ── Loading skeleton ───────────────────────────────────────────────────────
+  if (loading) return (
+    <div data-testid="teacher-overview-tab">
+      <div style={{ ...card, opacity: .5 }}>
+        <div style={{ height: 12, background: "var(--border,#e5e7eb)", borderRadius: 4, marginBottom: 8, width: "40%" }} />
+        <div style={{ display: "flex", gap: 8 }}>
+          {[1,2,3,4].map(i => <div key={i} style={{ flex: 1, height: 60, background: "var(--border,#e5e7eb)", borderRadius: 8 }} />)}
+        </div>
+      </div>
+    </div>
+  );
 
-  const t = summary?.totals || {};
-  const avg = summary?.averages || {};
+  // ── Error state ────────────────────────────────────────────────────────────
+  if (fetchError || summary?.error) return (
+    <div data-testid="teacher-overview-tab">
+      <div style={{ ...card, color: "#dc2626", background: "#fef2f2", border: "1px solid #fecaca" }}>
+        ⚠ {fetchError || summary?.error}
+      </div>
+    </div>
+  );
+
+  // ── Derive all counts from the single canonical summary ────────────────────
+  // Use new structured DTO when available, fall back to legacy flat fields
+  const sub = summary?.subscription || {
+    students_used: summary?.totals?.total_students ?? 0,
+    student_limit: summary?.plan_limit ?? 10,
+    is_paid: summary?.is_paid ?? false,
+  };
+  const stu = summary?.students || summary?.totals || {};
+  const cls = summary?.classrooms || {};
+  const lrn = summary?.learning || {
+    average_mock_score: summary?.averages?.mock_test_avg ?? null,
+    recent_activity: summary?.recent_activity || [],
+    attention_students: summary?.needs_attention || [],
+  };
+
+  const studentsUsed  = sub.students_used ?? stu.total_students ?? 0;
+  const studentLimit  = sub.student_limit ?? 10;
+  const atLimit       = studentsUsed >= studentLimit;
+  const totalStudents = studentsUsed;
+  const activeCount   = stu.active_students ?? 0;
+  const inactiveCount = stu.inactive_students ?? 0;
+  const pendingInv    = stu.pending_invitations ?? 0;
+  const needsCount    = stu.needs_attention_count ?? 0;
+  const classCount    = cls.classroom_count ?? 0;
+  const mockAvg       = lrn.average_mock_score ?? null;
+  const recentAct     = lrn.recent_activity || [];
+  const attentionList = lrn.attention_students || [];
 
   return (
     <div data-testid="teacher-overview-tab">
-      {/* Plan usage bar */}
-      {limit && (
-        <div style={{ ...card, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, fontSize: ".88rem" }}>
-              Students: {limit.count} / {limit.max}
-              {limit.at_limit && <span style={{ marginLeft: 8, color: "#dc2626", fontSize: ".78rem" }}>Limit reached</span>}
-            </div>
-            <div style={{ marginTop: 6, background: "var(--border,#e5e7eb)", borderRadius: 4, height: 6 }}>
-              <div style={{ height: 6, borderRadius: 4, background: limit.at_limit ? "#dc2626" : "#6366f1", width: `${Math.min(100, (limit.count / limit.max) * 100)}%`, transition: "width .3s" }} />
-            </div>
+      {/* Plan usage bar — single source of truth */}
+      <div style={{ ...card, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontWeight: 700, fontSize: ".88rem" }}>
+            Students: {studentsUsed} / {studentLimit}
+            {atLimit && <span style={{ marginLeft: 8, color: "#dc2626", fontSize: ".78rem" }}>Limit reached</span>}
           </div>
-          {!isPaid && (
-            <span style={{ fontSize: ".75rem", color: "#64748b" }}>
-              {limit.count}/{limit.max} · Upgrade to paid plan for {limit.max === 10 ? "30" : "more"} students
-            </span>
-          )}
+          <div style={{ marginTop: 6, background: "var(--border,#e5e7eb)", borderRadius: 4, height: 6 }}>
+            <div style={{ height: 6, borderRadius: 4, background: atLimit ? "#dc2626" : "#6366f1", width: `${Math.min(100, (studentsUsed / studentLimit) * 100)}%`, transition: "width .3s" }} />
+          </div>
         </div>
-      )}
-
-      {/* KPI row */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
-        <KpiCard label="Total Students"      value={t.total_students}        color="#6366f1" />
-        <KpiCard label="Active"              value={t.active_students}       color="#22c55e" />
-        <KpiCard label="Inactive"            value={t.inactive_students}     color="#94a3b8" />
-        <KpiCard label="Pending Invites"     value={t.pending_invitations}   color="#f59e0b" />
-        <KpiCard label="Needs Attention"     value={t.needs_attention_count} color="#ef4444" />
-        {avg.mock_test_avg != null && (
-          <KpiCard label="Class Avg Score" value={`${avg.mock_test_avg}%`} color="#0ea5e9" />
+        {!isPaid && (
+          <span style={{ fontSize: ".75rem", color: "#64748b" }}>
+            {studentsUsed}/{studentLimit} · Upgrade to paid plan for {studentLimit === 10 ? "30" : "more"} students
+          </span>
         )}
       </div>
 
+      {/* KPI row — all from one fetch */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 16 }}>
+        <KpiCard label="Total Students"   value={totalStudents} color="#6366f1" />
+        <KpiCard label="Active"           value={activeCount}   color="#22c55e" />
+        <KpiCard label="Inactive"         value={inactiveCount} color="#94a3b8" />
+        <KpiCard label="Pending Invites"  value={pendingInv}    color="#f59e0b" />
+        <KpiCard label="Needs Attention"  value={needsCount}    color="#ef4444" />
+        {classCount > 0 && <KpiCard label="Classrooms"    value={classCount}    color="#8b5cf6" />}
+        {mockAvg != null && <KpiCard label="Class Avg Score" value={`${mockAvg}%`} color="#0ea5e9" />}
+      </div>
+
       {/* Needs attention */}
-      {summary?.needs_attention?.length > 0 && (
+      {attentionList.length > 0 && (
         <div style={{ ...card, borderLeft: "3px solid #f59e0b" }}>
           <div style={{ fontWeight: 700, marginBottom: 6 }}>⚠ Students needing attention (no activity 7+ days)</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-            {summary.needs_attention.map(n => (
+            {attentionList.map(n => (
               <span key={n} style={{ fontSize: ".78rem", background: "rgba(245,158,11,.1)", color: "#92400e", padding: "3px 8px", borderRadius: 5, fontWeight: 600 }}>{n}</span>
             ))}
           </div>
@@ -210,10 +245,10 @@ function OverviewTab({ user, isPaid, onNavigate }) {
       )}
 
       {/* Recent activity */}
-      {summary?.recent_activity?.length > 0 && (
+      {recentAct.length > 0 && (
         <div style={card}>
           <div style={{ fontWeight: 700, marginBottom: 8 }}>🕐 Recent Activity</div>
-          {summary.recent_activity.map((a, i) => (
+          {recentAct.map((a, i) => (
             <div key={i} style={{ display: "flex", gap: 10, padding: "4px 0", borderBottom: "1px solid var(--border,#f1f5f9)", fontSize: ".78rem" }}>
               <span style={{ color: "#94a3b8", minWidth: 80 }}>{(a.at || "").slice(0, 16)}</span>
               <span style={{ fontWeight: 600 }}>{a.username}</span>

@@ -204,23 +204,42 @@ class AddClassroomStudentRequest(BaseModel):
 @router.get("/dashboard/summary")
 def teacher_dashboard_summary(teacher=Depends(require_teacher)):
     """
-    Return classroom KPI cards for the teacher landing dashboard.
-    All signals are graceful — missing tables return 0 / null, not errors.
-    Only this teacher's students are included.
+    Canonical single-fetch dashboard summary.
+    Returns all KPI data the Overview tab needs — one aggregation, one DTO.
+    Resilient: if archived_at column does not exist yet (migration pending),
+    falls back to selecting without it and treats all assignments as active.
     """
+    import logging
+    _log = logging.getLogger("likhapoha.teacher.summary")
     teacher_id = teacher.get("id")
     is_paid = not is_free_tier_user(teacher_id)
+    plan_limit = _resolve_teacher_limit(teacher_id)
 
-    # Active assignments (non-archived)
-    assignments, _ = _safe_q(
+    # ── Load assignments — resilient to missing archived_at column ────────────
+    assignments, err = _safe_q(
         lambda: admin_client.table("teacher_student_assignments")
         .select("student_id, grade, subject, created_at, archived_at")
         .eq("teacher_id", teacher_id)
         .execute()
     )
+    if err:
+        _log.warning("teacher.summary: assignments query error: %s", err)
 
+    # If assignments is empty AND we got a schema error, try without archived_at
+    if not assignments and err and ("PGRST205" in err or "schema cache" in err.lower() or "archived_at" in err):
+        assignments, err2 = _safe_q(
+            lambda: admin_client.table("teacher_student_assignments")
+            .select("student_id, grade, subject, created_at")
+            .eq("teacher_id", teacher_id)
+            .execute()
+        )
+        if err2:
+            _log.warning("teacher.summary: assignments fallback query error: %s", err2)
+
+    # All assignments are "active" when archived_at column doesn't exist
     active_assignments = [a for a in assignments if not a.get("archived_at")]
     student_ids = [a["student_id"] for a in active_assignments if a.get("student_id")]
+    students_used = len(student_ids)
 
     # Student profiles
     profiles = {}
@@ -293,14 +312,55 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
         if scores:
             mock_avg = round(sum(scores) / len(scores), 1)
 
-    plan_limit = _resolve_teacher_limit(teacher_id)
+    # ── Classroom count ───────────────────────────────────────────────────────
+    classroom_rows, _ = _safe_q(
+        lambda: admin_client.table("teacher_classrooms")
+        .select("id")
+        .eq("teacher_id", teacher_id)
+        .eq("status", "active")
+        .execute()
+    )
+    classroom_count = len(classroom_rows)
 
     return {
         "success": True,
+        # ── Subscription section ─────────────────────────────────────────────
+        "subscription": {
+            "plan": "paid" if is_paid else "free",
+            "student_limit": plan_limit,
+            "students_used": students_used,
+            "is_paid": is_paid,
+        },
+        # ── Students section (all counts derived from same assignment dataset) ─
+        "students": {
+            "total_students": students_used,
+            "active_students": active_count,
+            "inactive_students": inactive_count,
+            "pending_invitations": pending_invitations,
+            "needs_attention_count": len(needs_attention),
+        },
+        # ── Classrooms section ───────────────────────────────────────────────
+        "classrooms": {
+            "classroom_count": classroom_count,
+        },
+        # ── Learning section ─────────────────────────────────────────────────
+        "learning": {
+            "average_mock_score": mock_avg,
+            "recent_activity": [
+                {
+                    "username": r.get("username"),
+                    "feature": r.get("feature"),
+                    "at": r.get("created_at"),
+                }
+                for r in recent_activity[:10]
+            ],
+            "attention_students": needs_attention[:5],
+        },
+        # ── Backward-compatible flat fields (existing tests) ─────────────────
         "is_paid": is_paid,
         "plan_limit": plan_limit,
         "totals": {
-            "total_students": len(student_ids),
+            "total_students": students_used,
             "active_students": active_count,
             "inactive_students": inactive_count,
             "pending_invitations": pending_invitations,

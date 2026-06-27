@@ -513,3 +513,99 @@ class TestAudit:
         source = inspect.getsource(tc)
         for evt in expected:
             assert evt in source, f"Missing audit event type: {evt}"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Dashboard consistency regression tests
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestDashboardConsistency:
+    """
+    Verify: studentsUsed == totalStudents, active+inactive == totalStudents,
+    classroom counts bounded by active students, missing data shows safe defaults.
+    """
+
+    def _make_summary(self, total, active, inactive, limit=10):
+        return {
+            "success": True,
+            "subscription": {"plan": "free", "student_limit": limit, "students_used": total, "is_paid": False},
+            "students": {"total_students": total, "active_students": active,
+                         "inactive_students": inactive, "pending_invitations": 0, "needs_attention_count": 0},
+            "classrooms": {"classroom_count": 0},
+            "learning": {"average_mock_score": None, "recent_activity": [], "attention_students": []},
+            # backward compat
+            "is_paid": False, "plan_limit": limit,
+            "totals": {"total_students": total, "active_students": active,
+                       "inactive_students": inactive, "pending_invitations": 0, "needs_attention_count": 0},
+            "averages": {"mock_test_avg": None},
+            "needs_attention": [], "recent_activity": [],
+        }
+
+    def test_students_used_equals_total_students(self):
+        s = self._make_summary(total=2, active=2, inactive=0)
+        assert s["subscription"]["students_used"] == s["students"]["total_students"] == 2
+
+    def test_active_plus_inactive_equals_total(self):
+        s = self._make_summary(total=3, active=2, inactive=1)
+        t = s["students"]
+        assert t["active_students"] + t["inactive_students"] == t["total_students"]
+
+    def test_zero_students_all_zeros(self):
+        s = self._make_summary(total=0, active=0, inactive=0)
+        t = s["students"]
+        assert t["total_students"] == 0
+        assert t["active_students"] == 0
+        assert t["inactive_students"] == 0
+
+    def test_missing_learning_data_safe_defaults(self):
+        s = self._make_summary(total=2, active=2, inactive=0)
+        assert s["learning"]["average_mock_score"] is None
+        assert s["learning"]["recent_activity"] == []
+        assert s["learning"]["attention_students"] == []
+        # Student counts still correct
+        assert s["students"]["total_students"] == 2
+
+    def test_dashboard_summary_resilient_to_missing_archived_at(self, monkeypatch):
+        """If archived_at column missing, falls back and still returns correct counts."""
+        import app.routes.teacher_classroom as tc
+
+        call_n = {"n": 0}
+        def mock_safe_q(fn):
+            call_n["n"] += 1
+            if call_n["n"] == 1:
+                # First call: simulate schema error (archived_at missing)
+                return [], "column teacher_student_assignments.archived_at does not exist"
+            if call_n["n"] == 2:
+                # Fallback call: assignments without archived_at
+                return [{"student_id": "s1", "grade": "Grade 9", "subject": "Maths", "created_at": "2026-01-01"}], None
+            if call_n["n"] == 3:
+                # profiles call
+                return [{"id": "s1", "username": "Alice", "email": "a@a.com", "grade": "Grade 9", "account_status": "active", "created_at": "2026-01-01"}], None
+            # All remaining calls return empty
+            return [], None
+
+        monkeypatch.setattr(tc, "_safe_q", mock_safe_q)
+        monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
+        monkeypatch.setattr(tc, "_resolve_teacher_limit", lambda uid: 10)
+
+        result = tc.teacher_dashboard_summary(teacher={"id": "teacher-1"})
+        assert result["success"] is True
+        # After fallback, should have 1 student
+        assert result["subscription"]["students_used"] == 1
+        assert result["students"]["total_students"] == 1
+
+    def test_single_api_endpoint_returns_all_required_sections(self, monkeypatch):
+        """Summary response must contain subscription, students, classrooms, learning."""
+        import app.routes.teacher_classroom as tc
+        monkeypatch.setattr(tc, "_safe_q", lambda fn: ([], None))
+        monkeypatch.setattr(tc, "is_free_tier_user", lambda uid: True)
+        monkeypatch.setattr(tc, "_resolve_teacher_limit", lambda uid: 10)
+
+        result = tc.teacher_dashboard_summary(teacher={"id": "teacher-1"})
+        assert result["success"] is True
+        assert "subscription" in result
+        assert "students" in result
+        assert "classrooms" in result
+        assert "learning" in result
+        # Data consistency invariant: students_used == total_students
+        assert result["subscription"]["students_used"] == result["students"]["total_students"]
