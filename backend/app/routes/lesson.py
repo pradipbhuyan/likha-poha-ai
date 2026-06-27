@@ -312,6 +312,24 @@ def generate_lesson(
     if not is_offer_code_user(user.id):
         enforce_learning_access(profile, data.mode, data.subject)
 
+    # SECURITY: Exemplar chapters require paid access regardless of free-tier bypass.
+    # Free users (is_offer_code_user=True) bypass enforce_learning_access above,
+    # but Exemplar lessons are premium-only. Check chapter name prefix.
+    _chapter_name = (data.chapter or "").strip()
+    if _chapter_name.lower().startswith("exemplar") or ": exemplar" in _chapter_name.lower():
+        from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
+        _fauth = authorize_feature(user.id, Feature.EXEMPLAR)
+        if not _fauth["allowed"]:
+            raise HTTPException(
+                status_code=403,
+                detail={
+                    "feature": "EXEMPLAR",
+                    "message": "Exemplar lessons require a paid subscription.",
+                    "upgrade_message": "Upgrade to access Exemplar lessons.",
+                    "required_plan": "Any paid plan",
+                },
+            )
+
     enforce_ai_token_limit(profile.get("username") or data.username)
 
     username_key = profile.get("username") or data.username

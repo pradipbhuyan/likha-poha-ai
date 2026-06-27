@@ -505,3 +505,56 @@ class TestCriticalBugRegression:
         r = _auth("child-user-id", Feature.MOCK_TEST, "FREE_TIER", False)
         assert r["allowed"] is True
         assert r["limited"] is True
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 6: Exemplar chapter detection in lesson route
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestExemplarChapterDetection:
+    """Regression tests for Exemplar chapter name detection in lesson.py."""
+
+    def test_exemplar_chapter_prefix_detected(self):
+        """Chapters starting with 'Exemplar:' must be detected as Exemplar."""
+        chapter = "Exemplar: Chemical Reactions and Equations"
+        is_exemplar = chapter.lower().startswith("exemplar") or ": exemplar" in chapter.lower()
+        assert is_exemplar is True
+
+    def test_normal_chapter_not_exemplar(self):
+        """Regular chapters must NOT be flagged as Exemplar."""
+        chapters = [
+            "Chapter 1: Chemical Reactions and Equations",
+            "Motion and Forces",
+            "Heredity and Evolution",
+            "Life Processes",
+        ]
+        for ch in chapters:
+            is_exemplar = ch.lower().startswith("exemplar") or ": exemplar" in ch.lower()
+            assert is_exemplar is False, f"Chapter '{ch}' incorrectly flagged as Exemplar"
+
+    def test_exemplar_chapter_free_tier_denied_by_authorize_feature(self):
+        """authorize_feature(FREE_TIER, EXEMPLAR) must deny — lesson route uses this."""
+        r = _auth("user-exemplar", Feature.EXEMPLAR, "FREE_TIER", False)
+        assert r["allowed"] is False
+        assert "paid" in r["upgrade_recommendation"].lower()
+
+    def test_exemplar_chapter_nano_allowed(self):
+        """NANO+ users must be allowed Exemplar lessons."""
+        r = _auth("user-exemplar", Feature.EXEMPLAR, "NANO", True)
+        assert r["allowed"] is True
+        assert r["limited"] is False
+
+    def test_exemplar_chapter_free_tier_child_of_free_parent_denied(self):
+        """
+        Scenario: Grade 10 child of free parent requests 'Exemplar: Light...' lesson.
+        The backend lesson.py now checks authorize_feature(user_id, Feature.EXEMPLAR).
+        This must be denied for FREE_TIER canonical plan.
+        """
+        # Frontend check: child is free tier
+        child = {"role": "student", "parentId": "free-parent", "accessCbse": False}
+        assert is_free_user_py(child) is True
+
+        # Backend check: exemplar feature denied for FREE_TIER
+        r = _auth("child-user-id", Feature.EXEMPLAR, "FREE_TIER", False)
+        assert r["allowed"] is False, "Exemplar chapter must be denied for FREE_TIER child"
+        assert r["canonical_plan_key"] == "FREE_TIER"

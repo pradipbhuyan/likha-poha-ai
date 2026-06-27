@@ -31,6 +31,7 @@ import {
 } from "../utils/syllabusDefaults";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
+import { hasPaidAccess } from "../utils/resolveSubscription";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -1208,12 +1209,11 @@ function LessonsPage({ user, setActivePage }) {
 
   // ── Exemplar chapter gate ──────────────────────────────────────────────────
   const isExemplarChapter = chapter?.startsWith("Exemplar:");
-  // Free-tier teachers also blocked from Exemplar chapters — admin only bypasses unconditionally
-  const hasPaidAccessForLessons =
-    user?.role === "admin" ||
-    (user?.subscriptionPlan && user.subscriptionPlan !== "free") ||
-    user?.accessCbse ||
-    user?.parentId;
+  // SECURITY FIX: parentId alone does NOT grant paid access.
+  // A child added by a free-plan parent has parentId but no accessCbse.
+  // Use hasPaidAccess() which checks accessCbse + subscriptionExpiresAt correctly.
+  // Also: subscriptionPlan !== "free" is ambiguous — "free" is the Nano DB key too.
+  const hasPaidAccessForLessons = hasPaidAccess(user);
   const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
 
   return (
@@ -1625,12 +1625,8 @@ function LessonsPage({ user, setActivePage }) {
                   </a>
                   {(subject === "Maths" || subject === "Science" || subject === "Mathematics") &&
                    (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (() => {
-                    // Paid access gate — same logic as ExemplarResearchPage
-                    const hasPaid = user?.role === "admin" ||
-                      (user?.subscriptionPlan && user.subscriptionPlan !== "free") ||
-                      user?.accessCbse ||
-                      user?.parentId;
-                    if (hasPaid) {
+                    // Paid access gate — uses canonical hasPaidAccess (parentId alone is not sufficient)
+                    if (hasPaidAccessForLessons) {
                       return (
                         <a
                           href="https://ncert.nic.in/exemplar-problems.php"
