@@ -1,0 +1,57 @@
+# Feature Matrix
+
+This matrix is the product-level source of truth. Backend feature authorization and frontend rendering must match it.
+
+## Subscription Feature Matrix
+
+| Feature | Free Tier | Nano | Premium | Family Premium | Admin/Admin Grant |
+|---|---|---|---|---|---|
+| Core lessons | Limited | Full | Full | Full | Full |
+| Exemplar lessons | No | Yes | Yes | Yes | Yes |
+| Exemplar section | No | Yes | Yes | Yes | Yes |
+| Exemplar research | No | Yes | Yes | Yes | Yes |
+| Mock tests | Limited | Full | Full | Full | Full |
+| Unlimited mock tests | No | Yes | Yes | Yes | Yes |
+| Ask Doubts | Limited | Full | Full | Full | Full |
+| AI assistant | Limited | Full | Full | Full | Full |
+| AI solutions | Limited/Restricted | Full | Full | Full | Full |
+| Progress view | Basic | Full | Full | Full | Full |
+| Parent dashboard | Basic | Full | Full | Full | Full |
+| Child profiles | 1 | 1 | 1 | 2 | Admin-controlled |
+
+## Teacher Feature Matrix
+
+| Feature | Free Teacher | Paid Teacher | Admin |
+|---|---|---|---|
+| Add students | Up to 10 | Up to 30 | Admin-controlled |
+| Create classrooms | Yes | Yes | Yes |
+| Student invitations | Yes | Yes | Yes |
+| Email login details | No | Yes | Yes |
+| Reset temporary password | Yes | Yes | Yes |
+| Parent communication | If allowed by data model | If allowed by data model | Yes |
+| Teacher notes | Yes | Yes | Yes |
+| Interventions/tasks | Yes | Yes | Yes |
+
+## Parent Feature Matrix
+
+| Feature | Free | Paid | Family Premium |
+|---|---|---|---|
+| Add child | 1 child | 1 child | 2 children |
+| View child dashboard | Basic | Full | Full |
+| Progress analytics | Limited | Full | Full |
+| Homework/exam insights | Limited | Full | Full |
+| Notifications | Basic | Full | Full |
+
+## Admin Feature Matrix
+
+Admins can access admin console, operations, analytics, support tools, audit views, access management, parent-child linking, teacher-student linking, offers, AI settings, and payment test tools. Admin endpoints must still be server-side protected.
+
+## Access Enforcement Requirements
+
+For every feature above:
+
+- Frontend must display allowed/restricted state.
+- Backend endpoint must enforce authorization.
+- Direct URL navigation must not bypass restrictions.
+- Direct API calls must return 403 where restricted.
+- Tests must cover Free, paid, expired, offer, admin grant, and admin scenarios where relevant.

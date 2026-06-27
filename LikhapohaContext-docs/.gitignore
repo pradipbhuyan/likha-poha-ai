@@ -1,0 +1,3 @@
+# Allow docs/ inside this folder
+!docs/
+!docs/**
