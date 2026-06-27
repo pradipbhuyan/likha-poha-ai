@@ -465,19 +465,24 @@ function ChildAnalytics({childId}){
       {/* Progress */}
       <div style={{marginBottom:12}}>
         <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📈 Progress</div>
-        {!data.progress?.available
+        {data.progress?.status==="unavailable"
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :data.progress?.status==="no_activity"
+          ?<div style={{color:"#64748b",fontSize:".78rem"}}>No progress recorded yet. Start a lesson to track progress.</div>
           :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-            <MetricCard label="Completed" value={data.progress.completed_chapters?.value} available={data.progress.available}/>
-            <MetricCard label="In Progress" value={data.progress.in_progress_chapters?.value} available={data.progress.available}/>
+            <MetricCard label="Completed" value={data.progress.completed_chapters?.value} available/>
+            <MetricCard label="In Progress" value={data.progress.in_progress_chapters?.value} available/>
+            <MetricCard label="Not Started" value={data.progress.not_started?.value} available/>
           </div>
         }
       </div>
       {/* Mock tests */}
       <div style={{marginBottom:12}}>
         <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📝 Mock Tests</div>
-        {!data.mock_tests?.available
+        {data.mock_tests?.status==="unavailable"
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :data.mock_tests?.status==="no_activity"
+          ?<div style={{color:"#64748b",fontSize:".78rem"}}>No mock tests attempted yet.</div>
           :<>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
               <MetricCard label="Tests" value={data.mock_tests.total_tests?.value} available/>
@@ -520,9 +525,11 @@ function ChildAnalytics({childId}){
       )}
       {/* Activity */}
       <div>
-        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>⏱️ Activity (30 days)</div>
-        {!data.activity?.available
+        <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>⏱️ Activity (90 days)</div>
+        {data.activity?.status==="unavailable"
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
+          :data.activity?.status==="no_activity"
+          ?<div style={{color:"#64748b",fontSize:".78rem"}}>No activity recorded yet.</div>
           :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
             <MetricCard label="Lessons" value={data.activity.lessons_this_month?.value} available/>
             <MetricCard label="Doubts" value={data.activity.doubts_this_month?.value} available/>

@@ -73,7 +73,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     # ── Mock test analytics ───────────────────────────────────────────────────
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, subject, created_at")
+        .select("percentage, raw_score, max_score, subject, chapter, created_at")
         .eq("username", username)
         .order("created_at", desc=True)
         .limit(50)
@@ -81,8 +81,8 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     )
     mock_count = len(test_rows)
     pct_scores = [
-        round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1)
-        for r in test_rows if (r.get("total_questions") or 0) > 0
+        round(r.get("percentage") or 0, 1)
+        for r in test_rows if r.get("percentage") is not None
     ]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
@@ -90,7 +90,7 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     subj_scores: dict = {}
     for r in test_rows:
         subj = r.get("subject") or "Unknown"
-        pct = round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1) if (r.get("total_questions") or 0) > 0 else None
+        pct = round(r.get("percentage") or 0, 1) if r.get("percentage") is not None else None
         if pct is not None:
             subj_scores.setdefault(subj, []).append(pct)
     subject_avgs = {s: round(sum(v)/len(v), 1) for s, v in subj_scores.items()}
@@ -98,15 +98,13 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     # Mock test trend (last 10)
     trend = []
     for i, r in enumerate(reversed(test_rows[:10])):
-        total = r.get("total_questions") or 0
-        score = r.get("score") or 0
-        pct = round(score / total * 100, 1) if total > 0 else 0
+        pct = round(r.get("percentage") or 0, 1)
         trend.append({"index": i + 1, "subject": r.get("subject", ""), "score": pct, "at": r.get("created_at")})
 
     # ── Chapter progress analytics ────────────────────────────────────────────
     prog_rows, _ = _safe_query(
-        lambda: admin_client.table("chapter_progress")
-        .select("subject, chapter, completed, current_step_index")
+        lambda: admin_client.table("student_progress")
+        .select("subject, chapter, completed, current_step_index, updated_at")
         .eq("username", username)
         .execute()
     )
@@ -135,15 +133,15 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
         .execute()
     )
 
-    # ── AI/doubt activity ─────────────────────────────────────────────────────
-    thirty_days_ago = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
-    act_rows, _ = _safe_query(
+    # ── AI/doubt activity (90d window to capture historical data) ─────────────
+    ninety_days_ago = (datetime.now(timezone.utc) - timedelta(days=90)).isoformat()
+    act_rows, act_err = _safe_query(
         lambda: admin_client.table("ai_usage_logs")
         .select("created_at, feature")
         .eq("username", username)
-        .gte("created_at", thirty_days_ago)
+        .gte("created_at", ninety_days_ago)
         .order("created_at", desc=True)
-        .limit(100)
+        .limit(200)
         .execute()
     )
     last_active = act_rows[0]["created_at"] if act_rows else None
@@ -159,10 +157,15 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
     weak_subjects = [s for s, avg in subject_avgs.items() if avg < 50]
 
     # ── Data availability flags ───────────────────────────────────────────────
-    has_mock_data = mock_count > 0
-    has_progress_data = len(prog_rows) > 0
-    has_activity_data = len(act_rows) > 0
-    has_weak_data = len(weak_rows) > 0
+    # Distinguish: table_missing (error) vs zero_rows (no_activity) vs has_data
+    mock_table_ok   = True   # test_history always exists
+    prog_table_ok   = True   # student_progress always exists
+    act_table_ok    = act_err is None  # ai_usage_logs exists if no error
+
+    has_mock_data      = mock_count > 0
+    has_progress_data  = len(prog_rows) > 0
+    has_activity_data  = len(act_rows) > 0
+    has_weak_data      = len(weak_rows) > 0
 
     return {
         "success": True,
@@ -170,20 +173,24 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
         "child_name": username,
 
         "progress": {
-            "available": has_progress_data,
-            "total_chapters_tracked": _metric("Chapters Tracked", len(prog_rows), has_progress_data),
-            "completed_chapters": _metric("Completed", len(completed_ch), has_progress_data),
-            "in_progress_chapters": _metric("In Progress", len(in_progress_ch), has_progress_data),
-            "not_started": _metric("Not Started", not_started if has_progress_data else None, has_progress_data),
-            "subject_wise": subj_progress if has_progress_data else {},
+            "available": prog_table_ok,
+            "has_data": has_progress_data,
+            "status": "data" if has_progress_data else ("no_activity" if prog_table_ok else "unavailable"),
+            "total_chapters_tracked": _metric("Chapters Tracked", len(prog_rows), prog_table_ok),
+            "completed_chapters": _metric("Completed", len(completed_ch), prog_table_ok),
+            "in_progress_chapters": _metric("In Progress", len(in_progress_ch), prog_table_ok),
+            "not_started": _metric("Not Started", not_started, prog_table_ok),
+            "subject_wise": subj_progress,
         },
 
         "mock_tests": {
-            "available": has_mock_data,
-            "total_tests": _metric("Tests Taken", mock_count, has_mock_data),
-            "average_score": _metric("Average Score", f"{avg_score}%" if avg_score else None, has_mock_data,
+            "available": mock_table_ok,
+            "has_data": has_mock_data,
+            "status": "data" if has_mock_data else "no_activity",
+            "total_tests": _metric("Tests Taken", mock_count, mock_table_ok),
+            "average_score": _metric("Average Score", f"{avg_score}%" if avg_score else None, mock_table_ok,
                                      "Based on all mock tests taken"),
-            "subject_averages": subject_avgs if has_mock_data else {},
+            "subject_averages": subject_avgs,
             "trend": trend,
             "free_daily_limit": FREE_MOCK_TEST_DAILY_LIMIT,
         },
@@ -212,28 +219,34 @@ def get_child_analytics(child_id: str, parent=Depends(require_parent)):
         },
 
         "activity": {
-            "available": has_activity_data,
+            "available": act_table_ok,
+            "has_data": has_activity_data,
+            "status": "data" if has_activity_data else ("no_activity" if act_table_ok else "unavailable"),
             "last_active": last_active,
-            "lessons_this_month": _metric("Lessons Generated", lessons_count, has_activity_data),
-            "doubts_this_month": _metric("Doubts Asked", doubts_count, has_activity_data),
+            "lessons_this_month": _metric("Lessons Generated", lessons_count, act_table_ok),
+            "doubts_this_month": _metric("Doubts Asked", doubts_count, act_table_ok),
             "active_days": _metric(
-                "Active Days (30d)",
+                "Active Days (90d)",
                 len({r["created_at"][:10] for r in act_rows if r.get("created_at")}),
-                has_activity_data,
+                act_table_ok,
             ),
         },
 
         "ai_usage": {
-            "available": has_activity_data,
+            "available": act_table_ok,
+            "has_data": has_activity_data,
             "feature_breakdown": feature_counts,
             "total_ai_requests": len(act_rows),
             "is_limited": resolve_user_subscription(child_id).get("canonical_plan_key") == "FREE_TIER",
         },
 
         "data_availability": {
-            "progress": has_progress_data,
-            "mock_tests": has_mock_data,
-            "activity": has_activity_data,
+            "progress": prog_table_ok,
+            "progress_has_data": has_progress_data,
+            "mock_tests": mock_table_ok,
+            "mock_tests_has_data": has_mock_data,
+            "activity": act_table_ok,
+            "activity_has_data": has_activity_data,
             "weak_areas": has_weak_data,
             "homework": False,
             "exams": False,
@@ -262,7 +275,7 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
     # Mock test data for recommendations
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, subject, created_at")
+        .select("percentage, raw_score, max_score, subject, chapter, created_at")
         .eq("username", username)
         .order("created_at", desc=True)
         .limit(10)
@@ -270,8 +283,8 @@ def get_academic_insights(child_id: str, parent=Depends(require_parent)):
     )
     mock_count = len(test_rows)
     pct_scores = [
-        round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1)
-        for r in test_rows if (r.get("total_questions") or 0) > 0
+        round(r.get("percentage") or 0, 1)
+        for r in test_rows if r.get("percentage") is not None
     ]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
@@ -384,8 +397,8 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
 
     # Progress
     prog_rows, _ = _safe_query(
-        lambda: admin_client.table("chapter_progress")
-        .select("subject, chapter, completed, current_step_index")
+        lambda: admin_client.table("student_progress")
+        .select("subject, chapter, completed, current_step_index, updated_at")
         .eq("username", username)
         .execute()
     )
@@ -394,15 +407,15 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     # Mock tests
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, subject, created_at")
+        .select("percentage, raw_score, max_score, subject, chapter, created_at")
         .eq("username", username)
         .order("created_at", desc=True)
         .limit(20)
         .execute()
     )
     pct_scores = [
-        round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1)
-        for r in test_rows if (r.get("total_questions") or 0) > 0
+        round(r.get("percentage") or 0, 1)
+        for r in test_rows if r.get("percentage") is not None
     ]
     avg_score = round(sum(pct_scores) / len(pct_scores), 1) if pct_scores else None
 
@@ -420,7 +433,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
     subj_scores: dict = {}
     for r in test_rows:
         subj = r.get("subject") or "Unknown"
-        pct = round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1) if (r.get("total_questions") or 0) > 0 else None
+        pct = round(r.get("percentage") or 0, 1) if r.get("percentage") is not None else None
         if pct is not None:
             subj_scores.setdefault(subj, []).append(pct)
     subject_avgs = {s: round(sum(v)/len(v), 1) for s, v in subj_scores.items()}
@@ -471,7 +484,7 @@ def get_progress_report(child_id: str, parent=Depends(require_parent)):
             "recent_tests": [
                 {
                     "subject": r.get("subject"),
-                    "score": round((r.get("score") or 0) / (r.get("total_questions") or 1) * 100, 1) if (r.get("total_questions") or 0) > 0 else 0,
+                    "score": round(r.get("percentage") or 0, 1),
                     "date": (r.get("created_at") or "")[:10],
                 }
                 for r in test_rows[:5]
@@ -572,14 +585,14 @@ def _generate_rule_based_notifications(parent_id: str, children_rows: list) -> l
         # Low mock score
         test_rows, _ = _safe_query(
             lambda: admin_client.table("test_history")
-            .select("score, total_questions")
+            .select("percentage")
             .eq("username", username)
             .limit(10)
             .execute()
         )
         pct_scores = [
-            (r.get("score") or 0) / (r.get("total_questions") or 1) * 100
-            for r in test_rows if (r.get("total_questions") or 0) > 0
+            (r.get("percentage") or 0)
+            for r in test_rows if r.get("percentage") is not None
         ]
         if pct_scores:
             avg = sum(pct_scores) / len(pct_scores)

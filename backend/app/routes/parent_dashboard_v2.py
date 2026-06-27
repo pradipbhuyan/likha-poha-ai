@@ -346,15 +346,15 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
         # Mock test summary from test_history
         test_rows, _ = _safe_query(
             lambda: admin_client.table("test_history")
-            .select("score, total_questions, subject, created_at")
+            .select("percentage, raw_score, max_score, subject, chapter, created_at")
             .eq("username", child_username)
             .order("created_at", desc=True)
             .limit(10)
             .execute()
         )
         mock_count = len(test_rows)
-        scores = [(r.get("score") or 0) / (r.get("total_questions") or 1) * 100
-                  for r in test_rows if (r.get("total_questions") or 0) > 0]
+        scores = [(r.get("percentage") or 0)
+                  for r in test_rows if r.get("percentage") is not None]
         avg_score = round(sum(scores) / len(scores), 1) if scores else None
 
         # Plan display
@@ -390,8 +390,7 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
                 "count": mock_count,
                 "average_score": avg_score,
                 "recent": [
-                    {"subject": r.get("subject"), "score": r.get("score"),
-                     "total": r.get("total_questions"), "at": r.get("created_at")}
+                    {"subject": r.get("subject"), "chapter": r.get("chapter"), "score": r.get("percentage"), "max_score": r.get("max_score"), "at": r.get("created_at")}
                     for r in test_rows[:5]
                 ],
                 "free_daily_limit": FREE_MOCK_TEST_DAILY_LIMIT if child_cpk == "FREE_TIER" else None,
@@ -491,7 +490,7 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
     # Mock tests
     test_rows, _ = _safe_query(
         lambda: admin_client.table("test_history")
-        .select("score, total_questions, subject, created_at")
+        .select("percentage, raw_score, max_score, subject, chapter, created_at")
         .eq("username", child_username)
         .order("created_at", desc=True)
         .limit(20)
@@ -504,8 +503,8 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
 
     # Progress (chapter completions)
     progress_rows, _ = _safe_query(
-        lambda: admin_client.table("chapter_progress")
-        .select("subject, chapter, completed, current_step_index")
+        lambda: admin_client.table("student_progress")
+        .select("subject, chapter, completed, current_step_index, updated_at")
         .eq("username", child_username)
         .execute()
     )
@@ -562,8 +561,8 @@ def get_child_detail(child_id: str, parent=Depends(require_parent)):
             "average_score": avg_score,
             "free_daily_limit": FREE_MOCK_TEST_DAILY_LIMIT if child_cpk == "FREE_TIER" else None,
             "recent": [
-                {"subject": r.get("subject"), "score": r.get("score"),
-                 "total": r.get("total_questions"), "at": r.get("created_at")}
+                {"subject": r.get("subject"), "chapter": r.get("chapter"), "score": r.get("percentage"),
+                 "total": r.get("max_score"), "at": r.get("created_at")}
                 for r in test_rows[:5]
             ],
         },

@@ -117,21 +117,30 @@ class TestMissingTablesGraceful:
         monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
                             lambda uid: _free_sub())
 
-    def test_analytics_missing_progress_returns_available_false(self, monkeypatch):
+    def test_analytics_missing_progress_returns_no_data(self, monkeypatch):
         self._mock_no_data(monkeypatch)
         result = get_child_analytics("child-1", parent=PARENT)
         assert result["success"] is True
-        assert result["progress"]["available"] is False
+        # Tables exist but empty → available=True, has_data=False, status=no_activity
+        assert result["progress"]["available"] is True
+        assert result["progress"]["has_data"] is False
+        assert result["progress"]["status"] == "no_activity"
 
-    def test_analytics_missing_mock_tests_returns_available_false(self, monkeypatch):
+    def test_analytics_missing_mock_tests_returns_no_activity(self, monkeypatch):
         self._mock_no_data(monkeypatch)
         result = get_child_analytics("child-1", parent=PARENT)
-        assert result["mock_tests"]["available"] is False
+        # Tables exist but empty → available=True, has_data=False
+        assert result["mock_tests"]["available"] is True
+        assert result["mock_tests"]["has_data"] is False
+        assert result["mock_tests"]["status"] == "no_activity"
 
-    def test_analytics_missing_activity_returns_available_false(self, monkeypatch):
+    def test_analytics_missing_activity_returns_no_activity(self, monkeypatch):
         self._mock_no_data(monkeypatch)
         result = get_child_analytics("child-1", parent=PARENT)
-        assert result["activity"]["available"] is False
+        # ai_usage_logs: no error, just empty → available=True, has_data=False
+        assert result["activity"]["available"] is True
+        assert result["activity"]["has_data"] is False
+        assert result["activity"]["status"] == "no_activity"
 
     def test_analytics_homework_always_false(self, monkeypatch):
         """Homework table does not exist — data_availability.homework must be False."""
@@ -184,8 +193,8 @@ class TestAcademicInsightsMockRecommendations:
         def mock_safe_q(fn):
             call_n["n"] += 1
             if call_n["n"] == 1:
-                # test_history rows with low scores
-                return [{"score": 3, "total_questions": 10, "subject": "Science", "created_at": "2026-06-01"}], None
+                # test_history rows with low scores (use percentage column)
+                return [{"percentage": 30.0, "raw_score": 3.0, "max_score": 10.0, "subject": "Science", "chapter": "Motion", "created_at": "2026-06-01"}], None
             return [], None
         monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_safe_q)
         result = get_academic_insights("child-1", parent=PARENT)
@@ -200,7 +209,7 @@ class TestAcademicInsightsMockRecommendations:
         def mock_safe_q(fn):
             call_n["n"] += 1
             if call_n["n"] == 1:
-                return [{"score": 8, "total_questions": 10, "subject": "Maths", "created_at": "2026-06-01"}], None
+                return [{"percentage": 80.0, "raw_score": 8.0, "max_score": 10.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-01"}], None
             return [], None
         monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_safe_q)
         result = get_academic_insights("child-1", parent=PARENT)
@@ -397,3 +406,124 @@ class TestRecommendationPlanAwareness:
         recs = _build_recommendations("Riya", sub, features, 5, "2026-06-27")
         types = [r["type"] for r in recs]
         assert "upgrade" not in types
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Active student regression tests (correct table/column mapping)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestActiveStudentDataMapping:
+    """
+    Regression: Parent dashboard must show real data for active students.
+    Root cause was wrong columns (score/total_questions) and wrong table (chapter_progress).
+    Correct: percentage column, student_progress table.
+    """
+
+    def _mock_active_student(self, monkeypatch):
+        """Mock all three tables with realistic active student data."""
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+                            lambda p, c: CHILD)
+        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+                            lambda uid: _paid_sub())
+
+        call_n = {"n": 0}
+        def smart_mock(fn):
+            call_n["n"] += 1
+            n = call_n["n"]
+            if n == 1:  # test_history
+                return [
+                    {"percentage": 60.0, "raw_score": 3.0, "max_score": 5.0, "subject": "Science", "chapter": "Motion", "created_at": "2026-06-24"},
+                    {"percentage": 80.0, "raw_score": 4.0, "max_score": 5.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-23"},
+                    {"percentage": 20.0, "raw_score": 1.0, "max_score": 5.0, "subject": "Maths", "chapter": "Integers", "created_at": "2026-06-22"},
+                ], None
+            elif n == 2:  # student_progress
+                return [
+                    {"subject": "Science", "chapter": "Motion", "completed": False, "current_step_index": 2, "updated_at": "2026-06-24"},
+                    {"subject": "Maths", "chapter": "Fractions", "completed": True, "current_step_index": 3, "updated_at": "2026-06-23"},
+                    {"subject": "English", "chapter": "Grammar", "completed": False, "current_step_index": 0, "updated_at": "2026-06-20"},
+                ], None
+            elif n == 3:  # weak_area_alerts
+                return [
+                    {"subject": "Maths", "chapter": "Integers", "step_title": "Intro", "best_score": 20.0, "created_at": "2026-06-22"},
+                ], None
+            elif n == 4:  # ai_usage_logs
+                return [
+                    {"feature": "lesson", "created_at": "2026-06-25T10:00:00Z"},
+                    {"feature": "doubt", "created_at": "2026-06-24T08:00:00Z"},
+                    {"feature": "lesson", "created_at": "2026-06-23T09:00:00Z"},
+                    {"feature": "doubt", "created_at": "2026-06-22T11:00:00Z"},
+                    {"feature": "answer_evaluation", "created_at": "2026-06-21T14:00:00Z"},
+                ], None
+            return [], None
+
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", smart_mock)
+
+    def test_analytics_mock_tests_return_data_for_active_student(self, monkeypatch):
+        """Active student with mock history → mock_tests.status=data, avg score returned."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        assert result["mock_tests"]["status"] == "data"
+        assert result["mock_tests"]["has_data"] is True
+        # avg = (60+80+20)/3 = 53.3
+        avg_str = result["mock_tests"]["average_score"]["value"]
+        assert avg_str is not None and "%" in str(avg_str)
+
+    def test_analytics_progress_returns_data_for_active_student(self, monkeypatch):
+        """Active student with progress rows → progress.status=data."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        assert result["progress"]["status"] == "data"
+        assert result["progress"]["has_data"] is True
+        # 1 completed, 1 in progress, 1 not started
+        assert result["progress"]["completed_chapters"]["value"] == 1
+        assert result["progress"]["in_progress_chapters"]["value"] == 1
+
+    def test_analytics_activity_returns_data_for_active_student(self, monkeypatch):
+        """Active student with AI usage → activity.status=data."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        assert result["activity"]["status"] == "data"
+        assert result["activity"]["has_data"] is True
+        assert result["activity"]["lessons_this_month"]["value"] == 2
+        assert result["activity"]["doubts_this_month"]["value"] == 2
+
+    def test_analytics_subject_wise_progress_correct(self, monkeypatch):
+        """Subject-wise progress breakdown is accurate."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        sw = result["progress"]["subject_wise"]
+        assert "Science" in sw
+        assert sw["Science"]["total"] == 1
+        assert sw["Science"]["in_progress"] == 1
+        assert "Maths" in sw
+        assert sw["Maths"]["completed"] == 1
+
+    def test_analytics_percentage_column_used_not_score(self, monkeypatch):
+        """Regression: percentage column is used, not score/total_questions."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        # If wrong columns were used, avg_score would be None
+        avg = result["mock_tests"]["average_score"]["value"]
+        assert avg is not None, "REGRESSION: percentage column not used — avg score is None"
+
+    def test_analytics_uses_student_progress_not_chapter_progress(self, monkeypatch):
+        """Regression: student_progress table is used, not chapter_progress."""
+        self._mock_active_student(monkeypatch)
+        result = get_child_analytics("child-1", parent=PARENT)
+        # If wrong table, progress.status would be no_activity
+        assert result["progress"]["status"] != "unavailable", \
+            "REGRESSION: chapter_progress table used — student_progress is the correct table"
+
+    def test_no_data_student_shows_no_activity_not_unavailable(self, monkeypatch):
+        """Empty results from existing tables → status=no_activity (not unavailable)."""
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+                            lambda p, c: CHILD)
+        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+                            lambda uid: _free_sub())
+        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+                            lambda fn: ([], None))  # empty but no error
+        result = get_child_analytics("child-1", parent=PARENT)
+        # Tables exist but empty → no_activity, not unavailable
+        assert result["progress"]["status"] == "no_activity"
+        assert result["mock_tests"]["status"] == "no_activity"
+        assert result["activity"]["status"] == "no_activity"
