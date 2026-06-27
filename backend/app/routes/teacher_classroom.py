@@ -215,37 +215,21 @@ def teacher_dashboard_summary(teacher=Depends(require_teacher)):
     is_paid = not is_free_tier_user(teacher_id)
     plan_limit = _resolve_teacher_limit(teacher_id)
 
-    # ── Load assignments — resilient to missing archived_at column ────────────
-    # Strategy: first try with archived_at (post-migration). If _safe_q returns
-    # empty (either PGRST205/schema error OR genuinely no students), always run the
-    # fallback query without archived_at to confirm.
-    # NOTE: _safe_q catches PGRST205 and returns ([], None) — err is None in that case.
-    # Therefore we cannot rely on err to detect schema errors; we always fall back.
-    assignments_with_archive, err = _safe_q(
+    # ── Load assignments — resilient to missing/stale archived_at column ─────
+    # Use select("*") so PostgREST schema cache staleness never causes PGRST205.
+    # When archived_at column does not exist in cache, it simply won't appear in
+    # results → a.get("archived_at") returns None → treated as active (correct).
+    # When archived_at exists, rows with a value are filtered out below.
+    assignments, err = _safe_q(
         lambda: admin_client.table("teacher_student_assignments")
-        .select("student_id, grade, subject, created_at, archived_at")
+        .select("*")
         .eq("teacher_id", teacher_id)
         .execute()
     )
     if err:
-        _log.warning("teacher.summary: assignments (with archive) query error: %s", err)
+        _log.warning("teacher.summary: assignments query error: %s", err)
 
-    if assignments_with_archive:
-        # Migration applied: filter out archived rows
-        assignments = assignments_with_archive
-    else:
-        # Migration not yet applied OR genuinely no students — run without archived_at
-        assignments, err2 = _safe_q(
-            lambda: admin_client.table("teacher_student_assignments")
-            .select("student_id, grade, subject, created_at")
-            .eq("teacher_id", teacher_id)
-            .execute()
-        )
-        if err2:
-            _log.warning("teacher.summary: assignments fallback query error: %s", err2)
-        # When archived_at column is absent, all returned assignments are active
-
-    # Filter archived (a.get("archived_at") is None/absent when column doesn't exist)
+    # Filter archived rows — safe even if archived_at column doesn't exist
     active_assignments = [a for a in assignments if not a.get("archived_at")]
     student_ids = [a["student_id"] for a in active_assignments if a.get("student_id")]
     students_used = len(student_ids)
@@ -409,10 +393,11 @@ def list_students(
     """
     teacher_id = teacher.get("id")
 
-    # Load assignments
+    # Load assignments — use select("*") to avoid PGRST205 on stale schema cache.
+    # archived_at will be absent if migration hasn't been applied → treated as active.
     assignments, _ = _safe_q(
         lambda: admin_client.table("teacher_student_assignments")
-        .select("student_id, grade, subject, section, archived_at, created_at")
+        .select("*")
         .eq("teacher_id", teacher_id)
         .execute()
     )
