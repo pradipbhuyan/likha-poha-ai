@@ -294,7 +294,7 @@ function ChildMockTests({detail, plan, onUpgrade}){
           {(mt.recent||[]).length>0&&(
             <div style={card()}>
               <div style={{fontWeight:700,marginBottom:6}}>Recent Tests</div>
-              {mt.recent.map(function(t,i){var pct=t.total>0?Math.round((t.score/t.total)*100):0;return(
+              {mt.recent.map(function(t,i){var pct=t.score!=null?Math.round(t.score):0;return(
                 <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid var(--border,#f1f5f9)",fontSize:".78rem"}}>
                   <span>{t.subject||"—"}</span>
                   <span style={{fontWeight:700,color:pct>=60?"#166534":pct>=40?"#d97706":"#dc2626"}}>{pct}%</span>
@@ -354,7 +354,18 @@ function ChildAccess({detail, plan, onUpgrade}){
 
 function ChildRecommendations({detail, onUpgrade}){
   var recs=detail?.recommendations||[];
-  if(recs.length===0) return <div style={{color:"#94a3b8",fontSize:".8rem",padding:"8px 0"}}>No recommendations at this time.</div>;
+  var plan=detail?.plan||{};
+  if(recs.length===0){
+    if(plan.has_full_access){
+      return(
+        <div style={{background:"rgba(34,197,94,.08)",border:"1px solid #86efac",borderRadius:8,padding:"12px 14px"}}>
+          <div style={{fontWeight:700,fontSize:".85rem",color:"#166534"}}>✅ All good!</div>
+          <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>This child is on track. Keep encouraging regular practice and mock tests.</div>
+        </div>
+      );
+    }
+    return <div style={{color:"#94a3b8",fontSize:".8rem",padding:"8px 0"}}>No recommendations at this time.</div>;
+  }
   var prio={"high":"#dc2626","medium":"#f59e0b","low":"#64748b"};
   return(
     <div data-testid="child-section-recommendations">
@@ -467,7 +478,7 @@ function ChildAnalytics({childId}){
         <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📈 Progress</div>
         {data.progress?.status==="unavailable"
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
-          :data.progress?.status==="no_activity"
+          :(!data.progress?.has_data&&!data.progress?.subject_wise)&&data.progress?.status==="no_activity"
           ?<div style={{color:"#64748b",fontSize:".78rem"}}>No progress recorded yet. Start a lesson to track progress.</div>
           :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
             <MetricCard label="Completed" value={data.progress.completed_chapters?.value} available/>
@@ -479,9 +490,9 @@ function ChildAnalytics({childId}){
       {/* Mock tests */}
       <div style={{marginBottom:12}}>
         <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>📝 Mock Tests</div>
-        {data.mock_tests?.status==="unavailable"
+        {(!data.mock_tests?.available&&!data.mock_tests?.has_data)||(data.mock_tests?.status==="unavailable")
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
-          :data.mock_tests?.status==="no_activity"
+          :(!data.mock_tests?.has_data&&data.mock_tests?.count===0)||(data.mock_tests?.status==="no_activity")
           ?<div style={{color:"#64748b",fontSize:".78rem"}}>No mock tests attempted yet.</div>
           :<>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:8}}>
@@ -530,7 +541,7 @@ function ChildAnalytics({childId}){
         <div style={{fontWeight:700,fontSize:".82rem",marginBottom:6}}>⏱️ Activity (90 days)</div>
         {data.activity?.status==="unavailable"
           ?<div style={{color:"#94a3b8",fontSize:".78rem"}}>Not available yet.</div>
-          :data.activity?.status==="no_activity"
+          :!data.activity?.has_data&&data.activity?.status==="no_activity"
           ?<div style={{color:"#64748b",fontSize:".78rem"}}>No activity recorded yet.</div>
           :<div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
             <MetricCard label="Lessons" value={data.activity.lessons_this_month?.value} available/>
