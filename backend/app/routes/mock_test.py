@@ -185,7 +185,7 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
             access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
-                detail=f"{access_label} access is not enabled for your plan.",
+                detail=f"{access_label} access is not enabled.",
             )
         if not has_cbse_subject_access(profile, subject):
             subject_label = (
