@@ -313,6 +313,20 @@ function App() {
         if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
         oauthProcessed.current = true;
 
+        // Only run full OAuth processing on actual OAuth redirects.
+        // On normal page load with an existing Google session, the URL will NOT
+        // have #access_token= or ?code= — skip to avoid hanging on reload.
+        const urlHash = window.location.hash || "";
+        const urlSearch = window.location.search || "";
+        const isOAuthRedirect = urlHash.includes("access_token") ||
+                                urlSearch.includes("code=") ||
+                                urlSearch.includes("access_token");
+        if (!isOAuthRedirect) {
+          // Returning user — session recovery handles profile refresh silently
+          console.info("[auth] Existing Google session on reload — session recovery will handle it");
+          return;
+        }
+
         setOauthLoading(true);
         try {
           // Fetch or wait for the profile row (the DB trigger creates it async)
