@@ -16,45 +16,69 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 import pytest
 
-from app.routes.formula_sheets import _build_sections, get_formula_sheets
+from app.routes.formula_sheets import _build_chapters, get_formula_sheets
 
 
 # ── _build_sections ───────────────────────────────────────────────────────────
 
-class TestBuildSections:
-    def test_groups_by_section_title(self):
-        rows = [
-            {"section_title": "Area Formulas", "formula_name": "Heron Formula",
-             "expression": "A=sqrt[s(s-a)(s-b)(s-c)]", "explanation": "s=semiperimeter",
-             "example": "a=3,b=4,c=5->A=6", "chapter": "Triangles"},
-            {"section_title": "Area Formulas", "formula_name": "Area of Circle",
-             "expression": "A=pi.r^2", "explanation": "r=radius",
-             "example": "r=7->A=154", "chapter": "Circles"},
-            {"section_title": "Equations of Motion", "formula_name": "First Equation",
-             "expression": "v=u+at", "explanation": "v=final",
-             "example": "u=0,a=10,t=5->v=50", "chapter": "Motion"},
-        ]
-        sections = _build_sections(rows)
-        assert len(sections) == 2
-        titles = [s["title"] for s in sections]
-        assert "Area Formulas" in titles
-        assert "Equations of Motion" in titles
+class TestBuildChapters:
+    """Tests for the chapter-wise grouping function (new structure)."""
 
-    def test_formulas_in_section(self):
+    def test_groups_rows_into_chapters(self):
         rows = [
-            {"section_title": "AP Formulas", "formula_name": "nth Term",
-             "expression": "a_n=a+(n-1)d", "explanation": "a=first,d=diff",
-             "example": "a=2,d=3,n=5->14", "chapter": "AP"},
-            {"section_title": "AP Formulas", "formula_name": "Sum",
-             "expression": "S_n=(n/2)[2a+(n-1)d]", "explanation": "Sum",
-             "example": "n=10->55", "chapter": "AP"},
+            {"chapter": "Triangles", "chapter_order": 1, "section_title": "Area",
+             "topic": "Area Formulas", "formula_name": "Heron Formula",
+             "expression": "A=sqrt[s]", "explanation": "s=semi", "display_order": 1,
+             "example": "a=3->A=6", "solution_steps": None, "memory_tip": None,
+             "variables": "s=(a+b+c)/2", "difficulty": "medium", "tags": None, "id": "u1"},
+            {"chapter": "Circles", "chapter_order": 2, "section_title": "Circles",
+             "topic": "Circle Formulas", "formula_name": "Area of Circle",
+             "expression": "A=pi.r^2", "explanation": "r=radius", "display_order": 1,
+             "example": "r=7->A=154", "solution_steps": None, "memory_tip": None,
+             "variables": "r=radius", "difficulty": "easy", "tags": None, "id": "u2"},
         ]
-        sections = _build_sections(rows)
-        assert len(sections) == 1
-        assert len(sections[0]["formulas"]) == 2
+        chapters = _build_chapters(rows, False)
+        assert len(chapters) == 2
+        chapter_names = [ch["chapter_name"] for ch in chapters]
+        assert "Triangles" in chapter_names
+        assert "Circles" in chapter_names
+
+    def test_free_user_first_3_unlocked(self):
+        rows = [
+            {"chapter": "Motion", "chapter_order": 1, "section_title": "Motion",
+             "topic": "Kinematics", "formula_name": f"Formula {i}",
+             "expression": f"v=u+{i}", "explanation": "x", "display_order": i,
+             "example": None, "solution_steps": None, "memory_tip": None,
+             "variables": "v,u", "difficulty": "easy", "tags": None, "id": f"u{i}"}
+            for i in range(1, 6)
+        ]
+        chapters = _build_chapters(rows, False)
+        assert len(chapters) == 1
+        ch = chapters[0]
+        formulas = ch["topics"][0]["formulas"]
+        unlocked = [f for f in formulas if not f["locked"]]
+        locked = [f for f in formulas if f["locked"]]
+        assert len(unlocked) == 3
+        assert len(locked) == 2
+
+    def test_paid_user_all_unlocked(self):
+        rows = [
+            {"chapter": "Motion", "chapter_order": 1, "section_title": "Motion",
+             "topic": "Kinematics", "formula_name": f"Formula {i}",
+             "expression": f"v=u+{i}", "explanation": "x", "display_order": i,
+             "example": "example", "solution_steps": "steps", "memory_tip": "tip",
+             "variables": "v,u", "difficulty": "easy", "tags": None, "id": f"u{i}"}
+            for i in range(1, 6)
+        ]
+        chapters = _build_chapters(rows, True)
+        ch = chapters[0]
+        formulas = ch["topics"][0]["formulas"]
+        assert all(not f["locked"] for f in formulas)
+        assert all(f["example"] == "example" for f in formulas)
+        assert all(f["memory_tip"] == "tip" for f in formulas)
 
     def test_empty_rows_returns_empty(self):
-        assert _build_sections([]) == []
+        assert _build_chapters([], False) == []
 
 
 # ── get_formula_sheets (mocked) ───────────────────────────────────────────────
@@ -84,7 +108,7 @@ class TestGetFormulaSheets:
         result = get_formula_sheets(grade=None, subject="Mathematics", chapter=None, student=self.STUDENT)
         assert result["success"] is True
         assert result["available"] is True
-        assert len(result["sections"]) >= 1
+        assert len(result["chapters"]) >= 1
 
     def test_returns_unavailable_when_no_rows(self, monkeypatch):
         monkeypatch.setattr("app.routes.formula_sheets._safe_query", lambda fn: ([], None))
