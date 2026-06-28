@@ -228,14 +228,14 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                     style={{
                       ...cardBase,
                       border: "2px solid " + (role === r.key ? "#7c3aed" : "var(--border,#e2e8f0)"),
-                      background: role === r.key ? "rgba(124,58,237,.12)" : "var(--surface2,#f8fafc)",
+                      background: role === r.key ? "rgba(99,58,210,.85)" : "var(--surface2,#f8fafc)",
                     }}
                   >
                     <span style={{ color: role === r.key ? "#7c3aed" : "var(--text-muted,#64748b)" }}>
                       {roleIcons[r.key]}
                     </span>
-                    <span style={{ fontWeight: 700, fontSize: ".82rem", color: "var(--text,#1e293b)" }}>{r.label}</span>
-                    <span style={{ fontSize: ".67rem", color: "var(--text-muted,#94a3b8)", lineHeight: 1.3 }}>{r.desc}</span>
+                    <span style={{ fontWeight: 700, fontSize: ".82rem", color: role === r.key ? "#fff" : "var(--text,#1e293b)" }}>{r.label}</span>
+                    <span style={{ fontSize: ".67rem", color: role === r.key ? "rgba(255,255,255,.75)" : "var(--text-muted,#94a3b8)", lineHeight: 1.3 }}>{r.desc}</span>
                   </button>
                 ))}
               </div>
@@ -329,7 +329,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                 type="submit"
                 disabled={loading}
                 className="ait-btn-primary"
-                style={{ width: "100%", padding: "11px", borderRadius: 9, fontWeight: 700, fontSize: "1rem", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
+                style={{ width: "100%", padding: "11px", borderRadius: 9, fontWeight: 700, fontSize: "1rem", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, background: "#6366f1", color: "#fff", border: "none" }}
               >
                 {loading ? "Creating account…" : "Start for Free"}
               </button>
