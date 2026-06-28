@@ -289,7 +289,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
         <div data-testid="formula-sheet-unavailable"
           style={{background:"var(--panel,#fff)",border:"1px solid var(--border,#e5e7eb)",borderRadius:12,padding:32,textAlign:"center"}}>
           <div style={{fontSize:"2rem",marginBottom:8}}>📋</div>
-          <div style={{fontWeight:700,fontSize:".95rem",marginBottom:6}}>{data.message || `Formula sheet is not available for ${grade} yet.`}</div>
+          <div style={{fontWeight:700,fontSize:".95rem",marginBottom:6}}>{data.message || `Formula sheet content has not been loaded yet for ${grade}.`}</div>
           <div style={{fontSize:".82rem",color:"var(--text-muted,#64748b)"}}>Formula content is added regularly. Check back soon.</div>
         </div>
       )}

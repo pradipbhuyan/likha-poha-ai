@@ -136,7 +136,23 @@ def get_formula_sheets(
     has_premium = feat.get("features", {}).get(Feature.FORMULA_SHEET_PREMIUM, {}).get("allowed", False)
 
     # Fetch formulas
-    def _query():
+    def _query_safe():
+        """Select only base columns that definitely exist."""
+        q = (
+            admin_client.table(TABLE)
+            .select("id, formula_name, expression, explanation, example, chapter, section_title, display_order, active")
+            .eq("grade", eff_grade)
+            .eq("active", True)
+            .order("display_order", desc=False)
+        )
+        if subject:
+            q = q.eq("subject", subject.strip())
+        if chapter:
+            q = q.eq("chapter", chapter.strip())
+        return q.execute()
+
+    def _query_v2():
+        """Select all columns including v2 additions."""
         q = (
             admin_client.table(TABLE)
             .select("id, formula_name, expression, explanation, variables, example, solution_steps, memory_tip, chapter, topic, section_title, display_order, chapter_order, difficulty, tags, active")
@@ -151,7 +167,11 @@ def get_formula_sheets(
             q = q.eq("chapter", chapter.strip())
         return q.execute()
 
-    rows, err = _safe_query(_query)
+    # Try v2 query first; fall back to safe query if v2 columns don't exist
+    rows, err = _safe_query(_query_v2)
+    if err and ("42703" in str(err) or "does not exist" in str(err) or "schema cache" in str(err).lower()):
+        _log.info("formula_sheets v2 columns not yet migrated — falling back to base columns")
+        rows, err = _safe_query(_query_safe)
 
     # Graceful fallback if table doesn't exist yet
     if err and "schema cache" in str(err).lower():
