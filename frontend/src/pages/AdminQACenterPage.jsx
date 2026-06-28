@@ -71,7 +71,7 @@ function IssueRow({ issue }) {
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function AdminQACenterPage({ user }) {
+export default function AdminQACenterPage({ user, setActivePage }) {
   const [report, setReport]         = useState(null);
   const [loadingReport, setLoadingReport] = useState(true);
   const [runForm, setRunForm]       = useState({ mode:"sample", grade:"", subject:"", use_llm:false });
@@ -170,7 +170,10 @@ export default function AdminQACenterPage({ user }) {
           <div style={{ fontSize:".7rem", color:"#22c55e", marginTop:2 }}>● Active</div>
         </Card>
         <FutureModule icon="📐" name="Formula Sheet Audit"/>
-        <FutureModule icon="🔐" name="Authorization Audit"/>
+        <Card style={{ borderLeft:"4px solid #0ea5e9", cursor:"pointer" }} onClick={() => setActivePage && setActivePage("featureAuthAudit")}>
+          <div style={{ fontWeight:700, fontSize:".85rem" }}>🔐 Authorization Audit</div>
+          <div style={{ fontSize:".7rem", color:"#0ea5e9", marginTop:2 }}>● Active</div>
+        </Card>
         <FutureModule icon="💳" name="Payment Flow Audit"/>
         <FutureModule icon="👨‍👩‍👧" name="Parent Flow Audit"/>
         <FutureModule icon="🎓" name="Student Flow Audit"/>

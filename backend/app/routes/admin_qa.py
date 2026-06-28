@@ -350,3 +350,116 @@ def download_lesson_quality_report(
         media_type=content_types[format],
         headers={"Content-Disposition": f"attachment; filename=lesson_quality_report.{format}"},
     )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Feature Authorization Audit endpoints
+# ─────────────────────────────────────────────────────────────────────────────
+
+FEAT_AUTH_REPORT_DIR = Path("reports/feature_authorization")
+_FA_JOBS: dict[str, dict] = {}   # in-memory job registry for feature auth jobs
+
+
+def _run_feat_auth_background(job_id: str, sample: bool, admin_id: str) -> None:
+    """Run feature authorization audit in background thread."""
+    _FA_JOBS[job_id] = {**_FA_JOBS.get(job_id, {}), "status": "running",
+                        "started_at": datetime.now(timezone.utc).isoformat()}
+    try:
+        from scripts.audit_feature_authorization import run_audit
+        FEAT_AUTH_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+        summary = run_audit(sample=sample, fail_critical=False, output_json=False)
+        _FA_JOBS[job_id].update({
+            "status": "completed",
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+            "overall": summary.get("overall"),
+            "total": summary.get("total"),
+            "passed": summary.get("passed"),
+            "failed": summary.get("failed"),
+            "critical": summary.get("critical"),
+            "pass_rate": summary.get("pass_rate"),
+        })
+    except Exception as e:
+        sanitised = str(e)[:500].replace("\n", " ")
+        _log.error("Feature auth audit job %s failed: %s", job_id, sanitised)
+        _FA_JOBS[job_id].update({"status": "failed", "error_message": sanitised,
+                                  "completed_at": datetime.now(timezone.utc).isoformat()})
+
+
+def _read_feat_auth_report() -> dict | None:
+    p = FEAT_AUTH_REPORT_DIR / "feature_authorization_report.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+@router.get("/feature-authorization/latest")
+def get_latest_feat_auth_report(admin=Depends(require_admin)):
+    data = _read_feat_auth_report()
+    if not data:
+        return {"success": True, "available": False,
+                "message": "No feature authorization audit has been run yet."}
+    summary = data.get("summary", {})
+    failed = [c for c in (data.get("failed_checks") or []) if not c.get("passed")][:200]
+    return {
+        "success": True, "available": True,
+        "audited_at": data.get("audited_at"),
+        "summary": summary,
+        "failed_checks": failed,
+    }
+
+
+@router.get("/feature-authorization/history")
+def get_feat_auth_history(limit: int = Query(20, le=100), admin=Depends(require_admin)):
+    runs = sorted(_FA_JOBS.values(), key=lambda j: j.get("created_at",""), reverse=True)[:limit]
+    return {"success": True, "runs": runs}
+
+
+@router.post("/feature-authorization/run")
+def run_feat_auth_audit(
+    mode: str = "sample",
+    background_tasks: BackgroundTasks = None,
+    admin=Depends(require_admin),
+):
+    if mode not in ("sample", "full"):
+        raise HTTPException(status_code=400, detail="mode must be sample or full")
+    admin_id = admin.get("id") or admin.get("profile", {}).get("id")
+    job_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    _FA_JOBS[job_id] = {"id": job_id, "status": "queued", "mode": mode,
+                         "created_at": now, "created_by_admin_id": admin_id}
+    t = threading.Thread(target=_run_feat_auth_background,
+                         args=(job_id, mode=="sample", admin_id), daemon=True)
+    t.start()
+    return {"success": True, "job_id": job_id, "message": f"Feature auth audit started ({mode})."}
+
+
+@router.get("/feature-authorization/status/{job_id}")
+def get_feat_auth_status(job_id: str, admin=Depends(require_admin)):
+    if job_id not in _FA_JOBS:
+        raise HTTPException(status_code=404, detail="Job not found.")
+    job = dict(_FA_JOBS[job_id])
+    job.pop("created_by_admin_id", None)
+    return {"success": True, "job": job}
+
+
+@router.get("/feature-authorization/report")
+def download_feat_auth_report(
+    format: str = Query("json", regex="^(json|md|csv)$"),
+    admin=Depends(require_admin),
+):
+    files = {
+        "json": FEAT_AUTH_REPORT_DIR / "feature_authorization_report.json",
+        "md":   FEAT_AUTH_REPORT_DIR / "feature_authorization_report.md",
+        "csv":  FEAT_AUTH_REPORT_DIR / "feature_authorization_summary.csv",
+    }
+    fp = files.get(format)
+    if not fp or not fp.exists():
+        raise HTTPException(status_code=404, detail="Report not found. Run an audit first.")
+    ct = {"json": "application/json", "md": "text/markdown", "csv": "text/csv"}
+    return PlainTextResponse(
+        content=fp.read_text(encoding="utf-8"), media_type=ct[format],
+        headers={"Content-Disposition": f"attachment; filename=feature_authorization_report.{format}"},
+    )

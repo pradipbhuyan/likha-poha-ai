@@ -16,6 +16,7 @@ import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
 import StudentDashboardPage from "./pages/StudentDashboardPage";
 import FormulaSheetPage from "./pages/FormulaSheetPage";
 import AdminQACenterPage from "./pages/AdminQACenterPage";
+import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
@@ -86,6 +87,11 @@ const PAGE_META = {
     title: "Learn More",
     subtitle: "Explore free videos and learning resources for each chapter.",
     icon: "🎥",
+  },
+  featureAuthAudit: {
+    title: "Feature Authorization Audit",
+    subtitle: "Verify feature access across all plans, roles and scenarios. Catches Free Tier premium leakage.",
+    icon: "🔐",
   },
   adminQACenter: {
     title: "Platform QA Center",
@@ -989,7 +995,9 @@ function App() {
       case "adminControl":
         return <AdminControlPage user={user} />;
       case "adminQACenter":
-        return <AdminQACenterPage user={user} />;
+        return <AdminQACenterPage user={user} setActivePage={handlePageChange} />;
+      case "featureAuthAudit":
+        return <FeatureAuthAuditPage user={user} />;
       case "lessons":
         return <LessonsPage user={user} setActivePage={handlePageChange} />;
       case "doubt":
