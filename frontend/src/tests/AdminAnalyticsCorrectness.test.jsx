@@ -248,8 +248,8 @@ describe("AdminAnalytics — state: table_missing", () => {
 
   test("users section still shows correct counts despite optional tables missing", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    expect(screen.getByText("42")).toBeInTheDocument();
+    // Use findByText (async) — "42" renders after fetch completes
+    expect(await screen.findByText("42")).toBeInTheDocument();
   });
 
   test("trend chart shows not-enabled for missing table", async () => {
