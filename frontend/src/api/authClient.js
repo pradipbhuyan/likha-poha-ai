@@ -22,12 +22,25 @@ export async function authFetch(path, options = {}) {
   let token = data.session?.access_token;
 
   if (!token) {
+    // First attempt: try a refresh
     const refreshed = await supabase.auth.refreshSession();
     token = refreshed.data.session?.access_token;
   }
 
   if (!token) {
-    console.error("[auth] No access token available after refresh attempt");
+    // Second attempt: wait briefly and retry — handles the brief window right after
+    // Google OAuth redirect where Supabase session is being processed asynchronously
+    await new Promise(r => setTimeout(r, 800));
+    const { data: retryData } = await supabase.auth.getSession();
+    token = retryData.session?.access_token;
+    if (!token) {
+      const retryRefreshed = await supabase.auth.refreshSession();
+      token = retryRefreshed.data.session?.access_token;
+    }
+  }
+
+  if (!token) {
+    console.error("[auth] No access token available after all retry attempts");
     throw new Error("Your session has expired. Please sign in again.");
   }
 
