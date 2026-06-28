@@ -1156,7 +1156,7 @@ function App() {
         </AnimatePresence>
       </main>
 
-      <FirstTimeGuide user={user} activePage={activePage} />
+      {/* FirstTimeGuide hidden — removed per product decision */}
       <ChatWidget />
     </div>
     </ToastProvider>
