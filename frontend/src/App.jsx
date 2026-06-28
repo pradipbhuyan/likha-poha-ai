@@ -317,33 +317,33 @@ function App() {
         if (provider === "email") return;      // email/password — skip
         // Use localStorage directly (not the stale `user` closure) so returning
         // Google users with an active session are never re-processed on reload.
-        if (localStorage.getItem("tutor_user")) {
-          // Silently refresh the access token in the saved session without
-          // showing the spinner — the user is already logged in.
-          try {
-            const saved = JSON.parse(localStorage.getItem("tutor_user"));
-            const refreshed = { ...saved, accessToken: session.access_token };
-            setUser(refreshed);
-            localStorage.setItem("tutor_user", JSON.stringify(refreshed));
-          } catch { /* non-critical */ }
-          return;
-        }
-        if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
-        oauthProcessed.current = true;
-
-        // Only run full OAuth processing on actual OAuth redirects.
-        // On normal page load with an existing Google session, the URL will NOT
-        // have #access_token= or ?code= — skip to avoid hanging on reload.
+        // Check if this is an actual OAuth redirect (user just clicked Google Sign In)
         const urlHash = window.location.hash || "";
         const urlSearch = window.location.search || "";
         const isOAuthRedirect = urlHash.includes("access_token") ||
                                 urlSearch.includes("code=") ||
                                 urlSearch.includes("access_token");
+
         if (!isOAuthRedirect) {
-          // Returning user — session recovery handles profile refresh silently
+          // NOT a fresh OAuth redirect — just a page reload with existing session.
+          // Silently refresh the access token if user is already logged in.
+          if (localStorage.getItem("tutor_user")) {
+            try {
+              const saved = JSON.parse(localStorage.getItem("tutor_user"));
+              const refreshed = { ...saved, accessToken: session.access_token };
+              setUser(refreshed);
+              localStorage.setItem("tutor_user", JSON.stringify(refreshed));
+            } catch { /* non-critical */ }
+            return;
+          }
+          // No saved user + no OAuth redirect — session recovery handles it
           console.info("[auth] Existing Google session on reload — session recovery will handle it");
           return;
         }
+
+        // Fresh OAuth redirect — proceed with full sign-in flow regardless of localStorage
+        if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
+        oauthProcessed.current = true;
 
         setOauthLoading(true);
         try {
