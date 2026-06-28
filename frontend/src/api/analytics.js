@@ -1,3 +1,4 @@
+import { authFetch } from "./authClient";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "http://localhost:8000";
@@ -146,9 +147,33 @@ export async function getWeakChapters(username) {
 // Student Dashboard Summary — new canonical endpoint
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { authFetch } from "./authClient";
 
 export async function getStudentDashboardSummary() {
   /** Fetch all student dashboard data in one call from /api/student/dashboard/summary */
   return authFetch("/api/student/dashboard/summary", { method: "GET" });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Student Exam Schedule API
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function getStudentExams() {
+  return authFetch("/api/student/exams", { method: "GET" });
+}
+export async function addStudentExam(payload) {
+  return authFetch("/api/student/exams", { method: "POST", body: JSON.stringify(payload) });
+}
+export async function updateStudentExam(examId, payload) {
+  return authFetch(`/api/student/exams/${examId}`, { method: "PATCH", body: JSON.stringify(payload) });
+}
+export async function deleteStudentExam(examId) {
+  return authFetch(`/api/student/exams/${examId}`, { method: "DELETE" });
+}
+
+// Parent: add exam for child
+export async function addChildExam(childId, payload) {
+  return authFetch(`/api/parent/children/${childId}/exams`, { method: "POST", body: JSON.stringify(payload) });
+}
+export async function getChildExams(childId) {
+  return authFetch(`/api/parent/children/${childId}/exams`, { method: "GET" });
 }

@@ -5,7 +5,7 @@
  * Safety: feature auth, score normalization, no premium feature leakage.
  */
 import { useCallback, useEffect, useState } from "react";
-import { getStudentDashboardSummary } from "../api/analytics";
+import { getStudentDashboardSummary, getStudentExams, addStudentExam, deleteStudentExam } from "../api/analytics";
 import { getAnalytics } from "../api/analytics";
 import { getStudentProfile } from "../api/profile";
 import { getRecommendations } from "../api/recommendations";
@@ -58,6 +58,11 @@ function Skel(){
 export default function StudentDashboardPage({ user, setActivePage }) {
   const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
+  const [exams, setExams]     = useState([]);
+  const [showAddExam, setShowAddExam] = useState(false);
+  const [examForm, setExamForm] = useState({title:"",subject:"",exam_date:"",exam_type:""});
+  const [examLoading, setExamLoading] = useState(false);
+  const [examMsg, setExamMsg] = useState(null);
 
   const load = useCallback(async function(){
     setLoading(true);
@@ -108,6 +113,28 @@ export default function StudentDashboardPage({ user, setActivePage }) {
   },[user.username]);
 
   useEffect(function(){load();},[load]);
+
+  useEffect(function(){
+    getStudentExams().then(function(r){if(r?.success)setExams(r.exams||[]);}).catch(function(){});
+  },[]);
+
+  async function handleAddExam(e) {
+    e.preventDefault();
+    if(!examForm.title||!examForm.subject||!examForm.exam_date){setExamMsg("Title, subject and date are required.");return;}
+    setExamLoading(true); setExamMsg(null);
+    var res=await addStudentExam(examForm).catch(function(e2){return{success:false,error:e2.message};});
+    setExamLoading(false);
+    if(res?.success){
+      setExams(function(prev){return[...prev,res.exam].sort(function(a,b){return a.exam_date>b.exam_date?1:-1;});});
+      setShowAddExam(false);
+      setExamForm({title:"",subject:"",exam_date:"",exam_type:""});
+    } else { setExamMsg(res?.error||res?.detail||"Could not add exam."); }
+  }
+
+  async function handleCancelExam(examId) {
+    await deleteStudentExam(examId).catch(function(){});
+    setExams(function(prev){return prev.filter(function(e){return e.id!==examId;});});
+  }
 
   function nav(page){if(setActivePage)setActivePage(page);}
 
@@ -413,16 +440,32 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {isFree&&feat.ask_doubts_limited&&<div style={{fontSize:".7rem",color:"#f59e0b",marginBottom:6}}>Limited (Free Tier)</div>}
           <SdBtn small outline onClick={function(){nav("askDoubt");}}>Continue Chat →</SdBtn>
         </SdCard>
-        {/* Upcoming Exams — no static placeholder */}
+        {/* Upcoming Exams — real data */}
         <SdCard testid="upcoming-exams-card">
-          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Upcoming Exams</div>
-          <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".78rem",marginBottom:10}}>
-            No upcoming exams added yet.
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+            <span style={{fontWeight:700,fontSize:".85rem"}}>Upcoming Exams</span>
+            <button onClick={function(){setShowAddExam(true);setExamMsg(null);}} style={{background:"#6366f1",border:"none",color:"#fff",borderRadius:6,padding:"3px 10px",fontSize:".7rem",fontWeight:600,cursor:"pointer"}}>+ Add</button>
           </div>
-          <div style={{fontSize:".7rem",color:"var(--text-muted,#64748b)",marginBottom:10}}>
-            Ask your parent or teacher to add your exam schedule.
-          </div>
-          <SdBtn small outline onClick={function(){nav("mockTest");}}>Practise with Mock Tests →</SdBtn>
+          {exams.length===0?(
+            <>
+              <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".78rem",marginBottom:6}}>No upcoming exams added yet.</div>
+              <div style={{fontSize:".7rem",color:"var(--text-muted,#64748b)",marginBottom:10}}>You or your parent can add exam dates.</div>
+              <SdBtn small outline onClick={function(){nav("mockTest");}}>Practise Now →</SdBtn>
+            </>
+          ):(
+            exams.slice(0,3).map(function(ex){return(
+              <div key={ex.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
+                <div>
+                  <div style={{fontSize:".78rem",fontWeight:600}}>{ex.subject}</div>
+                  <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{ex.title} · {ex.exam_date}</div>
+                </div>
+                <div style={{textAlign:"right"}}>
+                  <div style={{fontWeight:800,fontSize:".88rem",color:ex.days_until<=7?"#ef4444":"#6366f1"}}>{ex.days_until}d</div>
+                  <button onClick={function(){handleCancelExam(ex.id);}} style={{background:"none",border:"none",color:"#94a3b8",fontSize:".65rem",cursor:"pointer"}}>Cancel</button>
+                </div>
+              </div>
+            );})
+          )}
         </SdCard>
         {/* Quick Actions — only real destinations, disabled items labelled */}
         <SdCard testid="quick-actions-card">
@@ -461,6 +504,35 @@ export default function StudentDashboardPage({ user, setActivePage }) {
         </div>
         <div style={{fontSize:"4rem",opacity:.6}}>📚</div>
       </div>
+
+      {/* Add Exam Modal */}
+      {showAddExam&&(
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.5)",zIndex:500,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+          <div style={{background:"var(--panel,#fff)",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:400,boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
+            <div style={{display:"flex",justifyContent:"space-between",marginBottom:14}}>
+              <h4 style={{margin:0,fontSize:".95rem"}}>Add Exam Date</h4>
+              <button onClick={function(){setShowAddExam(false);}} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
+            </div>
+            <form onSubmit={handleAddExam} style={{display:"flex",flexDirection:"column",gap:8}}>
+              <input placeholder="Exam Title *" value={examForm.title} onChange={function(ev){setExamForm(function(p){return{...p,title:ev.target.value};});}} required style={{padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem"}}/>
+              <input placeholder="Subject *" value={examForm.subject} onChange={function(ev){setExamForm(function(p){return{...p,subject:ev.target.value};});}} required style={{padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem"}}/>
+              <input type="date" value={examForm.exam_date} onChange={function(ev){setExamForm(function(p){return{...p,exam_date:ev.target.value};});}} required style={{padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem"}}/>
+              <select value={examForm.exam_type} onChange={function(ev){setExamForm(function(p){return{...p,exam_type:ev.target.value};});}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem"}}>
+                <option value="">Exam Type (optional)</option>
+                <option value="Unit Test">Unit Test</option>
+                <option value="Mid-Term">Mid-Term</option>
+                <option value="Final Exam">Final Exam</option>
+                <option value="Board Exam">Board Exam</option>
+                <option value="Other">Other</option>
+              </select>
+              {examMsg&&<div style={{color:"#dc2626",fontSize:".8rem"}}>{examMsg}</div>}
+              <button type="submit" disabled={examLoading} style={{padding:"9px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontWeight:700,fontSize:".85rem",cursor:examLoading?"not-allowed":"pointer"}}>
+                {examLoading?"Saving…":"Add Exam"}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

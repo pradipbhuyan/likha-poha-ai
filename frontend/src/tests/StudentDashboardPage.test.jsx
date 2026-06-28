@@ -49,6 +49,9 @@ vi.mock("../api/analytics", () => ({
   })),
   getAnalytics: vi.fn(async () => ({ history: [] })),
   getWeakChapters: vi.fn(async () => ({ success: true, weak_chapters: [] })),
+  getStudentExams: vi.fn(async () => ({ success: true, exams: [] })),
+  addStudentExam: vi.fn(async () => ({ success: true, exam: { id: "e1", subject: "Science", title: "Test", exam_date: "2026-09-01", days_until: 65 } })),
+  deleteStudentExam: vi.fn(async () => ({ success: true })),
 }));
 
 vi.mock("../api/profile", () => ({
