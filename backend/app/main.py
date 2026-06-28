@@ -36,6 +36,7 @@ from app.routes.parent_dashboard import router as parent_dashboard_router
 from app.routes.parent_dashboard_v2 import router as parent_dashboard_v2_router
 from app.routes.student_dashboard import router as student_dashboard_router
 from app.routes.exam_schedule import router as exam_schedule_router
+from app.routes.formula_sheets import router as formula_sheets_router
 from app.routes.parent_dashboard_p2 import router as parent_dashboard_p2_router
 from app.routes.admin_control import router as admin_control_router
 from app.routes.offer import router as offer_router
@@ -218,6 +219,12 @@ app.include_router(
     exam_schedule_router,
     prefix="/api/student",
     tags=["Exam Schedule - Student"],
+)
+
+app.include_router(
+    formula_sheets_router,
+    prefix="/api/student",
+    tags=["Formula Sheets"],
 )
 
 app.include_router(

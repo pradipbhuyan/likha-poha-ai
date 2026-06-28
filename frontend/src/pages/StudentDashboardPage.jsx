@@ -485,12 +485,13 @@ export default function StudentDashboardPage({ user, setActivePage }) {
               >›</button>
             </div>
           );})}
-          {/* Coming soon — disabled */}
-          <div
-            data-testid="qa-formula-sheet-disabled"
-            style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
-            <span style={{fontSize:".75rem",color:"var(--text-muted,#94a3b8)"}}>Formula Sheet</span>
-            <span style={{fontSize:".65rem",color:"var(--text-muted,#94a3b8)",fontStyle:"italic"}}>Coming soon</span>
+          {/* Formula Sheet — now available */}
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+            <span style={{fontSize:".75rem"}}>Formula Sheet</span>
+            <button
+              data-testid="qa-formula-sheet"
+              onClick={function(){nav("formulaSheet");}}
+              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}>›</button>
           </div>
         </SdCard>
       </div>

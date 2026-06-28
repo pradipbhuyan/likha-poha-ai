@@ -170,13 +170,15 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("No upcoming exams added yet");
   });
 
-  test("Formula Sheet shows coming soon, not a clickable link", async () => {
-    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+  test("Formula Sheet quick action is enabled and routes to formulaSheet", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
     await screen.findByTestId("quick-actions-card");
-    // Formula Sheet must be disabled
-    expect(screen.getByTestId("qa-formula-sheet-disabled")).toBeInTheDocument();
-    expect(screen.queryByTestId("qa-formula-sheet")).not.toBeInTheDocument();
-    expect(document.body.textContent).toContain("Coming soon");
+    // Formula Sheet must now be a real button (no longer coming soon)
+    expect(screen.queryByTestId("qa-formula-sheet-disabled")).not.toBeInTheDocument();
+    expect(screen.getByTestId("qa-formula-sheet")).toBeInTheDocument();
+    screen.getByTestId("qa-formula-sheet").click();
+    expect(navFn).toHaveBeenCalledWith("formulaSheet");
   });
 
   test("Study Materials routes to learnMore", async () => {

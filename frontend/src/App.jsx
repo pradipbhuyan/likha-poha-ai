@@ -14,6 +14,7 @@ import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
 import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
 import StudentDashboardPage from "./pages/StudentDashboardPage";
+import FormulaSheetPage from "./pages/FormulaSheetPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
@@ -971,6 +972,7 @@ function App() {
     /** Render the active page component while keeping all routing state inside the app shell. */
     switch (activePage) {
       case "dashboard":
+        if (activePage === "formulaSheet") return <FormulaSheetPage user={user} />;
         return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
