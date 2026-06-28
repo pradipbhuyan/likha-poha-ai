@@ -36,7 +36,8 @@ router = APIRouter()
 _log = logging.getLogger("likhapoha.exam_schedule")
 
 TABLE = "student_exam_schedule"
-TODAY = lambda: date.today().isoformat()
+def TODAY() -> str:
+    return date.today().isoformat()
 
 
 # ── Pydantic models ───────────────────────────────────────────────────────────
