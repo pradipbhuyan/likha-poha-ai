@@ -131,13 +131,64 @@ export default function StudentDashboardPage({ user, setActivePage }) {
   var name=(s.username||"Student").split(" ")[0];
   var isFree=sub.canonical_plan_key==="FREE_TIER"||!sub.has_full_access;
 
-  // QUOTES
+  // 50 daily motivation quotes — one unique quote per day of year (day % 50)
   var QUOTES=[
-    {q:"The expert in anything was once a beginner.",a:"Helen Hayes"},
     {q:"Education is the most powerful weapon you can use to change the world.",a:"Nelson Mandela"},
+    {q:"The expert in anything was once a beginner.",a:"Helen Hayes"},
     {q:"Success is the sum of small efforts, repeated day in and day out.",a:"Robert Collier"},
+    {q:"Imagination is more important than knowledge.",a:"Albert Einstein"},
+    {q:"In mathematics you don't understand things. You just get used to them.",a:"John von Neumann"},
+    {q:"Pure mathematics is, in its way, the poetry of logical ideas.",a:"Albert Einstein"},
+    {q:"The important thing is not to stop questioning.",a:"Albert Einstein"},
+    {q:"Science is not only a disciple of reason but also one of romance and passion.",a:"Stephen Hawking"},
+    {q:"The more I learn, the more I realize how much I don't know.",a:"Albert Einstein"},
+    {q:"Mathematics is the language in which God has written the universe.",a:"Galileo Galilei"},
+    {q:"An investment in knowledge pays the best interest.",a:"Benjamin Franklin"},
+    {q:"It always seems impossible until it's done.",a:"Nelson Mandela"},
+    {q:"Tell me and I forget. Teach me and I remember. Involve me and I learn.",a:"Benjamin Franklin"},
+    {q:"Learning never exhausts the mind.",a:"Leonardo da Vinci"},
+    {q:"Not all those who wander are lost, but some are lost in equations.",a:"Ada Lovelace"},
+    {q:"The beautiful thing about learning is that no one can take it away from you.",a:"B.B. King"},
+    {q:"Science is the father of knowledge, but opinion breeds ignorance.",a:"Hippocrates"},
+    {q:"Research is formalized curiosity. It is poking and prying with a purpose.",a:"Zora Neale Hurston"},
+    {q:"To raise new questions, new possibilities, to regard old problems from a new angle — this is what marks real advance in science.",a:"Albert Einstein"},
+    {q:"The roots of education are bitter, but the fruit is sweet.",a:"Aristotle"},
+    {q:"The more you know, the more you realize you know nothing.",a:"Socrates"},
+    {q:"An ounce of practice is worth more than tons of preaching.",a:"Mahatma Gandhi"},
+    {q:"Darkness cannot drive out darkness: only light can do that. Ignorance cannot drive out ignorance: only knowledge can do that.",a:"Inspired by Martin Luther King Jr."},
+    {q:"First, solve the problem. Then, write the code.",a:"John Johnson"},
+    {q:"The measure of intelligence is the ability to change.",a:"Albert Einstein"},
+    {q:"You don't have to be great to start, but you have to start to be great.",a:"Zig Ziglar"},
+    {q:"Equipped with his five senses, man explores the universe and calls the adventure Science.",a:"Edwin Hubble"},
+    {q:"The whole of science is nothing more than a refinement of everyday thinking.",a:"Albert Einstein"},
+    {q:"The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge.",a:"Stephen Hawking"},
+    {q:"Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding.",a:"William Paul Thurston"},
+    {q:"Without mathematics, there's nothing you can do. Everything around you is mathematics.",a:"Shakuntala Devi"},
+    {q:"Even if you're on the right track, you'll get run over if you just sit there.",a:"Will Rogers"},
+    {q:"Develop a passion for learning. If you do, you will never cease to grow.",a:"Anthony J. D'Angelo"},
+    {q:"The function of education is to teach one to think intensively and to think critically.",a:"Martin Luther King Jr."},
+    {q:"The only way to do great work is to love what you do.",a:"Steve Jobs"},
+    {q:"In learning you will teach, and in teaching you will learn.",a:"Phil Collins"},
+    {q:"Education is not the filling of a pail, but the lighting of a fire.",a:"W.B. Yeats"},
+    {q:"The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.",a:"Brian Herbert"},
+    {q:"Try to learn something about everything and everything about something.",a:"T.H. Huxley"},
+    {q:"Creativity is intelligence having fun.",a:"Albert Einstein"},
+    {q:"The secret of getting ahead is getting started.",a:"Mark Twain"},
+    {q:"Science knows no country, because knowledge belongs to humanity.",a:"Louis Pasteur"},
+    {q:"Do not be embarrassed by your failures, learn from them and start again.",a:"Richard Branson"},
+    {q:"Perseverance is not a long race; it is many short races one after another.",a:"Walter Elliott"},
+    {q:"Somewhere, something incredible is waiting to be known.",a:"Sharon Begley"},
+    {q:"The science of today is the technology of tomorrow.",a:"Edward Teller"},
+    {q:"Doubt is the origin of wisdom.",a:"René Descartes"},
+    {q:"Study without desire spoils the memory, and it retains nothing that it takes in.",a:"Leonardo da Vinci"},
+    {q:"Success is walking from failure to failure with no loss of enthusiasm.",a:"Winston Churchill"},
+    {q:"Intelligence plus character — that is the goal of true education.",a:"Martin Luther King Jr."},
   ];
-  var qItem=QUOTES[new Date().getDate()%QUOTES.length];
+  // Day of year (0-364) % 50 — unique quote each day, cycling through all 50
+  var _now=new Date();
+  var _start=new Date(_now.getFullYear(),0,0);
+  var _dayOfYear=Math.floor((_now-_start)/(1000*60*60*24));
+  var qItem=QUOTES[_dayOfYear%QUOTES.length];
 
   return(
     <div className="sd-page" data-testid="student-dashboard-page">
