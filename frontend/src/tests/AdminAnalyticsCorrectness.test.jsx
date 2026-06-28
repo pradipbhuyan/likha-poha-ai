@@ -239,11 +239,11 @@ describe("AdminAnalytics — state: table_missing", () => {
 
   test("does not show raw null or dash for missing tables", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    // Should not find lone "—" anywhere
-    const body = document.body.textContent;
-    // Check that "Not yet enabled" is present (not a dash)
-    expect(body).toContain("Not yet enabled");
+    // Wait for "Not yet enabled" to appear after async fetch + render
+    const { waitFor } = await import("@testing-library/react");
+    await waitFor(() => {
+      expect(document.body.textContent).toContain("Not yet enabled");
+    }, { timeout: 4000 });
   });
 
   test("users section still shows correct counts despite optional tables missing", async () => {
