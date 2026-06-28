@@ -155,7 +155,7 @@ export default function AdminQACenterPage({ user }) {
   );
 
   return (
-    <div data-testid="admin-qa-center" style={{ maxWidth:1100, margin:"0 auto", padding:"0 0 60px" }}>
+    <div data-testid="admin-qa-center" style={{ maxWidth:1100, margin:"0 auto", padding:"0 0 60px", overflowX:"hidden" }}>
 
       {/* Header */}
       <div style={{ marginBottom:20 }}>
@@ -179,7 +179,7 @@ export default function AdminQACenterPage({ user }) {
       </div>
 
       {/* Lesson Quality Audit section */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, alignItems:"flex-start", flexWrap:"wrap" }}>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:16, alignItems:"flex-start" }}>
 
         {/* Left: Run Audit panel */}
         <Card testid="run-audit-panel">

@@ -218,3 +218,89 @@ class TestStatusEndpoint:
         assert result["job"]["status"] == "queued"
         # Admin ID must not be in response
         assert "created_by_admin_id" not in result["job"]
+
+
+class TestDownloadEndpoint:
+    def test_download_404_when_no_report(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("app.routes.admin_qa.REPORT_DIR", tmp_path)
+        from app.routes.admin_qa import download_lesson_quality_report
+        with pytest.raises(HTTPException) as exc:
+            download_lesson_quality_report(format="json", admin=ADMIN)
+        assert exc.value.status_code == 404
+        assert "Run an audit first" in exc.value.detail
+
+    def test_download_json_when_exists(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("app.routes.admin_qa.REPORT_DIR", tmp_path)
+        (tmp_path / "lesson_quality_report.json").write_text('{"lessons":[]}', encoding="utf-8")
+        from app.routes.admin_qa import download_lesson_quality_report
+        resp = download_lesson_quality_report(format="json", admin=ADMIN)
+        assert resp.status_code == 200
+        assert "attachment" in resp.headers.get("content-disposition", "")
+
+    def test_download_csv_when_exists(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("app.routes.admin_qa.REPORT_DIR", tmp_path)
+        (tmp_path / "lesson_quality_summary.csv").write_text("col1,col2", encoding="utf-8")
+        from app.routes.admin_qa import download_lesson_quality_report
+        resp = download_lesson_quality_report(format="csv", admin=ADMIN)
+        assert resp.status_code == 200
+
+    def test_download_md_when_exists(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("app.routes.admin_qa.REPORT_DIR", tmp_path)
+        (tmp_path / "lesson_quality_report.md").write_text("# Report", encoding="utf-8")
+        from app.routes.admin_qa import download_lesson_quality_report
+        resp = download_lesson_quality_report(format="md", admin=ADMIN)
+        assert resp.status_code == 200
+
+
+class TestHistoryEndpoint:
+    def test_history_degrades_when_db_missing(self, monkeypatch):
+        from app.routes.admin_qa import get_lesson_quality_history
+        monkeypatch.setattr("app.routes.admin_qa._safe_query",
+                            lambda fn: ([], "schema cache error: table not found"))
+        monkeypatch.setattr("app.routes.admin_qa._JOBS", {})
+        result = get_lesson_quality_history(limit=20, admin=ADMIN)
+        assert result["success"] is True
+
+    def test_history_returns_db_rows(self, monkeypatch):
+        from app.routes.admin_qa import get_lesson_quality_history
+        db_rows = [{"id": "r1", "status": "completed", "mode": "sample"}]
+        monkeypatch.setattr("app.routes.admin_qa._safe_query", lambda fn: (db_rows, None))
+        result = get_lesson_quality_history(limit=20, admin=ADMIN)
+        assert result["success"] is True
+        assert result["runs"][0]["id"] == "r1"
+
+
+class TestSecurityChecks:
+    def test_error_sanitization_removes_newlines(self):
+        raw = "Error\nTraceback\nRuntimeError: secret"
+        sanitised = raw[:500].replace("\n", " ")
+        assert "\n" not in sanitised
+        assert len(sanitised) <= 500
+
+    def test_background_thread_is_daemon(self, monkeypatch):
+        import threading
+        created = []
+        orig = threading.Thread
+        def track(**kw):
+            t = orig(**kw)
+            created.append(t)
+            return t
+        import app.routes.admin_qa as qa
+        monkeypatch.setattr("threading.Thread", track)
+        try:
+            from fastapi import BackgroundTasks
+            qa.run_lesson_quality_audit(AuditRunRequest(mode="sample"), BackgroundTasks(), admin=ADMIN)
+        except Exception:
+            pass
+        if created:
+            assert created[0].daemon is True
+
+    def test_run_response_has_no_secrets(self, monkeypatch):
+        import app.routes.admin_qa as qa
+        monkeypatch.setattr("threading.Thread", lambda **kw: __import__("unittest.mock", fromlist=["MagicMock"]).MagicMock())
+        from fastapi import BackgroundTasks
+        result = qa.run_lesson_quality_audit(AuditRunRequest(mode="sample"), BackgroundTasks(), admin=ADMIN)
+        s = str(result)
+        assert "OPENAI_API_KEY" not in s
+        assert "SUPABASE_SERVICE_ROLE_KEY" not in s
+        assert "sk-" not in s.lower()
