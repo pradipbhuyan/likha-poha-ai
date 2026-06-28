@@ -13,7 +13,7 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import RagUploadPage from "./pages/RagUploadPage";
 import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
-import DashboardPage from "./pages/DashboardPage";
+import StudentDashboardPage from "./pages/StudentDashboardPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
@@ -640,6 +640,7 @@ function App() {
    *  - role changed
    *  - any data mutation that affects user session
    */
+  // eslint-disable-next-line no-unused-vars
   async function handleRefreshUser() {
     try {
       const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -970,7 +971,7 @@ function App() {
     /** Render the active page component while keeping all routing state inside the app shell. */
     switch (activePage) {
       case "dashboard":
-        return <DashboardPage user={user} setActivePage={handlePageChange} />;
+        return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
       case "lessons":

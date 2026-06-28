@@ -141,3 +141,14 @@ export async function getWeakChapters(username) {
     return { success: false, weak_chapters: [] };
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Student Dashboard Summary — new canonical endpoint
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { authFetch } from "./authClient";
+
+export async function getStudentDashboardSummary() {
+  /** Fetch all student dashboard data in one call from /api/student/dashboard/summary */
+  return authFetch("/api/student/dashboard/summary", { method: "GET" });
+}
