@@ -95,13 +95,14 @@ describe("SignupPage — single-step card-based", () => {
     expect(screen.queryByText(/step 3/i)).not.toBeInTheDocument();
   });
 
-  test("required fields render: name, email, password, terms", () => {
+  test("required fields render: name, email, password", () => {
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
     expect(screen.getByTestId("signup-name")).toBeInTheDocument();
     expect(screen.getByTestId("signup-email")).toBeInTheDocument();
     expect(screen.getByTestId("signup-password")).toBeInTheDocument();
-    expect(screen.getByTestId("signup-terms")).toBeInTheDocument();
     expect(screen.getByTestId("signup-submit")).toBeInTheDocument();
+    // Terms checkbox removed from UI
+    expect(screen.queryByTestId("signup-terms")).not.toBeInTheDocument();
   });
 
   test("submit button says 'Start for Free'", () => {
@@ -143,16 +144,6 @@ describe("SignupPage — single-step card-based", () => {
     expect(screen.getByTestId("signup-error").textContent).toMatch(/8 characters/i);
   });
 
-  test("validation: terms not agreed shows error", async () => {
-    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
-    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test User" } });
-    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "test@example.com" } });
-    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-submit"));
-    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
-    expect(screen.getByTestId("signup-error").textContent).toMatch(/terms/i);
-  });
-
   test("parent role card selected by default", () => {
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
     const parentCard = screen.getByTestId("role-card-parent");
@@ -174,7 +165,6 @@ describe("SignupPage — single-step card-based", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Parent" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "parent@test.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
       const body = JSON.parse(mockFetch.mock.calls[0][1].body);
@@ -189,7 +179,6 @@ describe("SignupPage — single-step card-based", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Student" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "student@test.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
       const body = JSON.parse(mockFetch.mock.calls[0][1].body);
@@ -203,7 +192,6 @@ describe("SignupPage — single-step card-based", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Teacher" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "teacher@test.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
       const body = JSON.parse(mockFetch.mock.calls[0][1].body);
@@ -211,21 +199,25 @@ describe("SignupPage — single-step card-based", () => {
     });
   });
 
-  test("after successful signup, userData has accessCbse=false (Free Tier)", async () => {
+  test("after successful signup, localStorage has accessCbse=false (Free Tier)", async () => {
+    // Mock localStorage
+    const lsSetItem = vi.spyOn(Storage.prototype, "setItem");
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Free User" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "free@test.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
-      if (onLogin.mock.calls.length > 0) {
-        const userData = onLogin.mock.calls[0][0];
+      const calls = lsSetItem.mock.calls;
+      const userCall = calls.find(c => c[0] === "tutor_user");
+      if (userCall) {
+        const userData = JSON.parse(userCall[1]);
         expect(userData.accessCbse).toBe(false);
         expect(userData.subscriptionPlan).toBe("free");
         expect(userData.offerAccess).toBe(false);
       }
     }, { timeout: 3000 });
+    lsSetItem.mockRestore();
   });
 
   test("duplicate email error shows friendly message", async () => {
@@ -237,7 +229,6 @@ describe("SignupPage — single-step card-based", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "dup@test.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
     expect(screen.getByTestId("signup-error").textContent).toMatch(/already registered/i);
@@ -254,7 +245,6 @@ describe("SignupPage — single-step card-based", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "t@t.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-terms"));
     fireEvent.click(screen.getByTestId("signup-submit"));
     expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
     expect(screen.getByTestId("signup-error").textContent).not.toContain("Supabase");

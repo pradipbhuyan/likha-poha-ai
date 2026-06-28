@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import logo from "../assets/AITutorLogo1.png";
 import { supabase } from "../api/supabaseClient";
+import "./SignupPage.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -22,10 +23,11 @@ export default function SignupPage({ onLogin, onBack }) {
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw]     = useState(false);
-  const [agreed, setAgreed]     = useState(false);
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState("");
   const [info, setInfo]         = useState("");
+  const [settingUp, setSettingUp] = useState(false);
+  const [settingUpRole, setSettingUpRole] = useState("");
 
   function validate() {
     if (!role)               { setError("Please choose a role."); return false; }
@@ -35,7 +37,6 @@ export default function SignupPage({ onLogin, onBack }) {
                                setError("Please enter a valid email address."); return false; }
     if (!password)           { setError("Password is required."); return false; }
     if (password.length < 8) { setError("Password must be at least 8 characters."); return false; }
-    if (!agreed)             { setError("Please agree to the Terms of Service to continue."); return false; }
     return true;
   }
 
@@ -112,13 +113,14 @@ export default function SignupPage({ onLogin, onBack }) {
         accountStatus: "active",
         offerAccess: false,
       };
-      if (onLogin) {
-        onLogin({ ...userData, _targetPage: targetPage });
-      } else {
-        localStorage.setItem("tutor_user", JSON.stringify(userData));
-        localStorage.setItem("tutor_active_page", targetPage);
-        window.location.reload();
-      }
+      localStorage.setItem("tutor_user", JSON.stringify(userData));
+      localStorage.setItem("tutor_active_page", targetPage);
+      setSettingUp(true);
+      setSettingUpRole(role);
+      setLoading(false);
+      // Show "Setting up your account…" for 1.5s then reload to fresh dashboard
+      setTimeout(() => window.location.reload(), 1500);
+      return;
     } catch (err) {
       console.error("[signup] Unexpected error:", err.message);
       setError("We couldn't create your account. Please try again.");
@@ -157,12 +159,26 @@ export default function SignupPage({ onLogin, onBack }) {
     ),
   };
 
+  // Show account creation screen while setting up
+  if (settingUp) {
+    return (
+      <div className="ait-login-page" data-testid="signup-setting-up" style={{display:"flex",alignItems:"center",justifyContent:"center",minHeight:"100vh",background:"var(--bg,#0f172a)"}}>
+        <div style={{textAlign:"center",color:"#fff",padding:32}}>
+          <div style={{fontSize:"2rem",marginBottom:16}}>✨</div>
+          <h2 style={{margin:"0 0 8px",fontSize:"1.3rem",fontWeight:800}}>Setting up your {settingUpRole} account…</h2>
+          <p style={{color:"rgba(255,255,255,.6)",fontSize:".9rem"}}>Just a moment while we get everything ready.</p>
+          <div style={{marginTop:20,width:40,height:40,border:"3px solid rgba(255,255,255,.2)",borderTop:"3px solid #7c3aed",borderRadius:"50%",animation:"spin 0.8s linear infinite",margin:"20px auto"}} />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="ait-login-page" data-testid="signup-page">
-      <div className="ait-login-shell">
+    <div className="ait-login-page signup-page-wrapper" data-testid="signup-page">
+      <div className="ait-login-shell signup-shell">
 
         {/* Left — branding */}
-        <div className="ait-login-left">
+        <div className="ait-login-left signup-left-panel">
           <img src={logo} alt="Likhapoha AI" className="ait-login-logo" />
           <h1>Learn smarter with AI.</h1>
           <p>
@@ -183,7 +199,7 @@ export default function SignupPage({ onLogin, onBack }) {
         </div>
 
         {/* Right — form */}
-        <div className="ait-login-right">
+        <div className="ait-login-right signup-right-panel">
           <div className="ait-form-card" data-testid="signup-form-card">
 
             <h2 style={{ marginBottom: 4 }}>Create your account</h2>
@@ -273,24 +289,6 @@ export default function SignupPage({ onLogin, onBack }) {
                 <div style={{ fontSize: ".7rem", color: "var(--text-muted,#94a3b8)", marginTop: 3 }}>
                   At least 8 characters
                 </div>
-              </div>
-
-              {/* Terms */}
-              <div style={{ marginBottom: 16, display: "flex", alignItems: "flex-start", gap: 8 }}>
-                <input
-                  id="signup-terms-cb"
-                  type="checkbox"
-                  data-testid="signup-terms"
-                  checked={agreed}
-                  onChange={ev => { setAgreed(ev.target.checked); setError(""); }}
-                  style={{ marginTop: 2, flexShrink: 0 }}
-                />
-                <label htmlFor="signup-terms-cb" style={{ fontSize: ".78rem", color: "var(--text-muted,#64748b)", lineHeight: 1.4 }}>
-                  I agree to the{" "}
-                  <a href="/terms" target="_blank" rel="noreferrer" style={{ color: "#7c3aed" }}>Terms of Service</a>
-                  {" "}and{" "}
-                  <a href="/privacy" target="_blank" rel="noreferrer" style={{ color: "#7c3aed" }}>Privacy Policy</a>
-                </label>
               </div>
 
               {error && (
