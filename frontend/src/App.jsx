@@ -972,8 +972,9 @@ function App() {
     /** Render the active page component while keeping all routing state inside the app shell. */
     switch (activePage) {
       case "dashboard":
-        if (activePage === "formulaSheet") return <FormulaSheetPage user={user} />;
         return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;
+      case "formulaSheet":
+        return <FormulaSheetPage user={user} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
       case "lessons":
