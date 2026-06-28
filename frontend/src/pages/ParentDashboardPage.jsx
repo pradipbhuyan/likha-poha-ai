@@ -64,7 +64,17 @@ function AddChildModal({onClose, onAdded, canAdd, planName}){
           <div style={{fontSize:".73rem",color:"#64748b",marginBottom:12,background:"rgba(245,158,11,.06)",border:"1px solid #fcd34d",borderRadius:6,padding:"6px 10px"}}>
             ℹ️ Your child logs in at <strong>likhapoha.in</strong> using their <strong>Login ID</strong> and this password. They are on <strong>Free Tier</strong> with limited access.
           </div>
-          <button onClick={function(){onAdded();onClose();}} style={{padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer",width:"100%"}}>Done</button>
+          {/* What to do next */}
+          <div style={{background:"rgba(34,197,94,.06)",border:"1px solid #86efac",borderRadius:8,padding:"10px 14px",marginBottom:12}}>
+            <div style={{fontWeight:700,fontSize:".82rem",color:"#166534",marginBottom:6}}>What to do next</div>
+            <div style={{fontSize:".75rem",color:"#374151",display:"flex",flexDirection:"column",gap:5}}>
+              <div>1. Share the Login ID and password with your child</div>
+              <div>2. Your child opens <strong>likhapoha.in</strong> and signs in</div>
+              <div>3. They select their subject and start their first lesson</div>
+              <div>4. You can track their progress from your Parent Dashboard</div>
+            </div>
+          </div>
+          <button onClick={function(){onAdded();onClose();}} style={{padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer",width:"100%"}}>Got it — Go to Dashboard</button>
         </div>
       </div>
     );
@@ -92,29 +102,39 @@ function AddChildModal({onClose, onAdded, canAdd, planName}){
           <h4 style={{margin:0}}>➕ Add Child</h4>
           <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
         </div>
-        {!canAdd&&(
-          <div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"10px 14px",marginBottom:10}}>
-            <div style={{fontSize:".82rem",color:"#dc2626",fontWeight:600}}>Child limit reached for {planName}.</div>
-            <div style={{fontSize:".75rem",color:"#64748b",marginTop:3}}>Upgrade to Family Premium to add a second child.</div>
+        {/* If limit reached: show upgrade message only, no form */}
+        {!canAdd?(
+          <div>
+            <div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"14px 16px",marginBottom:12,textAlign:"center"}}>
+              <div style={{fontSize:".9rem",fontWeight:700,color:"#dc2626",marginBottom:4}}>Child limit reached for {planName}</div>
+              <div style={{fontSize:".8rem",color:"#64748b",marginBottom:12}}>
+                You can add a second child with the Family Premium plan.
+              </div>
+              <button onClick={onClose} style={{padding:"8px 20px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"}}>Upgrade Plan</button>
+            </div>
+            <button onClick={onClose} style={{background:"none",border:"none",color:"#64748b",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",width:"100%",textAlign:"center"}}>Cancel</button>
           </div>
+        ):(
+          <>
+            <div data-testid="add-child-free-tier-notice" style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(167,139,250,.3)",borderRadius:8,padding:"10px 14px",marginBottom:10}}>
+              <div style={{fontSize:".78rem",color:"#6366f1",fontWeight:600}}>ℹ️ New children start on Free Tier</div>
+              <div style={{fontSize:".72rem",color:"#64748b",marginTop:2}}>The child will have limited access until you upgrade your plan.</div>
+            </div>
+            <form onSubmit={submit} style={{display:"flex",flexDirection:"column",gap:8}}>
+              <label><span style={{fontSize:".78rem",fontWeight:600}}>Child's Name *</span>
+                <input value={form.username} onChange={function(e){setForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}}/></label>
+              <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
+                <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}}>
+                  {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
+              <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
+                <input type="text" value={form.password} onChange={function(e){setForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with child" style={{...inp,marginTop:2}}/></label>
+              <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>
+                <input type="email" value={form.email} onChange={function(e){setForm(function(p){return{...p,email:e.target.value};});}} style={{...inp,marginTop:2}}/></label>
+              {msg&&<div style={{fontSize:".82rem",color:msg.startsWith("✅")?"#166534":"#dc2626"}}>{msg}</div>}
+              <button type="submit" disabled={loading} style={btn1}>{loading?"Adding…":"Add Child"}</button>
+            </form>
+          </>
         )}
-        <div data-testid="add-child-free-tier-notice" style={{background:"rgba(99,102,241,.07)",border:"1px solid rgba(167,139,250,.3)",borderRadius:8,padding:"10px 14px",marginBottom:10}}>
-          <div style={{fontSize:".78rem",color:"#6366f1",fontWeight:600}}>ℹ️ New children start on Free Tier</div>
-          <div style={{fontSize:".72rem",color:"#64748b",marginTop:2}}>The child will have limited access until you upgrade your plan.</div>
-        </div>
-        <form onSubmit={submit} style={{display:"flex",flexDirection:"column",gap:8}}>
-          <label><span style={{fontSize:".78rem",fontWeight:600}}>Child's Name *</span>
-            <input value={form.username} onChange={function(e){setForm(function(p){return{...p,username:e.target.value};});}} required style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
-          <label><span style={{fontSize:".78rem",fontWeight:600}}>Grade *</span>
-            <select value={form.grade} onChange={function(e){setForm(function(p){return{...p,grade:e.target.value};});}} style={{...inp,marginTop:2}} disabled={!canAdd}>
-              {GRADES.map(function(g){return <option key={g} value={g}>{g}</option>;})}</select></label>
-          <label><span style={{fontSize:".78rem",fontWeight:600}}>Password *</span>
-            <input type="text" value={form.password} onChange={function(e){setForm(function(p){return{...p,password:e.target.value};});}} required placeholder="Share with child" style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
-          <label><span style={{fontSize:".78rem",fontWeight:600}}>Email (optional)</span>
-            <input type="email" value={form.email} onChange={function(e){setForm(function(p){return{...p,email:e.target.value};});}} style={{...inp,marginTop:2}} disabled={!canAdd}/></label>
-          {msg&&<div style={{fontSize:".82rem",color:msg.startsWith("✅")?"#166534":"#dc2626"}}>{msg}</div>}
-          <button type="submit" disabled={loading||!canAdd} style={btn1}>{loading?"Adding…":"Add Child"}</button>
-        </form>
       </div>
     </div>
   );
