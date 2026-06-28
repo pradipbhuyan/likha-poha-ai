@@ -1,112 +1,99 @@
-# Security and Authorization
+# Security
 
-## Core Security Rules
+_Last updated: 2026-06-28_
 
-- Backend owns authorization.
-- Frontend restrictions are not security boundaries.
-- Admin-only endpoints must enforce admin role server-side.
-- Teacher endpoints must enforce teacher ownership.
-- Parent endpoints must enforce parent-child ownership.
-- Student endpoints must enforce student identity/assignment.
+## Authentication
 
-## Secrets
+### Supabase Auth
+- Email/password login with lookup-email flow: `username → profiles.email → signInWithPassword`
+- Google OAuth supported — full OAuth processing only runs on actual redirect URLs (not page reload with existing session)
+- `email_confirm=True` (default) for admin-created accounts — immediately active
+- Parent-invited parents use `invite_user_by_email` for email verification
 
-Never expose:
+### Child Accounts
+- Children log in with their display name (username) as login ID
+- Synthetic email generated: `{username}@child.likhapoha.in` if no real email provided
+- `email_confirm=True` so child can log in immediately after parent creates account
+- `login_id` and `login_email` returned to parent in `create_student` response
+- Temporary password shown once in credentials panel — never stored in profile
 
-- Supabase service role key
-- JWTs
-- API keys
-- Razorpay secrets
-- webhook secrets
-- passwords
-- temporary passwords
-- raw payment payloads
+### Session Management
+- Session recovery on app boot: verify Supabase session → refresh token → fetch fresh profile
+- Expired Supabase session → clear localStorage → redirect to login
+- `handleLogin` fetches fresh `/api/auth/profile` for ALL roles
+- Technical auth errors logged to console only — never shown to users
 
-## Passwords
+## Authorization
 
-Passwords must be handled through Supabase Auth/admin flows. Temporary passwords may be shown once only if necessary and must never be stored, logged, or audited in plaintext.
+### Role-Based Access
+| Role | Access |
+|---|---|
+| `admin` | Full platform access |
+| `teacher` | Own students only |
+| `parent` | Own linked children only |
+| `student` | Own data only |
 
-## Payments
+### Critical Rules
 
-- Verify Razorpay signatures.
-- Use idempotency guards.
-- Duplicate callbacks/webhooks must not double-activate or double-extend subscriptions.
-- Admin ₹1 tests must be admin-only.
+1. **`parentId` alone NEVER implies paid access** — only `access_cbse=true` grants paid features
+2. **Feature access from canonical service only** — `get_feature_summary(user_id)`, never from raw `subscription_plan`
+3. **Child owned by parent** — all parent endpoints verify `parent_id` match via `_verify_child_ownership()`
+4. **Student owns own data** — `require_student` dependency enforces this
+5. **Teacher-private notes NEVER exposed to parents** — never included in parent endpoints
+6. **Admin audit metadata NEVER exposed to parents/students** — `platform_audit_logs` is admin-only
 
-## Audit Logs
+### Free Tier Restrictions
+- `access_cbse=false` → Free Tier
+- Exemplar: Locked
+- Mock Tests: Limited (5/day)
+- Ask Doubts: Limited
+- Unlimited mock tests: Locked
+- All new signups start with `access_cbse=false`
+- Expired paid plans fall back to Free Tier restrictions
 
-Audit sensitive actions. Sanitize metadata. Audit failure must not break main business flow.
+## Error Messages
 
-## Rate Limiting
+### User-Facing (Friendly)
+- Session expired: "Your session has expired. Please sign in again."
+- No token: "Your session has expired. Please sign in again."
+- Session read error: "Your session could not be read. Please sign in again."
+- 401/403 API: "Your session has expired. Please sign in again."
+- 500 API: "We're having trouble right now. Please try again in a moment."
+- Safe business error (400): shown as-is if no Supabase/JWT keywords
 
-Rate limit sensitive endpoints such as login, signup, password reset, payment creation/verification, admin test payment, and AI/doubt endpoints.
+### Hidden from Users (Console Only)
+- Raw JWT details
+- Supabase internals (RLS, policy names)
+- Bearer tokens
+- Raw server error details for 500s
+- Any error containing "supabase", "token", "JWT", "bearer"
 
-## View as User
+## Data Exposure Rules
 
-Use read-only frontend simulation. Do not exchange JWTs. Audit start/end/denied events.
+### Never Expose
+- Teacher-private notes
+- Admin audit logs (`platform_audit_logs`)
+- Raw Supabase session tokens in responses
+- Other users' data
+- Admin override details in user-facing UI
 
----
+### Safe to Expose
+- User's own profile fields
+- Canonical subscription status (plan_name, has_full_access, status_label)
+- Feature access summary (locked/limited/full per feature)
+- Mock test percentages (0-100 only, via `_normalize_score_pct`)
 
-## Critical Authorization Rules (Updated 2026-06-27)
+## Score Normalization
 
-### parentId Never Grants Feature Access
+`_normalize_score_pct(percentage, raw_score, max_score)` in `parent_dashboard_v2.py`:
+- `percentage` in [0,100] → use directly
+- `percentage` > 100 → invalid, try `raw_score / max_score * 100`
+- `max_score = 0` → return None (no division by zero)
+- No valid data → return None → UI shows "Score not available"
+- **Never multiply `percentage` by 100 again**
 
-A child profile has `parent_id` set when created by a parent. This alone NEVER means the child has a paid subscription.
+## Notification Metadata Sanitization
 
-**Rule**: Feature access is determined exclusively by:
-1. `access_cbse = true` on the child's own profile (set by payment webhook or admin)
-2. An active `subscription_expires_at` in the future on the child's profile
-
-**What this means in code**:
-- Backend: `resolve_user_subscription(user_id)` reads from child's OWN profile
-- Frontend: `hasPaidAccess(user)` checks `accessCbse` and `subscriptionExpiresAt` only. `user.parentId` is NEVER used as a paid access signal.
-
-### Canonical Feature Authorization
-
-All premium feature decisions must use `feature_authorization_service.py` on the backend:
-
-```python
-from app.services.feature_authorization_service import authorize_feature, Feature, require_feature
-
-# Raises HTTP 403 if denied:
-require_feature(user_id, Feature.EXEMPLAR)
-
-# Or check manually:
-result = authorize_feature(user_id, Feature.EXEMPLAR_RESEARCH)
-if not result["allowed"]:
-    raise HTTPException(403, detail=result["restriction_message"])
-```
-
-Frontend canonical check:
-```js
-import { hasPaidAccess } from "../utils/resolveSubscription";
-const isPaid = hasPaidAccess(user); // uses accessCbse + subscriptionExpiresAt
-```
-
-### Exemplar Chapters Must Be Gated Backend-Side
-
-Exemplar chapter names begin with `"Exemplar:"`. The lesson generation endpoint checks:
-```python
-if chapter.lower().startswith("exemplar") or ": exemplar" in chapter.lower():
-    require_feature(user_id, Feature.EXEMPLAR)  # raises 403 for FREE_TIER
-```
-
-This check is placed AFTER the `is_free_tier_user` bypass so it catches free users even if they bypass the CBSE access check.
-
-### Free Tier Mock Test Daily Limit
-
-The 5/day limit is frontend-enforced via localStorage. The backend allows free users through mock test generation (they have limited but real access). The canonical daily limit constant is:
-- Backend: `FREE_MOCK_TEST_DAILY_LIMIT = 5` in `feature_authorization_service.py`
-- Frontend: `FREE_DAILY_MOCK_LIMIT = 5` in `MockTestPage.jsx`
-
-Both must stay in sync.
-
-### Feature Authorization Regression Tests
-
-`backend/tests/test_feature_authorization.py` contains 69 regression tests covering:
-- FREE_TIER denied for Exemplar/Exemplar Research/Unlimited Mock Tests
-- All paid plans (NANO/PREMIUM/FAMILY/ADMIN_GRANT) get full access
-- `hasPaidAccess(parentId only)` returns False
-- `isFreeUser(child of free parent)` returns True
-- Exemplar chapter detection
-- Full scenario: "new free parent + Grade 10 child = denied Exemplar + limited mock tests"
+`parent_notifications.metadata` — stripped of dangerous keys on read:
+- `token`, `secret`, `key`, `password`, `audit_detail` removed
+- Safe metadata keys preserved
