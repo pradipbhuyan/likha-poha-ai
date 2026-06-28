@@ -32,6 +32,43 @@ function AddChildModal({onClose, onAdded, canAdd, planName}){
   var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:""});
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
+  var [creds,setCreds]=useState(null); // {login_id, password, login_email}
+
+  function copyToClipboard(text){
+    navigator.clipboard&&navigator.clipboard.writeText(text).catch(function(){});
+  }
+
+  // Credentials panel shown after successful creation
+  if(creds){
+    return(
+      <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.4)",zIndex:400,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+        <div style={{background:"var(--panel,#fff)",border:"1px solid #86efac",borderRadius:14,padding:"16px 18px",width:"100%",maxWidth:420,boxShadow:"0 8px 32px rgba(0,0,0,.2)"}}>
+          <div style={{fontWeight:800,fontSize:"1rem",color:"#166534",marginBottom:4}}>Child account created</div>
+          <div style={{fontSize:".78rem",color:"#64748b",marginBottom:14}}>
+            Share these credentials with your child. The password will not be shown again.
+          </div>
+          <div style={{background:"rgba(34,197,94,.06)",border:"1px solid #86efac",borderRadius:8,padding:"10px 14px",marginBottom:8}}>
+            <div style={{fontSize:".72rem",color:"#64748b",marginBottom:2}}>Login ID (username)</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <code style={{fontWeight:700,fontSize:".9rem",color:"#1e293b"}}>{creds.login_id}</code>
+              <button onClick={function(){copyToClipboard(creds.login_id);}} style={{border:"1px solid #86efac",background:"none",borderRadius:5,padding:"2px 8px",fontSize:".7rem",cursor:"pointer",color:"#166534",fontFamily:"inherit"}}>Copy</button>
+            </div>
+          </div>
+          <div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(167,139,250,.3)",borderRadius:8,padding:"10px 14px",marginBottom:14}}>
+            <div style={{fontSize:".72rem",color:"#64748b",marginBottom:2}}>Temporary Password</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <code style={{fontWeight:700,fontSize:".9rem",color:"#1e293b"}}>{creds.password}</code>
+              <button onClick={function(){copyToClipboard(creds.password);}} style={{border:"1px solid rgba(167,139,250,.3)",background:"none",borderRadius:5,padding:"2px 8px",fontSize:".7rem",cursor:"pointer",color:"#6366f1",fontFamily:"inherit"}}>Copy</button>
+            </div>
+          </div>
+          <div style={{fontSize:".73rem",color:"#64748b",marginBottom:12,background:"rgba(245,158,11,.06)",border:"1px solid #fcd34d",borderRadius:6,padding:"6px 10px"}}>
+            ℹ️ Your child logs in at <strong>likhapoha.in</strong> using their <strong>Login ID</strong> and this password. They are on <strong>Free Tier</strong> with limited access.
+          </div>
+          <button onClick={function(){onAdded();onClose();}} style={{padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer",width:"100%"}}>Done</button>
+        </div>
+      </div>
+    );
+  }
 
   async function submit(e){
     e.preventDefault();
@@ -40,8 +77,9 @@ function AddChildModal({onClose, onAdded, canAdd, planName}){
     var d=await createStudent({...form,email:form.email||undefined}).catch(function(e2){return{success:false,error:e2.message};});
     setLoading(false);
     if(d.success!==false){
-      setMsg("✅ Child added! They are on Free Tier with limited access.");
-      setTimeout(function(){onAdded();onClose();},1500);
+      // Show credentials panel with login ID and password
+      setCreds({login_id:d.login_id||form.username, password:form.password, login_email:d.login_email});
+      onAdded(); // refresh dashboard in background
     } else {
       setMsg("⚠ "+(d.error||"Failed to add child."));
     }

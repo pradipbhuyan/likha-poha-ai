@@ -225,9 +225,33 @@ def create_student(data: CreateStudentRequest, parent=Depends(require_parent)):
         .execute()
     )
 
+    # Detect silent insert failure (RLS or constraint violation with empty data)
+    if not response.data:
+        # Profile insert silently returned nothing — attempt to rollback auth user
+        try:
+            admin_client.auth.admin.delete_user(auth_user.id)
+        except Exception:
+            pass
+        raise HTTPException(
+            status_code=500,
+            detail="Child account created but profile could not be saved. Please try again.",
+        )
+
+    created_profile = response.data[0]
+
+    # login_id: what the child types to log in (their username in the lookup-email flow)
+    # The lookup-email endpoint resolves username → email → Supabase signIn
+    login_id = data.username  # display name is the login identifier
+
     return {
         "success": True,
-        "child": response.data[0] if response.data else child_profile,
+        "child": created_profile,
+        "login_id": login_id,
+        "login_email": auth_email,  # actual Supabase auth email (synthetic or real)
+        "login_note": (
+            "Child logs in with their display name as username. "
+            f"Login ID: {login_id}"
+        ),
     }
 
 

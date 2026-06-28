@@ -448,3 +448,200 @@ def test_invite_parent_rejects_parent_without_family():
 
     assert error.value.status_code == 400
     assert error.value.detail == "Parent does not belong to a family."
+
+
+class FakeAuthUserWithId:
+    """Fake auth user that includes a user.id attribute."""
+    class user:
+        id = "new-child-uuid-1"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Child login credential regression tests
+# ─────────────────────────────────────────────────────────────────────────────
+
+class TestChildLoginCredentials:
+    """
+    Regression tests for child account creation login flow.
+    Root cause fix: create_student now returns login_id and login_email
+    so parent can share correct credentials with child.
+    """
+
+    def _setup_mocks(self, monkeypatch, insert_data=None):
+        """Set up common mocks for create_student tests."""
+        monkeypatch.setattr("app.routes.parent_dashboard.get_children", lambda pid: [])
+
+        def fake_resolve(parent_id):
+            return {"canonical_plan_key": "FREE_TIER", "plan_name": "Free Tier",
+                    "has_full_access": False, "child_limit": 1, "restrictions": []}
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription", fake_resolve)
+
+        fake_auth = FakeAuthUser("new-child-uuid-1")
+        monkeypatch.setattr("app.routes.parent_dashboard.create_auth_user",
+                            lambda email, password, **kw: fake_auth)
+
+        profiles_table = FakeProfilesTable()
+        if insert_data is not None:
+            profiles_table.inserted_payload = insert_data
+            class FakeResultWithData:
+                data = [insert_data]
+            profiles_table.execute = lambda: FakeResultWithData()
+
+        fake_admin = FakeAdminClient()
+        fake_admin.profiles_table = profiles_table
+        monkeypatch.setattr("app.routes.parent_dashboard.admin_client", fake_admin)
+        return profiles_table
+
+    def test_create_student_returns_login_id(self, monkeypatch):
+        """create_student must return login_id = the child's username."""
+        child_data = {"id": "new-child-uuid-1", "username": "Aarav", "email": "Aarav@child.likhapoha.in",
+                      "role": "student", "parent_id": "parent_1", "family_id": "family_1"}
+        self._setup_mocks(monkeypatch, insert_data=child_data)
+
+        req = create_student_request_factory("Aarav", "password123")
+        result = __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+            data=req, parent=FAKE_PARENT
+        )
+        assert result["success"] is True
+        assert result["login_id"] == "Aarav", "login_id must be the child's username"
+
+    def test_create_student_returns_login_email(self, monkeypatch):
+        """create_student must return login_email (synthetic or real)."""
+        child_data = {"id": "new-child-uuid-1", "username": "Aarav", "email": "Aarav@child.likhapoha.in",
+                      "role": "student", "parent_id": "parent_1", "family_id": "family_1"}
+        self._setup_mocks(monkeypatch, insert_data=child_data)
+
+        req = create_student_request_factory("Aarav", "password123")
+        result = __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+            data=req, parent=FAKE_PARENT
+        )
+        assert "login_email" in result
+        assert "child.likhapoha.in" in result["login_email"]
+
+    def test_synthetic_email_matches_profile_email(self, monkeypatch):
+        """Profile email must match the synthetic auth email."""
+        import re
+        captured_profile = {}
+
+        class CapturingTable:
+            def insert(self, payload):
+                captured_profile.update(payload)
+                return self
+            def execute(self):
+                class R:
+                    data = [captured_profile]
+                return R()
+
+        class CapturingAdmin:
+            def table(self, t):
+                return CapturingTable()
+
+        monkeypatch.setattr("app.routes.parent_dashboard.get_children", lambda pid: [])
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda pid: {"canonical_plan_key":"FREE_TIER","child_limit":1,"plan_name":"Free Tier","restrictions":[]})
+        monkeypatch.setattr("app.routes.parent_dashboard.create_auth_user",
+                            lambda email, password, **kw: FakeAuthUser("new-child-uuid-1"))
+        monkeypatch.setattr("app.routes.parent_dashboard.admin_client", CapturingAdmin())
+
+        req = create_student_request_factory("Aarav Kumar", "pass123")
+        result = __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+            data=req, parent=FAKE_PARENT
+        )
+        # Profile email must contain the sanitized username
+        assert "AaravKumar" in captured_profile["email"]
+        assert "child.likhapoha.in" in captured_profile["email"]
+        # login_email in response must match profile email
+        assert result["login_email"] == captured_profile["email"]
+
+    def test_child_access_cbse_is_false_for_free_parent(self, monkeypatch):
+        """Child created by free-tier parent must have access_cbse=False."""
+        captured = {}
+
+        class CapTable:
+            def insert(self, payload):
+                captured.update(payload)
+                return self
+            def execute(self):
+                class R:
+                    data = [captured]
+                return R()
+
+        class CapAdmin:
+            def table(self, t): return CapTable()
+
+        monkeypatch.setattr("app.routes.parent_dashboard.get_children", lambda pid: [])
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda pid: {"canonical_plan_key":"FREE_TIER","child_limit":1,"plan_name":"Free Tier","restrictions":[]})
+        monkeypatch.setattr("app.routes.parent_dashboard.create_auth_user",
+                            lambda email, password, **kw: FakeAuthUser("uuid-1"))
+        monkeypatch.setattr("app.routes.parent_dashboard.admin_client", CapAdmin())
+
+        req = create_student_request_factory("TestChild", "pw")
+        __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+            data=req, parent=FAKE_PARENT
+        )
+        assert captured.get("access_cbse") is False, "FREE_TIER child must have access_cbse=False"
+        assert captured.get("role") == "student"
+        assert captured.get("parent_id") == "parent_1"
+
+    def test_silent_profile_insert_failure_raises_500(self, monkeypatch):
+        """If profile insert returns empty data, must raise 500 (not silently succeed)."""
+        from fastapi import HTTPException
+
+        class EmptyTable:
+            def insert(self, payload): return self
+            def execute(self):
+                class R:
+                    data = []  # silent insert failure
+                return R()
+
+        class EmptyAdmin:
+            def table(self, t): return EmptyTable()
+            class auth:
+                class admin:
+                    @staticmethod
+                    def delete_user(uid): pass
+
+        monkeypatch.setattr("app.routes.parent_dashboard.get_children", lambda pid: [])
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
+                            lambda pid: {"canonical_plan_key":"FREE_TIER","child_limit":1,"plan_name":"Free Tier","restrictions":[]})
+        monkeypatch.setattr("app.routes.parent_dashboard.create_auth_user",
+                            lambda email, password, **kw: FakeAuthUser("uuid-1"))
+        monkeypatch.setattr("app.routes.parent_dashboard.admin_client", EmptyAdmin())
+
+        req = create_student_request_factory("FailChild", "pw")
+        with pytest.raises(HTTPException) as exc:
+            __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+                data=req, parent=FAKE_PARENT
+            )
+        assert exc.value.status_code == 500
+
+    def test_login_id_matches_username_for_username_login_flow(self, monkeypatch):
+        """
+        The login_id returned must be the username the child uses to log in.
+        The lookup-email flow: login_id → profiles.username → profiles.email → Supabase auth.
+        """
+        child_data = {"id": "uuid-1", "username": "RiyaTest", "email": "RiyaTest@child.likhapoha.in",
+                      "role": "student", "parent_id": "parent_1", "family_id": "family_1"}
+        self._setup_mocks(monkeypatch, insert_data=child_data)
+
+        req = create_student_request_factory("RiyaTest", "mypassword")
+        result = __import__("app.routes.parent_dashboard", fromlist=["create_student"]).create_student(
+            data=req, parent=FAKE_PARENT
+        )
+        login_id = result["login_id"]
+        login_email = result["login_email"]
+        # The lookup-email flow: search profiles where username = login_id → returns login_email
+        assert login_id == "RiyaTest"
+        assert login_email == "RiyaTest@child.likhapoha.in"
+        # Parent can reconstruct: child logs in with username=login_id, password=<what they entered>
+
+
+def create_student_request_factory(username, password, email=None):
+    """Helper to create CreateStudentRequest for tests."""
+    import app.routes.parent_dashboard as parent_dashboard_route
+    return parent_dashboard_route.CreateStudentRequest(
+        username=username,
+        password=password,
+        email=email,
+    )
