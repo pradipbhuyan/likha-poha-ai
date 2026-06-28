@@ -178,8 +178,11 @@ describe("AdminAnalytics — state: ok (zero data)", () => {
   test("shows 0 for payments, not dash", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
-    const card = screen.getByTestId("stat-paid");
-    expect(card).toHaveTextContent("0");
+    const { waitFor } = await import("@testing-library/react");
+    await waitFor(() => {
+      const card = screen.getByTestId("stat-paid");
+      expect(card).toHaveTextContent("0");
+    }, { timeout: 4000 });
   });
 
   test("shows 0% success rate, not dash", async () => {
