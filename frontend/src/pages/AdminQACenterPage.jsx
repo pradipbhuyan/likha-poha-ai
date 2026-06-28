@@ -71,7 +71,7 @@ function IssueRow({ issue }) {
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function AdminQACenterPage({ user, setActivePage }) {
+export default function AdminQACenterPage({ user: _user, setActivePage }) {
   const [report, setReport]         = useState(null);
   const [loadingReport, setLoadingReport] = useState(true);
   const [runForm, setRunForm]       = useState({ mode:"sample", grade:"", subject:"", use_llm:false });

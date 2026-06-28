@@ -54,7 +54,7 @@ function FailedCheckRow({ check }) {
   );
 }
 
-export default function FeatureAuthAuditPage({ user }) {
+export default function FeatureAuthAuditPage({ user: _user }) {
   const [report, setReport]   = useState(null);
   const [loading, setLoading] = useState(true);
   const [mode, setMode]       = useState("sample");

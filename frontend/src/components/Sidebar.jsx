@@ -97,6 +97,13 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "adminOperations",
+      label: "Operations Dashboard",
+      icon: Activity,
+      roles: ["admin"],
+      hideForAdmin: false,
+    },
+    {
       key: "adminControl",
       label: "Admin Control",
       icon: Settings,
