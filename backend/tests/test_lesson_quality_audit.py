@@ -39,7 +39,7 @@ from scripts.audit_lesson_quality import (
 # ── Fixtures ──────────────────────────────────────────────────────────────────
 
 def good_row(step_title="Introduction", lesson_content=None, practice_questions=None):
-    content = lesson_content or (
+    content = lesson_content if lesson_content is not None else (
         "## Introduction to Motion\n\n"
         "When an object changes its position with respect to time it is said to be in motion. "
         "For example, a moving car, a falling stone, a flying bird. "
