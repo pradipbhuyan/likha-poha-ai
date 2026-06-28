@@ -185,7 +185,7 @@ describe("StudentDashboardPage — redesigned", () => {
     await screen.findByTestId("quick-actions-card");
     const btn = screen.getByTestId("qa-study-materials");
     btn.click();
-    expect(navFn).toHaveBeenCalledWith("learnMore");
+    expect(navFn).toHaveBeenCalledWith("resources");
   });
 
   test("Watch Concept Videos routes to learnMore", async () => {
@@ -194,7 +194,7 @@ describe("StudentDashboardPage — redesigned", () => {
     await screen.findByTestId("quick-actions-card");
     const btn = screen.getByTestId("qa-watch-concept-videos");
     btn.click();
-    expect(navFn).toHaveBeenCalledWith("learnMore");
+    expect(navFn).toHaveBeenCalledWith("resources");
   });
 
   test("renders motivation card", async () => {

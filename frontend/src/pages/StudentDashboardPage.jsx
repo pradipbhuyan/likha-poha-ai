@@ -472,9 +472,9 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Quick Actions</div>
           {/* Active actions with real destinations */}
           {[
-            {label:"Watch Concept Videos",page:"learnMore",active:true},
+            {label:"Watch Concept Videos",page:"resources",active:true},
             {label:"Practice Mock Test",page:"mockTest",active:true},
-            {label:"Study Materials",page:"learnMore",active:true},
+            {label:"Study Materials",page:"resources",active:true},
           ].map(function(a){return(
             <div key={a.label} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
               <span style={{fontSize:".75rem"}}>{a.label}</span>
