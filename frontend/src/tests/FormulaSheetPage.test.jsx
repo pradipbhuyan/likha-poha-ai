@@ -191,7 +191,7 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
     render(<FormulaSheetPage user={USER_FREE} setActivePage={navFn} />);
     await screen.findByTestId("upgrade-cta");
     fireEvent.click(screen.getByTestId("upgrade-cta"));
-    expect(navFn).toHaveBeenCalledWith("subscription");
+    expect(navFn).toHaveBeenCalledWith("subscriptionPlans");
   });
 
   test("Free user cannot see solved examples for preview formulas", async () => {
