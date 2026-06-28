@@ -250,15 +250,75 @@ function MCQPractice({ formula }) {
   );
 }
 
+
+// ── Formula Upgrade Modal — matches Exemplar Research upgrade card ────────────
+function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
+  return (
+    <div
+      data-testid="formula-upgrade-modal"
+      onClick={onClose}
+      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.5)", zIndex: 600,
+        display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+      <div onClick={e => e.stopPropagation()}
+        style={{ background: "var(--panel,#fff)", borderRadius: 14, padding: "24px 20px",
+          width: "100%", maxWidth: 380, boxShadow: "0 8px 40px rgba(0,0,0,.3)",
+          borderTop: "4px solid #6366f1", position: "relative", textAlign: "center" }}>
+        {/* Close */}
+        <button onClick={onClose}
+          style={{ position: "absolute", top: 12, right: 14, background: "none",
+            border: "none", cursor: "pointer", fontSize: "1.1rem", color: "var(--text-muted,#94a3b8)" }}>
+          ×
+        </button>
+
+        {/* Icon */}
+        <div style={{ fontSize: "2.4rem", marginBottom: 8 }}>🔐</div>
+
+        {/* Title + context */}
+        {formula && (
+          <div style={{ fontSize: ".82rem", color: "var(--text-muted,#64748b)", marginBottom: 6 }}>
+            <strong style={{ color: "var(--text,#1e293b)", fontSize: ".92rem" }}>{formula.name}</strong>
+            <br />{formula.chapter}
+          </div>
+        )}
+
+        <h4 style={{ margin: "8px 0", fontSize: "1rem", fontWeight: 800 }}>
+          This feature is for paid subscribers
+        </h4>
+        <p style={{ fontSize: ".82rem", color: "var(--text-muted,#64748b)", lineHeight: 1.6, marginBottom: 18 }}>
+          Solved examples, step-by-step solutions, memory tips, and practice MCQs
+          are available with a paid plan.
+          <br />Your current plan does not include this feature.
+        </p>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <button onClick={onUpgrade}
+            style={{ padding: "11px 20px", borderRadius: 9, border: "none",
+              background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff",
+              fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+            🚀 See Plans & Upgrade
+          </button>
+          <button onClick={onClose}
+            style={{ padding: "8px 16px", borderRadius: 9, border: "1px solid var(--border,#e5e7eb)",
+              background: "transparent", color: "var(--text-muted,#64748b)",
+              fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
+            Maybe later
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Formula Card ─────────────────────────────────────────────────────────────
 function FormulaCard({ formula, hasPremium, onUpgrade }) {
   const [expanded, setExpanded] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const canExpand = hasPremium && formula.preview_allowed && !formula.locked;
 
   function handleExpand() {
     if (!canExpand) {
-      if (onUpgrade) onUpgrade();
+      setShowUpgradeModal(true);
       return;
     }
     setExpanded(e => !e);
@@ -358,16 +418,8 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
 
       {/* Locked upgrade inline prompt */}
       {formula.locked && <UpgradePrompt msg="Upgrade to unlock this formula with examples and memory tips." />}
-      {!formula.locked && formula.preview_allowed && !canExpand && !expanded && (
-        <div style={{ fontSize: ".72rem", color: "var(--text-muted,#94a3b8)", marginTop: 4 }}>
-          Formula preview ·{" "}
-          <button onClick={() => onUpgrade && onUpgrade()}
-            style={{ background: "none", border: "none", color: "#818cf8", fontWeight: 700,
-              cursor: "pointer", fontFamily: "inherit", fontSize: ".72rem", padding: 0,
-              textDecoration: "underline" }}>
-            Upgrade to expand →
-          </button>
-        </div>
+      {showUpgradeModal && (
+        <FormulaUpgradeModal formula={formula} onClose={() => setShowUpgradeModal(false)} onUpgrade={() => { setShowUpgradeModal(false); if (onUpgrade) onUpgrade(); }} />
       )}
     </div>
   );
