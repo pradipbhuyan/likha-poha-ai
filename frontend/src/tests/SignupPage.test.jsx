@@ -65,14 +65,14 @@ describe("SignupPage — single-step card-based", () => {
     expect(screen.getByText("Create your account")).toBeInTheDocument();
   });
 
-  test("role cards for Parent, Student, Teacher all render", () => {
+  test("role cards for Parent and Student render (Teacher removed)", () => {
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
     expect(screen.getByTestId("role-card-parent")).toBeInTheDocument();
     expect(screen.getByTestId("role-card-student")).toBeInTheDocument();
-    expect(screen.getByTestId("role-card-teacher")).toBeInTheDocument();
+    expect(screen.queryByTestId("role-card-teacher")).not.toBeInTheDocument();
     expect(screen.getByText("Parent")).toBeInTheDocument();
     expect(screen.getByText("Student")).toBeInTheDocument();
-    expect(screen.getByText("Teacher")).toBeInTheDocument();
+    expect(screen.queryByText("Teacher")).not.toBeInTheDocument();
   });
 
   test("Pay & Sign Up tab is NOT present", () => {
@@ -186,19 +186,6 @@ describe("SignupPage — single-step card-based", () => {
     });
   });
 
-  test("teacher signup submits role=teacher to API", async () => {
-    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
-    fireEvent.click(screen.getByTestId("role-card-teacher"));
-    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Teacher" } });
-    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "teacher@test.com" } });
-    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    fireEvent.click(screen.getByTestId("signup-submit"));
-    await waitFor(() => {
-      const body = JSON.parse(mockFetch.mock.calls[0][1].body);
-      expect(body.role).toBe("teacher");
-    });
-  });
-
   test("after successful signup, localStorage has accessCbse=false (Free Tier)", async () => {
     // Mock localStorage
     const lsSetItem = vi.spyOn(Storage.prototype, "setItem");
@@ -249,6 +236,37 @@ describe("SignupPage — single-step card-based", () => {
     expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
     expect(screen.getByTestId("signup-error").textContent).not.toContain("Supabase");
     expect(screen.getByTestId("signup-error").textContent).toMatch(/couldn.*create|try again/i);
+  });
+
+  test("grade selector shown when student selected", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    // Initially parent selected — no grade selector
+    expect(screen.queryByTestId("signup-grade")).not.toBeInTheDocument();
+    // Select student
+    fireEvent.click(screen.getByTestId("role-card-student"));
+    expect(screen.getByTestId("signup-grade")).toBeInTheDocument();
+  });
+
+  test("student signup sends selected grade to API", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.click(screen.getByTestId("role-card-student"));
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Student User" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "s@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    // Change grade to Grade 10
+    fireEvent.change(screen.getByTestId("signup-grade"), { target: { value: "Grade 10" } });
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    await waitFor(() => {
+      const body = JSON.parse(mockFetch.mock.calls[0][1].body);
+      expect(body.role).toBe("student");
+      expect(body.grade).toBe("Grade 10");
+    });
+  });
+
+  test("Google signup button renders", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.getByTestId("signup-google")).toBeInTheDocument();
+    expect(screen.getByText(/Continue with Google/i)).toBeInTheDocument();
   });
 
   test("sign in link renders and calls onBack", () => {

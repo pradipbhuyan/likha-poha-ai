@@ -11,14 +11,30 @@ import "./SignupPage.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
+async function signInWithGoogle() {
+  await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: window.location.origin,
+      queryParams: { prompt: "select_account" },
+    },
+  });
+}
+
 const ROLES = [
   { key:"parent",  label:"Parent",  desc:"Manage your child's learning and track progress" },
   { key:"student", label:"Student", desc:"Access AI lessons, mock tests and doubt solving" },
-  { key:"teacher", label:"Teacher", desc:"Monitor students and provide personalised guidance" },
+];
+
+const GRADES = [
+  "Grade 1","Grade 2","Grade 3","Grade 4","Grade 5",
+  "Grade 6","Grade 7","Grade 8","Grade 9","Grade 10",
+  "Grade 11","Grade 12",
 ];
 
 export default function SignupPage({ onLogin, onBack }) {
   const [role, setRole]         = useState("parent");
+  const [grade, setGrade]       = useState("Grade 9");
   const [name, setName]         = useState("");
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +65,7 @@ export default function SignupPage({ onLogin, onBack }) {
       const res = await fetch(`${API_BASE}/api/auth/signup-free`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role, name: name.trim(), email: email.trim(), password }),
+        body: JSON.stringify({ role, name: name.trim(), email: email.trim(), password, grade: role === "student" ? grade : undefined }),
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
@@ -91,15 +107,13 @@ export default function SignupPage({ onLogin, onBack }) {
         if (pd) { profile = pd; break; }
         await new Promise(r => setTimeout(r, 500));
       }
-      const targetPage =
-        role === "parent" ? "parentDashboard" :
-        role === "teacher" ? "teacherDashboard" : "dashboard";
+      const targetPage = role === "parent" ? "parentDashboard" : "dashboard";
       const userData = {
         id: authData.user.id,
         email: email.trim(),
         username: profile?.username || name.trim(),
         role: profile?.role || role,
-        grade: profile?.grade || "Grade 9",
+        grade: profile?.grade || (role === "student" ? grade : "Grade 9"),
         board: "CBSE",
         parentId: profile?.parent_id || null,
         familyId: profile?.family_id || null,
@@ -150,13 +164,7 @@ export default function SignupPage({ onLogin, onBack }) {
         <path d="M6 12v5c3 3 9 3 12 0v-5"/>
       </svg>
     ),
-    teacher: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/>
-        <path d="M8 21h8"/>
-        <path d="M12 17v4"/>
-      </svg>
-    ),
+
   };
 
   // Show account creation screen while setting up
@@ -212,7 +220,7 @@ export default function SignupPage({ onLogin, onBack }) {
               <label style={{ fontSize: ".8rem", fontWeight: 600, color: "var(--text-muted,#64748b)", display: "block", marginBottom: 8 }}>
                 I am signing up as *
               </label>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }} data-testid="role-cards">
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 10 }} data-testid="role-cards">
                 {ROLES.map(r => (
                   <button
                     key={r.key}
@@ -291,6 +299,22 @@ export default function SignupPage({ onLogin, onBack }) {
                 </div>
               </div>
 
+              {/* Grade selector — shown only for students */}
+              {role === "student" && (
+                <div style={{ marginBottom: 16 }}>
+                  <label style={{ fontSize: ".8rem", fontWeight: 600, display: "block", marginBottom: 4 }}>Grade *</label>
+                  <select
+                    data-testid="signup-grade"
+                    value={grade}
+                    onChange={ev => setGrade(ev.target.value)}
+                    className="ait-input"
+                    style={{ width: "100%", boxSizing: "border-box" }}
+                  >
+                    {GRADES.map(g => <option key={g} value={g}>{g}</option>)}
+                  </select>
+                </div>
+              )}
+
               {error && (
                 <div data-testid="signup-error" style={{ color: "#dc2626", fontSize: ".82rem", marginBottom: 12, padding: "8px 12px", background: "rgba(239,68,68,.07)", border: "1px solid #fca5a5", borderRadius: 7 }}>
                   {error}
@@ -310,6 +334,36 @@ export default function SignupPage({ onLogin, onBack }) {
                 style={{ width: "100%", padding: "11px", borderRadius: 9, fontWeight: 700, fontSize: "1rem", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1 }}
               >
                 {loading ? "Creating account…" : "Start for Free"}
+              </button>
+
+              {/* Divider */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "16px 0 12px" }}>
+                <div style={{ flex: 1, height: 1, background: "var(--border,#e2e8f0)" }} />
+                <span style={{ fontSize: ".75rem", color: "var(--text-muted,#94a3b8)" }}>or</span>
+                <div style={{ flex: 1, height: 1, background: "var(--border,#e2e8f0)" }} />
+              </div>
+
+              {/* Google Sign Up */}
+              <button
+                data-testid="signup-google"
+                type="button"
+                onClick={signInWithGoogle}
+                style={{
+                  width: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+                  gap: 10, padding: "10px 16px", borderRadius: 10,
+                  border: "1px solid #dadce0", background: "#fff", color: "#3c4043",
+                  fontSize: ".88rem", fontWeight: 500, cursor: "pointer",
+                  fontFamily: "inherit", boxShadow: "0 1px 3px rgba(0,0,0,.08)",
+                  marginBottom: 8,
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z" fill="#4285F4"/>
+                  <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z" fill="#34A853"/>
+                  <path d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332Z" fill="#FBBC05"/>
+                  <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.163 6.656 3.58 9 3.58Z" fill="#EA4335"/>
+                </svg>
+                Continue with Google
               </button>
 
               <div style={{ textAlign: "center", marginTop: 16, fontSize: ".83rem", color: "var(--text-muted,#64748b)" }}>
