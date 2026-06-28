@@ -50,7 +50,7 @@ function MathExpr({ tex, display = false }) {
 }
 
 // ── Shared UI helpers ─────────────────────────────────────────────────────────
-function Badge({ children, bg = "#ede9fe", color = "#7c3aed" }) {
+function Badge({ children, bg = "rgba(139,92,246,0.2)", color = "#a78bfa" }) {
   return <span style={{ fontSize: ".65rem", fontWeight: 700, padding: "1px 7px", borderRadius: 10, background: bg, color, display: "inline-block", marginRight: 3 }}>{children}</span>;
 }
 
@@ -264,8 +264,8 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
     setExpanded(e => !e);
   }
 
-  const diffColor = formula.difficulty === "easy" ? "#16a34a" : formula.difficulty === "hard" ? "#dc2626" : "#7c3aed";
-  const diffBg   = formula.difficulty === "easy" ? "#dcfce7" : formula.difficulty === "hard" ? "#fee2e2" : "#ede9fe";
+  const diffColor = formula.difficulty === "easy" ? "#4ade80" : formula.difficulty === "hard" ? "#f87171" : "#a78bfa";
+  const diffBg   = "rgba(0,0,0,0.15)";
 
   return (
     <div data-testid="formula-card"
@@ -280,7 +280,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginBottom: 4 }}>
             {formula.difficulty && <Badge bg={diffBg} color={diffColor}>{formula.difficulty}</Badge>}
-            {formula.chapter && <Badge bg="#f0fdf4" color="#166534">{formula.chapter}</Badge>}
+            {formula.chapter && <Badge bg="rgba(74,222,128,0.15)" color="#4ade80">{formula.chapter}</Badge>}
             {(formula.tags || []).map(t => <Badge key={t}>{t}</Badge>)}
           </div>
         </div>
@@ -359,8 +359,14 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
       {/* Locked upgrade inline prompt */}
       {formula.locked && <UpgradePrompt msg="Upgrade to unlock this formula with examples and memory tips." />}
       {!formula.locked && formula.preview_allowed && !canExpand && !expanded && (
-        <div style={{ fontSize: ".7rem", color: "#94a3b8", marginTop: 4, fontStyle: "italic" }}>
-          Formula preview · <span style={{ color: "#6366f1", cursor: "pointer" }} onClick={() => onUpgrade && onUpgrade()}>Upgrade to expand</span>
+        <div style={{ fontSize: ".72rem", color: "var(--text-muted,#94a3b8)", marginTop: 4 }}>
+          Formula preview ·{" "}
+          <button onClick={() => onUpgrade && onUpgrade()}
+            style={{ background: "none", border: "none", color: "#818cf8", fontWeight: 700,
+              cursor: "pointer", fontFamily: "inherit", fontSize: ".72rem", padding: 0,
+              textDecoration: "underline" }}>
+            Upgrade to expand →
+          </button>
         </div>
       )}
     </div>
