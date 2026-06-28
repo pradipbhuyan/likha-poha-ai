@@ -7,11 +7,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { authFetch } from "../api/authClient";
 
-const SUBJECTS = ["Mathematics", "Science"];
+// Subjects are loaded dynamically from the API response (data.subjects)
 
 export default function FormulaSheetPage({ user }) {
   const grade = user?.grade || "Grade 9";
-  const [subject, setSubject] = useState("Mathematics");
+  const [subject, setSubject] = useState("Mathematics");  // will update to first available
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
@@ -42,13 +42,13 @@ export default function FormulaSheetPage({ user }) {
         </div>
       </div>
 
-      {/* Subject filter */}
+      {/* Subject filter — dynamic from API */}
       <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-        {SUBJECTS.map(function (s) {
+        {(data?.subjects || ["Mathematics","Science","Physics","Chemistry"]).map(function (s) {
           return (
             <button
               key={s}
-              data-testid={`fs-subject-${s.toLowerCase()}`}
+              data-testid={"fs-subject-"+s.toLowerCase().replace(/ /g,"-")}
               onClick={function () { setSubject(s); }}
               style={{
                 padding: "6px 16px", borderRadius: 20, border: "none",
