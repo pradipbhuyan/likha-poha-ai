@@ -396,7 +396,7 @@ function App() {
       }
     );
     return () => subscription.unsubscribe();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);  
   // ──────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
@@ -412,9 +412,58 @@ function App() {
     window.addEventListener("popstate", handlePopState);
 
     // user is already initialized from localStorage in useState() above.
-    // Only restore activePage here (setUser is not needed).
+    // Verify session and refresh profile to prevent stale data on app restart.
     const savedUser = localStorage.getItem("tutor_user");
     const savedPage = localStorage.getItem("tutor_active_page");
+
+    // Session recovery: silently refresh access token + profile on app load
+    if (savedUser) {
+      const API_BASE_RESTORE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      (async () => {
+        try {
+          const { data: { session }, error } = await supabase.auth.getSession();
+          if (error || !session) {
+            // Session genuinely expired — clear stale local state
+            console.info("[auth] Session expired on app load, clearing cache.");
+            localStorage.removeItem("tutor_user");
+            localStorage.removeItem("tutor_active_page");
+            setUser(null);
+            return;
+          }
+          // Session is valid — refresh access token and fetch fresh profile
+          const { data: refreshed } = await supabase.auth.refreshSession();
+          const freshToken = refreshed?.session?.access_token || session.access_token;
+          const r = await fetch(`${API_BASE_RESTORE}/api/auth/profile`, {
+            headers: { Authorization: `Bearer ${freshToken}` },
+          });
+          if (r.ok) {
+            const p = await r.json();
+            const parsed = JSON.parse(savedUser);
+            const freshUser = {
+              ...parsed,
+              accessToken: freshToken,
+              accessCbse: !!p.access_cbse,
+              accessSofScience: !!p.access_sof_science,
+              accessSofMaths: !!p.access_sof_maths,
+              accessSofEnglish: !!p.access_sof_english,
+              subscriptionPlan: p.subscription_plan || parsed.subscriptionPlan,
+              subscriptionExpiresAt: p.subscription_expires_at || null,
+              subscriptionDaysRemaining: p.subscription_days_remaining ?? null,
+              subscriptionExpiringSoon: !!p.subscription_expiring_soon,
+              cbseSubjects: Array.isArray(p.cbse_subjects) ? p.cbse_subjects : parsed.cbseSubjects,
+              accountStatus: p.account_status || parsed.accountStatus,
+              grade: p.grade || parsed.grade,
+              avatar: p.avatar || parsed.avatar,
+            };
+            setUser(freshUser);
+            localStorage.setItem("tutor_user", JSON.stringify(freshUser));
+          }
+        } catch (e) {
+          console.error("[auth] Session recovery failed:", e.message);
+          // Non-critical: don't log out user on network failure, just keep stale data
+        }
+      })();
+    }
 
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
@@ -449,9 +498,11 @@ function App() {
     /** Persist the authenticated user and send them to the right role-specific landing page. */
     const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
-    // For students, fetch fresh profile to get subscription_expires_at and check expiry
+    // Always fetch fresh profile for ALL roles to prevent stale data after login.
+    // This ensures subscription/access/role data is current immediately after login
+    // without requiring a hard refresh.
     let enrichedUser = userData;
-    if (userData.role === "student" && userData.accessToken) {
+    if (userData.accessToken) {
       try {
         const r = await fetch(`${API_BASE}/api/auth/profile`, {
           headers: { Authorization: `Bearer ${userData.accessToken}` },
@@ -460,14 +511,26 @@ function App() {
           const p = await r.json();
           enrichedUser = {
             ...userData,
-            accessCbse: p.access_cbse ?? userData.accessCbse,
+            accessCbse: !!p.access_cbse,
+            accessSofScience: !!p.access_sof_science,
+            accessSofMaths: !!p.access_sof_maths,
+            accessSofEnglish: !!p.access_sof_english,
             subscriptionPlan: p.subscription_plan ?? userData.subscriptionPlan,
             subscriptionExpiresAt: p.subscription_expires_at || null,
             subscriptionDaysRemaining: p.subscription_days_remaining ?? null,
             subscriptionExpiringSoon: !!p.subscription_expiring_soon,
+            cbseSubjects: Array.isArray(p.cbse_subjects) ? p.cbse_subjects : userData.cbseSubjects,
+            dailyTokenLimit: p.daily_token_limit ?? userData.dailyTokenLimit,
+            monthlyTokenLimit: p.monthly_token_limit ?? userData.monthlyTokenLimit,
+            accountStatus: p.account_status || userData.accountStatus,
+            grade: p.grade || userData.grade,
+            avatar: p.avatar || userData.avatar,
           };
         }
-      } catch { /* non-critical */ }
+      } catch (e) {
+        // Non-critical: log but continue with login
+        console.error("[handleLogin] Profile fetch failed:", e.message);
+      }
     }
 
     setUser(enrichedUser);
@@ -555,6 +618,50 @@ function App() {
       localStorage.setItem("tutor_active_page", targetPage);
     } catch (err) {
       console.error("handleSubscriptionComplete:", err);
+    }
+  }
+
+  /** Refresh user profile from backend and update state. Call after:
+   *  - child added/removed
+   *  - subscription changed
+   *  - role changed
+   *  - any data mutation that affects user session
+   */
+  async function handleRefreshUser() {
+    try {
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error || !session) {
+        console.error("[handleRefreshUser] No session:", error?.message);
+        return;
+      }
+      const r = await fetch(`${API_BASE}/api/auth/profile`, {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (!r.ok) return;
+      const p = await r.json();
+      const updatedUser = {
+        ...user,
+        accessToken: session.access_token,
+        accessCbse: !!p.access_cbse,
+        accessSofScience: !!p.access_sof_science,
+        accessSofMaths: !!p.access_sof_maths,
+        accessSofEnglish: !!p.access_sof_english,
+        subscriptionPlan: p.subscription_plan || user?.subscriptionPlan,
+        subscriptionExpiresAt: p.subscription_expires_at || null,
+        subscriptionDaysRemaining: p.subscription_days_remaining ?? null,
+        subscriptionExpiringSoon: !!p.subscription_expiring_soon,
+        cbseSubjects: Array.isArray(p.cbse_subjects) ? p.cbse_subjects : user?.cbseSubjects,
+        dailyTokenLimit: p.daily_token_limit ?? user?.dailyTokenLimit,
+        monthlyTokenLimit: p.monthly_token_limit ?? user?.monthlyTokenLimit,
+        accountStatus: p.account_status || user?.accountStatus,
+        grade: p.grade || user?.grade,
+        avatar: p.avatar || user?.avatar,
+      };
+      setUser(updatedUser);
+      localStorage.setItem("tutor_user", JSON.stringify(updatedUser));
+    } catch (e) {
+      console.error("[handleRefreshUser] failed:", e.message);
     }
   }
 
