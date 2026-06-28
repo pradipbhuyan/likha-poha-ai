@@ -15,6 +15,7 @@ import RagUploadPage from "./pages/RagUploadPage";
 import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
 import StudentDashboardPage from "./pages/StudentDashboardPage";
 import FormulaSheetPage from "./pages/FormulaSheetPage";
+import AdminQACenterPage from "./pages/AdminQACenterPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
@@ -85,6 +86,11 @@ const PAGE_META = {
     title: "Learn More",
     subtitle: "Explore free videos and learning resources for each chapter.",
     icon: "🎥",
+  },
+  adminQACenter: {
+    title: "Platform QA Center",
+    subtitle: "Automated quality audits for lesson content, formulas, and student flows.",
+    icon: "🧪",
   },
   formulaSheet: {
     title: "Formula Sheet",
@@ -982,6 +988,8 @@ function App() {
         return <FormulaSheetPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
+      case "adminQACenter":
+        return <AdminQACenterPage user={user} />;
       case "lessons":
         return <LessonsPage user={user} setActivePage={handlePageChange} />;
       case "doubt":

@@ -91,6 +91,12 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
+      key: "adminQACenter",
+      label: "Platform QA Center",
+      icon: Layers,
+      roles: ["admin"],
+    },
+    {
       key: "adminControl",
       label: "Admin Control",
       icon: Settings,
