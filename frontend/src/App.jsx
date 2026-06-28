@@ -460,7 +460,12 @@ function App() {
     const savedPage = localStorage.getItem("tutor_active_page");
 
     // Session recovery: silently refresh access token + profile on app load
-    if (savedUser) {
+    // Skip if this is a fresh OAuth redirect — OAuth handler will take over
+    const _urlParams = new URLSearchParams(window.location.search);
+    const _urlHash = window.location.hash || "";
+    const _isOAuthReturn = _urlHash.includes("access_token") || _urlHash.includes("code=") ||
+                           _urlParams.has("code") || _urlParams.has("access_token");
+    if (savedUser && !_isOAuthReturn) {
       const API_BASE_RESTORE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
       (async () => {
         try {
