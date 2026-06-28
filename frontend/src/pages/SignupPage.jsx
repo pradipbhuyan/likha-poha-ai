@@ -31,7 +31,8 @@ const GRADES = [
   "Grade 6","Grade 7","Grade 8","Grade 9","Grade 10",
 ];
 
-export default function SignupPage({ onLogin, onBack }) {
+export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
+  const handleBack = onBackToLogin || onBack;
   const [role, setRole]         = useState("parent");
   const [grade, setGrade]       = useState("Grade 9");
   const [name, setName]         = useState("");
@@ -92,12 +93,12 @@ export default function SignupPage({ onLogin, onBack }) {
           console.error("[signup] Auto sign-in failed:", authErr.message);
           setInfo("Account created! Please sign in with your new credentials.");
         }
-        if (onBack) setTimeout(onBack, 2000);
+        if (handleBack) setTimeout(handleBack, 2000);
         return;
       }
       if (!authData?.session) {
         setInfo("Account created! Please confirm your email then sign in.");
-        if (onBack) setTimeout(onBack, 2000);
+        if (handleBack) setTimeout(handleBack, 2000);
         return;
       }
       let profile = null;
@@ -200,9 +201,7 @@ export default function SignupPage({ onLogin, onBack }) {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: "auto", paddingTop: 24, fontSize: ".78rem", color: "rgba(255,255,255,.5)" }}>
-            Free Tier · No credit card required
-          </div>
+
         </div>
 
         {/* Right — form */}
@@ -370,7 +369,7 @@ export default function SignupPage({ onLogin, onBack }) {
                 <button
                   data-testid="signup-signin-link"
                   type="button"
-                  onClick={onBack}
+                  onClick={handleBack}
                   style={{ background: "none", border: "none", color: "#7c3aed", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: ".83rem" }}
                 >
                   Sign in
