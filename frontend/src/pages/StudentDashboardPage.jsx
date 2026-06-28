@@ -362,22 +362,42 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {isFree&&feat.ask_doubts_limited&&<div style={{fontSize:".7rem",color:"#f59e0b",marginBottom:6}}>Limited (Free Tier)</div>}
           <SdBtn small outline onClick={function(){nav("askDoubt");}}>Continue Chat →</SdBtn>
         </SdCard>
-        {/* Upcoming Exams */}
-        <SdCard>
-          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:4}}>Upcoming Exams</div>
-          <div style={{fontSize:".75rem",color:"var(--text-muted,#64748b)",marginBottom:4}}>{s.grade||"CBSE"}</div>
-          <div style={{fontWeight:800,fontSize:"1.4rem"}}>12 <span style={{fontSize:".73rem",color:"var(--text-muted,#94a3b8)",fontWeight:400}}>days left</span></div>
-          <SdBtn small outline onClick={function(){nav("mockTest");}}>View Details →</SdBtn>
+        {/* Upcoming Exams — no static placeholder */}
+        <SdCard testid="upcoming-exams-card">
+          <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Upcoming Exams</div>
+          <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".78rem",marginBottom:10}}>
+            No upcoming exams added yet.
+          </div>
+          <div style={{fontSize:".7rem",color:"var(--text-muted,#64748b)",marginBottom:10}}>
+            Ask your parent or teacher to add your exam schedule.
+          </div>
+          <SdBtn small outline onClick={function(){nav("mockTest");}}>Practise with Mock Tests →</SdBtn>
         </SdCard>
-        {/* Quick Actions */}
-        <SdCard>
+        {/* Quick Actions — only real destinations, disabled items labelled */}
+        <SdCard testid="quick-actions-card">
           <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Quick Actions</div>
-          {[["Watch Concept Videos","lessons"],["Practice Questions","mockTest"],["Formula Sheet","lessons"],["Study Materials","lessons"]].map(function([label,page]){return(
-            <div key={label} style={{display:"flex",justifyContent:"space-between",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
-              <span style={{fontSize:".75rem"}}>{label}</span>
-              <button onClick={function(){nav(page);}} style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}>›</button>
+          {/* Active actions with real destinations */}
+          {[
+            {label:"Watch Concept Videos",page:"learnMore",active:true},
+            {label:"Practice Mock Test",page:"mockTest",active:true},
+            {label:"Study Materials",page:"learnMore",active:true},
+          ].map(function(a){return(
+            <div key={a.label} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+              <span style={{fontSize:".75rem"}}>{a.label}</span>
+              <button
+                data-testid={"qa-"+a.label.replace(/\s+/g,"-").toLowerCase()}
+                onClick={function(){nav(a.page);}}
+                style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
+              >›</button>
             </div>
           );})}
+          {/* Coming soon — disabled */}
+          <div
+            data-testid="qa-formula-sheet-disabled"
+            style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+            <span style={{fontSize:".75rem",color:"var(--text-muted,#94a3b8)"}}>Formula Sheet</span>
+            <span style={{fontSize:".65rem",color:"var(--text-muted,#94a3b8)",fontStyle:"italic"}}>Coming soon</span>
+          </div>
         </SdCard>
       </div>
 

@@ -158,6 +158,42 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("Quick Actions");
   });
 
+  test("upcoming exams shows empty state, not static 12 days", async () => {
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("upcoming-exams-card");
+    // Must NOT show hardcoded "12 days"
+    expect(document.body.textContent).not.toContain("12 days left");
+    // Must show empty state message
+    expect(document.body.textContent).toContain("No upcoming exams added yet");
+  });
+
+  test("Formula Sheet shows coming soon, not a clickable link", async () => {
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("quick-actions-card");
+    // Formula Sheet must be disabled
+    expect(screen.getByTestId("qa-formula-sheet-disabled")).toBeInTheDocument();
+    expect(screen.queryByTestId("qa-formula-sheet")).not.toBeInTheDocument();
+    expect(document.body.textContent).toContain("Coming soon");
+  });
+
+  test("Study Materials routes to learnMore", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("quick-actions-card");
+    const btn = screen.getByTestId("qa-study-materials");
+    btn.click();
+    expect(navFn).toHaveBeenCalledWith("learnMore");
+  });
+
+  test("Watch Concept Videos routes to learnMore", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("quick-actions-card");
+    const btn = screen.getByTestId("qa-watch-concept-videos");
+    btn.click();
+    expect(navFn).toHaveBeenCalledWith("learnMore");
+  });
+
   test("renders motivation card", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("motivation-card")).toBeInTheDocument();
