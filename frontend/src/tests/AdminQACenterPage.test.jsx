@@ -41,6 +41,47 @@ const STATUS_COMPLETED = { success: true, job: { id: "job-abc-123", status: "com
 describe("AdminQACenterPage", () => {
   beforeEach(() => { vi.clearAllMocks(); });
 
+  test("Authorization Audit card is clickable and renders Feature Auth content", async () => {
+    authFetch.mockResolvedValueOnce(EMPTY_REPORT);
+    const { authFetch: fa } = await import("../api/authClient");
+    fa.mockResolvedValue(EMPTY_REPORT);
+    render(<AdminQACenterPage setActivePage={vi.fn()} />);
+    await screen.findByTestId("admin-qa-center");
+    const authCard = screen.getByTestId("module-feature-auth");
+    fireEvent.click(authCard);
+    expect(await screen.findByTestId("module-content-feature-auth")).toBeInTheDocument();
+    expect(document.body.textContent).toContain("Authorization Audit");
+  });
+
+  test("Lesson Quality card click stays on lesson quality module", async () => {
+    authFetch.mockResolvedValue(EMPTY_REPORT);
+    render(<AdminQACenterPage setActivePage={vi.fn()} />);
+    await screen.findByTestId("admin-qa-center");
+    const lqCard = screen.getByTestId("module-lesson-quality");
+    fireEvent.click(lqCard);
+    expect(await screen.findByTestId("module-content-lesson-quality")).toBeInTheDocument();
+    expect(document.body.textContent).toContain("Lesson Quality");
+  });
+
+  test("Back to Lesson Quality button returns to lesson quality", async () => {
+    authFetch.mockResolvedValue(EMPTY_REPORT);
+    render(<AdminQACenterPage setActivePage={vi.fn()} />);
+    await screen.findByTestId("admin-qa-center");
+    fireEvent.click(screen.getByTestId("module-feature-auth"));
+    await screen.findByTestId("back-to-lesson-quality");
+    fireEvent.click(screen.getByTestId("back-to-lesson-quality"));
+    expect(await screen.findByTestId("module-content-lesson-quality")).toBeInTheDocument();
+  });
+
+  test("Coming soon modules are not clickable", async () => {
+    authFetch.mockResolvedValueOnce(EMPTY_REPORT);
+    render(<AdminQACenterPage setActivePage={vi.fn()} />);
+    await screen.findByTestId("admin-qa-center");
+    expect(document.body.textContent).toContain("Coming soon");
+    expect(document.body.textContent).toContain("Formula Sheet Audit");
+  });
+});
+
   test("renders Platform QA Center", async () => {
     authFetch.mockResolvedValueOnce(EMPTY_REPORT);
     render(<AdminQACenterPage user={ADMIN} />);
@@ -177,4 +218,3 @@ describe("AdminQACenterPage", () => {
     expect(document.body.textContent).toContain("Formula Sheet Audit");
     expect(document.body.textContent).toContain("Coming soon");
   });
-});
