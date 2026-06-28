@@ -41,7 +41,6 @@ import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import AdminOperationsPage from "./pages/AdminOperationsPage";
-import FirstTimeGuide from "./components/FirstTimeGuide";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
