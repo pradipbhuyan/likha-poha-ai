@@ -170,33 +170,48 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("No upcoming exams added yet");
   });
 
-  test("Formula Sheet quick action is enabled and routes to formulaSheet", async () => {
+  test("Watch Concept Videos routes to resources (Learn More)", async () => {
     const navFn = vi.fn();
     render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
     await screen.findByTestId("quick-actions-card");
-    // Formula Sheet must now be a real button (no longer coming soon)
+    screen.getByTestId("qa-watch-concept-videos").click();
+    expect(navFn).toHaveBeenCalledWith("resources");
+  });
+
+  test("Practice Questions routes to mockTest (practice flow)", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("quick-actions-card");
+    screen.getByTestId("qa-practice-questions").click();
+    expect(navFn).toHaveBeenCalledWith("mockTest");
+  });
+
+  test("Formula Sheet routes to formulaSheet page", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("quick-actions-card");
     expect(screen.queryByTestId("qa-formula-sheet-disabled")).not.toBeInTheDocument();
-    expect(screen.getByTestId("qa-formula-sheet")).toBeInTheDocument();
     screen.getByTestId("qa-formula-sheet").click();
     expect(navFn).toHaveBeenCalledWith("formulaSheet");
   });
 
-  test("Study Materials routes to learnMore", async () => {
+  test("Study Materials routes to resources (Learn More)", async () => {
     const navFn = vi.fn();
     render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
     await screen.findByTestId("quick-actions-card");
-    const btn = screen.getByTestId("qa-study-materials");
-    btn.click();
+    screen.getByTestId("qa-study-materials").click();
     expect(navFn).toHaveBeenCalledWith("resources");
   });
 
-  test("Watch Concept Videos routes to learnMore", async () => {
-    const navFn = vi.fn();
-    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+  test("No quick action produces a blank page (all have testids)", async () => {
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("quick-actions-card");
-    const btn = screen.getByTestId("qa-watch-concept-videos");
-    btn.click();
-    expect(navFn).toHaveBeenCalledWith("resources");
+    expect(screen.getByTestId("qa-watch-concept-videos")).toBeInTheDocument();
+    expect(screen.getByTestId("qa-practice-questions")).toBeInTheDocument();
+    expect(screen.getByTestId("qa-formula-sheet")).toBeInTheDocument();
+    expect(screen.getByTestId("qa-study-materials")).toBeInTheDocument();
+    // None should be disabled
+    expect(screen.queryByTestId("qa-formula-sheet-disabled")).not.toBeInTheDocument();
   });
 
   test("renders motivation card", async () => {

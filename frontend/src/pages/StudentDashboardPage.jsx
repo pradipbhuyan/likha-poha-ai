@@ -467,31 +467,40 @@ export default function StudentDashboardPage({ user, setActivePage }) {
             );})
           )}
         </SdCard>
-        {/* Quick Actions — only real destinations, disabled items labelled */}
+        {/* Quick Actions — clear destinations or explicit disabled state */}
         <SdCard testid="quick-actions-card">
           <div style={{fontWeight:700,fontSize:".85rem",marginBottom:8}}>Quick Actions</div>
-          {/* Active actions with real destinations */}
-          {[
-            {label:"Watch Concept Videos",page:"resources",active:true},
-            {label:"Practice Mock Test",page:"mockTest",active:true},
-            {label:"Study Materials",page:"resources",active:true},
-          ].map(function(a){return(
-            <div key={a.label} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
-              <span style={{fontSize:".75rem"}}>{a.label}</span>
-              <button
-                data-testid={"qa-"+a.label.replace(/\s+/g,"-").toLowerCase()}
-                onClick={function(){nav(a.page);}}
-                style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
-              >›</button>
-            </div>
-          );})}
-          {/* Formula Sheet — now available */}
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"4px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+
+          {/* Watch Concept Videos → Learn More (resources) */}
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+            <span style={{fontSize:".75rem"}}>Watch Concept Videos</span>
+            <button data-testid="qa-watch-concept-videos" onClick={function(){nav("resources");}}
+              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
+              title="Opens Learn More — concept videos & resources">›</button>
+          </div>
+
+          {/* Practice Questions → Mock Test (nearest available practice flow) */}
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+            <span style={{fontSize:".75rem"}}>Practice Questions</span>
+            <button data-testid="qa-practice-questions" onClick={function(){nav("mockTest");}}
+              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
+              title="Practice via Mock Tests">›</button>
+          </div>
+
+          {/* Formula Sheet → Formula Sheet page */}
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
             <span style={{fontSize:".75rem"}}>Formula Sheet</span>
-            <button
-              data-testid="qa-formula-sheet"
-              onClick={function(){nav("formulaSheet");}}
-              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}>›</button>
+            <button data-testid="qa-formula-sheet" onClick={function(){nav("formulaSheet");}}
+              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
+              title="CBSE formula reference sheets">›</button>
+          </div>
+
+          {/* Study Materials → Learn More (resources) */}
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid var(--border,#f8fafc)"}}>
+            <span style={{fontSize:".75rem"}}>Study Materials</span>
+            <button data-testid="qa-study-materials" onClick={function(){nav("resources");}}
+              style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,cursor:"pointer",fontSize:".8rem"}}
+              title="Opens Learn More — study materials & videos">›</button>
           </div>
         </SdCard>
       </div>
@@ -537,4 +546,3 @@ export default function StudentDashboardPage({ user, setActivePage }) {
     </div>
   );
 }
-
