@@ -86,6 +86,12 @@ All score display must use `_normalize_score_pct(percentage, raw_score, max_scor
 - `handleLogin` fetches fresh `/api/auth/profile` for ALL roles (not just students)
 - `handleRefreshUser()` available to refresh after data mutations
 
+## Exam Schedule
+- Student can add exam dates via "Upcoming Exams" card in dashboard
+- Parent can also add for linked child
+- No static/placeholder dates — all real data
+- API: `/api/student/exams` and `/api/parent/children/{id}/exams`
+
 ## Student Profile Fields
 
 | Field | Description |

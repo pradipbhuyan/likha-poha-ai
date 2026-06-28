@@ -6,154 +6,109 @@ This file records key technical decisions made during development, including the
 
 ---
 
+## 2026-06-28: Google OAuth Race Condition — Session Recovery Skipped on OAuth Return
+
+**Decision:** Session recovery `useEffect` must NOT run when `?code=` or `#access_token=` is present in the URL.
+
+**Root cause:** When user returns from Google OAuth (`?code=` in URL), two concurrent code paths ran:
+1. Session recovery called `getSession()` → exchanged `?code=` → then `refreshSession()`
+2. `onAuthStateChange` OAuth handler also fired and called `refreshSession()`
+
+The second `refreshSession()` invalidated the first session, causing "Your session has expired" error.
+
+**Fix:** Added `_isOAuthReturn` guard in session recovery:
+```js
+if (savedUser && !_isOAuthReturn) { /* session recovery */ }
+```
+
+---
+
+## 2026-06-28: Google OAuth — isOAuthRedirect Check Before localStorage
+
+**Decision:** The `isOAuthRedirect` URL check must happen BEFORE the `localStorage.getItem("tutor_user")` check in `onAuthStateChange`.
+
+**Root cause:** When user with existing session clicked Google Sign In, the handler found `tutor_user` in localStorage and returned early with a token refresh — never processing the new Google login.
+
+**Fix:** Check `isOAuthRedirect` first. If it's a fresh OAuth redirect, skip the localStorage shortcut entirely.
+
+---
+
+## 2026-06-28: Google OAuth — Identity Age Fallback
+
+**Decision:** Use `session.user.identities[0].created_at < 5 minutes` as fallback OAuth detection when URL markers are already cleaned up.
+
+**Root cause:** Supabase PKCE automatically exchanges `?code=` during `getSession()` (session recovery) and cleans the URL. By the time `onAuthStateChange` fires, `window.location.search` no longer contains `code=`.
+
+**Fix:** `_recentOAuth` check: if identity was created < 5 minutes ago, treat as fresh OAuth regardless of URL state.
+
+---
+
+## 2026-06-28: authFetch Session Retry for Post-OAuth Window
+
+**Decision:** `authFetch` must retry with 800ms delay if `getSession()` returns no token.
+
+**Root cause:** After Google OAuth, there's a brief window (< 1s) where Supabase session isn't yet accessible in `getSession()`. Pages that load immediately after `handleLogin()` fail with "session expired".
+
+**Fix:** 3-step token retrieval: `getSession()` → `refreshSession()` → wait 800ms + retry.
+
+---
+
+## 2026-06-28: Platform QA Center — Feature Authorization Audit
+
+**Decision:** Feature Authorization Audit uses `_FEATURE_MATRIX` and `authorize_feature()` from the canonical service directly — no business logic duplication.
+
+**Key:** Patches `resolve_user_subscription` inside `feature_authorization_service` module (not the resolver module) so mocks work correctly.
+
+**Identity age fallback:** For expired plan testing, passes `"FREE_TIER"` effective plan to mock resolver (expired plans → `FREE_TIER`).
+
+---
+
+## 2026-06-28: Platform QA Center — Lesson Quality Audit
+
+**Decision:** Lesson Quality Audit is admin-only. Background thread (`daemon=True`) to avoid blocking web requests for full audits. In-memory job registry + DB persistence (graceful fallback if `lesson_quality_audit_runs` table not applied).
+
+**LLM mode:** Disabled by default. When enabled, patches `feature_authorization_service.resolve_user_subscription` and caches by SHA256 of content. LLM exceptions never crash deterministic audit.
+
+---
+
+## 2026-06-28: Formula Sheet Freemium Model
+
+**Decision:** Formula Sheet page is open to all users. Premium content (solved examples, memory tips, MCQ expansion) gated by `FORMULA_SHEET_PREMIUM` feature key. Free users see first 3 formulas per chapter as preview.
+
+**Upgrade modal:** Uses Exemplar Research pattern — click expand on locked formula → modal with "🔐 This feature is for paid subscribers" → "🚀 See Plans & Upgrade" → routes to `subscriptionPlans` page.
+
+---
+
+## 2026-06-28: Formula Sheet v2 Fallback Query
+
+**Decision:** `formula_sheets.py` endpoint tries v2 columns first (topic, variables, solution_steps, memory_tip, etc.). If `42703` (column does not exist) error → falls back to base columns. Automatically upgrades when v2 migration is applied.
+
+**Why:** v3 migration columns were not applied to live DB initially. Graceful fallback ensures page works without disruption.
+
+---
+
 ## 2026-06-28: Student Dashboard Redesign
 
-**Decision:** Build `StudentDashboardPage.jsx` as the new student dashboard (Option 1 card-based layout), replacing `DashboardPage.jsx`.
+**Decision:** `StudentDashboardPage.jsx` replaces `DashboardPage.jsx` as the student dashboard (Option 1 card-based layout).
 
-**New endpoint:** `GET /api/student/dashboard/summary` returning all dashboard data in one call.
+**Backend:** `GET /api/student/dashboard/summary` returns all data in one call.
 
-**Why:** Old dashboard was a single-page component with scattered API calls, no responsive layout, and no clear "what to do next" guidance. New design matches Option 1 mockup with Hero, Quick Stats, Continue Learning, Today's Plan, AI Coach, Subject Progress, Mock Tests, Weak Topics, Achievements, Utility, Motivation.
+**Score safety:** `safePct()` frontend helper + `_normalize_score_pct()` backend helper — scores always 0-100.
 
-**Safety:** `require_student` enforced. All scores via `_normalize_score_pct()`. Missing tables return graceful empty. No teacher/admin data exposed.
-
----
-
-## 2026-06-28: Signup Redesign — Single-Step Card-Based
-
-**Decision:** Replace multi-step SignupPage (1027 lines with pay/offer tabs) with single-step card-based form (295 lines).
-
-**Changes:**
-- Teacher role removed from public signup (Parent + Student only)
-- Grade selector for students (Grade 5–10)
-- Google Sign In button
-- No payment, offer code, or step labels
-- All new accounts start on Free Tier (`access_cbse=false`)
-
-**Why:** Simpler, faster onboarding. Payment/upgrade happens inside the platform, not during signup.
+**Formula Sheet Quick Action:** Routes to `"formulaSheet"` page (not `"subscription"` or `"learnMore"`).
 
 ---
 
-## 2026-06-28: Google OAuth Hang on Return Visit — Fixed
-
-**Decision:** Gate full OAuth processing to only actual OAuth redirects (URL has `#access_token=` or `?code=`).
-
-**Root cause:** On normal page reload with existing Google session, `refreshSession()` fired `onAuthStateChange` with `SIGNED_IN`. `localStorage.getItem("tutor_user")` was null (async recovery not done), causing 6-attempt profile polling to start → `oauthLoading=true` → UI hangs.
-
-**Fix:** Check URL for OAuth params before entering full OAuth processing. Returning users are handled by session recovery instead.
-
----
-
-## 2026-06-28: Auth Error Message Sanitization
-
-**Decision:** All user-facing auth error messages must be friendly. Supabase/JWT internals logged to console only.
-
-**Changes in `authClient.js`:**
-- No Supabase access token → "Your session has expired. Please sign in again."
-- 401/403 → "Your session has expired. Please sign in again."
-- 500 → "We're having trouble right now. Please try again in a moment."
-- Business errors (400) without auth keywords → shown as-is
-
----
-
-## 2026-06-28: Session Recovery on App Boot
-
-**Decision:** On app load with saved `tutor_user` in localStorage, verify Supabase session and fetch fresh profile.
-
-**Why:** Prevents stale subscription/access/role data after returning to the site without logging out.
-
-**Behavior:**
-- Expired session → clear localStorage → setUser(null)
-- Valid session → refresh token → fetch `/api/auth/profile` → update state
-- Network failure → keep stale data (non-critical, user still sees dashboard)
-- `handleLogin` now fetches fresh profile for ALL roles (was students-only)
-
----
-
-## 2026-06-28: Child Login Credential Display
-
-**Decision:** After `create_student`, return `login_id` + `login_email` in response. Show one-time credentials panel to parent.
-
-**Root cause of login failure:** UI never showed credentials. Parent didn't know what username/ID the child should use.
-
-**Login flow:** Child types username → `/api/auth/lookup-email/{username}` → returns profile.email → `signInWithPassword(email, password)`.
-
-**Safety:** Password shown once in credentials panel, never stored in profile, never in audit logs.
-
----
-
-## 2026-06-28: Score Column Fix — test_history.percentage
-
-**Decision:** All score extraction must use `percentage` column, not `score` or `total_questions`.
-
-**Root cause:** `test_history` table stores:
-- `percentage` — already 0-100 (e.g., 60.0, 80.0) ← **USE THIS**
-- `raw_score` — marks obtained (e.g., 3.0, 4.0)
-- `max_score` — total marks (e.g., 5.0, 20.0)
-- `score` column — **does NOT exist**
-- `total_questions` column — **does NOT exist**
-
-**Fix:** `_normalize_score_pct(percentage, raw_score, max_score)` — never multiplies percentage by 100.
-
----
-
-## 2026-06-28: student_progress not chapter_progress
-
-**Decision:** Use `student_progress` table for all lesson/chapter progress queries.
-
-**Root cause:** `chapter_progress` table was never created. All progress data is in `student_progress`.
-
----
-
-## 2026-06-27: Parent Notification Center
-
-**Decision:** `parent_notifications` table for persistent notifications + rule-based fallback when table is empty.
-
-**Rule-based types:** `feature_locked`, `child_inactive`, `plan_expiring`, `low_mock_score`, `strong_improvement`.
-
-**Metadata sanitization:** On read, strip `token`, `secret`, `key`, `password`, `audit_detail` keys.
-
----
-
-## 2026-06-27: Child Limit from Subscription Resolver
-
-**Decision:** `create_student` enforces child limit from canonical subscription resolver, not hardcoded `>= 2`.
-
-| Plan | Child Limit |
-|---|---|
-| FREE_TIER | 1 |
-| NANO | 1 |
-| PREMIUM | 1 |
-| FAMILY_PREMIUM | 2 |
-| ADMIN_GRANT | None (unlimited) |
-
-**Fix:** `child_limit = None or 1` bug — `None or 1 = 1` incorrectly capped admin at 1. Fixed with explicit conditional.
-
----
-
-## 2026-06-26: _normalize_score_pct Canonical Helper
-
-**Decision:** All score display uses a single canonical helper in `parent_dashboard_v2.py`.
-
-**Rules:**
-1. `percentage` in [0,100] → use directly
-2. `percentage` > 100 → invalid, try `raw / max * 100`
-3. `max_score = 0` → return None
-4. No data → return None
-
-**Reason:** Previous code multiplied `percentage` by `(score/total_questions)*100` causing 1200%, 1600% display bugs.
-
----
-
-## Earlier Decisions
+## Earlier Decisions (carried forward)
 
 ### parentId Alone Never Grants Access
-`access_cbse` must be explicitly `true`. A child with only `parent_id` set but `access_cbse=false` is Free Tier. This is enforced at both API layer (subscription resolver) and frontend (`resolveSubscription.js`).
+`access_cbse` must be explicitly `true`. Enforced at both API layer (subscription resolver) and frontend (`resolveSubscription.js`).
 
 ### Canonical Feature Authorization
-Feature access comes from `get_feature_summary(user_id)` in `feature_authorization_service.py`. Never branch on raw `subscription_plan` string. Never infer access from `parentId`.
+Feature access comes from `get_feature_summary(user_id)`. Never branch on raw `subscription_plan`. Never infer access from `parentId`.
 
-### Offer Code Not Required for Signup
-All new users sign up free. Offer codes are redeemable separately. Signup UI has no offer code field.
+### test_history.percentage
+Always use `percentage` column (0-100). `score` and `total_questions` columns do NOT exist. Never multiply `percentage` by 100.
 
-### Expiry Revocation
-When `subscription_expires_at` is in the past, `access_cbse` is set to `false` by the expiry job. This is the canonical way to revoke access — not by deleting the subscription record.
+### student_progress not chapter_progress
+`chapter_progress` table does NOT exist. All progress data is in `student_progress`.

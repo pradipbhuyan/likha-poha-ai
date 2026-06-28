@@ -9,21 +9,44 @@ _Last updated: 2026-06-28_
 |---|---|
 | `auth.users` | Supabase auth users |
 | `profiles` | User profiles (student, parent, teacher, admin) |
-| `families` | Family groupings for parent-child relationships |
+| `families` | Family groupings |
 
 ### Learning
-| Table | Purpose | Key Columns |
+| Table | Key Columns | Notes |
 |---|---|---|
-| `student_progress` | Lesson progress per chapter | `username`, `subject`, `chapter`, `completed`, `current_step_index`, `updated_at` |
-| `test_history` | Mock test results | `username`, `percentage` (0-100), `raw_score`, `max_score`, `subject`, `chapter`, `created_at` |
-| `weak_area_alerts` | Identified weak topics | `username`, `subject`, `chapter`, `best_score`, `status` |
-| `ai_usage_logs` | AI feature usage tracking | `username`, `feature`, `created_at`, `total_tokens` |
-| `quiz_history` | Quiz attempt records | — |
+| `student_progress` | `username, subject, chapter, completed, current_step_index` | Only progress table — chapter_progress does NOT exist |
+| `test_history` | `username, percentage (0-100), raw_score, max_score, subject, chapter` | Use `percentage` only — `score` does NOT exist |
+| `weak_area_alerts` | `username, subject, chapter, best_score` | |
+| `ai_usage_logs` | `username, feature, created_at, total_tokens` | Use for activity, NOT ai_conversation_logs |
+| `lesson_cache` | `grade, subject, chapter, step_title, lesson_content, practice_questions` | Pre-generated lessons |
+
+### Student Features
+| Table | Purpose |
+|---|---|
+| `student_exam_schedule` | Student exam dates (added by student or parent) |
+| `formula_sheets` | Formula reference content (Grade 5–12, freemium) |
+
+### formula_sheets Columns (v1 base)
+`id, grade, subject, chapter, section_title, formula_name, expression, explanation, example, display_order, active, created_at`
+
+### formula_sheets Columns (v2 — applied)
+`topic, variables, solution_steps, memory_tip, tags (TEXT[]), difficulty, chapter_order`
+
+### formula_sheets Columns (v3 — PENDING Supabase Studio application)
+`expression_latex, variables_json (JSONB), use_when, mcqs_json (JSONB), source_type, status, quality_score, updated_at`
+
+**When v3 not applied:** endpoint falls back to base columns automatically (42703 error caught).
 
 ### Parent Platform
 | Table | Purpose |
 |---|---|
-| `parent_notifications` | Persistent notifications for parents |
+| `parent_notifications` | Persistent notifications |
+
+### Admin / QA
+| Table | Purpose |
+|---|---|
+| `lesson_quality_audit_runs` | Lesson quality audit job history |
+| `platform_audit_logs` | Admin audit trail (never expose to parents/students) |
 
 ### Teacher Platform
 | Table | Purpose |
@@ -31,56 +54,59 @@ _Last updated: 2026-06-28_
 | `teacher_student_assignments` | Teacher-student relationships |
 | `teacher_classrooms` | Classroom groupings |
 
-### Payments & Subscriptions
+### Payments
 | Table | Purpose |
 |---|---|
 | `payments` | Payment records |
-| `subscription_timeline` | Subscription history |
+| `subscription_timeline` | History |
 | `offer_redemptions` | Offer code usage |
-
-### Admin
-| Table | Purpose |
-|---|---|
-| `platform_audit_logs` | Admin audit trail (never exposed to parents/students) |
 
 ## Tables That Do NOT Exist
 
-The following tables are **not in the database** — do not attempt to query them:
-
-| Table | Status | Alternative |
+| Table | Status | Use Instead |
 |---|---|---|
-| `chapter_progress` | ❌ Does not exist | Use `student_progress` |
-| `lesson_progress` | ❌ Does not exist | Use `student_progress` |
+| `chapter_progress` | ❌ DOES NOT EXIST | `student_progress` |
+| `lesson_progress` | ❌ DOES NOT EXIST | `student_progress` |
 | `homework` | ❌ Not yet created | Return `available: false` |
-| `exam_schedule` | ❌ Not yet created | Return `available: false` |
-| `ai_conversation_logs` | ❌ Does not exist | Use `ai_usage_logs` |
-| `student_activity` | ❌ Does not exist | Use `ai_usage_logs` |
-| `lesson_history` | ❌ Does not exist | Use `student_progress` |
+| `exam_schedule` (standalone) | ❌ Use `student_exam_schedule` | `student_exam_schedule` |
+| `ai_conversation_logs` | ❌ DOES NOT EXIST | `ai_usage_logs` |
+| `student_activity` | ❌ DOES NOT EXIST | `ai_usage_logs` |
 
 ## Column Notes
 
 ### test_history
-- **Use `percentage`** — stored as 0-100 float. `raw_score / max_score * 100` already computed.
-- `score` column does **NOT** exist.
-- `total_questions` column does **NOT** exist.
-- Always use `_normalize_score_pct(percentage, raw_score, max_score)` for safe display.
+- **`percentage`** ← USE THIS (already 0-100)
+- `raw_score` — marks obtained
+- `max_score` — total marks
+- `score` ← **DOES NOT EXIST**
+- `total_questions` ← **DOES NOT EXIST**
+- Always use `_normalize_score_pct(percentage, raw_score, max_score)`
 
 ### profiles
-- `access_cbse` — boolean, canonical paid access flag
-- `subscription_expires_at` — nullable, expiry date
-- `subscription_plan` — string, but use canonical resolver, not this field directly
+- `access_cbse` — canonical paid access flag
+- `subscription_expires_at` — nullable
+- `subscription_plan` — string, use canonical resolver not this directly
 - `parent_id` — nullable, set when parent creates child
-- `family_id` — nullable, family grouping
+- `family_id` — nullable
 
 ## Migrations
 
-All migrations in `/backend/migrations/` use `IF NOT EXISTS` for idempotency:
-- `20260627_parent_notifications.sql` — `parent_notifications` table
+All in `backend/migrations/`, idempotent:
+
+| File | Purpose |
+|---|---|
+| `20260628_formula_sheets.sql` | formula_sheets base table |
+| `20260628_formula_sheets_v2.sql` | topic, variables, solution_steps, memory_tip, difficulty, chapter_order |
+| `20260628_formula_sheets_v3.sql` | expression_latex, mcqs_json, source_type, status (PENDING application) |
+| `20260628_student_exam_schedule.sql` | student_exam_schedule table |
+| `20260628_lesson_quality_audit_runs.sql` | QA audit job history |
+| `20260627_parent_notifications.sql` | parent_notifications table |
 
 ## Safety Rules
 
-1. Never expose `platform_audit_logs` to parents or students.
-2. Never expose teacher-private fields (`teacher_student_notes`) to parents.
-3. Missing tables return graceful empty (never crash) — use `_safe_query()`.
-4. Student data access gated by `require_student` dependency.
-5. Parent data access gated by `require_parent` + `_verify_child_ownership()`.
+1. Never expose `platform_audit_logs` to parents or students
+2. Never expose teacher-private fields to parents
+3. Missing tables: use `_safe_query()` — never crash
+4. Student data: `require_student` dependency
+5. Parent data: `require_parent` + `_verify_child_ownership()`
+6. Admin QA data: `require_admin` — all `/api/admin/qa/*` endpoints

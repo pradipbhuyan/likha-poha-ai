@@ -6,96 +6,100 @@ _Last updated: 2026-06-28_
 
 ### Foundation
 - Free signup without offer-code requirement
-- Canonical subscription resolver (`resolveSubscription`, `_normalize_score_pct`)
-- Plan catalog and parity tests
-- Payment idempotency and webhook deduplication
-- Audit logs
-- Subscription timeline
-- Expiry job
-- Admin Console refactor (quick actions, search, favorites, notifications, recent activity)
-- Teacher Platform Phase 1–3
+- Canonical subscription resolver + feature authorization
+- Plan catalog, parity tests, payment idempotency
+- Audit logs, subscription timeline, expiry job
+- Admin Console refactor
 
 ### Parent Experience (Phase 1–3) ✅
-- `GET /api/parent/dashboard/summary` — canonical dashboard with feature badges
-- `GET /api/parent/children/{id}/detail` — enriched child detail
-- `GET /api/parent/children/{id}/analytics` — progress, mock tests, activity
-- `GET /api/parent/children/{id}/academic-insights` — homework/exam insights
-- `GET /api/parent/children/{id}/progress-report` — print-friendly report
-- `GET /api/parent/notifications` — notification center (DB + rule-based fallback)
-- `parent_notifications` table
-- UX redesign: ParentHeroSummary, ParentChildStatusCard, ParentActionPlan, ParentNotificationGroups, ParentAccessExplanation, ParentProgressStory, ParentChildWorkspace (9-tab)
-- Add Child: credentials panel + "What to do next" instructions
-- Child limit enforced from subscription resolver (not hardcoded)
-- All scores use `_normalize_score_pct()` — no 1200%/1600% bugs
-- `student_progress` table (not `chapter_progress`) + `percentage` column (not `score/total_questions`)
+- Full parent dashboard with 9-tab child workspace
+- Notifications, analytics, progress report, academic insights
+- Add Child flow with credentials panel
+- Score normalization (`_normalize_score_pct()`)
 
 ### Student Experience ✅
-- Student Dashboard redesign (Option 1 card-based layout)
-- `GET /api/student/dashboard/summary` — all dashboard data in one call
+- **Student Dashboard redesign** (Option 1 card-based layout)
+- `GET /api/student/dashboard/summary`
 - Hero + Quick Stats + Continue Learning + Today's Plan + AI Coach + Subject Progress + Mock Tests + Weak Topics + Achievements + Utility + Motivation
-- Responsive: 4-col → 2-col (tablet) → 1-col (mobile)
-- CSS variables for light/dark mode
-- Score normalization canonical helper shared across endpoints
-- 439 tests passing
+- **Student Exam Schedule** (`student_exam_schedule` table)
+  - Student and parent can add exam dates
+  - Countdown in days
+  - No static placeholder dates
+- **Formula Sheet** — full freemium feature
+  - Chapter-wise for Grade 5–12 (96+ formulas)
+  - `FORMULA_SHEET_PREMIUM` feature key
+  - Free: preview 3 formulas per chapter
+  - Paid: full expansion + examples + memory tips + MCQ practice
+  - KaTeX math rendering
+  - Exemplar-style upgrade modal
+  - Sidebar item below Mock Test
+  - Formula Sheet Quick Actions: Watch Concept Videos, Practice Questions, Study Materials all have real destinations
+
+### Formula Sheet Content ✅
+- 96 formulas across Grade 5–12
+- Maths: Grade 5-12 (area, algebra, trig, calculus, vectors)
+- Science: Grade 9-10 (motion, electricity, optics)
+- Physics/Chemistry: Grade 11-12
+- Grade 9: 55 formulas across 19 chapters
+- Grade 10: 76 formulas across 15 chapters
+- Migration v3 pending application (expression_latex, mcqs_json, source_type, status)
 
 ### Signup Redesign ✅
-- Single-step card-based signup (Option 1)
+- Single-step card-based signup
 - Parent + Student roles only (Teacher removed from public signup)
-- Grade selector for students (Grade 5–10)
-- Google Sign In button
-- All new accounts start on Free Tier
-- No payment/offer code in signup flow
+- Grade 5–10 selector for students
+- Google Sign In
+- Add Child: Grade 5–10 only
 
 ### Auth / Session Reliability ✅
-- Session recovery on app boot: verifies Supabase session, refreshes, fetches fresh profile
-- Google OAuth hang fixed: full OAuth only on actual redirect URLs, not page reload
-- `handleLogin` fetches fresh profile for ALL roles
-- Friendly error messages: no Supabase/JWT internals shown to users
-- `handleRefreshUser()` utility for post-mutation refresh
+- Session recovery on app boot
+- **Google OAuth race condition fixed** — session recovery skips when `?code=` in URL
+- **isOAuthRedirect check before localStorage** in `onAuthStateChange`
+- **Identity age fallback** for post-PKCE URL cleanup
+- **authFetch 3-step retry** (800ms) for post-OAuth session window
+- Friendly error messages (no Supabase/JWT internals)
 
-### Child Login Flow ✅
-- `create_student` returns `login_id` + `login_email`
-- Silent profile insert failure detected → auth user rollback → 500 error
-- Credentials panel shown to parent after child creation
-- Signup `access_cbse=false` enforced (no paid access on signup)
+### Platform QA Center (Admin) ✅
+- **Lesson Quality Audit** — deterministic checks, LLM optional, reports (JSON/MD/CSV)
+- **Feature Authorization Audit** — matrix checks Free/Paid/Expired × all features
+  - Free Tier Exemplar/Formula/Lesson Download denied
+  - Mock Tests limited (not denied) for Free Tier
+  - parentId alone never grants paid access
+  - Expired plans fall back to FREE_TIER
+  - 42/42 checks passing
+- Both audits: CLI + Admin UI + download endpoints
+- Admin-only (all endpoints have `require_admin`)
 
-## In Progress / Near-term
+## Pending / Near-term
 
-### Content Platform
-- Lesson management admin UI
-- Question bank improvements
-- Exemplar management
-- AI prompt management
-- Bulk import/export
+### Formula Sheet v3 Migration (apply via Supabase Studio)
+- `expression_latex`, `variables_json`, `mcqs_json`, `use_when`
+- `source_type` (seeded/llm_generated/admin_reviewed)
+- `status` (draft/published/archived)
+- Admin LLM prewarm workflow (post-migration)
 
-### Teacher Platform Enhancements
-- Teacher-student chat
-- Assignment tracking
-- Parent-teacher communication summaries
-
-## Pending
+### Admin LLM Formula Prewarm
+- `POST /api/admin/content/formula-sheets/prewarm`
+- LLM-generated draft content per grade/chapter
+- Admin review before publish
 
 ### Homework & Exam Center
-- `homework` and `exam_schedule` tables to be created
-- Until then: `homework.available=false`, `exams.available=false` shown gracefully
+- `homework` and `exam_schedule` tables not yet created
+- Currently: `available=false` shown gracefully
 
-### Advanced Student Features
-- Adaptive learning path
-- Topic mastery tracking
-- Mock test improvement charts with trend analysis
-- Achievements/badges system (beyond current rule-based)
+### Content Platform
+- Admin formula editor UI
+- Bulk import/export
 
 ### Production Readiness
 - E2E browser tests
-- Performance/load testing (stress test existing endpoints)
+- Performance/load testing
 - Backup/restore procedures
-- Monitoring and alerting refinements
-- Sentry/error tracking integration
-- Operational dashboard enhancements
+- Sentry integration
 
 ## Key Technical Debt
 
-1. `chapter_progress` table was never created — always use `student_progress`
+1. `chapter_progress` table never created — always use `student_progress`
 2. `test_history.score` column does not exist — always use `percentage`
-3. Free Tier child limit defaults to 1 (None from resolver) — handled explicitly in v2 endpoint
-4. Google OAuth returning user hang — fixed with URL gate check
+3. `formula_sheets` v3 migration not yet applied — fallback to base columns
+4. Google OAuth session has multiple edge-case fixes — document in onboarding
