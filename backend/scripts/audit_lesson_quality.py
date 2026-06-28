@@ -383,9 +383,12 @@ def audit_lesson(key: str, rows: list[dict], use_llm: bool) -> dict:
         step_findings.extend(_check_lesson_content(row))
         step_findings.extend(_check_mcqs(row))
 
-        # Optional LLM check
+        # Optional LLM check (never propagate LLM errors)
         if use_llm:
-            step_findings.extend(_llm_review_lesson(row))
+            try:
+                step_findings.extend(_llm_review_lesson(row))
+            except Exception as _e:
+                _log.warning("LLM review failed for step %s: %s", row.get("step_title"), _e)
 
         all_findings.extend(step_findings)
         step_results.append({
