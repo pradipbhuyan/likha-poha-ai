@@ -269,6 +269,13 @@ function Sidebar({
       hideForAdmin: true,
     },
     {
+      key: "formulaSheet",
+      label: "Formula Sheet",
+      icon: Calculator,
+      roles: ["student"],
+      hideForAdmin: true,
+    },
+    {
       key: "exemplarResearch",
       label: "Exemplar Research",
       icon: Sparkles,

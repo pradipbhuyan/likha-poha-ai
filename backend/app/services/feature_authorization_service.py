@@ -77,6 +77,7 @@ class Feature:
     PARENT_DASHBOARD     = "PARENT_DASHBOARD"
     TEACHER_DASHBOARD    = "TEACHER_DASHBOARD"
     ADMIN_PANEL          = "ADMIN_PANEL"
+    FORMULA_SHEET_PREMIUM= "FORMULA_SHEET_PREMIUM"
 
 
 # ── Feature Matrix ────────────────────────────────────────────────────────────
@@ -141,6 +142,12 @@ _FEATURE_MATRIX: dict[str, dict] = {
         "allowed_plans": None,
         "limited_on": {"FREE_TIER"},
         "upgrade_message": "Upgrade for AI-powered solutions.",
+    },
+    Feature.FORMULA_SHEET_PREMIUM: {
+        "allowed_plans": {"NANO", "PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+        "limited_on": set(),
+        "upgrade_message": "Upgrade to unlock solved examples, memory tips and full formula library.",
     },
     Feature.QUESTION_BANK: {
         "allowed_plans": None,

@@ -86,6 +86,11 @@ const PAGE_META = {
     subtitle: "Explore free videos and learning resources for each chapter.",
     icon: "🎥",
   },
+  formulaSheet: {
+    title: "Formula Sheet",
+    subtitle: "Chapter-wise CBSE formula reference for your grade. Preview free, unlock all with Premium.",
+    icon: "📐",
+  },
   analytics: {
     title: "Analytics",
     subtitle: "Track progress, scores, history, and subject performance.",
@@ -974,7 +979,7 @@ function App() {
       case "dashboard":
         return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;
       case "formulaSheet":
-        return <FormulaSheetPage user={user} />;
+        return <FormulaSheetPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
       case "lessons":
