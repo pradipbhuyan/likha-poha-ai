@@ -255,8 +255,12 @@ describe("AdminAnalytics — state: table_missing", () => {
   test("trend chart shows not-enabled for missing table", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("AI Tokens Used");
-    const notEnabled = screen.getAllByTestId("trend-not-enabled");
-    expect(notEnabled.length).toBeGreaterThan(0);
+    // Use waitFor — trend-not-enabled renders asynchronously after fetch in CI
+    const { waitFor } = await import("@testing-library/react");
+    await waitFor(() => {
+      const notEnabled = document.querySelectorAll("[data-testid='trend-not-enabled']");
+      expect(notEnabled.length).toBeGreaterThan(0);
+    }, { timeout: 4000 });
   });
 
   test("data availability footnotes show missing tables", async () => {
