@@ -13,7 +13,7 @@ import ParentChildWorkspace from "../components/parent/ParentChildWorkspace";
 // ── Design tokens (shared) ────────────────────────────────────────────────────
 var inp={padding:"8px 12px",borderRadius:8,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".85rem",background:"var(--surface2,#f8fafc)",color:"var(--text,#1e293b)",width:"100%"};
 var btn1={padding:"8px 16px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"};
-var GRADES=Array.from({length:10},function(_,i){return"Grade "+(i+1);});
+var GRADES=["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
 
 // ── Skeleton loader ───────────────────────────────────────────────────────────
 function Skel(){
