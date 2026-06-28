@@ -171,7 +171,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
         {[
           {icon:"🎯",val:"45 min",label:"Today's Goal",sub:"Daily learning time",col:"#22c55e"},
           {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"Complete today",col:"#6366f1"},
-          {icon:"📅",val:"12 Jul",label:"Next Exam",sub:s.grade||"",col:"#f59e0b"},
+          {icon:"📅",val:"—",label:"Next Exam",sub:"Not scheduled",col:"#94a3b8"},
           {icon:"⭐",val:(act.total_90d||0),label:"XP Points",sub:"Keep learning!",col:"#f59e0b"},
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>
