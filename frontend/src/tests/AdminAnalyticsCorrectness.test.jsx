@@ -298,8 +298,11 @@ describe("AdminAnalytics — state: query_error", () => {
   test("shows Unable to load for errored metrics", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
-    const badges = screen.getAllByTestId("badge-error");
-    expect(badges.length).toBeGreaterThan(0);
+    const { waitFor } = await import("@testing-library/react");
+    await waitFor(() => {
+      const badges = document.querySelectorAll("[data-testid='badge-error']");
+      expect(badges.length).toBeGreaterThan(0);
+    }, { timeout: 4000 });
   });
 
   test("does not show 0 for errored user metrics", async () => {
