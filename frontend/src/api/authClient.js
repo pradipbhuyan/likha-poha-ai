@@ -28,14 +28,26 @@ export async function authFetch(path, options = {}) {
   }
 
   if (!token) {
-    // Second attempt: wait briefly and retry — handles the brief window right after
-    // Google OAuth redirect where Supabase session is being processed asynchronously
+    // Second attempt: wait and retry — handles post-OAuth window for new parent/student
+    // Role/grade selection + handleLogin may take time before session is stored
     await new Promise(r => setTimeout(r, 800));
     const { data: retryData } = await supabase.auth.getSession();
     token = retryData.session?.access_token;
     if (!token) {
       const retryRefreshed = await supabase.auth.refreshSession();
       token = retryRefreshed.data.session?.access_token;
+    }
+  }
+
+  if (!token) {
+    // Third attempt: additional 1200ms — for parent flow where subscriptionPlans
+    // page makes authFetch calls very soon after handleLogin completes
+    await new Promise(r => setTimeout(r, 1200));
+    const { data: retryData3 } = await supabase.auth.getSession();
+    token = retryData3.session?.access_token;
+    if (!token) {
+      const retryRefreshed3 = await supabase.auth.refreshSession();
+      token = retryRefreshed3.data.session?.access_token;
     }
   }
 

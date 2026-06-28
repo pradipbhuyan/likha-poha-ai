@@ -886,7 +886,7 @@ function App() {
                     setPendingOauthUser(null);
                     setOauthSaving(false);
                     // Give React one tick to mount the app shell, then navigate
-                    setTimeout(() => setActivePage("subscriptionPlans"), 100);
+                    setTimeout(() => setActivePage("subscriptionPlans"), 300);
                   });
                 }
               }}
@@ -942,7 +942,7 @@ function App() {
               setPendingOauthUser(null);
               setOauthSaving(false);
               // Send new Google students to Subscription page to choose plan / offer code
-              setTimeout(() => setActivePage("subscriptionPlans"), 100);
+              setTimeout(() => setActivePage("subscriptionPlans"), 300);
             }}
             style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }}
           >
