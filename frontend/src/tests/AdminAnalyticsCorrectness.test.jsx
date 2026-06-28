@@ -227,9 +227,14 @@ describe("AdminAnalytics — state: table_missing", () => {
 
   test("shows Not yet enabled for offer redemptions", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Total Users");
-    const badge = screen.getAllByTestId("badge-not-enabled");
-    expect(badge.length).toBeGreaterThan(0);
+    // Wait for the analytics panel to fully render data (not just labels)
+    await screen.findByTestId("admin-analytics");
+    // Wait for badge-not-enabled to appear (async render after fetch)
+    const { waitFor } = await import("@testing-library/react");
+    await waitFor(() => {
+      const badges = document.querySelectorAll("[data-testid='badge-not-enabled']");
+      expect(badges.length).toBeGreaterThan(0);
+    }, { timeout: 4000 });
   });
 
   test("does not show raw null or dash for missing tables", async () => {
