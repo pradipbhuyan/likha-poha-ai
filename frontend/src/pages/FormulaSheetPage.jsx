@@ -74,8 +74,184 @@ function UpgradePrompt({ msg = "Unlock this content with Premium." }) {
   );
 }
 
+
+// ── MCQ Practice component ─────────────────────────────────────────────────
+// Generates 4 original MCQs from formula data (rule-based, no LLM call)
+// Shows inline with detailed answer explanations — like Exemplar section
+
+function buildMCQs(formula) {
+  // Rule-based MCQ generation from formula content
+  // Returns up to 4 questions with options and explanations
+  var nm = formula.name || "this formula";
+  var ex = formula.expression || "";
+  var chapter = formula.chapter || "";
+  var desc = formula.description || "";
+  var examp = formula.example || "";
+  // Generic template MCQs for any formula
+  return [
+    {
+      q: "What does the formula " + nm + " calculate?",
+      options: [
+        desc || ("The value given by " + ex),
+        "The perimeter of a shape",
+        "The total surface area only",
+        "The number of sides",
+      ],
+      correct: 0,
+      explain: (desc || ("This formula computes " + nm)) + ". The expression is: " + ex,
+    },
+    {
+      q: "Which chapter/topic does " + nm + " belong to?",
+      options: [
+        chapter || "Geometry",
+        "Number Systems",
+        "Statistics",
+        "Linear Equations",
+      ],
+      correct: 0,
+      explain: nm + " is a key formula in the " + (chapter || "Mathematics") + " chapter of CBSE Grade 9.",
+    },
+    {
+      q: examp ? ("Given the example: " + examp + " — which formula was applied?") : ("The expression '" + ex.substring(0,30) + "' represents?"),
+      options: [
+        nm,
+        "Pythagoras Theorem",
+        "Mean Formula",
+        "Ohm's Law",
+      ],
+      correct: 0,
+      explain: "The expression " + ex + " is the " + nm + (examp ? ". In the example: " + examp : "") + ".",
+    },
+    {
+      q: "When should you use " + nm + "?",
+      options: [
+        desc ? ("When you need to find: " + desc.substring(0,60)) : ("To apply " + nm + " in a " + chapter + " problem"),
+        "Only in electrical circuits",
+        "For calculating speed",
+        "To find probability of events",
+      ],
+      correct: 0,
+      explain: (desc || ("Use " + nm + " when solving " + chapter + " problems requiring " + ex)) + ".",
+    },
+  ];
+}
+
+function MCQPractice({ formula }) {
+  const [open, setOpen] = useState(false);
+  const [answers, setAnswers] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  var mcqs = buildMCQs(formula);
+
+  function handleSelect(qi, oi) {
+    if (submitted) return;
+    setAnswers(prev => ({ ...prev, [qi]: oi }));
+  }
+
+  function handleSubmit() {
+    if (Object.keys(answers).length < mcqs.length) return;
+    setSubmitted(true);
+  }
+
+  function handleReset() {
+    setAnswers({});
+    setSubmitted(false);
+  }
+
+  return (
+    <div style={{ marginTop: 8 }}>
+      <button
+        data-testid="practice-btn"
+        onClick={() => setOpen(o => !o)}
+        style={{ padding: "6px 14px", borderRadius: 7, border: "none",
+          background: "#6366f1", color: "#fff", fontSize: ".76rem",
+          fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+        {open ? "▲ Close Practice" : "📝 Practice ›"}
+      </button>
+
+      {open && (
+        <div data-testid="mcq-practice-panel"
+          style={{ marginTop: 12, background: "var(--surface2,#f8fafc)",
+            border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: 14 }}>
+          <div style={{ fontWeight: 700, fontSize: ".82rem", marginBottom: 10, color: "#6366f1" }}>
+            📝 Practice Questions — {formula.name}
+          </div>
+
+          {mcqs.map((q, qi) => (
+            <div key={qi} data-testid={"mcq-"+qi}
+              style={{ marginBottom: 14, padding: "10px 12px",
+                background: "var(--panel,#fff)", borderRadius: 8,
+                border: "1px solid var(--border,#e5e7eb)" }}>
+              <div style={{ fontWeight: 600, fontSize: ".8rem", marginBottom: 8 }}>
+                Q{qi+1}. {q.q}
+              </div>
+              {q.options.map((opt, oi) => {
+                var sel = answers[qi] === oi;
+                var correct = oi === q.correct;
+                var bg = !submitted ? (sel ? "#ede9fe" : "transparent")
+                  : correct ? "#dcfce7" : (sel ? "#fee2e2" : "transparent");
+                var border = !submitted ? (sel ? "1.5px solid #6366f1" : "1px solid var(--border,#e5e7eb)")
+                  : correct ? "1.5px solid #22c55e" : (sel ? "1.5px solid #ef4444" : "1px solid var(--border,#e5e7eb)");
+                return (
+                  <div key={oi} onClick={() => handleSelect(qi, oi)}
+                    style={{ display: "flex", alignItems: "center", gap: 8,
+                      padding: "6px 10px", marginBottom: 5, borderRadius: 7,
+                      background: bg, border: border,
+                      cursor: submitted ? "default" : "pointer",
+                      fontSize: ".77rem" }}>
+                    <span style={{ fontWeight: 700, color: sel ? "#6366f1" : "var(--text-muted,#94a3b8)", minWidth: 16 }}>
+                      {["A","B","C","D"][oi]}
+                    </span>
+                    <span>{opt}</span>
+                    {submitted && correct && <span style={{ marginLeft: "auto", color: "#22c55e", fontSize: ".75rem" }}>✓ Correct</span>}
+                    {submitted && sel && !correct && <span style={{ marginLeft: "auto", color: "#ef4444", fontSize: ".75rem" }}>✗ Wrong</span>}
+                  </div>
+                );
+              })}
+
+              {/* Explanation shown after submit */}
+              {submitted && (
+                <div data-testid={"mcq-explanation-"+qi}
+                  style={{ marginTop: 8, padding: "8px 10px", background: "#f0fdf4",
+                    borderRadius: 7, border: "1px solid #bbf7d0", fontSize: ".75rem",
+                    lineHeight: 1.5 }}>
+                  <span style={{ fontWeight: 700, color: "#16a34a" }}>💡 Explanation: </span>
+                  {q.explain}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {!submitted ? (
+            <button onClick={handleSubmit}
+              disabled={Object.keys(answers).length < mcqs.length}
+              style={{ padding: "7px 16px", borderRadius: 7, border: "none",
+                background: Object.keys(answers).length < mcqs.length ? "#94a3b8" : "#6366f1",
+                color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: Object.keys(answers).length < mcqs.length ? "not-allowed" : "pointer",
+                fontFamily: "inherit" }}>
+              Submit Answers
+            </button>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ fontWeight: 700, color: "#22c55e", fontSize: ".82rem" }}>
+                Score: {mcqs.filter((_,qi) => answers[qi] === 0).length}/{mcqs.length}
+              </div>
+              <button onClick={handleReset}
+                style={{ padding: "5px 12px", borderRadius: 7, border: "1px solid #6366f1",
+                  background: "transparent", color: "#6366f1", fontWeight: 600, fontSize: ".75rem",
+                  cursor: "pointer", fontFamily: "inherit" }}>
+                Try Again
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Formula Card ─────────────────────────────────────────────────────────────
-function FormulaCard({ formula, hasPremium, onAskAI, onPractice, onUpgrade }) {
+function FormulaCard({ formula, hasPremium, onUpgrade }) {
   const [expanded, setExpanded] = useState(false);
 
   const canExpand = hasPremium && formula.preview_allowed && !formula.locked;
@@ -175,21 +351,8 @@ function FormulaCard({ formula, hasPremium, onAskAI, onPractice, onUpgrade }) {
             </div>
           ) : null}
 
-          {/* Action buttons */}
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 6 }}>
-            {onAskAI && (
-              <button onClick={() => onAskAI(formula)}
-                style={{ padding: "4px 10px", borderRadius: 7, border: "1px solid #6366f1", background: "transparent", color: "#6366f1", fontSize: ".71rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
-                Ask AI 🤖
-              </button>
-            )}
-            {onPractice && (
-              <button onClick={() => onPractice(formula)}
-                style={{ padding: "4px 10px", borderRadius: 7, border: "none", background: "#6366f1", color: "#fff", fontSize: ".71rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
-                Practice ›
-              </button>
-            )}
-          </div>
+          {/* MCQ Practice expander (inline, like Exemplar) */}
+          <MCQPractice formula={formula} />
         </div>
       )}
 
@@ -230,8 +393,6 @@ export default function FormulaSheetPage({ user, setActivePage }) {
   useEffect(() => { load(); }, [load]);
 
   function nav(page) { if (setActivePage) setActivePage(page); }
-  function handleAskAI(_f) { nav("askDoubt"); }
-  function handlePractice(_f) { nav("mockTest"); }
   function handleUpgrade() { nav("subscription"); }
 
   // Filter formulas by search
@@ -385,7 +546,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(270px,1fr))", gap: 10 }}>
                       {t.formulas.map(f => (
                         <FormulaCard key={f.id || f.name} formula={f} hasPremium={hasPremium}
-                          onAskAI={handleAskAI} onPractice={handlePractice} onUpgrade={handleUpgrade} />
+                          onUpgrade={handleUpgrade} />
                       ))}
                     </div>
                   </div>
