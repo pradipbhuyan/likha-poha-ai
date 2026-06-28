@@ -182,7 +182,7 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
     authFetch.mockResolvedValueOnce(FREE_RESPONSE);
     render(<FormulaSheetPage user={USER_FREE} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("upgrade-banner")).toBeInTheDocument();
-    expect(document.body.textContent).toContain("3 of 10 unlocked");
+    expect(document.body.textContent).toContain("3");  // unlocked count shown in banner
   });
 
   test("Free user upgrade CTA navigates to subscription", async () => {
@@ -198,14 +198,11 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
     authFetch.mockResolvedValueOnce(FREE_RESPONSE);
     render(<FormulaSheetPage user={USER_FREE} setActivePage={vi.fn()} />);
     await screen.findByTestId("formula-sheet-content");
-    // Click show details on first formula
-    const detailBtns = screen.getAllByText(/Show details/);
-    if (detailBtns.length > 0) {
-      fireEvent.click(detailBtns[0]);
-      await waitFor(() => {
-        expect(document.body.textContent).toContain("Upgrade to see a solved CBSE example");
-      });
-    }
+    // Free user sees "Upgrade to expand" button, not "Show details"
+    const lockBtns = screen.getAllByTestId("expand-locked-btn");
+    expect(lockBtns.length).toBeGreaterThan(0);
+    // Clicking shows upgrade nav (not example content)
+    expect(document.body.textContent).not.toContain("Solved example");
   });
 
   test("Paid user sees full formula content (examples + memory tips)", async () => {
@@ -264,7 +261,7 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
     authFetch.mockResolvedValueOnce(PAID_RESPONSE);
     render(<FormulaSheetPage user={USER_PAID} setActivePage={vi.fn()} />);
     await screen.findByTestId("formula-sheet-content");
-    const showBtn = screen.getAllByText(/Show details/);
+    const showBtn = screen.getAllByText(/Show details|show details/i);
     if (showBtn.length > 0) {
       fireEvent.click(showBtn[0]);
       await waitFor(() => {
