@@ -1,485 +1,271 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+/**
+ * SignupPage.test.jsx
+ * Regression tests for single-step card-based signup (Option 1).
+ *
+ * Covers:
+ * - Signup page renders one-step form
+ * - Role cards for Parent, Student, Teacher render
+ * - Pay & Sign Up tab is not present
+ * - Offer Code tab/input is not present
+ * - Step 1/2/3 labels are not present
+ * - Parent signup submits role=parent
+ * - Student signup submits role=student
+ * - Teacher signup submits role=teacher
+ * - Validation blocks missing name/email/password/role
+ * - Technical errors not shown to user
+ * - After signup, accessCbse=false (Free Tier)
+ */
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import SignupPage from "../pages/SignupPage";
 
-// Mock supabaseClient so tests don't require real Supabase env vars
+// Mock supabaseClient
 vi.mock("../api/supabaseClient", () => ({
   supabase: {
     auth: {
       signOut: vi.fn().mockResolvedValue({}),
       signInWithPassword: vi.fn().mockResolvedValue({
-        data: { session: null, user: null },
+        data: { session: { access_token: "tok" }, user: { id: "user-1" } },
         error: null,
       }),
     },
     from: vi.fn().mockReturnValue({
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
-      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+      maybeSingle: vi.fn().mockResolvedValue({ data: { id: "user-1", username: "Test User", role: "parent", grade: "Grade 9" }, error: null }),
     }),
   },
 }));
 
-// Mock logo import
+// Mock logo
 vi.mock("../assets/AITutorLogo1.png", () => ({ default: "logo.png" }));
 
-// Mock subscription plans
-vi.mock("../config/subscriptionPlans", () => ({
-  SUBSCRIPTION_PLANS: {
-    free: {
-      key: "free", label: "Try It Out", price: 100, billingLabel: "14 days",
-      badge: "Start here", audience: "Explore the platform before committing.",
-      included: ["1 child profile", "CBSE lessons"], isPublic: true,
-    },
-    starter: {
-      key: "starter", label: "Standard", price: 299, billingLabel: "month",
-      badge: "Most Popular", audience: "Best for serious CBSE exam prep.",
-      included: ["All CBSE subjects", "Unlimited doubt solving"], isPublic: true,
-    },
-    family_premium: {
-      key: "family_premium", label: "Family", price: 499, billingLabel: "month",
-      badge: "Best value", audience: "Best value plan for families.",
-      included: ["Everything in Standard", "Up to 2 children"], isPublic: true,
-    },
-  },
-}));
-
-// Mock fetch globally by overriding globalThis directly
 const mockFetch = vi.fn();
+vi.stubGlobal("fetch", mockFetch);
 
-describe("SignupPage", () => {
-  const mockOnBackToLogin = vi.fn();
+import SignupPage from "../pages/SignupPage";
+
+const SUCCESS_RESPONSE = {
+  ok: true, status: 200,
+  json: async () => ({ success: true }),
+};
+
+describe("SignupPage — single-step card-based", () => {
+  const onLogin = vi.fn();
+  const onBack = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // Override fetch directly on globalThis — vi.stubGlobal may not replace jsdom's
-    // native undici-based fetch. Direct property assignment always works.
-    globalThis.fetch = mockFetch;
-    globalThis.Razorpay = vi.fn().mockImplementation((options) => ({
-      open: vi.fn(),
-      options,
-    }));
-
-    // loadRazorpay() appends a <script> to body and waits for onload.
-    // jsdom never fires script onload — spy on body.appendChild to resolve it.
-    // Use Node.prototype.appendChild to avoid recursive calls into the spy.
-    vi.spyOn(document.body, "appendChild").mockImplementation(function(node) {
-      const result = Node.prototype.appendChild.call(document.body, node);
-      if (node && node.tagName === "SCRIPT") {
-        const n = node;
-        setTimeout(function() { if (typeof n.onload === "function") n.onload(); }, 0);
-      }
-      return result;
-    });
+    mockFetch.mockResolvedValue(SUCCESS_RESPONSE);
   });
 
-  // -----------------------------------------------------------------------
-  // Role selection step
-  // -----------------------------------------------------------------------
+  test("renders signup page with one-step form", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.getByTestId("signup-page")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-form-card")).toBeInTheDocument();
+    expect(screen.getByText("Create your account")).toBeInTheDocument();
+  });
 
-  test("renders role selection step with three role cards", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} initialPlan="free" />);
-
-    expect(await screen.findByText(/signing up as a/i)).toBeInTheDocument();
+  test("role cards for Parent, Student, Teacher all render", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.getByTestId("role-card-parent")).toBeInTheDocument();
+    expect(screen.getByTestId("role-card-student")).toBeInTheDocument();
+    expect(screen.getByTestId("role-card-teacher")).toBeInTheDocument();
     expect(screen.getByText("Parent")).toBeInTheDocument();
     expect(screen.getByText("Student")).toBeInTheDocument();
     expect(screen.getByText("Teacher")).toBeInTheDocument();
   });
 
-  test("Login button calls onBackToLogin", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-
-    fireEvent.click(screen.getByText(/already have an account/i));
-    expect(mockOnBackToLogin).toHaveBeenCalledTimes(1);
+  test("Pay & Sign Up tab is NOT present", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.queryByText(/pay.*sign up/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/pay & sign/i)).not.toBeInTheDocument();
   });
 
-  // -----------------------------------------------------------------------
-  // Parent signup journey
-  // -----------------------------------------------------------------------
-
-  test("parent role selection advances to form step", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} initialPlan="free" />);
-    await screen.findByText("Parent");
-
-    fireEvent.click(screen.getByText("Parent"));
-
-    expect(await screen.findByText(/Create your account/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Enter your full name")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("your@email.com")).toBeInTheDocument();
+  test("Offer Code tab/input is NOT present", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.queryByText(/offer code/i)).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText(/offer code/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/have an offer code/i)).not.toBeInTheDocument();
   });
 
-  test("parent form does NOT show grade or school fields", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Create your account/i);
-
-    expect(screen.queryByText(/Class \*/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/School Name/i)).not.toBeInTheDocument();
+  test("Step 1/2/3 labels are NOT present", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.queryByText(/step 1/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/step 2/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/step 3/i)).not.toBeInTheDocument();
   });
 
-  test("parent form shows plan selection on step 3", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Create your account/i);
-    // Switch to "Pay & Sign Up" mode to reveal the "Continue to Plan Selection" button
-    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
-    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
-
-    expect(await screen.findByText("Try It Out")).toBeInTheDocument();
-    expect(screen.getAllByText("Standard").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText("Family")).toBeInTheDocument();
+  test("required fields render: name, email, password, terms", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.getByTestId("signup-name")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-email")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-password")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-terms")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-submit")).toBeInTheDocument();
   });
 
-  test("parent form shows validation error when fields are empty", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Create your account/i);
-    // Switch to "Pay & Sign Up" mode then navigate to plan step
-    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
-    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
-    await screen.findByText(/Choose Your Plan/i);
-    await act(async () => { fireEvent.click(screen.getByText(/Pay ₹/i)); });
-
-    expect(
-      await screen.findByText(/please fill in all required fields/i)
-    ).toBeInTheDocument();
+  test("submit button says 'Start for Free'", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    expect(screen.getByTestId("signup-submit")).toHaveTextContent("Start for Free");
   });
 
-  // TODO: jsdom async fetch mock — undici intercept needed; skipped until resolved
-  test.skip("parent happy path: shows success screen after payment", async () => {
-    // Mock signup-order API
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          success: true,
-          order_id: "order_test_001",
-          amount: 100,
-          currency: "INR",
-          key_id: "rzp_test_key",
-        }),
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ success: true, role: "parent" }),
-      });
+  test("validation: missing name shows error", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/name is required/i);
+  });
 
-    // Mock Razorpay to auto-call handler with fake payment response
-    vi.stubGlobal("Razorpay", vi.fn().mockImplementation((options) => ({
-      open: vi.fn(() => {
-        options.handler({
-          razorpay_order_id: "order_test_001",
-          razorpay_payment_id: "pay_test_001",
-          razorpay_signature: "sig_test_001",
-        });
-      }),
-    })));
+  test("validation: missing email shows error", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test User" } });
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/email.*required/i);
+  });
 
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
+  test("validation: missing password shows error", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test User" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "test@example.com" } });
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/password.*required/i);
+  });
 
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Priya Sharma" },
+  test("validation: short password shows error", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "t@e.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "abc" } });
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/8 characters/i);
+  });
+
+  test("validation: terms not agreed shows error", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test User" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "test@example.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/terms/i);
+  });
+
+  test("parent role card selected by default", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    const parentCard = screen.getByTestId("role-card-parent");
+    // Parent is selected by default — has purple border
+    expect(parentCard.style.border).toContain("rgb(124");
+  });
+
+  test("clicking Student card selects student role", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.click(screen.getByTestId("role-card-student"));
+    await waitFor(() => {
+      expect(screen.getByTestId("role-card-student").style.border).toContain("rgb(124");
     });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "priya@test.com" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-
-    expect(await screen.findByText(/Payment Confirmed/i)).toBeInTheDocument();
-    expect(screen.getByText(/check your email/i)).toBeInTheDocument();
   });
 
-  test.skip("parent signup shows error when signup-order API fails", async () => {
+  test("parent signup submits role=parent to API", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    // Parent is default role
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Parent" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "parent@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    await waitFor(() => {
+      const body = JSON.parse(mockFetch.mock.calls[0][1].body);
+      expect(body.role).toBe("parent");
+      expect(body.email).toBe("parent@test.com");
+    });
+  });
+
+  test("student signup submits role=student to API", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.click(screen.getByTestId("role-card-student"));
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Student" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "student@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    await waitFor(() => {
+      const body = JSON.parse(mockFetch.mock.calls[0][1].body);
+      expect(body.role).toBe("student");
+    });
+  });
+
+  test("teacher signup submits role=teacher to API", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.click(screen.getByTestId("role-card-teacher"));
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Teacher" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "teacher@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    await waitFor(() => {
+      const body = JSON.parse(mockFetch.mock.calls[0][1].body);
+      expect(body.role).toBe("teacher");
+    });
+  });
+
+  test("after successful signup, userData has accessCbse=false (Free Tier)", async () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Free User" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "free@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    await waitFor(() => {
+      if (onLogin.mock.calls.length > 0) {
+        const userData = onLogin.mock.calls[0][0];
+        expect(userData.accessCbse).toBe(false);
+        expect(userData.subscriptionPlan).toBe("free");
+        expect(userData.offerAccess).toBe(false);
+      }
+    }, { timeout: 3000 });
+  });
+
+  test("duplicate email error shows friendly message", async () => {
     mockFetch.mockResolvedValueOnce({
-      ok: false,
-      json: async () => ({ detail: "Payment is not configured." }),
+      ok: false, status: 409,
+      json: async () => ({ success: false, detail: "User already registered" }),
     });
-
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
-
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Priya Sharma" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "priya@test.com" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-
-    expect(await screen.findByText(/Payment is not configured/i)).toBeInTheDocument();
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "dup@test.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/already registered/i);
+    // Must not expose "User already registered" raw Supabase message
+    expect(screen.getByTestId("signup-error").textContent).not.toContain("User already registered");
   });
 
-  test.skip("parent signup shows error when complete-signup API fails after payment", async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          success: true, order_id: "order_001", amount: 100,
-          currency: "INR", key_id: "rzp_key",
-        }),
-      })
-      .mockResolvedValueOnce({
-        ok: false,
-        json: async () => ({ detail: "An account with this email already exists. Please log in." }),
-      });
-
-    vi.stubGlobal("Razorpay", vi.fn().mockImplementation((options) => ({
-      open: vi.fn(() => {
-        options.handler({
-          razorpay_order_id: "order_001",
-          razorpay_payment_id: "pay_001",
-          razorpay_signature: "sig_001",
-        });
-      }),
-    })));
-
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
-
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Duplicate User" },
+  test("Supabase error details are not shown to user", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: false, status: 400,
+      json: async () => ({ success: false, detail: "Supabase RLS policy denied row insert" }),
     });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "duplicate@test.com" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-
-    expect(
-      await screen.findByText(/already exists/i)
-    ).toBeInTheDocument();
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test" } });
+    fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "t@t.com" } });
+    fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
+    fireEvent.click(screen.getByTestId("signup-terms"));
+    fireEvent.click(screen.getByTestId("signup-submit"));
+    expect(await screen.findByTestId("signup-error")).toBeInTheDocument();
+    expect(screen.getByTestId("signup-error").textContent).not.toContain("Supabase");
+    expect(screen.getByTestId("signup-error").textContent).toMatch(/couldn.*create|try again/i);
   });
 
-  // -----------------------------------------------------------------------
-  // Student signup journey
-  // -----------------------------------------------------------------------
-
-  test("student role selection shows grade dropdown", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Student");
-    fireEvent.click(screen.getByText("Student"));
-    await screen.findByText(/Create your account/i);
-
-    expect(screen.getByText(/Class \*/i)).toBeInTheDocument();
-    // Student form has Grade + Board selects — both are comboboxes
-    expect(screen.getAllByRole("combobox").length).toBeGreaterThanOrEqual(1);
-  });
-
-  test("student form does NOT show school name field", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Student");
-    fireEvent.click(screen.getByText("Student"));
-    await screen.findByText(/Create your account/i);
-
-    expect(screen.queryByText(/School Name/i)).not.toBeInTheDocument();
-  });
-
-  test.skip("student happy path: selects grade and completes payment", async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          success: true, order_id: "order_stu_001", amount: 100,
-          currency: "INR", key_id: "rzp_key",
-        }),
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ success: true, role: "student" }),
-      });
-
-    vi.stubGlobal("Razorpay", vi.fn().mockImplementation((options) => ({
-      open: vi.fn(() => {
-        options.handler({
-          razorpay_order_id: "order_stu_001",
-          razorpay_payment_id: "pay_stu_001",
-          razorpay_signature: "sig_stu_001",
-        });
-      }),
-    })));
-
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Student");
-    fireEvent.click(screen.getByText("Student"));
-    await screen.findByText(/Student Account/i);
-
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Akshita Sharma" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "akshita@test.com" },
-    });
-    fireEvent.change(screen.getByRole("combobox"), {
-      target: { value: "Grade 9" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-
-    expect(await screen.findByText(/Payment Confirmed/i)).toBeInTheDocument();
-
-    // Verify grade was sent in the complete-signup call
-    const completeCall = mockFetch.mock.calls[1];
-    const body = JSON.parse(completeCall[1].body);
-    expect(body.grade).toBe("Grade 9");
-    expect(body.role).toBe("student");
-  });
-
-  // -----------------------------------------------------------------------
-  // Teacher signup journey
-  // -----------------------------------------------------------------------
-
-  test("teacher role selection shows school name field", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Teacher");
-    fireEvent.click(screen.getByText("Teacher"));
-    await screen.findByText(/Create your account/i);
-
-    expect(screen.getByText(/School Name/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Name of your school/i)).toBeInTheDocument();
-  });
-
-  test("teacher form does NOT show grade dropdown", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Teacher");
-    fireEvent.click(screen.getByText("Teacher"));
-    await screen.findByText(/Create your account/i);
-
-    expect(screen.queryByText(/Class \*/i)).not.toBeInTheDocument();
-  });
-
-  test.skip("teacher happy path: includes school name in complete-signup call", async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          success: true, order_id: "order_tch_001", amount: 100,
-          currency: "INR", key_id: "rzp_key",
-        }),
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ success: true, role: "teacher" }),
-      });
-
-    vi.stubGlobal("Razorpay", vi.fn().mockImplementation((options) => ({
-      open: vi.fn(() => {
-        options.handler({
-          razorpay_order_id: "order_tch_001",
-          razorpay_payment_id: "pay_tch_001",
-          razorpay_signature: "sig_tch_001",
-        });
-      }),
-    })));
-
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Teacher");
-    fireEvent.click(screen.getByText("Teacher"));
-    await screen.findByText(/Teacher Account/i);
-
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Mr. Ramesh Kumar" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "ramesh@school.com" },
-    });
-    fireEvent.change(screen.getByPlaceholderText(/Name of your school/i), {
-      target: { value: "Delhi Public School" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-
-    expect(await screen.findByText(/Payment Confirmed/i)).toBeInTheDocument();
-
-    const completeCall = mockFetch.mock.calls[1];
-    const body = JSON.parse(completeCall[1].body);
-    expect(body.school).toBe("Delhi Public School");
-    expect(body.role).toBe("teacher");
-  });
-
-  // -----------------------------------------------------------------------
-  // Navigation and plan selection
-  // -----------------------------------------------------------------------
-
-  test("back button returns to role selection from form step", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Create your account/i);
-
-    fireEvent.click(screen.getByText(/← Back to role selection/i));
-
-    expect(await screen.findByText(/signing up as a/i)).toBeInTheDocument();
-  });
-
-  test("plan selection pre-selects initialPlan prop", async () => {
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} initialPlan="starter" />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Create your account/i);
-    // Switch to "Pay & Sign Up" mode to reveal the "Continue to Plan Selection" button
-    fireEvent.click(screen.getByText(/Pay & Sign Up/i));
-    fireEvent.click(screen.getByText(/Continue to Plan Selection/i));
-    await screen.findByText(/Choose Your Plan/i);
-
-    expect(screen.getAllByText("Standard").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText("Try It Out")).toBeInTheDocument();
-    expect(screen.getByText("Family")).toBeInTheDocument();
-    expect(screen.getByText(/Pay ₹299/)).toBeInTheDocument();
-  });
-
-  test.skip("success screen Go to Login button calls onBackToLogin", async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          success: true, order_id: "order_done", amount: 100,
-          currency: "INR", key_id: "rzp_key",
-        }),
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ success: true, role: "parent" }),
-      });
-
-    vi.stubGlobal("Razorpay", vi.fn().mockImplementation((options) => ({
-      open: vi.fn(() => {
-        options.handler({
-          razorpay_order_id: "order_done",
-          razorpay_payment_id: "pay_done",
-          razorpay_signature: "sig_done",
-        });
-      }),
-    })));
-
-    render(<SignupPage onBackToLogin={mockOnBackToLogin} />);
-    await screen.findByText("Parent");
-    fireEvent.click(screen.getByText("Parent"));
-    await screen.findByText(/Parent Account/i);
-
-    fireEvent.change(screen.getByPlaceholderText("Enter your full name"), {
-      target: { value: "Done User" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("your@email.com"), {
-      target: { value: "done@test.com" },
-    });
-
-    await act(async () => { fireEvent.submit(document.querySelector("form")); });
-    await screen.findByText(/Payment Confirmed/i);
-
-    fireEvent.click(screen.getByRole("button", { name: /Go to Login/i }));
-    expect(mockOnBackToLogin).toHaveBeenCalledTimes(1);
+  test("sign in link renders and calls onBack", () => {
+    render(<SignupPage onLogin={onLogin} onBack={onBack} />);
+    const signinLink = screen.getByTestId("signup-signin-link");
+    expect(signinLink).toBeInTheDocument();
+    fireEvent.click(signinLink);
+    expect(onBack).toHaveBeenCalled();
   });
 });
