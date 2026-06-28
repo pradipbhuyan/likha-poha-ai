@@ -399,7 +399,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
   useEffect(() => { load(); }, [load]);
 
   function nav(page) { if (setActivePage) setActivePage(page); }
-  function handleUpgrade() { nav("subscription"); }
+  function handleUpgrade() { nav("subscriptionPlans"); }
 
   // Filter formulas by search
   function getFiltered() {
