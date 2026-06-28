@@ -320,11 +320,23 @@ function App() {
         // Check if this is an actual OAuth redirect (user just clicked Google Sign In)
         const urlHash = window.location.hash || "";
         const urlSearch = window.location.search || "";
+        // Detect OAuth redirect: Supabase PKCE uses ?code= (query) or #access_token= (implicit)
+        // Also handle edge cases where code appears in hash
         const isOAuthRedirect = urlHash.includes("access_token") ||
+                                urlHash.includes("code=") ||
                                 urlSearch.includes("code=") ||
                                 urlSearch.includes("access_token");
 
-        if (!isOAuthRedirect) {
+        // Also detect fresh OAuth via recently created identity (< 5 min)
+        // Handles cases where Supabase clears ?code= from URL before we read it
+        const _identities = session.user?.identities || [];
+        const _recentOAuth = _identities.some(id => {
+          const ageMs = Date.now() - new Date(id.created_at || 0).getTime();
+          return ageMs < 5 * 60 * 1000;
+        });
+        const _isFreshLogin = isOAuthRedirect || _recentOAuth;
+
+        if (!_isFreshLogin) {
           // NOT a fresh OAuth redirect — just a page reload with existing session.
           // Silently refresh the access token if user is already logged in.
           if (localStorage.getItem("tutor_user")) {
