@@ -872,22 +872,23 @@ function App() {
                 } else {
                   // Parents and teachers — save role then send to Subscription page
                   setOauthSaving(true);
-                  supabase.from("profiles").update({ role: oauthRole }).eq("id", pendingOauthUser.id).then(async () => {
-                    // Refresh token before login — role selection may take 10-30s
-                    // during which the PKCE session needs a fresh access token
-                    let freshToken = pendingOauthUser.accessToken;
-                    try {
-                      const { data: refreshed } = await supabase.auth.refreshSession();
-                      if (refreshed?.session?.access_token) {
-                        freshToken = refreshed.session.access_token;
-                      }
-                    } catch { /* use original token if refresh fails */ }
-                    handleLogin({ ...pendingOauthUser, role: oauthRole, accessToken: freshToken });
-                    setPendingOauthUser(null);
-                    setOauthSaving(false);
-                    // Give React one tick to mount the app shell, then navigate
-                    setTimeout(() => setActivePage("subscriptionPlans"), 300);
-                  });
+                  const _updateResult = await supabase.from("profiles")
+                    .update({ role: oauthRole })
+                    .eq("id", pendingOauthUser.id)
+                    .select("id,role")
+                    .single();
+                  // Log role update result for debugging (not shown to user)
+                  console.info("[oauth] Role update result:", _updateResult?.data?.role, _updateResult?.error?.message);
+                  // Refresh token before login
+                  let freshToken = pendingOauthUser.accessToken;
+                  try {
+                    const { data: refreshed } = await supabase.auth.refreshSession();
+                    if (refreshed?.session?.access_token) freshToken = refreshed.session.access_token;
+                  } catch { /* use original token */ }
+                  handleLogin({ ...pendingOauthUser, role: oauthRole, accessToken: freshToken });
+                  setPendingOauthUser(null);
+                  setOauthSaving(false);
+                  setTimeout(() => setActivePage("subscriptionPlans"), 300);
                 }
               }}
               disabled={oauthSaving}
