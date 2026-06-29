@@ -21,7 +21,7 @@ function Badge({ label, color }) {
   );
 }
 
-function ScoreBar({ pct, color = "#6366f1" }) {
+function ScoreBar({ pct }) {
   return (
     <div style={{ height: 6, borderRadius: 3, background: "var(--border,#e5e7eb)", width: "100%" }}>
       <div style={{ height: "100%", borderRadius: 3, width: `${pct}%`,
