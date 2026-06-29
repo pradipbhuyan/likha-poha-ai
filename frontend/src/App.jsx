@@ -63,6 +63,8 @@ import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
 import AdminAIStudioPage from "./pages/AdminAIStudioPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 import SignupPage from "./pages/SignupPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
@@ -1076,6 +1078,28 @@ function App() {
   if (routePath === "/refund-policy") {
     return (
       <RefundPolicyPage
+        onBackToHome={() => {
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+        }}
+      />
+    );
+  }
+
+  if (routePath === "/privacy-policy") {
+    return (
+      <PrivacyPolicyPage
+        onBackToHome={() => {
+          window.history.replaceState({}, "", "/");
+          setRoutePath("/");
+        }}
+      />
+    );
+  }
+
+  if (routePath === "/terms-of-service") {
+    return (
+      <TermsOfServicePage
         onBackToHome={() => {
           window.history.replaceState({}, "", "/");
           setRoutePath("/");

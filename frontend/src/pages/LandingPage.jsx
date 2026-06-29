@@ -194,6 +194,8 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <a href="/blog">Blog</a>
           <a href={`mailto:${contactEmail}`}>Contact</a>
           <a href="/refund-policy">Refund Policy</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
         </div>
         <p style={{marginTop:"20px"}}>&copy; 2026 LikhaPoha AI &middot; Made with &#10084; in India</p>
       </footer>
