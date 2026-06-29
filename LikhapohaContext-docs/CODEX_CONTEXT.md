@@ -1,6 +1,6 @@
 # Likhapoha AI — Codex Context
 
-_Last updated: 2026-06-29_
+_Last updated: 2026-06-29 (evening)_
 
 ## What is Likhapoha AI
 
@@ -18,9 +18,9 @@ Likhapoha AI is a CBSE learning platform (Grade 5–10 primary, Grade 11-12 avai
 
 ## Current Test State
 
-- **Backend:** 507+ tests passing (includes 21 OAuth flow tests)
-- **Frontend:** 534 tests passing (44 test files, vitest)
-- **Lint:** 0 errors, ~48 warnings (below 50 CI maximum)
+- **Backend:** 535+ tests passing (includes 21 OAuth flow tests + 28 Lesson Repair tests)
+- **Frontend:** 578 tests passing (46 test files, vitest)
+- **Lint:** 0 errors, 49 warnings (below 50 CI maximum)
 
 ## ⚠️ MANDATORY Pre-Push Checklist
 
@@ -89,6 +89,25 @@ If either command fails, fix before pushing. These take ~15 seconds total.
 | POST | `/api/admin/qa/feature-authorization/run` | Start auth audit |
 | GET | `/api/admin/qa/feature-authorization/status/{id}` | Poll job |
 | GET | `/api/admin/qa/feature-authorization/report` | Download report |
+
+## API Routes (Admin Lesson Repair)
+
+Admin-only (require_admin on all). Backed by in-memory store with graceful DB fallback.
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/admin/qa/lesson-repair/llm-info` | Currently configured provider, model, cost estimates (no key exposed) |
+| GET | `/api/admin/qa/lesson-repair/latest` | Latest repair job + audit report metadata |
+| GET | `/api/admin/qa/lesson-repair/history` | Recent job history |
+| POST | `/api/admin/qa/lesson-repair/run` | Start repair job (mode, grade/subject/chapter filter, use_llm, override_api_key) |
+| GET | `/api/admin/qa/lesson-repair/status/{job_id}` | Poll job status |
+| GET | `/api/admin/qa/lesson-repair/tasks/{job_id}` | List tasks for a job |
+| GET | `/api/admin/qa/lesson-repair/task/{task_id}` | Full task detail (issues, before, after, validation) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/approve` | Approve draft (requires ready_for_review) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/publish` | Publish to lesson_cache (requires approved) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/rerun` | Re-run LLM repair for failed/validation_failed tasks |
+| POST | `/api/admin/qa/lesson-repair/job/{job_id}/cancel` | Cancel queued/running job |
+| GET | `/api/admin/qa/lesson-repair/report` | Download report (JSON/CSV/MD) |
 
 ## Critical Database Rules
 
@@ -172,12 +191,37 @@ OAuth onboarding now uses a deterministic backend state machine. The `oauth_prof
 5. Role picker calls `POST /api/auth/oauth/complete-profile` (backend-validated)
 6. `_finishOAuthLogin(meData, session)` builds normalized user + calls `handleLogin`
 
-### Legacy OAuth Rules (still relevant)
+### OAuth Cross-Device Reliability Layer (Updated 2026-06-29)
 
-- Session recovery skips when `?code=` is in URL
-- Identity age fallback: `identities[0].created_at < 5 min` → treat as fresh OAuth
-- `authFetch` retries: `getSession()` → `refreshSession()` → wait 800ms → retry → wait 1200ms
-- Never use `localStorage.getItem("tutor_user")` shortcut on fresh OAuth redirect
+**Root cause of cross-device silent failure:**  
+Supabase PKCE auto-exchanges `code=` and clears the URL before `onAuthStateChange` fires. Old heuristics (URL params + identity age < 5 min) both fail on a second device login → silent failure with no error, no dashboard.
+
+**Fix:** Single reliable rule in App.jsx:
+```javascript
+const hasAppProfile = !!localStorage.getItem("tutor_user");
+// SIGNED_IN + no app profile → fresh login on any device
+if (!hasAppProfile) { /* always process as fresh login */ }
+```
+
+**New file: `frontend/src/api/oauthDiagnostics.js`**
+- `getOrCreateCorrelationId()` — generates/restores from sessionStorage
+- `storeCorrelationIdBeforeRedirect()` — call before `signInWithOAuth()`
+- `recordStage(stage, status, message, errorCode)` — 14 named stages, **NEVER records tokens**
+- `inspectCallbackUrl(url)` — detects `code=`/`error=`/`access_token=` safely (boolean only)
+- `getErrorMessage(errorCode)` — user-friendly messages, never raw codes
+- `clearOAuthSession()` — removes only `oauth_*` sessionStorage keys, never `sb-*`
+
+**App.jsx reliability improvements:**
+1. Explicit PKCE exchange on mount: `supabase.auth.exchangeCodeForSession(window.location.href)`
+2. Bounded session retry: 8-attempt backoff (100ms → 1500ms) + 1.5s event listener fallback
+3. Correlation ID sent as `X-OAuth-Correlation-ID` header to `/auth/me`
+4. Provider error (`error=` in URL) → immediate visible error, not silent spinner
+5. Double-invocation guard keyed to `window.location.href`
+6. Only `tutor_user` + `tutor_active_page` cleared — never `sb-*` Supabase auth keys
+
+**Legacy rules (now superseded — do not use):**
+- ~~Identity age fallback~~ — removed, was unreliable
+- ~~URL param detection~~ — removed, Supabase clears URL before handler runs
 
 ## Signup Rules
 
@@ -226,6 +270,47 @@ Never show scores > 100%. Always use `_normalize_score_pct()` or `safePct()`.
 - Patches `feature_authorization_service.resolve_user_subscription` (NOT resolver module)
 - 42+ checks: Free/Paid/Expired plans × all features + scenario checks
 
+### Lesson Sections Audit → Repair Pipeline
+
+**Step 1: Audit** — finds lessons missing/failing the 8 canonical sections:
+```
+introduction | what_you_will_learn | simple_explanation | step_by_step_breakdown
+worked_example | common_mistake | quick_check_question | summary
+```
+Report saved to `reports/lesson_sections/lesson_sections_report.json`.
+
+**Step 2: Repair (Admin UI — Lesson Repair page)**
+- Mode: `sample` (10 lessons) | `filtered` (grade/subject/chapter) | `all`
+- LLM repair: opt-in only — `use_llm=True` required
+- AI Provider panel shows current provider, model, cost estimates per lesson
+- Session API key override: takes precedence over Admin Settings, never logged/stored
+- Draft-first safety: LLM generates → validation (score ≥90, depth ≥85, 0 critical) → admin reviews → approve → publish
+- Publish only writes to `lesson_cache` after explicit admin approval
+
+**Step 2: Repair (CLI)**
+```bash
+cd backend
+.venv/bin/python scripts/repair_lesson_sections.py --sample          # 10 failures
+.venv/bin/python scripts/repair_lesson_sections.py --grade 9 --use-llm  # LLM repair
+.venv/bin/python scripts/repair_lesson_sections.py --list-failures    # show failures only
+.venv/bin/python scripts/repair_lesson_sections.py --validate-only    # validate a draft JSON
+```
+
+**Repair task statuses:**
+`queued` → `running` → `ready_for_review` (no LLM) or `validation_failed` / `ready_for_review` (LLM)
+→ `approved` → `published`  |  `failed` → rerun
+
+**DB tables** (migration: `20260629_lesson_repair_jobs.sql`):
+- `lesson_repair_jobs` — job metadata, counters
+- `lesson_repair_tasks` — per-lesson tasks with before/after content, validation results
+
+**Safety rules (never violate):**
+- `original_content_json` preserved forever — never deleted
+- `publish_repaired_task()` only works when `status == 'approved'`
+- LLM never runs automatically — `use_llm=True` required in request
+- `override_api_key` never logged, never stored, in-memory only
+- `requested_by_admin_id` stripped from all API responses
+
 ## Child Limits by Plan
 
 | Plan | Child Limit |
@@ -249,12 +334,22 @@ Never show scores > 100%. Always use `_normalize_score_pct()` or `safePct()`.
 | Purpose | File |
 |---|---|
 | **OAuth state machine** | `frontend/src/App.jsx` (onAuthStateChange handler) |
+| **OAuth diagnostics utility** | `frontend/src/api/oauthDiagnostics.js` (correlation IDs, stages, URL inspection) |
 | **OAuth endpoints** | `backend/app/routes/auth.py` (GET /me, POST /oauth/complete-profile) |
 | **OAuth DB migration** | `backend/migrations/20260629_oauth_profile_complete.sql` |
 | **OAuth backend tests** | `backend/tests/test_oauth_flow.py` (21 tests) |
+| **OAuth reliability tests** | `frontend/src/tests/OAuthReliability.test.jsx` (22 tests) |
 | **Auth error mapping** | `frontend/src/api/authClient.js` |
 | **Auth error mapping tests** | `frontend/src/tests/OAuthErrorMapping.test.jsx` |
 | **Auth reliability tests** | `frontend/src/tests/AuthSessionReliability.test.jsx` |
+| **Lesson Repair page** | `frontend/src/pages/AdminLessonRepairPage.jsx` |
+| **Lesson Repair API client** | `frontend/src/api/lessonRepair.js` |
+| **Lesson Repair API routes** | `backend/app/routes/lesson_repair.py` (11 admin endpoints) |
+| **Lesson Repair service** | `backend/app/services/lesson_repair_service.py` |
+| **Lesson Repair CLI** | `backend/scripts/repair_lesson_sections.py` |
+| **Lesson Repair DB migration** | `backend/migrations/20260629_lesson_repair_jobs.sql` |
+| **Lesson Repair backend tests** | `backend/tests/test_lesson_repair.py` (28 tests) |
+| **Lesson Repair frontend tests** | `frontend/src/tests/AdminLessonRepairPage.test.jsx` (23 tests) |
 | Student dashboard | `frontend/src/pages/StudentDashboardPage.jsx` |
 | Student dashboard CSS | `frontend/src/pages/StudentDashboardPage.css` |
 | Student dashboard API | `backend/app/routes/student_dashboard.py` |
@@ -269,6 +364,7 @@ Never show scores > 100%. Always use `_normalize_score_pct()` or `safePct()`.
 | QA Center APIs | `backend/app/routes/admin_qa.py` |
 | Lesson Quality Audit | `backend/scripts/audit_lesson_quality.py` |
 | Feature Auth Audit | `backend/scripts/audit_feature_authorization.py` |
+| Lesson Sections Audit | `backend/scripts/audit_lesson_sections.py` |
 | Score normalization | `_normalize_score_pct()` in `parent_dashboard_v2.py` |
 | Subscription resolver | `backend/app/services/subscription_resolver_service.py` |
 | Feature authorization | `backend/app/services/feature_authorization_service.py` |

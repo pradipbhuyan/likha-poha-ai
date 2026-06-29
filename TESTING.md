@@ -49,11 +49,25 @@ Vitest runs in watch mode.
 
 Press `q` to quit after tests pass.
 
-Current frontend tests cover:
+Current frontend tests cover (578 tests, 46 test files):
 
 - LessonsPage loading saved lesson progress
 - Practice question generation
 - Practice mode disabling Ask AI follow-up
+- OAuth reliability: correlation IDs, stage tracking, URL inspection, error mapping
+- OAuth error mapping: all HTTP codes → user-friendly messages (no raw codes exposed)
+- Auth session reliability: retry logic, token refresh, friendly error messages
+- Admin QA Center: lesson quality audit UI, feature authorization audit
+- Admin Lesson Repair: LLM info panel, cost estimates, task workflow, drawer actions
+- Admin Productivity: operations panel, cache management
+- Admin Control Page: family management, teacher assignment
+- Subscription Plans: plan cards, promo codes, upgrade flow
+- Parent Dashboard (Phase 1–3): child workspace, notifications, analytics
+- Teacher Dashboard: tab navigation, student list, invitation management
+- Signup Page: free tier, offer code, Supabase error sanitization
+- Formula Sheet: freemium gating, expansion, upgrade modal
+- Report Issue Modal: submission, field validation
+- Sales Demo, Collateral, Incentive pages
 
 ---
 
@@ -272,3 +286,28 @@ Make sure the backend server is already running before starting the simulation.
 - **CI max warning limit: 50.** Adding new files or patterns can push warnings over the limit — always check aggregate count before pushing.
 - **`findAllBy*` not `getAllBy*`** for elements rendered after async data loads.
 - **`authClient.js` 401 vs 403:** 401 = session expired message, 403 = role-specific access-denied message. Never map 403 to session expired.
+- **OAuth diagnostics:** `oauthDiagnostics.js` records stages safely. Never pass tokens/codes to `recordStage()`. Use correlation IDs for cross-device tracing.
+- **Lesson Repair tests:** mock `getRepairLlmInfo` in `beforeEach` — all repair tests need it to avoid network calls.
+- **Backend Lesson Repair tests:** use valid UUIDs for user IDs — Supabase rejects non-UUID strings with `22P02`.
+
+---
+
+## Recent Changes (2026-06-29)
+
+### OAuth Cross-Device Fix
+- **Root cause:** Supabase PKCE clears URL before our handler runs; identity age heuristic only works on first login
+- **Fix:** `hasAppProfile = !!localStorage.getItem("tutor_user")` — no tutor_user + SIGNED_IN = fresh login on any device
+- **New:** `oauthDiagnostics.js` — correlation IDs, 14 stage names, URL inspection, error mapping (no tokens recorded)
+- **New:** `OAuthReliability.test.jsx` — 22 tests covering diagnostics utility
+- **Backend:** `/auth/me` accepts `X-OAuth-Correlation-ID` header, emits structured log events
+
+### Admin Lesson Repair Workflow
+- **New:** Full repair pipeline: sample/filtered/all mode, LLM toggle, progress bar, task table, detail drawer
+- **New:** `GET /api/admin/qa/lesson-repair/llm-info` — provider/model/cost info (never exposes key)
+- **New:** Session-only API key override — takes precedence over Admin Settings, never logged/stored
+- **Backend tests:** `test_lesson_repair.py` — 28 tests
+- **Frontend tests:** `AdminLessonRepairPage.test.jsx` — 23 tests
+
+### DB Migrations (run in Supabase SQL Editor)
+- `20260629_oauth_profile_complete.sql` — `oauth_profile_complete` column
+- `20260629_lesson_repair_jobs.sql` — `lesson_repair_jobs` + `lesson_repair_tasks` tables
