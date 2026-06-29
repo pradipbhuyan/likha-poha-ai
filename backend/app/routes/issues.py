@@ -347,15 +347,21 @@ def search_users(
 ):
     """Search users by username or email for reporter access management."""
     try:
+        # Try with can_report_issues first, fall back to base columns if column missing
+        _select = "id,username,email,role,grade,can_report_issues"
+        try:
+            admin_client.table("profiles").select(_select).limit(1).execute()
+        except Exception:
+            _select = "id,username,email,role,grade"
         # Search by username
         r_username = (admin_client.table("profiles")
-                      .select("id,username,email,role,grade,can_report_issues")
+                      .select(_select)
                       .ilike("username", f"%{q}%")
                       .limit(limit)
                       .execute())
         # Search by email
         r_email = (admin_client.table("profiles")
-                   .select("id,username,email,role,grade,can_report_issues")
+                   .select(_select)
                    .ilike("email", f"%{q}%")
                    .limit(limit)
                    .execute())

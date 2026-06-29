@@ -296,11 +296,20 @@ function ReporterAccessPanel() {
   async function searchUsers() {
     if (!searchUser.trim()) return;
     setSearching(true);
+    setMsg(null);
     try {
       const r = await authFetch(`/api/admin/users/search?q=${encodeURIComponent(searchUser)}&limit=10`);
-      if (r.success) setSearchResults(r.users || []);
-      else setSearchResults([]);
-    } catch { setSearchResults([]); }
+      if (r.success) {
+        setSearchResults(r.users || []);
+        if (!r.users || r.users.length === 0) setMsg("No users found matching that search.");
+      } else {
+        setSearchResults([]);
+        setMsg("Search failed: " + (r.error || "Unknown error"));
+      }
+    } catch (e) {
+      setSearchResults([]);
+      setMsg("Search error: " + e.message);
+    }
     finally { setSearching(false); }
   }
 
