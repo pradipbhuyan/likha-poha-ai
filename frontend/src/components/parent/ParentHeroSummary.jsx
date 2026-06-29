@@ -60,7 +60,7 @@ export default function ParentHeroSummary({ summary, parentName, onAddChild, onU
         <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
           {canAdd&&<button onClick={onAddChild} style={{padding:"6px 12px",borderRadius:7,border:"1px solid #6366f1",background:"rgba(99,102,241,.07)",color:"#6366f1",fontFamily:"inherit",fontSize:".78rem",fontWeight:600,cursor:"pointer"}}>＋ Add Child</button>}
           {children.some(function(c){return!c.plan?.has_full_access;})&&(
-            <button onClick={onUpgrade} style={{padding:"6px 12px",borderRadius:7,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".78rem",fontWeight:600,cursor:"pointer"}}>🚀 Upgrade</button>
+            <button onClick={onUpgrade} style={{padding:"6px 12px",borderRadius:7,border:"1px solid var(--border,#e5e7eb)",background:"transparent",color:"#6366f1",fontFamily:"inherit",fontSize:".78rem",fontWeight:600,cursor:"pointer"}}>View Plans →</button>
           )}
         </div>
       </div>

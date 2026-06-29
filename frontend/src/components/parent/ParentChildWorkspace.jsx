@@ -51,7 +51,7 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
       {/* Hero status */}
       <div style={{...card,background:isFree?"rgba(239,68,68,.04)":"rgba(34,197,94,.04)",border:"1px solid "+(isFree?"#fca5a5":"#86efac")}}>
         <div style={{fontWeight:800,fontSize:".95rem",color:isFree?"#dc2626":"#166534"}}>
-          {isFree?"Restricted Access":"Full Platform Access"}
+          {isFree?"Free Tier":"Full Platform Access"}
         </div>
         <div style={{fontSize:".78rem",color:"#64748b",marginTop:2}}>{plan.description}</div>
         {plan.expiry_warning&&<div style={{fontSize:".72rem",color:"#d97706",fontWeight:600,marginTop:2}}>Expires in {plan.days_remaining} day{plan.days_remaining!==1?"s":""}</div>}
@@ -77,7 +77,7 @@ function OverviewSection({child, detail, analytics: _analytics, onUpgrade}){
           <div style={{fontWeight:700,fontSize:".82rem",marginBottom:2}}>{topRec.title}</div>
           <div style={{fontSize:".76rem",color:"#64748b"}}>{topRec.body}</div>
           {topRec.action==="upgrade"&&onUpgrade&&(
-            <button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade</button>
+            <button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px",background:"transparent",border:"1px solid #6366f1",color:"#6366f1"}}>View Plans</button>
           )}
         </div>
       )}
@@ -120,7 +120,7 @@ function TodaysPlanSection({detail, onUpgrade, onSectionNav}){
           <div style={card}>
             <div style={{fontWeight:700}}>Limited access — upgrade to unlock</div>
             <div style={{fontSize:".78rem",color:"#64748b",marginTop:3}}>Upgrade to unlock all lessons, mock tests, and Exemplar practice.</div>
-            {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>🚀 Upgrade</button>}
+            {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px",background:"transparent",border:"1px solid #6366f1",color:"#6366f1"}}>View Plans</button>}
           </div>
         )}
       </div>
@@ -136,7 +136,7 @@ function TodaysPlanSection({detail, onUpgrade, onSectionNav}){
           <div style={{fontWeight:700,fontSize:".82rem",color:prioColor[r.priority]||"#6366f1"}}>{r.title}</div>
           <div style={{fontSize:".76rem",color:"#64748b",marginTop:2}}>{r.body}</div>
           <div style={{display:"flex",gap:6,marginTop:8,flexWrap:"wrap"}}>
-            {r.action==="upgrade"&&onUpgrade&&<button onClick={onUpgrade} style={{...btn1,fontSize:".72rem",padding:"4px 10px"}}>🚀 Upgrade</button>}
+            {r.action==="upgrade"&&onUpgrade&&<button onClick={onUpgrade} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"transparent",border:"1px solid #6366f1",color:"#6366f1"}}>View Plans</button>}
             {r.action==="mock_tests"&&<button onClick={function(){onSectionNav("mock");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#0ea5e9"}}>Mock Tests</button>}
             {r.action==="view_progress"&&<button onClick={function(){onSectionNav("progress");}} style={{...btn1,fontSize:".72rem",padding:"4px 10px",background:"#6366f1"}}>Progress</button>}
           </div>
@@ -156,7 +156,7 @@ function MockTestsSection({detail, plan, onUpgrade}){
         <div style={{...card,background:"rgba(245,158,11,.07)",border:"1px solid #fcd34d",marginBottom:8}}>
           <div style={{fontWeight:600,color:"#d97706"}}>Free Tier: {mt.free_daily_limit} mock tests/day</div>
           <div style={{fontSize:".75rem",color:"#64748b",marginTop:2}}>Upgrade for unlimited mock tests and full analysis.</div>
-          {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px"}}>Upgrade</button>}
+          {onUpgrade&&<button onClick={onUpgrade} style={{...btn1,marginTop:8,fontSize:".75rem",padding:"5px 12px",background:"transparent",border:"1px solid #6366f1",color:"#6366f1"}}>View Plans</button>}
         </div>
       )}
       {!mt.available?(

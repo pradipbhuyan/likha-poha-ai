@@ -14,7 +14,7 @@ function childStatus(child){
   var isInactive=notifs.some(function(n){return n.type==="child_inactive";});
 
   if(hasExpiry) return{label:"Plan Expiring",icon:"⚠️",color:"#d97706",bg:"rgba(245,158,11,.08)",border:"#fcd34d"};
-  if(isRestricted) return{label:"Restricted Access",icon:"🔒",color:"#ef4444",bg:"rgba(239,68,68,.06)",border:"#fca5a5"};
+  if(isRestricted) return{label:"Free Tier",icon:"✦",color:"#6366f1",bg:"rgba(99,102,241,.06)",border:"#c7d2fe"};
   if(hasLowScore) return{label:"Needs Attention",icon:"📉",color:"#ef4444",bg:"rgba(239,68,68,.06)",border:"#fca5a5"};
   if(isInactive) return{label:"Inactive",icon:"😴",color:"#f59e0b",bg:"rgba(245,158,11,.06)",border:"#fcd34d"};
   if(plan.has_full_access) return{label:"Doing Well",icon:"✅",color:"#22c55e",bg:"rgba(34,197,94,.06)",border:"#86efac"};
@@ -49,7 +49,7 @@ function TopRecommendation({recommendations,plan,onUpgrade,onView}){
   var recs=recommendations||[];
   if(!recs.length){
     if(plan?.has_full_access){
-      return <div style={{fontSize:".73rem",color:"#22c55e",fontWeight:600}}>✅ No action needed</div>;
+      return <div style={{fontSize:".73rem",color:"#22c55e",fontWeight:600}}>No action needed</div>;
     }
     return null;
   }
@@ -62,10 +62,10 @@ function TopRecommendation({recommendations,plan,onUpgrade,onView}){
     <div style={{background:"rgba(99,102,241,.05)",border:"1px solid rgba(167,139,250,.2)",borderRadius:8,padding:"7px 10px",marginTop:6}}>
       <div style={{fontSize:".73rem",fontWeight:700,color:pcolor}}>{top.title}</div>
       {top.action==="upgrade"&&onUpgrade&&(
-        <button onClick={function(e){e.stopPropagation();onUpgrade();}} style={{marginTop:4,fontSize:".68rem",padding:"2px 8px",borderRadius:5,border:"none",background:"#6366f1",color:"#fff",cursor:"pointer",fontFamily:"inherit"}}>Upgrade</button>
+        <button onClick={function(e){e.stopPropagation();onUpgrade();}} style={{marginTop:4,fontSize:".68rem",padding:"2px 8px",borderRadius:5,border:"1px solid #6366f1",background:"transparent",color:"#6366f1",cursor:"pointer",fontFamily:"inherit"}}>View Plans</button>
       )}
       {top.action!=="upgrade"&&onView&&(
-        <button onClick={function(e){e.stopPropagation();onView();}} style={{marginTop:4,fontSize:".68rem",padding:"2px 8px",borderRadius:5,border:"1px solid var(--border,#e5e7eb)",background:"var(--panel,#fff)",cursor:"pointer",fontFamily:"inherit"}}>View →</button>
+        <button onClick={function(e){e.stopPropagation();onView();}} style={{marginTop:4,fontSize:".68rem",padding:"2px 8px",borderRadius:5,border:"1px solid var(--border,#e5e7eb)",background:"var(--panel,#fff)",cursor:"pointer",fontFamily:"inherit"}}>View</button>
       )}
     </div>
   );
@@ -74,7 +74,7 @@ function TopRecommendation({recommendations,plan,onUpgrade,onView}){
 export default function ParentChildStatusCard({child, onView, onUpgrade}){
   var status=childStatus(child);
   var mockSummary=child.mock_test_summary||{};
-  var progress=child.progress||{};  // from detail if available
+  var progress=child.progress||{};
   var actSummary=child.activity_summary||{};
   var plan=child.plan||{};
 
@@ -98,7 +98,7 @@ export default function ParentChildStatusCard({child, onView, onUpgrade}){
       {/* Status bar */}
       <div style={{background:status.bg,borderBottom:"1px solid "+status.border,padding:"8px 14px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div style={{display:"flex",gap:6,alignItems:"center"}}>
-          <span style={{fontSize:"1rem"}}>{status.icon}</span>
+          <span style={{fontSize:".9rem"}}>{status.icon}</span>
           <span style={{fontWeight:700,fontSize:".8rem",color:status.color}}>{status.label}</span>
         </div>
         <span style={{fontSize:".7rem",color:"#64748b"}}>{plan.plan_name||"Free Tier"}</span>
@@ -112,7 +112,7 @@ export default function ParentChildStatusCard({child, onView, onUpgrade}){
           </div>
           <button onClick={function(e){e.stopPropagation();onView(child);}}
             style={{padding:"4px 10px",borderRadius:6,border:"1px solid var(--border,#e5e7eb)",background:"var(--panel,#fff)",fontSize:".73rem",cursor:"pointer",fontFamily:"inherit",fontWeight:600,color:"#6366f1",flexShrink:0}}>
-            Open →
+            Open
           </button>
         </div>
 
