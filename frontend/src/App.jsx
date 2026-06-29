@@ -16,6 +16,7 @@ import AdminSyllabusReviewPage from "./pages/AdminSyllabusReviewPage";
 import StudentDashboardPage from "./pages/StudentDashboardPage";
 import FormulaSheetPage from "./pages/FormulaSheetPage";
 import AdminQACenterPage from "./pages/AdminQACenterPage";
+import AdminIssuesPage from "./pages/AdminIssuesPage";
 import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
@@ -92,6 +93,11 @@ const PAGE_META = {
     title: "Feature Authorization Audit",
     subtitle: "Verify feature access across all plans, roles and scenarios. Catches Free Tier premium leakage.",
     icon: "🔐",
+  },
+  adminIssues: {
+    title: "Product Bugs",
+    icon: "🐛",
+    roles: ["admin"],
   },
   adminQACenter: {
     title: "Platform QA Center",
@@ -1031,6 +1037,8 @@ function App() {
         return <AdminControlPage user={user} />;
       case "adminQACenter":
         return <AdminQACenterPage user={user} setActivePage={handlePageChange} />;
+      case "adminIssues":
+        return <AdminIssuesPage user={user} setActivePage={handlePageChange} />;
       case "featureAuthAudit":
         return <FeatureAuthAuditPage user={user} />;
       case "lessons":

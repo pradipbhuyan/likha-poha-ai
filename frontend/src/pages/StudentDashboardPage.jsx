@@ -56,6 +56,7 @@ function Skel(){
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
 export default function StudentDashboardPage({ user, setActivePage }) {
+  var [reportOpen, setReportOpen] = useState(false);
   const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
   const [exams, setExams]     = useState([]);

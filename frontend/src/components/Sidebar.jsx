@@ -27,6 +27,7 @@ import {
   Package,
   BrainCircuit,
   Layers,
+  Bug,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -89,6 +90,12 @@ function Sidebar({
       icon: Home,
       roles: ["student", "admin"],
       hideForAdmin: true,
+    },
+        {
+      key: "adminIssues",
+      label: "Product Bugs",
+      icon: Bug,
+      roles: ["admin"],
     },
     {
       key: "adminQACenter",

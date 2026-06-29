@@ -53,6 +53,7 @@ from app.routes.teacher import router as teacher_router
 from app.routes.teacher_classroom import router as teacher_classroom_router
 from app.routes.teacher_classroom_p2 import router as teacher_classroom_p2_router
 from app.routes.subscription import router as subscription_router
+from app.routes.issues import router as issues_router
 from app.routes.admin_operations import router as admin_operations_router
 from app.routes.admin_bulk import router as admin_bulk_router
 from app.routes.admin_views import router as admin_views_router
@@ -360,6 +361,11 @@ app.include_router(
     subscription_router,
     prefix="/api/subscription",
     tags=["Subscription"],
+)
+
+app.include_router(
+    issues_router,
+    tags=["Issues"],
 )
 
 @app.get("/api/platform-settings/lesson-card")
