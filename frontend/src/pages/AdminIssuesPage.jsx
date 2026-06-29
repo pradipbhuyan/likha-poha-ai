@@ -269,6 +269,131 @@ export default function AdminIssuesPage({ user: _user }) {
           onUpdate={handleUpdate}
         />
       )}
+
+      <ReporterAccessPanel />
+    </div>
+  );
+}
+
+function ReporterAccessPanel() {
+  const [reporters, setReporters] = useState([]);
+  const [loadingRep, setLoadingRep] = useState(false);
+  const [searchUser, setSearchUser] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searching, setSearching] = useState(false);
+  const [toggling, setToggling] = useState({});
+  const [msg, setMsg] = useState(null);
+
+  async function loadReporters() {
+    setLoadingRep(true);
+    try {
+      const r = await authFetch("/api/admin/users/issue-reporters");
+      if (r.success) setReporters(r.reporters || []);
+    } catch { setReporters([]); }
+    finally { setLoadingRep(false); }
+  }
+
+  async function searchUsers() {
+    if (!searchUser.trim()) return;
+    setSearching(true);
+    try {
+      const r = await authFetch(`/api/admin/users/search?q=${encodeURIComponent(searchUser)}&limit=10`);
+      if (r.success) setSearchResults(r.users || []);
+      else setSearchResults([]);
+    } catch { setSearchResults([]); }
+    finally { setSearching(false); }
+  }
+
+  async function toggleAccess(userId, enabled) {
+    setToggling(p => ({...p, [userId]: true}));
+    setMsg(null);
+    try {
+      const r = await authFetch(`/api/admin/users/${userId}/can-report-issues?enabled=${enabled}`, { method: "PATCH" });
+      if (r.success) {
+        setMsg(`✅ ${enabled ? "Granted" : "Revoked"} report access for user.`);
+        loadReporters();
+        setSearchResults(prev => prev.map(u => u.id === userId ? {...u, can_report_issues: enabled} : u));
+      }
+    } catch (e) { setMsg("❌ " + e.message); }
+    finally { setToggling(p => ({...p, [userId]: false})); }
+  }
+
+  const inp = { padding:"7px 10px", borderRadius:7, border:"1px solid var(--border,#e5e7eb)",
+    fontFamily:"inherit", fontSize:".82rem", background:"var(--panel,#fff)" };
+
+  return (
+    <div data-testid="reporter-access-panel" style={{ marginTop:32, padding:"20px 22px",
+      background:"var(--panel,#fff)", border:"1px solid var(--border,#e5e7eb)", borderRadius:12 }}>
+      <div style={{ fontWeight:700, fontSize:".95rem", marginBottom:4 }}>🔐 Report Issue Access</div>
+      <div style={{ fontSize:".82rem", color:"#64748b", marginBottom:16 }}>
+        Control which users can see the "Report Issue" button. Off by default.
+      </div>
+
+      {/* Search + grant */}
+      <div style={{ display:"flex", gap:8, marginBottom:14, flexWrap:"wrap" }}>
+        <input value={searchUser} onChange={e=>setSearchUser(e.target.value)}
+          placeholder="Search by username or email..."
+          style={{...inp, flex:"1 1 200px"}}
+          data-testid="reporter-search-input"
+          onKeyDown={e=>{ if(e.key==="Enter") searchUsers(); }} />
+        <button onClick={searchUsers} disabled={searching}
+          style={{...inp, cursor:"pointer", background:"#6366f1", color:"#fff", border:"none", fontWeight:600}}>
+          {searching ? "Searching…" : "Search"}
+        </button>
+        <button onClick={loadReporters}
+          style={{...inp, cursor:"pointer", color:"#6366f1", fontWeight:600}}>
+          Refresh List
+        </button>
+      </div>
+
+      {msg && <div style={{ marginBottom:10, fontSize:".8rem", color:msg.startsWith("✅")?"#22c55e":"#dc2626" }}>{msg}</div>}
+
+      {/* Search results */}
+      {searchResults.length > 0 && (
+        <div style={{ marginBottom:16 }}>
+          <div style={{ fontSize:".76rem", fontWeight:600, color:"#64748b", marginBottom:6 }}>SEARCH RESULTS</div>
+          {searchResults.map(u => (
+            <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 0",
+              borderBottom:"1px solid var(--border,#f1f5f9)", flexWrap:"wrap" }}>
+              <span style={{ fontSize:".8rem", flex:1 }}>{u.username || u.email} <span style={{color:"#94a3b8"}}>({u.role})</span></span>
+              <button onClick={() => toggleAccess(u.id, !u.can_report_issues)}
+                disabled={toggling[u.id]}
+                data-testid={`toggle-reporter-${u.id}`}
+                style={{ padding:"4px 12px", borderRadius:7, border:"none", cursor:"pointer",
+                  fontFamily:"inherit", fontWeight:600, fontSize:".76rem",
+                  background: u.can_report_issues ? "#fef2f2" : "#f0fdf4",
+                  color: u.can_report_issues ? "#dc2626" : "#16a34a" }}>
+                {toggling[u.id] ? "…" : u.can_report_issues ? "Revoke Access" : "Grant Access"}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Current reporters */}
+      <div>
+        <div style={{ fontSize:".76rem", fontWeight:600, color:"#64748b", marginBottom:6 }}>
+          USERS WITH REPORT ACCESS ({reporters.length})
+        </div>
+        {loadingRep ? (
+          <div style={{ color:"#94a3b8", fontSize:".8rem" }}>Loading…</div>
+        ) : reporters.length === 0 ? (
+          <div style={{ color:"#94a3b8", fontSize:".8rem" }}>No users have report access yet.</div>
+        ) : (
+          reporters.map(u => (
+            <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, padding:"5px 0",
+              borderBottom:"1px solid var(--border,#f1f5f9)", flexWrap:"wrap" }}>
+              <span style={{ fontSize:".8rem", flex:1 }}>{u.username || u.email} <span style={{color:"#94a3b8"}}>({u.role})</span></span>
+              <button onClick={() => toggleAccess(u.id, false)} disabled={toggling[u.id]}
+                style={{ padding:"4px 12px", borderRadius:7, border:"none", cursor:"pointer",
+                  fontFamily:"inherit", fontWeight:600, fontSize:".76rem",
+                  background:"#fef2f2", color:"#dc2626" }}>
+                {toggling[u.id] ? "…" : "Revoke"}
+              </button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

@@ -292,3 +292,83 @@ def update_issue(issue_id: str, body: IssueUpdateIn, admin_user=Depends(require_
         pass  # Non-critical
 
     return {"success": True, "issue": r.data[0]}
+
+
+# ── Admin: Toggle can_report_issues per user ───────────────────────────────────
+
+@router.patch("/api/admin/users/{user_id}/can-report-issues")
+def toggle_can_report_issues(
+    user_id: str,
+    enabled: bool,
+    admin_user=Depends(require_admin),
+):
+    """Allow or revoke a specific user's ability to see the Report Issue button."""
+    try:
+        r = admin_client.table("profiles").update(
+            {"can_report_issues": enabled}
+        ).eq("id", user_id).execute()
+        if not r.data:
+            raise HTTPException(status_code=404, detail="User not found.")
+        # Audit log
+        try:
+            admin_client.table("platform_audit_logs").insert({
+                "admin_id": admin_user["auth_user"].id,
+                "action": "toggle_can_report_issues",
+                "target_id": user_id,
+                "details": json.dumps({"enabled": enabled}),
+            }).execute()
+        except Exception:
+            pass
+        return {"success": True, "user_id": user_id, "can_report_issues": enabled}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)[:200])
+
+
+@router.get("/api/admin/users/issue-reporters")
+def list_issue_reporters(admin_user=Depends(require_admin)):
+    """List all users who have can_report_issues=true."""
+    try:
+        r = admin_client.table("profiles").select(
+            "id,username,email,role,grade,can_report_issues"
+        ).eq("can_report_issues", True).execute()
+        return {"success": True, "reporters": r.data or []}
+    except Exception as e:
+        # Graceful fallback — column may not exist yet
+        return {"success": True, "reporters": [], "note": "Migration pending: " + str(e)[:100]}
+
+
+@router.get("/api/admin/users/search")
+def search_users(
+    q: str = Query(..., min_length=2),
+    limit: int = Query(10, le=50),
+    admin_user=Depends(require_admin),
+):
+    """Search users by username or email for reporter access management."""
+    try:
+        # Search by username
+        r_username = (admin_client.table("profiles")
+                      .select("id,username,email,role,grade,can_report_issues")
+                      .ilike("username", f"%{q}%")
+                      .limit(limit)
+                      .execute())
+        # Search by email
+        r_email = (admin_client.table("profiles")
+                   .select("id,username,email,role,grade,can_report_issues")
+                   .ilike("email", f"%{q}%")
+                   .limit(limit)
+                   .execute())
+        # Merge + deduplicate
+        seen = set()
+        users = []
+        for row in (r_username.data or []) + (r_email.data or []):
+            if row["id"] not in seen:
+                seen.add(row["id"])
+                # Graceful fallback for can_report_issues
+                if "can_report_issues" not in row:
+                    row["can_report_issues"] = False
+                users.append(row)
+        return {"success": True, "users": users[:limit]}
+    except Exception as e:
+        return {"success": False, "users": [], "error": str(e)[:200]}

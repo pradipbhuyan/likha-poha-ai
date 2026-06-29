@@ -357,6 +357,7 @@ def get_my_profile(user=Depends(get_current_user)):
 
     return {
         "success": True,
+        "can_report_issues": bool(profile.get("can_report_issues", False)),
         "id": profile.get("id"),
         "email": profile.get("email"),
         "username": profile.get("username"),

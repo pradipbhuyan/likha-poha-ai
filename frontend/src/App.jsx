@@ -510,6 +510,7 @@ function App() {
               accountStatus: p.account_status || parsed.accountStatus,
               grade: p.grade || parsed.grade,
               avatar: p.avatar || parsed.avatar,
+              canReportIssues: !!p.can_report_issues,
             };
             setUser(freshUser);
             localStorage.setItem("tutor_user", JSON.stringify(freshUser));
@@ -581,6 +582,7 @@ function App() {
             accountStatus: p.account_status || userData.accountStatus,
             grade: p.grade || userData.grade,
             avatar: p.avatar || userData.avatar,
+            canReportIssues: !!p.can_report_issues,
           };
         }
       } catch (e) {
@@ -1243,7 +1245,7 @@ function App() {
       <ChatWidget />
 
       {/* Global floating Report Issue button — visible to student/parent/teacher */}
-      {user && user.role !== "admin" && user.role !== "sales" && (
+      {user && user.canReportIssues === true && (
         <>
           <button
             data-testid="global-report-issue-btn"
