@@ -75,7 +75,7 @@ export async function authFetch(path, options = {}) {
 
     try {
       const errorData = await response.json();
-      rawDetail = errorData.detail || errorData.message || "";
+      rawDetail = errorData.detail || errorData.message || ""; // eslint-disable-line no-useless-assignment
 
       if (response.status === 401) {
         // 401 = genuinely expired / invalid session token

@@ -293,7 +293,6 @@ function App() {
   );
   const [oauthLoading, setOauthLoading] = useState(false);
   const [oauthError, setOauthError] = useState(null);    // visible error with retry
-  const [oauthStatus, setOauthStatus] = useState("Signing you in with Google…");
   // Safety-net: if the OAuth spinner is somehow stuck, auto-clear after 15 s
   useEffect(() => {
     if (!oauthLoading) return;
@@ -426,7 +425,6 @@ function App() {
 
         setOauthLoading(true);
         setOauthError(null);
-        setOauthStatus("Signing you in with Google…");
 
         try {
           // ── Call /api/auth/me — the authoritative OAuth state check ──────

@@ -12,19 +12,7 @@
  * These tests prevent the regression where 403 "Parent access required" was
  * incorrectly displayed as "Your session has expired."
  */
-import { describe, it, expect, vi, beforeEach } from "vitest";
-
-// ---------------------------------------------------------------------------
-// Helper: build a mock fetch response
-// ---------------------------------------------------------------------------
-function mockFetchResponse(status, body) {
-  return Promise.resolve({
-    ok: status >= 200 && status < 300,
-    status,
-    json: () => Promise.resolve(body),
-    text: () => Promise.resolve(JSON.stringify(body)),
-  });
-}
+import { describe, it, expect } from "vitest";
 
 // ---------------------------------------------------------------------------
 // We test the authFetch error mapping logic in isolation by extracting the

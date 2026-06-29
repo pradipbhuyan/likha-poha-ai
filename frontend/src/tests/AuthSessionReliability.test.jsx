@@ -106,7 +106,9 @@ describe("authFetch — user-facing error messages", () => {
     expect(caught).not.toContain("supabase_key_missing");
   });
 
-  test("403 response shows friendly message without Supabase internals", async () => {
+  test("403 response shows friendly access-denied message without Supabase internals", async () => {
+    // 403 = authenticated but wrong role/access — must NOT say "session expired".
+    // The new authClient.js correctly distinguishes 401 (session) from 403 (access).
     supabase.auth.getSession.mockResolvedValue({
       data: { session: { access_token: "fake-token" } }, error: null
     });
@@ -121,9 +123,32 @@ describe("authFetch — user-facing error messages", () => {
     const authFetch = await getAuthFetch();
     let caught = null;
     try { await authFetch("/api/test"); } catch(e) { caught = e.message; }
-    expect(caught).toMatch(/session has expired|sign in again/i);
+    // 403 must show an access-denied message, NOT "session expired"
+    expect(caught).toMatch(/does not have access|not registered/i);
+    // Must NOT show "session expired" — that is only for 401
+    expect(caught).not.toMatch(/session has expired|sign in again/i);
+    // Must NOT expose Supabase internals
     expect(caught).not.toContain("RLS");
     expect(caught).not.toContain("Supabase");
+  });
+
+  test("403 'Parent access required' shows role-specific message not session expired", async () => {
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: { access_token: "fake-token" } }, error: null
+    });
+    supabase.auth.refreshSession.mockResolvedValue({ data: { session: null } });
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 403,
+      json: async () => ({ detail: "Parent access required" }),
+      text: async () => "",
+    });
+
+    const authFetch = await getAuthFetch();
+    let caught = null;
+    try { await authFetch("/api/test"); } catch(e) { caught = e.message; }
+    expect(caught).toContain("Parent");
+    expect(caught).not.toMatch(/session has expired|sign in again/i);
   });
 
   test("safe business error (non-auth 400) is shown to user", async () => {
