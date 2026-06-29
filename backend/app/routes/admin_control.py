@@ -1391,6 +1391,8 @@ class UpdateAiSettingsRequest(BaseModel):
     gemini_model: str = "gemini-2.0-flash-lite"
     sambanova_api_key: str | None = None
     sambanova_model: str = "Meta-Llama-3.3-70B-Instruct"
+    ollama_cloud_api_key: str | None = None
+    ollama_cloud_model: str = "gemma3:4b"
 
 
 def _load_ai_settings_row() -> dict | None:
@@ -1429,6 +1431,7 @@ def get_ai_settings(admin=Depends(require_admin)):
         stored_cerebras_key = (row.get("cerebras_api_key") or "").strip()
         stored_gemini_key = (row.get("gemini_api_key") or "").strip()
         stored_sambanova_key = (row.get("sambanova_api_key") or "").strip()
+        stored_ollama_cloud_key = (row.get("ollama_cloud_api_key") or "").strip()
         return {
             "success": True,
             "api_enabled": row.get("api_enabled", True),
@@ -1445,6 +1448,8 @@ def get_ai_settings(admin=Depends(require_admin)):
             "gemini_model": row.get("gemini_model") or "gemini-2.0-flash-lite",
             "sambanova_key_prefix": stored_sambanova_key[:12] if stored_sambanova_key else "",
             "sambanova_model": row.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
+            "ollama_cloud_key_prefix": stored_ollama_cloud_key[:12] if stored_ollama_cloud_key else "",
+            "ollama_cloud_model": row.get("ollama_cloud_model") or "gemma3:4b",
         }
 
     # Table exists but no row yet — fall back to env key
@@ -1467,6 +1472,8 @@ def get_ai_settings(admin=Depends(require_admin)):
         "gemini_model": "gemini-2.0-flash-lite",
         "sambanova_key_prefix": "",
         "sambanova_model": "Meta-Llama-3.3-70B-Instruct",
+        "ollama_cloud_key_prefix": "",
+        "ollama_cloud_model": "gemma3:4b",
     }
 
 
@@ -1516,6 +1523,11 @@ def update_ai_settings(
     new_sambanova_key = (data.sambanova_api_key or "").strip()
     effective_sambanova_key = new_sambanova_key if new_sambanova_key else existing_sambanova_key
 
+    # Ollama Cloud key — preserve existing if blank
+    existing_ollama_cloud_key = (row.get("ollama_cloud_api_key") or "").strip() if row else ""
+    new_ollama_cloud_key = (data.ollama_cloud_api_key or "").strip()
+    effective_ollama_cloud_key = new_ollama_cloud_key if new_ollama_cloud_key else existing_ollama_cloud_key
+
     value = {
         "api_enabled": data.api_enabled,
         "openai_api_key": effective_key,
@@ -1530,6 +1542,8 @@ def update_ai_settings(
         "gemini_model": (data.gemini_model or "gemini-2.0-flash-lite").strip(),
         "sambanova_api_key": effective_sambanova_key,
         "sambanova_model": (data.sambanova_model or "Meta-Llama-3.3-70B-Instruct").strip(),
+        "ollama_cloud_api_key": effective_ollama_cloud_key,
+        "ollama_cloud_model": (data.ollama_cloud_model or "gemma3:4b").strip(),
     }
 
     try:
@@ -1571,6 +1585,8 @@ def update_ai_settings(
         "gemini_model": value["gemini_model"],
         "sambanova_key_prefix": effective_sambanova_key[:12] if effective_sambanova_key else "",
         "sambanova_model": value["sambanova_model"],
+        "ollama_cloud_key_prefix": effective_ollama_cloud_key[:12] if effective_ollama_cloud_key else "",
+        "ollama_cloud_model": value["ollama_cloud_model"],
         "message": "AI settings saved successfully.",
     }
 
