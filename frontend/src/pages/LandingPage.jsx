@@ -184,6 +184,29 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex"}}>&#128640; Try for Free</button>
         <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Free to start &middot; Upgrade anytime</p>
       </div>
+      {/* Google Sign-In disclosure — required by Google API Services User Data Policy */}
+      <div style={{background:"rgba(15,23,42,.95)",borderTop:"1px solid #1e293b",padding:"36px 24px"}}>
+        <div style={{maxWidth:720,margin:"0 auto",display:"flex",gap:18,alignItems:"flex-start"}}>
+          <div style={{flexShrink:0,width:36,height:36,borderRadius:8,background:"#fff",display:"flex",alignItems:"center",justifyContent:"center",marginTop:2}}>
+            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.8 2.5 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.8 6C12.3 13.2 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6A24 24 0 0 0 0 24c0 3.8.9 7.4 2.6 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.5-2.1 15.4-5.6l-7.5-5.8c-2.1 1.4-4.8 2.2-7.9 2.2-6.3 0-11.6-3.7-13.6-9l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>
+          </div>
+          <div>
+            <p style={{fontSize:".8rem",fontWeight:800,color:"#f8fafc",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}}>Google Sign-In & Data Usage</p>
+            <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:0}}>
+              LikhaPoha AI uses Google Sign-In <strong style={{color:"#cbd5e1"}}>only to securely authenticate users</strong>. When you sign in with Google, we request basic profile information such as your name, email address, and profile picture.
+            </p>
+            <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:"8px 0 0"}}>
+              We use this information <strong style={{color:"#cbd5e1"}}>only to</strong> create your account, keep you logged in securely, personalize your learning experience, and save your study progress.
+            </p>
+            <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:"8px 0 0"}}>
+              LikhaPoha AI <strong style={{color:"#f87171"}}>does not access</strong> Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google services.
+              We <strong style={{color:"#f87171"}}>do not sell or share</strong> Google user data for advertising or marketing.
+              See our <a href="/privacy-policy" style={{color:"#93c5fd"}}>Privacy Policy</a> for full details.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <footer className="lp-footer">
         <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>
         <p>AI-Powered Tutor for CBSE &middot; Class 5&ndash;10</p>

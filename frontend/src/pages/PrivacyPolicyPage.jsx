@@ -103,7 +103,37 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           We do <strong>not</strong> sell, rent, or trade your personal data to third parties for marketing.
         </Section>
 
-        <Section title="4. AI Providers and Third-Party Services">
+        <Section title="4. Google Sign-In & Data Usage">
+          LikhaPoha AI uses Google Sign-In <strong>only to securely authenticate users</strong>. When you sign in with Google, we request only the following basic profile information:
+          <ul style={{ paddingLeft: 24, marginTop: 8 }}>
+            <li>Your name</li>
+            <li>Your email address</li>
+            <li>Your profile picture</li>
+          </ul>
+          We use this information <strong>only to</strong>:
+          <ul style={{ paddingLeft: 24, marginTop: 8, marginBottom: 12 }}>
+            <li style={{ marginBottom: 6 }}>Create and identify your account</li>
+            <li style={{ marginBottom: 6 }}>Keep you securely logged in</li>
+            <li style={{ marginBottom: 6 }}>Personalise your learning experience</li>
+            <li>Save your study progress</li>
+          </ul>
+          <div style={{ background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.25)", borderRadius: 8, padding: "12px 16px", marginTop: 12 }}>
+            <strong style={{ color: "#fca5a5" }}>LikhaPoha AI does NOT:</strong>
+            <ul style={{ paddingLeft: 24, marginTop: 8, color: "#cbd5e1" }}>
+              <li style={{ marginBottom: 6 }}>Access Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google service</li>
+              <li style={{ marginBottom: 6 }}>Sell, share, or transfer Google user data for advertising, marketing, or any commercial purpose</li>
+              <li style={{ marginBottom: 6 }}>Use Google user data to train AI or machine learning models</li>
+              <li>Request any Google permission beyond basic profile (email + name + picture)</li>
+            </ul>
+          </div>
+          <br />
+          Our use of Google user data complies with the{" "}
+          <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noreferrer" style={{ color: "#93c5fd" }}>
+            Google API Services User Data Policy
+          </a>, including the Limited Use requirements.
+        </Section>
+
+        <Section title="5. AI Providers and Third-Party Services">
           LikhaPoha AI uses AI language model providers (OpenAI, Groq, Google Gemini, Cerebras, SambaNova, Anthropic, Ollama Cloud) to generate lesson content. Prompts sent to these providers contain:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li>Grade, subject, chapter, and topic</li>
@@ -123,7 +153,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="5. Data Retention">
+        <Section title="6. Data Retention">
           <ul style={{ paddingLeft: 24, marginTop: 4 }}>
             <li style={{ marginBottom: 8 }}>Account data is retained for as long as your account is active.</li>
             <li style={{ marginBottom: 8 }}>AI usage logs are retained for 12 months for platform analytics and then deleted.</li>
@@ -132,7 +162,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="6. Children's Privacy">
+        <Section title="7. Children's Privacy">
           LikhaPoha AI is designed for students in Classes 5–10 (approximately ages 10–16). We take children's privacy seriously:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 8 }}>Student accounts are created by parents or guardians via the Family Account system, or directly by school administrators.</li>
@@ -142,7 +172,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="7. Cookies and Local Storage">
+        <Section title="8. Cookies and Local Storage">
           We use browser local storage (not third-party cookies) to:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li>Maintain your login session (JWT token)</li>
@@ -152,7 +182,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           We do not use advertising cookies or third-party tracking pixels.
         </Section>
 
-        <Section title="8. Your Rights (PDPB / IT Act)">
+        <Section title="9. Your Rights (PDPB / IT Act)">
           Under Indian data protection law and our commitments, you have the right to:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 8 }}><strong>Access</strong> — request a copy of the data we hold about you.</li>
@@ -166,7 +196,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           We will respond within 30 days.
         </Section>
 
-        <Section title="9. Data Security">
+        <Section title="10. Data Security">
           We implement industry-standard security measures:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 8 }}>All data in transit is encrypted via TLS 1.2+.</li>
@@ -179,11 +209,11 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           <a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a>.
         </Section>
 
-        <Section title="10. Changes to This Policy">
+        <Section title="11. Changes to This Policy">
           We may update this Privacy Policy periodically. When we do, we will update the "Last updated" date at the top and, for material changes, notify you via email or an in-app notice. Continued use of the platform after changes constitutes acceptance of the updated policy.
         </Section>
 
-        <Section title="11. Contact Us">
+        <Section title="12. Contact Us">
           For privacy-related questions, requests, or concerns:
           <br /><br />
           <strong>LikhaPoha AI</strong><br />
