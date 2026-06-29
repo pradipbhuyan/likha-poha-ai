@@ -1158,7 +1158,6 @@ function App() {
               {[
                 { r: "student", icon: "🎓", label: "Student", desc: "I want to learn and take practice tests" },
                 { r: "parent",  icon: "👨‍👩‍👧", label: "Parent",  desc: "I want to track my child's learning" },
-                { r: "teacher", icon: "📋", label: "Teacher", desc: "I monitor my students' progress" },
               ].map(({ r, icon, label, desc }) => (
                 <div key={r}
                   onClick={() => setOauthRole(r)}
