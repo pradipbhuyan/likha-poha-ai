@@ -488,7 +488,9 @@ function App() {
       }
     );
     return () => subscription.unsubscribe();
-  }, []);
+  // _finishOAuthLogin is a stable inner function defined before this effect;
+  // adding it to deps would cause infinite re-subscription. Intentional.
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     function handlePopState() {
@@ -588,7 +590,7 @@ function App() {
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
     localStorage.setItem("tutor_dark_mode", darkMode);
-  }, [darkMode]);
+  }, [darkMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── oauthError screen — shown when Google OAuth fails ──────────────────
   // Must be placed AFTER all useEffect/hook calls to comply with React's

@@ -71,11 +71,10 @@ export async function authFetch(path, options = {}) {
 
   if (!response.ok) {
     let message = "Something went wrong. Please try again.";
-    let rawDetail = "";
 
     try {
       const errorData = await response.json();
-      rawDetail = errorData.detail || errorData.message || ""; // eslint-disable-line no-useless-assignment
+      const rawDetail = errorData.detail || errorData.message || "";
 
       if (response.status === 401) {
         // 401 = genuinely expired / invalid session token
