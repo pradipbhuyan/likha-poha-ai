@@ -866,7 +866,7 @@ function App() {
             </div>
             <button
               style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", marginTop: 16 }}
-              onClick={() => {
+              onClick={async () => {
                 if (oauthRole === "student") {
                   setOauthStep("grade"); // students need to pick grade next
                 } else {
