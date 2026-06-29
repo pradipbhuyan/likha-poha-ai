@@ -140,6 +140,69 @@ Expected result:
 
 ---
 
+## ⚠️ MANDATORY Pre-Push Checklist
+
+**Run these before every `git push` to prevent CI failures:**
+
+```bash
+# Frontend: tests + lint (takes ~15 seconds)
+cd frontend && npx vitest run && npx eslint src/ --max-warnings 50
+```
+
+Both commands must pass. If either fails, fix before pushing.
+
+---
+
+## Why CI fails but local doesn't — 3 known failure modes
+
+### 1. Tests written for old broken behavior
+If you fix a bug, pre-existing tests asserting the broken behavior will now fail in CI.
+
+**Example:** `AuthSessionReliability.test.jsx` had `expect(caught).toMatch(/session has expired/)` for a 403 response. After fixing authClient to correctly map 403 → "does not have access", the test needed updating.
+
+**Prevention:** Always run `npx vitest run` after every fix.
+
+### 2. ESLint warning count exceeds 50
+CI runs `eslint src/ --max-warnings 50` on the **entire `src/`** directory. Running ESLint on a single file misses the aggregate count.
+
+**Prevention:** Always run `npx eslint src/ --max-warnings 50` — not per-file.
+
+### 3. Async timing race in tests
+Using `getAllByTestId` (synchronous) after `findByText` (async) causes failures because `findByText` resolves before data fetches complete.
+
+**Rule:** Always use `findAllBy*` (async, retries) for elements that appear after mock API responses — never `getAllBy*` (sync).
+
+```javascript
+// ✗ WRONG — sync query after async findBy
+await screen.findByText("Total Users");
+const badges = screen.getAllByTestId("badge-not-enabled"); // fails — data not loaded yet
+
+// ✓ CORRECT — async query waits for data
+await screen.findByText("Total Users");
+const badges = await screen.findAllByTestId("badge-not-enabled"); // retries until found
+```
+
+### 4. ESLint disable directives on wrong lines
+
+`react-hooks/exhaustive-deps` reports on the `useEffect(() => {` opening line, not the closing `}, [deps])` line.
+
+```javascript
+// ✗ WRONG — disable on closing line (warning is on opening line)
+useEffect(() => { ... }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+// ✓ CORRECT — disable on closing line of mount-only [] effects
+// (The rule actually fires here in this project's ESLint config)
+}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+// ✓ Also correct — disable-next-line before the effect
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { ... }, []);
+```
+
+Never add an eslint-disable on a line that has no warning — that produces an "unused eslint-disable directive" warning.
+
+---
+
 ## Recommended full test checklist
 
 Before pushing important changes, run all three test layers.
@@ -151,14 +214,21 @@ cd backend
 ./venv/bin/python -m pytest -v
 ```
 
-### 2. Frontend
+### 2. Frontend (REQUIRED before push)
+
+```bash
+cd frontend
+npx vitest run && npx eslint src/ --max-warnings 50
+```
+
+Both must pass. This catches the 3 CI failure modes above.
+
+For watch mode during development:
 
 ```bash
 cd frontend
 npm test
 ```
-
-Press `q` after tests pass.
 
 ### 3. E2E
 
@@ -199,3 +269,6 @@ Make sure the backend server is already running before starting the simulation.
 - Vitest should not run Playwright tests. The `e2e` folder is excluded in `vite.config.js`.
 - Some backend tests use mocks to avoid calling Supabase, OpenAI, or other external services.
 - Generated files like `.coverage` should not be committed.
+- **CI max warning limit: 50.** Adding new files or patterns can push warnings over the limit — always check aggregate count before pushing.
+- **`findAllBy*` not `getAllBy*`** for elements rendered after async data loads.
+- **`authClient.js` 401 vs 403:** 401 = session expired message, 403 = role-specific access-denied message. Never map 403 to session expired.
