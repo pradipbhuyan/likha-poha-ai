@@ -11,7 +11,6 @@ import { getStudentProfile } from "../api/profile";
 import { getRecommendations } from "../api/recommendations";
 import { getWeakChapters } from "../api/analytics";
 import "./StudentDashboardPage.css";
-import ReportIssueModal from "../components/ReportIssueModal";
 
 // ── Design tokens / helpers ───────────────────────────────────────────────────
 function greet(){var h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening";}
@@ -57,7 +56,6 @@ function Skel(){
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
 export default function StudentDashboardPage({ user, setActivePage }) {
-  var [reportOpen, setReportOpen] = useState(false);
   const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
   const [exams, setExams]     = useState([]);
@@ -221,18 +219,6 @@ export default function StudentDashboardPage({ user, setActivePage }) {
 
   return(
     <div className="sd-page" data-testid="student-dashboard-page">
-      {/* Floating Report Issue button */}
-      <button data-testid="report-issue-btn" onClick={() => setReportOpen(true)}
-        style={{ position:"fixed", bottom:24, right:24, zIndex:500,
-          background:"#6366f1", color:"#fff", border:"none", borderRadius:28,
-          padding:"10px 18px", fontFamily:"inherit", fontWeight:700, fontSize:".82rem",
-          cursor:"pointer", boxShadow:"0 4px 16px rgba(99,102,241,0.4)",
-          display:"flex", alignItems:"center", gap:6 }}>
-        🐛 Report Issue
-      </button>
-      <ReportIssueModal open={reportOpen} onClose={() => setReportOpen(false)}
-        context={{ route: "dashboard", grade: user?.grade }}
-        user={user} />
 
       {/* ── HERO ── */}
       <div className="sd-hero" data-testid="student-hero">

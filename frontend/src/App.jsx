@@ -17,6 +17,7 @@ import StudentDashboardPage from "./pages/StudentDashboardPage";
 import FormulaSheetPage from "./pages/FormulaSheetPage";
 import AdminQACenterPage from "./pages/AdminQACenterPage";
 import AdminIssuesPage from "./pages/AdminIssuesPage";
+import ReportIssueModal from "./components/ReportIssueModal";
 import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { PAGE_ICONS } from "./utils/pageIcons";
@@ -278,6 +279,7 @@ function App() {
   const [showSignup, setShowSignup] = useState(false);
   const [signupInitialPlan, setSignupInitialPlan] = useState("free");
   const [activePage, setActivePage] = useState("dashboard");
+  const [reportBugOpen, setReportBugOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   // Detect Supabase recovery/invite hash fragments on first load
   const _initialHash = window.location.hash;
@@ -1239,6 +1241,29 @@ function App() {
 
       {/* FirstTimeGuide hidden — removed per product decision */}
       <ChatWidget />
+
+      {/* Global floating Report Issue button — visible to student/parent/teacher */}
+      {user && user.role !== "admin" && user.role !== "sales" && (
+        <>
+          <button
+            data-testid="global-report-issue-btn"
+            onClick={() => setReportBugOpen(true)}
+            title="Report an issue"
+            style={{ position:"fixed", bottom:24, right:24, zIndex:900,
+              background:"#6366f1", color:"#fff", border:"none", borderRadius:28,
+              padding:"10px 18px", fontFamily:"inherit", fontWeight:700, fontSize:".82rem",
+              cursor:"pointer", boxShadow:"0 4px 16px rgba(99,102,241,0.4)",
+              display:"flex", alignItems:"center", gap:6 }}>
+            🐛 Report Issue
+          </button>
+          <ReportIssueModal
+            open={reportBugOpen}
+            onClose={() => setReportBugOpen(false)}
+            context={{ route: activePage, grade: user?.grade }}
+            user={user}
+          />
+        </>
+      )}
     </div>
     </ToastProvider>
   );
