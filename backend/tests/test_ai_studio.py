@@ -198,7 +198,7 @@ class TestConnectionTest:
     def test_test_connection_success(self, monkeypatch):
         import app.routes.ai_studio as route_mod
         monkeypatch.setattr(route_mod, "test_connection",
-                            lambda pk, override_key=None: {
+                            lambda pk, override_key=None, override_model=None: {
                                 "success": True, "latency_ms": 123,
                                 "model": "gpt-4.1-nano", "message": "Connected. Response: 'OK'"
                             })
@@ -213,7 +213,7 @@ class TestConnectionTest:
     def test_test_connection_failure_returns_friendly_message(self, monkeypatch):
         import app.routes.ai_studio as route_mod
         monkeypatch.setattr(route_mod, "test_connection",
-                            lambda pk, override_key=None: {
+                            lambda pk, override_key=None, override_model=None: {
                                 "success": False, "latency_ms": 0,
                                 "model": "gpt-4.1-nano", "message": "Authentication failed — check your API key."
                             })
@@ -229,7 +229,7 @@ class TestConnectionTest:
         """Test-only key must not appear in response."""
         import app.routes.ai_studio as route_mod
         captured = {}
-        def fake_test(pk, override_key=None):
+        def fake_test(pk, override_key=None, override_model=None):
             captured["key"] = override_key
             return {"success": True, "latency_ms": 50, "model": "test", "message": "OK"}
         monkeypatch.setattr(route_mod, "test_connection", fake_test)
@@ -245,7 +245,7 @@ class TestConnectionTest:
         """Local Ollama offline must return friendly message, not 500."""
         import app.routes.ai_studio as route_mod
         monkeypatch.setattr(route_mod, "test_connection",
-                            lambda pk, override_key=None: {
+                            lambda pk, override_key=None, override_model=None: {
                                 "success": False, "latency_ms": 0,
                                 "model": "llama3.2",
                                 "message": "Local Ollama server not reachable. Start it with: ollama serve"
