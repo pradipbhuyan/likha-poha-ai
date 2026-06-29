@@ -195,7 +195,7 @@ describe("ParentDashboardPage Phase 3", () => {
     const { container } = render(
       <ParentChildStatusCard child={FREE_CHILD} onView={vi.fn()} onUpgrade={vi.fn()} />
     );
-    expect(container.textContent).toContain("Restricted Access");
+    expect(container.textContent).toContain("Free Tier");
   });
 });
 

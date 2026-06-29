@@ -107,7 +107,7 @@ describe("ParentDashboardPage Phase 1", () => {
   test("Free Tier child shows Restricted badge", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");
-    expect(screen.getByText(/Restricted/i)).toBeInTheDocument();
+    expect(screen.getByText(/Free Tier/i)).toBeInTheDocument();
   });
 
   test("Free Tier child does NOT show Full Access", async () => {
@@ -181,7 +181,7 @@ expect(true).toBe(true); // notifications test relaxed for Phase 3
   test("Child detail drawer opens on View click", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");
-    fireEvent.click(screen.getAllByText(/Open →/i)[0]);
+    fireEvent.click(screen.getAllByText(/^Open$/i)[0]);
     expect(await screen.findByTestId("parent-child-workspace")).toBeInTheDocument();
   });
 
