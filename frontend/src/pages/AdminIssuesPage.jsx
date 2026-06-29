@@ -174,23 +174,21 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
               "",
               bi.recentJsErrors?.length > 0 ? [
                 "## Recent JS Errors",
-                ...(bi.recentJsErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} [${e.filename}:${e.lineno}] ${e.message}`),
-                "",
-              ].join("
-") : null,
+                ...(bi.recentJsErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} [${e.filename||"?"}:${e.lineno||"?"}] ${e.message||""}`), "",
+
+              ].join("\n") : null,
               bi.recentApiErrors?.length > 0 ? [
                 "## Recent API Errors",
-                ...(bi.recentApiErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} ${e.status} ${e.url}: ${e.message}`),
-                "",
-              ].join("
-") : null,
+                ...(bi.recentApiErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} ${e.status||""} ${e.url||""}: ${e.message||""}`), "",
+
+              ].join("\n") : null,
               "## Admin Notes",
               issue.admin_notes || "(none)",
               "",
               "---",
               "Please investigate and fix the above issue. The platform is Likhapoha AI, a CBSE learning platform built with React + FastAPI + Supabase.",
-            ].filter(x => x !== null).join("
-");
+            ].filter(x => x !== null).join("\n");
+
 
             navigator.clipboard?.writeText(prompt).then(() => {
               setMsg("✅ Copied to clipboard — paste into Codex/Claude");
