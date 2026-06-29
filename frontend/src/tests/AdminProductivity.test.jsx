@@ -220,8 +220,10 @@ describe("AdminAnalytics", () => {
   test("shows Not yet enabled for unavailable AI data", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
-    // New component uses "Not yet enabled" badge instead of "N/A"
-    const badges = screen.getAllByTestId("badge-not-enabled");
+    // Wait for data to load — findAll retries until badges appear or timeout.
+    // The component renders STATE_MISSING badges after the fetch resolves
+    // (ai.state is absent in mock data → defaults to STATE_MISSING).
+    const badges = await screen.findAllByTestId("badge-not-enabled");
     expect(badges.length).toBeGreaterThan(0);
   });
 
