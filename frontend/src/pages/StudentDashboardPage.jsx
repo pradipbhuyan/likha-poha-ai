@@ -11,6 +11,7 @@ import { getStudentProfile } from "../api/profile";
 import { getRecommendations } from "../api/recommendations";
 import { getWeakChapters } from "../api/analytics";
 import "./StudentDashboardPage.css";
+import ReportIssueModal from "../components/ReportIssueModal";
 
 // ── Design tokens / helpers ───────────────────────────────────────────────────
 function greet(){var h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening";}
