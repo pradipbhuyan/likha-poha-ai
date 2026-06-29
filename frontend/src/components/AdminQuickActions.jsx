@@ -14,11 +14,12 @@
  */
 
 import { useState } from "react";
+import { Users, GraduationCap, BookOpen, Tag, Clock, Download, Zap } from "lucide-react";
 
 const QUICK_ACTIONS = [
   {
     id: "create-parent",
-    icon: "👨‍👩‍👧",
+    Icon: Users,
     label: "Create Parent",
     description: "Add a new family with a parent account",
     tab: "accounts",
@@ -27,7 +28,7 @@ const QUICK_ACTIONS = [
   },
   {
     id: "create-teacher",
-    icon: "🎓",
+    Icon: GraduationCap,
     label: "Create Teacher",
     description: "Add a teacher login for a school or independent tutor",
     tab: "accounts",
@@ -36,7 +37,7 @@ const QUICK_ACTIONS = [
   },
   {
     id: "create-student",
-    icon: "📚",
+    Icon: BookOpen,
     label: "Create Student",
     description: "Add a standalone student account",
     tab: "accounts",
@@ -45,7 +46,7 @@ const QUICK_ACTIONS = [
   },
   {
     id: "create-offer-code",
-    icon: "🎟️",
+    Icon: Tag,
     label: "Create Offer Code",
     description: "Generate a new access code for students",
     tab: "offers",
@@ -54,7 +55,7 @@ const QUICK_ACTIONS = [
   },
   {
     id: "run-expiry-job",
-    icon: "⏰",
+    Icon: Clock,
     label: "Run Expiry Job",
     description: "Trigger subscription expiry check now",
     tab: "operations",
@@ -63,7 +64,7 @@ const QUICK_ACTIONS = [
   },
   {
     id: "export-users",
-    icon: "📥",
+    Icon: Download,
     label: "Export Users",
     description: "Download all users as a CSV file",
     tab: null,      // handled inline
@@ -106,7 +107,7 @@ export default function AdminQuickActions({
     <div data-testid="admin-quick-actions">
       <div style={{ marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
         <h3 style={{ margin: 0, fontSize: ".95rem", fontWeight: 700, color: "var(--text, #1e293b)" }}>
-          ⚡ Quick Actions
+          <Zap size={16} strokeWidth={2.5} style={{display:"inline",verticalAlign:"middle",marginRight:5}} /> Quick Actions
         </h3>
       </div>
 
@@ -149,7 +150,9 @@ export default function AdminQuickActions({
                 minHeight: 80,
               }}
             >
-              <span style={{ fontSize: "1.4rem", lineHeight: 1 }}>{action.icon}</span>
+              <span style={{ display:"flex", alignItems:"center", justifyContent:"center", width:32, height:32, borderRadius:8, background:action.color+"18", color:action.color, flexShrink:0 }}>
+                <action.Icon size={16} strokeWidth={2} />
+              </span>
               <span style={{ fontSize: ".82rem", fontWeight: 700, color: isHov ? action.color : "var(--text, #1e293b)", lineHeight: 1.2 }}>
                 {action.label}
               </span>
