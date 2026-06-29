@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import {
   LayoutDashboard, UserCircle, Users, Link2, Tag,
   Settings2, Monitor, Zap, BarChart2, LifeBuoy,
+  KeyRound, PenLine, ClipboardList, Wrench, GraduationCap,
+  Ticket, Image, UserPlus, Activity, Search,
 } from "lucide-react";
 import "./AdminConsole.css";
 import AdminQuickActions from "../components/AdminQuickActions";
@@ -1065,7 +1067,7 @@ function AdminControlPage({ user }) {
     <section className="premium-section">
       <div className="premium-header">
         <p className="eyebrow">Platform Configuration</p>
-        <h3>🔑 AI API Settings</h3>
+        <h3><KeyRound size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />AI API Settings</h3>
         <p>Control the OpenAI master switch and set the API key used across the entire platform.</p>
       </div>
 
@@ -1511,7 +1513,7 @@ function AdminControlPage({ user }) {
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Content Management</p>
-          <h3>✍️ Blog Collaborators</h3>
+          <h3><PenLine size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Blog Collaborators</h3>
           <p>Invite GitHub users to edit blog posts directly on GitHub. They can create, edit, and delete <code>.md</code> files in <code>frontend/src/blog/posts/</code>.</p>
         </div>
 
@@ -1585,7 +1587,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Platform Configuration</p>
-          <h3>📋 Logging Settings</h3>
+          <h3><ClipboardList size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Logging Settings</h3>
           <p>Control structured request/event logging for the backend. Disable to reduce log noise in production.</p>
         </div>
         {loggingLoading ? <p>Loading…</p> : (
@@ -1648,7 +1650,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
         <div className="premium-header">
           <p className="eyebrow">Admin Operations</p>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-            <h2 style={{ margin: 0 }}>🛠️ Admin Control Center</h2>
+            <h2 style={{ margin: 0 }}><Wrench size={18} style={{display:"inline",verticalAlign:"middle",marginRight:7}} />Admin Control Center</h2>
             {(allStudents.length + allParents.length + allTeachers.length) > 0 && (
               <button onClick={exportUsersCSV}
                 style={{ background: "var(--panel)", color: "var(--primary)", border: "1px solid var(--border)", borderRadius: 8, padding: "8px 16px", fontSize: ".85rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
@@ -1957,7 +1959,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
         <div style={{ marginTop: 32 }}>
           <div className="premium-header" style={{ marginBottom: 16 }}>
             <p className="eyebrow">Quick Create</p>
-            <h3>🎓 Create Student</h3>
+            <h3><GraduationCap size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Create Student</h3>
             <p>Create a standalone student account. Optionally link to a parent later.</p>
           </div>
           <div className="admin-create-grid">
@@ -2188,7 +2190,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       <section id="create-offer-form" className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Access Management</p>
-          <h3>🎟️ Offer Codes</h3>
+          <h3><Ticket size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Offer Codes</h3>
           <p>Create 8-character alphanumeric codes that grant platform access for a defined period.</p>
         </div>
 
@@ -2255,7 +2257,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
             {/* Refresh Promo Images — stamp all WhatsApp cards with active code */}
             {offerCodes.filter(oc => oc.is_active && new Date(oc.valid_until) > new Date()).length > 0 && (
               <div style={{marginTop:20, padding:"16px", background:"var(--surface2,#f8f9fa)", borderRadius:12, border:"1px solid var(--border)"}}>
-                <h4 style={{margin:"0 0 8px",fontSize:".95rem"}}>🎨 Refresh Promo Images</h4>
+                <h4 style={{margin:"0 0 8px",fontSize:".95rem"}}><Image size={14} style={{display:"inline",verticalAlign:"middle",marginRight:5}} />Refresh Promo Images</h4>
                 <p style={{fontSize:".82rem",color:"var(--muted)",marginBottom:12}}>
                   Stamp all 12 WhatsApp promo images with a new offer code and re-upload to Supabase automatically.
                   Salespeople see updated images on the Collaterals page immediately.
@@ -2402,7 +2404,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Offer Code Programme</p>
-          <h3>👥 Student Enrollments by Offer Code</h3>
+          <h3><UserPlus size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Student Enrollments by Offer Code</h3>
           <p>See exactly which students enrolled using which code — with date, grade, and influencer attribution.</p>
         </div>
         {enrollmentsLoading ? <p>Loading…</p> : enrollments.length === 0 ? (
@@ -2493,7 +2495,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Influencer Programme</p>
-          <h3>📊 Influencer Incentive Tracking</h3>
+          <h3><BarChart2 size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Influencer Incentive Tracking</h3>
           <p>Track incentive payables per influencer and mark payments as settled.</p>
         </div>
         {influencerMsg && <div className="info-box" style={{marginBottom:12}}>{influencerMsg}</div>}
@@ -2867,7 +2869,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                     padding: 16,
                   }}
                 >
-                  <h4>📊 Student Activity</h4>
+                  <h4><Activity size={14} style={{display:"inline",verticalAlign:"middle",marginRight:5}} />Student Activity</h4>
 
                   <div className="form-grid premium-rag-form-grid">
                     <div>
@@ -3263,7 +3265,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
         <section className="premium-section">
           <div className="premium-header">
             <p className="eyebrow">Admin Tools</p>
-            <h3>⚡ Bulk Operations</h3>
+            <h3><Zap size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Bulk Operations</h3>
             <p>Assign teachers, reset passwords, grant access, export users, and import students at scale.</p>
           </div>
           <AdminBulkTools
@@ -3284,7 +3286,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
         <section className="premium-section" style={{ marginTop: 0 }}>
           <div className="premium-header">
             <p className="eyebrow">Admin Views</p>
-            <h3>🔍 Saved Views</h3>
+            <h3><Search size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />Saved Views</h3>
             <p>Prebuilt filtered views for common operational queries — live data on each request.</p>
           </div>
           <AdminSavedViews accessToken={user?.accessToken} />
