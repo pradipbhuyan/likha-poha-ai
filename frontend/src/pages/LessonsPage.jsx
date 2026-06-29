@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect as _useEff, useEffect, useState } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
 import StructuredVisualBlock from "../components/StructuredVisualBlock";
 
-import { getSyllabus } from "../api/syllabus";
+import { useEffect as _useEff, getSyllabus } from "../api/syllabus";
 import {
   generateLesson,
   askLessonFollowUp,
   getLessonTextbookVisuals,
   getLessonDoubtSuggestions,
 } from "../api/lesson";
-import { getDoubtHistory } from "../api/doubt";
-import { generateSpeech } from "../api/tts";
-import { getChapterProgress, saveChapterProgress } from "../api/progress";
+import { useEffect as _useEff, getDoubtHistory } from "../api/doubt";
+import { useEffect as _useEff, generateSpeech } from "../api/tts";
+import { useEffect as _useEff, getChapterProgress, saveChapterProgress } from "../api/progress";
 import LessonSections from "../components/LessonSections";
-import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
-import { getLessonCardPublicSettings } from "../api/platformSettings";
+import { useEffect as _useEff, saveWeakAreaAlert } from "../api/weakAreaAlerts";
+import { useEffect as _useEff, getLessonCardPublicSettings } from "../api/platformSettings";
 
 import {
   evaluateStudentAnswer,
@@ -29,9 +29,9 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
-import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
-import { filterAllowedSubjects } from "../utils/subjectAccess";
-import { hasPaidAccess } from "../utils/resolveSubscription";
+import { useEffect as _useEff, normalizeTutorMarkdown } from "../utils/markdownCleanup";
+import { useEffect as _useEff, filterAllowedSubjects } from "../utils/subjectAccess";
+import { useEffect as _useEff, hasPaidAccess } from "../utils/resolveSubscription";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
@@ -247,6 +247,20 @@ function LessonsPage({ user, setActivePage }) {
   const [completed, setCompleted] = useState(false);
 
   const stepTitle = lessonSteps[currentStepIndex];
+
+  // Write lesson context for Report Issue modal
+  if (typeof window !== "undefined") {
+    window.__LIKHAPOHA_CONTEXT__ = {
+      page: "lessons",
+      grade: selectedGrade || null,
+      subject: selectedSubject || null,
+      chapter: selectedChapter || null,
+      lessonStep: stepTitle || null,
+      lessonStepIndex: currentStepIndex,
+      totalSteps: lessonSteps.length,
+      lessonId: selectedChapter ? `${selectedGrade}-${selectedSubject}-${selectedChapter}`.toLowerCase().replace(/\s+/g,"-") : null,
+    };
+  }
 
   // Teacher persona, voice, and speed are fixed defaults — not user-selectable.
   // Using "" persona ensures pre-warmed cached lessons are served instantly.

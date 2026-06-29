@@ -133,6 +133,84 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
         {saving ? "Saving…" : "Save Changes"}
       </button>
       {msg && <div style={{ marginTop: 8, fontSize: ".78rem", color: msg.startsWith("Error") ? "#dc2626" : "#22c55e" }}>{msg}</div>}
+
+      {/* Copy for Codex */}
+      <div style={{ marginTop:16, borderTop:"1px solid var(--border,#e5e7eb)", paddingTop:14 }}>
+        <div style={{ fontSize:".76rem", fontWeight:600, color:"#64748b", marginBottom:8 }}>
+          🤖 Fix with AI (Copy for Codex)
+        </div>
+        <button data-testid="copy-for-codex-btn"
+          onClick={() => {
+            const bi = issue.browser_info || {};
+            const prompt = [
+              "# Bug Report — Likhapoha AI Platform",
+              "",
+              `**Issue Type:** ${issue.issue_type?.replace("_"," ")}`,
+              `**Severity:** ${issue.severity}`,
+              `**Status:** ${issue.status}`,
+              `**Reported:** ${issue.created_at ? new Date(issue.created_at).toLocaleString() : "unknown"}`,
+              "",
+              "## Description",
+              issue.description || "",
+              "",
+              "## Context",
+              `- **Route/Page:** ${issue.route || bi.url || "unknown"}`,
+              `- **Role:** ${issue.reporter_role || "unknown"}`,
+              `- **Grade:** ${issue.grade || bi.grade || "unknown"}`,
+              `- **Subject:** ${issue.subject || bi.subject || "unknown"}`,
+              `- **Chapter:** ${issue.chapter || bi.chapter || "unknown"}`,
+              `- **Lesson Step:** ${issue.lesson_step || bi.lessonStep || "unknown"}`,
+              bi.lessonStepIndex != null ? `- **Step Index:** ${Number(bi.lessonStepIndex)+1} of ${bi.totalSteps}` : null,
+              "",
+              "## Browser / Device",
+              `- **Browser:** ${(bi.userAgent || "").split(" ").slice(-2).join(" ")}`,
+              `- **Platform:** ${bi.platform || "unknown"}`,
+              `- **Viewport:** ${bi.viewportWidth}x${bi.viewportHeight}`,
+              `- **Screen:** ${bi.screenWidth}x${bi.screenHeight}`,
+              `- **DPR:** ${bi.devicePixelRatio}`,
+              `- **Online:** ${bi.online}`,
+              `- **Page Load:** ${bi.pageLoadMs ? bi.pageLoadMs + "ms" : "unknown"}`,
+              bi.screenshotCaptured ? "- **Screenshot:** Captured (check sessionStorage last_report_screenshot)" : null,
+              "",
+              bi.recentJsErrors?.length > 0 ? [
+                "## Recent JS Errors",
+                ...(bi.recentJsErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} [${e.filename}:${e.lineno}] ${e.message}`),
+                "",
+              ].join("
+") : null,
+              bi.recentApiErrors?.length > 0 ? [
+                "## Recent API Errors",
+                ...(bi.recentApiErrors||[]).map(e => `- ${e.ts?.slice(11,19)||""} ${e.status} ${e.url}: ${e.message}`),
+                "",
+              ].join("
+") : null,
+              "## Admin Notes",
+              issue.admin_notes || "(none)",
+              "",
+              "---",
+              "Please investigate and fix the above issue. The platform is Likhapoha AI, a CBSE learning platform built with React + FastAPI + Supabase.",
+            ].filter(x => x !== null).join("
+");
+
+            navigator.clipboard?.writeText(prompt).then(() => {
+              setMsg("✅ Copied to clipboard — paste into Codex/Claude");
+            }).catch(() => {
+              // Fallback: open in textarea
+              const ta = document.createElement("textarea");
+              ta.value = prompt;
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+              setMsg("✅ Copied to clipboard — paste into Codex/Claude");
+            });
+          }}
+          style={{ width:"100%", padding:"9px", borderRadius:8, border:"1px solid #6366f1",
+            background:"transparent", color:"#6366f1", fontWeight:700, fontSize:".82rem",
+            cursor:"pointer", fontFamily:"inherit" }}>
+          📋 Copy Bug Report for Codex
+        </button>
+      </div>
     </div>
   );
 }
