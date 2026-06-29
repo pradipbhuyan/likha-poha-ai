@@ -252,13 +252,13 @@ function LessonsPage({ user, setActivePage }) {
   if (typeof window !== "undefined") {
     window.__LIKHAPOHA_CONTEXT__ = {
       page: "lessons",
-      grade: selectedGrade || null,
-      subject: selectedSubject || null,
-      chapter: selectedChapter || null,
+      grade: grade || null,
+      subject: subject || null,
+      chapter: chapter || null,
       lessonStep: stepTitle || null,
       lessonStepIndex: currentStepIndex,
       totalSteps: lessonSteps.length,
-      lessonId: selectedChapter ? `${selectedGrade}-${selectedSubject}-${selectedChapter}`.toLowerCase().replace(/\s+/g,"-") : null,
+      lessonId: chapter ? (grade+"-"+subject+"-"+chapter).toLowerCase().replace(/[^a-z0-9]+/g,"-") : null,
     };
   }
 
