@@ -15,6 +15,10 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import {
+  Plug, GitBranch, FileText, BookOpen,
+  Settings, DollarSign, BarChart2,
+} from "lucide-react";
+import {
   getGenerationJobs,
   getKnowledgeSources,
   getModelProfiles,
@@ -44,13 +48,13 @@ const btn = {
 };
 
 const TABS = [
-  { key: "providers",    label: "🔌 Providers" },
-  { key: "routing",     label: "🔀 Model Routing" },
-  { key: "prompts",     label: "📝 Prompt Templates" },
-  { key: "knowledge",   label: "📚 Knowledge Sources" },
-  { key: "jobs",        label: "⚙️ Generation Jobs" },
-  { key: "usage",       label: "💰 Usage & Costs" },
-  { key: "quality",     label: "📊 Quality Metrics" },
+  { key: "providers",  label: "Providers",        Icon: Plug },
+  { key: "routing",    label: "Model Routing",     Icon: GitBranch },
+  { key: "prompts",    label: "Prompt Templates",  Icon: FileText },
+  { key: "knowledge",  label: "Knowledge Sources", Icon: BookOpen },
+  { key: "jobs",       label: "Generation Jobs",   Icon: Settings },
+  { key: "usage",      label: "Usage & Costs",     Icon: DollarSign },
+  { key: "quality",    label: "Quality Metrics",   Icon: BarChart2 },
 ];
 
 function StatusBadge({ ok, label }) {
@@ -807,6 +811,7 @@ export default function AdminAIStudioPage({ user }) { // eslint-disable-line no-
             data-testid={`ai-studio-tab-${t.key}`}
             onClick={() => setActiveTab(t.key)}
             style={{
+              display: "flex", alignItems: "center", gap: 5,
               padding: "7px 14px", borderRadius: "8px 8px 0 0", border: "none",
               fontFamily: "inherit", fontSize: ".8rem", fontWeight: 600, cursor: "pointer",
               background: activeTab === t.key ? "var(--panel,#fff)" : "transparent",
@@ -814,7 +819,7 @@ export default function AdminAIStudioPage({ user }) { // eslint-disable-line no-
               borderBottom: activeTab === t.key ? "2px solid #6366f1" : "2px solid transparent",
             }}
           >
-            {t.label}
+            <t.Icon size={13} strokeWidth={2} />{t.label}
           </button>
         ))}
       </div>

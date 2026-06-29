@@ -3,6 +3,7 @@
  * Design: Notion x Linear x Google Classroom x Duolingo Teacher
  */
 import { useCallback, useEffect, useState } from "react";
+import { LayoutDashboard, GraduationCap, Building2, Mail, CheckSquare } from "lucide-react";
 import {
   getTeacherClassroomSummary, listTeacherStudents,
   listTeacherInvitations, createTeacherInvitation,
@@ -252,11 +253,11 @@ export default function TeacherDashboardPage({ user }) {
   }
 
   var TABS=[
-    {key:"home",       icon:"🏠",label:"Dashboard",  tid:"teacher-tab-home"},
-    {key:"students",   icon:"🎓",label:"Students",   tid:"teacher-tab-students"},
-    {key:"classrooms", icon:"🏫",label:"Classrooms", tid:"teacher-tab-classrooms"},
-    {key:"invitations",icon:"✉️",label:"Invitations",tid:"teacher-tab-invitations"},
-    {key:"tasks",      icon:"✅",label:"Tasks",      tid:"teacher-tab-tasks"},
+    {key:"home",       Icon:LayoutDashboard, label:"Dashboard",  tid:"teacher-tab-home"},
+    {key:"students",   Icon:GraduationCap,   label:"Students",   tid:"teacher-tab-students"},
+    {key:"classrooms", Icon:Building2,       label:"Classrooms", tid:"teacher-tab-classrooms"},
+    {key:"invitations",Icon:Mail,            label:"Invitations",tid:"teacher-tab-invitations"},
+    {key:"tasks",      Icon:CheckSquare,     label:"Tasks",      tid:"teacher-tab-tasks"},
   ];
 
   if(loading) return (
@@ -265,7 +266,7 @@ export default function TeacherDashboardPage({ user }) {
         {TABS.map(function(t){return(
           <button key={t.key} data-testid={t.tid} onClick={function(){setView(t.key);}}
             style={{padding:"8px 14px",border:"none",background:"none",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",fontWeight:view===t.key?700:500,color:view===t.key?"#6366f1":"#64748b",borderBottom:view===t.key?"2px solid #6366f1":"2px solid transparent",marginBottom:-2,whiteSpace:"nowrap"}}>
-            {t.icon} {t.label}
+            <t.Icon size={13} strokeWidth={2} style={{display:"inline",verticalAlign:"middle",marginRight:4}} />{t.label}
           </button>
         );})}
       </div>
@@ -329,7 +330,7 @@ return (
         {TABS.map(function(t){return(
           <button key={t.key} data-testid={t.tid} onClick={function(){setView(t.key);}}
             style={{padding:"8px 14px",border:"none",background:"none",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",fontWeight:view===t.key?700:500,color:view===t.key?"#6366f1":"#64748b",borderBottom:view===t.key?"2px solid #6366f1":"2px solid transparent",marginBottom:-2,whiteSpace:"nowrap",display:"flex",alignItems:"center",gap:5}}>
-            <span>{t.icon}</span><span>{t.label}</span>
+            <t.Icon size={13} strokeWidth={2} /><span>{t.label}</span>
             {t.key==="tasks"&&open.length>0&&<span style={{background:"#ef4444",color:"#fff",borderRadius:99,fontSize:".6rem",padding:"1px 5px",fontWeight:800,lineHeight:1.6}}>{open.length}</span>}
             {t.key==="invitations"&&invites.length>0&&<span style={{background:"#f59e0b",color:"#fff",borderRadius:99,fontSize:".6rem",padding:"1px 5px",fontWeight:800,lineHeight:1.6}}>{invites.length}</span>}
           </button>
