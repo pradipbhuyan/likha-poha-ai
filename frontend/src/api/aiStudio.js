@@ -27,12 +27,16 @@ export async function updateProvider(providerKey, data) {
 
 /**
  * Test connection to a provider.
- * Optionally pass api_key to test a key WITHOUT saving it.
+ * Optionally pass api_key and/or model to test WITHOUT saving first.
+ * This allows testing the model currently in the form before clicking Save.
  */
 export async function testProviderConnection(providerKey, opts = {}) {
   return authFetch(`${BASE}/providers/${providerKey}/test`, {
     method: "POST",
-    body: JSON.stringify({ api_key: opts.api_key || null }),
+    body: JSON.stringify({
+      api_key: opts.api_key || null,
+      model: opts.model || null,   // pass form model so Test works before Save
+    }),
   });
 }
 

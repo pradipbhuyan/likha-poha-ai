@@ -72,6 +72,8 @@ class ProviderUpdateRequest(BaseModel):
 class ProviderTestRequest(BaseModel):
     # Optional: send a key to test WITHOUT saving it (useful for testing before committing)
     api_key: Optional[str] = None
+    # Optional: send the model from the form to test WITHOUT saving it first
+    model: Optional[str] = None
 
 
 class ModelProfileUpdateRequest(BaseModel):
@@ -148,7 +150,8 @@ def test_provider_connection(
     if req.api_key and not req.api_key.startswith("••"):
         override_key = req.api_key.strip()
 
-    result = test_connection(provider_key, override_key=override_key)
+    override_model = req.model.strip() if req.model and req.model.strip() else None
+    result = test_connection(provider_key, override_key=override_key, override_model=override_model)
     return {"success": result["success"], **result}
 
 

@@ -343,11 +343,16 @@ def save_provider(provider_key: str, data: dict, admin_id: str) -> dict:
     return {"success": True, "message": f"{meta['display_name']} configuration saved."}
 
 
-def test_connection(provider_key: str, override_key: Optional[str] = None) -> dict:
+def test_connection(
+    provider_key: str,
+    override_key: Optional[str] = None,
+    override_model: Optional[str] = None,
+) -> dict:
     """
     Test connection to a provider with a minimal completion request.
     Returns {success, latency_ms, model, message}.
     NEVER logs the API key.
+    override_model: use this model instead of the stored one (for testing form values before save).
     """
     if provider_key not in PROVIDER_REGISTRY:
         return {"success": False, "latency_ms": 0, "model": "", "message": f"Unknown provider: {provider_key}"}
@@ -358,7 +363,13 @@ def test_connection(provider_key: str, override_key: Optional[str] = None) -> di
     eff = get_effective_settings()
     api_key = override_key or _get_provider_key_value(eff, provider_key) or ""
     model_sk = meta.get("model_settings_key")
-    model = eff.get(model_sk, "") if model_sk else (meta.get("suggested_models", ["gpt-4.1-nano"])[0])
+    stored_model = eff.get(model_sk, "") if model_sk else ""
+    # Use override_model (from form) if provided; fall back to stored model; fall back to first suggestion
+    model = (
+        override_model
+        or stored_model
+        or (meta.get("suggested_models", ["gpt-4.1-nano"])[0])
+    )
     base_url = eff.get(f"{provider_key}_base_url") or meta.get("base_url")
     timeout = 15.0
 

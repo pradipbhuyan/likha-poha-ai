@@ -162,7 +162,9 @@ function ProvidersTab() {
       // If user has entered a new (non-masked) key, test with that key only
       const testKey = (form.api_key && !form.api_key.startsWith("••"))
         ? form.api_key : null;
-      const r = await testProviderConnection(selected, { api_key: testKey });
+      // Always pass the model from the form so Test works before Save
+      const testModel = (form.model && form.model.trim()) ? form.model.trim() : null;
+      const r = await testProviderConnection(selected, { api_key: testKey, model: testModel });
       setTestResult(r);
     } catch (e) {
       setTestResult({ success: false, message: e.message });
@@ -278,7 +280,7 @@ function ProvidersTab() {
                     <label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 3 }}>Server URL</label>
                     <input
                       type="text"
-                      placeholder={selected === "ollama_local" ? "http://localhost:11434" : "https://api.ollama.ai/v1"}
+                      placeholder={selected === "ollama_local" ? "http://localhost:11434" : "https://api.ollama.com"}
                       value={form.base_url || ""}
                       onChange={e => setForm(f => ({ ...f, base_url: e.target.value }))}
                       style={inp}
