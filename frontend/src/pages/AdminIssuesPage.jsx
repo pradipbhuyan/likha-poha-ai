@@ -323,7 +323,13 @@ function ReporterAccessPanel() {
         loadReporters();
         setSearchResults(prev => prev.map(u => u.id === userId ? {...u, can_report_issues: enabled} : u));
       }
-    } catch (e) { setMsg("❌ " + e.message); }
+    } catch (e) {
+      if (e.message && e.message.includes("Migration not applied")) {
+        setMsg("⚠️ DB migration needed. Run migrations/20260629_can_report_issues.sql in Supabase Studio first.");
+      } else {
+        setMsg("❌ " + e.message);
+      }
+    }
     finally { setToggling(p => ({...p, [userId]: false})); }
   }
 

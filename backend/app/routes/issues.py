@@ -304,9 +304,18 @@ def toggle_can_report_issues(
 ):
     """Allow or revoke a specific user's ability to see the Report Issue button."""
     try:
-        r = admin_client.table("profiles").update(
-            {"can_report_issues": enabled}
-        ).eq("id", user_id).execute()
+        try:
+            r = admin_client.table("profiles").update(
+                {"can_report_issues": enabled}
+            ).eq("id", user_id).execute()
+        except Exception as col_err:
+            err_str = str(col_err).lower()
+            if "can_report_issues" in err_str or "pgrst204" in err_str or "schema cache" in err_str:
+                raise HTTPException(
+                    status_code=503,
+                    detail="Migration not applied: run migrations/20260629_can_report_issues.sql in Supabase Studio."
+                )
+            raise
         if not r.data:
             raise HTTPException(status_code=404, detail="User not found.")
         # Audit log
