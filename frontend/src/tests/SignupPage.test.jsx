@@ -263,10 +263,10 @@ describe("SignupPage — single-step card-based", () => {
     });
   });
 
-  test("Google signup button renders", () => {
+  test("Google signup button is not shown on signup page", () => {
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
-    expect(screen.getByTestId("signup-google")).toBeInTheDocument();
-    expect(screen.getByText(/Continue with Google/i)).toBeInTheDocument();
+    expect(screen.queryByTestId("signup-google")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Continue with Google/i)).not.toBeInTheDocument();
   });
 
   test("sign in link renders and calls onBack", () => {
