@@ -19,6 +19,85 @@ from app.services.rate_limit_service import (
 
 router = APIRouter()
 
+# ---------------------------------------------------------------------------
+# Constants — defined here so /me and /oauth/complete-profile can use them
+# ---------------------------------------------------------------------------
+
+VALID_SIGNUP_ROLES = {"parent", "student", "teacher"}
+# All grades the backend accepts — includes Grade 11/12 which are hidden from
+# students until admin enables them in the Product Catalogue page.
+from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: E402
+VALID_GRADES = set(ALL_GRADES_INCLUDING_HIDDEN)
+
+
+# ---------------------------------------------------------------------------
+# ── Reporter access helper ────────────────────────────────────────────────────
+def _check_can_report_issues(user_id: str) -> bool:
+    """Check if user is in the issue_reporters admin_settings list. No migration needed."""
+    try:
+        from .issues import _get_reporter_ids  # noqa: PLC0415
+        return user_id in _get_reporter_ids()
+    except Exception:
+        return False
+
+
+# ---------------------------------------------------------------------------
+# Helpers shared by /me and /oauth/complete-profile
+# ---------------------------------------------------------------------------
+
+def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = False) -> dict:
+    """
+    Build the canonical /me response from an auth user + profile row.
+
+    This is the single source of truth for what the frontend receives after
+    every OAuth callback.  It mirrors the /profile endpoint fields but also
+    includes the OAuth-onboarding flags.
+    """
+    from datetime import datetime, timezone  # noqa: PLC0415
+
+    expires_at_str = profile.get("subscription_expires_at")
+    days_remaining = None
+    expiring_soon = False
+    if expires_at_str:
+        try:
+            exp = datetime.fromisoformat(expires_at_str.replace("Z", "+00:00"))
+            now = datetime.now(timezone.utc)
+            if now > exp:
+                days_remaining = 0
+            else:
+                days_remaining = max(0, (exp - now).days)
+            expiring_soon = days_remaining is not None and days_remaining <= 3
+        except Exception:
+            pass
+
+    return {
+        "authenticated": True,
+        "profile_complete": not needs_role_selection,
+        "needs_role_selection": needs_role_selection,
+        "id": profile.get("id"),
+        "email": profile.get("email"),
+        "username": profile.get("username"),
+        "role": profile.get("role"),
+        "grade": profile.get("grade"),
+        "board": profile.get("board"),
+        "parent_id": profile.get("parent_id"),
+        "family_id": profile.get("family_id"),
+        "subscription_plan": profile.get("subscription_plan") or "free",
+        "account_status": profile.get("account_status") or "active",
+        "access_cbse": bool(profile.get("access_cbse")),
+        "access_sof_science": bool(profile.get("access_sof_science")),
+        "access_sof_maths": bool(profile.get("access_sof_maths")),
+        "access_sof_english": bool(profile.get("access_sof_english")),
+        "cbse_subjects": profile.get("cbse_subjects") or [],
+        "daily_token_limit": profile.get("daily_token_limit"),
+        "monthly_token_limit": profile.get("monthly_token_limit"),
+        "subscription_expires_at": expires_at_str,
+        "subscription_days_remaining": days_remaining,
+        "subscription_expiring_soon": expiring_soon,
+        "avatar": profile.get("avatar") or "",
+        "can_report_issues": _check_can_report_issues(profile.get("id") or ""),
+    }
+
 USERS = {
     "akshita": {
         "password": settings.AKSHITA_PASSWORD,
@@ -174,14 +253,355 @@ def lookup_email(username: str):
 
 
 # ---------------------------------------------------------------------------
-# Public signup-with-payment endpoints
+# GET /me — canonical auth state endpoint used by OAuth callback
 # ---------------------------------------------------------------------------
 
-VALID_SIGNUP_ROLES = {"parent", "student", "teacher"}
-# All grades the backend accepts — includes Grade 11/12 which are hidden from
-# students until admin enables them in the Product Catalogue page.
-from app.data.product_catalogue import ALL_GRADES_INCLUDING_HIDDEN  # noqa: E402
-VALID_GRADES = set(ALL_GRADES_INCLUDING_HIDDEN)
+@router.get("/me")
+def get_me(user=Depends(get_current_user)):
+    """
+    Return the authenticated user's canonical profile + OAuth-onboarding flags.
+
+    Returns:
+      - profile_complete=True, needs_role_selection=False  → route to dashboard
+      - profile_complete=False, needs_role_selection=True  → show role picker
+      - authenticated=True with no profile row              → role picker (trigger disabled)
+
+    This endpoint never returns 404 for authenticated users without profiles.
+    That state is communicated via needs_role_selection=True so the frontend can
+    show the role picker instead of interpreting it as a session error.
+
+    Error mapping contract (for frontend):
+      401 → session expired / invalid token
+      403 → access denied (role mismatch) — NOT session expired
+    """
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .limit(1)
+        .execute()
+    )
+
+    if not profile_resp.data:
+        # Auth user exists but no profile row yet — new OAuth user whose
+        # trigger did not fire (e.g. trigger was disabled).
+        # Return 200 with needs_role_selection=True so the frontend shows the
+        # role picker rather than treating this as an error / session expiry.
+        meta = getattr(user, "user_metadata", {}) or {}
+        return {
+            "authenticated": True,
+            "profile_complete": False,
+            "needs_role_selection": True,
+            "id": user.id,
+            "email": user.email,
+            "username": meta.get("full_name") or meta.get("name") or "",
+            "avatar": meta.get("avatar_url") or "",
+            "role": None,
+        }
+
+    profile = profile_resp.data[0]
+
+    # oauth_profile_complete defaults to True for all existing email-signup users
+    # (added by migration with DEFAULT TRUE).
+    oauth_complete = profile.get("oauth_profile_complete")
+    if oauth_complete is None:
+        oauth_complete = True  # legacy row before migration — treat as complete
+    needs_role_selection = not oauth_complete
+
+    return _build_me_response(user, profile, needs_role_selection=needs_role_selection)
+
+
+# ---------------------------------------------------------------------------
+# POST /oauth/complete-profile — secure, idempotent OAuth role assignment
+# ---------------------------------------------------------------------------
+
+class OAuthCompleteProfileRequest(BaseModel):
+    """Request body for completing an OAuth user's profile with their chosen role."""
+    role: str
+    full_name: Optional[str] = None
+    grade: Optional[str] = None   # for students
+
+
+@router.post("/oauth/complete-profile")
+def oauth_complete_profile(
+    data: OAuthCompleteProfileRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Complete an OAuth user's profile by assigning their chosen platform role.
+
+    Business rules enforced here (backend is authoritative):
+    - Only valid roles: parent | student | teacher
+    - If profile already has an explicitly confirmed role:
+        same role  → idempotent success (safe to call multiple times)
+        diff role  → 409 role_conflict (block silently; show friendly error)
+    - If profile exists but role not yet confirmed (oauth_profile_complete=False):
+        → update role + mark complete
+    - If no profile row at all (trigger disabled):
+        → create full FREE_TIER profile with selected role
+    - NEVER grants paid access.
+    - NEVER changes an already-confirmed role.
+    - Creates family record for parent role.
+    - All access flags start as False (Free Tier).
+    - Emits audit event when available.
+
+    Error mapping contract:
+      400 → invalid role
+      401 → bad/expired token
+      409 → role conflict (existing confirmed role differs from requested)
+    """
+    role = (data.role or "").lower().strip()
+    if role not in VALID_SIGNUP_ROLES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid role '{role}'. Must be one of: parent, student, teacher.",
+        )
+
+    # ── 1. Look up existing profile by auth user id (primary) ────────────────
+    profile_resp = (
+        admin_client
+        .table("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .limit(1)
+        .execute()
+    )
+
+    # ── 2. Fallback: look up by email (legacy rows created before id-based insert) ─
+    if not profile_resp.data and user.email:
+        profile_resp = (
+            admin_client
+            .table("profiles")
+            .select("*")
+            .eq("email", user.email.lower())
+            .limit(1)
+            .execute()
+        )
+        if profile_resp.data:
+            logging.warning(
+                "[oauth] Profile found by email fallback for user_id=%s email=%s — "
+                "id mismatch; treating as legacy row.",
+                user.id,
+                user.email,
+            )
+
+    existing = profile_resp.data[0] if profile_resp.data else None
+
+    if existing:
+        oauth_complete = existing.get("oauth_profile_complete")
+        if oauth_complete is None:
+            oauth_complete = True  # legacy row before migration
+
+        if oauth_complete:
+            # ── State A / D: profile role already confirmed ──────────────────
+            existing_role = (existing.get("role") or "").lower()
+            if existing_role == role:
+                # State A: same role — idempotent, return existing profile
+                logging.info(
+                    "[oauth] Idempotent complete-profile for user=%s role=%s",
+                    user.id, role,
+                )
+                return _build_me_response(user, existing, needs_role_selection=False)
+            else:
+                # State D: role conflict — block and return 409
+                logging.warning(
+                    "[oauth] Role conflict for user=%s existing=%s requested=%s",
+                    user.id, existing_role, role,
+                )
+                try:
+                    admin_client.table("platform_audit_logs").insert({
+                        "user_id": user.id,
+                        "event": "auth.oauth_role_conflict",
+                        "metadata": {
+                            "existing_role": existing_role,
+                            "requested_role": role,
+                            "email": user.email,
+                        },
+                    }).execute()
+                except Exception:
+                    pass
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"This Google account is already registered as a "
+                        f"{existing_role.title()}. "
+                        f"Please continue as {existing_role.title()} or use "
+                        f"a different Google account."
+                    ),
+                )
+
+        else:
+            # ── State B/C: placeholder profile from trigger — set role ────────
+            display_name = (
+                (data.full_name or "").strip()
+                or existing.get("username")
+                or (user.email.split("@")[0] if user.email else "User")
+            )
+
+            updates: dict = {
+                "role": role,
+                "oauth_profile_complete": True,
+                "username": display_name,
+                "account_status": "active",
+                # Free Tier — no token quota, no CBSE access
+                "access_cbse": False,
+                "access_sof_science": False,
+                "access_sof_maths": False,
+                "access_sof_english": False,
+                "subscription_plan": "free",
+                "subscription_expires_at": None,
+            }
+
+            if role == "parent":
+                # Ensure a family exists for the parent
+                family_id = existing.get("family_id")
+                if not family_id:
+                    fam = (
+                        admin_client
+                        .table("families")
+                        .insert({"family_name": f"{display_name}'s Family"})
+                        .execute()
+                    )
+                    if fam.data:
+                        updates["family_id"] = fam.data[0]["id"]
+                updates["daily_token_limit"] = 0
+                updates["monthly_token_limit"] = 0
+
+            elif role == "student":
+                grade = data.grade or existing.get("grade") or "Grade 9"
+                if grade not in VALID_GRADES:
+                    grade = "Grade 9"
+                updates["grade"] = grade
+                updates["board"] = "CBSE"
+                updates["cbse_subjects"] = []
+                updates["daily_token_limit"] = 0
+                updates["monthly_token_limit"] = 0
+
+            elif role == "teacher":
+                updates["daily_token_limit"] = 0
+                updates["monthly_token_limit"] = 0
+
+            admin_client.table("profiles").update(updates).eq("id", existing["id"]).execute()
+
+            # Fetch the freshly-updated profile
+            fresh_resp = (
+                admin_client
+                .table("profiles")
+                .select("*")
+                .eq("id", existing["id"])
+                .single()
+                .execute()
+            )
+
+            try:
+                admin_client.table("platform_audit_logs").insert({
+                    "user_id": user.id,
+                    "event": "auth.oauth_profile_completed",
+                    "metadata": {"role": role, "email": user.email},
+                }).execute()
+            except Exception:
+                pass
+
+            return _build_me_response(user, fresh_resp.data, needs_role_selection=False)
+
+    else:
+        # ── State B (no trigger): no profile row at all — create from scratch ─
+        display_name = (
+            (data.full_name or "").strip()
+            or (user.email.split("@")[0] if user.email else "User")
+        )
+
+        # Duplicate guard: check email again (another request may have created it)
+        dup_check = (
+            admin_client
+            .table("profiles")
+            .select("id, role, oauth_profile_complete")
+            .eq("email", (user.email or "").lower())
+            .limit(1)
+            .execute()
+        )
+        if dup_check.data:
+            dup = dup_check.data[0]
+            existing_role = (dup.get("role") or "").lower()
+            if dup.get("oauth_profile_complete") and existing_role and existing_role != role:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"This Google account is already registered as a "
+                        f"{existing_role.title()}. "
+                        f"Please continue as {existing_role.title()} or use "
+                        f"a different Google account."
+                    ),
+                )
+            # Race condition: profile just created — re-fetch and return
+            full_resp = admin_client.table("profiles").select("*").eq("id", dup["id"]).single().execute()
+            return _build_me_response(user, full_resp.data, needs_role_selection=False)
+
+        base_profile: dict = {
+            "id": user.id,
+            "email": (user.email or "").lower(),
+            "username": display_name,
+            "role": role,
+            "subscription_plan": "free",
+            "account_status": "active",
+            "access_cbse": False,
+            "access_sof_science": False,
+            "access_sof_maths": False,
+            "access_sof_english": False,
+            "daily_token_limit": 0,
+            "monthly_token_limit": 0,
+            "subscription_expires_at": None,
+            "oauth_profile_complete": True,
+        }
+
+        if role == "parent":
+            fam = (
+                admin_client
+                .table("families")
+                .insert({"family_name": f"{display_name}'s Family"})
+                .execute()
+            )
+            if fam.data:
+                base_profile["family_id"] = fam.data[0]["id"]
+
+        elif role == "student":
+            grade = data.grade or "Grade 9"
+            if grade not in VALID_GRADES:
+                grade = "Grade 9"
+            base_profile["grade"] = grade
+            base_profile["board"] = "CBSE"
+            base_profile["cbse_subjects"] = []
+
+        admin_client.table("profiles").insert(base_profile).execute()
+
+        # Fetch freshly-created profile — fall back to base_profile if SELECT returns None
+        # (can happen in test environments where the fake insert doesn't populate the table)
+        created_resp = (
+            admin_client
+            .table("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single()
+            .execute()
+        )
+        final_profile = created_resp.data if created_resp.data else base_profile
+
+        try:
+            admin_client.table("platform_audit_logs").insert({
+                "user_id": user.id,
+                "event": "auth.oauth_profile_created",
+                "metadata": {"role": role, "email": user.email},
+            }).execute()
+        except Exception:
+            pass
+
+        return _build_me_response(user, final_profile, needs_role_selection=False)
+
+
+# ---------------------------------------------------------------------------
+# Public signup-with-payment endpoints
+# ---------------------------------------------------------------------------
 
 
 class SignupOrderRequest(BaseModel):
@@ -288,17 +708,6 @@ def _profile_access_fields(plan: dict) -> dict:
         "monthly_token_limit": int(plan.get("monthly_token_limit") or 1000000),
         "subscription_expires_at": plan_expires_at(plan),
     }
-
-
-# ---------------------------------------------------------------------------
-# ── Reporter access helper ────────────────────────────────────────────────────
-def _check_can_report_issues(user_id: str) -> bool:
-    """Check if user is in the issue_reporters admin_settings list. No migration needed."""
-    try:
-        from .issues import _get_reporter_ids
-        return user_id in _get_reporter_ids()
-    except Exception:
-        return False
 
 
 # Authenticated profile endpoint — returns full profile + subscription status

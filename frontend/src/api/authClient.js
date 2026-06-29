@@ -77,15 +77,50 @@ export async function authFetch(path, options = {}) {
       const errorData = await response.json();
       rawDetail = errorData.detail || errorData.message || "";
 
-      if (response.status === 401 || response.status === 403) {
-        // Auth errors: never show raw token/JWT details to user
+      if (response.status === 401) {
+        // 401 = genuinely expired / invalid session token
         message = "Your session has expired. Please sign in again.";
-        console.error("[auth] Unauthorized:", rawDetail);
+        console.error("[auth] Session expired/invalid token:", rawDetail);
+
+      } else if (response.status === 403) {
+        // 403 = authenticated but wrong role — NOT a session expiry.
+        // Map to a role-specific friendly message so the user understands
+        // the problem and doesn't wrongly think they need to log in again.
+        const detail = (rawDetail || "").toLowerCase();
+        if (detail.includes("parent")) {
+          message = "This account is not registered as a Parent. Please sign in with a Parent account.";
+        } else if (detail.includes("student")) {
+          message = "This account is not registered as a Student. Please sign in with a Student account.";
+        } else if (detail.includes("teacher")) {
+          message = "This account is not registered as a Teacher. Please sign in with a Teacher account.";
+        } else if (detail.includes("admin")) {
+          message = "This account does not have admin access.";
+        } else {
+          message = "This account does not have access to this page.";
+        }
+        console.error("[auth] Access denied (role mismatch):", rawDetail);
+
+      } else if (response.status === 409) {
+        // 409 = conflict (e.g. role conflict for OAuth users) — safe to show
+        if (
+          rawDetail &&
+          !rawDetail.toLowerCase().includes("supabase") &&
+          !rawDetail.toLowerCase().includes("token") &&
+          !rawDetail.toLowerCase().includes("jwt")
+        ) {
+          message = rawDetail;
+        } else {
+          message = "Account conflict. Please contact support.";
+        }
+        console.error("[auth] Conflict:", rawDetail);
+
       } else if (response.status === 404) {
         message = rawDetail || "The requested resource was not found.";
+
       } else if (response.status >= 500) {
         message = "We're having trouble right now. Please try again in a moment.";
         console.error("[api] Server error:", rawDetail);
+
       } else if (
         rawDetail &&
         !rawDetail.toLowerCase().includes("supabase") &&

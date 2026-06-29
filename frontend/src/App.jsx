@@ -292,61 +292,120 @@ function App() {
     localStorage.getItem("tutor_dark_mode") === "true"
   );
   const [oauthLoading, setOauthLoading] = useState(false);
-  // Safety-net: if the OAuth spinner is somehow stuck, auto-clear after 8 s
+  const [oauthError, setOauthError] = useState(null);    // visible error with retry
+  const [oauthStatus, setOauthStatus] = useState("Signing you in with Google…");
+  // Safety-net: if the OAuth spinner is somehow stuck, auto-clear after 15 s
   useEffect(() => {
     if (!oauthLoading) return;
-    const t = setTimeout(() => setOauthLoading(false), 8000);
+    const t = setTimeout(() => {
+      setOauthLoading(false);
+      setOauthError("Google sign-in timed out. Please try again.");
+    }, 15000);
     return () => clearTimeout(t);
   }, [oauthLoading]);
-  // When a student signs in via Google for the first time their grade is unknown.
-  // We store their partial user object here and show a grade-picker before calling handleLogin.
+  // pendingOauthUser: set when /auth/me returns needs_role_selection=true
   const [pendingOauthUser, setPendingOauthUser] = useState(null);
-  const [oauthRole, setOauthRole] = useState("student");   // role chosen on setup screen
+  const [oauthRole, setOauthRole] = useState("student");
   const [oauthGrade, setOauthGrade] = useState("Grade 9");
   const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
   const [oauthSaving, setOauthSaving] = useState(false);
+  const [oauthSaveError, setOauthSaveError] = useState(null);
   const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
   // Prevent double-firing of onAuthStateChange on mobile (Supabase OAuth redirect behaviour)
   const oauthProcessed = useRef(false);
 
+  /**
+   * Build normalized user object from /auth/me response and call handleLogin.
+   * Defined BEFORE the OAuth useEffect so it is in scope when the callback runs.
+   * Called for State A (existing profile) and State B/C (after complete-profile).
+   */
+  async function _finishOAuthLogin(meData, session) {
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const accessToken = session.access_token;
+
+    let offerData = { offerAccess: false };
+    try {
+      const r = await fetch(`${API_BASE}/api/offer/my-access`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (r.ok) {
+        const d = await r.json();
+        offerData = {
+          offerAccess: !!d.has_offer_access,
+          offerValidUntil: d.valid_until || null,
+          offerDaysRemaining: d.days_remaining ?? null,
+          offerExpiringSoon: !!d.expiring_soon,
+          offerExpiredOn: d.expired_on || null,
+        };
+      }
+    } catch { /* non-critical */ }
+
+    const normalizedUser = {
+      id: meData.id,
+      email: meData.email,
+      username: meData.username || meData.email,
+      role: meData.role,
+      grade: meData.grade || "Grade 9",
+      board: meData.board || "CBSE",
+      parentId: meData.parent_id,
+      familyId: meData.family_id,
+      accessToken,
+      accessCbse: !!meData.access_cbse,
+      accessSofScience: !!meData.access_sof_science,
+      accessSofMaths: !!meData.access_sof_maths,
+      accessSofEnglish: !!meData.access_sof_english,
+      cbseSubjects: Array.isArray(meData.cbse_subjects) ? meData.cbse_subjects : [],
+      avatar: meData.avatar || session.user?.user_metadata?.avatar_url || "",
+      dailyTokenLimit: meData.daily_token_limit,
+      monthlyTokenLimit: meData.monthly_token_limit,
+      subscriptionPlan: meData.subscription_plan || "free",
+      accountStatus: meData.account_status || "active",
+      canReportIssues: !!meData.can_report_issues,
+      ...offerData,
+    };
+
+    handleLogin(normalizedUser);
+  }
+
   // ── Google OAuth callback handler ──────────────────────────────────────────
-  // Supabase redirects back to the app after Google auth with a session in the
-  // URL fragment. onAuthStateChange fires with event=SIGNED_IN; we build the
-  // normalized user object here and call handleLogin.
+  // Supabase redirects back after Google auth.  onAuthStateChange fires with
+  // event=SIGNED_IN.  We call GET /api/auth/me to determine the OAuth state:
+  //
+  //   State A: profile_complete=true  → route to dashboard immediately
+  //   State B: needs_role_selection=true → show one-time role picker
+  //   State D: 409 role_conflict in complete-profile → show friendly error
+  //
+  // We do NOT rely on "identity age < 3 min" — that heuristic was unreliable.
+  // The backend `oauth_profile_complete` column is the authoritative signal.
+  // ──────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        // Only handle OAuth sign-ins (not password-based logins, which are
-        // handled directly in LoginPage / SignupPage).
         if (event !== "SIGNED_IN" || !session) return;
         const provider = session.user?.app_metadata?.provider;
-        if (provider === "email") return;      // email/password — skip
-        // Use localStorage directly (not the stale `user` closure) so returning
-        // Google users with an active session are never re-processed on reload.
-        // Check if this is an actual OAuth redirect (user just clicked Google Sign In)
+        if (provider === "email") return;   // email/password handled by LoginPage
+
+        // Detect whether this is a fresh OAuth redirect or just a page reload
         const urlHash = window.location.hash || "";
         const urlSearch = window.location.search || "";
-        // Detect OAuth redirect: Supabase PKCE uses ?code= (query) or #access_token= (implicit)
-        // Also handle edge cases where code appears in hash
-        const isOAuthRedirect = urlHash.includes("access_token") ||
-                                urlHash.includes("code=") ||
-                                urlSearch.includes("code=") ||
-                                urlSearch.includes("access_token");
+        const isOAuthRedirect =
+          urlHash.includes("access_token") ||
+          urlHash.includes("code=") ||
+          urlSearch.includes("code=") ||
+          urlSearch.includes("access_token");
 
-        // Also detect fresh OAuth via recently created identity (< 5 min)
-        // Handles cases where Supabase clears ?code= from URL before we read it
-        const _identities = session.user?.identities || [];
-        const _recentOAuth = _identities.some(id => {
+        // Also accept a very recent identity creation as a fresh login signal
+        // (handles cases where Supabase clears the URL params before we read them)
+        const _recentOAuth = (session.user?.identities || []).some(id => {
           const ageMs = Date.now() - new Date(id.created_at || 0).getTime();
           return ageMs < 5 * 60 * 1000;
         });
-        const _isFreshLogin = isOAuthRedirect || _recentOAuth;
+        const isFreshLogin = isOAuthRedirect || _recentOAuth;
 
-        if (!_isFreshLogin) {
-          // NOT a fresh OAuth redirect — just a page reload with existing session.
-          // Silently refresh the access token if user is already logged in.
+        if (!isFreshLogin) {
+          // Page reload with existing session — silently refresh the token
           if (localStorage.getItem("tutor_user")) {
             try {
               const saved = JSON.parse(localStorage.getItem("tutor_user"));
@@ -354,101 +413,84 @@ function App() {
               setUser(refreshed);
               localStorage.setItem("tutor_user", JSON.stringify(refreshed));
             } catch { /* non-critical */ }
-            return;
           }
-          // No saved user + no OAuth redirect — session recovery handles it
-          console.info("[auth] Existing Google session on reload — session recovery will handle it");
           return;
         }
 
-        // Fresh OAuth redirect — proceed with full sign-in flow regardless of localStorage
-        if (oauthProcessed.current) return;    // prevent double-fire on mobile redirect
+        if (oauthProcessed.current) return;   // prevent double-fire on mobile
         oauthProcessed.current = true;
 
+        // ── Clear any stale cached profile before processing fresh login ──
+        localStorage.removeItem("tutor_user");
+        localStorage.removeItem("tutor_active_page");
+
         setOauthLoading(true);
+        setOauthError(null);
+        setOauthStatus("Signing you in with Google…");
+
         try {
-          // Fetch or wait for the profile row (the DB trigger creates it async)
-          let profile = null;
-          for (let attempt = 0; attempt < 6; attempt++) {
-            const { data } = await supabase
-              .from("profiles")
-              .select("*")
-              .eq("id", session.user.id)
-              .maybeSingle();
-            if (data) { profile = data; break; }
-            await new Promise(r => setTimeout(r, 600));  // wait 600 ms then retry
+          // ── Call /api/auth/me — the authoritative OAuth state check ──────
+          // Retry up to 4 times with 800 ms gaps to handle the brief window
+          // while the DB trigger creates the placeholder profile row.
+          let meData = null;
+          let meError = null;
+          for (let attempt = 0; attempt < 4; attempt++) {
+            try {
+              const r = await fetch(`${API_BASE}/api/auth/me`, {
+                headers: { Authorization: `Bearer ${session.access_token}` },
+              });
+              if (r.ok) {
+                meData = await r.json();
+                break;
+              }
+              // 401 = token not yet valid (rare); retry
+              if (r.status === 401 && attempt < 3) {
+                await new Promise(res => setTimeout(res, 800));
+                continue;
+              }
+              meError = `Backend error ${r.status}`;
+              break;
+            } catch (err) {
+              meError = err.message;
+              if (attempt < 3) await new Promise(res => setTimeout(res, 800));
+            }
           }
 
-          if (!profile) {
-            console.error("Google OAuth: profile row not found after 6 attempts");
+          if (!meData) {
+            console.error("[oauth] /auth/me failed:", meError);
+            setOauthError("We couldn't complete Google sign-in. Please try again.");
             return;
           }
 
-          // Fetch offer validity (best-effort)
-          let offerData = { offerAccess: false };
-          try {
-            const r = await fetch(`${API_BASE}/api/offer/my-access`, {
-              headers: { Authorization: `Bearer ${session.access_token}` },
-            });
-            if (r.ok) {
-              const d = await r.json();
-              offerData = {
-                offerAccess: !!d.has_offer_access,
-                offerValidUntil: d.valid_until || null,
-                offerDaysRemaining: d.days_remaining ?? null,
-                offerExpiringSoon: !!d.expiring_soon,
-                offerExpiredOn: d.expired_on || null,
-              };
-            }
-          } catch { /* non-critical */ }
-
-          const normalizedUser = {
-            id: session.user.id,
-            email: session.user.email,
-            username: profile.username || session.user.email,
-            role: profile.role || "student",
-            grade: profile.grade || "Grade 9",
-            board: profile.board || "CBSE",
-            parentId: profile.parent_id,
-            familyId: profile.family_id,
-            accessToken: session.access_token,
-            accessCbse: !!profile.access_cbse,
-            accessSofScience: !!profile.access_sof_science,
-            accessSofMaths: !!profile.access_sof_maths,
-            accessSofEnglish: !!profile.access_sof_english,
-            cbseSubjects: Array.isArray(profile.cbse_subjects) ? profile.cbse_subjects : [],
-            avatar: profile.avatar || session.user.user_metadata?.avatar_url || "",
-            dailyTokenLimit: profile.daily_token_limit,
-            monthlyTokenLimit: profile.monthly_token_limit,
-            subscriptionPlan: profile.subscription_plan || "free",
-            accountStatus: profile.account_status || "active",
-            ...offerData,
-          };
-
-          // Detect first-time Google sign-in: check if the OAuth identity was
-          // created within the last 3 minutes. This is more reliable than comparing
-          // created_at vs last_sign_in_at (which can differ due to OAuth redirect time).
-          const identityCreatedAt = session.user.identities?.[0]?.created_at;
-          const identityAgeMs = identityCreatedAt
-            ? Date.now() - new Date(identityCreatedAt).getTime()
-            : Infinity;
-          const isFirstLogin = identityAgeMs < 3 * 60 * 1000; // identity created < 3 min ago
-
-          if (isFirstLogin) {
-            setPendingOauthUser(normalizedUser);
+          if (meData.needs_role_selection) {
+            // ── State B/C: new Google user — show role picker ─────────────
+            // Pass partial user data so the role picker can show name/avatar
+            const partialUser = {
+              id: meData.id || session.user.id,
+              email: meData.email || session.user.email,
+              username: meData.username || session.user.user_metadata?.full_name || session.user.email,
+              avatar: meData.avatar || session.user.user_metadata?.avatar_url || "",
+              accessToken: session.access_token,
+            };
+            setPendingOauthUser(partialUser);
             setOauthStep("role");
-          } else {
-            // Returning Google user — profile already has correct role/grade
-            handleLogin(normalizedUser);
+            setOauthLoading(false);
+            return;
           }
+
+          // ── State A: profile complete — build user and route ──────────────
+          await _finishOAuthLogin(meData, session);
+
+        } catch (err) {
+          console.error("[oauth] Unexpected error:", err);
+          setOauthError("We couldn't complete Google sign-in. Please try again.");
         } finally {
           setOauthLoading(false);
         }
       }
     );
     return () => subscription.unsubscribe();
-  }, []);  
-  // ──────────────────────────────────────────────────────────────────────────
+  }, []);
 
   useEffect(() => {
     function handlePopState() {
@@ -547,9 +589,52 @@ function App() {
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
-
     localStorage.setItem("tutor_dark_mode", darkMode);
   }, [darkMode]);
+
+  // ── oauthError screen — shown when Google OAuth fails ──────────────────
+  // Must be placed AFTER all useEffect/hook calls to comply with React's
+  // rules of hooks (no conditional hook calls).
+  if (oauthError) {
+    return (
+      <div style={{
+        minHeight: "100vh", display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        background: "#0f172a", color: "#f8fafc", gap: 16,
+        fontFamily: "-apple-system, sans-serif", padding: 24,
+      }}>
+        <div style={{ fontSize: "2.5rem" }}>⚠️</div>
+        <p style={{ fontSize: "1rem", color: "#fca5a5", textAlign: "center", maxWidth: 360 }}>
+          {oauthError}
+        </p>
+        <button
+          onClick={() => {
+            setOauthError(null);
+            oauthProcessed.current = false;
+            window.location.replace("/");
+          }}
+          style={{
+            padding: "11px 28px", borderRadius: 10, border: "none",
+            background: "#6366f1", color: "#fff", fontFamily: "inherit",
+            fontSize: "0.9rem", fontWeight: 700, cursor: "pointer",
+          }}
+        >
+          Try Again
+        </button>
+        <button
+          onClick={() => { setOauthError(null); setShowLanding(false); }}
+          style={{
+            padding: "8px 20px", borderRadius: 10,
+            border: "1px solid #334155", background: "transparent",
+            color: "#94a3b8", fontFamily: "inherit",
+            fontSize: "0.82rem", fontWeight: 600, cursor: "pointer",
+          }}
+        >
+          Back to Login
+        </button>
+      </div>
+    );
+  }
 
   async function handleLogin(userData) {
     /** Persist the authenticated user and send them to the right role-specific landing page. */
@@ -877,34 +962,58 @@ function App() {
             <button
               style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", marginTop: 16 }}
               onClick={async () => {
+                setOauthSaveError(null);
                 if (oauthRole === "student") {
-                  setOauthStep("grade"); // students need to pick grade next
-                } else {
-                  // Parents and teachers — save role then send to Subscription page
-                  setOauthSaving(true);
-                  const _updateResult = await supabase.from("profiles")
-                    .update({ role: oauthRole })
-                    .eq("id", pendingOauthUser.id)
-                    .select("id,role")
-                    .single();
-                  // Log role update result for debugging (not shown to user)
-                  console.info("[oauth] Role update result:", _updateResult?.data?.role, _updateResult?.error?.message);
-                  // Refresh token before login
+                  setOauthStep("grade");
+                  return;
+                }
+                // Parents and teachers — call backend to set role securely
+                setOauthSaving(true);
+                try {
+                  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+                  // Refresh token before calling backend
                   let freshToken = pendingOauthUser.accessToken;
                   try {
                     const { data: refreshed } = await supabase.auth.refreshSession();
                     if (refreshed?.session?.access_token) freshToken = refreshed.session.access_token;
                   } catch { /* use original token */ }
-                  handleLogin({ ...pendingOauthUser, role: oauthRole, accessToken: freshToken });
+
+                  const resp = await fetch(`${API_BASE}/api/auth/oauth/complete-profile`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${freshToken}` },
+                    body: JSON.stringify({ role: oauthRole, full_name: pendingOauthUser.username }),
+                  });
+                  const result = await resp.json();
+
+                  if (!resp.ok) {
+                    // 409 = role conflict — show friendly message, do not proceed
+                    setOauthSaveError(result.detail || "Could not complete sign-in. Please try again.");
+                    return;
+                  }
+
+                  // Get fresh session after profile update
+                  const { data: freshSession } = await supabase.auth.getSession();
+                  const finalToken = freshSession?.session?.access_token || freshToken;
+                  await _finishOAuthLogin(result, { ...freshSession?.session, access_token: finalToken, user: freshSession?.session?.user });
                   setPendingOauthUser(null);
+                } catch (err) {
+                  setOauthSaveError("We couldn't save your role. Please try again.");
+                  console.error("[oauth] complete-profile error:", err);
+                } finally {
                   setOauthSaving(false);
-                  setTimeout(() => setActivePage("subscriptionPlans"), 300);
                 }
               }}
               disabled={oauthSaving}
             >
               {oauthSaving ? "Setting up…" : "Continue →"}
             </button>
+            {oauthSaveError && (
+              <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8,
+                background: "rgba(239,68,68,.12)", border: "1px solid rgba(239,68,68,.3)",
+                fontSize: "0.82rem", color: "#fca5a5", textAlign: "center" }}>
+                {oauthSaveError}
+              </div>
+            )}
           </div>
         </div>
       );
@@ -935,33 +1044,53 @@ function App() {
           <button
             disabled={oauthSaving}
             onClick={async () => {
+              setOauthSaveError(null);
               setOauthSaving(true);
               try {
-                await supabase.from("profiles")
-                  .update({ grade: oauthGrade, role: "student" })
-                  .eq("id", pendingOauthUser.id);
-              } catch { /* non-critical */ }
-              // Refresh token before login — grade selection may take seconds
-              let freshStudentToken = pendingOauthUser.accessToken;
-              try {
-                const { data: refreshed } = await supabase.auth.refreshSession();
-                if (refreshed?.session?.access_token) {
-                  freshStudentToken = refreshed.session.access_token;
+                const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+                let freshToken = pendingOauthUser.accessToken;
+                try {
+                  const { data: refreshed } = await supabase.auth.refreshSession();
+                  if (refreshed?.session?.access_token) freshToken = refreshed.session.access_token;
+                } catch { /* use original token */ }
+
+                const resp = await fetch(`${API_BASE}/api/auth/oauth/complete-profile`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json", Authorization: `Bearer ${freshToken}` },
+                  body: JSON.stringify({ role: "student", grade: oauthGrade, full_name: pendingOauthUser.username }),
+                });
+                const result = await resp.json();
+
+                if (!resp.ok) {
+                  setOauthSaveError(result.detail || "Could not save your grade. Please try again.");
+                  return;
                 }
-              } catch { /* use original token */ }
-              handleLogin({ ...pendingOauthUser, role: "student", grade: oauthGrade, accessToken: freshStudentToken });
-              setPendingOauthUser(null);
-              setOauthSaving(false);
-              // Send new Google students to Subscription page to choose plan / offer code
-              setTimeout(() => setActivePage("subscriptionPlans"), 300);
+
+                const { data: freshSession } = await supabase.auth.getSession();
+                const finalToken = freshSession?.session?.access_token || freshToken;
+                await _finishOAuthLogin(result, { ...freshSession?.session, access_token: finalToken, user: freshSession?.session?.user });
+                setPendingOauthUser(null);
+              } catch (err) {
+                setOauthSaveError("We couldn't save your grade. Please try again.");
+                console.error("[oauth] complete-profile (student) error:", err);
+              } finally {
+                setOauthSaving(false);
+              }
             }}
             style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }}
           >
             {oauthSaving ? "Saving…" : `Continue as ${oauthGrade} student →`}
           </button>
+          {oauthSaveError && (
+            <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8,
+              background: "rgba(239,68,68,.12)", border: "1px solid rgba(239,68,68,.3)",
+              fontSize: "0.82rem", color: "#fca5a5", textAlign: "center" }}>
+              {oauthSaveError}
+            </div>
+          )}
           <button
             style={{ ...btnBase, background: "transparent", color: "#94a3b8", marginTop: 8, fontSize: "0.82rem" }}
-            onClick={() => setOauthStep("role")}
+            onClick={() => { setOauthStep("role"); setOauthSaveError(null); }}
           >
             ← Back
           </button>
