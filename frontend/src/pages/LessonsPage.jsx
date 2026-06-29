@@ -1615,67 +1615,6 @@ function LessonsPage({ user, setActivePage }) {
                   />
                 </div>
 
-                {/* ── Reference Materials footer: NCERT source badge + Exemplar/Textbook links ── */}
-                <div className="lesson-action-footer" style={{ flexWrap: "wrap", gap: 10, marginBottom: 0 }}>
-                  {sourceInfo?.sourceType === "RAG" && (
-                    <span className="lesson-source-badge" style={{ fontSize: 13 }}>
-                      📚 Based on NCERT {grade} {subject}
-                      {chapter ? ` — ${chapter.length > 50 ? chapter.slice(0, 47) + "…" : chapter}` : ""}
-                    </span>
-                  )}
-                  <a
-                    href="https://ncert.nic.in/textbook.php"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: 6,
-                      padding: "9px 14px", borderRadius: 999,
-                      background: "rgba(37,99,235,.15)", border: "1px solid rgba(147,197,253,.4)",
-                      color: "#93c5fd", fontWeight: 800, fontSize: 13,
-                      textDecoration: "none",
-                    }}
-                  >
-                    📖 Open Textbook
-                  </a>
-                  {(subject === "Maths" || subject === "Science" || subject === "Mathematics") &&
-                   (grade === "Grade 8" || grade === "Grade 9" || grade === "Grade 10") && (() => {
-                    // Paid access gate — uses canonical hasPaidAccess (parentId alone is not sufficient)
-                    if (hasPaidAccessForLessons) {
-                      return (
-                        <a
-                          href="https://ncert.nic.in/exemplar-problems.php"
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            display: "inline-flex", alignItems: "center", gap: 6,
-                            padding: "9px 14px", borderRadius: 999,
-                            background: "rgba(16,185,129,.15)", border: "1px solid rgba(110,231,183,.4)",
-                            color: "#6ee7b7", fontWeight: 800, fontSize: 13,
-                            textDecoration: "none",
-                          }}
-                        >
-                          🔬 Practice Exemplar Problems
-                        </a>
-                      );
-                    }
-                    return (
-                      <button
-                        type="button"
-                        onClick={() => setActivePage?.("subscriptionPlans")}
-                        title="Upgrade to a paid plan to access Exemplar Problems"
-                        style={{
-                          display: "inline-flex", alignItems: "center", gap: 6,
-                          padding: "9px 14px", borderRadius: 999, cursor: "pointer",
-                          background: "rgba(99,102,241,.1)", border: "1px solid rgba(167,139,250,.35)",
-                          color: "#a78bfa", fontWeight: 800, fontSize: 13,
-                          fontFamily: "inherit",
-                        }}
-                      >
-                        🔐 Exemplar Problems — Paid Only
-                      </button>
-                    );
-                  })()}
-                </div>
 
                 <div className="lesson-audio-section premium-card">
                   <button
