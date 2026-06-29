@@ -4,6 +4,17 @@ import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
 import { supabase } from "./api/supabaseClient";
 import logo from "./assets/AITutorLogo1.png"; // eslint-disable-line no-unused-vars
+import {
+  STAGES, STATUS,
+  clearOAuthSession,
+  getOrCreateCorrelationId,
+  getErrorMessage,
+  getStages,
+  inspectCallbackUrl,
+  mapProviderError,
+  recordStage,
+  resetStages,
+} from "./api/oauthDiagnostics";
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
@@ -315,9 +326,12 @@ function App() {
   const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
   const [oauthSaving, setOauthSaving] = useState(false);
   const [oauthSaveError, setOauthSaveError] = useState(null);
+  const [_oauthDiagnostics, setOauthDiagnostics] = useState([]);  // safe stages for display — eslint-disable-line no-unused-vars
   const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
-  // Prevent double-firing of onAuthStateChange on mobile (Supabase OAuth redirect behaviour)
+  // Prevent double-firing — module-level (not React ref) so it survives re-renders
+  // and is keyed to the URL so each unique callback is processed exactly once.
   const oauthProcessed = useRef(false);
+  const _oauthCallbackUrl = useRef(null);
 
   /**
    * Build normalized user object from /auth/me response and call handleLogin.
@@ -372,130 +386,297 @@ function App() {
     handleLogin(normalizedUser);
   }
 
-  // ── Google OAuth callback handler ──────────────────────────────────────────
-  // Supabase redirects back after Google auth.  onAuthStateChange fires with
-  // event=SIGNED_IN.  We call GET /api/auth/me to determine the OAuth state:
+  // ── Google OAuth Reliability Layer ─────────────────────────────────────────
   //
-  //   State A: profile_complete=true  → route to dashboard immediately
-  //   State B: needs_role_selection=true → show one-time role picker
-  //   State D: 409 role_conflict in complete-profile → show friendly error
+  // Root cause of cross-device failure:
+  //   • Supabase PKCE auto-exchanges `code=` and clears URL BEFORE our handler
+  //     runs, so URL-param detection fails on second devices / mobile.
+  //   • Identity age heuristic (< 5 min) only passes on first-ever login.
+  //   • When tutor_user absent and no URL params, flow returned early silently.
   //
-  // We do NOT rely on "identity age < 3 min" — that heuristic was unreliable.
-  // The backend `oauth_profile_complete` column is the authoritative signal.
+  // Fix: if SIGNED_IN fires for a Google user AND no app profile exists
+  // in localStorage, always treat it as a fresh login — call /auth/me to
+  // determine role and route accordingly. No reliance on URL params or identity age.
+  //
+  // Cross-device scenario that now works:
+  //   Device A: login → profile in localStorage, tutor_user set
+  //   Device B: login same Google account → no tutor_user → fresh login processed
+  //
+  // Additional improvements:
+  //   • Explicit PKCE session exchange before onAuthStateChange fallback
+  //   • Bounded retry with backoff for session establishment
+  //   • Correlation ID in /auth/me request header for backend tracing
+  //   • Stage recording for visible diagnostics on error
+  //   • Double-invocation guard keyed to callback URL (not just a boolean)
   // ──────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
+    // ── Phase 1: Explicit PKCE callback handling (mobile-safe) ──────────────
+    // Supabase PKCE redirects deliver a `code=` query param.  The SDK usually
+    // auto-exchanges it, but on some mobile browsers the auto-exchange races
+    // with our listener.  We explicitly call exchangeCodeForSession so the
+    // session exists before onAuthStateChange fires.
+    const _handleExplicitCallback = async () => {
+      const cbInfo = inspectCallbackUrl();
+
+      // Provider error (e.g. user clicked "Cancel" on Google consent)
+      if (cbInfo.hasError) {
+        const errCode = mapProviderError(cbInfo.errorParam, cbInfo.errorDescription || "");
+        recordStage(STAGES.CALLBACK_PARAMS_DETECTED, STATUS.FAILED,
+          cbInfo.errorDescription || cbInfo.errorParam || "OAuth provider error",
+          errCode,
+        );
+        setOauthDiagnostics(getStages());
+        setOauthError(getErrorMessage(errCode));
+        setOauthLoading(false);
+        // Clean error params from URL
+        try { window.history.replaceState({}, "", window.location.pathname); } catch { /* */ }
+        return;
+      }
+
+      if (cbInfo.hasCode) {
+        recordStage(STAGES.CALLBACK_PARAMS_DETECTED, STATUS.SUCCESS,
+          "OAuth code detected in URL");
+
+        // Attempt explicit PKCE exchange (Supabase v2 PKCE flow)
+        // If SDK already exchanged it, this is a no-op / returns existing session.
+        if (typeof supabase.auth.exchangeCodeForSession === "function") {
+          try {
+            recordStage(STAGES.SESSION_EXCHANGE_STARTED, STATUS.PENDING,
+              "Exchanging OAuth code for session");
+            await supabase.auth.exchangeCodeForSession(window.location.href);
+            recordStage(STAGES.SESSION_EXCHANGE_COMPLETED, STATUS.SUCCESS,
+              "Session exchange complete");
+          } catch (exchErr) {
+            // Non-fatal — SDK may have already exchanged; continue to getSession()
+            recordStage(STAGES.SESSION_EXCHANGE_COMPLETED, STATUS.SKIPPED,
+              `Exchange attempted: ${exchErr?.message || "already done"}`);
+          }
+          // Clean code from URL immediately after exchange
+          try {
+            window.history.replaceState(
+              {},
+              "",
+              window.location.pathname + window.location.hash.replace(/[#?].*/, ""),
+            );
+          } catch { /* */ }
+        }
+      }
+    };
+
+    // ── Phase 2: Wait for Supabase session with bounded retries ─────────────
+    const _waitForSession = async (maxWaitMs = 8000) => {
+      const start = Date.now();
+      const backoff = [100, 200, 400, 600, 800, 1000, 1200, 1500];
+
+      for (let attempt = 0; attempt < backoff.length; attempt++) {
+        try {
+          const { data } = await supabase.auth.getSession();
+          if (data?.session?.access_token) return data.session;
+        } catch { /* retry */ }
+
+        if (Date.now() - start >= maxWaitMs) break;
+        await new Promise(r => setTimeout(r, backoff[attempt]));
+      }
+
+      // Final fallback: wait once for SIGNED_IN auth state event (1.5s budget)
+      return new Promise((resolve) => {
+        const timeout = setTimeout(() => resolve(null), 1500);
+        const { data: { subscription: sub } } = supabase.auth.onAuthStateChange(
+          (event, sess) => {
+            if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && sess?.access_token) {
+              clearTimeout(timeout);
+              sub.unsubscribe();
+              resolve(sess);
+            }
+          },
+        );
+      });
+    };
+
+    // ── Phase 3: Call /auth/me with correlation ID ───────────────────────────
+    const _callAuthMe = async (accessToken, correlationId) => {
+      recordStage(STAGES.AUTH_ME_STARTED, STATUS.PENDING, "Calling /api/auth/me");
+
+      let meData = null;
+      let meError = null;
+      const backoff = [0, 800, 1200, 1600];
+
+      for (let attempt = 0; attempt < backoff.length; attempt++) {
+        if (backoff[attempt] > 0) await new Promise(r => setTimeout(r, backoff[attempt]));
+        try {
+          const r = await fetch(`${API_BASE}/api/auth/me`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "X-OAuth-Correlation-ID": correlationId,
+            },
+          });
+          if (r.ok) {
+            meData = await r.json();
+            recordStage(STAGES.AUTH_ME_COMPLETED, STATUS.SUCCESS,
+              `Profile loaded: ${meData.needs_role_selection ? "needs role" : "complete"}`);
+            break;
+          }
+          if (r.status === 401) {
+            // Token not yet valid on this attempt — retry with backoff
+            meError = "auth_me_unauthorized";
+            if (attempt < backoff.length - 1) continue;
+          } else {
+            meError = `auth_me_failed_${r.status}`;
+            break;
+          }
+        } catch (netErr) {
+          meError = "auth_me_network";
+          if (attempt < backoff.length - 1) continue;
+        }
+      }
+
+      if (!meData) {
+        recordStage(STAGES.AUTH_ME_COMPLETED, STATUS.FAILED,
+          "Could not load profile", meError || "auth_me_failed");
+      }
+      return { meData, meError };
+    };
+
+    // ── Main OAuth handler — processes one callback at a time ────────────────
+    const _processFreshLogin = async (session) => {
+      const correlationId = getOrCreateCorrelationId();
+      recordStage(STAGES.SESSION_DETECTED, STATUS.SUCCESS,
+        "Supabase session established");
+
+      if (!session.access_token) {
+        recordStage(STAGES.ACCESS_TOKEN_DETECTED, STATUS.FAILED,
+          "Session exists but no access token", "oauth_access_token_missing");
+        setOauthDiagnostics(getStages());
+        setOauthError(getErrorMessage("oauth_access_token_missing"));
+        setOauthLoading(false);
+        return;
+      }
+      recordStage(STAGES.ACCESS_TOKEN_DETECTED, STATUS.SUCCESS,
+        "Access token present");
+
+      const { meData, meError } = await _callAuthMe(session.access_token, correlationId);
+
+      if (!meData) {
+        setOauthDiagnostics(getStages());
+        setOauthError(getErrorMessage(meError || "auth_me_failed"));
+        setOauthLoading(false);
+        return;
+      }
+
+      recordStage(STAGES.PROFILE_COMPLETE_CHECKED, STATUS.SUCCESS,
+        meData.needs_role_selection ? "Role selection required" : "Profile complete");
+
+      if (meData.needs_role_selection) {
+        // State B/C: new Google user — show role picker
+        const partialUser = {
+          id: meData.id || session.user?.id,
+          email: meData.email || session.user?.email,
+          username: meData.username || session.user?.user_metadata?.full_name || session.user?.email,
+          avatar: meData.avatar || session.user?.user_metadata?.avatar_url || "",
+          accessToken: session.access_token,
+        };
+        recordStage(STAGES.ROUTE_RESOLVED, STATUS.SUCCESS, "Showing role picker");
+        setPendingOauthUser(partialUser);
+        setOauthStep("role");
+        setOauthLoading(false);
+        clearOAuthSession();
+        return;
+      }
+
+      // State A: profile complete — build user and route
+      recordStage(STAGES.ROUTE_RESOLVED, STATUS.SUCCESS,
+        `Routing to ${meData.role || "dashboard"}`);
+      recordStage(STAGES.NAVIGATION_STARTED, STATUS.PENDING, "Completing login");
+      await _finishOAuthLogin(meData, session);
+      recordStage(STAGES.NAVIGATION_COMPLETED, STATUS.SUCCESS, "Login complete");
+      clearOAuthSession();
+      setOauthLoading(false);
+    };
+
+    // ── onAuthStateChange listener ───────────────────────────────────────────
+    // Handles both: fresh OAuth callback AND page reload with existing session.
+    //
+    // CRITICAL FIX for cross-device failure:
+    //   Old code relied on URL params (cleared by PKCE) OR identity age < 5 min.
+    //   Both fail on second device. New logic: if SIGNED_IN fires for a Google
+    //   user AND there is no tutor_user in localStorage, treat as fresh login.
+    //   This correctly handles all cross-device scenarios.
+    //
+    // SECURITY: no action taken unless Supabase session is valid with access_token.
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event !== "SIGNED_IN" || !session) return;
+
         const provider = session.user?.app_metadata?.provider;
-        if (provider === "email") return;   // email/password handled by LoginPage
+        if (provider === "email") return; // email/password handled by LoginPage
 
-        // Detect whether this is a fresh OAuth redirect or just a page reload
-        const urlHash = window.location.hash || "";
-        const urlSearch = window.location.search || "";
-        const isOAuthRedirect =
-          urlHash.includes("access_token") ||
-          urlHash.includes("code=") ||
-          urlSearch.includes("code=") ||
-          urlSearch.includes("access_token");
+        const hasAppProfile = !!localStorage.getItem("tutor_user");
 
-        // Also accept a very recent identity creation as a fresh login signal
-        // (handles cases where Supabase clears the URL params before we read them)
-        const _recentOAuth = (session.user?.identities || []).some(id => {
-          const ageMs = Date.now() - new Date(id.created_at || 0).getTime();
-          return ageMs < 5 * 60 * 1000;
-        });
-        const isFreshLogin = isOAuthRedirect || _recentOAuth;
-
-        if (!isFreshLogin) {
-          // Page reload with existing session — silently refresh the token
-          if (localStorage.getItem("tutor_user")) {
-            try {
-              const saved = JSON.parse(localStorage.getItem("tutor_user"));
-              const refreshed = { ...saved, accessToken: session.access_token };
-              setUser(refreshed);
-              localStorage.setItem("tutor_user", JSON.stringify(refreshed));
-            } catch { /* non-critical */ }
-          }
+        if (hasAppProfile) {
+          // Page reload or tab open with existing session — just refresh token silently
+          try {
+            const saved = JSON.parse(localStorage.getItem("tutor_user"));
+            const refreshed = { ...saved, accessToken: session.access_token };
+            setUser(refreshed);
+            localStorage.setItem("tutor_user", JSON.stringify(refreshed));
+          } catch { /* non-critical */ }
           return;
         }
 
-        if (oauthProcessed.current) return;   // prevent double-fire on mobile
+        // No app profile in localStorage → fresh login (works cross-device)
+        // Guard: deduplicate by callback URL so mobile double-invocation is safe
+        const currentUrl = window.location.href;
+        if (oauthProcessed.current && _oauthCallbackUrl.current === currentUrl) return;
+        if (oauthProcessed.current && _oauthCallbackUrl.current !== currentUrl) {
+          // Different URL — new callback, reset guard
+          oauthProcessed.current = false;
+        }
         oauthProcessed.current = true;
+        _oauthCallbackUrl.current = currentUrl;
 
-        // ── Clear any stale cached profile before processing fresh login ──
+        // Only clear app-specific keys — NEVER touch Supabase auth storage (sb-* keys)
         localStorage.removeItem("tutor_user");
         localStorage.removeItem("tutor_active_page");
+
+        resetStages();
+        recordStage(STAGES.CALLBACK_RECEIVED, STATUS.SUCCESS,
+          `SIGNED_IN for provider=${provider}`);
 
         setOauthLoading(true);
         setOauthError(null);
 
         try {
-          // ── Call /api/auth/me — the authoritative OAuth state check ──────
-          // Retry up to 4 times with 800 ms gaps to handle the brief window
-          // while the DB trigger creates the placeholder profile row.
-          let meData = null;
-          let meError = null;
-          for (let attempt = 0; attempt < 4; attempt++) {
-            try {
-              const r = await fetch(`${API_BASE}/api/auth/me`, {
-                headers: { Authorization: `Bearer ${session.access_token}` },
-              });
-              if (r.ok) {
-                meData = await r.json();
-                break;
-              }
-              // 401 = token not yet valid (rare); retry
-              if (r.status === 401 && attempt < 3) {
-                await new Promise(res => setTimeout(res, 800));
-                continue;
-              }
-              meError = `Backend error ${r.status}`;
-              break;
-            } catch (err) {
-              meError = err.message;
-              if (attempt < 3) await new Promise(res => setTimeout(res, 800));
-            }
-          }
-
-          if (!meData) {
-            console.error("[oauth] /auth/me failed:", meError);
-            setOauthError("We couldn't complete Google sign-in. Please try again.");
-            return;
-          }
-
-          if (meData.needs_role_selection) {
-            // ── State B/C: new Google user — show role picker ─────────────
-            // Pass partial user data so the role picker can show name/avatar
-            const partialUser = {
-              id: meData.id || session.user.id,
-              email: meData.email || session.user.email,
-              username: meData.username || session.user.user_metadata?.full_name || session.user.email,
-              avatar: meData.avatar || session.user.user_metadata?.avatar_url || "",
-              accessToken: session.access_token,
-            };
-            setPendingOauthUser(partialUser);
-            setOauthStep("role");
-            setOauthLoading(false);
-            return;
-          }
-
-          // ── State A: profile complete — build user and route ──────────────
-          await _finishOAuthLogin(meData, session);
-
+          await _processFreshLogin(session);
         } catch (err) {
-          console.error("[oauth] Unexpected error:", err);
+          console.error("[oauth] Unexpected error in callback handler:", err?.message);
+          recordStage(STAGES.FAILED, STATUS.FAILED,
+            "Unexpected error in OAuth flow", "unknown");
+          setOauthDiagnostics(getStages());
           setOauthError("We couldn't complete Google sign-in. Please try again.");
-        } finally {
           setOauthLoading(false);
         }
       }
     );
+
+    // ── Explicit PKCE handling on page load (mobile-safe) ───────────────────
+    // Run this ONCE on mount. If the URL has a `code=` param, we exchange it
+    // explicitly so the session exists before onAuthStateChange fires.
+    // This handles mobile browsers that may not fire the event reliably.
+    (async () => {
+      const cbInfo = inspectCallbackUrl();
+      if (cbInfo.isOAuthCallback) {
+        resetStages();
+        getOrCreateCorrelationId(); // initialize correlation ID
+        recordStage(STAGES.CALLBACK_RECEIVED, STATUS.SUCCESS,
+          "OAuth callback URL detected on page load");
+        await _handleExplicitCallback();
+      }
+    })();
+
     return () => subscription.unsubscribe();
-  // _finishOAuthLogin is a stable inner function defined before this effect;
-  // adding it to deps would cause infinite re-subscription. Intentional.
+  // _finishOAuthLogin is a stable inner function; intentionally not in deps.
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

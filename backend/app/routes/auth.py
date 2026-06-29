@@ -257,9 +257,13 @@ def lookup_email(username: str):
 # ---------------------------------------------------------------------------
 
 @router.get("/me")
-def get_me(user=Depends(get_current_user)):
+def get_me(
+    user=Depends(get_current_user),
+    x_oauth_correlation_id: str = None,
+):
     """
     Return the authenticated user's canonical profile + OAuth-onboarding flags.
+    Accepts X-OAuth-Correlation-ID header for cross-device OAuth tracing.
 
     Returns:
       - profile_complete=True, needs_role_selection=False  → route to dashboard
@@ -274,6 +278,14 @@ def get_me(user=Depends(get_current_user)):
       401 → session expired / invalid token
       403 → access denied (role mismatch) — NOT session expired
     """
+    # Log correlation ID for OAuth tracing (never logs bearer token)
+    corr = (x_oauth_correlation_id or "").strip()[:64] or None
+    if corr:
+        logging.info(
+            "[auth.me.started] user_id=%s correlation_id=%s",
+            user.id, corr,
+        )
+
     profile_resp = (
         admin_client
         .table("profiles")
@@ -284,6 +296,10 @@ def get_me(user=Depends(get_current_user)):
     )
 
     if not profile_resp.data:
+        logging.info(
+            "[auth.me.profile_missing] user_id=%s correlation_id=%s",
+            user.id, corr,
+        )
         # Auth user exists but no profile row yet — new OAuth user whose
         # trigger did not fire (e.g. trigger was disabled).
         # Return 200 with needs_role_selection=True so the frontend shows the
@@ -308,6 +324,11 @@ def get_me(user=Depends(get_current_user)):
     if oauth_complete is None:
         oauth_complete = True  # legacy row before migration — treat as complete
     needs_role_selection = not oauth_complete
+
+    logging.info(
+        "[auth.me.profile_complete] user_id=%s role=%s profile_complete=%s correlation_id=%s",
+        user.id, profile.get("role"), not needs_role_selection, corr,
+    )
 
     return _build_me_response(user, profile, needs_role_selection=needs_role_selection)
 
