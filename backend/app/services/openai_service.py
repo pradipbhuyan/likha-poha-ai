@@ -413,6 +413,7 @@ def get_chat_client() -> OpenAI:
     Return the active LLM client based on the admin-configured provider.
 
     Supported providers: openai | venice | groq | cerebras | gemini | sambanova
+    Note: ollama_cloud uses native /api/chat and is handled separately in ask_llm().
     This is the function that ask_llm() should use.
     """
     current = get_effective_settings()
@@ -427,7 +428,52 @@ def get_chat_client() -> OpenAI:
         return get_gemini_client()
     if provider == "sambanova":
         return get_sambanova_client()
+    # ollama_local: use OpenAI-compat client pointed at local server
+    if provider == "ollama_local":
+        base_url = current.get("ollama_local_base_url", "http://localhost:11434/v1")
+        return OpenAI(api_key="ollama", base_url=base_url, timeout=90.0)
     return get_openai_client()
+
+
+def _call_ollama_cloud(
+    system_prompt: str,
+    user_prompt: str,
+    model: str,
+    api_key: str,
+    base_url: str = "https://api.ollama.com",
+    timeout: float = 90.0,
+) -> str:
+    """
+    Call Ollama Cloud using native /api/chat (NOT OpenAI-compat /v1/chat/completions).
+    Confirmed: api.ollama.com returns 405 on /v1/chat/completions — must use /api/chat.
+    Free models: gemma3:4b, gemma3:12b, gpt-oss:20b
+    """
+    import requests as _req  # noqa: PLC0415
+    r = _req.post(
+        f"{base_url.rstrip('/')}/api/chat",
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json={
+            "model": model,
+            "stream": False,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+        },
+        timeout=timeout,
+    )
+    if r.status_code == 403:
+        err = r.json().get("error", "")
+        if "subscription" in err.lower():
+            raise RuntimeError(
+                f"Ollama Cloud model '{model}' requires a subscription. "
+                "Use gemma3:4b, gemma3:12b, or gpt-oss:20b (free tier)."
+            )
+        raise RuntimeError(f"Ollama Cloud access denied: {err}")
+    if r.status_code != 200:
+        raise RuntimeError(f"Ollama Cloud returned HTTP {r.status_code}: {r.text[:200]}")
+    data = r.json()
+    return (data.get("message") or {}).get("content", "")
 
 
 # Backward-compat alias used by rag_service and any other direct importers.
@@ -507,6 +553,49 @@ def ask_llm(
         active_model = current.get("gemini_model") or DEFAULT_GEMINI_MODEL
     elif provider == "sambanova":
         active_model = current.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+    elif provider == "ollama_cloud":
+        active_model = current.get("ollama_cloud_model") or "gemma3:4b"
+    elif provider == "ollama_local":
+        active_model = current.get("ollama_local_model") or "llama3.2"
+
+    # ── Ollama Cloud: uses native /api/chat — cannot use OpenAI Python client ──
+    if provider == "ollama_cloud":
+        api_key = current.get("ollama_cloud_api_key", "")
+        if not api_key:
+            raise RuntimeError("No Ollama Cloud API key configured. Add it in Admin → AI & Settings.")
+        base_url = current.get("ollama_cloud_base_url", "https://api.ollama.com")
+        t_start_oc = time.perf_counter()
+        try:
+            text = _call_ollama_cloud(
+                system_prompt=system_prompt,
+                user_prompt=user_prompt,
+                model=active_model,
+                api_key=api_key,
+                base_url=base_url,
+                timeout=90.0,
+            )
+            duration_ms = round((time.perf_counter() - t_start_oc) * 1000)
+            _log.info(
+                "llm.call_complete",
+                provider="ollama_cloud",
+                model=active_model,
+                feature=feature,
+                username=username,
+                duration_ms=duration_ms,
+            )
+            return text
+        except Exception as exc:
+            duration_ms = round((time.perf_counter() - t_start_oc) * 1000)
+            _log.error(
+                "llm.call_failed",
+                provider="ollama_cloud",
+                model=active_model,
+                feature=feature,
+                username=username,
+                duration_ms=duration_ms,
+                error=str(exc),
+            )
+            raise RuntimeError(f"Ollama Cloud call failed: {str(exc)[:300]}") from exc
 
     # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
     messages = [

@@ -455,35 +455,52 @@ def run_llm_repair(
             settings = get_effective_settings()
             provider = settings.get("provider", "openai")
             model_map = {
-                "openai":    "gpt-4.1-nano",
-                "groq":      settings.get("groq_model") or "llama-3.3-70b-versatile",
-                "cerebras":  settings.get("cerebras_model") or "gpt-oss-120b",
-                "gemini":    settings.get("gemini_model") or "gemini-2.5-flash",
-                "sambanova": settings.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
-                "venice":    settings.get("venice_model") or "llama-3.3-70b",
+                "openai":        "gpt-4.1-nano",
+                "groq":          settings.get("groq_model") or "llama-3.3-70b-versatile",
+                "cerebras":      settings.get("cerebras_model") or "gpt-oss-120b",
+                "gemini":        settings.get("gemini_model") or "gemini-2.5-flash",
+                "sambanova":     settings.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
+                "venice":        settings.get("venice_model") or "llama-3.3-70b",
+                "ollama_cloud":  settings.get("ollama_cloud_model") or "gemma3:4b",
+                "ollama_local":  settings.get("ollama_local_model") or "llama3.2",
             }
             base_url_map = {
-                "openai":    None,  # default
+                "openai":    None,
                 "groq":      "https://api.groq.com/openai/v1",
                 "cerebras":  "https://api.cerebras.ai/v1",
                 "gemini":    "https://generativelanguage.googleapis.com/v1beta/openai/",
                 "sambanova": "https://api.sambanova.ai/v1",
                 "venice":    "https://api.venice.ai/api/v1",
+                "ollama_cloud": settings.get("ollama_cloud_base_url", "https://api.ollama.com"),
+                "ollama_local": settings.get("ollama_local_base_url", "http://localhost:11434/v1"),
             }
             active_model = model_map.get(provider, "gpt-4.1-nano")
             base_url = base_url_map.get(provider)
-            client_kwargs = {"api_key": override_api_key.strip(), "timeout": 90.0}
-            if base_url:
-                client_kwargs["base_url"] = base_url
-            tmp_client = OpenAI(**client_kwargs)
-            messages = [
-                {"role": "system", "content": _REPAIR_SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt},
-            ]
-            response = tmp_client.chat.completions.create(
-                model=active_model, messages=messages, temperature=0.4,
-            )
-            raw = response.choices[0].message.content
+
+            # Ollama Cloud uses native /api/chat — not OpenAI-compat
+            if provider == "ollama_cloud":
+                from app.services.openai_service import _call_ollama_cloud  # noqa: PLC0415
+                raw = _call_ollama_cloud(
+                    system_prompt=_REPAIR_SYSTEM_PROMPT,
+                    user_prompt=user_prompt,
+                    model=active_model,
+                    api_key=override_api_key.strip(),
+                    base_url=base_url or "https://api.ollama.com",
+                    timeout=90.0,
+                )
+            else:
+                client_kwargs = {"api_key": override_api_key.strip(), "timeout": 90.0}
+                if base_url:
+                    client_kwargs["base_url"] = base_url
+                tmp_client = OpenAI(**client_kwargs)
+                messages = [
+                    {"role": "system", "content": _REPAIR_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ]
+                response = tmp_client.chat.completions.create(
+                    model=active_model, messages=messages, temperature=0.4,
+                )
+                raw = response.choices[0].message.content
         else:
             raw = ask_llm(
                 system_prompt=_REPAIR_SYSTEM_PROMPT,
