@@ -476,7 +476,8 @@ _SECTIONS_JOBS: dict = {}  # in-memory job registry
 def _run_sections_background(job_id: str, grade: str | None, subject: str | None,
                                sample: bool, admin_id: str) -> None:
     """Run 8-section lesson audit in background thread."""
-    import sys, os
+    import sys
+    import os
     _SECTIONS_JOBS[job_id]["status"] = "running"
     try:
         sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
