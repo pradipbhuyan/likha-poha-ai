@@ -523,7 +523,12 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
           background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)",
         }} data-testid="llm-info-panel">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontSize: ".8rem", fontWeight: 700, color: "var(--text,#374151)" }}>🤖 AI Provider</span>
+            <div>
+              <span style={{ fontSize: ".8rem", fontWeight: 700, color: "var(--text,#374151)" }}>🤖 AI Provider for Repair</span>
+              <div style={{ fontSize: ".7rem", color: "#94a3b8", marginTop: 1 }}>
+                Source: Admin Settings. Leave override blank to use Admin Settings key.
+              </div>
+            </div>
             <button onClick={loadLlmInfo} disabled={llmInfoLoading}
               style={{ fontSize: ".72rem", background: "none", border: "none", color: "#6366f1", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
               {llmInfoLoading ? "…" : "↺ Refresh"}
@@ -540,12 +545,12 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
                 <div style={{ fontWeight: 700, color: "var(--text,#1e293b)" }}>{llmInfo.model_label}</div>
               </div>
               <div>
-                <div style={{ color: "#64748b", marginBottom: 2 }}>API Key</div>
+                <div style={{ color: "#64748b", marginBottom: 2 }}>Admin Settings Key</div>
                 <div style={{
                   fontWeight: 700,
                   color: llmInfo.api_key_configured ? "#166534" : "#dc2626",
                 }}>
-                  {llmInfo.api_key_configured ? "✓ Configured" : "✗ Not set"}
+                  {llmInfo.api_key_configured ? "✓ Configured" : "✗ Not set — add key in Admin Control"}
                 </div>
               </div>
               <div>
@@ -558,6 +563,11 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
           ) : (
             <div style={{ fontSize: ".78rem", color: "#94a3b8" }}>
               {llmInfoLoading ? "Loading provider info…" : "Could not load provider info."}
+            </div>
+          )}
+          {!llmInfo?.api_key_configured && (
+            <div style={{ marginTop: 8, fontSize: ".72rem", color: "#dc2626", background: "rgba(239,68,68,.06)", borderRadius: 6, padding: "4px 8px" }}>
+              ⚠️ No API key in Admin Settings. You must enter an override key below or configure the key in Admin Control → AI Settings.
             </div>
           )}
         </div>
@@ -611,7 +621,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
               {/* API key override */}
               <div style={{ padding: "10px 12px" }}>
                 <div style={{ marginBottom: 6, fontWeight: 600 }}>
-                  Admin approval required before publishing.
+                  Admin approval required before publishing. Key precedence: Override key → Admin Settings key.
                 </div>
                 <button
                   onClick={() => setShowApiKeyInput(p => !p)}
@@ -621,12 +631,13 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
                     fontFamily: "inherit", color: "#78350f", fontWeight: 600,
                   }}
                 >
-                  {showApiKeyInput ? "▲ Hide API Key Override" : "🔑 Use a different API key for this session"}
+                  {showApiKeyInput ? "▲ Hide API Key Override" : "🔑 Override API key for this session only"}
                 </button>
                 {showApiKeyInput && (
                   <div style={{ marginTop: 8 }}>
                     <div style={{ fontSize: ".72rem", color: "#92400e", marginBottom: 4 }}>
-                      Optional: Enter a session-only API key. It is used for this repair job only and is never stored or logged.
+                      <strong>Override key takes precedence over Admin Settings.</strong>{" "}
+                      Leave blank to use the key configured in Admin Control → AI Settings.
                     </div>
                     <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
                       <input
