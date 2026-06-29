@@ -106,6 +106,8 @@ _settings_cache: dict = {
     "gemini_model": DEFAULT_GEMINI_MODEL,
     "sambanova_api_key": None,
     "sambanova_model": DEFAULT_SAMBANOVA_MODEL,
+    "ollama_cloud_api_key": None,
+    "ollama_cloud_model": "gemma3:4b",
     "loaded_at": 0.0,
 }
 _SETTINGS_TTL = 60.0  # seconds
@@ -219,6 +221,8 @@ def get_effective_settings() -> dict:
                 _settings_cache["gemini_model"] = raw_gemini_model
             _settings_cache["sambanova_api_key"] = db.get("sambanova_api_key") or getattr(settings, "SAMBANOVA_API_KEY", None)
             _settings_cache["sambanova_model"] = db.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+            _settings_cache["ollama_cloud_api_key"] = db.get("ollama_cloud_api_key") or ""
+            _settings_cache["ollama_cloud_model"] = db.get("ollama_cloud_model") or "gemma3:4b"
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
@@ -233,6 +237,8 @@ def get_effective_settings() -> dict:
             _settings_cache["gemini_model"] = DEFAULT_GEMINI_MODEL
             _settings_cache["sambanova_api_key"] = getattr(settings, "SAMBANOVA_API_KEY", None)
             _settings_cache["sambanova_model"] = DEFAULT_SAMBANOVA_MODEL
+            _settings_cache["ollama_cloud_api_key"] = ""
+            _settings_cache["ollama_cloud_model"] = "gemma3:4b"
         _settings_cache["loaded_at"] = now
 
     return _settings_cache
