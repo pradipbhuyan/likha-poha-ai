@@ -2,6 +2,11 @@ import { authFetch } from "./authClient";
 
 const BASE = "/api/admin/qa/lesson-repair";
 
+/** Get currently configured LLM provider, model, and cost estimates */
+export async function getRepairLlmInfo() {
+  return authFetch(`${BASE}/llm-info`);
+}
+
 /** Get latest repair job + audit report metadata */
 export async function getLatestRepairStatus() {
   return authFetch(`${BASE}/latest`);
@@ -14,7 +19,7 @@ export async function getRepairHistory(limit = 20) {
 
 /**
  * Start a repair job.
- * @param {object} opts - { mode, grade, subject, chapter, use_llm }
+ * @param {object} opts - { mode, grade, subject, chapter, use_llm, override_api_key }
  */
 export async function runRepairJob(opts = {}) {
   return authFetch(`${BASE}/run`, {
@@ -25,6 +30,8 @@ export async function runRepairJob(opts = {}) {
       subject: opts.subject || null,
       chapter: opts.chapter || null,
       use_llm: !!opts.use_llm,
+      // Session-only key override — not stored, used for this job only
+      override_api_key: opts.override_api_key || null,
     }),
   });
 }

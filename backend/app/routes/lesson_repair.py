@@ -61,12 +61,56 @@ _REPAIR_TASKS: dict[str, dict] = {}
 
 # ── Pydantic models ───────────────────────────────────────────────────────────
 
+# ── Per-lesson token estimates for cost projection ────────────────────────────
+# Based on a typical repair prompt: ~1600 input tokens, ~2500 output tokens.
+_REPAIR_TOKEN_ESTIMATES = {
+    "input_tokens_per_lesson": 1600,
+    "output_tokens_per_lesson": 2500,
+}
+
+# Pricing per 1K tokens (input, output) by model — subset of openai_service pricing
+_REPAIR_MODEL_PRICING = {
+    "gpt-4.1-nano":              {"input": 0.0001,   "output": 0.0004,  "label": "GPT-4.1 Nano",   "free_tier": False},
+    "gpt-4.1-mini":              {"input": 0.0004,   "output": 0.0016,  "label": "GPT-4.1 Mini",   "free_tier": False},
+    "gpt-4.1":                   {"input": 0.002,    "output": 0.008,   "label": "GPT-4.1",        "free_tier": False},
+    "llama-3.3-70b-versatile":   {"input": 0.00059,  "output": 0.00079, "label": "Llama 3.3 70B (Groq)", "free_tier": True},
+    "gemini-2.5-flash":          {"input": 0.000075, "output": 0.0003,  "label": "Gemini 2.5 Flash", "free_tier": True},
+    "gpt-oss-120b":              {"input": 0.00059,  "output": 0.00079, "label": "GPT-OSS 120B (Cerebras)", "free_tier": True},
+    "zai-glm-4.7":               {"input": 0.00005,  "output": 0.00008, "label": "ZAI GLM 4.7 (Cerebras)", "free_tier": True},
+    "llama-3.3-70b":             {"input": 0.0003,   "output": 0.0007,  "label": "Llama 3.3 70B (Venice)", "free_tier": False},
+    "Meta-Llama-3.3-70B-Instruct":{"input": 0.0006,  "output": 0.0012,  "label": "Llama 3.3 70B (SambaNova)", "free_tier": True},
+}
+
+_PROVIDER_DISPLAY_NAMES = {
+    "openai":    "OpenAI",
+    "groq":      "Groq",
+    "cerebras":  "Cerebras",
+    "gemini":    "Google Gemini",
+    "sambanova": "SambaNova",
+    "venice":    "Venice AI",
+}
+
+
+def _compute_cost_per_lesson(model: str) -> float:
+    """Compute estimated USD cost per lesson repair based on token estimates."""
+    pricing = _REPAIR_MODEL_PRICING.get(model)
+    if not pricing:
+        # Default fallback
+        pricing = {"input": 0.0001, "output": 0.0004}
+    inp = (_REPAIR_TOKEN_ESTIMATES["input_tokens_per_lesson"] / 1000) * pricing["input"]
+    out = (_REPAIR_TOKEN_ESTIMATES["output_tokens_per_lesson"] / 1000) * pricing["output"]
+    return round(inp + out, 6)
+
+
 class RepairRunRequest(BaseModel):
     mode: str = "sample"          # sample | filtered | all
     grade: Optional[str] = None
     subject: Optional[str] = None
     chapter: Optional[str] = None
     use_llm: bool = False
+    # Session-only API key override — used for this repair job only.
+    # NEVER logged, NEVER stored in DB.
+    override_api_key: Optional[str] = None
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -101,6 +145,66 @@ def _safe_task(task: dict) -> dict:
 
 
 # ── Endpoints ─────────────────────────────────────────────────────────────────
+
+@router.get("/lesson-repair/llm-info")
+def get_repair_llm_info(admin=Depends(require_admin)):
+    """
+    Return the currently configured LLM provider, model, and cost estimates
+    for lesson repair. Used by the admin UI to show before running repairs.
+
+    Never exposes API keys — only provider name, model name, and cost figures.
+    """
+    from app.services.openai_service import get_effective_settings  # noqa: PLC0415
+
+    settings = get_effective_settings()
+    provider = settings.get("provider", "openai")
+
+    # Determine active model based on provider
+    model_map = {
+        "openai":    settings.get("api_key") and "gpt-4.1-nano",  # default model
+        "groq":      settings.get("groq_model") or "llama-3.3-70b-versatile",
+        "cerebras":  settings.get("cerebras_model") or "gpt-oss-120b",
+        "gemini":    settings.get("gemini_model") or "gemini-2.5-flash",
+        "sambanova": settings.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
+        "venice":    settings.get("venice_model") or "llama-3.3-70b",
+    }
+    model = model_map.get(provider) or "gpt-4.1-nano"
+    if provider == "openai":
+        model = "gpt-4.1-nano"  # default OpenAI model for repair
+
+    pricing = _REPAIR_MODEL_PRICING.get(model, {"input": 0.0001, "output": 0.0004, "free_tier": False})
+    cost_per_lesson = _compute_cost_per_lesson(model)
+    provider_name = _PROVIDER_DISPLAY_NAMES.get(provider, provider.title())
+
+    # Check if a key is configured (boolean only — never expose key value)
+    has_key = bool(
+        (provider == "openai" and settings.get("api_key")) or
+        (provider == "groq" and settings.get("groq_api_key")) or
+        (provider == "cerebras" and settings.get("cerebras_api_key")) or
+        (provider == "gemini" and settings.get("gemini_api_key")) or
+        (provider == "sambanova" and settings.get("sambanova_api_key")) or
+        (provider == "venice" and settings.get("venice_api_key"))
+    )
+
+    return {
+        "success": True,
+        "provider": provider,
+        "provider_name": provider_name,
+        "model": model,
+        "model_label": pricing.get("label", model),
+        "free_tier_available": pricing.get("free_tier", False),
+        "api_key_configured": has_key,
+        "cost_per_lesson_usd": cost_per_lesson,
+        "cost_10_lessons_usd": round(cost_per_lesson * 10, 4),
+        "cost_50_lessons_usd": round(cost_per_lesson * 50, 4),
+        "cost_100_lessons_usd": round(cost_per_lesson * 100, 4),
+        "token_estimates": _REPAIR_TOKEN_ESTIMATES,
+        "note": (
+            "Free tier available — costs may be $0 within quota." if pricing.get("free_tier")
+            else f"Paid API — estimated ${cost_per_lesson:.4f} per lesson."
+        ),
+    }
+
 
 @router.get("/lesson-repair/latest")
 def get_latest_repair_status(admin=Depends(require_admin)):
@@ -218,6 +322,7 @@ def run_repair(
     _db_insert_job(job)
 
     # Run in background thread
+    # override_api_key is passed in memory only — never stored in DB
     t = threading.Thread(
         target=run_repair_job,
         kwargs={
@@ -228,6 +333,7 @@ def run_repair(
             "grade": req.grade,
             "subject": req.subject,
             "chapter": req.chapter,
+            "override_api_key": req.override_api_key,
             "in_memory_jobs": _REPAIR_JOBS,
             "in_memory_tasks": _REPAIR_TASKS,
         },

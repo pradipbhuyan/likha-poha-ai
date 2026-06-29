@@ -19,6 +19,7 @@ import {
   cancelRepairJob,
   getLatestRepairStatus,
   getRepairJobStatus,
+  getRepairLlmInfo,
   getRepairReportUrl,
   getRepairTask,
   getRepairTasks,
@@ -312,6 +313,13 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
   const [runLoading, setRunLoading] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
 
+  // LLM info state
+  const [llmInfo, setLlmInfo] = useState(null);
+  const [llmInfoLoading, setLlmInfoLoading] = useState(false);
+  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
+  const [overrideApiKey, setOverrideApiKey] = useState("");
+  const [showApiKey, setShowApiKey] = useState(false);
+
   // Form state
   const [mode, setMode] = useState("sample");
   const [grade, setGrade] = useState("");
@@ -334,6 +342,15 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
     finally { setLoading(false); }
   }, []);
 
+  const loadLlmInfo = useCallback(async () => {
+    setLlmInfoLoading(true);
+    try {
+      const d = await getRepairLlmInfo();
+      setLlmInfo(d || null);
+    } catch { /* non-critical */ }
+    finally { setLlmInfoLoading(false); }
+  }, []);
+
   const loadTasks = useCallback(async (jobId) => {
     if (!jobId) return;
     try {
@@ -346,7 +363,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
     } catch { /* non-critical */ }
   }, [filterStatus, filterGrade]);
 
-  useEffect(() => { loadLatest(); }, [loadLatest]);
+  useEffect(() => { loadLatest(); loadLlmInfo(); }, [loadLatest, loadLlmInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Poll while job is running
   useEffect(() => {
@@ -381,7 +398,14 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
     setRunError(null);
     setRunLoading(true);
     try {
-      const d = await runRepairJob({ mode, grade: grade || null, subject: subject || null, chapter: chapter || null, use_llm: useLlm });
+      const d = await runRepairJob({
+        mode,
+        grade: grade || null,
+        subject: subject || null,
+        chapter: chapter || null,
+        use_llm: useLlm,
+        override_api_key: (useLlm && overrideApiKey.trim()) ? overrideApiKey.trim() : null,
+      });
       if (d?.job_id) {
         setCurrentJob({ id: d.job_id, status: "queued", mode, total_tasks: 0, completed_tasks: 0, failed_tasks: 0, approved_tasks: 0, published_tasks: 0 });
         setTasks([]);
@@ -493,7 +517,52 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
           </div>
         )}
 
-        {/* LLM toggle */}
+        {/* LLM Info Panel */}
+        <div style={{
+          marginBottom: 14, padding: "12px 14px", borderRadius: 10,
+          background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)",
+        }} data-testid="llm-info-panel">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <span style={{ fontSize: ".8rem", fontWeight: 700, color: "var(--text,#374151)" }}>🤖 AI Provider</span>
+            <button onClick={loadLlmInfo} disabled={llmInfoLoading}
+              style={{ fontSize: ".72rem", background: "none", border: "none", color: "#6366f1", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+              {llmInfoLoading ? "…" : "↺ Refresh"}
+            </button>
+          </div>
+          {llmInfo ? (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: ".78rem" }}>
+              <div>
+                <div style={{ color: "#64748b", marginBottom: 2 }}>Provider</div>
+                <div style={{ fontWeight: 700, color: "var(--text,#1e293b)" }}>{llmInfo.provider_name}</div>
+              </div>
+              <div>
+                <div style={{ color: "#64748b", marginBottom: 2 }}>Model</div>
+                <div style={{ fontWeight: 700, color: "var(--text,#1e293b)" }}>{llmInfo.model_label}</div>
+              </div>
+              <div>
+                <div style={{ color: "#64748b", marginBottom: 2 }}>API Key</div>
+                <div style={{
+                  fontWeight: 700,
+                  color: llmInfo.api_key_configured ? "#166534" : "#dc2626",
+                }}>
+                  {llmInfo.api_key_configured ? "✓ Configured" : "✗ Not set"}
+                </div>
+              </div>
+              <div>
+                <div style={{ color: "#64748b", marginBottom: 2 }}>Free Tier</div>
+                <div style={{ fontWeight: 700, color: llmInfo.free_tier_available ? "#166534" : "#64748b" }}>
+                  {llmInfo.free_tier_available ? "✓ Available" : "Paid only"}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style={{ fontSize: ".78rem", color: "#94a3b8" }}>
+              {llmInfoLoading ? "Loading provider info…" : "Could not load provider info."}
+            </div>
+          )}
+        </div>
+
+        {/* LLM toggle + cost estimate */}
         <div style={{ marginBottom: 14 }}>
           <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
             <input type="checkbox" checked={useLlm} onChange={e => setUseLlm(e.target.checked)} data-testid="llm-toggle" />
@@ -501,12 +570,96 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
           </label>
           {useLlm && (
             <div data-testid="llm-warning" style={{
-              marginTop: 8, padding: "8px 12px", borderRadius: 8,
-              background: "rgba(245,158,11,.1)", border: "1px solid rgba(245,158,11,.4)",
-              fontSize: ".78rem", color: "#78350f",
+              marginTop: 8, borderRadius: 8,
+              background: "rgba(245,158,11,.07)", border: "1px solid rgba(245,158,11,.3)",
+              fontSize: ".78rem", color: "#78350f", overflow: "hidden",
             }}>
-              ⚠️ <strong>Cost Warning:</strong> LLM repair calls the configured AI provider for each task.
-              Estimated cost: $0.01–$0.05 per lesson. Admin approval is required before publishing.
+              {/* Cost estimate */}
+              {llmInfo && (
+                <div style={{ padding: "10px 12px", borderBottom: "1px solid rgba(245,158,11,.2)" }}>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>
+                    ⚠️ Indicative Cost — {llmInfo.provider_name} / {llmInfo.model_label}
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 6 }}>
+                    {[
+                      { label: "Per lesson", value: llmInfo.cost_per_lesson_usd },
+                      { label: "10 lessons", value: llmInfo.cost_10_lessons_usd },
+                      { label: "50 lessons", value: llmInfo.cost_50_lessons_usd },
+                      { label: "100 lessons", value: llmInfo.cost_100_lessons_usd },
+                    ].map(({ label, value }) => (
+                      <div key={label} style={{
+                        background: "rgba(245,158,11,.12)", borderRadius: 6, padding: "5px 8px", textAlign: "center",
+                      }}>
+                        <div style={{ fontSize: ".65rem", color: "#92400e", marginBottom: 2 }}>{label}</div>
+                        <div style={{ fontWeight: 800, fontSize: ".85rem", color: "#78350f" }}>
+                          {value === 0 ? "$0" : value < 0.001 ? `$${(value * 1000).toFixed(2)}m` : `$${value.toFixed(4)}`}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {llmInfo.free_tier_available && (
+                    <div style={{ marginTop: 6, fontSize: ".72rem", color: "#166534", background: "rgba(34,197,94,.08)", borderRadius: 4, padding: "3px 8px", display: "inline-block" }}>
+                      ✓ Free tier available — may be $0 within quota
+                    </div>
+                  )}
+                  <div style={{ marginTop: 4, fontSize: ".68rem", color: "#92400e" }}>
+                    Estimates based on ~{llmInfo.token_estimates?.input_tokens_per_lesson || 1600} input + ~{llmInfo.token_estimates?.output_tokens_per_lesson || 2500} output tokens per lesson.
+                  </div>
+                </div>
+              )}
+
+              {/* API key override */}
+              <div style={{ padding: "10px 12px" }}>
+                <div style={{ marginBottom: 6, fontWeight: 600 }}>
+                  Admin approval required before publishing.
+                </div>
+                <button
+                  onClick={() => setShowApiKeyInput(p => !p)}
+                  style={{
+                    fontSize: ".72rem", background: "none", border: "1px solid rgba(245,158,11,.4)",
+                    borderRadius: 6, padding: "3px 10px", cursor: "pointer",
+                    fontFamily: "inherit", color: "#78350f", fontWeight: 600,
+                  }}
+                >
+                  {showApiKeyInput ? "▲ Hide API Key Override" : "🔑 Use a different API key for this session"}
+                </button>
+                {showApiKeyInput && (
+                  <div style={{ marginTop: 8 }}>
+                    <div style={{ fontSize: ".72rem", color: "#92400e", marginBottom: 4 }}>
+                      Optional: Enter a session-only API key. It is used for this repair job only and is never stored or logged.
+                    </div>
+                    <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                      <input
+                        type={showApiKey ? "text" : "password"}
+                        value={overrideApiKey}
+                        onChange={e => setOverrideApiKey(e.target.value)}
+                        placeholder={`${llmInfo?.provider_name || "Provider"} API key (e.g. sk-... / gsk_...)`}
+                        data-testid="override-api-key-input"
+                        style={{
+                          flex: 1, background: "rgba(255,255,255,.6)", border: "1px solid rgba(245,158,11,.4)",
+                          borderRadius: 6, padding: "6px 10px", fontFamily: "inherit", fontSize: ".78rem",
+                          color: "#1e293b",
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowApiKey(p => !p)}
+                        style={{
+                          background: "none", border: "none", cursor: "pointer",
+                          fontSize: ".82rem", color: "#78350f", padding: "4px",
+                        }}
+                      >
+                        {showApiKey ? "🙈" : "👁️"}
+                      </button>
+                    </div>
+                    {overrideApiKey && (
+                      <div style={{ marginTop: 4, fontSize: ".68rem", color: "#166534" }}>
+                        ✓ Session key entered — will be used for this repair job only.
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>

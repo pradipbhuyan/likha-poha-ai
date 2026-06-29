@@ -11,6 +11,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 vi.mock("../api/lessonRepair", () => ({
   getLatestRepairStatus: vi.fn(),
   getRepairHistory:      vi.fn(),
+  getRepairLlmInfo:      vi.fn(),
   runRepairJob:          vi.fn(),
   getRepairJobStatus:    vi.fn(),
   getRepairTasks:        vi.fn(),
@@ -24,6 +25,7 @@ vi.mock("../api/lessonRepair", () => ({
 
 import {
   getLatestRepairStatus,
+  getRepairLlmInfo,
   getRepairTasks,
   getRepairTask,
   approveRepairTask,
@@ -86,10 +88,29 @@ function mockTasks(tasks = []) {
 
 describe("AdminLessonRepairPage", () => {
 
+  function mockLlmInfo() {
+    getRepairLlmInfo.mockResolvedValue({
+      success: true,
+      provider: "openai",
+      provider_name: "OpenAI",
+      model: "gpt-4.1-nano",
+      model_label: "GPT-4.1 Nano",
+      free_tier_available: false,
+      api_key_configured: true,
+      cost_per_lesson_usd: 0.0012,
+      cost_10_lessons_usd: 0.012,
+      cost_50_lessons_usd: 0.06,
+      cost_100_lessons_usd: 0.12,
+      token_estimates: { input_tokens_per_lesson: 1600, output_tokens_per_lesson: 2500 },
+      note: "Paid API — estimated $0.0012 per lesson.",
+    });
+  }
+
   beforeEach(() => {
     vi.clearAllMocks();
     mockLatestNoJob();
     mockTasks([]);
+    mockLlmInfo();
   });
 
   // ── Rendering ────────────────────────────────────────────────────────────────
@@ -143,7 +164,8 @@ describe("AdminLessonRepairPage", () => {
     const toggle = screen.getByTestId("llm-toggle");
     fireEvent.click(toggle);
     expect(await screen.findByTestId("llm-warning")).toBeInTheDocument();
-    expect(screen.getByText(/Cost Warning/i)).toBeInTheDocument();
+    // New UI shows "Indicative Cost" with provider/model breakdown
+    expect(screen.getByText(/Indicative Cost/i)).toBeInTheDocument();
   });
 
   test("LLM cost warning is not visible when toggle is off", async () => {

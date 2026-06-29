@@ -418,14 +418,18 @@ def build_repaired_content_from_sections(draft: dict) -> str:
 def run_llm_repair(
     lesson_audit: dict,
     admin_username: str = "admin",
+    override_api_key: str | None = None,
 ) -> dict:
     """
     Call the configured LLM to repair a single failed lesson.
 
     Returns a dict with keys: success, draft (or None), error.
     NEVER raises — all errors are caught and returned in the result.
+
+    override_api_key: session-only key override. NEVER logged. NEVER stored.
     """
-    from app.services.openai_service import ask_llm  # noqa: PLC0415
+    from app.services.openai_service import ask_llm, get_effective_settings, get_chat_client  # noqa: PLC0415
+    from openai import OpenAI  # noqa: PLC0415
 
     grade = lesson_audit.get("grade", "")
     subject = lesson_audit.get("subject", "")
@@ -446,12 +450,47 @@ def run_llm_repair(
     )
 
     try:
-        raw = ask_llm(
-            system_prompt=_REPAIR_SYSTEM_PROMPT,
-            user_prompt=user_prompt,
-            username=admin_username,
-            feature="lesson_repair",
-        )
+        if override_api_key and override_api_key.strip():
+            # Use the override key for this call only — do not log the key
+            settings = get_effective_settings()
+            provider = settings.get("provider", "openai")
+            model_map = {
+                "openai":    "gpt-4.1-nano",
+                "groq":      settings.get("groq_model") or "llama-3.3-70b-versatile",
+                "cerebras":  settings.get("cerebras_model") or "gpt-oss-120b",
+                "gemini":    settings.get("gemini_model") or "gemini-2.5-flash",
+                "sambanova": settings.get("sambanova_model") or "Meta-Llama-3.3-70B-Instruct",
+                "venice":    settings.get("venice_model") or "llama-3.3-70b",
+            }
+            base_url_map = {
+                "openai":    None,  # default
+                "groq":      "https://api.groq.com/openai/v1",
+                "cerebras":  "https://api.cerebras.ai/v1",
+                "gemini":    "https://generativelanguage.googleapis.com/v1beta/openai/",
+                "sambanova": "https://api.sambanova.ai/v1",
+                "venice":    "https://api.venice.ai/api/v1",
+            }
+            active_model = model_map.get(provider, "gpt-4.1-nano")
+            base_url = base_url_map.get(provider)
+            client_kwargs = {"api_key": override_api_key.strip(), "timeout": 90.0}
+            if base_url:
+                client_kwargs["base_url"] = base_url
+            tmp_client = OpenAI(**client_kwargs)
+            messages = [
+                {"role": "system", "content": _REPAIR_SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt},
+            ]
+            response = tmp_client.chat.completions.create(
+                model=active_model, messages=messages, temperature=0.4,
+            )
+            raw = response.choices[0].message.content
+        else:
+            raw = ask_llm(
+                system_prompt=_REPAIR_SYSTEM_PROMPT,
+                user_prompt=user_prompt,
+                username=admin_username,
+                feature="lesson_repair",
+            )
     except Exception as exc:
         return {"success": False, "draft": None, "error": f"LLM call failed: {str(exc)[:300]}"}
 
@@ -596,6 +635,7 @@ def run_repair_job(
     grade: Optional[str] = None,
     subject: Optional[str] = None,
     chapter: Optional[str] = None,
+    override_api_key: Optional[str] = None,
     in_memory_jobs: Optional[dict] = None,
     in_memory_tasks: Optional[dict] = None,
 ) -> None:
@@ -712,7 +752,11 @@ def run_repair_job(
 
             # LLM repair path
             _log.info("[repair:%s] Running LLM repair for task %s...", job_id, task_id)
-            repair_result = run_llm_repair(lesson_audit, admin_username=f"admin:{admin_id}")
+            repair_result = run_llm_repair(
+                lesson_audit,
+                admin_username=f"admin:{admin_id}",
+                override_api_key=override_api_key,
+            )
 
             if not repair_result["success"]:
                 _update_task(task_id, {
