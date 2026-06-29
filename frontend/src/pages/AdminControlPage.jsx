@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import {
+  LayoutDashboard, UserCircle, Users, Link2, Tag,
+  Settings2, Monitor, Zap, BarChart2, LifeBuoy,
+} from "lucide-react";
 import "./AdminConsole.css";
 import AdminQuickActions from "../components/AdminQuickActions";
 import AdminRecentActivity from "../components/AdminRecentActivity";
@@ -328,16 +332,16 @@ function AdminControlPage({ user }) {
 
   // ── Tab definitions (kept outside useState so it can validate URL params) ──
   const ADMIN_TABS = [
-    { key: "overview",     label: "Overview",         icon: "🏠" },
-    { key: "accounts",     label: "Accounts",         icon: "👤" },
-    { key: "families",     label: "Families & Access", icon: "👨‍👩‍👧" },
-    { key: "associations", label: "Associations",     icon: "🔗" },
-    { key: "offers",       label: "Offers",           icon: "🎟️" },
-    { key: "ai",           label: "AI & Settings",    icon: "🔑" },
-    { key: "operations",   label: "Operations",       icon: "🖥️" },
-    { key: "bulk",         label: "Bulk Tools",       icon: "⚡" },
-    { key: "analytics",   label: "Analytics",        icon: "📊" },
-    { key: "support",     label: "Support",          icon: "🛟" },
+    { key: "overview",     label: "Overview",          Icon: LayoutDashboard },
+    { key: "accounts",     label: "Accounts",          Icon: UserCircle },
+    { key: "families",     label: "Families & Access", Icon: Users },
+    { key: "associations", label: "Associations",      Icon: Link2 },
+    { key: "offers",       label: "Offers",            Icon: Tag },
+    { key: "ai",           label: "AI & Settings",     Icon: Settings2 },
+    { key: "operations",   label: "Operations",        Icon: Monitor },
+    { key: "bulk",         label: "Bulk Tools",        Icon: Zap },
+    { key: "analytics",    label: "Analytics",         Icon: BarChart2 },
+    { key: "support",      label: "Support",           Icon: LifeBuoy },
   ];
   const VALID_TAB_KEYS = new Set(ADMIN_TABS.map((t) => t.key));
 
@@ -1488,7 +1492,7 @@ function AdminControlPage({ user }) {
             className={`admin-tab-btn${activeTab === t.key ? " active" : ""}`}
             onClick={() => handleTabChange(t.key)}
             data-testid={`admin-tab-${t.key}`}>
-            <span className="admin-tab-icon" aria-hidden="true">{t.icon}</span>
+            <span className="admin-tab-icon" aria-hidden="true"><t.Icon size={15} strokeWidth={2} /></span>
             <span className="admin-tab-label">{t.label}</span>
           </button>
         ))}
