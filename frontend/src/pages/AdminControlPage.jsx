@@ -137,6 +137,9 @@ function AdminControlPage({ user }) {
   const [newGeminiKey, setNewGeminiKey] = useState("");
   const [sambanovaKeyPrefix, setSambanovaKeyPrefix] = useState("");
   const [sambanovaModel, setSambanovaModel] = useState("Meta-Llama-3.3-70B-Instruct");
+  const [ollamaCloudKeyPrefix, setOllamaCloudKeyPrefix] = useState("");
+  const [ollamaCloudModel, setOllamaCloudModel] = useState("gemma3:4b");
+  const [newOllamaCloudKey, setNewOllamaCloudKey] = useState("");
   const [newSambanovaKey, setNewSambanovaKey] = useState("");
   const [aiSettingsLoading, setAiSettingsLoading] = useState(true);
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
@@ -249,6 +252,8 @@ function AdminControlPage({ user }) {
       setGeminiModel(data.gemini_model || "gemini-2.0-flash-lite");
       setSambanovaKeyPrefix(data.sambanova_key_prefix || "");
       setSambanovaModel(data.sambanova_model || "Meta-Llama-3.3-70B-Instruct");
+      setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
+      setOllamaCloudModel(data.ollama_cloud_model || "gemma3:4b");
     } catch (err) {
       console.error(err);
     } finally {
@@ -276,8 +281,10 @@ function AdminControlPage({ user }) {
       if (newCerebrasKey.trim()) payload.cerebras_api_key = newCerebrasKey.trim();
       if (newGeminiKey.trim()) payload.gemini_api_key = newGeminiKey.trim();
       if (newSambanovaKey.trim()) payload.sambanova_api_key = newSambanovaKey.trim();
+      if (newOllamaCloudKey.trim()) payload.ollama_cloud_api_key = newOllamaCloudKey.trim();
       payload.gemini_model = geminiModel;
       payload.sambanova_model = sambanovaModel;
+      payload.ollama_cloud_model = ollamaCloudModel;
       const data = await updateAiSettings(payload, user.accessToken);
       setAiEnabled(data.api_enabled ?? true);
       setAiKeyPrefix(data.api_key_prefix || "");
@@ -293,12 +300,17 @@ function AdminControlPage({ user }) {
       setNewVeniceKey("");
       setNewGroqKey("");
       setNewCerebrasKey("");
+      setNewSambanovaKey("");
+      setNewOllamaCloudKey("");
+      if (data.ollama_cloud_key_prefix !== undefined) setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
+      if (data.ollama_cloud_model) setOllamaCloudModel(data.ollama_cloud_model);
       const providerLabel =
         data.provider === "venice" ? `Venice AI (${data.venice_model})` :
         data.provider === "groq" ? `Groq (${data.groq_model})` :
         data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` :
         data.provider === "gemini" ? `Gemini (${data.gemini_model})` :
-        data.provider === "sambanova" ? `SambaNova (${data.sambanova_model})` : "OpenAI";
+        data.provider === "sambanova" ? `SambaNova (${data.sambanova_model})` :
+        data.provider === "ollama_cloud" ? `Ollama Cloud (${data.ollama_cloud_model || ollamaCloudModel})` : "OpenAI";
       setAiSettingsMessage(
         data.api_enabled
           ? `AI API is ON — using ${providerLabel}.`
@@ -1111,12 +1123,13 @@ function AdminControlPage({ user }) {
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
               {[
-                ["openai",     "🤖 OpenAI",          "#6366f1"],
-                ["venice",     "🎨 Venice AI",        "#8b5cf6"],
-                ["groq",       "⚡ Groq",             "#10b981"],
-                ["cerebras",   "🧠 Cerebras",         "#a855f7"],
-                ["gemini",     "✨ Gemini",            "#f59e0b"],
-                ["sambanova",  "🚀 SambaNova",        "#06b6d4"],
+                ["openai",        "🤖 OpenAI",          "#6366f1"],
+                ["venice",        "🎨 Venice AI",        "#8b5cf6"],
+                ["groq",          "⚡ Groq",             "#10b981"],
+                ["cerebras",      "🧠 Cerebras",         "#a855f7"],
+                ["gemini",        "✨ Gemini",            "#f59e0b"],
+                ["sambanova",     "🚀 SambaNova",        "#06b6d4"],
+                ["ollama_cloud",  "🦙 Ollama Cloud",     "#f97316"],
               ].map(([val, label, color]) => (
                 <button key={val} onClick={() => setAiProvider(val)}
                   style={{
@@ -1127,7 +1140,7 @@ function AdminControlPage({ user }) {
                     transition: "all .18s", textAlign: "center",
                   }}>
                   {label}
-                  {["groq","cerebras","gemini","sambanova"].includes(val) && (
+                  {["groq","cerebras","gemini","sambanova","ollama_cloud"].includes(val) && (
                     <span style={{ display:"block", fontSize:".68rem", color:"#22c55e", fontWeight:800, marginTop:2 }}>FREE</span>
                   )}
                 </button>
@@ -1292,6 +1305,44 @@ function AdminControlPage({ user }) {
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 <strong>Llama 4 Scout</strong> is blazing fast and completely free. Use <strong>Llama 3.3 70B</strong> for best lesson quality.
+                </p>
+              </label>
+            </div>
+          )}
+
+          {/* Ollama Cloud settings */}
+          {aiProvider === "ollama_cloud" && (
+            <div style={{ background: "rgba(249,115,22,.07)", border: "1px solid rgba(249,115,22,.3)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>Ollama Cloud Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                Ollama Cloud has a <strong>free tier</strong> — gemma3:4b, gemma3:12b, gpt-oss:20b are free.
+                Get your key at{" "}
+                <a href="https://ollama.com" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>ollama.com</a>.
+                Uses native Ollama API at <code>https://api.ollama.com</code>.
+              </p>
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>Ollama Cloud API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {ollamaCloudKeyPrefix ? `${ollamaCloudKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newOllamaCloudKey} onChange={(e) => setNewOllamaCloudKey(e.target.value)}
+                  placeholder="Your Ollama Cloud key" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>Model</strong>
+                <select value={ollamaCloudModel} onChange={(e) => setOllamaCloudModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="gemma3:4b">gemma3:4b — Free tier, fast (recommended ✅)</option>
+                  <option value="gemma3:12b">gemma3:12b — Free tier, higher quality</option>
+                  <option value="gpt-oss:20b">gpt-oss:20b — Free tier, GPT-OSS</option>
+                  <option value="glm-5.2">glm-5.2 — Premium (subscription required)</option>
+                  <option value="minimax-m2.1">minimax-m2.1 — Premium (subscription required)</option>
+                  <option value="kimi-k2.6">kimi-k2.6 — Premium (subscription required)</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
+                  💡 Free models: <strong>gemma3:4b</strong>, <strong>gemma3:12b</strong>, <strong>gpt-oss:20b</strong> — confirmed working.
+                  Premium models require a paid subscription at ollama.com/upgrade.
                 </p>
               </label>
             </div>
