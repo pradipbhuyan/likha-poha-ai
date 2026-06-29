@@ -104,15 +104,22 @@ PROVIDER_REGISTRY = {
     },
     "ollama_cloud": {
         "display_name": "Ollama Cloud",
-        "base_url": "https://api.ollama.ai/v1",
+        # Correct URL confirmed by live test: api.ollama.com (NOT api.ollama.ai)
+        # Uses native Ollama /api/chat format (NOT OpenAI /v1/chat/completions)
+        "base_url": "https://api.ollama.com",
         "key_prefix": "",
         "key_env": None,
         "settings_key": "ollama_cloud_api_key",
         "model_settings_key": "ollama_cloud_model",
-        "supports_list_models": False,
-        "free_tier": False,
+        "supports_list_models": True,   # GET /v1/models works ✓
+        "free_tier": True,
+        "free_tier_notes": "Free: gemma3:12b, gemma3:4b, gpt-oss:20b (others require subscription)",
         "docs_url": "https://ollama.com/docs",
-        "suggested_models": ["glm-4-9b", "minimax-text-01", "qwen2.5-coder-7b", "moonshot-v1-8k"],
+        # Free-tier confirmed models: gemma3:12b, gemma3:4b, gpt-oss:20b
+        # Premium models (need subscription): glm-5.2, kimi-k2.x, minimax-m2.1, deepseek-v4-pro
+        "suggested_models": ["gemma3:12b", "gemma3:4b", "gpt-oss:20b", "glm-5.2", "minimax-m2.1", "kimi-k2.6"],
+        # API note: uses /api/chat (native Ollama format), not /v1/chat/completions
+        "api_format": "ollama_native",
     },
     "ollama_local": {
         "display_name": "Local Ollama",
@@ -355,10 +362,14 @@ def test_connection(provider_key: str, override_key: Optional[str] = None) -> di
     base_url = eff.get(f"{provider_key}_base_url") or meta.get("base_url")
     timeout = 15.0
 
+    # Ollama Cloud — uses native /api/chat format (NOT OpenAI /v1/chat/completions)
+    if provider_key == "ollama_cloud":
+        return _test_ollama_cloud(api_key, model, base_url or "https://api.ollama.com", timeout)
+
     # Local Ollama: check server reachability first
     if provider_key == "ollama_local":
         import requests as _req  # noqa: PLC0415
-        server_url = base_url or "http://localhost:11434"
+        server_url = (base_url or "http://localhost:11434").replace("/v1", "")
         try:
             r = _req.get(f"{server_url.rstrip('/')}/api/version", timeout=5)
             if r.status_code != 200:
@@ -406,6 +417,53 @@ def test_connection(provider_key: str, override_key: Optional[str] = None) -> di
         else:
             msg = f"Connection failed: {err[:120]}"
         return {"success": False, "latency_ms": 0, "model": model, "message": msg}
+
+
+def _test_ollama_cloud(api_key: str, model: str, base_url: str, timeout: float) -> dict:
+    """
+    Test Ollama Cloud using native /api/chat format.
+    Confirmed: api.ollama.com uses /api/chat (Ollama native), NOT /v1/chat/completions.
+    Free-tier models: gemma3:12b, gemma3:4b, gpt-oss:20b
+    Premium models (403): glm-5.2, kimi-k2.x, deepseek-v4-pro, minimax-m2.1
+    """
+    if not api_key:
+        return {"success": False, "latency_ms": 0, "model": model,
+                "message": "No API key configured for Ollama Cloud."}
+    try:
+        import requests as _req  # noqa: PLC0415
+        t0 = time.perf_counter()
+        r = _req.post(
+            f"{base_url.rstrip('/')}/api/chat",
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json={"model": model, "stream": False,
+                  "messages": [{"role": "user", "content": "Reply: OK"}]},
+            timeout=timeout,
+        )
+        latency_ms = round((time.perf_counter() - t0) * 1000)
+        if r.status_code == 200:
+            data = r.json()
+            text = (data.get("message") or {}).get("content", "")[:40]
+            return {"success": True, "latency_ms": latency_ms, "model": model,
+                    "message": f"Connected. Response: {text!r}"}
+        elif r.status_code == 403:
+            err_msg = r.json().get("error", "")
+            if "subscription" in err_msg.lower():
+                return {"success": False, "latency_ms": latency_ms, "model": model,
+                        "message": f"Model '{model}' requires a subscription. Try gemma3:12b, gemma3:4b, or gpt-oss:20b (free tier)."}
+            return {"success": False, "latency_ms": latency_ms, "model": model,
+                    "message": "Access denied. Check your API key at https://ollama.com."}
+        elif r.status_code == 401:
+            return {"success": False, "latency_ms": latency_ms, "model": model,
+                    "message": "Authentication failed — check your Ollama Cloud API key."}
+        elif r.status_code == 404:
+            return {"success": False, "latency_ms": latency_ms, "model": model,
+                    "message": f"Model '{model}' not found. Free models: gemma3:12b, gemma3:4b, gpt-oss:20b"}
+        else:
+            return {"success": False, "latency_ms": latency_ms, "model": model,
+                    "message": f"Ollama Cloud returned status {r.status_code}: {r.text[:80]}"}
+    except Exception as exc:
+        return {"success": False, "latency_ms": 0, "model": model,
+                "message": f"Ollama Cloud connection failed: {str(exc)[:120]}"}
 
 
 def _test_anthropic(api_key: str, model: str, timeout: float) -> dict:
