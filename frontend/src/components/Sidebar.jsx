@@ -231,6 +231,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "aiStudio",
+      label: "AI Studio",
+      icon: Sparkles,
+      roles: ["admin"],
+    },
+    {
       key: "salesLeads",
       label: isAdmin ? "Lead Claims" : "My Lead Claims",
       icon: Users,

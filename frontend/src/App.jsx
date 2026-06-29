@@ -61,6 +61,7 @@ import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
+import AdminAIStudioPage from "./pages/AdminAIStudioPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import SignupPage from "./pages/SignupPage";
 import BlogPage from "./pages/BlogPage";
@@ -244,6 +245,11 @@ const PAGE_META = {
     title: "Lesson Repair",
     subtitle: "Repair lessons that failed the 8-section quality audit. Admin-triggered LLM repair with draft-first safety.",
     icon: "🔧",
+  },
+  aiStudio: {
+    title: "AI Studio",
+    subtitle: "Configure AI providers, model routing, prompt templates, and monitor usage and quality.",
+    icon: "🎛️",
   },
   teacherTestPaper: {
     title: "Create Test Paper",
@@ -1429,6 +1435,8 @@ function App() {
         return <AdminUnansweredQuestionsPage user={user} />;
       case "lessonRepair":
         return <AdminLessonRepairPage user={user} />;
+      case "aiStudio":
+        return <AdminAIStudioPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }
