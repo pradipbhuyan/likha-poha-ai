@@ -463,3 +463,146 @@ def download_feat_auth_report(
         content=fp.read_text(encoding="utf-8"), media_type=ct[format],
         headers={"Content-Disposition": f"attachment; filename=feature_authorization_report.{format}"},
     )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Lesson Sections Audit (8-section compliance)
+# ══════════════════════════════════════════════════════════════════════════════
+
+SECTIONS_REPORT_DIR = Path("reports/lesson_sections")
+_SECTIONS_JOBS: dict = {}  # in-memory job registry
+
+
+def _run_sections_background(job_id: str, grade: str | None, subject: str | None,
+                               sample: bool, admin_id: str) -> None:
+    """Run 8-section lesson audit in background thread."""
+    import sys, os
+    _SECTIONS_JOBS[job_id]["status"] = "running"
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        from scripts.audit_lesson_sections import run_sections_audit
+        result = run_sections_audit(grade=grade, subject=subject, sample=sample)
+        summary = result.get("summary", {}) if result else {}
+        _SECTIONS_JOBS[job_id].update({
+            "status": "completed",
+            "lessons_audited": summary.get("lessons_audited", 0),
+            "avg_overall_score": summary.get("avg_overall_score", 0),
+            "critical_issues": summary.get("critical_issues", 0),
+            "section_compliance_pct": summary.get("section_compliance_pct", 0),
+            "overall": summary.get("overall", "UNKNOWN"),
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as e:
+        err = str(e)[:500].replace("\n", " ")
+        _SECTIONS_JOBS[job_id].update({
+            "status": "failed",
+            "error_message": err,
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+        })
+
+
+@router.get("/lesson-sections/latest")
+def get_latest_sections_report(admin=Depends(require_admin)):
+    """Return latest 8-section lesson audit report summary."""
+    fp = SECTIONS_REPORT_DIR / "lesson_sections_report.json"
+    if not fp.exists():
+        return {"success": True, "available": False,
+                "message": "No lesson sections audit has been run yet."}
+    try:
+        data = json.loads(fp.read_text(encoding="utf-8"))
+        summary = data.get("summary", {})
+        lessons = data.get("lessons", [])
+        # Build section compliance table
+        section_compliance = {}
+        for lesson in lessons:
+            for sec, info in lesson.get("section_results", {}).items():
+                if sec not in section_compliance:
+                    section_compliance[sec] = {"found": 0, "total": 0}
+                section_compliance[sec]["total"] += 1
+                if info.get("found"):
+                    section_compliance[sec]["found"] += 1
+        # Top issues (worst lessons)
+        worst = sorted(lessons, key=lambda r: r.get("scores", {}).get("overall_lesson_score", 100))[:10]
+        return {
+            "success": True, "available": True,
+            **summary,
+            "section_compliance": {
+                sec: round(v["found"] / max(v["total"], 1) * 100, 1)
+                for sec, v in section_compliance.items()
+            },
+            "worst_lessons": [
+                {
+                    "grade": w["grade"], "subject": w["subject"],
+                    "chapter": w["chapter"], "step_title": w["step_title"],
+                    "overall_score": w["scores"]["overall_lesson_score"],
+                    "missing_sections": w["missing_sections"],
+                    "critical": w["issue_counts"]["critical"],
+                    "high": w["issue_counts"]["high"],
+                }
+                for w in worst
+            ],
+            "all_issues": [
+                issue
+                for lesson in lessons
+                for issue in lesson.get("all_issues", [])
+                if issue.get("severity") in ("critical", "high")
+            ][:200],
+            "audited_at": data.get("audited_at"),
+        }
+    except Exception as e:
+        return {"success": False, "available": False, "error": str(e)[:200]}
+
+
+@router.post("/lesson-sections/run")
+def run_sections_audit_job(
+    grade: str | None = None,
+    subject: str | None = None,
+    sample: bool = True,
+    background_tasks: BackgroundTasks = None,
+    admin=Depends(require_admin),
+):
+    admin_id = admin.get("id") or admin.get("profile", {}).get("id") or ""
+    job_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    _SECTIONS_JOBS[job_id] = {
+        "id": job_id, "status": "queued",
+        "grade": grade, "subject": subject, "sample": sample,
+        "created_at": now, "created_by_admin_id": admin_id,
+    }
+    t = threading.Thread(
+        target=_run_sections_background,
+        args=(job_id, grade, subject, sample, admin_id),
+        daemon=True,
+    )
+    t.start()
+    mode_desc = f"grade={grade}" if grade else ("sample" if sample else "full")
+    return {"success": True, "job_id": job_id,
+            "message": f"Lesson sections audit started ({mode_desc})."}
+
+
+@router.get("/lesson-sections/status/{job_id}")
+def get_sections_job_status(job_id: str, admin=Depends(require_admin)):
+    if job_id not in _SECTIONS_JOBS:
+        raise HTTPException(status_code=404, detail="Job not found.")
+    job = dict(_SECTIONS_JOBS[job_id])
+    job.pop("created_by_admin_id", None)
+    return {"success": True, "job": job}
+
+
+@router.get("/lesson-sections/report")
+def download_sections_report(
+    format: str = Query("json", pattern="^(json|csv)$"),
+    admin=Depends(require_admin),
+):
+    files = {
+        "json": SECTIONS_REPORT_DIR / "lesson_sections_report.json",
+        "csv":  SECTIONS_REPORT_DIR / "lesson_sections_summary.csv",
+    }
+    fp = files.get(format)
+    if not fp or not fp.exists():
+        raise HTTPException(status_code=404, detail="Report not found. Run an audit first.")
+    ct = {"json": "application/json", "csv": "text/csv"}
+    return PlainTextResponse(
+        content=fp.read_text(encoding="utf-8"), media_type=ct[format],
+        headers={"Content-Disposition": f"attachment; filename=lesson_sections_report.{format}"},
+    )

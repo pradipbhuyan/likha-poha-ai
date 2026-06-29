@@ -6,6 +6,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
 import FeatureAuthAuditPage from "./FeatureAuthAuditPage";
+import LessonSectionsAuditPage from "./LessonSectionsAuditPage";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const SUBJECTS = ["Mathematics","Science","Physics","Chemistry","English","Hindi","Social Science"];
@@ -154,6 +155,15 @@ export default function AdminQACenterPage({ user: _user, setActivePage }) {
             ● Active{activeModule==="lessonQuality" ? " · Selected" : ""}
           </div>
         </Card>
+        <Card testid="module-lesson-sections"
+          style={{ borderLeft:"4px solid #22c55e", cursor:"pointer",
+            background:activeModule==="lessonSections"?"#22c55e15":"var(--panel,#fff)" }}
+          onClick={() => setActiveModule("lessonSections")}>
+          <div style={{ fontWeight:700, fontSize:".85rem" }}>📋 8-Section Audit</div>
+          <div style={{ fontSize:".7rem", color:"#22c55e", marginTop:2 }}>
+            ● Active{activeModule==="lessonSections" ? " · Selected" : ""}
+          </div>
+        </Card>
         <FutureModule icon="📐" name="Formula Sheet Audit"/>
         <Card testid="module-feature-auth"
           style={{ borderLeft:"4px solid #0ea5e9", cursor:"pointer",
@@ -187,6 +197,25 @@ export default function AdminQACenterPage({ user: _user, setActivePage }) {
             </span>
           </div>
           <FeatureAuthAuditPage setActivePage={setActivePage} />
+        </div>
+      )}
+
+      {/* Lesson Sections Audit module */}
+      {activeModule === "lessonSections" && (
+        <div data-testid="module-content-lesson-sections">
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
+            <button data-testid="back-from-sections"
+              onClick={() => setActiveModule("lessonQuality")}
+              style={{ background:"none", border:"1px solid var(--border,#e5e7eb)", borderRadius:7,
+                padding:"5px 12px", cursor:"pointer", fontFamily:"inherit", fontSize:".76rem",
+                color:"var(--text-muted,#64748b)" }}>
+              ← Lesson Quality
+            </button>
+            <span style={{ fontSize:".82rem", color:"var(--text-muted,#64748b)" }}>
+              Platform QA Center → 📋 8-Section Audit
+            </span>
+          </div>
+          <LessonSectionsAuditPage setActivePage={setActivePage} />
         </div>
       )}
 
