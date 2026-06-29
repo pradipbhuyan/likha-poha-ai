@@ -4,7 +4,7 @@
  * localStorage keys (no values), window size, and optional screenshot.
  * Window.__LIKHAPOHA_CONTEXT__ can be set by any page to pass lesson context.
  */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { authFetch } from "../api/authClient";
 
 const ISSUE_TYPES = [
@@ -96,16 +96,15 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
   const [error, setError] = useState(null);
   const [screenshotDataUrl, setScreenshotDataUrl] = useState(null);
   const [capturing, setCapturing] = useState(false);
-  const devCtxRef = useRef(null);
+  const [devCtx, setDevCtx] = useState({});
 
   useEffect(() => {
-    if (open) devCtxRef.current = captureDevContext();
+    if (open) setDevCtx(captureDevContext());
   }, [open]);
 
   function reset() {
     setForm({ issue_type: "content_issue", severity: "medium", description: "" });
     setSuccess(false); setError(null); setScreenshotDataUrl(null);
-    devCtxRef.current = null;
   }
 
   function handleClose() { reset(); onClose(); }
@@ -148,41 +147,41 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
     }
     setSubmitting(true); setError(null);
     try {
-      const devCtx = devCtxRef.current || captureDevContext();
+      const devCtxSnap = Object.keys(devCtx).length > 0 ? devCtx : captureDevContext();
       const payload = {
         issue_type: form.issue_type,
         severity: form.severity,
         description: form.description.trim().slice(0, 2000),
-        route: context.route || devCtx.page,
-        grade: context.grade || devCtx.grade || user?.grade || null,
-        subject: context.subject || devCtx.subject || null,
-        chapter: context.chapter || devCtx.chapter || null,
-        lesson_id: context.lessonId || devCtx.lessonId || null,
-        lesson_step: context.lessonStep || devCtx.lessonStep || null,
+        route: context.route || devCtxSnap.page,
+        grade: context.grade || devCtxSnap.grade || user?.grade || null,
+        subject: context.subject || devCtxSnap.subject || null,
+        chapter: context.chapter || devCtxSnap.chapter || null,
+        lesson_id: context.lessonId || devCtxSnap.lessonId || null,
+        lesson_step: context.lessonStep || devCtxSnap.lessonStep || null,
         screenshot_url: screenshotDataUrl ? "[data-url-captured]" : null,
         browser_info: {
-          userAgent: devCtx.userAgent,
-          platform: devCtx.platform,
-          language: devCtx.language,
-          screenWidth: devCtx.screenWidth,
-          screenHeight: devCtx.screenHeight,
-          viewportWidth: devCtx.viewportWidth,
-          viewportHeight: devCtx.viewportHeight,
-          devicePixelRatio: devCtx.devicePixelRatio,
-          timezone: devCtx.timezone,
-          online: devCtx.online,
-          url: devCtx.url,
-          grade: devCtx.grade,
-          subject: devCtx.subject,
-          chapter: devCtx.chapter,
-          lessonStep: devCtx.lessonStep,
-          lessonStepIndex: devCtx.lessonStepIndex,
-          totalSteps: devCtx.totalSteps,
-          pageLoadMs: devCtx.pageLoadMs,
-          recentJsErrors: devCtx.recentJsErrors,
-          recentApiErrors: devCtx.recentApiErrors,
-          localStorageKeys: devCtx.localStorageKeys,
-          capturedAt: devCtx.capturedAt,
+          userAgent: devCtxSnap.userAgent,
+          platform: devCtxSnap.platform,
+          language: devCtxSnap.language,
+          screenWidth: devCtxSnap.screenWidth,
+          screenHeight: devCtxSnap.screenHeight,
+          viewportWidth: devCtxSnap.viewportWidth,
+          viewportHeight: devCtxSnap.viewportHeight,
+          devicePixelRatio: devCtxSnap.devicePixelRatio,
+          timezone: devCtxSnap.timezone,
+          online: devCtxSnap.online,
+          url: devCtxSnap.url,
+          grade: devCtxSnap.grade,
+          subject: devCtxSnap.subject,
+          chapter: devCtxSnap.chapter,
+          lessonStep: devCtxSnap.lessonStep,
+          lessonStepIndex: devCtxSnap.lessonStepIndex,
+          totalSteps: devCtxSnap.totalSteps,
+          pageLoadMs: devCtxSnap.pageLoadMs,
+          recentJsErrors: devCtxSnap.recentJsErrors,
+          recentApiErrors: devCtxSnap.recentApiErrors,
+          localStorageKeys: devCtxSnap.localStorageKeys,
+          capturedAt: devCtxSnap.capturedAt,
           screenshotCaptured: !!screenshotDataUrl,
         },
       };
@@ -217,7 +216,6 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
     background: "var(--panel,#fff)", color: "var(--text,#374151)", boxSizing: "border-box",
   };
 
-  const devCtx = devCtxRef.current || {};
   const ctxItems = [
     devCtx.page && ["Page", devCtx.page],
     devCtx.grade && ["Grade", devCtx.grade],

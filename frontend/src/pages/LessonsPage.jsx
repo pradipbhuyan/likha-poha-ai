@@ -1,23 +1,23 @@
-import { useEffect as _useEff, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
 import StructuredVisualBlock from "../components/StructuredVisualBlock";
 
-import { useEffect as _useEff, getSyllabus } from "../api/syllabus";
+import { getSyllabus } from "../api/syllabus";
 import {
   generateLesson,
   askLessonFollowUp,
   getLessonTextbookVisuals,
   getLessonDoubtSuggestions,
 } from "../api/lesson";
-import { useEffect as _useEff, getDoubtHistory } from "../api/doubt";
-import { useEffect as _useEff, generateSpeech } from "../api/tts";
-import { useEffect as _useEff, getChapterProgress, saveChapterProgress } from "../api/progress";
+import { getDoubtHistory } from "../api/doubt";
+import { generateSpeech } from "../api/tts";
+import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import LessonSections from "../components/LessonSections";
-import { useEffect as _useEff, saveWeakAreaAlert } from "../api/weakAreaAlerts";
-import { useEffect as _useEff, getLessonCardPublicSettings } from "../api/platformSettings";
+import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
+import { getLessonCardPublicSettings } from "../api/platformSettings";
 
 import {
   evaluateStudentAnswer,
@@ -29,9 +29,9 @@ import {
   getUserGrade,
   getVisibleGrades,
 } from "../utils/syllabusDefaults";
-import { useEffect as _useEff, normalizeTutorMarkdown } from "../utils/markdownCleanup";
-import { useEffect as _useEff, filterAllowedSubjects } from "../utils/subjectAccess";
-import { useEffect as _useEff, hasPaidAccess } from "../utils/resolveSubscription";
+import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
+import { filterAllowedSubjects } from "../utils/subjectAccess";
+import { hasPaidAccess } from "../utils/resolveSubscription";
 
 const TEACHER_PERSONAS = {
   "Friendly Teacher": "Explain warmly, patiently, and encouragingly.",
