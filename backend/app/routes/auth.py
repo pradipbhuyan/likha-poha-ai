@@ -291,6 +291,16 @@ def _profile_access_fields(plan: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# ── Reporter access helper ────────────────────────────────────────────────────
+def _check_can_report_issues(user_id: str) -> bool:
+    """Check if user is in the issue_reporters admin_settings list. No migration needed."""
+    try:
+        from .issues import _get_reporter_ids
+        return user_id in _get_reporter_ids()
+    except Exception:
+        return False
+
+
 # Authenticated profile endpoint — returns full profile + subscription status
 # ---------------------------------------------------------------------------
 
@@ -357,7 +367,7 @@ def get_my_profile(user=Depends(get_current_user)):
 
     return {
         "success": True,
-        "can_report_issues": bool(profile.get("can_report_issues", False)),
+        "can_report_issues": _check_can_report_issues(user.id),
         "id": profile.get("id"),
         "email": profile.get("email"),
         "username": profile.get("username"),

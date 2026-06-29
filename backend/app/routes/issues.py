@@ -296,28 +296,41 @@ def update_issue(issue_id: str, body: IssueUpdateIn, admin_user=Depends(require_
 
 # ── Admin: Toggle can_report_issues per user ───────────────────────────────────
 
+def _get_reporter_ids() -> list:
+    """Get list of user IDs allowed to see Report Issue button from admin_settings."""
+    try:
+        r = admin_client.table("admin_settings").select("value").eq("key", "issue_reporters").execute()
+        if r.data:
+            return r.data[0].get("value", {}).get("user_ids", [])
+    except Exception:
+        pass
+    return []
+
+
+def _set_reporter_ids(user_ids: list) -> None:
+    """Save list of reporter user IDs to admin_settings."""
+    admin_client.table("admin_settings").upsert(
+        {"key": "issue_reporters", "value": {"user_ids": user_ids}},
+        on_conflict="key"
+    ).execute()
+
+
 @router.patch("/api/admin/users/{user_id}/can-report-issues")
 def toggle_can_report_issues(
     user_id: str,
     enabled: bool,
     admin_user=Depends(require_admin),
 ):
-    """Allow or revoke a specific user's ability to see the Report Issue button."""
+    """Allow or revoke a specific user's ability to see the Report Issue button.
+    Stored in admin_settings.issue_reporters — no profiles migration needed."""
     try:
-        try:
-            r = admin_client.table("profiles").update(
-                {"can_report_issues": enabled}
-            ).eq("id", user_id).execute()
-        except Exception as col_err:
-            err_str = str(col_err).lower()
-            if "can_report_issues" in err_str or "pgrst204" in err_str or "schema cache" in err_str:
-                raise HTTPException(
-                    status_code=503,
-                    detail="Migration not applied: run migrations/20260629_can_report_issues.sql in Supabase Studio."
-                )
-            raise
-        if not r.data:
-            raise HTTPException(status_code=404, detail="User not found.")
+        ids = _get_reporter_ids()
+        if enabled:
+            if user_id not in ids:
+                ids.append(user_id)
+        else:
+            ids = [uid for uid in ids if uid != user_id]
+        _set_reporter_ids(ids)
         # Audit log
         try:
             admin_client.table("platform_audit_logs").insert({
@@ -337,15 +350,19 @@ def toggle_can_report_issues(
 
 @router.get("/api/admin/users/issue-reporters")
 def list_issue_reporters(admin_user=Depends(require_admin)):
-    """List all users who have can_report_issues=true."""
+    """List all users who have report issue access."""
     try:
+        ids = _get_reporter_ids()
+        if not ids:
+            return {"success": True, "reporters": []}
         r = admin_client.table("profiles").select(
-            "id,username,email,role,grade,can_report_issues"
-        ).eq("can_report_issues", True).execute()
-        return {"success": True, "reporters": r.data or []}
+            "id,username,email,role,grade"
+        ).in_("id", ids).execute()
+        # Add can_report_issues=True to each row
+        reporters = [{**row, "can_report_issues": True} for row in (r.data or [])]
+        return {"success": True, "reporters": reporters}
     except Exception as e:
-        # Graceful fallback — column may not exist yet
-        return {"success": True, "reporters": [], "note": "Migration pending: " + str(e)[:100]}
+        return {"success": True, "reporters": [], "error": str(e)[:100]}
 
 
 @router.get("/api/admin/users/search")
@@ -356,33 +373,26 @@ def search_users(
 ):
     """Search users by username or email for reporter access management."""
     try:
-        # Try with can_report_issues first, fall back to base columns if column missing
-        _select = "id,username,email,role,grade,can_report_issues"
-        try:
-            admin_client.table("profiles").select(_select).limit(1).execute()
-        except Exception:
-            _select = "id,username,email,role,grade"
-        # Search by username
+        # Search by username and email using base columns (no migration needed)
+        _select = "id,username,email,role,grade"
         r_username = (admin_client.table("profiles")
                       .select(_select)
                       .ilike("username", f"%{q}%")
                       .limit(limit)
                       .execute())
-        # Search by email
         r_email = (admin_client.table("profiles")
                    .select(_select)
                    .ilike("email", f"%{q}%")
                    .limit(limit)
                    .execute())
         # Merge + deduplicate
+        reporter_ids = _get_reporter_ids()
         seen = set()
         users = []
         for row in (r_username.data or []) + (r_email.data or []):
             if row["id"] not in seen:
                 seen.add(row["id"])
-                # Graceful fallback for can_report_issues
-                if "can_report_issues" not in row:
-                    row["can_report_issues"] = False
+                row["can_report_issues"] = row["id"] in reporter_ids
                 users.append(row)
         return {"success": True, "users": users[:limit]}
     except Exception as e:
