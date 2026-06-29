@@ -152,6 +152,12 @@ export default function ParentDashboardPage({ user, setActivePage }){
   var loadSummary=useCallback(async function(){
     setLoading(true);
     var d=await getParentDashboardSummary().catch(function(e){return{success:false,error:e.message};});
+    // Retry once on auth errors — new Google OAuth parents may have a brief
+    // window where the session token hasn't propagated to the backend yet
+    if(d&&d.success===false&&d.error&&(d.error.includes("session")||d.error.includes("Unauthorized")||d.error.includes("403"))){
+      await new Promise(function(r){setTimeout(r,2000);});
+      d=await getParentDashboardSummary().catch(function(e){return{success:false,error:e.message};});
+    }
     if(d&&d.success!==false) setSummary(d);
     else setError((d&&d.error)||"Could not load dashboard.");
     setLoading(false);
