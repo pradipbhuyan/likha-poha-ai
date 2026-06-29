@@ -585,12 +585,14 @@ function App() {
     document.body.classList.toggle("dark-mode", darkMode);
 
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  // darkMode is intentionally excluded — this effect runs once on mount only.
+  // The next effect handles darkMode changes reactively.
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
     localStorage.setItem("tutor_dark_mode", darkMode);
-  }, [darkMode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [darkMode]);
 
   // ── oauthError screen — shown when Google OAuth fails ──────────────────
   // Must be placed AFTER all useEffect/hook calls to comply with React's
