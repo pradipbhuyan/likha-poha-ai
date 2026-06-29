@@ -612,7 +612,7 @@ def download_repair_report(
 
     # Markdown
     lines = [
-        f"# Lesson Repair Report\n",
+        "# Lesson Repair Report\n",
         f"**Job:** {job_id}  ",
         f"**Mode:** {job.get('mode')}  ",
         f"**Status:** {job.get('status')}  ",
