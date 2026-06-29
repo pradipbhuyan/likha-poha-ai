@@ -49,6 +49,7 @@ import AdminOperationsPage from "./pages/AdminOperationsPage";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
+import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import SignupPage from "./pages/SignupPage";
 import BlogPage from "./pages/BlogPage";
@@ -227,6 +228,11 @@ const PAGE_META = {
     title: "AI Learning Review",
     subtitle: "Review unanswered questions and approve answers to grow platform intelligence.",
     icon: "🧠",
+  },
+  lessonRepair: {
+    title: "Lesson Repair",
+    subtitle: "Repair lessons that failed the 8-section quality audit. Admin-triggered LLM repair with draft-first safety.",
+    icon: "🔧",
   },
   teacherTestPaper: {
     title: "Create Test Paper",
@@ -1240,6 +1246,8 @@ function App() {
         return <AdminOperationsPage user={user} />;
       case "unansweredReview":
         return <AdminUnansweredQuestionsPage user={user} />;
+      case "lessonRepair":
+        return <AdminLessonRepairPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }

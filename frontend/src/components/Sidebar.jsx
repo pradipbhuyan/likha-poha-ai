@@ -225,6 +225,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "lessonRepair",
+      label: "Lesson Repair",
+      icon: Layers,
+      roles: ["admin"],
+    },
+    {
       key: "salesLeads",
       label: isAdmin ? "Lead Claims" : "My Lead Claims",
       icon: Users,

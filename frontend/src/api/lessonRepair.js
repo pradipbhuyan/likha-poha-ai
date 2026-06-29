@@ -1,0 +1,82 @@
+import { authFetch } from "./authClient";
+
+const BASE = "/api/admin/qa/lesson-repair";
+
+/** Get latest repair job + audit report metadata */
+export async function getLatestRepairStatus() {
+  return authFetch(`${BASE}/latest`);
+}
+
+/** Get repair job history */
+export async function getRepairHistory(limit = 20) {
+  return authFetch(`${BASE}/history?limit=${limit}`);
+}
+
+/**
+ * Start a repair job.
+ * @param {object} opts - { mode, grade, subject, chapter, use_llm }
+ */
+export async function runRepairJob(opts = {}) {
+  return authFetch(`${BASE}/run`, {
+    method: "POST",
+    body: JSON.stringify({
+      mode: opts.mode || "sample",
+      grade: opts.grade || null,
+      subject: opts.subject || null,
+      chapter: opts.chapter || null,
+      use_llm: !!opts.use_llm,
+    }),
+  });
+}
+
+/** Poll status of a repair job */
+export async function getRepairJobStatus(jobId) {
+  return authFetch(`${BASE}/status/${jobId}`);
+}
+
+/**
+ * Get all tasks for a job.
+ * @param {string} jobId
+ * @param {object} filters - { status, grade, subject, limit }
+ */
+export async function getRepairTasks(jobId, filters = {}) {
+  const params = new URLSearchParams();
+  if (filters.status) params.set("status", filters.status);
+  if (filters.grade) params.set("grade", filters.grade);
+  if (filters.subject) params.set("subject", filters.subject);
+  if (filters.limit) params.set("limit", String(filters.limit));
+  const qs = params.toString() ? `?${params.toString()}` : "";
+  return authFetch(`${BASE}/tasks/${jobId}${qs}`);
+}
+
+/** Get single task detail */
+export async function getRepairTask(taskId) {
+  return authFetch(`${BASE}/task/${taskId}`);
+}
+
+/** Approve a task draft */
+export async function approveRepairTask(taskId) {
+  return authFetch(`${BASE}/task/${taskId}/approve`, { method: "POST" });
+}
+
+/** Publish an approved task to lesson_cache */
+export async function publishRepairTask(taskId) {
+  return authFetch(`${BASE}/task/${taskId}/publish`, { method: "POST" });
+}
+
+/** Re-run LLM repair for a failed/validation-failed task */
+export async function rerunRepairTask(taskId) {
+  return authFetch(`${BASE}/task/${taskId}/rerun`, { method: "POST" });
+}
+
+/** Cancel a running or queued job */
+export async function cancelRepairJob(jobId) {
+  return authFetch(`${BASE}/job/${jobId}/cancel`, { method: "POST" });
+}
+
+/** Download repair report */
+export function getRepairReportUrl(jobId, format = "json") {
+  const qs = new URLSearchParams({ format });
+  if (jobId) qs.set("job_id", jobId);
+  return `${BASE}/report?${qs.toString()}`;
+}
