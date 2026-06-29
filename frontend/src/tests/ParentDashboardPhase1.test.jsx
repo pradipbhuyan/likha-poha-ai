@@ -107,7 +107,8 @@ describe("ParentDashboardPage Phase 1", () => {
   test("Free Tier child shows Restricted badge", async () => {
     render(<ParentDashboardPage user={USER} setActivePage={vi.fn()} />);
     await screen.findByTestId("parent-children-list");
-    expect(screen.getByText(/Free Tier/i)).toBeInTheDocument();
+    const freeTierEls = screen.queryAllByText(/Free Tier/i);
+    expect(freeTierEls.length).toBeGreaterThanOrEqual(1);
   });
 
   test("Free Tier child does NOT show Full Access", async () => {
