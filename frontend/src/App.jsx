@@ -1249,7 +1249,7 @@ function App() {
             data-testid="global-report-issue-btn"
             onClick={() => setReportBugOpen(true)}
             title="Report an issue"
-            style={{ position:"fixed", bottom:24, right:24, zIndex:900,
+            style={{ position:"fixed", bottom:88, right:20, zIndex:900,
               background:"#6366f1", color:"#fff", border:"none", borderRadius:28,
               padding:"10px 18px", fontFamily:"inherit", fontWeight:700, fontSize:".82rem",
               cursor:"pointer", boxShadow:"0 4px 16px rgba(99,102,241,0.4)",
