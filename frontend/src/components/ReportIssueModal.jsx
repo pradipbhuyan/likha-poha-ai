@@ -284,7 +284,7 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
                     style={{
                       flex:1, padding:"6px 4px", borderRadius:7, fontFamily:"inherit",
                       fontSize:".76rem", fontWeight:600, cursor:"pointer",
-                      border:`2px solid ${form.severity === s.value ? s.color : "var(--border,#e5e7eb)"}`,
+                      border:`2px solid ${form.severity === s.value ? s.color : "var(--border,#e5e7eb)"}`, b)"}`,
                       background: form.severity === s.value ? s.color + "15" : "transparent",
                       color: form.severity === s.value ? s.color : "var(--text-muted,#64748b)",
                     }}>
