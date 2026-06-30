@@ -166,24 +166,32 @@ def get_lesson_list(
     Returns deduplicated grades, subjects, chapters, and lesson stubs.
     """
     try:
-        from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+        from app.services.grade_db_router import get_content_db, is_grade_1112  # noqa: PLC0415
 
-        # Determine which DB shard to query
-        db = get_content_db(grade or "Grade 9")
-
-        q = (db.table("lesson_cache")
-             .select("id, grade, subject, chapter, step_title, status")
-             .eq("status", "active"))
+        def _query_db(db, grade_filter=None):
+            q = (db.table("lesson_cache")
+                 .select("id, grade, subject, chapter, step_title, status")
+                 .eq("status", "active"))
+            if grade_filter:
+                q = q.eq("grade", grade_filter)
+            if subject:
+                q = q.ilike("subject", f"%{subject}%")
+            if chapter:
+                q = q.ilike("chapter", f"%{chapter}%")
+            r = q.order("grade").order("subject").order("chapter").order("step_title").limit(1000).execute()
+            return r.data or []
 
         if grade:
-            q = q.eq("grade", grade)
-        if subject:
-            q = q.ilike("subject", f"%{subject}%")
-        if chapter:
-            q = q.ilike("chapter", f"%{chapter}%")
-
-        resp = q.order("grade").order("subject").order("chapter").order("step_title").limit(500).execute()
-        rows = resp.data or []
+            # Specific grade requested — single shard
+            rows = _query_db(get_content_db(grade), grade)
+        else:
+            # No grade filter — query BOTH shards and merge so all grades appear
+            rows = _query_db(get_content_db("Grade 9"))  # primary shard (Grades 5-10)
+            try:
+                rows_1112 = _query_db(get_content_db("Grade 11"))  # Grade 11/12 shard
+                rows = rows + rows_1112
+            except Exception:
+                pass  # Grade 11/12 shard not configured — silently skip
 
     except Exception as e:
         _log.warning("lesson_lab: DB unavailable — %s", e)
