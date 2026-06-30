@@ -35,7 +35,7 @@ function classifyAuthError(status, rawDetail) {
       return "This account is not registered as a Parent. Please sign in with a Parent account.";
     }
     if (detail.includes("student")) {
-      return "This account is not registered as a Student. Please sign in with a Student account.";
+      return "Student access is required for this feature. Please sign in with a student account.";
     }
     if (detail.includes("teacher")) {
       return "This account is not registered as a Teacher. Please sign in with a Teacher account.";
@@ -167,28 +167,26 @@ describe("authClient 403 role message content", () => {
     {
       detail: "Parent access required",
       expectedContains: "Parent",
-      role: "parent",
+      msgCheck: (msg) => expect(msg.toLowerCase()).toContain("not registered as a parent"),
     },
     {
       detail: "Student access required",
       expectedContains: "Student",
-      role: "student",
+      msgCheck: (msg) => expect(msg.toLowerCase()).toContain("student access"),
     },
     {
       detail: "Teacher access required",
       expectedContains: "Teacher",
-      role: "teacher",
+      msgCheck: (msg) => expect(msg.toLowerCase()).toContain("not registered as a teacher"),
     },
   ];
 
-  cases.forEach(({ detail, expectedContains, role }) => {
+  cases.forEach(({ detail, expectedContains, msgCheck }) => {
     it(`403 '${detail}' message contains '${expectedContains}'`, () => {
       const msg = classifyAuthError(403, detail);
       expect(msg).toContain(expectedContains);
       expect(msg).not.toContain("session has expired");
-      expect(msg.toLowerCase()).toContain(
-        `not registered as a ${role}`
-      );
+      msgCheck(msg);
     });
   });
 });

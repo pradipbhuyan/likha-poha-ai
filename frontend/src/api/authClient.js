@@ -89,7 +89,7 @@ export async function authFetch(path, options = {}) {
         if (detail.includes("parent")) {
           message = "This account is not registered as a Parent. Please sign in with a Parent account.";
         } else if (detail.includes("student")) {
-          message = "This account is not registered as a Student. Please sign in with a Student account.";
+          message = "Student access is required for this feature. Please sign in with a student account.";
         } else if (detail.includes("teacher")) {
           message = "This account is not registered as a Teacher. Please sign in with a Teacher account.";
         } else if (detail.includes("admin")) {

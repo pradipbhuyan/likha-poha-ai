@@ -133,13 +133,15 @@ def require_parent(user=Depends(get_current_user)):
 
 def require_student(user=Depends(get_current_user)):
     """
-    FastAPI dependency that allows only student profile users.
+    FastAPI dependency that allows student and child profile users.
 
-    Use this for routes that should not be reachable by parents or admins.
+    Children created by admins (role='child') are functionally students —
+    they use the same lesson, quiz, and practice question features.
+    Both 'student' and 'child' roles are accepted here.
     """
     profile = get_user_profile(user.id)
 
-    if not profile or profile.get("role") != "student":
+    if not profile or profile.get("role") not in ("student", "child"):
         raise HTTPException(
             status_code=403,
             detail="Student access required",
