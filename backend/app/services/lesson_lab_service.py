@@ -322,31 +322,41 @@ def get_lesson_detail(
                     # Extract the core chapter name for fuzzy matching — strips
                     # "Chapter N:" prefix variants so both "Coordinate Geometry"
                     # and "Chapter 7: Coordinate Geometry" match.
-                    import re as _re  # noqa: PLC0415
-                    core_chapter = _re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=_re.I).strip()
+                    core_chapter = re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=re.I).strip()
                     chapter_pattern = f"%{core_chapter}%"
 
                     resp2 = (db2.table("lesson_cache")
                              .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at, access_count")
                              .eq("grade", g).ilike("subject", f"%{s}%").ilike("chapter", chapter_pattern)
                              .eq("status", "active")
-                             # access_count DESC: content students actually use has high count.
-                             # The good published content has been accessed many times;
-                             # the old flat content has access_count=0 or very low.
-                             .order("access_count", desc=True)
                              .order("step_title")
                              .limit(500)
                              .execute())
                     raw_rows = resp2.data or []
 
-                    # Deduplicate by step_title — keep highest-access row per step
-                    seen_steps: set[str] = set()
-                    rows = []
+                    def _content_quality(content: str) -> tuple:
+                        """
+                        Quality score for lesson content — higher is better.
+                        Primary: number of ## section headings (structured content has many).
+                        Secondary: total word count (richer content is longer).
+                        The good published content has proper ## headings;
+                        the stale flat content is a single paragraph with none.
+                        """
+                        heading_count = len(re.findall(r"^#{1,3}\s+", content, re.M))
+                        word_count = len(content.split())
+                        return (heading_count, word_count)
+
+                    # Group all rows by step_title, then pick the best-quality row
+                    step_groups: dict[str, list] = {}
                     for row in raw_rows:
                         st = row.get("step_title", "")
-                        if st not in seen_steps:
-                            seen_steps.add(st)
-                            rows.append(row)
+                        step_groups.setdefault(st, []).append(row)
+
+                    rows = []
+                    for st, candidates in step_groups.items():
+                        best = max(candidates, key=lambda r: _content_quality(r.get("lesson_content", "")))
+                        rows.append(best)
+
                     rows.sort(key=lambda r: r.get("step_title", ""))
 
     except Exception as e:
