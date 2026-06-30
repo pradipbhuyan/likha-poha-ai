@@ -643,11 +643,10 @@ function LessonsPage({ user, setActivePage }) {
   }
 
   function shouldShowTextbookVisualTools() {
-    /** Only show the textbook visual section for supported grade/subject combos:
-     * Grade 9: all subjects.
-     * Grade 10: Science and Maths only.
+    /** Textbook visual browser removed from student-facing lesson page.
+     * Feature is available in the Admin Lesson Experience Lab only.
      */
-    return isTextbookVisualSubject();
+    return false;
   }
 
   function getTextbookVisualSearchTerms(query = "") {
