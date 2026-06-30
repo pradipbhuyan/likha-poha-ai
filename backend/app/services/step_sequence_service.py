@@ -294,6 +294,12 @@ def score_step(
                 "issue_message": f"Step {step_index + 1} is {int(sim*100)}% similar to Step {other_idx + 1} — near duplicate.",
                 "repeated_with_step_number": other_idx + 1,
                 "similarity": sim,
+                "suggested_fix": (
+                    f"Rewrite Step {step_index + 1} to add distinctly new content. "
+                    f"It shares {int(sim*100)}% of its words with Step {other_idx + 1}. "
+                    "Focus this step on the next pedagogical layer: deeper explanation, "
+                    "new worked example, or exam-level application."
+                ),
             })
         elif sim >= SIM_HIGH:
             issues.append({
@@ -302,6 +308,11 @@ def score_step(
                 "issue_message": f"Step {step_index + 1} is {int(sim*100)}% similar to Step {other_idx + 1} — high overlap.",
                 "repeated_with_step_number": other_idx + 1,
                 "similarity": sim,
+                "suggested_fix": (
+                    f"Reduce overlap with Step {other_idx + 1}. Remove repeated sentences "
+                    "and replace them with new examples, a different explanation angle, "
+                    "or an exam-style application not covered in the overlapping step."
+                ),
             })
 
     # Critical: too few unique words
@@ -310,6 +321,11 @@ def score_step(
             "severity": "critical",
             "issue_type": "no_unique_content",
             "issue_message": f"Step {step_index + 1} has only {unique_wc} unique words — adds no new value.",
+            "suggested_fix": (
+                "Substantially expand this step with content that does not appear in any "
+                "other step. Introduce a new sub-concept, add a worked example, or "
+                "present a practice problem with a full solution."
+            ),
         })
 
     # High: later step shorter than previous and low new content
@@ -318,6 +334,12 @@ def score_step(
             "severity": "high",
             "issue_type": "no_depth_progression",
             "issue_message": f"Step {step_index + 1} is shorter and adds <25% new content compared to Step {step_index}.",
+            "suggested_fix": (
+                f"Expand Step {step_index + 1} so it clearly builds on Step {step_index}. "
+                "Each later step must deepen the concept — add a harder example, "
+                "introduce a formula application, address a common mistake, or add "
+                "an exam-style question that could not have appeared in an earlier step."
+            ),
         })
 
     # Medium: repeated sentences
@@ -327,6 +349,11 @@ def score_step(
             "issue_type": "repeated_sentence",
             "issue_message": f"Sentence repeated from Step {rs['repeated_in_step_index'] + 1}: \"{rs['sentence'][:80]}…\"",
             "repeated_with_step_number": rs["repeated_in_step_index"] + 1,
+            "suggested_fix": (
+                "Remove or rephrase this sentence. If the concept is important to repeat, "
+                "express it in different words and link it explicitly to the new material "
+                "being introduced in this step."
+            ),
         })
 
     # High: repeated MCQs
@@ -335,6 +362,11 @@ def score_step(
             "severity": "high",
             "issue_type": "repeated_mcq",
             "issue_message": f"MCQ question repeated in another step: \"{mcq}\"",
+            "suggested_fix": (
+                "Replace this MCQ with a new question that tests a concept or skill "
+                "specific to this step's learning objective. MCQs must not be reused "
+                "across steps."
+            ),
         })
 
     # Medium: repeated formulas without new explanation
@@ -343,6 +375,11 @@ def score_step(
             "severity": "medium",
             "issue_type": "repeated_formula",
             "issue_message": f"Formula repeated without new application: \"{fml}\"",
+            "suggested_fix": (
+                "Either remove the repeated formula, or retain it only if you add a new "
+                "application, derivation step, or worked example that uses it in a way "
+                "not shown in the previous step."
+            ),
         })
 
     # Medium: step too short
@@ -351,6 +388,11 @@ def score_step(
             "severity": "medium",
             "issue_type": "step_too_short",
             "issue_message": f"Step {step_index + 1} has only {wc} words — too short to be useful.",
+            "suggested_fix": (
+                f"Expand this step to at least {MIN_WORDS_PER_STEP} words. Add a clear "
+                "explanation, at least one concrete example, and a brief check question "
+                "or summary point."
+            ),
         })
 
     # ── Overall score ─────────────────────────────────────────────────────────
@@ -549,7 +591,13 @@ def check_bulk_apply_eligibility(tasks: list[dict], min_score: int = 90, min_dep
     """
     Given a list of repair task dicts, determine which are eligible for bulk apply.
 
-    Returns a dry-run summary.
+    Refuses tasks that:
+    - are not in ready_for_review or approved status
+    - have audit_after_score below min_score threshold
+    - have validation_result_json.valid == False
+    - have remaining critical issues in issues_json
+
+    Returns a dry-run summary with per-task skip reasons.
     """
     eligible = []
     skipped  = []
@@ -562,6 +610,18 @@ def check_bulk_apply_eligibility(tasks: list[dict], min_score: int = 90, min_dep
             reason = f"After score {task['audit_after_score']} < min {min_score}"
         elif task.get("validation_result_json", {}).get("valid") is False:
             reason = "Validation failed"
+        else:
+            # Check for remaining critical issues in issues_json
+            issues = task.get("issues_json") or []
+            remaining_criticals = [
+                i for i in issues
+                if isinstance(i, dict) and i.get("severity") == "critical"
+            ]
+            if remaining_criticals:
+                reason = (
+                    f"Has {len(remaining_criticals)} remaining critical issue(s) "
+                    "— resolve all critical issues before bulk apply"
+                )
 
         if reason:
             skipped.append({"task_id": task.get("id"), "reason": reason})
@@ -576,3 +636,48 @@ def check_bulk_apply_eligibility(tasks: list[dict], min_score: int = 90, min_dep
         "skipped_details": skipped,
         "can_bulk_apply": len(eligible) > 0,
     }
+
+
+# ── Audit event helper ────────────────────────────────────────────────────────
+
+def write_bulk_apply_audit_event(
+    task_id: str,
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    admin_id: str,
+    published: bool,
+    error: str = "",
+) -> None:
+    """
+    Write a structured audit event for a bulk-apply publication.
+
+    Attempts to insert into the admin_audit_log table (if it exists).
+    Silently falls back to Python logger if DB is unavailable —
+    never blocks a successful publish.
+    """
+    import logging as _logging
+    from datetime import datetime, timezone as _tz
+
+    _alog = _logging.getLogger("likhapoha.audit")
+    event = {
+        "event_type":  "bulk_apply_publish" if published else "bulk_apply_skip",
+        "task_id":     task_id,
+        "grade":       grade,
+        "subject":     subject,
+        "chapter":     chapter,
+        "step_title":  step_title,
+        "admin_id":    admin_id,
+        "published":   published,
+        "error":       error or None,
+        "occurred_at": datetime.now(_tz.utc).isoformat(),
+    }
+    _alog.info("[audit:bulk_apply] %s", event)
+
+    # Attempt DB write — silently ignore if table doesn't exist
+    try:
+        from app.services.auth_service import admin_client  # noqa: PLC0415
+        admin_client.table("admin_audit_log").insert(event).execute()
+    except Exception:
+        pass  # Audit log failure must never block a publish

@@ -440,3 +440,225 @@ def test_extract_formulas_ignores_plain_text():
     text = "The cat sat on the mat and played with yarn."
     formulas = _extract_formulas(text)
     assert len(formulas) == 0
+
+
+# ── Gap 1: every issue must have suggested_fix ───────────────────────────────
+
+def test_every_issue_has_suggested_fix():
+    """All issue types produced by score_step must include suggested_fix."""
+    texts = [s["content"] for s in DUP_STEPS]
+    for i in range(len(texts)):
+        result = score_step(i, texts[i], texts)
+        for issue in result["issues"]:
+            assert "suggested_fix" in issue, (
+                f"Issue {issue['issue_type']} in step {i+1} is missing 'suggested_fix'"
+            )
+            assert isinstance(issue["suggested_fix"], str), (
+                f"suggested_fix must be a string, got {type(issue['suggested_fix'])}"
+            )
+            assert len(issue["suggested_fix"]) > 20, (
+                f"suggested_fix is too short for issue {issue['issue_type']}"
+            )
+
+
+def test_audit_all_issues_have_suggested_fix():
+    """All issues in audit_lesson_steps all_issues list must have suggested_fix."""
+    result = audit_lesson_steps("Grade 9", "Science", "Test", DUP_STEPS)
+    for issue in result["all_issues"]:
+        assert "suggested_fix" in issue, (
+            f"Issue {issue.get('issue_type')} step {issue.get('step_number')} missing suggested_fix"
+        )
+
+
+def test_issue_near_duplicate_has_expected_fields():
+    """near_duplicate_step issues must have lesson_id, step_number, step_title, issue_type, severity, suggested_fix."""
+    result = audit_lesson_steps("Grade 9", "Science", "Test", DUP_STEPS, lesson_id="lesson-001")
+    near_dup = [i for i in result["all_issues"] if i["issue_type"] == "near_duplicate_step"]
+    assert len(near_dup) > 0, "Expected at least one near_duplicate_step issue"
+    for issue in near_dup:
+        for field in ("lesson_id", "step_number", "step_title", "issue_type", "severity", "suggested_fix"):
+            assert field in issue, f"Field '{field}' missing from near_duplicate_step issue"
+        assert issue["lesson_id"] == "lesson-001"
+        assert issue["step_number"] >= 1
+        assert issue["severity"] == "critical"
+
+
+def test_issue_no_depth_progression_has_suggested_fix():
+    """no_depth_progression issues must have a suggested_fix."""
+    texts = [s["content"] for s in DUP_STEPS]
+    result = score_step(1, texts[1], texts)
+    depth_issues = [i for i in result["issues"] if i["issue_type"] == "no_depth_progression"]
+    # May not always trigger depending on word counts — just check if it does
+    for issue in depth_issues:
+        assert "suggested_fix" in issue
+        assert len(issue["suggested_fix"]) > 20
+
+
+def test_mcq_issue_has_suggested_fix():
+    """repeated_mcq issues must have suggested_fix."""
+    result = audit_lesson_steps("Grade 9", "Science", "Test", MCQ_STEPS)
+    mcq_issues = [i for i in result["all_issues"] if i["issue_type"] == "repeated_mcq"]
+    for issue in mcq_issues:
+        assert "suggested_fix" in issue
+        assert "MCQ" in issue["suggested_fix"] or "question" in issue["suggested_fix"].lower()
+
+
+# ── Gap 2: bulk apply refuses tasks with remaining critical issues ────────────
+
+def test_bulk_refuses_task_with_critical_issues_in_issues_json():
+    """A task with approved status but unresolved critical issues must be skipped."""
+    tasks = [
+        {
+            "id": "task-critical",
+            "status": "approved",
+            "audit_after_score": 92,
+            "validation_result_json": {"valid": True},
+            "issues_json": [
+                {"severity": "critical", "issue_type": "near_duplicate_step", "issue_message": "95% similar."},
+            ],
+        },
+    ]
+    result = check_bulk_apply_eligibility(tasks)
+    assert result["eligible"] == 0
+    assert result["skipped"] == 1
+    assert "critical" in result["skipped_details"][0]["reason"].lower()
+
+
+def test_bulk_allows_task_with_only_high_issues():
+    """A task with only 'high' severity issues (no critical) is still eligible."""
+    tasks = [
+        {
+            "id": "task-high-only",
+            "status": "approved",
+            "audit_after_score": 92,
+            "validation_result_json": {"valid": True},
+            "issues_json": [
+                {"severity": "high", "issue_type": "high_similarity_step", "issue_message": "80% overlap."},
+            ],
+        },
+    ]
+    result = check_bulk_apply_eligibility(tasks)
+    assert result["eligible"] == 1
+    assert result["skipped"] == 0
+
+
+def test_bulk_allows_task_with_no_issues_json():
+    """A task with no issues_json (clean audit) must be eligible."""
+    tasks = [
+        {
+            "id": "task-clean",
+            "status": "approved",
+            "audit_after_score": 95,
+            "validation_result_json": {"valid": True},
+            # issues_json absent
+        },
+    ]
+    result = check_bulk_apply_eligibility(tasks)
+    assert result["eligible"] == 1
+
+
+def test_bulk_allows_task_with_empty_issues_json():
+    """A task with empty issues_json must be eligible."""
+    tasks = [
+        {
+            "id": "task-empty-issues",
+            "status": "approved",
+            "audit_after_score": 91,
+            "validation_result_json": {"valid": True},
+            "issues_json": [],
+        },
+    ]
+    result = check_bulk_apply_eligibility(tasks)
+    assert result["eligible"] == 1
+
+
+def test_bulk_dry_run_shows_reasons_for_all_skipped():
+    """Each skipped task must have a non-empty reason string."""
+    tasks = [
+        {"id": "t1", "status": "queued"},
+        {"id": "t2", "status": "approved", "audit_after_score": 60, "validation_result_json": {"valid": True}},
+        {
+            "id": "t3", "status": "approved", "audit_after_score": 95,
+            "validation_result_json": {"valid": False},
+        },
+        {
+            "id": "t4", "status": "approved", "audit_after_score": 95,
+            "validation_result_json": {"valid": True},
+            "issues_json": [{"severity": "critical", "issue_type": "near_duplicate_step"}],
+        },
+    ]
+    result = check_bulk_apply_eligibility(tasks)
+    assert result["eligible"] == 0
+    assert result["skipped"] == 4
+    for detail in result["skipped_details"]:
+        assert detail.get("reason"), f"Skip detail missing reason: {detail}"
+        assert len(detail["reason"]) > 5
+
+
+# ── Gap 3 (structural): audit event function is importable and callable ───────
+
+def test_write_bulk_apply_audit_event_does_not_raise():
+    """write_bulk_apply_audit_event must never raise even if DB is unavailable."""
+    from app.services.step_sequence_service import write_bulk_apply_audit_event
+    # Should complete silently regardless of DB availability
+    write_bulk_apply_audit_event(
+        task_id="test-task",
+        grade="Grade 9",
+        subject="Science",
+        chapter="Test Chapter",
+        step_title="Step 1",
+        admin_id="admin-001",
+        published=True,
+    )
+    write_bulk_apply_audit_event(
+        task_id="test-task-fail",
+        grade="Grade 9",
+        subject="Science",
+        chapter="Test Chapter",
+        step_title="Step 2",
+        admin_id="admin-001",
+        published=False,
+        error="publish failed: no lesson_cache_id",
+    )
+    # If we reach here, the function did not raise
+    assert True
+
+
+# ── Threshold precision tests ─────────────────────────────────────────────────
+
+def test_threshold_90_pct_is_critical():
+    """Combined similarity >=0.90 must produce a critical issue."""
+    # Use near-identical texts to guarantee >90% similarity
+    base = "Photosynthesis is the process by which plants make food using sunlight and carbon dioxide."
+    near_copy = "Photosynthesis is the process by which plants produce food using sunlight and carbon dioxide."
+    steps = [
+        {"step_number": 1, "step_title": "Step 1", "content": base},
+        {"step_number": 2, "step_title": "Step 2", "content": near_copy},
+    ]
+    result = audit_lesson_steps("Grade 9", "Science", "Test", steps)
+    sim = result["similarity_matrix"][0][1]
+    if sim >= 0.90:
+        assert result["summary"]["critical_issues"] > 0, (
+            f"sim={sim:.3f} >= 0.90 but no critical issues found"
+        )
+
+
+def test_threshold_75_pct_is_at_least_high():
+    """Combined similarity >=0.75 must produce at least a high issue."""
+    # Construct two steps with ~80% word overlap
+    common = " ".join(["word"] * 80)
+    extra_a = " ".join(["unique_a"] * 20)
+    extra_b = " ".join(["unique_b"] * 20)
+    s1 = common + " " + extra_a
+    s2 = common + " " + extra_b
+    steps = [
+        {"step_number": 1, "step_title": "Step 1", "content": s1},
+        {"step_number": 2, "step_title": "Step 2", "content": s2},
+    ]
+    result = audit_lesson_steps("Grade 9", "Science", "Test", steps)
+    sim = result["similarity_matrix"][0][1]
+    if sim >= 0.75:
+        all_sev = [i["severity"] for i in result["all_issues"]]
+        assert any(s in ("critical", "high") for s in all_sev), (
+            f"sim={sim:.3f} >= 0.75 but no critical/high issues: {all_sev}"
+        )

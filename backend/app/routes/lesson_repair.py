@@ -39,6 +39,7 @@ from app.services.auth_service import require_admin
 from app.services.step_sequence_service import (
     audit_lesson_steps,
     check_bulk_apply_eligibility,
+    write_bulk_apply_audit_event,
 )
 from app.services.lesson_repair_service import (
     _db_get_job,
@@ -821,12 +822,27 @@ def bulk_apply(
                 _REPAIR_TASKS[task_id].update(updates)
             _db_update_task(task_id, updates)
             published.append(task_id)
-            _log.info(
-                "[bulk_apply] task=%s published by admin=%s grade=%s subject=%s chapter=%s",
-                task_id, admin_id, task.get("grade"), task.get("subject"), task.get("chapter"),
+            write_bulk_apply_audit_event(
+                task_id=task_id,
+                grade=task.get("grade", ""),
+                subject=task.get("subject", ""),
+                chapter=task.get("chapter", ""),
+                step_title=task.get("step_title", ""),
+                admin_id=admin_id,
+                published=True,
             )
         else:
             failed.append({"task_id": task_id, "reason": result.get("message", "publish failed")})
+            write_bulk_apply_audit_event(
+                task_id=task_id,
+                grade=task.get("grade", ""),
+                subject=task.get("subject", ""),
+                chapter=task.get("chapter", ""),
+                step_title=task.get("step_title", ""),
+                admin_id=admin_id,
+                published=False,
+                error=result.get("message", "publish failed"),
+            )
 
     return {
         "success": True,
