@@ -38,6 +38,28 @@ from app.services.grade_db_router import get_content_db
 APPLY = "--apply" in sys.argv
 DRY_RUN = not APPLY
 
+# ⚠️  PRODUCTION SAFETY NOTICE ⚠️
+# Running this script with --apply marks lesson_cache rows as status='stale'.
+# This WILL break the live student lesson page because get_cached_lesson()
+# filters to status='active' rows only. Students will get cache misses
+# and trigger fresh LLM generation for affected chapters.
+#
+# ONLY run --apply during off-peak hours with explicit approval.
+# The Lesson Lab uses in-memory quality selection and does NOT require
+# this script to be run.
+#
+# To restore all stale rows: UPDATE lesson_cache SET status='active'
+# WHERE status='stale' AND grade IN ('Grade 5', ..., 'Grade 10');
+if APPLY:
+    print("\n" + "="*60)
+    print("⚠️  WARNING: --apply mode will mark rows as status='stale'")
+    print("   This affects the live student lesson cache.")
+    print("   Students will get cache misses for affected chapters.")
+    print("   Press Ctrl+C to cancel, or wait 5 seconds to proceed.")
+    print("="*60 + "\n")
+    import time
+    time.sleep(5)
+
 GRADES = ["Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"]
 MIN_HEADINGS_TO_KEEP = 1  # rows with 0 headings are always marked stale
 
