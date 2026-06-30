@@ -97,9 +97,19 @@ def run():
                 should_stale = False
                 reason = ""
 
-                if heading_count == 0:
-                    should_stale = True
-                    reason = "0 ## headings (flat/old content)"
+                if heading_count == 0 and len(candidates) > 1:
+                    # Only mark stale if there IS a better alternative for the SAME
+                    # (grade, subject, chapter, step_title) group.
+                    # Never mark the ONLY row stale — that would leave the step with no content.
+                    should_stale = row["id"] != best_row["id"] or best_headings > 0
+                    if should_stale:
+                        reason = "0 ## headings (flat/old content) — better alternative exists"
+                elif heading_count == 0 and len(candidates) == 1:
+                    # Single row with 0 headings — mark stale only if we have a better row
+                    # in a differently-named chapter for the same logical chapter
+                    # (e.g. "Coordinate Geometry" vs "Chapter 7: Coordinate Geometry").
+                    # Conservative: DON'T mark stale if it's the only row — keep it active.
+                    should_stale = False
                 elif len(candidates) > 1 and row["id"] != best_row["id"]:
                     should_stale = True
                     reason = f"duplicate: worse quality ({heading_count} headings, {quality[1]} words) vs best ({best_headings} headings, {scored[0][0][1]} words)"

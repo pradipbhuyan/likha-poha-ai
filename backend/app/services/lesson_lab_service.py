@@ -332,17 +332,21 @@ def get_lesson_detail(
 
                 # Fallback: direct DB scan if cache_key path failed or returned nothing
                 if not rows:
-                    # Extract the core chapter name for fuzzy matching
-                    core_chapter = re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=re.I).strip()
-                    chapter_pattern = f"%{core_chapter}%"
+                    def _db_scan(chapter_filter):
+                        return (db2.table("lesson_cache")
+                                .select("id, grade, subject, chapter, step_title, lesson_content, status, access_count")
+                                .eq("grade", g).ilike("subject", f"%{s}%").ilike("chapter", chapter_filter)
+                                .eq("status", "active")
+                                .limit(500)
+                                .execute()).data or []
 
-                    resp2 = (db2.table("lesson_cache")
-                             .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at, access_count")
-                             .eq("grade", g).ilike("subject", f"%{s}%").ilike("chapter", chapter_pattern)
-                             .eq("status", "active")
-                             .limit(500)
-                             .execute())
-                    raw_rows = resp2.data or []
+                    # 1. Try EXACT chapter match first (avoids mixing Exemplar content)
+                    raw_rows = _db_scan(c)
+
+                    # 2. If no exact match, try fuzzy (strips "Chapter N:" prefix)
+                    if not raw_rows:
+                        core_chapter = re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=re.I).strip()
+                        raw_rows = _db_scan(f"%{core_chapter}%")
 
                     def _content_quality(content: str) -> tuple:
                         heading_count = len(re.findall(r"^#{1,3}\s+", content, re.M))
