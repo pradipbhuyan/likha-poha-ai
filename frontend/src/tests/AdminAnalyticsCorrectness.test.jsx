@@ -195,7 +195,10 @@ describe("AdminAnalytics — state: ok (zero data)", () => {
 
   test("trend chart shows no-activity message for empty data", async () => {
     render(<AdminAnalytics accessToken="tok" />);
-    await screen.findByText("Signups");
+    // Wait for data to fully load — stat-total-users stops showing "…" when fetch completes
+    await waitFor(() => {
+      expect(screen.getByTestId("stat-total-users")).not.toHaveTextContent("…");
+    }, { timeout: 4000 });
     const noActivity = screen.getAllByTestId("trend-no-activity");
     expect(noActivity.length).toBeGreaterThan(0);
   });
