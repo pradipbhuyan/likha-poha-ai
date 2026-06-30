@@ -7,10 +7,13 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 vi.mock("../api/lessonLab", () => ({
-  listLabLessons:  vi.fn(),
-  getLabLesson:    vi.fn(),
-  getLabVisuals:   vi.fn(),
-  previewTransform: vi.fn(),
+  listLabLessons:    vi.fn(),
+  getLabLesson:      vi.fn(),
+  getLabVisuals:     vi.fn(),
+  previewTransform:  vi.fn(),
+  repairStepPreview: vi.fn(() => Promise.resolve({ success: false, message: "LLM not configured" })),
+  repairStepApprove: vi.fn(() => Promise.resolve({ success: true, message: "Approved." })),
+  repairStepPublish: vi.fn(() => Promise.resolve({ success: true, message: "Published." })),
 }));
 
 // AdminLessonExperienceLabPage is embedded inside AdminControlPage when wired.

@@ -45,6 +45,52 @@ export async function previewTransform(opts = {}) {
   });
 }
 
+// ── Repair-with-AI ────────────────────────────────────────────────────────────
+
+/**
+ * Generate an AI repair draft for a single step (preview only — never publishes).
+ */
+export async function repairStepPreview({
+  lesson_id, grade, subject, chapter,
+  step_number, step_title, step_content,
+  all_step_contents, audit_issues,
+  previous_step_content, next_step_content,
+  use_llm = true, override_api_key,
+} = {}) {
+  return authFetch(`${BASE}/repair-step-preview`, {
+    method: "POST",
+    body: JSON.stringify({
+      lesson_id: lesson_id || "",
+      grade: grade || "", subject: subject || "", chapter: chapter || "",
+      step_number: step_number || 1,
+      step_title: step_title || "",
+      step_content: step_content || "",
+      all_step_contents: all_step_contents || [],
+      audit_issues: audit_issues || [],
+      previous_step_content: previous_step_content || "",
+      next_step_content: next_step_content || "",
+      use_llm: !!use_llm,
+      override_api_key: override_api_key || null,
+    }),
+  });
+}
+
+/** Approve a repair task generated from Lesson Lab */
+export async function repairStepApprove(taskId) {
+  return authFetch(`${BASE}/repair-step-approve`, {
+    method: "POST",
+    body: JSON.stringify({ task_id: taskId }),
+  });
+}
+
+/** Publish an approved repair task to lesson_cache */
+export async function repairStepPublish(taskId) {
+  return authFetch(`${BASE}/repair-step-publish`, {
+    method: "POST",
+    body: JSON.stringify({ task_id: taskId }),
+  });
+}
+
 /** Get available textbook visuals for a lesson context */
 export async function getLabVisuals({ grade, subject, chapter, lesson_id } = {}) {
   const params = new URLSearchParams();

@@ -235,6 +235,25 @@ function TaskDrawer({ taskId, onClose, onApprove, onPublish, onRerun }) {
             ))}
           </div>
 
+          {/* Open in Lesson Lab link */}
+          {task && (
+            <div style={{ marginBottom: 10, fontSize: ".75rem" }}>
+              <a
+                data-testid="open-in-lesson-lab-link"
+                href={`#lesson-lab?lesson=${encodeURIComponent(
+                  task.grade && task.subject && task.chapter
+                    ? `${task.grade}|${task.subject}|${task.chapter}`
+                    : (task.original_lesson_cache_id || "")
+                )}`}
+                style={{ color: "#6366f1", textDecoration: "none", fontWeight: 600 }}
+                onClick={e => { e.preventDefault(); window.dispatchEvent(new CustomEvent("lab:open", { detail: { task } })); }}
+              >
+                🧪 Open in Lesson Lab
+              </a>
+              <span style={{ color: "#94a3b8", marginLeft: 8 }}>— interactive preview & step repair</span>
+            </div>
+          )}
+
           {/* Tab content */}
           <div style={{
             background: "var(--surface2,#f8fafc)", borderRadius: 8,

@@ -15,6 +15,7 @@ import {
   getLabLesson,
   getLabVisuals,
 } from "../api/lessonLab";
+import RepairWithAIPanel from "../components/RepairWithAIPanel";
 
 // ── Status colours ────────────────────────────────────────────────────────────
 const STATUS_BADGE = {
@@ -384,6 +385,41 @@ function AccessibilityBar({ a11y, setA11y }) {
   );
 }
 
+// ── Step View Tabs (Audit View | Repair with AI) ──────────────────────────────
+
+function StepViewTabs({ step, lessonDetail, showRaw, showAudit, onPublishSuccess }) {
+  const [activeTab, setActiveTab] = useState("audit");
+  const tabStyle = (active) => ({
+    padding: "7px 18px", borderRadius: "8px 8px 0 0", border: "none",
+    fontFamily: "inherit", fontSize: ".82rem", fontWeight: 600, cursor: "pointer",
+    background: active ? "var(--panel,#fff)" : "var(--surface2,#f8fafc)",
+    color: active ? "#6366f1" : "#64748b",
+    borderBottom: active ? "2px solid #6366f1" : "2px solid transparent",
+  });
+  return (
+    <div data-testid="step-view-tabs">
+      <div style={{ display: "flex", gap: 4, borderBottom: "1px solid var(--border,#e5e7eb)", marginBottom: 14 }}>
+        <button onClick={() => setActiveTab("audit")} style={tabStyle(activeTab === "audit")}>
+          Audit View
+        </button>
+        <button data-testid="repair-with-ai-tab" onClick={() => setActiveTab("repair")} style={tabStyle(activeTab === "repair")}>
+          🔧 Repair with AI
+        </button>
+      </div>
+      {activeTab === "audit" && (
+        <LessonContentView step={step} showRaw={showRaw} showAudit={showAudit} />
+      )}
+      {activeTab === "repair" && (
+        <RepairWithAIPanel
+          step={step}
+          lessonDetail={lessonDetail}
+          onPublishSuccess={onPublishSuccess}
+        />
+      )}
+    </div>
+  );
+}
+
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
 export default function AdminLessonExperienceLabPage({ user }) { // eslint-disable-line no-unused-vars
@@ -645,7 +681,14 @@ export default function AdminLessonExperienceLabPage({ user }) { // eslint-disab
                 <StepSidebar steps={steps} selectedIdx={selectedStepIdx} onSelect={setSelectedStepIdx} />
 
                 <div style={{ fontSize: a11y.fontSize, lineHeight: a11y.lineHeight, maxWidth: a11y.focusMode ? 680 : "100%" }}>
-                  <LessonContentView step={currentStep} showRaw={showRaw} showAudit={showAudit} />
+                  {/* Audit View / Repair with AI tabs */}
+                  <StepViewTabs
+                    step={currentStep}
+                    lessonDetail={lessonDetail}
+                    showRaw={showRaw}
+                    showAudit={showAudit}
+                    onPublishSuccess={() => loadLesson(selLesson)}
+                  />
 
                   {/* Visual panel */}
                   {showVisuals && (
