@@ -256,7 +256,9 @@ describe("LessonsPage", () => {
     ).toEqual(["Grade 5"]);
   });
 
-  test("loads approved textbook visuals without showing visual finder", async () => {
+  test("textbook visuals card is removed from the student lesson page", async () => {
+    // The 'Textbook visuals only' card has been removed from LessonsPage
+    // (shouldShowTextbookVisualTools returns false). Verify it does not appear.
     render(
       <LessonsPage
         user={{
@@ -268,32 +270,17 @@ describe("LessonsPage", () => {
       />
     );
 
+    // Wait for lesson to render
     expect(
-      await screen.findByRole("heading", {
-        name: /textbook visuals only/i,
-      })
+      await screen.findByRole("heading", { name: /generated lesson/i })
     ).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(getLessonTextbookVisuals).toHaveBeenCalledWith(
-        expect.objectContaining({
-          grade: "Grade 9",
-          mode: "CBSE",
-          subject: "Science",
-          chapter: "Tissues in Action",
-        })
-      );
-    });
-
+    // Card must NOT appear
     expect(
-      screen.queryByRole("heading", {
-        name: /visual finder/i,
-      })
+      screen.queryByRole("heading", { name: /textbook visuals only/i })
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("button", {
-        name: /find visual/i,
-      })
+      screen.queryByPlaceholderText(/search text in approved visuals/i)
     ).not.toBeInTheDocument();
   });
 
@@ -323,26 +310,9 @@ describe("LessonsPage", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("searches approved textbook visuals inside the current lesson", async () => {
-    getLessonTextbookVisuals.mockImplementation(async ({ query }) => ({
-      success: true,
-      visuals: query
-        ? [
-            {
-              id: "visual-cell-wall",
-              asset_url: "https://example.com/cell-wall.png",
-              page_number: 4,
-              chapter: "Tissues in Action",
-              title: "Tissues textbook page",
-              caption: "Cell wall diagram",
-              nearby_text:
-                "The cell wall gives support and shape to plant cells during growth.",
-              status: "active",
-            },
-          ]
-        : [],
-    }));
-
+  test("textbook visual search UI is not shown on lesson page (card removed)", async () => {
+    // The textbook visual card was removed from LessonsPage.
+    // Verify the search input and search button do not appear.
     render(
       <LessonsPage
         user={{
@@ -355,35 +325,18 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /textbook visuals only/i,
-      })
+      await screen.findByRole("heading", { name: /generated lesson/i })
     ).toBeInTheDocument();
 
-    fireEvent.change(
-      screen.getByPlaceholderText(/search text in approved visuals/i),
-      {
-        target: { value: "cell wall" },
-      }
-    );
-    fireEvent.click(screen.getByRole("button", { name: /search visuals/i }));
-
     expect(
-      await screen.findByText(/matching textbook visual/i)
-    ).toBeInTheDocument();
+      screen.queryByPlaceholderText(/search text in approved visuals/i)
+    ).not.toBeInTheDocument();
     expect(
-      screen.getByText(/The cell wall gives support and shape/i)
-    ).toBeInTheDocument();
-    expect(screen.getAllByAltText(/Cell wall diagram/i).length).toBeGreaterThan(0);
-    expect(getLessonTextbookVisuals).toHaveBeenLastCalledWith(
-      expect.objectContaining({
-        grade: "Grade 9",
-        mode: "CBSE",
-        subject: "Science",
-        chapter: "Tissues in Action",
-        query: "cell wall",
-      })
-    );
+      screen.queryByRole("button", { name: /search visuals/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: /textbook visuals only/i })
+    ).not.toBeInTheDocument();
   });
 
   test("uses Hindi MCQ-only practice and hides lesson follow-up chat", async () => {
@@ -458,7 +411,7 @@ describe("LessonsPage", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("does not show visual finder suggestions for Science lessons", async () => {
+  test("textbook visual tools are hidden for all subjects including Science (card removed)", async () => {
     render(
       <LessonsPage
         user={{
@@ -471,8 +424,12 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", { name: /textbook visuals only/i })
+      await screen.findByRole("heading", { name: /generated lesson/i })
     ).toBeInTheDocument();
+
+    expect(
+      screen.queryByRole("heading", { name: /textbook visuals only/i })
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByText(/visuals to look for in this lesson/i)
     ).not.toBeInTheDocument();
