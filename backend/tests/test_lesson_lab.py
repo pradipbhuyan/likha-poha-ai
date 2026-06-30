@@ -178,12 +178,26 @@ def test_get_lesson_list_empty_when_db_unavailable():
     assert result["total_lessons"] == 0
 
 
-def test_get_lesson_list_returns_required_keys():
+def _fluent_mock(rows):
+    """
+    Build a Supabase query-builder mock where every method returns the same
+    mock object (fluent interface), so the chain depth doesn't matter.
+    Only .execute().data is configured with the supplied rows.
+    """
     mock_db = MagicMock()
-    mock_db.table.return_value.select.return_value.eq.return_value.order.return_value.order.return_value.order.return_value.order.return_value.limit.return_value.execute.return_value.data = [
+    # Make every query-builder method return the same mock_db so that chaining
+    # .eq().eq().ilike().order().limit() all resolve to the same object.
+    for method_name in ("table", "select", "eq", "ilike", "order", "limit"):
+        getattr(mock_db, method_name).return_value = mock_db
+    mock_db.execute.return_value.data = rows
+    return mock_db
+
+
+def test_get_lesson_list_returns_required_keys():
+    mock_db = _fluent_mock([
         {"id": "1", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 1", "status": "active"},
         {"id": "2", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 2", "status": "active"},
-    ]
+    ])
     with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_list(grade="Grade 9")
     for key in ("grades", "subjects", "chapters", "lessons", "total_lessons", "total_steps"):
@@ -191,12 +205,11 @@ def test_get_lesson_list_returns_required_keys():
 
 
 def test_get_lesson_list_groups_by_chapter():
-    mock_db = MagicMock()
-    mock_db.table.return_value.select.return_value.eq.return_value.order.return_value.order.return_value.order.return_value.order.return_value.limit.return_value.execute.return_value.data = [
+    mock_db = _fluent_mock([
         {"id": "1", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 1", "status": "active"},
         {"id": "2", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 2", "status": "active"},
         {"id": "3", "grade": "Grade 9", "subject": "Science", "chapter": "Respiration", "step_title": "Step 1", "status": "active"},
-    ]
+    ])
     with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_list(grade="Grade 9")
     # 2 distinct lessons
@@ -362,14 +375,15 @@ def test_get_visuals_does_not_expose_secrets():
 
 def test_get_visuals_with_data(monkeypatch):
     """When DB returns visual rows, they should be formatted correctly."""
-    mock_db = MagicMock()
-    mock_db.table.return_value.select.return_value.eq.return_value.ilike.return_value.ilike.return_value.order.return_value.limit.return_value.execute.return_value.data = [
+    rows = [
         {
             "id": "vis-1", "title": "Chloroplast Structure", "asset_url": "https://cdn.example.com/vis1.png",
             "source": "textbook", "matched_topic": "Photosynthesis", "caption": "Figure 1.1",
             "page_number": 42, "chapter": "Photosynthesis", "subject": "Science", "grade": "Grade 9",
         },
     ]
+    # Use fluent mock: visuals query chains .eq().eq().ilike().ilike().order().limit()
+    mock_db = _fluent_mock(rows)
     with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_visuals(grade="Grade 9", subject="Science", chapter="Photosynthesis")
     assert result["available"] is True
