@@ -310,6 +310,164 @@ def start_doubt_kb_prewarm(
 
 
 
+@router.get("/cache/lessons/audit")
+def audit_lesson_cache(
+    grade: str | None = None,
+    admin=Depends(require_admin),
+):
+    """
+    Return a summary of lesson_cache contents including duplicate rows.
+
+    Shows:
+    - Total active rows per grade
+    - Rows with 0 ## headings (flat/stale content)
+    - Chapters that have duplicate step rows
+    Admin-only. Read-only.
+    """
+    import re as _re  # noqa: PLC0415
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+    GRADES = ["Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"]
+
+    summary = []
+    total_active = 0
+    total_flat = 0
+    total_duplicate_chapters = 0
+
+    for g in ([grade] if grade else GRADES):
+        try:
+            db = get_content_db(g)
+            resp = (db.table("lesson_cache")
+                    .select("id, grade, subject, chapter, step_title, lesson_content, status, access_count")
+                    .eq("grade", g)
+                    .eq("status", "active")
+                    .limit(2000)
+                    .execute())
+            rows = resp.data or []
+        except Exception:
+            continue
+
+        flat_rows = []
+        step_key_counts: dict[str, int] = {}
+        for row in rows:
+            content = row.get("lesson_content", "") or ""
+            heading_count = len(_re.findall(r"^#{1,3}\s+", content, _re.M))
+            step_key = f"{row.get('subject')}|{row.get('chapter')}|{row.get('step_title')}"
+            step_key_counts[step_key] = step_key_counts.get(step_key, 0) + 1
+            if heading_count == 0:
+                flat_rows.append({
+                    "id": row.get("id"),
+                    "subject": row.get("subject"),
+                    "chapter": row.get("chapter"),
+                    "step_title": row.get("step_title"),
+                    "word_count": len(content.split()),
+                    "access_count": row.get("access_count", 0),
+                })
+
+        duplicate_steps = {k: v for k, v in step_key_counts.items() if v > 1}
+        total_active += len(rows)
+        total_flat += len(flat_rows)
+        total_duplicate_chapters += len(duplicate_steps)
+
+        summary.append({
+            "grade": g,
+            "active_rows": len(rows),
+            "flat_content_rows": len(flat_rows),
+            "duplicate_steps": len(duplicate_steps),
+            "flat_rows": flat_rows[:20],  # limit detail output
+            "duplicate_step_keys": list(duplicate_steps.keys())[:20],
+        })
+
+    return {
+        "success": True,
+        "total_active_rows": total_active,
+        "total_flat_content_rows": total_flat,
+        "total_duplicate_step_keys": total_duplicate_chapters,
+        "grades": summary,
+        "note": "Flat content rows have 0 ## headings and should be marked stale. Use POST /cache/lessons/deduplicate to clean up.",
+    }
+
+
+@router.post("/cache/lessons/deduplicate")
+def deduplicate_lesson_cache(
+    grade: str | None = None,
+    dry_run: bool = True,
+    admin=Depends(require_admin),
+):
+    """
+    Mark flat/stale lesson_cache rows as status='stale'.
+
+    A row is considered stale if it has 0 ## section headings in lesson_content
+    (old flat-text format generated before the structured lesson format was introduced).
+
+    dry_run=True (default): show what would be marked stale without changing anything.
+    dry_run=False: actually mark the rows as stale.
+
+    Admin-only. Safe to run — only marks status, never deletes.
+    """
+    import re as _re  # noqa: PLC0415
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+    GRADES = ["Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"]
+
+    to_stale = []
+    errors = []
+
+    for g in ([grade] if grade else GRADES):
+        try:
+            db = get_content_db(g)
+            resp = (db.table("lesson_cache")
+                    .select("id, grade, subject, chapter, step_title, lesson_content, access_count")
+                    .eq("grade", g)
+                    .eq("status", "active")
+                    .limit(2000)
+                    .execute())
+            rows = resp.data or []
+        except Exception as e:
+            errors.append(f"{g}: {e}")
+            continue
+
+        for row in rows:
+            content = row.get("lesson_content", "") or ""
+            heading_count = len(_re.findall(r"^#{1,3}\s+", content, _re.M))
+            if heading_count == 0:
+                to_stale.append({
+                    "id": row["id"],
+                    "grade": row.get("grade"),
+                    "subject": row.get("subject"),
+                    "chapter": row.get("chapter"),
+                    "step_title": row.get("step_title"),
+                    "word_count": len(content.split()),
+                    "access_count": row.get("access_count", 0),
+                })
+
+    marked = 0
+    if not dry_run and to_stale:
+        for g in ([grade] if grade else GRADES):
+            try:
+                db = get_content_db(g)
+                ids_for_grade = [r["id"] for r in to_stale if r["grade"] == g]
+                if ids_for_grade:
+                    db.table("lesson_cache").update({"status": "stale"}).in_("id", ids_for_grade).execute()
+                    marked += len(ids_for_grade)
+            except Exception as e:
+                errors.append(f"mark stale {g}: {e}")
+
+    return {
+        "success": True,
+        "dry_run": dry_run,
+        "rows_to_mark_stale": len(to_stale),
+        "rows_marked_stale": marked if not dry_run else 0,
+        "rows": to_stale[:50],  # limit detail output
+        "errors": errors,
+        "message": (
+            f"{'DRY RUN: ' if dry_run else ''}"
+            f"{len(to_stale)} flat-content rows {'would be' if dry_run else 'have been'} marked stale. "
+            f"{'Run with dry_run=false to apply.' if dry_run else 'Lesson Lab will now show structured content only.'}"
+        ),
+    }
+
+
 @router.delete("/cache/lessons/{grade_slug}")
 def clear_lessons(
     grade_slug: str,
