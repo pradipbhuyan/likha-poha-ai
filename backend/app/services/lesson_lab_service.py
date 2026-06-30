@@ -319,17 +319,27 @@ def get_lesson_detail(
 
                 # Fallback: direct DB scan if cache_key path failed or returned nothing
                 if not rows:
+                    # Extract the core chapter name for fuzzy matching — strips
+                    # "Chapter N:" prefix variants so both "Coordinate Geometry"
+                    # and "Chapter 7: Coordinate Geometry" match.
+                    import re as _re  # noqa: PLC0415
+                    core_chapter = _re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=_re.I).strip()
+                    chapter_pattern = f"%{core_chapter}%"
+
                     resp2 = (db2.table("lesson_cache")
-                             .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at")
-                             .eq("grade", g).ilike("subject", s).ilike("chapter", c)
+                             .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at, access_count")
+                             .eq("grade", g).ilike("subject", f"%{s}%").ilike("chapter", chapter_pattern)
                              .eq("status", "active")
-                             .order("created_at", desc=True)
+                             # access_count DESC: content students actually use has high count.
+                             # The good published content has been accessed many times;
+                             # the old flat content has access_count=0 or very low.
+                             .order("access_count", desc=True)
                              .order("step_title")
                              .limit(500)
                              .execute())
                     raw_rows = resp2.data or []
 
-                    # Deduplicate by step_title — keep most recently created
+                    # Deduplicate by step_title — keep highest-access row per step
                     seen_steps: set[str] = set()
                     rows = []
                     for row in raw_rows:
