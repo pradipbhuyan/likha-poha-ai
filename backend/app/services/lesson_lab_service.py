@@ -236,17 +236,21 @@ def get_lesson_detail(
     try:
         from app.services.grade_db_router import get_content_db  # noqa: PLC0415
 
-        db = get_content_db(grade or "Grade 9")
+        # If lesson_id contains "|" it is a composite key — skip UUID lookup
+        # entirely to avoid Supabase "invalid input syntax for type uuid" errors.
+        is_composite = "|" in lesson_id
+        rows = []
 
-        # Try direct DB id first
-        resp = (db.table("lesson_cache")
-                .select("id, grade, subject, chapter, step_title, lesson_content, status")
-                .eq("id", lesson_id)
-                .execute())
-        rows = resp.data or []
+        if not is_composite:
+            db = get_content_db(grade or "Grade 9")
+            resp = (db.table("lesson_cache")
+                    .select("id, grade, subject, chapter, step_title, lesson_content, status")
+                    .eq("id", lesson_id)
+                    .execute())
+            rows = resp.data or []
 
         if not rows:
-            # Try composite key "Grade|Subject|Chapter"
+            # Composite key "Grade|Subject|Chapter"
             parts = lesson_id.split("|")
             if len(parts) >= 3:
                 g, s, c = parts[0], parts[1], "|".join(parts[2:])
