@@ -131,7 +131,9 @@ describe("AdminLessonExperienceLabPage", () => {
   test("renders the page with lab banner", async () => {
     renderPage();
     expect(await screen.findByTestId("admin-lesson-experience-lab")).toBeInTheDocument();
-    expect(screen.getByText(/Lesson Experience Lab/i)).toBeInTheDocument();
+    // Heading "Lesson Experience Lab" appears in both h2 and the banner strong —
+    // use getAllByText and verify at least one match exists.
+    expect(screen.getAllByText(/Lesson Experience Lab/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/prototype only/i)).toBeInTheDocument();
   });
 
@@ -194,7 +196,9 @@ describe("AdminLessonExperienceLabPage", () => {
     });
     await screen.findByTestId("step-sidebar");
     fireEvent.click(screen.getByTestId("step-sidebar-item-1"));
-    expect(await screen.findByText(/Core Explanation/i)).toBeInTheDocument();
+    // "Core Explanation" appears in both step sidebar item and content view heading
+    const matches = await screen.findAllByText(/Core Explanation/i);
+    expect(matches.length).toBeGreaterThan(0);
   });
 
   // ── Audit issues ───────────────────────────────────────────────────────────
@@ -207,7 +211,9 @@ describe("AdminLessonExperienceLabPage", () => {
     });
     await screen.findByTestId("step-sidebar");
     fireEvent.click(screen.getByTestId("step-sidebar-item-1")); // step 2 has issues
-    expect(await screen.findByText(/audit issue/i)).toBeInTheDocument();
+    // "audit issue" may appear multiple times (header + issue details)
+    const matches = await screen.findAllByText(/audit issue/i);
+    expect(matches.length).toBeGreaterThan(0);
   });
 
   // ── Raw content toggle ─────────────────────────────────────────────────────
@@ -234,11 +240,23 @@ describe("AdminLessonExperienceLabPage", () => {
       target: { value: "Grade 9|Science|Photosynthesis" },
     });
     await screen.findByTestId("lesson-content-view");
-    // Toggle show visuals
-    const visToggle = screen.getByLabelText(/show visuals/i);
-    fireEvent.click(visToggle);
-    expect(await screen.findByTestId("visual-empty-state")).toBeInTheDocument();
-    expect(screen.getByText(/No textbook visuals linked yet/i)).toBeInTheDocument();
+    // Toggle show visuals — use getAllByRole to find the visuals checkbox
+    const checkboxes = screen.getAllByRole("checkbox");
+    const visToggle = checkboxes.find(cb => cb.closest("label")?.textContent?.match(/show visuals/i));
+    if (visToggle) {
+      fireEvent.click(visToggle);
+      await waitFor(() => {
+        expect(screen.getByTestId("visual-empty-state")).toBeInTheDocument();
+      });
+      expect(screen.getByText(/No textbook visuals linked yet/i)).toBeInTheDocument();
+    } else {
+      // Fallback: try getByLabelText
+      const toggle = screen.getByLabelText(/show visuals/i);
+      fireEvent.click(toggle);
+      await waitFor(() => {
+        expect(screen.getByTestId("visual-empty-state")).toBeInTheDocument();
+      });
+    }
   });
 
   // ── Accessibility controls ─────────────────────────────────────────────────

@@ -444,7 +444,7 @@ export default function AdminLessonExperienceLabPage({ user }) { // eslint-disab
   }
 
   async function loadVisuals() {
-    if (!selGrade && !selSubject && !selChapter) return;
+    if (!selGrade && !selSubject && !selChapter && !selLesson) return;
     try {
       const v = await getLabVisuals({ grade: selGrade, subject: selSubject, chapter: selChapter, lesson_id: selLesson });
       setVisuals(v);
