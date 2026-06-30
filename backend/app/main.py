@@ -62,6 +62,7 @@ from app.routes.admin_support import router as admin_support_router
 from app.routes.lesson_repair import router as lesson_repair_router
 from app.routes.ai_studio import router as ai_studio_router
 from app.routes.lesson_lab import router as lesson_lab_router
+from app.routes.lesson_experience import router as lesson_experience_router
 
 
 frontend_url = os.getenv(
@@ -253,6 +254,11 @@ app.include_router(
 app.include_router(
     lesson_lab_router,
     prefix="/api/admin/lesson-lab",
+    tags=["admin"],
+)
+app.include_router(
+    lesson_experience_router,
+    prefix="/api/admin/lesson-experience",
     tags=["Admin Lesson Lab"],
 )
 

@@ -61,6 +61,7 @@ import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
+import AdminLessonExperiencePage from "./pages/AdminLessonExperiencePage";
 import AdminAIStudioPage from "./pages/AdminAIStudioPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
@@ -1458,6 +1459,9 @@ function App() {
         return <AdminUnansweredQuestionsPage user={user} />;
       case "lessonRepair":
         return <AdminLessonRepairPage user={user} />;
+      case "lessonExperience":
+        if (user?.role !== "admin") return null;
+        return <AdminLessonExperiencePage user={user} />;
       case "aiStudio":
         return <AdminAIStudioPage user={user} />;
       default:

@@ -15,13 +15,22 @@ import {
   updateChildLimits,
 } from "../api/adminControl";
 
-// Mock lessonLab so AdminLessonExperienceLabPage (embedded in AdminControlPage)
-// doesn't trigger supabaseClient.js on CI where VITE_SUPABASE_URL is not set.
+// Mock lessonLab so AdminLessonExperienceLabPage doesn't trigger supabaseClient.js
 vi.mock("../api/lessonLab", () => ({
-  listLabLessons:   vi.fn(() => Promise.resolve({ grades: [], subjects: [], chapters: [], lessons: [], total_lessons: 0, total_steps: 0 })),
-  getLabLesson:     vi.fn(() => Promise.resolve({})),
-  getLabVisuals:    vi.fn(() => Promise.resolve({ available: false, visuals: [], empty_state: "No visuals." })),
-  previewTransform: vi.fn(() => Promise.resolve({})),
+  listLabLessons:    vi.fn(() => Promise.resolve({ grades: [], subjects: [], chapters: [], lessons: [], total_lessons: 0, total_steps: 0 })),
+  getLabLesson:      vi.fn(() => Promise.resolve({})),
+  getLabVisuals:     vi.fn(() => Promise.resolve({ available: false, visuals: [], empty_state: "No visuals." })),
+  previewTransform:  vi.fn(() => Promise.resolve({})),
+  repairStepPreview: vi.fn(() => Promise.resolve({ success: false })),
+  repairStepApprove: vi.fn(() => Promise.resolve({ success: true })),
+  repairStepPublish: vi.fn(() => Promise.resolve({ success: true })),
+}));
+
+// Mock lessonExperience so AdminLessonExperiencePage doesn't trigger supabaseClient.js
+vi.mock("../api/lessonExperience", () => ({
+  getLessonCatalog: vi.fn(() => Promise.resolve({ grades: [], subjects: [], chapters: [], lessons: [], total_lessons: 0 })),
+  getLessonDetail:  vi.fn(() => Promise.resolve({})),
+  getLessonVisuals: vi.fn(() => Promise.resolve({ available: false, visuals: [], empty_state: "No visuals." })),
 }));
 
 // Mock adminOperations so the new widget imports don't trigger supabaseClient.js

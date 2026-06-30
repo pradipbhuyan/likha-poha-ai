@@ -225,6 +225,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "lessonExperience",
+      label: "Lesson Experience",
+      icon: Sparkles,
+      roles: ["admin"],
+    },
+    {
       key: "lessonRepair",
       label: "Lesson Repair",
       icon: Layers,
