@@ -284,19 +284,32 @@ def get_lesson_detail(
                 # subject, chapter, mode, step_title, teacher_persona="") to look
                 # up the canonical active row. We replicate this exactly so the
                 # Lab shows the same content the student sees.
+                # Load canonical step order for sorting
+                try:
+                    from app.services.prewarm_service import get_lesson_steps_for_grade as _get_steps  # noqa: PLC0415
+                    canonical_steps = _get_steps(g)
+                except Exception:
+                    canonical_steps = []
+
+                def _step_sort_key(row):
+                    """Sort by canonical step order; unknown steps go to the end."""
+                    st = row.get("step_title", "")
+                    try:
+                        return canonical_steps.index(st)
+                    except ValueError:
+                        return 999
+
                 try:
                     from app.services.lesson_cache_service import (  # noqa: PLC0415
                         get_cached_lesson,
                         make_lesson_cache_key,
                     )
-                    from app.services.prewarm_service import get_lesson_steps_for_grade  # noqa: PLC0415
 
-                    step_titles = get_lesson_steps_for_grade(g)
                     board = "CBSE"
                     mode = "CBSE"
 
                     rows = []
-                    for st in step_titles:
+                    for st in (canonical_steps or []):
                         cache_key = make_lesson_cache_key(
                             board=board, grade=g, subject=s,
                             chapter=c, mode=mode, step_title=st,
@@ -319,9 +332,7 @@ def get_lesson_detail(
 
                 # Fallback: direct DB scan if cache_key path failed or returned nothing
                 if not rows:
-                    # Extract the core chapter name for fuzzy matching — strips
-                    # "Chapter N:" prefix variants so both "Coordinate Geometry"
-                    # and "Chapter 7: Coordinate Geometry" match.
+                    # Extract the core chapter name for fuzzy matching
                     core_chapter = re.sub(r"^chapter\s+\d+[:\s]+", "", c, flags=re.I).strip()
                     chapter_pattern = f"%{core_chapter}%"
 
@@ -329,24 +340,16 @@ def get_lesson_detail(
                              .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at, access_count")
                              .eq("grade", g).ilike("subject", f"%{s}%").ilike("chapter", chapter_pattern)
                              .eq("status", "active")
-                             .order("step_title")
                              .limit(500)
                              .execute())
                     raw_rows = resp2.data or []
 
                     def _content_quality(content: str) -> tuple:
-                        """
-                        Quality score for lesson content — higher is better.
-                        Primary: number of ## section headings (structured content has many).
-                        Secondary: total word count (richer content is longer).
-                        The good published content has proper ## headings;
-                        the stale flat content is a single paragraph with none.
-                        """
                         heading_count = len(re.findall(r"^#{1,3}\s+", content, re.M))
                         word_count = len(content.split())
                         return (heading_count, word_count)
 
-                    # Group all rows by step_title, then pick the best-quality row
+                    # Group by step_title, pick best-quality row per step
                     step_groups: dict[str, list] = {}
                     for row in raw_rows:
                         st = row.get("step_title", "")
@@ -357,7 +360,8 @@ def get_lesson_detail(
                         best = max(candidates, key=lambda r: _content_quality(r.get("lesson_content", "")))
                         rows.append(best)
 
-                    rows.sort(key=lambda r: r.get("step_title", ""))
+                # Sort by canonical step order (not alphabetically)
+                rows.sort(key=_step_sort_key)
 
     except Exception as e:
         _log.warning("lesson_lab: DB error fetching lesson — %s", e)
