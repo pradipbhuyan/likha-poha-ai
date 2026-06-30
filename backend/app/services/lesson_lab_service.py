@@ -278,30 +278,66 @@ def get_lesson_detail(
             if len(parts) >= 3:
                 g, s, c = parts[0], parts[1], "|".join(parts[2:])
                 db2 = get_content_db(g)
-                resp2 = (db2.table("lesson_cache")
-                         .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at")
-                         .eq("grade", g).ilike("subject", s).ilike("chapter", c)
-                         .eq("status", "active")
-                         # Order by created_at descending so the LATEST published
-                         # version of each step comes first — prevents stale content
-                         # from being returned when a step has been repaired/updated.
-                         .order("created_at", desc=True)
-                         .order("step_title")
-                         .limit(500)
-                         .execute())
-                raw_rows = resp2.data or []
 
-                # Deduplicate by step_title — keep the most recently updated row
-                # (updated_at DESC order guarantees the first occurrence is latest)
-                seen_steps: set[str] = set()
-                rows = []
-                for row in raw_rows:
-                    st = row.get("step_title", "")
-                    if st not in seen_steps:
-                        seen_steps.add(st)
-                        rows.append(row)
-                # Re-sort by step_title for correct lesson order
-                rows.sort(key=lambda r: r.get("step_title", ""))
+                # ── Use the same cache_key logic as the live lesson page ──────
+                # The live student lesson uses make_lesson_cache_key(board, grade,
+                # subject, chapter, mode, step_title, teacher_persona="") to look
+                # up the canonical active row. We replicate this exactly so the
+                # Lab shows the same content the student sees.
+                try:
+                    from app.services.lesson_cache_service import (  # noqa: PLC0415
+                        get_cached_lesson,
+                        make_lesson_cache_key,
+                    )
+                    from app.services.prewarm_service import get_steps_for_grade  # noqa: PLC0415
+
+                    step_titles = get_steps_for_grade(g)
+                    board = "CBSE"
+                    mode = "CBSE"
+
+                    rows = []
+                    for st in step_titles:
+                        cache_key = make_lesson_cache_key(
+                            board=board, grade=g, subject=s,
+                            chapter=c, mode=mode, step_title=st,
+                            teacher_persona="",
+                        )
+                        cached = get_cached_lesson(cache_key, grade=g)
+                        if cached and cached.get("lesson_content"):
+                            rows.append({
+                                "id": None,
+                                "grade": g,
+                                "subject": s,
+                                "chapter": c,
+                                "step_title": st,
+                                "lesson_content": cached["lesson_content"],
+                                "status": "active",
+                            })
+                except Exception as ck_err:
+                    _log.warning("lesson_lab: cache_key lookup failed (%s), falling back to DB scan", ck_err)
+                    rows = []
+
+                # Fallback: direct DB scan if cache_key path failed or returned nothing
+                if not rows:
+                    resp2 = (db2.table("lesson_cache")
+                             .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at")
+                             .eq("grade", g).ilike("subject", s).ilike("chapter", c)
+                             .eq("status", "active")
+                             .order("created_at", desc=True)
+                             .order("step_title")
+                             .limit(500)
+                             .execute())
+                    raw_rows = resp2.data or []
+
+                    # Deduplicate by step_title — keep most recently created
+                    seen_steps: set[str] = set()
+                    rows = []
+                    for row in raw_rows:
+                        st = row.get("step_title", "")
+                        if st not in seen_steps:
+                            seen_steps.add(st)
+                            rows.append(row)
+                    rows.sort(key=lambda r: r.get("step_title", ""))
 
     except Exception as e:
         _log.warning("lesson_lab: DB error fetching lesson — %s", e)
