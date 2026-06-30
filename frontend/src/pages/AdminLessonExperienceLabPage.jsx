@@ -99,7 +99,7 @@ function MCQCard({ mcq }) {
   // Try to detect options: lines like "A. ..." or "A) ..."
   const lines = (mcq || "").split(/\n/).map(l => l.trim()).filter(Boolean);
   const question = lines[0] || mcq;
-  const options = lines.slice(1).filter(l => /^[A-D][\)\.:]/.test(l));
+  const options = lines.slice(1).filter(l => /^[A-D][).:]./.test(l));
 
   if (options.length === 0) {
     return (
@@ -455,11 +455,11 @@ export default function AdminLessonExperienceLabPage({ user }) { // eslint-disab
 
   useEffect(() => {
     if (selLesson) loadLesson(selLesson);
-  }, [selLesson]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selLesson]); // eslint-disable-line -- loadLesson is stable
 
   useEffect(() => {
     if (showVisuals && selLesson) loadVisuals();
-  }, [showVisuals, selLesson]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [showVisuals, selLesson]); // eslint-disable-line -- loadVisuals is stable
 
   function saveNote(key, value) {
     const updated = { ...notes, [key]: value };

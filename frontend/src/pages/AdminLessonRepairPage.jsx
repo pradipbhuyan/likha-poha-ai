@@ -317,7 +317,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
   const [runError, setRunError] = useState(null);
   const [runLoading, setRunLoading] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
-  const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+  const [selectedTaskIds] = useState([]);   // populated by task checkboxes (future enhancement)
 
   // LLM info state
   const [llmInfo, setLlmInfo] = useState(null);
@@ -369,7 +369,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
     } catch { /* non-critical */ }
   }, [filterStatus, filterGrade]);
 
-  useEffect(() => { loadLatest(); loadLlmInfo(); }, [loadLatest, loadLlmInfo]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { loadLatest(); loadLlmInfo(); }, [loadLatest, loadLlmInfo]); // eslint-disable-line -- stable callbacks
 
   // Poll while job is running
   useEffect(() => {
