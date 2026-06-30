@@ -15,6 +15,15 @@ import {
   updateChildLimits,
 } from "../api/adminControl";
 
+// Mock lessonLab so AdminLessonExperienceLabPage (embedded in AdminControlPage)
+// doesn't trigger supabaseClient.js on CI where VITE_SUPABASE_URL is not set.
+vi.mock("../api/lessonLab", () => ({
+  listLabLessons:   vi.fn(() => Promise.resolve({ grades: [], subjects: [], chapters: [], lessons: [], total_lessons: 0, total_steps: 0 })),
+  getLabLesson:     vi.fn(() => Promise.resolve({})),
+  getLabVisuals:    vi.fn(() => Promise.resolve({ available: false, visuals: [], empty_state: "No visuals." })),
+  previewTransform: vi.fn(() => Promise.resolve({})),
+}));
+
 // Mock adminOperations so the new widget imports don't trigger supabaseClient.js
 // on CI where VITE_SUPABASE_URL is not set.
 vi.mock("../api/adminOperations", () => ({
