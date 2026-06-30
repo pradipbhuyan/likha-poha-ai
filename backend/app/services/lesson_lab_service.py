@@ -302,28 +302,61 @@ def get_lesson_detail(
                 try:
                     from app.services.lesson_cache_service import (  # noqa: PLC0415
                         get_cached_lesson,
+                        get_cached_lesson_by_chapter_text,
                         make_lesson_cache_key,
                     )
 
                     board = "CBSE"
                     mode = "CBSE"
 
+                    # ── Replicate the EXACT 4-level fallback from tutor_service ──
+                    # This is what generate_step_lesson() does when a student
+                    # clicks "Generate Lesson". We use the same lookup chain so
+                    # the Lesson Lab shows exactly what the student will see.
+
+                    def _get_lesson_for_step(step_title: str) -> str | None:
+                        """Try all 4 fallback levels, same as tutor_service.generate_step_lesson."""
+                        # Level 1: exact cache_key (teacher_persona="", prewarm default)
+                        ck = make_lesson_cache_key(
+                            board=board, grade=g, subject=s, chapter=c,
+                            mode=mode, step_title=step_title, teacher_persona="",
+                        )
+                        hit = get_cached_lesson(ck, grade=g)
+                        if hit:
+                            return hit.get("lesson_content")
+
+                        # Level 2: strip source prefix ("Text Book - Chapter 7" → "Chapter 7")
+                        stripped = re.sub(r"^[A-Za-z ]+\s*-\s*", "", c).strip()
+                        if stripped and stripped != c:
+                            ck2 = make_lesson_cache_key(
+                                board=board, grade=g, subject=s, chapter=stripped,
+                                mode=mode, step_title=step_title, teacher_persona="",
+                            )
+                            hit = get_cached_lesson(ck2, grade=g)
+                            if hit:
+                                return hit.get("lesson_content")
+
+                        # Level 3: ilike text search (catches chapter name variations)
+                        hit = get_cached_lesson_by_chapter_text(
+                            board=board, grade=g, subject=s, chapter=c,
+                            mode=mode, step_title=step_title,
+                        )
+                        if hit:
+                            return hit.get("lesson_content")
+
+                        return None
+
                     rows = []
                     for st in (canonical_steps or []):
-                        cache_key = make_lesson_cache_key(
-                            board=board, grade=g, subject=s,
-                            chapter=c, mode=mode, step_title=st,
-                            teacher_persona="",
-                        )
-                        cached = get_cached_lesson(cache_key, grade=g)
-                        if cached and cached.get("lesson_content"):
+                        content = _get_lesson_for_step(st)
+                        if content:
                             rows.append({
                                 "id": None,
                                 "grade": g,
                                 "subject": s,
                                 "chapter": c,
                                 "step_title": st,
-                                "lesson_content": cached["lesson_content"],
+                                "lesson_content": content,
                                 "status": "active",
                             })
                 except Exception as ck_err:
