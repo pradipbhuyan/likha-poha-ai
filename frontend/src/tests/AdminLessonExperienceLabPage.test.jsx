@@ -13,6 +13,33 @@ vi.mock("../api/lessonLab", () => ({
   previewTransform: vi.fn(),
 }));
 
+// AdminLessonExperienceLabPage is embedded inside AdminControlPage when wired.
+// The test renders the page directly, but AdminControlPage is imported and may
+// trigger side-effects. Mock adminControl API to prevent real network calls.
+vi.mock("../api/adminControl", () => ({
+  getAdminFamilies: vi.fn(() => Promise.resolve({ families: [] })),
+  getAiSettings:    vi.fn(() => Promise.resolve({ api_enabled: true, provider: "openai" })),
+  updateAiSettings: vi.fn(() => Promise.resolve({ api_enabled: true })),
+  listOfferCodes:   vi.fn(() => Promise.resolve({ offer_codes: [] })),
+  getInfluencerSummary:       vi.fn(() => Promise.resolve({ influencers: [] })),
+  getOfferCodeEnrollments:    vi.fn(() => Promise.resolve({ codes: [] })),
+  createAdminParent:          vi.fn(),
+  createAdminChild:           vi.fn(),
+  createAdminStudent:         vi.fn(),
+  createAdminTeacher:         vi.fn(),
+  assignTeacherStudent:       vi.fn(),
+  deleteTeacherAssignment:    vi.fn(),
+  updateChildAccess:          vi.fn(),
+  updateChildLimits:          vi.fn(),
+  deleteUser:                 vi.fn(),
+  createOfferCode:            vi.fn(),
+  deactivateOfferCode:        vi.fn(),
+  reactivateOfferCode:        vi.fn(),
+  extendOfferCodeValidity:    vi.fn(),
+  markInfluencerIncentivePaid: vi.fn(),
+  regeneratePromoImages:       vi.fn(),
+}));
+
 import {
   listLabLessons,
   getLabLesson,
