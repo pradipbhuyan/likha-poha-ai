@@ -279,13 +279,13 @@ def get_lesson_detail(
                 g, s, c = parts[0], parts[1], "|".join(parts[2:])
                 db2 = get_content_db(g)
                 resp2 = (db2.table("lesson_cache")
-                         .select("id, grade, subject, chapter, step_title, lesson_content, status, updated_at, created_at")
+                         .select("id, grade, subject, chapter, step_title, lesson_content, status, created_at")
                          .eq("grade", g).ilike("subject", s).ilike("chapter", c)
                          .eq("status", "active")
-                         # Order by updated_at descending so the LATEST published
+                         # Order by created_at descending so the LATEST published
                          # version of each step comes first — prevents stale content
                          # from being returned when a step has been repaired/updated.
-                         .order("updated_at", desc=True)
+                         .order("created_at", desc=True)
                          .order("step_title")
                          .limit(500)
                          .execute())
