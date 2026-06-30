@@ -279,11 +279,29 @@ def get_lesson_detail(
                 g, s, c = parts[0], parts[1], "|".join(parts[2:])
                 db2 = get_content_db(g)
                 resp2 = (db2.table("lesson_cache")
-                         .select("id, grade, subject, chapter, step_title, lesson_content, status")
+                         .select("id, grade, subject, chapter, step_title, lesson_content, status, updated_at, created_at")
                          .eq("grade", g).ilike("subject", s).ilike("chapter", c)
                          .eq("status", "active")
-                         .order("step_title").execute())
-                rows = resp2.data or []
+                         # Order by updated_at descending so the LATEST published
+                         # version of each step comes first — prevents stale content
+                         # from being returned when a step has been repaired/updated.
+                         .order("updated_at", desc=True)
+                         .order("step_title")
+                         .limit(500)
+                         .execute())
+                raw_rows = resp2.data or []
+
+                # Deduplicate by step_title — keep the most recently updated row
+                # (updated_at DESC order guarantees the first occurrence is latest)
+                seen_steps: set[str] = set()
+                rows = []
+                for row in raw_rows:
+                    st = row.get("step_title", "")
+                    if st not in seen_steps:
+                        seen_steps.add(st)
+                        rows.append(row)
+                # Re-sort by step_title for correct lesson order
+                rows.sort(key=lambda r: r.get("step_title", ""))
 
     except Exception as e:
         _log.warning("lesson_lab: DB error fetching lesson — %s", e)
