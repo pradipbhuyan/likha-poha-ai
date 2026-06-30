@@ -61,6 +61,7 @@ from app.routes.admin_analytics import router as admin_analytics_router
 from app.routes.admin_support import router as admin_support_router
 from app.routes.lesson_repair import router as lesson_repair_router
 from app.routes.ai_studio import router as ai_studio_router
+from app.routes.lesson_lab import router as lesson_lab_router
 
 
 frontend_url = os.getenv(
@@ -247,6 +248,12 @@ app.include_router(
     ai_studio_router,
     prefix="/api/admin/ai-studio",
     tags=["Admin AI Studio"],
+)
+
+app.include_router(
+    lesson_lab_router,
+    prefix="/api/admin/lesson-lab",
+    tags=["Admin Lesson Lab"],
 )
 
 app.include_router(

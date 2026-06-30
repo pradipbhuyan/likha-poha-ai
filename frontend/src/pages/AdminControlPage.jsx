@@ -3,8 +3,9 @@ import {
   LayoutDashboard, UserCircle, Users, Link2, Tag,
   Settings2, Monitor, Zap, BarChart2, LifeBuoy,
   KeyRound, PenLine, ClipboardList, Wrench, GraduationCap,
-  Ticket, Image, UserPlus, Activity, Search,
+  Ticket, Image, UserPlus, Activity, Search, FlaskConical,
 } from "lucide-react";
+import AdminLessonExperienceLabPage from "./AdminLessonExperienceLabPage";
 import "./AdminConsole.css";
 import AdminQuickActions from "../components/AdminQuickActions";
 import AdminRecentActivity from "../components/AdminRecentActivity";
@@ -344,6 +345,7 @@ function AdminControlPage({ user }) {
     { key: "bulk",         label: "Bulk Tools",        Icon: Zap },
     { key: "analytics",    label: "Analytics",         Icon: BarChart2 },
     { key: "support",      label: "Support",           Icon: LifeBuoy },
+    { key: "lessonlab",    label: "Lesson Lab",        Icon: FlaskConical },
   ];
   const VALID_TAB_KEYS = new Set(ADMIN_TABS.map((t) => t.key));
 
@@ -3294,6 +3296,11 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
       </div>)}
 
       {/* ── Support Tab ────────────────────────────────────────────────── */}
+      {activeTab === "lessonlab" && (
+      <div id="admin-tab-panel-lessonlab" role="tabpanel" aria-labelledby="admin-tab-btn-lessonlab" data-testid="tab-panel-lessonlab">
+        <AdminLessonExperienceLabPage user={user} />
+      </div>)}
+
       {activeTab === "support" && (
       <div id="admin-tab-panel-support" role="tabpanel" aria-labelledby="admin-tab-btn-support" data-testid="tab-panel-support">
         <section className="premium-section">
