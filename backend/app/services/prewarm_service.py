@@ -8,6 +8,7 @@ Tracks in-progress jobs in memory (works for single-instance deployments).
 Status is persisted in the lesson_cache / question_bank Supabase tables.
 """
 
+import json
 import logging
 import re
 import threading
@@ -503,7 +504,6 @@ def build_question_bank_for_grade(grade: str) -> None:
                                 raw = re.sub(r"\s*```$", "", raw)
                             start = raw.find("[")
                             end = raw.rfind("]")
-                            import json
                             if start != -1 and end > start:
                                 questions = json.loads(raw[start:end + 1])
                                 if isinstance(questions, list) and questions:
@@ -783,7 +783,6 @@ def build_question_bank_for_chapter(
                     start = raw.find("[")
                     end = raw.rfind("]")
                     if start != -1 and end > start:
-                        import json
                         questions = json.loads(raw[start:end + 1])
                         if isinstance(questions, list) and questions:
                             add_questions_to_bank(

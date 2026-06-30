@@ -319,7 +319,7 @@ def generate_lesson(
     # (they need full access for prewarm, content review, and testing).
     _chapter_name = (data.chapter or "").strip()
     _is_privileged_role = (profile or {}).get("role") in ("admin", "teacher") or is_all_access_test_user(profile or {})
-    if not _is_privileged_role and (_chapter_name.lower().startswith("exemplar") or ": exemplar" in _chapter_name.lower()):
+    if not _is_privileged_role and (_chapter_name.lower().startswith("exemplar:") or "exemplar:" in _chapter_name.lower()):
         from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
         _fauth = authorize_feature(user.id, Feature.EXEMPLAR)
         if not _fauth["allowed"]:

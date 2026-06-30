@@ -23,6 +23,7 @@ import {
   getKnowledgeSources,
   getModelProfiles,
   getPromptTemplates,
+  getProviderCatalog,
   getProviders,
   getQualityMetrics,
   getUsageSummary,
@@ -346,22 +347,63 @@ function ProvidersTab() {
 // ─────────────────────────────────────────────────────────────────────────────
 function ModelRoutingTab() {
   const [profiles, setProfiles] = useState([]);
+  const [catalog, setCatalog] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({});
+  const [customModel, setCustomModel] = useState(false);
+  const [customFbModel, setCustomFbModel] = useState(false);
   const [saving, setSaving] = useState(false);
   const [banner, setBanner] = useState({ msg: null, error: null });
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const d = await getModelProfiles();
-      setProfiles(d?.profiles || []);
+      const [pd, cd] = await Promise.all([getModelProfiles(), getProviderCatalog()]);
+      setProfiles(pd?.profiles || []);
+      setCatalog(cd?.catalog || []);
     } catch { /* */ }
     finally { setLoading(false); }
   }, []);
 
   useEffect(() => { load(); }, [load]);
+
+  function modelsFor(pk) {
+    return catalog.find(c => c.provider_key === pk)?.suggested_models || [];
+  }
+
+  function startEdit(p) {
+    setEditing(p.feature_key);
+    setForm({ ...p });
+    const sugg = modelsFor(p.provider_key);
+    setCustomModel(sugg.length > 0 && !!p.model && !sugg.includes(p.model));
+    const fbSugg = modelsFor(p.fallback_provider);
+    setCustomFbModel(fbSugg.length > 0 && !!p.fallback_model && !fbSugg.includes(p.fallback_model));
+  }
+
+  function onProviderChange(e) {
+    const pk = e.target.value;
+    setForm(f => ({ ...f, provider_key: pk, model: modelsFor(pk)[0] || "" }));
+    setCustomModel(false);
+  }
+
+  function onModelSelect(e) {
+    const v = e.target.value;
+    if (v === "__custom__") { setCustomModel(true); setForm(f => ({ ...f, model: "" })); }
+    else setForm(f => ({ ...f, model: v }));
+  }
+
+  function onFbProviderChange(e) {
+    const pk = e.target.value;
+    setForm(f => ({ ...f, fallback_provider: pk, fallback_model: modelsFor(pk)[0] || "" }));
+    setCustomFbModel(false);
+  }
+
+  function onFbModelSelect(e) {
+    const v = e.target.value;
+    if (v === "__custom__") { setCustomFbModel(true); setForm(f => ({ ...f, fallback_model: "" })); }
+    else setForm(f => ({ ...f, fallback_model: v }));
+  }
 
   async function handleSave(fk) {
     setSaving(true);
@@ -376,6 +418,9 @@ function ModelRoutingTab() {
   }
 
   if (loading) return <p style={{ color: "#94a3b8" }}>Loading…</p>;
+
+  const sel = { ...inp, width: "auto", cursor: "pointer" };
+  const backBtnStyle = { ...btn, padding: "4px 8px", fontSize: ".68rem", background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)" };
 
   return (
     <div data-testid="tab-model-routing">
@@ -393,13 +438,81 @@ function ModelRoutingTab() {
             <tr key={p.feature_key} style={{ borderBottom: "1px solid var(--border,#f1f5f9)" }}>
               {editing === p.feature_key ? (
                 <>
-                  <td style={{ padding: "6px 8px" }}><strong>{p.display_name}</strong></td>
-                  <td><input value={form.provider_key || ""} onChange={e => setForm(f => ({ ...f, provider_key: e.target.value }))} style={{ ...inp, width: 100 }} /></td>
-                  <td><input value={form.model || ""} onChange={e => setForm(f => ({ ...f, model: e.target.value }))} style={{ ...inp, width: 140 }} /></td>
-                  <td><input type="number" step="0.1" value={form.temperature ?? 0.4} onChange={e => setForm(f => ({ ...f, temperature: parseFloat(e.target.value) }))} style={{ ...inp, width: 60 }} /></td>
-                  <td><input type="number" value={form.max_tokens ?? 4096} onChange={e => setForm(f => ({ ...f, max_tokens: parseInt(e.target.value) }))} style={{ ...inp, width: 80 }} /></td>
-                  <td><input placeholder="fallback provider" value={form.fallback_provider || ""} onChange={e => setForm(f => ({ ...f, fallback_provider: e.target.value }))} style={{ ...inp, width: 110 }} /></td>
-                  <td>
+                  <td style={{ padding: "6px 8px", whiteSpace: "nowrap" }}>
+                    <strong style={{ fontSize: ".78rem" }}>{p.display_name}</strong>
+                  </td>
+
+                  {/* Provider dropdown */}
+                  <td style={{ padding: "4px 6px" }}>
+                    <select value={form.provider_key || ""} onChange={onProviderChange} style={sel}>
+                      {catalog.map(c => (
+                        <option key={c.provider_key} value={c.provider_key}>{c.display_name}</option>
+                      ))}
+                    </select>
+                  </td>
+
+                  {/* Model dropdown — cascades from selected provider */}
+                  <td style={{ padding: "4px 6px" }}>
+                    {customModel ? (
+                      <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                        <input value={form.model || ""} onChange={e => setForm(f => ({ ...f, model: e.target.value }))}
+                          placeholder="model name" style={{ ...inp, width: 130 }} autoFocus />
+                        <button style={backBtnStyle} title="Back to list"
+                          onClick={() => { setCustomModel(false); setForm(f => ({ ...f, model: modelsFor(form.provider_key)[0] || "" })); }}>↩</button>
+                      </div>
+                    ) : (
+                      <select value={form.model || ""} onChange={onModelSelect} style={sel}>
+                        {form.model && !modelsFor(form.provider_key).includes(form.model) && (
+                          <option value={form.model}>{form.model}</option>
+                        )}
+                        {modelsFor(form.provider_key).map(m => <option key={m} value={m}>{m}</option>)}
+                        <option value="__custom__">✎ Enter custom…</option>
+                      </select>
+                    )}
+                  </td>
+
+                  <td style={{ padding: "4px 6px" }}>
+                    <input type="number" step="0.1" min="0" max="2" value={form.temperature ?? 0.4}
+                      onChange={e => setForm(f => ({ ...f, temperature: parseFloat(e.target.value) }))}
+                      style={{ ...inp, width: 60 }} />
+                  </td>
+                  <td style={{ padding: "4px 6px" }}>
+                    <input type="number" min="128" max="32768" value={form.max_tokens ?? 4096}
+                      onChange={e => setForm(f => ({ ...f, max_tokens: parseInt(e.target.value) }))}
+                      style={{ ...inp, width: 80 }} />
+                  </td>
+
+                  {/* Fallback: provider + model dropdowns stacked */}
+                  <td style={{ padding: "4px 6px", minWidth: 150 }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                      <select value={form.fallback_provider || ""} onChange={onFbProviderChange} style={{ ...sel, width: "100%" }}>
+                        <option value="">— none —</option>
+                        {catalog.map(c => <option key={c.provider_key} value={c.provider_key}>{c.display_name}</option>)}
+                      </select>
+                      {form.fallback_provider && (
+                        customFbModel ? (
+                          <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                            <input value={form.fallback_model || ""} onChange={e => setForm(f => ({ ...f, fallback_model: e.target.value }))}
+                              placeholder="model" style={{ ...inp, width: 110 }} />
+                            <button style={backBtnStyle} title="Back to list"
+                              onClick={() => { setCustomFbModel(false); setForm(f => ({ ...f, fallback_model: modelsFor(form.fallback_provider)[0] || "" })); }}>↩</button>
+                          </div>
+                        ) : (
+                          <select value={form.fallback_model || ""} onChange={onFbModelSelect} style={{ ...sel, width: "100%" }}>
+                            {form.fallback_model && !modelsFor(form.fallback_provider).includes(form.fallback_model) && (
+                              <option value={form.fallback_model}>{form.fallback_model}</option>
+                            )}
+                            {modelsFor(form.fallback_provider).map(m => (
+                              <option key={m} value={m}>{m}</option>
+                            ))}
+                            <option value="__custom__">✎ Enter custom…</option>
+                          </select>
+                        )
+                      )}
+                    </div>
+                  </td>
+
+                  <td style={{ padding: "4px 6px" }}>
                     <button onClick={() => handleSave(p.feature_key)} disabled={saving}
                       style={{ ...btn, background: "#22c55e", color: "#fff", marginRight: 4 }}>Save</button>
                     <button onClick={() => setEditing(null)}
@@ -409,15 +522,21 @@ function ModelRoutingTab() {
               ) : (
                 <>
                   <td style={{ padding: "6px 8px" }}>{p.display_name}</td>
-                  <td style={{ padding: "6px 8px" }}><code style={{ fontSize: ".75rem" }}>{p.provider_key}</code></td>
-                  <td style={{ padding: "6px 8px" }}><code style={{ fontSize: ".75rem" }}>{p.model}</code></td>
+                  <td style={{ padding: "6px 8px" }}>
+                    <code style={{ fontSize: ".75rem" }}>{p.provider_key}</code>
+                  </td>
+                  <td style={{ padding: "6px 8px" }}>
+                    <code style={{ fontSize: ".75rem" }}>{p.model}</code>
+                  </td>
                   <td style={{ padding: "6px 8px" }}>{p.temperature}</td>
                   <td style={{ padding: "6px 8px" }}>{p.max_tokens}</td>
                   <td style={{ padding: "6px 8px", color: "#64748b", fontSize: ".72rem" }}>
-                    {p.fallback_provider ? `${p.fallback_provider}/${p.fallback_model || ""}` : "—"}
+                    {p.fallback_provider
+                      ? `${p.fallback_provider} / ${p.fallback_model || "—"}`
+                      : "—"}
                   </td>
                   <td style={{ padding: "6px 8px" }}>
-                    <button onClick={() => { setEditing(p.feature_key); setForm({ ...p }); }}
+                    <button onClick={() => startEdit(p)}
                       style={{ ...btn, background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e5e7eb)", fontSize: ".72rem" }}>
                       Edit
                     </button>

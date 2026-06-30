@@ -227,6 +227,21 @@ def _get_provider_key_value(settings: dict, provider_key: str) -> Optional[str]:
 
 # ── Provider listing ──────────────────────────────────────────────────────────
 
+def get_provider_catalog() -> list[dict]:
+    """
+    Return a lightweight provider catalogue: key, display name, suggested models.
+    Used by the Model Routing edit UI to power provider/model dropdowns.
+    """
+    return [
+        {
+            "provider_key": pk,
+            "display_name": meta["display_name"],
+            "suggested_models": meta.get("suggested_models", []),
+        }
+        for pk, meta in PROVIDER_REGISTRY.items()
+    ]
+
+
 def get_providers() -> list[dict]:
     """
     Return all providers with their current configuration.

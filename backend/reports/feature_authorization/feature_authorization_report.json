@@ -1,0 +1,435 @@
+{
+  "audited_at": "2026-06-28T16:59:30.995462+00:00",
+  "summary": {
+    "total": 42,
+    "passed": 42,
+    "failed": 0,
+    "critical": 0,
+    "high": 0,
+    "pass_rate": 100.0,
+    "overall": "PASS"
+  },
+  "checks": [
+    {
+      "feature": "LESSONS",
+      "plan": "FREE_TIER",
+      "scenario": "LESSONS for FREE_TIER",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: LESSONS"
+    },
+    {
+      "feature": "LESSONS",
+      "plan": "PREMIUM",
+      "scenario": "LESSONS for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: LESSONS"
+    },
+    {
+      "feature": "LESSONS",
+      "plan": "ADMIN_GRANT",
+      "scenario": "LESSONS for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: LESSONS"
+    },
+    {
+      "feature": "LESSONS",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "LESSONS for EXPIRED_PREMIUM",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: LESSONS"
+    },
+    {
+      "feature": "LESSON_DOWNLOAD",
+      "plan": "FREE_TIER",
+      "scenario": "LESSON_DOWNLOAD for FREE_TIER",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: LESSON_DOWNLOAD"
+    },
+    {
+      "feature": "LESSON_DOWNLOAD",
+      "plan": "PREMIUM",
+      "scenario": "LESSON_DOWNLOAD for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: LESSON_DOWNLOAD"
+    },
+    {
+      "feature": "LESSON_DOWNLOAD",
+      "plan": "ADMIN_GRANT",
+      "scenario": "LESSON_DOWNLOAD for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: LESSON_DOWNLOAD"
+    },
+    {
+      "feature": "LESSON_DOWNLOAD",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "LESSON_DOWNLOAD for EXPIRED_PREMIUM",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: LESSON_DOWNLOAD"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "FREE_TIER",
+      "scenario": "EXEMPLAR for FREE_TIER",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: EXEMPLAR"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "PREMIUM",
+      "scenario": "EXEMPLAR for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: EXEMPLAR"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "ADMIN_GRANT",
+      "scenario": "EXEMPLAR for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: EXEMPLAR"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "EXEMPLAR for EXPIRED_PREMIUM",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: EXEMPLAR"
+    },
+    {
+      "feature": "EXEMPLAR_RESEARCH",
+      "plan": "FREE_TIER",
+      "scenario": "EXEMPLAR_RESEARCH for FREE_TIER",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: EXEMPLAR_RESEARCH"
+    },
+    {
+      "feature": "EXEMPLAR_RESEARCH",
+      "plan": "PREMIUM",
+      "scenario": "EXEMPLAR_RESEARCH for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: EXEMPLAR_RESEARCH"
+    },
+    {
+      "feature": "EXEMPLAR_RESEARCH",
+      "plan": "ADMIN_GRANT",
+      "scenario": "EXEMPLAR_RESEARCH for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: EXEMPLAR_RESEARCH"
+    },
+    {
+      "feature": "EXEMPLAR_RESEARCH",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "EXEMPLAR_RESEARCH for EXPIRED_PREMIUM",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: EXEMPLAR_RESEARCH"
+    },
+    {
+      "feature": "MOCK_TEST",
+      "plan": "FREE_TIER",
+      "scenario": "MOCK_TEST for FREE_TIER",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: MOCK_TEST"
+    },
+    {
+      "feature": "MOCK_TEST",
+      "plan": "PREMIUM",
+      "scenario": "MOCK_TEST for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: MOCK_TEST"
+    },
+    {
+      "feature": "MOCK_TEST",
+      "plan": "ADMIN_GRANT",
+      "scenario": "MOCK_TEST for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: MOCK_TEST"
+    },
+    {
+      "feature": "MOCK_TEST",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "MOCK_TEST for EXPIRED_PREMIUM",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: MOCK_TEST"
+    },
+    {
+      "feature": "MOCK_TEST_UNLIMITED",
+      "plan": "FREE_TIER",
+      "scenario": "MOCK_TEST_UNLIMITED for FREE_TIER",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: FREE_TIER, Feature: MOCK_TEST_UNLIMITED"
+    },
+    {
+      "feature": "MOCK_TEST_UNLIMITED",
+      "plan": "PREMIUM",
+      "scenario": "MOCK_TEST_UNLIMITED for PREMIUM",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: PREMIUM, Feature: MOCK_TEST_UNLIMITED"
+    },
+    {
+      "feature": "MOCK_TEST_UNLIMITED",
+      "plan": "ADMIN_GRANT",
+      "scenario": "MOCK_TEST_UNLIMITED for ADMIN_GRANT",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: ADMIN_GRANT, Feature: MOCK_TEST_UNLIMITED"
+    },
+    {
+      "feature": "MOCK_TEST_UNLIMITED",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "MOCK_TEST_UNLIMITED for EXPIRED_PREMIUM",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Plan: EXPIRED_PREMIUM, Feature: MOCK_TEST_UNLIMITED"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "FREE_TIER",
+      "scenario": "New Free user cannot access Exemplar",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Critical regression: Free user must never see Exemplar"
+    },
+    {
+      "feature": "EXEMPLAR_RESEARCH",
+      "plan": "FREE_TIER",
+      "scenario": "Free user cannot access Exemplar Research",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Free Tier must be denied Exemplar Research"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "FREE_TIER",
+      "scenario": "Free user cannot expand Formula Sheet premium details",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Formula premium expansion must be paid-only"
+    },
+    {
+      "feature": "LESSON_DOWNLOAD",
+      "plan": "FREE_TIER",
+      "scenario": "Free user cannot download lessons",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Lesson download is paid-only"
+    },
+    {
+      "feature": "MOCK_TEST_UNLIMITED",
+      "plan": "FREE_TIER",
+      "scenario": "Free user cannot have unlimited mock tests",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "5/day limit applies for Free Tier"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "NANO",
+      "scenario": "NANO can access Exemplar",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan NANO must get full Exemplar access"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "NANO",
+      "scenario": "NANO can expand Formula Sheet",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan NANO must get full Formula Sheet"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "PREMIUM",
+      "scenario": "PREMIUM can access Exemplar",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan PREMIUM must get full Exemplar access"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "PREMIUM",
+      "scenario": "PREMIUM can expand Formula Sheet",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan PREMIUM must get full Formula Sheet"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "FAMILY_PREMIUM",
+      "scenario": "FAMILY_PREMIUM can access Exemplar",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan FAMILY_PREMIUM must get full Exemplar access"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "FAMILY_PREMIUM",
+      "scenario": "FAMILY_PREMIUM can expand Formula Sheet",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan FAMILY_PREMIUM must get full Formula Sheet"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "ADMIN_GRANT",
+      "scenario": "ADMIN_GRANT can access Exemplar",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan ADMIN_GRANT must get full Exemplar access"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "ADMIN_GRANT",
+      "scenario": "ADMIN_GRANT can expand Formula Sheet",
+      "expected": "full",
+      "actual": "full",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Paid plan ADMIN_GRANT must get full Formula Sheet"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "EXPIRED_PREMIUM",
+      "scenario": "Expired Premium loses Exemplar access",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Expired plan must fall back to FREE_TIER restrictions"
+    },
+    {
+      "feature": "FORMULA_SHEET_PREMIUM",
+      "plan": "EXPIRED_NANO",
+      "scenario": "Expired Nano loses Formula Sheet premium",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Expired Nano must fall back to FREE_TIER"
+    },
+    {
+      "feature": "MOCK_TEST",
+      "plan": "FREE_TIER",
+      "scenario": "Free user can take mock tests (limited)",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Mock tests allowed but limited to 5/day for Free Tier"
+    },
+    {
+      "feature": "ASK_DOUBTS",
+      "plan": "FREE_TIER",
+      "scenario": "Free user can ask doubts (limited)",
+      "expected": "limited",
+      "actual": "limited",
+      "passed": true,
+      "severity": "pass",
+      "detail": "Ask Doubts allowed but limited for Free Tier"
+    },
+    {
+      "feature": "EXEMPLAR",
+      "plan": "FREE_TIER_WITH_PARENT_ID",
+      "scenario": "Child with parentId still denied Exemplar (parentId alone does not grant access)",
+      "expected": "denied",
+      "actual": "denied",
+      "passed": true,
+      "severity": "pass",
+      "detail": "parent_id alone must never grant paid access"
+    }
+  ],
+  "failed_checks": []
+}

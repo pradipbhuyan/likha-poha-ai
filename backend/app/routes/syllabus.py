@@ -163,6 +163,11 @@ def create_part_display_label(chapter, part_number, use_part_prefix):
     if re.match(r"^part\s*\d+\s*[-:]", normalized):
         return chapter
 
+    # Exemplar chapters already have "Exemplar:" as a distinguishing prefix —
+    # adding "Part N - " would break the exemplar lock checks everywhere.
+    if normalized.startswith("exemplar:") or "exemplar:" in normalized:
+        return chapter
+
     front_matter_match = re.match(
         r"^front matter\s*(?:\((?:part\s*)?(?:i{1,3}|iv|v|\d+)\))?$",
         normalized,

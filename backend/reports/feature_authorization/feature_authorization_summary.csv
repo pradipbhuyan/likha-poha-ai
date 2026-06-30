@@ -1,0 +1,43 @@
+feature,plan,scenario,expected,actual,passed,severity,detail
+LESSONS,FREE_TIER,LESSONS for FREE_TIER,limited,limited,True,pass,"Plan: FREE_TIER, Feature: LESSONS"
+LESSONS,PREMIUM,LESSONS for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: LESSONS"
+LESSONS,ADMIN_GRANT,LESSONS for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: LESSONS"
+LESSONS,EXPIRED_PREMIUM,LESSONS for EXPIRED_PREMIUM,limited,limited,True,pass,"Plan: EXPIRED_PREMIUM, Feature: LESSONS"
+LESSON_DOWNLOAD,FREE_TIER,LESSON_DOWNLOAD for FREE_TIER,denied,denied,True,pass,"Plan: FREE_TIER, Feature: LESSON_DOWNLOAD"
+LESSON_DOWNLOAD,PREMIUM,LESSON_DOWNLOAD for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: LESSON_DOWNLOAD"
+LESSON_DOWNLOAD,ADMIN_GRANT,LESSON_DOWNLOAD for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: LESSON_DOWNLOAD"
+LESSON_DOWNLOAD,EXPIRED_PREMIUM,LESSON_DOWNLOAD for EXPIRED_PREMIUM,denied,denied,True,pass,"Plan: EXPIRED_PREMIUM, Feature: LESSON_DOWNLOAD"
+EXEMPLAR,FREE_TIER,EXEMPLAR for FREE_TIER,denied,denied,True,pass,"Plan: FREE_TIER, Feature: EXEMPLAR"
+EXEMPLAR,PREMIUM,EXEMPLAR for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: EXEMPLAR"
+EXEMPLAR,ADMIN_GRANT,EXEMPLAR for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: EXEMPLAR"
+EXEMPLAR,EXPIRED_PREMIUM,EXEMPLAR for EXPIRED_PREMIUM,denied,denied,True,pass,"Plan: EXPIRED_PREMIUM, Feature: EXEMPLAR"
+EXEMPLAR_RESEARCH,FREE_TIER,EXEMPLAR_RESEARCH for FREE_TIER,denied,denied,True,pass,"Plan: FREE_TIER, Feature: EXEMPLAR_RESEARCH"
+EXEMPLAR_RESEARCH,PREMIUM,EXEMPLAR_RESEARCH for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: EXEMPLAR_RESEARCH"
+EXEMPLAR_RESEARCH,ADMIN_GRANT,EXEMPLAR_RESEARCH for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: EXEMPLAR_RESEARCH"
+EXEMPLAR_RESEARCH,EXPIRED_PREMIUM,EXEMPLAR_RESEARCH for EXPIRED_PREMIUM,denied,denied,True,pass,"Plan: EXPIRED_PREMIUM, Feature: EXEMPLAR_RESEARCH"
+MOCK_TEST,FREE_TIER,MOCK_TEST for FREE_TIER,limited,limited,True,pass,"Plan: FREE_TIER, Feature: MOCK_TEST"
+MOCK_TEST,PREMIUM,MOCK_TEST for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: MOCK_TEST"
+MOCK_TEST,ADMIN_GRANT,MOCK_TEST for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: MOCK_TEST"
+MOCK_TEST,EXPIRED_PREMIUM,MOCK_TEST for EXPIRED_PREMIUM,limited,limited,True,pass,"Plan: EXPIRED_PREMIUM, Feature: MOCK_TEST"
+MOCK_TEST_UNLIMITED,FREE_TIER,MOCK_TEST_UNLIMITED for FREE_TIER,denied,denied,True,pass,"Plan: FREE_TIER, Feature: MOCK_TEST_UNLIMITED"
+MOCK_TEST_UNLIMITED,PREMIUM,MOCK_TEST_UNLIMITED for PREMIUM,full,full,True,pass,"Plan: PREMIUM, Feature: MOCK_TEST_UNLIMITED"
+MOCK_TEST_UNLIMITED,ADMIN_GRANT,MOCK_TEST_UNLIMITED for ADMIN_GRANT,full,full,True,pass,"Plan: ADMIN_GRANT, Feature: MOCK_TEST_UNLIMITED"
+MOCK_TEST_UNLIMITED,EXPIRED_PREMIUM,MOCK_TEST_UNLIMITED for EXPIRED_PREMIUM,denied,denied,True,pass,"Plan: EXPIRED_PREMIUM, Feature: MOCK_TEST_UNLIMITED"
+EXEMPLAR,FREE_TIER,New Free user cannot access Exemplar,denied,denied,True,pass,Critical regression: Free user must never see Exemplar
+EXEMPLAR_RESEARCH,FREE_TIER,Free user cannot access Exemplar Research,denied,denied,True,pass,Free Tier must be denied Exemplar Research
+FORMULA_SHEET_PREMIUM,FREE_TIER,Free user cannot expand Formula Sheet premium details,denied,denied,True,pass,Formula premium expansion must be paid-only
+LESSON_DOWNLOAD,FREE_TIER,Free user cannot download lessons,denied,denied,True,pass,Lesson download is paid-only
+MOCK_TEST_UNLIMITED,FREE_TIER,Free user cannot have unlimited mock tests,denied,denied,True,pass,5/day limit applies for Free Tier
+EXEMPLAR,NANO,NANO can access Exemplar,full,full,True,pass,Paid plan NANO must get full Exemplar access
+FORMULA_SHEET_PREMIUM,NANO,NANO can expand Formula Sheet,full,full,True,pass,Paid plan NANO must get full Formula Sheet
+EXEMPLAR,PREMIUM,PREMIUM can access Exemplar,full,full,True,pass,Paid plan PREMIUM must get full Exemplar access
+FORMULA_SHEET_PREMIUM,PREMIUM,PREMIUM can expand Formula Sheet,full,full,True,pass,Paid plan PREMIUM must get full Formula Sheet
+EXEMPLAR,FAMILY_PREMIUM,FAMILY_PREMIUM can access Exemplar,full,full,True,pass,Paid plan FAMILY_PREMIUM must get full Exemplar access
+FORMULA_SHEET_PREMIUM,FAMILY_PREMIUM,FAMILY_PREMIUM can expand Formula Sheet,full,full,True,pass,Paid plan FAMILY_PREMIUM must get full Formula Sheet
+EXEMPLAR,ADMIN_GRANT,ADMIN_GRANT can access Exemplar,full,full,True,pass,Paid plan ADMIN_GRANT must get full Exemplar access
+FORMULA_SHEET_PREMIUM,ADMIN_GRANT,ADMIN_GRANT can expand Formula Sheet,full,full,True,pass,Paid plan ADMIN_GRANT must get full Formula Sheet
+EXEMPLAR,EXPIRED_PREMIUM,Expired Premium loses Exemplar access,denied,denied,True,pass,Expired plan must fall back to FREE_TIER restrictions
+FORMULA_SHEET_PREMIUM,EXPIRED_NANO,Expired Nano loses Formula Sheet premium,denied,denied,True,pass,Expired Nano must fall back to FREE_TIER
+MOCK_TEST,FREE_TIER,Free user can take mock tests (limited),limited,limited,True,pass,Mock tests allowed but limited to 5/day for Free Tier
+ASK_DOUBTS,FREE_TIER,Free user can ask doubts (limited),limited,limited,True,pass,Ask Doubts allowed but limited for Free Tier
+EXEMPLAR,FREE_TIER_WITH_PARENT_ID,Child with parentId still denied Exemplar (parentId alone does not grant access),denied,denied,True,pass,parent_id alone must never grant paid access

@@ -1221,7 +1221,7 @@ function LessonsPage({ user, setActivePage }) {
   }
 
   // ── Exemplar chapter gate ──────────────────────────────────────────────────
-  const isExemplarChapter = chapter?.startsWith("Exemplar:");
+  const isExemplarChapter = chapter?.includes("Exemplar:");
   // SECURITY FIX: parentId alone does NOT grant paid access.
   // A child added by a free-plan parent has parentId but no accessCbse.
   // Use hasPaidAccess() which checks accessCbse + subscriptionExpiresAt correctly.
@@ -1322,7 +1322,7 @@ function LessonsPage({ user, setActivePage }) {
                   }}
                 >
                   {chapters.map((c) => {
-                    const isLockedOption = c.startsWith("Exemplar:") && !hasPaidAccessForLessons;
+                    const isLockedOption = c.includes("Exemplar:") && !hasPaidAccessForLessons;
                     return (
                       <option key={c} value={c}>
                         {isLockedOption ? `🔒 ${c}` : c}

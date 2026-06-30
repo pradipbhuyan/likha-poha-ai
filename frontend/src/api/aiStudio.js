@@ -40,6 +40,11 @@ export async function testProviderConnection(providerKey, opts = {}) {
   });
 }
 
+/** Get lightweight provider catalogue (key, display name, suggested models) for dropdowns */
+export async function getProviderCatalog() {
+  return authFetch(`${BASE}/providers/catalog`);
+}
+
 /** Get model list for a provider (only works for ollama_local) */
 export async function getProviderModels(providerKey, baseUrl = null) {
   const qs = baseUrl ? `?base_url=${encodeURIComponent(baseUrl)}` : "";

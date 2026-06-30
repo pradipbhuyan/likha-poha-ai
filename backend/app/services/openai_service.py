@@ -96,6 +96,7 @@ _settings_cache: dict = {
     "api_key": None,
     "api_enabled": True,
     "provider": "openai",
+    "fallback_provider": "",
     "venice_api_key": None,
     "venice_model": "llama-3.3-70b",
     "groq_api_key": None,
@@ -223,10 +224,12 @@ def get_effective_settings() -> dict:
             _settings_cache["sambanova_model"] = db.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
             _settings_cache["ollama_cloud_api_key"] = db.get("ollama_cloud_api_key") or ""
             _settings_cache["ollama_cloud_model"] = db.get("ollama_cloud_model") or "gemma3:4b"
+            _settings_cache["fallback_provider"] = db.get("fallback_provider") or ""
         else:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
             _settings_cache["provider"] = "openai"
+            _settings_cache["fallback_provider"] = ""
             _settings_cache["venice_api_key"] = settings.VENICE_API_KEY
             _settings_cache["venice_model"] = "llama-3.3-70b"
             _settings_cache["groq_api_key"] = settings.GROQ_API_KEY
@@ -517,6 +520,82 @@ def estimate_cost(
 
 
 # ---------------------------------------------------------------------------
+# Fallback provider helper
+# ---------------------------------------------------------------------------
+
+def _attempt_fallback_call(
+    fallback_provider: str,
+    current: dict,
+    system_prompt: str,
+    user_prompt: str,
+    feature: str,
+    username: str,
+    model: str,
+) -> str:
+    """
+    Try calling the configured fallback provider.
+    Called automatically by ask_llm() when the primary provider fails.
+    Raises whatever exception the fallback also raises.
+    """
+    _log.warning(
+        "llm.fallback_attempt",
+        fallback_provider=fallback_provider,
+        feature=feature,
+        username=username,
+    )
+
+    # Determine fallback model from settings
+    if fallback_provider == "groq":
+        fb_model = current.get("groq_model") or DEFAULT_GROQ_MODEL
+    elif fallback_provider == "gemini":
+        fb_model = current.get("gemini_model") or DEFAULT_GEMINI_MODEL
+    elif fallback_provider == "cerebras":
+        fb_model = current.get("cerebras_model") or DEFAULT_CEREBRAS_MODEL
+    elif fallback_provider == "venice":
+        fb_model = current.get("venice_model") or "llama-3.3-70b"
+    elif fallback_provider == "sambanova":
+        fb_model = current.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+    elif fallback_provider == "ollama_cloud":
+        fb_model = current.get("ollama_cloud_model") or "gemma3:4b"
+        api_key = current.get("ollama_cloud_api_key", "")
+        base_url = current.get("ollama_cloud_base_url", "https://api.ollama.com")
+        text = _call_ollama_cloud(system_prompt, user_prompt, fb_model, api_key, base_url)
+        _log.info("llm.fallback_success", fallback_provider=fallback_provider, model=fb_model, feature=feature)
+        return text
+    elif fallback_provider == "ollama_local":
+        fb_model = current.get("ollama_local_model") or "llama3.2"
+    else:
+        fb_model = model  # openai or unknown — use the passed model
+
+    # OpenAI-compatible fallback clients
+    _fb_client_map = {
+        "groq":       get_groq_client,
+        "gemini":     get_gemini_client,
+        "cerebras":   get_cerebras_client,
+        "venice":     get_venice_client,
+        "sambanova":  get_sambanova_client,
+    }
+    if fallback_provider in _fb_client_map:
+        fb_client = _fb_client_map[fallback_provider]()
+    elif fallback_provider == "ollama_local":
+        base_url = current.get("ollama_local_base_url", "http://localhost:11434/v1")
+        fb_client = OpenAI(api_key="ollama", base_url=base_url, timeout=90.0)
+    else:
+        fb_client = get_openai_client()
+
+    fb_response = fb_client.chat.completions.create(
+        model=fb_model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.4,
+    )
+    _log.info("llm.fallback_success", fallback_provider=fallback_provider, model=fb_model, feature=feature)
+    return fb_response.choices[0].message.content
+
+
+# ---------------------------------------------------------------------------
 # Core LLM helper
 # ---------------------------------------------------------------------------
 
@@ -601,6 +680,21 @@ def ask_llm(
                 duration_ms=duration_ms,
                 error=str(exc),
             )
+            # ── Try fallback provider ─────────────────────────────────────
+            fallback_provider = current.get("fallback_provider", "")
+            if fallback_provider and fallback_provider != "ollama_cloud":
+                try:
+                    return _attempt_fallback_call(
+                        fallback_provider, current, system_prompt, user_prompt,
+                        feature, username, model,
+                    )
+                except Exception as fb_exc:
+                    _log.error(
+                        "llm.fallback_failed",
+                        fallback_provider=fallback_provider,
+                        feature=feature,
+                        error=str(fb_exc)[:200],
+                    )
             raise RuntimeError(f"Ollama Cloud call failed: {str(exc)[:300]}") from exc
 
     # Use OpenAI Chat Completions API format — compatible with OpenAI AND Venice.
@@ -669,6 +763,21 @@ def ask_llm(
             error=str(exc),
             exc_info=True,
         )
+        # ── Try fallback provider ─────────────────────────────────────────
+        fallback_provider = current.get("fallback_provider", "")
+        if fallback_provider and fallback_provider != provider:
+            try:
+                return _attempt_fallback_call(
+                    fallback_provider, current, system_prompt, user_prompt,
+                    feature, username, model,
+                )
+            except Exception as fb_exc:
+                _log.error(
+                    "llm.fallback_failed",
+                    fallback_provider=fallback_provider,
+                    feature=feature,
+                    error=str(fb_exc)[:200],
+                )
         raise exc
 
     duration_ms = round((time.perf_counter() - t_start) * 1000)

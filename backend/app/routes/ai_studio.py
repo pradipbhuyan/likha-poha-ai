@@ -39,6 +39,7 @@ from app.services.ai_studio_service import (
     get_knowledge_sources,
     get_model_profiles,
     get_prompt_templates,
+    get_provider_catalog,
     get_quality_metrics,
     get_template_versions,
     get_usage_summary,
@@ -99,6 +100,16 @@ class ActivateVersionRequest(BaseModel):
 
 
 # ── Providers ─────────────────────────────────────────────────────────────────
+
+@router.get("/providers/catalog")
+def list_provider_catalog(admin=Depends(require_admin)):
+    """
+    Return a lightweight provider catalogue (key, display name, suggested models).
+    Used by the Model Routing edit UI to populate provider/model dropdowns.
+    No API keys or sensitive data returned.
+    """
+    return {"success": True, "catalog": get_provider_catalog()}
+
 
 @router.get("/providers")
 def list_providers(admin=Depends(require_admin)):

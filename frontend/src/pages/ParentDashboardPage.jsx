@@ -28,7 +28,7 @@ function Skel(){
 }
 
 // ── Add Child Modal ───────────────────────────────────────────────────────────
-function AddChildModal({onClose, onAdded, canAdd, planName}){
+function AddChildModal({onClose, onAdded, canAdd, planName, childCount}){
   var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:""});
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
@@ -102,8 +102,9 @@ function AddChildModal({onClose, onAdded, canAdd, planName}){
           <h4 style={{margin:0}}>➕ Add Child</h4>
           <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
         </div>
-        {/* If limit reached: show upgrade message only, no form */}
-        {!canAdd?(
+        {/* If limit reached AND parent already has children: show upgrade message only, no form.
+            Never block the first child addition — always show the form for new parents. */}
+        {!canAdd && childCount > 0 ?(
           <div>
             <div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"14px 16px",marginBottom:12,textAlign:"center"}}>
               <div style={{fontSize:".9rem",fontWeight:700,color:"#dc2626",marginBottom:4}}>Child limit reached for {planName}</div>
@@ -199,6 +200,7 @@ export default function ParentDashboardPage({ user, setActivePage }){
       {showAdd&&(
         <AddChildModal
           canAdd={canAdd}
+          childCount={children.length}
           planName={parentPlan.plan_name||"your plan"}
           onClose={function(){setShowAdd(false);}}
           onAdded={function(){loadSummary();flash("✅ Child added — on Free Tier with limited access.");}}
