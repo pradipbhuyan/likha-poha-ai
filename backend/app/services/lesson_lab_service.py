@@ -289,9 +289,9 @@ def get_lesson_detail(
                         get_cached_lesson,
                         make_lesson_cache_key,
                     )
-                    from app.services.prewarm_service import get_steps_for_grade  # noqa: PLC0415
+                    from app.services.prewarm_service import get_lesson_steps_for_grade  # noqa: PLC0415
 
-                    step_titles = get_steps_for_grade(g)
+                    step_titles = get_lesson_steps_for_grade(g)
                     board = "CBSE"
                     mode = "CBSE"
 
