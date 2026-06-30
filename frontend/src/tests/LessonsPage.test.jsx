@@ -3,7 +3,6 @@ import { vi } from "vitest";
 
 import LessonsPage from "../pages/LessonsPage";
 import { getDoubtHistory } from "../api/doubt";
-import { getLessonTextbookVisuals } from "../api/lesson";
 
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
