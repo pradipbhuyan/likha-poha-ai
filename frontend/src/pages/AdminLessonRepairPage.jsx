@@ -16,6 +16,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   approveRepairTask,
+  bulkApply,
+  bulkDryRun,
   cancelRepairJob,
   getLatestRepairStatus,
   getRepairJobStatus,
@@ -23,10 +25,13 @@ import {
   getRepairReportUrl,
   getRepairTask,
   getRepairTasks,
+  postStepAnalysis,
   publishRepairTask,
   rerunRepairTask,
   runRepairJob,
 } from "../api/lessonRepair";
+import StepSequencePanel from "../components/StepSequencePanel";
+import BulkApplyPanel from "../components/BulkApplyPanel";
 
 // ── Status colours ────────────────────────────────────────────────────────────
 const STATUS_COLORS = {
@@ -312,6 +317,7 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
   const [runError, setRunError] = useState(null);
   const [runLoading, setRunLoading] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [selectedTaskIds, setSelectedTaskIds] = useState([]);
 
   // LLM info state
   const [llmInfo, setLlmInfo] = useState(null);
@@ -848,6 +854,146 @@ export default function AdminLessonRepairPage({ user }) { // eslint-disable-line
           onPublish={() => currentJob?.id && loadTasks(currentJob.id)}
           onRerun={() => currentJob?.id && loadTasks(currentJob.id)}
         />
+      )}
+
+      {/* ── Step Sequence Audit Panel ─────────────────────────────────── */}
+      <StepSequenceSectionWrapper
+        tasks={tasks}
+        postStepAnalysisFn={postStepAnalysis}
+      />
+
+      {/* ── Bulk Apply Panel ──────────────────────────────────────────── */}
+        <BulkApplyPanel
+        selectedTaskIds={selectedTaskIds}
+        jobGrade={currentJob?.grade}
+        jobSubject={currentJob?.subject}
+        jobChapter={currentJob?.chapter}
+        bulkDryRunFn={bulkDryRun}
+        bulkApplyFn={bulkApply}
+        onApplied={() => currentJob?.id && loadTasks(currentJob.id)}
+      />
+    </div>
+  );
+}
+
+// ── Step Sequence section (self-contained, doesn't depend on parent state) ───
+function StepSequenceSectionWrapper({ tasks, postStepAnalysisFn }) {
+  const [analysis, setAnalysis] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [selectedStep, setSelectedStep] = useState(null);
+  const [selectedStepIndex, setSelectedStepIndex] = useState(null);
+
+  // Group tasks by lesson (grade+subject+chapter) to offer step-sequence audit
+  const lessons = {};
+  (tasks || []).forEach(t => {
+    const key = `${t.grade}|${t.subject}|${t.chapter}`;
+    if (!lessons[key]) lessons[key] = { grade: t.grade, subject: t.subject, chapter: t.chapter, tasks: [] };
+    lessons[key].tasks.push(t);
+  });
+  const lessonKeys = Object.keys(lessons);
+
+  const [selectedLesson, setSelectedLesson] = useState("");
+
+  async function runAnalysis() {
+    const lesson = lessons[selectedLesson];
+    if (!lesson) return;
+    setLoading(true);
+    setError("");
+    setAnalysis(null);
+    setSelectedStep(null);
+    try {
+      // Build step list from task original_content_json
+      const steps = lesson.tasks.map((t, i) => ({
+        step_number: t.original_content_json?.step_number || (i + 1),
+        step_title:  t.step_title || `Step ${i + 1}`,
+        content:     t.original_content_json?.step_content || "",
+      }));
+      const result = await postStepAnalysisFn({
+        grade: lesson.grade, subject: lesson.subject, chapter: lesson.chapter,
+        lesson_id: "", steps,
+      });
+      setAnalysis(result.analysis || null);
+    } catch (err) {
+      setError(err.message || "Step analysis failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (lessonKeys.length === 0) return null;
+
+  return (
+    <div data-testid="step-sequence-section" style={{ marginTop: 24, padding: "16px 18px", borderRadius: 12, border: "1px solid var(--border,#e5e7eb)", background: "var(--panel,#fff)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14, flexWrap: "wrap" }}>
+        <h4 style={{ margin: 0, fontSize: ".9rem", fontWeight: 800 }}>Step Sequence Audit</h4>
+        <select
+          data-testid="lesson-select"
+          value={selectedLesson}
+          onChange={e => { setSelectedLesson(e.target.value); setAnalysis(null); }}
+          style={{ flex: 1, maxWidth: 340, padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".82rem" }}
+        >
+          <option value="">— Select a lesson to audit —</option>
+          {lessonKeys.map(k => (
+            <option key={k} value={k}>{lessons[k].grade} | {lessons[k].subject} | {lessons[k].chapter}</option>
+          ))}
+        </select>
+        <button
+          data-testid="run-step-analysis-btn"
+          onClick={runAnalysis}
+          disabled={loading || !selectedLesson}
+          style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: "#6366f1", color: "#fff", fontFamily: "inherit", fontSize: ".82rem", fontWeight: 700, cursor: "pointer" }}
+        >
+          {loading ? "Analysing…" : "Analyse Steps"}
+        </button>
+      </div>
+
+      {error && <div style={{ color: "#dc2626", fontSize: ".82rem", marginBottom: 10 }}>{error}</div>}
+
+      {analysis && (
+        <>
+          <StepSequencePanel
+            analysis={analysis}
+            selectedStepIndex={selectedStepIndex}
+            onSelectStep={sr => { setSelectedStep(sr); setSelectedStepIndex(sr.step_index); }}
+          />
+
+          {/* Issue detail for selected step */}
+          {selectedStep && (
+            <div data-testid="step-issue-drawer" style={{ marginTop: 14, padding: "14px 16px", borderRadius: 10, background: "var(--surface2,#f8f9fa)", border: "1px solid var(--border,#e5e7eb)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <strong style={{ fontSize: ".88rem" }}>Step {selectedStep.step_number}: {selectedStep.step_title || selectedStep.step_role}</strong>
+                <span style={{ fontSize: ".72rem", color: "#94a3b8" }}>
+                  {selectedStep.word_count} words · {selectedStep.unique_content_pct}% unique · similarity to prev: {Math.round((selectedStep.similarity_to_previous || 0) * 100)}%
+                </span>
+                <button onClick={() => { setSelectedStep(null); setSelectedStepIndex(null); }}
+                  style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", fontSize: "1rem" }}>✕</button>
+              </div>
+
+              {selectedStep.issues?.length === 0 && (
+                <p style={{ color: "#22c55e", fontSize: ".82rem" }}>✓ No issues detected for this step.</p>
+              )}
+
+              {selectedStep.issues?.map((issue, i) => (
+                <div key={i} style={{
+                  marginBottom: 8, padding: "8px 12px", borderRadius: 8, fontSize: ".8rem",
+                  background: issue.severity === "critical" ? "rgba(239,68,68,.08)" : issue.severity === "high" ? "rgba(245,158,11,.08)" : "var(--border,#f1f5f9)",
+                  borderLeft: `3px solid ${issue.severity === "critical" ? "#ef4444" : issue.severity === "high" ? "#f59e0b" : "#94a3b8"}`,
+                }}>
+                  <span style={{ fontWeight: 700, textTransform: "capitalize", marginRight: 6, color: issue.severity === "critical" ? "#dc2626" : issue.severity === "high" ? "#d97706" : "#64748b" }}>
+                    {issue.severity}
+                  </span>
+                  {issue.issue_message}
+                  {issue.repeated_with_step_number && (
+                    <span style={{ marginLeft: 6, fontSize: ".72rem", color: "#94a3b8" }}>
+                      (repeated with Step {issue.repeated_with_step_number})
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

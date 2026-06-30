@@ -87,3 +87,78 @@ export function getRepairReportUrl(jobId, format = "json") {
   if (jobId) qs.set("job_id", jobId);
   return `${BASE}/report?${qs.toString()}`;
 }
+
+// ── Step Sequence Analysis ────────────────────────────────────────────────────
+
+/**
+ * Run step-sequence audit by providing step content directly.
+ * @param {{ grade, subject, chapter, lesson_id, steps }} opts
+ */
+export async function postStepAnalysis({ grade, subject, chapter, lesson_id, steps }) {
+  return authFetch(`${BASE}/step-analysis`, {
+    method: "POST",
+    body: JSON.stringify({
+      grade: grade || "",
+      subject: subject || "",
+      chapter: chapter || "",
+      lesson_id: lesson_id || "",
+      steps: steps || [],
+    }),
+  });
+}
+
+/**
+ * Run step-sequence audit for a lesson already in DB.
+ * @param {string} lessonId
+ * @param {{ grade, subject, chapter }} opts
+ */
+export async function getStepAnalysis(lessonId, { grade, subject, chapter } = {}) {
+  const params = new URLSearchParams();
+  if (grade)   params.set("grade",   grade);
+  if (subject) params.set("subject", subject);
+  if (chapter) params.set("chapter", chapter);
+  const qs = params.toString() ? `?${params.toString()}` : "";
+  return authFetch(`${BASE}/step-analysis/${lessonId}${qs}`);
+}
+
+// ── Bulk Apply ────────────────────────────────────────────────────────────────
+
+/**
+ * Dry-run: analyse eligibility without publishing.
+ * @param {{ scope, task_ids, grade, subject, chapter, min_score, min_depth_score }} opts
+ */
+export async function bulkDryRun(opts = {}) {
+  return authFetch(`${BASE}/bulk-dry-run`, {
+    method: "POST",
+    body: JSON.stringify({
+      scope: opts.scope || "selected",
+      task_ids: opts.task_ids || [],
+      grade: opts.grade || null,
+      subject: opts.subject || null,
+      chapter: opts.chapter || null,
+      min_score: opts.min_score ?? 90,
+      min_depth_score: opts.min_depth_score ?? 85,
+      dry_run: true,
+    }),
+  });
+}
+
+/**
+ * Apply all eligible repair tasks.
+ * @param {{ scope, task_ids, grade, subject, chapter, min_score, min_depth_score }} opts
+ */
+export async function bulkApply(opts = {}) {
+  return authFetch(`${BASE}/bulk-apply`, {
+    method: "POST",
+    body: JSON.stringify({
+      scope: opts.scope || "selected",
+      task_ids: opts.task_ids || [],
+      grade: opts.grade || null,
+      subject: opts.subject || null,
+      chapter: opts.chapter || null,
+      min_score: opts.min_score ?? 90,
+      min_depth_score: opts.min_depth_score ?? 85,
+      dry_run: false,
+    }),
+  });
+}

@@ -36,6 +36,10 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 from app.services.auth_service import require_admin
+from app.services.step_sequence_service import (
+    audit_lesson_steps,
+    check_bulk_apply_eligibility,
+)
 from app.services.lesson_repair_service import (
     _db_get_job,
     _db_get_task,
@@ -638,3 +642,248 @@ def download_repair_report(
         media_type="text/markdown",
         headers={"Content-Disposition": f"attachment; filename=repair_report_{job_id[:8]}.md"},
     )
+
+
+# ── Step Sequence Analysis endpoints ──────────────────────────────────────────
+
+@router.get("/lesson-repair/step-analysis/{lesson_id}")
+def get_step_analysis(
+    lesson_id: str,
+    grade: Optional[str] = Query(None),
+    subject: Optional[str] = Query(None),
+    chapter: Optional[str] = Query(None),
+    admin=Depends(require_admin),
+):
+    """
+    Run a step-sequence audit on a lesson identified by lesson_id.
+
+    Fetches all step content from lesson_cache, runs deterministic analysis,
+    and returns per-step scores, similarity matrix, and detected issues.
+    """
+    # Fetch step content from lesson_cache
+    steps = []
+    try:
+        from app.services.auth_service import admin_client  # noqa: PLC0415
+        from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+        db = get_content_db(grade or "Grade 9")
+        resp = (db.table("lesson_cache")
+                .select("step_title, lesson_content, grade, subject, chapter")
+                .eq("id", lesson_id)
+                .execute())
+        rows = resp.data or []
+        if not rows:
+            # Try by chapter+grade+subject if numeric lesson_id not found
+            if grade and subject and chapter:
+                resp2 = (db.table("lesson_cache")
+                         .select("step_title, lesson_content, grade, subject, chapter")
+                         .eq("grade", grade).ilike("subject", subject)
+                         .ilike("chapter", chapter)
+                         .order("step_title")
+                         .execute())
+                rows = resp2.data or []
+        if rows:
+            grade = grade or rows[0].get("grade", "")
+            subject = subject or rows[0].get("subject", "")
+            chapter = chapter or rows[0].get("chapter", "")
+        for i, row in enumerate(rows):
+            steps.append({
+                "step_number": i + 1,
+                "step_title": row.get("step_title", f"Step {i + 1}"),
+                "content": row.get("lesson_content", ""),
+            })
+    except Exception as e:
+        _log.warning("Could not fetch lesson steps from DB: %s", e)
+        # Return empty analysis if DB unavailable
+        return {"success": False, "message": f"Could not fetch lesson steps: {str(e)[:200]}"}
+
+    if not steps:
+        return {"success": False, "message": "No lesson steps found for this lesson_id."}
+
+    result = audit_lesson_steps(
+        grade=grade or "",
+        subject=subject or "",
+        chapter=chapter or "",
+        steps=steps,
+        lesson_id=lesson_id,
+    )
+    return {"success": True, "analysis": result}
+
+
+class StepAnalysisRequest(BaseModel):
+    """Direct step-analysis without requiring a lesson_id in DB."""
+    grade: str = ""
+    subject: str = ""
+    chapter: str = ""
+    lesson_id: str = ""
+    steps: list[dict]  # [{"step_number": 1, "step_title": "...", "content": "..."}]
+
+
+@router.post("/lesson-repair/step-analysis")
+def post_step_analysis(
+    req: StepAnalysisRequest,
+    admin=Depends(require_admin),
+):
+    """Run step-sequence audit on directly provided step content (no DB required)."""
+    if not req.steps:
+        raise HTTPException(status_code=400, detail="steps list is required and must not be empty.")
+    result = audit_lesson_steps(
+        grade=req.grade,
+        subject=req.subject,
+        chapter=req.chapter,
+        steps=req.steps,
+        lesson_id=req.lesson_id,
+    )
+    return {"success": True, "analysis": result}
+
+
+# ── Bulk Apply endpoints ───────────────────────────────────────────────────────
+
+class BulkApplyRequest(BaseModel):
+    scope: str = "selected"  # selected | lesson | current_filter | all_approved
+    task_ids: list[str] = []
+    grade: Optional[str] = None
+    subject: Optional[str] = None
+    chapter: Optional[str] = None
+    require_validation_pass: bool = True
+    min_score: int = 90
+    min_depth_score: int = 85
+    # Dry run — analyse eligibility without publishing
+    dry_run: bool = False
+
+
+@router.post("/lesson-repair/bulk-dry-run")
+def bulk_dry_run(
+    req: BulkApplyRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Analyse which tasks are eligible for bulk apply without publishing anything.
+
+    Returns a summary: total, eligible, skipped, with reasons.
+    """
+    req.dry_run = True
+    tasks = _collect_tasks_for_bulk(req)
+    eligibility = check_bulk_apply_eligibility(
+        tasks, min_score=req.min_score, min_depth_score=req.min_depth_score
+    )
+    return {
+        "success": True,
+        "dry_run": True,
+        "scope": req.scope,
+        "filters": {"grade": req.grade, "subject": req.subject, "chapter": req.chapter},
+        **eligibility,
+    }
+
+
+@router.post("/lesson-repair/bulk-apply")
+def bulk_apply(
+    req: BulkApplyRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Apply (publish) all eligible repair tasks in one operation.
+
+    Safety:
+    - Only publishes tasks that are ready_for_review or approved
+    - Only publishes tasks that pass validation
+    - Only publishes tasks that meet score thresholds
+    - Original content preserved for rollback
+    - Audit log written per publication
+    """
+    admin_id = (admin.get("profile") or {}).get("id") or admin.get("id") or "unknown"
+    tasks = _collect_tasks_for_bulk(req)
+    eligibility = check_bulk_apply_eligibility(
+        tasks, min_score=req.min_score, min_depth_score=req.min_depth_score
+    )
+
+    if not eligibility["can_bulk_apply"]:
+        return {
+            "success": False,
+            "message": "No eligible tasks found for bulk apply.",
+            **eligibility,
+        }
+
+    eligible_ids = set(eligibility["eligible_task_ids"])
+    published = []
+    failed    = []
+    now = datetime.now(timezone.utc).isoformat()
+
+    for task in tasks:
+        task_id = task.get("id")
+        if task_id not in eligible_ids:
+            continue
+
+        result = publish_repaired_task(task)
+        if result["success"]:
+            updates = {"status": "published", "updated_at": now}
+            if task_id in _REPAIR_TASKS:
+                _REPAIR_TASKS[task_id].update(updates)
+            _db_update_task(task_id, updates)
+            published.append(task_id)
+            _log.info(
+                "[bulk_apply] task=%s published by admin=%s grade=%s subject=%s chapter=%s",
+                task_id, admin_id, task.get("grade"), task.get("subject"), task.get("chapter"),
+            )
+        else:
+            failed.append({"task_id": task_id, "reason": result.get("message", "publish failed")})
+
+    return {
+        "success": True,
+        "dry_run": False,
+        "scope": req.scope,
+        "total_eligible": len(eligible_ids),
+        "published": len(published),
+        "published_task_ids": published,
+        "failed": len(failed),
+        "failed_details": failed,
+        "skipped_from_eligibility": eligibility["skipped"],
+        "skipped_details": eligibility["skipped_details"],
+        "message": (
+            f"Bulk apply complete: {len(published)} published, "
+            f"{len(failed)} failed, {eligibility['skipped']} skipped."
+        ),
+    }
+
+
+def _collect_tasks_for_bulk(req: BulkApplyRequest) -> list[dict]:
+    """Collect repair tasks according to the bulk apply scope."""
+    if req.scope == "selected" and req.task_ids:
+        tasks = []
+        for tid in req.task_ids:
+            t = _REPAIR_TASKS.get(tid) or _db_get_task(tid)
+            if t:
+                tasks.append(t)
+        return tasks
+
+    # Collect from in-memory + DB with optional filters
+    mem_tasks = list(_REPAIR_TASKS.values())
+    db_tasks  = []
+    try:
+        from app.services.auth_service import admin_client  # noqa: PLC0415
+        q = admin_client.table("lesson_repair_tasks").select("*")
+        if req.scope == "all_approved":
+            q = q.eq("status", "approved")
+        else:
+            q = q.in_("status", ["ready_for_review", "approved"])
+        if req.grade:
+            q = q.eq("grade", req.grade)
+        if req.subject:
+            q = q.ilike("subject", req.subject)
+        if req.chapter:
+            q = q.ilike("chapter", req.chapter)
+        resp = q.limit(500).execute()
+        db_tasks = resp.data or []
+    except Exception as e:
+        _log.warning("Could not fetch tasks from DB for bulk: %s", e)
+
+    # Merge, deduplicate by id
+    all_tasks = mem_tasks + db_tasks
+    seen: set[str] = set()
+    unique = []
+    for t in all_tasks:
+        tid = t.get("id")
+        if tid and tid not in seen:
+            seen.add(tid)
+            unique.append(t)
+    return unique

@@ -21,6 +21,9 @@ vi.mock("../api/lessonRepair", () => ({
   rerunRepairTask:       vi.fn(),
   cancelRepairJob:       vi.fn(),
   getRepairReportUrl:    vi.fn(() => "/api/admin/qa/lesson-repair/report?format=json"),
+  postStepAnalysis:      vi.fn(() => Promise.resolve({ analysis: null })),
+  bulkDryRun:            vi.fn(() => Promise.resolve({ eligible: 0, skipped: 0, total: 0, can_bulk_apply: false })),
+  bulkApply:             vi.fn(() => Promise.resolve({ published: 0, failed: 0, message: "No eligible tasks." })),
 }));
 
 import {
