@@ -168,30 +168,45 @@ def get_lesson_list(
     try:
         from app.services.grade_db_router import get_content_db, is_grade_1112  # noqa: PLC0415
 
-        def _query_db(db, grade_filter=None):
+        # All grades on the primary shard (Grades 5–10)
+        PRIMARY_GRADES = [
+            "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10",
+        ]
+        SECONDARY_GRADES = ["Grade 11", "Grade 12"]
+
+        def _query_one_grade(db, g):
+            """Query a single grade with subject/chapter filters — avoids row-limit truncation."""
             q = (db.table("lesson_cache")
                  .select("id, grade, subject, chapter, step_title, status")
-                 .eq("status", "active"))
-            if grade_filter:
-                q = q.eq("grade", grade_filter)
+                 .eq("status", "active")
+                 .eq("grade", g))
             if subject:
                 q = q.ilike("subject", f"%{subject}%")
             if chapter:
                 q = q.ilike("chapter", f"%{chapter}%")
-            r = q.order("grade").order("subject").order("chapter").order("step_title").limit(1000).execute()
+            r = q.order("subject").order("chapter").order("step_title").limit(500).execute()
             return r.data or []
 
         if grade:
-            # Specific grade requested — single shard
-            rows = _query_db(get_content_db(grade), grade)
+            # Specific grade requested — single targeted query
+            rows = _query_one_grade(get_content_db(grade), grade)
         else:
-            # No grade filter — query BOTH shards and merge so all grades appear
-            rows = _query_db(get_content_db("Grade 9"))  # primary shard (Grades 5-10)
+            # No grade filter — query every known grade individually to avoid
+            # Supabase's 1000-row default limit truncating results
+            rows = []
+            primary_db = get_content_db("Grade 9")
+            for g in PRIMARY_GRADES:
+                try:
+                    rows.extend(_query_one_grade(primary_db, g))
+                except Exception:
+                    pass
+            # Grade 11/12 shard (separate DB if configured)
             try:
-                rows_1112 = _query_db(get_content_db("Grade 11"))  # Grade 11/12 shard
-                rows = rows + rows_1112
+                secondary_db = get_content_db("Grade 11")
+                for g in SECONDARY_GRADES:
+                    rows.extend(_query_one_grade(secondary_db, g))
             except Exception:
-                pass  # Grade 11/12 shard not configured — silently skip
+                pass  # secondary shard not configured — silently skip
 
     except Exception as e:
         _log.warning("lesson_lab: DB unavailable — %s", e)
