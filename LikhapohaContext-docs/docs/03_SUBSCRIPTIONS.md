@@ -121,3 +121,29 @@ Admin ₹1 payment tests are allowed only in admin test/payment tools. They must
 - Do not store new ambiguous plan keys.
 - Do not let frontend-only gating serve as access control.
 - Do not use raw `access_cbse` as product terminology.
+
+---
+
+## 2026-06-30: Plan Structure Update
+
+### Correct Plan Order (parent subscription page)
+
+| Order | DB Key | Label | Price | is_public |
+|-------|--------|-------|-------|-----------|
+| 1 | `free_tier` | Free Tier | ₹0 / free forever | ✅ |
+| 2 | `free` | Premium Nano | ₹99 / 8 days | ✅ |
+| 3 | `starter` | Premium | ₹299 / month | ✅ |
+| 4 | `family_premium` | Family Premium | ₹499 / month | ✅ |
+
+**Critical:** `profiles.subscription_plan = "free"` means Premium Nano (time-limited), NOT the free tier. Distinguished by `access_cbse=True + subscription_expires_at set`.
+
+### subscription_plan_settings DB
+All plans now stored in `subscription_plan_settings` table. `free_tier` added 2026-06-30. `free` plan corrected to show Premium Nano features and price.
+
+### Frontend Plan Keys
+- `free_tier` → label "Free Tier", shown as current for unsubscribed users
+- `free` → label "Premium Nano", ₹99/8 days purchasable plan
+- `starter` → label "Premium", ₹299/month
+- `family_premium` → label "Family Premium", ₹499/month
+
+**Source:** `frontend/src/config/subscriptionPlans.js`

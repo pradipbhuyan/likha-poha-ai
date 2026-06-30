@@ -112,3 +112,55 @@ Always use `percentage` column (0-100). `score` and `total_questions` columns do
 
 ### student_progress not chapter_progress
 `chapter_progress` table does NOT exist. All progress data is in `student_progress`.
+
+---
+
+## 2026-06-30: Exemplar Chapter Locking — Use `includes()` Not `startsWith()`
+
+**Decision:** Frontend exemplar lock check must use `includes("Exemplar:")` not `startsWith("Exemplar:")`.
+
+**Root cause:** The syllabus route adds "Part N - " display prefix when a subject has multiple book parts (e.g. Grade 8 Maths has Part 1 and Part 2). This turned "Exemplar: Rational Numbers" into "Part 1 - Exemplar: Rational Numbers", breaking `startsWith("Exemplar:")`.
+
+**Fix (two-layer):**
+1. `LessonsPage.jsx`: `chapter?.includes("Exemplar:")` — works regardless of prefix
+2. `syllabus.py` `create_part_display_label()`: skip "Part N - " prefix for chapters containing "Exemplar:"
+3. `lesson.py`: `"exemplar:" in _chapter_name.lower()` — backend also handles any prefix
+
+**Rule:** Never use `startsWith("Exemplar:")` — always use `includes("Exemplar:")` in frontend, `"exemplar:" in` in backend.
+
+---
+
+## 2026-06-30: Subscription Plans — free_tier vs free (Nano)
+
+**Decision:** The DB key `"free"` in `profiles.subscription_plan` maps to Premium Nano (₹99/8 days), NOT the free tier.
+
+**Context:**
+- Frontend `subscriptionPlans.js`: `free_tier` = actual free plan (no price); `free` = Premium Nano (₹99)
+- Backend `subscription_plans.py`: now has `free_tier` (order=1), `free`=Nano (order=2), `starter`=Premium (order=3)
+- DB `subscription_plan_settings` updated to match
+
+**Distinguished by:** `access_cbse=True + subscription_expires_at set` = Nano active; `access_cbse=False` = free tier.
+
+---
+
+## 2026-06-30: Add Child Modal — Show Upgrade Card Only When childCount > 0
+
+**Decision:** The "Child limit reached" upgrade card in `AddChildModal` must NOT show for new parents (0 existing children).
+
+**Rule:** Show upgrade card only when `!canAdd && childCount > 0`. Always show the form when `childCount === 0`.
+
+---
+
+## 2026-06-30: Ollama Cloud Fallback Provider
+
+**Decision:** `ask_llm()` now supports automatic fallback to a configured secondary provider when primary fails.
+
+**Implementation:** `openai_service.py` reads `fallback_provider` from `admin_settings.ai_settings`. Configure via AI Studio → Providers → Set Fallback.
+
+---
+
+## 2026-06-30: Grade 11/12 NCERT Exemplar RAG
+
+**Decision:** NCERT only publishes exemplar PDFs for Grade 11 Maths/Biology and Grade 12 Maths/Physics/Biology. Grade 11 Physics/Chemistry and Grade 12 Chemistry return 404 on all URL patterns — confirmed June 2026.
+
+**Storage:** Grade 11/12 exemplar chunks stored in secondary Supabase (`grade_1112_client`), tagged `chapter = "Exemplar: {name}"`.

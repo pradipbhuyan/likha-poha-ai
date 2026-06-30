@@ -206,3 +206,39 @@ Until then: use seed scripts and Supabase Studio.
 | `frontend/src/pages/FormulaSheetPage.jsx` | Formula sheet UI |
 | `frontend/src/tests/FormulaSheetPage.test.jsx` | Frontend tests |
 | `backend/tests/test_formula_sheets.py` | Backend tests (if added) |
+
+---
+
+## NCERT Exemplar — Grade 11 & 12 (added 2026-06-30)
+
+### Storage
+All Grade 11 & 12 content (textbooks + exemplars) goes into the **secondary Supabase** (`grade_1112_client`, env: `SUPABASE_GRADE_1112_URL` + `SUPABASE_GRADE_1112_SERVICE_KEY`).
+
+### What's Available
+NCERT only publishes exemplar PDFs for these Grade 11/12 subjects (others return 404):
+
+| Grade | Subject | Chapters | Status |
+|-------|---------|----------|--------|
+| Grade 11 | Mathematics | 16 | ✅ Uploaded |
+| Grade 11 | Biology | 22 | ✅ Uploaded |
+| Grade 12 | Mathematics | 13 | ✅ Uploaded |
+| Grade 12 | Physics | 15 | ✅ Uploaded |
+| Grade 12 | Biology | 16 | ✅ Uploaded |
+
+**Not available:** Grade 11 Physics, Grade 11 Chemistry, Grade 12 Chemistry (404 on ncert.nic.in).
+
+### Scripts
+- Download: `python3 scripts/download_ncert_exemplar_grade1112.py`
+- Upload: `python3 scripts/upload_ncert_exemplar_grade1112_rag.py`
+- Safe to re-run (skips already-uploaded docs). Use `--force` to re-embed.
+
+### Embedding Status (as of 2026-06-30)
+- 82 documents, 3,584 chunks — all fully embedded ✅
+- Total Grade 11/12 DB: 435 documents (353 textbook + 82 exemplar), 13,294 chunks
+
+### URL Pattern (confirmed June 2026)
+```
+https://ncert.nic.in/pdf/publication/exemplarproblem/classXI/{subject}/{code}.pdf
+https://ncert.nic.in/pdf/publication/exemplarproblem/classXII/{subject}/{code}.pdf
+```
+Codes: `keep2XX` (G11 Maths), `keep4XX` (G11 Biology), `leep2XX` (G12 Maths), `leep1XX` (G12 Physics), `leep4XX` (G12 Biology)

@@ -64,3 +64,13 @@ New extracted components:
 - Student signup includes Grade selector (Grade 5–10).
 - Google Sign In supported.
 - All new accounts start on Free Tier.
+
+---
+
+## Add Child Modal — 2026-06-30 Fix
+
+**Issue:** "Child limit reached" upgrade card was shown to new parents (0 children) immediately on opening the modal.
+
+**Fix:** Upgrade card now only shows when `!canAdd && childCount > 0`. New parents (0 children) always see the Add Child form.
+
+**Files:** `frontend/src/pages/ParentDashboardPage.jsx` — `AddChildModal` receives `childCount={children.length}` prop.

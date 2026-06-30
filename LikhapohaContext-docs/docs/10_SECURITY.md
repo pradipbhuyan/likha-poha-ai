@@ -104,3 +104,30 @@ All `/api/admin/qa/*` endpoints:
 - Background audit errors sanitized to 500 chars, newlines removed
 - LLM API key only used in background thread, never returned to frontend
 - Report files never include SUPABASE_SERVICE_ROLE_KEY or OPENAI_API_KEY
+
+---
+
+## Exemplar Lesson Access Control — 2026-06-30
+
+### Rule
+Exemplar chapters are premium-only. Free-tier students cannot generate lessons for any chapter containing "Exemplar:".
+
+### Implementation
+**Backend (`lesson.py`):**
+```python
+if "exemplar:" in _chapter_name.lower():
+    # authorize Feature.EXEMPLAR — raises 403 for free users
+```
+Admins, teachers, all-access test accounts are exempt.
+
+**Frontend (`LessonsPage.jsx`):**
+```js
+const isExemplarChapter = chapter?.includes("Exemplar:");
+const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
+```
+When locked: 🔐 notice shown, Generate button disabled.
+
+### Important: Chapter Name Format
+The syllabus route may add "Part N - " prefix (e.g. "Part 1 - Exemplar: Rational Numbers"). Always use `includes("Exemplar:")`, never `startsWith("Exemplar:")`.
+
+Backend `syllabus.py` `create_part_display_label()` is configured to skip "Part N - " for exemplar chapters, so after server restart chapters will show as clean "Exemplar: Name". But the `includes()` check ensures safety before restart too.
