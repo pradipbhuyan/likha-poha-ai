@@ -163,9 +163,15 @@ def test_normalize_step_extracts_examples():
 
 # ── get_lesson_list (mocked DB) ───────────────────────────────────────────────
 
+# The get_content_db function is imported lazily inside each service function
+# (PLC0415 pattern). The patch target must be where it's imported, not where
+# it's defined. We patch at the grade_db_router module level.
+_GRADE_DB_PATCH = "app.services.grade_db_router.get_content_db"
+
+
 def test_get_lesson_list_empty_when_db_unavailable():
     """get_lesson_list should return empty structure when DB is unavailable."""
-    with patch("app.services.lesson_lab_service.get_content_db", side_effect=Exception("DB down")):
+    with patch(_GRADE_DB_PATCH, side_effect=Exception("DB down")):
         result = get_lesson_list(grade="Grade 9")
     assert result["grades"] == []
     assert result["lessons"] == []
@@ -178,7 +184,7 @@ def test_get_lesson_list_returns_required_keys():
         {"id": "1", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 1", "status": "active"},
         {"id": "2", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 2", "status": "active"},
     ]
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_list(grade="Grade 9")
     for key in ("grades", "subjects", "chapters", "lessons", "total_lessons", "total_steps"):
         assert key in result, f"Missing key: {key}"
@@ -191,7 +197,7 @@ def test_get_lesson_list_groups_by_chapter():
         {"id": "2", "grade": "Grade 9", "subject": "Science", "chapter": "Photosynthesis", "step_title": "Step 2", "status": "active"},
         {"id": "3", "grade": "Grade 9", "subject": "Science", "chapter": "Respiration", "step_title": "Step 1", "status": "active"},
     ]
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_list(grade="Grade 9")
     # 2 distinct lessons
     assert result["total_lessons"] == 2
@@ -203,7 +209,7 @@ def test_get_lesson_list_groups_by_chapter():
 def test_get_lesson_detail_not_found():
     mock_db = MagicMock()
     mock_db.table.return_value.select.return_value.eq.return_value.execute.return_value.data = []
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_detail("nonexistent-id")
     assert "error" in result
     assert "not found" in result["error"].lower()
@@ -218,7 +224,7 @@ def test_get_lesson_detail_returns_normalized_steps():
          "step_title": "Step 2", "lesson_content": SAMPLE_LESSON_CONTENT + " More content.", "status": "active"},
     ]
     mock_db.table.return_value.select.return_value.eq.return_value.execute.return_value.data = rows
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_detail("1")
     assert "steps" in result
     assert len(result["steps"]) == 2
@@ -236,7 +242,7 @@ def test_get_lesson_detail_has_audit_summary():
          "step_title": "Step 1", "lesson_content": SAMPLE_LESSON_CONTENT, "status": "active"},
     ]
     mock_db.table.return_value.select.return_value.eq.return_value.execute.return_value.data = rows
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_lesson_detail("1")
     # audit_summary may be None for a single step but key must exist
     assert "audit_summary" in result
@@ -247,7 +253,7 @@ def test_get_lesson_detail_never_writes(monkeypatch):
     """get_lesson_detail must only read — no update/insert calls."""
     mock_db = MagicMock()
     mock_db.table.return_value.select.return_value.eq.return_value.execute.return_value.data = []
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         get_lesson_detail("test-id")
     # Verify no .insert() or .update() calls were made
     mock_db.table.return_value.insert.assert_not_called()
@@ -308,7 +314,7 @@ def test_preview_transform_does_not_save_content(monkeypatch):
     """preview_transform must never call insert/update on any DB table."""
     _mock_lesson_detail_for_preview(monkeypatch)
     mock_db = MagicMock()
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         preview_transform("test", mode="structure_only")
     mock_db.table.return_value.insert.assert_not_called()
     mock_db.table.return_value.update.assert_not_called()
@@ -333,7 +339,7 @@ def test_preview_transform_missing_lesson_propagates_error(monkeypatch):
 
 def test_get_visuals_returns_empty_state_when_table_missing():
     """get_visuals must return friendly empty state when DB/table unavailable."""
-    with patch("app.services.lesson_lab_service.get_content_db", side_effect=Exception("table missing")):
+    with patch(_GRADE_DB_PATCH, side_effect=Exception("table missing")):
         result = get_visuals(grade="Grade 9", subject="Science", chapter="Photosynthesis")
     assert result["available"] is False
     assert result["visuals"] == []
@@ -364,7 +370,7 @@ def test_get_visuals_with_data(monkeypatch):
             "page_number": 42, "chapter": "Photosynthesis", "subject": "Science", "grade": "Grade 9",
         },
     ]
-    with patch("app.services.lesson_lab_service.get_content_db", return_value=mock_db):
+    with patch(_GRADE_DB_PATCH, return_value=mock_db):
         result = get_visuals(grade="Grade 9", subject="Science", chapter="Photosynthesis")
     assert result["available"] is True
     assert len(result["visuals"]) == 1
