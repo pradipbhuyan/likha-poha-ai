@@ -1,7 +1,17 @@
 /**
  * AdminLessonExperiencePage.test.jsx
- * Admin-only lesson experience preview page tests.
+ * Admin-only guided lesson experience preview page tests.
  * All API calls are mocked — no live backend required.
+ *
+ * Covers:
+ * - Admin can access the new guided lesson preview page
+ * - Non-admin/student users cannot see repair/audit controls
+ * - Preview header states the experience is not live for students
+ * - Guided roadmap (JourneyStepper) renders all steps
+ * - Current step is visually highlighted
+ * - Primary CTA changes by preview state
+ * - Restart chapter requires confirmation
+ * - Existing content panels still render correctly
  */
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
@@ -92,12 +102,14 @@ describe("AdminLessonExperiencePage", () => {
     expect(await screen.findByTestId("admin-lesson-experience-page")).toBeInTheDocument();
     expect(screen.getByTestId("page-header")).toBeInTheDocument();
     expect(screen.getByText(/ADMIN PREVIEW/i)).toBeInTheDocument();
-    expect(screen.getByText(/Lesson Experience/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Lesson Experience/i).length).toBeGreaterThan(0);
   });
 
-  test("shows read-only note and edit redirect in header", async () => {
+  test("preview banner states the experience is not live for students", async () => {
     renderPage();
     await screen.findByTestId("page-header");
+    expect(screen.getByTestId("not-live-notice")).toBeInTheDocument();
+    expect(screen.getByText(/not live for students/i)).toBeInTheDocument();
     expect(screen.getByText(/Read-only/i)).toBeInTheDocument();
     expect(screen.getByText(/Lesson Lab or Lesson Repair/i)).toBeInTheDocument();
   });
@@ -120,18 +132,19 @@ describe("AdminLessonExperiencePage", () => {
 
   // ── Non-admin access ───────────────────────────────────────────────────────
 
-  test("non-admin does not see admin-only content (page guards itself)", async () => {
-    // The page renders for all users — App.jsx guards routing.
-    // Verify no repair/audit/publish workflow controls are shown.
+  test("non-admin does not see repair/audit/publish controls", async () => {
     renderPage();
     expect(await screen.findByTestId("admin-lesson-experience-page")).toBeInTheDocument();
     expect(screen.queryByText(/Repair with AI/i)).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Publish Approved/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/audit score/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validation checklist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validation failed/i)).not.toBeInTheDocument();
   });
 
   // ── Lesson loading ─────────────────────────────────────────────────────────
 
-  test("loading lesson shows step nav and hero", async () => {
+  test("loading lesson shows guided journey: hero and stepper", async () => {
     getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
     renderPage();
     fireEvent.change(await screen.findByTestId("lesson-select"), {
@@ -140,32 +153,145 @@ describe("AdminLessonExperiencePage", () => {
     expect(await screen.findByTestId("lesson-hero")).toBeInTheDocument();
     expect(screen.getByTestId("step-nav")).toBeInTheDocument();
     expect(screen.getByTestId("step-nav-item-0")).toBeInTheDocument();
+    expect(screen.getByTestId("step-nav-item-1")).toBeInTheDocument();
   });
 
-  test("selecting lesson shows step progress bar", async () => {
-    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
-    renderPage();
-    fireEvent.change(await screen.findByTestId("lesson-select"), {
-      target: { value: "Grade 9|Science|Motion" },
-    });
-    await screen.findByTestId("lesson-hero");
-    // Use getAllByText since ProgressBar renders in both hero and step nav
-    const progressTexts = screen.getAllByText(/Step 1 of 2/i);
-    expect(progressTexts.length).toBeGreaterThan(0);
-  });
-
-  test("selecting a step changes displayed content", async () => {
+  test("guided roadmap renders all steps in the stepper", async () => {
     getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
     renderPage();
     fireEvent.change(await screen.findByTestId("lesson-select"), {
       target: { value: "Grade 9|Science|Motion" },
     });
     await screen.findByTestId("step-nav");
-    fireEvent.click(screen.getByTestId("step-nav-item-1"));
-    // After clicking step 2, step-nav-item-1 is highlighted (active)
-    await waitFor(() => {
-      expect(screen.getAllByText(/Step 2 of 2/i).length).toBeGreaterThan(0);
+    // All 2 steps in SAMPLE_LESSON appear
+    expect(screen.getByTestId("step-nav-item-0")).toBeInTheDocument();
+    expect(screen.getByTestId("step-nav-item-1")).toBeInTheDocument();
+    expect(screen.getByText(/Step 1: Concept Introduction/i)).toBeInTheDocument();
+    expect(screen.getByText(/Step 2: Core Explanation/i)).toBeInTheDocument();
+  });
+
+  test("current step is highlighted in the stepper", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
     });
+    await screen.findByTestId("step-nav");
+    const step0 = screen.getByTestId("step-nav-item-0");
+    // Active step should have indigo border styling
+    expect(step0).toHaveStyle({ border: "1.5px solid #6366f1" });
+  });
+
+  test("hero shows subject/grade/CBSE breadcrumb", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("lesson-hero");
+    expect(screen.getByText(/Science.*Grade 9.*CBSE/i)).toBeInTheDocument();
+  });
+
+  test("hero shows Step N of M progress text", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("lesson-hero");
+    const progressTexts = screen.getAllByText(/Step 1 of 2/i);
+    expect(progressTexts.length).toBeGreaterThan(0);
+  });
+
+  test("current mission card renders with step title", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    expect(await screen.findByTestId("current-mission-card")).toBeInTheDocument();
+    expect(screen.getByText(/CURRENT MISSION/i)).toBeInTheDocument();
+  });
+
+  // ── Primary CTA changes by preview state ──────────────────────────────────
+
+  test("primary CTA shows 'Start Learning' initially", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("primary-cta-btn");
+    expect(screen.getByTestId("primary-cta-btn")).toHaveTextContent("Start Learning");
+  });
+
+  test("primary CTA changes to 'Continue Learning' after first click", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    const cta = await screen.findByTestId("primary-cta-btn");
+    fireEvent.click(cta);
+    await waitFor(() => expect(cta).toHaveTextContent("Continue Learning"));
+  });
+
+  test("primary CTA changes to 'Continue to Next Step' after second click", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    const cta = await screen.findByTestId("primary-cta-btn");
+    fireEvent.click(cta); // not_started → in_progress
+    await waitFor(() => expect(cta).toHaveTextContent("Continue Learning"));
+    fireEvent.click(cta); // in_progress → completed
+    await waitFor(() => expect(cta).toHaveTextContent("Continue to Next Step"));
+  });
+
+  // ── Restart chapter requires confirmation ─────────────────────────────────
+
+  test("restart chapter link shows confirmation dialog", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("restart-chapter-link");
+    expect(screen.queryByTestId("restart-confirm-dialog")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("restart-chapter-link"));
+    expect(await screen.findByTestId("restart-confirm-dialog")).toBeInTheDocument();
+    expect(screen.getByTestId("restart-confirm-btn")).toBeInTheDocument();
+    expect(screen.getByTestId("restart-cancel-btn")).toBeInTheDocument();
+  });
+
+  test("cancel in restart dialog dismisses it", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("restart-chapter-link");
+    fireEvent.click(screen.getByTestId("restart-chapter-link"));
+    await screen.findByTestId("restart-confirm-dialog");
+    fireEvent.click(screen.getByTestId("restart-cancel-btn"));
+    await waitFor(() => expect(screen.queryByTestId("restart-confirm-dialog")).not.toBeInTheDocument());
+  });
+
+  test("confirming restart resets step to 1", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("next-step-btn");
+    fireEvent.click(screen.getByTestId("next-step-btn")); // go to step 2
+    await waitFor(() => expect(screen.getAllByText(/Step 2 of 2/i).length).toBeGreaterThan(0));
+    // Restart
+    fireEvent.click(screen.getByTestId("restart-chapter-link"));
+    await screen.findByTestId("restart-confirm-dialog");
+    fireEvent.click(screen.getByTestId("restart-confirm-btn"));
+    await waitFor(() => expect(screen.getAllByText(/Step 1 of 2/i).length).toBeGreaterThan(0));
   });
 
   // ── Content panels ─────────────────────────────────────────────────────────
@@ -254,23 +380,6 @@ describe("AdminLessonExperiencePage", () => {
     expect(screen.getByTestId("note-input")).toBeInTheDocument();
   });
 
-  // ── No audit/repair controls ───────────────────────────────────────────────
-
-  test("does NOT show audit scores or repair controls", async () => {
-    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
-    renderPage();
-    fireEvent.change(await screen.findByTestId("lesson-select"), {
-      target: { value: "Grade 9|Science|Motion" },
-    });
-    await screen.findByTestId("lesson-hero");
-    expect(screen.queryByText(/audit score/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Repair with AI/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /Publish Approved/i })).not.toBeInTheDocument();
-    // No repair validation UI (audit/repair page specific)
-    expect(screen.queryByText(/validation checklist/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/validation failed/i)).not.toBeInTheDocument();
-  });
-
   // ── Navigation ─────────────────────────────────────────────────────────────
 
   test("next/prev step buttons render after lesson load", async () => {
@@ -290,10 +399,47 @@ describe("AdminLessonExperiencePage", () => {
       target: { value: "Grade 9|Science|Motion" },
     });
     await screen.findByTestId("next-step-btn");
-    // Before click: step 1
     expect(screen.getAllByText(/Step 1 of 2/i).length).toBeGreaterThan(0);
     fireEvent.click(screen.getByTestId("next-step-btn"));
-    // After click: step 2
     await waitFor(() => expect(screen.getAllByText(/Step 2 of 2/i).length).toBeGreaterThan(0));
+  });
+
+  test("next-up card renders when not on last step", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    expect(await screen.findByTestId("next-up-card")).toBeInTheDocument();
+    expect(screen.getByText(/NEXT UP/i)).toBeInTheDocument();
+  });
+
+  test("does NOT show audit scores or repair controls", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("lesson-hero");
+    expect(screen.queryByText(/audit score/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Repair with AI/i)).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Publish Approved/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/validation checklist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validation failed/i)).not.toBeInTheDocument();
+  });
+
+  // ── Selecting step 2 ──────────────────────────────────────────────────────
+
+  test("selecting a step changes displayed content", async () => {
+    getLessonCatalog.mockResolvedValue(SAMPLE_CATALOG);
+    renderPage();
+    fireEvent.change(await screen.findByTestId("lesson-select"), {
+      target: { value: "Grade 9|Science|Motion" },
+    });
+    await screen.findByTestId("step-nav");
+    fireEvent.click(screen.getByTestId("step-nav-item-1"));
+    await waitFor(() => {
+      expect(screen.getAllByText(/Step 2 of 2/i).length).toBeGreaterThan(0);
+    });
   });
 });
