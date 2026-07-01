@@ -593,7 +593,7 @@ Worked example requirements:
 
 Before explaining, identify the textbook coverage being used:
 - Key concepts covered
-- Important examples or activities
+- Important examples or activities — list these in ascending order (Example 1.1, 1.2, 1.3 — never reverse order)
 - Important exam/reasoning points
 
 Then teach the lesson in depth.

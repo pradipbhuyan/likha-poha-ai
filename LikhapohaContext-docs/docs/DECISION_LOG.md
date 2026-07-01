@@ -164,3 +164,17 @@ Always use `percentage` column (0-100). `score` and `total_questions` columns do
 **Decision:** NCERT only publishes exemplar PDFs for Grade 11 Maths/Biology and Grade 12 Maths/Physics/Biology. Grade 11 Physics/Chemistry and Grade 12 Chemistry return 404 on all URL patterns — confirmed June 2026.
 
 **Storage:** Grade 11/12 exemplar chunks stored in secondary Supabase (`grade_1112_client`), tagged `chapter = "Exemplar: {name}"`.
+
+---
+
+## 2026-07-01: Content Order in AI-Generated Lessons
+
+**Issue:** AI occasionally generates lists in reverse/non-sequential order (e.g., "Example 1.3, 1.2, 1.1" instead of "1.1, 1.2, 1.3").
+
+**Classification:** Content quality issue (not a rendering/frontend bug). The frontend displays exactly what's stored in the DB.
+
+**Fix path:** Admin Lesson Repair → select the affected step → repair with AI.
+
+**Prevention:** When this pattern is detected in future prompt improvements, add explicit ordering instruction: "Always list examples, steps, and numbered items in ascending order (1, 2, 3 — never 3, 2, 1)."
+
+**Do NOT:** Auto-sort list items in the frontend rendering pipeline — this would incorrectly reorder intentionally unordered content.
