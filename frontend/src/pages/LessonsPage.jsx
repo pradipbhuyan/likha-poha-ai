@@ -120,52 +120,52 @@ function getLoadingMessage(stepIndex, subject) {
   return pool.default;
 }
 
-// ── Per-step pre-answered suggestion cards ────────────────────────────────────
-// 5 question-answer pairs per step type. Loaded into followUpCache immediately
-// when a lesson is generated — chips appear instantly, zero API cost.
+// ── Per-step pre-answered suggestion cards (LKB — Lesson Knowledge Base) ──────
+// 5 concise Q&A pairs per step type. Answers are CBSE exam-focused and short.
+// These are pre-populated into followUpCache synchronously during render.
 // Keyed by step title (lowercased, partial match).
 const STEP_QA_CARDS = {
   "concept introduction": [
-    { q: "What is the main idea of this concept?",       a: "The main idea is to understand the core definition and real-world significance of this concept. Focus on what it is, why it exists, and where it applies in everyday life or exams." },
-    { q: "Why is this concept important for the exam?",  a: "This concept is foundational — it appears directly in CBSE question papers as both 1-mark definitions and 3-5 mark explanations. Understanding it clearly will help you answer both recall and application questions." },
-    { q: "Give me a simple example of this concept.",    a: "A simple example helps connect theory to reality. Think of a situation from daily life that directly demonstrates what this concept describes — this is how CBSE setters frame many application questions." },
-    { q: "What are the key terms I must remember?",      a: "Focus on the exact definition, the technical term, any formula or rule associated with it, and 1-2 examples. These key terms are what CBSE directly tests in short-answer questions." },
-    { q: "How do I write a good answer about this?",     a: "Start with a one-line definition, then explain with a reason or example, and end with its significance. Use subject-specific vocabulary. For 3-mark answers, write 3 clear points. For 5-mark answers, include a diagram or worked example if applicable." },
+    { q: "What is the main idea of this concept?",       a: "**Core idea:** This concept defines a fundamental principle you need for CBSE. Write the definition in one sentence, then add one real-world example. That's all you need for a 1-2 mark answer." },
+    { q: "Why is this concept important for the exam?",  a: "**Exam weight:** This appears in CBSE as 1-mark definitions, 3-mark explanations, and 5-mark application questions. Mastering the definition + one example + one application covers most question types." },
+    { q: "Give me a simple example of this concept.",    a: "**Quick tip:** Use a daily-life example you can visualise. CBSE setters prefer examples from food, transport, body functions, or household items. Practice naming your example in one sentence." },
+    { q: "What are the key terms I must remember?",      a: "**Exam essentials:** Note the technical term, its NCERT definition, and 1-2 examples. These are exactly what examiners test. Write them on a sticky note and review daily." },
+    { q: "How do I write a good answer about this?",     a: "**Answer formula:** Definition (1 line) → Reason or mechanism (1-2 lines) → Example (1 line). Use textbook vocabulary. 3-mark answer = 3 clear points. 5-mark answer = definition + explanation + example + diagram if applicable." },
   ],
   "core explanation": [
-    { q: "Explain this topic in simpler words.",         a: "At its core, this topic builds on the concept introduced earlier. The key is to understand the mechanism or process — how it works step by step — rather than just memorising the definition. Picture the cause-and-effect relationship." },
-    { q: "What is the most important part of this topic?", a: "The most important part is the central mechanism or rule that this topic is built on. In CBSE exams, questions test whether you understand this core logic — not just the surface facts. Make sure you can explain it in your own words." },
-    { q: "How is this different from what I learned before?", a: "This builds directly on the previous step by adding depth and detail. The earlier step gave you the 'what' — this step explains the 'how' and 'why'. Note the new terms and any conditions or exceptions introduced here." },
-    { q: "What mistakes do students make on this topic?", a: "Common mistakes include confusing similar terms, forgetting exceptions to the main rule, and writing vague answers without examples. Always use the correct technical term, include at least one example, and re-read the question before answering." },
-    { q: "Give a real-life example of this.",            a: "Real-life examples anchor abstract concepts. Look for connections in your daily environment — the school, kitchen, transport, or nature. CBSE frequently asks 'give an example from daily life' so having 2-3 ready is valuable." },
+    { q: "Explain this topic in simpler words.",         a: "**Simply put:** Focus on the cause-and-effect chain. What triggers the process? What happens step by step? What is the result? Write it in 3 short sentences — that's your answer." },
+    { q: "What is the most important part of this topic?", a: "**Key to marks:** Examiners test the central mechanism, not just the surface fact. Understand the 'how' and 'why', not just the 'what'. One sentence on the mechanism earns more marks than a paragraph of background." },
+    { q: "What mistakes do students make on this topic?", a: "**Watch out for:** Using vague language instead of technical terms, skipping examples, and confusing similar-sounding terms. Always use the NCERT word and add at least one specific example in your answer." },
+    { q: "How is this different from what I learned before?", a: "**Building on Step 1:** The previous step gave the definition. This step explains the process and conditions. Note any new vocabulary, exceptions, and the 'why it happens' — these are the parts examiners test in 3-5 mark questions." },
+    { q: "Give a real-life example of this.",            a: "**Real-world link:** Connect this concept to something visible — body functions, plants, cooking, weather, or machines. CBSE frequently asks 'give one example from daily life'. Have 2 examples ready." },
   ],
   "worked examples": [
-    { q: "Walk me through this example step by step.",   a: "Step 1: Identify what is given and what you need to find. Step 2: Select the correct formula or rule. Step 3: Substitute the values carefully, paying attention to units. Step 4: Simplify. Step 5: State the final answer with units and a concluding sentence." },
-    { q: "How do I solve this type of problem in the exam?", a: "Write down the given data first, then the formula, then substitute step by step. Never skip steps in the working — CBSE awards marks for each step even if the final answer is wrong. Always write the final answer in a box or on a new line." },
-    { q: "What formula or rule is used here?",           a: "The formula or rule used in this type of problem is directly stated in the lesson. Write it out before substituting any values. If you forget the formula in the exam, try to derive it from the concept — examiners often give partial marks for correct reasoning." },
-    { q: "What if the numbers are different — how do I adapt?", a: "The method stays the same regardless of the numbers. Always follow the same structure: identify, recall the formula, substitute, simplify. The only thing that changes is the numbers — the logical steps never change." },
-    { q: "How many marks does this type of question carry?", a: "This type of numerical or worked example typically carries 2-3 marks in CBSE. Show all steps clearly. Even if your final answer is wrong, you earn method marks for correct steps. Never leave a question blank — write the formula and approach for partial credit." },
+    { q: "Walk me through this example step by step.",   a: "**Exam method:** (1) Write given values. (2) State the formula. (3) Substitute. (4) Simplify step by step. (5) Write final answer with units. Each step earns marks — never skip even if it seems obvious." },
+    { q: "How do I solve this type of problem in the exam?", a: "**In the exam:** Given → Formula → Substitute → Simplify → Answer with units. Write neatly. Box your final answer. Even a wrong final answer earns marks if your method is correct." },
+    { q: "What formula or rule is used here?",           a: "**Formula first:** Always write the formula before substituting numbers. If you forget it, try deriving it from first principles — partial marks are given for correct reasoning even with an incorrect final answer." },
+    { q: "What if the numbers are different — how do I adapt?", a: "**Method is fixed:** The steps never change — only the numbers do. Practise identifying: what is given? what is unknown? which formula fits? Once you nail the structure, any set of numbers is manageable." },
+    { q: "How many marks does this type of question carry?", a: "**Mark allocation:** Numerical problems usually carry 2-3 marks. Show all steps clearly. CBSE awards 1 mark per correct step. A blank answer scores zero — always attempt even if unsure of the final answer." },
   ],
   "exam-style problems": [
-    { q: "How do I approach a tricky exam question on this?", a: "First, read the question twice. Identify the key term being tested. Then recall the definition + one example + one application. For MCQs, eliminate obviously wrong options first. For descriptive, write a structured answer: define → explain → example → significance." },
-    { q: "What are common exam traps in this topic?",    a: "Common traps include negative marking on MCQs where two options seem correct (look for the most precise one), confusing similar-sounding terms, and applying a concept outside its valid conditions. Always read 'which of the following is NOT' questions carefully." },
-    { q: "Give me a sample exam question on this.",      a: "A typical CBSE question on this topic might ask: 'Define [key term] and give one example.' or 'Explain [concept] with the help of a diagram.' or 'Differentiate between [A] and [B].' Practise writing concise answers for each of these formats." },
-    { q: "How much time should I spend on this question?", a: "For 1-mark questions: 1-2 minutes. For 2-3 mark questions: 3-5 minutes. For 5-mark questions: 7-8 minutes. If you are stuck, skip and return — never spend more than double the allocated time on one question." },
-    { q: "What keywords should I use in my answer?",     a: "Always use the subject-specific technical terms from your textbook. Examiners mark for key terms like 'covalent bond', 'refraction', 'arithmetic progression' etc. Using everyday words instead of technical terms costs you marks even if your explanation is correct." },
+    { q: "How do I approach a tricky exam question on this?", a: "**CBSE strategy:** Read twice. Identify the key term. Recall: definition → example → application. For MCQs, eliminate 2 wrong options first. For descriptive: define → explain → example → significance. Keep answers concise." },
+    { q: "What are common exam traps in this topic?",    a: "**Watch for:** Two similar-looking options in MCQs (pick the most precise). Confusing this concept with a related one. Applying the rule outside its valid conditions. Always re-read 'which is NOT correct' questions." },
+    { q: "Give me a sample exam question on this.",      a: "**Common CBSE formats:** 'Define X and give one example.' / 'Explain X with a diagram.' / 'Differentiate between A and B.' / 'What happens when X occurs? Give reason.' Practise writing 2-sentence answers for each." },
+    { q: "How much time should I spend on this question?", a: "**Time guide:** 1 mark → 1-2 min. 3 marks → 4-5 min. 5 marks → 7-8 min. If stuck, skip and return. Never spend double the allocated time — move on and secure marks elsewhere first." },
+    { q: "What keywords should I use in my answer?",     a: "**Score with keywords:** Use the exact NCERT technical terms. Examiners mark for specific words. Use 'photosynthesis' not 'food making'. Use 'refraction' not 'bending light'. One correct keyword can earn a mark." },
   ],
   "revision and recap": [
-    { q: "What are the 3 most important points from this chapter?", a: "The 3 most important points from this lesson step are: (1) The core definition and formula or rule, (2) The key example that illustrates the concept, and (3) The most common exam question type associated with this topic. Review these 3 before every test." },
-    { q: "How do I quickly revise this before the exam?", a: "Write the key terms on a revision card. Draw a quick mind-map of the concept. Solve 2-3 past questions from this topic. Read your own notes in your own words — this activates memory better than rereading the textbook." },
-    { q: "What is the examiner likely to ask from this?", a: "CBSE examiners typically ask: (1) Short definitions (1-2 marks), (2) Explain with examples (3 marks), (3) Differentiate between two related concepts (3-5 marks), and (4) Application-based numerical or situational questions (3-5 marks)." },
-    { q: "Write a one-paragraph summary of this topic.", a: "A strong summary includes: the topic name, its core definition in one sentence, the key rule or formula, one example, and one real-world application. If you can write this paragraph from memory, you are ready to answer any exam question on this topic." },
-    { q: "What are the common mistakes to avoid in the final exam?", a: "The most common final-exam mistakes are: writing incomplete definitions, forgetting to include units in numerical answers, confusing similar concepts, not re-reading questions before answering, and leaving questions unattempted. Always attempt every question — partial marks add up." },
+    { q: "What are the 3 most important points from this chapter?", a: "**Revision essentials:** (1) The core definition + technical term. (2) The key mechanism or rule. (3) One real-world example. These 3 points answer 80% of CBSE questions on this topic." },
+    { q: "How do I quickly revise this before the exam?",           a: "**5-minute revision:** Write the definition (30 sec) → write the key mechanism (1 min) → write one example (30 sec) → solve one past question (2 min). That's it. Repeat 3 times and it sticks." },
+    { q: "What is the examiner likely to ask from this?",           a: "**CBSE patterns:** Define (1-2 marks) → Explain with example (3 marks) → Differentiate between A and B (3-5 marks) → Application or situation-based question (5 marks). Prepare one answer for each pattern." },
+    { q: "Write a one-paragraph summary of this topic.",            a: "**Summary formula:** [Topic] is [definition]. It works by [mechanism]. For example, [one example]. This is important because [significance]. If you can write this paragraph from memory, you are exam-ready." },
+    { q: "What are the common mistakes to avoid in the final exam?", a: "**Avoid these:** Incomplete definitions (write the full NCERT definition). Missing units in numerical answers. Not giving an example when asked. Leaving any question blank — always attempt for partial marks." },
   ],
   "exam preparation": [
-    { q: "How do I prepare for board-level questions on this?", a: "Board exams test depth, precision, and presentation. Use NCERT language for definitions. Include diagrams where allowed. Structure long answers as: Introduction (1-2 lines) → Main points (numbered) → Example → Conclusion. Practice previous year CBSE papers for this topic." },
-    { q: "What are the most asked questions from this in CBSE?", a: "CBSE most frequently asks: definitions (1-2 marks), explain-with-example (3 marks), differentiate-between (3-5 marks), and application or situation-based questions (5 marks). The specific form varies by subject but the pattern is consistent across years." },
-    { q: "Give me a last-minute tip for this topic.",     a: "Last-minute tip: write the formula or key rule on a sticky note. Read it 5 times just before the exam. In the exam hall, write it at the top of your rough work page so you always have it visible. One formula recalled correctly can win you 3-5 marks." },
-    { q: "How should I structure a 5-mark answer on this?", a: "A 5-mark answer structure: Line 1 — Definition (1 mark). Lines 2-3 — Explanation with mechanism or process (2 marks). Lines 4-5 — Example or application (1 mark). Line 6 — Diagram if applicable (1 mark). Always end with a concluding sentence. Use bullet points for clarity." },
-    { q: "What is the difference between this and a related concept?", a: "Differentiation questions are common in CBSE. Structure your answer as a table or two clear paragraphs. State the basis of comparison first (e.g. definition, process, example), then give the specific difference for each concept. Include one example for each to earn full marks." },
+    { q: "How do I prepare for board-level questions on this?",     a: "**Board exam prep:** Use NCERT language for definitions. Add a labelled diagram where relevant. Structure 5-mark answers: definition → mechanism → example → significance → conclusion. Practice 3 previous year papers." },
+    { q: "What are the most asked questions from this in CBSE?",    a: "**Frequently asked:** Definitions (1-2 marks), explain-with-example (3 marks), differentiate-between (3-5 marks), application questions (5 marks). The specific wording varies by year but the format is consistent." },
+    { q: "Give me a last-minute tip for this topic.",               a: "**Last-minute tip:** Write the key term + definition + one example on a sticky note. Read it 5 times just before the exam. One recalled fact = 1-2 marks secured. Focus on terms you always mix up." },
+    { q: "How should I structure a 5-mark answer on this?",        a: "**5-mark structure:** (1) Definition — 1 mark. (2) Explanation with mechanism — 2 marks. (3) Example or application — 1 mark. (4) Diagram if applicable — 1 mark. Use bullet points for clarity. End with a concluding sentence." },
+    { q: "What is the difference between this and a related concept?", a: "**Differentiation format:** State the basis (definition / process / example), then give the specific difference for each concept. Example table format works well. Include one example for each concept to earn full marks." },
   ],
 };
 
@@ -1477,6 +1477,26 @@ function LessonsPage({ user, setActivePage }) {
       const merged = new Set(prev);
       newReady.forEach((q) => merged.add(q));
       return merged;
+    });
+  }
+
+  // ── LKB: Synchronous render-time cache population ─────────────────────────
+  // Ensure STEP_QA_CARDS answers are always in followUpCache BEFORE the user
+  // can click a chip. This runs synchronously during render — no async wait.
+  // Fixes the race condition where loadProgress awaits getChapterProgress API
+  // before calling preloadStepCards, causing a click → LLM call on fast clicks.
+  if (grade && subject && chapter && stepTitle) {
+    getStepQACards(stepTitle).forEach(({ q, a }) => {
+      const key = `${grade}|${subject}|${chapter}|${stepTitle}|${q.trim().toLowerCase()}`;
+      if (!followUpCache.current[key]) {
+        followUpCache.current[key] = {
+          role: "assistant",
+          content: a,
+          sourceType: "PLATFORM_RAG",
+          textbookVisuals: [],
+          offerGate: false,
+        };
+      }
     });
   }
 
