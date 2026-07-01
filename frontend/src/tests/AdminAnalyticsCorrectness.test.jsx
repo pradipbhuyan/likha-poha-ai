@@ -312,8 +312,10 @@ describe("AdminAnalytics — state: query_error", () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
     const totalUsersCard = screen.getByTestId("stat-total-users");
-    // Should show "Unable to load", not "0"
-    expect(totalUsersCard).toHaveTextContent("Unable to load");
+    // Wait for async fetch to complete — card transitions from "…" to "Unable to load"
+    await waitFor(() => {
+      expect(totalUsersCard).toHaveTextContent("Unable to load");
+    }, { timeout: 4000 });
     expect(totalUsersCard).not.toHaveTextContent("0");
   });
 });
