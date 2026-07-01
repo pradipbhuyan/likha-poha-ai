@@ -590,6 +590,27 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
   return (
     <div data-testid="admin-lesson-experience-page" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 14px 60px", fontFamily: "inherit" }}>
 
+      {/* Responsive grid styles */}
+      <style>{`
+        .ale-layout {
+          display: grid;
+          grid-template-columns: 260px 1fr;
+          gap: 18px;
+          align-items: start;
+        }
+        @media (max-width: 700px) {
+          .ale-layout {
+            grid-template-columns: 1fr;
+          }
+          .ale-nav-row {
+            flex-direction: column;
+          }
+          .ale-nav-row button {
+            width: 100%;
+          }
+        }
+      `}</style>
+
       {/* Admin Preview Banner */}
       <div data-testid="page-header">
         <AdminPreviewBanner />
@@ -603,7 +624,7 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
 
       {showRestart && <RestartConfirmDialog onConfirm={handleRestart} onCancel={() => setShowRestart(false)} />}
 
-      <div style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: 18, alignItems: "start" }}>
+      <div className="ale-layout">
 
         {/* ── Left column ── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -767,7 +788,7 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
               </div>
 
               {/* Navigation buttons */}
-              <div style={{ display: "flex", gap: 10, justifyContent: "space-between", flexWrap: "wrap", marginBottom: 8 }}>
+              <div className="ale-nav-row" style={{ display: "flex", gap: 10, justifyContent: "space-between", flexWrap: "wrap", marginBottom: 8 }}>
                 <button
                   data-testid="prev-step-btn"
                   disabled={stepIdx === 0}
