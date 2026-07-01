@@ -2495,12 +2495,17 @@ function LessonsPage({ user, setActivePage }) {
                       />
 
                       <div className="followup-chip-row">
-                        {(doubtSuggestions.length > 0
-                          // DKB chips: only show ones pre-fetched into cache (async)
-                          ? doubtSuggestions.map((s) => s.question).filter((chip) => cachedChipQuestions.has(chip))
-                          // Step QA cards: always visible — answers statically embedded, no async wait
-                          : getStepQACards(stepTitle).map((c) => c.q)
-                        ).map((chip) => (
+                        {((() => {
+                          // Show DKB chips only once they have been pre-fetched into cache.
+                          // If DKB chips exist but are still loading, fall back to step QA cards.
+                          // Step QA cards are always ready — answers are statically embedded.
+                          const dkbReady = doubtSuggestions
+                            .map((s) => s.question)
+                            .filter((chip) => cachedChipQuestions.has(chip));
+                          return dkbReady.length > 0
+                            ? dkbReady
+                            : getStepQACards(stepTitle).map((c) => c.q);
+                        })()).map((chip) => (
                           <button
                             key={chip}
                             type="button"
