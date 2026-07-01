@@ -11,7 +11,6 @@ import {
   askLessonFollowUp,
   getLessonTextbookVisuals,
   getLessonDoubtSuggestions,
-  getLessonKbChips,
   ensureLessonKbChips,
 } from "../api/lesson";
 import { getDoubtHistory } from "../api/doubt";
