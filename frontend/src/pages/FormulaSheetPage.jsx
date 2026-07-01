@@ -292,7 +292,7 @@ function buildRichContent(formula) {
     || `Use ${name} when you are given the values needed for ${expr} and need to find the result.`;
 
   // ── 4. Step-by-step example ────────────────────────────────────────────────
-  let steps = [];
+  let steps;
   if (Array.isArray(formula.steps)) {
     steps = formula.steps;
   } else if (formula.step_by_step && typeof formula.step_by_step === "string") {
