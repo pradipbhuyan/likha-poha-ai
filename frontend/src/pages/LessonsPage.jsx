@@ -49,6 +49,9 @@ const TEACHER_PERSONAS = {
 const DEFAULT_VOICE = "en-IN-NeerjaNeural";
 const DEFAULT_SPEECH_RATE = "+0%";
 
+// ── Layout feature flag — set to false to instantly roll back all layout changes ──
+const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
+
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
 // Grade 10 visuals restricted to Science and Maths only
 const GRADE10_VISUAL_SUBJECTS = new Set([
@@ -1332,33 +1335,37 @@ function LessonsPage({ user, setActivePage }) {
                 </select>
               </label>
 
-              <label>
-                Lesson Step
-                <select
-                  value={currentStepIndex}
-                  onChange={(e) => {
-                    const newIndex = Number(e.target.value);
-                    setCurrentStepIndex(newIndex);
-                    setLesson(stepLessons[String(newIndex)] || "");
-                    setAudioUrl("");
-                    resetTextbookVisualBrowser();
-                    setFollowUpQuestion("");
-                    setFollowUpMessages([]);
-                    resetPracticeState();
-                  }}
-                >
-                  {lessonSteps.map((step, index) => (
-                    <option
-                      key={step}
-                      value={index}
-                      disabled={index > highestUnlockedStep}
-                    >
-                      {index > highestUnlockedStep ? "🔒 " : ""}
-                      Step {index + 1}: {step}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              {/* Lesson Step dropdown hidden when refined layout is active.
+                  Step state (currentStepIndex, highestUnlockedStep) is preserved. */}
+              {!USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
+                <label>
+                  Lesson Step
+                  <select
+                    value={currentStepIndex}
+                    onChange={(e) => {
+                      const newIndex = Number(e.target.value);
+                      setCurrentStepIndex(newIndex);
+                      setLesson(stepLessons[String(newIndex)] || "");
+                      setAudioUrl("");
+                      resetTextbookVisualBrowser();
+                      setFollowUpQuestion("");
+                      setFollowUpMessages([]);
+                      resetPracticeState();
+                    }}
+                  >
+                    {lessonSteps.map((step, index) => (
+                      <option
+                        key={step}
+                        value={index}
+                        disabled={index > highestUnlockedStep}
+                      >
+                        {index > highestUnlockedStep ? "🔒 " : ""}
+                        Step {index + 1}: {step}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              )}
 
             </div>
 
@@ -1403,73 +1410,21 @@ function LessonsPage({ user, setActivePage }) {
                 : "✨ Generate Lesson"}
             </button>
 
-            <div className="button-row premium-lesson-button-row">
-              <button
-                className="secondary-btn"
-                disabled={currentStepIndex === 0}
-                onClick={async () => {
-                  const newIndex = currentStepIndex - 1;
-
-                  setCurrentStepIndex(newIndex);
-                  setLesson(stepLessons[String(newIndex)] || "");
-                  setAudioUrl("");
-                  resetTextbookVisualBrowser();
-                  setCompleted(false);
-                  resetPracticeState();
-
-                  await saveChapterProgress({
-                    username: user.username,
-                    grade,
-                    mode,
-                    subject,
-                    chapter,
-                    current_step_index: newIndex,
-                    highest_unlocked_step: highestUnlockedStep,
-                    completed: false,
-                    last_lesson: "",
-                    step_lessons: stepLessons,
-                  });
-                }}
-              >
-                ⬅ Previous Step
-              </button>
-
-              <button
-                className="secondary-btn"
-                title="You can complete this step. Practice feedback is for revision, not pass/fail."
-                onClick={async () => {
-                  const isLastStep = currentStepIndex >= lessonSteps.length - 1;
-
-                  if (isLastStep) {
-                    setCompleted(true);
-
-                    await saveChapterProgress({
-                      username: user.username,
-                      grade,
-                      mode,
-                      subject,
-                      chapter,
-                      current_step_index: currentStepIndex,
-                      highest_unlocked_step: highestUnlockedStep,
-                      completed: true,
-                      last_lesson: lesson,
-                      step_lessons: stepLessons,
-                    });
-                  } else {
-                    const newIndex = currentStepIndex + 1;
-
-                    const newHighestUnlockedStep = Math.max(
-                      highestUnlockedStep,
-                      newIndex
-                    );
-
-                    setHighestUnlockedStep(newHighestUnlockedStep);
+            {/* Mark Step Complete and Restart Chapter hidden in refined layout.
+                Their state logic (highestUnlockedStep, completed) is preserved. */}
+            {!USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
+              <div className="button-row premium-lesson-button-row">
+                <button
+                  className="secondary-btn"
+                  disabled={currentStepIndex === 0}
+                  onClick={async () => {
+                    const newIndex = currentStepIndex - 1;
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
                     setAudioUrl("");
                     resetTextbookVisualBrowser();
+                    setCompleted(false);
                     resetPracticeState();
-
                     await saveChapterProgress({
                       username: user.username,
                       grade,
@@ -1477,50 +1432,197 @@ function LessonsPage({ user, setActivePage }) {
                       subject,
                       chapter,
                       current_step_index: newIndex,
-                      highest_unlocked_step: newHighestUnlockedStep,
+                      highest_unlocked_step: highestUnlockedStep,
                       completed: false,
                       last_lesson: "",
                       step_lessons: stepLessons,
                     });
-                  }
-                }}
-              >
-                ✅ Mark Step Complete
-              </button>
+                  }}
+                >
+                  ⬅ Previous Step
+                </button>
 
-              <button
-                className="secondary-btn"
-                onClick={async () => {
-                  setCurrentStepIndex(0);
-                  setHighestUnlockedStep(0);
-                  setLesson("");
-                  setStepLessons({});          // ← fix: clear saved lessons so Generate button re-enables
-                  setAudioUrl("");
-                  resetTextbookVisualBrowser();
-                  setCompleted(false);
-                  resetPracticeState();
+                <button
+                  className="secondary-btn"
+                  title="You can complete this step. Practice feedback is for revision, not pass/fail."
+                  onClick={async () => {
+                    const isLastStep = currentStepIndex >= lessonSteps.length - 1;
+                    if (isLastStep) {
+                      setCompleted(true);
+                      await saveChapterProgress({
+                        username: user.username,
+                        grade,
+                        mode,
+                        subject,
+                        chapter,
+                        current_step_index: currentStepIndex,
+                        highest_unlocked_step: highestUnlockedStep,
+                        completed: true,
+                        last_lesson: lesson,
+                        step_lessons: stepLessons,
+                      });
+                    } else {
+                      const newIndex = currentStepIndex + 1;
+                      const newHighestUnlockedStep = Math.max(highestUnlockedStep, newIndex);
+                      setHighestUnlockedStep(newHighestUnlockedStep);
+                      setCurrentStepIndex(newIndex);
+                      setLesson(stepLessons[String(newIndex)] || "");
+                      setAudioUrl("");
+                      resetTextbookVisualBrowser();
+                      resetPracticeState();
+                      await saveChapterProgress({
+                        username: user.username,
+                        grade,
+                        mode,
+                        subject,
+                        chapter,
+                        current_step_index: newIndex,
+                        highest_unlocked_step: newHighestUnlockedStep,
+                        completed: false,
+                        last_lesson: "",
+                        step_lessons: stepLessons,
+                      });
+                    }
+                  }}
+                >
+                  ✅ Mark Step Complete
+                </button>
 
-                  await saveChapterProgress({
-                    username: user.username,
-                    grade,
-                    mode,
-                    subject,
-                    chapter,
-                    current_step_index: 0,
-                    highest_unlocked_step: 0,
-                    completed: false,
-                    last_lesson: "",
-                    step_lessons: {},
-                  });
-                }}
-              >
-                🔄 Restart Chapter
-              </button>
-            </div>
+                <button
+                  className="secondary-btn"
+                  onClick={async () => {
+                    setCurrentStepIndex(0);
+                    setHighestUnlockedStep(0);
+                    setLesson("");
+                    setStepLessons({});
+                    setAudioUrl("");
+                    resetTextbookVisualBrowser();
+                    setCompleted(false);
+                    resetPracticeState();
+                    await saveChapterProgress({
+                      username: user.username,
+                      grade,
+                      mode,
+                      subject,
+                      chapter,
+                      current_step_index: 0,
+                      highest_unlocked_step: 0,
+                      completed: false,
+                      last_lesson: "",
+                      step_lessons: {},
+                    });
+                  }}
+                >
+                  🔄 Restart Chapter
+                </button>
+              </div>
+            )}
           </div>
         </aside>
 
         <section className="lesson-content-panel premium-lesson-content">
+          {/* ── Refined layout: Previous / Next navigation at top of right pane ── */}
+          {USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
+            <div
+              className="lesson-step-nav-bar"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "10px 0 14px",
+                marginBottom: 4,
+                borderBottom: "1px solid var(--border, #e5e7eb)",
+              }}
+            >
+              {/* Left: step label */}
+              <span style={{ fontSize: "0.85rem", color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
+                Step {currentStepIndex + 1} of {lessonSteps.length}:&nbsp;
+                <strong style={{ color: "var(--text, #111827)" }}>{stepTitle}</strong>
+              </span>
+
+              {/* Right: progress % + nav buttons */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                {/* Progress badge — count of generated steps vs total */}
+                <span style={{
+                  fontSize: "0.78rem",
+                  fontWeight: 700,
+                  color: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
+                  background: Object.keys(stepLessons).length === lessonSteps.length ? "#dcfce7" : "#cffafe",
+                  border: `1px solid ${Object.keys(stepLessons).length === lessonSteps.length ? "#86efac" : "#67e8f9"}`,
+                  borderRadius: "999px",
+                  padding: "2px 10px",
+                }}>
+                  {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
+                </span>
+
+                <button
+                  className="secondary-btn"
+                  disabled={currentStepIndex === 0}
+                  style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                  onClick={async () => {
+                    const newIndex = currentStepIndex - 1;
+                    setCurrentStepIndex(newIndex);
+                    setLesson(stepLessons[String(newIndex)] || "");
+                    setAudioUrl("");
+                    resetTextbookVisualBrowser();
+                    setCompleted(false);
+                    resetPracticeState();
+                    await saveChapterProgress({
+                      username: user.username,
+                      grade,
+                      mode,
+                      subject,
+                      chapter,
+                      current_step_index: newIndex,
+                      highest_unlocked_step: highestUnlockedStep,
+                      completed: false,
+                      last_lesson: "",
+                      step_lessons: stepLessons,
+                    });
+                  }}
+                >
+                  ⬅ Previous
+                </button>
+                <button
+                  className="secondary-btn"
+                  disabled={currentStepIndex >= lessonSteps.length - 1}
+                  title={
+                    currentStepIndex >= lessonSteps.length - 1
+                      ? "You are on the last step"
+                      : `Go to Step ${currentStepIndex + 2}: ${lessonSteps[currentStepIndex + 1] || ""}`
+                  }
+                  style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                  onClick={async () => {
+                    const newIndex = currentStepIndex + 1;
+                    if (newIndex >= lessonSteps.length) return;
+                    // All steps freely navigable — no unlock gate
+                    const newHighest = Math.max(highestUnlockedStep, newIndex);
+                    setHighestUnlockedStep(newHighest);
+                    setCurrentStepIndex(newIndex);
+                    setLesson(stepLessons[String(newIndex)] || "");
+                    setAudioUrl("");
+                    resetTextbookVisualBrowser();
+                    resetPracticeState();
+                    await saveChapterProgress({
+                      username: user.username,
+                      grade,
+                      mode,
+                      subject,
+                      chapter,
+                      current_step_index: newIndex,
+                      highest_unlocked_step: newHighest,
+                      completed: false,
+                      last_lesson: "",
+                      step_lessons: stepLessons,
+                    });
+                  }}
+                >
+                  Next ➡
+                </button>
+              </div>
+            </div>
+          )}
+
           {error && <div className="error-box">{error}</div>}
 
           {generating && (
