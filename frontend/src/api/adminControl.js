@@ -1,3 +1,5 @@
+import { supabase } from "./supabaseClient";
+
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -20,9 +22,33 @@ async function parseError(response, fallbackMessage) {
 }
 
 async function adminFetch(path, options = {}) {
-  /** Wrap admin fetches so backend-offline errors are actionable in the UI. */
+  /**
+   * Wrap admin fetches with automatic token refresh.
+   *
+   * Always retrieves a fresh Supabase session token so stale tokens from React
+   * state (which go stale after inactivity) never cause "Unable to load admin
+   * control data" errors. The passed accessToken in options.headers is replaced
+   * with the freshly-obtained one.
+   */
+  let freshToken = null;
   try {
-    return await fetch(`${API_BASE_URL}${path}`, options);
+    const { data } = await supabase.auth.getSession();
+    freshToken = data.session?.access_token;
+    if (!freshToken) {
+      const refreshed = await supabase.auth.refreshSession();
+      freshToken = refreshed.data.session?.access_token;
+    }
+  } catch (_e) {
+    // If session fetch fails, fall back to the token already in headers
+  }
+
+  const headers = {
+    ...(options.headers || {}),
+    ...(freshToken ? { Authorization: `Bearer ${freshToken}` } : {}),
+  };
+
+  try {
+    return await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
   } catch (err) {
     throw new Error(
       `Cannot reach backend API at ${API_BASE_URL}. Start the FastAPI backend and try again.`
