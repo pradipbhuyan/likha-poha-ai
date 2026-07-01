@@ -461,24 +461,6 @@ function VisualPanel({ visuals }) {
   );
 }
 
-function GamificationPreview() {
-  return (
-    <div data-testid="gamification-preview" style={{ ...card({ background: "rgba(245,158,11,.04)", borderColor: "rgba(245,158,11,.2)" }) }}>
-      <h4 style={{ margin: "0 0 6px", fontSize: ".82rem", fontWeight: 800, color: C.orange }}>🏆 XP & Streaks</h4>
-      <p style={{ margin: 0, fontSize: ".74rem", color: "#64748b" }}>Gamification preview only — not connected to real student data.</p>
-      <div style={{ display: "flex", gap: 10, marginTop: 10, flexWrap: "wrap" }}>
-        {[{ icon: "⚡", label: "XP", value: "—" }, { icon: "🔥", label: "Streak", value: "—" }, { icon: "🎯", label: "Goals", value: "—" }].map(({ icon, label, value }) => (
-          <div key={label} style={{ textAlign: "center", flex: 1, minWidth: 48 }}>
-            <div style={{ fontSize: "1.2rem" }}>{icon}</div>
-            <div style={{ fontSize: ".65rem", color: C.muted }}>{label}</div>
-            <div style={{ fontSize: ".78rem", fontWeight: 700, color: C.orange }}>{value}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // ── Restart confirmation ──────────────────────────────────────────────────────
 
 function RestartConfirmDialog({ onConfirm, onCancel }) {
@@ -589,7 +571,6 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
   const steps = lesson?.steps || [];
   const currentStep = steps[stepIdx] || null;
   const nextStep = steps[stepIdx + 1] || null;
-  const totalTime = steps.reduce((a, s) => a + (s.estimated_minutes || 3), 0);
   const currentPreviewState = previewStates[stepIdx] || "not_started";
 
   // Catalog-derived selectors
