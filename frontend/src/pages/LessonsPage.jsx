@@ -357,6 +357,11 @@ function LessonsPage({ user, setActivePage }) {
   // Key: grade|subject|chapter|stepTitle|question (lowercased, trimmed)
   const followUpCache = useRef({});
 
+  // ── Chip cache readiness ───────────────────────────────────────────────────
+  // Only chips whose answers are already in followUpCache are shown.
+  // Chips are pre-fetched in background when suggestions or lesson loads.
+  const [cachedChipQuestions, setCachedChipQuestions] = useState(new Set());
+
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
 
@@ -541,7 +546,10 @@ function LessonsPage({ user, setActivePage }) {
             board: mode === "SOF" ? getUserBoard(user) : mode,
           });
           if (Array.isArray(suggestionsResult?.doubt_suggestions)) {
-            setDoubtSuggestions(suggestionsResult.doubt_suggestions.slice(0, 6));
+            const chips = suggestionsResult.doubt_suggestions.slice(0, 6);
+            setDoubtSuggestions(chips);
+            // Pre-populate cache with DKB answers if included in response
+            preFetchChipAnswers(chips, grade, mode, subject, chapter, lessonSteps[savedStepIndex]);
           }
         } catch {
           // Suggestions are a convenience — never block lesson loading
@@ -906,11 +914,12 @@ function LessonsPage({ user, setActivePage }) {
         setSelectedTextbookVisual(result.textbook_visuals[0]);
       }
       // Capture DKB-backed suggestion cards (pre-answered, zero token cost).
-      setDoubtSuggestions(
-        Array.isArray(result.doubt_suggestions)
-          ? result.doubt_suggestions.slice(0, 6)
-          : []
-      );
+      const newChips = Array.isArray(result.doubt_suggestions)
+        ? result.doubt_suggestions.slice(0, 6)
+        : [];
+      setDoubtSuggestions(newChips);
+      // Pre-populate cache immediately — chips with .answer skip API call entirely
+      preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
   
       const updatedStepLessons = {
         ...stepLessons,
@@ -1306,6 +1315,76 @@ function LessonsPage({ user, setActivePage }) {
   function countWords(text) {
     /** Count non-empty words for minimum practice answer validation. */
     return text.trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  async function preFetchChipAnswers(chips, chipGrade, chipMode, chipSubject, chipChapter, chipStepTitle) {
+    /** Pre-populate followUpCache for every chip question so chips are instant.
+     *  1. If the chip item already has an .answer field (DKB), store directly — zero API cost.
+     *  2. Otherwise call askLessonFollowUp in background for each chip.
+     *  Only chips with cached answers are shown (cachedChipQuestions state).
+     */
+    if (!chips || chips.length === 0) return;
+
+    const newReady = new Set();
+
+    await Promise.allSettled(chips.map(async (chip) => {
+      const question = typeof chip === "string" ? chip : chip.question;
+      if (!question) return;
+
+      const key = `${chipGrade}|${chipSubject}|${chipChapter}|${chipStepTitle}|${question.trim().toLowerCase()}`;
+
+      // ── Fast path: DKB chip already has answer in response ────────────────
+      const existingAnswer = typeof chip === "object" ? (chip.answer || chip.pre_answer || "") : "";
+      if (existingAnswer) {
+        followUpCache.current[key] = {
+          role: "assistant",
+          content: existingAnswer,
+          sourceType: "PLATFORM_RAG",
+          textbookVisuals: [],
+          offerGate: false,
+        };
+        newReady.add(question);
+        return;
+      }
+
+      // ── Slow path: already in cache from previous session interaction ──────
+      if (followUpCache.current[key]) {
+        newReady.add(question);
+        return;
+      }
+
+      // ── Background fetch: call API without blocking UI ─────────────────────
+      try {
+        const result = await askLessonFollowUp({
+          username: user.username,
+          grade: chipGrade,
+          mode: chipMode,
+          subject: chipSubject,
+          chapter: chipChapter,
+          step_title: chipStepTitle,
+          lesson,
+          question,
+        });
+        if (result.success && result.source_type !== "OFFER_GATE") {
+          followUpCache.current[key] = {
+            role: "assistant",
+            content: result.answer,
+            sourceType: result.source_type,
+            textbookVisuals: result.textbook_visuals || [],
+            offerGate: false,
+          };
+          newReady.add(question);
+        }
+      } catch {
+        // Background pre-fetch failure — chip simply won't appear
+      }
+    }));
+
+    setCachedChipQuestions((prev) => {
+      const merged = new Set(prev);
+      newReady.forEach((q) => merged.add(q));
+      return merged;
+    });
   }
 
   // ── Exemplar chapter gate ──────────────────────────────────────────────────
@@ -2332,7 +2411,10 @@ function LessonsPage({ user, setActivePage }) {
                               "Show a diagram",
                               "What are the key points to remember?",
                             ]
-                        ).map((chip) => (
+                        )
+                        // Only show chips whose answers are pre-loaded in cache
+                        .filter((chip) => cachedChipQuestions.has(chip))
+                        .map((chip) => (
                           <button
                             key={chip}
                             type="button"
