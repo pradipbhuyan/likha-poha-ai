@@ -59,3 +59,14 @@ export function getLessonKbChips({ grade, subject, chapter, step_title }) {
   const params = new URLSearchParams({ grade, subject, chapter, step_title });
   return authFetch(`/api/lesson/lkb-chips?${params.toString()}`);
 }
+
+export function ensureLessonKbChips({ grade, subject, chapter, step_title }) {
+  /** Fetch LKB chips, generating via LLM on first access if not yet pre-warmed.
+   *  Returns { success, lkb_chips: [{ id, question, answer }], generated: bool }
+   *  - If already in DB: returns instantly (zero LLM cost).
+   *  - If not yet generated: calls LLM once (~5-8s), stores result, returns chips.
+   *  All subsequent requests for the same step are instant from DB.
+   */
+  const params = new URLSearchParams({ grade, subject, chapter, step_title });
+  return authFetch(`/api/lesson/lkb-chips/ensure?${params.toString()}`);
+}

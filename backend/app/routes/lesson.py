@@ -697,3 +697,38 @@ def get_lkb_chips(
         return {"success": True, "lkb_chips": chips}
     except Exception:
         return {"success": True, "lkb_chips": []}
+
+
+@router.get("/lkb-chips/ensure")
+def ensure_lkb_chips(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    user=Depends(get_current_user),
+):
+    """
+    Return LKB chips, generating them on-demand via LLM if not yet pre-warmed.
+
+    Flow:
+    1. DB lookup — instant if admin has pre-warmed.
+    2. On cache miss — generates 5 NCERT-grounded chips via LLM, stores in lesson_kb,
+       then returns them so all future requests are instant.
+
+    This means every student always sees 5 chapter-specific chip questions.
+    The first request for an un-warmed step takes ~5-8s (LLM call).
+    All subsequent requests are instant from DB.
+
+    Returns: { success, lkb_chips: [{id, question, answer}], generated: bool }
+    """
+    try:
+        from app.services.lesson_kb_service import get_or_generate_lkb_chips  # noqa: PLC0415
+        chips, was_generated = get_or_generate_lkb_chips(
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            step_title=step_title,
+        )
+        return {"success": True, "lkb_chips": chips, "generated": was_generated}
+    except Exception:
+        return {"success": True, "lkb_chips": [], "generated": False}

@@ -81,6 +81,46 @@ def get_lkb_chips(
         return []
 
 
+def get_or_generate_lkb_chips(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+) -> tuple[list[dict], bool]:
+    """
+    Return LKB chips for the current lesson step, generating them on-demand if missing.
+
+    Flow:
+    1. DB lookup (instant if pre-warmed).
+    2. On miss → generate 5 chips via LLM with NCERT RAG context.
+    3. Store generated chips in lesson_kb so all future requests are instant.
+    4. Return chips + generated flag.
+
+    Returns (chips: list[dict], was_generated: bool).
+    """
+    # ── Fast path: DB hit ──────────────────────────────────────────────────────
+    chips = get_lkb_chips(grade, subject, chapter, step_title)
+    if chips:
+        return chips, False
+
+    # ── Slow path: generate + store ────────────────────────────────────────────
+    logger.info(
+        "LKB miss — generating chips for %s / %s / %s / %s",
+        grade, subject, chapter, step_title,
+    )
+    try:
+        new_chips = _generate_chips(grade, subject, chapter, step_title)
+        if new_chips:
+            _store_chips(grade, subject, chapter, step_title, new_chips)
+            # Re-fetch from DB so IDs are included
+            stored = get_lkb_chips(grade, subject, chapter, step_title)
+            return stored if stored else new_chips, True
+    except Exception as exc:
+        logger.warning("LKB on-demand generation failed: %s", exc)
+
+    return [], True
+
+
 def record_lkb_hit(chip_id: str, grade: str) -> None:
     """Increment hit count for analytics (fire-and-forget)."""
     try:
