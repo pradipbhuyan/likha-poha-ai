@@ -6,9 +6,10 @@ Student endpoints:
   GET  /api/issues/my-reports      — own reports
 
 Admin endpoints:
-  GET    /api/admin/issues          — list/filter all issues
-  GET    /api/admin/issues/{id}     — get issue detail
-  PATCH  /api/admin/issues/{id}     — update status/notes/assignee
+  GET    /api/admin/issues                     — list/filter all issues
+  GET    /api/admin/issues/{id}                — get issue detail
+  PATCH  /api/admin/issues/{id}                — update status/notes/assignee
+  POST   /api/admin/issues/{id}/fix-and-rewarm — clear cache + regenerate + mark fixed
 ─────────────────────────────────────────────────────────────────────────────
 """
 from __future__ import annotations
@@ -19,7 +20,7 @@ import re
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from pydantic import BaseModel, field_validator
 
 from ..services.auth_service import (
@@ -397,3 +398,120 @@ def search_users(
         return {"success": True, "users": users[:limit]}
     except Exception as e:
         return {"success": False, "users": [], "error": str(e)[:200]}
+
+
+# ── Admin: Fix content issue + rewarm lesson in one cycle ─────────────────────
+
+@router.post("/api/admin/issues/{issue_id}/fix-and-rewarm")
+def fix_and_rewarm(
+    issue_id: str,
+    background_tasks: BackgroundTasks,
+    admin_user=Depends(require_admin),
+):
+    """
+    For content issues where the lesson cache contains bad AI output:
+    1. Clear the cached lesson step for grade/subject/chapter/lesson_step
+    2. Trigger prewarm_single_chapter for the affected chapter (background)
+    3. Mark the issue as 'fixed' with an admin note
+
+    Requires the issue to have grade, subject, and chapter populated.
+    lesson_step is optional — if present, only that step is cleared and rewarmed;
+    if absent, the full chapter is rewarmed.
+    """
+
+    # Fetch issue
+    r = (admin_client.table("product_issue_reports")
+         .select("*").eq("id", issue_id).single().execute())
+    if not r.data:
+        raise HTTPException(404, "Issue not found.")
+    issue = r.data
+
+    grade = issue.get("grade")
+    subject = issue.get("subject")
+    chapter = issue.get("chapter")
+    lesson_step = issue.get("lesson_step")
+
+    if not grade or not subject or not chapter:
+        raise HTTPException(400, (
+            "Cannot rewarm: issue is missing grade, subject, or chapter. "
+            "These fields must be captured in the bug report."
+        ))
+
+    # Step 1: Clear lesson cache for the affected chapter
+    cleared = 0
+    try:
+        from app.services.lesson_cache_service import make_lesson_cache_key  # noqa: PLC0415
+        from app.services.prewarm_service import get_lesson_steps_for_grade  # noqa: PLC0415
+
+        steps_to_clear = (
+            [lesson_step]
+            if lesson_step
+            else get_lesson_steps_for_grade(grade)
+        )
+        for step in steps_to_clear:
+            for mode in ("CBSE", "Olympiad"):
+                cache_key = make_lesson_cache_key(
+                    board="CBSE", grade=grade, subject=subject,
+                    chapter=chapter, mode=mode, step_title=step, teacher_persona="",
+                )
+                try:
+                    admin_client.table("lesson_cache").delete().eq("cache_key", cache_key).execute()
+                    cleared += 1
+                except Exception:
+                    pass
+    except Exception as e:
+        # Non-fatal — continue to rewarm even if cache clear partially fails
+        pass
+
+    # Step 2: Trigger rewarm in background
+    try:
+        from app.services.prewarm_service import prewarm_single_chapter  # noqa: PLC0415
+        background_tasks.add_task(
+            prewarm_single_chapter,
+            grade=grade,
+            mode="CBSE",
+            subject=subject,
+            chapter=chapter,
+        )
+    except Exception:
+        pass
+
+    # Step 3: Mark issue as fixed
+    note_prefix = f"[Auto] Fix-and-Rewarm triggered. Cleared {cleared} cache entries. Chapter '{chapter}' ({grade} {subject}) queued for regeneration."
+    existing_notes = issue.get("admin_notes") or ""
+    combined_notes = (note_prefix + "\n\n" + existing_notes).strip()
+
+    update_r = (admin_client.table("product_issue_reports")
+                .update({
+                    "status": "fixed",
+                    "admin_notes": combined_notes[:5000],
+                    "resolved_at": datetime.now(timezone.utc).isoformat(),
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                })
+                .eq("id", issue_id)
+                .execute())
+
+    if not update_r.data:
+        raise HTTPException(500, "Issue update failed after rewarm trigger.")
+
+    # Audit log
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "admin_id": admin_user["auth_user"].id,
+            "action": "issue_fix_and_rewarm",
+            "target_id": issue_id,
+            "details": json.dumps({
+                "grade": grade, "subject": subject, "chapter": chapter,
+                "lesson_step": lesson_step, "cache_entries_cleared": cleared,
+            }),
+        }).execute()
+    except Exception:
+        pass
+
+    return {
+        "success": True,
+        "issue": update_r.data[0],
+        "cache_entries_cleared": cleared,
+        "rewarm_queued": True,
+        "message": f"Cache cleared ({cleared} entries). Chapter '{chapter}' is being regenerated in background.",
+    }

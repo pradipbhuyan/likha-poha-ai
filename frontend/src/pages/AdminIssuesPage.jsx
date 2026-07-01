@@ -36,10 +36,16 @@ function SummaryCard({ label, value, color = "#6366f1", testid }) {
   );
 }
 
+// Content issue types where lesson cache can be cleared + rewarmed
+const CONTENT_ISSUE_TYPES = new Set([
+  "content_issue", "wrong_explanation", "missing_section", "wrong_formula", "wrong_answer",
+]);
+
 function IssueDrawer({ issue, onClose, onUpdate }) {
   const [notes, setNotes] = useState(issue?.admin_notes || "");
   const [status, setStatus] = useState(issue?.status || "open");
   const [saving, setSaving] = useState(false);
+  const [rewarming, setRewarming] = useState(false);
   const [msg, setMsg] = useState(null);
 
   useEffect(() => {
@@ -133,6 +139,44 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
         {saving ? "Saving…" : "Save Changes"}
       </button>
       {msg && <div style={{ marginTop: 8, fontSize: ".78rem", color: msg.startsWith("Error") ? "#dc2626" : "#22c55e" }}>{msg}</div>}
+
+      {/* Fix with AI + Rewarm — only for content issues with lesson context */}
+      {CONTENT_ISSUE_TYPES.has(issue.issue_type) && issue.grade && issue.subject && issue.chapter && (
+        <div style={{ marginTop: 14, borderTop: "1px solid var(--border,#e5e7eb)", paddingTop: 14 }}>
+          <div style={{ fontSize: ".76rem", fontWeight: 600, color: "#64748b", marginBottom: 6 }}>
+            🔧 Fix Content Issue
+          </div>
+          <p style={{ fontSize: ".74rem", color: "#64748b", margin: "0 0 10px", lineHeight: 1.5 }}>
+            Clears the cached lesson for <strong>{issue.chapter}</strong>
+            {issue.lesson_step ? ` (step: ${issue.lesson_step})` : " (all steps)"}
+            , regenerates with the corrected AI prompt, and marks this issue as fixed — all in one cycle.
+          </p>
+          <button
+            data-testid="fix-and-rewarm-btn"
+            disabled={rewarming || issue.status === "fixed"}
+            onClick={async () => {
+              if (!window.confirm(`Clear lesson cache and regenerate "${issue.chapter}" for ${issue.grade} ${issue.subject}? This will mark the issue as fixed.`)) return;
+              setRewarming(true); setMsg(null);
+              try {
+                const r = await authFetch(`/api/admin/issues/${issue.id}/fix-and-rewarm`, { method: "POST" });
+                if (r.success) {
+                  setMsg(`✅ ${r.message}`);
+                  onUpdate(r.issue);
+                }
+              } catch (e) { setMsg("Error: " + e.message); }
+              finally { setRewarming(false); }
+            }}
+            style={{
+              width: "100%", padding: "10px", borderRadius: 8, border: "none",
+              background: rewarming || issue.status === "fixed" ? "#94a3b8" : "#10b981",
+              color: "#fff", fontWeight: 700, fontSize: ".85rem",
+              cursor: rewarming || issue.status === "fixed" ? "not-allowed" : "pointer",
+              fontFamily: "inherit",
+            }}>
+            {rewarming ? "⏳ Clearing cache + queuing rewarm…" : issue.status === "fixed" ? "✓ Already Fixed" : "🔧 Fix with AI + Rewarm Lesson"}
+          </button>
+        </div>
+      )}
 
       {/* Copy for Codex */}
       <div style={{ marginTop:16, borderTop:"1px solid var(--border,#e5e7eb)", paddingTop:14 }}>
