@@ -20,7 +20,7 @@
  */
 
 // Vite's import.meta.glob loads all .md files at build time
-const modules = import.meta.glob("./posts/*.md", { as: "raw", eager: true });
+const modules = import.meta.glob("./posts/*.md", { query: "?raw", import: "default", eager: true });
 
 /**
  * Parse YAML frontmatter block at the top of a markdown file.
