@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -350,6 +350,12 @@ function LessonsPage({ user, setActivePage }) {
   const [lessonDoubtHistory, setLessonDoubtHistory] = useState([]);
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [doubtSuggestions, setDoubtSuggestions] = useState([]);
+
+  // ── Session-level answer cache ─────────────────────────────────────────────
+  // Common questions (chip suggestions, repeated questions) are answered instantly
+  // from cache — no network call, no loading spinner.
+  // Key: grade|subject|chapter|stepTitle|question (lowercased, trimmed)
+  const followUpCache = useRef({});
 
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
@@ -945,6 +951,9 @@ function LessonsPage({ user, setActivePage }) {
     /** Ask a follow-up about the current lesson unless practice mode is active.
      *  Accepts an optional overrideQuestion so chip clicks can submit directly
      *  without a separate state-set-then-submit cycle.
+     *
+     *  Performance: questions already answered in this session are served instantly
+     *  from followUpCache — no network call and no loading spinner.
      */
     const questionToAsk =
       overrideQuestion !== null ? String(overrideQuestion) : followUpQuestion;
@@ -953,17 +962,18 @@ function LessonsPage({ user, setActivePage }) {
       return;
     }
 
-    setFollowUpLoading(true);
-
-    const userMessage = {
-      role: "user",
-      content: questionToAsk,
-    };
-
-    setFollowUpMessages((prev) => [...prev, userMessage]);
-
-    // Always clear the text area so the UI feels responsive
+    // Show the user's message immediately and clear the text area
+    setFollowUpMessages((prev) => [...prev, { role: "user", content: questionToAsk }]);
     setFollowUpQuestion("");
+
+    // ── Cache hit: instant response ──────────────────────────────────────────
+    const cacheKey = `${grade}|${subject}|${chapter}|${stepTitle}|${questionToAsk.trim().toLowerCase()}`;
+    if (followUpCache.current[cacheKey]) {
+      setFollowUpMessages((prev) => [...prev, followUpCache.current[cacheKey]]);
+      return;
+    }
+
+    setFollowUpLoading(true);
 
     try {
       const result = await askLessonFollowUp({
@@ -989,16 +999,20 @@ function LessonsPage({ user, setActivePage }) {
         return;
       }
 
-      setFollowUpMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: result.answer,
-          sourceType: result.source_type,
-          textbookVisuals: result.textbook_visuals || [],
-          offerGate: result.source_type === "OFFER_GATE",
-        },
-      ]);
+      const assistantMessage = {
+        role: "assistant",
+        content: result.answer,
+        sourceType: result.source_type,
+        textbookVisuals: result.textbook_visuals || [],
+        offerGate: result.source_type === "OFFER_GATE",
+      };
+
+      // Cache non-gated answers for instant re-use in this session
+      if (result.source_type !== "OFFER_GATE") {
+        followUpCache.current[cacheKey] = assistantMessage;
+      }
+
+      setFollowUpMessages((prev) => [...prev, assistantMessage]);
 
       loadLessonDoubtHistory();
     } catch (error) {
