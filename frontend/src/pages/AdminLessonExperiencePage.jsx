@@ -347,8 +347,23 @@ function CollapsibleSection({ title, icon, children, defaultOpen = false, accent
   );
 }
 
-function FormulaCard({ formulas }) {
+// Subjects where mathematical/scientific formulas are relevant
+const FORMULA_SUBJECTS = [
+  "maths", "mathematics", "math",
+  "physics", "chemistry", "science",
+  "economics", "statistics", "accounts", "accountancy",
+  "biology", // only when formulas actually present (e.g. genetics ratios)
+];
+
+function isFormulaSubject(subject) {
+  if (!subject) return false;
+  const s = subject.toLowerCase();
+  return FORMULA_SUBJECTS.some(f => s.includes(f));
+}
+
+function FormulaCard({ formulas, subject }) {
   if (!formulas?.length) return null;
+  if (!isFormulaSubject(subject)) return null;
   return (
     <div data-testid="formula-card" style={{
       ...card({ background: "rgba(245,158,11,.04)", borderColor: "rgba(245,158,11,.25)" }),
@@ -745,8 +760,8 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
                 </div>
               )}
 
-              {/* Formulas */}
-              <FormulaCard formulas={currentStep.formulas} />
+              {/* Formulas — only for STEM/formula-relevant subjects */}
+              <FormulaCard formulas={currentStep.formulas} subject={lesson.subject} />
 
               {/* Practice MCQ */}
               {(currentStep.mcqs || []).length > 0 ? (
