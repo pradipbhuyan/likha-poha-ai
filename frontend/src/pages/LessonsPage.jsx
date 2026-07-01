@@ -599,8 +599,11 @@ function LessonsPage({ user, setActivePage }) {
         setDoubtSuggestions([]);
         resetPracticeState();
 
-        // Reload DKB suggestion cards for the saved lesson so chips show
-        // DKB-answerable questions rather than generic default prompts.
+        // Pre-load step cards immediately — always runs, no API dependency
+        // Chips appear as soon as the lesson content renders.
+        preloadStepCards(grade, subject, chapter, lessonSteps[savedStepIndex]);
+
+        // Reload DKB suggestion cards (optional — best-effort, never blocks chips)
         try {
           const suggestionsResult = await getLessonDoubtSuggestions({
             grade, mode, subject, chapter,
@@ -613,10 +616,8 @@ function LessonsPage({ user, setActivePage }) {
             setDoubtSuggestions(dkbChips);
             preFetchChipAnswers(dkbChips, grade, mode, subject, chapter, lessonSteps[savedStepIndex]);
           }
-          // Always load step cards immediately regardless of DKB availability
-          preloadStepCards(grade, subject, chapter, lessonSteps[savedStepIndex]);
         } catch {
-          // Suggestions are a convenience — never block lesson loading
+          // DKB suggestions are a convenience — never block lesson loading
         }
       } catch {
         console.error("Could not load progress");
