@@ -120,6 +120,67 @@ function getLoadingMessage(stepIndex, subject) {
   return pool.default;
 }
 
+// ── Per-step pre-answered suggestion cards ────────────────────────────────────
+// 5 question-answer pairs per step type. Loaded into followUpCache immediately
+// when a lesson is generated — chips appear instantly, zero API cost.
+// Keyed by step title (lowercased, partial match).
+const STEP_QA_CARDS = {
+  "concept introduction": [
+    { q: "What is the main idea of this concept?",       a: "The main idea is to understand the core definition and real-world significance of this concept. Focus on what it is, why it exists, and where it applies in everyday life or exams." },
+    { q: "Why is this concept important for the exam?",  a: "This concept is foundational — it appears directly in CBSE question papers as both 1-mark definitions and 3-5 mark explanations. Understanding it clearly will help you answer both recall and application questions." },
+    { q: "Give me a simple example of this concept.",    a: "A simple example helps connect theory to reality. Think of a situation from daily life that directly demonstrates what this concept describes — this is how CBSE setters frame many application questions." },
+    { q: "What are the key terms I must remember?",      a: "Focus on the exact definition, the technical term, any formula or rule associated with it, and 1-2 examples. These key terms are what CBSE directly tests in short-answer questions." },
+    { q: "How do I write a good answer about this?",     a: "Start with a one-line definition, then explain with a reason or example, and end with its significance. Use subject-specific vocabulary. For 3-mark answers, write 3 clear points. For 5-mark answers, include a diagram or worked example if applicable." },
+  ],
+  "core explanation": [
+    { q: "Explain this topic in simpler words.",         a: "At its core, this topic builds on the concept introduced earlier. The key is to understand the mechanism or process — how it works step by step — rather than just memorising the definition. Picture the cause-and-effect relationship." },
+    { q: "What is the most important part of this topic?", a: "The most important part is the central mechanism or rule that this topic is built on. In CBSE exams, questions test whether you understand this core logic — not just the surface facts. Make sure you can explain it in your own words." },
+    { q: "How is this different from what I learned before?", a: "This builds directly on the previous step by adding depth and detail. The earlier step gave you the 'what' — this step explains the 'how' and 'why'. Note the new terms and any conditions or exceptions introduced here." },
+    { q: "What mistakes do students make on this topic?", a: "Common mistakes include confusing similar terms, forgetting exceptions to the main rule, and writing vague answers without examples. Always use the correct technical term, include at least one example, and re-read the question before answering." },
+    { q: "Give a real-life example of this.",            a: "Real-life examples anchor abstract concepts. Look for connections in your daily environment — the school, kitchen, transport, or nature. CBSE frequently asks 'give an example from daily life' so having 2-3 ready is valuable." },
+  ],
+  "worked examples": [
+    { q: "Walk me through this example step by step.",   a: "Step 1: Identify what is given and what you need to find. Step 2: Select the correct formula or rule. Step 3: Substitute the values carefully, paying attention to units. Step 4: Simplify. Step 5: State the final answer with units and a concluding sentence." },
+    { q: "How do I solve this type of problem in the exam?", a: "Write down the given data first, then the formula, then substitute step by step. Never skip steps in the working — CBSE awards marks for each step even if the final answer is wrong. Always write the final answer in a box or on a new line." },
+    { q: "What formula or rule is used here?",           a: "The formula or rule used in this type of problem is directly stated in the lesson. Write it out before substituting any values. If you forget the formula in the exam, try to derive it from the concept — examiners often give partial marks for correct reasoning." },
+    { q: "What if the numbers are different — how do I adapt?", a: "The method stays the same regardless of the numbers. Always follow the same structure: identify, recall the formula, substitute, simplify. The only thing that changes is the numbers — the logical steps never change." },
+    { q: "How many marks does this type of question carry?", a: "This type of numerical or worked example typically carries 2-3 marks in CBSE. Show all steps clearly. Even if your final answer is wrong, you earn method marks for correct steps. Never leave a question blank — write the formula and approach for partial credit." },
+  ],
+  "exam-style problems": [
+    { q: "How do I approach a tricky exam question on this?", a: "First, read the question twice. Identify the key term being tested. Then recall the definition + one example + one application. For MCQs, eliminate obviously wrong options first. For descriptive, write a structured answer: define → explain → example → significance." },
+    { q: "What are common exam traps in this topic?",    a: "Common traps include negative marking on MCQs where two options seem correct (look for the most precise one), confusing similar-sounding terms, and applying a concept outside its valid conditions. Always read 'which of the following is NOT' questions carefully." },
+    { q: "Give me a sample exam question on this.",      a: "A typical CBSE question on this topic might ask: 'Define [key term] and give one example.' or 'Explain [concept] with the help of a diagram.' or 'Differentiate between [A] and [B].' Practise writing concise answers for each of these formats." },
+    { q: "How much time should I spend on this question?", a: "For 1-mark questions: 1-2 minutes. For 2-3 mark questions: 3-5 minutes. For 5-mark questions: 7-8 minutes. If you are stuck, skip and return — never spend more than double the allocated time on one question." },
+    { q: "What keywords should I use in my answer?",     a: "Always use the subject-specific technical terms from your textbook. Examiners mark for key terms like 'covalent bond', 'refraction', 'arithmetic progression' etc. Using everyday words instead of technical terms costs you marks even if your explanation is correct." },
+  ],
+  "revision and recap": [
+    { q: "What are the 3 most important points from this chapter?", a: "The 3 most important points from this lesson step are: (1) The core definition and formula or rule, (2) The key example that illustrates the concept, and (3) The most common exam question type associated with this topic. Review these 3 before every test." },
+    { q: "How do I quickly revise this before the exam?", a: "Write the key terms on a revision card. Draw a quick mind-map of the concept. Solve 2-3 past questions from this topic. Read your own notes in your own words — this activates memory better than rereading the textbook." },
+    { q: "What is the examiner likely to ask from this?", a: "CBSE examiners typically ask: (1) Short definitions (1-2 marks), (2) Explain with examples (3 marks), (3) Differentiate between two related concepts (3-5 marks), and (4) Application-based numerical or situational questions (3-5 marks)." },
+    { q: "Write a one-paragraph summary of this topic.", a: "A strong summary includes: the topic name, its core definition in one sentence, the key rule or formula, one example, and one real-world application. If you can write this paragraph from memory, you are ready to answer any exam question on this topic." },
+    { q: "What are the common mistakes to avoid in the final exam?", a: "The most common final-exam mistakes are: writing incomplete definitions, forgetting to include units in numerical answers, confusing similar concepts, not re-reading questions before answering, and leaving questions unattempted. Always attempt every question — partial marks add up." },
+  ],
+  "exam preparation": [
+    { q: "How do I prepare for board-level questions on this?", a: "Board exams test depth, precision, and presentation. Use NCERT language for definitions. Include diagrams where allowed. Structure long answers as: Introduction (1-2 lines) → Main points (numbered) → Example → Conclusion. Practice previous year CBSE papers for this topic." },
+    { q: "What are the most asked questions from this in CBSE?", a: "CBSE most frequently asks: definitions (1-2 marks), explain-with-example (3 marks), differentiate-between (3-5 marks), and application or situation-based questions (5 marks). The specific form varies by subject but the pattern is consistent across years." },
+    { q: "Give me a last-minute tip for this topic.",     a: "Last-minute tip: write the formula or key rule on a sticky note. Read it 5 times just before the exam. In the exam hall, write it at the top of your rough work page so you always have it visible. One formula recalled correctly can win you 3-5 marks." },
+    { q: "How should I structure a 5-mark answer on this?", a: "A 5-mark answer structure: Line 1 — Definition (1 mark). Lines 2-3 — Explanation with mechanism or process (2 marks). Lines 4-5 — Example or application (1 mark). Line 6 — Diagram if applicable (1 mark). Always end with a concluding sentence. Use bullet points for clarity." },
+    { q: "What is the difference between this and a related concept?", a: "Differentiation questions are common in CBSE. Structure your answer as a table or two clear paragraphs. State the basis of comparison first (e.g. definition, process, example), then give the specific difference for each concept. Include one example for each to earn full marks." },
+  ],
+};
+
+// Returns the best matching step QA cards for a given step title
+function getStepQACards(stepTitle) {
+  const st = (stepTitle || "").toLowerCase();
+  for (const [key, cards] of Object.entries(STEP_QA_CARDS)) {
+    if (st.includes(key.split(" ")[0]) || st.includes(key)) {
+      return cards;
+    }
+  }
+  // Default: revision cards work for any step
+  return STEP_QA_CARDS["revision and recap"];
+}
+
 // ── Layout feature flag — set to false to instantly roll back all layout changes ──
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
 
@@ -545,12 +606,15 @@ function LessonsPage({ user, setActivePage }) {
             grade, mode, subject, chapter,
             board: mode === "SOF" ? getUserBoard(user) : mode,
           });
-          if (Array.isArray(suggestionsResult?.doubt_suggestions)) {
-            const chips = suggestionsResult.doubt_suggestions.slice(0, 6);
-            setDoubtSuggestions(chips);
-            // Pre-populate cache with DKB answers if included in response
-            preFetchChipAnswers(chips, grade, mode, subject, chapter, lessonSteps[savedStepIndex]);
+          const dkbChips = Array.isArray(suggestionsResult?.doubt_suggestions)
+            ? suggestionsResult.doubt_suggestions.slice(0, 6)
+            : [];
+          if (dkbChips.length > 0) {
+            setDoubtSuggestions(dkbChips);
+            preFetchChipAnswers(dkbChips, grade, mode, subject, chapter, lessonSteps[savedStepIndex]);
           }
+          // Always load step cards immediately regardless of DKB availability
+          preloadStepCards(grade, subject, chapter, lessonSteps[savedStepIndex]);
         } catch {
           // Suggestions are a convenience — never block lesson loading
         }
@@ -918,8 +982,12 @@ function LessonsPage({ user, setActivePage }) {
         ? result.doubt_suggestions.slice(0, 6)
         : [];
       setDoubtSuggestions(newChips);
-      // Pre-populate cache immediately — chips with .answer skip API call entirely
-      preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
+      // Load step-specific pre-answered cards immediately (synchronous, zero API cost)
+      preloadStepCards(grade, subject, chapter, stepTitle);
+      // Also pre-fetch DKB chips if any
+      if (newChips.length > 0) {
+        preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
+      }
   
       const updatedStepLessons = {
         ...stepLessons,
@@ -1315,6 +1383,30 @@ function LessonsPage({ user, setActivePage }) {
   function countWords(text) {
     /** Count non-empty words for minimum practice answer validation. */
     return text.trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function preloadStepCards(chipGrade, chipSubject, chipChapter, chipStepTitle) {
+    /** Synchronously populate followUpCache with the 5 STEP_QA_CARDS for this step.
+     *  No API call — answers are embedded. Chips appear instantly after lesson loads.
+     */
+    const cards = getStepQACards(chipStepTitle);
+    const newReady = new Set();
+    cards.forEach(({ q, a }) => {
+      const key = `${chipGrade}|${chipSubject}|${chipChapter}|${chipStepTitle}|${q.trim().toLowerCase()}`;
+      followUpCache.current[key] = {
+        role: "assistant",
+        content: a,
+        sourceType: "PLATFORM_RAG",
+        textbookVisuals: [],
+        offerGate: false,
+      };
+      newReady.add(q);
+    });
+    setCachedChipQuestions((prev) => {
+      const merged = new Set(prev);
+      newReady.forEach((q) => merged.add(q));
+      return merged;
+    });
   }
 
   async function preFetchChipAnswers(chips, chipGrade, chipMode, chipSubject, chipChapter, chipStepTitle) {
@@ -2404,13 +2496,7 @@ function LessonsPage({ user, setActivePage }) {
                       <div className="followup-chip-row">
                         {(doubtSuggestions.length > 0
                           ? doubtSuggestions.map((s) => s.question)
-                          : [
-                              "Explain in simpler words",
-                              "Give a real-life example",
-                              "Why is this important?",
-                              "Show a diagram",
-                              "What are the key points to remember?",
-                            ]
+                          : getStepQACards(stepTitle).map((c) => c.q)
                         )
                         // Only show chips whose answers are pre-loaded in cache
                         .filter((chip) => cachedChipQuestions.has(chip))
