@@ -11,6 +11,8 @@ import {
   startDoubtKbPrewarm,
   getDoubtKbStats,
   restoreLessonCache,
+  startLkbBuild,
+  getLkbOverview,
 } from "../api/cacheManagement";
 
 function gradeToSlug(grade) {
@@ -93,6 +95,10 @@ function AdminCacheManagementPage({ user }) {
   const [dkbStats, setDkbStats] = useState(null);
   const [dkbRunningGrades, setDkbRunningGrades] = useState({});
 
+  // ---- LKB (Lesson Knowledge Base) state ----
+  const [lkbOverviews, setLkbOverviews] = useState({});
+  const [lkbRunningGrades, setLkbRunningGrades] = useState({});
+
   // ---- Chapter-by-chapter prewarm state ----
   const [chapterGrade, setChapterGrade] = useState("Grade 9");
   const [chapterList, setChapterList] = useState([]);
@@ -124,6 +130,17 @@ function AdminCacheManagementPage({ user }) {
       if (result.success) setDkbStats(result);
     } catch {
       // DKB stats are optional — fail silently
+    }
+  }
+
+  async function loadLkbOverview(grade) {
+    try {
+      const result = await getLkbOverview(gradeToSlug(grade), user.accessToken);
+      if (result.success) {
+        setLkbOverviews(prev => ({ ...prev, [grade]: result }));
+      }
+    } catch {
+      // LKB overview is optional — fail silently
     }
   }
 
@@ -194,6 +211,22 @@ function AdminCacheManagementPage({ user }) {
       setError(err.message || "Failed to start Doubt KB pre-warming.");
     } finally {
       setTimeout(() => setDkbRunningGrades((prev) => ({ ...prev, [grade]: false })), 60000);
+    }
+  }
+
+  async function handleBuildLkb(grade) {
+    /** Start background LKB chip generation for a grade. */
+    setMessage("");
+    setError("");
+    setLkbRunningGrades((prev) => ({ ...prev, [grade]: true }));
+    try {
+      const result = await startLkbBuild(gradeToSlug(grade), user.accessToken);
+      setMessage(result.message || `LKB build started for ${grade}.`);
+      setTimeout(() => loadLkbOverview(grade), 30000);
+    } catch (err) {
+      setError(err.message || "Failed to start LKB build.");
+    } finally {
+      setTimeout(() => setLkbRunningGrades((prev) => ({ ...prev, [grade]: false })), 90000);
     }
   }
 
@@ -507,6 +540,52 @@ function AdminCacheManagementPage({ user }) {
                         ? "✅ Doubt KB Done"
                         : `🧠 Build Doubt KB${dkb_cached > 0 ? " (Resume)" : ""}`}
                     </button>
+
+                    {/* LKB — Lesson Knowledge Base */}
+                    {(() => {
+                      const lkb = lkbOverviews[grade];
+                      const lkb_built = lkb?.chips_built ?? 0;
+                      const lkb_expected = lkb?.chips_expected ?? 0;
+                      const lkb_pct = lkb_expected > 0 ? Math.round(lkb_built / lkb_expected * 100) : 0;
+                      const lkb_complete = lkb_expected > 0 && lkb_built >= lkb_expected;
+                      const lkb_running = lkbRunningGrades[grade];
+                      return (
+                        <div style={{ marginTop: 8 }}>
+                          {lkb && (
+                            <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginBottom: 4 }}>
+                              📚 LKB chips: {lkb_built}/{lkb_expected} ({lkb_pct}%)
+                            </div>
+                          )}
+                          <button
+                            className="primary-btn"
+                            disabled={lkb_running}
+                            onClick={() => {
+                              if (!lkbOverviews[grade]) loadLkbOverview(grade);
+                              handleBuildLkb(grade);
+                            }}
+                            style={{ background: lkb_complete ? "#22c55e" : lkb_running ? "#6b7280" : "#0891b2" }}
+                            title="Generate 5 NCERT-grounded chip Q&As per step per chapter"
+                          >
+                            {lkb_running
+                              ? "⏳ Building LKB…"
+                              : lkb_complete
+                              ? "✅ LKB Done"
+                              : lkb_built > 0
+                              ? `📚 Build LKB (Resume · ${lkb_pct}%)`
+                              : "📚 Build LKB Chips"}
+                          </button>
+                          {!lkb && !lkb_running && (
+                            <button
+                              type="button"
+                              style={{ marginLeft: 8, background: "none", border: "none", color: "#0891b2", cursor: "pointer", fontSize: "0.78rem", textDecoration: "underline", padding: 0 }}
+                              onClick={() => loadLkbOverview(grade)}
+                            >
+                              Check LKB status
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })()}
                   </div>
 
                   {(lessons_complete && (expected_questions === 0 || questions_complete)) && (

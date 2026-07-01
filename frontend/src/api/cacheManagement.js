@@ -101,3 +101,29 @@ export async function restoreLessonCache(gradeSlug, accessToken) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 }
+
+// ── LKB (Lesson Knowledge Base) ───────────────────────────────────────────────
+
+export async function startLkbBuild(gradeSlug, accessToken) {
+  /** Trigger LKB chip generation for an entire grade (background thread). */
+  return authFetch(`/api/cache-management/prewarm/lkb/${gradeSlug}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
+export async function startLkbChapterBuild({ grade, subject, chapter }, accessToken) {
+  /** Trigger LKB chip generation for a single chapter. */
+  return authFetch("/api/cache-management/prewarm/lkb/chapter", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({ grade, subject, chapter }),
+  });
+}
+
+export async function getLkbOverview(gradeSlug, accessToken) {
+  /** Return LKB chip counts and chapter completion status for a grade. */
+  return authFetch(`/api/cache-management/lkb/overview/${gradeSlug}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}

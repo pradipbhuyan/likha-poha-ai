@@ -669,3 +669,31 @@ def get_doubt_suggestions(
         return {"success": True, "doubt_suggestions": suggestions}
     except Exception:
         return {"success": True, "doubt_suggestions": []}
+
+
+@router.get("/lkb-chips")
+def get_lkb_chips(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    user=Depends(get_current_user),
+):
+    """
+    Return LKB (Lesson Knowledge Base) pre-warmed chips for a lesson step.
+
+    Chips are NCERT-grounded Q&A pairs with 6-10 bullet point answers,
+    generated at admin pre-warm time and served instantly (zero LLM cost).
+    Returns empty list if no chips are pre-warmed for this step yet.
+    """
+    try:
+        from app.services.lesson_kb_service import get_lkb_chips  # noqa: PLC0415
+        chips = get_lkb_chips(
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            step_title=step_title,
+        )
+        return {"success": True, "lkb_chips": chips}
+    except Exception:
+        return {"success": True, "lkb_chips": []}

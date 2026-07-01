@@ -11,6 +11,7 @@ import {
   askLessonFollowUp,
   getLessonTextbookVisuals,
   getLessonDoubtSuggestions,
+  getLessonKbChips,
 } from "../api/lesson";
 import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech } from "../api/tts";
@@ -599,11 +600,47 @@ function LessonsPage({ user, setActivePage }) {
         setDoubtSuggestions([]);
         resetPracticeState();
 
-        // Pre-load step cards immediately — always runs, no API dependency
-        // Chips appear as soon as the lesson content renders.
+        // Pre-load static step cards immediately — fallback when LKB not yet built
         preloadStepCards(grade, subject, chapter, lessonSteps[savedStepIndex]);
 
-        // Reload DKB suggestion cards (optional — best-effort, never blocks chips)
+        // ── LKB chips: fetch from DB and load into cache (best-effort) ────────
+        // These take priority over DKB and static STEP_QA_CARDS when available.
+        // Answers are NCERT-grounded 6-10 bullet points, generated at admin pre-warm.
+        try {
+          const lkbResult = await getLessonKbChips({
+            grade,
+            subject,
+            chapter,
+            step_title: lessonSteps[savedStepIndex],
+          });
+          const lkbChips = Array.isArray(lkbResult?.lkb_chips) ? lkbResult.lkb_chips : [];
+          if (lkbChips.length > 0) {
+            // Populate cache + make chips visible immediately
+            const newReady = new Set();
+            lkbChips.forEach(({ question, answer }) => {
+              const key = `${grade}|${subject}|${chapter}|${lessonSteps[savedStepIndex]}|${question.trim().toLowerCase()}`;
+              followUpCache.current[key] = {
+                role: "assistant",
+                content: answer,
+                sourceType: "PLATFORM_RAG",
+                textbookVisuals: [],
+                offerGate: false,
+              };
+              newReady.add(question);
+            });
+            setCachedChipQuestions(prev => {
+              const merged = new Set(prev);
+              newReady.forEach(q => merged.add(q));
+              return merged;
+            });
+            // Use LKB questions as the displayed chips (replace DKB / static)
+            setDoubtSuggestions(lkbChips.map(c => ({ question: c.question, answer: c.answer })));
+          }
+        } catch {
+          // LKB is optional — fall through to DKB / static chips
+        }
+
+        // DKB suggestion cards (optional — best-effort, shown if no LKB chips)
         try {
           const suggestionsResult = await getLessonDoubtSuggestions({
             grade, mode, subject, chapter,
@@ -613,7 +650,8 @@ function LessonsPage({ user, setActivePage }) {
             ? suggestionsResult.doubt_suggestions.slice(0, 6)
             : [];
           if (dkbChips.length > 0) {
-            setDoubtSuggestions(dkbChips);
+            // Only use DKB if LKB chips are not already loaded
+            setDoubtSuggestions(prev => prev.length > 0 ? prev : dkbChips);
             preFetchChipAnswers(dkbChips, grade, mode, subject, chapter, lessonSteps[savedStepIndex]);
           }
         } catch {

@@ -5,7 +5,7 @@ Admin-only endpoints for grade-level lesson pre-warming,
 question bank building, status tracking, and cache clearing.
 """
 
-import threading
+import threading as _threading
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel
@@ -541,6 +541,103 @@ def restore_lessons(
         ),
         "restored": restored,
         "grade": grade,
+    }
+
+
+# ── LKB (Lesson Knowledge Base) endpoints ─────────────────────────────────────
+
+@router.get("/lkb/overview/{grade_slug}")
+def get_lkb_overview(grade_slug: str, admin=Depends(require_admin)):
+    """Return LKB chip counts and chapter completion status for a grade."""
+    from app.services.lesson_kb_service import (  # noqa: PLC0415
+        count_lkb_chips, count_expected_lkb_chips, get_lkb_chapter_status,
+    )
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    return {
+        "success": True,
+        "grade": grade,
+        "chips_built": count_lkb_chips(grade),
+        "chips_expected": count_expected_lkb_chips(grade),
+        "chapters": get_lkb_chapter_status(grade),
+    }
+
+
+@router.post("/prewarm/lkb/{grade_slug}")
+def start_lkb_build(
+    grade_slug: str,
+    admin=Depends(require_admin),
+):
+    """
+    Trigger LKB pre-warm for an entire grade.
+    Runs as a background thread — returns immediately.
+    """
+    from app.services.lesson_kb_service import build_lkb_for_grade  # noqa: PLC0415
+
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    job_key = f"lkb_{grade.replace(' ', '')}"
+    if is_job_running(job_key):
+        return {
+            "success": False,
+            "message": f"LKB build already running for {grade}.",
+            "grade": grade,
+        }
+
+    def _run(g: str):
+        set_job_status(job_key, "running")
+        try:
+            build_lkb_for_grade(g)
+        finally:
+            set_job_status(job_key, "idle")
+
+    t = _threading.Thread(target=_run, args=(grade,), daemon=True)
+    t.start()
+
+    return {
+        "success": True,
+        "message": f"LKB build started for {grade}. Runs in background.",
+        "grade": grade,
+    }
+
+
+@router.post("/prewarm/lkb/chapter")
+def start_lkb_build_chapter(
+    data: dict,
+    admin=Depends(require_admin),
+):
+    """Build LKB chips for a single chapter. Body: {grade, subject, chapter}."""
+    from app.services.lesson_kb_service import build_lkb_for_chapter  # noqa: PLC0415
+
+    grade = data.get("grade", "")
+    subject = data.get("subject", "")
+    chapter = data.get("chapter", "")
+
+    if not grade or not subject or not chapter:
+        raise HTTPException(status_code=400, detail="grade, subject, and chapter are required.")
+
+    job_key = f"lkb_{grade}_{subject}_{chapter}".replace(" ", "_")[:80]
+    if is_job_running(job_key):
+        return {"success": False, "message": "LKB build already running for this chapter."}
+
+    def _run():
+        set_job_status(job_key, "running")
+        try:
+            build_lkb_for_chapter(grade, subject, chapter)
+        finally:
+            set_job_status(job_key, "idle")
+
+    t = _threading.Thread(target=_run, daemon=True)
+    t.start()
+
+    return {
+        "success": True,
+        "message": f"LKB build started for {chapter}.",
+        "grade": grade, "subject": subject, "chapter": chapter,
     }
 
 

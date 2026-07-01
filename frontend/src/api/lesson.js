@@ -49,3 +49,13 @@ export function getLessonDoubtSuggestions({ grade, mode, subject, chapter, board
   const params = new URLSearchParams({ grade, mode, subject, chapter, board });
   return authFetch(`/api/lesson/doubt-suggestions?${params.toString()}`);
 }
+
+export function getLessonKbChips({ grade, subject, chapter, step_title }) {
+  /** Fetch LKB (Lesson Knowledge Base) pre-warmed chips for a lesson step.
+   *  Returns { success, lkb_chips: [{ id, question, answer }] }
+   *  Answers are 6-10 NCERT-grounded bullet points served from DB (zero LLM cost).
+   *  Returns empty array if no chips are pre-warmed for this step yet.
+   */
+  const params = new URLSearchParams({ grade, subject, chapter, step_title });
+  return authFetch(`/api/lesson/lkb-chips?${params.toString()}`);
+}
