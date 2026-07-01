@@ -78,6 +78,19 @@ vi.mock("../api/lesson", () => ({
     success: true,
     visuals: [],
   })),
+  getLessonDoubtSuggestions: vi.fn(async () => ({
+    success: true,
+    doubt_suggestions: [],
+  })),
+  ensureLessonKbChips: vi.fn(async () => ({
+    success: true,
+    lkb_chips: [],
+    generated: false,
+  })),
+  getLessonKbChips: vi.fn(async () => ({
+    success: true,
+    lkb_chips: [],
+  })),
 }));
 
 vi.mock("../api/doubt", () => ({
