@@ -62,16 +62,19 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
     setError(null);
 
     try {
+      // Merge window.__LIKHAPOHA_CONTEXT__ (written by LessonsPage and other pages)
+      // with the explicit context prop so subject/chapter/lessonStep are always captured.
+      const pageCtx = (typeof window !== "undefined" && window.__LIKHAPOHA_CONTEXT__) || {};
       const payload = {
         issue_type: form.issue_type,
         severity: form.severity,
         description: form.description.trim().slice(0, 2000),
-        route: context.route || window.location.pathname,
-        grade: context.grade || user?.grade || null,
-        subject: context.subject || null,
-        chapter: context.chapter || null,
-        lesson_id: context.lessonId || null,
-        lesson_step: context.lessonStep || null,
+        route: context.route || pageCtx.page || window.location.pathname,
+        grade: context.grade || pageCtx.grade || user?.grade || null,
+        subject: context.subject || pageCtx.subject || null,
+        chapter: context.chapter || pageCtx.chapter || null,
+        lesson_id: context.lessonId || pageCtx.lessonId || null,
+        lesson_step: context.lessonStep || pageCtx.lessonStep || null,
         browser_info: {
           userAgent: navigator.userAgent?.slice(0, 200),
           platform: navigator.platform,
@@ -143,14 +146,21 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
         ) : (
           <form onSubmit={handleSubmit} data-testid="report-issue-form">
             {/* Auto-captured context */}
-            {(context.grade || context.subject || context.chapter) && (
-              <div style={{ background: "var(--surface2,#f8fafc)", borderRadius: 8, padding: "8px 12px",
-                fontSize: ".76rem", color: "#64748b", marginBottom: 16 }}>
-                <span style={{ fontWeight: 600 }}>Context: </span>
-                {[context.grade, context.subject, context.chapter, context.lessonStep]
-                  .filter(Boolean).join(" › ")}
-              </div>
-            )}
+            {(() => {
+              const pageCtx = (typeof window !== "undefined" && window.__LIKHAPOHA_CONTEXT__) || {};
+              const mergedGrade = context.grade || pageCtx.grade;
+              const mergedSubject = context.subject || pageCtx.subject;
+              const mergedChapter = context.chapter || pageCtx.chapter;
+              const mergedStep = context.lessonStep || pageCtx.lessonStep;
+              return (mergedGrade || mergedSubject || mergedChapter) ? (
+                <div style={{ background: "var(--surface2,#f8fafc)", borderRadius: 8, padding: "8px 12px",
+                  fontSize: ".76rem", color: "#64748b", marginBottom: 16 }}>
+                  <span style={{ fontWeight: 600 }}>Context: </span>
+                  {[mergedGrade, mergedSubject, mergedChapter, mergedStep]
+                    .filter(Boolean).join(" › ")}
+                </div>
+              ) : null;
+            })()}
 
             {/* Issue type */}
             <div style={{ marginBottom: 14 }}>

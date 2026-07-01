@@ -158,6 +158,25 @@ function isHindiSubject(subject) {
   return s.includes("hindi") || s.includes("हिंदी") || s.includes("हिन्दी");
 }
 
+/**
+ * Format MCQ option labels (a), b), c), d)) onto their own lines
+ * so ReactMarkdown renders them as properly aligned block items.
+ *
+ * Input:  "What is X? a) 1 b) 2 c) 3 d) 4 ---"
+ * Output: "What is X?\n\na) 1\nb) 2\nc) 3\nd) 4"
+ */
+function formatMcqPrompt(prompt) {
+  if (!prompt) return prompt;
+  // Insert a newline before each option label a) b) c) d) (case-insensitive)
+  // The lookahead ensures we only match option letters at word boundaries
+  let formatted = prompt
+    .replace(/\s+---+\s*$/, "")          // strip trailing --- separators
+    .replace(/\s+([a-dA-D]\))\s+/g, "\n$1 ")  // newline before a) b) c) d)
+    .replace(/^\s*([a-dA-D]\))\s+/g, "\n$1 ") // handle option at start of string too
+    .trim();
+  return formatted;
+}
+
 function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "default", cardTheme = "brand" }) {
   /** Presents a generated lesson as expandable sections with validated visual support. */
   const sections = parseSections(normalizeTutorMarkdown(lesson));
@@ -291,7 +310,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
                         >
-                          {questionPrompt}
+                          {formatMcqPrompt(questionPrompt)}
                         </ReactMarkdown>
                       </div>
                     </div>
