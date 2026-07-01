@@ -251,6 +251,221 @@ function MCQPractice({ formula }) {
 }
 
 
+// ── Rich expanded content builder ────────────────────────────────────────────
+// Generates premium-quality expanded content from existing formula fields.
+// Uses backend-provided fields when available, generates sensible fallbacks
+// from the formula's expression/example/description when fields are absent.
+function buildRichContent(formula) {
+  const name    = formula.name || "this formula";
+  const expr    = formula.expression || "";
+  const chapter = formula.chapter || "Mathematics";
+
+  // ── 1. Explanation ─────────────────────────────────────────────────────────
+  const explanation = formula.explanation
+    || formula.description
+    || `${name} is used in ${chapter}. It gives us a way to calculate a specific quantity by substituting known values into the expression ${expr}.`;
+
+  // ── 2. Variables ───────────────────────────────────────────────────────────
+  // Prefer structured array [{symbol, meaning}]; accept string; fall back to parsing expression
+  let variables = [];
+  if (Array.isArray(formula.variables_list)) {
+    variables = formula.variables_list;
+  } else if (formula.variables && typeof formula.variables === "string") {
+    // Try to parse "A = area, b = base" style strings
+    variables = formula.variables.split(/[,;\n]+/).map(v => {
+      const parts = v.split(/\s*=\s*/);
+      return parts.length >= 2
+        ? { symbol: parts[0].trim(), meaning: parts.slice(1).join("=").trim() }
+        : { symbol: v.trim(), meaning: "" };
+    }).filter(v => v.symbol);
+  }
+  // If still empty, extract capital/greek letter variables from expression
+  if (!variables.length && expr) {
+    const symbols = [...new Set((expr.match(/\b[A-Z][a-z]?\b/g) || []))];
+    variables = symbols.map(s => ({ symbol: s, meaning: `${s} — see formula definition` }));
+  }
+
+  // ── 3. When to use ─────────────────────────────────────────────────────────
+  const whenToUse = formula.when_to_use
+    || formula.use_case
+    || formula.description
+    || `Use ${name} when you are given the values needed for ${expr} and need to find the result.`;
+
+  // ── 4. Step-by-step example ────────────────────────────────────────────────
+  let steps = [];
+  if (Array.isArray(formula.steps)) {
+    steps = formula.steps;
+  } else if (formula.step_by_step && typeof formula.step_by_step === "string") {
+    steps = formula.step_by_step.split(/\n+/).filter(Boolean);
+  } else if (formula.example) {
+    // Parse compact example like "a=3,b=4,c=5->A=6"
+    const raw = formula.example;
+    const arrowIdx = raw.indexOf("->");
+    if (arrowIdx > -1) {
+      const given  = raw.slice(0, arrowIdx).trim();
+      const result = raw.slice(arrowIdx + 2).trim();
+      steps = [
+        `Given: ${given}`,
+        `Apply formula: ${expr}`,
+        `Substitute values: ${given}`,
+        `Result: ${result}`,
+      ];
+    } else {
+      steps = [`Apply ${name}: ${expr}`, `Example: ${raw}`];
+    }
+  } else {
+    steps = [
+      `Write down the formula: ${expr}`,
+      "Identify all given values from the problem.",
+      "Substitute each value into the formula.",
+      "Simplify step by step.",
+      "Write final answer with correct units.",
+    ];
+  }
+
+  // ── 5. Common mistakes ─────────────────────────────────────────────────────
+  const commonMistakes = Array.isArray(formula.common_mistakes)
+    ? formula.common_mistakes
+    : [
+        `Forgetting to check that all required values are given before applying ${name}.`,
+        "Using wrong units — always convert to consistent units first.",
+        "Substituting values without simplifying intermediate steps, causing errors.",
+      ];
+
+  // ── 6. Memory tip ──────────────────────────────────────────────────────────
+  const memoryTip = formula.memory_tip
+    || `Remember: the first letter of "${name}" hints at what it calculates. Write the formula on a card and practice it daily.`;
+
+  // ── 7. Related formulas ────────────────────────────────────────────────────
+  const relatedFormulas = Array.isArray(formula.related_formulas)
+    ? formula.related_formulas
+    : (formula.tags || []).map(t => `See also: ${t} formulas in ${chapter}`);
+
+  return { explanation, variables, whenToUse, steps, commonMistakes, memoryTip, relatedFormulas };
+}
+
+// ── PremiumExpandedContent — the rich expanded card body ─────────────────────
+function PremiumExpandedContent({ formula }) {
+  const { explanation, variables, whenToUse, steps, commonMistakes, memoryTip, relatedFormulas } =
+    buildRichContent(formula);
+
+  const sectionStyle = { marginBottom: 14 };
+  const headingStyle = {
+    fontSize: ".72rem", fontWeight: 800, textTransform: "uppercase",
+    letterSpacing: ".06em", marginBottom: 6,
+  };
+  const bodyStyle = { fontSize: ".8rem", lineHeight: 1.6, color: "var(--text,#374151)" };
+  const itemStyle = {
+    display: "flex", alignItems: "flex-start", gap: 8,
+    fontSize: ".79rem", lineHeight: 1.55, color: "var(--text,#374151)",
+    marginBottom: 4,
+  };
+
+  return (
+    <div data-testid="premium-expanded-content"
+      style={{ marginTop: 12, borderTop: "1px solid var(--border,#e5e7eb)", paddingTop: 12 }}>
+
+      {/* 1 — Formula explanation */}
+      <div style={sectionStyle}>
+        <div style={{ ...headingStyle, color: "#6366f1" }}>📖 What this formula means</div>
+        <p style={{ ...bodyStyle, margin: 0 }}>{explanation}</p>
+      </div>
+
+      {/* 2 — Variables / symbols */}
+      {variables.length > 0 && (
+        <div style={sectionStyle}>
+          <div style={{ ...headingStyle, color: "#0891b2" }}>🔤 Variables & Symbols</div>
+          <div style={{
+            background: "var(--surface2,#f8fafc)", borderRadius: 8,
+            padding: "8px 12px", border: "1px solid var(--border,#e5e7eb)",
+          }}>
+            {variables.map((v, i) => (
+              <div key={i} style={itemStyle}>
+                <code style={{
+                  minWidth: 30, fontWeight: 700, fontSize: ".82rem",
+                  color: "#6366f1", fontFamily: "monospace",
+                }}>{v.symbol}</code>
+                <span style={{ color: "var(--text-muted,#64748b)", fontSize: ".78rem" }}>=</span>
+                <span>{v.meaning}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 3 — When to use */}
+      <div style={sectionStyle}>
+        <div style={{ ...headingStyle, color: "#16a34a" }}>🎯 When to use</div>
+        <p style={{ ...bodyStyle, margin: 0 }}>{whenToUse}</p>
+      </div>
+
+      {/* 4 — Step-by-step example */}
+      <div style={sectionStyle}>
+        <div style={{ ...headingStyle, color: "#d97706" }}>✏️ Step-by-step solved example</div>
+        <div style={{
+          background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 8, padding: "10px 12px",
+        }}>
+          {steps.map((step, i) => (
+            <div key={i} style={{ ...itemStyle, marginBottom: i < steps.length - 1 ? 6 : 0 }}>
+              <span style={{
+                minWidth: 22, height: 22, borderRadius: "50%",
+                background: "#f59e0b", color: "#fff",
+                display: "inline-flex", alignItems: "center", justifyContent: "center",
+                fontSize: ".68rem", fontWeight: 800, flexShrink: 0, marginTop: 1,
+              }}>{i + 1}</span>
+              <span style={{ fontSize: ".79rem" }}>{step}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 5 — Common mistakes */}
+      <div style={sectionStyle}>
+        <div style={{ ...headingStyle, color: "#dc2626" }}>⚠️ Common mistakes</div>
+        <div style={{
+          background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: 8, padding: "8px 12px",
+        }}>
+          {commonMistakes.map((m, i) => (
+            <div key={i} style={{ ...itemStyle, marginBottom: i < commonMistakes.length - 1 ? 5 : 0 }}>
+              <span style={{ color: "#dc2626", flexShrink: 0, marginTop: 2 }}>✗</span>
+              <span style={{ fontSize: ".79rem" }}>{m}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 6 — Memory tip */}
+      <div style={{
+        ...sectionStyle,
+        background: "#fefce8", borderRadius: 8,
+        border: "1px solid #fde68a", padding: "8px 12px",
+      }}>
+        <div style={{ ...headingStyle, color: "#d97706", marginBottom: 4 }}>💡 Quick memory tip</div>
+        <p style={{ ...bodyStyle, margin: 0, fontSize: ".79rem", fontStyle: "italic" }}>{memoryTip}</p>
+      </div>
+
+      {/* 7 — Related formulas */}
+      {relatedFormulas.length > 0 && (
+        <div style={sectionStyle}>
+          <div style={{ ...headingStyle, color: "#7c3aed" }}>🔗 Related formulas</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {relatedFormulas.map((r, i) => (
+              <span key={i} style={{
+                fontSize: ".75rem", padding: "3px 10px", borderRadius: 20,
+                background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)",
+                color: "#7c3aed", fontWeight: 500,
+              }}>{r}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 8 — Practice CTA */}
+      <MCQPractice formula={formula} />
+    </div>
+  );
+}
+
 // ── Formula Upgrade Modal — matches Exemplar Research upgrade card ────────────
 function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
   return (
@@ -374,46 +589,9 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
         </button>
       )}
 
-      {/* Expanded content — paid only */}
+      {/* Expanded content — premium rich view */}
       {expanded && canExpand && (
-        <div data-testid="expanded-content" style={{ marginTop: 8, borderTop: "1px solid var(--border,#f1f5f9)", paddingTop: 8 }}>
-          {/* Variables */}
-          {formula.variables && (
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#6366f1", marginBottom: 3 }}>📌 Variables</div>
-              <div style={{ fontSize: ".76rem" }}>{formula.variables}</div>
-            </div>
-          )}
-
-          {/* Use when */}
-          {formula.description && (
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#6366f1", marginBottom: 3 }}>🎯 When to use</div>
-              <div style={{ fontSize: ".76rem" }}>{formula.description}</div>
-            </div>
-          )}
-
-          {/* Solved example */}
-          {formula.example ? (
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#059669", marginBottom: 3 }}>✏️ Example</div>
-              <div style={{ fontSize: ".76rem" }}>{formula.example}</div>
-            </div>
-          ) : (
-            <UpgradePrompt msg="Solved example coming soon." />
-          )}
-
-          {/* Memory tip */}
-          {formula.memory_tip ? (
-            <div style={{ marginBottom: 8, background: "#fefce8", borderRadius: 6, padding: "5px 8px" }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#d97706", marginBottom: 2 }}>💡 Memory Tip</div>
-              <div style={{ fontSize: ".76rem" }}>{formula.memory_tip}</div>
-            </div>
-          ) : null}
-
-          {/* MCQ Practice expander (inline, like Exemplar) */}
-          <MCQPractice formula={formula} />
-        </div>
+        <PremiumExpandedContent formula={formula} />
       )}
 
       {/* Locked upgrade inline prompt */}
