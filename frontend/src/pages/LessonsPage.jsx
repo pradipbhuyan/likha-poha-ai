@@ -49,6 +49,77 @@ const TEACHER_PERSONAS = {
 const DEFAULT_VOICE = "en-IN-NeerjaNeural";
 const DEFAULT_SPEECH_RATE = "+0%";
 
+// ── Dynamic loading messages: subject × step ──────────────────────────────────
+const LOADING_MESSAGES = {
+  0: { // Step 1: Concept Introduction
+    maths:   "Solving the equation of understanding — your foundation is loading 🔢",
+    science: "Setting up the experiment — concept intro being prepared in the AI lab 🔬",
+    hindi:   "पाठ की नींव रखी जा रही है… शब्दों का जादू अभी शुरू होता है ✍️",
+    social:  "Turning the pages of history — your foundation lesson is loading 🌍",
+    english: "Crafting your introduction with the finest words in the dictionary 📚",
+    default: "Your AI tutor is reading the textbook so you don't have to… 📖",
+  },
+  1: { // Step 2: Core Explanation
+    maths:   "Crunching the numbers — your core maths concepts are being assembled 🔢",
+    science: "The AI lab is running the experiment — core concepts incoming 🧪",
+    hindi:   "गहराई से समझाने की तैयारी है… आपका विशेष पाठ बन रहा है 🖊️",
+    social:  "Connecting history, geography, and civics just for you 🗺️",
+    english: "Every word chosen carefully — your core lesson is being written ✒️",
+    default: "Digging deeper — your AI tutor is connecting the dots just for you 🧩",
+  },
+  2: { // Step 3: Worked Examples
+    maths:   "Solving step by step — worked examples are being calculated ✏️",
+    science: "Running the experiment with real worked examples — results loading 🔭",
+    hindi:   "उदाहरणों से सीखें — आपके लिए खास उदाहरण तैयार हो रहे हैं 📝",
+    social:  "Real events, real maps, real examples — loading just for you 🗺️",
+    english: "Show, don't tell — worked examples are being crafted with care 📖",
+    default: "Cooking up real-world examples — watch and learn mode: ON 🍳",
+  },
+  3: { // Step 4: Exam-style Problems
+    maths:   "CBSE maths problems incoming — sharpen your pencil ✏️",
+    science: "Exam-style science questions being calibrated — accuracy loading 🎯",
+    hindi:   "परीक्षा की तैयारी हो रही है — CBSE स्तर के प्रश्न आ रहे हैं 🏆",
+    social:  "Exam-level questions from history and civics — loading now 🎓",
+    english: "Grammar, comprehension, and expression — exam mode ON 🏅",
+    default: "Sharpening your exam skills ⚔️ CBSE-style practice questions being forged…",
+  },
+  4: { // Step 5: Revision & Recap
+    maths:   "Recapping all formulas and methods — your maths revision is loading 📐",
+    science: "Summarising the key science concepts — your revision is almost ready 🧬",
+    hindi:   "पूरे पाठ का निचोड़ तैयार हो रहा है… एक आखिरी नज़र 🌟",
+    social:  "History, geography, civics — all packed into your crisp revision 🗺️",
+    english: "Key grammar, literary devices, and tips — revision loading 📚",
+    default: "Pulling 4 steps of learning into a crisp revision — almost there 🚀",
+  },
+  5: { // Step 6: Exam Preparation (Grade 10+)
+    maths:   "Final formula check — getting your maths fully exam-ready 🏆",
+    science: "Last-minute science essentials — exam preparation loading 🎓",
+    hindi:   "परीक्षा की अंतिम तैयारी — सब कुछ आपके लिए तैयार हो रहा है 🌟",
+    social:  "Final revision of key events and concepts — exam prep loading 🎓",
+    english: "Last-minute tips and tricks — English exam prep is ready 📝",
+    default: "Final polish mode 🎓 Getting you fully exam-ready…",
+  },
+};
+
+function getLoadingMessage(stepIndex, subject) {
+  /** Return a subject-aware, step-specific loading message shown during generation. */
+  const s = (subject || "").toLowerCase();
+  const isMaths   = s.includes("math");
+  const isScience = s === "science" || (s.includes("science") && !s.includes("social"));
+  const isHindi   = s === "hindi" || s.includes("hindi");
+  const isSocial  = s.includes("social");
+  const isEnglish = s === "english" || s.includes("english");
+
+  const pool = LOADING_MESSAGES[stepIndex] ?? LOADING_MESSAGES[4];
+
+  if (isMaths)   return pool.maths;
+  if (isScience) return pool.science;
+  if (isHindi)   return pool.hindi;
+  if (isSocial)  return pool.social;
+  if (isEnglish) return pool.english;
+  return pool.default;
+}
+
 // ── Layout feature flag — set to false to instantly roll back all layout changes ──
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
 
@@ -1632,7 +1703,9 @@ function LessonsPage({ user, setActivePage }) {
                 alt="LikhaPoha AI is preparing your lesson…"
                 className="lesson-loading-gif"
               />
-              <p className="lesson-loading-label">Preparing your lesson…</p>
+              <p className="lesson-loading-label">
+                {getLoadingMessage(currentStepIndex, subject)}
+              </p>
             </div>
           )}
 
