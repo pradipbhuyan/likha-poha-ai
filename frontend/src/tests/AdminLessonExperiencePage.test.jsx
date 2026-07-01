@@ -355,19 +355,6 @@ describe("AdminLessonExperiencePage", () => {
     expect(await screen.findByTestId("visual-empty-state")).toBeInTheDocument();
   });
 
-  test("gamification preview renders", async () => {
-    renderPage();
-    expect(await screen.findByTestId("gamification-preview")).toBeInTheDocument();
-    expect(screen.getByText(/Gamification preview only/i)).toBeInTheDocument();
-  });
-
-  // ── Accessibility controls ─────────────────────────────────────────────────
-
-  test("accessibility controls render", async () => {
-    renderPage();
-    expect(await screen.findByTestId("accessibility-controls")).toBeInTheDocument();
-  });
-
   // ── Notes panel ────────────────────────────────────────────────────────────
 
   test("notes panel renders after lesson is loaded", async () => {

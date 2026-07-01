@@ -535,8 +535,7 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
   const [previewStates, setPreviewStates] = useState({});
 
   // UI state
-  const [showRestart, setShowRestart]   = useState(false);
-  const [a11y, setA11y]                 = useState({ fontSize: "16px", focusMode: false });
+  const [showRestart, setShowRestart] = useState(false);
 
   // Notes (local only)
   const [notes, setNotes] = useState(loadNotes);
@@ -605,7 +604,7 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
   );
 
   const noteKey = `${selLesson}-step-${stepIdx}`;
-  const contentStyle = { fontSize: a11y.fontSize, maxWidth: a11y.focusMode ? 680 : "100%" };
+  const contentStyle = {};
 
   return (
     <div data-testid="admin-lesson-experience-page" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 14px 60px", fontFamily: "inherit" }}>
@@ -679,28 +678,6 @@ export default function AdminLessonExperiencePage({ user }) { // eslint-disable-
               />
             </div>
           )}
-
-          {/* Gamification preview */}
-          <GamificationPreview />
-
-          {/* Accessibility controls */}
-          <div style={card()} data-testid="accessibility-controls">
-            <h4 style={{ margin: "0 0 10px", fontSize: ".85rem", fontWeight: 800 }}>Accessibility</h4>
-            <label style={{ fontSize: ".75rem", display: "flex", alignItems: "center", gap: 6, marginBottom: 8, cursor: "pointer" }}>
-              Font
-              <select value={a11y.fontSize} onChange={e => setA11y(p => ({ ...p, fontSize: e.target.value }))}
-                style={{ fontSize: ".72rem", borderRadius: 6, border: `1px solid ${C.border}`, padding: "2px 6px", fontFamily: "inherit" }}>
-                <option value="14px">Small</option>
-                <option value="16px">Normal</option>
-                <option value="18px">Large</option>
-                <option value="20px">X-Large</option>
-              </select>
-            </label>
-            <label style={{ fontSize: ".75rem", display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
-              <input type="checkbox" checked={a11y.focusMode} onChange={e => setA11y(p => ({ ...p, focusMode: e.target.checked }))} />
-              Focus Mode
-            </label>
-          </div>
         </div>
 
         {/* ── Right column ── */}
