@@ -251,27 +251,217 @@ function MCQPractice({ formula }) {
 }
 
 
-// ── Rich expanded content builder ────────────────────────────────────────────
-// Generates premium-quality expanded content from existing formula fields.
-// Uses backend-provided fields when available, generates sensible fallbacks
-// from the formula's expression/example/description when fields are absent.
+// ── Curated formula overrides ─────────────────────────────────────────────────
+// Hand-crafted, mathematically correct content for specific CBSE formulas.
+// Keys are normalised formula names (lowercase, trimmed).
+// buildRichContent() checks this map first before generating fallback content.
+const FORMULA_OVERRIDES = {
+  "remainder theorem": {
+    explanation:
+      "The Remainder Theorem says: if you divide a polynomial p(x) by a linear expression (x − a), " +
+      "the remainder is simply p(a). Instead of doing long polynomial division, just substitute x = a " +
+      "into the polynomial and evaluate it. That result is your remainder.",
+    variables: [
+      { symbol: "p(x)", meaning: "The polynomial being divided" },
+      { symbol: "a",    meaning: "The value obtained from the divisor — if divisor is (x − a), substitute x = a; if (x + a), substitute x = −a" },
+      { symbol: "p(a)", meaning: "The remainder after dividing p(x) by (x − a)" },
+      { symbol: "Note", meaning: "a is NOT always a root. a becomes a root only when p(a) = 0, which is the Factor Theorem." },
+    ],
+    whenToUse:
+      "Use the Remainder Theorem only when the divisor is a linear expression of the form (x − a). " +
+      "Examples: (x − 3) → substitute x = 3 | (x + 2) → substitute x = −2 | (x − 7) → substitute x = 7. " +
+      "Do NOT use it for quadratic or higher-degree divisors.",
+    steps: [
+      "Find the value of a from the divisor: if divisor is (x − 2), then a = 2.",
+      "Write out p(a) — substitute x = a into every term of the polynomial.",
+      "Evaluate: p(2) = 2³ + 2(2) − 5",
+      "Simplify step by step: = 8 + 4 − 5",
+      "Final answer: Remainder = 7",
+    ],
+    stepContext: "Example: Find the remainder when p(x) = x³ + 2x − 5 is divided by (x − 2).",
+    commonMistakes: [
+      "Confusing a with a root — a is the value you substitute, not a root. p(a) = 0 only when the divisor is also a factor.",
+      "Forgetting the sign: (x + 2) means (x − (−2)), so substitute x = −2, not x = +2.",
+      "Applying the theorem to non-linear divisors like (x² − 1) — the Remainder Theorem only works for linear divisors (x − a).",
+    ],
+    memoryTip:
+      "Look at what is inside the bracket. (x − 5) → plug in 5. (x + 3) → plug in −3. " +
+      "The sign flips! Remainder = p(that value).",
+    relatedFormulas: ["Factor Theorem", "Polynomial Division", "Synthetic Division", "Zeros of a Polynomial"],
+  },
+
+  "factor theorem": {
+    explanation:
+      "The Factor Theorem is a special case of the Remainder Theorem. " +
+      "It states: (x − a) is a factor of p(x) if and only if p(a) = 0. " +
+      "In other words, if substituting x = a gives a remainder of zero, then (x − a) divides p(x) exactly.",
+    variables: [
+      { symbol: "p(x)", meaning: "The polynomial being tested for divisibility" },
+      { symbol: "a",    meaning: "The candidate root — comes from the factor (x − a)" },
+      { symbol: "p(a) = 0", meaning: "Condition that confirms (x − a) is a factor" },
+    ],
+    whenToUse:
+      "Use the Factor Theorem to check whether (x − a) is a factor of a polynomial, or to find factors. " +
+      "Test rational candidates using the Rational Root Theorem first.",
+    steps: [
+      "Identify the candidate: if testing whether (x − 3) is a factor, set a = 3.",
+      "Compute p(a) — substitute x = 3 into the polynomial.",
+      "If p(3) = 0, then (x − 3) is a factor.",
+      "If p(3) ≠ 0, then (x − 3) is NOT a factor.",
+      "Use polynomial division to find the remaining factors.",
+    ],
+    commonMistakes: [
+      "Confusing Factor Theorem with Remainder Theorem — Factor Theorem requires the remainder to be exactly zero.",
+      "Forgetting to check p(−a) when the factor is (x + a).",
+      "Stopping at one factor — always divide to find all factors.",
+    ],
+    memoryTip: "Factor Theorem = Remainder Theorem with remainder zero. p(a) = 0 → (x − a) is a factor.",
+    relatedFormulas: ["Remainder Theorem", "Polynomial Division", "Zeros of a Polynomial", "Synthetic Division"],
+  },
+
+  "heron's formula": {
+    explanation:
+      "Heron's Formula calculates the area of a triangle when all three side lengths are known, " +
+      "without needing the height. First compute the semi-perimeter s, then substitute into the formula.",
+    variables: [
+      { symbol: "A",    meaning: "Area of the triangle (in square units)" },
+      { symbol: "a, b, c", meaning: "The three side lengths of the triangle" },
+      { symbol: "s",    meaning: "Semi-perimeter = (a + b + c) / 2" },
+    ],
+    whenToUse:
+      "Use Heron's Formula when all three side lengths are known but the height is not given. " +
+      "It works for any type of triangle — scalene, isosceles, or equilateral.",
+    steps: [
+      "Write down the three sides: a, b, c.",
+      "Calculate s (semi-perimeter): s = (a + b + c) / 2",
+      "Example: a = 3, b = 4, c = 5 → s = (3 + 4 + 5) / 2 = 6",
+      "Substitute into formula: A = √[s(s−a)(s−b)(s−c)]",
+      "A = √[6(6−3)(6−4)(6−5)] = √[6 × 3 × 2 × 1] = √36 = 6 cm²",
+    ],
+    commonMistakes: [
+      "Using perimeter instead of semi-perimeter — always divide the perimeter by 2 to get s.",
+      "Forgetting to check the triangle inequality — the sides must satisfy a + b > c, b + c > a, a + c > b.",
+      "Applying Heron's Formula when height is available — it is simpler to use A = ½ × base × height in that case.",
+    ],
+    memoryTip: "Semi = half. Heron starts with s (semi-perimeter). Find s first, then substitute.",
+    relatedFormulas: ["Area = ½ × base × height", "Perimeter of Triangle = a + b + c", "Pythagorean Theorem"],
+  },
+
+  "pythagorean theorem": {
+    explanation:
+      "In a right-angled triangle, the square of the hypotenuse (the side opposite the right angle) " +
+      "equals the sum of the squares of the other two sides. It is written as: c² = a² + b².",
+    variables: [
+      { symbol: "c", meaning: "Hypotenuse — the side opposite the right angle (always the longest side)" },
+      { symbol: "a", meaning: "One leg (the perpendicular side)" },
+      { symbol: "b", meaning: "Other leg (the base)" },
+    ],
+    whenToUse:
+      "Use it in right-angled triangles to find a missing side. " +
+      "It does NOT apply to non-right triangles — use the Cosine Rule instead.",
+    steps: [
+      "Identify the hypotenuse (side opposite the right angle) — this is c.",
+      "Write: c² = a² + b²",
+      "Example: a = 3, b = 4 → c² = 9 + 16 = 25",
+      "Take the square root: c = √25 = 5",
+      "Answer: hypotenuse = 5 units",
+    ],
+    commonMistakes: [
+      "Treating the longest known side as the hypotenuse without checking for a right angle.",
+      "Forgetting to take the square root at the end — c² = 25 does not mean c = 25.",
+      "Using it in non-right triangles — always confirm a 90° angle exists first.",
+    ],
+    memoryTip: "3-4-5 and 5-12-13 are the most common Pythagorean triples. Memorise them to spot right triangles instantly.",
+    relatedFormulas: ["Heron's Formula", "Distance Formula", "Cosine Rule", "Trigonometric Ratios"],
+  },
+};
+
+// ── Subject-aware common mistake generator ────────────────────────────────────
+// Returns 3 relevant common mistakes based on subject category.
+// Deliberately avoids generic "wrong units" for algebra/pure maths topics.
+function getSubjectMistakes(name, subject, chapter) {
+  const s = (subject || "").toLowerCase();
+  const c = (chapter || "").toLowerCase();
+  const n = (name || "").toLowerCase();
+
+  // Algebra / Polynomials
+  if (c.includes("polynomial") || c.includes("algebra") || c.includes("factor") || n.includes("theorem")) {
+    return [
+      `Misreading the sign of a — if the divisor is (x + k), substitute x = −k, not +k.`,
+      `Arithmetic error when evaluating the expression — expand one term at a time and add carefully.`,
+      `Assuming the result is always a root — it is only a root when the remainder equals zero.`,
+    ];
+  }
+
+  // Statistics / Probability
+  if (c.includes("statistic") || c.includes("probabilit") || n.includes("mean") || n.includes("median") || n.includes("mode")) {
+    return [
+      `Confusing mean, median, and mode — mean sums all values; median is the middle value; mode is most frequent.`,
+      `Forgetting to sort data before finding the median, especially for large datasets.`,
+      `Dividing by n instead of (n−1) when computing sample standard deviation.`,
+    ];
+  }
+
+  // Geometry / Areas / Perimeter
+  if (c.includes("area") || c.includes("geometry") || c.includes("circle") || c.includes("triangle") || c.includes("quadrilateral")) {
+    return [
+      "Confusing area (square units) and perimeter (linear units) — re-read the question carefully.",
+      "Forgetting to square the radius when applying area = pi*r^2 — a common slip in circle problems.",
+      "Assuming all angles sum to 180 degrees without checking if the shape is a triangle.",
+    ];
+  }
+
+  // Physics / Science
+  if (s.includes("physics") || s.includes("science") || c.includes("motion") || c.includes("force") || c.includes("energy") || c.includes("optics")) {
+    return [
+      "Not converting to SI units before substituting values — always check metres, kilograms, seconds.",
+      "Confusing scalar and vector quantities — speed is scalar, velocity is vector; they are not interchangeable.",
+      "Ignoring direction when calculating displacement or force — always specify the sign convention.",
+    ];
+  }
+
+  // Chemistry
+  if (s.includes("chemistry") || c.includes("mole") || c.includes("reaction") || c.includes("atomic")) {
+    return [
+      "Unbalanced chemical equations — always balance atoms on both sides before calculating moles.",
+      "Confusing atomic mass with mass number — use the correct value from the periodic table.",
+      "Forgetting to account for the molar ratio when converting between moles and grams.",
+    ];
+  }
+
+  // Default — generic maths (avoids "wrong units" for pure maths contexts)
+  return [
+    `Misreading the question — identify exactly what ${name} is being asked to find before substituting.`,
+    "Sign error — check every negative value carefully, especially when squaring or taking roots.",
+    "Skipping intermediate steps — write each step clearly to avoid arithmetic mistakes under exam pressure.",
+  ];
+}
+
+// ── buildRichContent — merges overrides + subject fallbacks ───────────────────
+// Priority: backend fields > FORMULA_OVERRIDES > subject-aware fallbacks.
 function buildRichContent(formula) {
-  const name    = formula.name || "this formula";
+  const name    = (formula.name || "").trim();
+  const nameKey = name.toLowerCase();
   const expr    = formula.expression || "";
   const chapter = formula.chapter || "Mathematics";
+  const subject = formula.subject || "";
+
+  // Check for a hand-crafted override first
+  const override = FORMULA_OVERRIDES[nameKey];
 
   // ── 1. Explanation ─────────────────────────────────────────────────────────
   const explanation = formula.explanation
+    || (override && override.explanation)
     || formula.description
     || `${name} is used in ${chapter}. It gives us a way to calculate a specific quantity by substituting known values into the expression ${expr}.`;
 
   // ── 2. Variables ───────────────────────────────────────────────────────────
-  // Prefer structured array [{symbol, meaning}]; accept string; fall back to parsing expression
   let variables = [];
   if (Array.isArray(formula.variables_list)) {
     variables = formula.variables_list;
+  } else if (override && Array.isArray(override.variables)) {
+    variables = override.variables;
   } else if (formula.variables && typeof formula.variables === "string") {
-    // Try to parse "A = area, b = base" style strings
     variables = formula.variables.split(/[,;\n]+/).map(v => {
       const parts = v.split(/\s*=\s*/);
       return parts.length >= 2
@@ -279,14 +469,14 @@ function buildRichContent(formula) {
         : { symbol: v.trim(), meaning: "" };
     }).filter(v => v.symbol);
   }
-  // If still empty, extract capital/greek letter variables from expression
   if (!variables.length && expr) {
     const symbols = [...new Set((expr.match(/\b[A-Z][a-z]?\b/g) || []))];
-    variables = symbols.map(s => ({ symbol: s, meaning: `${s} — see formula definition` }));
+    variables = symbols.map(sym => ({ symbol: sym, meaning: `${sym} — see formula definition` }));
   }
 
   // ── 3. When to use ─────────────────────────────────────────────────────────
   const whenToUse = formula.when_to_use
+    || (override && override.whenToUse)
     || formula.use_case
     || formula.description
     || `Use ${name} when you are given the values needed for ${expr} and need to find the result.`;
@@ -295,10 +485,11 @@ function buildRichContent(formula) {
   let steps;
   if (Array.isArray(formula.steps)) {
     steps = formula.steps;
+  } else if (override && Array.isArray(override.steps)) {
+    steps = override.steps;
   } else if (formula.step_by_step && typeof formula.step_by_step === "string") {
     steps = formula.step_by_step.split(/\n+/).filter(Boolean);
   } else if (formula.example) {
-    // Parse compact example like "a=3,b=4,c=5->A=6"
     const raw = formula.example;
     const arrowIdx = raw.indexOf("->");
     if (arrowIdx > -1) {
@@ -319,27 +510,28 @@ function buildRichContent(formula) {
       "Identify all given values from the problem.",
       "Substitute each value into the formula.",
       "Simplify step by step.",
-      "Write final answer with correct units.",
+      "State the final answer clearly.",
     ];
   }
 
   // ── 5. Common mistakes ─────────────────────────────────────────────────────
   const commonMistakes = Array.isArray(formula.common_mistakes)
     ? formula.common_mistakes
-    : [
-        `Forgetting to check that all required values are given before applying ${name}.`,
-        "Using wrong units — always convert to consistent units first.",
-        "Substituting values without simplifying intermediate steps, causing errors.",
-      ];
+    : (override && Array.isArray(override.commonMistakes))
+      ? override.commonMistakes
+      : getSubjectMistakes(name, subject, chapter);
 
   // ── 6. Memory tip ──────────────────────────────────────────────────────────
   const memoryTip = formula.memory_tip
-    || `Remember: the first letter of "${name}" hints at what it calculates. Write the formula on a card and practice it daily.`;
+    || (override && override.memoryTip)
+    || `Remember: write out ${name} and its key variables before substituting any values.`;
 
   // ── 7. Related formulas ────────────────────────────────────────────────────
   const relatedFormulas = Array.isArray(formula.related_formulas)
     ? formula.related_formulas
-    : (formula.tags || []).map(t => `See also: ${t} formulas in ${chapter}`);
+    : (override && Array.isArray(override.relatedFormulas))
+      ? override.relatedFormulas
+      : (formula.tags || []).map(t => `See also: ${t}`);
 
   return { explanation, variables, whenToUse, steps, commonMistakes, memoryTip, relatedFormulas };
 }

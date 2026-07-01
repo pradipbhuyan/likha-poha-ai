@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { answerDoubt } from "../api/doubt";
@@ -23,6 +23,21 @@ function cleanMathText(text) {
   cleaned = cleaned.replace(/\$/g, "");
 
   return cleaned.trim();
+}
+
+/**
+ * Remove sentences/phrases that reference visuals (diagrams, figures, drawings)
+ * since no images are rendered in the explanation panel.
+ */
+function removeVisualizationRefs(text) {
+  if (!text || typeof text !== "string") return text;
+  return text
+    // Remove lines containing visualization/diagram language (heading or inline)
+    .replace(/^.*(?:visual\s+instruction|let['']?s\s+visuali[sz]|as\s+shown\s+in\s+(?:the\s+)?(?:diagram|figure)|see\s+(?:the\s+)?(?:figure|diagram)|draw\s+a\s+diagram|refer\s+to\s+the\s+(?:diagram|figure|image)|in\s+the\s+(?:figure|diagram)\s+(?:above|below)|the\s+(?:diagram|figure)\s+(?:shows|illustrates)|visually?\s*:).*$/gim, "")
+    // Remove any trailing empty bold headings like "**Something**\n" with no content after
+    .replace(/\*\*[^*]+\*\*\s*\n\s*$/gm, "")
+    .replace(/\n{3,}/g, "\n\n") // collapse multiple blank lines
+    .trim();
 }
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -181,18 +196,30 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
   const [searchLoading, setSearchLoading] = useState(false);
   const [filterDifficulty, setFilterDifficulty] = useState("All");
 
+  // ── Client-side explanation cache: grade|subject|topic → text ────────────
+  // Prevents duplicate LLM calls for topics already fetched in this session.
+  const explanationCache = useRef({});
+
   const cards = TOPIC_CARDS[selectedGrade]?.[selectedSubject] || [];
   const filteredCards = filterDifficulty === "All"
     ? cards
     : cards.filter(c => c.difficulty === filterDifficulty);
 
-  async function explainTopic(topic) {
+  async function explainTopic(topic, forceRefresh = false) {
     setActiveTopic(topic);
-    setExplanation("");
     setPracticeQs([]);
     setPracticeAnswers({});
     setPracticeRevealed({});
-    if (!paidAccess) return; // gate — upgrade card shown in panel
+    if (!paidAccess) { setExplanation(""); return; }
+
+    // ── Cache hit: serve instantly without LLM call ───────────────────────
+    const cacheKey = `${selectedGrade}|${selectedSubject}|${topic.topic}`;
+    if (!forceRefresh && explanationCache.current[cacheKey]) {
+      setExplanation(explanationCache.current[cacheKey]);
+      return;
+    }
+
+    setExplanation("");
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/api/doubt/answer`, {
@@ -208,17 +235,40 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
           board: "CBSE",
           subject: selectedSubject,
           chapter: topic.topic,
-          question: `Explain "${topic.topic}" clearly for a CBSE ${selectedGrade} ${selectedSubject} student. Include:
-- Simple definition or concept
-- Key formula or rule (if any)
-- One real-world or solved example
-- 2-3 common exam mistakes to avoid
-Make it concise, exam-focused and easy to understand.`,
+          question: `You are a CBSE ${selectedGrade} ${selectedSubject} teacher. Explain "${topic.topic}" concisely for exam preparation.
+
+STRICT RULES:
+- Do NOT reference diagrams, figures, drawings, or visualisations — none will be shown.
+- Do NOT use phrases like "let's visualise", "as shown in the diagram", "see the figure", "draw a diagram".
+- Write in plain text with bullet points. Keep each section to 2-4 lines maximum.
+- No long paragraphs. Be direct and exam-focused.
+
+Format your response exactly as:
+
+**What it means**
+One-sentence plain-English definition.
+
+**Key rule / formula**
+State the formula or rule. If none applies, skip this section entirely.
+
+**Solved example**
+State the given values, then show the calculation steps, then the answer. Keep it short.
+
+**Exam mistakes to avoid**
+• Mistake 1
+• Mistake 2
+• Mistake 3 (if relevant)
+
+**Quick recall**
+One-line memory trick or exam tip.`,
           save_to_history: false,
         }),
       });
       const data = await res.json();
-      setExplanation(cleanMathText(data.answer) || "Could not load explanation.");
+      // Post-process: remove any visualization references the LLM sneaks in
+      const cleaned = removeVisualizationRefs(cleanMathText(data.answer) || "Could not load explanation.");
+      explanationCache.current[cacheKey] = cleaned;
+      setExplanation(cleaned);
     } catch {
       setExplanation("Could not load explanation. Please try again.");
     } finally {
@@ -527,10 +577,6 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
                       disabled={practiceLoading}
                       style={{ padding: "7px 12px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#059669,#0891b2)", color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
                       {practiceLoading ? "Generating…" : "🎯 Generate Practice Questions"}
-                    </button>
-                    <button onClick={() => explainTopic(activeTopic)}
-                      style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid rgba(99,102,241,.3)", background: "rgba(99,102,241,.08)", color: "#a5b4fc", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
-                      🔄 Refresh
                     </button>
                   </div>
 
