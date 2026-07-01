@@ -87,9 +87,11 @@ PEDAGOGY RULES:
 - Only the "Quick check question" section may ask the student an open-ended
   conversational question inviting them to respond.
 - The "Worked example" section MUST begin with "Question: <data> <task instruction>"
-  where the task instruction tells the student what to DO (e.g. "Draw a pictograph.",
-  "Find the value of x.", "Calculate the area."). This is the problem being solved,
-  NOT a conversational prompt.
+  where the task instruction tells the student what to DO (e.g.
+  "Find the value of x.", "Calculate the area.", "Explain why this happens.").
+  This is the problem being solved, NOT a conversational prompt.
+  NEVER use "Draw a pictograph", "Draw a graph", "Sketch a diagram", or any
+  task that requires the student to produce visual or physical output.
 - Do not add a "Quick check question:" line inside any other section or after a visual.
 - Sections other than "Worked example" and "Quick check question" must end with a
   statement or instruction, not a question.
@@ -583,13 +585,27 @@ If RAG context is not available, use standard CBSE/SOF knowledge.
 Worked example requirements:
 - Start the worked example with "Question: <complete problem statement>".
   The question must be COMPLETE and self-contained — include both the data AND
-  the task instruction (e.g. "The following data shows... Draw a pictograph to
-  represent this data." or "Find the area of a rectangle with length 8 cm and
-  breadth 5 cm."). A student must be able to attempt it with no other context.
+  the task instruction (e.g. "Find the area of a rectangle with length 8 cm and
+  breadth 5 cm." or "Calculate the speed of a car that travels 120 km in 2 hours.").
+  A student must be able to attempt it with no other context.
 - After the question, show the solution step-by-step starting with "Step 1:".
 - Explain the reasoning behind each step.
 - Explain why each formula or method is used.
 - Include conceptual interpretation of the final answer.
+
+WORKED EXAMPLE RESTRICTIONS — PLATFORM CONSTRAINTS:
+- NEVER ask the student to draw, sketch, construct a diagram, draw a graph,
+  draw a pictograph, make a table, or produce any visual/physical output.
+  Students CANNOT draw or submit visual work on this platform.
+- Worked examples must be answerable in TEXT only — calculations, explanations,
+  short written answers, or multiple-choice style.
+- The worked example MUST be relevant to the current subject. For Science:
+  use experiments, observations, calculations, or reasoning questions.
+  Do NOT use Maths data handling questions (pictographs, bar charts) inside
+  a Science lesson — those belong only in Maths.
+- For Grade 9 Science "Exploration" chapter: use examples about scientific
+  method, hypotheses, observations, measurements, or simple calculations —
+  NOT data visualization tasks.
 
 Before explaining, identify the textbook coverage being used:
 - Key concepts covered
