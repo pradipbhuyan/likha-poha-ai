@@ -663,6 +663,51 @@ function LessonsPage({ user, setActivePage }) {
     loadProgress();
   }, [grade, mode, subject, chapter, user.username]);
 
+  // ── LKB chips: reload whenever step changes (navigation or initial load) ──
+  // loadProgress only runs when chapter/grade changes. When user navigates
+  // between steps (Previous/Next), currentStepIndex changes but loadProgress
+  // does NOT re-run. This effect ensures LKB chips are always correct for the
+  // CURRENT step — cache keys always match what the user sees.
+  useEffect(() => {
+    if (!grade || !subject || !chapter || !stepTitle) return;
+
+    // Clear stale chips from previous step
+    setDoubtSuggestions([]);
+
+    // Load static fallback chips for this step (synchronous, instant)
+    preloadStepCards(grade, subject, chapter, stepTitle);
+
+    // Fetch LKB chips for current step in background
+    ensureLessonKbChips({ grade, subject, chapter, step_title: stepTitle })
+      .then(lkbResult => {
+        const lkbChips = Array.isArray(lkbResult?.lkb_chips) ? lkbResult.lkb_chips : [];
+        if (lkbChips.length > 0) {
+          const newReady = new Set();
+          lkbChips.forEach(({ question, answer }) => {
+            const key = `${grade}|${subject}|${chapter}|${stepTitle}|${question.trim().toLowerCase()}`;
+            followUpCache.current[key] = {
+              role: "assistant",
+              content: answer,
+              sourceType: "PLATFORM_RAG",
+              textbookVisuals: [],
+              offerGate: false,
+            };
+            newReady.add(question);
+          });
+          setCachedChipQuestions(prev => {
+            const merged = new Set(prev);
+            newReady.forEach(q => merged.add(q));
+            return merged;
+          });
+          setDoubtSuggestions(lkbChips.map(c => ({ question: c.question, answer: c.answer })));
+        }
+      })
+      .catch(() => {
+        // LKB unavailable — static chips already loaded above
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [grade, subject, chapter, currentStepIndex]);
+
   useEffect(() => {
     loadTextbookVisuals();
   }, [grade, mode, subject, chapter, user.username]);
