@@ -311,10 +311,31 @@ export function normalizeSquareBracketMath(text) {
   });
 }
 
+function normalizeBulletPoints(text) {
+  /** Convert • bullet format (used in LKB answers) to markdown list items.
+   *  Input:  "• Point one\n• Point two\n• Point three"
+   *  Output: "- Point one\n- Point two\n- Point three"
+   *  Each bullet on its own line so ReactMarkdown renders a proper <ul>.
+   */
+  if (!text || !text.includes("•")) return text;
+  // Split on bullet character, remove empty entries, rebuild as - list items
+  const lines = text.split("\n");
+  return lines
+    .map(line => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("•")) {
+        return "- " + trimmed.slice(1).trim();
+      }
+      return line;
+    })
+    .join("\n");
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
    * Order matters:
+   *  0. normalizeBulletPoints       — • Point → - Point (LKB answers)
    *  1. normalizeMermaidBlocks      — wrap loose graph TD blocks
    *  2. normalizeLatexParentheses   — (\frac{}{}) → $...$
    *  3. normalizePlainAlgebra       — (a+b)^2 → $...$
@@ -330,7 +351,7 @@ export function normalizeTutorMarkdown(text) {
     normalizeDollarMath(
       normalizePlainExponents(
         normalizeSquareBracketMath(
-          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(text)))
+          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(text))))
         )
       )
     )

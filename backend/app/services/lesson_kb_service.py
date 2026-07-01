@@ -326,19 +326,20 @@ def _generate_chips(
         user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}"{context_section}
 
 Generate exactly 5 question-answer pairs a student needs after reading this lesson step.
-Each answer = 6 to 10 bullet points (start each with "•") from the NCERT chapter only.
+Each answer = 6 to 10 bullet points (each on its own line, starting with "- ") from the NCERT chapter only.
 
 RULES:
-• Questions must be specific to THIS chapter — not generic study tips.
-• Every bullet point must state a factual point from the chapter.
-• Do NOT reference diagrams, figures, or visualisations.
-• Keep each bullet to one clear sentence.
+- Questions must be specific to THIS chapter — not generic study tips.
+- Every bullet point must state a factual point from the chapter.
+- Do NOT reference diagrams, figures, or visualisations.
+- Keep each bullet to one clear sentence.
+- Use "- " (hyphen space) for each bullet, one bullet per line.
 
 Respond ONLY with JSON array:
 [
   {{
     "question": "Specific chapter question",
-    "answer": "• Fact 1\\n• Fact 2\\n• Fact 3\\n• Fact 4\\n• Fact 5\\n• Fact 6"
+    "answer": "- Fact 1\\n- Fact 2\\n- Fact 3\\n- Fact 4\\n- Fact 5\\n- Fact 6"
   }}
 ]"""
 
@@ -361,12 +362,12 @@ Respond ONLY with JSON array:
         import json  # noqa: PLC0415
         chips = json.loads(raw[start:end + 1])
 
-        # Validate
+        # Validate — accept both • and - bullet formats
         validated = []
         for chip in chips:
             q = (chip.get("question") or "").strip()
             a = (chip.get("answer") or "").strip()
-            if q and a and "•" in a:
+            if q and a and ("•" in a or "- " in a):
                 validated.append({"question": q, "answer": a})
 
         return validated[:CHIPS_PER_STEP]
