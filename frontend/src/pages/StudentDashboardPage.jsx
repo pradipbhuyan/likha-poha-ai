@@ -157,6 +157,10 @@ export default function StudentDashboardPage({ user, setActivePage }) {
   var plan=data.plan||{};
   var name=(s.username||"Student").split(" ")[0];
   var isFree=sub.canonical_plan_key==="FREE_TIER"||!sub.has_full_access;
+  // New student = no mock tests AND no lesson progress yet
+  var isNewStudent = !mt.available && !prog.available && (mt.total||0) === 0;
+  // XP: use total mock tests (with fallback to recent length) + completed chapters
+  var xpPoints = ((mt.total||(mt.recent||[]).length)||0)*50 + (prog.completed_chapters||s.lessons_completed||0)*100;
 
   // 50 daily motivation quotes — one unique quote per day of year (day % 50)
   var QUOTES=[
@@ -238,7 +242,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {icon:"🎯",val:(plan.estimated_minutes||0)>0?(plan.estimated_minutes+" min"):"—",label:"Today's Goal",sub:"Estimated study time",col:"#22c55e"},
           {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"In progress",col:"#6366f1"},
           {icon:"📅",val:exams.length>0?(exams[0].days_until+"d"):"—",label:"Next Exam",sub:exams.length>0?(exams[0].subject||exams[0].title||"Scheduled"):"Not scheduled",col:exams.length>0&&exams[0].days_until<=7?"#ef4444":"#94a3b8"},
-          {icon:"⭐",val:(mt.total||0)*50+(s.lessons_completed||0)*15,label:"XP Points",sub:"Keep learning!",col:"#f59e0b"},
+          {icon:"⭐",val:xpPoints,label:"XP Points",sub:xpPoints>0?"Keep it up!":"Keep learning!",col:"#f59e0b"},
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:"1.5rem",flexShrink:0}}>{it.icon}</span>
@@ -315,6 +319,28 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           )}
         </SdCard>
       </div>
+
+      {/* ── NEW STUDENT WELCOME BANNER ── */}
+      {isNewStudent&&(
+        <div style={{
+          background:"linear-gradient(135deg,rgba(99,102,241,.12),rgba(139,92,246,.08))",
+          border:"1px solid rgba(99,102,241,.25)",
+          borderRadius:14,padding:"20px 24px",marginBottom:16,
+          display:"flex",gap:16,alignItems:"center",flexWrap:"wrap",
+        }}>
+          <div style={{flex:1,minWidth:200}}>
+            <div style={{fontWeight:800,fontSize:"1rem",marginBottom:4}}>🎉 Welcome to LikhaPoha AI, {name}!</div>
+            <div style={{fontSize:".82rem",color:"var(--text-muted,#64748b)",marginBottom:10}}>
+              Your dashboard will fill up as you start learning. Take your first lesson or mock test to see your progress here.
+            </div>
+            <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+              <SdBtn small onClick={function(){nav("lessons");}}>📖 Start First Lesson</SdBtn>
+              <SdBtn small outline onClick={function(){nav("mockTest");}}>📝 Take a Mock Test</SdBtn>
+            </div>
+          </div>
+          <div style={{fontSize:"3.5rem",opacity:.7}}>🚀</div>
+        </div>
+      )}
 
       {/* ── MIDDLE ROW: Subject Progress / Mock Tests / Weak Topics / Achievements ── */}
       <div className="sd-mid-row">
