@@ -2502,6 +2502,140 @@ function LessonsPage({ user, setActivePage }) {
 
             </>
           )}
+
+          {/* ── Bottom navigation bar — mirrors top nav + "What's next" preview ── */}
+          {USE_REFINED_LESSON_EXPERIENCE_LAYOUT && lesson && (
+            <div style={{
+              marginTop: 32,
+              borderTop: "1px solid var(--border, #e5e7eb)",
+              paddingTop: 20,
+            }}>
+              {/* Bottom prev/next buttons */}
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: 10,
+              }}>
+                <span style={{ fontSize: "0.85rem", color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
+                  Step {currentStepIndex + 1} of {lessonSteps.length}:&nbsp;
+                  <strong style={{ color: "var(--text, #111827)" }}>{stepTitle}</strong>
+                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{
+                    fontSize: "0.78rem", fontWeight: 700,
+                    color: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
+                    background: Object.keys(stepLessons).length === lessonSteps.length ? "#dcfce7" : "#cffafe",
+                    border: `1px solid ${Object.keys(stepLessons).length === lessonSteps.length ? "#86efac" : "#67e8f9"}`,
+                    borderRadius: "999px", padding: "2px 10px",
+                  }}>
+                    {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
+                  </span>
+                  <button
+                    className="secondary-btn"
+                    disabled={currentStepIndex === 0}
+                    style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                    onClick={async () => {
+                      const newIndex = currentStepIndex - 1;
+                      setCurrentStepIndex(newIndex);
+                      setLesson(stepLessons[String(newIndex)] || "");
+                      setAudioUrl("");
+                      resetTextbookVisualBrowser();
+                      setCompleted(false);
+                      resetPracticeState();
+                      await saveChapterProgress({
+                        username: user.username, grade, mode, subject, chapter,
+                        current_step_index: newIndex,
+                        highest_unlocked_step: highestUnlockedStep,
+                        completed: false, last_lesson: "", step_lessons: stepLessons,
+                      });
+                    }}
+                  >
+                    ⬅ Previous
+                  </button>
+                  <button
+                    className="secondary-btn"
+                    disabled={currentStepIndex >= lessonSteps.length - 1}
+                    style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                    onClick={async () => {
+                      const newIndex = currentStepIndex + 1;
+                      if (newIndex >= lessonSteps.length) return;
+                      const newHighest = Math.max(highestUnlockedStep, newIndex);
+                      setHighestUnlockedStep(newHighest);
+                      setCurrentStepIndex(newIndex);
+                      setLesson(stepLessons[String(newIndex)] || "");
+                      setAudioUrl("");
+                      resetTextbookVisualBrowser();
+                      resetPracticeState();
+                      await saveChapterProgress({
+                        username: user.username, grade, mode, subject, chapter,
+                        current_step_index: newIndex,
+                        highest_unlocked_step: newHighest,
+                        completed: false, last_lesson: "", step_lessons: stepLessons,
+                      });
+                    }}
+                  >
+                    Next ➡
+                  </button>
+                </div>
+              </div>
+
+              {/* "What you'll learn next" preview */}
+              {currentStepIndex < lessonSteps.length - 1 && (
+                <div style={{
+                  marginTop: 16,
+                  background: "linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.04))",
+                  border: "1px solid rgba(99,102,241,0.18)",
+                  borderRadius: 12,
+                  padding: "14px 18px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                }}>
+                  <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>🔭</span>
+                  <div>
+                    <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 2 }}>
+                      Up next — Step {currentStepIndex + 2} of {lessonSteps.length}
+                    </div>
+                    <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "var(--text, #111827)" }}>
+                      {lessonSteps[currentStepIndex + 1]}
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted, #6b7280)", marginTop: 2 }}>
+                      {stepLessons[String(currentStepIndex + 1)]
+                        ? "Ready to continue — click Next ➡ to load it."
+                        : "Click Next ➡ to generate this lesson step."}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Last step completion message */}
+              {currentStepIndex === lessonSteps.length - 1 && (
+                <div style={{
+                  marginTop: 16,
+                  background: "linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.05))",
+                  border: "1px solid rgba(34,197,94,0.25)",
+                  borderRadius: 12,
+                  padding: "14px 18px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                }}>
+                  <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>🎉</span>
+                  <div>
+                    <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#15803d" }}>
+                      You've reached the last step of this chapter!
+                    </div>
+                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted, #6b7280)", marginTop: 2 }}>
+                      Take a mock test or try another chapter to keep progressing.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
         </section>
       </div>
     </div>
