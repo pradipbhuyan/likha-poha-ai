@@ -121,67 +121,6 @@ function getLoadingMessage(stepIndex, subject) {
   return pool.default;
 }
 
-// ── Per-step suggestion chips (LKB — Lesson Knowledge Base) ──────────────────
-// All chips ask about HOW to study/answer this step type — NOT about specific
-// chapter content (which only the LLM knows). Every answer is a genuine,
-// actionable CBSE exam tip that works for any chapter.
-const STEP_QA_CARDS = {
-  "concept introduction": [
-    { q: "How do I write a 1-mark answer for this?",      a: "One sentence: technical term + definition. That's it. No extra explanation needed for 1 mark. Use the exact NCERT word." },
-    { q: "How do I write a 3-mark answer for this?",      a: "Three bullet points: (1) Definition with technical term. (2) One key feature or condition. (3) One real-world example. One line per point. Examiners award 1 mark per correct point." },
-    { q: "What CBSE question format should I expect?",    a: "Common formats: 'Define X', 'What is X?', 'Give one example of X', 'State the function of X'. For 3 marks: 'Explain X with an example.' Always write definition first, then example." },
-    { q: "How do I score full marks on this step?",       a: "Use the NCERT technical term (not everyday words). Write the definition in one precise sentence. Add exactly one relevant example. Do not write extra — it doesn't earn marks and wastes time." },
-    { q: "What is the biggest mistake to avoid here?",    a: "Writing a vague definition without the technical term. Example: 'Tissue means cells working together' loses marks. 'Tissue: a group of similar cells performing a specific function' earns full marks. Use the textbook word." },
-  ],
-  "core explanation": [
-    { q: "How do I write a 3-mark answer for this?",      a: "Three parts: (1) Name the process/mechanism in one sentence. (2) Explain how it works — cause → effect. (3) Give one result or importance. One sentence per part. Do not repeat the definition from Step 1." },
-    { q: "How do I write a 5-mark answer for this?",      a: "Five points: Definition (1) → How it works — step by step (2-3) → Example or application (4) → Why it matters (5). Use numbered points. Each point = 1 mark. End with a one-line conclusion." },
-    { q: "What CBSE question format should I expect?",    a: "Common formats: 'Explain X', 'Describe the process of X', 'How does X work?', 'What happens when X occurs? Give reason.' Always explain the mechanism — not just state facts." },
-    { q: "How do I score full marks on this step?",       a: "Explain the cause-and-effect relationship, not just the facts. Use NCERT vocabulary. Include at least one specific example. Write in short, numbered sentences — never a long paragraph." },
-    { q: "What is the biggest mistake to avoid here?",    a: "Listing facts without explaining the mechanism. 'Muscles contract' is not enough — 'Muscle fibres contract when stimulated, pulling on the bone and causing movement' earns marks. Always explain HOW and WHY." },
-  ],
-  "worked examples": [
-    { q: "What is the correct exam method for solving this?", a: "Always follow this order: (1) Write given values. (2) State the formula. (3) Substitute. (4) Simplify step by step. (5) Write final answer with units. Each step earns marks independently." },
-    { q: "How do I score full marks on numerical questions?",  a: "Show every step — even obvious ones. Write the formula before substituting. Box your final answer. Include units. CBSE awards 1 mark per correct step, so a wrong final answer can still score 2/3." },
-    { q: "What do I write if I forget the formula?",           a: "Write what you do know: the given values, the units expected, and a partial setup. Attempt the working even with a wrong formula — partial marks are given for correct method. Never leave it blank." },
-    { q: "How much time should I spend per mark here?",        a: "Roughly 1-2 minutes per mark. A 3-mark problem = 3-5 minutes. If stuck after 2 minutes, move on and return. A blank answer scores zero — always attempt, even if unsure." },
-    { q: "What is the biggest mistake to avoid here?",         a: "Skipping intermediate steps or jumping straight to the final answer. Even if correct, skipped steps lose marks. Write out every substitution and simplification on a new line." },
-  ],
-  "exam-style problems": [
-    { q: "How do I approach an MCQ I am unsure about?",    a: "Eliminate obviously wrong options first — usually 2 can be removed quickly. Between the remaining 2, pick the one that uses the precise NCERT term or matches the exact condition stated in the chapter." },
-    { q: "How do I approach a descriptive exam question?", a: "Read twice. Identify the key instruction: 'define', 'explain', 'differentiate', 'give reason'. Then write: definition → mechanism/reason → example. Keep each point to one sentence. No padding." },
-    { q: "How do I answer 'Give reason' questions?",       a: "State the reason in cause-and-effect form: 'Because [cause], therefore [effect].' Example: 'Because muscle fibres can contract, they pull on bones and cause movement.' One sentence is usually enough for 1 mark." },
-    { q: "How do I answer 'Differentiate between' questions?", a: "Make a 2-column table: Basis | A | B. Give 2-3 bases (definition, function, location, example). One correct difference = 1 mark. Do not write long paragraphs — tables are faster and cleaner." },
-    { q: "What is the biggest mistake in CBSE exams?",     a: "Not reading the question carefully. 'Which of the following is NOT' and 'Which of the following IS' look similar but are opposite. 'Define' and 'Explain' require different lengths. Re-read once before writing." },
-  ],
-  "revision and recap": [
-    { q: "How do I revise this step in 5 minutes?",        a: "Write from memory: (1) The term + definition (30 sec). (2) One mechanism or rule in a sentence (1 min). (3) One example (30 sec). (4) Attempt one past question (2 min). If you can do all 4, you know this step." },
-    { q: "What should I write in my revision notes?",      a: "One page per step: Term → Definition → Mechanism → Example → Common exam question. That's all you need. Do not copy the full lesson — write only what you could not recall without looking." },
-    { q: "What CBSE question types come from this step?",  a: "From revision steps: 1-mark 'define', 3-mark 'explain with example', 3-5 mark 'differentiate', 5-mark application. Know one answer for each format before moving to the next chapter." },
-    { q: "How do I score full marks on this step?",        a: "Definition in NCERT language + mechanism in one sentence + one specific example = full marks for most questions. Examiners check for the technical term and the example. Vague answers lose marks." },
-    { q: "What is the biggest mistake to avoid in revision?", a: "Re-reading instead of recalling. Close the lesson and write from memory. What you can't write, you don't know yet. Re-read only the parts you couldn't recall. Active recall beats passive reading every time." },
-  ],
-  "exam preparation": [
-    { q: "How do I structure a 5-mark board exam answer?", a: "(1) Definition — 1 mark. (2-3) Explanation with mechanism — 2 marks. (4) Example or application — 1 mark. (5) Diagram with labels if applicable — 1 mark. Use bullet points. End with one concluding sentence." },
-    { q: "How do I use previous year papers effectively?", a: "For each question: (1) Attempt from memory. (2) Check your answer against NCERT. (3) Note which keyword you missed. (4) Write that keyword 3 times. Do 5 questions this way per session — quality over quantity." },
-    { q: "What board exam tips help most in the last week?", a: "Day 1-3: revise definitions and examples chapter by chapter. Day 4-5: attempt 2 full past papers under time. Day 6: only revise weak topics. Day 7: rest and read your revision notes once. Do not start new chapters." },
-    { q: "How do I handle a question I don't know?",       a: "Write what you know: the definition, the chapter context, a related example. Partial marks are given for partial knowledge. A blank always scores zero. Attempt every question — even 1 correct point = 1 mark." },
-    { q: "What is the biggest mistake in board exams?",    a: "Spending too long on one question. If stuck after double the time per mark, skip and return. Also: not writing the technical term (costs marks), not giving an example when asked, and leaving questions blank." },
-  ],
-};
-
-// Returns the best matching step QA cards for a given step title
-function getStepQACards(stepTitle) {
-  const st = (stepTitle || "").toLowerCase();
-  for (const [key, cards] of Object.entries(STEP_QA_CARDS)) {
-    if (st.includes(key.split(" ")[0]) || st.includes(key)) {
-      return cards;
-    }
-  }
-  // Default: revision cards work for any step
-  return STEP_QA_CARDS["revision and recap"];
-}
-
 // ── Layout feature flag — set to false to instantly roll back all layout changes ──
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
 
@@ -600,9 +539,6 @@ function LessonsPage({ user, setActivePage }) {
         setDoubtSuggestions([]);
         resetPracticeState();
 
-        // Pre-load static step cards immediately — always visible as fallback
-        preloadStepCards(grade, subject, chapter, lessonSteps[savedStepIndex]);
-
         // ── LKB chips: ensure endpoint — always returns chips ─────────────────
         // 1. If pre-warmed: returns from DB instantly.
         // 2. If not pre-warmed: generates via LLM on-demand (~5-8s), stores in DB,
@@ -673,9 +609,6 @@ function LessonsPage({ user, setActivePage }) {
 
     // Clear stale chips from previous step
     setDoubtSuggestions([]);
-
-    // Load static fallback chips for this step (synchronous, instant)
-    preloadStepCards(grade, subject, chapter, stepTitle);
 
     // Fetch LKB chips for current step in background
     ensureLessonKbChips({ grade, subject, chapter, step_title: stepTitle })
@@ -1064,8 +997,6 @@ function LessonsPage({ user, setActivePage }) {
         ? result.doubt_suggestions.slice(0, 6)
         : [];
       setDoubtSuggestions(newChips);
-      // Load step-specific pre-answered cards immediately (synchronous, zero API cost)
-      preloadStepCards(grade, subject, chapter, stepTitle);
       // Also pre-fetch DKB chips if any
       if (newChips.length > 0) {
         preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
@@ -1467,29 +1398,6 @@ function LessonsPage({ user, setActivePage }) {
     return text.trim().split(/\s+/).filter(Boolean).length;
   }
 
-  function preloadStepCards(chipGrade, chipSubject, chipChapter, chipStepTitle) {
-    /** Synchronously populate followUpCache with the 5 STEP_QA_CARDS for this step.
-     *  No API call — answers are embedded. Chips appear instantly after lesson loads.
-     */
-    const cards = getStepQACards(chipStepTitle);
-    const newReady = new Set();
-    cards.forEach(({ q, a }) => {
-      const key = `${chipGrade}|${chipSubject}|${chipChapter}|${chipStepTitle}|${q.trim().toLowerCase()}`;
-      followUpCache.current[key] = {
-        role: "assistant",
-        content: a,
-        sourceType: "PLATFORM_RAG",
-        textbookVisuals: [],
-        offerGate: false,
-      };
-      newReady.add(q);
-    });
-    setCachedChipQuestions((prev) => {
-      const merged = new Set(prev);
-      newReady.forEach((q) => merged.add(q));
-      return merged;
-    });
-  }
 
   async function preFetchChipAnswers(chips, chipGrade, chipMode, chipSubject, chipChapter, chipStepTitle) {
     /** Pre-populate followUpCache for every chip question so chips are instant.
@@ -1558,26 +1466,6 @@ function LessonsPage({ user, setActivePage }) {
       const merged = new Set(prev);
       newReady.forEach((q) => merged.add(q));
       return merged;
-    });
-  }
-
-  // ── LKB: Synchronous render-time cache population ─────────────────────────
-  // Ensure STEP_QA_CARDS answers are always in followUpCache BEFORE the user
-  // can click a chip. This runs synchronously during render — no async wait.
-  // Fixes the race condition where loadProgress awaits getChapterProgress API
-  // before calling preloadStepCards, causing a click → LLM call on fast clicks.
-  if (grade && subject && chapter && stepTitle) {
-    getStepQACards(stepTitle).forEach(({ q, a }) => {
-      const key = `${grade}|${subject}|${chapter}|${stepTitle}|${q.trim().toLowerCase()}`;
-      if (!followUpCache.current[key]) {
-        followUpCache.current[key] = {
-          role: "assistant",
-          content: a,
-          sourceType: "PLATFORM_RAG",
-          textbookVisuals: [],
-          offerGate: false,
-        };
-      }
     });
   }
 
@@ -2597,15 +2485,11 @@ function LessonsPage({ user, setActivePage }) {
 
                       <div className="followup-chip-row">
                         {((() => {
-                          // Show DKB chips only once they have been pre-fetched into cache.
-                          // If DKB chips exist but are still loading, fall back to step QA cards.
-                          // Step QA cards are always ready — answers are statically embedded.
-                          const dkbReady = doubtSuggestions
+                          // Show only LKB chips that are in the cache.
+                          // No static fallback — chips come from LKB only.
+                          return doubtSuggestions
                             .map((s) => s.question)
                             .filter((chip) => cachedChipQuestions.has(chip));
-                          return dkbReady.length > 0
-                            ? dkbReady
-                            : getStepQACards(stepTitle).map((c) => c.q);
                         })()).map((chip) => (
                           <button
                             key={chip}
