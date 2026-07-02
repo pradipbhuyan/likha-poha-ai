@@ -393,6 +393,22 @@ Important:
         "passed": passed,
     }
     
+def _bank_question_to_practice(q: dict) -> dict:
+    """Convert a question_bank row (options as dict, answer as letter) to practice format."""
+    opts_dict = q.get("options") or {}
+    options_list = [str(opts_dict.get(k, "")) for k in ("A", "B", "C", "D") if k in opts_dict]
+    answer_letter = q.get("answer", "A")
+    answer_text = str(opts_dict.get(answer_letter, ""))
+    return {
+        "type": "mcq",
+        "question": q.get("question", ""),
+        "options": options_list,
+        "answer": answer_text,
+        "explanation": q.get("explanation", ""),
+        "expected_keywords": [],
+    }
+
+
 def generate_practice_questions(
     grade: str,
     lesson: str,
@@ -402,11 +418,33 @@ def generate_practice_questions(
     subject: str = "",
 ):
     """
-    Generate subject-aware structured practice questions for a lesson step.
+    Generate 2 practice questions for the current lesson step.
 
-    Maths and Hindi receive two MCQs. Science, English, and Social Science
-    receive one MCQ plus one descriptive answer prompt with no word limit.
+    Fast path: search the question bank for this chapter — returns instantly,
+    questions are chapter-specific. Falls back to LLM only when the bank has
+    fewer than 2 usable questions.
+
+    LLM fallback generates questions directly from the lesson step content so
+    they are always relevant to what was just taught.
     """
+    # ── Fast path: question bank (instant, chapter-specific) ─────────────────
+    try:
+        from app.services.question_bank_service import get_questions_from_bank  # noqa: PLC0415
+        bank_qs = get_questions_from_bank(
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            num_questions=2,
+            excluded_ids=[],
+            difficulty=None,
+        )
+        if bank_qs and len(bank_qs) >= 2:
+            return {"questions": [_bank_question_to_practice(q) for q in bank_qs[:2]]}
+    except Exception:
+        pass  # Bank unavailable — fall through to LLM
+    # ─────────────────────────────────────────────────────────────────────────
+
+    # ── LLM fallback: generate from step content ──────────────────────────────
     if _is_math_subject(subject) or _is_hindi_subject(subject):
         pattern_rule = "Create exactly 2 MCQ questions and 0 descriptive questions."
     else:
@@ -415,29 +453,26 @@ def generate_practice_questions(
     prompt = f"""
 Create exactly 2 practice questions for a {grade} student.
 
-Chapter:
-{chapter}
+IMPORTANT: Questions MUST be directly based on the lesson content below.
+Do NOT create generic questions. Every question must test a specific idea,
+fact, or concept that is explicitly taught in the lesson step content.
 
-Subject:
-{subject or "Unknown"}
+Subject: {subject or "Unknown"}
+Chapter: {chapter}
+Lesson step: {step_title}
 
-Lesson step:
-{step_title}
-
-Lesson content:
+Lesson step content (base ALL questions on THIS):
 {lesson}
 
 Rules:
-- Keep wording and difficulty suitable for {grade}.
-- Questions should test understanding, not copying.
+- Questions must test understanding of the specific content above.
+- Do NOT use generic questions like "what is the best way to read?" or "what is a concept?".
 - {pattern_rule}
-- For Hindi, keep the questions and options in Hindi when the lesson context is Hindi.
+- For Hindi, keep questions and options in Hindi matching the lesson language.
 - MCQ questions must have exactly 4 options.
-- MCQ "answer" must exactly match one option.
-- MCQ explanation must explain why the answer is right and why a common distractor is wrong.
-- Descriptive questions must not mention a word limit.
-- Include 3 to 6 expected_keywords for every question.
-- Keep questions exam-style and clear.
+- MCQ "answer" must exactly match one option text.
+- MCQ explanation must explain why the answer is right using lesson content.
+- Include 3 to 6 expected_keywords drawn from the lesson content.
 - Return only valid JSON as an array.
 
 JSON shape:
@@ -470,6 +505,4 @@ JSON shape:
     if len(questions) < 2:
         questions = _fallback_practice_questions(subject)
 
-    return {
-        "questions": questions[:2],
-    }
+    return {"questions": questions[:2]}

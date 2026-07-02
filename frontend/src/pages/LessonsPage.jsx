@@ -1200,16 +1200,9 @@ function LessonsPage({ user, setActivePage }) {
         return;
       }
 
-      let normalizedQuestions = (result.questions || [])
+      const normalizedQuestions = (result.questions || [])
         .map((item) => normalizePracticeQuestion(item, subject))
         .slice(0, 2);
-
-      if (isHindiSubject()) {
-        normalizedQuestions = [
-          ...normalizedQuestions.filter((item) => item.type === "mcq"),
-          ...fallbackQuestions,
-        ].slice(0, 2);
-      }
 
       setPracticeQuestions(
         normalizedQuestions.length
