@@ -1771,15 +1771,15 @@ function LessonsPage({ user, setActivePage }) {
 
               {/* Right: progress % + nav buttons */}
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {/* Progress badge — count of generated steps vs total */}
+                {/* Progress badge — solid colors work in both light and dark mode */}
                 <span style={{
                   fontSize: "0.78rem",
                   fontWeight: 700,
-                  color: Object.keys(stepLessons).length === lessonSteps.length ? "#14532d" : "#0c4a6e",
-                  background: Object.keys(stepLessons).length === lessonSteps.length ? "#dcfce7" : "#cffafe",
-                  border: `1px solid ${Object.keys(stepLessons).length === lessonSteps.length ? "#86efac" : "#67e8f9"}`,
+                  color: "#fff",
+                  background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
                   borderRadius: "999px",
-                  padding: "2px 10px",
+                  padding: "3px 12px",
+                  letterSpacing: "0.01em",
                 }}>
                   {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
                 </span>
@@ -2525,10 +2525,10 @@ function LessonsPage({ user, setActivePage }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <span style={{
                     fontSize: "0.78rem", fontWeight: 700,
-                    color: Object.keys(stepLessons).length === lessonSteps.length ? "#14532d" : "#0c4a6e",
-                    background: Object.keys(stepLessons).length === lessonSteps.length ? "#dcfce7" : "#cffafe",
-                    border: `1px solid ${Object.keys(stepLessons).length === lessonSteps.length ? "#86efac" : "#67e8f9"}`,
-                    borderRadius: "999px", padding: "2px 10px",
+                    color: "#fff",
+                    background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
+                    borderRadius: "999px", padding: "3px 12px",
+                    letterSpacing: "0.01em",
                   }}>
                     {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
                   </span>
