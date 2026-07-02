@@ -2479,7 +2479,7 @@ function LessonsPage({ user, setActivePage }) {
                             disabled={practiceModeActive || followUpLoading}
                             onClick={() => handleAskFollowUp(chip)}
                           >
-                            {chip.length > 60 ? chip.slice(0, 57) + "…" : chip}
+                            {chip}
                           </button>
                         ))}
                       </div>
