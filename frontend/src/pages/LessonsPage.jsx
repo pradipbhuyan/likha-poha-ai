@@ -362,6 +362,8 @@ function LessonsPage({ user, setActivePage }) {
   // Only chips whose answers are already in followUpCache are shown.
   // Chips are pre-fetched in background when suggestions or lesson loads.
   const [cachedChipQuestions, setCachedChipQuestions] = useState(new Set());
+  const [activeChip, setActiveChip] = useState(null); // tracks which chip is loading
+  const chatBottomRef = useRef(null); // scroll target after AI response
 
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
@@ -1064,7 +1066,12 @@ function LessonsPage({ user, setActivePage }) {
       setFollowUpLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setFollowUpLoading(false);
-      setFollowUpMessages((prev) => [...prev, followUpCache.current[cacheKey]]);
+      setFollowUpMessages((prev) => {
+        const updated = [...prev, followUpCache.current[cacheKey]];
+        setTimeout(() => chatBottomRef.current?.scrollIntoView({ behavior: "smooth" }), 80);
+        return updated;
+      });
+      setActiveChip(null);
       return;
     }
 
@@ -1107,8 +1114,12 @@ function LessonsPage({ user, setActivePage }) {
         followUpCache.current[cacheKey] = assistantMessage;
       }
 
-      setFollowUpMessages((prev) => [...prev, assistantMessage]);
-
+      setFollowUpMessages((prev) => {
+        const updated = [...prev, assistantMessage];
+        setTimeout(() => chatBottomRef.current?.scrollIntoView({ behavior: "smooth" }), 80);
+        return updated;
+      });
+      setActiveChip(null);
       loadLessonDoubtHistory();
     } catch (error) {
       setFollowUpMessages((prev) => [
@@ -1120,6 +1131,7 @@ function LessonsPage({ user, setActivePage }) {
       ]);
     } finally {
       setFollowUpLoading(false);
+      setActiveChip(null);
     }
   }
 
@@ -2304,7 +2316,7 @@ function LessonsPage({ user, setActivePage }) {
                     </div>
 
                     {followUpMessages.length > 0 && (
-                      <div className="lesson-chat-thread">
+                      <div className="lesson-chat-thread" ref={chatBottomRef}>
                         {followUpMessages.map((msg, index) => (
                           <div
                             key={index}
@@ -2475,9 +2487,12 @@ function LessonsPage({ user, setActivePage }) {
                           <button
                             key={chip}
                             type="button"
-                            className="followup-chip"
+                            className={`followup-chip${activeChip === chip ? " followup-chip--active" : ""}`}
                             disabled={practiceModeActive || followUpLoading}
-                            onClick={() => handleAskFollowUp(chip)}
+                            onClick={() => {
+                              setActiveChip(chip);
+                              handleAskFollowUp(chip);
+                            }}
                           >
                             {chip}
                           </button>

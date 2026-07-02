@@ -3066,6 +3066,24 @@ body.dark-mode .resources-page a {
   padding: 8px 12px;
   font-weight: 800;
   cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+
+/* Only the clicked chip gets the active highlight — others stay normal */
+.followup-chip.followup-chip--active {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #fff !important;
+}
+
+/* Disabled chips look muted but NOT selected */
+.followup-chip:disabled:not(.followup-chip--active) {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+  pointer-events: none;
 }
 
 .followup-submit-btn {
@@ -3077,6 +3095,19 @@ body.dark-mode .followup-chip {
   background: #0f172a !important;
   border-color: #334155 !important;
   color: #93c5fd !important;
+}
+
+body.dark-mode .followup-chip.followup-chip--active {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #fff !important;
+}
+
+body.dark-mode .followup-chip:disabled:not(.followup-chip--active) {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+  color: #475569 !important;
+  opacity: 0.5;
 }
 
 body.dark-mode .lesson-followup-input textarea {
