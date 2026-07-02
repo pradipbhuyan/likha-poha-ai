@@ -54,6 +54,7 @@ from app.routes.teacher_classroom import router as teacher_classroom_router
 from app.routes.teacher_classroom_p2 import router as teacher_classroom_p2_router
 from app.routes.subscription import router as subscription_router
 from app.routes.issues import router as issues_router
+from app.routes.learning_simulation import router as learning_simulation_router
 from app.routes.admin_operations import router as admin_operations_router
 from app.routes.admin_bulk import router as admin_bulk_router
 from app.routes.admin_views import router as admin_views_router
@@ -237,6 +238,11 @@ app.include_router(
     admin_qa_router,
     prefix="/api/admin/qa",
     tags=["Admin QA Center"],
+)
+
+app.include_router(
+    learning_simulation_router,
+    tags=["Learning Simulation"],
 )
 
 app.include_router(

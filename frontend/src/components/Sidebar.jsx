@@ -104,6 +104,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "learningSimulation",
+      label: "Learning Simulation",
+      icon: Activity,
+      roles: ["admin"],
+    },
+    {
       key: "adminControl",
       label: "Admin Control",
       icon: Settings,

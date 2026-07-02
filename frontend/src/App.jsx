@@ -51,6 +51,7 @@ import SalesLeadPage from "./pages/SalesLeadPage";
 import SalesDemoPage from "./pages/SalesDemoPage";
 import SalesCollateralPage from "./pages/SalesCollateralPage";
 import AdminPerformanceTestsPage from "./pages/AdminPerformanceTestsPage";
+import AdminLearningSimulationPage from "./pages/AdminLearningSimulationPage";
 import AdminGuideSettingsPage from "./pages/AdminGuideSettingsPage";
 import AdminLessonCardPage from "./pages/AdminLessonCardPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
@@ -164,6 +165,12 @@ const PAGE_META = {
     subtitle:
       "Run controlled backend checks and monitor latency, errors, and trend health.",
     icon: "⚡",
+  },
+  learningSimulation: {
+    title: "Learning Simulation",
+    subtitle:
+      "Simulate Vijay (student) + Manish/Manisha (parents) over 7-day cycles. Detects anomalies and creates Product Bugs.",
+    icon: "🔬",
   },
   guideThemes: {
     title: "LikhaPoha AI Guide",
@@ -1415,6 +1422,8 @@ function App() {
         return <AdminPricingCalculatorPage user={user} />;
       case "performanceTests":
         return <AdminPerformanceTestsPage user={user} />;
+      case "learningSimulation":
+        return <AdminLearningSimulationPage user={user} />;
       case "guideThemes":
         return <AdminGuideSettingsPage user={user} />;
       case "lessonCardStyle":
