@@ -408,7 +408,9 @@ describe("AdminNotificationCenter", () => {
     });
     render(<AdminNotificationCenter accessToken="tok" onNavigate={vi.fn()} />);
     await waitFor(() => expect(ops.getNotifications).toHaveBeenCalledTimes(1));
-    expect(screen.getByTestId("notification-badge")).toHaveTextContent("1");
+    await waitFor(() =>
+      expect(screen.getByTestId("notification-badge")).toHaveTextContent("1")
+    );
   });
 
   test("clicking bell opens dropdown", async () => {
