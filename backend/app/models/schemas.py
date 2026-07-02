@@ -183,3 +183,4 @@ class AnswerEvaluationRequest(BaseModel):
     ideal_context: str
     question_type: str = "descriptive"
     expected_keywords: list[str] = Field(default_factory=list)
+    correct_answer: str = ""

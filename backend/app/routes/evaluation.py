@@ -57,6 +57,7 @@ def evaluate_answer(data: AnswerEvaluationRequest):
             step_title=data.step_title,
             question_type=data.question_type,
             expected_keywords=data.expected_keywords,
+            correct_answer=data.correct_answer,
         )
 
         return {

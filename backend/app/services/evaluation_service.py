@@ -41,6 +41,24 @@ Write a model answer at the right level for the student's grade.
 One encouraging sentence to motivate further effort.
 """
 
+MCQ_EVALUATOR_SYSTEM = """
+You are a concise CBSE teacher giving instant MCQ feedback to a student.
+
+Rules:
+- Be brief. Maximum 5 lines total.
+- NEVER say PASS, FAIL, score, or grade.
+- Do NOT use section headings or bullet lists.
+- Do NOT write a long model answer or lists of key terms.
+
+Format (follow exactly, nothing more):
+
+**✓ Correct!** or **✗ Incorrect — the right answer is: [correct option text]**
+
+One sentence explaining WHY the correct answer is right.
+
+**Exam tip:** If asked as a written question, answer: [one concise sentence using 1–2 key subject terms].
+"""
+
 
 def _is_math_subject(subject: str) -> bool:
     """Identify maths subjects for MCQ-only practice generation."""
@@ -238,6 +256,7 @@ def evaluate_student_answer(
     step_title: str = "",
     question_type: str = "descriptive",
     expected_keywords: list[str] | None = None,
+    correct_answer: str = "",
 ):
     """
     Evaluate a student answer as coaching feedback, not as a progression gate.
@@ -247,6 +266,42 @@ def evaluate_student_answer(
     when no keywords are available (e.g. inline lesson questions).
     """
     expected_keywords = expected_keywords or []
+
+    # -------------------------------------------------- MCQ (concise feedback)
+    if question_type == "mcq":
+        # Use explicit correct_answer if provided; fall back to expected_keywords[0]
+        if not correct_answer and expected_keywords:
+            correct_answer = expected_keywords[0]
+        mcq_prompt = f"""
+Question: {question}
+Correct answer: {correct_answer}
+Student selected: {student_answer}
+Subject: {subject or "unknown"}, Grade: {grade}
+
+Give MCQ feedback following your format exactly. Keep it under 5 lines.
+"""
+        evaluation = ask_llm(
+            MCQ_EVALUATOR_SYSTEM,
+            mcq_prompt,
+            username=username,
+            feature="answer_evaluation",
+        )
+        is_correct = student_answer.strip().lower() == correct_answer.strip().lower()
+        score = 10 if is_correct else 0
+        try:
+            save_mentor_memory(
+                username=username,
+                grade=grade,
+                mode=mode,
+                subject=subject,
+                chapter=chapter or step_title,
+                question=f"MCQ: {question}",
+                answer=f"Selected: {student_answer}. Correct: {is_correct}.",
+            )
+        except Exception:
+            pass
+        return {"evaluation": evaluation, "score": score, "passed": is_correct}
+    # ---------------------------------------------------- end MCQ
 
     # ------------------------------------------------- keyword-based (no LLM)
     if question_type == "descriptive" and expected_keywords:

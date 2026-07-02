@@ -1314,6 +1314,7 @@ function LessonsPage({ user, setActivePage }) {
         ideal_context: lesson,
         question_type: practiceQuestion.type,
         expected_keywords: practiceQuestion.expected_keywords || [],
+        correct_answer: practiceQuestion.answer || "",
       });
 
       if (!result.success) {
