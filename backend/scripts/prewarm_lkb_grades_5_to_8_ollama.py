@@ -106,27 +106,53 @@ def _patch_settings_for_ollama() -> None:
     """
     Override the in-memory settings cache to route all LLM calls to
     Ollama Cloud instead of the default provider (OpenAI / gpt-4.1-nano).
+    Reads the API key from: env var → admin_settings DB → fail.
     Must be called AFTER importing openai_service.
     """
     from app.services import openai_service as _svc  # noqa: PLC0415
 
-    if not OLLAMA_API_KEY:
+    api_key = OLLAMA_API_KEY  # from env var first
+
+    # If not in env, try loading from admin_settings DB (set via AI Studio)
+    if not api_key:
+        try:
+            _svc.force_refresh_settings()
+            api_key = _svc._settings_cache.get("ollama_cloud_api_key") or ""
+            if api_key:
+                log.info("Loaded OLLAMA_CLOUD_API_KEY from admin_settings DB")
+        except Exception as e:
+            log.warning("Could not load from admin_settings: %s", e)
+
+    if not api_key:
         log.error(
             "OLLAMA_CLOUD_API_KEY is not set.\n"
-            "  Export it:  export OLLAMA_CLOUD_API_KEY=your_key\n"
-            "  Or add to:  backend/.env\n"
-            "  Free keys:  https://ollama.com/settings/api-keys"
+            "  Set it in Admin Console → AI Studio → Ollama Cloud API Key\n"
+            "  Or: export OLLAMA_CLOUD_API_KEY=your_key\n"
+            "  Free keys: https://ollama.com/settings/api-keys"
         )
         sys.exit(1)
 
+    # Use model from DB settings if available, otherwise default
+    model = OLLAMA_MODEL
+    try:
+        db_model = _svc._settings_cache.get("ollama_cloud_model") or ""
+        if db_model:
+            model = db_model
+            log.info("Using ollama_cloud_model from DB: %s", model)
+    except Exception:
+        pass
+
     _svc._settings_cache.update({
         "provider":              "ollama_cloud",
-        "ollama_cloud_api_key":  OLLAMA_API_KEY,
-        "ollama_cloud_model":    OLLAMA_MODEL,
+        "ollama_cloud_api_key":  api_key,
+        "ollama_cloud_model":    model,
         "api_enabled":           True,
         "loaded_at":             time.time() + 86400,  # TTL far future — don't reload
     })
-    log.info("Provider patched → ollama_cloud  model=%s", OLLAMA_MODEL)
+    log.info("Provider patched → ollama_cloud  model=%s", model)
+    # Update module-level reference so ping uses correct key
+    globals()["OLLAMA_API_KEY"] = api_key
+    globals()["OLLAMA_MODEL"]   = model
 
 
 # ── Progress counters ─────────────────────────────────────────────────────────
