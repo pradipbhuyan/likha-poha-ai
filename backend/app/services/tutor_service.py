@@ -991,41 +991,28 @@ Student follow-up question: {question}
         for item in rag_results
     ) if rag_results else ""
 
-    prompt = f"""
-	You are helping a {grade} student understand a lesson.
+    prompt = f"""Grade: {grade} | Subject: {subject} | Chapter: {chapter} | Step: {step_title}
 
-Grade: {grade}
-Mode: {mode}
-Subject: {subject}
-Chapter: {chapter}
-Current lesson step: {step_title}
+Student question: {question}
 
-Current lesson content:
-{lesson}
+Relevant textbook context:
+{textbook_context if textbook_context else "Use the lesson content and your knowledge of the NCERT curriculum."}
 
-Student follow-up question:
-{question}
+Current lesson content (for context):
+{lesson[:1200] if lesson else "Not provided."}
 
-Relevant textbook/RAG context:
-{textbook_context if textbook_context else "No uploaded textbook context found."}
-
-Answer the follow-up question clearly and briefly.
-
-Rules:
-- Use the lesson content as context.
-- Use RAG textbook context when available.
-	- Explain like a friendly tutor using age-appropriate language for {grade}.
-- Use bullets if helpful.
-- Do not repeat the full lesson.
-- If the answer benefits from a visual, include one visual-json block.
-- End with one small check question.
-
-{DIAGRAM_HINT}
-
+RULES:
+- Answer the student's question DIRECTLY and SPECIFICALLY.
+- Do NOT generate a full lesson structure (no "What you will learn", no "Simple explanation" headings).
+- If the question asks to "identify", "list", "find", or "give examples" — provide exactly that with numbered or bullet points.
+- If the question asks "why" or "how" — give a clear 3-5 sentence explanation.
+- Keep the answer focused and concise — match the length to the question's complexity.
+- Use NCERT textbook content and examples from this chapter where possible.
+- End with one short follow-up question only if it adds value.
 """
 
     answer = ask_llm(
-        TUTOR_SYSTEM,
+        "You are a direct and helpful CBSE tutor. Answer the student's specific question concisely using NCERT content. Do NOT generate lesson structure headings. Give the exact answer asked for.",
         prompt,
         username=username,
         feature="lesson_followup",
