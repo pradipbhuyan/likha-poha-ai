@@ -1243,32 +1243,19 @@ function LessonsPage({ user, setActivePage }) {
     }));
 
     try {
-      if (isHindiSubject() && practiceQuestion.type === "mcq") {
+      // ── MCQ: fully local evaluation — no LLM, no API call ─────────────────
+      if (practiceQuestion.type === "mcq") {
         const isCorrect = answer === practiceQuestion.answer;
         const nextAttemptCount = practiceAttemptCount + 1;
         const nextBestScore = Math.max(practiceBestScore, isCorrect ? 10 : 0);
-        const writingNote =
-          practiceQuestion.explanation ||
-          "When writing Hindi answers, start with the direct answer, add one reason from the lesson, and write in complete sentences.";
+        const expl = practiceQuestion.explanation || "";
 
-        setPracticeEvaluations((prev) => ({
-          ...prev,
-          [index]: [
-            `## ${isCorrect ? "Correct" : "Incorrect"}`,
-            isCorrect
-              ? "You selected the right answer."
-              : `Correct answer: ${practiceQuestion.answer}`,
-            "## Note for writing answers",
-            `- ${writingNote}`,
-            "- While writing, use complete Hindi sentences, mention the main idea, and support it with one short example from the lesson.",
-          ].join("\n\n"),
-        }));
+        const feedback = isCorrect
+          ? ["**✓ Correct!**", expl].filter(Boolean).join("\n\n")
+          : [`**✗ Incorrect** — the right answer is: **${practiceQuestion.answer}**`, expl].filter(Boolean).join("\n\n");
 
-        setPracticePassedMap((prev) => ({
-          ...prev,
-          [index]: isCorrect,
-        }));
-
+        setPracticeEvaluations((prev) => ({ ...prev, [index]: feedback }));
+        setPracticePassedMap((prev) => ({ ...prev, [index]: isCorrect }));
         setPracticeAttemptCount(nextAttemptCount);
         setPracticeBestScore(nextBestScore);
         setPracticePassed(true);
@@ -1277,23 +1264,17 @@ function LessonsPage({ user, setActivePage }) {
         if (!isCorrect) {
           try {
             await saveWeakAreaAlert({
-              username: user.username,
-              grade,
-              mode,
-              subject,
-              chapter,
-              step_title: stepTitle,
-              step_index: currentStepIndex,
-              attempts: nextAttemptCount,
-              best_score: nextBestScore,
+              username: user.username, grade, mode, subject, chapter,
+              step_title: stepTitle, step_index: currentStepIndex,
+              attempts: nextAttemptCount, best_score: nextBestScore,
             });
           } catch (err) {
             console.error("Unable to save weak area alert", err);
           }
         }
-
         return;
       }
+      // ──────────────────────────────────────────────────────────────────────
 
       const result = await evaluateStudentAnswer({
         grade,

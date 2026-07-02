@@ -267,27 +267,19 @@ def evaluate_student_answer(
     """
     expected_keywords = expected_keywords or []
 
-    # -------------------------------------------------- MCQ (concise feedback)
+    # -------------------------------------------------- MCQ (instant, no LLM)
     if question_type == "mcq":
         # Use explicit correct_answer if provided; fall back to expected_keywords[0]
         if not correct_answer and expected_keywords:
             correct_answer = expected_keywords[0]
-        mcq_prompt = f"""
-Question: {question}
-Correct answer: {correct_answer}
-Student selected: {student_answer}
-Subject: {subject or "unknown"}, Grade: {grade}
-
-Give MCQ feedback following your format exactly. Keep it under 5 lines.
-"""
-        evaluation = ask_llm(
-            MCQ_EVALUATOR_SYSTEM,
-            mcq_prompt,
-            username=username,
-            feature="answer_evaluation",
-        )
         is_correct = student_answer.strip().lower() == correct_answer.strip().lower()
         score = 10 if is_correct else 0
+        # Build feedback from stored explanation — zero LLM cost
+        explanation = ideal_context[:300] if ideal_context else ""
+        if is_correct:
+            feedback = f"**✓ Correct!**\n\n{explanation}" if explanation else "**✓ Correct!**"
+        else:
+            feedback = f"**✗ Incorrect** — the right answer is: **{correct_answer}**\n\n{explanation}" if explanation else f"**✗ Incorrect** — the right answer is: **{correct_answer}**"
         try:
             save_mentor_memory(
                 username=username,
@@ -300,7 +292,7 @@ Give MCQ feedback following your format exactly. Keep it under 5 lines.
             )
         except Exception:
             pass
-        return {"evaluation": evaluation, "score": score, "passed": is_correct}
+        return {"evaluation": feedback, "score": score, "passed": is_correct}
     # ---------------------------------------------------- end MCQ
 
     # ------------------------------------------------- keyword-based (no LLM)
@@ -427,7 +419,10 @@ def generate_practice_questions(
     LLM fallback generates questions directly from the lesson step content so
     they are always relevant to what was just taught.
     """
-    # ── Fast path: question bank (instant, chapter-specific) ─────────────────
+    # ── Question bank only — no LLM ───────────────────────────────────────────
+    # With 100,000+ questions in the bank, every chapter should have enough.
+    # If the bank returns < 2 for some reason, return an empty list so the
+    # frontend can show a friendly "no questions available" message.
     try:
         from app.services.question_bank_service import get_questions_from_bank  # noqa: PLC0415
         bank_qs = get_questions_from_bank(
@@ -440,69 +435,10 @@ def generate_practice_questions(
         )
         if bank_qs and len(bank_qs) >= 2:
             return {"questions": [_bank_question_to_practice(q) for q in bank_qs[:2]]}
+        # Fewer than 2 in bank — try with 1
+        if bank_qs and len(bank_qs) == 1:
+            return {"questions": [_bank_question_to_practice(bank_qs[0])]}
     except Exception:
-        pass  # Bank unavailable — fall through to LLM
-    # ─────────────────────────────────────────────────────────────────────────
-
-    # ── LLM fallback: generate from step content ──────────────────────────────
-    if _is_math_subject(subject) or _is_hindi_subject(subject):
-        pattern_rule = "Create exactly 2 MCQ questions and 0 descriptive questions."
-    else:
-        pattern_rule = "Create exactly 1 MCQ question and exactly 1 descriptive question."
-
-    prompt = f"""
-Create exactly 2 practice questions for a {grade} student.
-
-IMPORTANT: Questions MUST be directly based on the lesson content below.
-Do NOT create generic questions. Every question must test a specific idea,
-fact, or concept that is explicitly taught in the lesson step content.
-
-Subject: {subject or "Unknown"}
-Chapter: {chapter}
-Lesson step: {step_title}
-
-Lesson step content (base ALL questions on THIS):
-{lesson}
-
-Rules:
-- Questions must test understanding of the specific content above.
-- Do NOT use generic questions like "what is the best way to read?" or "what is a concept?".
-- {pattern_rule}
-- For Hindi, keep questions and options in Hindi matching the lesson language.
-- MCQ questions must have exactly 4 options.
-- MCQ "answer" must exactly match one option text.
-- MCQ explanation must explain why the answer is right using lesson content.
-- Include 3 to 6 expected_keywords drawn from the lesson content.
-- Return only valid JSON as an array.
-
-JSON shape:
-[
-  {{
-    "type": "mcq",
-    "question": "...",
-    "options": ["...", "...", "...", "..."],
-    "answer": "...",
-    "explanation": "...",
-    "expected_keywords": ["...", "..."]
-  }},
-  {{
-    "type": "descriptive",
-    "question": "...",
-    "expected_keywords": ["...", "..."]
-  }}
-]
-"""
-
-    response = ask_llm(
-        EVALUATOR_SYSTEM,
-        prompt,
-        username=username,
-        feature="practice_question_generation",
-    )
-
-    questions = _extract_json_array(response)
-
-    if len(questions) < 2:
-        questions = _fallback_practice_questions(subject)
-
-    return {"questions": questions[:2]}
+        pass
+    # No questions found in bank for this chapter
+    return {"questions": []}
