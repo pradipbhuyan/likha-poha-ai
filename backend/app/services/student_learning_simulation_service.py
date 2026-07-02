@@ -511,7 +511,7 @@ def _simulate_practice_day(vijay_id: str, run_id: str, day: int,
 
 def _simulate_doubt_day(vijay_id: str, run_id: str, day: int,
                         dry_run: bool) -> dict:
-    """Simulate Vijay asking 1–2 doubts."""
+    """Simulate Vijay asking a doubt — uses real doubt_history schema."""
     curriculum_item = SIM_CURRICULUM[(day - 1) % len(SIM_CURRICULUM)]
     doubt_topics = [
         f"What is the main concept in {curriculum_item['chapter']}?",
@@ -519,18 +519,32 @@ def _simulate_doubt_day(vijay_id: str, run_id: str, day: int,
         "Can you give me an example of this topic?",
     ]
     question = random.choice(doubt_topics)
+    answer   = (
+        f"[Simulation Day {day}] This is a synthetic answer for the doubt about "
+        f"{curriculum_item['chapter']} in {curriculum_item['subject']}. "
+        "In a real session the AI would provide a detailed explanation here."
+    )
 
     if not dry_run:
         try:
+            # Match exact schema of doubt_history_service.save_doubt_history()
             admin_client.table("doubt_history").insert({
-                "username":    SIM_USERS["vijay"]["username"],
-                "grade":       "Grade 9",
-                "mode":        "CBSE",
-                "subject":     curriculum_item["subject"],
-                "chapter":     curriculum_item["chapter"],
-                "question":    question,
-                "answer":      f"[Simulation] Auto-generated answer for: {question}",
-                "source_type": "SIMULATION",
+                "profile_id":       vijay_id,
+                "username":         SIM_USERS["vijay"]["username"],
+                "grade":            "Grade 9",
+                "mode":             "CBSE",
+                "board":            "CBSE",
+                "subject":          curriculum_item["subject"],
+                "chapter":          curriculum_item["chapter"],
+                "question":         question,
+                "prompt_question":  question,
+                "answer":           answer,
+                "source_type":      "SIMULATION",
+                "sources":          [],
+                "mentor_suggestions": [
+                    f"Review {curriculum_item['chapter']} section 1",
+                    "Attempt 2 practice questions on this topic",
+                ],
             }).execute()
         except Exception:
             pass
@@ -543,33 +557,39 @@ def _simulate_doubt_day(vijay_id: str, run_id: str, day: int,
 
 def _simulate_mock_test_day(vijay_id: str, run_id: str, day: int,
                              dry_run: bool) -> dict:
-    """Simulate Vijay attempting a mock test."""
+    """Simulate Vijay attempting a mock test — uses real test_history schema."""
     curriculum_item = SIM_CURRICULUM[(day - 1) % len(SIM_CURRICULUM)]
     subject         = curriculum_item["subject"]
     total_q         = 10
     score_pct       = _mock_score(day)
     correct         = round(total_q * score_pct / 100)
+    wrong           = total_q - correct
 
     anomalies = _validate_score(score_pct, {"subject": subject, "day": day})
 
     if not dry_run:
         try:
+            # Use the exact same schema as test_history_service.save_test_result()
             admin_client.table("test_history").insert({
-                "username":       SIM_USERS["vijay"]["username"],
-                "grade":          "Grade 9",
-                "mode":           "CBSE",
-                "subject":        subject,
-                "mock_type":      "chapter",
-                "difficulty":     "Medium",
-                "percentage":     score_pct,
-                "total_questions": total_q,
-                "correct_answers": correct,
-                "wrong_answers":   total_q - correct,
-                "is_simulation":   True,
+                "username":    SIM_USERS["vijay"]["username"],
+                "grade":       "Grade 9",
+                "mode":        "CBSE",
+                "subject":     subject,
+                "chapter":     curriculum_item["chapter"],
+                "mock_type":   "chapter",
+                "exam_type":   "chapter",
+                "difficulty":  "Medium",
+                "raw_score":   correct,
+                "final_score": correct,
+                "max_score":   total_q,
+                "wrong_count": wrong,
+                "penalty":     0,
+                "percentage":  score_pct,
+                "submitted_at": datetime.now(timezone.utc).isoformat(),
             }).execute()
         except Exception:
             pass
-        _record_event(run_id, day, "mock_test", vijay_id, subject, "",
+        _record_event(run_id, day, "mock_test", vijay_id, subject, curriculum_item["chapter"],
                       metadata={"score": score_pct, "total_q": total_q,
                                 "correct": correct, "sim_day": day})
 
@@ -805,6 +825,22 @@ def run_simulation(cycle_days: int, dry_run: bool, create_bugs: bool,
                 )
                 if bug_id:
                     bugs_created += 1
+
+    # ── Update Vijay's profile: streak + XP reflect simulated activity ───────
+    if not dry_run and vijay_id and not vijay_id.startswith("missing"):
+        try:
+            vijay_profile = _safe_get("profiles", {"id": vijay_id})
+            current_streak = (vijay_profile.get("study_streak_days") or 0) if vijay_profile else 0
+            current_xp     = (vijay_profile.get("xp_points") or 0) if vijay_profile else 0
+            # Each day adds 1 streak and 50 XP (practice + lesson + mock)
+            new_streak = current_streak + cycle_days
+            new_xp     = current_xp + (cycle_days * 150)
+            admin_client.table("profiles").update({
+                "study_streak_days": new_streak,
+                "xp_points":        new_xp,
+            }).eq("id", vijay_id).execute()
+        except Exception:
+            pass  # xp_points column may not exist — silently skip
 
     summary["anomalies"]    = all_anomalies
     summary["bugs_created"] = bugs_created
