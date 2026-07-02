@@ -1308,15 +1308,15 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>SambaNova Model</strong>
                 <select value={sambanovaModel} onChange={(e) => setSambanovaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="Meta-Llama-3.3-70B-Instruct">Meta-Llama-3.3-70B-Instruct — Best quality (recommended)</option>
-                  <option value="DeepSeek-V3.2">DeepSeek-V3.2 — Strong reasoning</option>
-                  <option value="DeepSeek-V3.1">DeepSeek-V3.1 — Strong reasoning (prev)</option>
-                  <option value="gemma-4-31B-it">gemma-4-31B-it — Google Gemma 4 31B</option>
-                  <option value="MiniMax-M2.7">MiniMax-M2.7 — Fast, lightweight</option>
-                  <option value="gpt-oss-120b">gpt-oss-120b — Large open-source model</option>
+                  <option value="Meta-Llama-3.3-70B-Instruct">✅ FREE — Meta-Llama-3.3-70B-Instruct (best quality, recommended)</option>
+                  <option value="DeepSeek-V3.2">✅ FREE — DeepSeek-V3.2 (strong reasoning)</option>
+                  <option value="DeepSeek-V3.1">✅ FREE — DeepSeek-V3.1 (strong reasoning, prev)</option>
+                  <option value="gemma-4-31B-it">✅ FREE — gemma-4-31B-it (Google Gemma 4 31B)</option>
+                  <option value="gpt-oss-120b">✅ FREE — gpt-oss-120b (large open-source)</option>
+                  <option value="MiniMax-M2.7">💳 PAID — MiniMax-M2.7 (requires payment method)</option>
                 </select>
                 <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
-                  💡 <strong>Meta-Llama-3.3-70B-Instruct</strong> gives the best lesson quality. All models run on SambaNova's free tier (~1M tokens/day).
+                  💡 5 models are <strong>completely free</strong>. <strong>Meta-Llama-3.3-70B-Instruct</strong> gives best lesson quality. MiniMax-M2.7 requires a paid SambaNova account.
                 </p>
               </label>
             </div>
