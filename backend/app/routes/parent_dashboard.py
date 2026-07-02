@@ -6,7 +6,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import require_parent, create_auth_user, invite_parent_by_email, admin_client
+from app.services.auth_service import require_parent, get_current_user, create_auth_user, invite_parent_by_email, admin_client
 from app.services.parent_dashboard_service import (
     get_children,
     get_child_by_id,
@@ -85,8 +85,12 @@ def get_parent_children(parent=Depends(require_parent)):
 
 
 @router.get("/subscription-plans")
-def get_parent_subscription_plans(parent=Depends(require_parent)):
-    """Return public subscription plans for the parent subscription page."""
+def get_parent_subscription_plans(user=Depends(get_current_user)):
+    """Return public subscription plans for the subscription page.
+
+    Accessible by any authenticated user (parent, student, child, teacher)
+    — this endpoint only returns public pricing data, not personal information.
+    """
     settings = list_subscription_plan_settings()
     plans = {
         key: plan
