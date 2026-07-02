@@ -17,7 +17,13 @@ import {
 } from "../config/subscriptionPlans";
 
 function listToText(items = []) {
-  /** Convert stored feature arrays into newline text for admin editing. */
+  /** Convert stored feature arrays into newline text for admin editing.
+   * Guards against non-array values (string, null, undefined) that can come
+   * from the DB when included/notIncluded was saved as a JSON string.
+   */
+  if (!items) return "";
+  if (typeof items === "string") return items;
+  if (!Array.isArray(items)) return String(items);
   return items.join("\n");
 }
 

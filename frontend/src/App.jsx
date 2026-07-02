@@ -770,7 +770,13 @@ function App() {
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
 
-      if (savedPage && !(parsedUser.role === "admin" && savedPage === "dashboard")) {
+      // Restore saved page, but guard against role-incompatible pages:
+      // - admin must not land on student "dashboard"
+      // - parent must not land on student "dashboard"
+      const isBadPageForRole =
+        (parsedUser.role === "admin" && savedPage === "dashboard") ||
+        (parsedUser.role === "parent" && savedPage === "dashboard");
+      if (savedPage && !isBadPageForRole) {
         setActivePage(savedPage);
       } else if (parsedUser.role === "admin") {
         setActivePage("adminControl");
