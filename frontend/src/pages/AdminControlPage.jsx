@@ -1308,11 +1308,15 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>SambaNova Model</strong>
                 <select value={sambanovaModel} onChange={(e) => setSambanovaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="Meta-Llama-3.3-70B-Instruct">Llama 3.3 70B — Best quality (recommended)</option>
-                  <option value="Meta-Llama-4-Scout-17B-16E-Instruct">Llama 4 Scout 17B — Fastest, free</option>
+                  <option value="Meta-Llama-3.3-70B-Instruct">Meta-Llama-3.3-70B-Instruct — Best quality (recommended)</option>
+                  <option value="DeepSeek-V3.2">DeepSeek-V3.2 — Strong reasoning</option>
+                  <option value="DeepSeek-V3.1">DeepSeek-V3.1 — Strong reasoning (prev)</option>
+                  <option value="gemma-4-31B-it">gemma-4-31B-it — Google Gemma 4 31B</option>
+                  <option value="MiniMax-M2.7">MiniMax-M2.7 — Fast, lightweight</option>
+                  <option value="gpt-oss-120b">gpt-oss-120b — Large open-source model</option>
                 </select>
-                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
-                  💡 <strong>Llama 4 Scout</strong> is blazing fast and completely free. Use <strong>Llama 3.3 70B</strong> for best lesson quality.
+                <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
+                  💡 <strong>Meta-Llama-3.3-70B-Instruct</strong> gives the best lesson quality. All models run on SambaNova's free tier (~1M tokens/day).
                 </p>
               </label>
             </div>
