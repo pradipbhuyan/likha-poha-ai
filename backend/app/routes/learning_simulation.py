@@ -43,6 +43,22 @@ class RunSimulationRequest(BaseModel):
     strict_validation:  bool = True
 
 
+# ── POST /setup ───────────────────────────────────────────────────────────────
+
+@router.post("/api/admin/simulation/learning/setup")
+def setup_users_endpoint(admin=Depends(require_admin)):
+    """
+    Idempotently create Vijay, Manish, Manisha simulation users.
+    Safe to call multiple times — won't duplicate users.
+    Run this BEFORE running a simulation to ensure users exist in Supabase.
+    """
+    try:
+        result = setup_simulation_users(dry_run=False)
+        return {"success": True, **result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)[:300])
+
+
 # ── GET /status ───────────────────────────────────────────────────────────────
 
 @router.get("/api/admin/simulation/learning/status")

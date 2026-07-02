@@ -8,6 +8,7 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import {
+  setupSimulationUsers,
   getSimulationStatus,
   runSimulation,
   resetSimulation,
@@ -119,6 +120,7 @@ export default function AdminLearningSimulationPage({ user: _user }) {
   const [createBugs, setCreateBugs]   = useState(true);
   const [strictVal, setStrictVal]     = useState(true);
   const [showReset, setShowReset]     = useState(false);
+  const [settingUp, setSettingUp]     = useState(false);
 
   const loadStatus = useCallback(async () => {
     try {
@@ -206,6 +208,21 @@ export default function AdminLearningSimulationPage({ user: _user }) {
     }
   }
 
+  async function handleSetupUsers() {
+    setSettingUp(true);
+    setMsg(null);
+    try {
+      const r = await setupSimulationUsers();
+      const msgs = r.messages?.join(" · ") || "";
+      setMsg(`✅ Users ready. ${msgs}`);
+      await loadStatus();
+    } catch (e) {
+      setMsg("❌ Setup failed: " + e.message);
+    } finally {
+      setSettingUp(false);
+    }
+  }
+
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: C.muted }}>Loading simulation status…</div>;
 
   const currentDay = status?.current_day || 0;
@@ -257,9 +274,43 @@ export default function AdminLearningSimulationPage({ user: _user }) {
         {/* ── Left: Controls ── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-          {/* Run controls */}
+              {/* Step 1: Setup Users */}
+          <div style={card({ borderColor: status?.users_setup ? "rgba(34,197,94,.3)" : "rgba(99,102,241,.4)" })}>
+            <h4 style={{ margin: "0 0 6px", fontSize: ".85rem", fontWeight: 800 }}>
+              Step 1: Create Simulation Users
+            </h4>
+            <p style={{ margin: "0 0 10px", fontSize: ".75rem", color: C.muted }}>
+              Creates Vijay (student), Manish + Manisha (parents) in Supabase with Family Premium access.
+              Safe to run multiple times — idempotent.
+            </p>
+            {status?.users_setup ? (
+              <div style={{ fontSize: ".78rem", color: C.green, fontWeight: 700, marginBottom: 8 }}>
+                ✅ Users ready — Vijay can login at <code style={{ fontSize: ".72rem", background: "rgba(0,0,0,.1)", padding: "1px 4px", borderRadius: 4 }}>vijay.sim.student@example.test</code> / <code style={{ fontSize: ".72rem", background: "rgba(0,0,0,.1)", padding: "1px 4px", borderRadius: 4 }}>test1234</code>
+              </div>
+            ) : (
+              <div style={{ fontSize: ".78rem", color: C.orange, fontWeight: 600, marginBottom: 8 }}>
+                ⚠ Users not yet created — click below first
+              </div>
+            )}
+            <button
+              data-testid="setup-users-btn"
+              onClick={handleSetupUsers}
+              disabled={settingUp}
+              style={{
+                width: "100%", padding: "9px", borderRadius: 9,
+                border: `1px solid ${status?.users_setup ? "rgba(34,197,94,.4)" : "transparent"}`,
+                background: settingUp ? C.muted : status?.users_setup ? "rgba(34,197,94,.15)" : C.indigo,
+                color: status?.users_setup ? C.green : "#fff",
+                fontSize: ".82rem", fontWeight: 700,
+                cursor: settingUp ? "not-allowed" : "pointer", fontFamily: "inherit",
+              }}>
+              {settingUp ? "⏳ Creating users…" : status?.users_setup ? "✓ Re-run Setup (safe)" : "⚡ Create Vijay, Manish, Manisha"}
+            </button>
+          </div>
+
+          {/* Step 2: Run controls */}
           <div style={card()}>
-            <h4 style={{ margin: "0 0 14px", fontSize: ".9rem", fontWeight: 800 }}>Run Simulation</h4>
+            <h4 style={{ margin: "0 0 14px", fontSize: ".9rem", fontWeight: 800 }}>Step 2: Run Simulation</h4>
 
             <label style={{ fontSize: ".78rem", fontWeight: 600, display: "block", marginBottom: 4 }}>
               Cycle Days

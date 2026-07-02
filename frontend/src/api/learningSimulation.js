@@ -6,6 +6,9 @@ import { authFetch } from "./authClient";
 
 const BASE = "/api/admin/simulation/learning";
 
+export const setupSimulationUsers = () =>
+  authFetch(`${BASE}/setup`, { method: "POST" });
+
 export const getSimulationStatus = () =>
   authFetch(`${BASE}/status`);
 
