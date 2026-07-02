@@ -1056,9 +1056,14 @@ function LessonsPage({ user, setActivePage }) {
     setFollowUpMessages((prev) => [...prev, { role: "user", content: questionToAsk }]);
     setFollowUpQuestion("");
 
-    // ── Cache hit: instant response ──────────────────────────────────────────
+    // ── Cache hit: serve from LKB/DKB cache with a brief thinking delay ──────
+    // The 2s pause makes the response feel considered rather than instantaneous,
+    // without any actual LLM cost — the answer is already pre-warmed in cache.
     const cacheKey = `${grade}|${subject}|${chapter}|${stepTitle}|${questionToAsk.trim().toLowerCase()}`;
     if (followUpCache.current[cacheKey]) {
+      setFollowUpLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setFollowUpLoading(false);
       setFollowUpMessages((prev) => [...prev, followUpCache.current[cacheKey]]);
       return;
     }
