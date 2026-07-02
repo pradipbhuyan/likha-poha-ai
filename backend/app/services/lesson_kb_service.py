@@ -359,7 +359,8 @@ Respond ONLY with JSON array:
         if start == -1 or end == -1:
             return []
 
-        import json, re as _re  # noqa: PLC0415
+        import json  # noqa: PLC0415
+        import re as _re  # noqa: PLC0415
         # Sanitise: replace literal newlines inside JSON string values with \n escape
         # (some LLMs like Llama/SambaNova emit raw newlines inside JSON strings)
         json_text = raw[start:end + 1]
