@@ -1416,6 +1416,9 @@ function LessonsPage({ user, setActivePage }) {
       }
 
       // ── Background fetch: call API without blocking UI ─────────────────────
+      // Skip if lesson is not yet loaded — backend requires a non-empty lesson.
+      // The chip will become available once the lesson is generated.
+      if (!lesson || !lesson.trim()) return;
       try {
         const result = await askLessonFollowUp({
           username: user.username,
