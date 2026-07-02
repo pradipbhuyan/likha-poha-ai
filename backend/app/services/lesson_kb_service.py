@@ -359,8 +359,16 @@ Respond ONLY with JSON array:
         if start == -1 or end == -1:
             return []
 
-        import json  # noqa: PLC0415
-        chips = json.loads(raw[start:end + 1])
+        import json, re as _re  # noqa: PLC0415
+        # Sanitise: replace literal newlines inside JSON string values with \n escape
+        # (some LLMs like Llama/SambaNova emit raw newlines inside JSON strings)
+        json_text = raw[start:end + 1]
+        # Replace unescaped control characters inside JSON strings
+        def _fix_ctrl(m):
+            return m.group(0).replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t")
+        # Only fix inside quoted strings (between " delimiters)
+        json_text = _re.sub(r'"(?:[^"\\]|\\.)*"', _fix_ctrl, json_text, flags=_re.DOTALL)
+        chips = json.loads(json_text)
 
         # Validate — accept both • and - bullet formats
         validated = []
