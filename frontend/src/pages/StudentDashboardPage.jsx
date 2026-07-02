@@ -238,7 +238,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {icon:"🎯",val:(plan.estimated_minutes||0)>0?(plan.estimated_minutes+" min"):"—",label:"Today's Goal",sub:"Estimated study time",col:"#22c55e"},
           {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"In progress",col:"#6366f1"},
           {icon:"📅",val:exams.length>0?(exams[0].days_until+"d"):"—",label:"Next Exam",sub:exams.length>0?(exams[0].subject||exams[0].title||"Scheduled"):"Not scheduled",col:exams.length>0&&exams[0].days_until<=7?"#ef4444":"#94a3b8"},
-          {icon:"⭐",val:(act.total_90d||0),label:"XP Points",sub:"Keep learning!",col:"#f59e0b"},
+          {icon:"⭐",val:(mt.total||0)*50+(s.lessons_completed||0)*15,label:"XP Points",sub:"Keep learning!",col:"#f59e0b"},
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:"1.5rem",flexShrink:0}}>{it.icon}</span>
