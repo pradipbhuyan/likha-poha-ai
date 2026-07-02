@@ -421,23 +421,31 @@ def generate_practice_questions(
     """
     # ── Question bank only — no LLM ───────────────────────────────────────────
     # With 100,000+ questions in the bank, every chapter should have enough.
-    # If the bank returns < 2 for some reason, return an empty list so the
-    # frontend can show a friendly "no questions available" message.
+    # Tries multiple difficulty levels to maximise hit rate.
+    # Returns [] if no questions found for this chapter.
     try:
         from app.services.question_bank_service import get_questions_from_bank  # noqa: PLC0415
-        bank_qs = get_questions_from_bank(
-            grade=grade,
-            subject=subject,
-            chapter=chapter,
-            num_questions=2,
-            excluded_ids=[],
-            difficulty=None,
-        )
-        if bank_qs and len(bank_qs) >= 2:
-            return {"questions": [_bank_question_to_practice(q) for q in bank_qs[:2]]}
-        # Fewer than 2 in bank — try with 1
-        if bank_qs and len(bank_qs) == 1:
-            return {"questions": [_bank_question_to_practice(bank_qs[0])]}
+        # Strip common chapter prefixes that differ between syllabus and bank
+        # e.g. "Chapter 6: Measuring Space: Perimeter and Area" → "Measuring Space: Perimeter and Area"
+        import re as _re_local  # noqa: PLC0415
+        clean_for_bank = _re_local.sub(r"^Chapter\s+\d+\s*:\s*", "", chapter or "", flags=_re_local.IGNORECASE).strip()
+
+        for difficulty_try in ("Medium", "Easy", "Hard", "medium", "easy", "hard"):
+            for chapter_try in ([chapter, clean_for_bank] if clean_for_bank != chapter else [chapter]):
+                try:
+                    bank_qs = get_questions_from_bank(
+                        board="CBSE",
+                        grade=grade,
+                        subject=subject,
+                        chapter=chapter_try,
+                        difficulty=difficulty_try,
+                        num_questions=2,
+                        excluded_ids=[],
+                    )
+                    if bank_qs and len(bank_qs) >= 1:
+                        return {"questions": [_bank_question_to_practice(q) for q in bank_qs[:2]]}
+                except Exception:
+                    continue
     except Exception:
         pass
     # No questions found in bank for this chapter
