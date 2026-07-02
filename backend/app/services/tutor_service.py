@@ -558,9 +558,9 @@ Textbook coverage rules:
 - If the textbook contains "Activity", "Pause and Ponder", "Think as a Scientist", "At a Glance", or review questions, include their learning value in the lesson.
 - Explain how each idea connects to the next.
 - Do not skip important subtopics from the retrieved textbook context.
-- If approved textbook visuals are listed, weave them logically into the lesson
-  with a short instruction such as "Look at the textbook visual below..." only
-  when the visual supports the current idea.
+- If approved visual aids are listed, weave them logically into the lesson
+  with a short instruction such as "Look at the visual aid below..." only
+  when the visual supports the current idea. Never use the phrase "textbook visual".
 - Do not invent, request, or describe a different image. If no listed visual
   fits the idea being taught, teach normally without mentioning visuals.
 
