@@ -7,18 +7,15 @@ No real users, emails, or payments involved.
 """
 import pytest
 from unittest.mock import patch, MagicMock
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from app.main import app
+from app.services.auth_service import require_admin
 
 client = TestClient(app)
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
-
-def _admin_token():
-    """Return a fake admin JWT (accepted by mocked require_admin)."""
-    return "Bearer fake-admin-token"
-
 
 def _mock_admin():
     return {
@@ -27,26 +24,38 @@ def _mock_admin():
     }
 
 
+def _block_admin():
+    """Override that simulates no valid admin token — raises 403."""
+    raise HTTPException(status_code=403, detail="Not authorized")
+
+
+@pytest.fixture(autouse=True)
+def clear_dependency_overrides():
+    """Restore app.dependency_overrides after every test."""
+    yield
+    app.dependency_overrides.pop(require_admin, None)
+
+
 # ── Status endpoint ───────────────────────────────────────────────────────────
 
 class TestSimulationStatus:
     def test_status_requires_admin(self):
-        """Non-admin (no token) must be blocked."""
+        """Non-admin must be blocked — uses dependency override, no Supabase call."""
+        app.dependency_overrides[require_admin] = _block_admin
         resp = client.get("/api/admin/simulation/learning/status")
         assert resp.status_code in (401, 403)
 
     def test_status_returns_structure(self):
         """Admin gets status dict with expected keys."""
-        with patch("app.routes.learning_simulation.require_admin", return_value=_mock_admin()), \
-             patch("app.routes.learning_simulation.get_simulation_status", return_value={
+        app.dependency_overrides[require_admin] = lambda: _mock_admin()
+        with patch("app.routes.learning_simulation.get_simulation_status", return_value={
                  "current_day": 0, "next_cycle_start": 1, "next_cycle_end": 7,
                  "users_setup": False, "vijay_access": None,
                  "recent_runs": [], "total_runs": 0,
              }), \
              patch("app.routes.learning_simulation.admin_client") as mock_db:
             mock_db.table.return_value.select.return_value.eq.return_value.limit.return_value.execute.return_value.data = []
-            resp = client.get("/api/admin/simulation/learning/status",
-                              headers={"Authorization": _admin_token()})
+            resp = client.get("/api/admin/simulation/learning/status")
         assert resp.status_code == 200
         data = resp.json()
         assert "current_day" in data
@@ -58,14 +67,15 @@ class TestSimulationStatus:
 
 class TestSimulationRun:
     def test_run_requires_admin(self):
+        app.dependency_overrides[require_admin] = _block_admin
         resp = client.post("/api/admin/simulation/learning/run",
                            json={"cycle_days": 7, "dry_run": True})
         assert resp.status_code in (401, 403)
 
     def test_dry_run_returns_summary(self):
         """Dry run returns summary without writing data."""
-        with patch("app.routes.learning_simulation.require_admin", return_value=_mock_admin()), \
-             patch("app.routes.learning_simulation.run_simulation", return_value={
+        app.dependency_overrides[require_admin] = lambda: _mock_admin()
+        with patch("app.routes.learning_simulation.run_simulation", return_value={
                  "run_id": "dry-run-id",
                  "dry_run": True,
                  "cycle_start_day": 1,
@@ -80,8 +90,7 @@ class TestSimulationRun:
              }):
             resp = client.post("/api/admin/simulation/learning/run",
                                json={"cycle_days": 7, "dry_run": True,
-                                     "create_bugs": False, "strict_validation": False},
-                               headers={"Authorization": _admin_token()})
+                                     "create_bugs": False, "strict_validation": False})
         assert resp.status_code == 200
         data = resp.json()
         assert data.get("success") is True
@@ -89,8 +98,8 @@ class TestSimulationRun:
 
     def test_run_returns_cycle_range(self):
         """Run response includes cycle_start_day and cycle_end_day."""
-        with patch("app.routes.learning_simulation.require_admin", return_value=_mock_admin()), \
-             patch("app.routes.learning_simulation.run_simulation", return_value={
+        app.dependency_overrides[require_admin] = lambda: _mock_admin()
+        with patch("app.routes.learning_simulation.run_simulation", return_value={
                  "run_id": "run-123",
                  "dry_run": False,
                  "cycle_start_day": 1,
@@ -104,8 +113,7 @@ class TestSimulationRun:
                  "days": [],
              }):
             resp = client.post("/api/admin/simulation/learning/run",
-                               json={"cycle_days": 7},
-                               headers={"Authorization": _admin_token()})
+                               json={"cycle_days": 7})
         assert resp.status_code == 200
         data = resp.json()
         assert data["cycle_start_day"] == 1
@@ -139,19 +147,19 @@ class TestSimulationRun:
 
 class TestSimulationReset:
     def test_reset_requires_admin(self):
+        app.dependency_overrides[require_admin] = _block_admin
         resp = client.post("/api/admin/simulation/learning/reset")
         assert resp.status_code in (401, 403)
 
     def test_reset_returns_success(self):
-        with patch("app.routes.learning_simulation.require_admin", return_value=_mock_admin()), \
-             patch("app.routes.learning_simulation.reset_simulation_data", return_value={
+        app.dependency_overrides[require_admin] = lambda: _mock_admin()
+        with patch("app.routes.learning_simulation.reset_simulation_data", return_value={
                  "success": True,
                  "deleted": ["vijay.sim.student@example.test: data cleared"],
                  "errors": [],
                  "message": "Simulation data reset.",
              }):
-            resp = client.post("/api/admin/simulation/learning/reset",
-                               headers={"Authorization": _admin_token()})
+            resp = client.post("/api/admin/simulation/learning/reset")
         assert resp.status_code == 200
         assert resp.json()["success"] is True
 
@@ -260,15 +268,15 @@ class TestUserSetup:
 
 class TestAnomaliesEndpoint:
     def test_anomalies_requires_admin(self):
+        app.dependency_overrides[require_admin] = _block_admin
         resp = client.get("/api/admin/simulation/learning/anomalies")
         assert resp.status_code in (401, 403)
 
     def test_anomalies_returns_list(self):
-        with patch("app.routes.learning_simulation.require_admin", return_value=_mock_admin()), \
-             patch("app.routes.learning_simulation.get_anomalies", return_value=[
+        app.dependency_overrides[require_admin] = lambda: _mock_admin()
+        with patch("app.routes.learning_simulation.get_anomalies", return_value=[
                  {"id": "a1", "severity": "high", "message": "Test", "run_id": "r1"}
              ]):
-            resp = client.get("/api/admin/simulation/learning/anomalies",
-                              headers={"Authorization": _admin_token()})
+            resp = client.get("/api/admin/simulation/learning/anomalies")
         assert resp.status_code == 200
         assert isinstance(resp.json()["anomalies"], list)
