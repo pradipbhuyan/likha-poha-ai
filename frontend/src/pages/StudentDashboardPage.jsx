@@ -230,18 +230,6 @@ export default function StudentDashboardPage({ user, setActivePage }) {
             Let's make today a productive learning day.
           </div>
         </div>
-        <div style={{display:"flex",gap:10,flexShrink:0,flexWrap:"wrap"}}>
-          <div className="sd-card" style={{padding:"10px 16px",textAlign:"center",minWidth:80}}>
-            <div style={{fontSize:".65rem",color:"var(--text-muted,#64748b)"}}>Day Streak</div>
-            <div style={{fontWeight:800,fontSize:"1.3rem",color:"#f59e0b"}}>{s.study_streak_days||0}</div>
-            <div style={{fontSize:".6rem"}}>🔥</div>
-          </div>
-          <div className="sd-card" style={{padding:"10px 16px",textAlign:"center",minWidth:80}}>
-            <div style={{fontSize:".65rem",color:"var(--text-muted,#64748b)"}}>Progress</div>
-            <div style={{fontWeight:800,fontSize:"1.3rem",color:"#6366f1"}}>{prog.overall_pct||0}%</div>
-            <div style={{fontSize:".6rem"}}>📈</div>
-          </div>
-        </div>
       </div>
 
       {/* ── QUICK STATS ── */}
