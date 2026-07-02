@@ -2015,9 +2015,7 @@ function LessonsPage({ user, setActivePage }) {
                     <div className="lesson-followup-header">
                       <h3>✍️ Self Check Practice</h3>
                       <p>
-                        {isHindiSubject()
-                          ? "Hindi gets two MCQs with instant correct or incorrect feedback plus writing pointers."
-                          : "Quick practice to help you remember and apply what you've learned."}
+                        {"Quick practice to help you remember and apply what you've learned."}
                       </p>
                     </div>
 
