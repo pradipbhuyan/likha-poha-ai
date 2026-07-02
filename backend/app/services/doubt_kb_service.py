@@ -161,9 +161,20 @@ def store_in_doubt_kb(
     """
     supabase = get_content_db(grade)
     try:
-        embedding = create_embedding(question)
+        # Attempt to generate a vector embedding for semantic search.
+        # If the OpenAI embedding API is unavailable or the key is invalid,
+        # we store the Q&A pair without an embedding rather than losing the
+        # entry entirely. Keyword/exact-match lookups still work; vector
+        # similarity search is skipped for this entry.
+        try:
+            embedding = create_embedding(question)
+        except Exception as emb_exc:
+            logger.warning(
+                "DKB embedding failed (storing without vector): %s", emb_exc
+            )
+            embedding = None
 
-        result = supabase.table("doubt_kb").insert({
+        row = {
             "grade": grade,
             "board": board,
             "mode": mode,
@@ -171,11 +182,14 @@ def store_in_doubt_kb(
             "chapter": chapter,
             "question": question,
             "answer": answer,
-            "embedding": embedding,
             "source": source,
             "hit_count": 0,
             "status": "active",
-        }).execute()
+        }
+        if embedding is not None:
+            row["embedding"] = embedding
+
+        result = supabase.table("doubt_kb").insert(row).execute()
 
         rows = result.data or []
         return rows[0]["id"] if rows else None
