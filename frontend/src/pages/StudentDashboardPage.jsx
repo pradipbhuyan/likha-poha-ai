@@ -247,9 +247,9 @@ export default function StudentDashboardPage({ user, setActivePage }) {
       {/* ── QUICK STATS ── */}
       <div className="sd-quick-row" data-testid="student-quick-stats">
         {[
-          {icon:"🎯",val:"45 min",label:"Today's Goal",sub:"Daily learning time",col:"#22c55e"},
-          {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"Complete today",col:"#6366f1"},
-          {icon:"📅",val:"—",label:"Next Exam",sub:"Not scheduled",col:"#94a3b8"},
+          {icon:"🎯",val:(plan.estimated_minutes||0)>0?(plan.estimated_minutes+" min"):"—",label:"Today's Goal",sub:"Estimated study time",col:"#22c55e"},
+          {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"In progress",col:"#6366f1"},
+          {icon:"📅",val:exams.length>0?(exams[0].days_until+"d"):"—",label:"Next Exam",sub:exams.length>0?(exams[0].subject||exams[0].title||"Scheduled"):"Not scheduled",col:exams.length>0&&exams[0].days_until<=7?"#ef4444":"#94a3b8"},
           {icon:"⭐",val:(act.total_90d||0),label:"XP Points",sub:"Keep learning!",col:"#f59e0b"},
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>

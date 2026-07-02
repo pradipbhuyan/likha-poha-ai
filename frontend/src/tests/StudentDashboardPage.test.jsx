@@ -214,6 +214,38 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(screen.queryByTestId("qa-formula-sheet-disabled")).not.toBeInTheDocument();
   });
 
+  test("Today's Goal shows plan.estimated_minutes from API, not hardcoded 45", async () => {
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("student-quick-stats");
+    // The mock returns estimated_minutes: 30, so must show "30 min"
+    expect(document.body.textContent).toContain("30 min");
+    // Must NOT show the old hardcoded value
+    expect(document.body.textContent).not.toContain("45 min");
+  });
+
+  test("Next Exam stat shows — when no exams exist (not hardcoded data)", async () => {
+    // getStudentExams mock returns empty exams
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("student-quick-stats");
+    // With no exams, should show — and "Not scheduled"
+    const bodyText = document.body.textContent;
+    expect(bodyText).toContain("Not scheduled");
+  });
+
+  test("Next Exam stat shows days_until when exam exists", async () => {
+    const { getStudentExams } = await import("../api/analytics");
+    getStudentExams.mockResolvedValueOnce({
+      success: true,
+      exams: [{ id: "e1", subject: "Science", title: "Unit Test", exam_date: "2026-07-15", days_until: 14 }],
+    });
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("student-quick-stats");
+    // Should show 14d from real exam data
+    expect(document.body.textContent).toContain("14d");
+    // Science is the exam subject
+    expect(document.body.textContent).toContain("Science");
+  });
+
   test("renders motivation card", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("motivation-card")).toBeInTheDocument();
