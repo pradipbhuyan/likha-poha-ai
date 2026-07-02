@@ -2016,7 +2016,7 @@ function LessonsPage({ user, setActivePage }) {
                       <p>
                         {isHindiSubject()
                           ? "Hindi gets two MCQs with instant correct or incorrect feedback plus writing pointers."
-                          : "Maths gets two MCQs. Science, English, and Social Science get one MCQ plus one open answer with AI feedback."}
+                          : "Quick practice to help you remember and apply what you've learned."}
                       </p>
                     </div>
 
