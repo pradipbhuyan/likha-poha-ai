@@ -463,22 +463,26 @@ def _simulate_lesson_day(vijay_id: str, run_id: str, day: int,
                         .eq("chapter", chapter)
                         .limit(1).execute())
             if existing.data:
-                old = existing.data[0]
-                new_idx = min((old.get("current_step_index") or 0) + steps_completed, 4)
+                old      = existing.data[0]
+                new_idx  = min((old.get("current_step_index") or 0) + steps_completed, 4)
+                is_done  = new_idx >= 4  # chapter complete when all 5 steps reached
                 admin_client.table("student_progress").update({
-                    "current_step_index":  new_idx,
+                    "current_step_index":    new_idx,
                     "highest_unlocked_step": new_idx,
+                    "completed":             is_done,
                 }).eq("id", old["id"]).execute()
             else:
+                new_idx = steps_completed - 1
+                is_done = new_idx >= 4
                 admin_client.table("student_progress").insert({
                     "username":             SIM_USERS["vijay"]["username"],
                     "grade":                "Grade 9",
                     "mode":                 "CBSE",
                     "subject":              subject,
                     "chapter":              chapter,
-                    "current_step_index":   steps_completed - 1,
-                    "highest_unlocked_step": steps_completed - 1,
-                    "completed":            steps_completed >= 5,
+                    "current_step_index":   new_idx,
+                    "highest_unlocked_step": new_idx,
+                    "completed":            is_done,
                     "last_lesson":          f"[Simulation Day {day}] Auto-generated lesson for {chapter}",
                     "step_lessons":         {str(i): f"[sim] step {i}" for i in range(steps_completed)},
                 }).execute()
@@ -828,19 +832,36 @@ def run_simulation(cycle_days: int, dry_run: bool, create_bugs: bool,
 
     # ── Update Vijay's profile: streak + XP reflect simulated activity ───────
     if not dry_run and vijay_id and not vijay_id.startswith("missing"):
+        vijay_profile  = _safe_get("profiles", {"id": vijay_id})
+        current_streak = int((vijay_profile.get("study_streak_days") or 0) if vijay_profile else 0)
+        current_xp     = int((vijay_profile.get("xp_points") or 0) if vijay_profile else 0)
+        new_streak     = current_streak + cycle_days
+        new_xp         = current_xp + (cycle_days * 150)
+
+        # Update study_streak_days — column exists in profiles
         try:
-            vijay_profile = _safe_get("profiles", {"id": vijay_id})
-            current_streak = (vijay_profile.get("study_streak_days") or 0) if vijay_profile else 0
-            current_xp     = (vijay_profile.get("xp_points") or 0) if vijay_profile else 0
-            # Each day adds 1 streak and 50 XP (practice + lesson + mock)
-            new_streak = current_streak + cycle_days
-            new_xp     = current_xp + (cycle_days * 150)
             admin_client.table("profiles").update({
                 "study_streak_days": new_streak,
-                "xp_points":        new_xp,
             }).eq("id", vijay_id).execute()
         except Exception:
-            pass  # xp_points column may not exist — silently skip
+            pass
+
+        # Update xp_points — may not exist in profiles, silently skip
+        try:
+            admin_client.table("profiles").update({
+                "xp_points": new_xp,
+            }).eq("id", vijay_id).execute()
+        except Exception:
+            pass
+
+        # Also update via profile_service (student_profiles gamification table)
+        try:
+            from app.services.profile_service import update_student_activity  # noqa: PLC0415
+            for _ in range(cycle_days):
+                update_student_activity(SIM_USERS["vijay"]["username"], "lesson_completed")
+                update_student_activity(SIM_USERS["vijay"]["username"], "mock_test_taken")
+        except Exception:
+            pass
 
     summary["anomalies"]    = all_anomalies
     summary["bugs_created"] = bugs_created
