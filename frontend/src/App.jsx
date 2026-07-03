@@ -60,6 +60,7 @@ import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import AdminOperationsPage from "./pages/AdminOperationsPage";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
+import FirstTimeGuide from "./components/FirstTimeGuide";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
 import AdminLessonExperiencePage from "./pages/AdminLessonExperiencePage";
@@ -1611,7 +1612,10 @@ function App() {
         </AnimatePresence>
       </main>
 
-      {/* FirstTimeGuide hidden — removed per product decision */}
+      {/* Likha Poha AI Guide — fixed top-right, always starts minimised */}
+      {user && ["student", "parent"].includes(user.role) && (
+        <FirstTimeGuide user={user} activePage={activePage} />
+      )}
       <ChatWidget />
 
       {/* Global floating Report Issue button — visible to student/parent/teacher */}

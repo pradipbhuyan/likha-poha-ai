@@ -22,9 +22,9 @@ const DEFAULT_SETTINGS = {
   parent_theme: "clean",
   teacher_theme: "forest",
   show_once_per_theme: true,
-  auto_open: true,
+  auto_open: false, // Always start minimised — user opens manually
   message:
-    "A friendly first-time guide helps new users understand the main pages without feeling lost.",
+    "Click any step to jump to it. Click Finish when you're ready to explore on your own.",
 };
 
 const THEME_ORDER = ["clean", "quest", "space", "forest"];
@@ -59,56 +59,76 @@ const THEME_META = {
 const ROLE_STEPS = {
   student: [
     {
-      title: "Start at Dashboard",
-      text: "See your learning streak, weak areas, and what to study next. The dashboard shows you exactly where to begin today.",
+      title: "🏠 Dashboard — Your Home Base",
+      text: "Your Dashboard shows today's focus areas, weak topics flagged by the AI, and your overall progress. Check it every day before starting a lesson.",
       icon: Compass,
     },
     {
-      title: "Pick a Chapter in Lessons",
-      text: "Go to Lessons → choose your Grade, Subject, and Chapter. Always start from Step 1 of the chapter. Each chapter has 5 lesson steps.",
+      title: "📚 Lessons — 5-Step Learning",
+      text: "Go to Lessons → pick Grade, Subject, and Chapter. Each chapter has 5 steps: Concept Introduction → Core Explanation → Worked Examples → Exam-Style Problems → Revision & Recap. Grade 10 has a bonus Exam Preparation step.",
       icon: BookOpen,
     },
     {
-      title: "Generate & Read the Lesson",
-      text: "Click ✨ Generate Lesson. Read carefully — each step teaches one focused concept. Use 🔊 Listen to hear it aloud.",
+      title: "✨ Generate & Read Your Lesson",
+      text: "Click ✨ Generate Lesson. The AI creates a personalised, NCERT-grounded lesson just for you. Read each step carefully. Click 🔊 Listen to hear it aloud while you follow along.",
       icon: Sparkles,
     },
     {
-      title: "Practice & Mark Complete",
-      text: "After reading, click 🎲 Generate 2 Practice Questions. Answer them, then click ✅ Mark Step Complete to unlock the next step.",
-      icon: ClipboardList,
-    },
-    {
-      title: "Ask Doubts Anytime",
-      text: "Stuck on something? Use Ask Doubt or the 💬 Ask a follow-up box inside the lesson. Pre-answered questions are shown as chips.",
+      title: "💬 Ask Doubts Inside Lessons",
+      text: "See chips (quick questions) at the bottom of each lesson — click any chip for an instant pre-answered answer at zero AI cost. Or type your own question in the Ask a follow-up box.",
       icon: HelpCircle,
     },
     {
-      title: "Take a Mock Test",
-      text: "Once you finish all steps of a chapter, go to Mock Test to test yourself with MCQs. Review explanations to learn from mistakes.",
+      title: "🎲 Practice Questions",
+      text: "After reading, click 🎲 Generate 2 Practice Questions. For MCQs, click Check Answer for instant feedback. For descriptive, click Get AI Feedback. This builds exam memory.",
       icon: ClipboardList,
     },
     {
-      title: "Track Your Progress",
-      text: "Check Analytics to see which subjects are improving. The Dashboard shows weak areas to revisit before your exam.",
+      title: "➡️ Move to the Next Step",
+      text: "Use the Previous / Next buttons at the top and bottom of the lesson to move between the 5 steps. All steps are freely navigable — no lock.",
+      icon: Compass,
+    },
+    {
+      title: "🎯 Mock Tests",
+      text: "Go to Mock Test → pick Subject and Chapter → Generate 10 Questions. After submitting, review the detailed explanation for each answer. Wrong answers are saved to your weak areas.",
+      icon: ClipboardList,
+    },
+    {
+      title: "🧠 Ask Doubt (Standalone)",
+      text: "Use the Ask Doubt page for any question not tied to a specific lesson step. The AI answers instantly using NCERT-grounded knowledge.",
+      icon: HelpCircle,
+    },
+    {
+      title: "📊 Analytics — Track Progress",
+      text: "Analytics shows your lesson completion, mock test scores by chapter, weak areas, and AI usage. Review it weekly to see where you're improving.",
       icon: BarChart3,
     },
   ],
   parent: [
     {
-      title: "Family Dashboard",
-      text: "Review your children, subscriptions, and linked parent accounts in one place.",
+      title: "👨‍👩‍👧 Parent Dashboard — Overview",
+      text: "Your Parent Dashboard shows all linked children, their subscription status, and recent learning activity. Switch between children using the selector at the top.",
       icon: Users,
     },
     {
-      title: "Progress Snapshot",
-      text: "See lesson progress, mock-test results, and AI usage patterns.",
+      title: "📈 Child Progress & Activity",
+      text: "See each child's lesson completion rate, mock test scores, weak subjects, and daily AI usage. The progress section shows which chapters they've finished and which need attention.",
       icon: LineChart,
     },
     {
-      title: "Subscription Help",
-      text: "Compare available plans and contact support if you need activation help.",
+      title: "🔔 Notifications",
+      text: "Get notified when your child completes a chapter, scores below average on a mock test, or has not logged in for several days. Notifications appear in your dashboard.",
+      icon: Compass,
+    },
+    {
+      title: "💳 Subscription Plans",
+      text: "Go to Subscription → compare Standard and Premium plans. Click Choose Plan to start checkout via Razorpay (UPI supported). Plans auto-renew monthly unless cancelled.",
       icon: ClipboardList,
+    },
+    {
+      title: "📞 Contact Support",
+      text: "Need help activating a plan or linking a child? Use the contact details shown on the Subscription page — email, WhatsApp, and phone. Support replies within 24 hours.",
+      icon: HelpCircle,
     },
   ],
   teacher: [
