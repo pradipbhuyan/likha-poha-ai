@@ -28,6 +28,11 @@ from app.services.rag_service import create_embedding
 
 logger = logging.getLogger(__name__)
 
+# Module-level flag: set to False after the first embedding 401/auth failure
+# so we don't make a failing OpenAI API call for every subsequent DKB entry
+# during the same process lifetime.  Resets on process restart.
+_embedding_available: bool = True
+
 # Minimum cosine similarity to consider a DB match acceptable.
 # 0.50 is calibrated from live Supabase pgvector data:
 #   - Exact card clicks (same text): ~1.000 — always found
@@ -166,13 +171,29 @@ def store_in_doubt_kb(
         # we store the Q&A pair without an embedding rather than losing the
         # entry entirely. Keyword/exact-match lookups still work; vector
         # similarity search is skipped for this entry.
-        try:
-            embedding = create_embedding(question)
-        except Exception as emb_exc:
-            logger.warning(
-                "DKB embedding failed (storing without vector): %s", emb_exc
-            )
-            embedding = None
+        #
+        # _embedding_available is a module-level short-circuit: after the first
+        # 401/auth failure we skip the API call entirely for the rest of the
+        # process lifetime so we don't make a failing network call per entry.
+        global _embedding_available
+        embedding = None
+        if _embedding_available:
+            try:
+                embedding = create_embedding(question)
+            except Exception as emb_exc:
+                err_str = str(emb_exc)
+                # Permanent auth/key failure — disable for this process
+                if "401" in err_str or "invalid_api_key" in err_str or "Incorrect API key" in err_str:
+                    _embedding_available = False
+                    logger.warning(
+                        "DKB embedding disabled (invalid OpenAI key) — "
+                        "storing without vectors. Update the OpenAI key in "
+                        "Admin Console → AI Studio to re-enable. Error: %s", emb_exc
+                    )
+                else:
+                    logger.warning(
+                        "DKB embedding failed (storing without vector): %s", emb_exc
+                    )
 
         row = {
             "grade": grade,
