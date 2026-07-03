@@ -2,7 +2,7 @@
 title: "How Parents Can Track Their Child's Learning Progress at Home"
 slug: "parent-track-child-learning-progress"
 date: "2026-06-18"
-author: "LikhaPoha AI Team"
+author: "Likha Poha AI Team"
 summary: "You don't need to sit beside your child to know what they studied today. Here's how modern parent dashboards give you full visibility into your child's learning."
 tags: ["Parent Dashboard", "CBSE", "Parent Tips", "Progress Tracking"]
 ---
@@ -11,7 +11,7 @@ Most parents face the same evening question: "Did you study today?" And most chi
 
 The real question is not whether your child studied, but **what** they studied, **how well** they understood it, and **where** they need more help.
 
-LikhaPoha AI's Parent Dashboard answers all three.
+Likha Poha AI's Parent Dashboard answers all three.
 
 ## What the Parent Dashboard Shows You
 

@@ -202,7 +202,7 @@ function Sidebar({
     },
     {
       key: "guideThemes",
-      label: "LikhaPoha AI Guide",
+      label: "Likha Poha AI Guide",
       icon: Sparkles,
       roles: ["admin"],
     },

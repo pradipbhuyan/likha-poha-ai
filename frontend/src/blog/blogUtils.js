@@ -133,7 +133,7 @@ export function getAllPosts() {
       slug: frontmatter.slug,
       title: frontmatter.title || "Untitled",
       date: frontmatter.date || "",
-      author: frontmatter.author || "LikhaPoha AI Team",
+      author: frontmatter.author || "Likha Poha AI Team",
       summary: frontmatter.summary || "",
       tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
       content,

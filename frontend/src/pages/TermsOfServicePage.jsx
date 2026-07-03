@@ -36,8 +36,8 @@ export default function TermsOfServicePage({ onBackToHome }) {
       {/* Nav */}
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", background: "rgba(15,23,42,.96)", backdropFilter: "blur(16px)", borderBottom: "1px solid #334155", position: "sticky", top: 0, zIndex: 99 }}>
         <button onClick={onBackToHome} style={{ display: "flex", alignItems: "center", gap: "10px", background: "transparent", border: "none", color: "#f8fafc", cursor: "pointer", fontFamily: "inherit" }}>
-          <img src={logoImg} alt="LikhaPoha AI" style={{ width: 42, height: 42, borderRadius: 10, objectFit: "cover", background: "#fff" }} />
-          <span style={{ fontSize: "1.08rem", fontWeight: 700 }}>LikhaPoha AI</span>
+          <img src={logoImg} alt="Likha Poha AI" style={{ width: 42, height: 42, borderRadius: 10, objectFit: "cover", background: "#fff" }} />
+          <span style={{ fontSize: "1.08rem", fontWeight: 700 }}>Likha Poha AI</span>
         </button>
         <button onClick={onBackToHome} style={{ background: "transparent", border: "1px solid #334155", color: "#93c5fd", padding: "8px 18px", borderRadius: 8, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
           ← Back to Home
@@ -53,14 +53,14 @@ export default function TermsOfServicePage({ onBackToHome }) {
         </div>
 
         <Section title="1. Acceptance of Terms">
-          By accessing or using LikhaPoha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong>, you agree to be bound by these Terms of Service ("Terms") and our{" "}
+          By accessing or using Likha Poha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong>, you agree to be bound by these Terms of Service ("Terms") and our{" "}
           <a href="/privacy-policy" style={{ color: "#93c5fd" }}>Privacy Policy</a>. If you do not agree to these Terms, please do not use the Platform.
           <br /><br />
-          These Terms constitute a legally binding agreement between you (the user) and LikhaPoha AI, operated by Pradip Bhuyan, India.
+          These Terms constitute a legally binding agreement between you (the user) and Likha Poha AI, operated by Pradip Bhuyan, India.
         </Section>
 
         <Section title="2. Description of Service">
-          LikhaPoha AI provides AI-powered educational tools for CBSE students in Classes 5–10, including:
+          Likha Poha AI provides AI-powered educational tools for CBSE students in Classes 5–10, including:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 6 }}>AI-generated step-by-step lessons aligned to NCERT curriculum</li>
             <li style={{ marginBottom: 6 }}>Ask Doubt — conversational AI answers to student questions</li>
@@ -94,7 +94,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="4. Subscriptions and Payments">
           <strong>4.1 Plans</strong>
           <br />
-          LikhaPoha AI offers both free and paid subscription plans. Paid plans are billed monthly. Plan features and pricing are described on the{" "}
+          Likha Poha AI offers both free and paid subscription plans. Paid plans are billed monthly. Plan features and pricing are described on the{" "}
           <a href="/#pricing" style={{ color: "#93c5fd" }}>Pricing page</a>.
 
           <br /><br />
@@ -126,7 +126,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         </Section>
 
         <Section title="6. AI-Generated Content Disclaimer">
-          LikhaPoha AI uses large language models to generate educational content. While we work to ensure quality and curriculum alignment:
+          Likha Poha AI uses large language models to generate educational content. While we work to ensure quality and curriculum alignment:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 6 }}>AI-generated lessons, answers, and explanations may occasionally contain errors, inaccuracies, or outdated information.</li>
             <li style={{ marginBottom: 6 }}>Content should be used as a <strong>supplementary learning aid</strong>, not as a substitute for verified textbooks, teachers, or official NCERT materials.</li>
@@ -138,7 +138,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="7. Intellectual Property">
           <strong>7.1 Our Content</strong>
           <br />
-          All platform design, code, branding, lesson templates, question banks, and AI model configurations are the intellectual property of LikhaPoha AI. You may not reproduce, distribute, or create derivative works from our content without prior written permission.
+          All platform design, code, branding, lesson templates, question banks, and AI model configurations are the intellectual property of Likha Poha AI. You may not reproduce, distribute, or create derivative works from our content without prior written permission.
 
           <br /><br />
           <strong>7.2 NCERT Curriculum</strong>
@@ -159,7 +159,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="9. Limitation of Liability">
           To the maximum extent permitted by applicable law:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>LikhaPoha AI is provided "as is" without warranties of any kind, express or implied.</li>
+            <li style={{ marginBottom: 6 }}>Likha Poha AI is provided "as is" without warranties of any kind, express or implied.</li>
             <li style={{ marginBottom: 6 }}>We do not guarantee that the Platform will be error-free, uninterrupted, or always available.</li>
             <li style={{ marginBottom: 6 }}>We are not liable for any loss of data, academic performance outcomes, or indirect, incidental, or consequential damages arising from use of the Platform.</li>
             <li>Our total liability to you in any circumstances shall not exceed the amount paid by you in the 30 days preceding the claim.</li>
@@ -167,7 +167,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         </Section>
 
         <Section title="10. Indemnification">
-          You agree to indemnify and hold harmless LikhaPoha AI, its operators, employees, and partners from any claims, damages, or expenses (including legal fees) arising from:
+          You agree to indemnify and hold harmless Likha Poha AI, its operators, employees, and partners from any claims, damages, or expenses (including legal fees) arising from:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 6 }}>Your violation of these Terms</li>
             <li style={{ marginBottom: 6 }}>Your misuse of the Platform</li>
@@ -199,7 +199,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="14. Contact">
           If you have questions about these Terms of Service:
           <br /><br />
-          <strong>LikhaPoha AI</strong><br />
+          <strong>Likha Poha AI</strong><br />
           Email:{" "}<a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a><br />
           Website: <a href="https://www.likhapoha.in" style={{ color: "#93c5fd" }}>www.likhapoha.in</a>
         </Section>

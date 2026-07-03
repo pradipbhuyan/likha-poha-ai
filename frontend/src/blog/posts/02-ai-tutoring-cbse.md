@@ -1,13 +1,13 @@
 ---
-title: "What Is AI Tutoring? How LikhaPoha AI Teaches CBSE Differently"
+title: "What Is AI Tutoring? How Likha Poha AI Teaches CBSE Differently"
 slug: "what-is-ai-tutoring-cbse"
 date: "2026-06-20"
-author: "LikhaPoha AI Team"
-summary: "AI tutoring is not just another app. Discover how LikhaPoha AI uses real NCERT textbooks to teach CBSE students the way a personal tutor would."
-tags: ["AI Tutoring", "CBSE", "EdTech", "LikhaPoha AI"]
+author: "Likha Poha AI Team"
+summary: "AI tutoring is not just another app. Discover how Likha Poha AI uses real NCERT textbooks to teach CBSE students the way a personal tutor would."
+tags: ["AI Tutoring", "CBSE", "EdTech", "Likha Poha AI"]
 ---
 
-The term "AI tutoring" gets used loosely. Some apps give you a chatbot that answers questions. Others generate random content with no connection to your syllabus. LikhaPoha AI is built differently — and this article explains exactly how.
+The term "AI tutoring" gets used loosely. Some apps give you a chatbot that answers questions. Others generate random content with no connection to your syllabus. Likha Poha AI is built differently — and this article explains exactly how.
 
 ## What Most AI Tutoring Apps Do
 
@@ -15,9 +15,9 @@ Most AI tutoring tools use a general-purpose language model that has been traine
 
 The problem: CBSE exam questions are directly based on NCERT textbooks. If the AI is teaching from the internet instead of the NCERT book, students may learn the right concept but in the wrong way for their exam.
 
-## How LikhaPoha AI Is Different
+## How Likha Poha AI Is Different
 
-LikhaPoha AI uses a technique called **RAG (Retrieval-Augmented Generation)**. Here's what that means in simple terms:
+Likha Poha AI uses a technique called **RAG (Retrieval-Augmented Generation)**. Here's what that means in simple terms:
 
 1. We upload the actual NCERT textbook PDFs for every class (5–10) and subject
 2. When a student asks a question or requests a lesson, the AI **reads your specific NCERT chapter first**
@@ -37,7 +37,7 @@ When a good tutor teaches a new chapter, they don't dump everything at once. The
 4. Give practice problems at exam difficulty
 5. Summarise key points
 
-LikhaPoha AI does exactly this — breaking every chapter into 4–6 focused lesson steps. Students go through them at their own pace, listen to the explanation aloud, and ask follow-up questions mid-lesson.
+Likha Poha AI does exactly this — breaking every chapter into 4–6 focused lesson steps. Students go through them at their own pace, listen to the explanation aloud, and ask follow-up questions mid-lesson.
 
 ## Instant Doubt Solving — From the Book
 
@@ -47,9 +47,9 @@ This is different from a Google search (which gives random results) or a YouTube
 
 ## What About Safety?
 
-LikhaPoha AI has a built-in academic guardrail. If a student asks about politics, celebrities, or anything outside their curriculum, the AI politely redirects them back to their studies. Parents can trust that every interaction is educational and age-appropriate.
+Likha Poha AI has a built-in academic guardrail. If a student asks about politics, celebrities, or anything outside their curriculum, the AI politely redirects them back to their studies. Parents can trust that every interaction is educational and age-appropriate.
 
-## Who Is LikhaPoha AI For?
+## Who Is Likha Poha AI For?
 
 - Students in **Class 5 to 10** studying CBSE
 - Parents who want **visibility** into what their child is actually learning

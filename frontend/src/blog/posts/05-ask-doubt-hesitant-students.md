@@ -2,8 +2,8 @@
 title: "Why Students Hesitate to Ask Questions in Class — and How AI Doubt Solving Changes That"
 slug: "ask-doubt-hesitant-students"
 date: "2026-06-21"
-author: "LikhaPoha AI Team"
-summary: "Many students understand less than they let on — not because they're not paying attention, but because asking a question in front of 40 classmates feels terrifying. LikhaPoha AI's Ask Doubt feature removes that fear completely."
+author: "Likha Poha AI Team"
+summary: "Many students understand less than they let on — not because they're not paying attention, but because asking a question in front of 40 classmates feels terrifying. Likha Poha AI's Ask Doubt feature removes that fear completely."
 tags: ["Ask Doubt", "Student Confidence", "CBSE", "Learning"]
 ---
 
@@ -33,7 +33,7 @@ The problem compounds. By the time a student appears for board exams, they may h
 
 ## Ask Doubt: A Judgment-Free Zone
 
-LikhaPoha AI's **Ask Doubt** feature lets students type any question — any question at all — and get an instant, clear, textbook-based explanation.
+Likha Poha AI's **Ask Doubt** feature lets students type any question — any question at all — and get an instant, clear, textbook-based explanation.
 
 There is no teacher watching. No classmates. No social risk. Just the question and the answer.
 

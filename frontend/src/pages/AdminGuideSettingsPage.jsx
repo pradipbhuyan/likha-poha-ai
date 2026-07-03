@@ -113,7 +113,7 @@ function AdminGuideSettingsPage({ user }) {
       <section className="premium-section admin-guide-hero">
         <div>
           <p className="eyebrow">First Visit Experience</p>
-          <h2>LikhaPoha AI Guide</h2>
+          <h2>Likha Poha AI Guide</h2>
           <p>
             Configure a friendly walkthrough for students, parents, and teachers.
             You can rotate visual styles every couple of weeks to keep the product
@@ -125,8 +125,8 @@ function AdminGuideSettingsPage({ user }) {
           <Sparkles size={24} strokeWidth={2.4} />
           <strong>
             {settings.enabled
-              ? "LikhaPoha AI Guide enabled"
-              : "LikhaPoha AI Guide paused"}
+              ? "Likha Poha AI Guide enabled"
+              : "Likha Poha AI Guide paused"}
           </strong>
           <span>
             {settings.rotation_enabled
@@ -257,7 +257,7 @@ function AdminGuideSettingsPage({ user }) {
         </div>
 
         <label className="admin-plan-full-label">
-          LikhaPoha AI Guide Footer Message
+          Likha Poha AI Guide Footer Message
           <textarea
             rows={3}
             value={settings.message}
@@ -294,7 +294,7 @@ function AdminGuideSettingsPage({ user }) {
         disabled={saving}
       >
         <Save size={18} strokeWidth={2.4} />
-        {saving ? "Saving..." : "Save LikhaPoha AI Guide Settings"}
+        {saving ? "Saving..." : "Save Likha Poha AI Guide Settings"}
       </button>
     </div>
   );

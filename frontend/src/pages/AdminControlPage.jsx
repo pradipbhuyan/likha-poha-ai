@@ -2362,11 +2362,11 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                         {(() => {
                           const signupLink = `https://likhapoha.in/signup?code=${oc.code}&role=student`;
                           const waText = encodeURIComponent(
-                            `🎓 Join LikhaPoha AI — CBSE AI Tutor for Class 5–10!\n\nGet instant lessons, doubt answers & mock tests powered by AI.\n\n✅ Use this exclusive link to sign up:\n${signupLink}\n\n⏰ Valid until ${oc.valid_until?.slice(0,10)}`
+                            `🎓 Join Likha Poha AI — CBSE AI Tutor for Class 5–10!\n\nGet instant lessons, doubt answers & mock tests powered by AI.\n\n✅ Use this exclusive link to sign up:\n${signupLink}\n\n⏰ Valid until ${oc.valid_until?.slice(0,10)}`
                           );
-                          const emailSubject = encodeURIComponent("LikhaPoha AI — CBSE AI Tutor Invitation");
+                          const emailSubject = encodeURIComponent("Likha Poha AI — CBSE AI Tutor Invitation");
                           const emailBody = encodeURIComponent(
-                            `Hi,\n\nI'd like to invite you to try LikhaPoha AI — India's smartest CBSE AI Tutor for Class 5–10.\n\nUse this exclusive signup link:\n${signupLink}\n\nValid until: ${oc.valid_until?.slice(0,10)}\n\nFeatures:\n• Instant step-by-step CBSE lessons\n• AI doubt solving\n• Mock tests with 70,000+ questions\n\nBest regards`
+                            `Hi,\n\nI'd like to invite you to try Likha Poha AI — India's smartest CBSE AI Tutor for Class 5–10.\n\nUse this exclusive signup link:\n${signupLink}\n\nValid until: ${oc.valid_until?.slice(0,10)}\n\nFeatures:\n• Instant step-by-step CBSE lessons\n• AI doubt solving\n• Mock tests with 70,000+ questions\n\nBest regards`
                           );
                           return (
                             <div style={{ marginTop: 8 }}>
@@ -2798,7 +2798,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                         <div style={{ fontSize:"2rem", marginBottom:4 }}>▶️</div>
                         <p style={{ fontSize:".8rem", color:"#a5b4fc", margin:0, fontWeight:600 }}>Platform Walkthrough Video</p>
                         <p style={{ fontSize:".72rem", color:"var(--muted)", margin:"4px 0 0" }}>
-                          Coming soon — a 3-minute video showing how to use LikhaPoha AI
+                          Coming soon — a 3-minute video showing how to use Likha Poha AI
                         </p>
                       </div>
                     </div>

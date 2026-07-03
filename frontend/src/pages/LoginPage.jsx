@@ -414,7 +414,7 @@ useEffect(() => {
         ) {
           setError("");
           setInfoMessage(
-            "📧 Please confirm your email address first. Check your inbox for a confirmation link from LikhaPoha AI. Check your spam folder if you don't see it."
+            "📧 Please confirm your email address first. Check your inbox for a confirmation link from Likha Poha AI. Check your spam folder if you don't see it."
           );
         } else {
           setError(msg || "Unable to sign in after account creation.");

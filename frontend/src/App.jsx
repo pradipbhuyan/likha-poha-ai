@@ -173,7 +173,7 @@ const PAGE_META = {
     icon: "🔬",
   },
   guideThemes: {
-    title: "LikhaPoha AI Guide",
+    title: "Likha Poha AI Guide",
     subtitle:
       "Configure first-time walkthroughs, role themes, and periodic visual rotation.",
     icon: "✨",
@@ -1166,7 +1166,7 @@ function App() {
               Welcome, {firstName}! 👋
             </h2>
             <p style={{ margin: "0 0 24px", fontSize: "0.88rem", color: "#94a3b8", textAlign: "center" }}>
-              How are you using LikhaPoha AI?
+              How are you using Likha Poha AI?
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 8 }}>
               {[

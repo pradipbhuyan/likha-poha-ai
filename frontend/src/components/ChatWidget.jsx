@@ -6,7 +6,7 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const INITIAL_MESSAGE = {
   role: "bot",
-  text: "Hi! 👋 I'm LikhaPoha AI's assistant. Ask me anything about our CBSE tutoring platform — grades, subjects, pricing, or how to get started!",
+  text: "Hi! 👋 I'm Likha Poha AI's assistant. Ask me anything about our CBSE tutoring platform — grades, subjects, pricing, or how to get started!",
 };
 
 // All FAQ topics from the landing page — preloaded as clickable chips
@@ -24,7 +24,7 @@ const QUICK_CHIPS = [
   "Does the AI use real NCERT textbooks?",
   "How do I reset my password?",
   "How do I contact support?",
-  "Tell me about LikhaPoha AI",
+  "Tell me about Likha Poha AI",
 ];
 
 export default function ChatWidget() {
@@ -109,14 +109,14 @@ export default function ChatWidget() {
           }}>
             <img
               src={logoImg}
-              alt="LikhaPoha AI"
+              alt="Likha Poha AI"
               style={{
                 width: 36, height: 36, borderRadius: "50%",
                 objectFit: "cover", background: "#fff", flexShrink: 0,
               }}
             />
             <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 700, fontSize: 14, color: "#fff" }}>LikhaPoha AI Assistant</div>
+              <div style={{ fontWeight: 700, fontSize: 14, color: "#fff" }}>Likha Poha AI Assistant</div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.65)" }}>Ask anything about the platform</div>
             </div>
             <button
@@ -226,7 +226,7 @@ export default function ChatWidget() {
               ref={inputRef}
               rows={1}
               value={input}
-              placeholder="Ask about LikhaPoha AI..."
+              placeholder="Ask about Likha Poha AI..."
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               style={{

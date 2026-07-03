@@ -22,155 +22,198 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       .then(data => { if (data?.email) setContactEmail(data.email); })
       .catch(() => {});
   }, []);
+
   const faqs = [
-    { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Class 5 to 10 for CBSE across all core subjects — Science, Maths, English, Social Science, and Hindi. State Board content can be uploaded by admins for custom deployments." },
-    { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
-    { q: "How many practice questions are available?", a: "LikhaPoha AI has 70,000+ practice questions covering all chapters from Grade 5 to Grade 10 across CBSE subjects, available instantly for mock tests and practice." },
-    { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
-    { q: "Can I manage multiple children on the Parent Dashboard?", a: "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
-    { q: "What does the Parent Dashboard show?", a: "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children and manage subscription plans." },
+    {
+      q: "Which classes and boards are supported?",
+      a: "Likha Poha AI supports Class 5 to Class 10 for CBSE across all core subjects — Science, Maths, English, Social Science, and Hindi."
+    },
+    {
+      q: "Does the AI use real textbooks or make things up?",
+      a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned."
+    },
+    {
+      q: "How many practice questions are available?",
+      a: "Likha Poha AI has 70,000+ practice questions covering all chapters from Class 5 to Class 10 across CBSE subjects, available instantly for mock tests and practice."
+    },
+    {
+      q: "Is there a mobile app?",
+      a: "Likha Poha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience."
+    },
+    {
+      q: "Can I manage multiple children on the Parent Dashboard?",
+      a: "Yes — with a Family Premium plan, you can manage up to 2 children from a single Parent Dashboard. Each child gets their own profile, progress tracking, and weak area reports."
+    },
+    {
+      q: "What does the Parent Dashboard show?",
+      a: "The Parent Dashboard provides real-time tracking of daily learning progress, mock test scores and score trends, and automatic Weak Area Alerts when a chapter hasn't been revised in several days. The Things To Do Tonight card shows specific revision tasks updated daily."
+    },
     {
       q: "How do I add a child to my account?",
-      a: "Adding a child takes less than 2 minutes. Step 1 — Log in as a Parent at likhapoha.in. Step 2 — Click Parent Dashboard in the left sidebar. Step 3 — Scroll to the Family Hub section and click '+ Add Child'. Step 4 — Fill in the details: child's name (required), email (optional — leave blank if they have no email), child's class (Grade 5–10), and a password you will share with them. Step 5 — Click 'Create Student'. A confirmation screen will show the username and password you can share directly with your child. Your child can then log in at likhapoha.in using their username or email + password. You can add up to 2 children under one Family Premium plan."
+      a: "Adding a child takes less than 2 minutes. Log in as a Parent at likhapoha.in, click Parent Dashboard in the left sidebar, scroll to the Family Hub section, and click '+ Add Child'. Fill in the child's name, class (Class 5–10), and a password. Your child can then log in at likhapoha.in using their credentials."
     },
-    { q: "How do I manage multiple children on one account?", a: "With the Family Premium plan, you can manage up to 2 children from a single Parent Dashboard. Add each child by clicking '+ Add Child' in your dashboard. Each child gets their own profile, progress tracking, and weak area reports visible to you." },
-    { q: "How does the AI identify a child's weak areas?", a: "LikhaPoha AI continuously analyzes the student's mock test history, average scores, and subject-specific performance over time. When a student scores below threshold on a chapter-wise test, the platform automatically flags it as a weak area and displays an alert on both the Student Dashboard and the Parent Dashboard." },
-    { q: "How do students use the Analytics Dashboard for revision?", a: "The Analytics Dashboard turns past test results into a targeted revision plan. Score trend graphs show whether performance is improving over time. Subject performance heatmaps highlight which subjects need more focus. Automatic weak area alerts are combined to show students exactly what to study next — removing the guesswork from daily revision." },
-    { q: "How do score trend graphs help with revision?", a: "Score trend graphs show a visual timeline of your mock test performance over time, making it easy to see at a glance whether your average scores are improving with practice. This helps you gauge if your current revision is working or if you need to shift focus to different subjects." },
-    { q: "Are the AI lessons based on specific NCERT chapters?", a: "Yes — every AI lesson is explicitly grounded in uploaded NCERT textbooks, not generic internet content. Students select their grade, subject, and exact chapter, and the AI breaks it into a multi-step learning path (concept introduction, core explanation, worked examples, exam problems, revision) strictly following the CBSE textbook." },
-    { q: "What types of tests can students create in Mock Test Studio?", a: "Students can create highly customizable CBSE practice tests including class tests, mid-terms, and full mock tests. They can set the subject, chapter, difficulty, number of questions, time limit, and toggle negative marking — simulating real exam conditions. Completed tests provide instant scoring and a guided revision plan." },
-    { q: "What resources are in the Learn More library?", a: "The Learn More library offers curated free resources hand-picked for each specific chapter — including NCERT articles, topic-specific YouTube video links, and open references. Students select their grade, subject, and chapter to discover materials tailored exactly to what they are studying." },
-    { q: "Is the AI safe for children? Can students ask anything they want?", a: "LikhaPoha AI includes a built-in Academic Guardrail that keeps every conversation strictly focused on CBSE curriculum topics. The guardrail automatically detects and blocks questions about current politics, news, offensive content, and any topic outside the academic scope — instantly redirecting the student back to their studies. Children cannot use the platform to have inappropriate or off-topic conversations. Parents can be confident that every interaction is educational, safe, and age-appropriate." },
+    {
+      q: "How does the AI identify a child's weak areas?",
+      a: "Likha Poha AI continuously analyses the student's mock test history, average scores, and subject-specific performance. When a student scores below threshold on a chapter-wise test, the platform automatically flags it as a Weak Area and displays an alert on both the Student Dashboard and the Parent Dashboard."
+    },
+    {
+      q: "How do students use the Analytics Dashboard for revision?",
+      a: "The Analytics Dashboard turns past test results into a targeted revision plan. Score trend graphs show whether performance is improving over time. Automatic Weak Area Alerts show students exactly what to study next — removing the guesswork from daily revision."
+    },
+    {
+      q: "Are the AI lessons based on specific NCERT chapters?",
+      a: "Yes — every AI lesson is explicitly grounded in uploaded NCERT textbooks, not generic internet content. Students select their class, subject, and exact chapter, and the AI breaks it into a multi-step learning path (Concept Introduction, Core Explanation, Worked Examples, Exam-Style Problems, Revision) strictly following the CBSE textbook."
+    },
+    {
+      q: "What types of tests can students create in Mock Test Studio?",
+      a: "Students can create customisable CBSE practice tests. They can set the subject, chapter, difficulty, number of questions, and time limit — simulating real exam conditions. Completed tests provide instant scoring and a performance tier (Olympiad Ready, Strong Foundation, Good Progress, or Revision Needed)."
+    },
+    {
+      q: "Is the AI safe for children? Can students ask anything they want?",
+      a: "Likha Poha AI includes a built-in Academic Guardrail that keeps every conversation strictly focused on CBSE curriculum topics. The guardrail automatically detects and blocks questions about current politics, news, offensive content, and any topic outside the academic scope. Children cannot use the platform to have inappropriate or off-topic conversations."
+    },
+    {
+      q: "Does it auto-renew?",
+      a: "No. Plans expire at the end of the period. There are no automatic charges. You choose when to pay again. Full details at likhapoha.in/refund-policy."
+    },
   ];
+
   return (
     <div className="lp">
       <nav className="lp-nav">
-        <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
+        <div className="lp-logo"><img src={logoImg} alt="Likha Poha AI" /><span>Likha Poha AI</span></div>
         <div className="lp-nav-r">
           <button className="lp-btn-ghost" onClick={onShowLogin}>Login</button>
           <button className="lp-btn-cta" onClick={() => handleCta("free")}>Try for Free</button>
         </div>
       </nav>
+
+      {/* Hero */}
       <div className="lp-hero">
         <div className="lp-badge">&#127470;&#127475; Built for India &middot; Class 5&ndash;10 &middot; CBSE</div>
         <h1>Every Child Deserves a<br /><span className="lp-gr">Personal Tutor</span></h1>
-        <p>AI-powered lessons, instant doubt solving, exam-ready practice, and real-time parent insights &mdash; available anytime, anywhere.</p>
+        <p>AI-powered CBSE lessons from NCERT textbooks, instant doubt solving, mock tests with 70,000+ questions, and a real-time Parent Dashboard &mdash; on any phone, any night.</p>
         <div className="lp-hcta">
           <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try for Free</button>
           <a href="#features" className="lp-bol">See Features &rarr;</a>
         </div>
         <div className="lp-stats">
-          <div className="lp-stat"><div className="lp-sn">700+</div><div className="lp-sl">Chapters (Gr 5&ndash;10)</div></div>
-          <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Classes (5&ndash;10)</div></div>
-          <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Core Subjects</div></div>
           <div className="lp-stat"><div className="lp-sn">70,000+</div><div className="lp-sl">Practice Questions</div></div>
+          <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Core Subjects</div></div>
+          <div className="lp-stat"><div className="lp-sn">Class 5&ndash;10</div><div className="lp-sl">CBSE Coverage</div></div>
+          <div className="lp-stat"><div className="lp-sn">&#8377;0</div><div className="lp-sl">To Start</div></div>
         </div>
       </div>
+
+      {/* Problem / Solution */}
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">The Real Problem</div><h2>Why Students Struggle at Home</h2></div>
         <div className="lp-pvs">
-          {/* Problem column */}
           <div className="lp-pcard prob"><div className="lp-ptitle bad">The Problem</div>
-            <div className="lp-pitem"><span>&#10007;</span> Tuition is expensive &mdash; &#8377;2,000&ndash;8,000/month per subject</div>
+            <div className="lp-pitem"><span>&#10007;</span> Tuition costs &#8377;2,000&ndash;8,000/month per subject</div>
             <div className="lp-pitem"><span>&#10007;</span> Parents cannot track what the child actually studied</div>
             <div className="lp-pitem"><span>&#10007;</span> Generic YouTube videos do not follow the CBSE syllabus</div>
             <div className="lp-pitem"><span>&#10007;</span> No personalised feedback on weak areas</div>
-            <div className="lp-pitem"><span>&#10007;</span> Practice questions often do not match actual exam patterns</div>
-            <div className="lp-pitem"><span>&#10007;</span> Students lose motivation when they don&rsquo;t understand concepts immediately</div>
-            <div className="lp-pitem"><span>&#10007;</span> Teachers cannot provide one-on-one attention to every child</div>
+            <div className="lp-pitem"><span>&#10007;</span> Practice questions often do not match exam patterns</div>
+            <div className="lp-pitem"><span>&#10007;</span> 11pm doubt. No tutor available.</div>
           </div>
-          {/* Solution column */}
-          <div className="lp-pcard sol"><div className="lp-ptitle good">LikhaPoha AI Solution</div>
-            <div className="lp-pitem"><span>&#10003;</span> AI lesson for every chapter &mdash; instant and accessible</div>
-            <div className="lp-pitem"><span>&#10003;</span> Parent dashboard shows daily progress and weak areas</div>
-            <div className="lp-pitem"><span>&#10003;</span> Lessons grounded in uploaded NCERT textbooks</div>
-            <div className="lp-pitem"><span>&#10003;</span> Smart evaluation automatically identifies revision topics</div>
-            <div className="lp-pitem"><span>&#10003;</span> Personalised learning path based on each student&rsquo;s performance</div>
-            <div className="lp-pitem"><span>&#10003;</span> CBSE-aligned practice questions and mock tests</div>
-            <div className="lp-pitem"><span>&#10003;</span> Available 24&times;7 &mdash; learn anytime, anywhere</div>
-            <div className="lp-pitem"><span>&#10003;</span> Instant doubt-solving with AI tutor support</div>
+          <div className="lp-pcard sol"><div className="lp-ptitle good">Likha Poha AI Solution</div>
+            <div className="lp-pitem"><span>&#10003;</span> AI lesson for every NCERT chapter &mdash; from your textbook</div>
+            <div className="lp-pitem"><span>&#10003;</span> Parent Dashboard shows daily progress and Weak Area Alerts</div>
+            <div className="lp-pitem"><span>&#10003;</span> Things To Do Tonight &mdash; specific revision tasks, updated daily</div>
+            <div className="lp-pitem"><span>&#10003;</span> 70,000+ CBSE practice questions with instant scoring</div>
+            <div className="lp-pitem"><span>&#10003;</span> Ask Doubt at 11pm &mdash; NCERT textbook answer in seconds</div>
+            <div className="lp-pitem"><span>&#10003;</span> Available on any phone &mdash; no app download needed</div>
           </div>
         </div>
-
-        {/* Results grid */}
-        <div style={{marginTop:"28px",marginBottom:"28px"}}>
-          <div className="lp-ey" style={{marginBottom:"14px"}}>Results for Students & Parents</div>
-          <div className="lp-results">
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Better exam preparation through <strong>targeted revision</strong></div>
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Faster improvement in <strong>weak subjects</strong></div>
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Increased learning <strong>confidence and engagement</strong></div>
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Reduced dependence on <strong>costly tuition classes</strong></div>
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> Complete visibility for parents on <strong>learning progress</strong></div>
-            <div className="lp-rcard"><span className="lp-ri"><TrendingUp size={16} strokeWidth={2.5} /></span> <strong>Personalised</strong> learning experience for every child</div>
-          </div>
-        </div>
-
-        {/* Closing statement */}
-        <div className="lp-closing">
-          <p>&ldquo;Every child deserves a personal tutor. <strong>LikhaPoha AI makes high-quality,
-          syllabus-aligned learning accessible to every student</strong> &mdash; anytime, anywhere,
-          at minimal cost.&rdquo;</p>
-        </div>
-
       </div></div>
-      <div className="lp-sw">
-        <div className="lp-sh"><div className="lp-ey">See It In Action</div><h2>A Glimpse of What Students Experience Daily</h2><p>Everything works on phone &mdash; no app download needed</p></div>
+
+      {/* Product screenshots */}
+      <div className="lp-sw" id="features">
+        <div className="lp-sh"><div className="lp-ey">See It In Action</div><h2>What Students and Parents Experience</h2><p>Everything works on any phone &mdash; no app download needed</p></div>
         <div className="lp-demo">
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>AI LESSON</div><img src="/screenshots/lesson.png" alt="AI Lesson" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise chapter lesson grounded in your NCERT textbook</div></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}>&#129514;</div>MOCK TEST</div><img src="/screenshots/mocktest.png" alt="Mock Test" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">CBSE mock tests with instant scoring and explanations</div></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#128106;</div>PARENT DASHBOARD</div><img src="/screenshots/parent-dashboard.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Real-time progress, score trends and weak area alerts for parents</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>AI LESSON</div><img src="/screenshots/lesson.png" alt="AI Lesson — step-wise NCERT chapter" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise lesson grounded in your NCERT textbook</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}>&#129514;</div>MOCK TEST</div><img src="/screenshots/mocktest.png" alt="Mock Test Studio — 70,000 CBSE questions" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Mock Test Studio &mdash; 70,000+ CBSE questions, instant scoring</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(34,197,94,.2)"}}>&#128202;</div>PARENT DASHBOARD</div><img src="/screenshots/parent-dashboard.png" alt="Parent Dashboard — chapter-level visibility" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Parent Dashboard &mdash; chapter-level daily visibility</div></div>
         </div>
       </div>
-      <div className="lp-sf" id="features"><div className="lp-si">
-        <div className="lp-sh"><div className="lp-ey">Everything You Need</div><h2>Complete Study Toolkit for CBSE</h2><p>Powerful AI tools designed for Indian students</p></div>
+
+      {/* Features grid */}
+      <div className="lp-sf" id="features-detail"><div className="lp-si">
+        <div className="lp-sh"><div className="lp-ey">Features</div><h2>Everything Your Child Needs to Succeed</h2></div>
         <div className="lp-fg">
-          <div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}><BookOpen size={22} strokeWidth={2} /></div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 70,000+ practice questions covering every chapter.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
-          </div>
-          <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
-            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#10067;</div>INSTANT DOUBT SOLVING</div><img src="/screenshots/doubt.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>LEARN MORE SECTION</div><img src="/screenshots/learn-more.png" alt="Learn More" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-          </div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}><BookOpen size={22} strokeWidth={2} /></div><h3>AI Lessons</h3><p>NCERT-grounded, step-wise lessons. Concept Introduction, Core Explanation, Worked Examples, Exam-Style Questions, and Quick Revision &mdash; for every chapter.</p></div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(6,182,212,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Ask Doubt</h3><p>Type any doubt. Get the NCERT textbook answer in seconds &mdash; 24 hours, any night, any subject.</p></div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Test Studio</h3><p>70,000+ CBSE practice questions. Every chapter. Instant scoring. Performance tier: Olympiad Ready, Strong Foundation, Good Progress, or Revision Needed.</p></div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(34,197,94,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Real-time daily visibility. Which chapter was studied. Weak Area Alerts. Things To Do Tonight. Score trends week by week.</p></div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(99,102,241,.15)"}}><TrendingUp size={22} strokeWidth={2} /></div><h3>Analytics</h3><p>Score trend graphs. Chapter-level performance. See exactly which subjects are improving and which need revision.</p></div>
+          <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(139,92,246,.15)"}}><span style={{fontSize:"1.2rem"}}>&#127942;</span></div><h3>Leaderboard</h3><p>Class Leaderboard. Study streak. XP points. Rank moves when you actually study &mdash; not when you say you will.</p></div>
         </div>
       </div></div>
-      <div className="lp-sf"><div className="lp-si">
-        <div className="lp-sh"><div className="lp-ey">Kids Love It</div><h2>Gamified Learning Dashboard</h2><p>Badges, leaderboards and achievement streaks keep students motivated every day</p></div>
-        <div className="lp-2col">
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}>&#127942;</div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/gamified-dashboard.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#129351;</div>CLASS LEADERBOARD</div><img src="/screenshots/leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-        </div>
-      </div></div>
+
+      {/* Pricing */}
       <div className="lp-sw" id="pricing">
-        <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free &middot; No hidden charges</p></div>
+        <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free &middot; No hidden charges &middot; Plans expire at end of period</p></div>
         <div className="lp-pg">
-          <div className="lp-prc"><div className="lp-prname">Premium Nano</div><div className="lp-pramount">&#8377;99<span>/8 days</span></div><div className="lp-prdesc">Experience the complete learning platform before committing to a monthly plan.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Exemplar Research & Lessons</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("free")}>Start 8-Day Access</button></div>
-          <div className="lp-prc pop"><div className="lp-popb">⭐ Most Popular</div><div className="lp-prname">Premium</div><div className="lp-pramount">&#8377;299<span>/month</span></div><div className="lp-prdesc">Best for serious CBSE exam prep — unlimited AI lessons, doubts, and mock tests every month.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Priority support</div><button className="lp-bpro lp-bpfill" onClick={() => handleCta("starter")}>Choose Premium</button></div>
-          <div className="lp-prc"><div className="lp-prname">Family Premium</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prdesc">Full platform access for two children — everything in Premium, shared family plan.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Up to 2 children</div><div className="lp-prf">Parent dashboard + analytics</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Multi-parent access</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Family Premium</button></div>
+          {/* Free Tier */}
+          <div className="lp-prc">
+            <div className="lp-prname">Free Tier</div>
+            <div className="lp-pramount">&#8377;0<span> forever</span></div>
+            <div className="lp-prdesc">Get started. No credit card required.</div>
+            <div className="lp-prf">Limited daily access</div>
+            <div className="lp-prf">AI Lessons</div>
+            <div className="lp-prf">Ask Doubt</div>
+            <div className="lp-prf">Mock Tests</div>
+            <button className="lp-bpro lp-bpout" onClick={() => handleCta("free_tier")}>Try for Free</button>
+          </div>
+          {/* Premium Nano */}
+          <div className="lp-prc">
+            <div className="lp-prname">Premium Nano</div>
+            <div className="lp-pramount">&#8377;99<span>/8 days</span></div>
+            <div className="lp-prdesc">Experience the complete platform before committing to a monthly plan.</div>
+            <div className="lp-prf">All CBSE subjects &middot; Class 5&ndash;10</div>
+            <div className="lp-prf">AI Lessons &mdash; every chapter</div>
+            <div className="lp-prf">Ask Doubt &mdash; 24/7</div>
+            <div className="lp-prf">Mock Test Studio &mdash; 70,000+ questions</div>
+            <div className="lp-prf">Parent Dashboard + Weak Area Alerts</div>
+            <div className="lp-prf">Analytics</div>
+            <div className="lp-prf">No auto-renewal</div>
+            <button className="lp-bpro lp-bpout" onClick={() => handleCta("free")}>Start 8-Day Access</button>
+          </div>
+          {/* Premium */}
+          <div className="lp-prc pop">
+            <div className="lp-popb">&#11088; Most Popular</div>
+            <div className="lp-prname">Premium</div>
+            <div className="lp-pramount">&#8377;299<span>/month</span></div>
+            <div className="lp-prdesc">Ideal for students preparing consistently throughout the academic year.</div>
+            <div className="lp-prf">All CBSE subjects &middot; Class 5&ndash;10</div>
+            <div className="lp-prf">AI Lessons &mdash; every chapter</div>
+            <div className="lp-prf">Ask Doubt &mdash; 24/7</div>
+            <div className="lp-prf">Mock Test Studio &mdash; 70,000+ questions</div>
+            <div className="lp-prf">Parent Dashboard + Weak Area Alerts</div>
+            <div className="lp-prf">Analytics & Leaderboard</div>
+            <div className="lp-prf">Formula Sheet</div>
+            <button className="lp-bpro lp-bpfill" onClick={() => handleCta("starter")}>Choose Premium</button>
+          </div>
+          {/* Family Premium */}
+          <div className="lp-prc">
+            <div className="lp-prname">Family Premium</div>
+            <div className="lp-pramount">&#8377;499<span>/month</span></div>
+            <div className="lp-prdesc">One subscription for families with up to two children.</div>
+            <div className="lp-prf">All CBSE subjects &middot; Class 5&ndash;10</div>
+            <div className="lp-prf">Up to 2 children</div>
+            <div className="lp-prf">Separate progress per child</div>
+            <div className="lp-prf">All Premium features for both children</div>
+            <div className="lp-prf">One Parent Dashboard</div>
+            <button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Family Premium</button>
+          </div>
         </div>
-        <p className="lp-prnote">No hidden charges &middot; Plans expire at end of period</p>
+        <p className="lp-prnote">No hidden charges &middot; Plans expire at end of period &middot; No automatic charges</p>
       </div>
-      {/* Testimonials + score improvements hidden until we have real customer feedback
+
+      {/* FAQ */}
       <div className="lp-sf"><div className="lp-si">
-        <div className="lp-sh"><div className="lp-ey">What Families Say</div><h2>Loved by Students and Parents Across India</h2><p>Join hundreds of families already learning smarter</p></div>
-        <div className="lp-tgrid">
-          <div className="lp-tc"><div className="lp-ttop"><div className="lp-tav">&#128103;</div><div><div className="lp-tname">Priya Kapoor</div><div className="lp-trole">Class 9 Student</div><div className="lp-tsch">DPS, New Delhi</div></div></div><div className="lp-tquote">The step-wise lessons are amazing. I used to spend 2 hours per chapter &mdash; now it takes 30 minutes and I actually understand it.</div><div className="lp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
-          <div className="lp-tc"><div className="lp-ttop"><div className="lp-tav">&#128104;</div><div><div className="lp-tname">Rajesh Menon</div><div className="lp-trole">Parent</div><div className="lp-tsch">Kendriya Vidyalaya, Kochi</div></div></div><div className="lp-tquote">I finally know exactly what my son is studying. The weak area alerts helped us focus revision before his half-yearly exams.</div><div className="lp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
-          <div className="lp-tc"><div className="lp-ttop"><div className="lp-tav">&#128102;</div><div><div className="lp-tname">Aryan Singh</div><div className="lp-trole">Class 9 Student</div><div className="lp-tsch">Ryan International, Mumbai</div></div></div><div className="lp-tquote">The mock test question bank is incredible. I scored 89% in my CBSE finals after 3 weeks of practice on LikhaPoha.</div><div className="lp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
-          <div className="lp-tc"><div className="lp-ttop"><div className="lp-tav">&#128105;</div><div><div className="lp-tname">Dr. Sunita Sharma</div><div className="lp-trole">Parent</div><div className="lp-tsch">Chinmaya Vidyalaya, Delhi</div></div></div><div className="lp-tquote">Better than tuition at 1/10th the cost. My daughter's science grade jumped from 68% to 87% in one term.</div><div className="lp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
-        </div>
-      </div></div>
-      <div className="lp-sw">
-        <div className="lp-sh"><div className="lp-ey">Real Results</div><h2>Real Score Improvements</h2><p>From struggling to succeeding</p></div>
-        <div className="lp-skg">
-          <div className="lp-skcard"><div className="lp-sktop"><div className="lp-skarrow"><div><div className="lp-skbef">54%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>BEFORE</div></div><div className="lp-skarr">&#8599;</div><div><div className="lp-skaft">82%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>AFTER</div></div></div><div className="lp-skbadge">+28%</div></div><div className="lp-skname">Ananya Patel</div><div className="lp-skschool">Zydus School, Ahmedabad</div><div className="lp-skq" style={{fontSize:".78rem",marginTop:"6px",color:"#93c5fd"}}>Science</div><div className="lp-skq">The doubt-solving feature helped me understand reactions I had been confused about for months.</div></div>
-          <div className="lp-skcard"><div className="lp-sktop"><div className="lp-skarrow"><div><div className="lp-skbef">48%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>BEFORE</div></div><div className="lp-skarr">&#8599;</div><div><div className="lp-skaft">79%</div><div style={{fontSize:".65rem",color:"#cbd5e1"}}>AFTER</div></div></div><div className="lp-skbadge">+31%</div></div><div className="lp-skname">Karan Mehta</div><div className="lp-skschool">Modern School, Noida</div><div className="lp-skq" style={{fontSize:".78rem",marginTop:"6px",color:"#93c5fd"}}>Mathematics</div><div className="lp-skq">The worked examples in each lesson made algebra click for me finally.</div></div>
-        </div>
-      </div>
-      */}
-      <div className="lp-sf"><div className="lp-si"><div className="lp-sh"><h2>Frequently Asked Questions</h2></div>
+        <div className="lp-sh"><h2>Frequently Asked Questions</h2></div>
         {faqs.map((faq, i) => (
           <div key={i} className={"lp-faq-item" + (openFaq === i ? " open" : "")}>
             <button className="lp-faq-q" onClick={() => toggleFaq(i)}>{faq.q}<span className="lp-faq-icon">+</span></button>
@@ -178,12 +221,15 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           </div>
         ))}
       </div></div>
+
+      {/* CTA section */}
       <div className="lp-ctasec">
-        <h2>Start Your Child's AI Learning Journey Today</h2>
-        <p>Join hundreds of families already studying smarter with LikhaPoha AI</p>
+        <h2>Start Your Child&rsquo;s AI Learning Journey Today</h2>
+        <p>Free to start &middot; Any phone &middot; No app download needed</p>
         <button className="lp-bc" onClick={() => handleCta("free")} style={{display:"inline-flex"}}>&#128640; Try for Free</button>
-        <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Free to start &middot; Upgrade anytime</p>
+        <p style={{marginTop:"16px",fontSize:".8rem",color:"#cbd5e1"}}>Free Tier: &#8377;0 &middot; Try full platform: &#8377;99 for 8 days</p>
       </div>
+
       {/* Google Sign-In disclosure — required by Google API Services User Data Policy */}
       <div style={{background:"rgba(15,23,42,.95)",borderTop:"1px solid #1e293b",padding:"36px 24px"}}>
         <div style={{maxWidth:720,margin:"0 auto",display:"flex",gap:18,alignItems:"flex-start"}}>
@@ -193,13 +239,10 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div>
             <p style={{fontSize:".8rem",fontWeight:800,color:"#f8fafc",marginBottom:6,textTransform:"uppercase",letterSpacing:".06em"}}>Google Sign-In & Data Usage</p>
             <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:0}}>
-              LikhaPoha AI uses Google Sign-In <strong style={{color:"#cbd5e1"}}>only to securely authenticate users</strong>. When you sign in with Google, we request basic profile information such as your name, email address, and profile picture.
+              Likha Poha AI uses Google Sign-In <strong style={{color:"#cbd5e1"}}>only to securely authenticate users</strong>. We collect only your name, email address, and profile picture.
             </p>
             <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:"8px 0 0"}}>
-              We use this information <strong style={{color:"#cbd5e1"}}>only to</strong> create your account, keep you logged in securely, personalize your learning experience, and save your study progress.
-            </p>
-            <p style={{fontSize:".82rem",color:"#94a3b8",lineHeight:1.7,margin:"8px 0 0"}}>
-              LikhaPoha AI <strong style={{color:"#f87171"}}>does not access</strong> Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google services.
+              Likha Poha AI <strong style={{color:"#f87171"}}>does not access</strong> Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google services.
               We <strong style={{color:"#f87171"}}>do not sell or share</strong> Google user data for advertising or marketing.
               See our <a href="/privacy-policy" style={{color:"#93c5fd"}}>Privacy Policy</a> for full details.
             </p>
@@ -208,8 +251,8 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       </div>
 
       <footer className="lp-footer">
-        <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>
-        <p>AI-Powered Tutor for CBSE &middot; Class 5&ndash;10</p>
+        <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>Likha Poha AI</p>
+        <p>AI-Powered CBSE Tutor &middot; Class 5&ndash;10</p>
         <div style={{marginTop:"16px"}}>
           <a href="#">Home</a>
           <a href="#features">Features</a>
@@ -220,7 +263,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <a href="/privacy-policy">Privacy Policy</a>
           <a href="/terms-of-service">Terms of Service</a>
         </div>
-        <p style={{marginTop:"20px"}}>&copy; 2026 LikhaPoha AI &middot; Made with &#10084; in India</p>
+        <p style={{marginTop:"20px"}}>&copy; 2026 Likha Poha AI &middot; Made with &#10084; in India</p>
       </footer>
     </div>
   );

@@ -2,14 +2,14 @@
 title: "How Mock Tests Get CBSE Students Exam-Ready — and Why Variety of Questions Matters"
 slug: "mock-tests-cbse-exam-ready"
 date: "2026-06-22"
-author: "LikhaPoha AI Team"
+author: "Likha Poha AI Team"
 summary: "Studying a chapter is one thing. Being exam-ready is another. Here's how regular mock tests with a variety of question types transform preparation into performance."
 tags: ["Mock Tests", "CBSE", "Exam Preparation", "Practice Questions"]
 ---
 
 There's a big difference between understanding a topic and being able to answer questions about it under exam conditions. Students who only study without practising often find themselves unable to recall or apply what they've learned when it matters most.
 
-Mock tests close that gap. Here's why — and how LikhaPoha AI's Mock Test Studio is designed specifically for CBSE students.
+Mock tests close that gap. Here's why — and how Likha Poha AI's Mock Test Studio is designed specifically for CBSE students.
 
 ## Why Studying Alone Is Not Enough
 
@@ -32,9 +32,9 @@ CBSE exams do not ask the same question twice. The board deliberately tests the 
 
 If you've only practised one type, you'll be caught off guard by the others.
 
-## How LikhaPoha AI's Mock Test Studio Covers All Types
+## How Likha Poha AI's Mock Test Studio Covers All Types
 
-LikhaPoha AI has **70,000+ practice questions** across all grades (5–10) and subjects, covering multiple question formats. When you create a mock test, you can:
+Likha Poha AI has **70,000+ practice questions** across all grades (5–10) and subjects, covering multiple question formats. When you create a mock test, you can:
 
 ### Choose by Chapter and Difficulty
 Select exactly which chapter you want to test — say, *Chapter 3: Atoms and Molecules* for Grade 9 Chemistry. Set the difficulty to Easy, Medium, or Hard depending on where you are in your preparation.

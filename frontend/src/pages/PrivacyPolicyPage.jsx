@@ -36,8 +36,8 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
       {/* Nav */}
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", background: "rgba(15,23,42,.96)", backdropFilter: "blur(16px)", borderBottom: "1px solid #334155", position: "sticky", top: 0, zIndex: 99 }}>
         <button onClick={onBackToHome} style={{ display: "flex", alignItems: "center", gap: "10px", background: "transparent", border: "none", color: "#f8fafc", cursor: "pointer", fontFamily: "inherit" }}>
-          <img src={logoImg} alt="LikhaPoha AI" style={{ width: 42, height: 42, borderRadius: 10, objectFit: "cover", background: "#fff" }} />
-          <span style={{ fontSize: "1.08rem", fontWeight: 700 }}>LikhaPoha AI</span>
+          <img src={logoImg} alt="Likha Poha AI" style={{ width: 42, height: 42, borderRadius: 10, objectFit: "cover", background: "#fff" }} />
+          <span style={{ fontSize: "1.08rem", fontWeight: 700 }}>Likha Poha AI</span>
         </button>
         <button onClick={onBackToHome} style={{ background: "transparent", border: "1px solid #334155", color: "#93c5fd", padding: "8px 18px", borderRadius: 8, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
           ← Back to Home
@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </div>
 
         <Section title="1. Who We Are">
-          LikhaPoha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Classes 5–10, operated by Pradip Bhuyan and accessible at <strong>www.likhapoha.in</strong>.
+          Likha Poha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Classes 5–10, operated by Pradip Bhuyan and accessible at <strong>www.likhapoha.in</strong>.
           <br /><br />
           This Privacy Policy explains what personal data we collect, why we collect it, how we use it, and your rights regarding that data. By using our platform you agree to the practices described here.
         </Section>
@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="4. Google Sign-In & Data Usage">
-          LikhaPoha AI uses Google Sign-In <strong>only to securely authenticate users</strong>. When you sign in with Google, we request only the following basic profile information:
+          Likha Poha AI uses Google Sign-In <strong>only to securely authenticate users</strong>. When you sign in with Google, we request only the following basic profile information:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li>Your name</li>
             <li>Your email address</li>
@@ -118,7 +118,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
             <li>Save your study progress</li>
           </ul>
           <div style={{ background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.25)", borderRadius: 8, padding: "12px 16px", marginTop: 12 }}>
-            <strong style={{ color: "#fca5a5" }}>LikhaPoha AI does NOT:</strong>
+            <strong style={{ color: "#fca5a5" }}>Likha Poha AI does NOT:</strong>
             <ul style={{ paddingLeft: 24, marginTop: 8, color: "#cbd5e1" }}>
               <li style={{ marginBottom: 6 }}>Access Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google service</li>
               <li style={{ marginBottom: 6 }}>Sell, share, or transfer Google user data for advertising, marketing, or any commercial purpose</li>
@@ -134,7 +134,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="5. AI Providers and Third-Party Services">
-          LikhaPoha AI uses AI language model providers (OpenAI, Groq, Google Gemini, Cerebras, SambaNova, Anthropic, Ollama Cloud) to generate lesson content. Prompts sent to these providers contain:
+          Likha Poha AI uses AI language model providers (OpenAI, Groq, Google Gemini, Cerebras, SambaNova, Anthropic, Ollama Cloud) to generate lesson content. Prompts sent to these providers contain:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li>Grade, subject, chapter, and topic</li>
             <li>The student's question (for Ask Doubt)</li>
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="7. Children's Privacy">
-          LikhaPoha AI is designed for students in Classes 5–10 (approximately ages 10–16). We take children's privacy seriously:
+          Likha Poha AI is designed for students in Classes 5–10 (approximately ages 10–16). We take children's privacy seriously:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 8 }}>Student accounts are created by parents or guardians via the Family Account system, or directly by school administrators.</li>
             <li style={{ marginBottom: 8 }}>We do not show advertisements to students.</li>
@@ -216,7 +216,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         <Section title="12. Contact Us">
           For privacy-related questions, requests, or concerns:
           <br /><br />
-          <strong>LikhaPoha AI</strong><br />
+          <strong>Likha Poha AI</strong><br />
           Email:{" "}<a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a><br />
           Website: <a href="https://www.likhapoha.in" style={{ color: "#93c5fd" }}>www.likhapoha.in</a>
         </Section>

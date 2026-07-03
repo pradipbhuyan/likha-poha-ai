@@ -25,8 +25,8 @@ export default function BlogPostPage({ slug, onShowLogin, onShowSignup, onBack }
       {/* Nav */}
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", borderBottom: "1px solid rgba(255,255,255,.06)", background: "rgba(15,23,42,.97)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 99 }}>
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "#f8fafc", fontWeight: 700, fontSize: "1.1rem" }}>
-          <img src={logoImg} alt="LikhaPoha AI" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover", background: "#fff" }} />
-          LikhaPoha AI
+          <img src={logoImg} alt="Likha Poha AI" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover", background: "#fff" }} />
+          Likha Poha AI
         </a>
         <div style={{ display: "flex", gap: 10 }}>
           <button onClick={onShowLogin}
@@ -88,7 +88,7 @@ export default function BlogPostPage({ slug, onShowLogin, onShowSignup, onBack }
 
         {/* CTA */}
         <div style={{ marginTop: 48, background: "linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.1))", border: "1px solid rgba(99,102,241,.25)", borderRadius: 16, padding: "28px 24px", textAlign: "center" }}>
-          <h3 style={{ margin: "0 0 8px", color: "#f1f5f9" }}>Start Learning with LikhaPoha AI</h3>
+          <h3 style={{ margin: "0 0 8px", color: "#f1f5f9" }}>Start Learning with Likha Poha AI</h3>
           <p style={{ color: "#94a3b8", marginBottom: 18, fontSize: ".9rem" }}>AI-powered CBSE tutoring for Class 5–10 · ₹299/month</p>
           <button onClick={() => onShowSignup?.("free")}
             style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "12px 28px", borderRadius: 10, fontSize: ".95rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>

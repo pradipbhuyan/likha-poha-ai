@@ -255,7 +255,7 @@ function FirstTimeGuide({ user, activePage }) {
         onClick={() => setOpen(true)}
       >
         <Sparkles size={17} strokeWidth={2.5} />
-        LikhaPoha AI Guide
+        Likha Poha AI Guide
       </button>
 
       {open && (

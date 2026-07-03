@@ -329,7 +329,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           display:"flex",gap:16,alignItems:"center",flexWrap:"wrap",
         }}>
           <div style={{flex:1,minWidth:200}}>
-            <div style={{fontWeight:800,fontSize:"1rem",marginBottom:4}}>🎉 Welcome to LikhaPoha AI, {name}!</div>
+            <div style={{fontWeight:800,fontSize:"1rem",marginBottom:4}}>🎉 Welcome to Likha Poha AI, {name}!</div>
             <div style={{fontSize:".82rem",color:"var(--text-muted,#64748b)",marginBottom:10}}>
               Your dashboard will fill up as you start learning. Take your first lesson or mock test to see your progress here.
             </div>

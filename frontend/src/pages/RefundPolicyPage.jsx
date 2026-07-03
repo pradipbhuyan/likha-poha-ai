@@ -24,8 +24,8 @@ export default function RefundPolicyPage({ onBackToHome }) {
     <div style={{fontFamily:"Inter,sans-serif",background:"#0f172a",color:"#f8fafc",minHeight:"100vh",lineHeight:1.7}}>
       <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 40px",background:"rgba(15,23,42,.96)",backdropFilter:"blur(16px)",borderBottom:"1px solid #334155",position:"sticky",top:0,zIndex:99}}>
         <button onClick={onBackToHome} style={{display:"flex",alignItems:"center",gap:"10px",background:"transparent",border:"none",color:"#f8fafc",cursor:"pointer",fontFamily:"inherit"}}>
-          <img src={logoImg} alt="LikhaPoha AI" style={{width:42,height:42,borderRadius:10,objectFit:"cover",background:"#fff"}} />
-          <span style={{fontSize:"1.08rem",fontWeight:700}}>LikhaPoha AI</span>
+          <img src={logoImg} alt="Likha Poha AI" style={{width:42,height:42,borderRadius:10,objectFit:"cover",background:"#fff"}} />
+          <span style={{fontSize:"1.08rem",fontWeight:700}}>Likha Poha AI</span>
         </button>
         <button onClick={onBackToHome} style={{background:"transparent",border:"1px solid #334155",color:"#93c5fd",padding:"8px 18px",borderRadius:8,fontSize:".88rem",cursor:"pointer",fontFamily:"inherit"}}>
           ← Back to Home
@@ -40,13 +40,13 @@ export default function RefundPolicyPage({ onBackToHome }) {
         </div>
 
         <Section title="1. Overview">
-          LikhaPoha AI ("we", "us", or "our") offers AI-powered educational services for CBSE students in Classes 5–10. This Refund Policy explains when and how refunds are issued for subscription fees paid on our platform at <strong>www.likhapoha.in</strong>.
+          Likha Poha AI ("we", "us", or "our") offers AI-powered educational services for CBSE students in Classes 5–10. This Refund Policy explains when and how refunds are issued for subscription fees paid on our platform at <strong>www.likhapoha.in</strong>.
           <br /><br />
           By subscribing to any paid plan, you agree to this Refund Policy. Please read it carefully before making a purchase.
         </Section>
 
         <Section title="2. Trial Plan — Premium Nano (₹99 / 8 Days)">
-          The ₹99 trial plan is a <strong>paid introductory offer</strong> designed to let you experience the full LikhaPoha AI platform at minimal cost before committing to a monthly plan.
+          The ₹99 trial plan is a <strong>paid introductory offer</strong> designed to let you experience the full Likha Poha AI platform at minimal cost before committing to a monthly plan.
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}>The trial fee of ₹99 is <strong>non-refundable</strong> once access has been activated.</li>
             <li style={{marginBottom:8}}>If access was not activated due to a technical error on our side, a full refund will be issued within 5–7 business days.</li>
@@ -95,13 +95,13 @@ export default function RefundPolicyPage({ onBackToHome }) {
         <Section title="8. Contact Us">
           For any questions about this policy or your subscription:
           <br /><br />
-          <strong>LikhaPoha AI</strong><br />
+          <strong>Likha Poha AI</strong><br />
           Email: <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a><br />
           Website: <a href="https://www.likhapoha.in" style={{color:"#93c5fd"}}>www.likhapoha.in</a>
         </Section>
 
         <div style={{marginTop:60,paddingTop:24,borderTop:"1px solid #334155",textAlign:"center",color:"#64748b",fontSize:".85rem"}}>
-          &copy; 2026 LikhaPoha AI &middot; Made with ❤ in India
+          &copy; 2026 Likha Poha AI &middot; Made with ❤ in India
         </div>
       </div>
     </div>

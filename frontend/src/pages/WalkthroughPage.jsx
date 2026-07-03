@@ -4,12 +4,12 @@ const VIDEOS = {
   english: {
     label: "🇬🇧 English",
     embedId: "N82gfHBJm00",
-    title: "LikhaPoha AI — Student Platform Walkthrough (English)",
+    title: "Likha Poha AI — Student Platform Walkthrough (English)",
   },
   hindi: {
     label: "🇮🇳 Hindi",
     embedId: "y0YHnMrmR3k",
-    title: "LikhaPoha AI — Student Platform Walkthrough (Hindi)",
+    title: "Likha Poha AI — Student Platform Walkthrough (Hindi)",
   },
 };
 
@@ -25,7 +25,7 @@ function WalkthroughPage() {
           <p className="eyebrow">Getting Started</p>
           <h2>🎬 Platform Walkthrough</h2>
           <p>
-            Watch the full walkthrough to learn how to use LikhaPoha AI —
+            Watch the full walkthrough to learn how to use Likha Poha AI —
             lessons, doubts, mock tests, analytics, and more.
           </p>
         </div>

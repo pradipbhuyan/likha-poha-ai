@@ -1,9 +1,9 @@
 ---
-title: "How LikhaPoha AI Remembers Every Student's Progress and Targets Their Weak Areas"
+title: "How Likha Poha AI Remembers Every Student's Progress and Targets Their Weak Areas"
 slug: "progress-tracking-weak-areas-revision"
 date: "2026-06-19"
-author: "LikhaPoha AI Team"
-summary: "A personal tutor who remembers everything you've ever struggled with and always knows what you need to revise next — that's exactly what LikhaPoha AI does for every student, automatically."
+author: "Likha Poha AI Team"
+summary: "A personal tutor who remembers everything you've ever struggled with and always knows what you need to revise next — that's exactly what Likha Poha AI does for every student, automatically."
 tags: ["Progress Tracking", "Weak Areas", "CBSE", "Personalised Learning", "Revision"]
 ---
 
@@ -11,7 +11,7 @@ Imagine a tutor who never forgets. Who remembers that you struggled with balanci
 
 That tutor would know exactly what you need to do today.
 
-LikhaPoha AI is that tutor.
+Likha Poha AI is that tutor.
 
 ## The Problem with Generic Study Plans
 
@@ -21,7 +21,7 @@ The problem is that every student is different. One student might have completel
 
 A generic plan treats both students identically. A personalised plan would tell the first student to skip Chapters 1–4 and focus entirely on Chapter 5. That's the difference between efficient revision and wasted revision time.
 
-## How LikhaPoha AI Tracks Progress
+## How Likha Poha AI Tracks Progress
 
 Every interaction a student has with the platform contributes to their learning profile:
 
@@ -39,7 +39,7 @@ Average scores per subject are compared side-by-side. This reveals which subject
 
 ## Automatic Weak Area Detection
 
-This is the most powerful feature. LikhaPoha AI does not wait for students or parents to notice a problem.
+This is the most powerful feature. Likha Poha AI does not wait for students or parents to notice a problem.
 
 When a student scores below a threshold on a chapter-specific test, the system **automatically flags it as a weak area**. The alert appears on:
 - The **Student Dashboard** — as a revision priority
@@ -55,7 +55,7 @@ This means parents know about academic weaknesses at the same time the student d
 
 ## What Happens After a Weak Area Is Identified
 
-LikhaPoha AI doesn't just identify weak areas — it gives students the tools to address them immediately:
+Likha Poha AI doesn't just identify weak areas — it gives students the tools to address them immediately:
 
 1. **Re-take the lesson** — Go back to the chapter in AI Lessons, generate the step-wise lesson again. The AI explains it from the textbook, fresh.
 
@@ -69,7 +69,7 @@ LikhaPoha AI doesn't just identify weak areas — it gives students the tools to
 
 The best time to revise something is right before you forget it. Revising too early wastes time. Revising too late means the memory has already faded and you have to re-learn from scratch.
 
-LikhaPoha AI's weak area alerts are triggered after performance drops — which is roughly the right time to revisit a topic. This creates a natural spaced repetition cycle without the student needing to plan it.
+Likha Poha AI's weak area alerts are triggered after performance drops — which is roughly the right time to revisit a topic. This creates a natural spaced repetition cycle without the student needing to plan it.
 
 ## A Real Example
 
@@ -92,4 +92,4 @@ This makes it possible to have a productive conversation with a child: "I can se
 
 ---
 
-LikhaPoha AI learns your child as well as the best personal tutor would — and it never forgets. Start your personalised learning journey at [likhapoha.in](https://likhapoha.in).
+Likha Poha AI learns your child as well as the best personal tutor would — and it never forgets. Start your personalised learning journey at [likhapoha.in](https://likhapoha.in).

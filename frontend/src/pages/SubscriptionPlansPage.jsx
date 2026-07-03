@@ -487,7 +487,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
             <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 14 }}>
               <div className="premium-card premium-glow-card glow-blue">
                 <h3>📚 All Lessons</h3>
-                <p>5-step AI lessons for every CBSE chapter, Grade 5–10. Audio, visuals, and practice included.</p>
+                <p>5-step AI lessons for every CBSE chapter, Class 5–10. Audio, visuals, and practice included.</p>
               </div>
               <div className="premium-card premium-glow-card glow-purple">
                 <h3>❓ Unlimited Ask Doubts</h3>
@@ -499,11 +499,11 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               </div>
               <div className="premium-card premium-glow-card glow-red">
                 <h3>🔬 Exemplar Research</h3>
-                <p>AI explanations for hard & tricky Science and Maths topics from NCERT Exemplar — Grade 8, 9 & 10.</p>
+                <p>AI explanations for hard & tricky Science and Maths topics from NCERT Exemplar — Class 8, 9 & 10.</p>
               </div>
               <div className="premium-card premium-glow-card glow-blue">
                 <h3>📖 Exemplar Lessons</h3>
-                <p>Generate full 5-step AI lessons for all NCERT Exemplar chapters (Grade 8, 9, 10) — locked on free plan.</p>
+                <p>Generate full 5-step AI lessons for all NCERT Exemplar chapters (Class 8, 9, 10) — locked on free plan.</p>
               </div>
             </div>
           </div>
@@ -859,11 +859,11 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
       { icon: "📝", label: "Test Paper Generator", free: "2/day", paid: "Unlimited" },
       { icon: "📋", label: "Lesson Plan Creator", free: "2/day", paid: "Unlimited" },
       { icon: "🔬", label: "Exemplar Research (AI explanations)", free: "❌ Locked", paid: "✅ Full access" },
-      { icon: "📚", label: "Exemplar Lessons (Grade 8–10)", free: "❌ Locked", paid: "✅ Full access" },
+      { icon: "📚", label: "Exemplar Lessons (Class 8–10)", free: "❌ Locked", paid: "✅ Full access" },
       { icon: "📊", label: "Student Analytics Dashboard", free: "✅ Available", paid: "✅ Available" },
       { icon: "🧪", label: "Question Bank (for test papers)", free: "✅ Available", paid: "✅ Full bank" },
       { icon: "❓", label: "Ask Doubt (AI-assisted)", free: "Limited tokens", paid: "Unlimited" },
-      { icon: "🎒", label: "All CBSE Grades 5–10", free: "✅ Available", paid: "✅ Available" },
+      { icon: "🎒", label: "All CBSE Class 5–10", free: "✅ Available", paid: "✅ Available" },
     ];
 
     return (
@@ -931,7 +931,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             </div>
             <div className="premium-card premium-glow-card glow-green">
               <h3>🔬 Exemplar Research & Lessons</h3>
-              <p>AI explanations for hard NCERT Exemplar topics (Grade 8–10) + generate lessons for all Exemplar chapters.</p>
+              <p>AI explanations for hard NCERT Exemplar topics (Class 8–10) + generate lessons for all Exemplar chapters.</p>
             </div>
           </div>
         </section>

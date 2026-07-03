@@ -19,8 +19,8 @@ export default function BlogPage({ onShowLogin, onShowSignup, onViewPost }) {
       {/* Nav */}
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", borderBottom: "1px solid rgba(255,255,255,.06)", background: "rgba(15,23,42,.97)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 99 }}>
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "#f8fafc", fontWeight: 700, fontSize: "1.1rem" }}>
-          <img src={logoImg} alt="LikhaPoha AI" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover", background: "#fff" }} />
-          LikhaPoha AI
+          <img src={logoImg} alt="Likha Poha AI" style={{ width: 36, height: 36, borderRadius: 9, objectFit: "cover", background: "#fff" }} />
+          Likha Poha AI
         </a>
         <div style={{ display: "flex", gap: 10 }}>
           <button onClick={onShowLogin}
@@ -38,7 +38,7 @@ export default function BlogPage({ onShowLogin, onShowSignup, onViewPost }) {
       <div style={{ textAlign: "center", padding: "56px 24px 32px" }}>
         <p style={{ fontSize: ".78rem", fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#6366f1", marginBottom: 12 }}>Learning Resources</p>
         <h1 style={{ fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, margin: "0 0 14px" }}>
-          The LikhaPoha Blog
+          The Likha Poha Blog
         </h1>
         <p style={{ color: "#94a3b8", fontSize: "1.05rem", maxWidth: 560, margin: "0 auto" }}>
           CBSE study tips, exam strategies, and insights for students and parents.
@@ -107,7 +107,7 @@ export default function BlogPage({ onShowLogin, onShowSignup, onViewPost }) {
         <p style={{ color: "#94a3b8", marginBottom: 20 }}>AI-powered CBSE tutoring for Class 5–10</p>
         <button onClick={() => onShowSignup?.("free")}
           style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "13px 32px", borderRadius: 11, fontSize: "1rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-          🚀 Try LikhaPoha AI Free
+          🚀 Try Likha Poha AI Free
         </button>
       </div>
     </div>

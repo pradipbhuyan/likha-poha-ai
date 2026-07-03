@@ -2,7 +2,7 @@
 title: "How to Score 90+ in CBSE Class 10 Science — Chapter-wise Strategy"
 slug: "how-to-score-90-cbse-class-10-science"
 date: "2026-06-22"
-author: "LikhaPoha AI Team"
+author: "Likha Poha AI Team"
 summary: "A practical, chapter-by-chapter revision strategy for Class 10 Science students aiming for 90+ in CBSE board exams."
 tags: ["CBSE", "Class 10", "Science", "Exam Tips"]
 ---
@@ -46,7 +46,7 @@ The CBSE Class 10 Science paper is 80 marks (3 hours). The distribution is:
 
 **Week 3:** Solve last 5 years' CBSE papers. Identify recurring question patterns.
 
-**Week 4:** Focus on weak chapters. Use the LikhaPoha AI doubt-solving tool for any concept you're unsure about.
+**Week 4:** Focus on weak chapters. Use the Likha Poha AI doubt-solving tool for any concept you're unsure about.
 
 ## Common Mistakes to Avoid
 
@@ -54,9 +54,9 @@ The CBSE Class 10 Science paper is 80 marks (3 hours). The distribution is:
 - **Skipping diagram labels** — each missing label costs half a mark
 - **Memorising without understanding** — CBSE increasingly tests application
 
-## How LikhaPoha AI Helps
+## How Likha Poha AI Helps
 
-LikhaPoha AI breaks each chapter into step-wise lessons grounded in your actual NCERT textbook. You can:
+Likha Poha AI breaks each chapter into step-wise lessons grounded in your actual NCERT textbook. You can:
 - Generate a lesson for any chapter in seconds
 - Ask doubts and get instant textbook-based answers
 - Take chapter-specific mock tests to test your understanding

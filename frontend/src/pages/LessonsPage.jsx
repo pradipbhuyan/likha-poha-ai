@@ -1870,7 +1870,7 @@ function LessonsPage({ user, setActivePage }) {
             <div className={`lesson-generating-overlay${gifFading ? " lesson-gif-fading" : ""}`}>
               <img
                 src="/likhapohaai.gif"
-                alt="LikhaPoha AI is preparing your lesson…"
+                alt="Likha Poha AI is preparing your lesson…"
                 className="lesson-loading-gif"
               />
               <p className="lesson-loading-label">
