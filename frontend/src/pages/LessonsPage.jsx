@@ -994,15 +994,55 @@ function LessonsPage({ user, setActivePage }) {
       if ((result.textbook_visuals || []).length > 0) {
         setSelectedTextbookVisual(result.textbook_visuals[0]);
       }
-      // Capture DKB-backed suggestion cards (pre-answered, zero token cost).
-      const newChips = Array.isArray(result.doubt_suggestions)
-        ? result.doubt_suggestions.slice(0, 6)
-        : [];
-      setDoubtSuggestions(newChips);
-      // Also pre-fetch DKB chips if any
-      if (newChips.length > 0) {
-        preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
-      }
+      // ── Load LKB chips immediately after lesson is generated ─────────────
+      // LKB chips don't come from the lesson API — they live in lesson_kb.
+      // ensureLessonKbChips must be called explicitly after lesson generation;
+      // the useEffect on currentStepIndex doesn't re-fire because the step
+      // index hasn't changed, and loadProgress ran before the lesson existed.
+      ensureLessonKbChips({ grade, subject, chapter, step_title: stepTitle })
+        .then(lkbResult => {
+          const lkbChips = Array.isArray(lkbResult?.lkb_chips) ? lkbResult.lkb_chips : [];
+          if (lkbChips.length > 0) {
+            const newReady = new Set();
+            lkbChips.forEach(({ question, answer }) => {
+              const key = `${grade}|${subject}|${chapter}|${stepTitle}|${question.trim().toLowerCase()}`;
+              followUpCache.current[key] = {
+                role: "assistant",
+                content: answer,
+                sourceType: "PLATFORM_RAG",
+                textbookVisuals: [],
+                offerGate: false,
+              };
+              newReady.add(question);
+            });
+            setCachedChipQuestions(prev => {
+              const merged = new Set(prev);
+              newReady.forEach(q => merged.add(q));
+              return merged;
+            });
+            // LKB chips take priority over DKB suggestions
+            setDoubtSuggestions(lkbChips.map(c => ({ question: c.question, answer: c.answer })));
+            return; // LKB loaded — skip DKB fallback below
+          }
+          // LKB returned no chips — fall back to DKB suggestions from lesson API
+          const newChips = Array.isArray(result.doubt_suggestions)
+            ? result.doubt_suggestions.slice(0, 6)
+            : [];
+          setDoubtSuggestions(newChips);
+          if (newChips.length > 0) {
+            preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
+          }
+        })
+        .catch(() => {
+          // LKB unavailable — fall back to DKB suggestions from lesson API
+          const newChips = Array.isArray(result.doubt_suggestions)
+            ? result.doubt_suggestions.slice(0, 6)
+            : [];
+          setDoubtSuggestions(newChips);
+          if (newChips.length > 0) {
+            preFetchChipAnswers(newChips, grade, mode, subject, chapter, stepTitle);
+          }
+        });
   
       const updatedStepLessons = {
         ...stepLessons,
