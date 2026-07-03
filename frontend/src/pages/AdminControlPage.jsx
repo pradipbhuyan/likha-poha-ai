@@ -1355,15 +1355,16 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>NVIDIA Model</strong>
                 <select value={nvidiaModel} onChange={(e) => setNvidiaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="meta/llama-4-scout-17b-16e-instruct">✅ FREE — meta/llama-4-scout-17b-16e-instruct (Llama 4 Scout, recommended)</option>
-                  <option value="meta/llama-3.3-70b-instruct">✅ FREE — meta/llama-3.3-70b-instruct (Llama 3.3 70B)</option>
-                  <option value="meta/llama-3.1-8b-instruct">✅ FREE — meta/llama-3.1-8b-instruct (Llama 3.1 8B, fastest)</option>
-                  <option value="mistralai/mistral-7b-instruct-v0.3">✅ FREE — mistralai/mistral-7b-instruct-v0.3</option>
-                  <option value="google/gemma-3-27b-it">✅ FREE — google/gemma-3-27b-it (Gemma 3 27B)</option>
-                  <option value="deepseek-ai/deepseek-r1">✅ FREE — deepseek-ai/deepseek-r1 (reasoning)</option>
+                  <option value="meta/llama-3.1-8b-instruct">✅ FREE — meta/llama-3.1-8b-instruct (Llama 3.1 8B — fastest, recommended)</option>
+                  <option value="meta/llama-3.1-70b-instruct">✅ FREE — meta/llama-3.1-70b-instruct (Llama 3.1 70B — best quality)</option>
+                  <option value="meta/llama-3.2-3b-instruct">✅ FREE — meta/llama-3.2-3b-instruct (Llama 3.2 3B — ultra-fast)</option>
+                  <option value="deepseek-ai/deepseek-v4-flash">✅ FREE — deepseek-ai/deepseek-v4-flash (DeepSeek V4 Flash)</option>
+                  <option value="google/gemma-3-4b-it">✅ FREE — google/gemma-3-4b-it (Gemma 3 4B)</option>
+                  <option value="google/gemma-3-12b-it">✅ FREE — google/gemma-3-12b-it (Gemma 3 12B)</option>
+                  <option value="google/gemma-4-31b-it">✅ FREE — google/gemma-4-31b-it (Gemma 4 31B)</option>
                 </select>
                 <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
-                  💡 <strong>Llama 4 Scout</strong> is the fastest and newest. Use <strong>Llama 3.3 70B</strong> for highest lesson quality. Get your free key at{" "}
+                  💡 <strong>meta/llama-3.1-8b-instruct</strong> is confirmed working on this account. Use <strong>llama-3.1-70b-instruct</strong> for best lesson quality. Get your free key at{" "}
                   <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noreferrer" style={{ color: "#76b900" }}>build.nvidia.com</a>.
                 </p>
               </label>
