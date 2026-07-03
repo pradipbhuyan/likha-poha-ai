@@ -671,3 +671,109 @@ def clear_questions(
         "deleted": deleted,
         "grade": grade,
     }
+
+
+# ── Audio Cache endpoints ──────────────────────────────────────────────────────
+
+@router.get("/audio/overview/{grade_slug}")
+def get_audio_overview(grade_slug: str, admin=Depends(require_admin)):
+    """
+    Return pre-warmed audio counts for a grade (used by admin Cache Management page).
+    Shows how many lesson steps have cached audio vs. how many are expected.
+    """
+    from app.services.audio_cache_service import get_audio_cache_overview  # noqa: PLC0415
+
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    overview = get_audio_cache_overview(grade)
+    by_grade = overview.get("by_grade", {})
+    grade_data = by_grade.get(grade, {"files": 0, "bytes": 0})
+
+    # Expected = number of cached lesson steps for this grade (same as cached_lessons)
+    from app.services.prewarm_service import count_cached_lessons  # noqa: PLC0415
+    expected = count_cached_lessons(grade)
+
+    return {
+        "success": True,
+        "grade": grade,
+        "audio_cached": grade_data["files"],
+        "audio_expected": expected,
+        "total_mb": round(grade_data["bytes"] / 1024 / 1024, 1),
+    }
+
+
+@router.post("/prewarm/audio/{grade_slug}")
+def start_audio_prewarm(
+    grade_slug: str,
+    admin=Depends(require_admin),
+):
+    """
+    Trigger TTS audio pre-warm for all cached lessons in a grade.
+    Runs as a background thread — returns immediately.
+    Already-cached steps are skipped (resume behaviour).
+    """
+    grade = grade_slug.replace("-", " ").title()
+    if grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {grade_slug}")
+
+    job_key = f"audio_{grade.replace(' ', '')}"
+    if is_job_running(job_key):
+        return {
+            "success": False,
+            "message": f"Audio prewarm already running for {grade}.",
+            "grade": grade,
+        }
+
+    def _run(g: str):
+        import time as _time  # noqa: PLC0415
+        from app.services.auth_service import admin_client as _db  # noqa: PLC0415
+        from app.services.tts_service import generate_speech_file, clean_text_for_tts  # noqa: PLC0415
+        from app.services.audio_cache_service import store_audio, get_cached_audio_url  # noqa: PLC0415
+        import os as _os  # noqa: PLC0415
+        import logging as _logging  # noqa: PLC0415
+
+        _log = _logging.getLogger("audio_prewarm")
+        set_job_status(job_key, "running")
+        try:
+            r = _db.table("lesson_cache").select(
+                "grade,subject,chapter,step_title,lesson_content"
+            ).eq("grade", g).eq("status", "active").execute()
+            lessons = [
+                row for row in (r.data or [])
+                if row.get("lesson_content") and len(row["lesson_content"]) > 100
+            ]
+            _log.info(f"Audio prewarm {g}: {len(lessons)} lessons to process")
+            for lesson in lessons:
+                ch = lesson["chapter"]
+                st = lesson["step_title"]
+                subj = lesson["subject"]
+                # Skip if already cached
+                if get_cached_audio_url(g, subj, ch, st):
+                    continue
+                try:
+                    clean = clean_text_for_tts(lesson["lesson_content"])
+                    mp3_path = generate_speech_file(clean)
+                    size_b = _os.path.getsize(mp3_path)
+                    with open(mp3_path, "rb") as f:
+                        mp3_bytes = f.read()
+                    _os.remove(mp3_path)
+                    store_audio(g, subj, ch, st, mp3_bytes)
+                    _log.info(f"Audio cached: {ch}/{st} ({size_b//1024}KB)")
+                except Exception as exc:
+                    _log.warning(f"Audio prewarm failed {ch}/{st}: {exc}")
+                _time.sleep(0.5)
+        except Exception as exc:
+            _log.error(f"Audio prewarm job failed for {g}: {exc}")
+        finally:
+            set_job_status(job_key, "idle")
+
+    t = _threading.Thread(target=_run, args=(grade,), daemon=True)
+    t.start()
+
+    return {
+        "success": True,
+        "message": f"Audio prewarm started for {grade}. Runs in background — already-cached steps skipped.",
+        "grade": grade,
+    }

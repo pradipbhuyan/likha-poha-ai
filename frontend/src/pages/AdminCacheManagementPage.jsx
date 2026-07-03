@@ -13,6 +13,8 @@ import {
   restoreLessonCache,
   startLkbBuild,
   getLkbOverview,
+  getAudioOverview,
+  startAudioPrewarm,
 } from "../api/cacheManagement";
 
 function gradeToSlug(grade) {
@@ -99,6 +101,10 @@ function AdminCacheManagementPage({ user }) {
   const [lkbOverviews, setLkbOverviews] = useState({});
   const [lkbRunningGrades, setLkbRunningGrades] = useState({});
 
+  // ---- Audio cache state ----
+  const [audioOverviews, setAudioOverviews] = useState({});
+  const [audioRunningGrades, setAudioRunningGrades] = useState({});
+
   // ---- Chapter-by-chapter prewarm state ----
   const [chapterGrade, setChapterGrade] = useState("Grade 9");
   const [chapterList, setChapterList] = useState([]);
@@ -133,6 +139,17 @@ function AdminCacheManagementPage({ user }) {
     }
   }
 
+  async function loadAudioOverview(grade) {
+    try {
+      const result = await getAudioOverview(gradeToSlug(grade), user.accessToken);
+      if (result.success) {
+        setAudioOverviews(prev => ({ ...prev, [grade]: result }));
+      }
+    } catch {
+      // Audio overview is optional — fail silently
+    }
+  }
+
   async function loadLkbOverview(grade) {
     try {
       const result = await getLkbOverview(gradeToSlug(grade), user.accessToken);
@@ -164,16 +181,15 @@ function AdminCacheManagementPage({ user }) {
     fetchStatus();
     loadDkbStats();
 
-    // Pre-load LKB overviews for supported grades only (Grade 5–12)
+    // Pre-load LKB + audio overviews for supported grades only (Grade 5–12)
     // Grades 1–4 are not supported by the backend and return 400.
     const supportedGrades = Array.from({ length: 8 }, (_, i) => `Grade ${i + 5}`);
-    supportedGrades.forEach((g) => loadLkbOverview(g));
+    supportedGrades.forEach((g) => { loadLkbOverview(g); loadAudioOverview(g); });
 
-    // Poll every 15 seconds — refresh cache status AND LKB chip counts
+    // Poll every 15 seconds — refresh cache status, LKB, and audio counts
     pollRef.current = setInterval(() => {
       fetchStatus();
-      // Refresh LKB overviews so the chip progress bar updates in real time
-      supportedGrades.forEach((g) => loadLkbOverview(g));
+      supportedGrades.forEach((g) => { loadLkbOverview(g); loadAudioOverview(g); });
     }, 15000);
 
     return () => {
@@ -222,6 +238,24 @@ function AdminCacheManagementPage({ user }) {
       setError(err.message || "Failed to start Doubt KB pre-warming.");
     } finally {
       setTimeout(() => setDkbRunningGrades((prev) => ({ ...prev, [grade]: false })), 60000);
+    }
+  }
+
+  async function handleBuildAudio(grade) {
+    /** Start background TTS audio pre-warm for a grade. */
+    setMessage("");
+    setError("");
+    setAudioRunningGrades((prev) => ({ ...prev, [grade]: true }));
+    try {
+      const result = await startAudioPrewarm(gradeToSlug(grade), user.accessToken);
+      setMessage(result.message || `Audio prewarm started for ${grade}.`);
+      // Refresh audio overview after a delay
+      setTimeout(() => loadAudioOverview(grade), 30000);
+    } catch (err) {
+      setError(err.message || "Failed to start audio prewarm.");
+    } finally {
+      // Audio takes ~18s per step × many steps — reset after 10 min
+      setTimeout(() => setAudioRunningGrades((prev) => ({ ...prev, [grade]: false })), 600000);
     }
   }
 
@@ -486,6 +520,44 @@ function AdminCacheManagementPage({ user }) {
                     </div>
                   )}
 
+                  {/* Audio cache progress row */}
+                  {(() => {
+                    const audio = audioOverviews[grade];
+                    const audio_cached = audio?.audio_cached ?? 0;
+                    const audio_expected = audio?.audio_expected ?? 0;
+                    const audio_pct = audio_expected > 0 ? Math.min(100, Math.round(audio_cached / audio_expected * 100)) : 0;
+                    const audio_complete = audio_expected > 0 && audio_cached >= audio_expected;
+                    const audio_running = audioRunningGrades[grade];
+                    if (!audio && !audio_running) return null;
+                    return (
+                      <div style={{ marginBottom: 16 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: 4 }}>
+                          <span>🔊 Audio cached</span>
+                          <strong style={{ color: audio_complete ? "#22c55e" : audio_pct > 0 ? "#db2777" : "#6b7280" }}>
+                            {audio_cached.toLocaleString()} / {audio_expected.toLocaleString()} ({audio_pct}%)
+                            {audio_running && " ⏳"}
+                            {!audio_running && audio_cached < audio_expected && audio_cached > 0 && (
+                              <span style={{ fontWeight: 400, color: "#9ca3af" }}>
+                                {" "}— {(audio_expected - audio_cached).toLocaleString()} more needed
+                              </span>
+                            )}
+                            {audio?.total_mb > 0 && (
+                              <span style={{ fontWeight: 400, color: "#9ca3af" }}>
+                                {" "}· {audio.total_mb} MB
+                              </span>
+                            )}
+                          </strong>
+                        </div>
+                        <div style={{ background: "#e5e7eb", borderRadius: 6, height: 8, overflow: "hidden" }}>
+                          <div style={{
+                            width: `${audio_pct}%`, height: "100%", transition: "width 0.4s",
+                            background: audio_complete ? "#22c55e" : audio_pct > 0 ? "#db2777" : "#d1d5db",
+                          }} />
+                        </div>
+                      </div>
+                    );
+                  })()}
+
                   {/* LKB (Lesson Knowledge Base) progress — inline with above rows */}
                   {(() => {
                     const lkb = lkbOverviews[grade];
@@ -584,6 +656,36 @@ function AdminCacheManagementPage({ user }) {
                         ? "✅ Doubt KB Done"
                         : `🧠 Build Doubt KB${dkb_cached > 0 ? " (Resume)" : ""}`}
                     </button>
+
+                    {/* Audio build button */}
+                    {(() => {
+                      const audio = audioOverviews[grade];
+                      const audio_cached = audio?.audio_cached ?? 0;
+                      const audio_expected = audio?.audio_expected ?? 0;
+                      const audio_pct = audio_expected > 0 ? Math.round(audio_cached / audio_expected * 100) : 0;
+                      const audio_complete = audio_expected > 0 && audio_cached >= audio_expected;
+                      const audio_running = audioRunningGrades[grade];
+                      return (
+                        <button
+                          className="primary-btn"
+                          disabled={audio_running}
+                          onClick={() => {
+                            if (!audioOverviews[grade]) loadAudioOverview(grade);
+                            handleBuildAudio(grade);
+                          }}
+                          style={{ background: audio_complete ? "#22c55e" : audio_running ? "#6b7280" : "#db2777" }}
+                          title="Pre-generate TTS audio for all lesson steps — instant playback for students (Edge TTS, free)"
+                        >
+                          {audio_running
+                            ? "⏳ Building Audio…"
+                            : audio_complete
+                            ? "✅ Audio Done"
+                            : audio_cached > 0
+                            ? `🔊 Build Audio (Resume · ${audio_pct}%)`
+                            : "🔊 Build Audio Cache"}
+                        </button>
+                      );
+                    })()}
 
                     {/* LKB build button — inline with other action buttons */}
                     {(() => {

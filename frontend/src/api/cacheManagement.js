@@ -127,3 +127,18 @@ export async function getLkbOverview(gradeSlug, accessToken) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 }
+
+export async function getAudioOverview(gradeSlug, accessToken) {
+  /** Return pre-warmed audio file counts vs expected for a grade. */
+  return authFetch(`/api/cache-management/audio/overview/${gradeSlug}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
+
+export async function startAudioPrewarm(gradeSlug, accessToken) {
+  /** Trigger background TTS audio pre-warm for all cached lessons in a grade. */
+  return authFetch(`/api/cache-management/prewarm/audio/${gradeSlug}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+}
