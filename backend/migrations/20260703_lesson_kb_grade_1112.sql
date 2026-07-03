@@ -33,6 +33,15 @@ CREATE INDEX IF NOT EXISTS lesson_kb_grade_idx
 -- Enable Row Level Security
 ALTER TABLE lesson_kb ENABLE ROW LEVEL SECURITY;
 
--- Service role has full access
-CREATE POLICY IF NOT EXISTS "service_role_full_access" ON lesson_kb
-    FOR ALL TO service_role USING (true) WITH CHECK (true);
+-- Service role has full access (idempotent — skip if policy already exists)
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_policies
+        WHERE tablename = 'lesson_kb'
+          AND policyname = 'service_role_full_access'
+    ) THEN
+        EXECUTE 'CREATE POLICY "service_role_full_access" ON lesson_kb
+            FOR ALL TO service_role USING (true) WITH CHECK (true)';
+    END IF;
+END $$;
