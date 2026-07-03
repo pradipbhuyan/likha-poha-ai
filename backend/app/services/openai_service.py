@@ -32,6 +32,7 @@ GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 SAMBANOVA_BASE_URL = "https://api.sambanova.ai/v1"
+NVIDIA_BASE_URL    = "https://integrate.api.nvidia.com/v1"
 
 # Default Groq model — fast, high-quality, generous free tier
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
@@ -46,6 +47,10 @@ DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
 # SambaNova — OpenAI-compatible, generous free tier with Llama 4
 DEFAULT_SAMBANOVA_MODEL = "Meta-Llama-3.3-70B-Instruct"
+
+# NVIDIA NIM — OpenAI-compatible API, free tier via build.nvidia.com
+# Key starts with nvapi-  |  Base: https://integrate.api.nvidia.com/v1
+DEFAULT_NVIDIA_MODEL = "meta/llama-4-scout-17b-16e-instruct"
 
 _MODEL_PRICING = {
     # OpenAI models
@@ -107,6 +112,8 @@ _settings_cache: dict = {
     "gemini_model": DEFAULT_GEMINI_MODEL,
     "sambanova_api_key": None,
     "sambanova_model": DEFAULT_SAMBANOVA_MODEL,
+    "nvidia_api_key": None,
+    "nvidia_model": DEFAULT_NVIDIA_MODEL,
     "ollama_cloud_api_key": None,
     "ollama_cloud_model": "gemma3:4b",
     "loaded_at": 0.0,
@@ -132,6 +139,10 @@ _gemini_key: str | None = None
 # ── SambaNova client cache ────────────────────────────────────────────────────
 _sambanova_client: OpenAI | None = None
 _sambanova_key: str | None = None
+
+# ── NVIDIA NIM client cache ───────────────────────────────────────────────────
+_nvidia_client: OpenAI | None = None
+_nvidia_key: str | None = None
 
 
 def _load_db_settings() -> dict | None:
@@ -222,6 +233,8 @@ def get_effective_settings() -> dict:
                 _settings_cache["gemini_model"] = raw_gemini_model
             _settings_cache["sambanova_api_key"] = db.get("sambanova_api_key") or getattr(settings, "SAMBANOVA_API_KEY", None)
             _settings_cache["sambanova_model"] = db.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+            _settings_cache["nvidia_api_key"] = db.get("nvidia_api_key") or getattr(settings, "NVIDIA_API_KEY", None)
+            _settings_cache["nvidia_model"] = db.get("nvidia_model") or DEFAULT_NVIDIA_MODEL
             _settings_cache["ollama_cloud_api_key"] = db.get("ollama_cloud_api_key") or ""
             _settings_cache["ollama_cloud_model"] = db.get("ollama_cloud_model") or "gemma3:4b"
             _settings_cache["fallback_provider"] = db.get("fallback_provider") or ""
@@ -240,6 +253,8 @@ def get_effective_settings() -> dict:
             _settings_cache["gemini_model"] = DEFAULT_GEMINI_MODEL
             _settings_cache["sambanova_api_key"] = getattr(settings, "SAMBANOVA_API_KEY", None)
             _settings_cache["sambanova_model"] = DEFAULT_SAMBANOVA_MODEL
+            _settings_cache["nvidia_api_key"] = getattr(settings, "NVIDIA_API_KEY", None)
+            _settings_cache["nvidia_model"] = DEFAULT_NVIDIA_MODEL
             _settings_cache["ollama_cloud_api_key"] = ""
             _settings_cache["ollama_cloud_model"] = "gemma3:4b"
         _settings_cache["loaded_at"] = now
@@ -417,11 +432,41 @@ def get_sambanova_client() -> OpenAI:
     return _sambanova_client
 
 
+def get_nvidia_client() -> OpenAI:
+    """
+    Return an OpenAI-compatible client pointed at NVIDIA NIM.
+
+    NVIDIA NIM uses the OpenAI Chat Completions format.
+    Free tier available at build.nvidia.com — key starts with nvapi-
+    Models include Llama 4 Scout, Llama 3.3 70B, Mistral, Phi-4, etc.
+    """
+    global _nvidia_client, _nvidia_key
+
+    current_settings = get_effective_settings()
+    nvidia_key = (
+        current_settings.get("nvidia_api_key")
+        or getattr(settings, "NVIDIA_API_KEY", None)
+        or ""
+    )
+
+    if _nvidia_client is None or nvidia_key != _nvidia_key:
+        with _client_lock:
+            if _nvidia_client is None or nvidia_key != _nvidia_key:
+                _nvidia_client = OpenAI(
+                    api_key=nvidia_key,
+                    base_url=NVIDIA_BASE_URL,
+                    timeout=120.0,
+                )
+                _nvidia_key = nvidia_key
+
+    return _nvidia_client
+
+
 def get_chat_client() -> OpenAI:
     """
     Return the active LLM client based on the admin-configured provider.
 
-    Supported providers: openai | venice | groq | cerebras | gemini | sambanova
+    Supported providers: openai | venice | groq | cerebras | gemini | sambanova | nvidia
     Note: ollama_cloud uses native /api/chat and is handled separately in ask_llm().
     This is the function that ask_llm() should use.
     """
@@ -437,6 +482,8 @@ def get_chat_client() -> OpenAI:
         return get_gemini_client()
     if provider == "sambanova":
         return get_sambanova_client()
+    if provider == "nvidia":
+        return get_nvidia_client()
     # ollama_local: use OpenAI-compat client pointed at local server
     if provider == "ollama_local":
         base_url = current.get("ollama_local_base_url", "http://localhost:11434/v1")
@@ -555,6 +602,8 @@ def _attempt_fallback_call(
         fb_model = current.get("venice_model") or "llama-3.3-70b"
     elif fallback_provider == "sambanova":
         fb_model = current.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+    elif fallback_provider == "nvidia":
+        fb_model = current.get("nvidia_model") or DEFAULT_NVIDIA_MODEL
     elif fallback_provider == "ollama_cloud":
         fb_model = current.get("ollama_cloud_model") or "gemma3:4b"
         api_key = current.get("ollama_cloud_api_key", "")
@@ -574,6 +623,7 @@ def _attempt_fallback_call(
         "cerebras":   get_cerebras_client,
         "venice":     get_venice_client,
         "sambanova":  get_sambanova_client,
+        "nvidia":     get_nvidia_client,
     }
     if fallback_provider in _fb_client_map:
         fb_client = _fb_client_map[fallback_provider]()
@@ -638,6 +688,8 @@ def ask_llm(
         active_model = current.get("gemini_model") or DEFAULT_GEMINI_MODEL
     elif provider == "sambanova":
         active_model = current.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
+    elif provider == "nvidia":
+        active_model = current.get("nvidia_model") or DEFAULT_NVIDIA_MODEL
     elif provider == "ollama_cloud":
         active_model = current.get("ollama_cloud_model") or "gemma3:4b"
     elif provider == "ollama_local":

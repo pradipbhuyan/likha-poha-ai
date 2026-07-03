@@ -144,6 +144,9 @@ function AdminControlPage({ user }) {
   const [newGeminiKey, setNewGeminiKey] = useState("");
   const [sambanovaKeyPrefix, setSambanovaKeyPrefix] = useState("");
   const [sambanovaModel, setSambanovaModel] = useState("Meta-Llama-3.3-70B-Instruct");
+  const [nvidiaKeyPrefix, setNvidiaKeyPrefix] = useState("");
+  const [nvidiaModel, setNvidiaModel] = useState("meta/llama-4-scout-17b-16e-instruct");
+  const [newNvidiaKey, setNewNvidiaKey] = useState("");
   const [ollamaCloudKeyPrefix, setOllamaCloudKeyPrefix] = useState("");
   const [ollamaCloudModel, setOllamaCloudModel] = useState("gemma3:4b");
   const [newOllamaCloudKey, setNewOllamaCloudKey] = useState("");
@@ -259,6 +262,8 @@ function AdminControlPage({ user }) {
       setGeminiModel(data.gemini_model || "gemini-2.0-flash-lite");
       setSambanovaKeyPrefix(data.sambanova_key_prefix || "");
       setSambanovaModel(data.sambanova_model || "Meta-Llama-3.3-70B-Instruct");
+      setNvidiaKeyPrefix(data.nvidia_key_prefix || "");
+      setNvidiaModel(data.nvidia_model || "meta/llama-4-scout-17b-16e-instruct");
       setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
       setOllamaCloudModel(data.ollama_cloud_model || "gemma3:4b");
     } catch (err) {
@@ -288,9 +293,11 @@ function AdminControlPage({ user }) {
       if (newCerebrasKey.trim()) payload.cerebras_api_key = newCerebrasKey.trim();
       if (newGeminiKey.trim()) payload.gemini_api_key = newGeminiKey.trim();
       if (newSambanovaKey.trim()) payload.sambanova_api_key = newSambanovaKey.trim();
+      if (newNvidiaKey.trim()) payload.nvidia_api_key = newNvidiaKey.trim();
       if (newOllamaCloudKey.trim()) payload.ollama_cloud_api_key = newOllamaCloudKey.trim();
       payload.gemini_model = geminiModel;
       payload.sambanova_model = sambanovaModel;
+      payload.nvidia_model = nvidiaModel;
       payload.ollama_cloud_model = ollamaCloudModel;
       const data = await updateAiSettings(payload, user.accessToken);
       setAiEnabled(data.api_enabled ?? true);
@@ -308,6 +315,7 @@ function AdminControlPage({ user }) {
       setNewGroqKey("");
       setNewCerebrasKey("");
       setNewSambanovaKey("");
+      setNewNvidiaKey("");
       setNewOllamaCloudKey("");
       if (data.ollama_cloud_key_prefix !== undefined) setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
       if (data.ollama_cloud_model) setOllamaCloudModel(data.ollama_cloud_model);
@@ -317,6 +325,7 @@ function AdminControlPage({ user }) {
         data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` :
         data.provider === "gemini" ? `Gemini (${data.gemini_model})` :
         data.provider === "sambanova" ? `SambaNova (${data.sambanova_model})` :
+        data.provider === "nvidia" ? `NVIDIA NIM (${data.nvidia_model})` :
         data.provider === "ollama_cloud" ? `Ollama Cloud (${data.ollama_cloud_model || ollamaCloudModel})` : "OpenAI";
       setAiSettingsMessage(
         data.api_enabled
@@ -1137,6 +1146,7 @@ function AdminControlPage({ user }) {
                 ["cerebras",      "🧠 Cerebras",         "#a855f7"],
                 ["gemini",        "✨ Gemini",            "#f59e0b"],
                 ["sambanova",     "🚀 SambaNova",        "#06b6d4"],
+                ["nvidia",        "🟢 NVIDIA NIM",       "#76b900"],
                 ["ollama_cloud",  "🦙 Ollama Cloud",     "#f97316"],
               ].map(([val, label, color]) => (
                 <button key={val} onClick={() => setAiProvider(val)}
@@ -1148,7 +1158,7 @@ function AdminControlPage({ user }) {
                     transition: "all .18s", textAlign: "center",
                   }}>
                   {label}
-                  {["groq","cerebras","gemini","sambanova","ollama_cloud"].includes(val) && (
+                  {["groq","cerebras","gemini","sambanova","nvidia","ollama_cloud"].includes(val) && (
                     <span style={{ display:"block", fontSize:".68rem", color:"#22c55e", fontWeight:800, marginTop:2 }}>FREE</span>
                   )}
                 </button>
@@ -1317,6 +1327,44 @@ function AdminControlPage({ user }) {
                 </select>
                 <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
                   💡 5 models are <strong>completely free</strong>. <strong>Meta-Llama-3.3-70B-Instruct</strong> gives best lesson quality. MiniMax-M2.7 requires a paid SambaNova account.
+                </p>
+              </label>
+            </div>
+          )}
+
+          {/* NVIDIA NIM settings */}
+          {aiProvider === "nvidia" && (
+            <div style={{ background: "rgba(118,185,0,.07)", border: "1px solid rgba(118,185,0,.3)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <strong>NVIDIA NIM Settings</strong>
+              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
+                NVIDIA NIM provides Llama 4 Scout and other models via an OpenAI-compatible API.
+                Free tier available at{" "}
+                <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>build.nvidia.com</a>.
+                Key starts with <code>nvapi-</code>
+              </p>
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong style={{ fontSize: ".85rem" }}>NVIDIA API Key</strong>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
+                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
+                    {nvidiaKeyPrefix ? `${nvidiaKeyPrefix}••••••••••` : "No key stored"}
+                  </code>
+                </div>
+                <input type="password" value={newNvidiaKey} onChange={(e) => setNewNvidiaKey(e.target.value)}
+                  placeholder="nvapi-…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+              <label style={{ display: "block" }}>
+                <strong style={{ fontSize: ".85rem" }}>NVIDIA Model</strong>
+                <select value={nvidiaModel} onChange={(e) => setNvidiaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="meta/llama-4-scout-17b-16e-instruct">✅ FREE — meta/llama-4-scout-17b-16e-instruct (Llama 4 Scout, recommended)</option>
+                  <option value="meta/llama-3.3-70b-instruct">✅ FREE — meta/llama-3.3-70b-instruct (Llama 3.3 70B)</option>
+                  <option value="meta/llama-3.1-8b-instruct">✅ FREE — meta/llama-3.1-8b-instruct (Llama 3.1 8B, fastest)</option>
+                  <option value="mistralai/mistral-7b-instruct-v0.3">✅ FREE — mistralai/mistral-7b-instruct-v0.3</option>
+                  <option value="google/gemma-3-27b-it">✅ FREE — google/gemma-3-27b-it (Gemma 3 27B)</option>
+                  <option value="deepseek-ai/deepseek-r1">✅ FREE — deepseek-ai/deepseek-r1 (reasoning)</option>
+                </select>
+                <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
+                  💡 <strong>Llama 4 Scout</strong> is the fastest and newest. Use <strong>Llama 3.3 70B</strong> for highest lesson quality. Get your free key at{" "}
+                  <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noreferrer" style={{ color: "#76b900" }}>build.nvidia.com</a>.
                 </p>
               </label>
             </div>
