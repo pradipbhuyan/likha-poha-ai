@@ -234,7 +234,22 @@ def get_effective_settings() -> dict:
             _settings_cache["sambanova_api_key"] = db.get("sambanova_api_key") or getattr(settings, "SAMBANOVA_API_KEY", None)
             _settings_cache["sambanova_model"] = db.get("sambanova_model") or DEFAULT_SAMBANOVA_MODEL
             _settings_cache["nvidia_api_key"] = db.get("nvidia_api_key") or getattr(settings, "NVIDIA_API_KEY", None)
-            _settings_cache["nvidia_model"] = db.get("nvidia_model") or DEFAULT_NVIDIA_MODEL
+            # Normalize NVIDIA models that are not available on the free-tier account.
+            # google/gemma-3-* require org-level access; remap to the confirmed-working default.
+            raw_nvidia_model = db.get("nvidia_model") or DEFAULT_NVIDIA_MODEL
+            _UNAVAILABLE_NVIDIA = {
+                "google/gemma-3-4b-it",
+                "google/gemma-3-12b-it",
+                "google/gemma-3-27b-it",
+                "google/gemma-2-2b-it",
+                "google/gemma-2-9b-it",
+                "google/gemma-2-27b-it",
+            }
+            _settings_cache["nvidia_model"] = (
+                DEFAULT_NVIDIA_MODEL
+                if raw_nvidia_model in _UNAVAILABLE_NVIDIA
+                else raw_nvidia_model
+            )
             _settings_cache["ollama_cloud_api_key"] = db.get("ollama_cloud_api_key") or ""
             _settings_cache["ollama_cloud_model"] = db.get("ollama_cloud_model") or "gemma3:4b"
             _settings_cache["fallback_provider"] = db.get("fallback_provider") or ""
