@@ -1,10 +1,12 @@
+# robots.txt for likhapoha.in
+# https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
 Allow: /
-Disallow: /dashboard
-Disallow: /lessons
-Disallow: /doubt
-Disallow: /mock-test
-Disallow: /analytics
-Disallow: /admin
 
+# Block backend API and internal routes from crawling
+Disallow: /api/
+Disallow: /src/
+
+# Sitemap location
 Sitemap: https://likhapoha.in/sitemap.xml
