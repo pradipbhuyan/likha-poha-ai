@@ -455,7 +455,10 @@ def get_nvidia_client() -> OpenAI:
                 _nvidia_client = OpenAI(
                     api_key=nvidia_key,
                     base_url=NVIDIA_BASE_URL,
-                    timeout=120.0,
+                    # 45 s is enough for NVIDIA NIM on free tier.
+                    # 120 s caused 3-retry batches to hang for 6 min per batch
+                    # (361 s = 3 × 120 s) during question_bank_build prewarm.
+                    timeout=45.0,
                 )
                 _nvidia_key = nvidia_key
 
@@ -773,7 +776,21 @@ def ask_llm(
             break  # success
         except Exception as exc:
             err_str = str(exc).lower()
-            is_retryable = "429" in err_str or "queue" in err_str or "rate" in err_str or "token_quota" in err_str or "too_many_tokens" in err_str
+            # Timeout errors must NOT be retried — NVIDIA NIM keepalive can cause
+            # each attempt to hang for the full timeout duration. With 3 retries
+            # this multiplied a 120 s timeout into a 361 s per-batch stall.
+            # Fail fast on timeout: log once and move on to the next batch.
+            is_timeout = "timeout" in err_str or "timed out" in err_str
+            is_retryable = (
+                not is_timeout
+                and (
+                    "429" in err_str
+                    or "queue" in err_str
+                    or "rate" in err_str
+                    or "token_quota" in err_str
+                    or "too_many_tokens" in err_str
+                )
+            )
             if is_retryable and _attempt < _MAX_RETRIES - 1:
                 _delay = _retry_delays[_attempt]
                 _log.warning(
