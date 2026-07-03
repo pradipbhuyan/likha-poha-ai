@@ -334,6 +334,13 @@ function FirstTimeGuide({ user, activePage }) {
 
             <div className="first-guide-actions">
               <button onClick={() => closeGuide(true)}>Skip</button>
+              <button
+                disabled={stepIndex === 0}
+                onClick={() => setStepIndex((prev) => prev - 1)}
+                style={{ opacity: stepIndex === 0 ? 0.35 : 1 }}
+              >
+                Back
+              </button>
               <button className="primary-btn" onClick={goNext}>
                 {stepIndex >= steps.length - 1 ? "Finish" : "Next"}
               </button>
