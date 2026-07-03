@@ -337,7 +337,11 @@ function FirstTimeGuide({ user, activePage }) {
               <button
                 disabled={stepIndex === 0}
                 onClick={() => setStepIndex((prev) => prev - 1)}
-                style={{ opacity: stepIndex === 0 ? 0.35 : 1 }}
+                className="primary-btn"
+                style={{
+                  background: "#475569",
+                  opacity: stepIndex === 0 ? 0.35 : 1,
+                }}
               >
                 Back
               </button>
