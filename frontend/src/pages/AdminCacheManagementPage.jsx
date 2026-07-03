@@ -164,15 +164,16 @@ function AdminCacheManagementPage({ user }) {
     fetchStatus();
     loadDkbStats();
 
-    // Pre-load LKB overviews for all grades so progress bars show immediately
-    const knownGrades = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
-    knownGrades.forEach((g) => loadLkbOverview(g));
+    // Pre-load LKB overviews for supported grades only (Grade 5–12)
+    // Grades 1–4 are not supported by the backend and return 400.
+    const supportedGrades = Array.from({ length: 8 }, (_, i) => `Grade ${i + 5}`);
+    supportedGrades.forEach((g) => loadLkbOverview(g));
 
     // Poll every 15 seconds — refresh cache status AND LKB chip counts
     pollRef.current = setInterval(() => {
       fetchStatus();
       // Refresh LKB overviews so the chip progress bar updates in real time
-      knownGrades.forEach((g) => loadLkbOverview(g));
+      supportedGrades.forEach((g) => loadLkbOverview(g));
     }, 15000);
 
     return () => {
