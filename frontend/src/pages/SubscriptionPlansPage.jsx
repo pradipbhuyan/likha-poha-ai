@@ -438,13 +438,13 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
               )}
 
               <ul className="subscription-feature-list">
-                {plan.included.map((feature) => (
+                {(Array.isArray(plan.included) ? plan.included : []).map((feature) => (
                   <li key={feature}>
                     <Check size={18} strokeWidth={2.6} />
                     <span>{feature}</span>
                   </li>
                 ))}
-                {plan.notIncluded.map((feature) => (
+                {(Array.isArray(plan.notIncluded) ? plan.notIncluded : []).map((feature) => (
                   <li key={feature} className="muted-feature">
                     <Minus size={18} strokeWidth={2.6} />
                     <span>{feature}</span>
@@ -1072,14 +1072,14 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
               )}
 
               <ul className="subscription-feature-list">
-                {plan.included.map((feature) => (
+                {(Array.isArray(plan.included) ? plan.included : []).map((feature) => (
                   <li key={feature}>
                     <Check size={18} strokeWidth={2.6} />
                     <span>{feature}</span>
                   </li>
                 ))}
 
-                {plan.notIncluded.map((feature) => (
+                {(Array.isArray(plan.notIncluded) ? plan.notIncluded : []).map((feature) => (
                   <li key={feature} className="muted-feature">
                     <Minus size={18} strokeWidth={2.6} />
                     <span>{feature}</span>
