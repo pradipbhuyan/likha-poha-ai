@@ -14,7 +14,7 @@ import {
   ensureLessonKbChips,
 } from "../api/lesson";
 import { getDoubtHistory } from "../api/doubt";
-import { generateSpeech } from "../api/tts";
+import { generateSpeech, getCachedAudioUrl } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import LessonSections from "../components/LessonSections";
 import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
@@ -1194,13 +1194,30 @@ function LessonsPage({ user, setActivePage }) {
   }
 
   async function handleReadAloud() {
-    /** Convert the current lesson into speech using the default voice and rate. */
+    /**
+     * Play lesson audio.
+     * Fast path: check for pre-warmed audio in Supabase Storage (instant, $0).
+     * Fallback: generate via Edge TTS (~15-20s for a full lesson step).
+     */
     if (!lesson) return;
 
     setTtsLoading(true);
     setAudioUrl("");
 
     try {
+      // ── Fast path: pre-warmed audio cache ────────────────────────────────
+      const cached = await getCachedAudioUrl({
+        grade,
+        subject,
+        chapter,
+        stepTitle,
+      });
+      if (cached?.cached && cached.url) {
+        setAudioUrl(cached.url);
+        return;
+      }
+
+      // ── Fallback: generate via Edge TTS ──────────────────────────────────
       const url = await generateSpeech({
         text: lesson,
         voice: DEFAULT_VOICE,
