@@ -45,7 +45,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
           By subscribing to any paid plan, you agree to this Refund Policy. Please read it carefully before making a purchase.
         </Section>
 
-        <Section title="2. Trial Plan — Try It Out (₹99 / 8 Days)">
+        <Section title="2. Trial Plan — Premium Nano (₹99 / 8 Days)">
           The ₹99 trial plan is a <strong>paid introductory offer</strong> designed to let you experience the full LikhaPoha AI platform at minimal cost before committing to a monthly plan.
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}>The trial fee of ₹99 is <strong>non-refundable</strong> once access has been activated.</li>
@@ -54,7 +54,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
           </ul>
         </Section>
 
-        <Section title="3. Monthly Plans — Standard (₹299/month) and Family (₹499/month)">
+        <Section title="3. Monthly Plans — Premium (₹299/month) and Family Premium (₹499/month)">
           <ul style={{paddingLeft:24,marginTop:12,color:"#cbd5e1"}}>
             <li style={{marginBottom:8}}><strong>Within 24 hours of first purchase:</strong> If you have not used the platform (no lessons generated, no doubts asked, no mock tests taken), you may request a full refund by writing to <a href={`mailto:${contactEmail}`} style={{color:"#93c5fd"}}>{contactEmail}</a>.</li>
             <li style={{marginBottom:8}}><strong>After 24 hours:</strong> Subscriptions are <strong>non-refundable</strong> once the billing cycle has started and platform features have been accessed.</li>

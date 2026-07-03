@@ -198,11 +198,11 @@ PLATFORM_FAQ: list[dict] = [
             "**LikhaPoha AI Plans:**\n\n"
             "| Plan | Price | Best for |\n"
             "|------|-------|----------|\n"
-            "| Try It Out | ₹99 / 8 days | First-time trial |\n"
-            "| Standard | ₹299 / month | One student |\n"
-            "| Family | ₹499 / month | Up to 2 children |\n\n"
-            "All plans include **all subjects, all grades, unlimited doubt solving, "
-            "mock tests, and parent dashboard**.\n\n"
+            "| Premium Nano | ₹99 / 8 days | Try the full platform before committing |\n"
+            "| Premium | ₹299 / month | One student, monthly access |\n"
+            "| Family Premium | ₹499 / month | Up to 2 children |\n\n"
+            "All paid plans include all CBSE subjects, all grades, AI lessons, "
+            "doubt solving, mock tests, and parent dashboard.\n\n"
             "💡 Have an offer code? Use it during signup to get free trial access."
         ),
         "suggestions": ["How do I sign up?", "What does the Family plan include?", "Is there a free trial?"],

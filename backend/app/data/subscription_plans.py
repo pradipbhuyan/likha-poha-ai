@@ -124,8 +124,8 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     },
     "premium": {
         "key": "premium",
-        "label": "Standard",
-        "short_label": "Standard",
+        "label": "Premium",
+        "short_label": "Premium",
         "price": 299,
         "billing_label": "month",
         "audience": (
@@ -161,13 +161,12 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     },
     "family_premium": {
         "key": "family_premium",
-        "label": "Family",
-        "short_label": "Family",
+        "label": "Family Premium",
+        "short_label": "Family Premium",
         "price": 499,
         "billing_label": "month",
         "audience": (
-            "Best value plan for families with two children — full CBSE "
-            "access for both."
+            "One subscription for families with up to two children."
         ),
         "badge": "Best value",
         "recommended": False,
@@ -182,11 +181,11 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         "daily_token_limit": 150000,
         "monthly_token_limit": 5000000,
         "included": [
-            "Everything in Standard",
+            "Everything in Premium",
             "Up to 2 children",
-            "Multi-parent access",
-            "Separate progress tracking",
-            "Teacher dashboard access",
+            "Separate child progress",
+            "Parent Dashboard",
+            "Family learning management",
         ],
         "not_included": [],
         "comparison": {
@@ -198,7 +197,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     },
     "standard_6month": {
         "key": "standard_6month",
-        "label": "Standard — 6 Months",
+        "label": "Premium — 6 Months",
         "short_label": "6-Month",
         "price": 1495,
         "billing_label": "6 months",
@@ -236,7 +235,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     },
     "standard_annual": {
         "key": "standard_annual",
-        "label": "Standard — Annual",
+        "label": "Premium — Annual",
         "short_label": "Annual",
         "price": 2999,
         "billing_label": "year",
@@ -274,7 +273,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     },
     "family_annual": {
         "key": "family_annual",
-        "label": "Family — Annual",
+        "label": "Family Premium — Annual",
         "short_label": "Family Annual",
         "price": 4999,
         "billing_label": "year",
@@ -295,11 +294,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         "daily_token_limit": 150000,
         "monthly_token_limit": 5000000,
         "included": [
-            "Everything in Family Monthly",
+            "Everything in Family Premium",
             "Up to 2 children",
-            "Multi-parent access",
-            "Separate progress tracking",
-            "Teacher dashboard access",
+            "Separate child progress",
+            "Parent Dashboard",
             "🎉 2 months free vs monthly plan",
         ],
         "not_included": [],

@@ -77,7 +77,7 @@ describe("Plan catalog integrity", () => {
     expect(plan).toBeDefined();
     expect(plan.key).toBe("free");
     expect(plan.label).toBe("Premium Nano");
-    expect(plan.shortLabel).toBe("Nano");
+    expect(plan.shortLabel).toBe("Premium Nano");
     expect(plan.price).toBe(99);
     expect(plan.billingLabel).toBe("8 days");
     expect(plan.isPublic).toBe(true);

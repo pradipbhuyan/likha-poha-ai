@@ -64,7 +64,7 @@ function SalesIncentivePage({ user }) {
     sales_profile_id: "",
     student_id: "",
     package_key: "starter",
-    package_label: "Standard",
+    package_label: "Premium",
     package_amount: 499,
     incentive_percent: 5,
     status: "pending",

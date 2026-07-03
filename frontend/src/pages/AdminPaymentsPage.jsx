@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { getAdminPaymentLogs } from "../api/adminControl";
 
 const PLAN_LABELS = {
-  free: "Free Trial",
-  starter: "Standard ₹299",
-  family_premium: "Family ₹499",
+  free: "Premium Nano ₹99",
+  starter: "Premium ₹299",
+  family_premium: "Family Premium ₹499",
   test_1rupee: "₹1 Test",
 };
 

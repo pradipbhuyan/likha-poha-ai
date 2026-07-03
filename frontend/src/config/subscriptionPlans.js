@@ -17,7 +17,7 @@
  *   • All comparison values are consistent with backend access-control logic.
  *
  * COMPARISON_PLAN_ORDER is the canonical column order for the compare table:
- *   Feature | Free Tier | Nano | Premium | Family Premium
+ *   Feature | Free Tier | Premium Nano | Premium | Family Premium
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -43,7 +43,7 @@ export const SUBSCRIPTION_PLANS = {
     shortLabel: "Free",
     price: 0,
     billingLabel: "Free",
-    audience: "Basic access to explore the platform before choosing a plan.",
+    audience: "Perfect for getting started.",
     badge: "",
     recommended: false,
     discountPercent: 0,
@@ -57,7 +57,12 @@ export const SUBSCRIPTION_PLANS = {
     access_sof_english: false,
     daily_token_limit: 0,
     monthly_token_limit: 0,
-    included: [],
+    included: [
+      "Limited daily AI access",
+      "Core learning features",
+      "Parent Dashboard",
+      "Upgrade anytime",
+    ],
     notIncluded: [
       "Full AI lessons",
       "Unlimited mock tests",
@@ -87,11 +92,11 @@ export const SUBSCRIPTION_PLANS = {
   free: {
     key: "free",
     label: "Premium Nano",
-    shortLabel: "Nano",
+    shortLabel: "Premium Nano",
     price: 99,
     billingLabel: "8 days",
     audience:
-      "Full platform access for 8 days — all CBSE subjects, unlimited doubts, mock tests. No restrictions.",
+      "Experience the complete learning platform before committing to a monthly plan.",
     badge: "Start here",
     recommended: false,
     discountPercent: 0,
@@ -107,11 +112,11 @@ export const SUBSCRIPTION_PLANS = {
     monthly_token_limit: 1000000,
     included: [
       "All CBSE subjects · All grades",
-      "Unlimited doubt solving",
-      "Full question bank access",
-      "Unlimited mock tests",
-      "Parent dashboard + alerts",
-      "Exemplar Research & Lessons",
+      "AI Lessons",
+      "Ask Doubt",
+      "Mock Tests",
+      "Parent Dashboard",
+      "Progress Insights",
     ],
     notIncluded: [],
     comparison: {
@@ -138,7 +143,7 @@ export const SUBSCRIPTION_PLANS = {
     price: 299,
     billingLabel: "month",
     audience:
-      "Best for serious CBSE exam prep — unlimited AI lessons, doubts, and mock tests every month.",
+      "Ideal for students preparing consistently throughout the academic year.",
     badge: "Most Popular",
     recommended: true,
     discountPercent: 0,
@@ -153,12 +158,9 @@ export const SUBSCRIPTION_PLANS = {
     daily_token_limit: 100000,
     monthly_token_limit: 3000000,
     included: [
-      "All CBSE subjects · All grades",
-      "Unlimited doubt solving",
-      "Full question bank access",
-      "Unlimited mock tests",
-      "Parent dashboard + alerts",
-      "Exemplar Research & Lessons",
+      "Everything in Premium Nano",
+      "Continuous monthly access",
+      "Unlimited learning within fair usage policy",
       "Priority support",
     ],
     notIncluded: [],
@@ -229,11 +231,11 @@ export const SUBSCRIPTION_PLANS = {
   family_premium: {
     key: "family_premium",
     label: "Family Premium",
-    shortLabel: "Family",
+    shortLabel: "Family Premium",
     price: 499,
     billingLabel: "month",
     audience:
-      "Full platform access for two children — everything in Premium, shared family plan.",
+      "One subscription for families with up to two children.",
     badge: "Best value",
     recommended: false,
     discountPercent: 0,
@@ -248,14 +250,11 @@ export const SUBSCRIPTION_PLANS = {
     daily_token_limit: 150000,
     monthly_token_limit: 5000000,
     included: [
-      "All CBSE subjects · All grades",
-      "Unlimited doubt solving",
-      "Full question bank access",
-      "Unlimited mock tests",
+      "Everything in Premium",
       "Up to 2 children",
-      "Parent dashboard + analytics",
-      "Exemplar Research & Lessons",
-      "Multi-parent access",
+      "Separate child progress",
+      "Parent Dashboard",
+      "Family learning management",
     ],
     notIncluded: [],
     comparison: {
