@@ -14,6 +14,7 @@ import SubscriptionPlansPage from "../pages/SubscriptionPlansPage";
 import {
   createPaymentOrder,
   getPaymentConfig,
+  getStudentPaymentConfig,
   verifyPayment,
 } from "../api/payments";
 
@@ -89,6 +90,7 @@ vi.mock("../api/parentDashboard", () => ({
 
 vi.mock("../api/payments", () => ({
   getPaymentConfig: vi.fn(),
+  getStudentPaymentConfig: vi.fn(),
   createPaymentOrder: vi.fn(),
   verifyPayment: vi.fn(),
 }));
@@ -237,5 +239,145 @@ describe("SubscriptionPlansPage payments", () => {
     expect(
       await screen.findByText(/payment verified/i)
     ).toBeInTheDocument();
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// REGRESSION: plan.included / notIncluded non-array crash
+// Ticket: Student subscription page blank screen (2026-07-03)
+// Root cause: DB sometimes returns included/notIncluded as a JSON string or null
+// instead of an array. .map() on a non-array throws, crashing the component.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe("SubscriptionPlansPage — non-array included/notIncluded regression", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    delete window.Razorpay;
+    getPaymentConfig.mockResolvedValue({
+      configured: false,
+      provider: "razorpay",
+      currency: "INR",
+      key_id: null,
+    });
+    // getStudentPaymentConfig is called when role=student
+    getStudentPaymentConfig.mockResolvedValue({
+      configured: false,
+      provider: "razorpay",
+      currency: "INR",
+      key_id: null,
+    });
+  });
+
+  test("does not crash when plan.included is a JSON string (DB regression)", async () => {
+    /**
+     * Reproduces the production blank-screen crash:
+     * When subscription_plan_settings is saved via json.dumps(), the
+     * included/notIncluded fields come back as strings, not arrays.
+     * The component must render without throwing.
+     */
+    const { getParentSubscriptionPlans } = await import("../api/parentDashboard");
+    getParentSubscriptionPlans.mockResolvedValueOnce({
+      success: true,
+      persisted: true,
+      source: "database",
+      plans: {
+        starter: {
+          key: "starter",
+          label: "Premium",
+          short_label: "Premium",
+          price: 299,
+          billing_label: "month",
+          is_public: true,
+          display_order: 1,
+          access_cbse: true,
+          // ← Non-array values that caused the crash
+          included: "All CBSE subjects · All grades",
+          not_included: null,
+          comparison: {},
+        },
+      },
+      plan_order: ["starter"],
+      contact: {},
+    });
+
+    // Must not throw — page must render something
+    render(
+      <SubscriptionPlansPage
+        user={{
+          role: "parent",
+          email: "parent@example.com",
+          username: "Parent User",
+        }}
+      />
+    );
+
+    // The page should render — not crash to blank screen
+    // (findAllByText used because "Premium" may appear in name + button)
+    const matches = await screen.findAllByText(/Premium/i);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  test("does not crash when plan.included is null", async () => {
+    const { getParentSubscriptionPlans } = await import("../api/parentDashboard");
+    getParentSubscriptionPlans.mockResolvedValueOnce({
+      success: true,
+      persisted: true,
+      source: "database",
+      plans: {
+        starter: {
+          key: "starter",
+          label: "Premium",
+          short_label: "Premium",
+          price: 299,
+          billing_label: "month",
+          is_public: true,
+          display_order: 1,
+          access_cbse: true,
+          included: null,
+          not_included: null,
+          comparison: {},
+        },
+      },
+      plan_order: ["starter"],
+      contact: {},
+    });
+
+    render(
+      <SubscriptionPlansPage
+        user={{
+          role: "parent",
+          email: "parent@example.com",
+          username: "Parent User",
+        }}
+      />
+    );
+
+    const matches2 = await screen.findAllByText(/Premium/i);
+    expect(matches2.length).toBeGreaterThan(0);
+  });
+
+  test("student role renders SubscriptionPlansPage without crash", async () => {
+    /**
+     * Student subscription view was never tested. This ensures the student
+     * code path renders without crashing even with minimal plan data.
+     */
+    render(
+      <SubscriptionPlansPage
+        user={{
+          role: "student",
+          email: "student@example.com",
+          username: "Test Student",
+          subscriptionPlan: "free",
+          accessCbse: false,
+        }}
+      />
+    );
+
+    // Should render loading or plan content — not crash to blank screen
+    // (Either "Loading subscription plans..." or actual plan names appear)
+    await waitFor(() => {
+      const body = document.body.textContent;
+      expect(body.length).toBeGreaterThan(0);
+    });
   });
 });
