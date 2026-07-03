@@ -13429,17 +13429,17 @@ body.dark-mode .performance-results-table td {
   right: 24px;
   top: 162px;
   z-index: 90;
-  max-width: min(430px, calc(100vw - 32px));
+  max-width: min(325px, calc(100vw - 32px));
 }
 
 .first-guide-panel {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(37, 99, 235, 0.22);
-  border-radius: 28px;
-  padding: 20px;
+  border-radius: 20px;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.97);
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.24);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.24);
 }
 
 .first-guide-panel::before {
@@ -13469,11 +13469,11 @@ body.dark-mode .performance-results-table td {
 
 .first-guide-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   z-index: 2;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border: 1px solid rgba(148, 163, 184, 0.25);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.86);
@@ -13492,26 +13492,27 @@ body.dark-mode .performance-results-table td {
 
 .first-guide-hero {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: flex-start;
-  padding-right: 40px;
+  padding-right: 32px;
 }
 
 .first-guide-mascot {
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 42px;
+  height: 42px;
   place-items: center;
-  border-radius: 18px;
+  border-radius: 12px;
   background: #eef4ff;
-  font-size: 30px;
+  font-size: 22px;
   box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.12);
+  flex-shrink: 0;
 }
 
 .first-guide-hero p {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   color: #2563eb;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -13520,25 +13521,26 @@ body.dark-mode .performance-results-table td {
 .first-guide-hero h3 {
   margin: 0;
   color: #0f172a;
-  font-size: 1.45rem;
+  font-size: 1.1rem;
 }
 
 .first-guide-hero small {
   display: block;
-  margin-top: 6px;
+  margin-top: 4px;
   color: #64748b;
-  line-height: 1.45;
+  font-size: 0.72rem;
+  line-height: 1.4;
 }
 
 .first-guide-progress {
   display: flex;
-  gap: 8px;
-  margin: 20px 0 14px;
+  gap: 5px;
+  margin: 14px 0 10px;
 }
 
 .first-guide-progress button {
   flex: 1;
-  height: 8px;
+  height: 6px;
   border: 0;
   border-radius: 999px;
   background: #dbeafe;
@@ -13551,64 +13553,67 @@ body.dark-mode .performance-results-table td {
 
 .first-guide-step-card {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: flex-start;
   border: 1px solid rgba(203, 213, 225, 0.8);
-  border-radius: 22px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.86);
 }
 
 .first-guide-step-icon {
   display: grid;
-  min-width: 48px;
-  height: 48px;
+  min-width: 36px;
+  height: 36px;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 11px;
   background: #eff6ff;
   color: #2563eb;
+  flex-shrink: 0;
 }
 
 .first-guide-step-card p {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   color: #2563eb;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .first-guide-step-card h4 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   color: #0f172a;
-  font-size: 1.08rem;
+  font-size: 0.85rem;
 }
 
 .first-guide-step-card span,
 .first-guide-message {
   color: #475569;
-  line-height: 1.55;
+  line-height: 1.5;
+  font-size: 0.78rem;
 }
 
 .first-guide-message {
-  margin: 14px 2px 0;
-  font-size: 0.93rem;
+  margin: 10px 2px 0;
+  font-size: 0.72rem;
 }
 
 .first-guide-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .first-guide-actions button {
   border: 0;
-  border-radius: 14px;
-  padding: 12px 16px;
+  border-radius: 10px;
+  padding: 8px 12px;
   background: #eef2f7;
   color: #0f172a;
   font-weight: 900;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
