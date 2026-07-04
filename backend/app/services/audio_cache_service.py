@@ -1,19 +1,18 @@
 """
 audio_cache_service.py — Pre-warmed TTS audio cache backed by Supabase Storage.
 
+Storage routing:
+  - Grade 9  → 1st Supabase (dpivlbbyzlbpwnwgajso) — bucket: lesson-audio
+  - All other grades → 2nd Supabase (sjfjyzaaypfzyfhhggqw) — bucket: lesson-audio
+
+This keeps Grade 9 (~955 MB) on Supabase 1 and all other grades on Supabase 2
+so neither project hits the 1 GB free tier storage limit.
+
 Flow:
-  1. get_cached_audio(grade, subject, chapter, step_title) → URL or None
-     Frontend calls this before generating TTS. If URL returned → instant playback.
-
-  2. store_audio(grade, subject, chapter, step_title, mp3_bytes) → URL
-     Called by prewarm script after Edge TTS generates an MP3.
-     Uploads to Supabase Storage bucket "lesson-audio", saves URL to DB.
-
-Storage layout in bucket:
-    lesson-audio / grade-9 / english / chapter-1-how-i-taught / concept-introduction.mp3
-
-POC scope: Grade 9 English (155 lessons, ~240 MB actual, ~48 min generation).
-Extend to other grades/subjects by running the prewarm script with different filters.
+  1. get_cached_audio_url(grade, ...) → URL or None
+     Looks up the correct Supabase DB table for the grade.
+  2. store_audio(grade, ..., mp3_bytes) → URL
+     Uploads to the correct Supabase Storage bucket and saves URL to DB.
 """
 
 import hashlib
@@ -26,6 +25,36 @@ from app.services.logger_service import get_logger
 _log = get_logger("audio_cache_service")
 
 BUCKET_NAME = "lesson-audio"
+
+# Grades stored on 2nd Supabase storage (all except Grade 9)
+_GRADE_9 = "grade 9"
+
+
+def _get_storage_client(grade: str):
+    """
+    Return the correct Supabase storage client for the given grade.
+    Grade 9 → 1st Supabase (admin_client).
+    All other grades → 2nd Supabase (grade_1112_client).
+    """
+    if (grade or "").lower().strip() == _GRADE_9:
+        return admin_client
+    try:
+        from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+        if grade_1112_client is None:
+            _log.warning("audio_cache: 2nd Supabase not configured, falling back to primary")
+            return admin_client
+        return grade_1112_client
+    except Exception:
+        return admin_client
+
+
+def _get_db_client(grade: str):
+    """
+    Return the correct Supabase DB client for lesson_audio_cache queries.
+    All grades use the primary DB (lesson_audio_cache lives on Supabase 1).
+    Storage URLs differ but the DB table is always on Supabase 1.
+    """
+    return admin_client
 
 # ── Cache key ─────────────────────────────────────────────────────────────────
 
@@ -77,11 +106,13 @@ def get_cached_audio_url(
     """
     Return pre-warmed audio URL if available, else None.
     Fast path: single DB lookup by cache_key (indexed).
+    DB always lives on Supabase 1; storage URL may point to Supabase 2.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
+    db = _get_db_client(grade)
     try:
         r = (
-            admin_client
+            db
             .table("lesson_audio_cache")
             .select("audio_url")
             .eq("cache_key", cache_key)
@@ -90,9 +121,8 @@ def get_cached_audio_url(
             .execute()
         )
         if r.data:
-            # Update last_accessed_at in background (best-effort)
             try:
-                admin_client.table("lesson_audio_cache").update(
+                db.table("lesson_audio_cache").update(
                     {"last_accessed_at": "now()"}
                 ).eq("cache_key", cache_key).execute()
             except Exception:
@@ -113,16 +143,23 @@ def store_audio(
     rate: str = "+0%",
 ) -> str:
     """
-    Upload MP3 bytes to Supabase Storage and save the public URL to DB.
-    Returns the public URL.
-    Raises RuntimeError if upload or DB insert fails.
+    Upload MP3 bytes to the correct Supabase Storage for this grade, then
+    save the public URL to the DB on Supabase 1.
+
+    Grade 9  → uploads to Supabase 1 lesson-audio bucket
+    Others   → uploads to Supabase 2 lesson-audio bucket (more free space)
+
+    Returns the public URL.  Raises RuntimeError on upload or DB failure.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
     file_path = _make_file_path(grade, subject, chapter, step_title)
 
-    # ── Upload to Supabase Storage ─────────────────────────────────────────
+    storage = _get_storage_client(grade)
+    db      = _get_db_client(grade)
+
+    # ── Upload to correct Supabase Storage ────────────────────────────────
     try:
-        admin_client.storage.from_(BUCKET_NAME).upload(
+        storage.storage.from_(BUCKET_NAME).upload(
             path=file_path,
             file=mp3_bytes,
             file_options={"content-type": "audio/mpeg", "upsert": "true"},
@@ -132,13 +169,13 @@ def store_audio(
 
     # ── Get public URL ─────────────────────────────────────────────────────
     try:
-        public_url = admin_client.storage.from_(BUCKET_NAME).get_public_url(file_path)
+        public_url = storage.storage.from_(BUCKET_NAME).get_public_url(file_path)
     except Exception as exc:
         raise RuntimeError(f"Could not get public URL: {exc}") from exc
 
-    # ── Save to DB ─────────────────────────────────────────────────────────
+    # ── Save to DB (always Supabase 1) ────────────────────────────────────
     try:
-        admin_client.table("lesson_audio_cache").upsert(
+        db.table("lesson_audio_cache").upsert(
             {
                 "cache_key":       cache_key,
                 "grade":           grade,
@@ -157,6 +194,7 @@ def store_audio(
     except Exception as exc:
         raise RuntimeError(f"DB upsert failed: {exc}") from exc
 
+    supabase_label = "Supabase 1 (Grade 9)" if (grade or "").lower().strip() == _GRADE_9 else "Supabase 2"
     _log.info(
         "audio_cache.stored",
         grade=grade,
@@ -164,6 +202,7 @@ def store_audio(
         chapter=chapter,
         step_title=step_title,
         size_kb=round(len(mp3_bytes) / 1024),
+        storage=supabase_label,
         url=public_url[:80],
     )
     return public_url
