@@ -2,11 +2,10 @@
 audio_cache_service.py — Pre-warmed TTS audio cache backed by Supabase Storage.
 
 Storage routing:
-  - Grade 9  → 1st Supabase (dpivlbbyzlbpwnwgajso) — bucket: lesson-audio
-  - All other grades → 2nd Supabase (sjfjyzaaypfzyfhhggqw) — bucket: lesson-audio
+  - ALL grades → 2nd Supabase (sjfjyzaaypfzyfhhggqw) — bucket: lesson-audio
 
-This keeps Grade 9 (~955 MB) on Supabase 1 and all other grades on Supabase 2
-so neither project hits the 1 GB free tier storage limit.
+Grade 9 audio was originally on Supabase 1 but moved to Supabase 2 to
+consolidate all audio storage in one place and free up Supabase 1 storage.
 
 Flow:
   1. get_cached_audio_url(grade, ...) → URL or None
@@ -26,18 +25,12 @@ _log = get_logger("audio_cache_service")
 
 BUCKET_NAME = "lesson-audio"
 
-# Grades stored on 2nd Supabase storage (all except Grade 9)
-_GRADE_9 = "grade 9"
-
-
-def _get_storage_client(grade: str):
+def _get_storage_client(_grade: str = ""):
     """
-    Return the correct Supabase storage client for the given grade.
-    Grade 9 → 1st Supabase (admin_client).
-    All other grades → 2nd Supabase (grade_1112_client).
+    Return the Supabase 2 storage client for all grades.
+    All audio (including Grade 9) is stored on Supabase 2.
+    Falls back to Supabase 1 only if Supabase 2 is not configured.
     """
-    if (grade or "").lower().strip() == _GRADE_9:
-        return admin_client
     try:
         from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
         if grade_1112_client is None:
@@ -143,18 +136,18 @@ def store_audio(
     rate: str = "+0%",
 ) -> str:
     """
-    Upload MP3 bytes to the correct Supabase Storage for this grade, then
+    Upload MP3 bytes to Supabase 2 lesson-audio bucket, then
     save the public URL to the DB on Supabase 1.
 
-    Grade 9  → uploads to Supabase 1 lesson-audio bucket
-    Others   → uploads to Supabase 2 lesson-audio bucket (more free space)
+    All grades → Supabase 2 lesson-audio bucket.
+    DB table (lesson_audio_cache) stays on Supabase 1.
 
     Returns the public URL.  Raises RuntimeError on upload or DB failure.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
     file_path = _make_file_path(grade, subject, chapter, step_title)
 
-    storage = _get_storage_client(grade)
+    storage = _get_storage_client()
     db      = _get_db_client(grade)
 
     # ── Upload to correct Supabase Storage ────────────────────────────────
@@ -194,7 +187,6 @@ def store_audio(
     except Exception as exc:
         raise RuntimeError(f"DB upsert failed: {exc}") from exc
 
-    supabase_label = "Supabase 1 (Grade 9)" if (grade or "").lower().strip() == _GRADE_9 else "Supabase 2"
     _log.info(
         "audio_cache.stored",
         grade=grade,
@@ -202,7 +194,7 @@ def store_audio(
         chapter=chapter,
         step_title=step_title,
         size_kb=round(len(mp3_bytes) / 1024),
-        storage=supabase_label,
+        storage="Supabase 2",
         url=public_url[:80],
     )
     return public_url
