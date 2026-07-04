@@ -538,11 +538,6 @@ useEffect(() => {
 
               {!isSignupMode && (
                 <div className="ait-login-options">
-                  <label>
-                    <input type="checkbox" />
-                    Remember me
-                  </label>
-
                   <button
                     type="button"
                     onClick={handleForgotPassword}
