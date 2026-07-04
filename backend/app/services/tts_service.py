@@ -86,18 +86,134 @@ def clean_text_for_tts(text: str) -> str:
     for pattern, replacement in abbrev_map:
         text = re.sub(pattern, replacement, text)
 
-    # ── 6. LaTeX and math: convert to spoken equivalents
+    # ── 6. LaTeX and math: convert to spoken English (Option 3)
     # Note: Devanagari/Hindi script (\u0900-\u097F) is preserved — do NOT strip it.
+    # Process inside-out: innermost expressions first, then wrappers.
+
+    def _latex_to_speech(expr: str) -> str:
+        """
+        Recursively convert a LaTeX expression string to natural spoken English.
+        Called on the content inside $...$ and $$...$$
+        """
+        s = expr.strip()
+
+        # ── Remove outer braces wrapping (common in LaTeX) ─────────────────
+        def strip_outer_braces(x):
+            x = x.strip()
+            if x.startswith("{") and x.endswith("}"):
+                return x[1:-1].strip()
+            return x
+
+        # ── \frac{numerator}{denominator} → "numerator over denominator" ───
+        # Handle nested: process innermost first via repeated substitution
+        for _ in range(5):  # max 5 levels of nesting
+            s = re.sub(
+                r"\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}",
+                lambda m: f"{_latex_to_speech(m.group(1))} over {_latex_to_speech(m.group(2))}",
+                s,
+            )
+
+        # ── \sqrt{x} → "square root of x" ───────────────────────────────────
+        s = re.sub(
+            r"\\sqrt\s*\{([^{}]*)\}",
+            lambda m: f"square root of {_latex_to_speech(m.group(1))}",
+            s,
+        )
+        # \sqrt[n]{x} → "nth root of x"
+        s = re.sub(
+            r"\\sqrt\s*\[([^\]]*)\]\s*\{([^{}]*)\}",
+            lambda m: f"{_latex_to_speech(m.group(1))} root of {_latex_to_speech(m.group(2))}",
+            s,
+        )
+
+        # ── Superscripts: x^{n} and x^n ─────────────────────────────────────
+        # Named powers first
+        s = re.sub(r"\^2\b", " squared", s)
+        s = re.sub(r"\^3\b", " cubed", s)
+        s = re.sub(r"\^\{2\}", " squared", s)
+        s = re.sub(r"\^\{3\}", " cubed", s)
+        # General: a^{n} → "a to the power n"
+        s = re.sub(r"\^\{([^{}]+)\}", lambda m: f" to the power {m.group(1).strip()}", s)
+        # a^n (single char) → "a to the power n"
+        s = re.sub(r"\^([a-zA-Z0-9])", lambda m: f" to the power {m.group(1)}", s)
+
+        # ── Subscripts: x_{n} → "x sub n" (used in sequences) ──────────────
+        s = re.sub(r"_\{([^{}]+)\}", lambda m: f" sub {m.group(1).strip()}", s)
+        s = re.sub(r"_([a-zA-Z0-9])", lambda m: f" sub {m.group(1)}", s)
+
+        # ── Greek letters → spoken names ────────────────────────────────────
+        greek = {
+            r"\\alpha": "alpha", r"\\beta": "beta", r"\\gamma": "gamma",
+            r"\\delta": "delta", r"\\theta": "theta", r"\\pi\b": "pi",
+            r"\\sigma": "sigma", r"\\omega": "omega", r"\\lambda": "lambda",
+            r"\\mu\b": "mu", r"\\epsilon": "epsilon", r"\\phi": "phi",
+        }
+        for pattern, name in greek.items():
+            s = re.sub(pattern, f" {name} ", s)
+
+        # ── Operators and symbols ────────────────────────────────────────────
+        s = s.replace("\\times", " times ")
+        s = s.replace("\\cdot", " times ")
+        s = s.replace("\\div", " divided by ")
+        s = s.replace("\\pm", " plus or minus ")
+        s = s.replace("\\mp", " minus or plus ")
+        s = s.replace("\\leq", " is less than or equal to ")
+        s = s.replace("\\geq", " is greater than or equal to ")
+        s = s.replace("\\neq", " is not equal to ")
+        s = s.replace("\\approx", " is approximately equal to ")
+        s = s.replace("\\equiv", " is equivalent to ")
+        s = s.replace("\\Rightarrow", " implies ")
+        s = s.replace("\\rightarrow", " gives ")
+        s = s.replace("\\Leftrightarrow", " if and only if ")
+        s = s.replace("\\therefore", " therefore ")
+        s = s.replace("\\because", " because ")
+        s = s.replace("\\infty", " infinity ")
+        s = s.replace("\\in", " is in ")
+        s = s.replace("\\notin", " is not in ")
+        s = s.replace("\\subset", " is a subset of ")
+        s = s.replace("\\cup", " union ")
+        s = s.replace("\\cap", " intersection ")
+        s = s.replace("\\ldots", " and so on ")
+        s = s.replace("\\cdots", " and so on ")
+
+        # ── Inline operators ─────────────────────────────────────────────────
+        s = re.sub(r"\s*=\s*", " equals ", s)
+        s = re.sub(r"\s*\+\s*", " plus ", s)
+        s = re.sub(r"(?<=\d)\s*-\s*(?=\d)", " minus ", s)
+        s = re.sub(r"(?<=[a-zA-Z])\s*-\s*(?=[a-zA-Z0-9])", " minus ", s)
+
+        # ── Strip remaining LaTeX commands ───────────────────────────────────
+        s = re.sub(r"\\[a-zA-Z]+", " ", s)
+
+        # ── Remove braces ─────────────────────────────────────────────────────
+        s = re.sub(r"[{}]", " ", s)
+
+        # ── Parentheses in math context → spoken ────────────────────────────
+        # Keep them for structure but don't say "open bracket"
+        s = re.sub(r"\(", " ", s)
+        s = re.sub(r"\)", " ", s)
+
+        return re.sub(r"\s+", " ", s).strip()
+
+    def _convert_latex_block(match: re.Match) -> str:
+        """Convert one $...$ or $$...$$ block to spoken English."""
+        content = match.group(1)
+        spoken = _latex_to_speech(content)
+        return f" {spoken} " if spoken.strip() else " "
+
+    # Convert display math $$...$$ first
+    text = re.sub(r"\$\$([^\$]+)\$\$", _convert_latex_block, text, flags=re.DOTALL)
+    # Convert inline math $...$
+    text = re.sub(r"\$([^\$]+)\$", _convert_latex_block, text)
+
+    # Handle any remaining raw LaTeX outside $...$ (from broken formatting)
     text = text.replace("\\", " ")
-    text = re.sub(r"\$\$[\s\S]*?\$\$", " ", text)  # strip display math
-    text = re.sub(r"\$[^$]+\$", " ", text)           # strip inline math
     # Only remove ASCII brackets/braces — NOT Devanagari punctuation
-    text = re.sub(r"[(){}\[\]]", " ", text)
+    text = re.sub(r"[{}\[\]]", " ", text)
     text = text.replace("Rightarrow", " therefore ")
-    text = text.replace("^2", " squared ")
-    text = text.replace("^3", " cubed ")
-    text = re.sub(r"\s=\s", " equals ", text)
-    text = re.sub(r"\s\+\s", " plus ", text)
+    # Handle standalone ^2 ^3 outside LaTeX
+    text = re.sub(r"\^2\b", " squared ", text)
+    text = re.sub(r"\^3\b", " cubed ", text)
     text = re.sub(r"(?<=\d)-(?=\d)", " minus ", text)
 
     # ── 7. Blank lines (paragraph breaks) → strong sentence pause
