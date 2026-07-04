@@ -388,12 +388,9 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                   Likha Poha AI does not access Gmail, Google Drive, Google Calendar, Google Contacts, or any other Google services. We do not sell or share Google user data for advertising or marketing.{" "}
                   <a
                     href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{ color: "#6366f1", fontWeight: 600, textDecoration: "underline" }}
-                    onClick={e => {
-                      e.preventDefault();
-                      window.history.pushState({}, "", "/privacy-policy");
-                      window.dispatchEvent(new PopStateEvent("popstate"));
-                    }}
                   >
                     See our Privacy Policy for full details.
                   </a>
