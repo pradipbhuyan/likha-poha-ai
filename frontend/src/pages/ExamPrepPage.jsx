@@ -368,6 +368,7 @@ export default function ExamPrepPage({ user }) {
         ) : papers.length === 0 ? (
           <div style={{ color: "var(--muted,#64748b)", fontSize: ".8rem", padding: "12px 0" }}>
             No papers available for this exam yet.
+            {user?.accessToken && <span style={{ marginLeft: 8, fontSize: ".7rem", color: "#6366f1" }}>[Token: {user.accessToken.substring(0, 12)}…]</span>}
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 8, marginBottom: 20 }}>
