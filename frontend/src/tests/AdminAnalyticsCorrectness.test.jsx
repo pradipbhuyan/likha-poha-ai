@@ -190,7 +190,7 @@ describe("AdminAnalytics — state: ok (zero data)", () => {
   test("shows 0% success rate, not dash", async () => {
     render(<AdminAnalytics accessToken="tok" />);
     await screen.findByText("Total Users");
-    expect(screen.getByText(/0%/)).toBeInTheDocument();
+    expect(screen.getByTestId("stat-success-rate")).toHaveTextContent("0%");
   });
 
   test("trend chart shows no-activity message for empty data", async () => {
