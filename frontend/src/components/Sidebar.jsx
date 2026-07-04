@@ -249,6 +249,13 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "examPrep",
+      label: "Exam Prep Center",
+      icon: GraduationCap,
+      roles: ["admin"],
+      testUsers: ["akshita.teststudent"],  // test access before student launch
+    },
+    {
       key: "salesLeads",
       label: isAdmin ? "Lead Claims" : "My Lead Claims",
       icon: Users,
@@ -364,6 +371,8 @@ function Sidebar({
   const visiblePages = pages.filter((page) => {
     /** Hide student/parent-only destinations from admin while keeping admin tools visible. */
     if (isAdmin) return !page.parentOnly && !page.hideForAdmin;
+    // Test user access: specific usernames can see pages before role-based launch
+    if (page.testUsers?.includes(user?.username)) return true;
     if (!page.roles?.includes(user?.role)) return false;
     // Grade-gated pages: students must be in one of the allowed grades
     if (page.gradeFilter && user?.role === "student") {

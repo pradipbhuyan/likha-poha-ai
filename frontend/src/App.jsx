@@ -65,6 +65,7 @@ import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
 import AdminLessonExperiencePage from "./pages/AdminLessonExperiencePage";
 import AdminAIStudioPage from "./pages/AdminAIStudioPage";
+import ExamPrepPage from "./pages/ExamPrepPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -1480,6 +1481,8 @@ function App() {
         return <AdminLessonExperiencePage user={user} />;
       case "aiStudio":
         return <AdminAIStudioPage user={user} />;
+      case "examPrep":
+        return <ExamPrepPage user={user} />;
       default:
         return <LessonsPage user={user} />;
     }
