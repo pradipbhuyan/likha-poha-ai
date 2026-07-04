@@ -265,7 +265,7 @@ export default function ExamPrepPage({ user }) {
       if (data.success) setPapers(data.papers || []);
     } catch { /* ignore */ }
     finally { setLoadingPapers(false); }
-  }, [user, API_BASE]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user, API_BASE]);
 
   useEffect(() => { loadPapers(selectedExam); }, [selectedExam]); // eslint-disable-line react-hooks/exhaustive-deps
 
