@@ -262,8 +262,14 @@ export default function ExamPrepPage({ user }) {
         headers: { Authorization: `Bearer ${user.accessToken}` },
       });
       const data = await r.json();
-      if (data.success) setPapers(data.papers || []);
-    } catch { /* ignore */ }
+      if (data.success) {
+        setPapers(data.papers || []);
+      } else {
+        console.error("[ExamPrep] papers API error:", data);
+      }
+    } catch (err) {
+      console.error("[ExamPrep] papers fetch failed:", err);
+    }
     finally { setLoadingPapers(false); }
   }, [user, API_BASE]);
 
