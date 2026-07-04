@@ -273,7 +273,8 @@ export default function ExamPrepPage({ user }) {
     finally { setLoadingPapers(false); }
   }, [user, API_BASE]);
 
-  useEffect(() => { loadPapers(selectedExam); }, [selectedExam]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Re-load when exam changes OR when user token becomes available
+  useEffect(() => { loadPapers(selectedExam); }, [selectedExam, user?.accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!hasAccess(user)) {
     return (
