@@ -329,3 +329,55 @@ Run frontend: `cd frontend && npm run test`
 - Do not create new subscription tiers without updating: resolver, feature matrix, FEATURE_MATRIX.md, subscription plans config, and tests
 - Do not rename `subscription_plan` DB column
 - Do not add new raw plan keys — normalize to canonical keys
+
+---
+
+## Audio Cache System (Added 2026-07-03)
+
+### New Files
+```
+backend/app/services/audio_cache_service.py   — store_audio(), get_cached_audio_url(), routing logic
+backend/app/routes/tts.py                     — GET /tts/cached-url, GET /tts/audio-cache/overview
+backend/scripts/prewarm_lesson_audio.py       — CLI prewarm script (--grade, --subject, --resume, --limit)
+backend/migrations/20260703_lesson_audio_cache.sql
+```
+
+### New API Routes (prefix: /api/tts)
+- `GET  /api/tts/cached-url?grade=&subject=&chapter=&step_title=` → `{cached: bool, url?: str}`
+- `GET  /api/tts/audio-cache/overview?grade=` → admin summary
+
+### New API Routes (prefix: /api/cache-management)
+- `GET  /api/cache-management/audio/overview/{grade_slug}` → `{audio_cached, audio_expected, total_mb}`
+- `POST /api/cache-management/prewarm/audio/{grade_slug}` → triggers background TTS prewarm
+
+### Storage Routing Rule (CRITICAL)
+- Grade 9 audio → Supabase 1 `lesson-audio` bucket
+- All other grades → Supabase 2 `lesson-audio` bucket
+- `lesson_audio_cache` DB table → always Supabase 1
+- Do NOT change this routing without updating `audio_cache_service.py`
+
+### TTS Voice Routing Rule
+- Subject contains "hindi" → `hi-IN-SwaraNeural`
+- All other subjects → `en-IN-NeerjaNeural`
+- Source: `frontend/src/pages/LessonsPage.jsx` `getVoiceForSubject()`
+
+### TUTOR_SYSTEM MATH RULES (Critical — DO NOT WEAKEN)
+Every math expression MUST be in `$...$`. NEVER write math in plain `()`. NEVER use `$$` inside `()`. NEVER repeat a variable like `x^2 x 2`. See `backend/app/services/tutor_service.py` MATH RULES section.
+
+### Broken Lesson Repair Pattern
+```bash
+# 1. Scan for broken LaTeX
+# 2. Archive broken rows in lesson_cache (status='archived')
+# 3. Regenerate:
+echo "yes" | python3 scripts/prewarm_lessons.py --grade "Grade N" --subject "Maths"
+```
+
+### New Frontend Constants (LessonsPage.jsx)
+- `HINDI_VOICE = "hi-IN-SwaraNeural"`
+- `getVoiceForSubject(subject)` — auto-detects Hindi
+
+### Admin Guide — NVIDIA Models (Confirmed Working July 2026)
+Only 3 models work on free-tier nvapi-* accounts:
+- `meta/llama-3.1-8b-instruct` (fastest, recommended for batch)
+- `meta/llama-3.1-70b-instruct` (best quality)
+- `meta/llama-3.2-3b-instruct` (ultra-fast)

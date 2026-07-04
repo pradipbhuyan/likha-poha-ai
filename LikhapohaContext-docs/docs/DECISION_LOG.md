@@ -178,3 +178,127 @@ Always use `percentage` column (0-100). `score` and `total_questions` columns do
 **Prevention:** When this pattern is detected in future prompt improvements, add explicit ordering instruction: "Always list examples, steps, and numbered items in ascending order (1, 2, 3 — never 3, 2, 1)."
 
 **Do NOT:** Auto-sort list items in the frontend rendering pipeline — this would incorrectly reorder intentionally unordered content.
+
+---
+
+## 2026-07-03: LKB Chips Not Appearing on First Lesson Generation
+
+**Issue:** Lesson Knowledge Base (LKB) chips didn't appear after `handleGenerateLesson()` completed — only appeared after navigating away and back.
+
+**Root cause:** `ensureLessonKbChips()` was only called in two places: `loadProgress()` (runs on chapter change, before lesson exists) and `useEffect` on `currentStepIndex` (only fires when step index changes). Neither fires after lesson generation on the same step.
+
+**Fix:** Added explicit `ensureLessonKbChips()` call inside `handleGenerateLesson()` immediately after `setLesson(result.lesson)`.
+
+**File:** `frontend/src/pages/LessonsPage.jsx`
+
+---
+
+## 2026-07-03: NVIDIA QB Batch Timeout — 6 Minutes Per Failed Batch
+
+**Issue:** Question bank build batches for Grade 11 Mathematics were taking 6 minutes to fail (361s).
+
+**Root cause:** NVIDIA client had `timeout=120s`. With 3 retry attempts × 120s = 361s per failed batch. NVIDIA server sends streaming keepalives that prevent the timeout from firing at 120s.
+
+**Fix:**
+1. Reduced NVIDIA client timeout: `120s → 45s`
+2. Added `is_timeout` flag to explicitly exclude timeout errors from retry loop — timeouts now fail fast after 1 attempt
+
+**File:** `backend/app/services/openai_service.py`
+
+---
+
+## 2026-07-03: NVIDIA google/gemma-3-* Models Return 404
+
+**Issue:** Admin settings had `nvidia_model = "google/gemma-3-4b-it"` which returns `404 Function not found for account` on free-tier accounts.
+
+**Fix:** Added `_UNAVAILABLE_NVIDIA` set in `get_effective_settings()` — any model in this set is remapped to `DEFAULT_NVIDIA_MODEL` (meta/llama-3.1-8b-instruct).
+
+**Tested models on nvapi-V-ccDZ... account:**
+- ✅ meta/llama-3.1-8b-instruct, meta/llama-3.1-70b-instruct, meta/llama-3.2-3b-instruct
+- ❌ meta/llama-4-scout-17b-16e-instruct (404), deepseek-ai/deepseek-v4-flash (timeout), all google/gemma-* (404)
+
+**File:** `backend/app/services/openai_service.py`
+
+---
+
+## 2026-07-03: TTS — Pause Strategy for Natural Narration
+
+**Decision:** `clean_text_for_tts()` now introduces natural pauses using punctuation (Edge TTS respects sentence-ending punctuation):
+- Section headings → period (long pause before content)
+- Blank lines between paragraphs → period
+- Single newlines → comma (brief breath)
+- Bullet items → comma
+- LaTeX inline `$...$` and display `$$...$$` → stripped to blank space
+
+**File:** `backend/app/services/tts_service.py`
+
+---
+
+## 2026-07-03: TTS — Hindi Lessons Use Different Voice
+
+**Issue:** Hindi lessons (Devanagari script) were being passed to `en-IN-NeerjaNeural` which cannot speak Hindi, producing silence.
+
+**Fix:** Added `getVoiceForSubject(subject)` in `LessonsPage.jsx`:
+- Hindi/Hindi Olympiad → `hi-IN-SwaraNeural`
+- All other subjects → `en-IN-NeerjaNeural`
+
+**File:** `frontend/src/pages/LessonsPage.jsx`
+
+---
+
+## 2026-07-03: TTS — Abbreviation Expansion
+
+**Decision:** `clean_text_for_tts()` expands abbreviations before speech generation so the narrator says "for example" instead of "e.g.", "C B S E" instead of "CBSE", etc.
+
+35 abbreviations added: Latin (e.g., i.e., etc.), Academic (CBSE, NCERT, HOTS, LHS, RHS), Science (DNA, RNA, pH, m/s), Maths (LCM, HCF, AP, GP), Units (cm, mm, km, kg, ml).
+
+**File:** `backend/app/services/tts_service.py`
+
+---
+
+## 2026-07-03: Audio Cache — Dual Supabase Storage Routing
+
+**Decision:** To avoid hitting the 1 GB free tier storage limit on Supabase 1, audio files are routed by grade:
+- Grade 9 → Supabase 1 (`dpivlbbyzlbpwnwgajso`) `lesson-audio` bucket
+- All other grades → Supabase 2 (`sjfjyzaaypfzyfhhggqw`) `lesson-audio` bucket
+
+**Implementation:**
+- `_get_storage_client(grade)` returns the correct Supabase client
+- `lesson_audio_cache` DB table stays on Supabase 1 (all grades — URLs in the row point to the correct CDN)
+- No frontend changes — browser fetches audio from whatever URL is stored in DB
+
+**File:** `backend/app/services/audio_cache_service.py`
+
+---
+
+## 2026-07-03: Maths LaTeX Rendering — MATH RULES Strengthened
+
+**Issue:** LLM was generating malformed LaTeX in maths lessons:
+- `(x^2 + 4x + 4)` — math inside plain parentheses
+- `x^2 x 2` — variable repeated
+- `(x - 2$$x + 2)` — `$$` inside parentheses
+
+**Fix:** `TUTOR_SYSTEM` MATH RULES section rewritten with explicit BAD examples for every failure pattern. Key additions:
+- "NEVER write any math expression inside normal parentheses ()"
+- "NEVER use $$ inside () like (x - 2$$x + 2)"
+- "NEVER repeat a variable twice like 'x^2 x 2'"
+- Factored expressions: always `$(x-2)(x+3)$` not plain text
+
+**File:** `backend/app/services/tutor_service.py`
+
+---
+
+## 2026-07-03: Broken Maths Lesson Detection and Repair
+
+**Process established:**
+1. Regex scan `lesson_cache` for broken LaTeX patterns
+2. Archive broken rows (`status='archived'`) — hidden from students, regenerated on next prewarm
+3. Run prewarm script with `echo "yes" | python3 scripts/prewarm_lessons.py --grade "Grade N" --subject "Maths"`
+
+**Results (July 2026):**
+- Grade 9: 3 broken (Ch1 Coordinates, Ch4 Algebraic Identities) — repaired
+- Grade 10: 22 broken (Ch2, 3, 8, 9, 12, 13, 14, Exemplar chapters) — archived + prewarm running
+- Grade 8: 24 broken (all Exemplar chapters) — archived + prewarm running
+- Grade 6, 7: clean
+
+**Note:** Pre-warmed lessons in `lesson_cache` are NOT auto-updated by prompt changes. Must archive + regenerate manually.

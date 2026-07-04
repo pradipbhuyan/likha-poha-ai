@@ -73,3 +73,42 @@ Each template supports versioning. Save creates new version; activate any previo
 - `gemma3:4b` times out on long prompts despite fast short-prompt response
 - Premium models (`glm-5.2`, `kimi-k2.6`) require subscription (403)
 - API format: native `/api/chat` (NOT OpenAI `/v1/chat/completions`)
+
+---
+
+## TTS (Text-to-Speech) System — Updated July 2026
+
+### Architecture
+1. **Frontend** (`LessonsPage.jsx`): Calls `GET /api/tts/cached-url` first
+   - If `cached=true` → plays URL directly from Supabase CDN (instant)
+   - If `cached=false` → calls `POST /api/tts/generate` → Edge TTS (~15-20s)
+2. **Backend** (`tts_service.py`): `clean_text_for_tts()` transforms lesson markdown before synthesis
+
+### Voice Selection
+| Subject | Voice |
+|---------|-------|
+| Hindi / Hindi Olympiad | `hi-IN-SwaraNeural` |
+| All other subjects | `en-IN-NeerjaNeural` |
+
+### Text Cleaning Pipeline (`clean_text_for_tts()`)
+1. Section headings → text + period (pause)
+2. Bold/italic markers → stripped (text kept)
+3. Bullet items → comma-separated
+4. Code blocks → stripped
+5. **Abbreviation expansion** (35 terms): e.g.→"for example", CBSE→"C B S E", DNA→"D N A", cm→"centimetres"
+6. LaTeX (`$...$`, `$$...$$`) → stripped (pending: convert to spoken English)
+7. Blank lines → period (sentence pause)
+8. Single newlines → comma (breath pause)
+9. Cleanup: consecutive commas, double periods, empty list artefacts
+
+### Pre-warmed Audio Cache
+- **DB table:** `lesson_audio_cache` (Supabase 1)
+- **Storage:** Grade 9 → Supabase 1; all others → Supabase 2
+- **Prewarm script:** `backend/scripts/prewarm_lesson_audio.py`
+- **Admin UI:** Cache & Question Bank page → Audio progress bar + Build Audio button
+
+### Known Limitation — LaTeX Expressions
+Inline LaTeX expressions like `$\sqrt{3} = \frac{a}{b}$` are currently stripped to silence. Option 3 (regex-based spoken conversion) is planned:
+- `\sqrt{x}` → "square root of x"
+- `\frac{a}{b}` → "a over b"
+- `^2` → "squared"

@@ -102,3 +102,23 @@ All score display must use `_normalize_score_pct(percentage, raw_score, max_scor
 | `board` | CBSE (default) |
 | `access_cbse` | Canonical paid access flag |
 | `subscription_expires_at` | Expiry date if applicable |
+
+---
+
+## Lesson Page Updates — July 2026
+
+### LKB Chips (Quick Doubt Suggestions)
+- Chips now appear **immediately** after lesson generation (not just on re-navigation)
+- Fix: `ensureLessonKbChips()` called explicitly inside `handleGenerateLesson()` after `setLesson()`
+- LKB chips take priority over DKB chips; graceful fallback if LKB unavailable
+
+### Listen to Lesson (TTS)
+- **Fast path added:** Button first checks `GET /api/tts/cached-url` — if pre-warmed audio exists, plays instantly from CDN (no generation delay)
+- **Hindi support:** Hindi lessons use `hi-IN-SwaraNeural` (proper Devanagari narration)
+- **Pause structure:** Narrator pauses between headings, paragraphs, and list items
+- **Abbreviation expansion:** Narrator says "for example" for "e.g.", "C B S E" for "CBSE", etc.
+
+### Maths Lessons — LaTeX Quality
+- LLM prompt strengthened: all math expressions must be in `$...$`
+- Broken lessons (with rendering issues) are detected, archived, and regenerated
+- Students should see clean rendered math; report via "Report Issue" if still broken
