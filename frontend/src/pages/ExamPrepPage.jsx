@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useState, useCallback } from "react";
-import { FlaskConical, Calculator, Leaf, Globe, Loader } from "lucide-react"; // eslint-disable-line no-unused-vars
+import { Loader } from "lucide-react";
 
 const EXAMS = {
   jee: {
@@ -28,11 +28,6 @@ const EXAMS = {
   },
 };
 
-const SUBJECT_ICONS = {
-  Physics: FlaskConical, Chemistry: FlaskConical,
-  Mathematics: Calculator, Biology: Leaf,
-  General: Globe,
-};
 
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
 
@@ -134,7 +129,7 @@ function ExplanationPanel({ chunk, paper, user, apiBase }) {
       finally { setLoading(false); }
     }
     explain();
-  }, [chunk?.id]);
+  }, [chunk?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleAskAI(e) {
     e.preventDefault();
