@@ -62,6 +62,7 @@ from app.routes.admin_analytics import router as admin_analytics_router
 from app.routes.admin_support import router as admin_support_router
 from app.routes.lesson_repair import router as lesson_repair_router
 from app.routes.ai_studio import router as ai_studio_router
+from app.routes.exam_prep import router as exam_prep_router
 from app.routes.lesson_lab import router as lesson_lab_router
 from app.routes.lesson_experience import router as lesson_experience_router
 
@@ -400,6 +401,8 @@ app.include_router(
     issues_router,
     tags=["Issues"],
 )
+
+app.include_router(exam_prep_router)
 
 @app.get("/api/platform-settings/lesson-card")
 def get_lesson_card_settings_public():
