@@ -20,7 +20,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.services.auth_service import require_student, require_admin
+from app.services.auth_service import get_current_user, require_admin
 from app.services.logger_service import get_logger
 from app.services.openai_service import ask_llm, get_effective_settings
 from app.services.supabase_grade_1112_client import grade_1112_client
@@ -51,7 +51,7 @@ def _get_supabase():
 @router.get("/papers")
 def list_papers(
     exam: str = "jee",
-    _user=Depends(require_student),
+    _user=Depends(get_current_user),
 ):
     """
     Return list of available PYQ papers for the given exam.
@@ -97,7 +97,7 @@ def list_papers(
 def get_paper_chunks(
     doc_id: str,
     limit: int = 50,
-    _user=Depends(require_student),
+    _user=Depends(get_current_user),
 ):
     """
     Return the text chunks for a specific PYQ paper document.
@@ -156,7 +156,7 @@ class ExplainRequest(BaseModel):
 @router.post("/explain")
 async def explain_question(
     req: ExplainRequest,
-    user=Depends(require_student),
+    user=Depends(get_current_user),
 ):
     """
     Generate AI step-by-step explanation for a JEE/NEET/CUET question.
@@ -192,9 +192,11 @@ JEE_TIP: [one practical exam strategy tip for this type of question — max 25 w
 Keep everything concise. Use plain text, not LaTeX."""
 
     try:
+        # get_current_user returns a Supabase auth user object
+        username = getattr(user, "email", None) or "student"
         response = await ask_llm(
             prompt=prompt,
-            username=user.get("username", "student"),
+            username=username,
             feature="exam_prep",
             grade="Grade 12",
             max_tokens=300,
@@ -233,7 +235,7 @@ Keep everything concise. Use plain text, not LaTeX."""
 
     _log.info(
         "exam_prep.explain subject=%s exam=%s user=%s",
-        req.subject, req.exam, user.get("username"),
+        req.subject, req.exam, getattr(user, "email", "unknown"),
     )
 
     return {
