@@ -143,21 +143,42 @@ VISUAL RULES:
   - 2 to 6 items for flow, steps, and cycle
   - 2 columns and 2 to 5 rows for compare
 
-MATH RULES:
-- Use LaTeX math for formulas.
-- Inline formulas MUST use dollar delimiters, for example $\\frac{p}{q}$ and $q \\neq 0$.
-- If an inline formula starts with a number, add a space after the opening dollar.
-  Bad: $10 - 2 \\times 4 = 2$
-  Good: $ 10 - 2 \\times 4 = 2 $
-- Display formulas MUST use double-dollar delimiters.
-- Never place LaTeX commands inside normal parentheses.
-- Bad: (\\frac{p}{q}), (q \\neq 0), (7 = \\frac{7}{1})
-- Good: $\\frac{p}{q}$, $q \\neq 0$, $7 = \\frac{7}{1}$
-- Use this display format:
+MATH RULES — CRITICAL, FOLLOW EXACTLY:
+- Every mathematical expression, formula, variable, or number-with-operator MUST be wrapped in $...$.
+- Inline formulas MUST use single dollar delimiters: $x^2 + 4x + 4$
+- Display formulas MUST use double dollar delimiters on their own line:
 
 $$
-v = u + at
+(a + b)^2 = a^2 + 2ab + b^2
 $$
+
+- NEVER write any math expression inside normal parentheses ().
+  These are WRONG and will break rendering:
+  Bad: (x^2 + 4x + 4), (a + b)^2, (x - 2)(x + 2), (\\frac{p}{q})
+  Bad: writing a superscript like x^2 x 2 — that is meaningless
+  Bad: using $$ inside () like (x - 2$$x + 2) — NEVER do this
+  Good: $x^2 + 4x + 4$, $(a + b)^2$, $(x - 2)(x + 2)$
+
+- To write factored expressions like (x-2)(x+3), ALWAYS use:
+  $(x - 2)(x + 3)$ — NOT (x - 2)(x + 3) in plain text
+
+- To write a fraction, ALWAYS use LaTeX:
+  Good: $\\frac{x^2 - 4}{x^2 - 9}$
+  Never: \\frac{x^2 - 4}{x^2 - 9} or (\\frac{x^2-4}{x^2-9})
+
+- NEVER repeat a variable twice like "x^2 x 2" — write it as $x^2$ only.
+
+- If an inline formula starts with a number, add a space after the opening dollar:
+  Bad: $10 - 2 \\times 4 = 2$
+  Good: $ 10 - 2 \\times 4 = 2 $
+
+- LaTeX examples for common algebra patterns:
+  $(a + b)^2 = a^2 + 2ab + b^2$
+  $(a - b)^2 = a^2 - 2ab + b^2$
+  $(a + b)(a - b) = a^2 - b^2$
+  $\\frac{x^2 - 4}{x - 2} = x + 2$
+  $(x + 2)(x - 3)$
+  $x^2 + 5x + 6$
 	"""
 
 
@@ -792,20 +813,15 @@ Use bullet points instead.
 
 {DIAGRAM_HINT}
 
-For formulas:
-- Use inline LaTeX like $F = m \times a$
-- Use inline LaTeX like $\\frac{{p}}{{q}}$ and $q \\neq 0$
-- If an inline formula starts with a number, write it like $ 10 - 2 \times 4 = 2 $
-- Use display LaTeX like:
-
-$$
-F = m \times a
-$$
-
-- Never write formulas inside normal parentheses like:
-( F = m \times a )
-- Never write LaTeX commands inside normal parentheses like:
-(\\frac{{p}}{{q}}) or (q \\neq 0)
+MATH RULES — CRITICAL, FOLLOW EXACTLY:
+- Every mathematical expression MUST be wrapped in $...$ (inline) or $$...$$ (display).
+- NEVER write math inside plain parentheses ().
+- Bad: (x^2 + 4x + 4), (a + b)^2, (x - 2)(x + 2), (\\frac{{p}}{{q}})
+- Good: $x^2 + 4x + 4$, $(a + b)^2$, $(x - 2)(x + 2)$, $\\frac{{p}}{{q}}$
+- NEVER use $$ inside () like (x - 2$$x + 2) — that is broken syntax.
+- NEVER repeat a variable like "x^2 x 2" — write $x^2$ only.
+- Factored products: $(x - 2)(x + 3)$ — always inside $ not plain text.
+- Fractions: $\\frac{{x^2 - 4}}{{x - 2}}$ — always LaTeX.
 """
 
     answer = ask_llm(
