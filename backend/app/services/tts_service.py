@@ -86,6 +86,69 @@ def clean_text_for_tts(text: str) -> str:
     for pattern, replacement in abbrev_map:
         text = re.sub(pattern, replacement, text)
 
+    # ── 5b. Unicode math symbols → spoken English
+    # Handles formatted text like "2¹ × 3¹" → "2 to the power 1 times 3 to the power 1"
+    # Unicode superscripts (common in NCERT/CBSE textbooks)
+    unicode_superscripts = {
+        "⁰": " to the power 0",
+        "¹": " to the power 1",
+        "²": " squared",
+        "³": " cubed",
+        "⁴": " to the power 4",
+        "⁵": " to the power 5",
+        "⁶": " to the power 6",
+        "⁷": " to the power 7",
+        "⁸": " to the power 8",
+        "⁹": " to the power 9",
+    }
+    for char, spoken in unicode_superscripts.items():
+        text = text.replace(char, spoken)
+
+    # Unicode subscripts (common in chemistry: H₂O, CO₂)
+    unicode_subscripts = {
+        "₀": " sub 0", "₁": " sub 1", "₂": " sub 2",
+        "₃": " sub 3", "₄": " sub 4", "₅": " sub 5",
+        "₆": " sub 6", "₇": " sub 7", "₈": " sub 8", "₉": " sub 9",
+    }
+    for char, spoken in unicode_subscripts.items():
+        text = text.replace(char, spoken)
+
+    # Unicode math operators
+    text = text.replace("×", " times ")
+    text = text.replace("÷", " divided by ")
+    text = text.replace("≠", " is not equal to ")
+    text = text.replace("≤", " is less than or equal to ")
+    text = text.replace("≥", " is greater than or equal to ")
+    text = text.replace("≈", " is approximately ")
+    text = text.replace("∞", " infinity ")
+    text = text.replace("√", " square root of ")
+    text = text.replace("∑", " sum of ")
+    text = text.replace("∏", " product of ")
+    text = text.replace("∈", " is in ")
+    text = text.replace("∉", " is not in ")
+    text = text.replace("∪", " union ")
+    text = text.replace("∩", " intersection ")
+    text = text.replace("∠", " angle ")
+    text = text.replace("°", " degrees ")
+    text = text.replace("π", " pi ")
+    text = text.replace("α", " alpha ")
+    text = text.replace("β", " beta ")
+    text = text.replace("γ", " gamma ")
+    text = text.replace("δ", " delta ")
+    text = text.replace("θ", " theta ")
+    text = text.replace("λ", " lambda ")
+    text = text.replace("μ", " mu ")
+    text = text.replace("σ", " sigma ")
+    text = text.replace("ω", " omega ")
+    text = text.replace("→", " gives ")
+    text = text.replace("⇒", " implies ")
+    text = text.replace("⟹", " implies ")
+    text = text.replace("↔", " if and only if ")
+    text = text.replace("∴", " therefore ")
+    text = text.replace("∵", " because ")
+    # Fraction slash in unicode math
+    text = re.sub(r"(\d)\s*/\s*(\d)", r"\1 over \2", text)
+
     # ── 6. LaTeX and math: convert to spoken English (Option 3)
     # Note: Devanagari/Hindi script (\u0900-\u097F) is preserved — do NOT strip it.
     # Process inside-out: innermost expressions first, then wrappers.
