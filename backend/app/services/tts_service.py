@@ -38,15 +38,12 @@ def clean_text_for_tts(text: str) -> str:
     text = re.sub(r"---+", ". ", text)
 
     # ── 5. LaTeX and math: convert to spoken equivalents
+    # Note: Devanagari/Hindi script (\u0900-\u097F) is preserved — do NOT strip it.
     text = text.replace("\\", " ")
     text = re.sub(r"\$\$[\s\S]*?\$\$", " ", text)  # strip display math
     text = re.sub(r"\$[^$]+\$", " ", text)           # strip inline math
-    text = text.replace("(", " ")
-    text = text.replace(")", " ")
-    text = text.replace("[", " ")
-    text = text.replace("]", " ")
-    text = text.replace("{", " ")
-    text = text.replace("}", " ")
+    # Only remove ASCII brackets/braces — NOT Devanagari punctuation
+    text = re.sub(r"[(){}\[\]]", " ", text)
     text = text.replace("Rightarrow", " therefore ")
     text = text.replace("^2", " squared ")
     text = text.replace("^3", " cubed ")

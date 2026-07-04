@@ -48,7 +48,15 @@ const TEACHER_PERSONAS = {
 
 // Default voice and speed — not exposed in UI, used for narration.
 const DEFAULT_VOICE = "en-IN-NeerjaNeural";
+const HINDI_VOICE   = "hi-IN-SwaraNeural";   // Microsoft Hindi neural voice
 const DEFAULT_SPEECH_RATE = "+0%";
+
+function getVoiceForSubject(subjectName) {
+  /** Pick the right TTS voice based on the subject language. */
+  const s = (subjectName || "").toLowerCase();
+  if (s === "hindi" || s.includes("hindi")) return HINDI_VOICE;
+  return DEFAULT_VOICE;
+}
 
 // ── Dynamic loading messages: subject × step ──────────────────────────────────
 const LOADING_MESSAGES = {
@@ -1220,7 +1228,7 @@ function LessonsPage({ user, setActivePage }) {
       // ── Fallback: generate via Edge TTS ──────────────────────────────────
       const url = await generateSpeech({
         text: lesson,
-        voice: DEFAULT_VOICE,
+        voice: getVoiceForSubject(subject),
         rate: DEFAULT_SPEECH_RATE,
       });
 
