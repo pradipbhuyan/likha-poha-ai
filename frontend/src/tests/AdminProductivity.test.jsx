@@ -214,7 +214,7 @@ describe("AdminAnalytics", () => {
     render(<AdminAnalytics accessToken="tok" />);
     expect(screen.getByTestId("admin-analytics")).toBeInTheDocument();
     expect(await screen.findByText("Total Users")).toBeInTheDocument();
-    expect(screen.getByText("50")).toBeInTheDocument();
+    expect(await screen.findByText("50")).toBeInTheDocument();
   });
 
   test("shows Not yet enabled for unavailable AI data", async () => {
