@@ -19,6 +19,13 @@ from supabase import create_client
 
 load_dotenv()
 
+# Fix macOS SSL before creating the Supabase client
+try:
+    from app.services.ssl_service import enable_system_truststore as _ssl  # noqa: PLC0415
+    _ssl()
+except Exception:
+    pass
+
 _logger = logging.getLogger("likhapoha.supabase_1112")
 
 _url = os.getenv("SUPABASE_GRADE_1112_URL")
