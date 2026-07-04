@@ -70,7 +70,7 @@ def list_papers(
         )
         rows = r.data or []
     except Exception as exc:
-        _log.error("exam_prep.list_papers failed: %s", exc)
+        _log.error("exam_prep.list_papers failed", error=str(exc))
         raise HTTPException(500, "Failed to fetch papers") from exc
 
     # Deduplicate by chapter name (same paper appears for Grade 11 + 12)
@@ -87,7 +87,7 @@ def list_papers(
             }
 
     papers = list(seen.values())
-    _log.info("exam_prep.list_papers exam=%s count=%d", exam, len(papers))
+    _log.info("exam_prep.list_papers", exam=exam, count=len(papers))
     return {"success": True, "papers": papers, "count": len(papers)}
 
 
@@ -116,7 +116,7 @@ def get_paper_chunks(
         )
         chunks = r.data or []
     except Exception as exc:
-        _log.error("exam_prep.get_chunks doc_id=%s failed: %s", doc_id, exc)
+        _log.error("exam_prep.get_chunks failed", doc_id=doc_id, error=str(exc))
         raise HTTPException(500, "Failed to fetch paper content") from exc
 
     # Get doc metadata
@@ -203,7 +203,7 @@ Keep everything concise. Use plain text, not LaTeX."""
         )
         raw = response.get("content", "").strip()
     except Exception as exc:
-        _log.error("exam_prep.explain failed: %s", exc)
+        _log.error("exam_prep.explain failed", error=str(exc))
         raise HTTPException(500, "AI explanation failed") from exc
 
     # Parse structured response
@@ -234,8 +234,10 @@ Keep everything concise. Use plain text, not LaTeX."""
         solution = raw
 
     _log.info(
-        "exam_prep.explain subject=%s exam=%s user=%s",
-        req.subject, req.exam, getattr(user, "email", "unknown"),
+        "exam_prep.explain",
+        subject=req.subject,
+        exam=req.exam,
+        user=getattr(user, "email", "unknown"),
     )
 
     return {
