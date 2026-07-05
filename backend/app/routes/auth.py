@@ -1257,6 +1257,50 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
     }
 
 
+@router.get("/test-email")
+def test_email(user=Depends(get_current_user)):
+    """
+    Admin-only: send a test welcome email to the caller's address.
+    Call from live backend to verify SMTP config on Railway.
+    GET /api/auth/test-email  (requires auth token)
+    """
+    from app.services.email_service import _send, _get_smtp_config  # noqa: PLC0415
+
+    cfg = _get_smtp_config()
+    if not cfg:
+        return {
+            "success": False,
+            "error": "SMTP not configured — ALERT_SMTP_USER or ALERT_SMTP_PASSWORD not set in Railway",
+            "smtp_user": None,
+        }
+
+    profile_resp = (
+        admin_client.table("profiles").select("email, username, role")
+        .eq("id", user.id).limit(1).execute()
+    )
+    profile = (profile_resp.data or [{}])[0]
+    to_email = profile.get("email") or user.email or ""
+
+    result = _send(
+        to=to_email,
+        subject="[Test] Likha Poha AI email is working ✓",
+        html=(
+            "<h2>✓ Email delivery confirmed</h2>"
+            "<p>This test email was sent from the Railway backend.</p>"
+            "<p>SMTP is configured and working correctly.</p>"
+        ),
+        text="Email delivery confirmed from Railway backend. SMTP is working.",
+    )
+
+    return {
+        "success": result,
+        "to": to_email,
+        "smtp_user": cfg["user"],
+        "smtp_host": f"{cfg['host']}:{cfg['port']}",
+        "error": None if result else "Send failed — check Railway logs for email_service.failed",
+    }
+
+
 @router.post("/signup-with-offer-code")
 def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNUP_LIMITER))):
     """
