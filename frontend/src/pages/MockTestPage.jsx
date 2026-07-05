@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory, saveWrongAnswers } from "../api/analytics";
@@ -527,13 +528,14 @@ function MockTestPage({ user, setActivePage }) {
                       {writtenLoading[q.id] ? "Evaluating..." : "✨ Get AI Feedback"}
                     </button>
                     {writtenEvals[q.id] && (
-                      <div style={{ marginTop: 8, padding: "10px 12px", borderRadius: 8, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#4ade80" }}>✨ AI Feedback</strong>
-                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.6 }}>
-                          {writtenEvals[q.id]?.evaluation || "Evaluation received."}
-                        </p>
+                      <div style={{ marginTop: 8, padding: "12px 16px", borderRadius: 8, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)" }}>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "block", marginBottom: 8 }}>✨ AI Feedback</strong>
+                        <div style={{ fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.7 }}
+                          className="markdown-content">
+                          <ReactMarkdown>{writtenEvals[q.id]?.evaluation || "Evaluation received."}</ReactMarkdown>
+                        </div>
                         {writtenEvals[q.id]?.score != null && (
-                          <div style={{ marginTop: 4, fontSize: "0.78rem", fontWeight: 700, color: "#4ade80" }}>
+                          <div style={{ marginTop: 8, fontSize: "0.82rem", fontWeight: 700, color: "#4ade80", borderTop: "1px solid rgba(34,197,94,0.2)", paddingTop: 8 }}>
                             Score: {writtenEvals[q.id].score}/10
                           </div>
                         )}
@@ -643,9 +645,12 @@ function MockTestPage({ user, setActivePage }) {
                       <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--text,#e5e7eb)", whiteSpace: "pre-wrap" }}>{r.wrAns || "(no answer)"}</p>
                     </div>
                     {r.evaluation && (
-                      <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#4ade80" }}>✨ AI Feedback:</strong>
-                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.6 }}>{r.evaluation}</p>
+                      <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 8, padding: "12px 16px", marginBottom: 8 }}>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "block", marginBottom: 8 }}>✨ AI Feedback:</strong>
+                        <div style={{ fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.7 }}
+                          className="markdown-content">
+                          <ReactMarkdown>{r.evaluation}</ReactMarkdown>
+                        </div>
                         {r.aiScore != null && <div style={{ marginTop: 4, fontSize: "0.78rem", fontWeight: 700, color: "#16a34a" }}>Score: {r.aiScore}/10 → {r.earnedMarks}/{r.marks} marks</div>}
                       </div>
                     )}
