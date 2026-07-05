@@ -616,8 +616,9 @@ function MockTestPage({ user, setActivePage }) {
                     {Object.entries(r.options).map(([key, val]) => {
                       const isCor = key === r.correct, isSel = key === r.selected;
                       let bg = "transparent", border = "1px solid #d1d5db", color = "inherit";
-                      if (isCor) { bg = "#dcfce7"; border = "1px solid #86efac"; color = "#166534"; }
-                      else if (isSel && !isCor) { bg = "#fee2e2"; border = "1px solid #fca5a5"; color = "#991b1b"; }
+                      if (isCor) { bg = "rgba(34,197,94,0.15)"; border = "1.5px solid #16a34a"; color = "#16a34a"; }
+                      else if (isSel && !isCor) { bg = "rgba(239,68,68,0.12)"; border = "1.5px solid #ef4444"; color = "#ef4444"; }
+                      else { color = "var(--text, #e5e7eb)"; }
                       return (
                         <div key={key} style={{ padding: "6px 10px", borderRadius: 6, background: bg, border, color, fontSize: "0.88rem" }}>
                           <strong>{key}.</strong> <MathText text={val} />
@@ -629,18 +630,18 @@ function MockTestPage({ user, setActivePage }) {
                   </div>
                 )}
                 {r.question_type === "mcq" && !r.isCorrect && r.explanation && (
-                  <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 8, padding: "12px 14px", marginTop: 8 }}>
-                    <strong style={{ color: "#1d4ed8", fontSize: "0.85rem", display: "block", marginBottom: 4 }}>📖 Explanation</strong>
-                    <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.6, color: "#1e3a5f" }}><MathText text={r.explanation} /></p>
+                  <div style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 8, padding: "12px 14px", marginTop: 8 }}>
+                    <strong style={{ color: "#818cf8", fontSize: "0.85rem", display: "block", marginBottom: 4 }}>📖 Explanation</strong>
+                    <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.6, color: "var(--text, #e5e7eb)" }}><MathText text={r.explanation} /></p>
                   </div>
                 )}
 
                 {/* Written review */}
                 {r.question_type !== "mcq" && (
                   <div style={{ marginTop: 8 }}>
-                    <div style={{ background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
-                      <strong style={{ fontSize: "0.8rem", color: "#374151" }}>Your answer:</strong>
-                      <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "#1f2937", whiteSpace: "pre-wrap" }}>{r.wrAns || "(no answer)"}</p>
+                    <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid var(--border,#374151)", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
+                      <strong style={{ fontSize: "0.8rem", color: "var(--muted,#9ca3af)" }}>Your answer:</strong>
+                      <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--text,#e5e7eb)", whiteSpace: "pre-wrap" }}>{r.wrAns || "(no answer)"}</p>
                     </div>
                     {r.evaluation && (
                       <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
@@ -650,9 +651,9 @@ function MockTestPage({ user, setActivePage }) {
                       </div>
                     )}
                     {r.modelAnswer && (
-                      <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 8, padding: "10px 12px" }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#1d4ed8" }}>Model answer:</strong>
-                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "#1e3a5f", lineHeight: 1.6 }}>{r.modelAnswer}</p>
+                      <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 8, padding: "10px 12px" }}>
+                        <strong style={{ fontSize: "0.8rem", color: "#818cf8" }}>Model answer:</strong>
+                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text,#e5e7eb)", lineHeight: 1.6 }}>{r.modelAnswer}</p>
                       </div>
                     )}
                   </div>
