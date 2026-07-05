@@ -525,11 +525,14 @@ import time as _time  # noqa: E402
 
 _RAG_CACHE: dict[str, tuple[list, float]] = {}   # fields → (rows, expires_at)
 _RAG_CACHE_TTL = 1800  # 30 minutes
+_RAG_CACHE_CLIENT_REF: object = None   # the supabase object that last filled the cache
 
 
 def _invalidate_rag_cache() -> None:
     """Force-clear the in-process rag_documents cache (call after RAG upload)."""
+    global _RAG_CACHE_CLIENT_REF
     _RAG_CACHE.clear()
+    _RAG_CACHE_CLIENT_REF = None
     _logger.info("rag_documents cache invalidated.")
 
 
@@ -544,6 +547,13 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
     Grade 11/12 credentials). The server continues running normally — Grade 11/12
     chapters simply will not appear in the syllabus dropdown.
     """
+    global _RAG_CACHE_CLIENT_REF
+    # Invalidate cache when supabase client is replaced (e.g. test monkeypatching).
+    # Use `is` (object identity) not id() — id() can be reused after garbage collection.
+    if _RAG_CACHE_CLIENT_REF is not None and _RAG_CACHE_CLIENT_REF is not supabase:
+        _RAG_CACHE.clear()
+        _RAG_CACHE_CLIENT_REF = None
+
     # Return cached result if still valid
     cached = _RAG_CACHE.get(fields)
     if cached and _time.monotonic() < cached[1]:
@@ -583,8 +593,9 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
     combined = primary + secondary
     _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
 
-    # Store in cache with TTL
+    # Store in cache with TTL and record which client filled it
     _RAG_CACHE[fields] = (combined, _time.monotonic() + _RAG_CACHE_TTL)
+    _RAG_CACHE_CLIENT_REF = supabase
     return combined
 
 
