@@ -51,12 +51,36 @@ def _get_smtp_config() -> dict | None:
     }
 
 
+def _make_ssl_context():
+    """
+    Build an SSL context using the system trust store (truststore package)
+    so macOS/Windows/Linux corporate certificates are trusted automatically.
+    Falls back to the default Python SSL context if truststore is unavailable.
+    """
+    try:
+        import truststore  # noqa: PLC0415
+        truststore.inject_into_ssl()
+    except Exception:
+        pass
+    import ssl  # noqa: PLC0415
+    return ssl.create_default_context()
+
+
 def _send(to: str, subject: str, html: str, text: str) -> bool:
-    """Send an email. Returns True on success, False on failure (never raises)."""
+    """
+    Send an email via SMTP with STARTTLS (port 587) or SSL (port 465) fallback.
+
+    Uses the system trust store (truststore) for SSL certificate validation.
+    Returns True on success, False on failure (never raises).
+    """
     cfg = _get_smtp_config()
     if not cfg:
         _log.debug("email_service.smtp_not_configured — skipping send to %s", to)
         return False
+
+    # Strip spaces from App Password (Gmail displays it as "xxxx xxxx xxxx xxxx")
+    password = cfg["password"].replace(" ", "")
+
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
@@ -66,13 +90,26 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
         msg.attach(MIMEText(text, "plain"))
         msg.attach(MIMEText(html, "html"))
 
-        with smtplib.SMTP(cfg["host"], cfg["port"], timeout=15) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(cfg["user"], cfg["password"])
-            server.sendmail(cfg["user"], [to], msg.as_string())
+        ctx = _make_ssl_context()
 
-        _log.info("email_service.sent", to=to, subject=subject)
+        # Primary: STARTTLS on port 587
+        try:
+            with smtplib.SMTP(cfg["host"], cfg["port"], timeout=15) as server:
+                server.ehlo()
+                server.starttls(context=ctx)
+                server.login(cfg["user"], password)
+                server.sendmail(cfg["user"], [to], msg.as_string())
+            _log.info("email_service.sent", to=to, subject=subject, port=cfg["port"])
+            return True
+        except (smtplib.SMTPException, OSError):
+            pass  # fall through to port 465
+
+        # Fallback: SSL on port 465
+        import ssl as _ssl  # noqa: PLC0415
+        with smtplib.SMTP_SSL(cfg["host"], 465, context=ctx, timeout=15) as server:
+            server.login(cfg["user"], password)
+            server.sendmail(cfg["user"], [to], msg.as_string())
+        _log.info("email_service.sent", to=to, subject=subject, port=465)
         return True
 
     except Exception as exc:
