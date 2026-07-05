@@ -210,24 +210,17 @@ function ResourcesPage({ user }) {
 
   return (
     <div className="resources-page premium-page premium-resources-page">
-      <section className="premium-section premium-resources-hero">
-        <div className="premium-header">
-          <p className="eyebrow">Learning Library</p>
-          <h2>🎥 Learn More</h2>
-          <p>
-            Explore curated free resources for the selected chapter. Watch videos,
-            open references, and strengthen concepts beyond the AI lesson.
-          </p>
+      {/* Compact context bar — removes the redundant hero that duplicated the page title */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 0 4px", flexWrap: "wrap" }}>
+        <span style={{ fontSize: "1.1rem" }}>📚</span>
+        <div>
+          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>{subject || "All Subjects"}</span>
+          {chapter && <span style={{ marginLeft: 8, fontSize: "0.82rem", color: "var(--muted)" }}>{chapter.slice(0, 60)}{chapter.length > 60 ? "…" : ""}</span>}
         </div>
-
-        <div className="premium-resources-spotlight">
-          <span>📚</span>
-          <div>
-            <strong>{subject}</strong>
-            <p>{chapter}</p>
-          </div>
-        </div>
-      </section>
+        <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
+          Videos, references and resources for this chapter
+        </span>
+      </div>
 
       <section className="premium-section premium-resource-topic-panel">
         <div className="premium-header">
