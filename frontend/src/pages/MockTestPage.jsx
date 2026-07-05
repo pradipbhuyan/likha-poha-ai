@@ -278,7 +278,7 @@ function MockTestPage({ user, setActivePage }) {
     if (ref) ref.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function isAnswered(q, idx) {
+  function isAnswered(q, _idx) {
     if (isMCQ(q)) return !!answers[q.id];
     return !!(writtenAnswers[q.id] || "").trim();
   }
@@ -615,10 +615,9 @@ function MockTestPage({ user, setActivePage }) {
                   <div style={{ margin: "10px 0", display: "flex", flexDirection: "column", gap: 6 }}>
                     {Object.entries(r.options).map(([key, val]) => {
                       const isCor = key === r.correct, isSel = key === r.selected;
-                      let bg = "transparent", border = "1px solid #d1d5db", color = "inherit";
-                      if (isCor) { bg = "rgba(34,197,94,0.15)"; border = "1.5px solid #16a34a"; color = "#16a34a"; }
-                      else if (isSel && !isCor) { bg = "rgba(239,68,68,0.12)"; border = "1.5px solid #ef4444"; color = "#ef4444"; }
-                      else { color = "var(--text, #e5e7eb)"; }
+                      const bg    = isCor ? "rgba(34,197,94,0.15)" : isSel ? "rgba(239,68,68,0.12)" : "transparent";
+                      const border = isCor ? "1.5px solid #16a34a" : isSel ? "1.5px solid #ef4444" : "1px solid #d1d5db";
+                      const color  = isCor ? "#16a34a" : isSel ? "#ef4444" : "var(--text, #e5e7eb)";
                       return (
                         <div key={key} style={{ padding: "6px 10px", borderRadius: 6, background: bg, border, color, fontSize: "0.88rem" }}>
                           <strong>{key}.</strong> <MathText text={val} />
