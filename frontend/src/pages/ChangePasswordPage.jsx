@@ -71,16 +71,14 @@ function ChangePasswordPage({ user }) {
 
   return (
     <div className="premium-page change-password-page">
-      <section className="premium-section change-password-hero">
-        <div className="premium-header">
-          <p className="eyebrow">Account Security</p>
-          <h2>🔐 Change Password</h2>
-          <p>
-            Update the password for {user.email}. Use a password that is at
-            least 8 characters and different from your current password.
-          </p>
-        </div>
-      </section>
+      {/* Compact context bar — removes redundant page title duplication */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0 4px", flexWrap: "wrap" }}>
+        <span style={{ fontSize: "1rem" }}>🔐</span>
+        <span style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
+          Updating password for <strong style={{ color: "var(--text, #e5e7eb)" }}>{user.email}</strong>
+          {" "}— use at least 8 characters, different from your current password
+        </span>
+      </div>
 
       <section className="premium-section change-password-card">
         <form onSubmit={handleChangePassword} className="form-grid">
