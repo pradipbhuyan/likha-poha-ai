@@ -79,6 +79,11 @@ def run_expiry_job() -> dict[str, Any]:
 
         try:
             # ── Already revoked? ─────────────────────────────────────────────
+            # For student profiles: access_cbse / SOF flags are the signal.
+            # For parent profiles: those flags are never set; but subscription_plan
+            # and subscription_expires_at may still be non-null after Family Premium
+            # expires — clear those too so the resolver doesn't keep seeing a stale
+            # expired expiry date.
             has_any_access = bool(
                 profile.get("access_cbse")
                 or profile.get("access_sof_science")
@@ -86,6 +91,22 @@ def run_expiry_job() -> dict[str, Any]:
                 or profile.get("access_sof_english")
             )
             if not has_any_access:
+                # For parent profiles that have subscription_plan / subscription_expires_at
+                # set (from Family Premium activation) but no access flags, clean up the
+                # stale fields so the resolver doesn't keep tripping on expired expiry.
+                stale_plan = profile.get("subscription_plan") not in (None, "free")
+                if stale_plan:
+                    try:
+                        admin_client.table("profiles").update({
+                            "subscription_plan": "free",
+                            "subscription_expires_at": None,
+                        }).eq("id", user_id).execute()
+                        logger.info(
+                            "expiry_job.parent_cleanup user=%s from_plan=%s",
+                            username, profile.get("subscription_plan"),
+                        )
+                    except Exception as _ce:
+                        logger.warning("expiry_job.parent_cleanup_failed user=%s error=%s", user_id, _ce)
                 result["users_skipped_already_revoked"] += 1
                 continue
 

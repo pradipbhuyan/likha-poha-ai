@@ -215,6 +215,10 @@ def activate_plan_for_payment(payment, plan, parent_profile):
 
     Family Premium intentionally updates all children in the parent's family;
     single-child plans update only the child attached to the payment record.
+
+    For Family Premium the parent's own profile also receives subscription_plan
+    and subscription_expires_at so the subscription resolver correctly identifies
+    the parent as FAMILY_PREMIUM and allows adding a second child.
     """
     family_id = parent_profile.get("family_id")
     child_ids = [payment["child_id"]]
@@ -225,6 +229,7 @@ def activate_plan_for_payment(payment, plan, parent_profile):
             for child in get_children(parent_profile["id"])
         ] or child_ids
 
+    # Update children (role=student) with full plan access flags
     response = (
         admin_client
         .table("profiles")
@@ -233,6 +238,26 @@ def activate_plan_for_payment(payment, plan, parent_profile):
         .eq("role", "student")
         .execute()
     )
+
+    # For Family Premium: also update the parent's subscription_plan and
+    # subscription_expires_at so the resolver detects FAMILY_PREMIUM for the
+    # parent and allows adding a second child.
+    # Do NOT set access_cbse on the parent — parents use the subscription
+    # resolver, not the student AI-access flag.
+    if plan["key"] == "family_premium":
+        parent_id = parent_profile.get("id") or payment.get("parent_id")
+        if parent_id:
+            try:
+                admin_client.table("profiles").update({
+                    "subscription_plan": plan["key"],
+                    "subscription_expires_at": plan_expires_at(plan),
+                }).eq("id", parent_id).eq("role", "parent").execute()
+            except Exception as _err:
+                _log.warning(
+                    "activate_plan_for_payment: failed to update parent profile",
+                    parent_id=parent_id,
+                    error=str(_err)[:120],
+                )
 
     return response.data or []
 
