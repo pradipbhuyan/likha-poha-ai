@@ -21,13 +21,11 @@ function WalkthroughPage() {
   return (
     <div className="premium-page">
       <section className="premium-section">
-        <div className="premium-header">
-          <p className="eyebrow">Getting Started</p>
-          <h2>🎬 Platform Walkthrough</h2>
-          <p>
-            Watch the full walkthrough to learn how to use Likha Poha AI —
-            lessons, doubts, mock tests, analytics, and more.
-          </p>
+        {/* Compact context bar — removes redundant page title duplication */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
+          <span style={{ fontSize: "0.82rem", color: "var(--muted)", fontStyle: "italic" }}>
+            🎬 Watch the platform walkthrough — lessons, doubts, mock tests, analytics, and more
+          </span>
         </div>
 
         {/* Language toggle */}
