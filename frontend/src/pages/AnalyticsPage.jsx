@@ -151,24 +151,18 @@ function AnalyticsPage({ user }) {
     <div className="analytics-page premium-page premium-analytics-page">
       {message && <div className="info-box">{message}</div>}
 
-      <section className="premium-section premium-analytics-hero">
-        <div className="premium-header">
-          <p className="eyebrow">Learning Intelligence</p>
-          <h2>📊 Analytics Dashboard</h2>
-          <p>
-            Track mock test performance, subject strength, score trends, and
-            learning patterns over time.
-          </p>
+      {/* AI Insight — compact banner, no redundant page title */}
+      <div style={{
+        display: "flex", alignItems: "flex-start", gap: 12, padding: "12px 16px",
+        margin: "8px 0 4px", borderRadius: 12,
+        background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)",
+      }}>
+        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>🧠</span>
+        <div>
+          <strong style={{ fontSize: "0.85rem", color: "#818cf8" }}>AI Insight</strong>
+          <p style={{ margin: "2px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.5 }}>{insightText}</p>
         </div>
-
-        <div className="premium-analytics-insight-card">
-          <span>🧠</span>
-          <div>
-            <strong>AI Insight</strong>
-            <p>{insightText}</p>
-          </div>
-        </div>
-      </section>
+      </div>
 
       {totalTests === 0 ? (
         <section className="premium-section premium-empty-analytics">
