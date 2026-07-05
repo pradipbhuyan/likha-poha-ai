@@ -66,10 +66,40 @@ def _make_ssl_context():
     return ssl.create_default_context()
 
 
+def _clear_proxy_env() -> dict:
+    """
+    Temporarily clear proxy environment variables so smtplib connects directly.
+
+    macOS PAC/system proxies (e.g. Cisco AnyConnect, Zscaler) can intercept
+    and refuse SMTP connections on ports 587/465.  Python's smtplib reads
+    ALL_PROXY, HTTP_PROXY, HTTPS_PROXY from the environment — clearing them
+    for the SMTP call lets the connection bypass the proxy.
+    """
+    _proxy_keys = [
+        "ALL_PROXY", "all_proxy",
+        "HTTP_PROXY", "http_proxy",
+        "HTTPS_PROXY", "https_proxy",
+        "NO_PROXY", "no_proxy",
+    ]
+    saved = {}
+    for k in _proxy_keys:
+        val = os.environ.pop(k, None)
+        if val is not None:
+            saved[k] = val
+    return saved
+
+
+def _restore_proxy_env(saved: dict) -> None:
+    """Restore proxy environment variables after SMTP send."""
+    os.environ.update(saved)
+
+
 def _send(to: str, subject: str, html: str, text: str) -> bool:
     """
     Send an email via SMTP with STARTTLS (port 587) or SSL (port 465) fallback.
 
+    Clears proxy env vars before connecting so corporate PAC proxies
+    (e.g. Cisco AnyConnect, Zscaler) don't intercept the SMTP connection.
     Uses the system trust store (truststore) for SSL certificate validation.
     Returns True on success, False on failure (never raises).
     """
@@ -80,6 +110,9 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
 
     # Strip spaces from App Password (Gmail displays it as "xxxx xxxx xxxx xxxx")
     password = cfg["password"].replace(" ", "")
+
+    # Clear proxy env vars — corporate proxies block SMTP ports
+    saved_proxy = _clear_proxy_env()
 
     try:
         msg = MIMEMultipart("alternative")
@@ -105,7 +138,6 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
             pass  # fall through to port 465
 
         # Fallback: SSL on port 465
-        import ssl as _ssl  # noqa: PLC0415
         with smtplib.SMTP_SSL(cfg["host"], 465, context=ctx, timeout=15) as server:
             server.login(cfg["user"], password)
             server.sendmail(cfg["user"], [to], msg.as_string())
@@ -115,6 +147,8 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
     except Exception as exc:
         _log.error("email_service.failed", to=to, subject=subject, error=str(exc)[:200])
         return False
+    finally:
+        _restore_proxy_env(saved_proxy)
 
 
 def _send_async(to: str, subject: str, html: str, text: str) -> None:
