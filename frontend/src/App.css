@@ -13988,6 +13988,46 @@ body.dark-mode .toast {
   }
 }
 
+/* ── Formula Sheet — dark mode fixes ────────────────────────────────────────
+   The premium expanded sections use hardcoded light backgrounds (inline styles).
+   These overrides restore readable contrast in dark mode.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* Body text inside expanded formula content */
+body.dark-mode .formula-body-text {
+  color: #e2e8f0 !important;
+}
+
+/* Step-by-step solved example — light yellow → dark amber tint */
+body.dark-mode .formula-step-box {
+  background: rgba(245, 158, 11, 0.10) !important;
+  border-color: rgba(245, 158, 11, 0.28) !important;
+}
+
+body.dark-mode .formula-step-box span {
+  color: #e2e8f0 !important;
+}
+
+/* Common mistakes — light pink → dark red tint */
+body.dark-mode .formula-mistakes-box {
+  background: rgba(220, 38, 38, 0.10) !important;
+  border-color: rgba(220, 38, 38, 0.28) !important;
+}
+
+body.dark-mode .formula-mistakes-box span {
+  color: #e2e8f0 !important;
+}
+
+/* Memory tip — light yellow → dark amber tint */
+body.dark-mode .formula-memory-box {
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+body.dark-mode .formula-memory-box p {
+  color: #e2e8f0 !important;
+}
+
 /* ── Global markdown / lesson text — prevent horizontal overflow on mobile ── */
 .markdown-content {
   overflow-wrap: break-word;

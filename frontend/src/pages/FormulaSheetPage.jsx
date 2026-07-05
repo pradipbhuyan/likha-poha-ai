@@ -560,7 +560,7 @@ function PremiumExpandedContent({ formula }) {
       {/* 1 — Formula explanation */}
       <div style={sectionStyle}>
         <div style={{ ...headingStyle, color: "#6366f1" }}>📖 What this formula means</div>
-        <p style={{ ...bodyStyle, margin: 0 }}>{explanation}</p>
+        <p className="formula-body-text" style={{ ...bodyStyle, margin: 0 }}>{explanation}</p>
       </div>
 
       {/* 2 — Variables / symbols */}
@@ -588,13 +588,13 @@ function PremiumExpandedContent({ formula }) {
       {/* 3 — When to use */}
       <div style={sectionStyle}>
         <div style={{ ...headingStyle, color: "#16a34a" }}>🎯 When to use</div>
-        <p style={{ ...bodyStyle, margin: 0 }}>{whenToUse}</p>
+        <p className="formula-body-text" style={{ ...bodyStyle, margin: 0 }}>{whenToUse}</p>
       </div>
 
       {/* 4 — Step-by-step example */}
       <div style={sectionStyle}>
         <div style={{ ...headingStyle, color: "#d97706" }}>✏️ Step-by-step solved example</div>
-        <div style={{
+        <div className="formula-step-box" style={{
           background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 8, padding: "10px 12px",
         }}>
           {steps.map((step, i) => (
@@ -614,7 +614,7 @@ function PremiumExpandedContent({ formula }) {
       {/* 5 — Common mistakes */}
       <div style={sectionStyle}>
         <div style={{ ...headingStyle, color: "#dc2626" }}>⚠️ Common mistakes</div>
-        <div style={{
+        <div className="formula-mistakes-box" style={{
           background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: 8, padding: "8px 12px",
         }}>
           {commonMistakes.map((m, i) => (
@@ -627,7 +627,7 @@ function PremiumExpandedContent({ formula }) {
       </div>
 
       {/* 6 — Memory tip */}
-      <div style={{
+      <div className="formula-memory-box" style={{
         ...sectionStyle,
         background: "#fefce8", borderRadius: 8,
         border: "1px solid #fde68a", padding: "8px 12px",
