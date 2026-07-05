@@ -91,7 +91,7 @@ def store_lesson_cache(
     lesson_content: str,
     source_type: str,
     board: str,
-    grade: str,  # noqa: used to route to correct DB
+    grade: str,  # used to route to correct DB
     subject: str,
     chapter: str,
     mode: str,
@@ -235,7 +235,7 @@ def get_cached_lesson_by_chapter_text(
         return None
 
 
-def archive_lesson_cache_for_grade(grade: str) -> int:  # noqa: used to route DB
+def archive_lesson_cache_for_grade(grade: str) -> int:  # routes to correct DB
     """
     Archive (soft-delete) all cached lessons for a grade.
 

@@ -380,12 +380,12 @@ def send_welcome_email(
 
     if is_parent:
         intro = (
-            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
-            f"Welcome to <strong>Likha Poha AI</strong> — India's AI-powered CBSE tutor. "
-            f"Your Parent Dashboard lets you monitor your child's daily learning, "
-            f"track mock test scores, and get alerts when they need help.</p>"
-            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
-            f"Here's what's waiting for you:</p>"
+            "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            "Welcome to <strong>Likha Poha AI</strong> — India's AI-powered CBSE tutor. "
+            "Your Parent Dashboard lets you monitor your child's daily learning, "
+            "track mock test scores, and get alerts when they need help.</p>"
+            "<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            "Here's what's waiting for you:</p>"
         )
         next_step = (
             "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
@@ -394,12 +394,12 @@ def send_welcome_email(
         )
     else:
         intro = (
-            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
-            f"Welcome to <strong>Likha Poha AI</strong> — your personal CBSE tutor for "
-            f"Grades 5&ndash;12. Generate full AI lessons, take chapter-wise mock tests, "
-            f"ask doubts instantly, and track your progress every day.</p>"
-            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
-            f"Here's what you can do on the platform:</p>"
+            "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            "Welcome to <strong>Likha Poha AI</strong> — your personal CBSE tutor for "
+            "Grades 5&ndash;12. Generate full AI lessons, take chapter-wise mock tests, "
+            "ask doubts instantly, and track your progress every day.</p>"
+            "<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            "Here's what you can do on the platform:</p>"
         )
         next_step = (
             "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
@@ -550,7 +550,7 @@ def send_upgrade_email(
         f"Congratulations, {first_name}!\n\n"
         f"Your {plan_name} is now active.\n"
         + (f"Valid until: {expires_at[:10]}\n" if expires_at else "")
-        + f"\nWhat's unlocked:\n"
+        + "\nWhat's unlocked:\n"
         + "".join(f"  - {item}\n" for item in unlocked_items)
         + f"\nLog in at {_FRONTEND_URL} to start learning.\n"
     )

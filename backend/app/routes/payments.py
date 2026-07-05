@@ -39,6 +39,16 @@ def _plan_key_to_canonical(plan_key: str) -> str:
     return mapping.get(plan_key, "PREMIUM")
 
 
+def _paid_plan_name(plan_key: str) -> str:
+    """Return a human-readable plan display name for email notifications."""
+    mapping = {
+        "free":           "Free Tier",
+        "starter":        "Premium Plan",
+        "family_premium": "Family Premium Plan",
+    }
+    return mapping.get(str(plan_key or "").lower(), "Premium Plan")
+
+
 class CreatePaymentOrderRequest(BaseModel):
     child_id: str
     plan_key: str
