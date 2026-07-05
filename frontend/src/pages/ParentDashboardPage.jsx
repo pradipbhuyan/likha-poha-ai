@@ -28,7 +28,7 @@ function Skel(){
 }
 
 // ── Add Child Modal ───────────────────────────────────────────────────────────
-function AddChildModal({onClose, onAdded, canAdd, planName, childCount}){
+function AddChildModal({onClose, onAdded, canAdd, _planName, childCount}){
   var [form,setForm]=useState({username:"",grade:"Grade 9",password:"",email:""});
   var [loading,setLoading]=useState(false);
   var [msg,setMsg]=useState(null);
