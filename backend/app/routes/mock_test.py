@@ -29,61 +29,39 @@ def call_with_optional_board(func, board: str, **kwargs):
     """
     Call upgraded mock-test services with board, while tolerating old doubles.
 
-    Also strips cache_only gracefully when the target function (e.g. a test
-    double) does not accept it.
+    Uses inspect.signature to strip unknown kwargs before calling func.
+    This gracefully supports test doubles that only accept a subset of
+    the full parameter list (grade, subject, chapter, exam_type,
+    num_questions, difficulty) without raising TypeError.
     """
+    import inspect  # noqa: PLC0415
+
     try:
-        return func(board=board, **kwargs)
-    except TypeError as error:
-        err = str(error)
-        if "unexpected keyword argument 'board'" in err:
-            try:
-                return func(**kwargs)
-            except TypeError as inner:
-                inner_err = str(inner)
-                if "unexpected keyword argument 'cache_only'" in inner_err:
-                    kwargs.pop("cache_only", None)
-                    try:
-                        return func(**kwargs)
-                    except TypeError as inner2:
-                        if "unexpected keyword argument 'excluded_ids'" in str(inner2):
-                            kwargs.pop("excluded_ids", None)
-                            return func(**kwargs)
-                        raise inner2
-                if "unexpected keyword argument 'excluded_ids'" in inner_err:
-                    kwargs.pop("excluded_ids", None)
-                    return func(**kwargs)
-                raise
-        if "unexpected keyword argument 'excluded_ids'" in err:
-            kwargs.pop("excluded_ids", None)
-            try:
-                return func(board=board, **kwargs)
-            except TypeError as inner:
-                inner_s = str(inner)
-                if "unexpected keyword argument 'board'" in inner_s:
-                    return func(**kwargs)
-                if "unexpected keyword argument 'cache_only'" in inner_s:
-                    kwargs.pop("cache_only", None)
-                    return func(**kwargs)
-                if "unexpected keyword argument 'question_format'" in inner_s:
-                    kwargs.pop("question_format", None)
-                    return func(**kwargs)
-                raise
-        if "unexpected keyword argument 'question_format'" in err:
-            kwargs.pop("question_format", None)
-            try:
-                return func(board=board, **kwargs)
-            except TypeError as inner:
-                if "unexpected keyword argument 'board'" in str(inner):
-                    return func(**kwargs)
-                raise
-        if "unexpected keyword argument 'cache_only'" in err:
-            kwargs.pop("cache_only", None)
-            try:
-                return func(board=board, **kwargs)
-            except TypeError:
-                return func(**kwargs)
-        raise
+        sig = inspect.signature(func)
+        params = sig.parameters
+
+        # Check whether the function accepts **kwargs (VAR_KEYWORD)
+        accepts_var_keyword = any(
+            p.kind == inspect.Parameter.VAR_KEYWORD
+            for p in params.values()
+        )
+
+        if accepts_var_keyword:
+            # Production service accepts **kwargs — pass everything
+            return func(board=board, **kwargs)
+
+        # Build call kwargs limited to what the function declares
+        call_kwargs = {k: v for k, v in kwargs.items() if k in params}
+        if "board" in params:
+            call_kwargs["board"] = board
+
+        return func(**call_kwargs)
+
+    except TypeError:
+        # Last-resort fallback: try without board and with only positional-safe kwargs
+        OPTIONAL_KWARGS = {"board", "cache_only", "excluded_ids", "question_format"}
+        safe_kwargs = {k: v for k, v in kwargs.items() if k not in OPTIONAL_KWARGS}
+        return func(**safe_kwargs)
 
 
 def get_profile_by_user_id(user_id: str):
