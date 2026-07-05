@@ -44,24 +44,21 @@ function LeaderboardPage() {
 
   return (
     <div className="leaderboard-page premium-page premium-leaderboard-page">
-      <section className="premium-section premium-leaderboard-hero">
-        <div className="premium-header">
-          <p className="eyebrow">Learning League</p>
-          <h2>🏆 Leaderboard</h2>
-          <p>
-            Celebrate consistent practice, mock test performance, and learning
-            momentum. Keep improving to climb the rankings.
-          </p>
+      {/* Compact context bar: active learners count + tagline */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 0 4px", flexWrap: "wrap" }}>
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px",
+          borderRadius: 999, border: "2px solid rgba(99,102,241,0.4)",
+          background: "rgba(99,102,241,0.1)",
+        }}>
+          <span style={{ fontSize: "1.1rem" }}>🏆</span>
+          <span style={{ fontWeight: 800, fontSize: "1.2rem", color: "#818cf8" }}>{leaderboard.length}</span>
+          <span style={{ fontWeight: 600, fontSize: "0.85rem", color: "var(--text, #e5e7eb)" }}>active learners ranked</span>
         </div>
-
-        <div className="premium-leaderboard-trophy">
-          <span>🏆</span>
-          <div>
-            <strong>{leaderboard.length}</strong>
-            <p>active learners ranked</p>
-          </div>
-        </div>
-      </section>
+        <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
+          Keep improving your mock test scores to climb the rankings
+        </span>
+      </div>
 
       {leaderboard.length === 0 ? (
         <section className="premium-section premium-empty-leaderboard">
