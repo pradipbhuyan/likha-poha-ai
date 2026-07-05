@@ -586,13 +586,13 @@ function MockTestPage({ user, setActivePage }) {
           <div className="info-box premium-next-step-box">{rec(results.percentage)}</div>
 
           {results.wrongCount > 0 && (
-            <div style={{ background: "linear-gradient(135deg,#fff7ed,#ffedd5)", border: "1px solid #fdba74",
+            <div style={{ background: "rgba(239,120,50,0.1)", border: "1px solid rgba(239,120,50,0.35)",
               borderRadius: 12, padding: "16px 20px", marginBottom: 24, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <span style={{ fontSize: "1.5rem" }}>🔁</span>
               <div style={{ flex: 1, minWidth: 200 }}>
-                <strong style={{ color: "#c2410c" }}>{results.wrongCount} question{results.wrongCount > 1 ? "s" : ""} need revision</strong>
-                <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "#78350f" }}>
-                  Study the explanations below, then take a fresh retest on <strong>{chapter}</strong>.
+                <strong style={{ color: "#fb923c" }}>{results.wrongCount} question{results.wrongCount > 1 ? "s" : ""} need revision</strong>
+                <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)" }}>
+                  Study the explanations below, then take a fresh retest on <strong style={{ color: "#fb923c" }}>{chapter}</strong>.
                 </p>
               </div>
               <button className="primary-btn" style={{ background: "#ea580c", border: "none" }}
