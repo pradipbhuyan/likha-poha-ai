@@ -94,24 +94,78 @@ def _restore_proxy_env(saved: dict) -> None:
     os.environ.update(saved)
 
 
+def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
+    """
+    Send email via Resend HTTPS API (port 443 — never blocked by firewalls).
+
+    Resend free tier: 3,000 emails/month, no credit card required.
+    Setup: resend.com → Add domain → Create API key → set RESEND_API_KEY + EMAIL_FROM_ADDRESS
+
+    Required env vars:
+      RESEND_API_KEY        — from resend.com (re_...)
+      EMAIL_FROM_ADDRESS    — verified sender e.g. hello@likhapoha.in
+    """
+    api_key = os.getenv("RESEND_API_KEY", "").strip()
+    from_addr = os.getenv("EMAIL_FROM_ADDRESS", "").strip()
+    sender_name = os.getenv("EMAIL_SENDER_NAME", "Likha Poha AI").strip()
+
+    if not api_key or not from_addr:
+        return False  # Resend not configured — fall through to SMTP
+
+    try:
+        import urllib.request  # noqa: PLC0415
+        import json as _json  # noqa: PLC0415
+
+        payload = _json.dumps({
+            "from": f"{sender_name} <{from_addr}>",
+            "to": [to],
+            "subject": subject,
+            "html": html,
+            "text": text,
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            "https://api.resend.com/emails",
+            data=payload,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            body = _json.loads(resp.read())
+            if resp.status == 200 or resp.status == 201 or body.get("id"):
+                _log.info("email_service.sent_via_resend", to=to, subject=subject)
+                return True
+    except Exception as exc:
+        _log.warning("email_service.resend_failed", to=to, error=str(exc)[:200])
+
+    return False
+
+
 def _send(to: str, subject: str, html: str, text: str) -> bool:
     """
-    Send an email via SMTP with STARTTLS (port 587) or SSL (port 465) fallback.
+    Send an email — tries Resend HTTPS API first, falls back to SMTP.
 
-    Clears proxy env vars before connecting so corporate PAC proxies
-    (e.g. Cisco AnyConnect, Zscaler) don't intercept the SMTP connection.
-    Uses the system trust store (truststore) for SSL certificate validation.
+    Resend (port 443): works on Railway, cloud servers, all networks.
+    SMTP (port 587/465): works on home networks, may be blocked on corporate/cloud.
     Returns True on success, False on failure (never raises).
     """
+    # Primary: Resend HTTPS API (if configured — works on Railway/cloud)
+    if _send_via_resend(to, subject, html, text):
+        return True
+
+    # Fallback: SMTP (for local dev / non-Railway environments)
     cfg = _get_smtp_config()
     if not cfg:
-        _log.debug("email_service.smtp_not_configured — skipping send to %s", to)
+        _log.debug("email_service.not_configured — skipping send to %s", to)
         return False
 
     # Strip spaces from App Password (Gmail displays it as "xxxx xxxx xxxx xxxx")
     password = cfg["password"].replace(" ", "")
 
-    # Clear proxy env vars — corporate proxies block SMTP ports
+    # Clear proxy env vars — corporate proxies may block SMTP ports
     saved_proxy = _clear_proxy_env()
 
     try:
@@ -125,23 +179,23 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
 
         ctx = _make_ssl_context()
 
-        # Primary: STARTTLS on port 587
+        # Primary SMTP: STARTTLS on port 587
         try:
             with smtplib.SMTP(cfg["host"], cfg["port"], timeout=15) as server:
                 server.ehlo()
                 server.starttls(context=ctx)
                 server.login(cfg["user"], password)
                 server.sendmail(cfg["user"], [to], msg.as_string())
-            _log.info("email_service.sent", to=to, subject=subject, port=cfg["port"])
+            _log.info("email_service.sent_via_smtp", to=to, subject=subject, port=cfg["port"])
             return True
         except (smtplib.SMTPException, OSError):
             pass  # fall through to port 465
 
-        # Fallback: SSL on port 465
+        # SMTP fallback: SSL on port 465
         with smtplib.SMTP_SSL(cfg["host"], 465, context=ctx, timeout=15) as server:
             server.login(cfg["user"], password)
             server.sendmail(cfg["user"], [to], msg.as_string())
-        _log.info("email_service.sent", to=to, subject=subject, port=465)
+        _log.info("email_service.sent_via_smtp", to=to, subject=subject, port=465)
         return True
 
     except Exception as exc:
