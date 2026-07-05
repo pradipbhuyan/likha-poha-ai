@@ -527,13 +527,13 @@ function MockTestPage({ user, setActivePage }) {
                       {writtenLoading[q.id] ? "Evaluating..." : "✨ Get AI Feedback"}
                     </button>
                     {writtenEvals[q.id] && (
-                      <div style={{ marginTop: 8, padding: "10px 12px", borderRadius: 8, background: "#f0fdf4", border: "1px solid #86efac" }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#15803d" }}>AI Feedback</strong>
-                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "#166534", lineHeight: 1.6 }}>
+                      <div style={{ marginTop: 8, padding: "10px 12px", borderRadius: 8, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)" }}>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80" }}>✨ AI Feedback</strong>
+                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.6 }}>
                           {writtenEvals[q.id]?.evaluation || "Evaluation received."}
                         </p>
                         {writtenEvals[q.id]?.score != null && (
-                          <div style={{ marginTop: 4, fontSize: "0.78rem", fontWeight: 700, color: "#16a34a" }}>
+                          <div style={{ marginTop: 4, fontSize: "0.78rem", fontWeight: 700, color: "#4ade80" }}>
                             Score: {writtenEvals[q.id].score}/10
                           </div>
                         )}
@@ -643,9 +643,9 @@ function MockTestPage({ user, setActivePage }) {
                       <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--text,#e5e7eb)", whiteSpace: "pre-wrap" }}>{r.wrAns || "(no answer)"}</p>
                     </div>
                     {r.evaluation && (
-                      <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#15803d" }}>AI Feedback:</strong>
-                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "#166534", lineHeight: 1.6 }}>{r.evaluation}</p>
+                      <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 8, padding: "10px 12px", marginBottom: 8 }}>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80" }}>✨ AI Feedback:</strong>
+                        <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.6 }}>{r.evaluation}</p>
                         {r.aiScore != null && <div style={{ marginTop: 4, fontSize: "0.78rem", fontWeight: 700, color: "#16a34a" }}>Score: {r.aiScore}/10 → {r.earnedMarks}/{r.marks} marks</div>}
                       </div>
                     )}
