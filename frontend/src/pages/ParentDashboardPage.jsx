@@ -102,18 +102,44 @@ function AddChildModal({onClose, onAdded, canAdd, planName, childCount}){
           <h4 style={{margin:0}}>➕ Add Child</h4>
           <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",fontSize:"1.1rem"}}>✕</button>
         </div>
-        {/* If limit reached AND parent already has children: show upgrade message only, no form.
+        {/* If limit reached AND parent already has children: show a guide card on
+            how the child logs in, with an upgrade option at the bottom.
             Never block the first child addition — always show the form for new parents. */}
         {!canAdd && childCount > 0 ?(
           <div>
-            <div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"14px 16px",marginBottom:12,textAlign:"center"}}>
-              <div style={{fontSize:".9rem",fontWeight:700,color:"#dc2626",marginBottom:4}}>Child limit reached for {planName}</div>
-              <div style={{fontSize:".8rem",color:"#64748b",marginBottom:12}}>
-                You can add a second child with the Family Premium plan.
+            {/* Guide card — how child logs in */}
+            <div style={{background:"rgba(34,197,94,.06)",border:"1px solid #86efac",borderRadius:10,padding:"14px 16px",marginBottom:12}}>
+              <div style={{fontSize:".92rem",fontWeight:800,color:"#166534",marginBottom:8}}>🎉 Your child's account is ready!</div>
+              <div style={{fontSize:".78rem",color:"#374151",marginBottom:12,lineHeight:1.6}}>
+                Here's how your child can log in and start learning:
               </div>
-              <button onClick={onClose} style={{padding:"8px 20px",borderRadius:8,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".82rem",fontWeight:700,cursor:"pointer"}}>Upgrade Plan</button>
+              <div style={{display:"flex",flexDirection:"column",gap:7,fontSize:".78rem",color:"#374151"}}>
+                <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                  <span style={{minWidth:22,height:22,borderRadius:"50%",background:"#6366f1",color:"#fff",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:".68rem",fontWeight:800,flexShrink:0}}>1</span>
+                  <span>Go to <strong>likhapoha.in</strong> and click <strong>Log In</strong></span>
+                </div>
+                <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                  <span style={{minWidth:22,height:22,borderRadius:"50%",background:"#6366f1",color:"#fff",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:".68rem",fontWeight:800,flexShrink:0}}>2</span>
+                  <span>Enter the <strong>Login ID (username)</strong> and <strong>password</strong> you set when creating the account</span>
+                </div>
+                <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                  <span style={{minWidth:22,height:22,borderRadius:"50%",background:"#6366f1",color:"#fff",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:".68rem",fontWeight:800,flexShrink:0}}>3</span>
+                  <span>The child selects their <strong>Grade, Subject and Chapter</strong> and clicks <strong>Generate Lesson</strong></span>
+                </div>
+                <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                  <span style={{minWidth:22,height:22,borderRadius:"50%",background:"#6366f1",color:"#fff",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:".68rem",fontWeight:800,flexShrink:0}}>4</span>
+                  <span>You can track their progress and scores from <strong>your Parent Dashboard</strong></span>
+                </div>
+              </div>
             </div>
-            <button onClick={onClose} style={{background:"none",border:"none",color:"#64748b",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",width:"100%",textAlign:"center"}}>Cancel</button>
+            {/* Upgrade nudge — secondary */}
+            <div style={{background:"rgba(99,102,241,.06)",border:"1px solid rgba(167,139,250,.3)",borderRadius:8,padding:"10px 14px",marginBottom:10,textAlign:"center"}}>
+              <div style={{fontSize:".76rem",color:"#64748b",marginBottom:6}}>
+                Want to add a second child? Upgrade to <strong>Family Premium</strong>.
+              </div>
+              <button onClick={onClose} style={{padding:"6px 18px",borderRadius:7,border:"none",background:"#6366f1",color:"#fff",fontFamily:"inherit",fontSize:".78rem",fontWeight:700,cursor:"pointer"}}>Upgrade Plan</button>
+            </div>
+            <button onClick={onClose} style={{background:"none",border:"none",color:"#64748b",cursor:"pointer",fontFamily:"inherit",fontSize:".82rem",width:"100%",textAlign:"center",padding:"6px 0"}}>Close</button>
           </div>
         ):(
           <>
