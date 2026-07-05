@@ -516,14 +516,39 @@ def build_rag_only_syllabus_shell(syllabus):
     return shell
 
 
+# ── In-process TTL cache for rag_documents ───────────────────────────────────
+# Each unique `fields` string is cached separately for 30 minutes.
+# This eliminates the 860-row Supabase query that fires on EVERY page load.
+# Cache is invalidated automatically by TTL, and can be force-cleared by
+# calling _invalidate_rag_cache() (e.g. after a RAG upload).
+import time as _time  # noqa: E402
+
+_RAG_CACHE: dict[str, tuple[list, float]] = {}   # fields → (rows, expires_at)
+_RAG_CACHE_TTL = 1800  # 30 minutes
+
+
+def _invalidate_rag_cache() -> None:
+    """Force-clear the in-process rag_documents cache (call after RAG upload)."""
+    _RAG_CACHE.clear()
+    _logger.info("rag_documents cache invalidated.")
+
+
 def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
     """Fetch rag_documents from BOTH Supabase projects and return combined list.
+
+    Results are cached in-process for 30 minutes to avoid re-fetching 860 rows
+    on every page load (the primary cause of Supabase egress overage).
 
     Falls back to primary DB only when SUPABASE_GRADE_1112_URL /
     SUPABASE_GRADE_1112_SERVICE_KEY are not configured (e.g. local dev without
     Grade 11/12 credentials). The server continues running normally — Grade 11/12
     chapters simply will not appear in the syllabus dropdown.
     """
+    # Return cached result if still valid
+    cached = _RAG_CACHE.get(fields)
+    if cached and _time.monotonic() < cached[1]:
+        return cached[0]
+
     def _query(db, select_fields, label="primary"):
         try:
             r = db.table("rag_documents").select(select_fields).execute()
@@ -555,8 +580,12 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
         )
         secondary = []
 
+    combined = primary + secondary
     _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
-    return primary + secondary
+
+    # Store in cache with TTL
+    _RAG_CACHE[fields] = (combined, _time.monotonic() + _RAG_CACHE_TTL)
+    return combined
 
 
 def fetch_rag_chapter_counts():

@@ -128,6 +128,14 @@ def upload_textbook_text(
     if rows:
         db.table("rag_chunks").insert(rows).execute()
 
+    # Invalidate the in-process rag_documents cache so the new chapter
+    # appears immediately in the syllabus dropdown without waiting 30 min.
+    try:
+        from app.routes.syllabus import _invalidate_rag_cache  # noqa: PLC0415
+        _invalidate_rag_cache()
+    except Exception:
+        pass
+
     return {
         "success": True,
         "message": "Text uploaded, chunked, and embedded successfully.",

@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, File, Form, UploadFile, HTTPException
+from app.routes.syllabus import _invalidate_rag_cache
 from app.services.file_extract_service import (
     extract_pages_from_uploaded_file,
     extract_text_from_uploaded_file,
