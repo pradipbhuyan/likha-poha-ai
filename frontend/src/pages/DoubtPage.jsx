@@ -543,27 +543,19 @@ Important:
 
   return (
     <div className="doubt-page premium-page premium-doubt-page">
-      <section className="premium-section premium-doubt-hero">
-        <div className="premium-header">
-          <p className="eyebrow">AI Mentor Workspace</p>
-          <h2>❓ Ask Doubt</h2>
-          <p>
-            Ask your AI tutor anything. Get textbook-aware explanations,
-            examples, diagrams, and step-by-step help.
-          </p>
+      {/* Compact context bar — replaces the redundant hero that repeated the page title */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 0 4px", flexWrap: "wrap" }}>
+        <span style={{ fontSize: "1.1rem" }}>🤖</span>
+        <div>
+          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>AI Study Companion</span>
+          <span style={{ marginLeft: 8, fontSize: "0.82rem", color: "var(--muted)" }}>
+            {grade} • {mode || "No Access"}{mode === "SOF" && subject ? ` • ${subject}` : ""}
+          </span>
         </div>
-
-        <div className="premium-doubt-mentor-card">
-          <span>🤖</span>
-          <div>
-            <strong>AI Study Companion</strong>
-            <p>
-              Open mentor mode • {grade} • {mode || "No Access"}
-              {mode === "SOF" && subject ? ` • ${subject}` : ""}
-            </p>
-          </div>
-        </div>
-      </section>
+        <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
+          Textbook-aware explanations, examples, and step-by-step help
+        </span>
+      </div>
 
       <section className="premium-doubt-layout premium-doubt-open-layout">
         <aside className="premium-section premium-doubt-context">
