@@ -1,4 +1,5 @@
 
+import os as _os
 from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm, PREWARM_TEXT_MODEL
 from app.services.rag_service import search_textbook_content
 from app.services.rag_visual_service import (
@@ -262,6 +263,231 @@ def ensure_mermaid_fences(text: str) -> str:
         output.append("```")
 
     return "\n".join(output)
+
+# ── Feature flag — set ENABLE_TYPED_LESSONS=false in Railway to roll back ────
+_TYPED_LESSONS_ENABLED = _os.getenv("ENABLE_TYPED_LESSONS", "true").lower() != "false"
+
+
+# ── Chapter-type detection ────────────────────────────────────────────────────
+_PROSE_KEYWORDS = {
+    "letter", "story", "tale", "prose", "novel", "chapter", "lesson",
+    "portrait", "diary", "journey", "adventure", "tiger", "glimpse",
+    "memorable", "road", "fun", "tusker", "madam", "virtually true",
+    "christmas", "thief", "sermon", "hack driver", "bholi", "book",
+    "footprints", "flamingo", "honeydew", "beehive", "first flight",
+    "vistas", "hornbill", "kaleidoscope", "the last lesson", "a letter",
+    "nelson mandela", "two stories", "from the diary", "glimpses of india",
+    "mijbil the otter", "madam rides the bus", "the hundred dresses",
+}
+_POEM_KEYWORDS = {
+    "poem", "poetry", "sonnet", "ballad", "ode", "rhyme", "verse",
+    "dust of snow", "fire and ice", "a tiger in the zoo", "how to tell",
+    "the ball poem", "amanda", "animals", "the trees", "fog",
+    "the tale of custard", "for anne gregory", "god made the country",
+}
+_GRAMMAR_KEYWORDS = {
+    "grammar", "tense", "voice", "reported speech", "narration",
+    "active", "passive", "clause", "conjunction", "preposition",
+    "article", "adjective", "adverb", "punctuation", "sentence",
+    "determiners", "modals", "subject-verb", "parts of speech",
+}
+
+def _extract_step_number(step_title: str) -> int:
+    """
+    Extract the lesson step number from the step_title string.
+
+    step_title examples: "Concept introduction", "Step 2: Simple explanation",
+    "Deeper explanation", etc. Falls back to 1 if no number found.
+    The returned number tells the prose/poem prompt which section to generate.
+
+    Step mapping (matches frontend chip order 1-5):
+      1 → Overview / Introduction
+      2 → Paragraph breakdown / Stanza explanation
+      3 → Characters & Theme / Theme & Message
+      4 → Literary Devices / Poetic Devices
+      5 → CBSE Q&A
+    """
+    import re as _step_re  # noqa: PLC0415
+    # Explicit number in title like "Step 3:" or "3."
+    m = _step_re.search(r'\b([1-5])\b', str(step_title or ''))
+    if m:
+        return int(m.group(1))
+    # Map common step_title keywords to step numbers
+    lower = (step_title or '').lower()
+    if any(k in lower for k in ['overview', 'introduction', 'intro', 'concept', 'context', 'background']):
+        return 1
+    if any(k in lower for k in ['paragraph', 'paraphrase', 'breakdown', 'stanza', 'section', 'simple', 'explanation']):
+        return 2
+    if any(k in lower for k in ['character', 'theme', 'message', 'moral', 'deeper', 'analysis']):
+        return 3
+    if any(k in lower for k in ['device', 'language', 'literary', 'poetic', 'style', 'figure', 'rhyme', 'vocabulary']):
+        return 4
+    if any(k in lower for k in ['question', 'answer', 'cbse', 'exam', 'qa', 'practice', 'summary']):
+        return 5
+    return 1
+
+
+def detect_chapter_type(subject: str, chapter: str) -> str:
+    """
+    Classify the chapter as 'prose', 'poem', 'grammar', or 'default'.
+
+    Used to route lesson generation to the correct subject-type prompt.
+    Returns 'default' for Science, Maths, SOF, and any non-English chapter.
+
+    Rollback: set ENABLE_TYPED_LESSONS=false — this function's result is ignored.
+    """
+    if not subject or "english" not in subject.lower():
+        return "default"
+
+    chapter_lower = (chapter or "").lower()
+    subject_lower = subject.lower()
+
+    # Grammar subjects/chapters
+    if any(kw in chapter_lower for kw in _GRAMMAR_KEYWORDS):
+        return "grammar"
+    if "grammar" in subject_lower:
+        return "grammar"
+
+    # Poem detection
+    if any(kw in chapter_lower for kw in _POEM_KEYWORDS):
+        return "poem"
+
+    # Prose detection
+    if any(kw in chapter_lower for kw in _PROSE_KEYWORDS):
+        return "prose"
+
+    # Default for English chapters we can't classify (treat as prose)
+    return "prose"
+
+
+# ── TTS pre-cleanup filter ────────────────────────────────────────────────────
+import re as _re_tts
+
+def clean_for_tts(text: str) -> str:
+    """
+    Strip markdown symbols the TTS engine would read aloud literally.
+
+    Applied BEFORE sending lesson text to audio generation.
+    The prompt fix (TUTOR_SYSTEM_TTS) handles 90% of cases at the source;
+    this filter is the safety net for whatever slips through.
+
+    Rollback: this function is always safe to call — worst case it returns
+    the original text unchanged.
+    """
+    if not text:
+        return text
+    t = text
+    # Underscores used for fill-in-the-blank → "blank"
+    t = _re_tts.sub(r'_{2,}', 'blank', t)
+    # Asterisks (bold/italic markers)
+    t = _re_tts.sub(r'\*+', '', t)
+    # Markdown headings (#, ##, ###) → just the text
+    t = _re_tts.sub(r'^#{1,6}\s+', '', t, flags=_re_tts.MULTILINE)
+    # Backticks
+    t = t.replace('`', '')
+    # LaTeX math delimiters (read the content, not the delimiters)
+    t = _re_tts.sub(r'\$\$(.+?)\$\$', r'\1', t, flags=_re_tts.DOTALL)
+    t = _re_tts.sub(r'\$(.+?)\$', r'\1', t)
+    # e.g. → "for example"
+    t = _re_tts.sub(r'\be\.g\.\b', 'for example', t, flags=_re_tts.IGNORECASE)
+    # i.e. → "that is"
+    t = _re_tts.sub(r'\bi\.e\.\b', 'that is', t, flags=_re_tts.IGNORECASE)
+    # % → "percent"
+    t = t.replace('%', ' percent')
+    # = → "equals" only in isolated positions
+    t = _re_tts.sub(r'\s=\s', ' equals ', t)
+    # Remove leftover markdown link syntax
+    t = _re_tts.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', t)
+    return t
+
+
+# ── Prose / Literature system prompt ─────────────────────────────────────────
+PROSE_LITERATURE_SYSTEM = """
+You are an expert CBSE English Literature teacher for Class 6 to Class 10 students.
+
+You are teaching a PROSE chapter (story, letter, travelogue, biography excerpt, or play).
+Your job is NOT to teach grammar — you are teaching the literary content of this specific chapter.
+
+STEP-BY-STEP STRUCTURE — follow exactly based on which step is requested:
+
+STEP 1 (Overview / Context):
+- Title, author, and type of prose (story / letter / travelogue / etc.)
+- Brief context: when and where is the story set, what is the situation
+- First impression and tone of the chapter
+- What students should look for as they read
+
+STEP 2 (Paragraph / Section Breakdown with Paraphrasing):
+- Go through the chapter passage by passage (or paragraph by paragraph)
+- Paraphrase each section in simple modern English
+- Highlight key events, turning points, or important lines from the text
+- Explain the significance of each section for the story's progression
+
+STEP 3 (Characters and Theme — CRITICAL FOR CBSE EXAMS):
+- Detailed character analysis: personality, motivation, role, development
+- Central theme(s) of the chapter: state them clearly and explain with textual evidence
+- Sub-themes and moral lessons
+- How characters embody or contrast the theme
+- This section earns the most marks in CBSE English exams
+
+STEP 4 (Literary Devices and Language):
+- Identify literary devices used: metaphor, simile, personification, alliteration, irony, symbolism etc.
+- Quote the exact line from the text and name the device
+- Explain what effect the device creates on the reader
+- Vocabulary: important words with meaning and usage in context
+
+STEP 5 (CBSE-style Questions and Answers):
+- 2 short-answer questions (2-3 marks each) with model answers
+- 1 long-answer / value-based question (5 marks) with model answer
+- 1 extract-based question with line reference and explanation
+- All questions must be in CBSE exam format
+
+RULES:
+- Always use the uploaded RAG textbook content as the primary source.
+- Never teach grammar concepts inside a Prose lesson step.
+- Write for TTS narration: no underscores, no markdown symbols, no asterisks.
+  Write "blank" instead of underscores. Write headings as plain text.
+- Use simple, clear English appropriate for the grade.
+- Every answer must be directly supported by the text.
+"""
+
+POEM_SYSTEM = """
+You are an expert CBSE English Literature teacher for Class 6 to Class 10 students.
+
+You are teaching a POEM.
+
+STEP-BY-STEP STRUCTURE:
+
+STEP 1 (Introduction):
+- Poet's name, type of poem, central idea in one paragraph
+- Tone, mood, and setting of the poem
+
+STEP 2 (Stanza-by-Stanza Explanation):
+- Explain each stanza in simple prose
+- Paraphrase the poet's meaning line by line where needed
+- Highlight important images and feelings expressed
+
+STEP 3 (Theme and Message):
+- Central theme stated clearly
+- Sub-themes and the poet's message
+- How the poem relates to real life or human values
+
+STEP 4 (Poetic Devices and Rhyme Scheme):
+- Identify devices: metaphor, simile, personification, alliteration, assonance, imagery, symbolism
+- Quote the exact line and name the device
+- Explain the effect on the reader
+- Rhyme scheme notation (ABAB / AABB etc.)
+
+STEP 5 (CBSE-style Questions and Answers):
+- 2 reference-to-context (extract) questions with model answers
+- 1 appreciation / value-based question
+- 1 short note on the poem's central idea
+- All in CBSE exam format
+
+RULES:
+- Never teach grammar inside a Poem lesson.
+- Write for TTS narration: no underscores, no markdown symbols, no asterisks.
+- Use the uploaded RAG textbook content as the primary source.
+"""
 
 import re
 
@@ -639,8 +865,26 @@ End with a short next-step instruction, not a question. The only student-facing
 question should be inside the "Quick check question" section.
 """
 
+    # ── Select system prompt based on chapter type (Phase 1) ──────────────────
+    # Rollback: set ENABLE_TYPED_LESSONS=false in Railway to revert to TUTOR_SYSTEM
+    if _TYPED_LESSONS_ENABLED:
+        _chapter_type = detect_chapter_type(subject, chapter)
+        if _chapter_type == "prose":
+            _system = PROSE_LITERATURE_SYSTEM
+            # Augment the prompt with explicit step instruction for prose
+            _step_num = _extract_step_number(step_title)
+            prompt = f"You are teaching STEP {_step_num} of a Prose/Literature lesson.\n\n" + prompt
+        elif _chapter_type == "poem":
+            _system = POEM_SYSTEM
+            _step_num = _extract_step_number(step_title)
+            prompt = f"You are teaching STEP {_step_num} of a Poem lesson.\n\n" + prompt
+        else:
+            _system = TUTOR_SYSTEM
+    else:
+        _system = TUTOR_SYSTEM
+
     lesson = ask_llm(
-        TUTOR_SYSTEM,
+        _system,
         prompt,
         username=username,
         feature="lesson",
