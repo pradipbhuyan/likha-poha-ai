@@ -167,7 +167,7 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
     # Fallback: SMTP (for local dev / non-Railway environments)
     cfg = _get_smtp_config()
     if not cfg:
-        _log.debug("email_service.not_configured — skipping send to %s", to)
+        _log.debug("email_service.not_configured", to=to)
         return False
 
     # Strip spaces from App Password (Gmail displays it as "xxxx xxxx xxxx xxxx")
