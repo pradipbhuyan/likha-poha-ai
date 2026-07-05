@@ -116,6 +116,13 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
         import urllib.request  # noqa: PLC0415
         import json as _json  # noqa: PLC0415
 
+        # Inject system trust store so macOS certificates work with urllib
+        try:
+            import truststore  # noqa: PLC0415
+            truststore.inject_into_ssl()
+        except Exception:
+            pass
+
         payload = _json.dumps({
             "from": f"{sender_name} <{from_addr}>",
             "to": [to],
@@ -130,6 +137,7 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
             headers={
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
+                "User-Agent": "LikhaPohaAI/1.0",
             },
             method="POST",
         )
