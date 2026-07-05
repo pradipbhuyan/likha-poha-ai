@@ -306,6 +306,7 @@ def generate_mock_test(
                 difficulty=data.difficulty,
                 cache_only=False,
                 excluded_ids=excluded_ids,
+                question_format=getattr(data, "question_format", "mcq"),
             )
 
         return MockTestResponse(

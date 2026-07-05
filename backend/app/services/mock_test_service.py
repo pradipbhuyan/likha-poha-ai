@@ -521,14 +521,29 @@ def generate_cbse_mock_test(
     board="CBSE",
     cache_only: bool = False,
     excluded_ids: list[str] | None = None,
+    question_format: str = "mcq",
 ):
     """
     Generate a CBSE mock test.
 
+    question_format controls the type of questions generated:
+      "mcq"     → standard MCQ only (default, uses question bank cache)
+      "written" → short/long answer questions only (AI-generated, no bank)
+      "mixed"   → mix of MCQ + written questions (AI-generated, no bank)
+
     Bank-first: checks the question_bank before calling the LLM. On bank hit
     returns a random sample instantly with zero token cost. On bank miss the
     LLM generates as normal and the result is added to the bank.
+    Written/Mixed always bypass the bank (written questions are not cacheable).
     """
+    # ── Written / Mixed format: always generate fresh via LLM (no bank) ────
+    if question_format in ("written", "mixed"):
+        return _generate_written_questions(
+            grade=grade, board=board, subject=subject, chapter=chapter,
+            exam_type=exam_type, num_questions=num_questions,
+            difficulty=difficulty, question_format=question_format,
+        )
+
     # ------------------------------------------------------------------ bank
     # Uses fallback that strips display prefixes (e.g. "Text Book - ")
     # so chapters stored under their plain name are still found even when
@@ -634,3 +649,119 @@ JSON schema:
     )
 
     return questions
+
+
+def _generate_written_questions(
+    grade, board, subject, chapter, exam_type, num_questions, difficulty, question_format
+):
+    """
+    Generate short-answer and/or long-answer written questions via LLM.
+
+    Returns a list of dicts compatible with MockTestQuestion schema,
+    with question_type set to 'written_short' or 'written_long' instead of 'mcq'.
+    No options/answer fields — student types their answer and AI evaluates it.
+    """
+    # Split between short and long based on format and count
+    if question_format == "mixed":
+        mcq_count    = max(1, num_questions // 2)
+        short_count  = max(1, (num_questions - mcq_count) // 2)
+        long_count   = num_questions - mcq_count - short_count
+    else:
+        short_count  = max(1, num_questions * 2 // 3)
+        long_count   = num_questions - short_count
+        mcq_count    = 0
+
+    # Build a list of question types and marks
+    type_instructions = []
+    if mcq_count:
+        type_instructions.append(f"- {mcq_count} MCQ questions (1 mark each): provide options A/B/C/D and correct answer")
+    if short_count:
+        type_instructions.append(f"- {short_count} short-answer questions (2-3 marks each): question_type = written_short")
+    if long_count:
+        type_instructions.append(f"- {long_count} long-answer questions (5 marks each): question_type = written_long")
+
+    type_str = "\n".join(type_instructions)
+
+    prompt = f"""
+Create a {board} {grade} {exam_type} paper.
+
+Grade: {grade}
+Board: {board}
+Subject: {subject}
+Chapter: {chapter}
+Exam Type: {exam_type}
+Difficulty: {difficulty}
+Total Questions: {num_questions}
+
+Generate the following mix:
+{type_str}
+
+For written_short questions (2-3 marks):
+- Require a 3-5 sentence answer
+- Cover definitions, explain concepts, give examples
+- For Maths/Science: show 1-2 step calculations
+
+For written_long questions (5 marks):
+- Require a detailed paragraph or multi-step answer
+- Cover reasoning, analysis, application, or value-based questions
+- For English: comprehension or composition style
+
+For MCQ questions: provide options dict with A/B/C/D and answer field.
+For written questions: leave options as empty dict {{}}, answer as empty string.
+Provide model_answer (reference answer for grading) and expected_keywords list.
+
+Return ONLY valid JSON:
+{{
+  "questions": [
+    {{
+      "id": 1,
+      "section": "Section A",
+      "question_type": "mcq",
+      "question": "...",
+      "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
+      "answer": "A",
+      "explanation": "...",
+      "marks": 1,
+      "model_answer": "",
+      "expected_keywords": []
+    }},
+    {{
+      "id": 2,
+      "section": "Section B",
+      "question_type": "written_short",
+      "question": "...",
+      "options": {{}},
+      "answer": "",
+      "explanation": "",
+      "marks": 3,
+      "model_answer": "Full reference answer here...",
+      "expected_keywords": ["key1", "key2", "key3"]
+    }},
+    {{
+      "id": 3,
+      "section": "Section C",
+      "question_type": "written_long",
+      "question": "...",
+      "options": {{}},
+      "answer": "",
+      "explanation": "",
+      "marks": 5,
+      "model_answer": "Detailed reference answer here...",
+      "expected_keywords": ["key1", "key2", "key3", "key4", "key5"]
+    }}
+  ]
+}}
+"""
+
+    raw = ask_llm(
+        MOCK_TEST_SYSTEM,
+        prompt,
+        username="admin",
+        feature="cbse_written_test",
+    )
+
+    try:
+        data = json.loads(raw)
+        return data.get("questions", [])
+    except Exception:
+        return []

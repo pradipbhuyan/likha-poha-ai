@@ -50,6 +50,8 @@ class MockTestRequest(BaseModel):
     # IDs of questions already shown in recent tests — excluded from sampling
     # so the same question doesn't appear in the same or next 30 tests.
     excluded_ids: list[str] = []
+    # Question format: "mcq" (default), "written", or "mixed"
+    question_format: str = "mcq"
 
     @classmethod
     def __get_validators__(cls):
@@ -71,11 +73,14 @@ class MockTestQuestion(BaseModel):
     id: int
     section: str
     question: str
-    options: dict
-    answer: str
-    explanation: str
-    marks: int
-    db_id: str | None = None   # Original question_bank row ID for exclusion tracking
+    options: dict = Field(default_factory=dict)   # empty for written questions
+    answer: str = ""                               # empty for written questions
+    explanation: str = ""
+    marks: int = 1
+    db_id: str | None = None
+    question_type: str = "mcq"                    # "mcq" | "written_short" | "written_long"
+    model_answer: str | None = None               # reference answer for written questions
+    expected_keywords: list[str] = Field(default_factory=list)
 
 
 class MockTestResponse(BaseModel):
