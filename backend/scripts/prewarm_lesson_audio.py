@@ -12,13 +12,14 @@ Usage:
     python3 scripts/prewarm_lesson_audio.py --grade "Grade 9"
 
 Prerequisites:
-    1. Create bucket "lesson-audio" in Supabase Storage (set to Public)
-    2. Run migration: migrations/20260703_lesson_audio_cache.sql
-    3. Run from backend/ directory with .env loaded
+    1. Create bucket "lesson-audio" in Cloudflare R2 (set to Public)
+    2. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_PUBLIC_URL to .env
+    3. Run migration: migrations/20260703_lesson_audio_cache.sql
+    4. Run from backend/ directory with .env loaded
 
 Real-world measurements (Grade 9 English, en-IN-NeerjaNeural):
     155 lessons × ~1.55 MB avg × ~18.7s avg = ~240 MB, ~48 min wall-clock
-    Edge TTS is free — only Supabase Storage cost ($0.021/GB/month ≈ $0.005/month for 240 MB)
+    Edge TTS is free — Cloudflare R2 storage is free up to 10 GB (zero egress fees)
 """
 
 import argparse
@@ -38,6 +39,7 @@ from app.services.audio_cache_service import (
     store_audio,
     get_cached_audio_url,
     BUCKET_NAME,
+    _get_r2_client,
 )
 
 VOICE = "en-IN-NeerjaNeural"
@@ -62,21 +64,36 @@ def fetch_lessons(grade: str, subject: str | None) -> list[dict]:
 
 
 def ensure_bucket_exists():
-    """Check the bucket exists — if not, print instructions and exit."""
+    """Verify R2 credentials and bucket are accessible — exit with instructions if not."""
+    account_id    = os.getenv("R2_ACCOUNT_ID", "").strip()
+    access_key_id = os.getenv("R2_ACCESS_KEY_ID", "").strip()
+    secret_key    = os.getenv("R2_SECRET_ACCESS_KEY", "").strip()
+    public_url    = os.getenv("R2_PUBLIC_URL", "").strip()
+
+    missing = [k for k, v in {
+        "R2_ACCOUNT_ID": account_id,
+        "R2_ACCESS_KEY_ID": access_key_id,
+        "R2_SECRET_ACCESS_KEY": secret_key,
+        "R2_PUBLIC_URL": public_url,
+    }.items() if not v]
+
+    if missing:
+        print(f"\n❌  Missing R2 environment variables: {', '.join(missing)}")
+        print("    Setup steps:")
+        print("    1. Go to dash.cloudflare.com → R2 → Create bucket 'lesson-audio'")
+        print("    2. Enable public access on the bucket (Settings tab)")
+        print("    3. Create R2 API Token with Object Read & Write permission")
+        print("    4. Add R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_PUBLIC_URL to .env")
+        print("    5. Re-run this script\n")
+        sys.exit(1)
+
     try:
-        buckets = admin_client.storage.list_buckets()
-        names = [b.name for b in buckets]
-        if BUCKET_NAME not in names:
-            print(f"\n❌  Bucket '{BUCKET_NAME}' not found in Supabase Storage.")
-            print("    Create it manually:")
-            print(f"    1. Go to Supabase Dashboard → Storage → New bucket")
-            print(f"    2. Name: {BUCKET_NAME}")
-            print(f"    3. Set to Public (so frontend can play audio directly)")
-            print(f"    4. Re-run this script\n")
-            sys.exit(1)
-        print(f"✅  Storage bucket '{BUCKET_NAME}' found.")
+        r2 = _get_r2_client()
+        r2.head_bucket(Bucket=BUCKET_NAME)
+        print(f"✅  Cloudflare R2 bucket '{BUCKET_NAME}' accessible.")
     except Exception as e:
-        print(f"❌  Could not check storage buckets: {e}")
+        print(f"❌  Could not access R2 bucket '{BUCKET_NAME}': {e}")
+        print(f"    Make sure the bucket exists in your Cloudflare R2 dashboard.")
         sys.exit(1)
 
 

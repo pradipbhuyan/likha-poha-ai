@@ -28,13 +28,17 @@ describe("FirstTimeGuide", () => {
     });
   });
 
-  test("shows a role-aware guide for student users", async () => {
+  test("shows a role-aware guide for student users after clicking the launcher", async () => {
     render(
       <FirstTimeGuide
         activePage="dashboard"
         user={{ role: "student", username: "akshita.teststudent" }}
       />
     );
+
+    // Guide starts minimised — launcher button must be clicked to open it
+    const launcher = await screen.findByRole("button", { name: /likha poha ai guide/i });
+    fireEvent.click(launcher);
 
     await waitFor(() => {
       expect(screen.getByText(/quest mode/i)).toBeInTheDocument();

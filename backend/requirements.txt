@@ -128,5 +128,8 @@ xxhash==3.6.0
 yarl==1.23.0
 zstandard==0.25.0
 
+# Cloudflare R2 / S3-compatible storage
+boto3>=1.34.0
+
 # CI/CD tooling — used by GitHub Actions
 pytest-cov>=5.0.0

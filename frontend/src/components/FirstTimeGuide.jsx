@@ -199,7 +199,7 @@ function pickTheme(settings, role) {
   return roleTheme || getRotatedTheme(settings);
 }
 
-function FirstTimeGuide({ user, activePage }) {
+function FirstTimeGuide({ user }) {
   /** Role-aware first-time guide with admin-configurable visual themes. */
   const role = user?.role;
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
@@ -238,21 +238,8 @@ function FirstTimeGuide({ user, activePage }) {
   const currentStep = steps[stepIndex] || steps[0];
   const seenKey = storageKey(user, theme);
 
-  useEffect(() => {
-    if (!settings.enabled || !settings.auto_open || !steps.length) return;
-    if (settings.show_once_per_theme && localStorage.getItem(seenKey) === "true") {
-      return;
-    }
-
-    setOpen(true);
-  }, [
-    activePage,
-    seenKey,
-    settings.auto_open,
-    settings.enabled,
-    settings.show_once_per_theme,
-    steps.length,
-  ]);
+  // Guide is always minimised by default — opens only on user click.
+  // auto_open admin setting is intentionally ignored here.
 
   if (!settings.enabled || !steps.length) {
     return null;

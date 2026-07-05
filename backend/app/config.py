@@ -27,5 +27,12 @@ class Settings:
     RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
     RAZORPAY_WEBHOOK_SECRET = os.getenv("RAZORPAY_WEBHOOK_SECRET")
 
+    # ── Cloudflare R2 — lesson audio storage ─────────────────────────────
+    R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID")           # Cloudflare Account ID
+    R2_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID")     # R2 API Token Access Key ID
+    R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY")  # R2 API Token Secret
+    R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME", "lesson-audio")
+    R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "")       # e.g. https://pub-xxxx.r2.dev
+
 
 settings = Settings()
