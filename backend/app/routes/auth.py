@@ -524,6 +524,19 @@ def oauth_complete_profile(
             except Exception:
                 pass
 
+            # Welcome email — first time this Google user completes role selection
+            try:
+                from app.services.email_service import send_welcome_email  # noqa: PLC0415
+                send_welcome_email(
+                    to=user.email or "",
+                    name=display_name,
+                    role=role,
+                    is_paid=False,
+                    plan_name="",
+                )
+            except Exception:
+                pass  # Email send must never block signup
+
             return _build_me_response(user, fresh_resp.data, needs_role_selection=False)
 
     else:
@@ -616,6 +629,19 @@ def oauth_complete_profile(
             }).execute()
         except Exception:
             pass
+
+        # Welcome email — new Google OAuth user, profile created from scratch
+        try:
+            from app.services.email_service import send_welcome_email  # noqa: PLC0415
+            send_welcome_email(
+                to=(user.email or ""),
+                name=display_name,
+                role=role,
+                is_paid=False,
+                plan_name="",
+            )
+        except Exception:
+            pass  # Email send must never block signup
 
         return _build_me_response(user, final_profile, needs_role_selection=False)
 
@@ -1042,6 +1068,21 @@ def complete_signup(data: CompleteSignupRequest):
     except Exception:
         pass
 
+    # Welcome email — paid signup
+    try:
+        from app.services.email_service import send_welcome_email  # noqa: PLC0415
+        from app.routes.payments import _paid_plan_name  # noqa: PLC0415 (reuse helper)
+        _pn = _paid_plan_name(plan.get("key", "free"))
+        send_welcome_email(
+            to=data.email.strip().lower(),
+            name=data.name.strip(),
+            role=role,
+            is_paid=True,
+            plan_name=_pn,
+        )
+    except Exception:
+        pass  # Email send must never block signup
+
     return {
         "success": True,
         "message": (
@@ -1189,6 +1230,19 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
             )
         except Exception:
             pass
+
+    # Welcome email — free tier signup
+    try:
+        from app.services.email_service import send_welcome_email  # noqa: PLC0415
+        send_welcome_email(
+            to=email_clean,
+            name=data.name.strip(),
+            role=role,
+            is_paid=False,
+            plan_name="",
+        )
+    except Exception:
+        pass  # Email send must never block signup
 
     return {
         "success": True,
@@ -1385,6 +1439,19 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
         }).eq("id", offer["id"]).execute()
     except Exception:
         pass  # Don't fail signup if redemption recording fails
+
+    # Welcome email — offer code signup
+    try:
+        from app.services.email_service import send_welcome_email  # noqa: PLC0415
+        send_welcome_email(
+            to=email_clean,
+            name=data.name.strip(),
+            role=role,
+            is_paid=False,
+            plan_name="Offer Access",
+        )
+    except Exception:
+        pass  # Email send must never block signup
 
     return {
         "success": True,

@@ -422,6 +422,22 @@ def verify_payment(
         activated_count=len(activated_profiles),
     )
 
+    # ── Upgrade email ────────────────────────────────────────────────────────
+    try:
+        from app.services.email_service import send_upgrade_email  # noqa: PLC0415
+        from app.services.subscription_resolver_service import resolve_user_subscription  # noqa: PLC0415
+        _sub = resolve_user_subscription(parent["profile"]["id"])
+        send_upgrade_email(
+            to=parent["profile"].get("email", ""),
+            name=parent["profile"].get("username", ""),
+            role="parent",
+            plan_name=_paid_plan_name(payment["plan_key"]),
+            expires_at=_sub.get("valid_until"),
+            days_remaining=_sub.get("days_remaining"),
+        )
+    except Exception:
+        pass  # Email must never block payment flow
+
     # ── Audit + timeline + metrics (fire-and-forget — never block main flow) ──
     try:
         metrics_increment("payment.verified", plan_key=payment["plan_key"])
@@ -643,6 +659,24 @@ def student_verify_payment(
         "status": "paid",
         "verified_at": verified_at,
     })
+
+    # ── Upgrade email (student self-service) ─────────────────────────────────
+    try:
+        from app.services.email_service import send_upgrade_email  # noqa: PLC0415
+        from app.services.subscription_resolver_service import resolve_user_subscription  # noqa: PLC0415
+        _sub = resolve_user_subscription(user.id)
+        _profile_r = admin_client.table("profiles").select("email, username").eq("id", user.id).limit(1).execute()
+        _prof = (_profile_r.data or [{}])[0]
+        send_upgrade_email(
+            to=_prof.get("email", ""),
+            name=_prof.get("username", ""),
+            role="student",
+            plan_name=_paid_plan_name(payment["plan_key"]),
+            expires_at=_sub.get("valid_until"),
+            days_remaining=_sub.get("days_remaining"),
+        )
+    except Exception:
+        pass  # Email must never block payment flow
 
     return {
         "success": True,
