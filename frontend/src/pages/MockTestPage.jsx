@@ -292,10 +292,11 @@ function MockTestPage({ user, setActivePage }) {
       {phase === PHASE_SETUP && (
         <>
           <section className="premium-section premium-mock-hero">
-            <div className="premium-header">
-              <p className="eyebrow">Exam Practice</p>
-              <h2>🧪 Mock Test Studio</h2>
-              <p>Generate exam-style practice tests, track your answers, review mistakes, and build confidence.</p>
+            {/* Compact context bar — removes redundant page title duplication */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
+              <span style={{ fontSize: "0.82rem", color: "var(--muted)", fontStyle: "italic" }}>
+                🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
+              </span>
             </div>
 
             {/* Exam format selector — shown prominently at the top */}
