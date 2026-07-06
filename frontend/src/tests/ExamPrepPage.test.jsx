@@ -15,7 +15,7 @@
  *   - Sidebar link hidden for Grade 5-10 students
  */
 
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import ExamPrepPage from "../pages/ExamPrepPage";
 

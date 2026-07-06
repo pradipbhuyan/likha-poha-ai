@@ -13,15 +13,14 @@
  *   7. Resource links
  */
 
-import { useEffect, useState, useCallback, useRef } from "react";
-import { Loader, BookOpen, Zap, FlaskConical, Calculator, ChevronRight, CheckCircle, XCircle, Clock, Target, TrendingUp, Award } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { Loader, CheckCircle, XCircle } from "lucide-react";
 import {
   getExamPrepDashboard,
   getExamPrepSubjects,
   getExamPrepTopics,
   getExamPrepQuestions,
   submitQuestionAnswer,
-  explainQuestion,
   askFollowUp,
   startSimulatedTest,
   submitSimulatedTest,
@@ -159,7 +158,7 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
   );
 }
 
-function AIPanel({ question, selectedOption, feedback, onAskFollowUp, user }) {
+function AIPanel({ question, feedback, user }) {
   const [followUp, setFollowUp] = useState("");
   const [fuLoading, setFuLoading] = useState(false);
   const [fuAnswer, setFuAnswer] = useState("");
