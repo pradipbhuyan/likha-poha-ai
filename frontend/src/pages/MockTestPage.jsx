@@ -293,7 +293,7 @@ function MockTestPage({ user, setActivePage }) {
         <>
           <section className="premium-section premium-mock-hero">
             {/* Tagline — shown above format cards */}
-            <p style={{ fontSize: "0.85rem", color: "var(--muted)", fontStyle: "italic", margin: "0 0 18px" }}>
+            <p style={{ fontSize: "1rem", color: "var(--muted)", margin: "0 0 20px", lineHeight: 1.5 }}>
               🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
             </p>
 
