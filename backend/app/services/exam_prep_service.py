@@ -1820,15 +1820,40 @@ Return ONLY the JSON array, nothing else."""
                 feature="exam_prep_prewarm",
             )
 
-            # Parse JSON
+            # ── Robust JSON extraction ────────────────────────────────────────
+            # Strip markdown code fences
             raw = raw.strip()
-            if raw.startswith("```"):
-                raw = raw.split("```")[1]
+            if "```" in raw:
+                # Extract content between first ``` and last ```
+                parts = raw.split("```")
+                # parts[1] is the code block content (may start with "json\n")
+                raw = parts[1] if len(parts) > 1 else raw
                 if raw.startswith("json"):
                     raw = raw[4:]
             raw = raw.strip()
 
-            batch_questions = _json.loads(raw)
+            # Extract just the JSON array — find first [ and last ]
+            start = raw.find("[")
+            end = raw.rfind("]")
+            if start != -1 and end != -1 and end > start:
+                raw = raw[start : end + 1]
+
+            # Attempt parse with fallback cleanup
+            try:
+                batch_questions = _json.loads(raw)
+            except _json.JSONDecodeError as je:
+                # Log the exact position to aid debugging
+                _log.warning(
+                    "exam_prep.prewarm.json_parse_error",
+                    batch=batch_num,
+                    error=str(je),
+                    snippet=raw[max(0, je.pos - 50): je.pos + 50] if hasattr(je, "pos") else "",
+                )
+                # Try stripping control characters and retry
+                import re as _re  # noqa: PLC0415
+                raw_clean = _re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", raw)
+                batch_questions = _json.loads(raw_clean)
+
             if not isinstance(batch_questions, list):
                 _log.warning("exam_prep.prewarm.batch_not_list", batch=batch_num)
                 continue
