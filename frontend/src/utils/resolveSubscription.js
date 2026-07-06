@@ -121,7 +121,15 @@ export function resolveSubscription(user = {}, offerAccess = null) {
   // ── 2b. Legacy Nano (plan_key="free" + accessCbse + no expiry) ────────────
   // Users who paid for Nano before subscription_expires_at was introduced.
   // Without this check they would incorrectly show "Admin Access" (step 4).
-  if (hasAccessFlag && planKey === "free" && !user.subscriptionExpiresAt) {
+  // Parents are EXCLUDED: their access_cbse flag tracks child subscription state,
+  // not their own plan — a parent with access_cbse=true is still "Free Tier"
+  // until they actually purchase. Mirrors the backend resolver exclusion.
+  if (
+    hasAccessFlag &&
+    planKey === "free" &&
+    !user.subscriptionExpiresAt &&
+    user.role !== "parent"
+  ) {
     return {
       activeTier: TIER.PREMIUM,
       planName: "Premium Nano",
@@ -151,7 +159,9 @@ export function resolveSubscription(user = {}, offerAccess = null) {
   // ── 4. Admin-granted CBSE/SOF access ──────────────────────────────────────
   // Skip if subscription_expires_at was set (even if expired) — access_cbse may
   // still be True pending backend revocation; must not show "Admin Access".
-  if (hasAccessFlag && !hadExpiredSubscription) {
+  // Also skip for parents — their access_cbse reflects child plan state, not
+  // the parent's own subscription.
+  if (hasAccessFlag && !hadExpiredSubscription && user.role !== "parent") {
     return {
       activeTier: TIER.PREMIUM,
       planName: "Admin Access",

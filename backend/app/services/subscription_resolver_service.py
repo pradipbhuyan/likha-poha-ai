@@ -239,7 +239,10 @@ def resolve_user_subscription(user_id: str) -> dict:
         # ── 4. Admin-granted access (access flags set, no expiry, no offer) ─
         # Skip if subscription_expires_at was set — access_cbse may still be
         # True pending backend revocation; don't show "Admin Access" for that.
-        if has_access_flag and not had_expired_subscription:
+        # Also skip for parents — their access_cbse reflects child plan state,
+        # not the parent's own subscription. A parent is always "Free Tier"
+        # until they purchase, even if access_cbse=True was set by admin grant.
+        if has_access_flag and not had_expired_subscription and profile.get("role") != "parent":
             return {
                 "active_tier": Tier.PREMIUM,
                 "plan_name": "Admin Access",

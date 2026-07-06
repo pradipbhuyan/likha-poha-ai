@@ -1261,17 +1261,31 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
 def test_email(user=Depends(get_current_user)):
     """
     Admin-only: send a test welcome email to the caller's address.
-    Call from live backend to verify SMTP config on Railway.
+    Call from live backend to verify email config on Railway.
     GET /api/auth/test-email  (requires auth token)
     """
+    import os as _os  # noqa: PLC0415
     from app.services.email_service import _send, _get_smtp_config  # noqa: PLC0415
 
-    cfg = _get_smtp_config()
-    if not cfg:
+    resend_key = _os.getenv("RESEND_API_KEY", "").strip()
+    resend_from = _os.getenv("EMAIL_FROM_ADDRESS", "").strip()
+    smtp_cfg = _get_smtp_config()
+
+    # Diagnostics — which channels are configured
+    channels = {
+        "resend": bool(resend_key and resend_from),
+        "smtp": bool(smtp_cfg),
+    }
+
+    if not any(channels.values()):
         return {
             "success": False,
-            "error": "SMTP not configured — ALERT_SMTP_USER or ALERT_SMTP_PASSWORD not set in Railway",
-            "smtp_user": None,
+            "channels_configured": channels,
+            "error": (
+                "No email channel configured. "
+                "Set RESEND_API_KEY + EMAIL_FROM_ADDRESS (recommended), "
+                "or ALERT_SMTP_USER + ALERT_SMTP_PASSWORD in Railway env vars."
+            ),
         }
 
     profile_resp = (
@@ -1287,17 +1301,19 @@ def test_email(user=Depends(get_current_user)):
         html=(
             "<h2>✓ Email delivery confirmed</h2>"
             "<p>This test email was sent from the Railway backend.</p>"
-            "<p>SMTP is configured and working correctly.</p>"
+            "<p>If you see this, welcome emails are working correctly.</p>"
         ),
-        text="Email delivery confirmed from Railway backend. SMTP is working.",
+        text="Email delivery confirmed from Railway backend. Email is working.",
     )
 
     return {
         "success": result,
         "to": to_email,
-        "smtp_user": cfg["user"],
-        "smtp_host": f"{cfg['host']}:{cfg['port']}",
-        "error": None if result else "Send failed — check Railway logs for email_service.failed",
+        "channels_configured": channels,
+        "channel_used": "resend" if channels["resend"] else "smtp",
+        "resend_from": resend_from if channels["resend"] else None,
+        "smtp_user": smtp_cfg["user"] if smtp_cfg else None,
+        "error": None if result else "Send failed — check Railway logs for email_service.failed or email_service.resend_failed",
     }
 
 
