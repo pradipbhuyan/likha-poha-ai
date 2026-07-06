@@ -116,6 +116,7 @@ useEffect(() => {
       cbseSubjects: Array.isArray(profile.cbse_subjects)
         ? profile.cbse_subjects
         : [],
+      stream: profile.stream || null,
       avatar: profile.avatar || "",
 
       dailyTokenLimit: profile.daily_token_limit,

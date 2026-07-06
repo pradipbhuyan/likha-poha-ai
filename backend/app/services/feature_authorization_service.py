@@ -78,6 +78,9 @@ class Feature:
     TEACHER_DASHBOARD    = "TEACHER_DASHBOARD"
     ADMIN_PANEL          = "ADMIN_PANEL"
     FORMULA_SHEET_PREMIUM= "FORMULA_SHEET_PREMIUM"
+    # Grade 11/12 Exam Prep features
+    EXAM_PREP_CENTER     = "EXAM_PREP_CENTER"    # page shell visible to Grade 11/12 (all tiers)
+    EXAM_PREP_CONTENT    = "EXAM_PREP_CONTENT"   # actual content: questions, tests, AI — Premium+ only
 
 
 # ── Feature Matrix ────────────────────────────────────────────────────────────
@@ -148,6 +151,29 @@ _FEATURE_MATRIX: dict[str, dict] = {
                           "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
         "limited_on": set(),
         "upgrade_message": "Upgrade to unlock solved examples, memory tips and full formula library.",
+    },
+    # ── Grade 11/12 Exam Prep ────────────────────────────────────────────────
+    Feature.EXAM_PREP_CENTER: {
+        # Page shell and preview available to all Grade 11/12 students.
+        # FREE_TIER and NANO see upgrade CTA; actual content locked.
+        "allowed_plans": None,          # page accessible to all tiers
+        "limited_on": {"FREE_TIER", "NANO"},   # FREE/NANO: preview only, no real content
+        "upgrade_message": (
+            "Upgrade to Premium to unlock Exam Prep Center — "
+            "JEE Main, NEET UG & CUET UG practice questions, "
+            "simulated tests, and AI explanations."
+        ),
+    },
+    Feature.EXAM_PREP_CONTENT: {
+        # Actual content: questions, topic details, simulated tests, AI follow-up.
+        # Premium Nano explicitly EXCLUDED (per spec: Nano can only preview).
+        "allowed_plans": {"PREMIUM", "PREMIUM_6MONTH", "PREMIUM_ANNUAL",
+                          "FAMILY_PREMIUM", "FAMILY_ANNUAL", "ADMIN_GRANT"},
+        "limited_on": set(),
+        "upgrade_message": (
+            "Upgrade to Premium or Family Premium to access "
+            "JEE/NEET/CUET practice questions, simulated tests, and AI explanations."
+        ),
     },
     Feature.QUESTION_BANK: {
         "allowed_plans": None,
@@ -355,10 +381,13 @@ def _feature_display_name(feature: str) -> str:
         Feature.AI_ASSISTANT:        "AI Assistant",
         Feature.AI_CHAT:             "AI Chat",
         Feature.AI_SOLUTIONS:        "AI Solutions",
+        Feature.FORMULA_SHEET_PREMIUM: "Formula Sheet Premium",
         Feature.QUESTION_BANK:       "Question Bank",
         Feature.PROGRESS_ANALYTICS:  "Progress Analytics",
         Feature.PARENT_DASHBOARD:    "Parent Dashboard",
         Feature.TEACHER_DASHBOARD:   "Teacher Dashboard",
         Feature.ADMIN_PANEL:         "Admin Panel",
+        Feature.EXAM_PREP_CENTER:    "Exam Prep Center",
+        Feature.EXAM_PREP_CONTENT:   "Exam Prep Content",
     }
     return names.get(feature, feature)

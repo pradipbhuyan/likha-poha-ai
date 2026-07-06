@@ -1,5 +1,14 @@
 import { isAllAccessTestUser } from "./testAccounts";
 
+/** Map stream key → subjects shown in Grade 11/12 lesson selector */
+export const STREAM_SUBJECTS = {
+  PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+  PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+  PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+  Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+  Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+};
+
 export const COMMON_CBSE_SUBJECTS = [
   "English",
   "Hindi",
@@ -29,13 +38,31 @@ export function parseSubjectList(value) {
     });
 }
 
+export function getSubjectsForStream(stream) {
+  /** Return the subject list for a given stream key. Returns null if unknown. */
+  if (!stream) return null;
+  return STREAM_SUBJECTS[stream] || null;
+}
+
 export function hasCbseSubjectAccess(user, subjectName) {
-  /** Empty cbseSubjects means all CBSE subjects are allowed. */
+  /** Empty cbseSubjects means all CBSE subjects are allowed — unless stream is set for Grade 11/12. */
   if (isAllAccessTestUser(user)) return true;
 
   const allowedSubjects = user?.cbseSubjects || [];
 
-  if (!allowedSubjects.length) return true;
+  // For Grade 11/12: if cbseSubjects is empty but stream is set, derive from stream
+  if (!allowedSubjects.length) {
+    const grade = (user?.grade || "").toLowerCase();
+    const isUpperSecondary = grade === "grade 11" || grade === "grade 12";
+    if (isUpperSecondary && user?.stream) {
+      const streamSubjects = getSubjectsForStream(user.stream);
+      if (streamSubjects) {
+        const subjectKey = normalizeSubjectName(subjectName);
+        return streamSubjects.some(s => normalizeSubjectName(s) === subjectKey);
+      }
+    }
+    return true;
+  }
 
   const subjectKey = normalizeSubjectName(subjectName);
 
@@ -54,24 +81,10 @@ export function filterAllowedSubjects(user, allSubjects, selectedMode) {
   if (user?.role === "admin" || isAllAccessTestUser(user)) return allSubjects;
 
   if (isSchoolBoardMode(selectedMode)) {
-    // Offer-code users have accessCbse=false. The backend server-side gate
-    // (DKB-only for doubts, cache-only for lessons) is the real access control.
-    // The frontend should always show CBSE subjects for free-plan users so
-    // they can browse and generate lessons — don't block on the frontend.
-    //
-    // We only hide subjects when access_cbse=false AND the user has a non-free
-    // paid plan (which would be a misconfiguration — show nothing rather than
-    // serving content they haven't paid for).
-    // Use hasPaidAccess() — do NOT branch on subscriptionPlan !== "free" because
-    // the "free" DB key is shared by both Free Tier users and Nano paid users.
-    // accessCbse is the authoritative signal for "has paid plan access".
-    const hasPaidPlan = user?.accessCbse === true;
-    if (user?.accessCbse === false && !user?.offerAccess && hasPaidPlan) return [];
-    if (user?.accessCbse === false && !user?.offerAccess && !hasPaidPlan) {
-      // Free-plan student with access_cbse=false — offer-code user.
-      // Show all CBSE subjects; server enforces DKB/cache-only gate.
-      return allSubjects;
-    }
+    // Always filter by hasCbseSubjectAccess first — it applies stream-based
+    // subject filtering for Grade 11/12 students regardless of subscription.
+    // For free/offer-code users (accessCbse=false), the server enforces
+    // DKB-only gates; the frontend still restricts to enrolled subjects.
     return allSubjects.filter((subjectName) =>
       hasCbseSubjectAccess(user, subjectName)
     );

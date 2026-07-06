@@ -838,6 +838,7 @@ def get_my_profile(user=Depends(get_current_user)):
         "access_sof_maths": bool(profile.get("access_sof_maths")),
         "access_sof_english": bool(profile.get("access_sof_english")),
         "cbse_subjects": profile.get("cbse_subjects") or [],
+        "stream": profile.get("stream") or None,
         "daily_token_limit": profile.get("daily_token_limit"),
         "monthly_token_limit": profile.get("monthly_token_limit"),
         "account_status": profile.get("account_status"),
@@ -1206,6 +1207,15 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
                            f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
                 )
             base_profile["stream"] = stream
+            # Populate cbse_subjects from stream so welcome email and frontend use correct subjects
+            STREAM_SUBJECTS = {
+                "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+                "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+                "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+                "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+                "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+            }
+            base_profile["cbse_subjects"] = STREAM_SUBJECTS.get(stream, [])
 
     elif role == "teacher":
         if data.school:
@@ -1253,6 +1263,8 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
             role=role,
             is_paid=False,
             plan_name="",
+            grade=base_profile.get("grade", ""),
+            stream=base_profile.get("stream", ""),
         )
     except Exception:
         pass  # Email send must never block signup

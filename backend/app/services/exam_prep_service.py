@@ -25,9 +25,53 @@ _log = get_logger("exam_prep_service")
 EXAM_PREP_TEST_USERS: set[str] = {"akshita.teststudent"}
 EXAM_PREP_GRADES: set[str] = {"Grade 11", "Grade 12"}
 
+# Streams that are eligible for each entrance exam
+JEE_ELIGIBLE_STREAMS: set[str] = {"PCM", "PCMB"}
+NEET_ELIGIBLE_STREAMS: set[str] = {"PCB", "PCMB"}
+
+
+def build_exam_eligibility(stream: str | None) -> dict:
+    """
+    Return per-exam eligibility based on academic stream.
+
+    JEE Main  → PCM, PCMB (requires Mathematics)
+    NEET UG   → PCB, PCMB (requires Biology)
+    CUET UG   → all streams (coming soon)
+    """
+    s = (stream or "").strip().upper()
+    return {
+        "jee_main": {
+            "eligible": s in JEE_ELIGIBLE_STREAMS,
+            "reason": (
+                ""
+                if s in JEE_ELIGIBLE_STREAMS
+                else "JEE Main requires Mathematics. Available for PCM and PCMB students."
+            ),
+        },
+        "neet_ug": {
+            "eligible": s in NEET_ELIGIBLE_STREAMS,
+            "reason": (
+                ""
+                if s in NEET_ELIGIBLE_STREAMS
+                else "NEET UG requires Biology. Available for PCB and PCMB students."
+            ),
+        },
+        "cuet_ug": {
+            "eligible": True,
+            "coming_soon": True,
+            "reason": "CUET UG coming soon.",
+        },
+    }
+
 
 def check_exam_prep_access(profile: dict) -> None:
-    """Raise HTTP 403 if the user does not have Exam Prep access."""
+    """
+    Raise HTTP 403 if the user cannot see the Exam Prep Center page at all.
+
+    This is the GRADE/ROLE gate only — it controls whether the page shell
+    renders.  Subscription gating for actual content is in
+    check_exam_prep_content_access().
+    """
     role = profile.get("role", "")
     username = profile.get("username", "")
     grade = profile.get("grade", "")
@@ -46,6 +90,150 @@ def check_exam_prep_access(profile: dict) -> None:
             "Grade 5-10 access is not enabled yet."
         ),
     )
+
+
+def check_exam_prep_content_access(profile: dict) -> dict:
+    """
+    Raise HTTP 403 if the user cannot access actual Exam Prep content.
+
+    Content includes: questions, topic priorities, simulated tests,
+    answer explanations, AI follow-up.
+
+    Access matrix (canonical, via feature_authorization_service):
+      FREE_TIER  → 403 (preview only)
+      NANO       → 403 (preview only)
+      PREMIUM    → allowed
+      FAMILY_*   → allowed
+      ADMIN_GRANT → allowed
+      admin role  → allowed
+      test users  → allowed
+
+    Returns the feature authorization result dict on success.
+    """
+    # First enforce grade/role gate
+    check_exam_prep_access(profile)
+
+    role = profile.get("role", "")
+    username = profile.get("username", "")
+    if role == "admin" or username in EXAM_PREP_TEST_USERS:
+        return {"allowed": True, "limited": False, "canonical_plan_key": "ADMIN_GRANT"}
+
+    # Canonical subscription check via feature authorization service
+    from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
+    user_id = profile.get("id", "")
+    result = authorize_feature(user_id, Feature.EXAM_PREP_CONTENT)
+
+    if not result["allowed"]:
+        cpk = result.get("canonical_plan_key", "FREE_TIER")
+        is_nano = "NANO" in cpk.upper()
+        restriction_type = "nano" if is_nano else "free"
+        msg = (
+            "Exam Prep Center is available on Premium, Family Premium, or Admin Grant. "
+            "Your current Premium Nano plan does not include Exam Prep."
+            if is_nano
+            else result["restriction_message"]
+        )
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "feature": "EXAM_PREP_CONTENT",
+                "current_plan": result["plan_name"],
+                "canonical_plan_key": cpk,
+                "restriction_type": restriction_type,
+                "message": msg,
+                "upgrade_message": result["upgrade_recommendation"],
+            },
+        )
+    return result
+
+
+def get_access_check_response(user_id: str, profile: dict) -> dict:
+    """
+    Build the canonical access-check response for GET /api/exam-prep/access-check.
+
+    Returns a JSON-safe dict consumed by the frontend to determine whether
+    to render the full Exam Prep Center or the locked preview shell.
+    """
+    role = profile.get("role", "")
+    username = profile.get("username", "")
+    grade = profile.get("grade", "")
+    stream = profile.get("stream") or profile.get("academic_stream") or None
+
+    # Admin: full access, no subscription check
+    if role == "admin":
+        return {
+            "grade_eligible": True,
+            "has_access": True,
+            "preview_only": False,
+            "reason": "admin",
+            "stream": stream,
+            "stream_missing": stream is None,
+            "exam_eligibility": build_exam_eligibility(stream),
+            "canonical_plan_key": "ADMIN_GRANT",
+            "plan_name": "Admin",
+        }
+
+    # Test users: full access
+    if username in EXAM_PREP_TEST_USERS:
+        return {
+            "grade_eligible": True,
+            "has_access": True,
+            "preview_only": False,
+            "reason": "test_user",
+            "stream": stream,
+            "stream_missing": stream is None,
+            "exam_eligibility": build_exam_eligibility(stream),
+            "canonical_plan_key": "ADMIN_GRANT",
+            "plan_name": "Test Access",
+        }
+
+    # Grade ineligible (not Grade 11/12)
+    if role != "student" or grade not in EXAM_PREP_GRADES:
+        return {
+            "grade_eligible": False,
+            "has_access": False,
+            "preview_only": True,
+            "reason": "grade_ineligible",
+            "stream": stream,
+            "stream_missing": False,
+            "exam_eligibility": None,
+            "canonical_plan_key": None,
+            "plan_name": None,
+        }
+
+    # Grade 11/12 student — check subscription via canonical feature auth
+    from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
+    result = authorize_feature(user_id, Feature.EXAM_PREP_CONTENT)
+    cpk = result.get("canonical_plan_key", "FREE_TIER")
+    is_nano = "NANO" in cpk.upper()
+
+    if result["allowed"]:
+        return {
+            "grade_eligible": True,
+            "has_access": True,
+            "preview_only": False,
+            "reason": "full_access",
+            "stream": stream,
+            "stream_missing": stream is None,
+            "exam_eligibility": build_exam_eligibility(stream),
+            "canonical_plan_key": cpk,
+            "plan_name": result.get("plan_name", "Premium"),
+        }
+
+    # Locked — Free or Nano
+    restriction_type = "nano" if is_nano else "free"
+    return {
+        "grade_eligible": True,
+        "has_access": False,
+        "preview_only": True,
+        "reason": restriction_type,
+        "stream": stream,
+        "stream_missing": stream is None,
+        "exam_eligibility": build_exam_eligibility(stream),
+        "canonical_plan_key": cpk,
+        "plan_name": result.get("plan_name", "Free Tier"),
+        "upgrade_message": result.get("upgrade_recommendation", ""),
+    }
 
 
 # ── Static syllabus data ───────────────────────────────────────────────────────

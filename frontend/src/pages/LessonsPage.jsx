@@ -276,6 +276,38 @@ function normalizePracticeQuestion(question, subject) {
 
 function LessonsPage({ user, setActivePage }) {
   /** Student lesson workspace with AI lessons, progress, audio, visuals, follow-ups, and coaching practice. */
+
+  // ── Effective user: syncs stream/cbseSubjects from backend for Grade 11/12 ──
+  // When a user's session was cached before stream/cbseSubjects were propagated,
+  // fetch the profile once on mount to get the correct subject list.
+  const [effectiveUser, setEffectiveUser] = useState(user);
+  useEffect(() => {
+    const g = (user?.grade || "").toLowerCase();
+    const isUpperSecondary = g === "grade 11" || g === "grade 12";
+    const needsSync = isUpperSecondary && (
+      !user?.stream || !user?.cbseSubjects?.length
+    );
+    if (!needsSync || !user?.accessToken) return;
+    const apiBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    fetch(`${apiBase}/api/auth/profile`, {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
+    })
+      .then(r => r.json())
+      .then(p => {
+        if (p.stream || (p.cbse_subjects && p.cbse_subjects.length)) {
+          setEffectiveUser({
+            ...user,
+            stream: p.stream || user.stream || null,
+            cbseSubjects: Array.isArray(p.cbse_subjects) && p.cbse_subjects.length
+              ? p.cbse_subjects
+              : user.cbseSubjects || [],
+            grade: p.grade || user.grade,
+          });
+        }
+      })
+      .catch(() => {/* non-critical — use user as-is */});
+  }, [user?.accessToken, user?.grade]);
+
   const [loading, setLoading] = useState(true);
   const [syllabusData, setSyllabusData] = useState(null);
   const [error, setError] = useState("");
@@ -708,8 +740,9 @@ function LessonsPage({ user, setActivePage }) {
   );
 
   function getAllowedSubjects(allSubjects, selectedMode) {
-    /** Filter subjects by the student's subscription access for CBSE and SOF modes. */
-    return filterAllowedSubjects(user, allSubjects, selectedMode);
+    /** Filter subjects by the student's subscription access for CBSE and SOF modes.
+     *  Uses effectiveUser (which has up-to-date stream/cbseSubjects) rather than user. */
+    return filterAllowedSubjects(effectiveUser, allSubjects, selectedMode);
   }
 
   const allSubjects = Object.keys(syllabusData[grade][mode]);

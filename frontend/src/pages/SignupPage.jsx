@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import logo from "../assets/AITutorLogo1.png";
 import { supabase } from "../api/supabaseClient";
+import { STREAM_SUBJECTS } from "../utils/subjectAccess";
 import "./SignupPage.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -22,11 +23,11 @@ const GRADES = [
 ];
 
 const STREAM_OPTIONS = [
-  { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics", icon: "⚛️", exam: "JEE Main" },
-  { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology",     icon: "🔬", exam: "NEET UG" },
-  { key: "PCMB",       label: "Science — PCMB",   desc: "All 4 science subjects",          icon: "🧬", exam: "JEE + NEET" },
-  { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics",icon: "💼", exam: "CUET / CA" },
-  { key: "Humanities", label: "Humanities",       desc: "History, Polsci, Geography…",     icon: "🏛️", exam: "CUET / Law" },
+  { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics, English", icon: "⚛️" },
+  { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology, English",     icon: "🔬" },
+  { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths, Biology, English", icon: "🧬" },
+  { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics, English",icon: "💼" },
+  { key: "Humanities", label: "Humanities",       desc: "History, Polsci, Geography, Economics, English", icon: "🏛️" },
 ];
 
 const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
@@ -136,7 +137,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
         accessSofScience: false,
         accessSofMaths: false,
         accessSofEnglish: false,
-        cbseSubjects: [],
+        cbseSubjects: (needs1112Stream && stream && STREAM_SUBJECTS[stream]) ? STREAM_SUBJECTS[stream] : [],
         stream: profile?.stream || (needs1112Stream ? stream : null),
         subscriptionPlan: "free",
         accountStatus: "active",
@@ -360,9 +361,6 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                           </div>
                           <div style={{ fontSize: ".68rem", color: "var(--text-muted,#64748b)" }}>{s.desc}</div>
                         </div>
-                        <span style={{ fontSize: ".65rem", fontWeight: 700, color: "#6366f1", background: "rgba(99,102,241,.1)", padding: "2px 7px", borderRadius: 20, flexShrink: 0 }}>
-                          {s.exam}
-                        </span>
                       </button>
                     ))}
                   </div>

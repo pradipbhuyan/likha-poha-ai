@@ -334,6 +334,120 @@ def _email_shell(body_html: str, cta_url: str, cta_label: str) -> str:
 
 # ── Feature blocks ────────────────────────────────────────────────────────────
 
+# ── Grade-specific feature sets ───────────────────────────────────────────────
+
+_FEATURES_GRADE_5_8 = [
+    ("📖", "AI Lessons — 5 Steps Per Chapter",
+     "Every NCERT chapter broken into 5 easy steps: Concept → Examples → Practice → Summary → Quiz. "
+     "Go to <strong>Lessons</strong> and pick your grade, subject, and chapter."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "MCQ tests for any chapter with AI explanations for every answer. "
+     "Try <strong>Mock Tests</strong> after finishing a lesson."),
+    ("❓", "Ask Doubts Instantly",
+     "Stuck on a question? Type it and get a clear AI answer in seconds — "
+     "Maths, Science, English, Social Science, Hindi. Use the <strong>Ask Doubt</strong> tab anytime."),
+    ("📊", "Progress Tracking",
+     "See which chapters you've covered, your mock test scores, and your daily learning streak. "
+     "Check your <strong>Analytics</strong> dashboard after each session."),
+]
+
+_FEATURES_GRADE_9_10 = [
+    ("📖", "AI Lessons — 5 Steps Per Chapter",
+     "Concept → Examples → Practice → Summary → Exam-style problems. Every NCERT chapter, "
+     "board-exam ready. Go to <strong>Lessons</strong> to start your first chapter today."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "Board-pattern MCQ tests for every chapter with AI explanations for each answer — "
+     "ideal for CBSE Class 10 boards. Use <strong>Mock Tests</strong> after every lesson."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any doubt and get a clear AI answer in seconds — Maths, Science, English, SST, Hindi. "
+     "Available in the <strong>Ask Doubt</strong> tab, all day."),
+    ("&#128270;", "NCERT Exemplar Research",
+     "Hard NCERT Exemplar problems with instant AI step-by-step solutions — "
+     "essential for scoring 90%+ in Class 10 boards."),
+    ("📐", "Formula Sheets",
+     "Chapter-wise Maths & Science formulas with worked examples, memory tips, "
+     "and practice MCQs. Find them under <strong>Resources</strong>."),
+    ("📊", "Progress & Analytics",
+     "Lessons completed, mock scores, weak topics, and AI usage — all tracked in your "
+     "<strong>Analytics</strong> dashboard."),
+]
+
+_FEATURES_GRADE_11_12_SCIENCE = [
+    ("📖", "AI Lessons — NCERT Class 11 & 12",
+     "Full AI-guided lessons for Physics, Chemistry, Maths, and Biology — "
+     "concept → worked examples → exam problems → summary. Start from <strong>Lessons</strong>."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "Board-pattern MCQ tests with AI explanations — covers CBSE Class 11 & 12 syllabus "
+     "for all your stream subjects. Use <strong>Mock Tests</strong> after each chapter."),
+    ("📐", "Formula Sheets — Science & Maths",
+     "Complete formula library for Physics, Chemistry, and Maths with derivations, "
+     "memory tips, and practice problems. Available under <strong>Resources</strong>."),
+    ("&#128270;", "NCERT Exemplar Research",
+     "Hard NCERT Exemplar problems — Physics, Chemistry, Maths, Biology — "
+     "with instant AI explanations. Essential for board exam scoring."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any Physics, Chemistry, Maths, or Biology doubt and get an AI answer with "
+     "step-by-step working. Available in the <strong>Ask Doubt</strong> tab."),
+    ("📊", "Progress & Analytics",
+     "Track your chapter coverage, mock test scores by subject, weak topics, and daily study time "
+     "— all in your <strong>Analytics</strong> dashboard."),
+]
+
+_FEATURES_GRADE_11_12_EXAM_PREP = [
+    ("🎯", "Exam Prep Center — JEE & NEET",
+     "AI-powered JEE Main and NEET UG practice questions, topic priority cards, "
+     "and simulated full tests — available as a <strong>Premium feature</strong>."),
+    ("📖", "AI Lessons — NCERT Class 11 & 12",
+     "Full AI-guided lessons for your stream subjects with worked examples and exam problems. "
+     "Start from <strong>Lessons</strong>."),
+    ("📐", "Formula Sheets — Physics, Chemistry, Maths/Bio",
+     "Complete formula library with derivations, memory tips, and practice MCQs. "
+     "Available under <strong>Resources</strong>."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "Board and entrance exam pattern tests with AI explanations for every answer. "
+     "Use <strong>Mock Tests</strong> to test chapter readiness."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any Physics, Chemistry, Maths, or Biology doubt — AI answers with full working. "
+     "Available in the <strong>Ask Doubt</strong> tab."),
+    ("📊", "Progress & Analytics",
+     "Chapter coverage, mock test scores by subject, weak topic tracker, and daily study time "
+     "— all in your <strong>Analytics</strong> dashboard."),
+]
+
+_FEATURES_GRADE_11_12_COMMERCE = [
+    ("📖", "AI Lessons — Commerce Class 11 & 12",
+     "Full AI-guided lessons for Accountancy, Business Studies, Economics, and Maths — "
+     "board-exam ready. Start from <strong>Lessons</strong>."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "Board-pattern tests for Accountancy, Business Studies, Economics, and Maths "
+     "with AI explanations for every answer. Use <strong>Mock Tests</strong> after each chapter."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any Accountancy, Economics, or Business Studies doubt and get an AI answer "
+     "in seconds. Available in the <strong>Ask Doubt</strong> tab."),
+    ("📊", "Progress & Analytics",
+     "Track your chapter coverage, mock test scores by subject, and daily study time "
+     "— all in your <strong>Analytics</strong> dashboard."),
+    ("📐", "Formula Sheets",
+     "Commerce formulas, ratio definitions, and key concepts with examples. "
+     "Available under <strong>Resources</strong>."),
+]
+
+_FEATURES_GRADE_11_12_HUMANITIES = [
+    ("📖", "AI Lessons — Humanities Class 11 & 12",
+     "Full AI-guided lessons for History, Geography, Political Science, Economics, and Sociology — "
+     "board-exam ready. Start from <strong>Lessons</strong>."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "Board-pattern tests for all your Humanities subjects with AI explanations. "
+     "Use <strong>Mock Tests</strong> after each chapter."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any History, Geography, or Polsci doubt and get a clear AI answer in seconds. "
+     "Available in the <strong>Ask Doubt</strong> tab."),
+    ("📊", "Progress & Analytics",
+     "Track your chapter coverage, mock test scores by subject, and study consistency "
+     "— all in your <strong>Analytics</strong> dashboard."),
+]
+
+# Fallback (generic) — used when grade is unknown
 _FEATURES_STUDENT = [
     ("📖", "AI Lessons — 5 Steps Per Chapter",
      "Concept → Examples → Practice → Summary → Quiz. Every NCERT chapter in 5 guided steps "
@@ -348,12 +462,41 @@ _FEATURES_STUDENT = [
      "Chapter-wise formulas for Maths & Science with worked examples, memory tips, "
      "and practice MCQs. Find them under <strong>Resources</strong>."),
     ("&#128270;", "NCERT Exemplar Research",
-     "Hard problems from NCERT Exemplar with instant AI explanations â "
+     "Hard problems from NCERT Exemplar with instant AI explanations — "
      "essential for scoring 90%+ in board exams."),
     ("📊", "Progress & Analytics",
      "Track lessons completed, mock test scores, weak topics, and AI usage — "
      "all in your <strong>Analytics</strong> dashboard."),
 ]
+
+
+def _get_student_features(grade: str, stream: str, is_paid: bool) -> list:
+    """Return the grade- and stream-appropriate feature list."""
+    g = (grade or "").strip().lower()
+    s = (stream or "").strip().upper()
+
+    if g in ("grade 5", "grade 6", "grade 7", "grade 8"):
+        return _FEATURES_GRADE_5_8
+    if g in ("grade 9", "grade 10"):
+        return _FEATURES_GRADE_9_10
+    if g in ("grade 11", "grade 12"):
+        if s in ("PCM", "PCB", "PCMB"):
+            # Science stream — show exam prep if paid, else mention it as premium
+            features = list(_FEATURES_GRADE_11_12_SCIENCE)
+            if is_paid:
+                # Insert Exam Prep Center at top
+                features.insert(0, _FEATURES_GRADE_11_12_EXAM_PREP[0])
+            else:
+                # Mention it as a premium feature at the end
+                features.append(_FEATURES_GRADE_11_12_EXAM_PREP[0])
+            return features
+        if s == "COMMERCE":
+            return _FEATURES_GRADE_11_12_COMMERCE
+        if s == "HUMANITIES":
+            return _FEATURES_GRADE_11_12_HUMANITIES
+        # Grade 11/12 with unknown/general stream
+        return _FEATURES_GRADE_11_12_SCIENCE
+    return _FEATURES_STUDENT  # fallback
 
 _FEATURES_PARENT = [
     ("👁", "Child Progress Dashboard",
@@ -397,7 +540,7 @@ _FREE_TIER_NOTICE = """
 <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;
             padding:14px 16px;margin-top:16px">
   <p style="margin:0;font-size:13px;color:#92400e;line-height:1.6">
-    <strong>📌 Free Tier limits:</strong> limited AI lessons, 5 mock tests/day,
+    <strong>&#128204; Free Tier limits:</strong> limited AI lessons, 5 mock tests/day,
     and limited Doubt answers. Upgrade to <strong>Premium (&#8377;299/month)</strong>
     for unlimited access, NCERT Exemplar, and advanced formula sheets.
   </p>
@@ -412,9 +555,16 @@ def send_welcome_email(
     role: str,
     is_paid: bool = False,
     plan_name: str = "",
+    grade: str = "",
+    stream: str = "",
 ) -> None:
     """
-    Send a welcome email to a newly registered user (student, parent, or teacher).
+    Send a grade-personalised welcome email to a newly registered user.
+
+    Parameters
+    ----------
+    grade  : Student grade string e.g. "Grade 9", "Grade 11". Empty for parents/teachers.
+    stream : Academic stream for Grade 11/12 e.g. "PCM", "PCB", "Commerce", "Humanities".
 
     Called after:
       - Free Tier signup  (signup_free)
@@ -430,6 +580,11 @@ def send_welcome_email(
     first_name = (name or "there").split()[0]
     role_clean = (role or "student").lower()
     is_parent  = role_clean == "parent"
+    g = (grade or "").strip()
+    s = (stream or "").strip().upper()
+    g_lower = g.lower()
+    is_1112 = g_lower in ("grade 11", "grade 12")
+    is_science_stream = s in ("PCM", "PCB", "PCMB")
 
     plan_badge = ""
     if is_paid and plan_name:
@@ -440,9 +595,53 @@ def send_welcome_email(
             f'&#10003; {plan_name} activated</span><br>'
         )
 
-    features_html = _feature_table(_FEATURES_PARENT if is_parent else _FEATURES_STUDENT)
-    free_notice   = "" if is_paid else _FREE_TIER_NOTICE
+    # ── Grade badge for students ───────────────────────────────────────────
+    grade_badge = ""
+    if g and not is_parent:
+        stream_label = f" &middot; {s}" if s else ""
+        grade_badge = (
+            f'<span style="display:inline-block;background:#ede9fe;color:#5b21b6;'
+            f'border-radius:20px;padding:3px 12px;font-size:12px;font-weight:700;'
+            f'margin-bottom:14px">'
+            f'{g}{stream_label}</span><br>'
+        )
 
+    # ── Grade-specific features ────────────────────────────────────────────
+    if is_parent:
+        features = _FEATURES_PARENT
+    else:
+        features = _get_student_features(g, s, is_paid)
+
+    features_html = _feature_table(features)
+
+    # ── Grade-specific free tier notice ───────────────────────────────────
+    if is_paid:
+        free_notice = ""
+    elif is_1112 and is_science_stream:
+        free_notice = """
+<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;
+            padding:14px 16px;margin-top:16px">
+  <p style="margin:0;font-size:13px;color:#92400e;line-height:1.6">
+    <strong>&#128204; Free Tier limits:</strong> limited AI lessons, 5 mock tests/day,
+    and limited Doubt answers. <strong>Exam Prep Center (JEE/NEET)</strong> is a Premium feature.
+    Upgrade to <strong>Premium (&#8377;299/month)</strong> for unlimited access,
+    NCERT Exemplar, and advanced formula sheets.
+  </p>
+</div>"""
+    elif is_1112:
+        free_notice = """
+<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;
+            padding:14px 16px;margin-top:16px">
+  <p style="margin:0;font-size:13px;color:#92400e;line-height:1.6">
+    <strong>&#128204; Free Tier limits:</strong> limited AI lessons, 5 mock tests/day,
+    and limited Doubt answers. Upgrade to <strong>Premium (&#8377;299/month)</strong>
+    for unlimited access, NCERT Exemplar, and advanced formula sheets.
+  </p>
+</div>"""
+    else:
+        free_notice = _FREE_TIER_NOTICE
+
+    # ── Grade-specific intro + next step ──────────────────────────────────
     if is_parent:
         intro = (
             "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
@@ -464,6 +663,84 @@ def send_welcome_email(
             "so they can start their first AI lesson today.</p>"
             "</div>"
         )
+    elif g_lower in ("grade 5", "grade 6", "grade 7", "grade 8"):
+        intro = (
+            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            f"Welcome to <strong>Likha Poha AI</strong> — your AI-powered CBSE tutor for "
+            f"{g}. Get step-by-step AI lessons, take chapter tests, and clear every doubt "
+            f"in seconds.</p>"
+            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            f"Here's what you can do:</p>"
+        )
+        next_step = (
+            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
+            "<strong>Get started:</strong> Log in &rarr; go to <em>Lessons</em> &rarr; "
+            "pick your Subject and Chapter &rarr; click <em>Generate Lesson</em>. "
+            "Your first AI lesson is ready in seconds.</p>"
+        )
+    elif g_lower in ("grade 9", "grade 10"):
+        intro = (
+            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            f"Welcome to <strong>Likha Poha AI</strong> — your AI-powered CBSE tutor for "
+            f"{g} board exam preparation. Generate chapter-wise AI lessons, take board-pattern "
+            f"mock tests, and get instant AI answers to every doubt.</p>"
+            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            f"Here's what you can do to prepare for boards:</p>"
+        )
+        next_step = (
+            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
+            "<strong>Get started:</strong> Log in &rarr; go to <em>Lessons</em> &rarr; "
+            "pick your Subject and Chapter &rarr; click <em>Generate Lesson</em>. "
+            "After each lesson, take the mock test and check <em>Analytics</em> for weak topics.</p>"
+        )
+    elif is_1112 and is_science_stream:
+        exam_label = "JEE Main & NEET UG" if s == "PCMB" else ("JEE Main" if s == "PCM" else "NEET UG")
+        intro = (
+            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            f"Welcome to <strong>Likha Poha AI</strong> — your AI-powered CBSE tutor for "
+            f"{g} {s}. Get chapter-wise AI lessons, mock tests, instant doubt solving, "
+            f"and — as a Premium feature — dedicated <strong>Exam Prep for {exam_label}</strong> "
+            f"with topic-priority practice questions and simulated full tests.</p>"
+            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            f"Here's what's available on your account:</p>"
+        )
+        next_step = (
+            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
+            f"<strong>Get started:</strong> Log in &rarr; go to <em>Lessons</em> &rarr; "
+            f"pick {g} {s} subjects &rarr; click <em>Generate Lesson</em>. "
+            "After each chapter, take the mock test. Use <em>Exam Prep Center</em> "
+            "(Premium) for JEE/NEET topic-wise practice and simulated tests.</p>"
+        )
+    elif is_1112 and s == "COMMERCE":
+        intro = (
+            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            f"Welcome to <strong>Likha Poha AI</strong> — your AI-powered CBSE tutor for "
+            f"{g} Commerce. Get AI-guided lessons for Accountancy, Business Studies, "
+            f"Economics, and Maths, board-pattern mock tests, and instant doubt solving.</p>"
+            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            f"Here's what's available on your account:</p>"
+        )
+        next_step = (
+            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
+            "<strong>Get started:</strong> Log in &rarr; go to <em>Lessons</em> &rarr; "
+            "pick Accountancy, Business Studies, Economics, or Maths &rarr; click <em>Generate Lesson</em>. "
+            "After each lesson, take the mock test to lock in understanding.</p>"
+        )
+    elif is_1112:
+        intro = (
+            f"<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
+            f"Welcome to <strong>Likha Poha AI</strong> — your AI-powered CBSE tutor for "
+            f"{g}. Get AI-guided lessons for your stream subjects, board-pattern mock tests, "
+            f"and instant AI doubt solving.</p>"
+            f"<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
+            f"Here's what's available on your account:</p>"
+        )
+        next_step = (
+            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
+            "<strong>Get started:</strong> Log in &rarr; go to <em>Lessons</em> &rarr; "
+            "pick your Subject and Chapter &rarr; click <em>Generate Lesson</em>. "
+            "Take the mock test after each lesson and check <em>Analytics</em> for weak topics.</p>"
+        )
     else:
         intro = (
             "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
@@ -481,9 +758,10 @@ def send_welcome_email(
         )
 
     body = f"""
-<p style="margin:0 0 20px;font-size:24px;font-weight:900;letter-spacing:-0.02em">
+<p style="margin:0 0 16px;font-size:24px;font-weight:900;letter-spacing:-0.02em">
   Welcome, {first_name}! 🎉
 </p>
+{grade_badge}
 {plan_badge}
 {intro}
 {features_html}
@@ -497,8 +775,9 @@ def send_welcome_email(
         cta_label="Start Learning on Likha Poha AI →",
     )
 
+    grade_line = f" ({g}{(' ' + s) if s else ''})" if g else ""
     text = (
-        f"Welcome to Likha Poha AI, {first_name}!\n\n"
+        f"Welcome to Likha Poha AI, {first_name}!{grade_line}\n\n"
         f"Your account is ready. Visit {_FRONTEND_URL} to start learning.\n\n"
         f"Key features: AI Lessons | Mock Tests | Ask Doubts | Formula Sheets | Progress Analytics\n"
         + (f"\nYour plan: {plan_name}\n" if is_paid and plan_name else
@@ -511,7 +790,7 @@ def send_welcome_email(
         html=html,
         text=text,
     )
-    _log.info("email_service.welcome_queued", to=to, role=role_clean, is_paid=is_paid)
+    _log.info("email_service.welcome_queued", to=to, role=role_clean, is_paid=is_paid, grade=g)
 
 
 def send_upgrade_email(

@@ -172,6 +172,12 @@ class TestExamPrepDashboard:
             lambda uid: GRADE_12_PROFILE,
             raising=False,
         )
+        # Mock content access — dashboard requires Premium subscription check
+        monkeypatch.setattr(
+            "app.services.exam_prep_service.authorize_feature",
+            lambda uid, feat: {"allowed": True, "limited": False, "canonical_plan_key": "PREMIUM"},
+            raising=False,
+        )
 
         # Patch the service function directly to avoid complex mock chains
         import app.services.exam_prep_service as ep_svc  # noqa: PLC0415

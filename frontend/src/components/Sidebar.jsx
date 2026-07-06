@@ -249,14 +249,6 @@ function Sidebar({
       roles: ["admin"],
     },
     {
-      key: "examPrep",
-      label: "Exam Prep Center",
-      icon: GraduationCap,
-      roles: ["admin", "student"],
-      gradeFilter: ["Grade 11", "Grade 12"],
-      testUsers: ["akshita.teststudent"],  // test access before student launch
-    },
-    {
       key: "salesLeads",
       label: isAdmin ? "Lead Claims" : "My Lead Claims",
       icon: Users,
@@ -319,7 +311,7 @@ function Sidebar({
       label: "Exemplar Research",
       icon: Sparkles,
       roles: ["student", "teacher"],
-      gradeFilter: ["Grade 8", "Grade 9", "Grade 10"],
+      gradeFilter: ["Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       hideForAdmin: true,
     },
     {
@@ -328,6 +320,14 @@ function Sidebar({
       icon: Video,
       roles: ["student", "admin"],
       hideForAdmin: true,
+    },
+    {
+      key: "examPrep",
+      label: "Exam Prep Center",
+      icon: GraduationCap,
+      roles: ["admin", "student"],
+      gradeFilter: ["Grade 11", "Grade 12"],
+      testUsers: ["akshita.teststudent"],
     },
     {
       key: "analytics",

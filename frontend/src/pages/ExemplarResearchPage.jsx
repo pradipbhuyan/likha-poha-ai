@@ -49,6 +49,8 @@ const EXEMPLAR_HINTS = {
   "Grade 8":  "Class 8 Exemplar Books",
   "Grade 9":  "Class 9 Exemplar Books",
   "Grade 10": "Class 10 Exemplar Books",
+  "Grade 11": "Class 11 Exemplar Books",
+  "Grade 12": "Class 12 Exemplar Books",
 };
 
 // ── Curated topic cards — 12 per grade / subject (NCERT Exemplar focus) ──────
@@ -143,6 +145,122 @@ const TOPIC_CARDS = {
       { topic: "Sources of Energy — Conventional and New", difficulty: "Medium", emoji: "☀️", hint: "Fossil fuels, solar, wind, nuclear — advantages and limitations" },
     ],
   },
+  "Grade 11": {
+    Physics: [
+      { topic: "Units & Measurement — Dimensional Analysis", difficulty: "Hard", emoji: "📏", hint: "Derive formulae using dimensions, check homogeneity, SI prefixes" },
+      { topic: "Motion in a Straight Line — Kinematics", difficulty: "Hard", emoji: "🚀", hint: "v=u+at, s=ut+½at², v²=u²+2as, sign convention for direction" },
+      { topic: "Motion in a Plane — Projectile Motion", difficulty: "Hard", emoji: "🎯", hint: "Horizontal range R=u²sin2θ/g, max height, time of flight" },
+      { topic: "Laws of Motion — Newton & Friction", difficulty: "Hard", emoji: "⚖️", hint: "F=ma, pseudo forces, static vs kinetic friction, inclined planes" },
+      { topic: "Work, Energy and Power — Conservation", difficulty: "Hard", emoji: "⚡", hint: "W=Fs·cosθ, KE=½mv², elastic vs inelastic collisions" },
+      { topic: "Rotational Motion — Moment of Inertia", difficulty: "Hard", emoji: "🔄", hint: "τ=Iα, angular momentum L=Iω, theorems of MI" },
+      { topic: "Gravitation — Kepler's Laws", difficulty: "Hard", emoji: "🌍", hint: "T²∝r³, escape velocity, orbital velocity, gravitational PE" },
+      { topic: "Mechanical Properties of Solids", difficulty: "Tricky", emoji: "🔩", hint: "Stress, strain, Young's modulus, Hooke's law, elastic limit" },
+      { topic: "Fluid Mechanics — Bernoulli's Theorem", difficulty: "Hard", emoji: "💧", hint: "P+½ρv²+ρgh=constant, surface tension, viscosity, Stokes' law" },
+      { topic: "Thermal Properties — Expansion & Calorimetry", difficulty: "Tricky", emoji: "🌡️", hint: "Linear, area, volume expansion; specific heat; Newton's law of cooling" },
+      { topic: "Thermodynamics — Laws and Processes", difficulty: "Hard", emoji: "🔥", hint: "1st law ΔU=Q-W; isothermal/adiabatic/isobaric processes; Carnot efficiency" },
+      { topic: "Kinetic Theory of Gases — RMS Speed", difficulty: "Hard", emoji: "🔬", hint: "PV=nRT, vrms=sqrt(3RT/M), degrees of freedom, equipartition theorem" },
+    ],
+    Chemistry: [
+      { topic: "Some Basic Concepts — Mole and Stoichiometry", difficulty: "Hard", emoji: "⚗️", hint: "Mole concept, limiting reagent, % yield, empirical vs molecular formula" },
+      { topic: "Structure of Atom — Quantum Numbers", difficulty: "Hard", emoji: "⚛️", hint: "n,l,m,s quantum numbers, Pauli exclusion, Hund's rule, aufbau principle" },
+      { topic: "Periodic Table — Periodic Trends", difficulty: "Tricky", emoji: "📋", hint: "IE, EA, electronegativity, atomic radius trends across periods and groups" },
+      { topic: "Chemical Bonding — VSEPR and Hybridisation", difficulty: "Hard", emoji: "🔗", hint: "sp, sp2, sp3 hybridisation; VSEPR shapes; bond angle vs lone pairs" },
+      { topic: "States of Matter — Kinetic Theory of Gases", difficulty: "Tricky", emoji: "💨", hint: "Ideal gas equation, van der Waals, real vs ideal gas deviations" },
+      { topic: "Thermodynamics — Hess's Law", difficulty: "Hard", emoji: "🌡️", hint: "ΔH, ΔS, ΔG = ΔH-TΔS; spontaneity; Born-Haber cycle" },
+      { topic: "Equilibrium — Kp, Kc and Le Chatelier", difficulty: "Hard", emoji: "⚖️", hint: "Kc=[products]/[reactants], Kp=Kc(RT)^Dn, buffer solutions, pH" },
+      { topic: "Redox Reactions — Oxidation Number", difficulty: "Tricky", emoji: "🔋", hint: "Assign oxidation number, balance by ON method, electrode notation" },
+      { topic: "s-Block Elements — Anomalous Properties", difficulty: "Tricky", emoji: "🧲", hint: "Li and Be diagonal relationship, flame test, Na2O2 reactions" },
+      { topic: "p-Block Elements — Group 13 & 14", difficulty: "Hard", emoji: "🧪", hint: "Boron chemistry, inert pair effect, allotropy of carbon, silicones" },
+      { topic: "Organic Chemistry — IUPAC Nomenclature", difficulty: "Hard", emoji: "⛓️", hint: "Priority rules, E/Z isomerism, functional group nomenclature order" },
+      { topic: "Hydrocarbons — Alkanes, Alkenes, Alkynes", difficulty: "Hard", emoji: "⛽", hint: "FR substitution in alkanes, electrophilic addition, Markovnikov's rule" },
+    ],
+    Biology: [
+      { topic: "Living World — Classification Criteria", difficulty: "Tricky", emoji: "🌍", hint: "Biodiversity, nomenclature, ICBN rules, binomial nomenclature" },
+      { topic: "Biological Classification — 5 Kingdoms", difficulty: "Hard", emoji: "🦠", hint: "Monera, Protista, Fungi, Plantae, Animalia — Whittaker's criteria" },
+      { topic: "Plant Kingdom — Alternation of Generations", difficulty: "Hard", emoji: "🌿", hint: "Algae, bryophytes, pteridophytes, gymnosperms, angiosperms" },
+      { topic: "Animal Kingdom — Basis of Classification", difficulty: "Hard", emoji: "🐠", hint: "Levels of organization, symmetry, coelom, segmentation, notochord" },
+      { topic: "Cell — Structure and Ultra-structure", difficulty: "Hard", emoji: "🔬", hint: "Prokaryote vs eukaryote, cell organelles, membrane structure (fluid mosaic)" },
+      { topic: "Cell Division — Mitosis and Meiosis", difficulty: "Hard", emoji: "🧬", hint: "Phases of mitosis/meiosis, crossing over, significance, karyokinesis vs cytokinesis" },
+      { topic: "Transport in Plants — Osmosis and Imbibition", difficulty: "Tricky", emoji: "💧", hint: "Water potential, plasmolysis, transpiration pull, ascent of sap" },
+      { topic: "Mineral Nutrition — Essential Elements", difficulty: "Tricky", emoji: "🌱", hint: "Macro vs micro nutrients, deficiency symptoms, nitrogen fixation" },
+      { topic: "Photosynthesis — Light and Dark Reactions", difficulty: "Hard", emoji: "☀️", hint: "PS I & II, Calvin cycle, C3 vs C4 plants, photorespiration" },
+      { topic: "Respiration — Glycolysis and Krebs Cycle", difficulty: "Hard", emoji: "🫁", hint: "ATP yield, ETS, oxidative phosphorylation, RQ of fats vs carbs" },
+      { topic: "Plant Growth and Development — Phytohormones", difficulty: "Tricky", emoji: "🌸", hint: "Auxin, gibberellin, cytokinin, abscisic acid, ethylene functions" },
+      { topic: "Morphology of Flowering Plants", difficulty: "Tricky", emoji: "🌼", hint: "Root, stem, leaf modifications; inflorescence types; floral formula" },
+    ],
+    Maths: [
+      { topic: "Sets — Operations and De Morgan's Laws", difficulty: "Tricky", emoji: "⊂", hint: "Union, intersection, complement; De Morgan's; Venn diagram problems" },
+      { topic: "Relations and Functions — Types", difficulty: "Hard", emoji: "→", hint: "One-one, onto, bijective; inverse function; composition of functions" },
+      { topic: "Trigonometric Functions — Identities", difficulty: "Hard", emoji: "📐", hint: "Addition, double angle, half angle formulae; solving equations in [0,2pi]" },
+      { topic: "Principle of Mathematical Induction", difficulty: "Tricky", emoji: "🔢", hint: "P(1) true, assume P(k), prove P(k+1) — divisibility and sum problems" },
+      { topic: "Complex Numbers — Modulus-Argument Form", difficulty: "Hard", emoji: "i", hint: "z=a+ib, |z|, arg(z), cube roots of unity, De Moivre's theorem" },
+      { topic: "Linear Inequalities — Graphical Method", difficulty: "Tricky", emoji: "≤", hint: "Shading feasible region, intersection of half-planes, system of inequalities" },
+      { topic: "Permutations and Combinations", difficulty: "Hard", emoji: "🔀", hint: "nPr, nCr, circular permutations, identical objects, distinct cases" },
+      { topic: "Binomial Theorem — General Term", difficulty: "Hard", emoji: "∑", hint: "T(r+1) = nCr * x^(n-r) * a^r, middle term, coefficient problems" },
+      { topic: "Sequences and Series — AP and GP", difficulty: "Hard", emoji: "➕", hint: "nth term, sum, AM-GM inequality, sum of infinite GP" },
+      { topic: "Straight Lines — Slope and Equations", difficulty: "Hard", emoji: "📏", hint: "Angle between lines, distance from a point, family of lines" },
+      { topic: "Conic Sections — Parabola, Ellipse, Hyperbola", difficulty: "Hard", emoji: "⭕", hint: "Standard forms, focus-directrix, eccentricity, chord of contact" },
+      { topic: "Introduction to 3D Geometry", difficulty: "Tricky", emoji: "📦", hint: "Distance formula, section formula in 3D, locus problems" },
+    ],
+  },
+  "Grade 12": {
+    Physics: [
+      { topic: "Electrostatics — Gauss's Law", difficulty: "Hard", emoji: "⚡", hint: "Flux = q/e0; field due to sheet, sphere, wire; potential energy" },
+      { topic: "Current Electricity — Kirchhoff's Laws", difficulty: "Hard", emoji: "🔌", hint: "KVL, KCL, Wheatstone bridge, meter bridge, potentiometer" },
+      { topic: "Moving Charges — Biot-Savart Law", difficulty: "Hard", emoji: "🧲", hint: "Field due to circular loop, solenoid, toroid; cyclotron; force between wires" },
+      { topic: "Magnetism — Diamagnetic, Paramagnetic", difficulty: "Tricky", emoji: "🔮", hint: "Hysteresis, B-H curve, magnetic susceptibility, Earth's magnetism" },
+      { topic: "Electromagnetic Induction — Faraday's Laws", difficulty: "Hard", emoji: "🔄", hint: "EMF = -dΦ/dt, Lenz's law, mutual inductance, AC generator" },
+      { topic: "Alternating Current — Resonance", difficulty: "Hard", emoji: "〰️", hint: "Impedance, phase diagrams, power factor, Q-factor of LC circuit" },
+      { topic: "Electromagnetic Waves — Spectrum", difficulty: "Tricky", emoji: "📡", hint: "E and B oscillations, c=1/sqrt(mu0*e0), wavelength ranges of EM spectrum" },
+      { topic: "Ray Optics — Lens Maker's Equation", difficulty: "Hard", emoji: "🔭", hint: "1/f=(n-1)(1/R1-1/R2), dispersion, total internal reflection, optical fibre" },
+      { topic: "Wave Optics — Young's Double Slit", difficulty: "Hard", emoji: "🌈", hint: "Fringe width = lambdaD/d, resolving power, polarisation by Malus's law" },
+      { topic: "Dual Nature — Photoelectric Effect", difficulty: "Hard", emoji: "☀️", hint: "hv = phi + KE_max, stopping potential, de Broglie wavelength = h/mv" },
+      { topic: "Nuclei — Radioactive Decay Laws", difficulty: "Hard", emoji: "☢️", hint: "N=N0*e^(-lambdat), half-life = 0.693/lambda, Q-value of reactions" },
+      { topic: "Semiconductor Devices — PN Junction", difficulty: "Hard", emoji: "💡", hint: "Depletion layer, forward/reverse bias, Zener diode, transistor, logic gates" },
+    ],
+    Chemistry: [
+      { topic: "Solutions — Colligative Properties", difficulty: "Hard", emoji: "🧪", hint: "Raoult's law, elevation of boiling point, depression of freezing point; van't Hoff factor" },
+      { topic: "Electrochemistry — Nernst Equation", difficulty: "Hard", emoji: "🔋", hint: "E=E0-(RT/nF)lnQ, standard electrode potential, electrolysis calculations" },
+      { topic: "Chemical Kinetics — Order and Rate Laws", difficulty: "Hard", emoji: "⏱️", hint: "Rate=k[A]^m[B]^n; integrated rate laws; Arrhenius equation; half-life" },
+      { topic: "Surface Chemistry — Adsorption & Catalysis", difficulty: "Tricky", emoji: "🔬", hint: "Physisorption vs chemisorption, Freundlich isotherm, enzyme catalysis" },
+      { topic: "d and f Block Elements — Transition Metals", difficulty: "Hard", emoji: "⚙️", hint: "Variable oxidation states, magnetic properties, colour, catalytic activity" },
+      { topic: "Coordination Compounds — IUPAC and VBT", difficulty: "Hard", emoji: "🔗", hint: "Nomenclature, isomerism, coordination number, EAN rule, CFT basics" },
+      { topic: "Haloalkanes and Haloarenes — SN1 vs SN2", difficulty: "Hard", emoji: "⛓️", hint: "SN1 vs SN2 mechanism, E1/E2 elimination, nucleophilic aromatic substitution" },
+      { topic: "Alcohols, Phenols and Ethers", difficulty: "Hard", emoji: "🍾", hint: "Acidic strength order, Lucas test, Williamson ether synthesis, reactions" },
+      { topic: "Aldehydes and Ketones — Nucleophilic Addition", difficulty: "Hard", emoji: "🧫", hint: "Addition of HCN, Grignard; Aldol condensation; Cannizzaro; Tollen's test" },
+      { topic: "Carboxylic Acids and Derivatives", difficulty: "Hard", emoji: "🍋", hint: "Acidity order, decarboxylation, esterification, reactions with PCl5" },
+      { topic: "Amines — Basicity and Reactions", difficulty: "Hard", emoji: "🔵", hint: "Basicity order, Gabriel synthesis, diazotisation, coupling reactions" },
+      { topic: "Biomolecules — Carbohydrates and Proteins", difficulty: "Tricky", emoji: "🧬", hint: "Reducing sugars, peptide bonds, denaturation, enzyme action" },
+    ],
+    Biology: [
+      { topic: "Reproduction in Organisms", difficulty: "Tricky", emoji: "🌸", hint: "Asexual vs sexual, vegetative propagation, sporulation, budding" },
+      { topic: "Human Reproduction — Gametogenesis", difficulty: "Hard", emoji: "🧬", hint: "Spermatogenesis, oogenesis, menstrual cycle, fertilisation, implantation" },
+      { topic: "Reproductive Health — Contraception", difficulty: "Medium", emoji: "🏥", hint: "Types of contraception, STIs, MTP, infertility causes and ART" },
+      { topic: "Principles of Inheritance — Mendel's Laws", difficulty: "Hard", emoji: "🔬", hint: "Law of segregation, independent assortment, Punnett square, chi-square" },
+      { topic: "Molecular Basis of Inheritance — DNA", difficulty: "Hard", emoji: "🧪", hint: "DNA replication, transcription, translation, genetic code, mutations" },
+      { topic: "Evolution — Darwinism and Speciation", difficulty: "Tricky", emoji: "🦕", hint: "Natural selection, Hardy-Weinberg, adaptive radiation, speciation mechanisms" },
+      { topic: "Human Health and Disease — Immunity", difficulty: "Hard", emoji: "🛡️", hint: "Innate vs acquired immunity, antibody structure, vaccines, cancer, AIDS" },
+      { topic: "Microbes in Human Welfare", difficulty: "Tricky", emoji: "🦠", hint: "Biogas, antibiotics, sewage treatment, bioactive molecules" },
+      { topic: "Biotechnology — Principles and Processes", difficulty: "Hard", emoji: "⚗️", hint: "Recombinant DNA, restriction enzymes, PCR, gel electrophoresis, cloning" },
+      { topic: "Biotechnology and its Applications", difficulty: "Hard", emoji: "🌾", hint: "Bt cotton, golden rice, insulin production, gene therapy, bioethics" },
+      { topic: "Ecosystem — Productivity and Energy Flow", difficulty: "Hard", emoji: "🌿", hint: "GPP/NPP, ecological pyramids, nutrient cycling, succession, decomposition" },
+      { topic: "Biodiversity and Conservation", difficulty: "Tricky", emoji: "🐘", hint: "In-situ vs ex-situ conservation, IUCN categories, hotspots, threats" },
+    ],
+    Maths: [
+      { topic: "Relations and Functions — Inverse and Composition", difficulty: "Hard", emoji: "→", hint: "Bijective for inverse, f∘g vs g∘f, binary operations, identity element" },
+      { topic: "Inverse Trigonometric Functions", difficulty: "Hard", emoji: "📐", hint: "Principal value, domain/range, properties and identities" },
+      { topic: "Matrices and Determinants", difficulty: "Hard", emoji: "▣", hint: "Row operations, adjoint, inverse matrix, Cramer's rule, properties of determinants" },
+      { topic: "Continuity and Differentiability", difficulty: "Hard", emoji: "📈", hint: "Continuity at a point, chain rule, implicit diff, parametric diff, Rolle's theorem" },
+      { topic: "Applications of Derivatives", difficulty: "Hard", emoji: "📉", hint: "Increasing/decreasing, maxima/minima, tangent/normal, rate of change" },
+      { topic: "Integrals — Integration Techniques", difficulty: "Hard", emoji: "∫", hint: "Substitution, by parts, partial fractions, special integrals" },
+      { topic: "Applications of Integrals — Area", difficulty: "Hard", emoji: "⭕", hint: "Area between curves, area of circle/ellipse using integration" },
+      { topic: "Differential Equations", difficulty: "Hard", emoji: "dy/dx", hint: "Variable separable, homogeneous, linear DE, integrating factor" },
+      { topic: "Vector Algebra — Dot and Cross Product", difficulty: "Hard", emoji: "→", hint: "Magnitude, direction cosines, projection, scalar triple product" },
+      { topic: "Three Dimensional Geometry", difficulty: "Hard", emoji: "📦", hint: "Direction cosines, equation of line/plane, angle between lines, distance" },
+      { topic: "Linear Programming — Corner Point Method", difficulty: "Tricky", emoji: "⚖️", hint: "Feasible region, objective function, graphical solution, optimal values" },
+      { topic: "Probability — Bayes Theorem and Distributions", difficulty: "Hard", emoji: "🎲", hint: "Conditional probability, Bayes theorem, Bernoulli trials, binomial distribution" },
+    ],
+  },
 };
 
 const DIFFICULTY_COLORS = {
@@ -152,9 +270,26 @@ const DIFFICULTY_COLORS = {
 };
 
 const SUBJECT_COLORS = {
-  Maths:   { icon: "📐", gradient: "linear-gradient(135deg,#2563eb,#7c3aed)", tag: "Mathematics" },
-  Science: { icon: "🔬", gradient: "linear-gradient(135deg,#059669,#0891b2)", tag: "Science" },
+  Maths:     { icon: "📐", gradient: "linear-gradient(135deg,#2563eb,#7c3aed)", tag: "Mathematics" },
+  Science:   { icon: "🔬", gradient: "linear-gradient(135deg,#059669,#0891b2)", tag: "Science" },
+  Physics:   { icon: "⚛️", gradient: "linear-gradient(135deg,#6366f1,#8b5cf6)", tag: "Physics" },
+  Chemistry: { icon: "🧪", gradient: "linear-gradient(135deg,#0891b2,#059669)", tag: "Chemistry" },
+  Biology:   { icon: "🌿", gradient: "linear-gradient(135deg,#16a34a,#0891b2)", tag: "Biology" },
 };
+
+/** Return subjects available for a grade, filtered by stream for Grade 11/12 */
+function getSubjectsForGrade(grade, user) {
+  if (grade === "Grade 11" || grade === "Grade 12") {
+    const stream = (user?.stream || "").toUpperCase();
+    const all = ["Physics", "Chemistry", "Maths", "Biology"];
+    if (stream === "PCM")  return ["Physics", "Chemistry", "Maths"];
+    if (stream === "PCB")  return ["Physics", "Chemistry", "Biology"];
+    if (stream === "PCMB") return ["Physics", "Chemistry", "Maths", "Biology"];
+    // Admin / teacher / unknown stream — show all
+    return all;
+  }
+  return ["Maths", "Science"];
+}
 
 /** Friendly upgrade prompt shown when a free/promo user clicks a topic card */
 function UpgradeCard({ onClose, onUpgrade }) {
@@ -187,7 +322,8 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
 
   // Grade selector — teachers can view any grade; students see only their own
   const [selectedGrade, setSelectedGrade] = useState(isTeacher ? "Grade 10" : userGrade);
-  const [selectedSubject, setSelectedSubject] = useState("Maths");
+  const isUpperSecondary = (g => g === "Grade 11" || g === "Grade 12")(isTeacher ? "Grade 10" : userGrade);
+  const [selectedSubject, setSelectedSubject] = useState(isUpperSecondary ? "Physics" : "Maths");
   const [activeTopic, setActiveTopic] = useState(null);
   const [explanation, setExplanation] = useState("");
   const [loading, setLoading] = useState(false);
@@ -432,9 +568,9 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
 
         {/* Grade picker — teachers see all, students see their own only */}
         {isTeacher ? (
-          <select value={selectedGrade} onChange={e => { setSelectedGrade(e.target.value); setActiveTopic(null); setExplanation(""); }}
+          <select value={selectedGrade} onChange={e => { const g = e.target.value; setSelectedGrade(g); setActiveTopic(null); setExplanation(""); setSelectedSubject((g === "Grade 11" || g === "Grade 12") ? "Physics" : "Maths"); }}
             style={{ padding: "8px 12px", borderRadius: 8, border: "1.5px solid var(--border)", background: "var(--card-bg)", color: "var(--text)", fontFamily: "inherit", fontSize: ".85rem" }}>
-            {["Grade 8","Grade 9","Grade 10"].map(g => <option key={g}>{g}</option>)}
+            {["Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"].map(g => <option key={g}>{g}</option>)}
           </select>
         ) : (
           <span style={{ padding: "8px 14px", borderRadius: 8, background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.3)", color: "#a5b4fc", fontSize: ".85rem", fontWeight: 700 }}>
@@ -442,15 +578,15 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
           </span>
         )}
 
-        {/* Subject tabs */}
-        {["Maths","Science"].map(subj => (
+        {/* Subject tabs — Grade 11/12 show Physics/Chemistry/Bio/Maths filtered by stream */}
+        {getSubjectsForGrade(selectedGrade, user).map(subj => (
           <button key={subj} onClick={() => { setSelectedSubject(subj); setActiveTopic(null); setExplanation(""); setFilterDifficulty("All"); }}
             style={{ padding: "8px 18px", borderRadius: 8, cursor: "pointer", fontFamily: "inherit", fontSize: ".85rem", fontWeight: 700,
-              background: selectedSubject === subj ? SUBJECT_COLORS[subj].gradient : "var(--card-bg)",
+              background: selectedSubject === subj ? (SUBJECT_COLORS[subj]?.gradient || "linear-gradient(135deg,#6366f1,#8b5cf6)") : "var(--card-bg)",
               color: selectedSubject === subj ? "#fff" : "var(--muted)",
               border: selectedSubject === subj ? "none" : "1.5px solid var(--border)",
             }}>
-            {SUBJECT_COLORS[subj].icon} {subj}
+            {SUBJECT_COLORS[subj]?.icon || "📚"} {subj}
           </button>
         ))}
 

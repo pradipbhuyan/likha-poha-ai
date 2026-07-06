@@ -101,7 +101,7 @@ def get_user_profile(user_id: str):
     response = (
         admin_client
         .table("profiles")
-        .select("id, email, username, role, parent_id, family_id")
+        .select("id, email, username, role, parent_id, family_id, grade, stream, cbse_subjects")
         .eq("id", user_id)
         .single()
         .execute()

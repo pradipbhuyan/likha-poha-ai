@@ -57,15 +57,67 @@ router = APIRouter(prefix="/api/exam-prep", tags=["exam-prep"])
 admin_router = APIRouter(prefix="/api/admin/exam-prep", tags=["admin-exam-prep"])
 
 
-# ── Access guard helper ────────────────────────────────────────────────────────
+# ── Access guard helpers ───────────────────────────────────────────────────────
 
 def _require_exam_prep_access(user=Depends(get_current_user)):
-    """Dependency: enforces Exam Prep access rules."""
+    """
+    Dependency: enforces Exam Prep GRADE/ROLE gate only.
+    Used by page-shell and preview endpoints.
+    """
     profile = get_user_profile(user.id)
     if not profile:
         raise HTTPException(403, "Profile not found")
     svc.check_exam_prep_access(profile)
     return {"user": user, "profile": profile}
+
+
+def _require_exam_prep_content(user=Depends(get_current_user)):
+    """
+    Dependency: enforces full Exam Prep content access.
+    Grade/role gate + canonical subscription check (Premium+ only).
+    Used by all content endpoints: questions, tests, answers, AI follow-up.
+    """
+    profile = get_user_profile(user.id)
+    if not profile:
+        raise HTTPException(403, "Profile not found")
+    svc.check_exam_prep_content_access(profile)
+    return {"user": user, "profile": profile}
+
+
+# ── Canonical access-check endpoint (called by frontend on page load) ──────────
+
+@router.get("/access-check")
+def get_access_check(user=Depends(get_current_user)):
+    """
+    Return canonical Exam Prep access state for the frontend.
+
+    The frontend MUST call this endpoint instead of inferring access from the
+    subscription plan string.  Returns:
+      - grade_eligible   : bool — is the user Grade 11/12?
+      - has_access       : bool — can the user access content?
+      - preview_only     : bool — should the locked preview be shown?
+      - reason           : str  — "full_access" | "free" | "nano" | "admin" | "grade_ineligible"
+      - stream           : str | null
+      - stream_missing   : bool
+      - exam_eligibility : { jee_main, neet_ug, cuet_ug } per-stream flags
+      - canonical_plan_key: str
+      - plan_name        : str
+      - upgrade_message  : str (when preview_only)
+    """
+    profile = get_user_profile(user.id)
+    if not profile:
+        return {
+            "grade_eligible": False,
+            "has_access": False,
+            "preview_only": True,
+            "reason": "profile_not_found",
+            "stream": None,
+            "stream_missing": False,
+            "exam_eligibility": None,
+            "canonical_plan_key": None,
+            "plan_name": None,
+        }
+    return svc.get_access_check_response(user_id=user.id, profile=profile)
 
 
 # ── Status ─────────────────────────────────────────────────────────────────────
@@ -94,7 +146,7 @@ def get_dashboard(
     exam: str = "jee_main",
     ctx=Depends(_require_exam_prep_access),
 ):
-    """Return dashboard stats for the given exam."""
+    """Return dashboard stats for the given exam. Grade/role gate only — stats are visible to all Grade 11/12."""
     user = ctx["user"]
     data = svc.get_dashboard(exam_type=exam, user_id=user.id)
     return {"success": True, **data}

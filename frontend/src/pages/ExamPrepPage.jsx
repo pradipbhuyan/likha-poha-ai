@@ -28,35 +28,10 @@ import {
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
+// NOTE: Frontend does NOT infer Exam Prep access from plan strings.
+// All access decisions come from GET /api/exam-prep/access-check (canonical backend).
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
-const EXAM_PREP_GRADES = new Set(["Grade 11", "Grade 12"]);
-
-// Exam Prep content is premium — requires paid subscription (not free, not Nano)
-// Nano plan key check: nano plans have access_cbse=true but plan key contains 'nano'
-function hasExamPrepContentAccess(user) {
-  if (!user) return false;
-  if (user.role === "admin") return true;
-  // Test users bypass payment gate
-  if (TEST_ACCESS_USERS.has(user.username)) return true;
-  // Must be Grade 11/12 student on a paid plan (not free, not nano)
-  if (user.role === "student" && EXAM_PREP_GRADES.has(user.grade)) {
-    const plan = (user.subscriptionPlan || "free").toLowerCase();
-    if (plan === "free") return false;
-    if (plan.includes("nano")) return false;  // Premium Nano cannot access Exam Prep
-    return true; // premium, family, or any non-nano paid plan
-  }
-  return false;
-}
-
-function hasAccess(user) {
-  // Page is visible to all Grade 11/12 students (free or paid)
-  // Content is gated by hasExamPrepContentAccess
-  if (!user) return false;
-  if (user.role === "admin") return true;
-  if (TEST_ACCESS_USERS.has(user.username)) return true;
-  if (user.role === "student" && EXAM_PREP_GRADES.has(user.grade)) return true;
-  return false;
-}
 
 const EXAMS = {
   jee_main: { label: "JEE Main", icon: "📐", color: "#6366f1", active: true },
@@ -402,6 +377,18 @@ export default function ExamPrepPage({ user, setActivePage }) {
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
   const isAdmin = user?.role === "admin";
 
+  // ── Canonical access check from backend ────────────────────────────────────
+  const [accessCheck, setAccessCheck] = useState(null);  // null = loading
+  useEffect(() => {
+    if (!user?.accessToken) return;
+    fetch(`${API_BASE}/api/exam-prep/access-check`, {
+      headers: { Authorization: `Bearer ${user.accessToken}` },
+    })
+      .then(r => r.json())
+      .then(d => setAccessCheck(d))
+      .catch(() => setAccessCheck({ grade_eligible: false, has_access: false, preview_only: true, reason: "error" }));
+  }, [user?.accessToken]);
+
   // ── Load dashboard ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (!user?.accessToken) return;
@@ -497,8 +484,20 @@ export default function ExamPrepPage({ user, setActivePage }) {
     } finally { setTestLoading(false); }
   }
 
-  // ── Access guard ───────────────────────────────────────────────────────────
-  if (!hasAccess(user)) {
+  // ── Access guard: loading ──────────────────────────────────────────────────
+  if (!accessCheck) {
+    return (
+      <div className="premium-page">
+        <section className="premium-section" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 200 }}>
+          <Loader size={20} style={{ animation: "spin 1s linear infinite", color: "var(--muted,#64748b)" }} />
+          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+        </section>
+      </div>
+    );
+  }
+
+  // ── Access guard: grade ineligible ─────────────────────────────────────────
+  if (!accessCheck.grade_eligible) {
     return (
       <div className="premium-page">
         <section className="premium-section" style={{ textAlign: "center", padding: "60px 20px" }}>
@@ -512,11 +511,9 @@ export default function ExamPrepPage({ user, setActivePage }) {
     );
   }
 
-  // ── Premium gate — free/nano tier sees locked preview ─────────────────────
-  const contentLocked = !hasExamPrepContentAccess(user);
-  if (contentLocked) {
-    const plan = (user?.subscriptionPlan || "free").toLowerCase();
-    const isNano = plan.includes("nano");
+  // ── Premium gate — free/nano tier sees locked preview (canonical from backend) ──
+  if (accessCheck.preview_only) {
+    const isNano = accessCheck.reason === "nano";
     return (
       <div className="premium-page">
         <section className="premium-section" style={{ paddingBottom: 0 }}>
@@ -566,14 +563,11 @@ export default function ExamPrepPage({ user, setActivePage }) {
               ))}
             </div>
             <button
-              onClick={() => setActivePage && setActivePage("subscriptionPlans")}
-              style={{ padding: "13px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", marginBottom: 10 }}
+              disabled
+              style={{ padding: "13px 32px", background: "var(--border,#334155)", border: "none", borderRadius: 12, color: "var(--muted,#64748b)", fontWeight: 800, fontSize: ".95rem", cursor: "not-allowed", fontFamily: "inherit", marginBottom: 10 }}
             >
-              🚀 Upgrade to Premium
+              Coming Soon
             </button>
-            <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>
-              {isNano ? "Starting from ₹299/month · Includes Exam Prep Center" : "Starting from ₹299/month · Cancel anytime"}
-            </div>
           </div>
         </section>
       </div>
@@ -608,16 +602,34 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </span>
         </div>
 
-        {/* Exam tabs */}
+        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-          {Object.entries(EXAMS).map(([key, exam]) => (
-            <button key={key} onClick={() => !exam.comingSoon && setSelectedExam(key)}
-              style={{ padding: "9px 18px", borderRadius: 10, border: `2px solid ${selectedExam === key ? exam.color : "var(--border,#334155)"}`, background: selectedExam === key ? `${exam.color}18` : "var(--panel,#1e293b)", color: selectedExam === key ? exam.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".82rem", cursor: exam.comingSoon ? "default" : "pointer", fontFamily: "inherit", opacity: exam.comingSoon ? .55 : 1, display: "flex", alignItems: "center", gap: 7 }}>
-              <span>{exam.icon}</span>
-              <span>{exam.label}</span>
-              {exam.comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
-            </button>
-          ))}
+          {Object.entries(EXAMS).map(([key, exam]) => {
+            const elig = accessCheck?.exam_eligibility?.[key];
+            const ineligible = elig && !elig.eligible && !elig.coming_soon;
+            const comingSoon = elig?.coming_soon;
+            return (
+              <button key={key}
+                onClick={() => !comingSoon && !ineligible && setSelectedExam(key)}
+                title={ineligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
+                style={{
+                  padding: "9px 18px", borderRadius: 10,
+                  border: `2px solid ${selectedExam === key ? exam.color : ineligible ? "var(--border,#1e293b)" : "var(--border,#334155)"}`,
+                  background: selectedExam === key ? `${exam.color}18` : "var(--panel,#1e293b)",
+                  color: selectedExam === key ? exam.color : ineligible ? "var(--muted,#475569)" : "var(--muted,#94a3b8)",
+                  fontWeight: 700, fontSize: ".82rem",
+                  cursor: (comingSoon || ineligible) ? "default" : "pointer",
+                  fontFamily: "inherit",
+                  opacity: ineligible ? 0.4 : comingSoon ? 0.55 : 1,
+                  display: "flex", alignItems: "center", gap: 7,
+                }}>
+                <span>{exam.icon}</span>
+                <span>{exam.label}</span>
+                {comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
+                {ineligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
+              </button>
+            );
+          })}
         </div>
 
         {/* Stats row */}
