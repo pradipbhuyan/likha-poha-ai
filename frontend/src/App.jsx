@@ -283,6 +283,11 @@ const PAGE_META = {
     subtitle: "Generate detailed CBSE-aligned lesson plans for any grade, subject and chapter. Download as PDF.",
     icon: "📋",
   },
+  examPrep: {
+    title: "Exam Prep Center",
+    subtitle: "JEE Main · NEET UG · CUET UG — Practice questions, simulated tests, and AI explanations for Grade 11 & 12.",
+    icon: "🎯",
+  },
 };
 
 function App() {
@@ -1482,7 +1487,7 @@ function App() {
       case "aiStudio":
         return <AdminAIStudioPage user={user} />;
       case "examPrep":
-        return <ExamPrepPage user={user} />;
+        return <ExamPrepPage user={user} setActivePage={handlePageChange} />;
       default:
         return <LessonsPage user={user} />;
     }

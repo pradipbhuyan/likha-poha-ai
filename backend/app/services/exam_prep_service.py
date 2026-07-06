@@ -1,0 +1,2016 @@
+"""
+exam_prep_service.py — Exam Prep Center business logic
+=======================================================
+Access rules (backend-enforced):
+  - admin: always allowed
+  - student Grade 11 / Grade 12: allowed
+  - akshita.teststudent: allowed regardless of grade (test rollout)
+  - all other students/roles: 403
+"""
+
+from __future__ import annotations
+
+import json
+import math
+from datetime import datetime, timezone
+from typing import Optional
+
+from fastapi import HTTPException
+from app.services.logger_service import get_logger
+
+_log = get_logger("exam_prep_service")
+
+# ── Access control ─────────────────────────────────────────────────────────────
+
+EXAM_PREP_TEST_USERS: set[str] = {"akshita.teststudent"}
+EXAM_PREP_GRADES: set[str] = {"Grade 11", "Grade 12"}
+
+
+def check_exam_prep_access(profile: dict) -> None:
+    """Raise HTTP 403 if the user does not have Exam Prep access."""
+    role = profile.get("role", "")
+    username = profile.get("username", "")
+    grade = profile.get("grade", "")
+
+    if role == "admin":
+        return
+    if username in EXAM_PREP_TEST_USERS:
+        return
+    if role == "student" and grade in EXAM_PREP_GRADES:
+        return
+
+    raise HTTPException(
+        status_code=403,
+        detail=(
+            "Exam Prep Center is only available for Grade 11 & 12 students. "
+            "Grade 5-10 access is not enabled yet."
+        ),
+    )
+
+
+# ── Static syllabus data ───────────────────────────────────────────────────────
+
+JEE_SUBJECTS = {
+    "Physics": {
+        "icon": "⚛️",
+        "color": "#6366f1",
+        "chapters": 22,
+        "weightage_pct": 33,
+        "topics": [
+            {
+                "name": "Kinematics",
+                "priority": "HIGH",
+                "subtopics": ["Projectile Motion", "Relative Velocity", "Graphs"],
+                "weightage_pct": 8,
+                "chapter": "Motion in a Straight Line",
+                "ncert_chapter": "NCERT Class 11, Chapter 3",
+            },
+            {
+                "name": "Laws of Motion",
+                "priority": "HIGH",
+                "subtopics": ["Newton's Laws", "Friction", "Circular Motion"],
+                "weightage_pct": 10,
+                "chapter": "Laws of Motion",
+                "ncert_chapter": "NCERT Class 11, Chapter 5",
+            },
+            {
+                "name": "Work, Energy and Power",
+                "priority": "HIGH",
+                "subtopics": ["Work-Energy Theorem", "Conservation of Energy", "Power"],
+                "weightage_pct": 7,
+                "chapter": "Work, Energy and Power",
+                "ncert_chapter": "NCERT Class 11, Chapter 6",
+            },
+            {
+                "name": "Electrostatics",
+                "priority": "HIGH",
+                "subtopics": ["Coulomb's Law", "Electric Field", "Capacitors"],
+                "weightage_pct": 9,
+                "chapter": "Electric Charges and Fields",
+                "ncert_chapter": "NCERT Class 12, Chapter 1",
+            },
+            {
+                "name": "Current Electricity",
+                "priority": "HIGH",
+                "subtopics": ["Ohm's Law", "Kirchhoff's Laws", "Wheatstone Bridge"],
+                "weightage_pct": 8,
+                "chapter": "Current Electricity",
+                "ncert_chapter": "NCERT Class 12, Chapter 3",
+            },
+            {
+                "name": "Magnetism",
+                "priority": "MED",
+                "subtopics": ["Biot-Savart Law", "Ampere's Law", "Lorentz Force"],
+                "weightage_pct": 6,
+                "chapter": "Moving Charges and Magnetism",
+                "ncert_chapter": "NCERT Class 12, Chapter 4",
+            },
+            {
+                "name": "Optics",
+                "priority": "MED",
+                "subtopics": ["Ray Optics", "Wave Optics", "Interference"],
+                "weightage_pct": 6,
+                "chapter": "Wave Optics",
+                "ncert_chapter": "NCERT Class 12, Chapter 10",
+            },
+            {
+                "name": "Modern Physics",
+                "priority": "HIGH",
+                "subtopics": ["Photoelectric Effect", "Atomic Models", "Radioactivity"],
+                "weightage_pct": 9,
+                "chapter": "Dual Nature of Radiation",
+                "ncert_chapter": "NCERT Class 12, Chapter 11",
+            },
+            {
+                "name": "Thermodynamics",
+                "priority": "MED",
+                "subtopics": ["Laws of Thermodynamics", "Carnot Engine", "Entropy"],
+                "weightage_pct": 6,
+                "chapter": "Thermodynamics",
+                "ncert_chapter": "NCERT Class 11, Chapter 12",
+            },
+            {
+                "name": "Waves & Oscillations",
+                "priority": "MED",
+                "subtopics": ["SHM", "Wave Equations", "Standing Waves"],
+                "weightage_pct": 5,
+                "chapter": "Waves",
+                "ncert_chapter": "NCERT Class 11, Chapter 15",
+            },
+        ],
+    },
+    "Chemistry": {
+        "icon": "🧪",
+        "color": "#10b981",
+        "chapters": 28,
+        "weightage_pct": 33,
+        "topics": [
+            {
+                "name": "Chemical Bonding",
+                "priority": "HIGH",
+                "subtopics": ["VSEPR Theory", "Hybridisation", "MO Theory"],
+                "weightage_pct": 9,
+                "chapter": "Chemical Bonding and Molecular Structure",
+                "ncert_chapter": "NCERT Class 11, Chapter 4",
+            },
+            {
+                "name": "Electrochemistry",
+                "priority": "HIGH",
+                "subtopics": ["Electrolytic Cells", "EMF", "Nernst Equation"],
+                "weightage_pct": 8,
+                "chapter": "Electrochemistry",
+                "ncert_chapter": "NCERT Class 12, Chapter 3",
+            },
+            {
+                "name": "Organic Mechanisms",
+                "priority": "HIGH",
+                "subtopics": ["SN1/SN2", "Elimination", "Addition Reactions"],
+                "weightage_pct": 10,
+                "chapter": "Haloalkanes and Haloarenes",
+                "ncert_chapter": "NCERT Class 12, Chapter 10",
+            },
+            {
+                "name": "Equilibrium",
+                "priority": "HIGH",
+                "subtopics": ["Le Chatelier", "Kp/Kc", "Ionic Equilibrium"],
+                "weightage_pct": 8,
+                "chapter": "Equilibrium",
+                "ncert_chapter": "NCERT Class 11, Chapter 7",
+            },
+            {
+                "name": "Coordination Compounds",
+                "priority": "HIGH",
+                "subtopics": ["Werner's Theory", "CFSE", "Isomerism"],
+                "weightage_pct": 7,
+                "chapter": "Coordination Compounds",
+                "ncert_chapter": "NCERT Class 12, Chapter 9",
+            },
+            {
+                "name": "Organic Compounds",
+                "priority": "HIGH",
+                "subtopics": ["Aldehydes/Ketones", "Carboxylic Acids", "Amines"],
+                "weightage_pct": 9,
+                "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+                "ncert_chapter": "NCERT Class 12, Chapter 12",
+            },
+            {
+                "name": "p-Block Elements",
+                "priority": "MED",
+                "subtopics": ["Group 15,16,17", "Oxyacids", "Noble Gases"],
+                "weightage_pct": 6,
+                "chapter": "p-Block Elements",
+                "ncert_chapter": "NCERT Class 12, Chapter 7",
+            },
+        ],
+    },
+    "Mathematics": {
+        "icon": "📐",
+        "color": "#f59e0b",
+        "chapters": 16,
+        "weightage_pct": 34,
+        "topics": [
+            {
+                "name": "Integration",
+                "priority": "HIGH",
+                "subtopics": ["Definite Integrals", "Area Under Curve", "Integration by Parts"],
+                "weightage_pct": 10,
+                "chapter": "Integrals",
+                "ncert_chapter": "NCERT Class 12, Chapter 7",
+            },
+            {
+                "name": "Coordinate Geometry",
+                "priority": "HIGH",
+                "subtopics": ["Straight Lines", "Circles", "Parabola/Ellipse"],
+                "weightage_pct": 10,
+                "chapter": "Conic Sections",
+                "ncert_chapter": "NCERT Class 11, Chapter 11",
+            },
+            {
+                "name": "Vectors & 3D Geometry",
+                "priority": "HIGH",
+                "subtopics": ["Dot/Cross Product", "Lines in 3D", "Planes"],
+                "weightage_pct": 9,
+                "chapter": "Vector Algebra",
+                "ncert_chapter": "NCERT Class 12, Chapter 10",
+            },
+            {
+                "name": "Matrices & Determinants",
+                "priority": "HIGH",
+                "subtopics": ["Matrix Operations", "Eigenvalues", "Cramer's Rule"],
+                "weightage_pct": 8,
+                "chapter": "Matrices",
+                "ncert_chapter": "NCERT Class 12, Chapter 3",
+            },
+            {
+                "name": "Limits & Continuity",
+                "priority": "HIGH",
+                "subtopics": ["L'Hopital's Rule", "Sandwich Theorem", "Continuity"],
+                "weightage_pct": 8,
+                "chapter": "Limits and Derivatives",
+                "ncert_chapter": "NCERT Class 11, Chapter 13",
+            },
+            {
+                "name": "Probability",
+                "priority": "MED",
+                "subtopics": ["Bayes Theorem", "Distributions", "Conditional Probability"],
+                "weightage_pct": 7,
+                "chapter": "Probability",
+                "ncert_chapter": "NCERT Class 12, Chapter 13",
+            },
+            {
+                "name": "Differential Equations",
+                "priority": "MED",
+                "subtopics": ["Variable Separable", "Linear DE", "Homogeneous"],
+                "weightage_pct": 6,
+                "chapter": "Differential Equations",
+                "ncert_chapter": "NCERT Class 12, Chapter 9",
+            },
+        ],
+    },
+}
+
+NEET_BIOLOGY = {
+    "icon": "🌿",
+    "color": "#22c55e",
+    "chapters": 38,
+    "weightage_pct": 50,
+    "topics": [
+        {
+            "name": "Cell Biology",
+            "priority": "HIGH",
+            "subtopics": ["Cell Structure", "Cell Division", "Biomolecules"],
+            "weightage_pct": 9,
+            "chapter": "Cell: The Unit of Life",
+            "ncert_chapter": "NCERT Class 11, Chapter 8",
+        },
+        {
+            "name": "Genetics & Molecular Biology",
+            "priority": "HIGH",
+            "subtopics": ["Mendelian Genetics", "DNA Replication", "Gene Expression", "Mutations"],
+            "weightage_pct": 13,
+            "chapter": "Principles of Inheritance and Variation",
+            "ncert_chapter": "NCERT Class 12, Chapter 5",
+        },
+        {
+            "name": "Human Physiology",
+            "priority": "HIGH",
+            "subtopics": ["Digestion", "Respiration", "Circulation", "Excretion", "Nervous System"],
+            "weightage_pct": 12,
+            "chapter": "Breathing and Exchange of Gases",
+            "ncert_chapter": "NCERT Class 11, Chapter 17",
+        },
+        {
+            "name": "Plant Physiology",
+            "priority": "HIGH",
+            "subtopics": ["Photosynthesis", "Respiration in Plants", "Plant Growth"],
+            "weightage_pct": 8,
+            "chapter": "Photosynthesis in Higher Plants",
+            "ncert_chapter": "NCERT Class 11, Chapter 13",
+        },
+        {
+            "name": "Reproduction",
+            "priority": "HIGH",
+            "subtopics": ["Sexual Reproduction in Plants", "Human Reproduction", "Reproductive Health"],
+            "weightage_pct": 9,
+            "chapter": "Human Reproduction",
+            "ncert_chapter": "NCERT Class 12, Chapter 3",
+        },
+        {
+            "name": "Ecology & Environment",
+            "priority": "HIGH",
+            "subtopics": ["Ecosystem", "Biodiversity", "Environmental Issues", "Population"],
+            "weightage_pct": 8,
+            "chapter": "Ecosystem",
+            "ncert_chapter": "NCERT Class 12, Chapter 14",
+        },
+        {
+            "name": "Biotechnology",
+            "priority": "MED",
+            "subtopics": ["Recombinant DNA", "PCR", "GMOs", "Applications"],
+            "weightage_pct": 6,
+            "chapter": "Biotechnology: Principles and Processes",
+            "ncert_chapter": "NCERT Class 12, Chapter 11",
+        },
+        {
+            "name": "Evolution",
+            "priority": "MED",
+            "subtopics": ["Origin of Life", "Darwinism", "Human Evolution", "Speciation"],
+            "weightage_pct": 5,
+            "chapter": "Evolution",
+            "ncert_chapter": "NCERT Class 12, Chapter 7",
+        },
+        {
+            "name": "Structural Organisation",
+            "priority": "MED",
+            "subtopics": ["Tissues", "Morphology of Flowering Plants", "Anatomy"],
+            "weightage_pct": 5,
+            "chapter": "Morphology of Flowering Plants",
+            "ncert_chapter": "NCERT Class 11, Chapter 5",
+        },
+        {
+            "name": "Diversity in Living World",
+            "priority": "MED",
+            "subtopics": ["Five Kingdom Classification", "Fungi", "Protista", "Monera"],
+            "weightage_pct": 4,
+            "chapter": "Biological Classification",
+            "ncert_chapter": "NCERT Class 11, Chapter 2",
+        },
+    ],
+}
+
+# NEET Physics has same chapters as JEE but different weightage distribution
+NEET_PHYSICS = dict(JEE_SUBJECTS["Physics"])
+NEET_PHYSICS["weightage_pct"] = 25
+
+NEET_CHEMISTRY = dict(JEE_SUBJECTS["Chemistry"])
+NEET_CHEMISTRY["weightage_pct"] = 25
+
+# CUET UG — Common University Entrance Test
+# Section IA: Language (mandatory), Section II: Domain Subjects, Section III: General Test
+CUET_SUBJECTS = {
+    "English": {
+        "icon": "📝",
+        "color": "#6366f1",
+        "chapters": 10,
+        "weightage_pct": 20,
+        "topics": [
+            {
+                "name": "Reading Comprehension",
+                "priority": "HIGH",
+                "subtopics": ["Passage-based Questions", "Inference", "Vocabulary in Context"],
+                "weightage_pct": 25,
+                "chapter": "Reading Comprehension",
+                "ncert_chapter": "NCERT Flamingo / Vistas Class 12",
+            },
+            {
+                "name": "Grammar & Usage",
+                "priority": "HIGH",
+                "subtopics": ["Tenses", "Voices", "Narration", "Error Spotting"],
+                "weightage_pct": 20,
+                "chapter": "Grammar",
+                "ncert_chapter": "NCERT English Class 11 & 12",
+            },
+            {
+                "name": "Vocabulary",
+                "priority": "HIGH",
+                "subtopics": ["Synonyms", "Antonyms", "Idioms", "One-word Substitution"],
+                "weightage_pct": 15,
+                "chapter": "Vocabulary",
+                "ncert_chapter": "NCERT English Class 11 & 12",
+            },
+            {
+                "name": "Literature",
+                "priority": "MED",
+                "subtopics": ["Poetry", "Prose", "Drama", "Short Stories"],
+                "weightage_pct": 20,
+                "chapter": "Literature",
+                "ncert_chapter": "NCERT Flamingo Class 12",
+            },
+            {
+                "name": "Writing Skills",
+                "priority": "MED",
+                "subtopics": ["Essay Writing", "Letter Writing", "Report Writing", "Notice Writing"],
+                "weightage_pct": 10,
+                "chapter": "Writing",
+                "ncert_chapter": "NCERT English Class 12",
+            },
+            {
+                "name": "Verbal Ability",
+                "priority": "MED",
+                "subtopics": ["Para Jumbles", "Sentence Completion", "Cloze Test"],
+                "weightage_pct": 10,
+                "chapter": "Verbal Ability",
+                "ncert_chapter": "NCERT English Class 11 & 12",
+            },
+        ],
+    },
+    "General Test": {
+        "icon": "🧩",
+        "color": "#8b5cf6",
+        "chapters": 8,
+        "weightage_pct": 20,
+        "topics": [
+            {
+                "name": "Quantitative Reasoning",
+                "priority": "HIGH",
+                "subtopics": ["Number System", "Percentage", "Ratio & Proportion", "Profit & Loss"],
+                "weightage_pct": 25,
+                "chapter": "Quantitative Aptitude",
+                "ncert_chapter": "NCERT Mathematics Class 10",
+            },
+            {
+                "name": "Logical Reasoning",
+                "priority": "HIGH",
+                "subtopics": ["Series", "Analogy", "Coding-Decoding", "Blood Relations"],
+                "weightage_pct": 25,
+                "chapter": "Logical Reasoning",
+                "ncert_chapter": "General Aptitude",
+            },
+            {
+                "name": "General Knowledge",
+                "priority": "HIGH",
+                "subtopics": ["Current Affairs", "History", "Geography", "Science & Technology"],
+                "weightage_pct": 20,
+                "chapter": "General Knowledge",
+                "ncert_chapter": "NCERT Social Science",
+            },
+            {
+                "name": "Data Interpretation",
+                "priority": "MED",
+                "subtopics": ["Tables", "Bar Graphs", "Pie Charts", "Line Graphs"],
+                "weightage_pct": 15,
+                "chapter": "Data Interpretation",
+                "ncert_chapter": "NCERT Statistics",
+            },
+            {
+                "name": "General Mental Ability",
+                "priority": "MED",
+                "subtopics": ["Direction Sense", "Venn Diagrams", "Syllogisms", "Calendar"],
+                "weightage_pct": 15,
+                "chapter": "Mental Ability",
+                "ncert_chapter": "General Aptitude",
+            },
+        ],
+    },
+    "Physics (Domain)": {
+        "icon": "⚛️",
+        "color": "#6366f1",
+        "chapters": 22,
+        "weightage_pct": 30,
+        "topics": JEE_SUBJECTS["Physics"]["topics"],
+    },
+    "Chemistry (Domain)": {
+        "icon": "🧪",
+        "color": "#10b981",
+        "chapters": 28,
+        "weightage_pct": 30,
+        "topics": JEE_SUBJECTS["Chemistry"]["topics"],
+    },
+    "Mathematics (Domain)": {
+        "icon": "📐",
+        "color": "#f59e0b",
+        "chapters": 16,
+        "weightage_pct": 30,
+        "topics": JEE_SUBJECTS["Mathematics"]["topics"],
+    },
+    "Biology (Domain)": {
+        "icon": "🌿",
+        "color": "#22c55e",
+        "chapters": 38,
+        "weightage_pct": 30,
+        "topics": NEET_BIOLOGY["topics"],
+    },
+
+    # ── Humanities / Arts Domain Subjects ────────────────────────────────────
+    "History": {
+        "icon": "🏺",
+        "color": "#b45309",
+        "chapters": 16,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Ancient India",
+                "priority": "HIGH",
+                "subtopics": ["Harappan Civilization", "Vedic Age", "Mauryan Empire", "Gupta Period"],
+                "weightage_pct": 20,
+                "chapter": "Early Societies",
+                "ncert_chapter": "NCERT Themes in World History Class 11, Chapter 1-4",
+            },
+            {
+                "name": "Medieval India",
+                "priority": "HIGH",
+                "subtopics": ["Delhi Sultanate", "Mughal Empire", "Bhakti & Sufi Movements", "Regional Powers"],
+                "weightage_pct": 20,
+                "chapter": "Medieval Societies",
+                "ncert_chapter": "NCERT Themes in Indian History Class 12, Chapter 5-9",
+            },
+            {
+                "name": "Modern India",
+                "priority": "HIGH",
+                "subtopics": ["British Colonialism", "1857 Revolt", "National Movement", "Partition & Independence"],
+                "weightage_pct": 25,
+                "chapter": "Colonialism and the Countryside",
+                "ncert_chapter": "NCERT Themes in Indian History Class 12, Chapter 10-15",
+            },
+            {
+                "name": "World History",
+                "priority": "MED",
+                "subtopics": ["Industrial Revolution", "World Wars", "Cold War", "Decolonization"],
+                "weightage_pct": 15,
+                "chapter": "Work, Life and Leisure",
+                "ncert_chapter": "NCERT Themes in World History Class 11",
+            },
+            {
+                "name": "Sources & Historiography",
+                "priority": "MED",
+                "subtopics": ["Types of Sources", "Archaeological Evidence", "Inscriptions", "Literary Sources"],
+                "weightage_pct": 10,
+                "chapter": "Bricks, Beads and Bones",
+                "ncert_chapter": "NCERT Themes in Indian History Class 12, Chapter 1",
+            },
+            {
+                "name": "Cultural History",
+                "priority": "LOW",
+                "subtopics": ["Art & Architecture", "Religion & Philosophy", "Language & Literature"],
+                "weightage_pct": 10,
+                "chapter": "Bhakti–Sufi Traditions",
+                "ncert_chapter": "NCERT Themes in Indian History Class 12, Chapter 6",
+            },
+        ],
+    },
+    "Geography": {
+        "icon": "🌍",
+        "color": "#0891b2",
+        "chapters": 14,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Physical Geography",
+                "priority": "HIGH",
+                "subtopics": ["Interior of Earth", "Rocks & Minerals", "Landforms", "Climate & Weather"],
+                "weightage_pct": 20,
+                "chapter": "The Origin and Evolution of the Earth",
+                "ncert_chapter": "NCERT Fundamentals of Physical Geography Class 11",
+            },
+            {
+                "name": "India's Physical Environment",
+                "priority": "HIGH",
+                "subtopics": ["Physiographic Divisions", "Drainage System", "Climate", "Natural Vegetation"],
+                "weightage_pct": 20,
+                "chapter": "India — Location",
+                "ncert_chapter": "NCERT India Physical Environment Class 11",
+            },
+            {
+                "name": "Human Geography",
+                "priority": "HIGH",
+                "subtopics": ["Population", "Migration", "Human Development", "Settlements"],
+                "weightage_pct": 20,
+                "chapter": "The World Population",
+                "ncert_chapter": "NCERT Fundamentals of Human Geography Class 12",
+            },
+            {
+                "name": "India — People and Economy",
+                "priority": "HIGH",
+                "subtopics": ["Population Distribution", "Agriculture", "Industries", "Transport"],
+                "weightage_pct": 20,
+                "chapter": "Population — Distribution, Density, Growth",
+                "ncert_chapter": "NCERT India People and Economy Class 12",
+            },
+            {
+                "name": "Map Work & Practical",
+                "priority": "MED",
+                "subtopics": ["Topographical Maps", "Aerial Photos", "Satellite Images", "Graphs"],
+                "weightage_pct": 10,
+                "chapter": "Practical Work in Geography",
+                "ncert_chapter": "NCERT Practical Work in Geography Class 11",
+            },
+            {
+                "name": "Resources",
+                "priority": "MED",
+                "subtopics": ["Water Resources", "Mineral Resources", "Energy Resources", "Land Resources"],
+                "weightage_pct": 10,
+                "chapter": "Water Resources",
+                "ncert_chapter": "NCERT India People and Economy Class 12",
+            },
+        ],
+    },
+    "Political Science": {
+        "icon": "🏛️",
+        "color": "#7c3aed",
+        "chapters": 18,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Indian Constitution",
+                "priority": "HIGH",
+                "subtopics": ["Preamble", "Fundamental Rights", "DPSP", "Constitutional Amendments"],
+                "weightage_pct": 20,
+                "chapter": "Constitution — Why and How?",
+                "ncert_chapter": "NCERT Political Theory Class 11, Chapter 1",
+            },
+            {
+                "name": "Indian Government",
+                "priority": "HIGH",
+                "subtopics": ["Parliament", "President", "Prime Minister", "Judiciary"],
+                "weightage_pct": 20,
+                "chapter": "Legislature",
+                "ncert_chapter": "NCERT Indian Constitution at Work Class 11",
+            },
+            {
+                "name": "Electoral Politics & Democracy",
+                "priority": "HIGH",
+                "subtopics": ["Elections", "Parties", "Federalism", "Local Self-Government"],
+                "weightage_pct": 20,
+                "chapter": "Electoral Politics",
+                "ncert_chapter": "NCERT Politics in India since Independence Class 12",
+            },
+            {
+                "name": "International Relations",
+                "priority": "MED",
+                "subtopics": ["Cold War Era", "Post-Cold War", "India's Foreign Policy", "UN"],
+                "weightage_pct": 15,
+                "chapter": "The Cold War Era",
+                "ncert_chapter": "NCERT Contemporary World Politics Class 12",
+            },
+            {
+                "name": "Political Theory",
+                "priority": "MED",
+                "subtopics": ["Freedom", "Equality", "Justice", "Rights", "Nationality & Secularism"],
+                "weightage_pct": 15,
+                "chapter": "Freedom",
+                "ncert_chapter": "NCERT Political Theory Class 11",
+            },
+            {
+                "name": "Globalisation & Security",
+                "priority": "LOW",
+                "subtopics": ["Globalization", "Security Challenges", "Environment & Politics"],
+                "weightage_pct": 10,
+                "chapter": "Environment and Natural Resources",
+                "ncert_chapter": "NCERT Contemporary World Politics Class 12",
+            },
+        ],
+    },
+    "Economics": {
+        "icon": "📊",
+        "color": "#059669",
+        "chapters": 12,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Microeconomics",
+                "priority": "HIGH",
+                "subtopics": ["Demand & Supply", "Elasticity", "Market Structures", "Consumer Theory"],
+                "weightage_pct": 25,
+                "chapter": "Introduction to Microeconomics",
+                "ncert_chapter": "NCERT Introductory Microeconomics Class 11",
+            },
+            {
+                "name": "Macroeconomics",
+                "priority": "HIGH",
+                "subtopics": ["National Income", "Money & Banking", "Government Budget", "Balance of Payments"],
+                "weightage_pct": 25,
+                "chapter": "Introduction to Macroeconomics",
+                "ncert_chapter": "NCERT Introductory Macroeconomics Class 12",
+            },
+            {
+                "name": "Indian Economic Development",
+                "priority": "HIGH",
+                "subtopics": ["Pre-Independence Economy", "Planning", "Liberalisation 1991", "Current Challenges"],
+                "weightage_pct": 20,
+                "chapter": "Indian Economy on the Eve of Independence",
+                "ncert_chapter": "NCERT Indian Economic Development Class 11",
+            },
+            {
+                "name": "Statistics for Economics",
+                "priority": "MED",
+                "subtopics": ["Collection of Data", "Organisation", "Central Tendency", "Index Numbers"],
+                "weightage_pct": 15,
+                "chapter": "Collection of Data",
+                "ncert_chapter": "NCERT Statistics for Economics Class 11",
+            },
+            {
+                "name": "Development Economics",
+                "priority": "MED",
+                "subtopics": ["Human Capital", "Rural Development", "Infrastructure", "Environment"],
+                "weightage_pct": 15,
+                "chapter": "Development Experience of India",
+                "ncert_chapter": "NCERT Indian Economic Development Class 11",
+            },
+        ],
+    },
+    "Accountancy": {
+        "icon": "📒",
+        "color": "#1d4ed8",
+        "chapters": 15,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Fundamentals of Accounting",
+                "priority": "HIGH",
+                "subtopics": ["Accounting Equation", "Journal", "Ledger", "Trial Balance"],
+                "weightage_pct": 20,
+                "chapter": "Introduction to Accounting",
+                "ncert_chapter": "NCERT Accountancy Class 11, Chapter 1-4",
+            },
+            {
+                "name": "Financial Statements",
+                "priority": "HIGH",
+                "subtopics": ["Trading Account", "P&L Account", "Balance Sheet", "Adjustments"],
+                "weightage_pct": 20,
+                "chapter": "Financial Statements",
+                "ncert_chapter": "NCERT Accountancy Class 11, Chapter 9-10",
+            },
+            {
+                "name": "Partnership Accounts",
+                "priority": "HIGH",
+                "subtopics": ["Partnership Deed", "Admission", "Retirement", "Dissolution"],
+                "weightage_pct": 20,
+                "chapter": "Accounting for Partnership",
+                "ncert_chapter": "NCERT Accountancy Class 12 Part 1",
+            },
+            {
+                "name": "Company Accounts",
+                "priority": "HIGH",
+                "subtopics": ["Share Capital", "Debentures", "Final Accounts of Companies", "Cash Flow"],
+                "weightage_pct": 20,
+                "chapter": "Accounting for Share Capital",
+                "ncert_chapter": "NCERT Accountancy Class 12 Part 1",
+            },
+            {
+                "name": "Analysis of Financial Statements",
+                "priority": "MED",
+                "subtopics": ["Comparative Statements", "Common Size", "Ratios", "Cash Flow Statement"],
+                "weightage_pct": 20,
+                "chapter": "Financial Statements Analysis",
+                "ncert_chapter": "NCERT Accountancy Class 12 Part 2",
+            },
+        ],
+    },
+    "Business Studies": {
+        "icon": "💼",
+        "color": "#b91c1c",
+        "chapters": 12,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Nature & Forms of Business",
+                "priority": "HIGH",
+                "subtopics": ["Business Activities", "Sole Proprietorship", "Partnership", "Companies"],
+                "weightage_pct": 20,
+                "chapter": "Nature and Purpose of Business",
+                "ncert_chapter": "NCERT Business Studies Class 11, Chapter 1-2",
+            },
+            {
+                "name": "Management",
+                "priority": "HIGH",
+                "subtopics": ["Functions of Management", "Planning", "Organising", "Staffing", "Directing"],
+                "weightage_pct": 25,
+                "chapter": "Nature and Significance of Management",
+                "ncert_chapter": "NCERT Business Studies Class 12 Part 1",
+            },
+            {
+                "name": "Finance & Marketing",
+                "priority": "HIGH",
+                "subtopics": ["Financial Management", "Capital Structure", "Marketing Mix", "Consumer Protection"],
+                "weightage_pct": 20,
+                "chapter": "Financial Management",
+                "ncert_chapter": "NCERT Business Studies Class 12 Part 2",
+            },
+            {
+                "name": "Business Environment",
+                "priority": "MED",
+                "subtopics": ["Economic Environment", "LPG Reforms", "Government Policy", "GST"],
+                "weightage_pct": 15,
+                "chapter": "Business Environment",
+                "ncert_chapter": "NCERT Business Studies Class 11, Chapter 3",
+            },
+            {
+                "name": "Entrepreneurship",
+                "priority": "MED",
+                "subtopics": ["Concept", "Startup Ecosystem", "Business Plan", "Social Enterprise"],
+                "weightage_pct": 10,
+                "chapter": "Entrepreneurship",
+                "ncert_chapter": "NCERT Business Studies Class 12",
+            },
+            {
+                "name": "e-Business & Emerging Trends",
+                "priority": "LOW",
+                "subtopics": ["e-Commerce", "Digital Payments", "Outsourcing", "Green Business"],
+                "weightage_pct": 10,
+                "chapter": "Emerging Modes of Business",
+                "ncert_chapter": "NCERT Business Studies Class 11, Chapter 5",
+            },
+        ],
+    },
+    "Sociology": {
+        "icon": "👥",
+        "color": "#dc2626",
+        "chapters": 10,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Introducing Sociology",
+                "priority": "HIGH",
+                "subtopics": ["Social Structure", "Sociological Perspectives", "Research Methods"],
+                "weightage_pct": 20,
+                "chapter": "Sociology and Society",
+                "ncert_chapter": "NCERT Introducing Sociology Class 11, Chapter 1",
+            },
+            {
+                "name": "Indian Society",
+                "priority": "HIGH",
+                "subtopics": ["Caste", "Class", "Tribe", "Gender", "Religion & Communalism"],
+                "weightage_pct": 20,
+                "chapter": "Understanding Society",
+                "ncert_chapter": "NCERT Understanding Society Class 11",
+            },
+            {
+                "name": "Social Change & Development",
+                "priority": "HIGH",
+                "subtopics": ["Modernisation", "Globalisation", "Social Movements", "Urbanisation"],
+                "weightage_pct": 20,
+                "chapter": "Social Change and Social Order",
+                "ncert_chapter": "NCERT Social Change and Development in India Class 12",
+            },
+            {
+                "name": "Demographic Structure",
+                "priority": "MED",
+                "subtopics": ["Population Size", "Literacy", "Health", "Gender Composition"],
+                "weightage_pct": 15,
+                "chapter": "Demographic Structure of the Indian Society",
+                "ncert_chapter": "NCERT Indian Society Class 12, Chapter 2",
+            },
+            {
+                "name": "Challenges of Nation Building",
+                "priority": "MED",
+                "subtopics": ["Partition", "Integration of States", "Linguistic Diversity", "Regional Identity"],
+                "weightage_pct": 15,
+                "chapter": "The Challenges of Cultural Diversity",
+                "ncert_chapter": "NCERT Indian Society Class 12, Chapter 6",
+            },
+            {
+                "name": "Rural & Agrarian Society",
+                "priority": "LOW",
+                "subtopics": ["Land Reforms", "Green Revolution", "Panchayati Raj", "Farmer Movements"],
+                "weightage_pct": 10,
+                "chapter": "Structural Change",
+                "ncert_chapter": "NCERT Social Change and Development in India Class 12, Chapter 3",
+            },
+        ],
+    },
+    "Psychology": {
+        "icon": "🧠",
+        "color": "#9333ea",
+        "chapters": 10,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Nature & Scope of Psychology",
+                "priority": "HIGH",
+                "subtopics": ["Branches", "Research Methods", "Psychological Tests"],
+                "weightage_pct": 15,
+                "chapter": "What is Psychology?",
+                "ncert_chapter": "NCERT Psychology Class 11, Chapter 1",
+            },
+            {
+                "name": "Human Development",
+                "priority": "HIGH",
+                "subtopics": ["Prenatal Development", "Childhood", "Adolescence", "Old Age"],
+                "weightage_pct": 15,
+                "chapter": "Human Development",
+                "ncert_chapter": "NCERT Psychology Class 11, Chapter 4",
+            },
+            {
+                "name": "Cognition & Intelligence",
+                "priority": "HIGH",
+                "subtopics": ["Attention & Perception", "Memory", "Thinking", "Intelligence Theories"],
+                "weightage_pct": 20,
+                "chapter": "Attention and Perception",
+                "ncert_chapter": "NCERT Psychology Class 11, Chapter 5-7",
+            },
+            {
+                "name": "Personality & Self",
+                "priority": "HIGH",
+                "subtopics": ["Theories of Personality", "Self-concept", "Freud", "Humanistic Approach"],
+                "weightage_pct": 15,
+                "chapter": "Self and Personality",
+                "ncert_chapter": "NCERT Psychology Class 12, Chapter 2",
+            },
+            {
+                "name": "Psychological Disorders",
+                "priority": "MED",
+                "subtopics": ["Anxiety Disorders", "Depression", "Schizophrenia", "Therapy"],
+                "weightage_pct": 15,
+                "chapter": "Psychological Disorders",
+                "ncert_chapter": "NCERT Psychology Class 12, Chapter 4",
+            },
+            {
+                "name": "Social Behaviour",
+                "priority": "MED",
+                "subtopics": ["Attitudes", "Prejudice", "Group Dynamics", "Leadership"],
+                "weightage_pct": 10,
+                "chapter": "Attitude and Social Cognition",
+                "ncert_chapter": "NCERT Psychology Class 12, Chapter 6",
+            },
+            {
+                "name": "Motivation & Emotion",
+                "priority": "LOW",
+                "subtopics": ["Maslow's Hierarchy", "Intrinsic vs Extrinsic", "Emotions", "Stress"],
+                "weightage_pct": 10,
+                "chapter": "Motivation and Emotion",
+                "ncert_chapter": "NCERT Psychology Class 11, Chapter 9",
+            },
+        ],
+    },
+    "Legal Studies": {
+        "icon": "⚖️",
+        "color": "#475569",
+        "chapters": 10,
+        "weightage_pct": 30,
+        "topics": [
+            {
+                "name": "Nature of Law",
+                "priority": "HIGH",
+                "subtopics": ["Sources of Law", "Constitutional Law", "Statutory Law", "Common Law"],
+                "weightage_pct": 20,
+                "chapter": "Nature of Law",
+                "ncert_chapter": "NCERT Legal Studies Class 11, Chapter 1",
+            },
+            {
+                "name": "Indian Constitution",
+                "priority": "HIGH",
+                "subtopics": ["Preamble", "Fundamental Rights", "Directive Principles", "Amendments"],
+                "weightage_pct": 25,
+                "chapter": "Constitution as the Supreme Law",
+                "ncert_chapter": "NCERT Legal Studies Class 11, Chapter 2",
+            },
+            {
+                "name": "Judiciary System",
+                "priority": "HIGH",
+                "subtopics": ["Supreme Court", "High Courts", "District Courts", "Lok Adalat", "PIL"],
+                "weightage_pct": 20,
+                "chapter": "Judiciary",
+                "ncert_chapter": "NCERT Legal Studies Class 12, Chapter 3",
+            },
+            {
+                "name": "Criminal & Civil Law",
+                "priority": "MED",
+                "subtopics": ["IPC", "CrPC", "CPC", "Evidence Act"],
+                "weightage_pct": 20,
+                "chapter": "Criminal Justice System",
+                "ncert_chapter": "NCERT Legal Studies Class 12",
+            },
+            {
+                "name": "International Law",
+                "priority": "LOW",
+                "subtopics": ["United Nations", "International Courts", "Human Rights Law", "Treaties"],
+                "weightage_pct": 15,
+                "chapter": "International Law",
+                "ncert_chapter": "NCERT Legal Studies Class 12",
+            },
+        ],
+    },
+}  # end CUET_SUBJECTS
+
+EXAM_SUBJECTS_MAP = {
+    "jee_main": JEE_SUBJECTS,
+    "neet_ug": {
+        "Physics": NEET_PHYSICS,
+        "Chemistry": NEET_CHEMISTRY,
+        "Biology": NEET_BIOLOGY,
+    },
+    "cuet_ug": CUET_SUBJECTS,
+}
+
+# Exam date targets
+EXAM_DATES = {
+    "jee_main": (2027, 1, 15),   # JEE Session 1 (approximate)
+    "neet_ug": (2027, 5, 4),     # NEET UG (approximate)
+    "cuet_ug": (2027, 5, 20),    # CUET UG (approximate)
+}
+
+
+# ── Supabase helper ────────────────────────────────────────────────────────────
+
+def _get_db():
+    """Return Supabase 2 client (grade_1112_client) — all exam prep tables live there."""
+    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+    if grade_1112_client is None:
+        from fastapi import HTTPException  # noqa: PLC0415
+        raise HTTPException(
+            503,
+            "Exam Prep database (Supabase 2) is not configured. "
+            "Set SUPABASE_GRADE_1112_URL and SUPABASE_GRADE_1112_SERVICE_KEY in your environment.",
+        )
+    return grade_1112_client
+
+
+# ── Dashboard ──────────────────────────────────────────────────────────────────
+
+def get_dashboard(exam_type: str, user_id: str) -> dict:
+    """Return dashboard stats for the given exam."""
+    db = _get_db()
+
+    total_questions = 0
+    try:
+        q_result = (
+            db.table("exam_prep_questions")
+            .select("id", count="exact")
+            .eq("exam_type", exam_type)
+            .eq("status", "published")
+            .execute()
+        )
+        total_questions = q_result.count or 0
+    except Exception as exc:
+        _log.warning("exam_prep.dashboard.q_fetch", error=str(exc))
+
+    attempts = []
+    try:
+        a_result = (
+            db.table("exam_prep_attempts")
+            .select("id, is_correct, question_id")
+            .eq("user_id", user_id)
+            .execute()
+        )
+        attempts = a_result.data or []
+    except Exception:
+        pass
+
+    correct_count = sum(1 for a in attempts if a.get("is_correct"))
+    accuracy_pct = round(correct_count / len(attempts) * 100) if attempts else 0
+
+    # Weeks to exam (per exam type)
+    weeks_to_exam = 28
+    try:
+        edate = EXAM_DATES.get(exam_type, (2027, 1, 15))
+        exam_date = datetime(edate[0], edate[1], edate[2], tzinfo=timezone.utc)
+        now = datetime.now(timezone.utc)
+        delta_days = (exam_date - now).days
+        weeks_to_exam = max(0, math.ceil(delta_days / 7))
+    except Exception:
+        pass
+
+    subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
+    total_topics = sum(len(s.get("topics", [])) for s in subjects_map.values())
+
+    return {
+        "exam_type": exam_type,
+        "weeks_to_exam": weeks_to_exam,
+        "total_questions": total_questions,
+        "questions_attempted": len(attempts),
+        "accuracy_pct": accuracy_pct,
+        "correct_count": correct_count,
+        "total_topics": total_topics,
+        "subjects_count": len(subjects_map),
+    }
+
+
+# ── Subjects ────────────────────────────────────────────────────────────────────
+
+def get_subjects(exam_type: str, user_id: str) -> list[dict]:
+    """Return subject cards with question counts and progress."""
+    db = _get_db()
+    subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
+
+    # Fetch per-subject question counts from DB
+    q_by_subject: dict[str, int] = {}
+    try:
+        q_rows = (
+            db.table("exam_prep_questions")
+            .select("subject")
+            .eq("exam_type", exam_type)
+            .eq("status", "published")
+            .execute()
+        )
+        for row in (q_rows.data or []):
+            s = row["subject"]
+            q_by_subject[s] = q_by_subject.get(s, 0) + 1
+    except Exception as exc:
+        _log.warning("exam_prep.subjects.q_fetch", error=str(exc))
+
+    result = []
+    for name, data in subjects_map.items():
+        result.append({
+            "name": name,
+            "icon": data.get("icon", "📚"),
+            "color": data.get("color", "#6366f1"),
+            "chapters": data.get("chapters", 0),
+            "weightage_pct": data.get("weightage_pct", 0),
+            "topic_count": len(data.get("topics", [])),
+            "question_count": q_by_subject.get(name, 0),
+        })
+    return result
+
+
+# ── Topics ──────────────────────────────────────────────────────────────────────
+
+def get_topics(exam_type: str, subject: str) -> list[dict]:
+    """Return topic priority cards for a subject."""
+    subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
+    subject_data = subjects_map.get(subject)
+    if not subject_data:
+        return []
+    return subject_data.get("topics", [])
+
+
+# ── Questions ───────────────────────────────────────────────────────────────────
+
+def get_questions(
+    exam_type: str,
+    subject: Optional[str],
+    topic: Optional[str],
+    limit: int = 20,
+) -> list[dict]:
+    """Return published questions from DB. Falls back to empty list gracefully."""
+    db = _get_db()
+    try:
+        query = (
+            db.table("exam_prep_questions")
+            .select(
+                "id, subject, chapter, topic, subtopic, question_text, "
+                "options_json, correct_option, difficulty, marks, negative_marks, "
+                "estimated_time_seconds, ncert_reference, formula_used, source_type"
+            )
+            .eq("exam_type", exam_type)
+            .eq("status", "published")
+        )
+        if subject:
+            query = query.eq("subject", subject)
+        if topic:
+            query = query.eq("topic", topic)
+        result = query.limit(limit).execute()
+        return result.data or []
+    except Exception as exc:
+        _log.warning("exam_prep.questions.fetch", error=str(exc))
+        return []
+
+
+def get_question_by_id(question_id: str) -> dict:
+    """Return a single published question with full details."""
+    db = _get_db()
+    try:
+        result = (
+            db.table("exam_prep_questions")
+            .select("*")
+            .eq("id", question_id)
+            .eq("status", "published")
+            .single()
+            .execute()
+        )
+        if not result.data:
+            raise HTTPException(404, "Question not found")
+        return result.data
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch question") from exc
+
+
+# ── Submit answer ───────────────────────────────────────────────────────────────
+
+def submit_answer(
+    user_id: str,
+    question_id: str,
+    selected_option: Optional[str],
+    time_taken_seconds: int = 0,
+) -> dict:
+    """Record a practice attempt and return instant feedback."""
+    db = _get_db()
+
+    # Get question
+    try:
+        q_result = (
+            db.table("exam_prep_questions")
+            .select("correct_option, detailed_explanation, solution_steps_json, formula_used, ncert_reference, marks, negative_marks")
+            .eq("id", question_id)
+            .single()
+            .execute()
+        )
+        question = q_result.data
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch question for scoring") from exc
+
+    if not question:
+        raise HTTPException(404, "Question not found")
+
+    correct_option = question["correct_option"]
+    is_correct = selected_option == correct_option if selected_option else False
+    marks = float(question.get("marks") or 4)
+    negative_marks = float(question.get("negative_marks") or 1)
+
+    if selected_option is None:
+        marks_awarded = 0.0
+    elif is_correct:
+        marks_awarded = marks
+    else:
+        marks_awarded = -negative_marks
+
+    # Save attempt
+    try:
+        db.table("exam_prep_attempts").insert({
+            "user_id": user_id,
+            "question_id": question_id,
+            "selected_option": selected_option,
+            "is_correct": is_correct,
+            "time_taken_seconds": time_taken_seconds,
+        }).execute()
+    except Exception as exc:
+        _log.warning("exam_prep.submit_answer.save_failed", error=str(exc))
+
+    return {
+        "is_correct": is_correct,
+        "correct_option": correct_option,
+        "marks_awarded": marks_awarded,
+        "explanation": question.get("detailed_explanation", ""),
+        "solution_steps": question.get("solution_steps_json") or [],
+        "formula_used": question.get("formula_used", ""),
+        "ncert_reference": question.get("ncert_reference", ""),
+    }
+
+
+# ── Simulated tests ─────────────────────────────────────────────────────────────
+
+def start_simulated_test(
+    user_id: str,
+    exam_type: str,
+    grade: str,
+) -> dict:
+    """Start a new simulated test session. Picks published questions from DB."""
+    db = _get_db()
+
+    subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
+    subject_names = list(subjects_map.keys())
+
+    # Build question list — up to 90 questions (30 per subject for JEE)
+    question_ids = []
+    try:
+        per_subject = max(10, 90 // max(1, len(subject_names)))
+        for subj in subject_names:
+            q_result = (
+                db.table("exam_prep_questions")
+                .select("id")
+                .eq("exam_type", exam_type)
+                .eq("subject", subj)
+                .eq("status", "published")
+                .limit(per_subject)
+                .execute()
+            )
+            question_ids.extend([r["id"] for r in (q_result.data or [])])
+    except Exception as exc:
+        _log.warning("exam_prep.start_test.q_fetch", error=str(exc))
+
+    total_questions = len(question_ids)
+
+    # Create test record
+    try:
+        test_data = {
+            "user_id": user_id,
+            "exam_type": exam_type,
+            "grade": grade,
+            "question_ids": question_ids,
+            "status": "active",
+            "duration_minutes": 180,
+            "total_questions": total_questions,
+        }
+        result = db.table("exam_prep_simulated_tests").insert(test_data).execute()
+        test = result.data[0] if result.data else test_data
+    except Exception as exc:
+        raise HTTPException(500, "Failed to create test session") from exc
+
+    return {
+        "test_id": test.get("id", ""),
+        "exam_type": exam_type,
+        "grade": grade,
+        "question_ids": question_ids,
+        "total_questions": total_questions,
+        "duration_minutes": 180,
+        "status": "active",
+        "started_at": test.get("started_at", ""),
+        "message": (
+            "No questions available yet. Admin needs to prewarm the question bank."
+            if total_questions == 0
+            else f"Test started with {total_questions} questions. Good luck!"
+        ),
+    }
+
+
+def submit_simulated_test(
+    test_id: str,
+    user_id: str,
+    answers: list[dict],  # [{question_id, selected_option, time_taken_seconds}]
+    time_spent_seconds: int = 0,
+) -> dict:
+    """
+    Score a simulated test and return results.
+    Score normalization: score_normalized = min(100, score_pct)
+    No result percentage ever exceeds 100.
+    """
+    db = _get_db()
+
+    # Fetch test
+    try:
+        t_result = (
+            db.table("exam_prep_simulated_tests")
+            .select("*")
+            .eq("id", test_id)
+            .eq("user_id", user_id)
+            .single()
+            .execute()
+        )
+        test = t_result.data
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch test") from exc
+
+    if not test:
+        raise HTTPException(404, "Test not found")
+    if test["status"] != "active":
+        raise HTTPException(400, "Test already submitted")
+
+    question_ids = test.get("question_ids", [])
+    if not question_ids:
+        # No questions — return empty result
+        result_data = _build_empty_result(test_id, exam_type=test["exam_type"])
+        _save_test_result(db, test_id, result_data, time_spent_seconds)
+        return result_data
+
+    # Fetch questions for scoring
+    try:
+        q_result = (
+            db.table("exam_prep_questions")
+            .select("id, subject, topic, correct_option, marks, negative_marks")
+            .in_("id", question_ids)
+            .execute()
+        )
+        questions = {q["id"]: q for q in (q_result.data or [])}
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch questions for scoring") from exc
+
+    # Build answer map
+    answer_map = {a["question_id"]: a for a in answers}
+
+    # Score
+    total_marks = 0.0
+    max_marks = 0.0
+    correct = 0
+    wrong = 0
+    skipped = 0
+    subject_scores: dict[str, dict] = {}
+    topic_accuracy: dict[str, list[bool]] = {}
+    answer_rows = []
+
+    for qid in question_ids:
+        q = questions.get(qid)
+        if not q:
+            continue
+        subj = q.get("subject", "Unknown")
+        topic = q.get("topic", "Unknown")
+        marks = float(q.get("marks") or 4)
+        neg = float(q.get("negative_marks") or 1)
+        max_marks += marks
+
+        if subj not in subject_scores:
+            subject_scores[subj] = {"correct": 0, "wrong": 0, "skipped": 0, "score": 0.0, "max_score": 0.0}
+        subject_scores[subj]["max_score"] += marks
+
+        ans = answer_map.get(qid)
+        selected = ans.get("selected_option") if ans else None
+        time_taken = ans.get("time_taken_seconds", 0) if ans else 0
+
+        if selected is None:
+            skipped += 1
+            marks_awarded = 0.0
+            is_correct = False
+            subject_scores[subj]["skipped"] += 1
+        elif selected == q["correct_option"]:
+            correct += 1
+            marks_awarded = marks
+            is_correct = True
+            total_marks += marks
+            subject_scores[subj]["correct"] += 1
+            subject_scores[subj]["score"] += marks
+        else:
+            wrong += 1
+            marks_awarded = -neg
+            is_correct = False
+            total_marks += marks_awarded
+            subject_scores[subj]["wrong"] += 1
+            subject_scores[subj]["score"] += marks_awarded
+
+        topic_accuracy.setdefault(topic, []).append(is_correct)
+        answer_rows.append({
+            "test_id": test_id,
+            "question_id": qid,
+            "selected_option": selected,
+            "is_correct": is_correct,
+            "marks_awarded": marks_awarded,
+            "time_taken_seconds": time_taken,
+        })
+
+    # Compute normalized score (0-100, never > 100)
+    score_pct = (total_marks / max_marks * 100) if max_marks > 0 else 0
+    score_normalized = min(100.0, max(0.0, round(score_pct, 2)))
+
+    # Topic accuracy map
+    topic_accuracy_pct = {
+        t: round(sum(vals) / len(vals) * 100) if vals else 0
+        for t, vals in topic_accuracy.items()
+    }
+
+    # Weak topics = accuracy < 50%
+    weak_topics = [t for t, acc in topic_accuracy_pct.items() if acc < 50]
+
+    # Save answers
+    if answer_rows:
+        try:
+            db.table("exam_prep_simulated_test_answers").insert(answer_rows).execute()
+        except Exception as exc:
+            _log.warning("exam_prep.submit_test.save_answers", error=str(exc))
+
+    # Build result
+    result_data = {
+        "test_id": test_id,
+        "exam_type": test["exam_type"],
+        "score_raw": round(total_marks, 1),
+        "score_normalized": score_normalized,
+        "max_marks": round(max_marks, 1),
+        "total_questions": len(question_ids),
+        "attempted": correct + wrong,
+        "correct": correct,
+        "wrong": wrong,
+        "skipped": skipped,
+        "time_spent_seconds": time_spent_seconds,
+        "subject_scores": subject_scores,
+        "topic_accuracy": topic_accuracy_pct,
+        "weak_topics": weak_topics,
+        "ai_recommendations": _build_recommendations(weak_topics, score_normalized),
+    }
+    _save_test_result(db, test_id, result_data, time_spent_seconds)
+    return result_data
+
+
+def _build_empty_result(test_id: str, exam_type: str) -> dict:
+    return {
+        "test_id": test_id,
+        "exam_type": exam_type,
+        "score_raw": 0,
+        "score_normalized": 0.0,
+        "max_marks": 0,
+        "total_questions": 0,
+        "attempted": 0,
+        "correct": 0,
+        "wrong": 0,
+        "skipped": 0,
+        "time_spent_seconds": 0,
+        "subject_scores": {},
+        "topic_accuracy": {},
+        "weak_topics": [],
+        "ai_recommendations": ["Prewarm the question bank to generate practice questions."],
+    }
+
+
+def _build_recommendations(weak_topics: list[str], score_pct: float) -> list[str]:
+    recs = []
+    if score_pct < 40:
+        recs.append("Focus on fundamentals — revise NCERT concepts before attempting more tests.")
+    elif score_pct < 60:
+        recs.append("Good effort! Work through solved examples to strengthen your weak areas.")
+    else:
+        recs.append("Strong performance! Focus on speed and accuracy for harder questions.")
+    for t in weak_topics[:3]:
+        recs.append(f"Revise '{t}' — your accuracy is below 50% in this topic.")
+    return recs
+
+
+def _save_test_result(db, test_id: str, result: dict, time_spent_seconds: int) -> None:
+    try:
+        db.table("exam_prep_simulated_tests").update({
+            "status": "submitted",
+            "submitted_at": datetime.now(timezone.utc).isoformat(),
+            "score_raw": result.get("score_raw"),
+            "score_normalized": result.get("score_normalized"),
+            "subject_scores": result.get("subject_scores"),
+            "topic_accuracy": result.get("topic_accuracy"),
+            "weak_topics": result.get("weak_topics", []),
+            "time_spent_seconds": time_spent_seconds,
+            "attempted": result.get("attempted", 0),
+            "correct": result.get("correct", 0),
+            "wrong": result.get("wrong", 0),
+            "ai_recommendations": result.get("ai_recommendations"),
+        }).eq("id", test_id).execute()
+    except Exception as exc:
+        _log.warning("exam_prep.save_test_result.failed", error=str(exc))
+
+
+def get_test_result(test_id: str, user_id: str) -> dict:
+    """Return a completed test result."""
+    db = _get_db()
+    try:
+        result = (
+            db.table("exam_prep_simulated_tests")
+            .select("*")
+            .eq("id", test_id)
+            .eq("user_id", user_id)
+            .single()
+            .execute()
+        )
+        if not result.data:
+            raise HTTPException(404, "Test not found")
+        return result.data
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch test result") from exc
+
+
+# ── Admin: Prewarm jobs ─────────────────────────────────────────────────────────
+
+def get_question_bank_status(exam_type: Optional[str] = None) -> dict:
+    """Return question bank stats for admin dashboard."""
+    db = _get_db()
+    try:
+        query = db.table("exam_prep_questions").select("exam_type, subject, status")
+        if exam_type:
+            query = query.eq("exam_type", exam_type)
+        rows = query.execute().data or []
+    except Exception as exc:
+        _log.warning("exam_prep.qb_status.failed", error=str(exc))
+        rows = []
+
+    stats: dict = {}
+    for row in rows:
+        et = row["exam_type"]
+        subj = row["subject"]
+        status = row["status"]
+        if et not in stats:
+            stats[et] = {}
+        if subj not in stats[et]:
+            stats[et][subj] = {"total": 0, "published": 0, "draft": 0, "archived": 0}
+        stats[et][subj]["total"] += 1
+        stats[et][subj][status] = stats[et][subj].get(status, 0) + 1
+
+    try:
+        jobs = (
+            db.table("exam_prep_prewarm_jobs")
+            .select("id, status, exam_type, subject, questions_generated, created_at")
+            .order("created_at", desc=True)
+            .limit(10)
+            .execute()
+        )
+        recent_jobs = jobs.data or []
+    except Exception:
+        recent_jobs = []
+
+    return {"stats": stats, "recent_jobs": recent_jobs}
+
+
+def create_prewarm_job(
+    triggered_by: str,
+    exam_type: str,
+    grade: str,
+    subject: Optional[str],
+    chapter: Optional[str],
+    topic: Optional[str],
+    difficulty_mix: Optional[dict],
+    question_count: int,
+    publish_mode: str,
+) -> dict:
+    """Create a prewarm job record (admin only). Actual generation runs async."""
+    db = _get_db()
+
+    if question_count < 1 or question_count > 100:
+        raise HTTPException(400, "question_count must be between 1 and 100")
+    if publish_mode not in ("draft", "auto_publish"):
+        raise HTTPException(400, "publish_mode must be 'draft' or 'auto_publish'")
+
+    job_data = {
+        "triggered_by": triggered_by,
+        "exam_type": exam_type,
+        "grade": grade,
+        "subject": subject,
+        "chapter": chapter,
+        "topic": topic,
+        "difficulty_mix": difficulty_mix or {"easy": 0.3, "medium": 0.5, "hard": 0.2},
+        "question_count": question_count,
+        "publish_mode": publish_mode,
+        "status": "pending",
+    }
+    try:
+        result = db.table("exam_prep_prewarm_jobs").insert(job_data).execute()
+        job = result.data[0] if result.data else job_data
+    except Exception as exc:
+        raise HTTPException(500, "Failed to create prewarm job") from exc
+
+    return job
+
+
+def get_prewarm_job(job_id: str) -> dict:
+    """Get prewarm job status."""
+    db = _get_db()
+    try:
+        result = (
+            db.table("exam_prep_prewarm_jobs")
+            .select("*")
+            .eq("id", job_id)
+            .single()
+            .execute()
+        )
+        if not result.data:
+            raise HTTPException(404, "Job not found")
+        return result.data
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(500, "Failed to fetch job") from exc
+
+
+def run_prewarm_job(job_id: str) -> dict:
+    """
+    Execute a prewarm job synchronously using the configured LLM.
+    Generates MCQ questions with validation.
+    Draft only by default; auto_publish only if strict validation passes.
+    """
+    db = _get_db()
+
+    # Mark running
+    try:
+        db.table("exam_prep_prewarm_jobs").update({
+            "status": "running",
+            "started_at": datetime.now(timezone.utc).isoformat(),
+        }).eq("id", job_id).execute()
+        job_result = db.table("exam_prep_prewarm_jobs").select("*").eq("id", job_id).single().execute()
+        job = job_result.data
+    except Exception as exc:
+        raise HTTPException(500, "Failed to start prewarm job") from exc
+
+    if not job:
+        raise HTTPException(404, "Job not found")
+
+    from app.services.openai_service import ask_llm, get_effective_settings  # noqa: PLC0415
+
+    exam_type = job["exam_type"]
+    grade = job["grade"]
+    subject = job.get("subject", "Physics")
+    chapter = job.get("chapter", "")
+    topic = job.get("topic", "")
+    question_count = job.get("question_count", 10)
+    publish_mode = job.get("publish_mode", "draft")
+    diff_mix = job.get("difficulty_mix") or {"easy": 0.3, "medium": 0.5, "hard": 0.2}
+
+    exam_label = {"jee_main": "JEE Main", "neet_ug": "NEET UG", "cuet_ug": "CUET UG"}.get(exam_type, exam_type)
+    chapter_str = chapter or topic or subject
+    topic_str = topic or ""
+    easy_pct = round(diff_mix.get("easy", 0.3) * 100)
+    med_pct = round(diff_mix.get("medium", 0.5) * 100)
+    hard_pct = round(diff_mix.get("hard", 0.2) * 100)
+
+    # Build difficulty distribution string
+    diff_parts = []
+    if easy_pct > 0: diff_parts.append(f"{easy_pct}% Easy")
+    if med_pct > 0: diff_parts.append(f"{med_pct}% Moderate")
+    if hard_pct > 0: diff_parts.append(f"{hard_pct}% Difficult")
+    diff_distribution = ", ".join(diff_parts)
+
+    system_prompt = f"""You are an expert assessment designer and senior question setter for Indian competitive examinations.
+
+Your responsibility is to generate ORIGINAL, HIGH-QUALITY, COMPLETE multiple-choice questions.
+
+═══ ABSOLUTE REQUIREMENTS ═══
+
+A. EVERY QUESTION MUST HAVE ALL 4 OPTIONS (A, B, C, D)
+   - If you omit ANY option, the question is INVALID and will be REJECTED.
+   - All 4 options must be populated with meaningful content.
+   - Options must be distinct — no two options can be the same value.
+
+B. EVERY QUESTION MUST HAVE A COMPLETE EXPLANATION
+   - Explain WHY the correct answer is correct (show the full working).
+   - Explain WHY each wrong option is incorrect.
+
+C. NO DUPLICATE CONCEPTS
+   - Each question in the batch MUST test a DIFFERENT concept/formula/idea.
+   - Do NOT ask two questions that test the same formula with different numbers.
+   - Variety is mandatory: mix different sub-topics within {subject}.
+
+D. DIFFICULTY CALIBRATION for {exam_label}:
+   - Easy: Direct single-concept, one formula, answer in ≤2 steps.
+   - Moderate: Two-step reasoning, one small calculation, conceptual application.
+   - Hard: Multi-concept integration, non-obvious approach, requires analysis.
+   - A "hard" question is NOT just a calculation with big numbers — it requires genuine analytical thinking.
+
+E. EXAM STANDARD for {exam_label}:
+   {"- Each question solvable in 60–90 seconds. - Moderate calculation, no excessive arithmetic. - Tests conceptual understanding + application." if "JEE Main" in exam_label else "- NCERT-centric. - Biology: exact NCERT terminology. - Physics/Chemistry: conceptual clarity over tricks." if "NEET" in exam_label else "- Conceptual focus. - NCERT-based. - Minimal lengthy calculations."}
+
+F. OPTION QUALITY:
+   - 3 plausible distractors — wrong answers that arise from common mistakes.
+   - Randomize which letter (A/B/C/D) is correct across the batch.
+   - No "All of the above" / "None of the above".
+
+G. SELF-CHECK before outputting each question:
+   ✓ Does it have exactly 4 non-empty options?
+   ✓ Is the correct answer definitely correct?
+   ✓ Is the explanation complete?
+   ✓ Is the concept unique in this batch?
+   ✓ Are units correct?
+   ✓ Is all numerical data consistent (no contradictions)?
+   If any ✓ is NO → rewrite before outputting.
+
+Difficulty distribution: {diff_distribution}"""
+
+    user_prompt = f"""Generate {question_count} original, high-quality, COMPLETE MCQ questions for:
+
+Target Exam: {exam_label}
+Subject: {subject}
+Chapter/Area: {chapter_str}
+Topic: {topic_str or subject}
+Grade: {grade}
+Difficulty Mix: {diff_distribution}
+
+CRITICAL: Each question MUST include all 4 answer options. Questions without all 4 options are invalid.
+CRITICAL: No two questions should test the same concept or formula. Test different sub-topics.
+
+EXAMPLE of correct output format (follow this EXACTLY):
+[
+  {{
+    "question_text": "A particle moves in a circle of radius 0.5 m. If it completes 2 revolutions per second, its centripetal acceleration is:",
+    "options": {{"A": "4π² m/s²", "B": "2π² m/s²", "C": "8π² m/s²", "D": "π² m/s²"}},
+    "correct_option": "C",
+    "detailed_explanation": "Centripetal acceleration a = ω²r. Angular velocity ω = 2πn = 2π×2 = 4π rad/s. Therefore a = (4π)² × 0.5 = 16π² × 0.5 = 8π² m/s².",
+    "why_others_wrong": "A: Uses ω = 2π instead of 4π. B: Arithmetic error — halved without justification. D: Forgot to square ω.",
+    "solution_steps": ["ω = 2πn = 4π rad/s", "a = ω²r = (4π)² × 0.5", "a = 16π² × 0.5 = 8π² m/s²"],
+    "formula_used": "a = ω²r, ω = 2πn",
+    "ncert_reference": "NCERT Class 11, Chapter 5 — Laws of Motion",
+    "difficulty": "medium",
+    "topic": "Circular Motion",
+    "subtopic": "Centripetal Acceleration",
+    "bloom_level": "Apply",
+    "concept_tested": "Centripetal acceleration from angular frequency",
+    "estimated_time_seconds": 75,
+    "common_mistake": "Students forget to square ω or use frequency instead of angular velocity.",
+    "quality_score": 94
+  }}
+]
+
+Now generate {question_count} questions following the EXACT same format. Each must test a DIFFERENT concept.
+Return ONLY the JSON array, nothing else."""
+
+    settings = get_effective_settings()
+    generated_count = 0
+    validated_count = 0
+    published_count = 0
+    errors = []
+
+    import json as _json  # noqa: PLC0415
+
+    # ── Batch generation to avoid LLM timeouts ─────────────────────────────────
+    # The expert prompt is complex — limit to 5 questions per API call.
+    # For larger counts, make multiple calls and merge results.
+    BATCH_SIZE = 5
+    remaining = question_count
+    batch_num = 0
+
+    while remaining > 0:
+        batch_count = min(BATCH_SIZE, remaining)
+        remaining -= batch_count
+        batch_num += 1
+
+        # Adjust user prompt for this batch
+        batch_user_prompt = user_prompt.replace(
+            f"Generate {question_count} original",
+            f"Generate {batch_count} original",
+        ).replace(
+            f"Generate {question_count} high-quality",
+            f"Generate {batch_count} high-quality",
+        )
+        # Replace the JSON count in the prompt too
+        batch_system = system_prompt.replace(
+            f"generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
+            f"generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
+        )
+
+        try:
+            raw = ask_llm(
+                system_prompt=batch_system,
+                user_prompt=batch_user_prompt.replace(
+                    f"Generate {question_count} original",
+                    f"Generate {batch_count} original",
+                ),
+                username=job.get("triggered_by", "admin"),
+                feature="exam_prep_prewarm",
+            )
+
+            # Parse JSON
+            raw = raw.strip()
+            if raw.startswith("```"):
+                raw = raw.split("```")[1]
+                if raw.startswith("json"):
+                    raw = raw[4:]
+            raw = raw.strip()
+
+            batch_questions = _json.loads(raw)
+            if not isinstance(batch_questions, list):
+                _log.warning("exam_prep.prewarm.batch_not_list", batch=batch_num)
+                continue
+
+            generated_count += len(batch_questions)
+
+            # Validate and insert each question
+            for q in batch_questions:
+                validation_errors = _validate_question(q)
+                validation_score = max(0.0, 1.0 - len(validation_errors) * 0.2)
+                is_valid = len(validation_errors) == 0
+
+                opts = q.get("options", {})
+                options_list = [{"key": k, "text": v} for k, v in opts.items() if k in ("A", "B", "C", "D")]
+
+                status = "draft"
+                if publish_mode == "auto_publish" and is_valid:
+                    status = "published"
+
+                row = {
+                    "exam_type": exam_type,
+                    "grade": grade,
+                    "subject": subject,
+                    "chapter": chapter or q.get("topic", topic),
+                    "topic": q.get("topic", topic),
+                    "subtopic": q.get("subtopic", ""),
+                    "question_text": q.get("question_text", ""),
+                    "options_json": options_list,
+                    "correct_option": q.get("correct_option", ""),
+                    "detailed_explanation": q.get("detailed_explanation", ""),
+                    "solution_steps_json": q.get("solution_steps") or [],
+                    "formula_used": q.get("formula_used", ""),
+                    "ncert_reference": q.get("ncert_reference", ""),
+                    "difficulty": q.get("difficulty", "medium"),
+                    "source_type": "llm_generated",
+                    "status": status,
+                    "validation_score": round(validation_score, 2),
+                    "validation_errors": validation_errors,
+                    "prewarm_job_id": job_id,
+                }
+
+                if is_valid:
+                    validated_count += 1
+
+                try:
+                    db.table("exam_prep_questions").insert(row).execute()
+                    if status == "published":
+                        published_count += 1
+                except Exception as insert_exc:
+                    errors.append(str(insert_exc)[:100])
+
+        except Exception as exc:
+            err_str = str(exc)
+            _log.warning(
+                "exam_prep.prewarm.batch_failed",
+                batch=batch_num,
+                error=err_str[:200],
+            )
+            errors.append(f"Batch {batch_num}: {err_str[:100]}")
+            # Continue with next batch rather than failing the whole job
+            continue
+
+    # If no questions were generated at all, mark as failed
+    if generated_count == 0 and errors:
+        error_msg = "; ".join(errors[:3])
+        db.table("exam_prep_prewarm_jobs").update({
+            "status": "failed",
+            "error_message": error_msg,
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+            "questions_generated": 0,
+            "questions_validated": 0,
+        }).eq("id", job_id).execute()
+        raise HTTPException(500, f"Prewarm failed: {error_msg}")
+
+    # Mark completed
+    db.table("exam_prep_prewarm_jobs").update({
+        "status": "completed",
+        "completed_at": datetime.now(timezone.utc).isoformat(),
+        "questions_generated": generated_count,
+        "questions_validated": validated_count,
+        "questions_published": published_count,
+        "provider": settings.get("provider", "openai"),
+        "model": settings.get("groq_model") or settings.get("gemini_model") or "gpt-4.1-nano",
+    }).eq("id", job_id).execute()
+
+    return {
+        "job_id": job_id,
+        "status": "completed",
+        "questions_generated": generated_count,
+        "questions_validated": validated_count,
+        "questions_published": published_count,
+        "errors": errors[:5],
+    }
+
+
+# ── Admin: question management ─────────────────────────────────────────────────
+
+def get_admin_questions(
+    exam_type: Optional[str] = None,
+    subject: Optional[str] = None,
+    status: Optional[str] = None,
+    limit: int = 50,
+) -> list[dict]:
+    """Return questions for admin review (all statuses)."""
+    db = _get_db()
+    try:
+        query = db.table("exam_prep_questions").select(
+            "id, exam_type, grade, subject, chapter, topic, question_text, "
+            "correct_option, difficulty, status, validation_score, validation_errors, "
+            "source_type, created_at"
+        )
+        if exam_type:
+            query = query.eq("exam_type", exam_type)
+        if subject:
+            query = query.eq("subject", subject)
+        if status:
+            query = query.eq("status", status)
+        result = query.order("created_at", desc=True).limit(limit).execute()
+        return result.data or []
+    except Exception as exc:
+        _log.warning("exam_prep.admin_questions.fetch", error=str(exc))
+        return []
+
+
+def update_question(question_id: str, updates: dict) -> dict:
+    """Update a question (admin only)."""
+    db = _get_db()
+    allowed = {
+        "question_text", "options_json", "correct_option", "detailed_explanation",
+        "solution_steps_json", "formula_used", "ncert_reference", "difficulty",
+        "topic", "subtopic", "chapter", "status",
+    }
+    safe_updates = {k: v for k, v in updates.items() if k in allowed}
+    if not safe_updates:
+        raise HTTPException(400, "No valid fields to update")
+    safe_updates["updated_at"] = datetime.now(timezone.utc).isoformat()
+    try:
+        result = db.table("exam_prep_questions").update(safe_updates).eq("id", question_id).execute()
+        return result.data[0] if result.data else {"id": question_id, **safe_updates}
+    except Exception as exc:
+        raise HTTPException(500, "Failed to update question") from exc
+
+
+def publish_question(question_id: str) -> dict:
+    """Publish a draft question (admin only)."""
+    return update_question(question_id, {"status": "published"})
+
+
+def archive_question(question_id: str) -> dict:
+    """Archive a question (admin only)."""
+    return update_question(question_id, {"status": "archived"})
+
+
+# ── Validation ─────────────────────────────────────────────────────────────────
+
+def _validate_question(q: dict) -> list[str]:
+    """Validate a generated question. Returns list of error strings."""
+    errors = []
+    opts = q.get("options", {})
+    keys = set(opts.keys()) if isinstance(opts, dict) else set()
+
+    if not q.get("question_text", "").strip():
+        errors.append("Empty question text")
+    if len(keys) != 4 or keys != {"A", "B", "C", "D"}:
+        errors.append("Must have exactly 4 options: A, B, C, D")
+    if q.get("correct_option") not in ("A", "B", "C", "D"):
+        errors.append("correct_option must be A, B, C, or D")
+    if not q.get("detailed_explanation", "").strip():
+        errors.append("Missing detailed explanation")
+    if q.get("difficulty") not in ("easy", "medium", "hard"):
+        errors.append("difficulty must be easy, medium, or hard")
+    if not q.get("topic", "").strip():
+        errors.append("Missing topic")
+
+    # Check for duplicate options
+    if isinstance(opts, dict):
+        values = [v.strip().lower() for v in opts.values() if v]
+        if len(values) != len(set(values)):
+            errors.append("Duplicate option values detected")
+
+    # Check answer not leaked in question text
+    qt = q.get("question_text", "").lower()
+    correct_key = q.get("correct_option", "")
+    correct_val = opts.get(correct_key, "").lower() if isinstance(opts, dict) else ""
+    if correct_val and len(correct_val) > 5 and correct_val in qt:
+        errors.append("Correct answer may be leaked in question text")
+
+    return errors

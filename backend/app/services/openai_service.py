@@ -719,6 +719,8 @@ def ask_llm(
         if not api_key:
             raise RuntimeError("No Ollama Cloud API key configured. Add it in Admin → AI & Settings.")
         base_url = current.get("ollama_cloud_base_url", "https://api.ollama.com")
+        # exam_prep_prewarm generates complex 5-question batches — needs more time
+        _oc_timeout = 180.0 if feature == "exam_prep_prewarm" else 90.0
         t_start_oc = time.perf_counter()
         try:
             text = _call_ollama_cloud(
@@ -727,7 +729,7 @@ def ask_llm(
                 model=active_model,
                 api_key=api_key,
                 base_url=base_url,
-                timeout=90.0,
+                timeout=_oc_timeout,
             )
             duration_ms = round((time.perf_counter() - t_start_oc) * 1000)
             _log.info(

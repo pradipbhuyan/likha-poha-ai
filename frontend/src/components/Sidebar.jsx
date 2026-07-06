@@ -116,6 +116,12 @@ function Sidebar({
       roles: ["admin"],
     },
     {
+      key: "cacheManagement",
+      label: "Cache & Question Bank",
+      icon: Database,
+      roles: ["admin"],
+    },
+    {
       key: "ragUpload",
       label: "RAG Upload",
       icon: UploadCloud,
@@ -213,12 +219,6 @@ function Sidebar({
       roles: ["admin"],
     },
     {
-      key: "cacheManagement",
-      label: "Cache & Question Bank",
-      icon: Database,
-      roles: ["admin"],
-    },
-    {
       key: "productCatalogue",
       label: "Product Catalogue",
       icon: Package,
@@ -252,7 +252,8 @@ function Sidebar({
       key: "examPrep",
       label: "Exam Prep Center",
       icon: GraduationCap,
-      roles: ["admin"],
+      roles: ["admin", "student"],
+      gradeFilter: ["Grade 11", "Grade 12"],
       testUsers: ["akshita.teststudent"],  // test access before student launch
     },
     {

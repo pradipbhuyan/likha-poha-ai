@@ -326,13 +326,18 @@ def get_parent_dashboard_summary(parent=Depends(require_parent)):
     else:
         child_limit = 1  # FREE_TIER, NANO, PREMIUM, expired = 1 child
 
-    # Load children
-    children_rows, _ = _safe_query(
-        lambda: admin_client.table("profiles")
+    # Load children — use family_id if available (family plan: both parents see same children)
+    # Fall back to parent_id for single-parent accounts
+    _family_id = parent_profile.get("family_id")
+    _child_filter = (
+        admin_client.table("profiles")
         .select("id, username, grade, email, parent_id, family_id, account_status, subscription_plan, access_cbse, subscription_expires_at")
-        .eq("parent_id", parent_id)
-        .execute()
     )
+    if _family_id:
+        _child_filter = _child_filter.eq("family_id", _family_id).neq("role", "parent")
+    else:
+        _child_filter = _child_filter.eq("parent_id", parent_id)
+    children_rows, _ = _safe_query(lambda: _child_filter.execute())
 
     children_summary = []
     all_notifications = []

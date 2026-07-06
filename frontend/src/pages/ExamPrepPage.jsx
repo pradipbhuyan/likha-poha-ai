@@ -1,426 +1,782 @@
 /**
  * ExamPrepPage.jsx — JEE / NEET / CUET Exam Prep Center
+ * ======================================================
+ * Access: admin | Grade 11/12 students | akshita.teststudent
  *
- * Access: admin role OR akshita.teststudent (pre-launch test access)
- * Data source: Supabase 2 RAG — PYQ papers uploaded via upload_nta_pyq_rag.py
+ * Sections:
+ *   1. Exam tabs (JEE active, NEET/CUET coming soon)
+ *   2. Stats cards
+ *   3. Subject cards → Topic priority cards
+ *   4. Quick Practice (question list + AI explanation panel)
+ *   5. Simulated Test mode
+ *   6. Test Result page
+ *   7. Resource links
  */
 
-import { useEffect, useState, useCallback } from "react";
-import { Loader } from "lucide-react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { Loader, BookOpen, Zap, FlaskConical, Calculator, ChevronRight, CheckCircle, XCircle, Clock, Target, TrendingUp, Award } from "lucide-react";
+import {
+  getExamPrepDashboard,
+  getExamPrepSubjects,
+  getExamPrepTopics,
+  getExamPrepQuestions,
+  submitQuestionAnswer,
+  explainQuestion,
+  askFollowUp,
+  startSimulatedTest,
+  submitSimulatedTest,
+} from "../api/examPrep";
 
-const EXAMS = {
-  jee: {
-    label: "JEE Main", icon: "📐",
-    description: "Joint Entrance Examination — Engineering (IITs, NITs, IIITs)",
-    color: "#6366f1",
-  },
-  neet: {
-    label: "NEET UG", icon: "🔬",
-    description: "National Eligibility cum Entrance Test — Medical (MBBS, BDS)",
-    color: "#10b981",
-    comingSoon: true,
-  },
-  cuet: {
-    label: "CUET UG", icon: "🏛️",
-    description: "Common University Entrance Test — Central Universities",
-    color: "#f59e0b",
-    comingSoon: true,
-  },
-};
-
+// ── Constants ──────────────────────────────────────────────────────────────────
 
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
+const EXAM_PREP_GRADES = new Set(["Grade 11", "Grade 12"]);
 
 function hasAccess(user) {
   if (!user) return false;
   if (user.role === "admin") return true;
-  return TEST_ACCESS_USERS.has(user.username);
+  if (TEST_ACCESS_USERS.has(user.username)) return true;
+  if (user.role === "student" && EXAM_PREP_GRADES.has(user.grade)) return true;
+  return false;
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+const EXAMS = {
+  jee_main: { label: "JEE Main", icon: "📐", color: "#6366f1", active: true },
+  neet_ug: { label: "NEET UG", icon: "🔬", color: "#10b981", active: true },
+  cuet_ug: { label: "CUET UG", icon: "🏛️", color: "#f59e0b", active: true },
+};
 
-function PaperCard({ paper, selected, onClick }) {
-  const label = paper.label || paper.chapter.replace("PYQ: ", "");
-  // Parse date from label e.g. "B Tech 2nd Apr 2026 Shift 1"
-  const dateMatch = label.match(/(\d+\w*\s+\w+\s+\d{4})/);
-  const shiftMatch = label.match(/(Shift\s*\d+)/i);
-  const date = dateMatch ? dateMatch[1] : label.substring(0, 15);
-  const shift = shiftMatch ? shiftMatch[1] : "";
+// Exam-specific simulation config
+const EXAM_SIM_CONFIG = {
+  jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 90, marking: "+4 / -1" },
+  neet_ug: { subjects: ["Physics", "Chemistry", "Biology"], duration: 200, questions: 200, marking: "+4 / -1" },
+  cuet_ug: { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / -1" },
+};
+
+const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿" };
+const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e" };
+const PRIORITY_COLORS = { HIGH: "#ef4444", MED: "#f59e0b", LOW: "#22c55e" };
+const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" };
+
+// ── Sub-components ─────────────────────────────────────────────────────────────
+
+function StatCard({ value, label, icon, color = "#6366f1" }) {
+  return (
+    <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
+      <div style={{ fontSize: "1.6rem", fontWeight: 800, color }}>{value}</div>
+      <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", display: "flex", alignItems: "center", gap: 4 }}>
+        {icon && <span>{icon}</span>}
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function SubjectCard({ subject, onClick, selected }) {
+  const color = SUBJECT_COLORS[subject.name] || "#6366f1";
+  return (
+    <div onClick={onClick} className="premium-card" style={{ background: selected ? `${color}18` : undefined, border: `2px solid ${selected ? color : "var(--border,#334155)"}`, borderRadius: 12, padding: "16px", cursor: "pointer", transition: "all .15s", marginBottom: 0 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
+        <span style={{ fontSize: "1.6rem" }}>{SUBJECT_ICONS[subject.name] || "📚"}</span>
+        <span style={{ fontSize: ".65rem", fontWeight: 700, background: `${color}22`, color, padding: "2px 8px", borderRadius: 20 }}>{subject.weightage_pct}%</span>
+      </div>
+      <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 4 }}>{subject.name}</div>
+      <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginBottom: 10 }}>
+        {subject.chapters} chapters · {subject.topic_count} topics
+      </div>
+      <div style={{ background: "rgba(99,102,241,.1)", borderRadius: 6, height: 4, overflow: "hidden" }}>
+        <div style={{ width: `${Math.min(100, (subject.question_count / 50) * 100)}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6 }} />
+      </div>
+      <div style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", marginTop: 5, display: "flex", justifyContent: "space-between" }}>
+        <span>{subject.question_count} questions</span>
+        <span style={{ color: selected ? color : "var(--muted,#64748b)" }}>{selected ? "▾ Topics" : "See topics →"}</span>
+      </div>
+    </div>
+  );
+}
+
+function TopicCard({ topic, onPractice }) {
+  const priorityColor = PRIORITY_COLORS[topic.priority] || "#94a3b8";
+  return (
+    <div className="premium-card" style={{ borderRadius: 10, padding: "14px 16px", marginBottom: 0 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+        <div style={{ fontWeight: 700, fontSize: ".85rem", flex: 1 }}>{topic.name}</div>
+        <span style={{ fontSize: ".58rem", fontWeight: 800, background: `${priorityColor}22`, color: priorityColor, padding: "2px 7px", borderRadius: 20, marginLeft: 8, whiteSpace: "nowrap" }}>
+          {topic.priority}
+        </span>
+      </div>
+      <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginBottom: 6 }}>{topic.ncert_chapter}</div>
+      <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
+        {(topic.subtopics || []).slice(0, 3).map(s => (
+          <span key={s} style={{ fontSize: ".6rem", background: "rgba(99,102,241,.1)", color: "#a5b4fc", padding: "2px 6px", borderRadius: 6 }}>{s}</span>
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>~{topic.weightage_pct}% weightage</span>
+        <button onClick={() => onPractice(topic)} style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 12px", color: "#fff", fontSize: ".7rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+          Practice →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedback }) {
+  const opts = question.options_json || [];
+  const isCorrect = (key) => showFeedback && feedback?.correct_option === key;
+  const isWrong = (key) => showFeedback && selectedOption === key && !feedback?.is_correct;
 
   return (
-    <div
-      onClick={onClick}
-      style={{
-        background: selected ? "rgba(99,102,241,.12)" : "var(--panel,#1e293b)",
-        border: `1px solid ${selected ? "#6366f1" : "var(--border,#334155)"}`,
-        borderRadius: 10, padding: "10px 12px", cursor: "pointer",
-        transition: "all .12s",
-      }}
-    >
-      <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{date}</div>
-      <div style={{ fontSize: ".78rem", fontWeight: 700, color: "#e2e8f0", margin: "3px 0" }}>
-        {shift || label.substring(0, 20)}
+    <div style={{ padding: "16px", borderBottom: "1px solid var(--border,#334155)" }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+        <span style={{ fontSize: ".6rem", fontWeight: 700, background: `${DIFFICULTY_COLORS[question.difficulty] || "#94a3b8"}22`, color: DIFFICULTY_COLORS[question.difficulty] || "#94a3b8", padding: "2px 8px", borderRadius: 20 }}>{question.difficulty}</span>
+        <span style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", background: "rgba(255,255,255,.05)", padding: "2px 8px", borderRadius: 20 }}>{question.topic}</span>
+        {question.marks && <span style={{ fontSize: ".6rem", color: "#fbbf24", background: "rgba(251,191,36,.08)", padding: "2px 8px", borderRadius: 20 }}>+{question.marks} / -{question.negative_marks}</span>}
       </div>
-      {selected && (
-        <div style={{ fontSize: ".58rem", background: "rgba(99,102,241,.2)", color: "#a5b4fc", padding: "1px 6px", borderRadius: 6, display: "inline-block" }}>
-          Selected ✓
-        </div>
+      <div style={{ fontSize: ".85rem", color: "#e2e8f0", lineHeight: 1.6, marginBottom: 14 }}>{question.question_text}</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        {opts.map(opt => {
+          const isSelected = selectedOption === opt.key;
+          const correct = isCorrect(opt.key);
+          const wrong = isWrong(opt.key);
+          return (
+            <div key={opt.key} onClick={() => !showFeedback && onSelect(opt.key)}
+              style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", borderRadius: 8, cursor: showFeedback ? "default" : "pointer", background: correct ? "rgba(34,197,94,.12)" : wrong ? "rgba(239,68,68,.1)" : isSelected ? "rgba(99,102,241,.12)" : "rgba(255,255,255,.03)", border: `1px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#334155)"}`, transition: "all .1s" }}>
+              <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#334155)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: ".68rem", fontWeight: 700, color: correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--muted,#64748b)" }}>
+                {opt.key}
+              </span>
+              <span style={{ fontSize: ".8rem", color: "#e2e8f0", lineHeight: 1.5, flex: 1 }}>{opt.text}</span>
+              {correct && <CheckCircle size={14} color="#22c55e" style={{ flexShrink: 0, marginTop: 2 }} />}
+              {wrong && <XCircle size={14} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />}
+            </div>
+          );
+        })}
+      </div>
+      {question.ncert_reference && (
+        <div style={{ marginTop: 8, fontSize: ".62rem", color: "var(--muted,#64748b)" }}>📖 {question.ncert_reference}</div>
       )}
     </div>
   );
 }
 
-function ChunkCard({ chunk, selected, onClick }) {
-  const text = chunk.chunk_text || "";
-  const preview = text.length > 120 ? text.substring(0, 120) + "…" : text;
-
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        padding: "11px 15px",
-        borderBottom: "1px solid var(--surface,#0f172a)",
-        cursor: "pointer",
-        background: selected ? "rgba(99,102,241,.09)" : "transparent",
-        borderLeft: selected ? "3px solid #6366f1" : "3px solid transparent",
-        transition: "background .1s",
-      }}
-    >
-      <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)", marginBottom: 3 }}>
-        Chunk {chunk.chunk_index + 1}
-      </div>
-      <div style={{ fontSize: ".77rem", color: "#cbd5e1", lineHeight: 1.45 }}>{preview}</div>
-    </div>
-  );
-}
-
-function ExplanationPanel({ chunk, paper, user, apiBase }) {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
+function AIPanel({ question, selectedOption, feedback, onAskFollowUp, user }) {
   const [followUp, setFollowUp] = useState("");
-  const [followUpResult, setFollowUpResult] = useState(null);
-  const [followUpLoading, setFollowUpLoading] = useState(false);
+  const [fuLoading, setFuLoading] = useState(false);
+  const [fuAnswer, setFuAnswer] = useState("");
 
-  // Auto-explain when chunk changes
-  useEffect(() => {
-    if (!chunk || !user?.accessToken) return;
-    setResult(null);
-    setFollowUpResult(null);
-    setFollowUp("");
+  useEffect(() => { setFollowUp(""); setFuAnswer(""); }, [question?.id]);
 
-    async function explain() {
-      setLoading(true);
-      try {
-        const r = await fetch(`${apiBase}/api/exam-prep/explain`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-          body: JSON.stringify({
-            question_text: chunk.chunk_text,
-            subject: paper?.subject || "Physics",
-            exam: "JEE Main",
-          }),
-        });
-        const data = await r.json();
-        if (data.success) setResult(data);
-      } catch { /* ignore */ }
-      finally { setLoading(false); }
-    }
-    explain();
-  }, [chunk?.id]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  async function handleAskAI(e) {
+  async function handleFollowUp(e) {
     e.preventDefault();
-    if (!followUp.trim() || !user?.accessToken) return;
-    setFollowUpLoading(true);
+    if (!followUp.trim()) return;
+    setFuLoading(true);
     try {
-      const r = await fetch(`${apiBase}/api/exam-prep/explain`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-        body: JSON.stringify({
-          question_text: chunk.chunk_text,
-          subject: paper?.subject || "Physics",
-          exam: "JEE Main",
-          follow_up: followUp,
-        }),
+      const data = await askFollowUp(user.accessToken, {
+        questionText: question.question_text,
+        subject: question.subject || "Physics",
+        exam: "JEE Main",
+        followUp: followUp,
       });
-      const data = await r.json();
-      if (data.success) setFollowUpResult(data.raw || data.solution);
-    } catch { /* ignore */ }
-    finally { setFollowUpLoading(false); }
+      setFuAnswer(data.answer || "");
+    } catch { setFuAnswer("Could not get AI answer. Try again."); }
+    finally { setFuLoading(false); }
   }
 
-  if (!chunk) {
+  if (!question) {
     return (
-      <div style={{ padding: 20, color: "var(--muted,#64748b)", fontSize: ".78rem", textAlign: "center" }}>
-        <div style={{ fontSize: "2rem", marginBottom: 10 }}>🤖</div>
-        Select a question chunk from the left panel to get an AI explanation.
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", padding: 24, color: "var(--muted,#64748b)", fontSize: ".78rem", textAlign: "center", gap: 12 }}>
+        <div style={{ fontSize: "2.5rem" }}>🤖</div>
+        <div>Select a question to get AI step-by-step explanation</div>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 15, fontSize: ".75rem", lineHeight: 1.6, color: "#cbd5e1", overflowY: "auto" }}>
-      {/* Question display */}
-      <div style={{ background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 7, padding: 10, marginBottom: 12, fontStyle: "italic", color: "var(--muted,#94a3b8)", fontSize: ".72rem", lineHeight: 1.5 }}>
-        {chunk.chunk_text.length > 300 ? chunk.chunk_text.substring(0, 300) + "…" : chunk.chunk_text}
+    <div style={{ padding: 16, overflowY: "auto", height: "100%", fontSize: ".78rem", lineHeight: 1.6, color: "#cbd5e1" }}>
+      {/* Question preview */}
+      <div style={{ background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 8, padding: 10, marginBottom: 12, fontSize: ".72rem", color: "var(--muted,#94a3b8)", fontStyle: "italic" }}>
+        {question.question_text.length > 200 ? question.question_text.slice(0, 200) + "…" : question.question_text}
       </div>
 
-      {loading && (
-        <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)" }}>
-          <Loader size={14} style={{ animation: "spin 1s linear infinite" }} />
-          Generating explanation…
-          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
-        </div>
-      )}
-
-      {result && !loading && (
+      {/* Feedback */}
+      {feedback && (
         <>
-          {result.correct_answer && (
-            <div style={{ background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.2)", borderRadius: 7, padding: "8px 10px", marginBottom: 10, fontSize: ".73rem" }}>
-              <strong style={{ color: "#4ade80" }}>✓ Answer: </strong>
-              <span style={{ color: "#cbd5e1" }}>{result.correct_answer}</span>
-            </div>
-          )}
-
-          {result.solution && (
-            <>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 6 }}>Step-by-step solution:</div>
-              <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 7, padding: 10, fontSize: ".72rem", lineHeight: 1.65, whiteSpace: "pre-wrap" }}>
-                {result.solution}
+          <div style={{ background: feedback.is_correct ? "rgba(34,197,94,.1)" : "rgba(239,68,68,.08)", border: `1px solid ${feedback.is_correct ? "rgba(34,197,94,.3)" : "rgba(239,68,68,.25)"}`, borderRadius: 8, padding: "8px 12px", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: "1rem" }}>{feedback.is_correct ? "✅" : "❌"}</span>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: ".75rem", color: feedback.is_correct ? "#4ade80" : "#f87171" }}>
+                {feedback.is_correct ? "Correct!" : "Incorrect"} · {feedback.marks_awarded > 0 ? "+" : ""}{feedback.marks_awarded} marks
               </div>
-            </>
-          )}
+              <div style={{ fontSize: ".7rem", color: "var(--muted,#94a3b8)" }}>
+                  Correct answer: <strong style={{ color: "#f1f5f9" }}>{feedback.correct_option}</strong>
+                </div>
+            </div>
+          </div>
 
-          {result.tip && (
-            <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 7, padding: "7px 10px", marginTop: 10, fontSize: ".7rem" }}>
-              <strong style={{ color: "#fbbf24" }}>💡 JEE Tip: </strong>
-              <span style={{ color: "#cbd5e1" }}>{result.tip}</span>
+          {feedback.explanation && (
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 6 }}>Explanation:</div>
+              <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.65 }}>
+                {feedback.explanation}
+              </div>
             </div>
           )}
-        </>
-      )}
 
-      {/* Follow-up */}
-      {result && !loading && (
-        <>
-          <form onSubmit={handleAskAI} style={{ display: "flex", gap: 6, marginTop: 12 }}>
-            <input
-              value={followUp}
-              onChange={e => setFollowUp(e.target.value)}
-              placeholder="Ask AI: Why does this formula apply here?"
-              style={{ flex: 1, background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 6, padding: "6px 9px", color: "#f1f5f9", fontSize: ".72rem", fontFamily: "inherit" }}
-            />
-            <button
-              type="submit"
-              disabled={followUpLoading || !followUp.trim()}
-              style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: followUpLoading ? .6 : 1 }}
-            >
-              {followUpLoading ? "…" : "Ask ✦"}
+          {feedback.formula_used && (
+            <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 8, padding: "8px 10px", marginBottom: 10, fontSize: ".7rem" }}>
+              <strong style={{ color: "#fbbf24" }}>Formula: </strong>{feedback.formula_used}
+            </div>
+          )}
+
+          {/* Follow-up */}
+          <form onSubmit={handleFollowUp} style={{ display: "flex", gap: 6, marginTop: 10 }}>
+            <input value={followUp} onChange={e => setFollowUp(e.target.value)}
+              placeholder="Ask AI: Why does this apply here?"
+              style={{ flex: 1, background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 6, padding: "6px 9px", color: "#f1f5f9", fontSize: ".72rem", fontFamily: "inherit" }} />
+            <button type="submit" disabled={fuLoading || !followUp.trim()}
+              style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: fuLoading ? .6 : 1, fontFamily: "inherit" }}>
+              {fuLoading ? <Loader size={12} /> : "Ask ✦"}
             </button>
           </form>
-
-          {followUpResult && (
-            <div style={{ background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.18)", borderRadius: 7, padding: 10, marginTop: 8, fontSize: ".72rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
-              {followUpResult}
+          {fuAnswer && (
+            <div style={{ background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.18)", borderRadius: 8, padding: 10, marginTop: 8, fontSize: ".72rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+              {fuAnswer}
             </div>
           )}
         </>
+      )}
+
+      {!feedback && (
+        <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".75rem" }}>
+          <Loader size={13} style={{ animation: "spin 1s linear infinite" }} />
+          Select an option to get instant feedback & explanation
+          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+        </div>
       )}
     </div>
   );
 }
 
-// ── Main page ─────────────────────────────────────────────────────────────────
+// ── Test Result Component ──────────────────────────────────────────────────────
 
-export default function ExamPrepPage({ user }) {
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-  const [selectedExam, setSelectedExam] = useState("jee");
-  const [papers, setPapers] = useState([]);
-  const [loadingPapers, setLoadingPapers] = useState(false);
-  const [selectedPaper, setSelectedPaper] = useState(null);
-  const [chunks, setChunks] = useState([]);
-  const [loadingChunks, setLoadingChunks] = useState(false);
-  const [selectedChunk, setSelectedChunk] = useState(null);
+function TestResultPage({ result, onRetake, onClose }) {
+  const score = result?.score_normalized ?? 0;
+  const scoreColor = score >= 60 ? "#22c55e" : score >= 40 ? "#f59e0b" : "#ef4444";
+
+  return (
+    <div className="premium-section" style={{ maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ textAlign: "center", marginBottom: 28 }}>
+        <div style={{ fontSize: "3rem", marginBottom: 8 }}>{score >= 60 ? "🏆" : score >= 40 ? "💪" : "📚"}</div>
+        <h3 style={{ margin: "0 0 4px", fontSize: "1.3rem", fontWeight: 800 }}>Test Complete!</h3>
+        <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem" }}>{result?.exam_type?.replace("_", " ").toUpperCase()} Simulated Test</p>
+      </div>
+
+      {/* Score circle */}
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+        <div style={{ width: 120, height: 120, borderRadius: "50%", border: `6px solid ${scoreColor}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: `${scoreColor}12` }}>
+          <div style={{ fontSize: "2rem", fontWeight: 900, color: scoreColor }}>{score.toFixed(1)}</div>
+          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>out of 100</div>
+        </div>
+      </div>
+
+      {/* Stats grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20 }}>
+        <StatCard value={result?.total_questions || 0} label="Questions" icon="📋" color="#6366f1" />
+        <StatCard value={result?.correct || 0} label="Correct" icon="✅" color="#22c55e" />
+        <StatCard value={result?.wrong || 0} label="Wrong" icon="❌" color="#ef4444" />
+        <StatCard value={result?.skipped || 0} label="Skipped" icon="⏭️" color="#94a3b8" />
+      </div>
+
+      {/* Subject scores */}
+      {result?.subject_scores && Object.keys(result.subject_scores).length > 0 && (
+        <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 16, marginBottom: 16 }}>
+          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 12 }}>Subject-wise Score</div>
+          {Object.entries(result.subject_scores).map(([subj, data]) => {
+            const subjectScore = data.score || 0;
+            const maxScore = data.max_score || 1;
+            const pct = Math.max(0, Math.min(100, (subjectScore / maxScore) * 100));
+            const color = SUBJECT_COLORS[subj] || "#6366f1";
+            return (
+              <div key={subj} style={{ marginBottom: 10 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                  <span style={{ fontSize: ".75rem", fontWeight: 600 }}>{subj}</span>
+                  <span style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{data.correct}✓ {data.wrong}✗ | {subjectScore.toFixed(1)} / {maxScore.toFixed(1)}</span>
+                </div>
+                <div style={{ background: "rgba(255,255,255,.06)", borderRadius: 6, height: 6 }}>
+                  <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6, transition: "width .5s" }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Weak topics */}
+      {result?.weak_topics?.length > 0 && (
+        <div style={{ background: "rgba(239,68,68,.05)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 10, padding: 14, marginBottom: 16 }}>
+          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#f87171", marginBottom: 8 }}>⚠️ Weak Topics — Needs Revision</div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            {result.weak_topics.map(t => (
+              <span key={t} style={{ fontSize: ".65rem", background: "rgba(239,68,68,.1)", color: "#f87171", padding: "3px 9px", borderRadius: 20 }}>{t}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* AI recommendations */}
+      {result?.ai_recommendations?.length > 0 && (
+        <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: 14, marginBottom: 20 }}>
+          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>🤖 AI Recommendations</div>
+          <ul style={{ margin: 0, paddingLeft: 16 }}>
+            {result.ai_recommendations.map((r, i) => (
+              <li key={i} style={{ fontSize: ".75rem", color: "#cbd5e1", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+        <button onClick={onRetake} style={{ padding: "11px 24px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+          Try Again
+        </button>
+        <button onClick={onClose} style={{ padding: "11px 24px", background: "rgba(255,255,255,.06)", border: "1px solid var(--border,#334155)", borderRadius: 10, color: "#f1f5f9", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+          Back to Dashboard
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Resource Links ─────────────────────────────────────────────────────────────
+
+const RESOURCES = [
+  { icon: "📖", label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
+  { icon: "📐", label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
+  { icon: "🧪", label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
+  { icon: "🤖", label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
+  { icon: "📝", label: "Mock Tests", desc: "CBSE-style full tests", color: "#06b6d4", onClick: "mockTest" },
+  { icon: "📅", label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: null },
+];
+
+// ── Main Page ──────────────────────────────────────────────────────────────────
+
+export default function ExamPrepPage({ user, setActivePage }) {
+  const [selectedExam, setSelectedExam] = useState("jee_main");
+  const [dashboard, setDashboard] = useState(null);
+  const [subjects, setSubjects] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [topics, setTopics] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [feedbacks, setFeedbacks] = useState({});
+  const [loadingQuestions, setLoadingQuestions] = useState(false);
+  const [loadingTopics, setLoadingTopics] = useState(false);
+  const [loadingDash, setLoadingDash] = useState(true);
+  const [activeMode, setActiveMode] = useState("practice"); // practice | test | result
+  const [testSession, setTestSession] = useState(null);
+  const [testAnswers, setTestAnswers] = useState({});
+  const [testResult, setTestResult] = useState(null);
+  const [testLoading, setTestLoading] = useState(false);
+  const [filterTopic, setFilterTopic] = useState(null);
+  const testStartRef = useRef(null);
 
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
+  const isAdmin = user?.role === "admin";
 
-  const loadPapers = useCallback(async (exam) => {
+  // ── Load dashboard ─────────────────────────────────────────────────────────
+  useEffect(() => {
     if (!user?.accessToken) return;
-    setLoadingPapers(true);
-    setPapers([]);
-    setSelectedPaper(null);
-    setChunks([]);
-    setSelectedChunk(null);
+    setLoadingDash(true);
+    getExamPrepDashboard(user.accessToken, selectedExam)
+      .then(data => setDashboard(data))
+      .catch(() => setDashboard(null))
+      .finally(() => setLoadingDash(false));
+
+    getExamPrepSubjects(user.accessToken, selectedExam)
+      .then(data => setSubjects(data.subjects || []))
+      .catch(() => setSubjects([]));
+  }, [selectedExam, user?.accessToken]);
+
+  // ── Select subject ─────────────────────────────────────────────────────────
+  async function handleSelectSubject(subjectName) {
+    if (selectedSubject === subjectName) { setSelectedSubject(null); setTopics([]); setQuestions([]); setFilterTopic(null); return; }
+    setSelectedSubject(subjectName);
+    setFilterTopic(null);
+    setLoadingTopics(true);
     try {
-      const r = await fetch(`${API_BASE}/api/exam-prep/papers?exam=${exam}`, {
-        headers: { Authorization: `Bearer ${user.accessToken}` },
-      });
-      const data = await r.json();
-      if (data.success) {
-        setPapers(data.papers || []);
+      const data = await getExamPrepTopics(user.accessToken, selectedExam, subjectName);
+      setTopics(data.topics || []);
+    } catch { setTopics([]); }
+    finally { setLoadingTopics(false); }
+    loadQuestions(subjectName, null);
+  }
+
+  // ── Load questions ─────────────────────────────────────────────────────────
+  async function loadQuestions(subject, topic) {
+    setLoadingQuestions(true);
+    setSelectedQuestion(null);
+    try {
+      const data = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, subject, topic, limit: 20 });
+      setQuestions(data.questions || []);
+    } catch { setQuestions([]); }
+    finally { setLoadingQuestions(false); }
+  }
+
+  // ── Practice a topic ───────────────────────────────────────────────────────
+  function handlePracticeTopic(topic) {
+    setFilterTopic(topic.name);
+    loadQuestions(selectedSubject, topic.name);
+  }
+
+  // ── Answer selection ───────────────────────────────────────────────────────
+  async function handleSelectOption(questionId, optionKey) {
+    if (feedbacks[questionId]) return;
+    setSelectedOptions(prev => ({ ...prev, [questionId]: optionKey }));
+    try {
+      const data = await submitQuestionAnswer(user.accessToken, questionId, { selectedOption: optionKey });
+      setFeedbacks(prev => ({ ...prev, [questionId]: data }));
+    } catch { /* non-critical */ }
+  }
+
+  // ── Start simulated test ───────────────────────────────────────────────────
+  async function handleStartTest() {
+    setTestLoading(true);
+    try {
+      const data = await startSimulatedTest(user.accessToken, selectedExam);
+      setTestSession(data);
+      testStartRef.current = Date.now();
+      setTestAnswers({});
+      setActiveMode("test");
+      // Load questions for test
+      if (data.question_ids?.length > 0) {
+        const qData = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, limit: 90 });
+        setQuestions(qData.questions || []);
       } else {
-        console.error("[ExamPrep] papers API error:", data);
+        setQuestions([]);
       }
-    } catch (err) {
-      console.error("[ExamPrep] papers fetch failed:", err);
-    }
-    finally { setLoadingPapers(false); }
-  }, [user, API_BASE]);
+    } catch (e) {
+      alert(e.message || "Failed to start test");
+    } finally { setTestLoading(false); }
+  }
 
-  // Re-load when exam changes OR when user token becomes available
-  useEffect(() => { loadPapers(selectedExam); }, [selectedExam, user?.accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  // ── Submit simulated test ──────────────────────────────────────────────────
+  async function handleSubmitTest() {
+    if (!testSession?.test_id) return;
+    setTestLoading(true);
+    const timeSpent = testStartRef.current ? Math.round((Date.now() - testStartRef.current) / 1000) : 0;
+    const answers = Object.entries(testAnswers).map(([qid, opt]) => ({
+      question_id: qid,
+      selected_option: opt,
+      time_taken_seconds: 60,
+    }));
+    try {
+      const result = await submitSimulatedTest(user.accessToken, testSession.test_id, { answers, timeSpentSeconds: timeSpent });
+      setTestResult(result);
+      setActiveMode("result");
+    } catch (e) {
+      alert(e.message || "Failed to submit test");
+    } finally { setTestLoading(false); }
+  }
 
+  // ── Access guard ───────────────────────────────────────────────────────────
   if (!hasAccess(user)) {
     return (
       <div className="premium-page">
-        <section className="premium-section">
-          <div className="error-box">You do not have access to this page.</div>
+        <section className="premium-section" style={{ textAlign: "center", padding: "60px 20px" }}>
+          <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔒</div>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Exam Prep Center</h3>
+          <p style={{ color: "var(--muted,#64748b)", maxWidth: 380, margin: "0 auto 0" }}>
+            Available for Grade 11 & 12 students only. Check back soon!
+          </p>
         </section>
       </div>
     );
   }
 
-  async function selectPaper(paper) {
-    setSelectedPaper(paper);
-    setSelectedChunk(null);
-    setChunks([]);
-    setLoadingChunks(true);
-    try {
-      const r = await fetch(`${API_BASE}/api/exam-prep/paper/${paper.id}/chunks?limit=50`, {
-        headers: { Authorization: `Bearer ${user.accessToken}` },
-      });
-      const data = await r.json();
-      if (data.success) setChunks(data.chunks || []);
-    } catch { /* ignore */ }
-    finally { setLoadingChunks(false); }
+  // ── Result mode ────────────────────────────────────────────────────────────
+  if (activeMode === "result" && testResult) {
+    return (
+      <div className="premium-page">
+        <TestResultPage
+          result={testResult}
+          onRetake={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
+          onClose={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
+        />
+      </div>
+    );
   }
+
+  const examInfo = EXAMS[selectedExam] || EXAMS.jee_main;
 
   return (
     <div className="premium-page">
-      <section className="premium-section">
-        <div className="premium-header">
-          <p className="eyebrow">Grade 11 & 12 — Competitive Exam Preparation</p>
-          <h2>🎯 Exam Prep Center</h2>
-          <p>Practice with real previous year papers and get AI step-by-step explanations.</p>
-        </div>
-
-        {/* Test user banner */}
-        <div style={{
-          background: isTestUser ? "rgba(99,102,241,.07)" : "rgba(245,158,11,.07)",
-          border: `1px solid ${isTestUser ? "rgba(99,102,241,.3)" : "rgba(245,158,11,.3)"}`,
-          borderRadius: 10, padding: "10px 14px", fontSize: ".82rem", marginBottom: 20,
-          display: "flex", alignItems: "center", gap: 9,
-        }}>
-          <span style={{ fontSize: "1.1rem" }}>{isTestUser ? "🧪" : "🔒"}</span>
-          <div>
-            {isTestUser
-              ? <><strong>Test Access.</strong> Early access to Grade 11 & 12 content — not yet live for all students
-.</>
-              : <><strong>Phase 1 — Admin Preview.</strong> Grade 11 & 12 not yet visible to students.</>
-            }
-          </div>
+      {/* Access banner */}
+      <section className="premium-section" style={{ paddingBottom: 0 }}>
+        <div style={{ background: isTestUser ? "rgba(99,102,241,.07)" : "rgba(245,158,11,.07)", border: `1px solid ${isTestUser ? "rgba(99,102,241,.3)" : "rgba(245,158,11,.3)"}`, borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
+          <span>{isTestUser ? "🧪" : isAdmin ? "🔒" : "🎓"}</span>
+          <span>
+            {isTestUser ? <><strong>Test Access.</strong> Early access before student launch.</> :
+             isAdmin ? <><strong>Admin Preview.</strong> Not yet visible to students.</> :
+             <><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</>}
+          </span>
         </div>
 
         {/* Exam tabs */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-          {Object.entries(EXAMS).map(([key, e]) => (
-            <button key={key} onClick={() => !e.comingSoon && setSelectedExam(key)}
-              style={{ padding: "8px 16px", borderRadius: 9, border: `2px solid ${selectedExam === key ? e.color : "var(--border,#334155)"}`, background: selectedExam === key ? `${e.color}14` : "var(--panel,#1e293b)", color: selectedExam === key ? e.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: e.comingSoon ? "default" : "pointer", fontFamily: "inherit", opacity: e.comingSoon ? .55 : 1 }}>
-              {e.icon} {e.label}{e.comingSoon && <span style={{ fontSize: ".58rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 5px", borderRadius: 6, marginLeft: 5 }}>Soon</span>}
+        <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+          {Object.entries(EXAMS).map(([key, exam]) => (
+            <button key={key} onClick={() => !exam.comingSoon && setSelectedExam(key)}
+              style={{ padding: "9px 18px", borderRadius: 10, border: `2px solid ${selectedExam === key ? exam.color : "var(--border,#334155)"}`, background: selectedExam === key ? `${exam.color}18` : "var(--panel,#1e293b)", color: selectedExam === key ? exam.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".82rem", cursor: exam.comingSoon ? "default" : "pointer", fontFamily: "inherit", opacity: exam.comingSoon ? .55 : 1, display: "flex", alignItems: "center", gap: 7 }}>
+              <span>{exam.icon}</span>
+              <span>{exam.label}</span>
+              {exam.comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
             </button>
           ))}
         </div>
 
-        {/* Stats */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 20 }}>
-          <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "11px 14px" }}>
-            <div style={{ fontSize: "1.4rem", fontWeight: 800 }}>{papers.length}</div>
-            <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>Papers Available</div>
-          </div>
-          <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "11px 14px" }}>
-            <div style={{ fontSize: "1.4rem", fontWeight: 800 }}>Apr 2026</div>
-            <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>Latest Session</div>
-          </div>
-          <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "11px 14px" }}>
-            <div style={{ fontSize: "1.4rem", fontWeight: 800 }}>PCM</div>
-            <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>Physics · Chem · Maths</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Paper selector */}
-      <section className="premium-section" style={{ paddingTop: 0 }}>
-        <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 10 }}>
-          Select Paper
-        </div>
-        {loadingPapers ? (
-          <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".8rem" }}>
-            <Loader size={14} style={{ animation: "spin 1s linear infinite" }} />
-            Loading papers…
+        {/* Stats row */}
+        {loadingDash ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".8rem", marginBottom: 20 }}>
+            <Loader size={14} style={{ animation: "spin 1s linear infinite" }} /> Loading stats…
             <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
           </div>
-        ) : papers.length === 0 ? (
-          <div style={{ color: "var(--muted,#64748b)", fontSize: ".8rem", padding: "12px 0" }}>
-            No papers available for this exam yet.
-            {user?.accessToken && <span style={{ marginLeft: 8, fontSize: ".7rem", color: "#6366f1" }}>[Token: {user.accessToken.substring(0, 12)}…]</span>}
-          </div>
-        ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 8, marginBottom: 20 }}>
-            {papers.map(p => (
-              <PaperCard key={p.id} paper={p} selected={selectedPaper?.id === p.id} onClick={() => selectPaper(p)} />
-            ))}
+        ) : dashboard && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: 10, marginBottom: 24 }}>
+            <StatCard value={`${dashboard.weeks_to_exam}w`} label="Weeks to JEE" icon="📅" color="#6366f1" />
+            <StatCard value={dashboard.total_questions} label="Questions Available" icon="❓" color="#10b981" />
+            <StatCard value={dashboard.questions_attempted} label="Practiced" icon="✅" color="#f59e0b" />
+            <StatCard value={`${dashboard.accuracy_pct}%`} label="Accuracy" icon="🎯" color={dashboard.accuracy_pct >= 60 ? "#22c55e" : "#ef4444"} />
+            <StatCard value={dashboard.total_topics} label="Topics" icon="📚" color="#8b5cf6" />
           </div>
         )}
+
+        {/* Mode tabs */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
+          {[
+            { key: "practice", label: "Quick Practice", icon: "⚡" },
+            { key: "test", label: "Simulated Test", icon: "📝" },
+          ].map(m => (
+            <button key={m.key} onClick={() => setActiveMode(m.key)}
+              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? "#6366f1" : "var(--border,#334155)"}`, background: activeMode === m.key ? "rgba(99,102,241,.12)" : "var(--panel,#1e293b)", color: activeMode === m.key ? "#a5b4fc" : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
+              {m.icon} {m.label}
+            </button>
+          ))}
+        </div>
       </section>
 
-      {/* Content: chunks list + AI panel */}
-      {selectedPaper && (
-        <section className="premium-section" style={{ paddingTop: 0 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 14 }}>
-
-            {/* Chunks list */}
-            <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 11, overflow: "hidden" }}>
-              <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border,#334155)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div>
-                  <div style={{ fontSize: ".82rem", fontWeight: 700 }}>{selectedPaper.label}</div>
-                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", marginTop: 2 }}>{selectedPaper.subject} · {chunks.length} chunks</div>
-                </div>
+      {/* ── Practice mode ── */}
+      {activeMode === "practice" && (
+        <>
+          {/* Subject cards */}
+          <section className="premium-section" style={{ paddingTop: 0 }}>
+            <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
+              {examInfo.icon} {examInfo.label} — Subjects
+            </div>
+            {subjects.length === 0 ? (
+              <div style={{ color: "var(--muted,#64748b)", fontSize: ".82rem" }}>Loading subjects…</div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: 12, marginBottom: selectedSubject ? 20 : 0 }}>
+                {subjects.map(s => (
+                  <SubjectCard key={s.name} subject={s} selected={selectedSubject === s.name} onClick={() => handleSelectSubject(s.name)} />
+                ))}
               </div>
-              <div style={{ maxHeight: 420, overflowY: "auto" }}>
-                {loadingChunks ? (
-                  <div style={{ padding: 16, display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".78rem" }}>
-                    <Loader size={14} style={{ animation: "spin 1s linear infinite" }} />
-                    Loading questions…
+            )}
+
+            {/* Topic cards */}
+            {selectedSubject && (
+              <div style={{ marginTop: 16 }}>
+                <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
+                  {SUBJECT_ICONS[selectedSubject]} {selectedSubject} — Priority Topics
+                </div>
+                {loadingTopics ? (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".78rem" }}>
+                    <Loader size={13} style={{ animation: "spin 1s linear infinite" }} /> Loading topics…
                   </div>
-                ) : chunks.length === 0 ? (
-                  <div style={{ padding: 16, color: "var(--muted,#64748b)", fontSize: ".78rem" }}>No content found for this paper.</div>
                 ) : (
-                  chunks.map(ch => (
-                    <ChunkCard key={ch.id} chunk={ch} selected={selectedChunk?.id === ch.id} onClick={() => setSelectedChunk(ch)} />
-                  ))
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
+                    {topics.map(t => (
+                      <TopicCard key={t.name} topic={t} onPractice={handlePracticeTopic} />
+                    ))}
+                  </div>
                 )}
               </div>
-            </div>
+            )}
+          </section>
 
-            {/* AI explanation panel */}
-            <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 11, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-              <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border,#334155)", background: "rgba(99,102,241,.06)", display: "flex", alignItems: "center", gap: 8 }}>
-                <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#10b981)", display: "grid", placeItems: "center", fontSize: ".75rem", flexShrink: 0 }}>🤖</div>
-                <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a5b4fc" }}>
-                  {selectedChunk ? `AI Explanation — Chunk ${selectedChunk.chunk_index + 1}` : "AI Explanation"}
+          {/* Question practice */}
+          {selectedSubject && (
+            <section className="premium-section" style={{ paddingTop: 0 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+                <div>
+                  <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em" }}>
+                    Quick Practice {filterTopic ? `— ${filterTopic}` : `— ${selectedSubject}`}
+                  </div>
+                  {filterTopic && (
+                    <button onClick={() => { setFilterTopic(null); loadQuestions(selectedSubject, null); }}
+                      style={{ fontSize: ".65rem", color: "#6366f1", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 2 }}>
+                      ✕ Clear filter
+                    </button>
+                  )}
+                </div>
+                <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{questions.length} questions</div>
+              </div>
+
+              {loadingQuestions ? (
+                <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".8rem" }}>
+                  <Loader size={14} style={{ animation: "spin 1s linear infinite" }} /> Loading questions…
+                </div>
+              ) : questions.length === 0 ? (
+                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 24, textAlign: "center" }}>
+                  <div style={{ fontSize: "2rem", marginBottom: 10 }}>📭</div>
+                  <div style={{ fontSize: ".85rem", fontWeight: 700, marginBottom: 6 }}>No questions available yet</div>
+                  <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>
+                    {isAdmin ? "Use the Admin → Exam Prep Question Bank to generate questions." : "Check back soon — questions are being added!"}
+                  </div>
+                </div>
+              ) : (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 14 }}>
+                  {/* Question list */}
+                  <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12, overflow: "hidden" }}>
+                    <div style={{ maxHeight: 500, overflowY: "auto" }}>
+                      {questions.map(q => (
+                        <div key={q.id} onClick={() => setSelectedQuestion(q.id === selectedQuestion ? null : q)}
+                          style={{ borderLeft: `3px solid ${q.id === selectedQuestion?.id ? "#6366f1" : "transparent"}`, cursor: "pointer", background: q.id === selectedQuestion?.id ? "rgba(99,102,241,.05)" : "transparent" }}>
+                          <QuestionCard
+                            question={q}
+                            selectedOption={selectedOptions[q.id]}
+                            onSelect={opt => handleSelectOption(q.id, opt)}
+                            feedback={feedbacks[q.id]}
+                            showFeedback={!!feedbacks[q.id]}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* AI panel */}
+                  <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: 500 }}>
+                    <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border,#334155)", background: "rgba(99,102,241,.06)", display: "flex", alignItems: "center", gap: 8 }}>
+                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#10b981)", display: "grid", placeItems: "center", fontSize: ".7rem", flexShrink: 0 }}>🤖</div>
+                      <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a5b4fc" }}>
+                        {selectedQuestion ? `AI Explanation — ${selectedQuestion.topic || ""}` : "AI Explanation"}
+                      </div>
+                    </div>
+                    <div style={{ flex: 1, overflowY: "auto" }}>
+                      <AIPanel
+                        question={selectedQuestion}
+                        selectedOption={selectedOptions[selectedQuestion?.id]}
+                        feedback={feedbacks[selectedQuestion?.id]}
+                        user={user}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+        </>
+      )}
+
+      {/* ── Simulated Test mode ── */}
+      {activeMode === "test" && !testResult && (
+        <section className="premium-section" style={{ paddingTop: 0 }}>
+          {!testSession ? (
+            <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
+              <div style={{ fontSize: "3rem", marginBottom: 16 }}>{examInfo.icon}</div>
+              <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Start {examInfo.label} Simulation</h3>
+              {(() => {
+                const cfg = EXAM_SIM_CONFIG[selectedExam] || EXAM_SIM_CONFIG.jee_main;
+                return (
+                  <>
+                    <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem", marginBottom: 24, lineHeight: 1.6 }}>
+                      A full {examInfo.label} simulation with ~{cfg.questions} questions across {cfg.subjects.join(", ")}.
+                      {cfg.duration} minutes · Marking: {cfg.marking}
+                    </p>
+                    <div style={{ display: "grid", gridTemplateColumns: `repeat(${cfg.subjects.length},1fr)`, gap: 10, marginBottom: 28 }}>
+                      {cfg.subjects.map(s => (
+                        <div key={s} style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
+                          <div style={{ fontSize: "1.3rem", marginBottom: 4 }}>{SUBJECT_ICONS[s] || "📚"}</div>
+                          <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{s}</div>
+                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>~{Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
+              <button onClick={handleStartTest} disabled={testLoading}
+                style={{ padding: "13px 32px", background: `linear-gradient(135deg,${examInfo.color},${examInfo.color}cc)`, border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", opacity: testLoading ? .7 : 1, display: "flex", alignItems: "center", gap: 10, margin: "0 auto" }}>
+                {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start ${examInfo.label} Simulation`}
+              </button>
+            </div>
+          ) : (
+            <div>
+              {/* Test header */}
+              <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 16px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: ".9rem" }}>🎯 {examInfo.label} Simulation</div>
+                  <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)" }}>
+                    {Object.keys(testAnswers).length} / {testSession.total_questions || questions.length} answered
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>⏱️ {testSession.duration_minutes} min</div>
+                  <button onClick={handleSubmitTest} disabled={testLoading}
+                    style={{ padding: "9px 20px", background: "#22c55e", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".82rem", cursor: "pointer", fontFamily: "inherit" }}>
+                    {testLoading ? "Submitting…" : "Submit Test →"}
+                  </button>
                 </div>
               </div>
-              <ExplanationPanel chunk={selectedChunk} paper={selectedPaper} user={user} apiBase={API_BASE} />
+
+              {questions.length === 0 ? (
+                <div style={{ textAlign: "center", padding: 40, color: "var(--muted,#64748b)" }}>
+                  <div style={{ fontSize: "2rem", marginBottom: 12 }}>📭</div>
+                  <div style={{ fontSize: ".85rem", fontWeight: 700, marginBottom: 6 }}>No questions in bank yet</div>
+                  <div style={{ fontSize: ".75rem" }}>Admin needs to prewarm the question bank first.</div>
+                  <button onClick={handleSubmitTest} style={{ marginTop: 16, padding: "9px 20px", background: "#6366f1", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".82rem", cursor: "pointer", fontFamily: "inherit" }}>
+                    Submit Empty Test (see result)
+                  </button>
+                </div>
+              ) : (
+                <div style={{ maxHeight: 520, overflowY: "auto", background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12 }}>
+                  {questions.map((q, idx) => (
+                    <div key={q.id} style={{ borderLeft: `3px solid ${testAnswers[q.id] ? "#22c55e" : "transparent"}` }}>
+                      <div style={{ padding: "8px 16px 0", fontSize: ".68rem", color: "var(--muted,#64748b)", fontWeight: 700 }}>Q{idx + 1}</div>
+                      <QuestionCard
+                        question={q}
+                        selectedOption={testAnswers[q.id]}
+                        onSelect={opt => setTestAnswers(prev => ({ ...prev, [q.id]: opt }))}
+                        feedback={null}
+                        showFeedback={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </section>
       )}
+
+      {/* ── Resource links ── */}
+      <section className="premium-section">
+        <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 14 }}>
+          📚 Resources & Tools
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 10 }}>
+          {RESOURCES.map(r => (
+            <div key={r.label}
+              onClick={() => r.onClick && setActivePage && setActivePage(r.onClick)}
+              className="premium-card"
+              style={{ border: `1px solid ${r.onClick ? r.color + "40" : "var(--border,#334155)"}`, borderRadius: 10, padding: "14px 14px", cursor: r.onClick ? "pointer" : "default", transition: "all .12s", marginBottom: 0 }}>
+              <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>{r.icon}</div>
+              <div style={{ fontWeight: 700, fontSize: ".8rem", marginBottom: 3 }}>{r.label}</div>
+              <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>{r.desc}</div>
+              {r.onClick && <div style={{ fontSize: ".62rem", color: r.color, marginTop: 6, fontWeight: 600 }}>Open →</div>}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

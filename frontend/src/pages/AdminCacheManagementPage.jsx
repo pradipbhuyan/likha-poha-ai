@@ -16,6 +16,7 @@ import {
   getAudioOverview,
   startAudioPrewarm,
 } from "../api/cacheManagement";
+import { adminGetQBStatus, adminPrewarm, runExamPrepMigration } from "../api/examPrep";
 
 function gradeToSlug(grade) {
   /** Convert "Grade 9" to "grade-9" for URL slugs. */
@@ -929,6 +930,647 @@ function AdminCacheManagementPage({ user }) {
           richer lesson content or HOTS-quality questions in the pre-generated cache.
         </div>
       </section>
+
+      {/* ── Exam Prep Question Bank ── */}
+      <ExamPrepQBSection user={user} />
+    </div>
+  );
+}
+
+// ── Exam Prep Question Bank Section ───────────────────────────────────────────
+
+const EXAM_OPTIONS = [
+  { value: "jee_main", label: "JEE Main", icon: "📐", color: "#6366f1" },
+  { value: "neet_ug",  label: "NEET UG",  icon: "🔬", color: "#10b981" },
+  { value: "cuet_ug",  label: "CUET UG",  icon: "🏛️", color: "#f59e0b" },
+];
+
+const EXAM_SUBJECTS = {
+  jee_main: ["Physics", "Chemistry", "Mathematics"],
+  neet_ug:  ["Physics", "Chemistry", "Biology"],
+  cuet_ug:  [
+    // Language & General
+    "English", "General Test",
+    // Science Domain
+    "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)",
+    // Humanities Domain
+    "History", "Geography", "Political Science", "Economics",
+    "Accountancy", "Business Studies", "Sociology", "Psychology", "Legal Studies",
+  ],
+};
+
+const EXAM_GRADE_OPTIONS = ["Grade 11", "Grade 12", "Both"];
+
+function ExamPrepQBSection({ user }) {
+  const [qbStatus, setQbStatus] = useState(null);
+  const [qbLoading, setQbLoading] = useState(true);
+  const [qbMsg, setQbMsg] = useState("");
+  const [qbErr, setQbErr] = useState("");
+  const [prewarmRunning, setPrewarmRunning] = useState(false);
+  const [migrationRunning, setMigrationRunning] = useState(false);
+  const [migrationResult, setMigrationResult] = useState(null);
+
+  // Form state
+  const [selExam, setSelExam] = useState("jee_main");
+  const [selGrade, setSelGrade] = useState("Grade 12");
+  const [selSubject, setSelSubject] = useState("Physics");
+  const [selTopic, setSelTopic] = useState("");
+  const [questionCount, setQuestionCount] = useState(10);
+  const [publishMode, setPublishMode] = useState("draft");
+  const [diffEasy, setDiffEasy] = useState(30);
+  const [diffMed, setDiffMed] = useState(50);
+  const [diffHard, setDiffHard] = useState(20);
+  const [lastJob, setLastJob] = useState(null);
+
+  // Reset subject when exam changes
+  useEffect(() => {
+    setSelSubject(EXAM_SUBJECTS[selExam]?.[0] || "Physics");
+  }, [selExam]);
+
+  async function loadQBStatus() {
+    setQbLoading(true);
+    try {
+      const data = await adminGetQBStatus(user.accessToken, null);
+      setQbStatus(data);
+    } catch { /* non-critical */ }
+    finally { setQbLoading(false); }
+  }
+
+  useEffect(() => { loadQBStatus(); }, [user.accessToken]); // eslint-disable-line
+
+  async function handlePrewarm() {
+    if (!window.confirm(
+      `Generate ${questionCount} ${selExam.toUpperCase().replace("_", " ")} questions for ${selGrade} — ${selSubject}${selTopic ? ` / ${selTopic}` : ""}?\n\nQuestions will be saved as "${publishMode}" and can be reviewed before publishing.`
+    )) return;
+
+    setPrewarmRunning(true);
+    setQbMsg("");
+    setQbErr("");
+    try {
+      const gradeParam = selGrade === "Both" ? "Grade 12" : selGrade;
+      const result = await adminPrewarm(user.accessToken, {
+        exam_type: selExam,
+        grade: gradeParam,
+        subject: selSubject || null,
+        topic: selTopic || null,
+        question_count: questionCount,
+        publish_mode: publishMode,
+        difficulty_mix: {
+          easy: diffEasy / 100,
+          medium: diffMed / 100,
+          hard: diffHard / 100,
+        },
+        run_now: true,
+      });
+      setLastJob(result.result || result.job || {});
+      setQbMsg(
+        `✅ Generated ${result.result?.questions_generated || 0} questions ` +
+        `(${result.result?.questions_validated || 0} valid, ` +
+        `${result.result?.questions_published || 0} published). ` +
+        `Saved as ${publishMode}.`
+      );
+      loadQBStatus();
+    } catch (e) {
+      setQbErr(e.message || "Prewarm failed.");
+    } finally {
+      setPrewarmRunning(false);
+    }
+  }
+
+  // Difficulty mix normalizer
+  function normalizeDiff(easy, med, hard) {
+    const total = easy + med + hard;
+    return total === 100;
+  }
+  const diffValid = normalizeDiff(diffEasy, diffMed, diffHard);
+
+  return (
+    <section className="premium-section">
+      <div className="premium-header">
+        <p className="eyebrow">Grade 11 & 12 — Competitive Exams</p>
+        <h3>🎯 Exam Prep Question Bank (JEE / NEET / CUET)</h3>
+        <p>
+          Generate AI-powered MCQ questions for JEE Main, NEET UG, and CUET UG.
+          Questions are saved as <em>draft</em> by default — review and publish them
+          from the Exam Prep Center page.
+        </p>
+      </div>
+
+      {/* DB Migration setup */}
+      <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.25)", borderRadius: 10, padding: "12px 16px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+        <div>
+          <div style={{ fontSize: ".82rem", fontWeight: 700, color: "#fbbf24", marginBottom: 2 }}>
+            ⚙️ First-time Setup — Run Migration
+          </div>
+          <div style={{ fontSize: ".72rem", color: "var(--muted,#94a3b8)" }}>
+            Creates the exam prep DB tables. Run once before generating questions. Safe to re-run.
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
+          {migrationResult && (
+            <span style={{ fontSize: ".72rem", color: migrationResult.success ? "#22c55e" : "#f87171", fontWeight: 600 }}>
+              {migrationResult.success ? "✅ Tables ready" : "⚠️ Run SQL manually"}
+            </span>
+          )}
+          <button
+            onClick={async () => {
+              setMigrationRunning(true);
+              setMigrationResult(null);
+              try {
+                const result = await runExamPrepMigration(user.accessToken);
+                setMigrationResult(result);
+                if (result.success) loadQBStatus();
+              } catch (e) {
+                setMigrationResult({ success: false, message: e.message });
+              } finally { setMigrationRunning(false); }
+            }}
+            disabled={migrationRunning}
+            style={{ padding: "7px 16px", background: migrationRunning ? "#6b7280" : "#f59e0b", border: "none", borderRadius: 7, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}
+          >
+            {migrationRunning ? "⏳ Checking…" : "🗄️ Run Migration"}
+          </button>
+        </div>
+      </div>
+      {migrationResult && !migrationResult.success && migrationResult.missing_tables?.length > 0 && (
+        <div className="error-box" style={{ fontSize: ".78rem", marginBottom: 12 }}>
+          Missing tables: <strong>{migrationResult.missing_tables?.join(", ")}</strong><br />
+          Run the SQL manually in your Supabase dashboard:<br />
+          <code style={{ fontSize: ".7rem", background: "rgba(0,0,0,.2)", padding: "2px 6px", borderRadius: 4 }}>
+            backend/migrations/20260707_exam_prep_center.sql
+          </code>
+        </div>
+      )}
+
+      {/* Status overview */}
+      {!qbLoading && qbStatus?.stats && (
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+          {EXAM_OPTIONS.map(exam => {
+            const examStats = qbStatus.stats[exam.value] || {};
+            const total = Object.values(examStats).reduce((s, v) => s + (v.total || 0), 0);
+            const published = Object.values(examStats).reduce((s, v) => s + (v.published || 0), 0);
+            const draft = total - published;
+            return (
+              <div key={exam.value} style={{ background: "var(--panel,#1e293b)", border: `1px solid ${exam.color}33`, borderRadius: 10, padding: "12px 16px", minWidth: 200 }}>
+                <div style={{ fontSize: ".8rem", fontWeight: 700, marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                  <span>{exam.icon}</span>
+                  <span style={{ color: exam.color }}>{exam.label}</span>
+                </div>
+                <div style={{ display: "flex", gap: 12 }}>
+                  <div>
+                    <div style={{ fontSize: "1.3rem", fontWeight: 800 }}>{total}</div>
+                    <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>Total Qs</div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "#22c55e" }}>{published}</div>
+                    <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>Published</div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "#f59e0b" }}>{draft}</div>
+                    <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>Draft</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Prewarm form */}
+      <div className="premium-card" style={{ maxWidth: 680 }}>
+        <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 16 }}>Generate Questions</div>
+
+        {/* Exam / Grade / Subject row */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 12 }}>
+          <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
+            Exam
+            <select value={selExam} onChange={e => setSelExam(e.target.value)}
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              {EXAM_OPTIONS.map(e => <option key={e.value} value={e.value}>{e.icon} {e.label}</option>)}
+            </select>
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
+            Grade
+            <select value={selGrade} onChange={e => setSelGrade(e.target.value)}
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              {EXAM_GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
+            </select>
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
+            Subject
+            <select value={selSubject} onChange={e => setSelSubject(e.target.value)}
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              {(EXAM_SUBJECTS[selExam] || []).map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </label>
+        </div>
+
+        {/* Topic (optional) */}
+        <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem", marginBottom: 12 }}>
+          Topic <span style={{ color: "var(--muted,#64748b)", fontWeight: 400 }}>(optional — leave blank for full subject)</span>
+          <input value={selTopic} onChange={e => setSelTopic(e.target.value)}
+            placeholder="e.g. Kinematics, Electrochemistry, Integration…"
+            style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+        </label>
+
+        {/* Question count + publish mode */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+          <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
+            Question Count (1–50)
+            <input type="number" min={1} max={50} value={questionCount} onChange={e => setQuestionCount(Number(e.target.value))}
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
+            Publish Mode
+            <select value={publishMode} onChange={e => setPublishMode(e.target.value)}
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              <option value="draft">Draft only (review before publishing)</option>
+              <option value="auto_publish">Auto-publish if validation passes</option>
+            </select>
+          </label>
+        </div>
+
+        {/* Difficulty mix */}
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ fontSize: ".82rem", fontWeight: 600, marginBottom: 8 }}>
+            Difficulty Mix
+            {!diffValid && <span style={{ color: "#f87171", marginLeft: 8, fontSize: ".75rem", fontWeight: 400 }}>⚠️ Must total 100%</span>}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+            {[
+              { label: "Easy %", val: diffEasy, set: setDiffEasy, color: "#22c55e" },
+              { label: "Medium %", val: diffMed, set: setDiffMed, color: "#f59e0b" },
+              { label: "Hard %", val: diffHard, set: setDiffHard, color: "#ef4444" },
+            ].map(d => (
+              <label key={d.label} style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".78rem" }}>
+                <span style={{ color: d.color, fontWeight: 700 }}>{d.label}</span>
+                <input type="number" min={0} max={100} value={d.val}
+                  onChange={e => d.set(Number(e.target.value))}
+                  style={{ padding: "6px 10px", borderRadius: 7, border: `1px solid ${d.color}44`, background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+              </label>
+            ))}
+          </div>
+          <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)", marginTop: 4 }}>
+            Total: {diffEasy + diffMed + diffHard}% (must equal 100%)
+          </div>
+        </div>
+
+        {/* Generate button */}
+        <button
+          onClick={handlePrewarm}
+          disabled={prewarmRunning || !diffValid || questionCount < 1 || questionCount > 50}
+          style={{
+            width: "100%", padding: "11px 20px",
+            background: prewarmRunning ? "#6b7280" : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            border: "none", borderRadius: 8, color: "#fff",
+            fontWeight: 700, fontSize: ".88rem", cursor: "pointer",
+            fontFamily: "inherit", opacity: (!diffValid || questionCount < 1) ? .5 : 1,
+          }}
+        >
+          {prewarmRunning
+            ? "⏳ Generating… (this may take 30–60 seconds)"
+            : `🚀 Generate ${questionCount} Questions — ${EXAM_OPTIONS.find(e => e.value === selExam)?.label}`}
+        </button>
+
+        {qbMsg && <div className="info-box" style={{ marginTop: 12, fontSize: ".82rem" }}>{qbMsg}</div>}
+        {qbErr && <div className="error-box" style={{ marginTop: 12, fontSize: ".82rem" }}>{qbErr}</div>}
+
+        {/* Last job result */}
+        {lastJob?.questions_generated > 0 && (
+          <div style={{ marginTop: 12, padding: "10px 14px", background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, fontSize: ".78rem" }}>
+            <div style={{ fontWeight: 700, color: "#a5b4fc", marginBottom: 4 }}>Last Job Result</div>
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <span>📥 Generated: <strong>{lastJob.questions_generated}</strong></span>
+              <span>✅ Valid: <strong style={{ color: "#22c55e" }}>{lastJob.questions_validated}</strong></span>
+              <span>📤 Published: <strong style={{ color: "#6366f1" }}>{lastJob.questions_published}</strong></span>
+              {lastJob.errors?.length > 0 && (
+                <span style={{ color: "#f87171" }}>⚠️ Errors: {lastJob.errors.length}</span>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="info-box" style={{ marginTop: 16, fontSize: ".82rem" }}>
+        💡 <strong>Tip:</strong> Start with 10 questions per subject/topic in <em>draft</em> mode.
+        Review them below, then publish individually or use <em>Publish All Valid</em>.
+        Each 10-question batch costs ~$0.001–0.01 depending on the AI provider.
+      </div>
+
+      {/* Question Review Panel */}
+      <QuestionReviewPanel user={user} />
+    </section>
+  );
+}
+
+// ── Question Review & Publish Panel ───────────────────────────────────────────
+
+const REVIEW_EXAM_OPTIONS = [
+  { value: "jee_main", label: "JEE Main", color: "#6366f1" },
+  { value: "neet_ug",  label: "NEET UG",  color: "#10b981" },
+  { value: "cuet_ug",  label: "CUET UG",  color: "#f59e0b" },
+];
+const REVIEW_STATUS_OPTIONS = ["draft", "published", "archived"];
+
+function QuestionReviewPanel({ user }) {
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [filterExam, setFilterExam] = useState("jee_main");
+  const [filterStatus, setFilterStatus] = useState("draft");
+  const [filterSubject, setFilterSubject] = useState("");
+  const [publishing, setPublishing] = useState({});
+  const [msg, setMsg] = useState("");
+  const [expanded, setExpanded] = useState(null);
+
+  async function loadQuestions() {
+    setLoading(true);
+    setMsg("");
+    try {
+      const params = new URLSearchParams({ exam_type: filterExam, status: filterStatus, limit: 100 });
+      if (filterSubject) params.set("subject", filterSubject);
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin/exam-prep/questions?${params}`,
+        { headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.accessToken}` } }
+      );
+      const data = await res.json().catch(() => ({}));
+      setQuestions(data.questions || []);
+    } catch (e) {
+      setMsg("Failed to load questions: " + e.message);
+    } finally { setLoading(false); }
+  }
+
+  useEffect(() => { loadQuestions(); }, [filterExam, filterStatus, filterSubject]); // eslint-disable-line
+
+  async function handleAction(questionId, action) {
+    setPublishing(prev => ({ ...prev, [questionId]: action }));
+    try {
+      const url = `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin/exam-prep/questions/${questionId}/${action}`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.accessToken}` },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.success) {
+        setQuestions(prev => prev.filter(q => q.id !== questionId));
+        setMsg(`✅ Question ${action === "publish" ? "published" : "archived"}.`);
+      } else {
+        setMsg(`❌ Failed: ${data.detail || "unknown error"}`);
+      }
+    } catch (e) {
+      setMsg("❌ " + e.message);
+    } finally {
+      setPublishing(prev => ({ ...prev, [questionId]: null }));
+    }
+  }
+
+  async function handlePublishAll() {
+    if (!window.confirm(`Publish all ${questions.length} draft questions?`)) return;
+    setMsg("Publishing…");
+    let done = 0;
+    for (const q of questions) {
+      await handleAction(q.id, "publish");
+      done++;
+    }
+    setMsg(`✅ Published ${done} questions.`);
+    loadQuestions();
+  }
+
+  async function handleArchiveAll() {
+    if (!window.confirm(`Archive all ${questions.length} ${filterStatus} questions? They will be hidden from students.`)) return;
+    setMsg("Archiving…");
+    let done = 0;
+    for (const q of questions) {
+      if (q.status !== "archived") {
+        await handleAction(q.id, "archive");
+        done++;
+      }
+    }
+    setMsg(`🗑 Archived ${done} questions.`);
+    loadQuestions();
+  }
+
+  const [copied, setCopied] = useState(false);
+
+  function copyForReview() {
+    if (!questions.length) return;
+    const lines = [
+      `You are an expert exam question reviewer. Please review the following ${questions.length} MCQ questions for a ${filterExam.toUpperCase().replace("_"," ")} exam.`,
+      `For each question, evaluate:`,
+      `1. Is the question text clear and unambiguous?`,
+      `2. Are all 4 options distinct and plausible?`,
+      `3. Is the correct answer definitely correct?`,
+      `4. Is the explanation accurate and sufficient?`,
+      `5. Is the difficulty level appropriate?`,
+      `6. Any factual errors or NCERT inaccuracies?`,
+      ``,
+      `Rate each question: ✅ Approve | ⚠️ Minor fix needed | ❌ Reject`,
+      ``,
+      `---`,
+      ``,
+    ];
+
+    questions.forEach((q, i) => {
+      const opts = Array.isArray(q.options_json) ? q.options_json : [];
+      lines.push(`**Q${i + 1}.** [${q.subject} | ${q.difficulty} | ${q.topic || ""}]`);
+      lines.push(q.question_text || "");
+      lines.push("");
+      opts.forEach(opt => {
+        const marker = opt.key === q.correct_option ? `✓` : " ";
+        lines.push(`  ${opt.key}${marker} ${opt.text}`);
+      });
+      lines.push("");
+      lines.push(`**Correct Answer:** ${q.correct_option}`);
+      if (q.detailed_explanation) {
+        lines.push(`**Explanation:** ${q.detailed_explanation}`);
+      }
+      if (q.formula_used) {
+        lines.push(`**Formula:** ${q.formula_used}`);
+      }
+      if (q.ncert_reference) {
+        lines.push(`**NCERT:** ${q.ncert_reference}`);
+      }
+      lines.push("");
+      lines.push(`---`);
+      lines.push("");
+    });
+
+    lines.push(`Please provide your review for each question in the format above, and at the end give a summary of overall quality (X/Y approved, common issues).`);
+
+    const text = lines.join("\n");
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    }).catch(() => {
+      // Fallback: open in textarea
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    });
+  }
+
+  const draftCount = questions.filter(q => q.status === "draft").length;
+
+  return (
+    <div style={{ marginTop: 20 }}>
+      <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+        <span>📋 Review & Publish Questions</span>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          {/* Exam filter */}
+          <select value={filterExam} onChange={e => setFilterExam(e.target.value)}
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit" }}>
+            {REVIEW_EXAM_OPTIONS.map(e => <option key={e.value} value={e.value}>{e.label}</option>)}
+          </select>
+          {/* Status filter */}
+          <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit" }}>
+            {REVIEW_STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+          {/* Subject filter */}
+          <input value={filterSubject} onChange={e => setFilterSubject(e.target.value)}
+            placeholder="Filter by subject…"
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit", width: 140 }} />
+          <button onClick={loadQuestions} style={{ padding: "5px 12px", background: "rgba(99,102,241,.15)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 7, color: "#a5b4fc", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+            🔄 Refresh
+          </button>
+          {questions.length > 0 && (
+            <button
+              onClick={copyForReview}
+              title="Copy all questions as a structured prompt to paste into ChatGPT / Claude / Gemini for review"
+              style={{ padding: "5px 14px", background: copied ? "#22c55e" : "rgba(139,92,246,.15)", border: `1px solid ${copied ? "#22c55e" : "rgba(139,92,246,.4)"}`, borderRadius: 7, color: copied ? "#fff" : "#a78bfa", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit", transition: "all .2s" }}
+            >
+              {copied ? "✅ Copied!" : `📋 Copy for AI Review (${questions.length})`}
+            </button>
+          )}
+          {filterStatus === "draft" && draftCount > 0 && (
+            <button onClick={handlePublishAll} style={{ padding: "5px 14px", background: "#22c55e", border: "none", borderRadius: 7, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+              ✅ Publish All ({draftCount})
+            </button>
+          )}
+          {questions.length > 0 && filterStatus !== "archived" && (
+            <button onClick={handleArchiveAll} style={{ padding: "5px 14px", background: "rgba(107,114,128,.15)", border: "1px solid rgba(107,114,128,.4)", borderRadius: 7, color: "#9ca3af", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+              🗑 Archive All ({questions.length})
+            </button>
+          )}
+        </div>
+      </div>
+
+      {msg && <div className={msg.startsWith("❌") ? "error-box" : "info-box"} style={{ marginBottom: 10, fontSize: ".78rem" }}>{msg}</div>}
+
+      {loading && <div style={{ color: "var(--muted,#64748b)", fontSize: ".82rem", padding: 12 }}>⏳ Loading questions…</div>}
+
+      {!loading && questions.length === 0 && (
+        <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 20, textAlign: "center", color: "var(--muted,#64748b)", fontSize: ".82rem" }}>
+          No {filterStatus} questions found for {REVIEW_EXAM_OPTIONS.find(e => e.value === filterExam)?.label}.
+          {filterStatus === "draft" && " Generate some questions above."}
+        </div>
+      )}
+
+      {!loading && questions.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {questions.map(q => {
+            const isExpanded = expanded === q.id;
+            const opts = Array.isArray(q.options_json) ? q.options_json : [];
+            const validErrs = q.validation_errors;
+            const hasErrors = Array.isArray(validErrs) && validErrs.length > 0;
+            const statusColor = q.status === "published" ? "#22c55e" : q.status === "archived" ? "#6b7280" : "#f59e0b";
+            return (
+              <div key={q.id} style={{ background: "var(--panel,#1e293b)", border: `1px solid ${hasErrors ? "rgba(239,68,68,.3)" : "var(--border,#334155)"}`, borderRadius: 10, overflow: "hidden" }}>
+                {/* Header row */}
+                <div onClick={() => setExpanded(isExpanded ? null : q.id)}
+                  style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", cursor: "pointer", flexWrap: "wrap" }}>
+                  <span style={{ fontSize: ".6rem", fontWeight: 800, background: `${statusColor}22`, color: statusColor, padding: "2px 8px", borderRadius: 20, flexShrink: 0 }}>
+                    {q.status}
+                  </span>
+                  <span style={{ fontSize: ".6rem", background: "rgba(99,102,241,.1)", color: "#a5b4fc", padding: "2px 8px", borderRadius: 20, flexShrink: 0 }}>
+                    {q.subject}
+                  </span>
+                  <span style={{ fontSize: ".6rem", background: "rgba(255,255,255,.05)", color: "var(--muted,#64748b)", padding: "2px 8px", borderRadius: 20, flexShrink: 0 }}>
+                    {q.difficulty}
+                  </span>
+                  {hasErrors && <span style={{ fontSize: ".6rem", color: "#f87171", flexShrink: 0 }}>⚠️ {validErrs.length} issue{validErrs.length > 1 ? "s" : ""}</span>}
+                  <span style={{ fontSize: ".78rem", color: "#e2e8f0", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {q.question_text?.slice(0, 100)}{q.question_text?.length > 100 ? "…" : ""}
+                  </span>
+                  <span style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", flexShrink: 0 }}>{isExpanded ? "▲" : "▼"}</span>
+                </div>
+
+                {/* Expanded content */}
+                {isExpanded && (
+                  <div style={{ borderTop: "1px solid var(--border,#334155)", padding: "12px 14px" }}>
+                    {/* Full question */}
+                    <div style={{ fontSize: ".82rem", color: "#e2e8f0", marginBottom: 12, lineHeight: 1.6 }}>{q.question_text}</div>
+
+                    {/* Options */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 12 }}>
+                      {opts.map(opt => (
+                        <div key={opt.key} style={{ display: "flex", gap: 8, padding: "6px 10px", borderRadius: 6, background: opt.key === q.correct_option ? "rgba(34,197,94,.1)" : "rgba(255,255,255,.03)", border: `1px solid ${opt.key === q.correct_option ? "#22c55e" : "var(--border,#334155)"}`, fontSize: ".78rem" }}>
+                          <strong style={{ color: opt.key === q.correct_option ? "#22c55e" : "var(--muted,#64748b)", width: 16 }}>{opt.key}</strong>
+                          <span style={{ color: "#e2e8f0" }}>{opt.text}</span>
+                          {opt.key === q.correct_option && <span style={{ color: "#22c55e", marginLeft: "auto" }}>✓ Correct</span>}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Explanation */}
+                    {q.detailed_explanation && (
+                      <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 7, padding: 10, fontSize: ".75rem", color: "#cbd5e1", marginBottom: 10 }}>
+                        <strong style={{ color: "#a5b4fc", display: "block", marginBottom: 4 }}>Explanation:</strong>
+                        {q.detailed_explanation}
+                      </div>
+                    )}
+
+                    {/* Validation errors */}
+                    {hasErrors && (
+                      <div style={{ background: "rgba(239,68,68,.06)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 7, padding: 8, marginBottom: 10 }}>
+                        <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#f87171", marginBottom: 4 }}>⚠️ Validation Issues:</div>
+                        {validErrs.map((e, i) => <div key={i} style={{ fontSize: ".7rem", color: "#fca5a5" }}>• {e}</div>)}
+                      </div>
+                    )}
+
+                    {/* Metadata row */}
+                    <div style={{ display: "flex", gap: 12, marginBottom: 12, flexWrap: "wrap" }}>
+                      {q.topic && <span style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>📌 {q.topic}</span>}
+                      {q.ncert_reference && <span style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>📖 {q.ncert_reference}</span>}
+                      {q.source_type && <span style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>🤖 {q.source_type}</span>}
+                      {q.validation_score != null && (
+                        <span style={{ fontSize: ".65rem", color: q.validation_score >= 0.8 ? "#22c55e" : q.validation_score >= 0.5 ? "#f59e0b" : "#f87171" }}>
+                          Score: {(q.validation_score * 100).toFixed(0)}%
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div style={{ display: "flex", gap: 8 }}>
+                      {q.status !== "published" && (
+                        <button
+                          onClick={e => { e.stopPropagation(); handleAction(q.id, "publish"); }}
+                          disabled={!!publishing[q.id]}
+                          style={{ padding: "7px 16px", background: "#22c55e", border: "none", borderRadius: 7, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit", opacity: publishing[q.id] ? .6 : 1 }}
+                        >
+                          {publishing[q.id] === "publish" ? "⏳ Publishing…" : "✅ Publish"}
+                        </button>
+                      )}
+                      {q.status !== "archived" && (
+                        <button
+                          onClick={e => { e.stopPropagation(); handleAction(q.id, "archive"); }}
+                          disabled={!!publishing[q.id]}
+                          style={{ padding: "7px 14px", background: "rgba(107,114,128,.15)", border: "1px solid rgba(107,114,128,.3)", borderRadius: 7, color: "#9ca3af", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}
+                        >
+                          {publishing[q.id] === "archive" ? "⏳…" : "🗑 Archive"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
