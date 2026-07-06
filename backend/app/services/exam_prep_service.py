@@ -1685,9 +1685,12 @@ def run_prewarm_job(job_id: str) -> dict:
 
     # Build difficulty distribution string
     diff_parts = []
-    if easy_pct > 0: diff_parts.append(f"{easy_pct}% Easy")
-    if med_pct > 0: diff_parts.append(f"{med_pct}% Moderate")
-    if hard_pct > 0: diff_parts.append(f"{hard_pct}% Difficult")
+    if easy_pct > 0:
+        diff_parts.append(f"{easy_pct}% Easy")
+    if med_pct > 0:
+        diff_parts.append(f"{med_pct}% Moderate")
+    if hard_pct > 0:
+        diff_parts.append(f"{hard_pct}% Difficult")
     diff_distribution = ", ".join(diff_parts)
 
     system_prompt = f"""You are an expert assessment designer and senior question setter for Indian competitive examinations.
@@ -1802,8 +1805,8 @@ Return ONLY the JSON array, nothing else."""
         )
         # Replace the JSON count in the prompt too
         batch_system = system_prompt.replace(
-            f"generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
-            f"generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
+            "generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
+            "generate ORIGINAL, HIGH-QUALITY multiple-choice questions",
         )
 
         try:
