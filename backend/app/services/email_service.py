@@ -124,13 +124,19 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
         except Exception:
             pass
 
-        payload = _json.dumps({
+        reply_to = os.getenv("EMAIL_REPLY_TO", "").strip() or None
+
+        resend_payload: dict = {
             "from": f"{sender_name} <{from_addr}>",
             "to": [to],
             "subject": subject,
             "html": html,
             "text": text,
-        }).encode("utf-8")
+        }
+        if reply_to:
+            resend_payload["reply_to"] = reply_to
+
+        payload = _json.dumps(resend_payload).encode("utf-8")
 
         req = urllib.request.Request(
             "https://api.resend.com/emails",
@@ -292,8 +298,9 @@ def _email_shell(body_html: str, cta_url: str, cta_label: str) -> str:
             <td style="background:#f8fafc;padding:20px 36px;border-top:1px solid #e5e7eb">
               <p style="margin:0;font-size:12px;color:#94a3b8;text-align:center;line-height:1.6">
                 Likha Poha AI &middot; CBSE Learning Platform for Grades 5&ndash;12<br>
-                Questions? Reply to this email or visit
-                <a href="{_FRONTEND_URL}" style="color:{_BRAND_COLOR};text-decoration:none">likhapoha.in</a>
+                Questions? Email us at
+                <a href="mailto:likhapohaai@gmail.com" style="color:{_BRAND_COLOR};text-decoration:none">likhapohaai@gmail.com</a>
+                or visit <a href="{_FRONTEND_URL}" style="color:{_BRAND_COLOR};text-decoration:none">likhapoha.in</a>
               </p>
             </td>
           </tr>
