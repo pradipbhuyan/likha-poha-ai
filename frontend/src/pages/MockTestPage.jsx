@@ -299,8 +299,8 @@ function MockTestPage({ user, setActivePage }) {
               </span>
             </div>
 
-            {/* Exam format selector — shown prominently at the top */}
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>
+            {/* Exam format selector — 3 equal cards across full width */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginTop: 16 }}>
               {[
                 { fmt: FORMAT_MCQ,     icon: "🅰️", label: "MCQ Practice",     sub: "Multiple choice — Free for all",        free: true  },
                 { fmt: FORMAT_WRITTEN, icon: "✍️", label: "Written Practice",  sub: "Short & long answers — AI step-marking", free: false },
@@ -314,7 +314,7 @@ function MockTestPage({ user, setActivePage }) {
                     type="button"
                     onClick={() => { if (!locked) { setQuestionFormat(fmt); setError(""); } else { setError("✍️ Written and Mixed modes require a paid subscription."); } }}
                     style={{
-                      flex: "1 1 180px", padding: "14px 16px", borderRadius: 12, cursor: "pointer",
+                      padding: "14px 16px", borderRadius: 12, cursor: "pointer",
                       border: selected ? "2px solid #6366f1" : "1.5px solid #e5e7eb",
                       background: selected ? "rgba(99,102,241,0.07)" : "#fff",
                       textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.75 : 1,
