@@ -114,6 +114,8 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
     if not api_key or not from_addr:
         return False  # Resend not configured — fall through to SMTP
 
+    _log.info("email_service.resend_attempt", to=to, from_addr=from_addr)
+
     try:
         import urllib.request  # noqa: PLC0415
         import urllib.error as _urllib_error  # noqa: PLC0415
