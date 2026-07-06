@@ -995,7 +995,8 @@ class TestProductionSafetyGaps:
             "id", "email", "username", "role", "grade", "board",
             "parent_id", "family_id", "subscription_plan", "account_status",
             "access_cbse", "access_sof_science", "access_sof_maths", "access_sof_english",
-            "cbse_subjects", "daily_token_limit", "monthly_token_limit",
+            "cbse_subjects", "stream",  # stream = academic stream for Grade 11/12 (PCM/PCB/PCMB/Commerce/Humanities)
+            "daily_token_limit", "monthly_token_limit",
             "subscription_expires_at", "subscription_days_remaining",
             "subscription_expiring_soon", "avatar", "can_report_issues",
         }
