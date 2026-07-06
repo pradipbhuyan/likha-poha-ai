@@ -276,19 +276,63 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
                     remarkPlugins={[remarkGfm, remarkMath]}
                     rehypePlugins={[rehypeKatex]}
                     components={{
-                      code({ className, children }) {
+                      code({ className, children, node }) {
                         const language = className || "";
+                        const raw = String(children).replace(/\n$/, "");
 
                         if (/language-visual-json/.test(language)) {
-                          return (
-                            <StructuredVisualBlock
-                              raw={String(children).replace(/\n$/, "")}
-                            />
-                          );
+                          return <StructuredVisualBlock raw={raw} />;
                         }
 
                         if (/language-mermaid/.test(language)) {
                           return null;
+                        }
+
+                        // ── LLM-wrapped lesson content ────────────────────────
+                        // Some models (Ollama/Gemma) incorrectly wrap bullet-point
+                        // lesson content in ``` fences with no language tag.
+                        // Detect: no language + content has bullets/text (not code).
+                        const isLikelyLessonContent =
+                          !language &&
+                          node?.position?.start?.line !== undefined &&
+                          (raw.includes("* ") ||
+                            raw.includes("- ") ||
+                            raw.includes(". ") ||
+                            raw.split("\n").length > 1);
+
+                        if (isLikelyLessonContent) {
+                          // Ollama/Gemma wrapped lesson content in ``` fences.
+                          // Parse the raw text and render it as proper HTML.
+                          const blocks = [];
+                          let bulletBuffer = [];
+
+                          const flushBullets = () => {
+                            if (bulletBuffer.length > 0) {
+                              blocks.push(
+                                <ul key={`ul-${blocks.length}`} style={{ paddingLeft: "1.4em", margin: "0.5em 0" }}>
+                                  {bulletBuffer.map((b, j) => <li key={j} style={{ marginBottom: "0.3em" }}>{b}</li>)}
+                                </ul>
+                              );
+                              bulletBuffer = [];
+                            }
+                          };
+
+                          raw.split("\n").forEach((line, i) => {
+                            const trimmed = line.trim();
+                            if (!trimmed) {
+                              flushBullets();
+                              return;
+                            }
+                            if (trimmed.startsWith("* ") || trimmed.startsWith("- ")) {
+                              bulletBuffer.push(trimmed.slice(2));
+                            } else {
+                              flushBullets();
+                              blocks.push(<p key={`p-${i}`} style={{ margin: "0.4em 0" }}>{trimmed}</p>);
+                            }
+                          });
+                          flushBullets();
+
+                          return <div className="lesson-unwrapped-block">{blocks}</div>;
                         }
 
                         return <code className={className}>{children}</code>;
