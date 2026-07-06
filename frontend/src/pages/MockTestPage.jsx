@@ -292,15 +292,13 @@ function MockTestPage({ user, setActivePage }) {
       {phase === PHASE_SETUP && (
         <>
           <section className="premium-section premium-mock-hero">
-            {/* Compact context bar — removes redundant page title duplication */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
-              <span style={{ fontSize: "0.82rem", color: "var(--muted)", fontStyle: "italic" }}>
-                🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
-              </span>
-            </div>
+            {/* Tagline — shown above format cards */}
+            <p style={{ fontSize: "0.85rem", color: "var(--muted)", fontStyle: "italic", margin: "0 0 18px" }}>
+              🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
+            </p>
 
             {/* Exam format selector — 3 equal cards across full width */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginTop: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
               {[
                 { fmt: FORMAT_MCQ,     icon: "🅰️", label: "MCQ Practice",     sub: "Multiple choice — Free for all",        free: true  },
                 { fmt: FORMAT_WRITTEN, icon: "✍️", label: "Written Practice",  sub: "Short & long answers — AI step-marking", free: false },
@@ -314,18 +312,18 @@ function MockTestPage({ user, setActivePage }) {
                     type="button"
                     onClick={() => { if (!locked) { setQuestionFormat(fmt); setError(""); } else { setError("✍️ Written and Mixed modes require a paid subscription."); } }}
                     style={{
-                      padding: "14px 16px", borderRadius: 12, cursor: "pointer",
-                      border: selected ? "2px solid #6366f1" : "1.5px solid #e5e7eb",
-                      background: selected ? "rgba(99,102,241,0.07)" : "#fff",
-                      textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.75 : 1,
+                      padding: "22px 20px", borderRadius: 14, cursor: "pointer",
+                      border: selected ? "2px solid #6366f1" : "1.5px solid rgba(255,255,255,0.12)",
+                      background: selected ? "rgba(99,102,241,0.12)" : "rgba(255,255,255,0.05)",
+                      textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.72 : 1,
                       transition: "all 0.15s",
                     }}
                   >
-                    <div style={{ fontSize: "1.3rem" }}>{icon} {locked && "🔒"}</div>
-                    <div style={{ fontWeight: 700, marginTop: 4, color: selected ? "#4f46e5" : "#111" }}>{label}</div>
-                    <div style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: 2 }}>{sub}</div>
-                    {!free && !locked && <div style={{ fontSize: "0.7rem", color: "#16a34a", marginTop: 2, fontWeight: 600 }}>✓ Premium unlocked</div>}
-                    {locked && <div style={{ fontSize: "0.7rem", color: "#9333ea", marginTop: 2, fontWeight: 600 }}>Upgrade to unlock →</div>}
+                    <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>{icon}{locked ? " 🔒" : ""}</div>
+                    <div style={{ fontWeight: 700, fontSize: "1rem", color: selected ? "#a5b4fc" : "var(--text, #e5e7eb)" }}>{label}</div>
+                    <div style={{ fontSize: "0.8rem", color: "var(--muted, #9ca3af)", marginTop: 4, lineHeight: 1.4 }}>{sub}</div>
+                    {!free && !locked && <div style={{ fontSize: "0.76rem", color: "#4ade80", marginTop: 6, fontWeight: 600 }}>✓ Premium unlocked</div>}
+                    {locked && <div style={{ fontSize: "0.76rem", color: "#c084fc", marginTop: 6, fontWeight: 600 }}>Upgrade to unlock →</div>}
                   </button>
                 );
               })}
