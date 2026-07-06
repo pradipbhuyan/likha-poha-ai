@@ -187,10 +187,22 @@ def _send(to: str, subject: str, html: str, text: str) -> bool:
     Returns True on success, False on failure (never raises).
     """
     # Primary: Resend HTTPS API (if configured — works on Railway/cloud)
-    if _send_via_resend(to, subject, html, text):
-        return True
+    resend_key = os.getenv("RESEND_API_KEY", "").strip()
+    resend_from = os.getenv("EMAIL_FROM_ADDRESS", "").strip()
+    resend_configured = bool(resend_key and resend_from)
 
-    # Fallback: SMTP (for local dev / non-Railway environments)
+    if resend_configured:
+        result = _send_via_resend(to, subject, html, text)
+        if result:
+            return True
+        # Resend is configured but failed — do NOT fall through to SMTP
+        # (SMTP is blocked on Railway/cloud servers anyway)
+        _log.warning("email_service.resend_failed_no_smtp_fallback",
+                     to=to, from_addr=resend_from,
+                     hint="Check RESEND_API_KEY and EMAIL_FROM_ADDRESS in Railway env vars")
+        return False
+
+    # Fallback: SMTP (only when Resend is NOT configured — local dev only)
     cfg = _get_smtp_config()
     if not cfg:
         _log.debug("email_service.not_configured", to=to)
