@@ -5920,14 +5920,11 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
   }
   
   .premium-mock-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 360px;
-    gap: 24px;
-    align-items: center;
+    display: block;
     background:
-      radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 30%),
-      radial-gradient(circle at top right, rgba(147, 51, 234, 0.16), transparent 30%),
-      linear-gradient(135deg, #ffffff, #f8fbff 58%, #eef4ff) !important;
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 40%),
+      radial-gradient(circle at top right, rgba(147, 51, 234, 0.08), transparent 40%),
+      linear-gradient(135deg, #1e1b4b 0%, #1a1035 100%) !important;
   }
   
   .premium-mock-hero h2 {
