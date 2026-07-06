@@ -313,17 +313,18 @@ function MockTestPage({ user, setActivePage }) {
                     onClick={() => { if (!locked) { setQuestionFormat(fmt); setError(""); } else { setError("✍️ Written and Mixed modes require a paid subscription."); } }}
                     style={{
                       padding: "22px 20px", borderRadius: 14, cursor: "pointer",
-                      border: selected ? "2px solid #6366f1" : "1.5px solid rgba(255,255,255,0.12)",
-                      background: selected ? "rgba(99,102,241,0.12)" : "rgba(255,255,255,0.05)",
+                      border: selected ? "2px solid #6366f1" : "1.5px solid var(--border, #e5e7eb)",
+                      background: selected ? "rgba(99,102,241,0.08)" : "var(--surface, #ffffff)",
                       textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.72 : 1,
                       transition: "all 0.15s",
+                      boxShadow: selected ? "0 0 0 3px rgba(99,102,241,0.15)" : "0 1px 4px rgba(0,0,0,0.06)",
                     }}
                   >
                     <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>{icon}{locked ? " 🔒" : ""}</div>
-                    <div style={{ fontWeight: 700, fontSize: "1rem", color: selected ? "#a5b4fc" : "var(--text, #e5e7eb)" }}>{label}</div>
-                    <div style={{ fontSize: "0.8rem", color: "var(--muted, #9ca3af)", marginTop: 4, lineHeight: 1.4 }}>{sub}</div>
-                    {!free && !locked && <div style={{ fontSize: "0.76rem", color: "#4ade80", marginTop: 6, fontWeight: 600 }}>✓ Premium unlocked</div>}
-                    {locked && <div style={{ fontSize: "0.76rem", color: "#c084fc", marginTop: 6, fontWeight: 600 }}>Upgrade to unlock →</div>}
+                    <div style={{ fontWeight: 700, fontSize: "1rem", color: selected ? "#4f46e5" : "var(--text, #1e293b)" }}>{label}</div>
+                    <div style={{ fontSize: "0.8rem", color: "var(--muted, #64748b)", marginTop: 4, lineHeight: 1.4 }}>{sub}</div>
+                    {!free && !locked && <div style={{ fontSize: "0.76rem", color: "#16a34a", marginTop: 6, fontWeight: 600 }}>✓ Premium unlocked</div>}
+                    {locked && <div style={{ fontSize: "0.76rem", color: "#9333ea", marginTop: 6, fontWeight: 600 }}>Upgrade to unlock →</div>}
                   </button>
                 );
               })}
