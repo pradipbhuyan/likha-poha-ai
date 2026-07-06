@@ -31,6 +31,7 @@ _log = get_logger("email_service")
 
 _BRAND_COLOR = "#6366f1"
 _FRONTEND_URL = os.getenv("FRONTEND_URL", "https://likhapoha.in")
+_LOGO_URL = f"{os.getenv('FRONTEND_URL', 'https://likhapoha.in')}/favicon.png"
 
 
 # ── SMTP helpers ──────────────────────────────────────────────────────────────
@@ -263,15 +264,18 @@ def _email_shell(body_html: str, cta_url: str, cta_label: str) -> str:
                style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;
                       box-shadow:0 4px 24px rgba(99,102,241,0.10);overflow:hidden">
 
-          <!-- Header -->
+          <!-- Header with logo -->
           <tr>
             <td align="center"
                 style="background:linear-gradient(135deg,#4f46e5,#7c3aed);
-                       padding:28px 32px 24px">
+                       padding:24px 32px 22px">
+              <img src="{_LOGO_URL}" alt="Likha Poha AI" width="52" height="52"
+                   style="display:block;margin:0 auto 10px;border-radius:12px;
+                          border:2px solid rgba(255,255,255,0.28)" />
               <p style="margin:0;font-size:22px;font-weight:900;color:#ffffff;
-                        letter-spacing:-0.02em">&#10022; Likha Poha AI</p>
-              <p style="margin:6px 0 0;font-size:13px;color:#c4b5fd;font-weight:600">
-                Your Personal CBSE AI Tutor
+                        letter-spacing:-0.02em">Likha Poha AI</p>
+              <p style="margin:5px 0 0;font-size:13px;color:#c4b5fd;font-weight:500">
+                India's AI-Powered CBSE Tutor &middot; Grades 5&ndash;12
               </p>
             </td>
           </tr>
@@ -316,19 +320,42 @@ def _email_shell(body_html: str, cta_url: str, cta_label: str) -> str:
 # ── Feature blocks ────────────────────────────────────────────────────────────
 
 _FEATURES_STUDENT = [
-    ("📖", "AI Lessons",          "5-step NCERT-grounded lessons for every chapter, narrated aloud with audio playback."),
-    ("🧪", "Mock Tests",           "Chapter-wise MCQ tests with AI-generated explanations for every answer."),
-    ("❓", "Ask Doubts",           "Instant AI answers to any CBSE doubt — any subject, chapter, or topic."),
-    ("📐", "Formula Sheets",       "Chapter-wise formulas for Maths & Science with worked examples and memory tips."),
-    ("🔬", "Exemplar Research",    "NCERT Exemplar practice with instant AI explanations — essential for 90%+ scores."),
-    ("📊", "Progress & Analytics", "Track scores, weak topics, and AI usage to focus your study time effectively."),
+    ("📖", "AI Lessons — 5 Steps Per Chapter",
+     "Concept → Examples → Practice → Summary → Quiz. Every NCERT chapter in 5 guided steps "
+     "with audio narration. Go to <strong>Lessons</strong> to start."),
+    ("🧪", "Chapter-Wise Mock Tests",
+     "MCQ tests for any chapter with AI explanations for every answer — ideal for board exam prep. "
+     "Try <strong>Mock Tests</strong> after each lesson."),
+    ("❓", "Ask Doubts Instantly",
+     "Type any question and get a clear AI answer in seconds — Maths, Science, English, "
+     "Social Science, and more. Use the <strong>Ask Doubt</strong> tab anytime."),
+    ("📐", "Formula Sheets",
+     "Chapter-wise formulas for Maths & Science with worked examples, memory tips, "
+     "and practice MCQs. Find them under <strong>Resources</strong>."),
+    ("&#128270;", "NCERT Exemplar Research",
+     "Hard problems from NCERT Exemplar with instant AI explanations â "
+     "essential for scoring 90%+ in board exams."),
+    ("📊", "Progress & Analytics",
+     "Track lessons completed, mock test scores, weak topics, and AI usage — "
+     "all in your <strong>Analytics</strong> dashboard."),
 ]
 
 _FEATURES_PARENT = [
-    ("👧", "Child Dashboard",          "All children's lesson progress, mock test scores, and AI usage in one view."),
-    ("🔔", "Notifications",            "Alerts when your child hasn't logged in, scores drop, or chapters are completed."),
-    ("📈", "Academic Insights",        "Weekly trends, weak subject detection, and recommended next actions."),
-    ("💳", "Subscription Management",  "Upgrade or manage plans for one or two children at any time via UPI or card."),
+    ("👁", "Child Progress Dashboard",
+     "See every lesson your child has studied, mock test scores by chapter, "
+     "and daily AI usage — all in one view on your <strong>Parent Dashboard</strong>."),
+    ("📈", "Academic Insights",
+     "Weekly trends, weak subject detection, and AI-generated insights "
+     "so you always know where your child needs help."),
+    ("🔔", "Activity Alerts",
+     "Get notified when your child hasn't logged in, completes a chapter, "
+     "or scores below expectations on a mock test."),
+    ("➕", "Add Child & Share Access",
+     "Log in &rarr; click <strong>Add Child</strong> to create your child's student account. "
+     "Share the login link so they can start learning immediately."),
+    ("💳", "Manage Subscription",
+     "Upgrade to <strong>Family Premium</strong> for unlimited access for up to 2 children — "
+     "NCERT Exemplar, full mock tests, and no daily caps."),
 ]
 
 
@@ -405,15 +432,22 @@ def send_welcome_email(
         intro = (
             "<p style=\"margin:0 0 12px;font-size:15px;line-height:1.7\">"
             "Welcome to <strong>Likha Poha AI</strong> — India's AI-powered CBSE tutor. "
-            "Your Parent Dashboard lets you monitor your child's daily learning, "
-            "track mock test scores, and get alerts when they need help.</p>"
+            "As a parent, you get a dedicated dashboard to monitor your child's lessons, "
+            "mock test scores, and AI usage in real time.</p>"
             "<p style=\"margin:0 0 6px;font-size:14px;color:#64748b\">"
-            "Here's what's waiting for you:</p>"
+            "Here's what you can see and do on your Parent Dashboard:</p>"
         )
         next_step = (
-            "<p style=\"margin:20px 0 0;font-size:14px;color:#475569;line-height:1.7\">"
-            "<strong>Get started:</strong> Log in &rarr; click <em>Add Child</em> on your "
-            "Parent Dashboard &rarr; share the login link with your child so they can begin learning.</p>"
+            "<div style=\"background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;"
+            "padding:16px 18px;margin-top:16px\">"
+            "<p style=\"margin:0 0 8px;font-size:14px;font-weight:700;color:#1e40af\">"
+            "&#128075; First Step: Create Your Child's Account</p>"
+            "<p style=\"margin:0;font-size:13px;color:#1e3a8a;line-height:1.7\">"
+            "Log in &rarr; go to your <strong>Parent Dashboard</strong> &rarr; "
+            "click <strong>Add Child</strong> &rarr; fill in your child's name and grade. "
+            "A student account will be created instantly. Share the login details with your child "
+            "so they can start their first AI lesson today.</p>"
+            "</div>"
         )
     else:
         intro = (
