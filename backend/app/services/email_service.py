@@ -31,7 +31,8 @@ _log = get_logger("email_service")
 
 _BRAND_COLOR = "#6366f1"
 _FRONTEND_URL = os.getenv("FRONTEND_URL", "https://likhapoha.in")
-_LOGO_URL = f"{os.getenv('FRONTEND_URL', 'https://likhapoha.in')}/favicon.png"
+# Logo always uses the production domain — never localhost — so it renders in email clients
+_LOGO_URL = "https://likhapoha.in/favicon.png"
 
 
 # ── SMTP helpers ──────────────────────────────────────────────────────────────
