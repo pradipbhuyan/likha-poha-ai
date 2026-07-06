@@ -114,6 +114,7 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
 
     try:
         import urllib.request  # noqa: PLC0415
+        import urllib.error as _urllib_error  # noqa: PLC0415
         import json as _json  # noqa: PLC0415
 
         # Inject system trust store so macOS certificates work with urllib
@@ -141,13 +142,28 @@ def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
             },
             method="POST",
         )
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            body = _json.loads(resp.read())
-            if resp.status == 200 or resp.status == 201 or body.get("id"):
-                _log.info("email_service.sent_via_resend", to=to, subject=subject)
-                return True
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                body = _json.loads(resp.read())
+                if resp.status in (200, 201) or body.get("id"):
+                    _log.info("email_service.sent_via_resend", to=to, subject=subject)
+                    return True
+                _log.warning(
+                    "email_service.resend_unexpected_response",
+                    to=to, status=resp.status, body=str(body)[:300],
+                )
+        except _urllib_error.HTTPError as http_err:
+            err_body = ""
+            try:
+                err_body = http_err.read().decode("utf-8", errors="replace")[:400]
+            except Exception:
+                pass
+            _log.warning(
+                "email_service.resend_http_error",
+                to=to, status=http_err.code, body=err_body,
+            )
     except Exception as exc:
-        _log.warning("email_service.resend_failed", to=to, error=str(exc)[:200])
+        _log.warning("email_service.resend_failed", to=to, error=str(exc)[:300])
 
     return False
 
