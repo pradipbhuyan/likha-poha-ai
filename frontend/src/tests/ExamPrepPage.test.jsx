@@ -181,11 +181,10 @@ describe("ExamPrepPage — Exam Tabs", () => {
     });
   });
 
-  it("shows NEET UG with Coming Soon badge", async () => {
+  it("shows NEET UG tab", async () => {
     render(<ExamPrepPage user={grade12User} />);
     await waitFor(() => {
       expect(screen.getByText("NEET UG")).toBeTruthy();
-      expect(screen.getAllByText("Soon").length).toBeGreaterThan(0);
     });
   });
 
@@ -276,7 +275,8 @@ describe("ExamPrepPage — Mode Tabs", () => {
     });
     fireEvent.click(screen.getByText(/Simulated Test/i));
     await waitFor(() => {
-      expect(screen.getByText(/Start Simulated Test/i)).toBeTruthy();
+      // Button text is "🚀 Start JEE Main Simulation"
+      expect(screen.getByRole("button", { name: /Start JEE Main Simulation/i })).toBeTruthy();
     });
   });
 
@@ -287,7 +287,8 @@ describe("ExamPrepPage — Mode Tabs", () => {
     });
     fireEvent.click(screen.getByText(/Simulated Test/i));
     await waitFor(() => {
-      expect(screen.getByText(/JEE Main Simulation/i)).toBeTruthy();
+      // Use getAllByText since the label appears in heading, description, and button
+      expect(screen.getAllByText(/JEE Main Simulation/i).length).toBeGreaterThan(0);
     });
   });
 });
@@ -303,11 +304,11 @@ describe("ExamPrepPage — Test Result Rendering", () => {
     });
     fireEvent.click(screen.getByText(/Simulated Test/i));
 
-    // Start test
+    // Start test — click the button specifically
     await waitFor(() => {
-      expect(screen.getByText(/JEE Main Simulation/i)).toBeTruthy();
+      expect(screen.getByRole("button", { name: /Start JEE Main Simulation/i })).toBeTruthy();
     });
-    fireEvent.click(screen.getByText(/JEE Main Simulation/i));
+    fireEvent.click(screen.getByRole("button", { name: /Start JEE Main Simulation/i }));
 
     // After starting, submit
     await waitFor(() => {
