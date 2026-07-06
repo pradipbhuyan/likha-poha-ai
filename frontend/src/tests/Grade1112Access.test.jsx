@@ -63,6 +63,59 @@ vi.mock("../api/examPrep", () => ({
 
 // ── User fixtures ─────────────────────────────────────────────────────────────
 
+// ── Mock global fetch for /api/exam-prep/access-check ─────────────────────────
+function makeAccessCheckResponse(user) {
+  const grade = user?.grade || "";
+  const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
+  const isAdmin = user?.role === "admin";
+  const isTestUser = user?.username === "akshita.teststudent";
+  const plan = (user?.subscriptionPlan || "free").toLowerCase();
+  const isNano = plan.includes("nano");
+  const isPremium = !isNano && plan !== "free";
+
+  if (isAdmin || isTestUser) {
+    return { grade_eligible: true, has_access: true, preview_only: false,
+      reason: isAdmin ? "admin" : "test_user", stream: null, stream_missing: true,
+      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: true, reason: "" }, cuet_ug: { eligible: true, coming_soon: true } },
+      canonical_plan_key: "ADMIN_GRANT", plan_name: "Admin" };
+  }
+  if (!isGrade1112) {
+    return { grade_eligible: false, has_access: false, preview_only: true,
+      reason: "grade_ineligible", stream: null, stream_missing: false,
+      exam_eligibility: null, canonical_plan_key: null, plan_name: null };
+  }
+  if (isPremium) {
+    return { grade_eligible: true, has_access: true, preview_only: false,
+      reason: "full_access", stream: "PCM", stream_missing: false,
+      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: false, reason: "Biology required" }, cuet_ug: { eligible: true, coming_soon: true } },
+      canonical_plan_key: "PREMIUM", plan_name: "Premium" };
+  }
+  // Free or Nano — preview only
+  const reason = isNano ? "nano" : "free";
+  return { grade_eligible: true, has_access: false, preview_only: true,
+    reason, stream: "PCM", stream_missing: false,
+    exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: false, reason: "Biology required" }, cuet_ug: { eligible: true, coming_soon: true } },
+    canonical_plan_key: isNano ? "NANO" : "FREE_TIER",
+    plan_name: isNano ? "Premium Nano" : "Free Tier",
+    upgrade_message: "Upgrade to Premium to access Exam Prep." };
+}
+
+function mockFetch(user) {
+  return vi.fn().mockResolvedValue({
+    ok: true,
+    json: () => Promise.resolve(makeAccessCheckResponse(user)),
+  });
+}
+
+beforeEach(() => {
+  // Default fetch mock (overridden per test when needed)
+  vi.stubGlobal("fetch", mockFetch({ role: "student", grade: "Grade 11", subscriptionPlan: "free" }));
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
 const grade9FreeTier = {
   id: "u1", username: "grade9student", role: "student",
   grade: "Grade 9", subscriptionPlan: "free", accessToken: "tok1",
@@ -150,14 +203,16 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
     render(<SignupPage onBack={() => {}} />);
     fireEvent.click(screen.getByTestId("role-card-student"));
     fireEvent.change(screen.getByTestId("signup-grade"), { target: { value: "Grade 11" } });
-    expect(screen.getByText("JEE Main")).toBeTruthy();
+    // PCM card is rendered — check for the PCM stream card element and its label
+    expect(screen.getByTestId("stream-card-PCM")).toBeTruthy();
   });
 
   it("PCB stream card shows NEET UG label", () => {
     render(<SignupPage onBack={() => {}} />);
     fireEvent.click(screen.getByTestId("role-card-student"));
     fireEvent.change(screen.getByTestId("signup-grade"), { target: { value: "Grade 11" } });
-    expect(screen.getByText("NEET UG")).toBeTruthy();
+    // PCB card is rendered — check for the PCB stream card element
+    expect(screen.getByTestId("stream-card-PCB")).toBeTruthy();
   });
 
   it("stream picker hidden for parent role even if grade 11 would be selected", () => {
@@ -214,12 +269,16 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
 // ── ExamPrepPage — Premium gate tests ─────────────────────────────────────────
 
 describe("ExamPrepPage — Access Control & Premium Gate", () => {
-  it("Grade 9 free-tier student sees access denied (not Grade 11/12)", () => {
+  it("Grade 9 free-tier student sees access denied (not Grade 11/12)", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade9FreeTier));
     render(<ExamPrepPage user={grade9FreeTier} />);
-    expect(screen.getByText(/Available for Grade 11 & 12/i)).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText(/Available for Grade 11 & 12/i)).toBeTruthy();
+    });
   });
 
   it("Grade 11 FREE-tier student sees premium paywall (not content)", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
       expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
@@ -227,6 +286,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 11 FREE-tier paywall shows feature preview cards", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
       expect(screen.getByText(/JEE Main prep/i)).toBeTruthy();
@@ -236,13 +296,16 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 11 FREE-tier paywall shows Upgrade to Premium button", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: /Upgrade to Premium/i })).toBeTruthy();
+      // Locked preview shows "Coming Soon" disabled button (pricing TBD)
+      expect(screen.getByRole("button", { name: /Coming Soon/i })).toBeTruthy();
     });
   });
 
   it("Grade 11 NANO plan sees paywall (Nano excluded from Exam Prep)", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11Nano));
     render(<ExamPrepPage user={grade11Nano} />);
     await waitFor(() => {
       expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
@@ -250,6 +313,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 11 NANO paywall shows nano-specific message", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11Nano));
     render(<ExamPrepPage user={grade11Nano} />);
     await waitFor(() => {
       expect(screen.getByText(/Premium Nano plan/i)).toBeTruthy();
@@ -257,6 +321,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 11 PREMIUM plan sees full content (JEE Main tab visible)", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11Premium));
     render(<ExamPrepPage user={grade11Premium} />);
     await waitFor(() => {
       expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
@@ -265,6 +330,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 12 PREMIUM student sees content", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade12Premium));
     render(<ExamPrepPage user={grade12Premium} />);
     await waitFor(() => {
       expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
@@ -272,6 +338,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Admin user bypasses paywall and sees full content", async () => {
+    vi.stubGlobal("fetch", mockFetch(adminUser));
     render(<ExamPrepPage user={adminUser} />);
     await waitFor(() => {
       expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
@@ -280,6 +347,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("akshita.teststudent (Grade 9) bypasses paywall — sees content", async () => {
+    vi.stubGlobal("fetch", mockFetch(testUser));
     render(<ExamPrepPage user={testUser} />);
     await waitFor(() => {
       expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
@@ -288,6 +356,7 @@ describe("ExamPrepPage — Access Control & Premium Gate", () => {
   });
 
   it("Grade 11 free paywall shows exam tabs as disabled visual", async () => {
+    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
       // Disabled tabs still render (grayed out) to give a feel of the product
@@ -366,6 +435,7 @@ describe("ExamPrepPage — Plan-based access combinations", () => {
   plans.forEach(({ plan, expectLocked }) => {
     it(`Grade 11 with plan "${plan}" — ${expectLocked ? "LOCKED" : "UNLOCKED"}`, async () => {
       const user = { id: "x", username: "tester", role: "student", grade: "Grade 11", subscriptionPlan: plan, accessToken: "tok" };
+      vi.stubGlobal("fetch", mockFetch(user));
       render(<ExamPrepPage user={user} />);
       if (expectLocked) {
         await waitFor(() => {

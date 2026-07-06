@@ -100,6 +100,49 @@ vi.mock("../api/examPrep", () => ({
   }),
 }));
 
+// ── Mock global fetch for /api/exam-prep/access-check ─────────────────────────
+// ExamPrepPage calls this endpoint on mount to determine access state.
+// Each user's mock response is keyed by grade and role.
+
+function mockAccessCheck(user, overrides = {}) {
+  const isGrade1112 = user?.grade === "Grade 11" || user?.grade === "Grade 12";
+  const isTestUser = user?.username === "akshita.teststudent";
+  const isAdmin = user?.role === "admin";
+
+  let response;
+  if (isAdmin || isTestUser) {
+    response = { grade_eligible: true, has_access: true, preview_only: false,
+      reason: isAdmin ? "admin" : "test_user", stream: user?.stream || null,
+      stream_missing: !user?.stream,
+      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: true, reason: "" }, cuet_ug: { eligible: true, coming_soon: true, reason: "CUET UG coming soon." } },
+      canonical_plan_key: "ADMIN_GRANT", plan_name: "Admin" };
+  } else if (!isGrade1112) {
+    response = { grade_eligible: false, has_access: false, preview_only: true,
+      reason: "grade_ineligible", stream: null, stream_missing: false,
+      exam_eligibility: null, canonical_plan_key: null, plan_name: null };
+  } else {
+    response = { grade_eligible: true, has_access: true, preview_only: false,
+      reason: "full_access", stream: user?.stream || "PCM", stream_missing: !user?.stream,
+      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: false, reason: "Biology required" }, cuet_ug: { eligible: true, coming_soon: true, reason: "Soon" } },
+      canonical_plan_key: "PREMIUM", plan_name: "Premium" };
+  }
+
+  const merged = { ...response, ...overrides };
+  return vi.fn().mockResolvedValue({
+    ok: true,
+    json: () => Promise.resolve(merged),
+  });
+}
+
+// Default: grade12User has full access (premium mock)
+beforeEach(() => {
+  vi.stubGlobal("fetch", mockAccessCheck(grade12User));
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
 // ── User fixtures ─────────────────────────────────────────────────────────────
 
 const grade12User = {
@@ -137,18 +180,25 @@ const adminUser = {
 // ── Access control tests ──────────────────────────────────────────────────────
 
 describe("ExamPrepPage — Access Control", () => {
-  it("shows access denied for Grade 10 students", () => {
+  it("shows access denied for Grade 10 students", async () => {
+    vi.stubGlobal("fetch", mockAccessCheck(grade10User));
     render(<ExamPrepPage user={grade10User} />);
-    expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
+    });
   });
 
-  it("shows access denied for Grade 5 students", () => {
+  it("shows access denied for Grade 5 students", async () => {
     const grade5User = { ...grade12User, grade: "Grade 5", username: "grade5student" };
+    vi.stubGlobal("fetch", mockAccessCheck(grade5User));
     render(<ExamPrepPage user={grade5User} />);
-    expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
+    });
   });
 
   it("renders for akshita.teststudent (Grade 9 test user)", async () => {
+    vi.stubGlobal("fetch", mockAccessCheck(testUser));
     render(<ExamPrepPage user={testUser} />);
     await waitFor(() => {
       expect(screen.getByText(/Test Access/i)).toBeTruthy();
@@ -164,6 +214,7 @@ describe("ExamPrepPage — Access Control", () => {
   });
 
   it("renders for admin user", async () => {
+    vi.stubGlobal("fetch", mockAccessCheck(adminUser));
     render(<ExamPrepPage user={adminUser} />);
     await waitFor(() => {
       expect(screen.getByText("JEE Main")).toBeTruthy();
