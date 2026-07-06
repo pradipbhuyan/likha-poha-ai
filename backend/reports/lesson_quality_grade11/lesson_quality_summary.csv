@@ -1,0 +1,190 @@
+grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
+Grade 11,Accountancy,Bank Reconciliation Statement,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.118285+00:00
+Grade 11,Accountancy,Bill of Exchange,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.119129+00:00
+Grade 11,Accountancy,"Depreciation, Provisions and Reserves",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.120303+00:00
+Grade 11,Accountancy,Financial Statements – I,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.121336+00:00
+Grade 11,Accountancy,Introduction to Accounting,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.122524+00:00
+Grade 11,Accountancy,Recording of Transactions – I,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.123488+00:00
+Grade 11,Accountancy,Recording of Transactions – II,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.124519+00:00
+Grade 11,Accountancy,Theory Base of Accounting,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.125279+00:00
+Grade 11,Accountancy,Trial Balance and Rectification of Errors,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.126296+00:00
+Grade 11,Biology,Anatomy of Flowering Plants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.127106+00:00
+Grade 11,Biology,Animal Kingdom,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.128287+00:00
+Grade 11,Biology,Biological Classification,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.129389+00:00
+Grade 11,Biology,Biomolecules,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.130208+00:00
+Grade 11,Biology,Body Fluids and Circulation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.131243+00:00
+Grade 11,Biology,Breathing and Exchange of Gases,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.132163+00:00
+Grade 11,Biology,Cell Cycle and Cell Division,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.132998+00:00
+Grade 11,Biology,Cell: The Unit of Life,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.133996+00:00
+Grade 11,Biology,Digestion and Absorption,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.134888+00:00
+Grade 11,Biology,Excretory Products and Their Elimination,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.135765+00:00
+Grade 11,Biology,Exemplar: Anatomy of Flowering Plants,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.136502+00:00
+Grade 11,Biology,Exemplar: Animal Kingdom,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.137433+00:00
+Grade 11,Biology,Exemplar: Biological Classification,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.138197+00:00
+Grade 11,Biology,Exemplar: Biomolecules,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.138979+00:00
+Grade 11,Biology,Exemplar: Body Fluids and Circulation,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.139564+00:00
+Grade 11,Biology,Exemplar: Breathing and Exchange of Gases,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.140552+00:00
+Grade 11,Biology,Exemplar: Cell Cycle and Cell Division,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.141299+00:00
+Grade 11,Biology,Exemplar: Cell: The Unit of Life,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.141859+00:00
+Grade 11,Biology,Exemplar: Chemical Coordination and Integration,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.142507+00:00
+Grade 11,Biology,Exemplar: Digestion and Absorption,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.143395+00:00
+Grade 11,Biology,Exemplar: Excretory Products and Their Elimination,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.144146+00:00
+Grade 11,Biology,Exemplar: Locomotion and Movement,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.145117+00:00
+Grade 11,Biology,Exemplar: Mineral Nutrition,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.145973+00:00
+Grade 11,Biology,Exemplar: Morphology of Flowering Plants,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.146793+00:00
+Grade 11,Biology,Exemplar: Neural Control and Coordination,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.147603+00:00
+Grade 11,Biology,Exemplar: Photosynthesis in Higher Plants,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.148480+00:00
+Grade 11,Biology,Exemplar: Plant Growth and Development,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.149323+00:00
+Grade 11,Biology,Exemplar: Plant Kingdom,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.150467+00:00
+Grade 11,Biology,Exemplar: Respiration in Plants,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.151641+00:00
+Grade 11,Biology,Exemplar: Structural Organisation in Animals,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.152203+00:00
+Grade 11,Biology,Exemplar: The Living World,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.152935+00:00
+Grade 11,Biology,Exemplar: Transport in Plants,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.153850+00:00
+Grade 11,Biology,Mineral Nutrition,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.154763+00:00
+Grade 11,Biology,Morphology of Flowering Plants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.155593+00:00
+Grade 11,Biology,Photosynthesis in Higher Plants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.156598+00:00
+Grade 11,Biology,Plant Growth and Development,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.157659+00:00
+Grade 11,Biology,Plant Kingdom,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.158665+00:00
+Grade 11,Biology,Respiration in Plants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.159600+00:00
+Grade 11,Biology,Structural Organisation in Animals,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.160731+00:00
+Grade 11,Biology,The Living World,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.161716+00:00
+Grade 11,Biology,Transport in Plants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.162667+00:00
+Grade 11,Business Studies,Business Services,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.163037+00:00
+Grade 11,Business Studies,"Business, Trade and Commerce",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.163854+00:00
+Grade 11,Business Studies,Emerging Modes of Business,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.164815+00:00
+Grade 11,Business Studies,Formation of a Company,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.165888+00:00
+Grade 11,Business Studies,Forms of Business Organisation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.166749+00:00
+Grade 11,Business Studies,Internal Trade,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.167579+00:00
+Grade 11,Business Studies,"Private, Public and Global Enterprises",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.168576+00:00
+Grade 11,Business Studies,Small Business,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.169475+00:00
+Grade 11,Business Studies,Social Responsibilities of Business and Business Ethics,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.170416+00:00
+Grade 11,Business Studies,Sources of Business Finance,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.171079+00:00
+Grade 11,Chemistry,Chemical Bonding and Molecular Structure,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.172039+00:00
+Grade 11,Chemistry,Classification of Elements and Periodicity in Properties,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.173132+00:00
+Grade 11,Chemistry,Equilibrium,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.174136+00:00
+Grade 11,Chemistry,Hydrogen,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.174966+00:00
+Grade 11,Chemistry,Redox Reactions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.175762+00:00
+Grade 11,Chemistry,Some Basic Concepts of Chemistry,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.176537+00:00
+Grade 11,Chemistry,States of Matter,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.177714+00:00
+Grade 11,Chemistry,Structure of Atom,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.178502+00:00
+Grade 11,Chemistry,Thermodynamics,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.179448+00:00
+Grade 11,Economics,Collection of Data,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.180359+00:00
+Grade 11,Economics,Correlation,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.181220+00:00
+Grade 11,Economics,"Employment: Growth, Informalisation and Other Issues",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.182258+00:00
+Grade 11,Economics,Human Capital Formation in India,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.182998+00:00
+Grade 11,Economics,Index Numbers,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.183709+00:00
+Grade 11,Economics,Indian Economy 1950–1990,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.184886+00:00
+Grade 11,Economics,Indian Economy on the Eve of Independence,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.186242+00:00
+Grade 11,Economics,Infrastructure,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.186929+00:00
+Grade 11,Economics,Introduction to Statistics,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.187525+00:00
+Grade 11,Economics,"Liberalisation, Privatisation and Globalisation",5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.188668+00:00
+Grade 11,Economics,Measures of Central Tendency,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.189563+00:00
+Grade 11,Economics,Measures of Dispersion,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.190375+00:00
+Grade 11,Economics,Organisation of Data,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.191281+00:00
+Grade 11,Economics,Poverty,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.192017+00:00
+Grade 11,Economics,Presentation of Data,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.192755+00:00
+Grade 11,Economics,Rural Development,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.193805+00:00
+Grade 11,English,Discovering Tut: the Saga Continues,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.194512+00:00
+Grade 11,English,Landscape of the Soul,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.195429+00:00
+Grade 11,English,The Ailing Planet: The Green Movement's Role,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.196148+00:00
+Grade 11,English,The Portrait of a Lady,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.196879+00:00
+Grade 11,English,We're Not Afraid to Die,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.197404+00:00
+Grade 11,Geography,Climate,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.198302+00:00
+Grade 11,Geography,Distribution of Oceans and Continents,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.199250+00:00
+Grade 11,Geography,Drainage System,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.200097+00:00
+Grade 11,Geography,Geography as a Discipline,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.200833+00:00
+Grade 11,Geography,Geomorphic Processes,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.201586+00:00
+Grade 11,Geography,Human Settlements,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.202502+00:00
+Grade 11,Geography,India — Location,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.203518+00:00
+Grade 11,Geography,Interior of the Earth,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.204401+00:00
+Grade 11,Geography,Migration,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.205307+00:00
+Grade 11,Geography,Minerals and Rocks,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.205784+00:00
+Grade 11,Geography,Natural Hazards and Disasters,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.206727+00:00
+Grade 11,Geography,Natural Vegetation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.207446+00:00
+Grade 11,Geography,Population,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.208089+00:00
+Grade 11,Geography,Soils,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.208913+00:00
+Grade 11,Geography,Structure and Physiography,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.209711+00:00
+Grade 11,Geography,The Origin and Evolution of the Earth,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.210588+00:00
+Grade 11,Hindi,Anubhav,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.211120+00:00
+Grade 11,Hindi,Awara Masiha,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.211699+00:00
+Grade 11,Hindi,Husain Ki Kahani Apni Zubani,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.212293+00:00
+Grade 11,Hindi,Mera Baap Bada Na Mera Chacha,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.212878+00:00
+Grade 11,Hindi,Namak,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.213571+00:00
+Grade 11,History,An Empire Across Three Continents,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.214328+00:00
+Grade 11,History,Changing Cultural Traditions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.215262+00:00
+Grade 11,History,Confrontation of Cultures,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.216049+00:00
+Grade 11,History,Displacing Indigenous Peoples,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.216928+00:00
+Grade 11,History,From the Beginning of Time,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.217538+00:00
+Grade 11,History,Nomadic Empires,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.218340+00:00
+Grade 11,History,Paths to Modernisation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.219262+00:00
+Grade 11,History,The Central Islamic Lands,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.220039+00:00
+Grade 11,History,The Industrial Revolution,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.220914+00:00
+Grade 11,History,The Three Orders,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.221867+00:00
+Grade 11,History,Writing and City Life,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.222615+00:00
+Grade 11,Mathematics,Binomial Theorem,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.223573+00:00
+Grade 11,Mathematics,Complex Numbers and Quadratic Equations,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.224341+00:00
+Grade 11,Mathematics,Exemplar: Binomial Theorem,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.225553+00:00
+Grade 11,Mathematics,Exemplar: Complex Numbers and Quadratic Equations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.226732+00:00
+Grade 11,Mathematics,Exemplar: Conic Sections,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.227582+00:00
+Grade 11,Mathematics,Exemplar: Introduction to Three Dimensional Geometry,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.228108+00:00
+Grade 11,Mathematics,Exemplar: Limits and Derivatives,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.228786+00:00
+Grade 11,Mathematics,Exemplar: Linear Inequalities,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.229642+00:00
+Grade 11,Mathematics,Exemplar: Mathematical Reasoning,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.230699+00:00
+Grade 11,Mathematics,Exemplar: Permutations and Combinations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.231580+00:00
+Grade 11,Mathematics,Exemplar: Principle of Mathematical Induction,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.232894+00:00
+Grade 11,Mathematics,Exemplar: Probability,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.233558+00:00
+Grade 11,Mathematics,Exemplar: Relations and Functions,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.234775+00:00
+Grade 11,Mathematics,Exemplar: Sequences and Series,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.235987+00:00
+Grade 11,Mathematics,Exemplar: Sets,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.237205+00:00
+Grade 11,Mathematics,Exemplar: Statistics,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.237987+00:00
+Grade 11,Mathematics,Exemplar: Straight Lines,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.239207+00:00
+Grade 11,Mathematics,Exemplar: Trigonometric Functions,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.240576+00:00
+Grade 11,Mathematics,Linear Inequalities,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.241185+00:00
+Grade 11,Mathematics,Permutations and Combinations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.242018+00:00
+Grade 11,Mathematics,Principle of Mathematical Induction,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.242871+00:00
+Grade 11,Mathematics,Relations and Functions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.243362+00:00
+Grade 11,Mathematics,Sequences and Series,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.244106+00:00
+Grade 11,Mathematics,Sets,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.244867+00:00
+Grade 11,Mathematics,Straight Lines,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.245832+00:00
+Grade 11,Mathematics,Trigonometric Functions,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.246532+00:00
+Grade 11,Physics,Gravitation,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.247489+00:00
+Grade 11,Physics,Kinetic Theory,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.248334+00:00
+Grade 11,Physics,Laws of Motion,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.249034+00:00
+Grade 11,Physics,Mechanical Properties of Fluids,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.250090+00:00
+Grade 11,Physics,Mechanical Properties of Solids,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.250897+00:00
+Grade 11,Physics,Motion in a Plane,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.251523+00:00
+Grade 11,Physics,Motion in a Straight Line,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.252357+00:00
+Grade 11,Physics,Oscillations,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.253126+00:00
+Grade 11,Physics,Physical World,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.254173+00:00
+Grade 11,Physics,PYQ: B Tech 2nd Apr 2026 Shift 1,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.254717+00:00
+Grade 11,Physics,PYQ: B Tech 2nd Apr 2026 Shift 2,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.255173+00:00
+Grade 11,Physics,PYQ: B Tech 4th Apr 2026 Shift 1,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.255627+00:00
+Grade 11,Physics,PYQ: B Tech 4th Apr 2026 Shift 2,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.256081+00:00
+Grade 11,Physics,PYQ: B Tech 5th Apr 2026 Shift 1,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.256673+00:00
+Grade 11,Physics,PYQ: B Tech 5th Apr 2026 Shift 2,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.257118+00:00
+Grade 11,Physics,PYQ: B Tech 6th Apr 2026 Shift 1,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:33.257598+00:00
+Grade 11,Physics,PYQ: B Tech 6th Apr 2026 Shift 2,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:33.258047+00:00
+Grade 11,Physics,PYQ: B Tech 8th Apr 2026 Shift 2,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.258575+00:00
+Grade 11,Physics,Systems of Particles and Rotational Motion,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.259697+00:00
+Grade 11,Physics,Thermal Properties of Matter,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.260338+00:00
+Grade 11,Physics,Thermodynamics,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.261334+00:00
+Grade 11,Physics,Units and Measurements,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.262106+00:00
+Grade 11,Physics,"Work, Energy and Power",5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.262917+00:00
+Grade 11,Political Science,Citizenship,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.263564+00:00
+Grade 11,Political Science,Constitution: Why and How?,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.264426+00:00
+Grade 11,Political Science,Development,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.265121+00:00
+Grade 11,Political Science,Election and Representation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.265790+00:00
+Grade 11,Political Science,Equality,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.266746+00:00
+Grade 11,Political Science,Executive,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.267567+00:00
+Grade 11,Political Science,Federalism,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.268306+00:00
+Grade 11,Political Science,Freedom,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.268921+00:00
+Grade 11,Political Science,Judiciary,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.269792+00:00
+Grade 11,Political Science,Legislature,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.270639+00:00
+Grade 11,Political Science,Local Governments,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.271162+00:00
+Grade 11,Political Science,Nationalism,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.271793+00:00
+Grade 11,Political Science,Peace,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.272258+00:00
+Grade 11,Political Science,Political Theory: An Introduction,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.273100+00:00
+Grade 11,Political Science,Rights,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.273978+00:00
+Grade 11,Political Science,Rights in the Indian Constitution,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:33.274859+00:00
+Grade 11,Political Science,Secularism,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.275469+00:00
+Grade 11,Political Science,Social Justice,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:33.276357+00:00

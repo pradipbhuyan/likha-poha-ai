@@ -1,0 +1,179 @@
+grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
+Grade 12,Accountancy,Accounting for Not-for-Profit Organisations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.091724+00:00
+Grade 12,Accountancy,Accounting for Partnership: Basic Concepts,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.093225+00:00
+Grade 12,Accountancy,Accounting for Share Capital,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.094120+00:00
+Grade 12,Accountancy,Accounting Ratios,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.095021+00:00
+Grade 12,Accountancy,Analysis of Financial Statements,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.096189+00:00
+Grade 12,Accountancy,Dissolution of Partnership Firm,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.097278+00:00
+Grade 12,Accountancy,Financial Statements of a Company,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.098296+00:00
+Grade 12,Accountancy,Issue and Redemption of Debentures,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.099268+00:00
+Grade 12,Accountancy,Reconstitution of a Partnership Firm – Admission of a Partner,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.100454+00:00
+Grade 12,Accountancy,Reconstitution of a Partnership Firm – Retirement/Death of a Partner,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.101702+00:00
+Grade 12,Biology,Biotechnology and its Applications,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.102149+00:00
+Grade 12,Biology,Biotechnology: Principles and Processes,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.102762+00:00
+Grade 12,Biology,Evolution,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.103617+00:00
+Grade 12,Biology,Exemplar: Animal Husbandry,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.104878+00:00
+Grade 12,Biology,Exemplar: Biodiversity and Conservation,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.106173+00:00
+Grade 12,Biology,Exemplar: Biotechnology and Its Applications,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.107254+00:00
+Grade 12,Biology,Exemplar: Biotechnology: Principles and Processes,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.108587+00:00
+Grade 12,Biology,Exemplar: Ecosystem,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.109527+00:00
+Grade 12,Biology,Exemplar: Environmental Issues,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.110470+00:00
+Grade 12,Biology,Exemplar: Evolution,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.111806+00:00
+Grade 12,Biology,Exemplar: Human Health and Disease,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.112962+00:00
+Grade 12,Biology,Exemplar: Human Reproduction,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.114582+00:00
+Grade 12,Biology,Exemplar: Microbes in Human Welfare,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.115555+00:00
+Grade 12,Biology,Exemplar: Molecular Basis of Inheritance,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.116941+00:00
+Grade 12,Biology,Exemplar: Organisms and Populations,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.117925+00:00
+Grade 12,Biology,Exemplar: Principles of Inheritance and Variation,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.119068+00:00
+Grade 12,Biology,Exemplar: Reproductive Health,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.120001+00:00
+Grade 12,Biology,Exemplar: Sexual Reproduction in Flowering Plants,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.121223+00:00
+Grade 12,Biology,Exemplar: Strategies for Enhancement in Food Production,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.122251+00:00
+Grade 12,Biology,Human Health and Disease,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.123129+00:00
+Grade 12,Biology,Human Reproduction,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.123971+00:00
+Grade 12,Biology,Microbes in Human Welfare,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.124527+00:00
+Grade 12,Biology,Molecular Basis of Inheritance,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.125273+00:00
+Grade 12,Biology,Organisms and Populations,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.126041+00:00
+Grade 12,Biology,Principles of Inheritance and Variation,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.126832+00:00
+Grade 12,Biology,Reproduction in Organisms,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.127639+00:00
+Grade 12,Biology,Reproductive Health,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.128328+00:00
+Grade 12,Biology,Sexual Reproduction in Flowering Plants,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.129210+00:00
+Grade 12,Biology,Strategies for Enhancement in Food Production,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.130052+00:00
+Grade 12,Business Studies,Business Environment,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.131076+00:00
+Grade 12,Business Studies,Controlling,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.131811+00:00
+Grade 12,Business Studies,Directing,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.132662+00:00
+Grade 12,Business Studies,Financial Management,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.133340+00:00
+Grade 12,Business Studies,Financial Markets,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.133959+00:00
+Grade 12,Business Studies,Marketing Management,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.134905+00:00
+Grade 12,Business Studies,Nature and Significance of Management,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.135984+00:00
+Grade 12,Business Studies,Organising,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.136853+00:00
+Grade 12,Business Studies,Planning,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.137714+00:00
+Grade 12,Business Studies,Principles of Management,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.138493+00:00
+Grade 12,Business Studies,Staffing,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.139401+00:00
+Grade 12,Chemistry,Chemical Kinetics,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.140388+00:00
+Grade 12,Chemistry,Coordination Compounds,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.141365+00:00
+Grade 12,Chemistry,Electrochemistry,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.142466+00:00
+Grade 12,Chemistry,General Principles and Processes of Isolation of Elements,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.143446+00:00
+Grade 12,Chemistry,Haloalkanes and Haloarenes,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.144294+00:00
+Grade 12,Chemistry,Solutions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.145492+00:00
+Grade 12,Chemistry,Surface Chemistry,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.146291+00:00
+Grade 12,Chemistry,The d- and f-Block Elements,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.147170+00:00
+Grade 12,Chemistry,The p-Block Elements,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.148181+00:00
+Grade 12,Chemistry,The Solid State,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.149033+00:00
+Grade 12,Economics,Determination of Income and Employment,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.149848+00:00
+Grade 12,Economics,Government Budget and the Economy,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.150658+00:00
+Grade 12,Economics,Introduction to Macroeconomics,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.151542+00:00
+Grade 12,Economics,Money and Banking,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.152547+00:00
+Grade 12,Economics,National Income Accounting,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.153432+00:00
+Grade 12,Economics,Open Economy Macroeconomics,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.154366+00:00
+Grade 12,English,Deep Water,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.154796+00:00
+Grade 12,English,Going Places,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.155473+00:00
+Grade 12,English,Indigo,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.156150+00:00
+Grade 12,English,Lost Spring,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.156749+00:00
+Grade 12,English,Poets and Pancakes,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.157262+00:00
+Grade 12,English,The Interview,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.158131+00:00
+Grade 12,English,The Last Lesson,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.158920+00:00
+Grade 12,English,The Rattrap,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.159508+00:00
+Grade 12,Geography,Human Development,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.160237+00:00
+Grade 12,Geography,Human Geography: Nature and Scope,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.160985+00:00
+Grade 12,Geography,Population Composition,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.161746+00:00
+Grade 12,Geography,Primary Activities,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.162361+00:00
+Grade 12,Geography,Secondary Activities,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.162832+00:00
+Grade 12,Geography,Tertiary and Quaternary Activities,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.163496+00:00
+Grade 12,Geography,"The World Population: Distribution, Density and Growth",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.164317+00:00
+Grade 12,Geography,Transport and Communication,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.165097+00:00
+Grade 12,Hindi,Ateet Mein Dab Paon,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.165761+00:00
+Grade 12,Hindi,Jooze,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.166420+00:00
+Grade 12,Hindi,Silver Wedding,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.167107+00:00
+Grade 12,History,An Imperial Capital: Vijayanagara,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.167920+00:00
+Grade 12,History,Bhakti-Sufi Traditions: Changes in Religious Beliefs,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.168760+00:00
+Grade 12,History,"Bricks, Beads and Bones: The Harappan Civilisation",5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.169485+00:00
+Grade 12,History,"Colonial Cities: Urbanisation, Planning and Architecture",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.170336+00:00
+Grade 12,History,Colonialism and the Countryside: Exploring Official Archives,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.171668+00:00
+Grade 12,History,Kings and Chronicles: The Mughal Courts,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.172481+00:00
+Grade 12,History,"Kings, Farmers and Towns: Early States and Economies",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.173245+00:00
+Grade 12,History,"Kinship, Caste and Class: Early Societies",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.174108+00:00
+Grade 12,History,Mahatma Gandhi and the Nationalist Movement: Civil Disobedience and Beyond,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.175036+00:00
+Grade 12,History,"Peasants, Zamindars and the State: Agrarian Society and the Mughal Empire",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.175980+00:00
+Grade 12,History,Rebels and the Raj: The Revolt of 1857 and its Representations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.176943+00:00
+Grade 12,History,"Thinkers, Beliefs and Buildings: Cultural Developments",5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.177618+00:00
+Grade 12,History,Through the Eyes of Travellers: Perceptions of Society,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.178436+00:00
+Grade 12,History,"Understanding Partition: Politics, Memories, Experiences",5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.179418+00:00
+Grade 12,Mathematics,Application of Derivatives,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.179759+00:00
+Grade 12,Mathematics,Application of Integrals,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.180674+00:00
+Grade 12,Mathematics,Continuity and Differentiability,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.181606+00:00
+Grade 12,Mathematics,Determinants,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.182493+00:00
+Grade 12,Mathematics,Differential Equations,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.183031+00:00
+Grade 12,Mathematics,Exemplar: Application of Derivatives,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.184010+00:00
+Grade 12,Mathematics,Exemplar: Application of Integrals,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.184985+00:00
+Grade 12,Mathematics,Exemplar: Continuity and Differentiability,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.186444+00:00
+Grade 12,Mathematics,Exemplar: Determinants,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.187916+00:00
+Grade 12,Mathematics,Exemplar: Differential Equations,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.189080+00:00
+Grade 12,Mathematics,Exemplar: Integrals,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.190474+00:00
+Grade 12,Mathematics,Exemplar: Inverse Trigonometric Functions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.191647+00:00
+Grade 12,Mathematics,Exemplar: Linear Programming,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.192735+00:00
+Grade 12,Mathematics,Exemplar: Matrices,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.194177+00:00
+Grade 12,Mathematics,Exemplar: Probability,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.195193+00:00
+Grade 12,Mathematics,Exemplar: Relations and Functions,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.196323+00:00
+Grade 12,Mathematics,Exemplar: Three Dimensional Geometry,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.197595+00:00
+Grade 12,Mathematics,Exemplar: Vector Algebra,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.199026+00:00
+Grade 12,Mathematics,Integrals,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.199898+00:00
+Grade 12,Mathematics,Inverse Trigonometric Functions,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.200695+00:00
+Grade 12,Mathematics,Linear Programming,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.201492+00:00
+Grade 12,Mathematics,Matrices,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.202486+00:00
+Grade 12,Mathematics,Probability,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.202901+00:00
+Grade 12,Mathematics,Relations and Functions,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.203510+00:00
+Grade 12,Mathematics,Three Dimensional Geometry,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.204277+00:00
+Grade 12,Mathematics,Vector Algebra,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.205455+00:00
+Grade 12,Physics,Alternating Current,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.206546+00:00
+Grade 12,Physics,Atoms,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.207442+00:00
+Grade 12,Physics,Current Electricity,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.208332+00:00
+Grade 12,Physics,Dual Nature of Radiation and Matter,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.209364+00:00
+Grade 12,Physics,Electric Charges and Fields,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.210247+00:00
+Grade 12,Physics,Electromagnetic Induction,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.211102+00:00
+Grade 12,Physics,Electromagnetic Waves,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.211748+00:00
+Grade 12,Physics,Electrostatic Potential and Capacitance,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.212961+00:00
+Grade 12,Physics,Exemplar: Alternating Current,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.214187+00:00
+Grade 12,Physics,Exemplar: Atoms,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.215724+00:00
+Grade 12,Physics,Exemplar: Communication Systems,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.216767+00:00
+Grade 12,Physics,Exemplar: Current Electricity,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.218344+00:00
+Grade 12,Physics,Exemplar: Dual Nature of Radiation and Matter,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.219543+00:00
+Grade 12,Physics,Exemplar: Electric Charges and Fields,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.220951+00:00
+Grade 12,Physics,Exemplar: Electromagnetic Induction,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.222556+00:00
+Grade 12,Physics,Exemplar: Electromagnetic Waves,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.223937+00:00
+Grade 12,Physics,Exemplar: Electrostatic Potential and Capacitance,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.225353+00:00
+Grade 12,Physics,Exemplar: Magnetism and Matter,5,92,90,90,80,100,100,0,0,2,0,2026-07-06T13:37:46.226525+00:00
+Grade 12,Physics,Exemplar: Moving Charges and Magnetism,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.228083+00:00
+Grade 12,Physics,Exemplar: Nuclei,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.229401+00:00
+Grade 12,Physics,Exemplar: Ray Optics and Optical Instruments,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.230960+00:00
+Grade 12,Physics,"Exemplar: Semiconductor Electronics: Materials, Devices and Simple Circuits",5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.232091+00:00
+Grade 12,Physics,Exemplar: Wave Optics,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.233518+00:00
+Grade 12,Physics,Magnetism and Matter,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.234601+00:00
+Grade 12,Physics,Moving Charges and Magnetism,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.235629+00:00
+Grade 12,Physics,Nuclei,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.236528+00:00
+Grade 12,Physics,PYQ: B Tech 2nd Apr 2026 Shift 1,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.236922+00:00
+Grade 12,Physics,PYQ: B Tech 2nd Apr 2026 Shift 2,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.237504+00:00
+Grade 12,Physics,PYQ: B Tech 4th Apr 2026 Shift 1,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.237876+00:00
+Grade 12,Physics,PYQ: B Tech 4th Apr 2026 Shift 2,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.238319+00:00
+Grade 12,Physics,PYQ: B Tech 5th Apr 2026 Shift 1,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.238875+00:00
+Grade 12,Physics,PYQ: B Tech 5th Apr 2026 Shift 2,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.239424+00:00
+Grade 12,Physics,PYQ: B Tech 6th Apr 2026 Shift 1,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.239964+00:00
+Grade 12,Physics,PYQ: B Tech 6th Apr 2026 Shift 2,5,93,95,90,80,98,100,0,0,1,1,2026-07-06T13:37:46.240528+00:00
+Grade 12,Physics,PYQ: B Tech 8th Apr 2026 Shift 2,5,93,95,90,80,100,100,0,0,1,0,2026-07-06T13:37:46.241060+00:00
+Grade 12,Physics,Ray Optics and Optical Instruments,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.242320+00:00
+Grade 12,Physics,Semiconductor Electronics,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.243764+00:00
+Grade 12,Physics,Wave Optics,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.244802+00:00
+Grade 12,Political Science,Alternative Centres of Power,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.245683+00:00
+Grade 12,Political Science,Challenges of Nation Building,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.246724+00:00
+Grade 12,Political Science,Challenges to and Restoration of the Congress System,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.247989+00:00
+Grade 12,Political Science,Contemporary South Asia,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.249106+00:00
+Grade 12,Political Science,Environment and Natural Resources,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.249808+00:00
+Grade 12,Political Science,Era of One-Party Dominance,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.250700+00:00
+Grade 12,Political Science,India's External Relations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.251613+00:00
+Grade 12,Political Science,International Organisations,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.252624+00:00
+Grade 12,Political Science,Politics of Planned Development,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.253425+00:00
+Grade 12,Political Science,Rise of Popular Movements,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.254053+00:00
+Grade 12,Political Science,Security in the Contemporary World,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.254961+00:00
+Grade 12,Political Science,The Cold War Era,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.256072+00:00
+Grade 12,Political Science,The Crisis of Democratic Order,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.256891+00:00
+Grade 12,Political Science,The End of Bipolarity,5,94,100,90,80,98,100,0,0,0,1,2026-07-06T13:37:46.257781+00:00
+Grade 12,Political Science,US Hegemony in World Politics,5,94,100,90,80,100,100,0,0,0,0,2026-07-06T13:37:46.258436+00:00

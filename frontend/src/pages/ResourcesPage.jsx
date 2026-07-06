@@ -215,7 +215,12 @@ function ResourcesPage({ user }) {
         <span style={{ fontSize: "1.1rem" }}>📚</span>
         <div>
           <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>{subject || "All Subjects"}</span>
-          {chapter && <span style={{ marginLeft: 8, fontSize: "0.82rem", color: "var(--muted)" }}>{chapter.slice(0, 60)}{chapter.length > 60 ? "…" : ""}</span>}
+          {chapter && (
+            <>
+              <span style={{ margin: "0 6px", color: "var(--muted)", fontSize: "0.85rem" }}>·</span>
+              <span style={{ fontSize: "0.82rem", color: "var(--muted)" }}>{chapter.slice(0, 60)}{chapter.length > 60 ? "…" : ""}</span>
+            </>
+          )}
         </div>
         <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
           Videos, references and resources for this chapter

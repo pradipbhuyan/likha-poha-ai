@@ -31,7 +31,26 @@ import {
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
 const EXAM_PREP_GRADES = new Set(["Grade 11", "Grade 12"]);
 
+// Exam Prep content is premium — requires paid subscription (not free, not Nano)
+// Nano plan key check: nano plans have access_cbse=true but plan key contains 'nano'
+function hasExamPrepContentAccess(user) {
+  if (!user) return false;
+  if (user.role === "admin") return true;
+  // Test users bypass payment gate
+  if (TEST_ACCESS_USERS.has(user.username)) return true;
+  // Must be Grade 11/12 student on a paid plan (not free, not nano)
+  if (user.role === "student" && EXAM_PREP_GRADES.has(user.grade)) {
+    const plan = (user.subscriptionPlan || "free").toLowerCase();
+    if (plan === "free") return false;
+    if (plan.includes("nano")) return false;  // Premium Nano cannot access Exam Prep
+    return true; // premium, family, or any non-nano paid plan
+  }
+  return false;
+}
+
 function hasAccess(user) {
+  // Page is visible to all Grade 11/12 students (free or paid)
+  // Content is gated by hasExamPrepContentAccess
   if (!user) return false;
   if (user.role === "admin") return true;
   if (TEST_ACCESS_USERS.has(user.username)) return true;
@@ -488,6 +507,74 @@ export default function ExamPrepPage({ user, setActivePage }) {
           <p style={{ color: "var(--muted,#64748b)", maxWidth: 380, margin: "0 auto 0" }}>
             Available for Grade 11 & 12 students only. Check back soon!
           </p>
+        </section>
+      </div>
+    );
+  }
+
+  // ── Premium gate — free/nano tier sees locked preview ─────────────────────
+  const contentLocked = !hasExamPrepContentAccess(user);
+  if (contentLocked) {
+    const plan = (user?.subscriptionPlan || "free").toLowerCase();
+    const isNano = plan.includes("nano");
+    return (
+      <div className="premium-page">
+        <section className="premium-section" style={{ paddingBottom: 0 }}>
+          <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
+            <span>🎓</span>
+            <span><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</span>
+          </div>
+          {/* Exam tabs (disabled visual only) */}
+          <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", opacity: 0.5, pointerEvents: "none" }}>
+            {Object.entries(EXAMS).map(([key, exam]) => (
+              <button key={key} style={{ padding: "9px 18px", borderRadius: 10, border: `2px solid ${key === "jee_main" ? exam.color : "var(--border,#334155)"}`, background: key === "jee_main" ? `${exam.color}18` : "var(--panel,#1e293b)", color: key === "jee_main" ? exam.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".82rem", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 7 }}>
+                <span>{exam.icon}</span><span>{exam.label}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Lock screen */}
+        <section className="premium-section" style={{ paddingTop: 0 }}>
+          <div style={{ background: "linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06))", border: "1px solid rgba(99,102,241,.25)", borderRadius: 16, padding: "40px 32px", textAlign: "center", maxWidth: 560, margin: "0 auto" }}>
+            <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔐</div>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, marginBottom: 8, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Exam Prep Center — Premium Feature
+            </h3>
+            <p style={{ color: "var(--muted,#64748b)", fontSize: ".88rem", lineHeight: 1.6, marginBottom: 24, maxWidth: 420, margin: "0 auto 24px" }}>
+              {isNano
+                ? "The Exam Prep Center is available on Premium and higher plans. Your current Premium Nano plan includes CBSE lessons for Grade 5–10 but not JEE/NEET/CUET prep."
+                : "JEE Main, NEET UG & CUET UG preparation — AI-powered practice questions, simulated full tests, topic-wise analysis, and instant AI explanations. Upgrade to access."}
+            </p>
+            {/* Feature preview */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28, textAlign: "left" }}>
+              {[
+                { icon: "📐", label: "JEE Main prep", desc: "Physics, Chem, Maths" },
+                { icon: "🔬", label: "NEET UG prep", desc: "Physics, Chem, Biology" },
+                { icon: "🏛️", label: "CUET UG prep", desc: "All streams" },
+                { icon: "📊", label: "Simulated tests", desc: "Full 3-hour test series" },
+                { icon: "🤖", label: "AI explanations", desc: "Step-by-step solutions" },
+                { icon: "🎯", label: "Weak topic tracker", desc: "Personalized analytics" },
+              ].map(f => (
+                <div key={f.label} style={{ display: "flex", gap: 8, alignItems: "center", background: "rgba(255,255,255,.03)", borderRadius: 8, padding: "8px 10px" }}>
+                  <span style={{ fontSize: "1.1rem" }}>{f.icon}</span>
+                  <div>
+                    <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{f.label}</div>
+                    <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{f.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => setActivePage && setActivePage("subscriptionPlans")}
+              style={{ padding: "13px 32px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", marginBottom: 10 }}
+            >
+              🚀 Upgrade to Premium
+            </button>
+            <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>
+              {isNano ? "Starting from ₹299/month · Includes Exam Prep Center" : "Starting from ₹299/month · Cancel anytime"}
+            </div>
+          </div>
         </section>
       </div>
     );

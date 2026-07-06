@@ -95,6 +95,7 @@ def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = Fa
         "subscription_days_remaining": days_remaining,
         "subscription_expiring_soon": expiring_soon,
         "avatar": profile.get("avatar") or "",
+        "stream": profile.get("stream") or None,   # Grade 11/12 academic stream
         "can_report_issues": _check_can_report_issues(profile.get("id") or ""),
     }
 
@@ -687,6 +688,7 @@ class FreeSignupRequest(BaseModel):
     name: str
     email: str
     grade: Optional[str] = None    # for students
+    stream: Optional[str] = None   # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
     school: Optional[str] = None   # for teachers
     password: Optional[str] = None # when provided, enables direct login without email verification
 
@@ -1193,6 +1195,17 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         base_profile["board"] = "CBSE"
         base_profile["cbse_subjects"] = []
         base_profile["ai_model_preference"] = "default"
+        # Grade 11/12: validate and save stream
+        if grade in ("Grade 11", "Grade 12"):
+            valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+            stream = (data.stream or "").strip()
+            if stream not in valid_streams:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Stream is required for {grade} students. "
+                           f"Choose one of: PCM, PCB, PCMB, Commerce, Humanities",
+                )
+            base_profile["stream"] = stream
 
     elif role == "teacher":
         if data.school:

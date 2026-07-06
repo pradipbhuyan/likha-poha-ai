@@ -18,12 +18,24 @@ const ROLES = [
 
 const GRADES = [
   "Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10",
+  "Grade 11","Grade 12",
 ];
+
+const STREAM_OPTIONS = [
+  { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics", icon: "⚛️", exam: "JEE Main" },
+  { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology",     icon: "🔬", exam: "NEET UG" },
+  { key: "PCMB",       label: "Science — PCMB",   desc: "All 4 science subjects",          icon: "🧬", exam: "JEE + NEET" },
+  { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics",icon: "💼", exam: "CUET / CA" },
+  { key: "Humanities", label: "Humanities",       desc: "History, Polsci, Geography…",     icon: "🏛️", exam: "CUET / Law" },
+];
+
+const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
 
 export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
   const handleBack = onBackToLogin || onBack;
   const [role, setRole]         = useState("parent");
   const [grade, setGrade]       = useState("Grade 9");
+  const [stream, setStream]     = useState("");
   const [name, setName]         = useState("");
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +46,8 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
   const [settingUp, setSettingUp] = useState(false);
   const [settingUpRole, setSettingUpRole] = useState("");
 
+  const needs1112Stream = role === "student" && GRADE_11_12.has(grade);
+
   function validate() {
     if (!role)               { setError("Please choose a role."); return false; }
     if (!name.trim())        { setError("Full name is required."); return false; }
@@ -42,6 +56,10 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                                setError("Please enter a valid email address."); return false; }
     if (!password)           { setError("Password is required."); return false; }
     if (password.length < 8) { setError("Password must be at least 8 characters."); return false; }
+    if (needs1112Stream && !stream) {
+      setError("Please choose your academic stream (PCM / PCB / Commerce / Humanities).");
+      return false;
+    }
     return true;
   }
 
@@ -54,7 +72,14 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
       const res = await fetch(`${API_BASE}/api/auth/signup-free`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role, name: name.trim(), email: email.trim(), password, grade: role === "student" ? grade : undefined }),
+        body: JSON.stringify({
+          role,
+          name: name.trim(),
+          email: email.trim(),
+          password,
+          grade: role === "student" ? grade : undefined,
+          stream: needs1112Stream ? stream : undefined,
+        }),
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
@@ -112,6 +137,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
         accessSofMaths: false,
         accessSofEnglish: false,
         cbseSubjects: [],
+        stream: profile?.stream || (needs1112Stream ? stream : null),
         subscriptionPlan: "free",
         accountStatus: "active",
         offerAccess: false,
@@ -288,17 +314,58 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
 
               {/* Grade selector — shown only for students */}
               {role === "student" && (
-                <div style={{ marginBottom: 16 }}>
+                <div style={{ marginBottom: needs1112Stream ? 12 : 16 }}>
                   <label style={{ fontSize: ".8rem", fontWeight: 600, display: "block", marginBottom: 4 }}>Grade *</label>
                   <select
                     data-testid="signup-grade"
                     value={grade}
-                    onChange={ev => setGrade(ev.target.value)}
+                    onChange={ev => { setGrade(ev.target.value); setStream(""); setError(""); }}
                     className="ait-input"
                     style={{ width: "100%", boxSizing: "border-box" }}
                   >
                     {GRADES.map(g => <option key={g} value={g}>{g}</option>)}
                   </select>
+                </div>
+              )}
+
+              {/* Stream picker — Grade 11/12 students only */}
+              {needs1112Stream && (
+                <div style={{ marginBottom: 16 }} data-testid="stream-picker">
+                  <label style={{ fontSize: ".8rem", fontWeight: 600, display: "block", marginBottom: 8 }}>
+                    Stream *
+                    <span style={{ fontSize: ".7rem", fontWeight: 400, color: "var(--text-muted,#64748b)", marginLeft: 6 }}>
+                      Choose your academic stream for {grade}
+                    </span>
+                  </label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                    {STREAM_OPTIONS.map(s => (
+                      <button
+                        key={s.key}
+                        type="button"
+                        data-testid={`stream-card-${s.key}`}
+                        onClick={() => { setStream(s.key); setError(""); }}
+                        style={{
+                          display: "flex", alignItems: "center", gap: 10,
+                          padding: "10px 12px", borderRadius: 9, cursor: "pointer",
+                          border: `2px solid ${stream === s.key ? "#6366f1" : "var(--border,#e2e8f0)"}`,
+                          background: stream === s.key ? "rgba(99,102,241,.08)" : "var(--surface2,#f8fafc)",
+                          textAlign: "left", fontFamily: "inherit",
+                          transition: "border-color .12s,background .12s",
+                        }}
+                      >
+                        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>{s.icon}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontWeight: 700, fontSize: ".82rem", color: stream === s.key ? "#6366f1" : "var(--text,#1e293b)" }}>
+                            {s.label}
+                          </div>
+                          <div style={{ fontSize: ".68rem", color: "var(--text-muted,#64748b)" }}>{s.desc}</div>
+                        </div>
+                        <span style={{ fontSize: ".65rem", fontWeight: 700, color: "#6366f1", background: "rgba(99,102,241,.1)", padding: "2px 7px", borderRadius: 20, flexShrink: 0 }}>
+                          {s.exam}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
 
