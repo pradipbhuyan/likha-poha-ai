@@ -209,8 +209,20 @@ function AIPanel({ question, feedback, user }) {
           {feedback.explanation && (
             <div style={{ marginBottom: 12 }}>
               <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 6 }}>Explanation:</div>
-              <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.65 }}>
-                {feedback.explanation}
+              <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.9 }}>
+                {/* Split on "Step N:" or "Option X:" patterns so each step renders on its own line */}
+                {feedback.explanation
+                  .replace(/\s+(Step\s+\d+[:.])/g, '\n$1')
+                  .replace(/\s+(Option\s+[A-D]:)/g, '\n$1')
+                  .replace(/\s+(Therefore\b)/g, '\nTherefore')
+                  .split('\n')
+                  .filter(s => s.trim())
+                  .map((line, i) => (
+                    <div key={i} style={{ marginBottom: i < feedback.explanation.split('\n').length - 1 ? 4 : 0 }}>
+                      {line.trim()}
+                    </div>
+                  ))
+                }
               </div>
             </div>
           )}
