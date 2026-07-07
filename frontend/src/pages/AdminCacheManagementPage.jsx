@@ -969,6 +969,8 @@ function ExamPrepQBSection({ user }) {
   const [prewarmRunning, setPrewarmRunning] = useState(false);
   const [migrationRunning, setMigrationRunning] = useState(false);
   const [migrationResult, setMigrationResult] = useState(null);
+  // Incremented after a successful paste-import to auto-refresh the review panel
+  const [reviewRefreshKey, setReviewRefreshKey] = useState(0);
 
   // Form state
   const [selExam, setSelExam] = useState("jee_main");
@@ -1257,17 +1259,17 @@ function ExamPrepQBSection({ user }) {
       </div>
 
       {/* Paste & Import from ChatGPT */}
-      <PasteImportSection user={user} />
+      <PasteImportSection user={user} onImportSuccess={() => setReviewRefreshKey(k => k + 1)} />
 
-      {/* Question Review Panel */}
-      <QuestionReviewPanel user={user} />
+      {/* Question Review Panel — refreshKey increments after successful import */}
+      <QuestionReviewPanel user={user} refreshKey={reviewRefreshKey} />
     </section>
   );
 }
 
 // ── Paste & Import from Custom GPT / ChatGPT ───────────────────────────────────
 
-function PasteImportSection({ user }) {
+function PasteImportSection({ user, onImportSuccess }) {
   const [jsonText, setJsonText] = useState("");
   const [importing, setImporting] = useState(false);
   const [result, setResult] = useState(null);
@@ -1302,7 +1304,10 @@ function PasteImportSection({ user }) {
     try {
       const data = await adminImportBulk(user.accessToken, questions);
       setResult(data);
-      if (data.imported > 0) setJsonText(""); // clear on success
+      if (data.imported > 0) {
+        setJsonText(""); // clear on success
+        if (onImportSuccess) onImportSuccess(); // trigger review panel refresh
+      }
     } catch (e) {
       setError("❌ Import failed: " + (e.message || "unknown error"));
     } finally {
@@ -1481,7 +1486,7 @@ const REVIEW_EXAM_OPTIONS = [
 ];
 const REVIEW_STATUS_OPTIONS = ["draft", "published", "archived"];
 
-function QuestionReviewPanel({ user }) {
+function QuestionReviewPanel({ user, refreshKey }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filterExam, setFilterExam] = useState("jee_main");
@@ -1508,7 +1513,8 @@ function QuestionReviewPanel({ user }) {
     } finally { setLoading(false); }
   }
 
-  useEffect(() => { loadQuestions(); }, [filterExam, filterStatus, filterSubject]); // eslint-disable-line
+  // Re-load when filters change OR when refreshKey increments (after paste-import)
+  useEffect(() => { loadQuestions(); }, [filterExam, filterStatus, filterSubject, refreshKey]); // eslint-disable-line
 
   async function handleAction(questionId, action) {
     setPublishing(prev => ({ ...prev, [questionId]: action }));
