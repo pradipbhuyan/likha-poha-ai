@@ -13,7 +13,7 @@
  *   7. Resource links
  */
 
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Loader, CheckCircle, XCircle } from "lucide-react";
 import {
   getExamPrepDashboard,
@@ -262,6 +262,186 @@ function AIPanel({ question, feedback, user }) {
   );
 }
 
+// ── NTA-style Test View (one question at a time + palette + section tabs) ───────
+
+function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel, examColor }) {
+  const cfg = Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main;
+  const subjects = cfg.subjects;
+  const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
+  const [qIdx, setQIdx] = React.useState(0);
+  const [marked, setMarked] = React.useState({});
+  const [section, setSection] = React.useState(subjects[0]);
+  const startTime = startTimestamp;
+
+  function subjOf(i) {
+    for (let s = 0; s < subjects.length; s++) if (i < (s+1)*perSubj || s === subjects.length-1) return subjects[s];
+    return subjects[0];
+  }
+
+  const q = questions[qIdx];
+  const opts = q?.options_json || [];
+  const answered = Object.keys(testAnswers).filter(id => testAnswers[id]).length;
+
+  function goTo(i) { setQIdx(i); setSection(subjOf(i)); }
+  function saveNext() { if (qIdx+1 < questions.length) goTo(qIdx+1); }
+  function markNext() { if (q) { setMarked(m => ({...m,[q.id]:!m[q.id]})); } saveNext(); }
+  function clearAns() { if (q) setTestAnswers(p => { const n={...p}; delete n[q.id]; return n; }); }
+  function doSubmit() {
+    const left = questions.length - answered;
+    if (left > 0 && !window.confirm(left + " unanswered. Submit test?")) return;
+    onSubmit();
+  }
+
+  function qBtn(i) {
+    const qid = questions[i]?.id;
+    if (!qid) return { bg:"var(--panel,#1e293b)", color:"var(--muted,#94a3b8)", border:"1px solid var(--border,#334155)" };
+    if (marked[qid] && testAnswers[qid]) return { bg:"#8b5cf6", color:"#fff", border:"none" };
+    if (marked[qid]) return { bg:"rgba(139,92,246,.4)", color:"#c4b5fd", border:"1px solid #8b5cf6" };
+    if (testAnswers[qid]) return { bg:"#22c55e", color:"#fff", border:"none" };
+    if (i === qIdx) return { bg:"rgba(99,102,241,.2)", color:"#a5b4fc", border:"2px solid #6366f1" };
+    return { bg:"var(--panel,#1e293b)", color:"var(--muted,#94a3b8)", border:"1px solid var(--border,#334155)" };
+  }
+
+  if (!questions.length) return (
+    <div style={{ textAlign:"center", padding:48, color:"var(--muted,#64748b)" }}>
+      <div style={{ fontSize:"2rem", marginBottom:12 }}>📭</div>
+      <div style={{ fontWeight:700, marginBottom:6 }}>No questions yet</div>
+      <button onClick={onSubmit} style={{ marginTop:16, padding:"10px 22px", background:"#6366f1", border:"none", borderRadius:8, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>End Test</button>
+    </div>
+  );
+
+  return (
+    <div>
+      {/* Floating countdown timer */}
+      <FloatingTimer startTime={startTime} durationMins={testSession?.duration_minutes||180} onExpire={doSubmit} />
+
+      {/* Section tabs */}
+      <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
+        {subjects.map(s => {
+          const cnt = questions.filter((_,i) => subjOf(i)===s).length;
+          const ans = questions.filter((_,i) => subjOf(i)===s && testAnswers[questions[i]?.id]).length;
+          const act = section===s;
+          const sc = SUBJECT_COLORS[s]||"#6366f1";
+          return (
+            <button key={s} onClick={()=>setSection(s)}
+              style={{ padding:"7px 14px", borderRadius:10, border:"2px solid "+(act?sc:"var(--border,#334155)"), background:act?sc+"18":"var(--panel,#1e293b)", color:act?sc:"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:6 }}>
+              <span>{SUBJECT_ICONS[s]||"📚"}</span><span>{s}</span>
+              <span style={{ fontSize:".6rem", background:act?sc+"22":"rgba(255,255,255,.06)", color:act?sc:"var(--muted,#64748b)", padding:"1px 6px", borderRadius:10 }}>{ans}/{cnt}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Main: question | palette */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 210px", gap:14, alignItems:"start" }}>
+
+        {/* Question pane */}
+        <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:12, overflow:"hidden" }}>
+          {/* Header */}
+          <div style={{ padding:"11px 16px", background:"rgba(99,102,241,.07)", borderBottom:"1px solid var(--border,#334155)", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+              <span style={{ fontSize:".82rem", fontWeight:800 }}>Q {qIdx+1}</span>
+              <span style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>of {questions.length}</span>
+              {marked[q?.id] && <span style={{ fontSize:".6rem", background:"rgba(139,92,246,.2)", color:"#a78bfa", padding:"1px 7px", borderRadius:20 }}>🚩 Marked</span>}
+            </div>
+            <div style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>✅ {answered} / {questions.length} answered</div>
+          </div>
+
+          {/* Question body */}
+          <div style={{ padding:"18px 20px" }}>
+            <div style={{ display:"flex", gap:7, marginBottom:12, flexWrap:"wrap" }}>
+              <span style={{ fontSize:".6rem", fontWeight:700, background:(DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8")+"22", color:DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8", padding:"2px 8px", borderRadius:20 }}>{q?.difficulty}</span>
+              {q?.topic && <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)", background:"rgba(255,255,255,.05)", padding:"2px 8px", borderRadius:20 }}>{q.topic}</span>}
+              {q?.marks && <span style={{ fontSize:".6rem", color:"#fbbf24", background:"rgba(251,191,36,.08)", padding:"2px 8px", borderRadius:20 }}>+{q.marks} / -{q.negative_marks}</span>}
+            </div>
+            <div style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18 }}>{q?.question_text}</div>
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+              {opts.map(opt => {
+                const sel = testAnswers[q?.id] === opt.key;
+                return (
+                  <div key={opt.key} onClick={()=>{ if(q) setTestAnswers(p=>({...p,[q.id]:opt.key})); }}
+                    style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"11px 14px", borderRadius:9, cursor:"pointer", background:sel?"rgba(99,102,241,.12)":"var(--surface2,rgba(0,0,0,.02))", border:"1px solid "+(sel?"#6366f1":"var(--border,#e2e8f0)"), transition:"all .1s" }}>
+                    <span style={{ width:24, height:24, borderRadius:"50%", border:"2px solid "+(sel?"#6366f1":"var(--border,#94a3b8)"), display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontSize:".7rem", fontWeight:700, color:sel?"#6366f1":"var(--muted,#64748b)", background:sel?"rgba(99,102,241,.15)":"transparent" }}>{opt.key}</span>
+                    <span style={{ fontSize:".85rem", color:"var(--text,#1e293b)", lineHeight:1.5 }}>{opt.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Action buttons */}
+          <div style={{ padding:"12px 16px", borderTop:"1px solid var(--border,#334155)", display:"flex", gap:8, flexWrap:"wrap", background:"var(--panel,#1e293b)" }}>
+            {qIdx > 0 && <button onClick={()=>goTo(qIdx-1)} style={{ padding:"8px 14px", background:"rgba(255,255,255,.06)", border:"1px solid var(--border,#334155)", borderRadius:8, color:"var(--muted,#94a3b8)", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>← Prev</button>}
+            <button onClick={clearAns} style={{ padding:"8px 14px", background:"transparent", border:"1px solid rgba(239,68,68,.3)", borderRadius:8, color:"#f87171", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>Clear</button>
+            <button onClick={markNext} style={{ padding:"8px 14px", background:"rgba(139,92,246,.12)", border:"1px solid rgba(139,92,246,.3)", borderRadius:8, color:"#a78bfa", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>🚩 Mark & Next</button>
+            <button onClick={saveNext} style={{ padding:"8px 18px", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", border:"none", borderRadius:8, color:"#fff", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", marginLeft:"auto" }}>Save & Next →</button>
+          </div>
+        </div>
+
+        {/* Question palette */}
+        <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:12, overflow:"hidden" }}>
+          <div style={{ padding:"10px 12px", borderBottom:"1px solid var(--border,#334155)", fontSize:".7rem", fontWeight:700, color:"var(--muted,#64748b)" }}>Question Palette</div>
+          {/* Legend */}
+          <div style={{ padding:"8px 12px", borderBottom:"1px solid var(--border,#334155)", display:"flex", flexDirection:"column", gap:4 }}>
+            {[{c:"#22c55e",l:"Answered"},{c:"#8b5cf6",l:"Marked for Review"},{c:"var(--panel,#1e293b)",l:"Not Answered"}].map(({c,l})=>(
+              <div key={l} style={{ display:"flex", alignItems:"center", gap:6 }}>
+                <div style={{ width:12, height:12, borderRadius:3, background:c, border:"1px solid var(--border,#334155)", flexShrink:0 }} />
+                <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)" }}>{l}</span>
+              </div>
+            ))}
+          </div>
+          {/* Number grid */}
+          <div style={{ padding:"10px 12px", display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:5, maxHeight:320, overflowY:"auto" }}>
+            {questions.map((_,i) => {
+              const bs = qBtn(i);
+              return (
+                <button key={i} onClick={()=>goTo(i)}
+                  style={{ padding:"7px 0", borderRadius:7, fontSize:".72rem", fontWeight:700, cursor:"pointer", fontFamily:"inherit", background:bs.bg, color:bs.color, border:bs.border }}>
+                  {i+1}
+                </button>
+              );
+            })}
+          </div>
+          {/* Submit */}
+          <div style={{ padding:"12px" }}>
+            <button onClick={doSubmit} disabled={testLoading}
+              style={{ width:"100%", padding:"10px 0", background:"#22c55e", border:"none", borderRadius:9, color:"#fff", fontWeight:800, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit", opacity:testLoading?.6:1 }}>
+              {testLoading ? "Submitting…" : "Submit Test ✓"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Floating Timer ─────────────────────────────────────────────────────────────
+
+function FloatingTimer({ startTime, durationMins, onExpire }) {
+  const [left, setLeft] = React.useState(durationMins * 60);
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      const r = Math.max(0, durationMins * 60 - Math.floor((Date.now() - startTime) / 1000));
+      setLeft(r);
+      if (r === 0) { clearInterval(id); if (onExpire) onExpire(); }
+    }, 1000);
+    return () => clearInterval(id);
+  }, [startTime, durationMins, onExpire]);
+  const m = Math.floor(left / 60), s = left % 60;
+  const pct = left / (durationMins * 60);
+  const clr = pct > 0.33 ? "#22c55e" : pct > 0.15 ? "#f59e0b" : "#ef4444";
+  return (
+    <div style={{ position:"fixed", top:68, right:16, zIndex:9999, background:"var(--panel,#1e293b)", border:"2px solid "+clr, borderRadius:14, padding:"9px 15px", display:"flex", alignItems:"center", gap:10, boxShadow:"0 4px 20px "+clr+"55", animation:pct<0.15?"_btimer 1s infinite":undefined }}>
+      <style>{"@keyframes _btimer{0%,100%{opacity:1}50%{opacity:.6}}"}</style>
+      <span style={{ fontSize:"1.3rem" }}>⏱</span>
+      <div>
+        <div style={{ fontSize:"1.1rem", fontWeight:900, color:clr, letterSpacing:".04em" }}>{String(m).padStart(2,"0")}:{String(s).padStart(2,"0")}</div>
+        <div style={{ fontSize:".55rem", color:"var(--muted,#64748b)" }}>Remaining</div>
+      </div>
+    </div>
+  );
+}
+
 // ── Test Result Component ──────────────────────────────────────────────────────
 
 function TestResultPage({ result, onRetake, onClose }) {
@@ -385,6 +565,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
   const [testLoading, setTestLoading] = useState(false);
   const [filterTopic, setFilterTopic] = useState(null);
   const testStartRef = useRef(null);
+  const [testStartTimestamp, setTestStartTimestamp] = useState(0);
 
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
   const isAdmin = user?.role === "admin";
@@ -462,7 +643,9 @@ export default function ExamPrepPage({ user, setActivePage }) {
     try {
       const data = await startSimulatedTest(user.accessToken, selectedExam);
       setTestSession(data);
-      testStartRef.current = Date.now();
+      const now = Date.now();
+      testStartRef.current = now;
+      setTestStartTimestamp(now);
       setTestAnswers({});
       setActiveMode("test");
       // Load questions for test
@@ -820,50 +1003,17 @@ export default function ExamPrepPage({ user, setActivePage }) {
               </button>
             </div>
           ) : (
-            <div>
-              {/* Test header */}
-              <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 16px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: ".9rem" }}>🎯 {examInfo.label} Simulation</div>
-                  <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)" }}>
-                    {Object.keys(testAnswers).length} / {testSession.total_questions || questions.length} answered
-                  </div>
-                </div>
-                <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                  <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>⏱️ {testSession.duration_minutes} min</div>
-                  <button onClick={handleSubmitTest} disabled={testLoading}
-                    style={{ padding: "9px 20px", background: "#22c55e", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".82rem", cursor: "pointer", fontFamily: "inherit" }}>
-                    {testLoading ? "Submitting…" : "Submit Test →"}
-                  </button>
-                </div>
-              </div>
-
-              {questions.length === 0 ? (
-                <div style={{ textAlign: "center", padding: 40, color: "var(--muted,#64748b)" }}>
-                  <div style={{ fontSize: "2rem", marginBottom: 12 }}>📭</div>
-                  <div style={{ fontSize: ".85rem", fontWeight: 700, marginBottom: 6 }}>No questions in bank yet</div>
-                  <div style={{ fontSize: ".75rem" }}>Admin needs to prewarm the question bank first.</div>
-                  <button onClick={handleSubmitTest} style={{ marginTop: 16, padding: "9px 20px", background: "#6366f1", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".82rem", cursor: "pointer", fontFamily: "inherit" }}>
-                    Submit Empty Test (see result)
-                  </button>
-                </div>
-              ) : (
-                <div style={{ maxHeight: 520, overflowY: "auto", background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12 }}>
-                  {questions.map((q, idx) => (
-                    <div key={q.id} style={{ borderLeft: `3px solid ${testAnswers[q.id] ? "#22c55e" : "transparent"}` }}>
-                      <div style={{ padding: "8px 16px 0", fontSize: ".68rem", color: "var(--muted,#64748b)", fontWeight: 700 }}>Q{idx + 1}</div>
-                      <QuestionCard
-                        question={q}
-                        selectedOption={testAnswers[q.id]}
-                        onSelect={opt => setTestAnswers(prev => ({ ...prev, [q.id]: opt }))}
-                        feedback={null}
-                        showFeedback={false}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <NTATestView
+              questions={questions}
+              testSession={testSession}
+              testAnswers={testAnswers}
+              setTestAnswers={setTestAnswers}
+              onSubmit={handleSubmitTest}
+              testLoading={testLoading}
+              startTimestamp={testStartTimestamp}
+              examLabel={examInfo.label}
+              examColor={examInfo.color}
+            />
           )}
         </section>
       )}
