@@ -377,11 +377,6 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
       {/* Floating countdown timer */}
       <FloatingTimer startTime={startTime} durationMins={testSession?.duration_minutes||180} onExpire={doSubmit} />
 
-      {/* Calculator FAB — bottom-right, always visible during exam */}
-      <button onClick={()=>setShowCalc(v=>!v)} title="Basic Calculator (No scientific calculator in real JEE)"
-        style={{ position:"fixed", bottom:24, right:20, zIndex:9998, width:48, height:48, borderRadius:"50%", background:showCalc?"#f59e0b":"#6366f1", border:"none", color:"#fff", fontSize:"1.2rem", cursor:"pointer", boxShadow:"0 4px 14px rgba(99,102,241,.5)", transition:"background .2s" }}>
-        🔢
-      </button>
       {showCalc && <OnScreenCalc onClose={()=>setShowCalc(false)} />}
 
       {/* Section tabs */}
@@ -439,10 +434,15 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
           </div>
 
           {/* Action buttons */}
-          <div style={{ padding:"12px 16px", borderTop:"1px solid var(--border,#334155)", display:"flex", gap:8, flexWrap:"wrap", background:"var(--panel,#1e293b)" }}>
+          <div style={{ padding:"12px 16px", borderTop:"1px solid var(--border,#334155)", display:"flex", gap:8, flexWrap:"wrap", background:"var(--panel,#1e293b)", alignItems:"center" }}>
             {qIdx > 0 && <button onClick={()=>goTo(qIdx-1)} style={{ padding:"8px 14px", background:"rgba(255,255,255,.06)", border:"1px solid var(--border,#334155)", borderRadius:8, color:"var(--muted,#94a3b8)", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>← Prev</button>}
             <button onClick={clearAns} style={{ padding:"8px 14px", background:"transparent", border:"1px solid rgba(239,68,68,.3)", borderRadius:8, color:"#f87171", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>Clear</button>
             <button onClick={markNext} style={{ padding:"8px 14px", background:"rgba(139,92,246,.12)", border:"1px solid rgba(139,92,246,.3)", borderRadius:8, color:"#a78bfa", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>🚩 Mark & Next</button>
+            {/* Calculator button — inline so it's never hidden by other widgets */}
+            <button onClick={()=>setShowCalc(v=>!v)} title="Basic Calculator"
+              style={{ padding:"8px 13px", background:showCalc?"rgba(245,158,11,.15)":"rgba(99,102,241,.1)", border:"1px solid "+(showCalc?"rgba(245,158,11,.4)":"rgba(99,102,241,.3)"), borderRadius:8, color:showCalc?"#f59e0b":"#a5b4fc", fontWeight:700, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit" }}>
+              🔢 Calc
+            </button>
             <button onClick={saveNext} style={{ padding:"8px 18px", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", border:"none", borderRadius:8, color:"#fff", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", marginLeft:"auto" }}>Save & Next →</button>
           </div>
         </div>
