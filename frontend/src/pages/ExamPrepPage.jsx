@@ -487,7 +487,7 @@ function TestResultPage({ result, onRetake, onClose }) {
                   <span style={{ fontSize: ".75rem", fontWeight: 600 }}>{subj}</span>
                   <span style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{data.correct}✓ {data.wrong}✗ | {subjectScore.toFixed(1)} / {maxScore.toFixed(1)}</span>
                 </div>
-                <div style={{ background: "rgba(255,255,255,.06)", borderRadius: 6, height: 6 }}>
+                <div style={{ background: "var(--surface2,rgba(0,0,0,.07))", borderRadius: 6, height: 6 }}>
                   <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6, transition: "width .5s" }} />
                 </div>
               </div>
@@ -514,7 +514,7 @@ function TestResultPage({ result, onRetake, onClose }) {
           <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>🤖 AI Recommendations</div>
           <ul style={{ margin: 0, paddingLeft: 16 }}>
             {result.ai_recommendations.map((r, i) => (
-              <li key={i} style={{ fontSize: ".75rem", color: "#cbd5e1", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
+              <li key={i} style={{ fontSize: ".75rem", color: "var(--text,#1e293b)", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
             ))}
           </ul>
         </div>
@@ -524,7 +524,7 @@ function TestResultPage({ result, onRetake, onClose }) {
         <button onClick={onRetake} style={{ padding: "11px 24px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
           Try Again
         </button>
-        <button onClick={onClose} style={{ padding: "11px 24px", background: "rgba(255,255,255,.06)", border: "1px solid var(--border,#334155)", borderRadius: 10, color: "#f1f5f9", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+        <button onClick={onClose} style={{ padding: "11px 24px", background: "var(--surface2,rgba(0,0,0,.04))", border: "1px solid var(--border,#e2e8f0)", borderRadius: 10, color: "var(--text,#1e293b)", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
           Back to Dashboard
         </button>
       </div>
