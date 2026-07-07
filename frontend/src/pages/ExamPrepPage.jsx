@@ -237,7 +237,7 @@ function AIPanel({ question, feedback, user }) {
           <form onSubmit={handleFollowUp} style={{ display: "flex", gap: 6, marginTop: 10 }}>
             <input value={followUp} onChange={e => setFollowUp(e.target.value)}
               placeholder="Ask AI: Why does this apply here?"
-              style={{ flex: 1, background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 6, padding: "6px 9px", color: "#f1f5f9", fontSize: ".72rem", fontFamily: "inherit" }} />
+              style={{ flex: 1, background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e2e8f0)", borderRadius: 6, padding: "6px 9px", color: "var(--text,#1e293b)", fontSize: ".72rem", fontFamily: "inherit" }} />
             <button type="submit" disabled={fuLoading || !followUp.trim()}
               style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: fuLoading ? .6 : 1, fontFamily: "inherit" }}>
               {fuLoading ? <Loader size={12} /> : "Ask ✦"}
