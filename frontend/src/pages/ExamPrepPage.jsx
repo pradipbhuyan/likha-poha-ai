@@ -262,6 +262,67 @@ function AIPanel({ question, feedback, user }) {
   );
 }
 
+// ── On-screen Calculator (basic — matches NTA JEE exam interface) ─────────────
+
+function OnScreenCalc({ onClose }) {
+  const [d, setD] = React.useState("0");
+  const [p, setP] = React.useState(null);
+  const [op, setOp] = React.useState(null);
+  const [fr, setFr] = React.useState(true);
+
+  function press(v) {
+    if (v === "C")   { setD("0"); setP(null); setOp(null); setFr(true); return; }
+    if (v === "+/-") { setD(x => String(-parseFloat(x) || 0)); return; }
+    if (v === "%")   { setD(x => String(parseFloat(x) / 100)); return; }
+    if (["÷", "×", "-", "+"].includes(v)) { setP(parseFloat(d)); setOp(v); setFr(true); return; }
+    if (v === "=") {
+      if (p === null || op === null) return;
+      const a = p, b = parseFloat(d);
+      const r = op==="+" ? a+b : op==="-" ? a-b : op==="×" ? a*b : (op==="÷"&&b!==0) ? a/b : "Err";
+      setD(String(r)); setP(null); setOp(null); setFr(true); return;
+    }
+    if (v === ".") {
+      if (fr) { setD("0."); setFr(false); return; }
+      if (!d.includes(".")) setD(x => x + "."); return;
+    }
+    setD(fr ? v : d === "0" ? v : d + v);
+    setFr(false);
+  }
+
+  const rows = [["%","C","+/-","÷"],["7","8","9","×"],["4","5","6","-"],["1","2","3","+"],[null,"0",".","="]];
+  const orange = ["÷","×","-","+","="];
+  const grey   = ["%","C","+/-"];
+
+  return (
+    <div style={{ position:"fixed", bottom:80, right:20, zIndex:10000, background:"#1c1c1e",
+      border:"1px solid #3a3a3c", borderRadius:18, padding:14, width:218,
+      boxShadow:"0 12px 40px rgba(0,0,0,.85)" }}>
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
+        <span style={{ fontSize:".7rem", fontWeight:700, color:"#8e8e93" }}>Calculator (basic — no scientific in JEE)</span>
+        <button onClick={onClose} style={{ background:"none", border:"none", color:"#8e8e93", cursor:"pointer", fontSize:"1rem", lineHeight:1 }}>✕</button>
+      </div>
+      <div style={{ background:"#000", borderRadius:10, padding:"8px 12px", marginBottom:10, textAlign:"right" }}>
+        <div style={{ fontSize:".62rem", color:"#8e8e93", minHeight:16 }}>{op ? String(p) + " " + op : ""}</div>
+        <div style={{ fontSize:"1.7rem", fontWeight:300, color:"#fff", overflow:"hidden", textOverflow:"ellipsis", letterSpacing:"-.02em" }}>{d}</div>
+      </div>
+      <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
+        {rows.map((row, ri) => (
+          <div key={ri} style={{ display:"grid", gridTemplateColumns: ri===4 ? "2fr 1fr 1fr" : "1fr 1fr 1fr 1fr", gap:5 }}>
+            {(ri === 4 ? ["0", ".", "="] : row).map(b => b === null ? null : (
+              <button key={b} onClick={() => press(b)}
+                style={{ padding:"13px 0", borderRadius:50, border:"none",
+                  background: orange.includes(b) ? "#ff9f0a" : grey.includes(b) ? "#636366" : "#2c2c2e",
+                  color:"#fff", fontWeight:500, fontSize:".9rem", cursor:"pointer", fontFamily:"inherit" }}>
+                {b}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── NTA-style Test View (one question at a time + palette + section tabs) ───────
 
 function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor }) {
@@ -271,6 +332,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
   const [qIdx, setQIdx] = React.useState(0);
   const [marked, setMarked] = React.useState({});
   const [section, setSection] = React.useState(subjects[0]);
+  const [showCalc, setShowCalc] = React.useState(false);
   const startTime = startTimestamp;
 
   function subjOf(i) {
@@ -314,6 +376,13 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
     <div>
       {/* Floating countdown timer */}
       <FloatingTimer startTime={startTime} durationMins={testSession?.duration_minutes||180} onExpire={doSubmit} />
+
+      {/* Calculator FAB — bottom-right, always visible during exam */}
+      <button onClick={()=>setShowCalc(v=>!v)} title="Basic Calculator (No scientific calculator in real JEE)"
+        style={{ position:"fixed", bottom:24, right:20, zIndex:9998, width:48, height:48, borderRadius:"50%", background:showCalc?"#f59e0b":"#6366f1", border:"none", color:"#fff", fontSize:"1.2rem", cursor:"pointer", boxShadow:"0 4px 14px rgba(99,102,241,.5)", transition:"background .2s" }}>
+        🔢
+      </button>
+      {showCalc && <OnScreenCalc onClose={()=>setShowCalc(false)} />}
 
       {/* Section tabs */}
       <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
