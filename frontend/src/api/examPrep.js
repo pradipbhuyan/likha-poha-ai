@@ -240,3 +240,12 @@ export async function adminUpdateQuestion(accessToken, questionId, updates) {
   });
   return handleResponse(res);
 }
+
+export async function adminImportBulk(accessToken, questions) {
+  const res = await fetch(`${API_BASE}/api/admin/exam-prep/questions/import-bulk`, {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify({ questions }),
+  });
+  return handleResponse(res);
+}

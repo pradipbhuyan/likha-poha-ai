@@ -800,3 +800,216 @@ def admin_archive_question(
     """Archive a question (admin only)."""
     result = svc.archive_question(question_id)
     return {"success": True, "question": result}
+
+
+# ── Bulk import from external sources (ChatGPT / Custom GPT) ──────────────────
+
+class BulkImportRequest(BaseModel):
+    questions: List[dict] = []
+
+
+@admin_router.post("/questions/import-bulk")
+def admin_import_bulk(
+    req: BulkImportRequest,
+    _admin=Depends(require_admin),
+):
+    """
+    Validate and import a batch of questions from an external source
+    (e.g. ChatGPT / Custom GPT paste-and-import workflow).
+
+    Validation checks per question:
+    - Required fields present
+    - correct_option is A/B/C/D
+    - options dict has exactly keys A, B, C, D
+    - exam_type is jee_main / neet_ug / cuet_ug
+    - difficulty is easy / medium / hard
+    - explanation does not flag itself as invalid
+    - explanation answer mention matches correct_option
+    - exact-match deduplication via MD5 of question_text
+
+    All valid questions are saved as 'draft'. Returns a summary report.
+    """
+    import hashlib  # noqa: PLC0415
+    import re as _re  # noqa: PLC0415
+
+    db = svc._get_db()
+
+    VALID_EXAM_TYPES = {"jee_main", "neet_ug", "cuet_ug"}
+    VALID_DIFFICULTIES = {"easy", "medium", "hard"}
+    VALID_OPTIONS_KEYS = {"A", "B", "C", "D"}
+    VALID_CORRECT_OPTIONS = {"A", "B", "C", "D"}
+
+    REQUIRED_FIELDS = [
+        "exam_type", "grade", "subject", "chapter", "topic",
+        "question_text", "options", "correct_option",
+        "detailed_explanation", "difficulty",
+    ]
+
+    results = {
+        "total_submitted": len(req.questions),
+        "imported": 0,
+        "skipped_duplicate": 0,
+        "skipped_invalid": 0,
+        "warnings": 0,
+        "report": [],
+    }
+
+    # Fetch existing fingerprints to check duplicates
+    existing_fingerprints: set = set()
+    try:
+        rows = db.table("exam_prep_questions").select("question_text").execute()
+        for row in (rows.data or []):
+            fp = hashlib.md5((row["question_text"] or "").lower().strip().encode()).hexdigest()
+            existing_fingerprints.add(fp)
+    except Exception:
+        pass  # If fetch fails, skip dedup (don't block import)
+
+    imported_ids = []
+
+    for idx, q in enumerate(req.questions):
+        q_num = idx + 1
+        issues = []
+        warnings = []
+
+        # ── 1. Required fields ────────────────────────────────────────────────
+        for field in REQUIRED_FIELDS:
+            if not q.get(field):
+                issues.append(f"Missing required field: {field}")
+
+        if issues:
+            results["report"].append({
+                "question_num": q_num,
+                "question_text": str(q.get("question_text", ""))[:80],
+                "status": "skipped_invalid",
+                "issues": issues,
+                "warnings": [],
+            })
+            results["skipped_invalid"] += 1
+            continue
+
+        # ── 2. Field value validation ─────────────────────────────────────────
+        if q.get("exam_type") not in VALID_EXAM_TYPES:
+            issues.append(f"Invalid exam_type '{q['exam_type']}'. Must be: jee_main, neet_ug, cuet_ug")
+
+        if q.get("difficulty") not in VALID_DIFFICULTIES:
+            issues.append(f"Invalid difficulty '{q.get('difficulty')}'. Must be: easy, medium, hard")
+
+        if q.get("correct_option") not in VALID_CORRECT_OPTIONS:
+            issues.append(f"Invalid correct_option '{q.get('correct_option')}'. Must be A, B, C, or D")
+
+        opts = q.get("options", {})
+        if not isinstance(opts, dict) or set(opts.keys()) != VALID_OPTIONS_KEYS:
+            issues.append(f"Options must be a dict with exactly keys A, B, C, D. Got: {list(opts.keys()) if isinstance(opts, dict) else type(opts).__name__}")
+        else:
+            # Check no empty options
+            empty = [k for k, v in opts.items() if not str(v).strip()]
+            if empty:
+                issues.append(f"Option(s) {empty} are empty")
+
+        if issues:
+            results["report"].append({
+                "question_num": q_num,
+                "question_text": str(q.get("question_text", ""))[:80],
+                "status": "skipped_invalid",
+                "issues": issues,
+                "warnings": warnings,
+            })
+            results["skipped_invalid"] += 1
+            continue
+
+        # ── 3. Explanation self-invalidation check ────────────────────────────
+        explanation = str(q.get("detailed_explanation", "")).lower()
+        if "invalid" in explanation and "should be replaced" in explanation:
+            issues.append("GPT flagged this question as invalid in the explanation")
+
+        # ── 4. Answer mismatch check: "answer is X" in explanation ───────────
+        # Detect "Therefore answer is B" when correct_option is "A"
+        answer_mentions = _re.findall(r'(?:therefore|hence|so|answer is|correct answer is)[^\.\n]*\b([A-D])\b', explanation, _re.IGNORECASE)
+        if answer_mentions:
+            mentioned = answer_mentions[-1].upper()  # last mention is the conclusion
+            stated = (q.get("correct_option") or "").upper()
+            if mentioned != stated:
+                warnings.append(
+                    f"⚠️ Answer mismatch: explanation concludes '{mentioned}' but correct_option is '{stated}'. "
+                    f"Imported as draft — please verify before publishing."
+                )
+
+        if issues:
+            results["report"].append({
+                "question_num": q_num,
+                "question_text": str(q.get("question_text", ""))[:80],
+                "status": "skipped_invalid",
+                "issues": issues,
+                "warnings": warnings,
+            })
+            results["skipped_invalid"] += 1
+            continue
+
+        # ── 5. Duplicate check ────────────────────────────────────────────────
+        fingerprint = hashlib.md5((q["question_text"] or "").lower().strip().encode()).hexdigest()
+        if fingerprint in existing_fingerprints:
+            results["report"].append({
+                "question_num": q_num,
+                "question_text": str(q.get("question_text", ""))[:80],
+                "status": "skipped_duplicate",
+                "issues": ["Exact duplicate of an existing question"],
+                "warnings": [],
+            })
+            results["skipped_duplicate"] += 1
+            continue
+
+        # ── 6. Build options_json in platform format ──────────────────────────
+        options_list = [{"key": k, "text": str(v)} for k, v in sorted(opts.items())]
+
+        row = {
+            "exam_type": q["exam_type"],
+            "grade": q.get("grade", "Grade 12"),
+            "subject": q["subject"],
+            "chapter": q.get("chapter", q.get("topic", "Unknown")),
+            "topic": q.get("topic", ""),
+            "subtopic": q.get("subtopic", ""),
+            "question_text": q["question_text"],
+            "options_json": options_list,
+            "correct_option": q["correct_option"],
+            "detailed_explanation": q.get("detailed_explanation", ""),
+            "solution_steps_json": [],
+            "formula_used": q.get("formula_used", ""),
+            "ncert_reference": q.get("ncert_reference", ""),
+            "difficulty": q["difficulty"],
+            "marks": int(q.get("marks", 4)),
+            "negative_marks": float(q.get("negative_marks", 1)),
+            "source_type": q.get("source_type", "llm_generated"),
+            "status": "draft",  # Always draft on import — admin must publish
+            "validation_score": 0.7 if warnings else 0.9,
+            "validation_errors": warnings if warnings else [],
+        }
+
+        try:
+            result = db.table("exam_prep_questions").insert(row).execute()
+            if result.data:
+                qid = result.data[0].get("id", "")
+                imported_ids.append(qid)
+                existing_fingerprints.add(fingerprint)  # prevent intra-batch dupes
+                results["imported"] += 1
+                if warnings:
+                    results["warnings"] += 1
+                results["report"].append({
+                    "question_num": q_num,
+                    "question_text": str(q.get("question_text", ""))[:80],
+                    "status": "imported_with_warning" if warnings else "imported",
+                    "issues": [],
+                    "warnings": warnings,
+                    "id": qid,
+                })
+        except Exception as exc:
+            results["report"].append({
+                "question_num": q_num,
+                "question_text": str(q.get("question_text", ""))[:80],
+                "status": "error",
+                "issues": [f"Database insert failed: {str(exc)[:100]}"],
+                "warnings": warnings,
+            })
+            results["skipped_invalid"] += 1
+
+    results["imported_ids"] = imported_ids
+    return {"success": True, **results}

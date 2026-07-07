@@ -16,7 +16,7 @@ import {
   getAudioOverview,
   startAudioPrewarm,
 } from "../api/cacheManagement";
-import { adminGetQBStatus, adminPrewarm, runExamPrepMigration } from "../api/examPrep";
+import { adminGetQBStatus, adminPrewarm, runExamPrepMigration, adminImportBulk } from "../api/examPrep";
 
 function gradeToSlug(grade) {
   /** Convert "Grade 9" to "grade-9" for URL slugs. */
@@ -1256,9 +1256,219 @@ function ExamPrepQBSection({ user }) {
         Each 10-question batch costs ~$0.001–0.01 depending on the AI provider.
       </div>
 
+      {/* Paste & Import from ChatGPT */}
+      <PasteImportSection user={user} />
+
       {/* Question Review Panel */}
       <QuestionReviewPanel user={user} />
     </section>
+  );
+}
+
+// ── Paste & Import from Custom GPT / ChatGPT ───────────────────────────────────
+
+function PasteImportSection({ user }) {
+  const [jsonText, setJsonText] = useState("");
+  const [importing, setImporting] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [showReport, setShowReport] = useState(false);
+
+  async function handleImport() {
+    setError("");
+    setResult(null);
+    setShowReport(false);
+
+    // Parse JSON
+    let questions;
+    try {
+      const parsed = JSON.parse(jsonText.trim());
+      questions = Array.isArray(parsed) ? parsed : [parsed];
+    } catch {
+      setError("❌ Invalid JSON. Make sure you paste a valid JSON array from ChatGPT.");
+      return;
+    }
+
+    if (questions.length === 0) {
+      setError("❌ No questions found in the JSON.");
+      return;
+    }
+    if (questions.length > 100) {
+      setError(`❌ Too many questions (${questions.length}). Maximum is 100 per import.`);
+      return;
+    }
+
+    setImporting(true);
+    try {
+      const data = await adminImportBulk(user.accessToken, questions);
+      setResult(data);
+      if (data.imported > 0) setJsonText(""); // clear on success
+    } catch (e) {
+      setError("❌ Import failed: " + (e.message || "unknown error"));
+    } finally {
+      setImporting(false);
+    }
+  }
+
+  const statusIcon = (status) => {
+    if (status === "imported") return "✅";
+    if (status === "imported_with_warning") return "⚠️";
+    if (status === "skipped_duplicate") return "🔁";
+    if (status === "skipped_invalid") return "❌";
+    if (status === "error") return "💥";
+    return "❓";
+  };
+  const statusColor = (status) => {
+    if (status === "imported") return "#22c55e";
+    if (status === "imported_with_warning") return "#f59e0b";
+    if (status === "skipped_duplicate") return "#64748b";
+    if (status === "skipped_invalid") return "#ef4444";
+    return "#f87171";
+  };
+
+  return (
+    <div style={{ marginTop: 24, padding: "20px", background: "rgba(99,102,241,.04)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 12 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+        <span style={{ fontSize: "1.3rem" }}>📥</span>
+        <div>
+          <div style={{ fontWeight: 800, fontSize: ".95rem" }}>Paste & Import from ChatGPT / Custom GPT</div>
+          <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>
+            Generate questions using your Custom GPT, copy the JSON output, paste below, and import directly into the question bank.
+          </div>
+        </div>
+      </div>
+
+      <textarea
+        value={jsonText}
+        onChange={e => { setJsonText(e.target.value); setError(""); setResult(null); }}
+        placeholder={`Paste JSON array from ChatGPT here…\n\nExample:\n[\n  {\n    "exam_type": "jee_main",\n    "grade": "Grade 12",\n    "subject": "Physics",\n    "chapter": "Current Electricity",\n    "topic": "Kirchhoff's Laws",\n    "question_text": "At a junction...",\n    "options": {"A": "2 A", "B": "4 A", "C": "8 A", "D": "12 A"},\n    "correct_option": "B",\n    "detailed_explanation": "Step 1: ...",\n    "difficulty": "easy",\n    "marks": 4,\n    "negative_marks": 1,\n    "ncert_reference": "NCERT Class 12 Physics, Chapter 3",\n    "formula_used": "KCL",\n    "source_type": "llm_generated",\n    "status": "draft"\n  }\n]`}
+        rows={12}
+        style={{
+          width: "100%", boxSizing: "border-box",
+          padding: "12px 14px", borderRadius: 8,
+          border: "1.5px solid rgba(99,102,241,.3)",
+          background: "var(--surface,#0f172a)", color: "#e2e8f0",
+          fontFamily: "monospace", fontSize: ".78rem", lineHeight: 1.5,
+          resize: "vertical",
+        }}
+      />
+
+      {/* Character count + question count preview */}
+      {jsonText.trim() && (
+        <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginTop: 4, display: "flex", gap: 12 }}>
+          <span>{jsonText.length.toLocaleString()} chars</span>
+          {(() => {
+            try {
+              const p = JSON.parse(jsonText.trim());
+              const count = Array.isArray(p) ? p.length : 1;
+              return <span style={{ color: count > 100 ? "#f87171" : "#22c55e" }}>{count} question{count !== 1 ? "s" : ""} detected</span>;
+            } catch {
+              return <span style={{ color: "#f87171" }}>⚠️ Invalid JSON</span>;
+            }
+          })()}
+        </div>
+      )}
+
+      <div style={{ marginTop: 12, display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <button
+          onClick={handleImport}
+          disabled={importing || !jsonText.trim()}
+          style={{
+            padding: "10px 24px",
+            background: importing ? "#6b7280" : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            border: "none", borderRadius: 8, color: "#fff",
+            fontWeight: 700, fontSize: ".88rem", cursor: "pointer",
+            fontFamily: "inherit", opacity: !jsonText.trim() ? .5 : 1,
+          }}
+        >
+          {importing ? "⏳ Validating & Importing…" : "📥 Validate & Import Questions"}
+        </button>
+        {jsonText.trim() && (
+          <button
+            onClick={() => { setJsonText(""); setError(""); setResult(null); }}
+            style={{ padding: "10px 16px", background: "transparent", border: "1px solid rgba(239,68,68,.3)", borderRadius: 8, color: "#f87171", fontWeight: 600, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}
+          >
+            🗑 Clear
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <div className="error-box" style={{ marginTop: 10, fontSize: ".82rem" }}>{error}</div>
+      )}
+
+      {/* Import result summary */}
+      {result && (
+        <div style={{ marginTop: 14, padding: "14px 16px", background: "rgba(0,0,0,.2)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10 }}>
+          <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 10, color: "#a5b4fc" }}>
+            Import Complete — {result.total_submitted} submitted
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px,1fr))", gap: 10, marginBottom: 12 }}>
+            {[
+              { label: "Imported", value: result.imported, color: "#22c55e", icon: "✅" },
+              { label: "With Warnings", value: result.warnings || 0, color: "#f59e0b", icon: "⚠️" },
+              { label: "Duplicates Skipped", value: result.skipped_duplicate, color: "#64748b", icon: "🔁" },
+              { label: "Invalid Skipped", value: result.skipped_invalid, color: "#ef4444", icon: "❌" },
+            ].map(s => (
+              <div key={s.label} style={{ background: "var(--panel,#1e293b)", borderRadius: 8, padding: "10px 12px", textAlign: "center" }}>
+                <div style={{ fontSize: "1.5rem", fontWeight: 800, color: s.color }}>{s.value}</div>
+                <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", marginTop: 2 }}>{s.icon} {s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {result.imported > 0 && (
+            <div className="info-box" style={{ fontSize: ".78rem", marginBottom: 10 }}>
+              ✅ {result.imported} question{result.imported !== 1 ? "s" : ""} saved as <strong>draft</strong>.
+              Review them in the panel below and publish the ones that look correct.
+            </div>
+          )}
+
+          {/* Per-question report */}
+          {result.report?.length > 0 && (
+            <div>
+              <button
+                onClick={() => setShowReport(v => !v)}
+                style={{ padding: "5px 12px", background: "transparent", border: "1px solid rgba(99,102,241,.3)", borderRadius: 6, color: "#a5b4fc", fontWeight: 600, fontSize: ".75rem", cursor: "pointer", fontFamily: "inherit", marginBottom: 8 }}
+              >
+                {showReport ? "▲ Hide" : "▼ Show"} Detailed Report ({result.report.length} questions)
+              </button>
+
+              {showReport && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {result.report.map((item, i) => (
+                    <div key={i} style={{
+                      padding: "8px 12px", borderRadius: 7,
+                      background: item.status === "imported" ? "rgba(34,197,94,.06)"
+                        : item.status === "imported_with_warning" ? "rgba(245,158,11,.06)"
+                        : "rgba(239,68,68,.06)",
+                      border: `1px solid ${item.status === "imported" ? "rgba(34,197,94,.2)"
+                        : item.status === "imported_with_warning" ? "rgba(245,158,11,.2)"
+                        : "rgba(239,68,68,.2)"}`,
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: item.issues?.length || item.warnings?.length ? 4 : 0 }}>
+                        <span style={{ fontSize: ".75rem", fontWeight: 700, color: statusColor(item.status) }}>
+                          {statusIcon(item.status)} Q{item.question_num}
+                        </span>
+                        <span style={{ fontSize: ".72rem", color: "#e2e8f0", flex: 1 }}>
+                          {item.question_text}…
+                        </span>
+                      </div>
+                      {item.issues?.map((issue, j) => (
+                        <div key={j} style={{ fontSize: ".7rem", color: "#fca5a5", marginLeft: 20 }}>• {issue}</div>
+                      ))}
+                      {item.warnings?.map((w, j) => (
+                        <div key={j} style={{ fontSize: ".7rem", color: "#fcd34d", marginLeft: 20 }}>• {w}</div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
