@@ -1708,7 +1708,7 @@ function QuestionReviewPanel({ user, refreshKey }) {
                     {q.difficulty}
                   </span>
                   {hasErrors && <span style={{ fontSize: ".6rem", color: "#f87171", flexShrink: 0 }}>⚠️ {validErrs.length} issue{validErrs.length > 1 ? "s" : ""}</span>}
-                  <span style={{ fontSize: ".78rem", color: "#e2e8f0", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ fontSize: ".78rem", color: "var(--text,#1e293b)", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {q.question_text?.slice(0, 100)}{q.question_text?.length > 100 ? "…" : ""}
                   </span>
                   <span style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", flexShrink: 0 }}>{isExpanded ? "▲" : "▼"}</span>
@@ -1718,14 +1718,14 @@ function QuestionReviewPanel({ user, refreshKey }) {
                 {isExpanded && (
                   <div style={{ borderTop: "1px solid var(--border,#334155)", padding: "12px 14px" }}>
                     {/* Full question */}
-                    <div style={{ fontSize: ".82rem", color: "#e2e8f0", marginBottom: 12, lineHeight: 1.6 }}>{q.question_text}</div>
+                    <div style={{ fontSize: ".82rem", color: "var(--text,#1e293b)", marginBottom: 12, lineHeight: 1.6 }}>{q.question_text}</div>
 
                     {/* Options */}
                     <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 12 }}>
                       {opts.map(opt => (
                         <div key={opt.key} style={{ display: "flex", gap: 8, padding: "6px 10px", borderRadius: 6, background: opt.key === q.correct_option ? "rgba(34,197,94,.1)" : "rgba(255,255,255,.03)", border: `1px solid ${opt.key === q.correct_option ? "#22c55e" : "var(--border,#334155)"}`, fontSize: ".78rem" }}>
                           <strong style={{ color: opt.key === q.correct_option ? "#22c55e" : "var(--muted,#64748b)", width: 16 }}>{opt.key}</strong>
-                          <span style={{ color: "#e2e8f0" }}>{opt.text}</span>
+                          <span style={{ color: "var(--text,#1e293b)" }}>{opt.text}</span>
                           {opt.key === q.correct_option && <span style={{ color: "#22c55e", marginLeft: "auto" }}>✓ Correct</span>}
                         </div>
                       ))}
@@ -1733,8 +1733,8 @@ function QuestionReviewPanel({ user, refreshKey }) {
 
                     {/* Explanation */}
                     {q.detailed_explanation && (
-                      <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 7, padding: 10, fontSize: ".75rem", color: "#cbd5e1", marginBottom: 10 }}>
-                        <strong style={{ color: "#a5b4fc", display: "block", marginBottom: 4 }}>Explanation:</strong>
+                      <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 7, padding: 10, fontSize: ".75rem", color: "var(--text,#1e293b)", marginBottom: 10 }}>
+                        <strong style={{ color: "#6366f1", display: "block", marginBottom: 4 }}>Explanation:</strong>
                         {q.detailed_explanation}
                       </div>
                     )}
