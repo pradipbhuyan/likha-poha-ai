@@ -126,7 +126,7 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
         <span style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", background: "rgba(255,255,255,.05)", padding: "2px 8px", borderRadius: 20 }}>{question.topic}</span>
         {question.marks && <span style={{ fontSize: ".6rem", color: "#fbbf24", background: "rgba(251,191,36,.08)", padding: "2px 8px", borderRadius: 20 }}>+{question.marks} / -{question.negative_marks}</span>}
       </div>
-      <div style={{ fontSize: ".85rem", color: "#e2e8f0", lineHeight: 1.6, marginBottom: 14 }}>{question.question_text}</div>
+      <div style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14 }}>{question.question_text}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
         {opts.map(opt => {
           const isSelected = selectedOption === opt.key;
@@ -134,11 +134,11 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
           const wrong = isWrong(opt.key);
           return (
             <div key={opt.key} onClick={() => !showFeedback && onSelect(opt.key)}
-              style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", borderRadius: 8, cursor: showFeedback ? "default" : "pointer", background: correct ? "rgba(34,197,94,.12)" : wrong ? "rgba(239,68,68,.1)" : isSelected ? "rgba(99,102,241,.12)" : "rgba(255,255,255,.03)", border: `1px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#334155)"}`, transition: "all .1s" }}>
-              <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#334155)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: ".68rem", fontWeight: 700, color: correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--muted,#64748b)" }}>
+              style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", borderRadius: 8, cursor: showFeedback ? "default" : "pointer", background: correct ? "rgba(34,197,94,.12)" : wrong ? "rgba(239,68,68,.1)" : isSelected ? "rgba(99,102,241,.12)" : "var(--surface2,rgba(0,0,0,.02))", border: `1px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#e2e8f0)"}`, transition: "all .1s" }}>
+              <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#94a3b8)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: ".68rem", fontWeight: 700, color: correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--muted,#64748b)" }}>
                 {opt.key}
               </span>
-              <span style={{ fontSize: ".8rem", color: "#e2e8f0", lineHeight: 1.5, flex: 1 }}>{opt.text}</span>
+              <span style={{ fontSize: ".8rem", color: "var(--text,#1e293b)", lineHeight: 1.5, flex: 1 }}>{opt.text}</span>
               {correct && <CheckCircle size={14} color="#22c55e" style={{ flexShrink: 0, marginTop: 2 }} />}
               {wrong && <XCircle size={14} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />}
             </div>
