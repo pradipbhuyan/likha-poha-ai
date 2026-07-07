@@ -185,9 +185,9 @@ function AIPanel({ question, feedback, user }) {
   }
 
   return (
-    <div style={{ padding: 16, overflowY: "auto", height: "100%", fontSize: ".78rem", lineHeight: 1.6, color: "#cbd5e1" }}>
+    <div style={{ padding: 16, overflowY: "auto", height: "100%", fontSize: ".78rem", lineHeight: 1.6, color: "var(--text,#1e293b)" }}>
       {/* Question preview */}
-      <div style={{ background: "var(--surface,#0f172a)", border: "1px solid var(--border,#334155)", borderRadius: 8, padding: 10, marginBottom: 12, fontSize: ".72rem", color: "var(--muted,#94a3b8)", fontStyle: "italic" }}>
+      <div style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e2e8f0)", borderRadius: 8, padding: 10, marginBottom: 12, fontSize: ".72rem", color: "var(--text-muted,#64748b)", fontStyle: "italic" }}>
         {question.question_text.length > 200 ? question.question_text.slice(0, 200) + "…" : question.question_text}
       </div>
 
@@ -209,7 +209,7 @@ function AIPanel({ question, feedback, user }) {
           {feedback.explanation && (
             <div style={{ marginBottom: 12 }}>
               <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 6 }}>Explanation:</div>
-              <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.15)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.9 }}>
+              <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.9, color: "var(--text,#1e293b)" }}>
                 {/* Split on "Step N:" or "Option X:" patterns so each step renders on its own line */}
                 {feedback.explanation
                   .replace(/\s+(Step\s+\d+[:.])/g, '\n$1')
