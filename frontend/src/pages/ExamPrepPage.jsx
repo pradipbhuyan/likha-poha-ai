@@ -264,7 +264,7 @@ function AIPanel({ question, feedback, user }) {
 
 // ── NTA-style Test View (one question at a time + palette + section tabs) ───────
 
-function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel, examColor }) {
+function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor }) {
   const cfg = Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main;
   const subjects = cfg.subjects;
   const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
