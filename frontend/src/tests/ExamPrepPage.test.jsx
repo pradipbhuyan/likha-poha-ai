@@ -361,11 +361,11 @@ describe("ExamPrepPage — Test Result Rendering", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /Start JEE Main Simulation/i }));
 
-    // After starting, submit
+    // After starting, submit — NTATestView shows "End Test" when no questions
     await waitFor(() => {
-      expect(screen.getByText(/Submit Empty Test/i)).toBeTruthy();
+      expect(screen.getByText(/End Test|Submit Test/i)).toBeTruthy();
     });
-    fireEvent.click(screen.getByText(/Submit Empty Test/i));
+    fireEvent.click(screen.getByText(/End Test|Submit Test/i));
 
     // Result page shows
     await waitFor(() => {
