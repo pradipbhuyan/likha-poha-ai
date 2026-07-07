@@ -23,9 +23,10 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       .catch(() => {});
   }, []);
   const faqs = [
-    { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Class 5 to 10 for CBSE across all core subjects — Science, Maths, English, Social Science, and Hindi. State Board content can be uploaded by admins for custom deployments." },
+    { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, and CUET UG." },
+    { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center provides JEE Main, NEET UG, and CUET UG preparation with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, AI explanations, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It is included in the Premium plan at no extra cost." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
-    { q: "How many practice questions are available?", a: "LikhaPoha AI has 70,000+ practice questions covering all chapters from Grade 5 to Grade 10 across CBSE subjects, available instantly for mock tests and practice." },
+    { q: "How many practice questions are available?", a: "LikhaPoha AI has 90,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including JEE Main, NEET UG, and CUET UG question banks for Grade 11 & 12." },
     { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
     { q: "Can I manage multiple children on the Parent Dashboard?", a: "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
     { q: "What does the Parent Dashboard show?", a: "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children and manage subscription plans." },
@@ -52,20 +53,38 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         </div>
       </nav>
       <div className="lp-hero">
-        <div className="lp-badge">&#127470;&#127475; Built for India &middot; Class 5&ndash;10 &middot; CBSE</div>
-        <h1>Every Child Deserves a<br /><span className="lp-gr">Personal Tutor</span></h1>
-        <p>AI-powered lessons, instant doubt solving, exam-ready practice, and real-time parent insights &mdash; available anytime, anywhere.</p>
+        <div className="lp-badge">&#127470;&#127475; Built for India &middot; Grade 5&ndash;12 &middot; CBSE &middot; JEE &middot; NEET &middot; CUET</div>
+        <h1>Every Child Deserves a<br /><span className="lp-gr">Personal AI Tutor</span></h1>
+        <p>NCERT-grounded lessons, instant doubt solving, Grade 11&ndash;12 competitive exam prep, and real-time parent insights &mdash; Grade 5 to Grade 12, anytime, anywhere.</p>
         <div className="lp-hcta">
           <button className="lp-bc" onClick={() => handleCta("free")}>&#128640; Try for Free</button>
           <a href="#features" className="lp-bol">See Features &rarr;</a>
         </div>
         <div className="lp-stats">
-          <div className="lp-stat"><div className="lp-sn">700+</div><div className="lp-sl">Chapters (Gr 5&ndash;10)</div></div>
-          <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Classes (5&ndash;10)</div></div>
-          <div className="lp-stat"><div className="lp-sn">6</div><div className="lp-sl">Core Subjects</div></div>
-          <div className="lp-stat"><div className="lp-sn">70,000+</div><div className="lp-sl">Practice Questions</div></div>
+          <div className="lp-stat"><div className="lp-sn">900+</div><div className="lp-sl">Chapters (Gr 5&ndash;12)</div></div>
+          <div className="lp-stat"><div className="lp-sn">8</div><div className="lp-sl">Grades (5&ndash;12)</div></div>
+          <div className="lp-stat"><div className="lp-sn">12+</div><div className="lp-sl">Subjects</div></div>
+          <div className="lp-stat"><div className="lp-sn">90,000+</div><div className="lp-sl">Practice Questions</div></div>
         </div>
       </div>
+      {/* AI for Good */}
+      <div style={{background:"linear-gradient(135deg,rgba(16,185,129,.08),rgba(99,102,241,.05))",borderTop:"1px solid rgba(16,185,129,.2)",borderBottom:"1px solid rgba(16,185,129,.15)",padding:"28px 20px",textAlign:"center"}}>
+        <div style={{maxWidth:860,margin:"0 auto"}}>
+          <div style={{fontSize:".68rem",fontWeight:800,textTransform:"uppercase",letterSpacing:".1em",color:"#10b981",marginBottom:8}}>Our Mission</div>
+          <h2 style={{fontSize:"1.3rem",fontWeight:900,margin:"0 0 10px"}}>&#127807; AI for Good &mdash; Bridging India&rsquo;s Education Gap</h2>
+          <p style={{fontSize:".9rem",color:"var(--muted,#94a3b8)",maxWidth:660,margin:"0 auto 18px",lineHeight:1.7}}>Quality education should not depend on how much a family can afford. LikhaPoha AI uses <strong>responsible AI</strong> to give every Indian student &mdash; from Class 5 to Class 12 &mdash; personalised, textbook-grounded learning previously available only to students who could afford private tutors.</p>
+          <div style={{display:"flex",gap:14,flexWrap:"wrap",justifyContent:"center"}}>
+            {[{e:"&#128218;",t:"Strictly NCERT-grounded",d:"No hallucinations — only textbook facts"},{e:"&#128274;",t:"Safe for children",d:"Academic guardrail blocks off-topic content"},{e:"&#127760;",t:"Free to start",d:"Core platform is free. Try premium features from ₹99 for 8 days."},{e:"&#127891;",t:"All grades covered",d:"Grade 5 through 12 + JEE, NEET, CUET"}].map(f=>(
+              <div key={f.t} style={{background:"rgba(16,185,129,.06)",border:"1px solid rgba(16,185,129,.15)",borderRadius:10,padding:"12px 16px",flex:"1 1 160px",maxWidth:210}}>
+                <div style={{fontSize:"1.3rem",marginBottom:4}} dangerouslySetInnerHTML={{__html:f.e}} />
+                <div style={{fontWeight:700,fontSize:".8rem",marginBottom:2}}>{f.t}</div>
+                <div style={{fontSize:".7rem",color:"var(--muted,#94a3b8)"}}>{f.d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">The Real Problem</div><h2>Why Students Struggle at Home</h2></div>
         <div className="lp-pvs">
@@ -116,9 +135,9 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div className="lp-sw">
         <div className="lp-sh"><div className="lp-ey">See It In Action</div><h2>A Glimpse of What Students Experience Daily</h2><p>Everything works on phone &mdash; no app download needed</p></div>
         <div className="lp-demo">
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>AI LESSON</div><img src="/screenshots/lesson.png" alt="AI Lesson" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise chapter lesson grounded in your NCERT textbook</div></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}>&#129514;</div>MOCK TEST</div><img src="/screenshots/mocktest.png" alt="Mock Test" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">CBSE mock tests with instant scoring and explanations</div></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#128106;</div>PARENT DASHBOARD</div><img src="/screenshots/parent-dashboard.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Real-time progress, score trends and weak area alerts for parents</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>AI LESSON</div><img src="/screenshots/S05-lesson-content.png" alt="AI Lesson" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Step-wise chapter lesson grounded in your NCERT textbook</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(6,182,212,.2)"}}>&#129514;</div>MOCK TEST</div><img src="/screenshots/S07-mock-test-question.png" alt="Mock Test" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">CBSE mock tests with instant scoring and AI explanations</div></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#128106;</div>PARENT DASHBOARD</div><img src="/screenshots/S13-parent-dashboard-top.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">Real-time progress, score trends and weak area alerts for parents</div></div>
         </div>
       </div>
       <div className="lp-sf" id="features"><div className="lp-si">
@@ -127,22 +146,40 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(124,58,237,.15)"}}><BookOpen size={22} strokeWidth={2} /></div><h3>Step-wise AI Lessons</h3><p>4&ndash;6 focused steps per chapter &mdash; Concept intro, Core explanation, Worked examples, Exam-style problems, Revision.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(16,185,129,.15)"}}><MessageCircle size={22} strokeWidth={2} /></div><h3>Instant Doubt Solving</h3><p>Ask any chapter question. AI answers from your actual NCERT textbook &mdash; not generic internet content.</p></div>
-            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 70,000+ practice questions covering every chapter.</p></div>
+            <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(245,158,11,.15)"}}><ClipboardList size={22} strokeWidth={2} /></div><h3>Mock Tests and Question Bank</h3><p>CBSE class tests, mid-terms and full mock tests across all grades. 90,000+ practice questions — Grade 5 to Grade 12.</p></div>
             <div className="lp-fc"><div className="lp-fi" style={{background:"rgba(239,68,68,.15)"}}><Users size={22} strokeWidth={2} /></div><h3>Parent Dashboard</h3><p>Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account.</p></div>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"16px"}}>
-            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#10067;</div>INSTANT DOUBT SOLVING</div><img src="/screenshots/doubt.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(124,58,237,.2)"}}>&#128218;</div>LEARN MORE SECTION</div><img src="/screenshots/learn-more.png" alt="Learn More" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}>&#10067;</div>INSTANT DOUBT SOLVING</div><img src="/screenshots/S06-ask-doubt-answer.png" alt="Doubt Solving" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+            <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#128202;</div>STUDENT ANALYTICS</div><img src="/screenshots/S11-analytics-top.png" alt="Student Analytics" style={{width:"100%",display:"block"}} loading="lazy" /></div>
           </div>
         </div>
       </div></div>
       <div className="lp-sf"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">Kids Love It</div><h2>Gamified Learning Dashboard</h2><p>Badges, leaderboards and achievement streaks keep students motivated every day</p></div>
         <div className="lp-2col">
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}>&#127942;</div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/gamified-dashboard.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
-          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#129351;</div>CLASS LEADERBOARD</div><img src="/screenshots/leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(245,158,11,.2)"}}>&#127942;</div>ACHIEVEMENTS AND BADGES</div><img src="/screenshots/S04-dash-xp-streak.png" alt="Gamified Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
+          <div className="lp-dc"><div className="lp-dh"><div className="lp-di" style={{background:"rgba(99,102,241,.2)"}}>&#129351;</div>CLASS LEADERBOARD</div><img src="/screenshots/S12-leaderboard.png" alt="Leaderboard" style={{width:"100%",display:"block"}} loading="lazy" /></div>
         </div>
       </div></div>
+      {/* Exam Prep Center — Grade 11 & 12 */}
+      <div className="lp-sw" style={{background:"linear-gradient(135deg,rgba(99,102,241,.06),rgba(139,92,246,.04))"}}>
+        <div className="lp-sh"><div className="lp-ey" style={{color:"#8b5cf6"}}>Grade 11 & 12 &mdash; New!</div><h2>&#127919; Exam Prep Center &mdash; JEE, NEET & CUET</h2><p>Curated question bank + NTA-style simulators for Grade 11 & 12 students aiming for top colleges.</p></div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,maxWidth:900,margin:"0 auto 8px"}}>
+          {[
+            {icon:"&#128208;",color:"#6366f1",title:"JEE Main Simulator",desc:"NTA-style interface — one question at a time, floating countdown timer, question palette, Mark & Next, basic calculator. Physics, Chemistry, Mathematics."},
+            {icon:"&#128300;",color:"#10b981",title:"NEET UG Prep",desc:"Physics, Chemistry, Biology with NCERT-exact terminology. Subject-wise topic priority cards showing weightage and key subtopics."},
+            {icon:"&#127963;",color:"#f59e0b",title:"CUET UG Prep",desc:"All streams — Science, Commerce, Humanities. English, General Test, and domain subjects with curated practice questions."},
+          ].map(f=>(
+            <div key={f.title} style={{background:"#1e293b",border:"1px solid "+f.color+"44",borderRadius:12,padding:"18px 16px"}}>
+              <div style={{fontSize:"1.5rem",marginBottom:8}} dangerouslySetInnerHTML={{__html:f.icon}} />
+              <div style={{fontWeight:800,fontSize:".9rem",color:f.color,marginBottom:6}}>{f.title}</div>
+              <div style={{fontSize:".78rem",color:"#94a3b8",lineHeight:1.6}}>{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free &middot; No hidden charges</p></div>
         <div className="lp-pg">
@@ -209,7 +246,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
 
       <footer className="lp-footer">
         <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>
-        <p>AI-Powered Tutor for CBSE &middot; Class 5&ndash;10</p>
+        <p>AI-Powered Tutor for CBSE &middot; Grade 5&ndash;12 &middot; JEE &middot; NEET &middot; CUET</p>
         <div style={{marginTop:"16px"}}>
           <a href="#">Home</a>
           <a href="#features">Features</a>
