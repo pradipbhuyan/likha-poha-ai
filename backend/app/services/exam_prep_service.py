@@ -173,7 +173,7 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "plan_name": "Admin",
         }
 
-    # Test users: full access
+    # Test users: full access to all exams regardless of stream
     if username in EXAM_PREP_TEST_USERS:
         return {
             "grade_eligible": True,
@@ -182,7 +182,11 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "reason": "test_user",
             "stream": stream,
             "stream_missing": stream is None,
-            "exam_eligibility": build_exam_eligibility(stream),
+            "exam_eligibility": {
+                "jee_main": {"eligible": True, "reason": ""},
+                "neet_ug":  {"eligible": True, "reason": ""},
+                "cuet_ug":  {"eligible": True, "coming_soon": True, "reason": "CUET UG coming soon."},
+            },
             "canonical_plan_key": "ADMIN_GRANT",
             "plan_name": "Test Access",
         }
