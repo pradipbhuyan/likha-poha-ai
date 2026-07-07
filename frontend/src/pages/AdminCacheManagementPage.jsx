@@ -1146,21 +1146,21 @@ function ExamPrepQBSection({ user }) {
           <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
             Exam
             <select value={selExam} onChange={e => setSelExam(e.target.value)}
-              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }}>
               {EXAM_OPTIONS.map(e => <option key={e.value} value={e.value}>{e.icon} {e.label}</option>)}
             </select>
           </label>
           <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
             Grade
             <select value={selGrade} onChange={e => setSelGrade(e.target.value)}
-              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }}>
               {EXAM_GRADE_OPTIONS.map(g => <option key={g} value={g}>{g}</option>)}
             </select>
           </label>
           <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
             Subject
             <select value={selSubject} onChange={e => setSelSubject(e.target.value)}
-              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }}>
               {(EXAM_SUBJECTS[selExam] || []).map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </label>
@@ -1171,7 +1171,7 @@ function ExamPrepQBSection({ user }) {
           Topic <span style={{ color: "var(--muted,#64748b)", fontWeight: 400 }}>(optional — leave blank for full subject)</span>
           <input value={selTopic} onChange={e => setSelTopic(e.target.value)}
             placeholder="e.g. Kinematics, Electrochemistry, Integration…"
-            style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+            style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }} />
         </label>
 
         {/* Question count + publish mode */}
@@ -1179,12 +1179,12 @@ function ExamPrepQBSection({ user }) {
           <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
             Question Count (1–50)
             <input type="number" min={1} max={50} value={questionCount} onChange={e => setQuestionCount(Number(e.target.value))}
-              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }} />
           </label>
           <label style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: ".82rem" }}>
             Publish Mode
             <select value={publishMode} onChange={e => setPublishMode(e.target.value)}
-              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }}>
+              style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }}>
               <option value="draft">Draft only (review before publishing)</option>
               <option value="auto_publish">Auto-publish if validation passes</option>
             </select>
@@ -1207,7 +1207,7 @@ function ExamPrepQBSection({ user }) {
                 <span style={{ color: d.color, fontWeight: 700 }}>{d.label}</span>
                 <input type="number" min={0} max={100} value={d.val}
                   onChange={e => d.set(Number(e.target.value))}
-                  style={{ padding: "6px 10px", borderRadius: 7, border: `1px solid ${d.color}44`, background: "var(--surface,#0f172a)", color: "#f1f5f9", fontFamily: "inherit" }} />
+                  style={{ padding: "6px 10px", borderRadius: 7, border: `1px solid ${d.color}44`, background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontFamily: "inherit" }} />
               </label>
             ))}
           </div>
@@ -1352,7 +1352,7 @@ function PasteImportSection({ user, onImportSuccess }) {
           width: "100%", boxSizing: "border-box",
           padding: "12px 14px", borderRadius: 8,
           border: "1.5px solid rgba(99,102,241,.3)",
-          background: "var(--surface,#0f172a)", color: "#e2e8f0",
+          background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)",
           fontFamily: "monospace", fontSize: ".78rem", lineHeight: 1.5,
           resize: "vertical",
         }}
@@ -1404,7 +1404,7 @@ function PasteImportSection({ user, onImportSuccess }) {
 
       {/* Import result summary */}
       {result && (
-        <div style={{ marginTop: 14, padding: "14px 16px", background: "rgba(0,0,0,.2)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10 }}>
+        <div style={{ marginTop: 14, padding: "14px 16px", background: "var(--panel,rgba(0,0,0,.06))", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10 }}>
           <div style={{ fontWeight: 700, fontSize: ".9rem", marginBottom: 10, color: "#a5b4fc" }}>
             Import Complete — {result.total_submitted} submitted
           </div>
@@ -1637,18 +1637,18 @@ function QuestionReviewPanel({ user, refreshKey }) {
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           {/* Exam filter */}
           <select value={filterExam} onChange={e => setFilterExam(e.target.value)}
-            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit" }}>
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontSize: ".78rem", fontFamily: "inherit" }}>
             {REVIEW_EXAM_OPTIONS.map(e => <option key={e.value} value={e.value}>{e.label}</option>)}
           </select>
           {/* Status filter */}
           <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
-            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit" }}>
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontSize: ".78rem", fontFamily: "inherit" }}>
             {REVIEW_STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
           {/* Subject filter */}
           <input value={filterSubject} onChange={e => setFilterSubject(e.target.value)}
             placeholder="Filter by subject…"
-            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#334155)", background: "var(--surface,#0f172a)", color: "#f1f5f9", fontSize: ".78rem", fontFamily: "inherit", width: 140 }} />
+            style={{ padding: "5px 10px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface,#f8fafc)", color: "var(--text,#1e293b)", fontSize: ".78rem", fontFamily: "inherit", width: 140 }} />
           <button onClick={loadQuestions} style={{ padding: "5px 12px", background: "rgba(99,102,241,.15)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 7, color: "#a5b4fc", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
             🔄 Refresh
           </button>
