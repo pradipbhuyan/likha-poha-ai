@@ -110,6 +110,74 @@ Feature access comes from `get_feature_summary(user_id)`. Never branch on raw `s
 ### test_history.percentage
 Always use `percentage` column (0-100). `score` and `total_questions` columns do NOT exist. Never multiply `percentage` by 100.
 
+---
+
+## 2026-07-07: Exam Prep — Test User Gets All Exams Eligible
+
+**Decision:** `EXAM_PREP_TEST_USERS` (e.g. `akshita.teststudent`) receive hardcoded full exam eligibility regardless of stream.
+
+**Before:** `build_exam_eligibility(None)` was called → JEE/NEET returned as ineligible (stream=None).
+
+**After (in `get_access_check_response`):**
+```python
+if username in EXAM_PREP_TEST_USERS:
+    return {
+        "exam_eligibility": {
+            "jee_main": {"eligible": True, "reason": ""},
+            "neet_ug":  {"eligible": True, "reason": ""},
+            "cuet_ug":  {"eligible": True, "coming_soon": True, ...},
+        },
+        ...
+    }
+```
+
+**Profile also updated:** `akshita.teststudent` set to Grade 11, Stream PCMB so the sidebar shows Grade 11/12 features.
+
+**File:** `backend/app/services/exam_prep_service.py`
+
+---
+
+## 2026-07-07: Paste & Import — 6-Tier Validation for ChatGPT Questions
+
+**Decision:** Bulk import endpoint validates each question before inserting. Catches common ChatGPT generation errors automatically.
+
+**Validation tiers (in order):**
+1. Required fields (exam_type, grade, subject, chapter, topic, question_text, options, correct_option, detailed_explanation, difficulty)
+2. Field values (exam_type ∈ {jee_main,neet_ug,cuet_ug}, difficulty ∈ {easy,medium,hard}, correct_option ∈ {A,B,C,D}, options has exactly A/B/C/D)
+3. Self-invalidation: if "invalid" AND "should be replaced" in explanation → skip
+4. Answer mismatch: if explanation says "Therefore answer is X" but correct_option is Y → `imported_with_warning` (still saved, needs review before publish)
+5. Deduplication: MD5 of question_text vs existing questions
+6. All valid → saved as `draft`
+
+**Why answer mismatch = warning not error:** GPT sometimes sets the correct_option field incorrectly while the explanation is actually correct. Admin can verify and fix before publishing.
+
+**File:** `backend/app/routes/exam_prep.py`
+
+---
+
+## 2026-07-07: CSS Variable Convention — Light/Dark Mode Fallbacks
+
+**Decision:** All inline styles in React components use CSS variable fallbacks that work in BOTH light and dark mode.
+
+**Convention:**
+```
+background: "var(--surface,#f8fafc)"    ← #f8fafc shows in light mode if --surface not set
+color: "var(--text,#1e293b)"            ← dark text fallback for light mode  
+border: "1px solid var(--border,#e2e8f0)" ← subtle border in light mode
+```
+
+**Previous pattern (WRONG — dark only):**
+```
+background: "var(--surface,#0f172a)"   ← shows dark even in light mode
+color: "#f1f5f9"                        ← hardcoded light (invisible on white)
+```
+
+**How theme switching works:** The app's CSS theme sets `--surface`, `--text`, `--border` etc. for dark mode. In light mode, if these vars are not set, the fallback value controls the appearance. So the fallback must be the LIGHT mode value.
+
+**Applied to:** `ExamPrepPage.jsx` (QuestionCard, AIPanel), `AdminCacheManagementPage.jsx` (all selects, inputs, textareas in QuestionReviewPanel, ExamPrepQBSection, PasteImportSection)
+
+---
+
 ### student_progress not chapter_progress
 `chapter_progress` table does NOT exist. All progress data is in `student_progress`.
 

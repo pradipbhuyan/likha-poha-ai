@@ -1,6 +1,6 @@
 # Student Platform
 
-_Last updated: 2026-06-28_
+_Last updated: 2026-07-07_
 
 ## Vision
 
@@ -102,6 +102,46 @@ All score display must use `_normalize_score_pct(percentage, raw_score, max_scor
 | `board` | CBSE (default) |
 | `access_cbse` | Canonical paid access flag |
 | `subscription_expires_at` | Expiry date if applicable |
+
+## Exam Prep Center — Grade 11/12
+
+### Access Rules
+- **Grade 11/12 students**: access controlled by subscription (Premium+ only)
+- **`akshita.teststudent`**: always gets full access (`reason: "test_user"`, `ADMIN_GRANT` plan)
+- **admin role**: always gets full access
+- **Grade 5–10 students**: see a grade-ineligible lock screen
+
+### Stream-based Exam Eligibility
+| Stream | JEE Main | NEET UG | CUET UG |
+|---|---|---|---|
+| PCM | ✅ Eligible | ❌ | ⏳ Coming Soon |
+| PCB | ❌ | ✅ Eligible | ⏳ Coming Soon |
+| PCMB | ✅ Eligible | ✅ Eligible | ⏳ Coming Soon |
+| No stream | ❌ (unless test user) | ❌ (unless test user) | ⏳ Coming Soon |
+
+Test users (`akshita.teststudent`) override stream eligibility — all exams show as eligible.
+
+### Backend Endpoint
+`GET /api/exam-prep/access-check` — returns canonical access state. Frontend must call this, never infer from plan string.
+
+Response fields:
+- `grade_eligible`: bool
+- `has_access`: bool
+- `preview_only`: bool
+- `reason`: "full_access" | "free" | "nano" | "admin" | "test_user" | "grade_ineligible"
+- `stream_missing`: bool
+- `exam_eligibility`: `{jee_main, neet_ug, cuet_ug}` per-stream flags
+- `canonical_plan_key`: string
+
+### Exam Prep Question Bank
+- Questions stored in `exam_prep_questions` table (Supabase 2 / grade_1112_client)
+- States: `draft` → `published` → `archived`
+- Admin can generate via AI prewarm or paste-import from ChatGPT/Custom GPT
+- Students see only `published` questions
+
+### Explanation Rendering
+- `detailed_explanation` text is split on `Step N:`, `Option X:`, and `Therefore` patterns
+- Each step renders as a separate `<div>` with margin (not one continuous block)
 
 ---
 

@@ -106,6 +106,39 @@ _Last updated: 2026-06-28_
 
 ---
 
+## Completed — July 2026 Sprint (Week 2 — July 5-7)
+
+### Exam Prep Center — Access & Stream Eligibility Fixes
+- [x] `get_access_check_response()` — test users now get all exams eligible (JEE + NEET) regardless of stream
+- [x] `akshita.teststudent` profile updated: Grade 11, PCMB, full CBSE subjects
+- [x] `exam_eligibility` for test users hardcoded to `jee_main: eligible, neet_ug: eligible`
+- [x] Grade 11/12 Access tests (`Grade1112Access.test.jsx`) — all 13 fetch mocks fixed with `vi.stubGlobal`
+- [x] `ExamPrepPage.test.jsx` — fetch mocks added for access-check endpoint
+
+### Paste & Import Question Bank (ChatGPT/Custom GPT → Platform)
+- [x] `POST /api/admin/exam-prep/questions/import-bulk` — 6-tier validation + MD5 deduplication
+- [x] `PasteImportSection` React component — JSON textarea, character/question count preview, import result summary, per-question report
+- [x] `adminImportBulk()` API function in `examPrep.js`
+- [x] `reviewRefreshKey` state wiring — Review panel auto-refreshes after successful import
+- [x] Validation catches: GPT self-invalidation, answer mismatch (correct_option ≠ explanation conclusion)
+
+### Exam Prep UI — Explanation Step Formatting
+- [x] `detailed_explanation` rendered as separate lines — split on `Step N:`, `Option X:`, `Therefore` patterns
+- [x] Each step in its own `<div>` with 4px margin, line-height 1.9
+
+### Light/Dark Mode Compatibility (ExamPrepPage + AdminCacheManagementPage)
+- [x] `QuestionCard` question text + option text: `var(--text,#1e293b)`
+- [x] `AIPanel` explanation, question preview: CSS variables
+- [x] Follow-up input: `var(--surface,#f8fafc)` light background
+- [x] `AdminCacheManagementPage` all form controls: light-mode fallbacks
+  - All `select`, `input`, `textarea` use `var(--surface,#f8fafc)` + `var(--text,#1e293b)` + `var(--border,#e2e8f0)`
+  - Import result container: `var(--panel,rgba(0,0,0,.06))`
+
+### Custom GPT Prompts for Question Generation
+- [x] Designed 3 Custom GPT system prompts: JEE Main, NEET UG, CUET UG
+- [x] 72-prompt sequence covering all JEE chapters (Physics×24, Chemistry×24, Mathematics×24)
+- [x] Each prompt generates exactly 5 questions in platform JSON format
+
 ## Completed — July 2026 Sprint
 
 ### Audio Pre-warming System (TTS Cache)

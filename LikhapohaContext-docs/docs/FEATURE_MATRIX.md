@@ -46,6 +46,25 @@ This matrix is the product-level source of truth. Backend feature authorization 
 
 Admins can access admin console, operations, analytics, support tools, audit views, access management, parent-child linking, teacher-student linking, offers, AI settings, and payment test tools. Admin endpoints must still be server-side protected.
 
+## Exam Prep Center Feature Matrix
+
+| Access Type | JEE Main | NEET UG | CUET UG |
+|---|---|---|---|
+| Grade 5–10 student | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked |
+| Grade 11/12 Free/Nano | 🔒 Preview only | 🔒 Preview only | 🔒 Preview only |
+| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ⏳ Coming Soon |
+| PCM stream | ✅ Eligible | ❌ | ⏳ Coming Soon |
+| PCB stream | ❌ | ✅ Eligible | ⏳ Coming Soon |
+| PCMB stream | ✅ Eligible | ✅ Eligible | ⏳ Coming Soon |
+| Admin role | ✅ Full | ✅ Full | ✅ Full |
+| Test users (akshita.teststudent) | ✅ Full | ✅ Full | ⏳ Coming Soon |
+
+**Access check endpoint:** `GET /api/exam-prep/access-check` — always call this; never infer from plan string.
+
+**Question states:** `draft` (admin only) → `published` (students) → `archived` (hidden)
+
+**Content source:** Admin generates via AI prewarm OR pastes JSON from ChatGPT/Custom GPT.
+
 ## Access Enforcement Requirements
 
 For every feature above:
