@@ -402,7 +402,7 @@ function OnScreenCalc({ onClose }) {
 
 // ── NTA-style Test View (one question at a time + palette + section tabs) ───────
 
-function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects }) {
+function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects, username }) {
   // For CUET: use the subjects the student actually selected (passed via cuetSubjects).
   // For JEE/NEET: derive from EXAM_SIM_CONFIG by exam type (use examLabel to identify).
   // Fallback: match by duration — but note JEE (180min) and CUET (195min) differ, so this is safer.
@@ -496,14 +496,18 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
             <div style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>✅ {answered} / {questions.length} answered</div>
           </div>
 
-          {/* Question body */}
-          <div style={{ padding:"18px 20px" }}>
+          {/* Question body — copy protected */}
+          <div
+            className="qprotect"
+            onCopy={e => e.preventDefault()}
+            onContextMenu={e => e.preventDefault()}
+            style={{ padding:"18px 20px", userSelect:"none", WebkitUserSelect:"none" }}>
             <div style={{ display:"flex", gap:7, marginBottom:12, flexWrap:"wrap" }}>
               <span style={{ fontSize:".6rem", fontWeight:700, background:(DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8")+"22", color:DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8", padding:"2px 8px", borderRadius:20 }}>{q?.difficulty}</span>
               {q?.topic && <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)", background:"rgba(255,255,255,.05)", padding:"2px 8px", borderRadius:20 }}>{q.topic}</span>}
               {q?.marks && <span style={{ fontSize:".6rem", color:"#fbbf24", background:"rgba(251,191,36,.08)", padding:"2px 8px", borderRadius:20 }}>+{q.marks} / -{q.negative_marks}</span>}
             </div>
-            <div style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18 }}>{q?.question_text}</div>
+            <div style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18 }}>{embedWatermark(q?.question_text, username)}</div>
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {opts.map(opt => {
                 const sel = testAnswers[q?.id] === opt.key;
@@ -1333,6 +1337,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               examLabel={examInfo.label}
               examColor={examInfo.color}
               cuetSubjects={selectedExam === "cuet_ug" ? cuetSelectedSubjects : null}
+              username={user?.username}
             />
           )}
         </section>
