@@ -12,10 +12,26 @@ function authHeaders(accessToken) {
 }
 
 async function parseError(response, fallbackMessage) {
-  /** Prefer backend detail/message fields when surfacing admin API errors. */
+  /** Prefer backend detail/message fields when surfacing admin API errors.
+   * Handles FastAPI 422 validation errors (detail is an array of objects)
+   * and standard string error messages.
+   */
   try {
     const data = await response.json();
-    return data.detail || data.message || fallbackMessage;
+    const detail = data.detail || data.message;
+    if (!detail) return fallbackMessage;
+    // FastAPI 422 — detail is an array of {loc, msg, type} validation errors
+    if (Array.isArray(detail)) {
+      return detail
+        .map((e) => {
+          const loc = Array.isArray(e.loc) ? e.loc.join(".") : String(e.loc || "");
+          return `${loc}: ${e.msg || e.type || JSON.stringify(e)}`;
+        })
+        .join(" | ");
+    }
+    if (typeof detail === "string") return detail;
+    // Object error (e.g. nested FastAPI error)
+    return JSON.stringify(detail);
   } catch {
     return fallbackMessage;
   }
