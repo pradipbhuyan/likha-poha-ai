@@ -147,3 +147,71 @@ All plans now stored in `subscription_plan_settings` table. `free_tier` added 20
 - `family_premium` → label "Family Premium", ₹499/month
 
 **Source:** `frontend/src/config/subscriptionPlans.js`
+
+---
+
+## 2026-07-08: Centralized Subscription Management
+
+### What is now DB-driven (no code deploy needed)
+
+| Field | Where configured | Effect |
+|---|---|---|
+| `price` | `subscription_plan_settings` | Razorpay charges this amount (minus discount) |
+| `discount_percent` | `subscription_plan_settings` | Applied to price before Razorpay charge |
+| `duration_days` | `subscription_plan_settings` | Exact subscription expiry in days |
+| `access_exam_prep` | `subscription_plan_settings` | Whether plan includes Exam Prep Center |
+| `access_exemplar` | `subscription_plan_settings` | Whether plan includes Exemplar Research & Lessons |
+| `access_cbse` | `subscription_plan_settings` | Core platform access after payment |
+| `daily_token_limit` | `subscription_plan_settings` | AI token quota per day |
+| `monthly_token_limit` | `subscription_plan_settings` | AI token quota per month |
+| `included` / `not_included` | `subscription_plan_settings` | Feature list shown on subscription page |
+| Contact details | `subscription_contact_settings` | Support email/phone/WhatsApp on parent page |
+
+### Migration required
+
+Run `backend/migrations/20260708_subscription_plan_feature_flags.sql` on **main Supabase** (`dpivlbbyzlbpwnwgajso`) to add:
+- `duration_days integer` — overrides `billing_label→days` lookup
+- `access_exam_prep boolean DEFAULT false`
+- `access_exemplar boolean DEFAULT true`
+
+### Expiry resolution (updated)
+
+`plan_expires_at(plan)` now uses:
+1. `plan.duration_days` (DB-explicit) → most precise, admin-configurable
+2. `_BILLING_LABEL_TO_DAYS` lookup → legacy fallback
+3. `None` → perpetual / admin-grant
+
+**File:** `backend/app/routes/payments.py`
+
+### Feature authorization — DB override
+
+`feature_authorization_service.py` checks `_DB_DRIVEN_FEATURES` for:
+- `EXAM_PREP_CONTENT` → reads `access_exam_prep` from `subscription_plan_settings`
+- `EXEMPLAR` → reads `access_exemplar` from `subscription_plan_settings`
+- `EXEMPLAR_RESEARCH` → reads `access_exemplar` from `subscription_plan_settings`
+
+Admin can enable/disable these per-plan from Admin → Subscription Settings without code deployment.
+
+### Admin UI fields (AdminSubscriptionSettingsPage)
+
+Each plan card now shows:
+- **Duration (days)** — number input, overrides billing label
+- **🎓 Exam Prep (JEE/NEET/CUET)** — checkbox
+- **📖 Exemplar Access** — checkbox
+
+### Bulk Import grade sanitization
+
+`POST /api/admin/exam-prep/questions/import-bulk` now sanitizes:
+- `grade`: "Grade 11-12", "Grade 11/12", "12" → normalized to "Grade 11" or "Grade 12"
+- `source_type`: unknown values → "llm_generated"
+- `marks`, `negative_marks`: type-safe float conversion with fallback
+
+### Extended plan keys (hidden, admin use)
+
+| DB Key | Label | Price | Duration |
+|---|---|---|---|
+| `standard_6month` | Premium — 6 Months | ₹1,495 | 184 days |
+| `standard_annual` | Premium — Annual | ₹2,999 | 366 days |
+| `family_annual` | Family Premium — Annual | ₹4,999 | 366 days |
+
+These are `is_public: false` and do not appear in the public subscription page unless admin enables them.

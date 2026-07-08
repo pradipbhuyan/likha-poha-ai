@@ -52,18 +52,36 @@ Admins can access admin console, operations, analytics, support tools, audit vie
 |---|---|---|---|
 | Grade 5–10 student | ❌ Grade locked | ❌ Grade locked | ❌ Grade locked |
 | Grade 11/12 Free/Nano | 🔒 Preview only | 🔒 Preview only | 🔒 Preview only |
-| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ⏳ Coming Soon |
-| PCM stream | ✅ Eligible | ❌ | ⏳ Coming Soon |
-| PCB stream | ❌ | ✅ Eligible | ⏳ Coming Soon |
-| PCMB stream | ✅ Eligible | ✅ Eligible | ⏳ Coming Soon |
+| Grade 11/12 Premium+ | Stream-dependent | Stream-dependent | ✅ Active |
+| PCM stream | ✅ Eligible | ❌ | ✅ Eligible |
+| PCB stream | ❌ | ✅ Eligible | ✅ Eligible |
+| PCMB stream | ✅ Eligible | ✅ Eligible | ✅ Eligible |
 | Admin role | ✅ Full | ✅ Full | ✅ Full |
-| Test users (akshita.teststudent) | ✅ Full | ✅ Full | ⏳ Coming Soon |
+| Test users (akshita.teststudent) | ✅ Full | ✅ Full | ✅ Full |
 
 **Access check endpoint:** `GET /api/exam-prep/access-check` — always call this; never infer from plan string.
 
 **Question states:** `draft` (admin only) → `published` (students) → `archived` (hidden)
 
 **Content source:** Admin generates via AI prewarm OR pastes JSON from ChatGPT/Custom GPT.
+
+**CUET UG subjects supported (2026-07-07):**
+English, General Test, Physics (Domain), Chemistry (Domain), Mathematics (Domain), Biology (Domain), History, Geography, Political Science, Economics, Accountancy, Business Studies, Sociology, Psychology, Legal Studies, Hindi (Domain)
+
+**CUET UG simulation:** Student picks subject combination (preset: PCM/PCB/PCMB/Commerce/Humanities or Custom), duration varies by section count, marking scheme +5/-1.
+
+## DB-Driven Feature Toggles (2026-07-08)
+
+Admin can enable/disable per-plan without code deployment:
+
+| Feature | DB flag | Admin control |
+|---|---|---|
+| Exam Prep Center (JEE/NEET/CUET) | `subscription_plan_settings.access_exam_prep` | ✅ Admin → Subscription Settings |
+| Exemplar Research & Lessons | `subscription_plan_settings.access_exemplar` | ✅ Admin → Subscription Settings |
+| Subscription expiry | `subscription_plan_settings.duration_days` | ✅ Admin → Subscription Settings |
+| Razorpay charge amount | `subscription_plan_settings.price` + `discount_percent` | ✅ Admin → Subscription Settings |
+
+These changes take effect immediately for new subscriptions/feature checks without backend restart.
 
 ## Access Enforcement Requirements
 

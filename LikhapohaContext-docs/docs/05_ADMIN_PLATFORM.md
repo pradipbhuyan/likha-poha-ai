@@ -1,6 +1,6 @@
 # Admin Platform
 
-_Last updated: 2026-07-07_
+_Last updated: 2026-07-08_
 
 ## Admin Console Structure
 
@@ -96,6 +96,16 @@ Admin-only page for generating and managing pre-warmed content.
   6. All valid → saved as `draft`
 - Returns per-question report: imported / warnings / skipped_duplicate / skipped_invalid
 - After successful import, Review panel auto-refreshes
+- **Grade sanitization (2026-07-08):** "Grade 11-12", "Grade 11/12", "12" etc. are auto-normalized to "Grade 11" or "Grade 12" before DB insert. DB constraint only allows those two values.
+- **source_type sanitization:** Unknown values → `llm_generated`
+- **Marks sanitization:** Type-safe float conversion with fallback to 4.0 / 1.0
+
+**Batch prompt format for Custom GPT:**
+```
+[CUET-PHY-01] 5 questions, Physics (Domain), Chapter: Motion in a Straight Line,
+Topic: Kinematics, Grade 12, CUET UG level, exam_type: cuet_ug, marks: 5, negative_marks: 1
+```
+Use `Grade 12` (not "Grade 11-12") in all batch prompts to avoid DB constraint violations.
 
 **Question states:** `draft` → `published` → `archived`
 - Draft: visible only to admin
@@ -114,6 +124,27 @@ All form controls in admin pages use CSS variables with light-mode-compatible fa
 - `background: "var(--surface,#f8fafc)"` — light gray in light mode, dark in dark mode
 - `color: "var(--text,#1e293b)"` — dark text in light mode, light in dark mode
 - `border: "1px solid var(--border,#e2e8f0)"` — subtle in light mode
+
+## Subscription Settings (Admin → Subscription Settings)
+
+**URL:** Admin → Subscription Settings page (`AdminSubscriptionSettingsPage.jsx`)
+
+**What admin can change without code deployment:**
+- Plan label, short label, audience description
+- Price (₹) — Razorpay charges this exact amount minus discount
+- Discount % and discount label — applied to Razorpay charge
+- Badge text ("Most Popular", "Best Value")
+- Duration (days) — exact subscription validity; overrides billing label lookup
+- Daily / Monthly token limits — AI quota per plan
+- Included / Not Included feature lists — shown on parent subscription page
+- 🎓 Exam Prep (JEE/NEET/CUET) toggle — enables/disables Exam Prep Center for this plan
+- 📖 Exemplar Access toggle — enables/disables Exemplar Research & Lessons for this plan
+- Plan visibility (Show to parents checkbox)
+- Contact details (email, phone, WhatsApp, availability, help message)
+
+**Migration required:** Run `backend/migrations/20260708_subscription_plan_feature_flags.sql` on main Supabase (`dpivlbbyzlbpwnwgajso`) to activate Duration, Exam Prep, and Exemplar toggles.
+
+**Graceful fallback:** If migration hasn't been run, saving strips the new columns and saves remaining fields without error.
 
 ## Admin Safety
 

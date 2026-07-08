@@ -101,6 +101,9 @@ All in `backend/migrations/`, idempotent:
 | `20260628_student_exam_schedule.sql` | student_exam_schedule table |
 | `20260628_lesson_quality_audit_runs.sql` | QA audit job history |
 | `20260627_parent_notifications.sql` | parent_notifications table |
+| `20260707_exam_prep_center.sql` | exam_prep_questions, exam_prep_attempts, exam_prep_simulated_tests, exam_prep_simulated_test_answers, exam_prep_prewarm_jobs tables (Supabase 2) |
+| `20260707_grade1112_stream.sql` | Grade 11/12 stream column for exam eligibility |
+| `20260708_subscription_plan_feature_flags.sql` | Adds duration_days, access_exam_prep, access_exemplar to subscription_plan_settings (Supabase 1) |
 
 ## Safety Rules
 

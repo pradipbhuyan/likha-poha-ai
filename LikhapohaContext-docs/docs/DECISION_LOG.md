@@ -356,6 +356,88 @@ color: "#f1f5f9"                        ← hardcoded light (invisible on white)
 
 ---
 
+## 2026-07-08: Math/Chemistry Formula Rendering in Exam Prep
+
+**Problem:** Exam Prep questions displayed `H2O`, `10^23`, `mol^-1` as plain text. Chemistry and physics formulas from the question bank appeared unformatted.
+
+**Solution:** Added `formatMathText()` + `MathText` component to `ExamPrepPage.jsx`:
+- `H2O` → H₂O (auto-subscript for chemical formulas)
+- `10^23` → 10²³ (superscript notation)
+- `mol^-1` → mol⁻¹
+- LaTeX symbols: `\times` → ×, `\alpha` → α, `\rightarrow` → →, `\sqrt{x}` → √(x), `\frac{a}{b}` → (a)/(b)
+- Applied to question text AND option text in both Quick Practice and Simulated Test modes
+- Uses `dangerouslySetInnerHTML` with memoized formatting — no library dependency
+
+**File:** `frontend/src/pages/ExamPrepPage.jsx`
+
+---
+
+## 2026-07-08: CUET UG — All Three Exams Now Active
+
+**Decision:** JEE Main, NEET UG, and CUET UG are all active in the Exam Prep Center. CUET is no longer "Coming Soon".
+
+**CUET implementation:**
+- Student picks subject combination before simulation (preset or custom)
+- Presets: PCM, PCB, PCMB, Commerce, Humanities, Custom
+- Marking: +5/-1 (different from JEE/NEET's +4/-1)
+- Duration varies by section count (45 min/domain subject + 60 min for General Test)
+- 16 supported subjects including domain subjects
+- Questions fetched per-subject from `exam_prep_questions` with `exam_type=cuet_ug`
+
+**CUET subject naming:** Subjects use "(Domain)" suffix in DB and frontend (e.g. "Physics (Domain)") to distinguish from JEE Physics. Questions for domain subjects need to be generated separately.
+
+**Files:** `frontend/src/pages/ExamPrepPage.jsx`, `backend/app/services/exam_prep_service.py`
+
+---
+
+## 2026-07-08: Centralized Subscription Management
+
+**Problem:** Admin panel could change plan display (prices, badges, feature text) but could not change:
+1. Actual Razorpay charge amounts without code deploy
+2. Subscription expiry days without code deploy
+3. Feature access (Exam Prep, Exemplar) without code deploy
+
+**Analysis revealed:** Razorpay amounts WERE already DB-driven via `plan_display_amount(plan)` → reads from `subscription_plan_settings`. But expiry and feature flags were hardcoded.
+
+**Solution:**
+1. **`duration_days` column** → `plan_expires_at()` checks this first, then falls back to `_BILLING_LABEL_TO_DAYS` lookup
+2. **`access_exam_prep` + `access_exemplar` columns** → `feature_authorization_service.py` checks `_DB_DRIVEN_FEATURES` dict; admin can override per-plan from UI
+3. **Admin UI** → Duration days input + Exam Prep / Exemplar checkboxes on each plan card
+4. **Backward compat** → If migration not run, save gracefully skips new columns; existing saves work
+
+**Migration:** `backend/migrations/20260708_subscription_plan_feature_flags.sql` on Supabase 1 (`dpivlbbyzlbpwnwgajso`)
+
+**Tests:** `backend/tests/test_subscription_centralized.py` — 84 tests covering all cases
+
+---
+
+## 2026-07-08: Bulk Import — Grade/Source Type Sanitization
+
+**Problem:** Custom GPT generated questions with `"grade": "Grade 11-12"` which violated DB check constraint `grade IN ('Grade 11','Grade 12')`. All 10 imports failed.
+
+**Fix:** `POST /api/admin/exam-prep/questions/import-bulk` now sanitizes:
+- `grade`: any value → "Grade 11" or "Grade 12" (defaults to Grade 12)
+- `source_type`: unknown values → "llm_generated"
+- `marks`/`negative_marks`: type-safe float conversion
+
+**Rule:** Always use `Grade 12` (not "Grade 11-12") in Custom GPT batch prompts.
+
+**File:** `backend/app/routes/exam_prep.py`
+
+---
+
+## 2026-07-08: Admin API Error Display Fix
+
+**Problem:** FastAPI 422 validation errors returned as `detail: [{loc, msg, type}, ...]` array. `new Error(array)` coerced to `"[object Object],[object Object],..."`. Admin saw unreadable errors.
+
+**Fix:** `parseError()` in `adminControl.js` now detects array detail and formats as: `body.plans.0.billing_label: Field required | body.plans.1.included: Input should be a valid list`
+
+**Also fixed:** `subscription_plan_settings.included` stored as JSON string in Supabase. Backend `_to_list()` + frontend `_toArray()` helpers normalize JSON strings, plain strings, and native arrays → always send proper `list[str]` to Pydantic.
+
+**Files:** `frontend/src/api/adminControl.js`, `frontend/src/config/subscriptionPlans.js`, `backend/app/routes/admin_control.py`
+
+---
+
 ## 2026-07-03: Broken Maths Lesson Detection and Repair
 
 **Process established:**
