@@ -961,9 +961,32 @@ def admin_import_bulk(
         # ── 6. Build options_json in platform format ──────────────────────────
         options_list = [{"key": k, "text": str(v)} for k, v in sorted(opts.items())]
 
+        # Sanitize grade — DB only allows 'Grade 11' or 'Grade 12'
+        # GPT may output "Grade 11-12", "Grade 11/12", "11", "12", etc.
+        raw_grade = str(q.get("grade", "Grade 12")).strip()
+        if raw_grade in ("Grade 11", "11"):
+            safe_grade = "Grade 11"
+        else:
+            safe_grade = "Grade 12"  # default to Grade 12 for all others
+
+        # Sanitize source_type — DB only allows: ncert_derived, llm_generated, previous_year, manual
+        VALID_SOURCE_TYPES = {"ncert_derived", "llm_generated", "previous_year", "manual"}
+        raw_source = str(q.get("source_type", "llm_generated")).strip().lower()
+        safe_source = raw_source if raw_source in VALID_SOURCE_TYPES else "llm_generated"
+
+        # Sanitize marks — CUET uses +5/-1, JEE/NEET use +4/-1
+        try:
+            safe_marks = float(q.get("marks", 4))
+        except (TypeError, ValueError):
+            safe_marks = 4.0
+        try:
+            safe_neg = float(q.get("negative_marks", 1))
+        except (TypeError, ValueError):
+            safe_neg = 1.0
+
         row = {
             "exam_type": q["exam_type"],
-            "grade": q.get("grade", "Grade 12"),
+            "grade": safe_grade,
             "subject": q["subject"],
             "chapter": q.get("chapter", q.get("topic", "Unknown")),
             "topic": q.get("topic", ""),
@@ -976,9 +999,9 @@ def admin_import_bulk(
             "formula_used": q.get("formula_used", ""),
             "ncert_reference": q.get("ncert_reference", ""),
             "difficulty": q["difficulty"],
-            "marks": int(q.get("marks", 4)),
-            "negative_marks": float(q.get("negative_marks", 1)),
-            "source_type": q.get("source_type", "llm_generated"),
+            "marks": safe_marks,
+            "negative_marks": safe_neg,
+            "source_type": safe_source,
             "status": "draft",  # Always draft on import — admin must publish
             "validation_score": 0.7 if warnings else 0.9,
             "validation_errors": warnings if warnings else [],
