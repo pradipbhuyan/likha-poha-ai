@@ -188,7 +188,11 @@ function AdminSubscriptionSettingsPage({ user }) {
       setMessage("Subscription plan settings saved and applied.");
     } catch (err) {
       console.error(err);
-      setError(err.message || "Unable to save subscription plan settings.");
+      // err.message may be a Pydantic validation array — stringify it safely
+      const msg = err?.message
+        ? (typeof err.message === "string" ? err.message : JSON.stringify(err.message))
+        : "Unable to save subscription plan settings.";
+      setError(msg);
     } finally {
       setSaving(false);
     }

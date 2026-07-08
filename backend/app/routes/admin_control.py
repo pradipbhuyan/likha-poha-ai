@@ -511,22 +511,46 @@ def update_subscription_plans(
         )
         rows.append(row)
 
-    try:
-        response = (
+    # New fields added in migration 20260708_subscription_plan_feature_flags.sql.
+    # If the migration hasn't been run yet, strip new columns and retry gracefully.
+    NEW_FEATURE_COLUMNS = {"duration_days", "access_exam_prep", "access_exemplar"}
+
+    def _try_upsert(row_list: list, strip_new_cols: bool = False):
+        if strip_new_cols:
+            row_list = [{k: v for k, v in r.items() if k not in NEW_FEATURE_COLUMNS} for r in row_list]
+        return (
             admin_client
             .table("subscription_plan_settings")
-            .upsert(rows, on_conflict="key")
+            .upsert(row_list, on_conflict="key")
             .execute()
         )
+
+    try:
+        _try_upsert(rows, strip_new_cols=False)
     except Exception as exc:
-        raise HTTPException(
-            status_code=500,
-            detail=(
-                "Unable to save subscription plan settings. Make sure the "
-                "subscription_plan_settings table exists. "
-                f"Original error: {str(exc)}"
-            ),
-        )
+        err_str = str(exc).lower()
+        # If error is about missing column, retry without the new columns
+        if any(col in err_str for col in ("duration_days", "access_exam_prep", "access_exemplar", "column")):
+            try:
+                _try_upsert(rows, strip_new_cols=True)
+            except Exception as exc2:
+                raise HTTPException(
+                    status_code=500,
+                    detail=(
+                        "Unable to save subscription plan settings. Make sure the "
+                        "subscription_plan_settings table exists. "
+                        f"Original error: {str(exc2)}"
+                    ),
+                )
+        else:
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    "Unable to save subscription plan settings. Make sure the "
+                    "subscription_plan_settings table exists. "
+                    f"Original error: {str(exc)}"
+                ),
+            )
 
     saved_settings = list_subscription_plan_settings()
 
