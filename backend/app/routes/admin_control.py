@@ -275,6 +275,30 @@ def list_teacher_assignments():
     return response.data or []
 
 
+def _to_list(value) -> list:
+    """
+    Safely coerce a DB value to a Python list.
+    Handles: list, JSON-encoded string '["a","b"]', None/empty.
+    """
+    import json as _json  # noqa: PLC0415
+    if not value:
+        return []
+    if isinstance(value, list):
+        return [str(v) for v in value]
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped.startswith("["):
+            try:
+                parsed = _json.loads(stripped)
+                if isinstance(parsed, list):
+                    return [str(v) for v in parsed]
+            except Exception:
+                pass
+        # Fallback: newline-separated
+        return [line.strip() for line in stripped.splitlines() if line.strip()]
+    return []
+
+
 def normalize_subscription_plan_row(row: dict):
     """
     Normalize a database subscription-plan row into API-safe field types.
@@ -301,8 +325,8 @@ def normalize_subscription_plan_row(row: dict):
         "access_sof_english": bool(row.get("access_sof_english")),
         "daily_token_limit": int(row.get("daily_token_limit") or 0),
         "monthly_token_limit": int(row.get("monthly_token_limit") or 0),
-        "included": row.get("included") or [],
-        "not_included": row.get("not_included") or [],
+        "included": _to_list(row.get("included")),
+        "not_included": _to_list(row.get("not_included")),
         "comparison": row.get("comparison") or {},
         # ── Centralized feature flags (DB-driven) ────────────────────────────
         # duration_days: explicit expiry days — overrides billing_label→days lookup in payments.py

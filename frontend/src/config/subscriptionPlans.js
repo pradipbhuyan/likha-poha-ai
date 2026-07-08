@@ -501,6 +501,24 @@ export function planHasFullAccess(planKey) {
   return plan?.accessLevel === ACCESS_LEVEL.FULL;
 }
 
+function _toArray(value) {
+  /** Safely coerce any value to an array of strings.
+   *  Handles: array, JSON string, plain string, null/undefined.
+   */
+  if (!value) return [];
+  if (Array.isArray(value)) return value.map(String);
+  if (typeof value === "string") {
+    // Try to parse JSON-encoded arrays e.g. '["item1","item2"]'
+    const trimmed = value.trim();
+    if (trimmed.startsWith("[")) {
+      try { return JSON.parse(trimmed).map(String); } catch (_) { /* fall through */ }
+    }
+    // Plain newline-separated string from textarea
+    return trimmed.split("\n").map((s) => s.trim()).filter(Boolean);
+  }
+  return [];
+}
+
 export function normalizeSubscriptionPlan(rawPlan = {}) {
   /**
    * Convert API/database plan shape into the frontend's camelCase display shape.
@@ -535,8 +553,8 @@ export function normalizeSubscriptionPlan(rawPlan = {}) {
     access_sof_english: rawPlan.access_sof_english ?? fallback.access_sof_english ?? false,
     daily_token_limit: rawPlan.daily_token_limit ?? fallback.daily_token_limit ?? 0,
     monthly_token_limit: rawPlan.monthly_token_limit ?? fallback.monthly_token_limit ?? 0,
-    included: rawPlan.included || fallback.included || [],
-    notIncluded: rawPlan.notIncluded || rawPlan.not_included || fallback.notIncluded || [],
+    included: _toArray(rawPlan.included ?? fallback.included),
+    notIncluded: _toArray(rawPlan.notIncluded ?? rawPlan.not_included ?? fallback.notIncluded),
     // Deep-merge: frontend fallback comparison is the base, DB values overlay.
     comparison: { ...(fallback.comparison || {}), ...(rawPlan.comparison || {}) },
     // ── Centralized feature flags ──────────────────────────────────────────
@@ -593,8 +611,8 @@ export function serializeSubscriptionPlan(plan) {
     access_sof_english: !!plan.access_sof_english,
     daily_token_limit: Number(plan.daily_token_limit || 0),
     monthly_token_limit: Number(plan.monthly_token_limit || 0),
-    included: plan.included || [],
-    not_included: plan.notIncluded || [],
+    included: _toArray(plan.included),
+    not_included: _toArray(plan.notIncluded),
     comparison: plan.comparison || {},
     // ── Centralized feature flags ──────────────────────────────────────────
     duration_days: plan.duration_days != null ? Number(plan.duration_days) : null,
