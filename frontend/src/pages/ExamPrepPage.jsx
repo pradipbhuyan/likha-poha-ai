@@ -42,9 +42,71 @@ const EXAMS = {
 // Exam-specific simulation config
 const EXAM_SIM_CONFIG = {
   jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 90, marking: "+4 / -1" },
-  neet_ug: { subjects: ["Physics", "Chemistry", "Biology"], duration: 200, questions: 200, marking: "+4 / -1" },
-  cuet_ug: { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / -1" },
+  neet_ug:  { subjects: ["Physics", "Chemistry", "Biology"],     duration: 200, questions: 200, marking: "+4 / -1" },
+  cuet_ug:  { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / -1" },
 };
+
+// ── CUET UG — NTA 2024 subject combination presets ────────────────────────────
+// Section IA: Language (English mandatory) · Section II: Domain Subjects (2–6)
+// Section III: General Test · Marking: +5 / -1
+const CUET_DOMAIN_SUBJECTS = [
+  "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)",
+  "History", "Geography", "Political Science", "Economics",
+  "Accountancy", "Business Studies", "Sociology", "Psychology", "Legal Studies",
+  "English (Domain)", "Hindi (Domain)",
+];
+const CUET_PRESETS = [
+  { id: "science_pcm",  label: "Science — PCM",  icon: "📐", color: "#6366f1", popular: true,
+    desc: "Physics, Chemistry, Mathematics + English + General Test",
+    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "General Test"] },
+  { id: "science_pcb",  label: "Science — PCB",  icon: "🔬", color: "#10b981", popular: true,
+    desc: "Physics, Chemistry, Biology + English + General Test",
+    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Biology (Domain)", "General Test"] },
+  { id: "science_pcmb", label: "Science — PCMB", icon: "⚛️", color: "#8b5cf6", popular: false,
+    desc: "Physics, Chemistry, Maths, Biology + English + General Test",
+    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)", "General Test"] },
+  { id: "commerce",     label: "Commerce",        icon: "📊", color: "#f59e0b", popular: true,
+    desc: "Accountancy, Business Studies, Economics + English + General Test",
+    subjects: ["English", "Accountancy", "Business Studies", "Economics", "General Test"] },
+  { id: "humanities",   label: "Humanities",      icon: "🏛️", color: "#ec4899", popular: true,
+    desc: "History, Geography, Political Science + English + General Test",
+    subjects: ["English", "History", "Geography", "Political Science", "General Test"] },
+  { id: "custom",       label: "Custom",          icon: "⚙️", color: "#64748b", popular: false,
+    desc: "Choose your own subject combination",
+    subjects: [] },
+];
+const CUET_SUBJECT_ICONS = {
+  "English": "📝", "General Test": "🧩",
+  "Physics (Domain)": "⚛️", "Chemistry (Domain)": "🧪", "Mathematics (Domain)": "📐", "Biology (Domain)": "🌿",
+  "History": "🏺", "Geography": "🌍", "Political Science": "🏛️", "Economics": "📊",
+  "Accountancy": "📒", "Business Studies": "💼", "Sociology": "👥", "Psychology": "🧠", "Legal Studies": "⚖️",
+  "English (Domain)": "📖", "Hindi (Domain)": "📜",
+};
+
+// ── Content protection — invisible zero-width character watermarking ───────────
+// Encodes the user's username into the question text using zero-width characters
+// (invisible to the eye, survives copy-paste). If a student shares a question,
+// decoding the watermark reveals which account leaked it → account termination.
+// 0 = U+200B (zero-width space), 1 = U+200C (ZWNJ), delimiter = U+200D (ZWJ)
+function embedWatermark(text, username) {
+  if (!text || !username) return text;
+  try {
+    const bits = username.split("").map(c => c.charCodeAt(0).toString(2).padStart(8, "0")).join("");
+    const wm = "\u200D" + bits.split("").map(b => b === "1" ? "\u200C" : "\u200B").join("") + "\u200D";
+    // Insert watermark after the first sentence (not at start, harder to notice)
+    const dot = text.indexOf(". ");
+    if (dot > 0) return text.slice(0, dot + 2) + wm + text.slice(dot + 2);
+    return text + wm;
+  } catch { return text; }
+}
+
+// ── CSS print block (added to document head once) ────────────────────────────
+if (typeof document !== "undefined" && !document.getElementById("_qp_print_block")) {
+  const s = document.createElement("style");
+  s.id = "_qp_print_block";
+  s.textContent = `@media print { .qprotect { display: none !important; } body::before { content: "© Likha Poha AI — Printing exam content is not permitted."; display:block; font-size:18px; padding:40px; text-align:center; } }`;
+  document.head.appendChild(s);
+}
 
 const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿" };
 const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e" };
@@ -114,19 +176,34 @@ function TopicCard({ topic, onPractice }) {
   );
 }
 
-function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedback }) {
+function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedback, username }) {
   const opts = question.options_json || [];
   const isCorrect = (key) => showFeedback && feedback?.correct_option === key;
   const isWrong = (key) => showFeedback && selectedOption === key && !feedback?.is_correct;
 
+  // Watermarked question text (invisible to eye, traceable if copied)
+  const watermarkedText = React.useMemo(
+    () => embedWatermark(question.question_text, username),
+    [question.question_text, username]
+  );
+
+  function blockCopy(e) {
+    e.preventDefault();
+    // Silent block — don't alert (alerting annoys students who copy for legit reasons)
+  }
+
   return (
-    <div style={{ padding: "16px", borderBottom: "1px solid var(--border,#334155)" }}>
+    <div
+      className="qprotect"
+      onCopy={blockCopy}
+      onContextMenu={e => e.preventDefault()}
+      style={{ padding: "16px", borderBottom: "1px solid var(--border,#334155)", userSelect: "none", WebkitUserSelect: "none" }}>
       <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
         <span style={{ fontSize: ".6rem", fontWeight: 700, background: `${DIFFICULTY_COLORS[question.difficulty] || "#94a3b8"}22`, color: DIFFICULTY_COLORS[question.difficulty] || "#94a3b8", padding: "2px 8px", borderRadius: 20 }}>{question.difficulty}</span>
         <span style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", background: "rgba(255,255,255,.05)", padding: "2px 8px", borderRadius: 20 }}>{question.topic}</span>
         {question.marks && <span style={{ fontSize: ".6rem", color: "#fbbf24", background: "rgba(251,191,36,.08)", padding: "2px 8px", borderRadius: 20 }}>+{question.marks} / -{question.negative_marks}</span>}
       </div>
-      <div style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14 }}>{question.question_text}</div>
+      <div style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14 }}>{watermarkedText}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
         {opts.map(opt => {
           const isSelected = selectedOption === opt.key;
@@ -325,9 +402,17 @@ function OnScreenCalc({ onClose }) {
 
 // ── NTA-style Test View (one question at a time + palette + section tabs) ───────
 
-function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor }) {
-  const cfg = Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main;
-  const subjects = cfg.subjects;
+function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects }) {
+  // For CUET: use the subjects the student actually selected (passed via cuetSubjects).
+  // For JEE/NEET: derive from EXAM_SIM_CONFIG by exam type (use examLabel to identify).
+  // Fallback: match by duration — but note JEE (180min) and CUET (195min) differ, so this is safer.
+  const isCuet = cuetSubjects && cuetSubjects.length > 0;
+  const cfg = isCuet ? null : (
+    _examLabel === "NEET UG" ? EXAM_SIM_CONFIG.neet_ug :
+    _examLabel === "JEE Main" ? EXAM_SIM_CONFIG.jee_main :
+    Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main
+  );
+  const subjects = isCuet ? cuetSubjects : cfg.subjects;
   const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
   const [qIdx, setQIdx] = React.useState(0);
   const [marked, setMarked] = React.useState({});
@@ -601,6 +686,151 @@ function TestResultPage({ result, onRetake, onClose }) {
   );
 }
 
+// ── CUET Test Setup ───────────────────────────────────────────────────────────
+function CUETTestSetup({ onStart, testLoading }) {
+  const [presetId, setPresetId] = React.useState("science_pcm");
+  const [customSubjs, setCustomSubjs] = React.useState(["English", "General Test"]);
+  const [step, setStep] = React.useState("preset");
+
+  const activePreset = CUET_PRESETS.find(p => p.id === presetId);
+  const finalSubjects = presetId === "custom" ? customSubjs : (activePreset?.subjects || []);
+  const duration = finalSubjects.reduce((acc, s) => acc + (s === "General Test" ? 60 : 45), 0);
+  const canStart = finalSubjects.length >= 2 && finalSubjects.includes("English");
+
+  function toggleCustom(s) {
+    if (s === "English") return;
+    setCustomSubjs(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
+  }
+
+  return (
+    <div style={{ maxWidth: 680, margin: "0 auto", padding: "10px 0 20px" }}>
+      <div style={{ textAlign: "center", marginBottom: 20 }}>
+        <div style={{ fontSize: "2.2rem", marginBottom: 6 }}>🏛️</div>
+        <h3 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 4px" }}>CUET UG — Choose Your Subject Combination</h3>
+        <p style={{ color: "var(--muted,#64748b)", fontSize: ".78rem", margin: 0 }}>
+          Based on NTA CUET UG structure · English (mandatory) + Domain Subjects + General Test · <strong>+5 / -1</strong> marking
+        </p>
+      </div>
+
+      {/* Section info */}
+      <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 9, padding: "8px 14px", marginBottom: 18, display: "flex", gap: 14, flexWrap: "wrap", fontSize: ".7rem", color: "var(--muted,#64748b)" }}>
+        <span>📝 <strong style={{ color: "#f59e0b" }}>Section IA</strong> — Language (English, mandatory)</span>
+        <span>📚 <strong style={{ color: "#6366f1" }}>Section II</strong> — Domain Subjects (2–6)</span>
+        <span>🧩 <strong style={{ color: "#8b5cf6" }}>Section III</strong> — General Test (most universities require)</span>
+      </div>
+
+      {/* Preset step */}
+      {step === "preset" && (
+        <>
+          <div style={{ fontSize: ".68rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 10 }}>Select Your Stream</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(190px,1fr))", gap: 9, marginBottom: 18 }}>
+            {CUET_PRESETS.map(preset => {
+              const sel = presetId === preset.id;
+              return (
+                <div key={preset.id}
+                  onClick={() => { setPresetId(preset.id); if (preset.id === "custom") setStep("custom"); }}
+                  style={{ background: sel ? `${preset.color}12` : "var(--panel,#1e293b)", border: `2px solid ${sel ? preset.color : "var(--border,#334155)"}`, borderRadius: 9, padding: "12px 12px", cursor: "pointer", position: "relative" }}>
+                  {preset.popular && (
+                    <span style={{ position: "absolute", top: 7, right: 7, fontSize: ".52rem", background: "#22c55e22", color: "#22c55e", padding: "1px 5px", borderRadius: 8, fontWeight: 700 }}>Popular</span>
+                  )}
+                  <div style={{ fontSize: "1.3rem", marginBottom: 5 }}>{preset.icon}</div>
+                  <div style={{ fontWeight: 800, fontSize: ".82rem", marginBottom: 3, color: sel ? preset.color : "var(--text,#1e293b)" }}>{preset.label}</div>
+                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", lineHeight: 1.4 }}>{preset.desc}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {presetId !== "custom" && activePreset && (
+            <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "12px 14px", marginBottom: 18 }}>
+              <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>{activePreset.label} — Sections in This Simulation</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+                {activePreset.subjects.map(s => (
+                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 5, background: s === "English" ? "rgba(99,102,241,.1)" : s === "General Test" ? "rgba(139,92,246,.1)" : "rgba(245,158,11,.07)", border: `1px solid ${s === "English" ? "rgba(99,102,241,.25)" : s === "General Test" ? "rgba(139,92,246,.25)" : "rgba(245,158,11,.2)"}`, borderRadius: 7, padding: "5px 9px", fontSize: ".7rem", fontWeight: 600 }}>
+                    <span>{CUET_SUBJECT_ICONS[s] || "📚"}</span>
+                    <span>{s}</span>
+                    <span style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{s === "General Test" ? "50Q" : "40Q"}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: 14, fontSize: ".68rem", color: "var(--muted,#64748b)" }}>
+                <span>⏱ <strong>{duration} min</strong></span>
+                <span>📋 <strong>~{finalSubjects.length * 40} questions</strong></span>
+                <span>📊 <strong>+5 / -1</strong></span>
+                <span>🎯 <strong>{activePreset.subjects.length} sections</strong></span>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* Custom step */}
+      {step === "custom" && (
+        <>
+          <button onClick={() => { setStep("preset"); setPresetId("science_pcm"); }}
+            style={{ background: "none", border: "none", color: "#6366f1", cursor: "pointer", fontSize: ".78rem", fontFamily: "inherit", padding: 0, marginBottom: 14 }}>
+            ← Back to presets
+          </button>
+
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section IA — Language (Mandatory)</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 7, padding: "8px 12px" }}>
+              <span>📝</span><span style={{ fontSize: ".8rem", fontWeight: 700 }}>English</span>
+              <span style={{ fontSize: ".62rem", color: "#6366f1", marginLeft: "auto" }}>Required · 40 Qs · 45 min</span>
+            </div>
+          </div>
+
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#f59e0b", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section II — Domain Subjects (Choose 2–6)</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(185px,1fr))", gap: 5 }}>
+              {CUET_DOMAIN_SUBJECTS.map(s => {
+                const chk = customSubjs.includes(s);
+                return (
+                  <div key={s} onClick={() => toggleCustom(s)}
+                    style={{ display: "flex", alignItems: "center", gap: 7, background: chk ? "rgba(245,158,11,.08)" : "var(--panel,#1e293b)", border: `1px solid ${chk ? "rgba(245,158,11,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "7px 10px", cursor: "pointer" }}>
+                    <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${chk ? "#f59e0b" : "#64748b"}`, background: chk ? "#f59e0b" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {chk && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
+                    </div>
+                    <span style={{ fontSize: ".68rem", fontWeight: chk ? 700 : 400 }}>{CUET_SUBJECT_ICONS[s] || "📚"} {s}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#8b5cf6", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section III — General Test</div>
+            <div onClick={() => toggleCustom("General Test")}
+              style={{ display: "flex", alignItems: "center", gap: 8, background: customSubjs.includes("General Test") ? "rgba(139,92,246,.08)" : "var(--panel,#1e293b)", border: `1px solid ${customSubjs.includes("General Test") ? "rgba(139,92,246,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "8px 12px", cursor: "pointer" }}>
+              <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${customSubjs.includes("General Test") ? "#8b5cf6" : "#64748b"}`, background: customSubjs.includes("General Test") ? "#8b5cf6" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {customSubjs.includes("General Test") && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
+              </div>
+              <span style={{ fontSize: ".8rem", fontWeight: 700 }}>🧩 General Test</span>
+              <span style={{ fontSize: ".62rem", color: "var(--muted,#64748b)", marginLeft: "auto" }}>50 Qs · 60 min</span>
+            </div>
+          </div>
+
+          {finalSubjects.length >= 2 && (
+            <div style={{ background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: "9px 12px", marginBottom: 14, fontSize: ".7rem" }}>
+              <strong style={{ color: "#a5b4fc" }}>Selected:</strong> {finalSubjects.length} sections · <strong>{duration} min</strong> · <strong>~{finalSubjects.length * 40} questions</strong> · +5 / -1
+            </div>
+          )}
+        </>
+      )}
+
+      <button
+        onClick={() => canStart && onStart(finalSubjects)}
+        disabled={testLoading || !canStart}
+        style={{ padding: "12px 28px", background: canStart ? "linear-gradient(135deg,#f59e0b,#d97706)" : "var(--border,#334155)", border: "none", borderRadius: 10, color: canStart ? "#fff" : "var(--muted,#64748b)", fontWeight: 800, fontSize: ".9rem", cursor: canStart ? "pointer" : "not-allowed", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 10, opacity: testLoading ? .7 : 1 }}>
+        {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start CUET Simulation (${finalSubjects.length} sections · ${duration} min)`}
+      </button>
+      {!canStart && !testLoading && (
+        <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", marginTop: 6 }}>Select at least 2 subjects (English is mandatory)</div>
+      )}
+    </div>
+  );
+}
+
 // ── Resource Links ─────────────────────────────────────────────────────────────
 
 const RESOURCES = [
@@ -635,6 +865,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
   const [filterTopic, setFilterTopic] = useState(null);
   const testStartRef = useRef(null);
   const [testStartTimestamp, setTestStartTimestamp] = useState(0);
+  // CUET: stores the subjects the student selected in CUETTestSetup
+  const [cuetSelectedSubjects, setCuetSelectedSubjects] = useState([]);
 
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
   const isAdmin = user?.role === "admin";
@@ -707,8 +939,11 @@ export default function ExamPrepPage({ user, setActivePage }) {
   }
 
   // ── Start simulated test ───────────────────────────────────────────────────
-  async function handleStartTest() {
+  async function handleStartTest(subjects) {
     setTestLoading(true);
+    // For CUET, store and use the subjects the student selected
+    const subjsToUse = subjects && subjects.length > 0 ? subjects : cuetSelectedSubjects;
+    if (subjects) setCuetSelectedSubjects(subjects);
     try {
       const data = await startSimulatedTest(user.accessToken, selectedExam);
       setTestSession(data);
@@ -717,8 +952,17 @@ export default function ExamPrepPage({ user, setActivePage }) {
       setTestStartTimestamp(now);
       setTestAnswers({});
       setActiveMode("test");
-      // Load questions for test
-      if (data.question_ids?.length > 0) {
+      // For CUET: fetch questions per selected subject so only chosen subjects appear
+      if (selectedExam === "cuet_ug" && subjsToUse.length > 0) {
+        const allQ = [];
+        for (const subj of subjsToUse) {
+          const qData = await getExamPrepQuestions(user.accessToken, {
+            exam: selectedExam, subject: subj, limit: 40,
+          });
+          allQ.push(...(qData.questions || []));
+        }
+        setQuestions(allQ);
+      } else if (data.question_ids?.length > 0) {
         const qData = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, limit: 90 });
         setQuestions(qData.questions || []);
       } else {
@@ -904,7 +1148,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </div>
         ) : dashboard && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: 10, marginBottom: 24 }}>
-            <StatCard value={`${dashboard.weeks_to_exam}w`} label="Weeks to JEE" icon="📅" color="#6366f1" />
+            <StatCard value={`${dashboard.weeks_to_exam}w`} label={`Weeks to ${examInfo.label}`} icon="📅" color="#6366f1" />
             <StatCard value={dashboard.total_questions} label="Questions Available" icon="❓" color="#10b981" />
             <StatCard value={dashboard.questions_attempted} label="Practiced" icon="✅" color="#f59e0b" />
             <StatCard value={`${dashboard.accuracy_pct}%`} label="Accuracy" icon="🎯" color={dashboard.accuracy_pct >= 60 ? "#22c55e" : "#ef4444"} />
@@ -1009,6 +1253,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             onSelect={opt => handleSelectOption(q.id, opt)}
                             feedback={feedbacks[q.id]}
                             showFeedback={!!feedbacks[q.id]}
+                            username={user?.username}
                           />
                         </div>
                       ))}
@@ -1043,6 +1288,10 @@ export default function ExamPrepPage({ user, setActivePage }) {
       {activeMode === "test" && !testResult && (
         <section className="premium-section" style={{ paddingTop: 0 }}>
           {!testSession ? (
+            selectedExam === "cuet_ug" ? (
+              // CUET: show realistic subject combination selector
+              <CUETTestSetup onStart={(subjects) => handleStartTest(subjects)} testLoading={testLoading} />
+            ) : (
             <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
               <div style={{ fontSize: "3rem", marginBottom: 16 }}>{examInfo.icon}</div>
               <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Start {examInfo.label} Simulation</h3>
@@ -1071,6 +1320,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start ${examInfo.label} Simulation`}
               </button>
             </div>
+            )
           ) : (
             <NTATestView
               questions={questions}
@@ -1082,6 +1332,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
               startTimestamp={testStartTimestamp}
               examLabel={examInfo.label}
               examColor={examInfo.color}
+              cuetSubjects={selectedExam === "cuet_ug" ? cuetSelectedSubjects : null}
             />
           )}
         </section>

@@ -36,7 +36,7 @@ def build_exam_eligibility(stream: str | None) -> dict:
 
     JEE Main  → PCM, PCMB (requires Mathematics)
     NEET UG   → PCB, PCMB (requires Biology)
-    CUET UG   → all streams (coming soon)
+    CUET UG   → all streams (enabled)
     """
     s = (stream or "").strip().upper()
     return {
@@ -58,8 +58,7 @@ def build_exam_eligibility(stream: str | None) -> dict:
         },
         "cuet_ug": {
             "eligible": True,
-            "coming_soon": True,
-            "reason": "CUET UG coming soon.",
+            "reason": "",
         },
     }
 
@@ -185,7 +184,7 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "exam_eligibility": {
                 "jee_main": {"eligible": True, "reason": ""},
                 "neet_ug":  {"eligible": True, "reason": ""},
-                "cuet_ug":  {"eligible": True, "coming_soon": True, "reason": "CUET UG coming soon."},
+                "cuet_ug":  {"eligible": True, "reason": ""},
             },
             "canonical_plan_key": "ADMIN_GRANT",
             "plan_name": "Test Access",

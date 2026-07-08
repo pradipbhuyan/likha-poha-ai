@@ -1628,7 +1628,9 @@ function QuestionReviewPanel({ user, refreshKey }) {
     });
   }
 
-  const draftCount = questions.filter(q => q.status === "draft").length;
+  // When filterStatus is "draft", ALL loaded questions are drafts — the API already filters by status.
+  // Avoid relying on q.status which may be absent in the API response shape.
+  const draftCount = filterStatus === "draft" ? questions.length : questions.filter(q => q.status === "draft").length;
 
   return (
     <div style={{ marginTop: 20 }}>
