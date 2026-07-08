@@ -100,6 +100,60 @@ function embedWatermark(text, username) {
   } catch { return text; }
 }
 
+// ── Math/Chemistry text formatter ────────────────────────────────────────────
+// Converts common notation to proper HTML superscripts/subscripts.
+// Examples: H2O → H₂O  |  10^23 → 10²³  |  mol^-1 → mol⁻¹  |  \times → ×
+function formatMathText(text) {
+  if (!text) return "";
+  let t = text;
+
+  // LaTeX symbols
+  t = t.replace(/\\times/g, "×");
+  t = t.replace(/\\cdot/g, "·");
+  t = t.replace(/\\pm/g, "±");
+  t = t.replace(/\\alpha/g, "α");
+  t = t.replace(/\\beta/g, "β");
+  t = t.replace(/\\gamma/g, "γ");
+  t = t.replace(/\\delta/g, "δ");
+  t = t.replace(/\\Delta/g, "Δ");
+  t = t.replace(/\\mu/g, "μ");
+  t = t.replace(/\\pi/g, "π");
+  t = t.replace(/\\theta/g, "θ");
+  t = t.replace(/\\lambda/g, "λ");
+  t = t.replace(/\\Omega/g, "Ω");
+  t = t.replace(/\\omega/g, "ω");
+  t = t.replace(/\\rightarrow/g, "→");
+  t = t.replace(/\\leftarrow/g, "←");
+  t = t.replace(/\\approx/g, "≈");
+  t = t.replace(/\\neq/g, "≠");
+  t = t.replace(/\\geq/g, "≥");
+  t = t.replace(/\\leq/g, "≤");
+  t = t.replace(/\\infty/g, "∞");
+  t = t.replace(/\\sqrt\{([^}]+)\}/g, "√($1)");
+  t = t.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)");
+
+  // Superscripts: ^{...} or ^X (single char/digit/sign)
+  t = t.replace(/\^\{([^}]+)\}/g, (_, exp) => `<sup>${exp}</sup>`);
+  t = t.replace(/\^([+-]?\d+)/g, (_, exp) => `<sup>${exp}</sup>`);
+  t = t.replace(/\^([a-zA-Z])/g, (_, exp) => `<sup>${exp}</sup>`);
+
+  // Subscripts: _{...} or _X
+  t = t.replace(/\_\{([^}]+)\}/g, (_, sub) => `<sub>${sub}</sub>`);
+  t = t.replace(/\_(\d+)/g, (_, sub) => `<sub>${sub}</sub>`);
+
+  // Chemistry formulas: number after uppercase letter (e.g., H2O, CO2, NH3, CH4)
+  // Only convert if not already wrapped in sub/sup tags
+  t = t.replace(/([A-Z][a-z]?)(\d+)(?![^<]*>)/g, (_, el, num) => `${el}<sub>${num}</sub>`);
+
+  return t;
+}
+
+// Component to safely render formatted math/chemistry text
+function MathText({ text, style }) {
+  const html = React.useMemo(() => formatMathText(text || ""), [text]);
+  return <span dangerouslySetInnerHTML={{ __html: html }} style={style} />;
+}
+
 // ── CSS print block (added to document head once) ────────────────────────────
 if (typeof document !== "undefined" && !document.getElementById("_qp_print_block")) {
   const s = document.createElement("style");
@@ -203,7 +257,7 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
         <span style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", background: "rgba(255,255,255,.05)", padding: "2px 8px", borderRadius: 20 }}>{question.topic}</span>
         {question.marks && <span style={{ fontSize: ".6rem", color: "#fbbf24", background: "rgba(251,191,36,.08)", padding: "2px 8px", borderRadius: 20 }}>+{question.marks} / -{question.negative_marks}</span>}
       </div>
-      <div style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14 }}>{watermarkedText}</div>
+      <MathText text={watermarkedText} style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14, display: "block" }} />
       <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
         {opts.map(opt => {
           const isSelected = selectedOption === opt.key;
@@ -215,7 +269,7 @@ function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedba
               <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#94a3b8)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: ".68rem", fontWeight: 700, color: correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--muted,#64748b)" }}>
                 {opt.key}
               </span>
-              <span style={{ fontSize: ".8rem", color: "var(--text,#1e293b)", lineHeight: 1.5, flex: 1 }}>{opt.text}</span>
+              <MathText text={opt.text} style={{ fontSize: ".8rem", color: "var(--text,#1e293b)", lineHeight: 1.5, flex: 1 }} />
               {correct && <CheckCircle size={14} color="#22c55e" style={{ flexShrink: 0, marginTop: 2 }} />}
               {wrong && <XCircle size={14} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />}
             </div>
@@ -507,7 +561,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
               {q?.topic && <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)", background:"rgba(255,255,255,.05)", padding:"2px 8px", borderRadius:20 }}>{q.topic}</span>}
               {q?.marks && <span style={{ fontSize:".6rem", color:"#fbbf24", background:"rgba(251,191,36,.08)", padding:"2px 8px", borderRadius:20 }}>+{q.marks} / -{q.negative_marks}</span>}
             </div>
-            <div style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18 }}>{embedWatermark(q?.question_text, username)}</div>
+            <MathText text={embedWatermark(q?.question_text, username)} style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18, display:"block" }} />
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {opts.map(opt => {
                 const sel = testAnswers[q?.id] === opt.key;
@@ -515,7 +569,7 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
                   <div key={opt.key} onClick={()=>{ if(q) setTestAnswers(p=>({...p,[q.id]:opt.key})); }}
                     style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"11px 14px", borderRadius:9, cursor:"pointer", background:sel?"rgba(99,102,241,.12)":"var(--surface2,rgba(0,0,0,.02))", border:"1px solid "+(sel?"#6366f1":"var(--border,#e2e8f0)"), transition:"all .1s" }}>
                     <span style={{ width:24, height:24, borderRadius:"50%", border:"2px solid "+(sel?"#6366f1":"var(--border,#94a3b8)"), display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontSize:".7rem", fontWeight:700, color:sel?"#6366f1":"var(--muted,#64748b)", background:sel?"rgba(99,102,241,.15)":"transparent" }}>{opt.key}</span>
-                    <span style={{ fontSize:".85rem", color:"var(--text,#1e293b)", lineHeight:1.5 }}>{opt.text}</span>
+                    <MathText text={opt.text} style={{ fontSize:".85rem", color:"var(--text,#1e293b)", lineHeight:1.5 }} />
                   </div>
                 );
               })}
