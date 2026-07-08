@@ -3,6 +3,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     # This is what a parent sees as their "current" plan before purchasing.
     # Not a purchasable plan — just the baseline state.
     "free_tier": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": None,
+        "access_exam_prep": False,
+        "access_exemplar": False,
         "key": "free_tier",
         "label": "Free Tier",
         "short_label": "Free",
@@ -48,6 +52,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     # DB key is "free" for legacy reasons (subscription_plan = "free" in profiles).
     # Distinguished from free_tier by: access_cbse=True + subscription_expires_at set.
     "free": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 8,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "free",
         "label": "Premium Nano",
         "short_label": "Nano",
@@ -86,6 +94,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "starter": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 30,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "starter",
         "label": "Premium",
         "short_label": "Premium",
@@ -123,6 +135,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "premium": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 30,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "premium",
         "label": "Premium",
         "short_label": "Premium",
@@ -160,6 +176,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "family_premium": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 30,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "family_premium",
         "label": "Family Premium",
         "short_label": "Family Premium",
@@ -196,6 +216,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "standard_6month": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 184,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "standard_6month",
         "label": "Premium — 6 Months",
         "short_label": "6-Month",
@@ -234,6 +258,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "standard_annual": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 366,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "standard_annual",
         "label": "Premium — Annual",
         "short_label": "Annual",
@@ -272,6 +300,10 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         },
     },
     "family_annual": {
+        # Centralized feature flags — overridden by subscription_plan_settings DB
+        "duration_days": 366,
+        "access_exam_prep": True,
+        "access_exemplar": True,
         "key": "family_annual",
         "label": "Family Premium — Annual",
         "short_label": "Family Annual",

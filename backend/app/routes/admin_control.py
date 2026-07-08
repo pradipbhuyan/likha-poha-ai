@@ -125,6 +125,10 @@ class SubscriptionPlanSettings(BaseModel):
     included: list[str] = []
     not_included: list[str] = []
     comparison: dict = {}
+    # ── Centralized feature flags (DB-driven) ────────────────────────────────
+    duration_days: int | None = None    # exact expiry days (overrides billing_label lookup)
+    access_exam_prep: bool = True       # include Exam Prep Center (JEE/NEET/CUET)
+    access_exemplar: bool = True        # include Exemplar Research & Lessons
 
 
 class UpdateSubscriptionPlanSettingsRequest(BaseModel):
@@ -300,6 +304,13 @@ def normalize_subscription_plan_row(row: dict):
         "included": row.get("included") or [],
         "not_included": row.get("not_included") or [],
         "comparison": row.get("comparison") or {},
+        # ── Centralized feature flags (DB-driven) ────────────────────────────
+        # duration_days: explicit expiry days — overrides billing_label→days lookup in payments.py
+        "duration_days": int(row["duration_days"]) if row.get("duration_days") is not None else None,
+        # access_exam_prep: whether this plan includes the Exam Prep Center (JEE/NEET/CUET)
+        "access_exam_prep": bool(row.get("access_exam_prep", True)),  # default True for paid plans
+        # access_exemplar: whether this plan includes Exemplar Research & Lessons
+        "access_exemplar": bool(row.get("access_exemplar", True)),    # default True for paid plans
     }
 
 

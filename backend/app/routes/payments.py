@@ -173,6 +173,7 @@ def get_payment_by_order_id(order_id: str):
 
 
 # Maps billing_label values to duration in days for subscription expiry.
+# Used as FALLBACK when duration_days is not explicitly set in the DB plan.
 # Plans without an entry here are treated as non-expiring (NULL expires_at).
 _BILLING_LABEL_TO_DAYS: dict[str, int] = {
     "8 days": 8,
@@ -186,9 +187,24 @@ def plan_expires_at(plan) -> str | None:
     """
     Calculate the UTC ISO-8601 expiry timestamp for a plan, or None if perpetual.
 
-    Only time-limited plans (those with a known billing_label) get an expiry.
+    Priority:
+      1. plan["duration_days"]  — explicit DB value set by admin (fully centralized)
+      2. billing_label lookup   — legacy fallback from _BILLING_LABEL_TO_DAYS
+      3. None                   — no expiry (perpetual / admin-granted)
+
     Perpetual/admin-granted access leaves subscription_expires_at as NULL.
     """
+    # 1. Prefer explicit duration_days from DB (admin-configurable)
+    duration_days = plan.get("duration_days")
+    if duration_days:
+        try:
+            days = int(duration_days)
+            if days > 0:
+                return (datetime.now(timezone.utc) + timedelta(days=days)).isoformat()
+        except (TypeError, ValueError):
+            pass
+
+    # 2. Fallback: derive from billing_label string
     billing_label = (plan.get("billing_label") or "").strip().lower()
     days = _BILLING_LABEL_TO_DAYS.get(billing_label)
     if not days:

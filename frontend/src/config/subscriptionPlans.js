@@ -539,6 +539,13 @@ export function normalizeSubscriptionPlan(rawPlan = {}) {
     notIncluded: rawPlan.notIncluded || rawPlan.not_included || fallback.notIncluded || [],
     // Deep-merge: frontend fallback comparison is the base, DB values overlay.
     comparison: { ...(fallback.comparison || {}), ...(rawPlan.comparison || {}) },
+    // ── Centralized feature flags ──────────────────────────────────────────
+    // duration_days: explicit expiry days — if null, billing_label lookup is used
+    duration_days: rawPlan.duration_days ?? fallback.duration_days ?? null,
+    // access_exam_prep: whether this plan includes Exam Prep Center (JEE/NEET/CUET)
+    access_exam_prep: rawPlan.access_exam_prep ?? fallback.access_exam_prep ?? true,
+    // access_exemplar: whether this plan includes Exemplar Research & Lessons
+    access_exemplar: rawPlan.access_exemplar ?? fallback.access_exemplar ?? true,
   };
 }
 
@@ -589,5 +596,9 @@ export function serializeSubscriptionPlan(plan) {
     included: plan.included || [],
     not_included: plan.notIncluded || [],
     comparison: plan.comparison || {},
+    // ── Centralized feature flags ──────────────────────────────────────────
+    duration_days: plan.duration_days != null ? Number(plan.duration_days) : null,
+    access_exam_prep: plan.access_exam_prep !== false,
+    access_exemplar: plan.access_exemplar !== false,
   };
 }

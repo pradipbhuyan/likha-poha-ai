@@ -60,6 +60,49 @@ from app.services.subscription_resolver_service import (
 logger = logging.getLogger("likhapoha.feature_auth")
 
 
+# ── DB-driven plan feature flag lookup ────────────────────────────────────────
+# For features that are now admin-configurable (exam_prep, exemplar), we look up
+# the current plan's DB settings to allow admin override without code deployment.
+# This is cached per-request via the plan_settings loader (no extra DB round-trip
+# when already called by the payment/subscription flow in the same request).
+
+def _get_plan_feature_flag(db_plan_key: str | None, flag_name: str, default: bool = True) -> bool:
+    """
+    Return a DB-stored feature flag for a given plan key.
+
+    Falls back to `default` if the plan is not found or the flag is not set.
+    Uses list_subscription_plan_settings() which merges DB + code defaults.
+    """
+    if not db_plan_key:
+        return default
+    try:
+        from app.routes.admin_control import list_subscription_plan_settings  # noqa: PLC0415
+        settings_payload = list_subscription_plan_settings()
+        plan = (settings_payload.get("plans") or {}).get(db_plan_key)
+        if plan is None:
+            return default
+        flag = plan.get(flag_name)
+        if flag is None:
+            return default
+        return bool(flag)
+    except Exception as _e:
+        logger.warning("_get_plan_feature_flag: error reading %s for plan %s: %s", flag_name, db_plan_key, _e)
+        return default
+
+
+# Map canonical plan keys → DB plan keys (raw subscription_plan column values)
+_CANONICAL_TO_DB_PLAN_KEY: dict[str, str] = {
+    "NANO":           "free",
+    "PREMIUM":        "starter",
+    "PREMIUM_6MONTH": "standard_6month",
+    "PREMIUM_ANNUAL": "standard_annual",
+    "FAMILY_PREMIUM": "family_premium",
+    "FAMILY_ANNUAL":  "family_annual",
+    "FREE_TIER":      "free_tier",
+    "ADMIN_GRANT":    "starter",  # admin grants use premium defaults
+}
+
+
 # ── Feature identifiers ───────────────────────────────────────────────────────
 class Feature:
     LESSONS              = "LESSONS"
@@ -81,6 +124,15 @@ class Feature:
     # Grade 11/12 Exam Prep features
     EXAM_PREP_CENTER     = "EXAM_PREP_CENTER"    # page shell visible to Grade 11/12 (all tiers)
     EXAM_PREP_CONTENT    = "EXAM_PREP_CONTENT"   # actual content: questions, tests, AI — Premium+ only
+
+
+# Features that support DB-driven admin override via plan settings
+# Placed AFTER Feature class so string constants are available.
+_DB_DRIVEN_FEATURES: dict[str, str] = {
+    Feature.EXAM_PREP_CONTENT:  "access_exam_prep",
+    Feature.EXEMPLAR:           "access_exemplar",
+    Feature.EXEMPLAR_RESEARCH:  "access_exemplar",
+}
 
 
 # ── Feature Matrix ────────────────────────────────────────────────────────────
@@ -269,6 +321,21 @@ def authorize_feature(
 
     # Feature restricted to specific plans
     if cpk in allowed_plans:
+        # ── DB-driven override check ─────────────────────────────────────────
+        # For features that are admin-configurable, check the plan's DB flag.
+        # If the admin disabled this feature for this plan, deny even if the
+        # canonical matrix says allowed.
+        db_flag_name = _DB_DRIVEN_FEATURES.get(feature)
+        if db_flag_name:
+            db_plan_key = _CANONICAL_TO_DB_PLAN_KEY.get(cpk)
+            flag_value = _get_plan_feature_flag(db_plan_key, db_flag_name, default=True)
+            if not flag_value:
+                return _denied(
+                    feature, cpk, plan_name,
+                    f"{_feature_display_name(feature)} is not included in your current plan. "
+                    "Please contact support or upgrade to a plan that includes this feature.",
+                    upgrade_msg,
+                )
         return {
             "allowed": True,
             "limited": False,
@@ -279,6 +346,30 @@ def authorize_feature(
             "upgrade_recommendation": "",
             "required_plan": "",
         }
+
+    # ── DB-driven access grant for normally-denied plans ─────────────────────
+    # If the canonical matrix denies this plan, but the admin has enabled the
+    # feature flag in DB for this plan, grant access.
+    db_flag_name = _DB_DRIVEN_FEATURES.get(feature)
+    if db_flag_name:
+        db_plan_key = _CANONICAL_TO_DB_PLAN_KEY.get(cpk)
+        if db_plan_key:
+            flag_value = _get_plan_feature_flag(db_plan_key, db_flag_name, default=False)
+            if flag_value:
+                logger.info(
+                    "authorize_feature: DB override grants %s to %s (plan=%s)",
+                    feature, user_id[:8], cpk,
+                )
+                return {
+                    "allowed": True,
+                    "limited": False,
+                    "feature": feature,
+                    "canonical_plan_key": cpk,
+                    "plan_name": plan_name,
+                    "restriction_message": "",
+                    "upgrade_recommendation": "",
+                    "required_plan": "",
+                }
 
     # Denied
     return _denied(feature, cpk, plan_name,

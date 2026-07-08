@@ -441,6 +441,25 @@ function AdminSubscriptionSettingsPage({ user }) {
                     }
                   />
                 </label>
+
+                <label
+                  title="Exact subscription validity in days. Overrides the billing label lookup. Leave blank to use billing label."
+                >
+                  Duration (days)
+                  <input
+                    type="number"
+                    min="1"
+                    value={plan.duration_days ?? ""}
+                    placeholder="e.g. 30 (overrides billing label)"
+                    onChange={(e) =>
+                      updatePlan(
+                        planKey,
+                        "duration_days",
+                        e.target.value === "" ? null : Number(e.target.value)
+                      )
+                    }
+                  />
+                </label>
               </div>
 
               <label className="admin-plan-full-label">
@@ -473,6 +492,28 @@ function AdminSubscriptionSettingsPage({ user }) {
                     }
                   />{" "}
                   Recommended
+                </label>
+
+                <label title="Includes Exam Prep Center — JEE Main, NEET UG, CUET UG questions & simulated tests">
+                  <input
+                    type="checkbox"
+                    checked={plan.access_exam_prep !== false}
+                    onChange={(e) =>
+                      updatePlan(planKey, "access_exam_prep", e.target.checked)
+                    }
+                  />{" "}
+                  🎓 Exam Prep (JEE/NEET/CUET)
+                </label>
+
+                <label title="Includes Exemplar Research & Lessons">
+                  <input
+                    type="checkbox"
+                    checked={plan.access_exemplar !== false}
+                    onChange={(e) =>
+                      updatePlan(planKey, "access_exemplar", e.target.checked)
+                    }
+                  />{" "}
+                  📖 Exemplar Access
                 </label>
               </div>
 
