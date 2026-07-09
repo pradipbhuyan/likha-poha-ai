@@ -1264,26 +1264,91 @@ export default function ExamPrepPage({ user, setActivePage }) {
                       <div style={{ fontSize: ".68rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 12 }}>
                         Recommended Study Sequence
                       </div>
-                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
-                        {[
-                          { phase: "Phase 1", icon: "📘", label: "Read NCERT", desc: "Cover all theory, definitions, and solved examples from your textbook", color: "#6366f1" },
-                          { phase: "Phase 2", icon: "📝", label: "Note Key Concepts", desc: "Write formulas, reactions, and important points in a revision notebook", color: "#8b5cf6" },
-                          { phase: "Phase 3", icon: "⚡", label: "Practice Questions", desc: "Use the Practice tab — work chapter-wise from easy to hard", color: "#10b981" },
-                          { phase: "Phase 4", icon: "🔁", label: "Revise Weak Topics", desc: "Review incorrect answers and re-read those NCERT sections", color: "#f59e0b" },
-                          { phase: "Phase 5", icon: "📊", label: "Full Test Simulation", desc: "Take the Simulated Test to gauge readiness under timed conditions", color: "#ef4444" },
-                        ].map(p => (
-                          <div key={p.phase} style={{ background: `${p.color}08`, border: `1px solid ${p.color}25`, borderRadius: 10, padding: "12px 14px" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                              <span style={{ fontSize: "1.1rem" }}>{p.icon}</span>
-                              <div>
-                                <div style={{ fontSize: ".6rem", fontWeight: 700, color: p.color, textTransform: "uppercase", letterSpacing: ".05em" }}>{p.phase}</div>
-                                <div style={{ fontSize: ".78rem", fontWeight: 700 }}>{p.label}</div>
+                      {(() => {
+                        // Derive weak topics from feedbacks (questions answered incorrectly in Practice)
+                        const weakTopics = Object.entries(feedbacks)
+                          .filter(([, fb]) => !fb.is_correct && fb.topic)
+                          .map(([, fb]) => fb.topic)
+                          .filter((t, i, arr) => arr.indexOf(t) === i); // unique
+
+                        const phases = [
+                          {
+                            phase: "Phase 1", icon: "📘", label: "Read NCERT",
+                            desc: "Cover all theory, definitions, and solved examples from your textbook",
+                            color: "#6366f1", actionLabel: "Open Lessons →",
+                            onClick: () => setActivePage && setActivePage("lessons"),
+                          },
+                          {
+                            phase: "Phase 2", icon: "📝", label: "Note Key Concepts",
+                            desc: "Write formulas, reactions, and important points in a revision notebook",
+                            color: "#8b5cf6", actionLabel: "Open Formula Sheets →",
+                            onClick: () => setActivePage && setActivePage("formulaSheet"),
+                          },
+                          {
+                            phase: "Phase 3", icon: "⚡", label: "Practice Questions",
+                            desc: "Use the Practice tab — work chapter-wise from easy to hard",
+                            color: "#10b981", actionLabel: "Go to Practice →",
+                            onClick: () => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); },
+                          },
+                          {
+                            phase: "Phase 4", icon: "🔁", label: "Revise Weak Topics",
+                            desc: weakTopics.length > 0
+                              ? `You have ${weakTopics.length} topic${weakTopics.length > 1 ? "s" : ""} to revise: ${weakTopics.slice(0, 3).join(", ")}${weakTopics.length > 3 ? "…" : ""}`
+                              : "Your weak topics will appear here as you practise — review incorrect answers and re-read those NCERT sections.",
+                            color: "#f59e0b",
+                            actionLabel: weakTopics.length > 0 ? `Revise ${weakTopics.length} topic${weakTopics.length > 1 ? "s" : ""} →` : null,
+                            onClick: weakTopics.length > 0
+                              ? () => {
+                                  setSelectedSubject(subj.name);
+                                  setActiveMode("practice");
+                                  // Load questions filtered to the first weak topic
+                                  handleSelectSubject(subj.name).then?.(() => {
+                                    setFilterTopic(weakTopics[0]);
+                                    loadQuestions(subj.name, weakTopics[0]);
+                                  });
+                                  setFilterTopic(weakTopics[0]);
+                                  loadQuestions(subj.name, weakTopics[0]);
+                                }
+                              : null,
+                          },
+                          {
+                            phase: "Phase 5", icon: "📊", label: "Full Test Simulation",
+                            desc: "Take the Simulated Test to gauge readiness under timed conditions",
+                            color: "#ef4444", actionLabel: "Start Simulation →",
+                            onClick: () => setActiveMode("test"),
+                          },
+                        ];
+
+                        return (
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
+                            {phases.map(p => (
+                              <div key={p.phase}
+                                onClick={p.onClick || undefined}
+                                style={{ background: `${p.color}08`, border: `1px solid ${p.color}25`, borderRadius: 10, padding: "12px 14px", cursor: p.onClick ? "pointer" : "default", transition: "all .12s" }}
+                                onMouseEnter={p.onClick ? e => { e.currentTarget.style.background = `${p.color}14`; e.currentTarget.style.borderColor = `${p.color}50`; } : undefined}
+                                onMouseLeave={p.onClick ? e => { e.currentTarget.style.background = `${p.color}08`; e.currentTarget.style.borderColor = `${p.color}25`; } : undefined}
+                              >
+                                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                                  <span style={{ fontSize: "1.1rem" }}>{p.icon}</span>
+                                  <div>
+                                    <div style={{ fontSize: ".6rem", fontWeight: 700, color: p.color, textTransform: "uppercase", letterSpacing: ".05em" }}>{p.phase}</div>
+                                    <div style={{ fontSize: ".78rem", fontWeight: 700 }}>{p.label}</div>
+                                  </div>
+                                </div>
+                                <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", lineHeight: 1.5, marginBottom: p.actionLabel ? 8 : 0 }}>{p.desc}</div>
+                                {p.actionLabel && (
+                                  <div style={{ fontSize: ".65rem", color: p.color, fontWeight: 700, marginTop: 4 }}>{p.actionLabel}</div>
+                                )}
+                                {p.phase === "Phase 4" && weakTopics.length === 0 && (
+                                  <div style={{ fontSize: ".6rem", color: "var(--muted,#475569)", marginTop: 6, fontStyle: "italic" }}>
+                                    🕐 Builds as you study
+                                  </div>
+                                )}
                               </div>
-                            </div>
-                            <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", lineHeight: 1.5 }}>{p.desc}</div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
+                        );
+                      })()}
 
                       {/* Priority topics for this subject */}
                       <div style={{ marginTop: 16 }}>
