@@ -223,6 +223,16 @@ function RagUploadPage({ user }) {
   const [ragQuery, setRagQuery] = useState("");
   const [ragResults, setRagResults] = useState([]);
   const [searchingRag, setSearchingRag] = useState(false);
+
+  // Paste Text upload state
+  const [pasteText, setPasteText] = useState("");
+  const [pasteGrade, setPasteGrade] = useState("Grade 5");
+  const [pasteSubject, setPasteSubject] = useState("English");
+  const [pasteChapter, setPasteChapter] = useState("");
+  const [pasteTitle, setPasteTitle] = useState("");
+  const [pasteBoardVal, setPasteBoardVal] = useState("CBSE");
+  const [pasteUploading, setPasteUploading] = useState(false);
+  const [pasteResult, setPasteResult] = useState(null);
   const [activeMetadataDocId, setActiveMetadataDocId] = useState("");
   const [metadataDraft, setMetadataDraft] = useState({
     title: "",
@@ -2627,6 +2637,95 @@ function RagUploadPage({ user }) {
             ))}
           </div>
         </section>
+      )}
+
+      {activeRagWorkspace === "manual" && (
+      <section className="premium-section">
+        <div className="premium-header">
+          <h3>📋 Paste Text to RAG</h3>
+          <p>
+            Paste chapter content directly — ideal for correcting missing poem stanzas or
+            adding content that PDFs failed to extract. The server generates embeddings automatically.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+          <label className="full-width-label">
+            Grade
+            <select value={pasteGrade} onChange={e => setPasteGrade(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+              {["Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"].map(g => (
+                <option key={g}>{g}</option>
+              ))}
+            </select>
+          </label>
+          <label className="full-width-label">
+            Board
+            <select value={pasteBoardVal} onChange={e => setPasteBoardVal(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+              <option>CBSE</option><option>SOF</option>
+            </select>
+          </label>
+          <label className="full-width-label">
+            Subject
+            <input value={pasteSubject} onChange={e => setPasteSubject(e.target.value)} placeholder="e.g. English" style={{ width: "100%", marginTop: 4 }} />
+          </label>
+          <label className="full-width-label">
+            Chapter
+            <input value={pasteChapter} onChange={e => setPasteChapter(e.target.value)} placeholder="e.g. 1. Papa's Spectacles" style={{ width: "100%", marginTop: 4 }} />
+          </label>
+        </div>
+        <label className="full-width-label" style={{ marginBottom: 12 }}>
+          Document Title
+          <input value={pasteTitle} onChange={e => setPasteTitle(e.target.value)} placeholder="e.g. Santoor English Grade 5 — Papa's Spectacles" style={{ width: "100%", marginTop: 4 }} />
+        </label>
+        <label className="full-width-label" style={{ marginBottom: 12 }}>
+          Paste chapter text here
+          <textarea
+            value={pasteText}
+            onChange={e => setPasteText(e.target.value)}
+            placeholder="Paste the complete chapter/poem text including comprehension questions, vocabulary, and key content..."
+            rows={14}
+            style={{ width: "100%", marginTop: 4, fontFamily: "monospace", fontSize: ".82rem" }}
+          />
+        </label>
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <button
+            className="primary-btn"
+            disabled={pasteUploading || !pasteText.trim() || !pasteChapter.trim()}
+            onClick={async () => {
+              setPasteUploading(true);
+              setPasteResult(null);
+              try {
+                const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+                const resp = await fetch(`${API_BASE}/api/rag/upload-text`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json", "Authorization": `Bearer ${user?.accessToken}` },
+                  body: JSON.stringify({
+                    username: user?.username || "admin",
+                    grade: pasteGrade,
+                    board: pasteBoardVal,
+                    subject: pasteSubject,
+                    chapter: pasteChapter,
+                    title: pasteTitle || `${pasteGrade} ${pasteSubject} — ${pasteChapter}`,
+                    text: pasteText,
+                  }),
+                });
+                const data = await resp.json();
+                setPasteResult(data);
+              } catch (e) {
+                setPasteResult({ success: false, message: e.message });
+              } finally {
+                setPasteUploading(false);
+              }
+            }}
+          >
+            {pasteUploading ? "Uploading & embedding…" : "📤 Upload to RAG"}
+          </button>
+          {pasteResult && (
+            <div style={{ padding: "8px 14px", borderRadius: 8, background: pasteResult.success ? "rgba(34,197,94,.1)" : "rgba(239,68,68,.1)", border: `1px solid ${pasteResult.success ? "rgba(34,197,94,.3)" : "rgba(239,68,68,.3)"}`, fontSize: ".85rem" }}>
+              {pasteResult.success ? `✅ ${pasteResult.chunks_created} chunks created` : `❌ ${pasteResult.message}`}
+            </div>
+          )}
+        </div>
+      </section>
       )}
 
       {activeRagWorkspace === "library" && (
