@@ -1422,8 +1422,17 @@ export default function ExamPrepPage({ user, setActivePage }) {
         }
         setQuestions(allQ);
       } else if (data.question_ids?.length > 0) {
-        const qData = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, limit: 90 });
-        setQuestions(qData.questions || []);
+        // Fetch per-subject to match the real exam structure (JEE: 25/subj, NEET: 45/subj)
+        const cfg = EXAM_SIM_CONFIG[selectedExam] || EXAM_SIM_CONFIG.jee_main;
+        const allQ = [];
+        for (const subj of cfg.subjects) {
+          const perSubjLimit = cfg.questionsPerSubject || Math.round(cfg.questions / cfg.subjects.length);
+          const qData = await getExamPrepQuestions(user.accessToken, {
+            exam: selectedExam, subject: subj, limit: perSubjLimit,
+          });
+          allQ.push(...(qData.questions || []));
+        }
+        setQuestions(allQ);
       } else {
         setQuestions([]);
       }
