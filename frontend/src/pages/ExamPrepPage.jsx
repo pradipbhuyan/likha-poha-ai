@@ -1,20 +1,16 @@
 /**
  * ExamPrepPage.jsx — JEE / NEET / CUET Exam Prep Center
  * ======================================================
- * Access: admin | Grade 11/12 students | akshita.teststudent
- *
- * Sections:
- *   1. Exam tabs (JEE active, NEET/CUET coming soon)
- *   2. Stats cards
- *   3. Subject cards → Topic priority cards
- *   4. Quick Practice (question list + AI explanation panel)
- *   5. Simulated Test mode
- *   6. Test Result page
- *   7. Resource links
+ * New access model (2026-07-09):
+ *   - All Grade 11/12 students see the landing/preview page
+ *   - Access to each exam (JEE/NEET/CUET) requires a separate pack purchase
+ *   - Pack purchase is independent of CBSE subscription tier (Free/Premium)
+ *   - Admin and test users (akshita.teststudent) get all packs for free
+ *   - Pack prices are managed by admin via Subscription Settings
  */
 
-import React, { useEffect, useState, useRef } from "react";
-import { Loader, CheckCircle, XCircle } from "lucide-react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { Loader, CheckCircle, XCircle, Lock, ShoppingCart } from "lucide-react";
 import {
   getExamPrepDashboard,
   getExamPrepSubjects,
@@ -25,1397 +21,617 @@ import {
   startSimulatedTest,
   submitSimulatedTest,
 } from "../api/examPrep";
+import { getMyPacks, getPackPrices, createPackOrder, verifyPackPayment } from "../api/examPrepPacks";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
-
-// NOTE: Frontend does NOT infer Exam Prep access from plan strings.
-// All access decisions come from GET /api/exam-prep/access-check (canonical backend).
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
 
 const EXAMS = {
-  jee_main: { label: "JEE Main", icon: "📐", color: "#6366f1", active: true },
-  neet_ug: { label: "NEET UG", icon: "🔬", color: "#10b981", active: true },
-  cuet_ug: { label: "CUET UG", icon: "🏛️", color: "#f59e0b", active: true },
+  jee_main: { label: "JEE Main",  icon: "📐", color: "#6366f1", subLabel: "Engineering entrance" },
+  neet_ug:  { label: "NEET UG",   icon: "🔬", color: "#10b981", subLabel: "Medical entrance" },
+  cuet_ug:  { label: "CUET UG",   icon: "🏛️", color: "#f59e0b", subLabel: "Central university entrance" },
 };
 
-// Exam-specific simulation config
 const EXAM_SIM_CONFIG = {
   jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 90, marking: "+4 / -1" },
   neet_ug:  { subjects: ["Physics", "Chemistry", "Biology"],     duration: 200, questions: 200, marking: "+4 / -1" },
   cuet_ug:  { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / -1" },
 };
 
-// ── CUET UG — NTA 2024 subject combination presets ────────────────────────────
-// Section IA: Language (English mandatory) · Section II: Domain Subjects (2–6)
-// Section III: General Test · Marking: +5 / -1
-const CUET_DOMAIN_SUBJECTS = [
-  "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)",
-  "History", "Geography", "Political Science", "Economics",
-  "Accountancy", "Business Studies", "Sociology", "Psychology", "Legal Studies",
-  "English (Domain)", "Hindi (Domain)",
-];
-const CUET_PRESETS = [
-  { id: "science_pcm",  label: "Science — PCM",  icon: "📐", color: "#6366f1", popular: true,
-    desc: "Physics, Chemistry, Mathematics + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "General Test"] },
-  { id: "science_pcb",  label: "Science — PCB",  icon: "🔬", color: "#10b981", popular: true,
-    desc: "Physics, Chemistry, Biology + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Biology (Domain)", "General Test"] },
-  { id: "science_pcmb", label: "Science — PCMB", icon: "⚛️", color: "#8b5cf6", popular: false,
-    desc: "Physics, Chemistry, Maths, Biology + English + General Test",
-    subjects: ["English", "Physics (Domain)", "Chemistry (Domain)", "Mathematics (Domain)", "Biology (Domain)", "General Test"] },
-  { id: "commerce",     label: "Commerce",        icon: "📊", color: "#f59e0b", popular: true,
-    desc: "Accountancy, Business Studies, Economics + English + General Test",
-    subjects: ["English", "Accountancy", "Business Studies", "Economics", "General Test"] },
-  { id: "humanities",   label: "Humanities",      icon: "🏛️", color: "#ec4899", popular: true,
-    desc: "History, Geography, Political Science + English + General Test",
-    subjects: ["English", "History", "Geography", "Political Science", "General Test"] },
-  { id: "custom",       label: "Custom",          icon: "⚙️", color: "#64748b", popular: false,
-    desc: "Choose your own subject combination",
-    subjects: [] },
-];
-const CUET_SUBJECT_ICONS = {
-  "English": "📝", "General Test": "🧩",
-  "Physics (Domain)": "⚛️", "Chemistry (Domain)": "🧪", "Mathematics (Domain)": "📐", "Biology (Domain)": "🌿",
-  "History": "🏺", "Geography": "🌍", "Political Science": "🏛️", "Economics": "📊",
-  "Accountancy": "📒", "Business Studies": "💼", "Sociology": "👥", "Psychology": "🧠", "Legal Studies": "⚖️",
-  "English (Domain)": "📖", "Hindi (Domain)": "📜",
-};
+const SUBJECT_ICONS  = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿" };
+const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e" };
+const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" };
 
-// ── Content protection — invisible zero-width character watermarking ───────────
-// Encodes the user's username into the question text using zero-width characters
-// (invisible to the eye, survives copy-paste). If a student shares a question,
-// decoding the watermark reveals which account leaked it → account termination.
-// 0 = U+200B (zero-width space), 1 = U+200C (ZWNJ), delimiter = U+200D (ZWJ)
-function embedWatermark(text, username) {
-  if (!text || !username) return text;
-  try {
-    const bits = username.split("").map(c => c.charCodeAt(0).toString(2).padStart(8, "0")).join("");
-    const wm = "\u200D" + bits.split("").map(b => b === "1" ? "\u200C" : "\u200B").join("") + "\u200D";
-    // Insert watermark after the first sentence (not at start, harder to notice)
-    const dot = text.indexOf(". ");
-    if (dot > 0) return text.slice(0, dot + 2) + wm + text.slice(dot + 2);
-    return text + wm;
-  } catch { return text; }
-}
-
-// ── Math/Chemistry text formatter ────────────────────────────────────────────
-// Converts common notation to proper HTML superscripts/subscripts.
-// Examples: H2O → H₂O  |  10^23 → 10²³  |  mol^-1 → mol⁻¹  |  \times → ×
+// ── Math/Chemistry formatter ──────────────────────────────────────────────────
 function formatMathText(text) {
   if (!text) return "";
   let t = text;
-
-  // LaTeX symbols
-  t = t.replace(/\\times/g, "×");
-  t = t.replace(/\\cdot/g, "·");
-  t = t.replace(/\\pm/g, "±");
-  t = t.replace(/\\alpha/g, "α");
-  t = t.replace(/\\beta/g, "β");
-  t = t.replace(/\\gamma/g, "γ");
-  t = t.replace(/\\delta/g, "δ");
-  t = t.replace(/\\Delta/g, "Δ");
-  t = t.replace(/\\mu/g, "μ");
-  t = t.replace(/\\pi/g, "π");
-  t = t.replace(/\\theta/g, "θ");
-  t = t.replace(/\\lambda/g, "λ");
-  t = t.replace(/\\Omega/g, "Ω");
-  t = t.replace(/\\omega/g, "ω");
-  t = t.replace(/\\rightarrow/g, "→");
-  t = t.replace(/\\leftarrow/g, "←");
-  t = t.replace(/\\approx/g, "≈");
-  t = t.replace(/\\neq/g, "≠");
-  t = t.replace(/\\geq/g, "≥");
-  t = t.replace(/\\leq/g, "≤");
+  t = t.replace(/\\times/g, "×"); t = t.replace(/\\cdot/g, "·"); t = t.replace(/\\pm/g, "±");
+  t = t.replace(/\\alpha/g, "α"); t = t.replace(/\\beta/g, "β"); t = t.replace(/\\gamma/g, "γ");
+  t = t.replace(/\\delta/g, "δ"); t = t.replace(/\\Delta/g, "Δ"); t = t.replace(/\\mu/g, "μ");
+  t = t.replace(/\\pi/g, "π"); t = t.replace(/\\theta/g, "θ"); t = t.replace(/\\lambda/g, "λ");
+  t = t.replace(/\\Omega/g, "Ω"); t = t.replace(/\\omega/g, "ω");
+  t = t.replace(/\\rightarrow/g, "→"); t = t.replace(/\\leftarrow/g, "←");
+  t = t.replace(/\\approx/g, "≈"); t = t.replace(/\\neq/g, "≠"); t = t.replace(/\\geq/g, "≥"); t = t.replace(/\\leq/g, "≤");
   t = t.replace(/\\infty/g, "∞");
   t = t.replace(/\\sqrt\{([^}]+)\}/g, "√($1)");
   t = t.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)");
-
-  // Superscripts: ^{...} or ^X (single char/digit/sign)
-  t = t.replace(/\^\{([^}]+)\}/g, (_, exp) => `<sup>${exp}</sup>`);
-  t = t.replace(/\^([+-]?\d+)/g, (_, exp) => `<sup>${exp}</sup>`);
-  t = t.replace(/\^([a-zA-Z])/g, (_, exp) => `<sup>${exp}</sup>`);
-
-  // Subscripts: _{...} or _X
-  t = t.replace(/_\{([^}]+)\}/g, (_, sub) => `<sub>${sub}</sub>`);
-  t = t.replace(/_(\d+)/g, (_, sub) => `<sub>${sub}</sub>`);
-
-  // Chemistry formulas: number after uppercase letter (e.g., H2O, CO2, NH3, CH4)
-  // Only convert if not already wrapped in sub/sup tags
-  t = t.replace(/([A-Z][a-z]?)(\d+)(?![^<]*>)/g, (_, el, num) => `${el}<sub>${num}</sub>`);
-
+  t = t.replace(/\^\{([^}]+)\}/g, (_, e) => `<sup>${e}</sup>`);
+  t = t.replace(/\^([+-]?\d+)/g, (_, e) => `<sup>${e}</sup>`);
+  t = t.replace(/\^([a-zA-Z])/g, (_, e) => `<sup>${e}</sup>`);
+  t = t.replace(/_\{([^}]+)\}/g, (_, s) => `<sub>${s}</sub>`);
+  t = t.replace(/_(\d+)/g, (_, s) => `<sub>${s}</sub>`);
+  t = t.replace(/([A-Z][a-z]?)(\d+)(?![^<]*>)/g, (_, el, n) => `${el}<sub>${n}</sub>`);
   return t;
 }
 
-// Component to safely render formatted math/chemistry text
 function MathText({ text, style }) {
   const html = React.useMemo(() => formatMathText(text || ""), [text]);
   return <span dangerouslySetInnerHTML={{ __html: html }} style={style} />;
 }
 
-// ── CSS print block (added to document head once) ────────────────────────────
-if (typeof document !== "undefined" && !document.getElementById("_qp_print_block")) {
-  const s = document.createElement("style");
-  s.id = "_qp_print_block";
-  s.textContent = `@media print { .qprotect { display: none !important; } body::before { content: "© Likha Poha AI — Printing exam content is not permitted."; display:block; font-size:18px; padding:40px; text-align:center; } }`;
-  document.head.appendChild(s);
+// ── Watermark ─────────────────────────────────────────────────────────────────
+function embedWatermark(text, username) {
+  if (!text || !username) return text;
+  try {
+    const bits = username.split("").map(c => c.charCodeAt(0).toString(2).padStart(8,"0")).join("");
+    const wm = "\u200D" + bits.split("").map(b => b==="1" ? "\u200C" : "\u200B").join("") + "\u200D";
+    const dot = text.indexOf(". ");
+    return dot > 0 ? text.slice(0, dot+2) + wm + text.slice(dot+2) : text + wm;
+  } catch { return text; }
 }
 
-const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿" };
-const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e" };
-const PRIORITY_COLORS = { HIGH: "#ef4444", MED: "#f59e0b", LOW: "#22c55e" };
-const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" };
+// ── Pack Purchase Modal ───────────────────────────────────────────────────────
+function PackPurchaseModal({ examType, prices, user, onSuccess, onClose }) {
+  const exam = EXAMS[examType];
+  const priceInfo = prices?.[examType] || {};
+  const [step, setStep] = useState("confirm"); // confirm | paying | success | error
+  const [errMsg, setErrMsg] = useState("");
 
-// ── Sub-components ─────────────────────────────────────────────────────────────
-
-function StatCard({ value, label, icon, color = "#6366f1" }) {
-  return (
-    <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "14px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
-      <div style={{ fontSize: "1.6rem", fontWeight: 800, color }}>{value}</div>
-      <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", display: "flex", alignItems: "center", gap: 4 }}>
-        {icon && <span>{icon}</span>}
-        {label}
-      </div>
-    </div>
-  );
-}
-
-function SubjectCard({ subject, onClick, selected }) {
-  const color = SUBJECT_COLORS[subject.name] || "#6366f1";
-  return (
-    <div onClick={onClick} className="premium-card" style={{ background: selected ? `${color}18` : undefined, border: `2px solid ${selected ? color : "var(--border,#334155)"}`, borderRadius: 12, padding: "16px", cursor: "pointer", transition: "all .15s", marginBottom: 0 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-        <span style={{ fontSize: "1.6rem" }}>{SUBJECT_ICONS[subject.name] || "📚"}</span>
-        <span style={{ fontSize: ".65rem", fontWeight: 700, background: `${color}22`, color, padding: "2px 8px", borderRadius: 20 }}>{subject.weightage_pct}%</span>
-      </div>
-      <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 4 }}>{subject.name}</div>
-      <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginBottom: 10 }}>
-        {subject.chapters} chapters · {subject.topic_count} topics
-      </div>
-      <div style={{ background: "rgba(99,102,241,.1)", borderRadius: 6, height: 4, overflow: "hidden" }}>
-        <div style={{ width: `${Math.min(100, (subject.question_count / 50) * 100)}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6 }} />
-      </div>
-      <div style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", marginTop: 5, display: "flex", justifyContent: "space-between" }}>
-        <span>{subject.question_count} questions</span>
-        <span style={{ color: selected ? color : "var(--muted,#64748b)" }}>{selected ? "▾ Topics" : "See topics →"}</span>
-      </div>
-    </div>
-  );
-}
-
-function TopicCard({ topic, onPractice }) {
-  const priorityColor = PRIORITY_COLORS[topic.priority] || "#94a3b8";
-  return (
-    <div className="premium-card" style={{ borderRadius: 10, padding: "14px 16px", marginBottom: 0 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-        <div style={{ fontWeight: 700, fontSize: ".85rem", flex: 1 }}>{topic.name}</div>
-        <span style={{ fontSize: ".58rem", fontWeight: 800, background: `${priorityColor}22`, color: priorityColor, padding: "2px 7px", borderRadius: 20, marginLeft: 8, whiteSpace: "nowrap" }}>
-          {topic.priority}
-        </span>
-      </div>
-      <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginBottom: 6 }}>{topic.ncert_chapter}</div>
-      <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
-        {(topic.subtopics || []).slice(0, 3).map(s => (
-          <span key={s} style={{ fontSize: ".6rem", background: "rgba(99,102,241,.1)", color: "#a5b4fc", padding: "2px 6px", borderRadius: 6 }}>{s}</span>
-        ))}
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>~{topic.weightage_pct}% weightage</span>
-        <button onClick={() => onPractice(topic)} style={{ background: "#6366f1", border: "none", borderRadius: 6, padding: "5px 12px", color: "#fff", fontSize: ".7rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-          Practice →
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedback, username }) {
-  const opts = question.options_json || [];
-  const isCorrect = (key) => showFeedback && feedback?.correct_option === key;
-  const isWrong = (key) => showFeedback && selectedOption === key && !feedback?.is_correct;
-
-  // Watermarked question text (invisible to eye, traceable if copied)
-  const watermarkedText = React.useMemo(
-    () => embedWatermark(question.question_text, username),
-    [question.question_text, username]
-  );
-
-  function blockCopy(e) {
-    e.preventDefault();
-    // Silent block — don't alert (alerting annoys students who copy for legit reasons)
-  }
-
-  return (
-    <div
-      className="qprotect"
-      onCopy={blockCopy}
-      onContextMenu={e => e.preventDefault()}
-      style={{ padding: "16px", borderBottom: "1px solid var(--border,#334155)", userSelect: "none", WebkitUserSelect: "none" }}>
-      <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
-        <span style={{ fontSize: ".6rem", fontWeight: 700, background: `${DIFFICULTY_COLORS[question.difficulty] || "#94a3b8"}22`, color: DIFFICULTY_COLORS[question.difficulty] || "#94a3b8", padding: "2px 8px", borderRadius: 20 }}>{question.difficulty}</span>
-        <span style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", background: "rgba(255,255,255,.05)", padding: "2px 8px", borderRadius: 20 }}>{question.topic}</span>
-        {question.marks && <span style={{ fontSize: ".6rem", color: "#fbbf24", background: "rgba(251,191,36,.08)", padding: "2px 8px", borderRadius: 20 }}>+{question.marks} / -{question.negative_marks}</span>}
-      </div>
-      <MathText text={watermarkedText} style={{ fontSize: ".85rem", color: "var(--text,#1e293b)", lineHeight: 1.6, marginBottom: 14, display: "block" }} />
-      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-        {opts.map(opt => {
-          const isSelected = selectedOption === opt.key;
-          const correct = isCorrect(opt.key);
-          const wrong = isWrong(opt.key);
-          return (
-            <div key={opt.key} onClick={() => !showFeedback && onSelect(opt.key)}
-              style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", borderRadius: 8, cursor: showFeedback ? "default" : "pointer", background: correct ? "rgba(34,197,94,.12)" : wrong ? "rgba(239,68,68,.1)" : isSelected ? "rgba(99,102,241,.12)" : "var(--surface2,rgba(0,0,0,.02))", border: `1px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#e2e8f0)"}`, transition: "all .1s" }}>
-              <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--border,#94a3b8)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: ".68rem", fontWeight: 700, color: correct ? "#22c55e" : wrong ? "#ef4444" : isSelected ? "#6366f1" : "var(--muted,#64748b)" }}>
-                {opt.key}
-              </span>
-              <MathText text={opt.text} style={{ fontSize: ".8rem", color: "var(--text,#1e293b)", lineHeight: 1.5, flex: 1 }} />
-              {correct && <CheckCircle size={14} color="#22c55e" style={{ flexShrink: 0, marginTop: 2 }} />}
-              {wrong && <XCircle size={14} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />}
-            </div>
-          );
-        })}
-      </div>
-      {question.ncert_reference && (
-        <div style={{ marginTop: 8, fontSize: ".62rem", color: "var(--muted,#64748b)" }}>📖 {question.ncert_reference}</div>
-      )}
-    </div>
-  );
-}
-
-function AIPanel({ question, feedback, user }) {
-  const [followUp, setFollowUp] = useState("");
-  const [fuLoading, setFuLoading] = useState(false);
-  const [fuAnswer, setFuAnswer] = useState("");
-
-  useEffect(() => { setFollowUp(""); setFuAnswer(""); }, [question?.id]);
-
-  async function handleFollowUp(e) {
-    e.preventDefault();
-    if (!followUp.trim()) return;
-    setFuLoading(true);
+  async function handleBuy() {
+    setStep("paying");
+    setErrMsg("");
     try {
-      const data = await askFollowUp(user.accessToken, {
-        questionText: question.question_text,
-        subject: question.subject || "Physics",
-        exam: "JEE Main",
-        followUp: followUp,
-      });
-      setFuAnswer(data.answer || "");
-    } catch { setFuAnswer("Could not get AI answer. Try again."); }
-    finally { setFuLoading(false); }
-  }
-
-  if (!question) {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", padding: 24, color: "var(--muted,#64748b)", fontSize: ".78rem", textAlign: "center", gap: 12 }}>
-        <div style={{ fontSize: "2.5rem" }}>🤖</div>
-        <div>Select a question to get AI step-by-step explanation</div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: 16, overflowY: "auto", height: "100%", fontSize: ".78rem", lineHeight: 1.6, color: "var(--text,#1e293b)" }}>
-      {/* Question preview */}
-      <div style={{ background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e2e8f0)", borderRadius: 8, padding: 10, marginBottom: 12, fontSize: ".72rem", color: "var(--text-muted,#64748b)", fontStyle: "italic" }}>
-        {question.question_text.length > 200 ? question.question_text.slice(0, 200) + "…" : question.question_text}
-      </div>
-
-      {/* Feedback */}
-      {feedback && (
-        <>
-          <div style={{ background: feedback.is_correct ? "rgba(34,197,94,.1)" : "rgba(239,68,68,.08)", border: `1px solid ${feedback.is_correct ? "rgba(34,197,94,.3)" : "rgba(239,68,68,.25)"}`, borderRadius: 8, padding: "8px 12px", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1rem" }}>{feedback.is_correct ? "✅" : "❌"}</span>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: ".75rem", color: feedback.is_correct ? "#4ade80" : "#f87171" }}>
-                {feedback.is_correct ? "Correct!" : "Incorrect"} · {feedback.marks_awarded > 0 ? "+" : ""}{feedback.marks_awarded} marks
-              </div>
-              <div style={{ fontSize: ".7rem", color: "var(--muted,#94a3b8)" }}>
-                  Correct answer: <strong style={{ color: "#f1f5f9" }}>{feedback.correct_option}</strong>
-                </div>
-            </div>
-          </div>
-
-          {feedback.explanation && (
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 6 }}>Explanation:</div>
-              <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: 10, fontSize: ".75rem", lineHeight: 1.9, color: "var(--text,#1e293b)" }}>
-                {/* Split on "Step N:" or "Option X:" patterns so each step renders on its own line */}
-                {feedback.explanation
-                  .replace(/\s+(Step\s+\d+[:.])/g, '\n$1')
-                  .replace(/\s+(Option\s+[A-D]:)/g, '\n$1')
-                  .replace(/\s+(Therefore\b)/g, '\nTherefore')
-                  .split('\n')
-                  .filter(s => s.trim())
-                  .map((line, i) => (
-                    <div key={i} style={{ marginBottom: i < feedback.explanation.split('\n').length - 1 ? 4 : 0 }}>
-                      {line.trim()}
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          )}
-
-          {feedback.formula_used && (
-            <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 8, padding: "8px 10px", marginBottom: 10, fontSize: ".7rem" }}>
-              <strong style={{ color: "#fbbf24" }}>Formula: </strong>{feedback.formula_used}
-            </div>
-          )}
-
-          {/* Follow-up */}
-          <form onSubmit={handleFollowUp} style={{ display: "flex", gap: 6, marginTop: 10 }}>
-            <input value={followUp} onChange={e => setFollowUp(e.target.value)}
-              placeholder="Ask AI: Why does this apply here?"
-              style={{ flex: 1, background: "var(--surface2,#f8fafc)", border: "1px solid var(--border,#e2e8f0)", borderRadius: 6, padding: "6px 9px", color: "var(--text,#1e293b)", fontSize: ".72rem", fontFamily: "inherit" }} />
-            <button type="submit" disabled={fuLoading || !followUp.trim()}
-              style={{ padding: "6px 11px", background: "#6366f1", border: "none", borderRadius: 6, color: "#fff", fontWeight: 700, fontSize: ".72rem", cursor: "pointer", opacity: fuLoading ? .6 : 1, fontFamily: "inherit" }}>
-              {fuLoading ? <Loader size={12} /> : "Ask ✦"}
-            </button>
-          </form>
-          {fuAnswer && (
-            <div style={{ background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.18)", borderRadius: 8, padding: 10, marginTop: 8, fontSize: ".72rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
-              {fuAnswer}
-            </div>
-          )}
-        </>
-      )}
-
-      {!feedback && (
-        <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".75rem" }}>
-          <Loader size={13} style={{ animation: "spin 1s linear infinite" }} />
-          Select an option to get instant feedback & explanation
-          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ── On-screen Calculator (basic — matches NTA JEE exam interface) ─────────────
-
-function OnScreenCalc({ onClose }) {
-  const [d, setD] = React.useState("0");
-  const [p, setP] = React.useState(null);
-  const [op, setOp] = React.useState(null);
-  const [fr, setFr] = React.useState(true);
-
-  function press(v) {
-    if (v === "C")   { setD("0"); setP(null); setOp(null); setFr(true); return; }
-    if (v === "+/-") { setD(x => String(-parseFloat(x) || 0)); return; }
-    if (v === "%")   { setD(x => String(parseFloat(x) / 100)); return; }
-    if (["÷", "×", "-", "+"].includes(v)) { setP(parseFloat(d)); setOp(v); setFr(true); return; }
-    if (v === "=") {
-      if (p === null || op === null) return;
-      const a = p, b = parseFloat(d);
-      const r = op==="+" ? a+b : op==="-" ? a-b : op==="×" ? a*b : (op==="÷"&&b!==0) ? a/b : "Err";
-      setD(String(r)); setP(null); setOp(null); setFr(true); return;
-    }
-    if (v === ".") {
-      if (fr) { setD("0."); setFr(false); return; }
-      if (!d.includes(".")) setD(x => x + "."); return;
-    }
-    setD(fr ? v : d === "0" ? v : d + v);
-    setFr(false);
-  }
-
-  const rows = [["%","C","+/-","÷"],["7","8","9","×"],["4","5","6","-"],["1","2","3","+"],[null,"0",".","="]];
-  const orange = ["÷","×","-","+","="];
-  const grey   = ["%","C","+/-"];
-
-  return (
-    <div style={{ position:"fixed", bottom:80, right:20, zIndex:10000, background:"#1c1c1e",
-      border:"1px solid #3a3a3c", borderRadius:18, padding:14, width:218,
-      boxShadow:"0 12px 40px rgba(0,0,0,.85)" }}>
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
-        <span style={{ fontSize:".7rem", fontWeight:700, color:"#8e8e93" }}>Calculator (basic — no scientific in JEE)</span>
-        <button onClick={onClose} style={{ background:"none", border:"none", color:"#8e8e93", cursor:"pointer", fontSize:"1rem", lineHeight:1 }}>✕</button>
-      </div>
-      <div style={{ background:"#000", borderRadius:10, padding:"8px 12px", marginBottom:10, textAlign:"right" }}>
-        <div style={{ fontSize:".62rem", color:"#8e8e93", minHeight:16 }}>{op ? String(p) + " " + op : ""}</div>
-        <div style={{ fontSize:"1.7rem", fontWeight:300, color:"#fff", overflow:"hidden", textOverflow:"ellipsis", letterSpacing:"-.02em" }}>{d}</div>
-      </div>
-      <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
-        {rows.map((row, ri) => (
-          <div key={ri} style={{ display:"grid", gridTemplateColumns: ri===4 ? "2fr 1fr 1fr" : "1fr 1fr 1fr 1fr", gap:5 }}>
-            {(ri === 4 ? ["0", ".", "="] : row).map(b => b === null ? null : (
-              <button key={b} onClick={() => press(b)}
-                style={{ padding:"13px 0", borderRadius:50, border:"none",
-                  background: orange.includes(b) ? "#ff9f0a" : grey.includes(b) ? "#636366" : "#2c2c2e",
-                  color:"#fff", fontWeight:500, fontSize:".9rem", cursor:"pointer", fontFamily:"inherit" }}>
-                {b}
-              </button>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── NTA-style Test View (one question at a time + palette + section tabs) ───────
-
-function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSubmit, testLoading, startTimestamp, examLabel: _examLabel, examColor: _examColor, cuetSubjects, username }) {
-  // For CUET: use the subjects the student actually selected (passed via cuetSubjects).
-  // For JEE/NEET: derive from EXAM_SIM_CONFIG by exam type (use examLabel to identify).
-  // Fallback: match by duration — but note JEE (180min) and CUET (195min) differ, so this is safer.
-  const isCuet = cuetSubjects && cuetSubjects.length > 0;
-  const cfg = isCuet ? null : (
-    _examLabel === "NEET UG" ? EXAM_SIM_CONFIG.neet_ug :
-    _examLabel === "JEE Main" ? EXAM_SIM_CONFIG.jee_main :
-    Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main
-  );
-  const subjects = isCuet ? cuetSubjects : cfg.subjects;
-  const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
-  const [qIdx, setQIdx] = React.useState(0);
-  const [marked, setMarked] = React.useState({});
-  const [section, setSection] = React.useState(subjects[0]);
-  const [showCalc, setShowCalc] = React.useState(false);
-  const startTime = startTimestamp;
-
-  function subjOf(i) {
-    for (let s = 0; s < subjects.length; s++) if (i < (s+1)*perSubj || s === subjects.length-1) return subjects[s];
-    return subjects[0];
-  }
-
-  const q = questions[qIdx];
-  const opts = q?.options_json || [];
-  const answered = Object.keys(testAnswers).filter(id => testAnswers[id]).length;
-
-  function goTo(i) { setQIdx(i); setSection(subjOf(i)); }
-  function saveNext() { if (qIdx+1 < questions.length) goTo(qIdx+1); }
-  function markNext() { if (q) { setMarked(m => ({...m,[q.id]:!m[q.id]})); } saveNext(); }
-  function clearAns() { if (q) setTestAnswers(p => { const n={...p}; delete n[q.id]; return n; }); }
-  function doSubmit() {
-    const left = questions.length - answered;
-    if (left > 0 && !window.confirm(left + " unanswered. Submit test?")) return;
-    onSubmit();
-  }
-
-  function qBtn(i) {
-    const qid = questions[i]?.id;
-    if (!qid) return { bg:"var(--panel,#1e293b)", color:"var(--muted,#94a3b8)", border:"1px solid var(--border,#334155)" };
-    if (marked[qid] && testAnswers[qid]) return { bg:"#8b5cf6", color:"#fff", border:"none" };
-    if (marked[qid]) return { bg:"rgba(139,92,246,.4)", color:"#c4b5fd", border:"1px solid #8b5cf6" };
-    if (testAnswers[qid]) return { bg:"#22c55e", color:"#fff", border:"none" };
-    if (i === qIdx) return { bg:"rgba(99,102,241,.2)", color:"#a5b4fc", border:"2px solid #6366f1" };
-    return { bg:"var(--panel,#1e293b)", color:"var(--muted,#94a3b8)", border:"1px solid var(--border,#334155)" };
-  }
-
-  if (!questions.length) return (
-    <div style={{ textAlign:"center", padding:48, color:"var(--muted,#64748b)" }}>
-      <div style={{ fontSize:"2rem", marginBottom:12 }}>📭</div>
-      <div style={{ fontWeight:700, marginBottom:6 }}>No questions yet</div>
-      <button onClick={onSubmit} style={{ marginTop:16, padding:"10px 22px", background:"#6366f1", border:"none", borderRadius:8, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>End Test</button>
-    </div>
-  );
-
-  return (
-    <div>
-      {/* Floating countdown timer */}
-      <FloatingTimer startTime={startTime} durationMins={testSession?.duration_minutes||180} onExpire={doSubmit} />
-
-      {showCalc && <OnScreenCalc onClose={()=>setShowCalc(false)} />}
-
-      {/* Section tabs */}
-      <div style={{ display:"flex", gap:6, marginBottom:14, flexWrap:"wrap" }}>
-        {subjects.map(s => {
-          const cnt = questions.filter((_,i) => subjOf(i)===s).length;
-          const ans = questions.filter((_,i) => subjOf(i)===s && testAnswers[questions[i]?.id]).length;
-          const act = section===s;
-          const sc = SUBJECT_COLORS[s]||"#6366f1";
-          return (
-            <button key={s} onClick={()=>setSection(s)}
-              style={{ padding:"7px 14px", borderRadius:10, border:"2px solid "+(act?sc:"var(--border,#334155)"), background:act?sc+"18":"var(--panel,#1e293b)", color:act?sc:"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:6 }}>
-              <span>{SUBJECT_ICONS[s]||"📚"}</span><span>{s}</span>
-              <span style={{ fontSize:".6rem", background:act?sc+"22":"rgba(255,255,255,.06)", color:act?sc:"var(--muted,#64748b)", padding:"1px 6px", borderRadius:10 }}>{ans}/{cnt}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Main: question | palette */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 210px", gap:14, alignItems:"start" }}>
-
-        {/* Question pane */}
-        <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:12, overflow:"hidden" }}>
-          {/* Header */}
-          <div style={{ padding:"11px 16px", background:"rgba(99,102,241,.07)", borderBottom:"1px solid var(--border,#334155)", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-              <span style={{ fontSize:".82rem", fontWeight:800 }}>Q {qIdx+1}</span>
-              <span style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>of {questions.length}</span>
-              {marked[q?.id] && <span style={{ fontSize:".6rem", background:"rgba(139,92,246,.2)", color:"#a78bfa", padding:"1px 7px", borderRadius:20 }}>🚩 Marked</span>}
-            </div>
-            <div style={{ fontSize:".65rem", color:"var(--muted,#64748b)" }}>✅ {answered} / {questions.length} answered</div>
-          </div>
-
-          {/* Question body — copy protected */}
-          <div
-            className="qprotect"
-            onCopy={e => e.preventDefault()}
-            onContextMenu={e => e.preventDefault()}
-            style={{ padding:"18px 20px", userSelect:"none", WebkitUserSelect:"none" }}>
-            <div style={{ display:"flex", gap:7, marginBottom:12, flexWrap:"wrap" }}>
-              <span style={{ fontSize:".6rem", fontWeight:700, background:(DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8")+"22", color:DIFFICULTY_COLORS[q?.difficulty]||"#94a3b8", padding:"2px 8px", borderRadius:20 }}>{q?.difficulty}</span>
-              {q?.topic && <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)", background:"rgba(255,255,255,.05)", padding:"2px 8px", borderRadius:20 }}>{q.topic}</span>}
-              {q?.marks && <span style={{ fontSize:".6rem", color:"#fbbf24", background:"rgba(251,191,36,.08)", padding:"2px 8px", borderRadius:20 }}>+{q.marks} / -{q.negative_marks}</span>}
-            </div>
-            <MathText text={embedWatermark(q?.question_text, username)} style={{ fontSize:".9rem", color:"var(--text,#1e293b)", lineHeight:1.65, marginBottom:18, display:"block" }} />
-            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-              {opts.map(opt => {
-                const sel = testAnswers[q?.id] === opt.key;
-                return (
-                  <div key={opt.key} onClick={()=>{ if(q) setTestAnswers(p=>({...p,[q.id]:opt.key})); }}
-                    style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"11px 14px", borderRadius:9, cursor:"pointer", background:sel?"rgba(99,102,241,.12)":"var(--surface2,rgba(0,0,0,.02))", border:"1px solid "+(sel?"#6366f1":"var(--border,#e2e8f0)"), transition:"all .1s" }}>
-                    <span style={{ width:24, height:24, borderRadius:"50%", border:"2px solid "+(sel?"#6366f1":"var(--border,#94a3b8)"), display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontSize:".7rem", fontWeight:700, color:sel?"#6366f1":"var(--muted,#64748b)", background:sel?"rgba(99,102,241,.15)":"transparent" }}>{opt.key}</span>
-                    <MathText text={opt.text} style={{ fontSize:".85rem", color:"var(--text,#1e293b)", lineHeight:1.5 }} />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Action buttons */}
-          <div style={{ padding:"12px 16px", borderTop:"1px solid var(--border,#334155)", display:"flex", gap:8, flexWrap:"wrap", background:"var(--panel,#1e293b)", alignItems:"center" }}>
-            {qIdx > 0 && <button onClick={()=>goTo(qIdx-1)} style={{ padding:"8px 14px", background:"rgba(255,255,255,.06)", border:"1px solid var(--border,#334155)", borderRadius:8, color:"var(--muted,#94a3b8)", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>← Prev</button>}
-            <button onClick={clearAns} style={{ padding:"8px 14px", background:"transparent", border:"1px solid rgba(239,68,68,.3)", borderRadius:8, color:"#f87171", fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>Clear</button>
-            <button onClick={markNext} style={{ padding:"8px 14px", background:"rgba(139,92,246,.12)", border:"1px solid rgba(139,92,246,.3)", borderRadius:8, color:"#a78bfa", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>🚩 Mark & Next</button>
-            {/* Calculator button — inline so it's never hidden by other widgets */}
-            <button onClick={()=>setShowCalc(v=>!v)} title="Basic Calculator"
-              style={{ padding:"8px 13px", background:showCalc?"rgba(245,158,11,.15)":"rgba(99,102,241,.1)", border:"1px solid "+(showCalc?"rgba(245,158,11,.4)":"rgba(99,102,241,.3)"), borderRadius:8, color:showCalc?"#f59e0b":"#a5b4fc", fontWeight:700, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit" }}>
-              🔢 Calc
-            </button>
-            <button onClick={saveNext} style={{ padding:"8px 18px", background:"linear-gradient(135deg,#6366f1,#8b5cf6)", border:"none", borderRadius:8, color:"#fff", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit", marginLeft:"auto" }}>Save & Next →</button>
-          </div>
-        </div>
-
-        {/* Question palette */}
-        <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:12, overflow:"hidden" }}>
-          <div style={{ padding:"10px 12px", borderBottom:"1px solid var(--border,#334155)", fontSize:".7rem", fontWeight:700, color:"var(--muted,#64748b)" }}>Question Palette</div>
-          {/* Legend */}
-          <div style={{ padding:"8px 12px", borderBottom:"1px solid var(--border,#334155)", display:"flex", flexDirection:"column", gap:4 }}>
-            {[{c:"#22c55e",l:"Answered"},{c:"#8b5cf6",l:"Marked for Review"},{c:"var(--panel,#1e293b)",l:"Not Answered"}].map(({c,l})=>(
-              <div key={l} style={{ display:"flex", alignItems:"center", gap:6 }}>
-                <div style={{ width:12, height:12, borderRadius:3, background:c, border:"1px solid var(--border,#334155)", flexShrink:0 }} />
-                <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)" }}>{l}</span>
-              </div>
-            ))}
-          </div>
-          {/* Number grid */}
-          <div style={{ padding:"10px 12px", display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:5, maxHeight:320, overflowY:"auto" }}>
-            {questions.map((_,i) => {
-              const bs = qBtn(i);
-              return (
-                <button key={i} onClick={()=>goTo(i)}
-                  style={{ padding:"7px 0", borderRadius:7, fontSize:".72rem", fontWeight:700, cursor:"pointer", fontFamily:"inherit", background:bs.bg, color:bs.color, border:bs.border }}>
-                  {i+1}
-                </button>
-              );
-            })}
-          </div>
-          {/* Submit */}
-          <div style={{ padding:"12px" }}>
-            <button onClick={doSubmit} disabled={testLoading}
-              style={{ width:"100%", padding:"10px 0", background:"#22c55e", border:"none", borderRadius:9, color:"#fff", fontWeight:800, fontSize:".82rem", cursor:"pointer", fontFamily:"inherit", opacity:testLoading?.6:1 }}>
-              {testLoading ? "Submitting…" : "Submit Test ✓"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Floating Timer ─────────────────────────────────────────────────────────────
-
-function FloatingTimer({ startTime, durationMins, onExpire }) {
-  const [left, setLeft] = React.useState(durationMins * 60);
-  React.useEffect(() => {
-    const id = setInterval(() => {
-      const r = Math.max(0, durationMins * 60 - Math.floor((Date.now() - startTime) / 1000));
-      setLeft(r);
-      if (r === 0) { clearInterval(id); if (onExpire) onExpire(); }
-    }, 1000);
-    return () => clearInterval(id);
-  }, [startTime, durationMins, onExpire]);
-  const m = Math.floor(left / 60), s = left % 60;
-  const pct = left / (durationMins * 60);
-  const clr = pct > 0.33 ? "#22c55e" : pct > 0.15 ? "#f59e0b" : "#ef4444";
-  return (
-    <div style={{ position:"fixed", top:68, right:16, zIndex:9999, background:"var(--panel,#1e293b)", border:"2px solid "+clr, borderRadius:14, padding:"9px 15px", display:"flex", alignItems:"center", gap:10, boxShadow:"0 4px 20px "+clr+"55", animation:pct<0.15?"_btimer 1s infinite":undefined }}>
-      <style>{"@keyframes _btimer{0%,100%{opacity:1}50%{opacity:.6}}"}</style>
-      <span style={{ fontSize:"1.3rem" }}>⏱</span>
-      <div>
-        <div style={{ fontSize:"1.1rem", fontWeight:900, color:clr, letterSpacing:".04em" }}>{String(m).padStart(2,"0")}:{String(s).padStart(2,"0")}</div>
-        <div style={{ fontSize:".55rem", color:"var(--muted,#64748b)" }}>Remaining</div>
-      </div>
-    </div>
-  );
-}
-
-// ── Test Result Component ──────────────────────────────────────────────────────
-
-function TestResultPage({ result, onRetake, onClose }) {
-  const score = result?.score_normalized ?? 0;
-  const scoreColor = score >= 60 ? "#22c55e" : score >= 40 ? "#f59e0b" : "#ef4444";
-
-  return (
-    <div className="premium-section" style={{ maxWidth: 720, margin: "0 auto" }}>
-      <div style={{ textAlign: "center", marginBottom: 28 }}>
-        <div style={{ fontSize: "3rem", marginBottom: 8 }}>{score >= 60 ? "🏆" : score >= 40 ? "💪" : "📚"}</div>
-        <h3 style={{ margin: "0 0 4px", fontSize: "1.3rem", fontWeight: 800 }}>Test Complete!</h3>
-        <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem" }}>{result?.exam_type?.replace("_", " ").toUpperCase()} Simulated Test</p>
-      </div>
-
-      {/* Score circle */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-        <div style={{ width: 120, height: 120, borderRadius: "50%", border: `6px solid ${scoreColor}`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: `${scoreColor}12` }}>
-          <div style={{ fontSize: "2rem", fontWeight: 900, color: scoreColor }}>{score.toFixed(1)}</div>
-          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>out of 100</div>
-        </div>
-      </div>
-
-      {/* Stats grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20 }}>
-        <StatCard value={result?.total_questions || 0} label="Questions" icon="📋" color="#6366f1" />
-        <StatCard value={result?.correct || 0} label="Correct" icon="✅" color="#22c55e" />
-        <StatCard value={result?.wrong || 0} label="Wrong" icon="❌" color="#ef4444" />
-        <StatCard value={result?.skipped || 0} label="Skipped" icon="⏭️" color="#94a3b8" />
-      </div>
-
-      {/* Subject scores */}
-      {result?.subject_scores && Object.keys(result.subject_scores).length > 0 && (
-        <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 16, marginBottom: 16 }}>
-          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 12 }}>Subject-wise Score</div>
-          {Object.entries(result.subject_scores).map(([subj, data]) => {
-            const subjectScore = data.score || 0;
-            const maxScore = data.max_score || 1;
-            const pct = Math.max(0, Math.min(100, (subjectScore / maxScore) * 100));
-            const color = SUBJECT_COLORS[subj] || "#6366f1";
-            return (
-              <div key={subj} style={{ marginBottom: 10 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                  <span style={{ fontSize: ".75rem", fontWeight: 600 }}>{subj}</span>
-                  <span style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{data.correct}✓ {data.wrong}✗ | {subjectScore.toFixed(1)} / {maxScore.toFixed(1)}</span>
-                </div>
-                <div style={{ background: "var(--surface2,rgba(0,0,0,.07))", borderRadius: 6, height: 6 }}>
-                  <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6, transition: "width .5s" }} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Weak topics */}
-      {result?.weak_topics?.length > 0 && (
-        <div style={{ background: "rgba(239,68,68,.05)", border: "1px solid rgba(239,68,68,.2)", borderRadius: 10, padding: 14, marginBottom: 16 }}>
-          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#f87171", marginBottom: 8 }}>⚠️ Weak Topics — Needs Revision</div>
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            {result.weak_topics.map(t => (
-              <span key={t} style={{ fontSize: ".65rem", background: "rgba(239,68,68,.1)", color: "#f87171", padding: "3px 9px", borderRadius: 20 }}>{t}</span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* AI recommendations */}
-      {result?.ai_recommendations?.length > 0 && (
-        <div style={{ background: "rgba(99,102,241,.05)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: 14, marginBottom: 20 }}>
-          <div style={{ fontSize: ".75rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>🤖 AI Recommendations</div>
-          <ul style={{ margin: 0, paddingLeft: 16 }}>
-            {result.ai_recommendations.map((r, i) => (
-              <li key={i} style={{ fontSize: ".75rem", color: "var(--text,#1e293b)", marginBottom: 4, lineHeight: 1.5 }}>{r}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-        <button onClick={onRetake} style={{ padding: "11px 24px", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", border: "none", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
-          Try Again
-        </button>
-        <button onClick={onClose} style={{ padding: "11px 24px", background: "var(--surface2,rgba(0,0,0,.04))", border: "1px solid var(--border,#e2e8f0)", borderRadius: 10, color: "var(--text,#1e293b)", fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
-          Back to Dashboard
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ── CUET Test Setup ───────────────────────────────────────────────────────────
-function CUETTestSetup({ onStart, testLoading }) {
-  const [presetId, setPresetId] = React.useState("science_pcm");
-  const [customSubjs, setCustomSubjs] = React.useState(["English", "General Test"]);
-  const [step, setStep] = React.useState("preset");
-
-  const activePreset = CUET_PRESETS.find(p => p.id === presetId);
-  const finalSubjects = presetId === "custom" ? customSubjs : (activePreset?.subjects || []);
-  const duration = finalSubjects.reduce((acc, s) => acc + (s === "General Test" ? 60 : 45), 0);
-  const canStart = finalSubjects.length >= 2 && finalSubjects.includes("English");
-
-  function toggleCustom(s) {
-    if (s === "English") return;
-    setCustomSubjs(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
-  }
-
-  return (
-    <div style={{ maxWidth: 680, margin: "0 auto", padding: "10px 0 20px" }}>
-      <div style={{ textAlign: "center", marginBottom: 20 }}>
-        <div style={{ fontSize: "2.2rem", marginBottom: 6 }}>🏛️</div>
-        <h3 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 4px" }}>CUET UG — Choose Your Subject Combination</h3>
-        <p style={{ color: "var(--muted,#64748b)", fontSize: ".78rem", margin: 0 }}>
-          Based on NTA CUET UG structure · English (mandatory) + Domain Subjects + General Test · <strong>+5 / -1</strong> marking
-        </p>
-      </div>
-
-      {/* Section info */}
-      <div style={{ background: "rgba(245,158,11,.06)", border: "1px solid rgba(245,158,11,.2)", borderRadius: 9, padding: "8px 14px", marginBottom: 18, display: "flex", gap: 14, flexWrap: "wrap", fontSize: ".7rem", color: "var(--muted,#64748b)" }}>
-        <span>📝 <strong style={{ color: "#f59e0b" }}>Section IA</strong> — Language (English, mandatory)</span>
-        <span>📚 <strong style={{ color: "#6366f1" }}>Section II</strong> — Domain Subjects (2–6)</span>
-        <span>🧩 <strong style={{ color: "#8b5cf6" }}>Section III</strong> — General Test (most universities require)</span>
-      </div>
-
-      {/* Preset step */}
-      {step === "preset" && (
-        <>
-          <div style={{ fontSize: ".68rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 10 }}>Select Your Stream</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(190px,1fr))", gap: 9, marginBottom: 18 }}>
-            {CUET_PRESETS.map(preset => {
-              const sel = presetId === preset.id;
-              return (
-                <div key={preset.id}
-                  onClick={() => { setPresetId(preset.id); if (preset.id === "custom") setStep("custom"); }}
-                  style={{ background: sel ? `${preset.color}12` : "var(--panel,#1e293b)", border: `2px solid ${sel ? preset.color : "var(--border,#334155)"}`, borderRadius: 9, padding: "12px 12px", cursor: "pointer", position: "relative" }}>
-                  {preset.popular && (
-                    <span style={{ position: "absolute", top: 7, right: 7, fontSize: ".52rem", background: "#22c55e22", color: "#22c55e", padding: "1px 5px", borderRadius: 8, fontWeight: 700 }}>Popular</span>
-                  )}
-                  <div style={{ fontSize: "1.3rem", marginBottom: 5 }}>{preset.icon}</div>
-                  <div style={{ fontWeight: 800, fontSize: ".82rem", marginBottom: 3, color: sel ? preset.color : "var(--text,#1e293b)" }}>{preset.label}</div>
-                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", lineHeight: 1.4 }}>{preset.desc}</div>
-                </div>
-              );
-            })}
-          </div>
-
-          {presetId !== "custom" && activePreset && (
-            <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 9, padding: "12px 14px", marginBottom: 18 }}>
-              <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>{activePreset.label} — Sections in This Simulation</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
-                {activePreset.subjects.map(s => (
-                  <div key={s} style={{ display: "flex", alignItems: "center", gap: 5, background: s === "English" ? "rgba(99,102,241,.1)" : s === "General Test" ? "rgba(139,92,246,.1)" : "rgba(245,158,11,.07)", border: `1px solid ${s === "English" ? "rgba(99,102,241,.25)" : s === "General Test" ? "rgba(139,92,246,.25)" : "rgba(245,158,11,.2)"}`, borderRadius: 7, padding: "5px 9px", fontSize: ".7rem", fontWeight: 600 }}>
-                    <span>{CUET_SUBJECT_ICONS[s] || "📚"}</span>
-                    <span>{s}</span>
-                    <span style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{s === "General Test" ? "50Q" : "40Q"}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ display: "flex", gap: 14, fontSize: ".68rem", color: "var(--muted,#64748b)" }}>
-                <span>⏱ <strong>{duration} min</strong></span>
-                <span>📋 <strong>~{finalSubjects.length * 40} questions</strong></span>
-                <span>📊 <strong>+5 / -1</strong></span>
-                <span>🎯 <strong>{activePreset.subjects.length} sections</strong></span>
-              </div>
-            </div>
-          )}
-        </>
-      )}
-
-      {/* Custom step */}
-      {step === "custom" && (
-        <>
-          <button onClick={() => { setStep("preset"); setPresetId("science_pcm"); }}
-            style={{ background: "none", border: "none", color: "#6366f1", cursor: "pointer", fontSize: ".78rem", fontFamily: "inherit", padding: 0, marginBottom: 14 }}>
-            ← Back to presets
-          </button>
-
-          <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section IA — Language (Mandatory)</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(99,102,241,.1)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 7, padding: "8px 12px" }}>
-              <span>📝</span><span style={{ fontSize: ".8rem", fontWeight: 700 }}>English</span>
-              <span style={{ fontSize: ".62rem", color: "#6366f1", marginLeft: "auto" }}>Required · 40 Qs · 45 min</span>
-            </div>
-          </div>
-
-          <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#f59e0b", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section II — Domain Subjects (Choose 2–6)</div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(185px,1fr))", gap: 5 }}>
-              {CUET_DOMAIN_SUBJECTS.map(s => {
-                const chk = customSubjs.includes(s);
-                return (
-                  <div key={s} onClick={() => toggleCustom(s)}
-                    style={{ display: "flex", alignItems: "center", gap: 7, background: chk ? "rgba(245,158,11,.08)" : "var(--panel,#1e293b)", border: `1px solid ${chk ? "rgba(245,158,11,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "7px 10px", cursor: "pointer" }}>
-                    <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${chk ? "#f59e0b" : "#64748b"}`, background: chk ? "#f59e0b" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      {chk && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
-                    </div>
-                    <span style={{ fontSize: ".68rem", fontWeight: chk ? 700 : 400 }}>{CUET_SUBJECT_ICONS[s] || "📚"} {s}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div style={{ marginBottom: 14 }}>
-            <div style={{ fontSize: ".68rem", fontWeight: 700, color: "#8b5cf6", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Section III — General Test</div>
-            <div onClick={() => toggleCustom("General Test")}
-              style={{ display: "flex", alignItems: "center", gap: 8, background: customSubjs.includes("General Test") ? "rgba(139,92,246,.08)" : "var(--panel,#1e293b)", border: `1px solid ${customSubjs.includes("General Test") ? "rgba(139,92,246,.35)" : "var(--border,#334155)"}`, borderRadius: 7, padding: "8px 12px", cursor: "pointer" }}>
-              <div style={{ width: 13, height: 13, borderRadius: 3, border: `2px solid ${customSubjs.includes("General Test") ? "#8b5cf6" : "#64748b"}`, background: customSubjs.includes("General Test") ? "#8b5cf6" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {customSubjs.includes("General Test") && <span style={{ color: "#fff", fontSize: ".55rem", fontWeight: 900 }}>✓</span>}
-              </div>
-              <span style={{ fontSize: ".8rem", fontWeight: 700 }}>🧩 General Test</span>
-              <span style={{ fontSize: ".62rem", color: "var(--muted,#64748b)", marginLeft: "auto" }}>50 Qs · 60 min</span>
-            </div>
-          </div>
-
-          {finalSubjects.length >= 2 && (
-            <div style={{ background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, padding: "9px 12px", marginBottom: 14, fontSize: ".7rem" }}>
-              <strong style={{ color: "#a5b4fc" }}>Selected:</strong> {finalSubjects.length} sections · <strong>{duration} min</strong> · <strong>~{finalSubjects.length * 40} questions</strong> · +5 / -1
-            </div>
-          )}
-        </>
-      )}
-
-      <button
-        onClick={() => canStart && onStart(finalSubjects)}
-        disabled={testLoading || !canStart}
-        style={{ padding: "12px 28px", background: canStart ? "linear-gradient(135deg,#f59e0b,#d97706)" : "var(--border,#334155)", border: "none", borderRadius: 10, color: canStart ? "#fff" : "var(--muted,#64748b)", fontWeight: 800, fontSize: ".9rem", cursor: canStart ? "pointer" : "not-allowed", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 10, opacity: testLoading ? .7 : 1 }}>
-        {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start CUET Simulation (${finalSubjects.length} sections · ${duration} min)`}
-      </button>
-      {!canStart && !testLoading && (
-        <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", marginTop: 6 }}>Select at least 2 subjects (English is mandatory)</div>
-      )}
-    </div>
-  );
-}
-
-// ── Resource Links ─────────────────────────────────────────────────────────────
-
-const RESOURCES = [
-  { icon: "📖", label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
-  { icon: "📐", label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
-  { icon: "🧪", label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
-  { icon: "🤖", label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
-  { icon: "📝", label: "Mock Tests", desc: "CBSE-style full tests", color: "#06b6d4", onClick: "mockTest" },
-  { icon: "📅", label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: null },
-];
-
-// ── Main Page ──────────────────────────────────────────────────────────────────
-
-export default function ExamPrepPage({ user, setActivePage }) {
-  const [selectedExam, setSelectedExam] = useState("jee_main");
-  const [dashboard, setDashboard] = useState(null);
-  const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [topics, setTopics] = useState([]);
-  const [questions, setQuestions] = useState([]);
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
-  const [selectedOptions, setSelectedOptions] = useState({});
-  const [feedbacks, setFeedbacks] = useState({});
-  const [loadingQuestions, setLoadingQuestions] = useState(false);
-  const [loadingTopics, setLoadingTopics] = useState(false);
-  const [loadingDash, setLoadingDash] = useState(true);
-  const [activeMode, setActiveMode] = useState("practice"); // practice | test | result
-  const [testSession, setTestSession] = useState(null);
-  const [testAnswers, setTestAnswers] = useState({});
-  const [testResult, setTestResult] = useState(null);
-  const [testLoading, setTestLoading] = useState(false);
-  const [filterTopic, setFilterTopic] = useState(null);
-  const testStartRef = useRef(null);
-  const [testStartTimestamp, setTestStartTimestamp] = useState(0);
-  // CUET: stores the subjects the student selected in CUETTestSetup
-  const [cuetSelectedSubjects, setCuetSelectedSubjects] = useState([]);
-
-  const isTestUser = TEST_ACCESS_USERS.has(user?.username);
-  const isAdmin = user?.role === "admin";
-
-  // ── Canonical access check from backend ────────────────────────────────────
-  const [accessCheck, setAccessCheck] = useState(null);  // null = loading
-  useEffect(() => {
-    if (!user?.accessToken) return;
-    fetch(`${API_BASE}/api/exam-prep/access-check`, {
-      headers: { Authorization: `Bearer ${user.accessToken}` },
-    })
-      .then(r => r.json())
-      .then(d => setAccessCheck(d))
-      .catch(() => setAccessCheck({ grade_eligible: false, has_access: false, preview_only: true, reason: "error" }));
-  }, [user?.accessToken]);
-
-  // ── Load dashboard ─────────────────────────────────────────────────────────
-  useEffect(() => {
-    if (!user?.accessToken) return;
-    setLoadingDash(true);
-    getExamPrepDashboard(user.accessToken, selectedExam)
-      .then(data => setDashboard(data))
-      .catch(() => setDashboard(null))
-      .finally(() => setLoadingDash(false));
-
-    getExamPrepSubjects(user.accessToken, selectedExam)
-      .then(data => setSubjects(data.subjects || []))
-      .catch(() => setSubjects([]));
-  }, [selectedExam, user?.accessToken]);
-
-  // ── Select subject ─────────────────────────────────────────────────────────
-  async function handleSelectSubject(subjectName) {
-    if (selectedSubject === subjectName) { setSelectedSubject(null); setTopics([]); setQuestions([]); setFilterTopic(null); return; }
-    setSelectedSubject(subjectName);
-    setFilterTopic(null);
-    setLoadingTopics(true);
-    try {
-      const data = await getExamPrepTopics(user.accessToken, selectedExam, subjectName);
-      setTopics(data.topics || []);
-    } catch { setTopics([]); }
-    finally { setLoadingTopics(false); }
-    loadQuestions(subjectName, null);
-  }
-
-  // ── Load questions ─────────────────────────────────────────────────────────
-  async function loadQuestions(subject, topic) {
-    setLoadingQuestions(true);
-    setSelectedQuestion(null);
-    try {
-      const data = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, subject, topic, limit: 20 });
-      setQuestions(data.questions || []);
-    } catch { setQuestions([]); }
-    finally { setLoadingQuestions(false); }
-  }
-
-  // ── Practice a topic ───────────────────────────────────────────────────────
-  function handlePracticeTopic(topic) {
-    setFilterTopic(topic.name);
-    loadQuestions(selectedSubject, topic.name);
-  }
-
-  // ── Answer selection ───────────────────────────────────────────────────────
-  async function handleSelectOption(questionId, optionKey) {
-    if (feedbacks[questionId]) return;
-    setSelectedOptions(prev => ({ ...prev, [questionId]: optionKey }));
-    try {
-      const data = await submitQuestionAnswer(user.accessToken, questionId, { selectedOption: optionKey });
-      setFeedbacks(prev => ({ ...prev, [questionId]: data }));
-    } catch { /* non-critical */ }
-  }
-
-  // ── Start simulated test ───────────────────────────────────────────────────
-  async function handleStartTest(subjects) {
-    setTestLoading(true);
-    // For CUET, store and use the subjects the student selected
-    const subjsToUse = subjects && subjects.length > 0 ? subjects : cuetSelectedSubjects;
-    if (subjects) setCuetSelectedSubjects(subjects);
-    try {
-      const data = await startSimulatedTest(user.accessToken, selectedExam);
-      setTestSession(data);
-      const now = Date.now();
-      testStartRef.current = now;
-      setTestStartTimestamp(now);
-      setTestAnswers({});
-      setActiveMode("test");
-      // For CUET: fetch questions per selected subject so only chosen subjects appear
-      if (selectedExam === "cuet_ug" && subjsToUse.length > 0) {
-        const allQ = [];
-        for (const subj of subjsToUse) {
-          const qData = await getExamPrepQuestions(user.accessToken, {
-            exam: selectedExam, subject: subj, limit: 40,
-          });
-          allQ.push(...(qData.questions || []));
-        }
-        setQuestions(allQ);
-      } else if (data.question_ids?.length > 0) {
-        const qData = await getExamPrepQuestions(user.accessToken, { exam: selectedExam, limit: 90 });
-        setQuestions(qData.questions || []);
-      } else {
-        setQuestions([]);
+      const orderData = await createPackOrder(examType, user.accessToken);
+      // Load Razorpay script if not loaded
+      if (!window.Razorpay) {
+        await new Promise((res, rej) => {
+          const s = document.createElement("script");
+          s.src = "https://checkout.razorpay.com/v1/checkout.js";
+          s.onload = res; s.onerror = rej;
+          document.body.appendChild(s);
+        });
       }
+      const rzp = new window.Razorpay({
+        key: orderData.key_id,
+        amount: orderData.amount * 100,
+        currency: "INR",
+        order_id: orderData.order_id,
+        name: "Likha Poha AI",
+        description: orderData.plan_label,
+        image: "/loading-logo.gif",
+        prefill: { email: user.email || "", name: user.username || "" },
+        theme: { color: exam.color },
+        handler: async (response) => {
+          try {
+            await verifyPackPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              exam_type: examType,
+            }, user.accessToken);
+            setStep("success");
+            setTimeout(() => { onSuccess(examType); }, 2000);
+          } catch (e) {
+            setStep("error"); setErrMsg(e.message || "Payment verification failed.");
+          }
+        },
+        modal: { ondismiss: () => setStep("confirm") },
+      });
+      rzp.open();
     } catch (e) {
-      alert(e.message || "Failed to start test");
-    } finally { setTestLoading(false); }
+      setStep("error"); setErrMsg(e.message || "Could not start payment.");
+    }
   }
-
-  // ── Submit simulated test ──────────────────────────────────────────────────
-  async function handleSubmitTest() {
-    if (!testSession?.test_id) return;
-    setTestLoading(true);
-    const timeSpent = testStartRef.current ? Math.round((Date.now() - testStartRef.current) / 1000) : 0;
-    const answers = Object.entries(testAnswers).map(([qid, opt]) => ({
-      question_id: qid,
-      selected_option: opt,
-      time_taken_seconds: 60,
-    }));
-    try {
-      const result = await submitSimulatedTest(user.accessToken, testSession.test_id, { answers, timeSpentSeconds: timeSpent });
-      setTestResult(result);
-      setActiveMode("result");
-    } catch (e) {
-      alert(e.message || "Failed to submit test");
-    } finally { setTestLoading(false); }
-  }
-
-  // ── Access guard: loading ──────────────────────────────────────────────────
-  if (!accessCheck) {
-    return (
-      <div className="premium-page">
-        <section className="premium-section" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 200 }}>
-          <Loader size={20} style={{ animation: "spin 1s linear infinite", color: "var(--muted,#64748b)" }} />
-          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
-        </section>
-      </div>
-    );
-  }
-
-  // ── Access guard: grade ineligible ─────────────────────────────────────────
-  if (!accessCheck.grade_eligible) {
-    return (
-      <div className="premium-page">
-        <section className="premium-section" style={{ textAlign: "center", padding: "60px 20px" }}>
-          <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔒</div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Exam Prep Center</h3>
-          <p style={{ color: "var(--muted,#64748b)", maxWidth: 380, margin: "0 auto 0" }}>
-            Available for Grade 11 & 12 students only. Check back soon!
-          </p>
-        </section>
-      </div>
-    );
-  }
-
-  // ── Premium gate — free/nano tier sees locked preview (canonical from backend) ──
-  if (accessCheck.preview_only) {
-    const isNano = accessCheck.reason === "nano";
-    return (
-      <div className="premium-page">
-        <section className="premium-section" style={{ paddingBottom: 0 }}>
-          <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-            <span>🎓</span>
-            <span><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</span>
-          </div>
-          {/* Exam tabs (disabled visual only) */}
-          <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", opacity: 0.5, pointerEvents: "none" }}>
-            {Object.entries(EXAMS).map(([key, exam]) => (
-              <button key={key} style={{ padding: "9px 18px", borderRadius: 10, border: `2px solid ${key === "jee_main" ? exam.color : "var(--border,#334155)"}`, background: key === "jee_main" ? `${exam.color}18` : "var(--panel,#1e293b)", color: key === "jee_main" ? exam.color : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".82rem", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 7 }}>
-                <span>{exam.icon}</span><span>{exam.label}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Lock screen */}
-        <section className="premium-section" style={{ paddingTop: 0 }}>
-          <div style={{ background: "linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06))", border: "1px solid rgba(99,102,241,.25)", borderRadius: 16, padding: "40px 32px", textAlign: "center", maxWidth: 560, margin: "0 auto" }}>
-            <div style={{ fontSize: "3rem", marginBottom: 16 }}>🔐</div>
-            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, marginBottom: 8, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Exam Prep Center — Premium Feature
-            </h3>
-            <p style={{ color: "var(--muted,#64748b)", fontSize: ".88rem", lineHeight: 1.6, marginBottom: 24, maxWidth: 420, margin: "0 auto 24px" }}>
-              {isNano
-                ? "The Exam Prep Center is available on Premium and higher plans. Your current Premium Nano plan includes CBSE lessons for Grade 5–10 but not JEE/NEET/CUET prep."
-                : "JEE Main, NEET UG & CUET UG preparation — AI-powered practice questions, simulated full tests, topic-wise analysis, and instant AI explanations. Upgrade to access."}
-            </p>
-            {/* Feature preview */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28, textAlign: "left" }}>
-              {[
-                { icon: "📐", label: "JEE Main prep", desc: "Physics, Chem, Maths" },
-                { icon: "🔬", label: "NEET UG prep", desc: "Physics, Chem, Biology" },
-                { icon: "🏛️", label: "CUET UG prep", desc: "All streams" },
-                { icon: "📊", label: "Simulated tests", desc: "Full 3-hour test series" },
-                { icon: "🤖", label: "AI explanations", desc: "Step-by-step solutions" },
-                { icon: "🎯", label: "Weak topic tracker", desc: "Personalized analytics" },
-              ].map(f => (
-                <div key={f.label} style={{ display: "flex", gap: 8, alignItems: "center", background: "rgba(255,255,255,.03)", borderRadius: 8, padding: "8px 10px" }}>
-                  <span style={{ fontSize: "1.1rem" }}>{f.icon}</span>
-                  <div>
-                    <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{f.label}</div>
-                    <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{f.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button
-              disabled
-              style={{ padding: "13px 32px", background: "var(--border,#334155)", border: "none", borderRadius: 12, color: "var(--muted,#64748b)", fontWeight: 800, fontSize: ".95rem", cursor: "not-allowed", fontFamily: "inherit", marginBottom: 10 }}
-            >
-              Coming Soon
-            </button>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  // ── Result mode ────────────────────────────────────────────────────────────
-  if (activeMode === "result" && testResult) {
-    return (
-      <div className="premium-page">
-        <TestResultPage
-          result={testResult}
-          onRetake={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
-          onClose={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }}
-        />
-      </div>
-    );
-  }
-
-  const examInfo = EXAMS[selectedExam] || EXAMS.jee_main;
 
   return (
-    <div className="premium-page">
-      {/* Access banner */}
-      <section className="premium-section" style={{ paddingBottom: 0 }}>
-        <div style={{ background: isTestUser ? "rgba(99,102,241,.07)" : "rgba(245,158,11,.07)", border: `1px solid ${isTestUser ? "rgba(99,102,241,.3)" : "rgba(245,158,11,.3)"}`, borderRadius: 10, padding: "9px 14px", fontSize: ".8rem", marginBottom: 16, display: "flex", alignItems: "center", gap: 9 }}>
-          <span>{isTestUser ? "🧪" : isAdmin ? "🔒" : "🎓"}</span>
-          <span>
-            {isTestUser ? <><strong>Test Access.</strong> Early access before student launch.</> :
-             isAdmin ? <><strong>Admin Preview.</strong> Not yet visible to students.</> :
-             <><strong>Grade 11 & 12 — Competitive Exam Prep.</strong> JEE Main · NEET UG · CUET UG</>}
-          </span>
-        </div>
+    <div style={{ position:"fixed", inset:0, zIndex:10000, background:"rgba(0,0,0,.75)", display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+      <div style={{ background:"#1e293b", border:`2px solid ${exam.color}`, borderRadius:16, padding:32, maxWidth:440, width:"100%", boxShadow:"0 20px 60px rgba(0,0,0,.6)", fontFamily:"inherit" }}>
 
-        {/* Exam tabs — stream-aware: JEE for PCM/PCMB, NEET for PCB/PCMB */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-          {Object.entries(EXAMS).map(([key, exam]) => {
-            const elig = accessCheck?.exam_eligibility?.[key];
-            const ineligible = elig && !elig.eligible && !elig.coming_soon;
-            const comingSoon = elig?.coming_soon;
-            return (
-              <button key={key}
-                onClick={() => !comingSoon && !ineligible && setSelectedExam(key)}
-                title={ineligible ? elig.reason : comingSoon ? "Coming Soon" : ""}
-                style={{
-                  padding: "9px 18px", borderRadius: 10,
-                  border: `2px solid ${selectedExam === key ? exam.color : ineligible ? "var(--border,#1e293b)" : "var(--border,#334155)"}`,
-                  background: selectedExam === key ? `${exam.color}18` : "var(--panel,#1e293b)",
-                  color: selectedExam === key ? exam.color : ineligible ? "var(--muted,#475569)" : "var(--muted,#94a3b8)",
-                  fontWeight: 700, fontSize: ".82rem",
-                  cursor: (comingSoon || ineligible) ? "default" : "pointer",
-                  fontFamily: "inherit",
-                  opacity: ineligible ? 0.4 : comingSoon ? 0.55 : 1,
-                  display: "flex", alignItems: "center", gap: 7,
-                }}>
-                <span>{exam.icon}</span>
-                <span>{exam.label}</span>
-                {comingSoon && <span style={{ fontSize: ".6rem", background: "rgba(245,158,11,.2)", color: "#fbbf24", padding: "1px 6px", borderRadius: 10 }}>Soon</span>}
-                {ineligible && <span style={{ fontSize: ".6rem", background: "rgba(100,116,139,.2)", color: "#64748b", padding: "1px 6px", borderRadius: 10 }}>N/A</span>}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Stats row */}
-        {loadingDash ? (
-          <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".8rem", marginBottom: 20 }}>
-            <Loader size={14} style={{ animation: "spin 1s linear infinite" }} /> Loading stats…
-            <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+        {step === "confirm" && (<>
+          <div style={{ textAlign:"center", marginBottom:20 }}>
+            <div style={{ fontSize:"2.5rem", marginBottom:8 }}>{exam.icon}</div>
+            <h2 style={{ fontSize:"1.2rem", fontWeight:800, color:"#f1f5f9", margin:"0 0 4px" }}>{exam.label} Prep Pack</h2>
+            <p style={{ fontSize:".82rem", color:"#64748b" }}>Unlock full access to {exam.label} preparation</p>
           </div>
-        ) : dashboard && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: 10, marginBottom: 24 }}>
-            <StatCard value={`${dashboard.weeks_to_exam}w`} label={`Weeks to ${examInfo.label}`} icon="📅" color="#6366f1" />
-            <StatCard value={dashboard.total_questions} label="Questions Available" icon="❓" color="#10b981" />
-            <StatCard value={dashboard.questions_attempted} label="Practiced" icon="✅" color="#f59e0b" />
-            <StatCard value={`${dashboard.accuracy_pct}%`} label="Accuracy" icon="🎯" color={dashboard.accuracy_pct >= 60 ? "#22c55e" : "#ef4444"} />
-            <StatCard value={dashboard.total_topics} label="Topics" icon="📚" color="#8b5cf6" />
+
+          {/* What's included */}
+          <div style={{ background:"rgba(99,102,241,.07)", border:"1px solid rgba(99,102,241,.2)", borderRadius:10, padding:"12px 14px", marginBottom:16 }}>
+            {(priceInfo.included || []).map(f => (
+              <div key={f} style={{ display:"flex", alignItems:"center", gap:7, fontSize:".78rem", color:"#94a3b8", marginBottom:4 }}>
+                <CheckCircle size={13} color="#22c55e" /> {f}
+              </div>
+            ))}
+          </div>
+
+          {/* Price */}
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
+            <div>
+              <div style={{ fontSize:"1.6rem", fontWeight:900, color:exam.color }}>₹{priceInfo.charge || priceInfo.price || 0}</div>
+              {priceInfo.discount_pct > 0 && (
+                <div style={{ fontSize:".68rem", color:"#4ade80" }}>{priceInfo.discount_pct}% off — was ₹{priceInfo.price}</div>
+              )}
+            </div>
+            <div style={{ textAlign:"right" }}>
+              <div style={{ fontSize:".72rem", color:"#64748b" }}>Valid for</div>
+              <div style={{ fontSize:".85rem", fontWeight:700, color:"#f1f5f9" }}>{priceInfo.duration_days || 120} days</div>
+            </div>
+          </div>
+
+          <button onClick={handleBuy} style={{ width:"100%", padding:"13px", background:`linear-gradient(135deg,${exam.color},${exam.color}cc)`, border:"none", borderRadius:10, color:"#fff", fontWeight:800, fontSize:".95rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+            <ShoppingCart size={16} /> Buy Now — ₹{priceInfo.charge || priceInfo.price || 0}
+          </button>
+          <button onClick={onClose} style={{ width:"100%", marginTop:8, padding:"9px", background:"transparent", border:"1px solid #334155", borderRadius:10, color:"#64748b", fontSize:".8rem", cursor:"pointer", fontFamily:"inherit" }}>
+            Maybe later
+          </button>
+        </>)}
+
+        {step === "paying" && (
+          <div style={{ textAlign:"center", padding:"20px 0" }}>
+            <Loader size={36} style={{ animation:"spin 1s linear infinite", color:exam.color, marginBottom:16 }} />
+            <p style={{ color:"#94a3b8", fontSize:".88rem" }}>Opening payment…</p>
+            <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
           </div>
         )}
 
-        {/* Mode tabs */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-          {[
-            { key: "practice", label: "Quick Practice", icon: "⚡" },
-            { key: "test", label: "Simulated Test", icon: "📝" },
-          ].map(m => (
-            <button key={m.key} onClick={() => setActiveMode(m.key)}
-              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? "#6366f1" : "var(--border,#334155)"}`, background: activeMode === m.key ? "rgba(99,102,241,.12)" : "var(--panel,#1e293b)", color: activeMode === m.key ? "#a5b4fc" : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
-              {m.icon} {m.label}
-            </button>
-          ))}
+        {step === "success" && (
+          <div style={{ textAlign:"center", padding:"20px 0" }}>
+            <CheckCircle size={48} color="#22c55e" style={{ marginBottom:16 }} />
+            <h3 style={{ fontSize:"1.1rem", fontWeight:800, color:"#f1f5f9", margin:"0 0 8px" }}>Pack Activated! 🎉</h3>
+            <p style={{ color:"#94a3b8", fontSize:".82rem" }}>You now have full access to {exam.label} preparation. Loading…</p>
+          </div>
+        )}
+
+        {step === "error" && (
+          <div style={{ textAlign:"center", padding:"20px 0" }}>
+            <XCircle size={36} color="#ef4444" style={{ marginBottom:12 }} />
+            <p style={{ color:"#fca5a5", fontSize:".85rem", marginBottom:16 }}>{errMsg}</p>
+            <button onClick={() => setStep("confirm")} style={{ padding:"9px 20px", background:exam.color, border:"none", borderRadius:8, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>Try Again</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Landing/Preview Page ──────────────────────────────────────────────────────
+function ExamPrepLanding({ packs, prices, user, onEnterExam, onBuyPack }) {
+  return (
+    <div className="premium-page">
+      <section className="premium-section">
+        <div style={{ textAlign:"center", maxWidth:600, margin:"0 auto 32px" }}>
+          <div style={{ fontSize:"2.5rem", marginBottom:12 }}>🎯</div>
+          <h2 style={{ fontSize:"1.5rem", fontWeight:900, margin:"0 0 8px" }}>Exam Prep Center</h2>
+          <p style={{ color:"var(--muted,#64748b)", fontSize:".88rem", lineHeight:1.6 }}>
+            JEE Main · NEET UG · CUET UG — AI-powered practice questions, simulated full tests, and step-by-step explanations.
+          </p>
+          <div style={{ display:"inline-flex", background:"rgba(245,158,11,.1)", border:"1px solid rgba(245,158,11,.25)", color:"#fbbf24", padding:"4px 12px", borderRadius:20, fontSize:".7rem", fontWeight:700, marginTop:10 }}>
+            Grade 11 & 12 only — purchase the pack to access
+          </div>
         </div>
-      </section>
 
-      {/* ── Practice mode ── */}
-      {activeMode === "practice" && (
-        <>
-          {/* Subject cards */}
-          <section className="premium-section" style={{ paddingTop: 0 }}>
-            <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
-              {examInfo.icon} {examInfo.label} — Subjects
-            </div>
-            {subjects.length === 0 ? (
-              <div style={{ color: "var(--muted,#64748b)", fontSize: ".82rem" }}>Loading subjects…</div>
-            ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: 12, marginBottom: selectedSubject ? 20 : 0 }}>
-                {subjects.map(s => (
-                  <SubjectCard key={s.name} subject={s} selected={selectedSubject === s.name} onClick={() => handleSelectSubject(s.name)} />
-                ))}
-              </div>
-            )}
-
-            {/* Topic cards */}
-            {selectedSubject && (
-              <div style={{ marginTop: 16 }}>
-                <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 12 }}>
-                  {SUBJECT_ICONS[selectedSubject]} {selectedSubject} — Priority Topics
-                </div>
-                {loadingTopics ? (
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".78rem" }}>
-                    <Loader size={13} style={{ animation: "spin 1s linear infinite" }} /> Loading topics…
+        {/* Exam Pack Cards */}
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:16 }}>
+          {Object.entries(EXAMS).map(([examType, exam]) => {
+            const pack = packs?.[examType] || {};
+            const price = prices?.[examType] || {};
+            const owned = pack.active;
+            return (
+              <div key={examType} style={{ background:"var(--panel,#1e293b)", border:`2px solid ${owned ? exam.color : "var(--border,#334155)"}`, borderRadius:14, overflow:"hidden", transition:"all .15s" }}>
+                {/* Card header */}
+                <div style={{ background:`${exam.color}12`, padding:"18px 20px", display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
+                  <div>
+                    <div style={{ fontSize:"1.8rem", marginBottom:4 }}>{exam.icon}</div>
+                    <div style={{ fontWeight:800, fontSize:"1rem" }}>{exam.label}</div>
+                    <div style={{ fontSize:".72rem", color:"var(--muted,#64748b)", marginTop:2 }}>{exam.subLabel}</div>
                   </div>
-                ) : (
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
-                    {topics.map(t => (
-                      <TopicCard key={t.name} topic={t} onPractice={handlePracticeTopic} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </section>
-
-          {/* Question practice */}
-          {selectedSubject && (
-            <section className="premium-section" style={{ paddingTop: 0 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-                <div>
-                  <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em" }}>
-                    Quick Practice {filterTopic ? `— ${filterTopic}` : `— ${selectedSubject}`}
-                  </div>
-                  {filterTopic && (
-                    <button onClick={() => { setFilterTopic(null); loadQuestions(selectedSubject, null); }}
-                      style={{ fontSize: ".65rem", color: "#6366f1", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: 2 }}>
-                      ✕ Clear filter
-                    </button>
+                  {owned ? (
+                    <span style={{ background:"rgba(34,197,94,.15)", color:"#4ade80", border:"1px solid rgba(34,197,94,.3)", padding:"3px 10px", borderRadius:20, fontSize:".6rem", fontWeight:700 }}>✅ Active</span>
+                  ) : (
+                    <span style={{ background:"rgba(100,116,139,.1)", color:"#94a3b8", border:"1px solid #334155", padding:"3px 10px", borderRadius:20, fontSize:".6rem", fontWeight:700 }}>🔒 Locked</span>
                   )}
                 </div>
-                <div style={{ fontSize: ".72rem", color: "var(--muted,#64748b)" }}>{questions.length} questions</div>
+
+                {/* What's inside preview */}
+                <div style={{ padding:"14px 20px 0" }}>
+                  {["Practice questions (Easy → Hard)", "AI step-by-step explanations", "Full simulated tests", "Weak topic tracker"].map(f => (
+                    <div key={f} style={{ display:"flex", alignItems:"center", gap:7, fontSize:".75rem", color: owned ? "#94a3b8" : "#475569", marginBottom:6 }}>
+                      {owned ? <CheckCircle size={12} color="#22c55e" /> : <Lock size={12} color="#475569" />}
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action */}
+                <div style={{ padding:"14px 20px 18px" }}>
+                  {owned ? (
+                    <div>
+                      <button onClick={() => onEnterExam(examType)} style={{ width:"100%", padding:"11px", background:`linear-gradient(135deg,${exam.color},${exam.color}cc)`, border:"none", borderRadius:9, color:"#fff", fontWeight:700, fontSize:".88rem", cursor:"pointer", fontFamily:"inherit" }}>
+                        Go to {exam.label} Prep →
+                      </button>
+                      {pack.expires_at && (
+                        <div style={{ textAlign:"center", fontSize:".62rem", color:"var(--muted,#64748b)", marginTop:6 }}>
+                          Valid until {new Date(pack.expires_at).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" })}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+                        <span style={{ fontSize:"1.3rem", fontWeight:900, color:exam.color }}>₹{price.charge || price.price || "—"}</span>
+                        <span style={{ fontSize:".7rem", color:"var(--muted,#64748b)" }}>{price.duration_days || 120} days</span>
+                      </div>
+                      <button onClick={() => onBuyPack(examType)} style={{ width:"100%", padding:"11px", background:exam.color, border:"none", borderRadius:9, color:"#fff", fontWeight:700, fontSize:".88rem", cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", justifyContent:"center", gap:7 }}>
+                        <ShoppingCart size={15} /> Unlock {exam.label}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Combo note */}
+        <div style={{ marginTop:20, background:"rgba(99,102,241,.06)", border:"1px solid rgba(99,102,241,.2)", borderRadius:10, padding:"12px 16px", fontSize:".78rem", color:"var(--muted,#64748b)", textAlign:"center" }}>
+          💡 You can buy 1, 2, or all 3 packs — each pack is independent. CBSE subscription not required.
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ── Exam Practice UI ─────────────────────────────────────────────────────────
+function QuestionCard({ question, selectedOption, onSelect, feedback, showFeedback, username }) {
+  const opts = question.options_json || [];
+  const isCorrect = (key) => showFeedback && feedback?.correct_option === key;
+  const isWrong   = (key) => showFeedback && selectedOption === key && !feedback?.is_correct;
+  const watermarked = React.useMemo(() => embedWatermark(question.question_text, username), [question.question_text, username]);
+  return (
+    <div className="qprotect" onCopy={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}
+      style={{ padding:16, borderBottom:"1px solid var(--border,#334155)", userSelect:"none", WebkitUserSelect:"none" }}>
+      <div style={{ display:"flex", gap:7, marginBottom:10, flexWrap:"wrap" }}>
+        <span style={{ fontSize:".6rem", fontWeight:700, background:`${DIFFICULTY_COLORS[question.difficulty]||"#94a3b8"}22`, color:DIFFICULTY_COLORS[question.difficulty]||"#94a3b8", padding:"2px 8px", borderRadius:20 }}>{question.difficulty}</span>
+        {question.topic && <span style={{ fontSize:".6rem", color:"var(--muted,#64748b)", background:"rgba(255,255,255,.05)", padding:"2px 8px", borderRadius:20 }}>{question.topic}</span>}
+        {question.marks && <span style={{ fontSize:".6rem", color:"#fbbf24", background:"rgba(251,191,36,.08)", padding:"2px 8px", borderRadius:20 }}>+{question.marks} / -{question.negative_marks}</span>}
+      </div>
+      <MathText text={watermarked} style={{ fontSize:".85rem", color:"var(--text,#e2e8f0)", lineHeight:1.6, marginBottom:14, display:"block" }} />
+      <div style={{ display:"flex", flexDirection:"column", gap:7 }}>
+        {opts.map(opt => {
+          const sel = selectedOption === opt.key;
+          const correct = isCorrect(opt.key); const wrong = isWrong(opt.key);
+          return (
+            <div key={opt.key} onClick={() => !showFeedback && onSelect(opt.key)}
+              style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"10px 12px", borderRadius:8, cursor:showFeedback?"default":"pointer", background:correct?"rgba(34,197,94,.12)":wrong?"rgba(239,68,68,.1)":sel?"rgba(99,102,241,.12)":"rgba(0,0,0,.02)", border:`1px solid ${correct?"#22c55e":wrong?"#ef4444":sel?"#6366f1":"var(--border,#334155)"}`, transition:"all .1s" }}>
+              <span style={{ width:22, height:22, borderRadius:"50%", border:`2px solid ${correct?"#22c55e":wrong?"#ef4444":sel?"#6366f1":"#64748b"}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontSize:".68rem", fontWeight:700, color:correct?"#22c55e":wrong?"#ef4444":sel?"#6366f1":"#64748b" }}>{opt.key}</span>
+              <MathText text={opt.text} style={{ fontSize:".8rem", color:"var(--text,#e2e8f0)", lineHeight:1.5, flex:1 }} />
+              {correct && <CheckCircle size={14} color="#22c55e" />}
+              {wrong && <XCircle size={14} color="#ef4444" />}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── Main ExamPrepPage ─────────────────────────────────────────────────────────
+export default function ExamPrepPage({ user }) {
+  const [packs, setPacks]           = useState(null);  // null = loading
+  const [prices, setPrices]         = useState({});
+  const [activeExam, setActiveExam] = useState(null);  // null = landing, string = inside exam
+  const [purchaseModal, setPurchaseModal] = useState(null); // exam type to show modal for
+  const [loading, setLoading]       = useState(true);
+  const [error, setError]           = useState("");
+
+  // Practice state
+  const [subjects, setSubjects]         = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [topics, setTopics]             = useState([]);
+  const [questions, setQuestions]       = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [feedbacks, setFeedbacks]       = useState({});
+  const [loadingQ, setLoadingQ]         = useState(false);
+  const [activeMode, setActiveMode]     = useState("practice");
+  const [testSession, setTestSession]   = useState(null);
+  const [testAnswers, setTestAnswers]   = useState({});
+  const [testResult, setTestResult]     = useState(null);
+  const [testLoading, setTestLoading]   = useState(false);
+  const testStartRef = useRef(null);
+  const [testStartTS, setTestStartTS]   = useState(0);
+
+  const grade = user?.grade || "";
+  const isAdmin = user?.role === "admin";
+  const gradeEligible = grade === "Grade 11" || grade === "Grade 12" || isAdmin;
+
+  const accessToken = user?.accessToken;
+
+  useEffect(() => {
+    if (!accessToken) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const [packsData, pricesData] = await Promise.all([
+          getMyPacks(accessToken),
+          getPackPrices(),
+        ]);
+        if (cancelled) return;
+        setPacks(packsData.packs || {});
+        setPrices(pricesData.prices || {});
+      } catch { if (!cancelled) setError("Could not load pack status."); }
+      finally { if (!cancelled) setLoading(false); }
+    })();
+    return () => { cancelled = true; };
+  }, [accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function loadPacks() {
+    if (!user?.accessToken) return;
+    setLoading(true);
+    Promise.all([getMyPacks(user.accessToken), getPackPrices()])
+      .then(([pd, pr]) => { setPacks(pd.packs || {}); setPrices(pr.prices || {}); })
+      .catch(() => setError("Could not refresh packs."))
+      .finally(() => setLoading(false));
+  }
+
+  // Grade gate
+  if (!gradeEligible) {
+    return (
+      <div className="premium-page">
+        <section className="premium-section" style={{ textAlign:"center", padding:"60px 20px" }}>
+          <div style={{ fontSize:"3rem", marginBottom:16 }}>🔒</div>
+          <h3 style={{ fontSize:"1.2rem", fontWeight:800, marginBottom:8 }}>Exam Prep Center</h3>
+          <p style={{ color:"var(--muted,#64748b)", maxWidth:380, margin:"0 auto" }}>Available for Grade 11 & 12 students only.</p>
+        </section>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="premium-page">
+        <section className="premium-section" style={{ display:"flex", alignItems:"center", justifyContent:"center", minHeight:200 }}>
+          <Loader size={20} style={{ animation:"spin 1s linear infinite", color:"var(--muted,#64748b)" }} />
+          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+        </section>
+      </div>
+    );
+  }
+
+  // Handle pack purchase success
+  function handlePackSuccess(examType) {
+    setPurchaseModal(null);
+    loadPacks(); // refresh packs
+    setActiveExam(examType); // immediately enter exam
+  }
+
+  // Enter an exam — check pack first
+  function handleEnterExam(examType) {
+    const owned = packs?.[examType]?.active;
+    if (owned) {
+      setActiveExam(examType);
+      setActiveMode("practice");
+      setTestResult(null); setTestSession(null);
+      setSubjects([]); setQuestions([]);
+      // Load subjects
+      getExamPrepSubjects(user.accessToken, examType)
+        .then(d => setSubjects(d.subjects || []))
+        .catch(() => {});
+    } else {
+      setPurchaseModal(examType);
+    }
+  }
+
+  // Exam practice functions
+  async function handleSelectSubject(name) {
+    if (selectedSubject === name) { setSelectedSubject(null); setTopics([]); setQuestions([]); return; }
+    setSelectedSubject(name);
+    setLoadingQ(true);
+    try {
+      const [topicsData, questionsData] = await Promise.all([
+        getExamPrepTopics(user.accessToken, activeExam, name),
+        getExamPrepQuestions(user.accessToken, { exam: activeExam, subject: name, limit: 20 }),
+      ]);
+      setTopics(topicsData.topics || []);
+      setQuestions(questionsData.questions || []);
+    } catch { setQuestions([]); }
+    finally { setLoadingQ(false); }
+  }
+
+  async function handleSelectOption(qid, opt) {
+    if (feedbacks[qid]) return;
+    setSelectedOptions(p => ({ ...p, [qid]: opt }));
+    try {
+      const data = await submitQuestionAnswer(user.accessToken, qid, { selectedOption: opt });
+      setFeedbacks(p => ({ ...p, [qid]: data }));
+    } catch { /* non-critical */ }
+  }
+
+  async function handleStartTest() {
+    setTestLoading(true);
+    try {
+      const data = await startSimulatedTest(user.accessToken, activeExam);
+      setTestSession(data);
+      const now = Date.now(); testStartRef.current = now; setTestStartTS(now);
+      setTestAnswers({});
+      setActiveMode("test");
+      const qData = await getExamPrepQuestions(user.accessToken, { exam: activeExam, limit: 90 });
+      setQuestions(qData.questions || []);
+    } catch (e) { alert(e.message || "Failed to start test"); }
+    finally { setTestLoading(false); }
+  }
+
+  async function handleSubmitTest() {
+    if (!testSession?.test_id) return;
+    setTestLoading(true);
+    const timeSpent = testStartRef.current ? Math.round((Date.now()-testStartRef.current)/1000) : 0;
+    const answers = Object.entries(testAnswers).map(([qid, opt]) => ({ question_id: qid, selected_option: opt, time_taken_seconds: 60 }));
+    try {
+      const result = await submitSimulatedTest(user.accessToken, testSession.test_id, { answers, timeSpentSeconds: timeSpent });
+      setTestResult(result); setActiveMode("result");
+    } catch (e) { alert(e.message || "Failed to submit"); }
+    finally { setTestLoading(false); }
+  }
+
+  const examInfo = EXAMS[activeExam] || {};
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  return (
+    <>
+      {/* Pack purchase modal */}
+      {purchaseModal && (
+        <PackPurchaseModal
+          examType={purchaseModal}
+          prices={prices}
+          user={user}
+          onSuccess={handlePackSuccess}
+          onClose={() => setPurchaseModal(null)}
+        />
+      )}
+
+      {/* Landing page — no active exam */}
+      {!activeExam && (
+        <ExamPrepLanding
+          packs={packs}
+          prices={prices}
+          user={user}
+          onEnterExam={handleEnterExam}
+          onBuyPack={(et) => setPurchaseModal(et)}
+        />
+      )}
+
+      {/* Inside an exam */}
+      {activeExam && (
+        <div className="premium-page">
+          <section className="premium-section" style={{ paddingBottom:0 }}>
+            {/* Top bar */}
+            <div style={{ display:"flex", gap:10, alignItems:"center", marginBottom:16, flexWrap:"wrap" }}>
+              <button onClick={() => setActiveExam(null)} style={{ padding:"6px 14px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.25)", borderRadius:8, color:"#a5b4fc", fontSize:".78rem", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>
+                ← All Exams
+              </button>
+              <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+                <span style={{ fontSize:"1.2rem" }}>{examInfo.icon}</span>
+                <span style={{ fontWeight:800, fontSize:".95rem" }}>{examInfo.label} Prep</span>
+                {packs?.[activeExam]?.expires_at && (
+                  <span style={{ fontSize:".62rem", color:"var(--muted,#64748b)" }}>
+                    · Valid until {new Date(packs[activeExam].expires_at).toLocaleDateString("en-IN", { day:"numeric", month:"short" })}
+                  </span>
+                )}
+              </div>
+              {/* Mode tabs */}
+              <div style={{ marginLeft:"auto", display:"flex", gap:6 }}>
+                {[{k:"practice",l:"⚡ Practice"},{k:"test",l:"📝 Simulated Test"}].map(m => (
+                  <button key={m.k} onClick={() => setActiveMode(m.k)}
+                    style={{ padding:"6px 14px", borderRadius:7, border:`1px solid ${activeMode===m.k?"#6366f1":"var(--border,#334155)"}`, background:activeMode===m.k?"rgba(99,102,241,.12)":"var(--panel,#1e293b)", color:activeMode===m.k?"#a5b4fc":"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>
+                    {m.l}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Practice mode */}
+          {activeMode === "practice" && (
+            <section className="premium-section" style={{ paddingTop:0 }}>
+              {/* Subject selector */}
+              <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:14 }}>
+                {subjects.map(s => (
+                  <button key={s.name} onClick={() => handleSelectSubject(s.name)}
+                    style={{ padding:"6px 14px", borderRadius:8, border:`2px solid ${selectedSubject===s.name?(SUBJECT_COLORS[s.name]||"#6366f1"):"var(--border,#334155)"}`, background:selectedSubject===s.name?`${SUBJECT_COLORS[s.name]||"#6366f1"}18`:"var(--panel,#1e293b)", color:selectedSubject===s.name?(SUBJECT_COLORS[s.name]||"#6366f1"):"var(--muted,#94a3b8)", fontWeight:700, fontSize:".78rem", cursor:"pointer", fontFamily:"inherit" }}>
+                    {SUBJECT_ICONS[s.name]||"📚"} {s.name}
+                  </button>
+                ))}
+                {subjects.length === 0 && <div style={{ fontSize:".78rem", color:"var(--muted,#64748b)" }}>Loading subjects…</div>}
               </div>
 
-              {loadingQuestions ? (
-                <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--muted,#64748b)", fontSize: ".8rem" }}>
-                  <Loader size={14} style={{ animation: "spin 1s linear infinite" }} /> Loading questions…
+              {loadingQ ? (
+                <div style={{ display:"flex", alignItems:"center", gap:8, color:"var(--muted,#64748b)", fontSize:".8rem" }}>
+                  <Loader size={14} style={{ animation:"spin 1s linear infinite" }} /> Loading questions…
+                  <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
                 </div>
-              ) : questions.length === 0 ? (
-                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: 24, textAlign: "center" }}>
-                  <div style={{ fontSize: "2rem", marginBottom: 10 }}>📭</div>
-                  <div style={{ fontSize: ".85rem", fontWeight: 700, marginBottom: 6 }}>No questions available yet</div>
-                  <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)" }}>
-                    {isAdmin ? "Use the Admin → Exam Prep Question Bank to generate questions." : "Check back soon — questions are being added!"}
-                  </div>
+              ) : questions.length === 0 && selectedSubject ? (
+                <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:10, padding:24, textAlign:"center" }}>
+                  <div style={{ fontSize:"2rem", marginBottom:8 }}>📭</div>
+                  <div style={{ fontSize:".85rem", fontWeight:700, marginBottom:6 }}>No questions yet</div>
+                  <div style={{ fontSize:".75rem", color:"var(--muted,#64748b)" }}>Questions are being added. Check back soon!</div>
+                </div>
+              ) : questions.length > 0 ? (
+                <div style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:12, overflow:"hidden" }}>
+                  {questions.map(q => (
+                    <QuestionCard key={q.id} question={q} selectedOption={selectedOptions[q.id]} onSelect={opt => handleSelectOption(q.id, opt)} feedback={feedbacks[q.id]} showFeedback={!!feedbacks[q.id]} username={user?.username} />
+                  ))}
+                </div>
+              ) : !selectedSubject ? (
+                <div style={{ textAlign:"center", padding:"40px 20px", color:"var(--muted,#64748b)" }}>
+                  <div style={{ fontSize:"2rem", marginBottom:12 }}>👆</div>
+                  <div style={{ fontSize:".85rem" }}>Select a subject above to start practicing</div>
+                </div>
+              ) : null}
+            </section>
+          )}
+
+          {/* Simulated test mode */}
+          {activeMode === "test" && !testResult && (
+            <section className="premium-section" style={{ paddingTop:0 }}>
+              {!testSession ? (
+                <div style={{ maxWidth:500, margin:"0 auto", textAlign:"center", padding:"40px 20px" }}>
+                  <div style={{ fontSize:"2.5rem", marginBottom:16 }}>{examInfo.icon}</div>
+                  <h3 style={{ fontSize:"1.2rem", fontWeight:800, marginBottom:8 }}>Start {examInfo.label} Simulation</h3>
+                  <p style={{ color:"var(--muted,#64748b)", fontSize:".85rem", marginBottom:24, lineHeight:1.6 }}>
+                    Full {examInfo.label} test with {EXAM_SIM_CONFIG[activeExam]?.questions} questions · {EXAM_SIM_CONFIG[activeExam]?.duration} min · {EXAM_SIM_CONFIG[activeExam]?.marking}
+                  </p>
+                  <button onClick={handleStartTest} disabled={testLoading}
+                    style={{ padding:"13px 32px", background:`linear-gradient(135deg,${examInfo.color},${examInfo.color}cc)`, border:"none", borderRadius:12, color:"#fff", fontWeight:800, fontSize:".95rem", cursor:"pointer", fontFamily:"inherit", opacity:testLoading?.7:1 }}>
+                    {testLoading ? "Starting…" : `🚀 Start ${examInfo.label} Simulation`}
+                  </button>
                 </div>
               ) : (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 14 }}>
-                  {/* Question list */}
-                  <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12, overflow: "hidden" }}>
-                    <div style={{ maxHeight: 500, overflowY: "auto" }}>
-                      {questions.map(q => (
-                        <div key={q.id} onClick={() => setSelectedQuestion(q.id === selectedQuestion ? null : q)}
-                          style={{ borderLeft: `3px solid ${q.id === selectedQuestion?.id ? "#6366f1" : "transparent"}`, cursor: "pointer", background: q.id === selectedQuestion?.id ? "rgba(99,102,241,.05)" : "transparent" }}>
-                          <QuestionCard
-                            question={q}
-                            selectedOption={selectedOptions[q.id]}
-                            onSelect={opt => handleSelectOption(q.id, opt)}
-                            feedback={feedbacks[q.id]}
-                            showFeedback={!!feedbacks[q.id]}
-                            username={user?.username}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* AI panel */}
-                  <div style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: 500 }}>
-                    <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border,#334155)", background: "rgba(99,102,241,.06)", display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "linear-gradient(135deg,#6366f1,#10b981)", display: "grid", placeItems: "center", fontSize: ".7rem", flexShrink: 0 }}>🤖</div>
-                      <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a5b4fc" }}>
-                        {selectedQuestion ? `AI Explanation — ${selectedQuestion.topic || ""}` : "AI Explanation"}
-                      </div>
-                    </div>
-                    <div style={{ flex: 1, overflowY: "auto" }}>
-                      <AIPanel
-                        question={selectedQuestion}
-                        selectedOption={selectedOptions[selectedQuestion?.id]}
-                        feedback={feedbacks[selectedQuestion?.id]}
-                        user={user}
-                      />
-                    </div>
-                  </div>
+                <div style={{ textAlign:"center", padding:32, color:"var(--muted,#64748b)" }}>
+                  <div style={{ fontSize:"1.5rem", marginBottom:12 }}>📝</div>
+                  <div style={{ fontSize:".88rem", marginBottom:16 }}>{questions.length} questions loaded · Timer running</div>
+                  <button onClick={handleSubmitTest} disabled={testLoading}
+                    style={{ padding:"10px 24px", background:"#22c55e", border:"none", borderRadius:9, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>
+                    {testLoading ? "Submitting…" : "Submit Test ✓"}
+                  </button>
                 </div>
               )}
             </section>
           )}
-        </>
-      )}
 
-      {/* ── Simulated Test mode ── */}
-      {activeMode === "test" && !testResult && (
-        <section className="premium-section" style={{ paddingTop: 0 }}>
-          {!testSession ? (
-            selectedExam === "cuet_ug" ? (
-              // CUET: show realistic subject combination selector
-              <CUETTestSetup onStart={(subjects) => handleStartTest(subjects)} testLoading={testLoading} />
-            ) : (
-            <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
-              <div style={{ fontSize: "3rem", marginBottom: 16 }}>{examInfo.icon}</div>
-              <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: 8 }}>Start {examInfo.label} Simulation</h3>
-              {(() => {
-                const cfg = EXAM_SIM_CONFIG[selectedExam] || EXAM_SIM_CONFIG.jee_main;
-                return (
-                  <>
-                    <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem", marginBottom: 24, lineHeight: 1.6 }}>
-                      A full {examInfo.label} simulation with ~{cfg.questions} questions across {cfg.subjects.join(", ")}.
-                      {cfg.duration} minutes · Marking: {cfg.marking}
-                    </p>
-                    <div style={{ display: "grid", gridTemplateColumns: `repeat(${cfg.subjects.length},1fr)`, gap: 10, marginBottom: 28 }}>
-                      {cfg.subjects.map(s => (
-                        <div key={s} style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
-                          <div style={{ fontSize: "1.3rem", marginBottom: 4 }}>{SUBJECT_ICONS[s] || "📚"}</div>
-                          <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{s}</div>
-                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>~{Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
-                        </div>
-                      ))}
+          {/* Test result */}
+          {activeMode === "result" && testResult && (
+            <section className="premium-section" style={{ paddingTop:0 }}>
+              <div style={{ maxWidth:600, margin:"0 auto", textAlign:"center" }}>
+                <div style={{ fontSize:"3rem", marginBottom:8 }}>{(testResult.score_normalized||0) >= 60 ? "🏆" : "📚"}</div>
+                <h3 style={{ fontSize:"1.3rem", fontWeight:800, marginBottom:4 }}>Test Complete!</h3>
+                <div style={{ fontSize:"2rem", fontWeight:900, color:examInfo.color, marginBottom:16 }}>{(testResult.score_normalized||0).toFixed(1)}<span style={{ fontSize:"1rem", color:"var(--muted,#64748b)" }}>/100</span></div>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10, marginBottom:20 }}>
+                  {[["✅","Correct",testResult.correct],["❌","Wrong",testResult.wrong],["⏭","Skipped",testResult.skipped],["📋","Total",testResult.total_questions]].map(([ic,l,v]) => (
+                    <div key={l} style={{ background:"var(--panel,#1e293b)", border:"1px solid var(--border,#334155)", borderRadius:9, padding:"12px 8px" }}>
+                      <div style={{ fontSize:"1.2rem", marginBottom:4 }}>{ic}</div>
+                      <div style={{ fontSize:"1.1rem", fontWeight:800 }}>{v||0}</div>
+                      <div style={{ fontSize:".62rem", color:"var(--muted,#64748b)" }}>{l}</div>
                     </div>
-                  </>
-                );
-              })()}
-              <button onClick={handleStartTest} disabled={testLoading}
-                style={{ padding: "13px 32px", background: `linear-gradient(135deg,${examInfo.color},${examInfo.color}cc)`, border: "none", borderRadius: 12, color: "#fff", fontWeight: 800, fontSize: ".95rem", cursor: "pointer", fontFamily: "inherit", opacity: testLoading ? .7 : 1, display: "flex", alignItems: "center", gap: 10, margin: "0 auto" }}>
-                {testLoading ? <><Loader size={16} style={{ animation: "spin 1s linear infinite" }} /> Starting…</> : `🚀 Start ${examInfo.label} Simulation`}
-              </button>
-            </div>
-            )
-          ) : (
-            <NTATestView
-              questions={questions}
-              testSession={testSession}
-              testAnswers={testAnswers}
-              setTestAnswers={setTestAnswers}
-              onSubmit={handleSubmitTest}
-              testLoading={testLoading}
-              startTimestamp={testStartTimestamp}
-              examLabel={examInfo.label}
-              examColor={examInfo.color}
-              cuetSubjects={selectedExam === "cuet_ug" ? cuetSelectedSubjects : null}
-              username={user?.username}
-            />
+                  ))}
+                </div>
+                <div style={{ display:"flex", gap:10, justifyContent:"center" }}>
+                  <button onClick={() => { setActiveMode("test"); setTestResult(null); setTestSession(null); }} style={{ padding:"10px 22px", background:`linear-gradient(135deg,${examInfo.color},${examInfo.color}cc)`, border:"none", borderRadius:9, color:"#fff", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>Try Again</button>
+                  <button onClick={() => { setActiveMode("practice"); setTestResult(null); setTestSession(null); }} style={{ padding:"10px 22px", background:"var(--surface2,rgba(0,0,0,.04))", border:"1px solid var(--border,#334155)", borderRadius:9, color:"var(--text,#e2e8f0)", fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>Practice More</button>
+                </div>
+              </div>
+            </section>
           )}
-        </section>
+        </div>
       )}
-
-      {/* ── Resource links ── */}
-      <section className="premium-section">
-        <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 14 }}>
-          📚 Resources & Tools
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: 10 }}>
-          {RESOURCES.map(r => (
-            <div key={r.label}
-              onClick={() => r.onClick && setActivePage && setActivePage(r.onClick)}
-              className="premium-card"
-              style={{ border: `1px solid ${r.onClick ? r.color + "40" : "var(--border,#334155)"}`, borderRadius: 10, padding: "14px 14px", cursor: r.onClick ? "pointer" : "default", transition: "all .12s", marginBottom: 0 }}>
-              <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>{r.icon}</div>
-              <div style={{ fontWeight: 700, fontSize: ".8rem", marginBottom: 3 }}>{r.label}</div>
-              <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)" }}>{r.desc}</div>
-              {r.onClick && <div style={{ fontSize: ".62rem", color: r.color, marginTop: 6, fontWeight: 600 }}>Open →</div>}
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
+    </>
   );
 }
