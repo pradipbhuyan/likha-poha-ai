@@ -342,7 +342,8 @@ class OAuthCompleteProfileRequest(BaseModel):
     """Request body for completing an OAuth user's profile with their chosen role."""
     role: str
     full_name: Optional[str] = None
-    grade: Optional[str] = None   # for students
+    grade: Optional[str] = None    # for students
+    stream: Optional[str] = None   # for Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
 
 
 @router.post("/oauth/complete-profile")
@@ -496,9 +497,22 @@ def oauth_complete_profile(
                     grade = "Grade 9"
                 updates["grade"] = grade
                 updates["board"] = "CBSE"
-                updates["cbse_subjects"] = []
                 updates["daily_token_limit"] = 0
                 updates["monthly_token_limit"] = 0
+                # Grade 11/12: populate stream and cbse_subjects from stream selection
+                _STREAM_SUBJECTS = {
+                    "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+                    "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+                    "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+                    "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+                    "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+                }
+                _valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+                if grade in {"Grade 11", "Grade 12"} and data.stream and (data.stream or "").strip() in _valid_streams:
+                    updates["stream"] = data.stream.strip()
+                    updates["cbse_subjects"] = _STREAM_SUBJECTS.get(data.stream.strip(), [])
+                else:
+                    updates["cbse_subjects"] = []
 
             elif role == "teacher":
                 updates["daily_token_limit"] = 0
@@ -606,7 +620,20 @@ def oauth_complete_profile(
                 grade = "Grade 9"
             base_profile["grade"] = grade
             base_profile["board"] = "CBSE"
-            base_profile["cbse_subjects"] = []
+            # Grade 11/12: populate stream and cbse_subjects from stream selection
+            _STREAM_SUBJECTS = {
+                "PCM":        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+                "PCB":        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+                "PCMB":       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+                "Commerce":   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+                "Humanities": ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+            }
+            _valid_streams = {"PCM", "PCB", "PCMB", "Commerce", "Humanities"}
+            if grade in {"Grade 11", "Grade 12"} and data.stream and (data.stream or "").strip() in _valid_streams:
+                base_profile["stream"] = data.stream.strip()
+                base_profile["cbse_subjects"] = _STREAM_SUBJECTS.get(data.stream.strip(), [])
+            else:
+                base_profile["cbse_subjects"] = []
 
         admin_client.table("profiles").insert(base_profile).execute()
 
