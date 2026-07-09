@@ -486,7 +486,7 @@ def test_rag_document_preview_returns_stored_chunks(monkeypatch):
     monkeypatch.setattr(
         rag,
         "get_rag_document_preview",
-        lambda document_id: [
+        lambda document_id, **kwargs: [
             {
                 "chunk_index": 0,
                 "chunk_text": "Pressure, winds, storms, and cyclones content.",
