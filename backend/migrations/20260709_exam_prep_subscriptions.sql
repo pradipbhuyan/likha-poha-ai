@@ -36,13 +36,31 @@ CREATE INDEX IF NOT EXISTS exam_prep_subs_user_idx
 -- RLS: users can only read their own rows; admin full access
 ALTER TABLE exam_prep_subscriptions ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY IF NOT EXISTS "Users read own exam prep subs"
-    ON exam_prep_subscriptions FOR SELECT
-    USING (auth.uid() = user_id);
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies
+    WHERE tablename = 'exam_prep_subscriptions'
+      AND policyname = 'Users read own exam prep subs'
+  ) THEN
+    CREATE POLICY "Users read own exam prep subs"
+        ON exam_prep_subscriptions FOR SELECT
+        USING (auth.uid() = user_id);
+  END IF;
+END $$;
 
-CREATE POLICY IF NOT EXISTS "Service role full access exam prep subs"
-    ON exam_prep_subscriptions FOR ALL
-    USING (true);
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies
+    WHERE tablename = 'exam_prep_subscriptions'
+      AND policyname = 'Service role full access exam prep subs'
+  ) THEN
+    CREATE POLICY "Service role full access exam prep subs"
+        ON exam_prep_subscriptions FOR ALL
+        USING (true);
+  END IF;
+END $$;
 
 COMMENT ON TABLE exam_prep_subscriptions IS
     'Tracks JEE/NEET/CUET exam prep pack purchases. Independent of CBSE subscription.';
