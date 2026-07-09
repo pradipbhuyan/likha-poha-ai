@@ -1600,13 +1600,14 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </div>
         )}
 
-        {/* Mode tabs — 4 tabs */}
+        {/* Mode tabs — 5 tabs */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           {[
             { key: "learn",     label: "Structured Learning", icon: "📖" },
             { key: "practice",  label: "Practice",            icon: "⚡" },
             { key: "test",      label: "Simulated Test",      icon: "📝" },
             { key: "reference", label: "Quick Reference",     icon: "📋" },
+            { key: "oracle",    label: "Cutoff Oracle",       icon: "🔮" },
           ].map(m => (
             <button key={m.key}
               onClick={() => {
@@ -1617,12 +1618,185 @@ export default function ExamPrepPage({ user, setActivePage }) {
                   if (examRef) setRefSubject(examRef.subjects?.[0] || "");
                 }
               }}
-              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? (m.key === "reference" ? "#10b981" : "#6366f1") : "var(--border,#334155)"}`, background: activeMode === m.key ? (m.key === "reference" ? "rgba(16,185,129,.12)" : "rgba(99,102,241,.12)") : "var(--panel,#1e293b)", color: activeMode === m.key ? (m.key === "reference" ? "#34d399" : "#a5b4fc") : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
+              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? (m.key === "oracle" ? "#8b5cf6" : m.key === "reference" ? "#10b981" : "#6366f1") : "var(--border,#334155)"}`, background: activeMode === m.key ? (m.key === "oracle" ? "rgba(139,92,246,.12)" : m.key === "reference" ? "rgba(16,185,129,.12)" : "rgba(99,102,241,.12)") : "var(--panel,#1e293b)", color: activeMode === m.key ? (m.key === "oracle" ? "#a78bfa" : m.key === "reference" ? "#34d399" : "#a5b4fc") : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
               {m.icon} {m.label}
             </button>
           ))}
         </div>
       </section>
+
+      {/* ── Cutoff Oracle mode ── */}
+      {activeMode === "oracle" && (() => {
+        // Static last-5-year cutoff data (NTA/JoSAA/MCC 2021-2025, General category)
+        const ORACLE_DATA = {
+          jee_main: {
+            title: "JEE Main → NIT / IIIT / GFTI Admission",
+            subtitle: "Score → Percentile → College mapping (JoSAA 2021–2025, General category, Home State)",
+            note: "Percentile and ranks vary by session. Data reflects 5-year averages. NIT CS/IT is most competitive.",
+            scoreKey: "Score (out of 300)",
+            maxScore: 300,
+            bands: [
+              { range: "270–300", label: "Elite", color: "#22c55e", emoji: "🏆",
+                colleges: ["NIT Trichy – CSE", "NIT Warangal – CSE", "NIT Surathkal – CSE", "IIIT Hyderabad – CSE", "NIT Calicut – CSE"],
+                percentile: "99.5–100", rank: "Top 1,000 (CRL)", tip: "JEE Advanced qualifier range" },
+              { range: "230–270", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+                colleges: ["NIT Trichy – ECE/Mech", "NIT Warangal – ECE", "IIIT Allahabad – CSE", "NIT Rourkela – CSE", "NIT Calicut – ECE"],
+                percentile: "99.0–99.5", rank: "1,000–5,000 (CRL)", tip: "Target top NITs for non-CS branches" },
+              { range: "190–230", label: "Strong", color: "#f59e0b", emoji: "💪",
+                colleges: ["NIT Bhopal – CSE", "NIT Durgapur – CSE", "NIT Jamshedpur – CSE", "IIIT Jabalpur – CSE", "MNIT Jaipur – ECE"],
+                percentile: "97–99", rank: "5,000–20,000 (CRL)", tip: "Good range for mid-tier NITs CSE" },
+              { range: "150–190", label: "Moderate", color: "#f97316", emoji: "📈",
+                colleges: ["NIT Agartala – CSE", "IIIT Vadodara", "NIT Manipur – CSE", "GFTIs – CSE", "DTU Delhi (state quota)"],
+                percentile: "93–97", rank: "20,000–60,000 (CRL)", tip: "Explore GFTIs and state-level NITs" },
+              { range: "100–150", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+                colleges: ["GFTIs – Non-CS branches", "State engineering colleges (top tier)", "IIIT Una / Kurnool – ECE"],
+                percentile: "83–93", rank: "60,000–1,50,000 (CRL)", tip: "Qualify for lower GFTIs; focus on state counselling" },
+              { range: "Below 100", label: "Limited", color: "#94a3b8", emoji: "📚",
+                colleges: ["State engineering colleges", "Private colleges", "Repeat for better score"],
+                percentile: "Below 83", rank: "1,50,000+ (CRL)", tip: "Consider state-level JOSAA alternatives or repeat" },
+            ],
+            categories: [
+              { cat: "General", note: "Highest cutoff. All NIT seats via CRL." },
+              { cat: "OBC-NCL", note: "~10–15% lower rank than General." },
+              { cat: "SC", note: "~50–60% lower rank than General." },
+              { cat: "ST", note: "~70% lower rank than General." },
+            ],
+            footer: "Source: JoSAA 2021–2025 opening/closing ranks (Round 6). Ranks are approximate and vary by institute & branch.",
+          },
+          neet_ug: {
+            title: "NEET UG → MBBS / BDS / AYUSH Admission",
+            subtitle: "Score → College tier mapping (MCC/State counselling 2021–2025, All India Quota)",
+            note: "720 marks total. Biology (360 marks) is the deciding factor. State quota has different cutoffs.",
+            scoreKey: "Score (out of 720)",
+            maxScore: 720,
+            bands: [
+              { range: "650–720", label: "Elite", color: "#22c55e", emoji: "🏆",
+                colleges: ["AIIMS Delhi", "AIIMS Jodhpur/Bhopal/Patna", "JIPMER Puducherry", "Maulana Azad (MAMC) Delhi"],
+                percentile: "99.9+", rank: "Top 500 (AIR)", tip: "AIIMS cutoff General: ~695–715 (varies by year)" },
+              { range: "610–650", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+                colleges: ["State AIIMS (Rishikesh/Nagpur/Raipur)", "JNMC Aligarh", "Seth GS Medical Mumbai", "Grant Medical College"],
+                percentile: "99.5–99.9", rank: "500–3,000 (AIR)", tip: "Top government medical colleges accessible" },
+              { range: "550–610", label: "Strong", color: "#f59e0b", emoji: "💪",
+                colleges: ["State government MBBS (top states)", "BHU MBBS", "Lady Hardinge Medical College", "Safdarjung Hospital"],
+                percentile: "98.5–99.5", rank: "3,000–15,000 (AIR)", tip: "Strong govt MBBS range. State counselling important." },
+              { range: "500–550", label: "Moderate", color: "#f97316", emoji: "📈",
+                colleges: ["Government MBBS (state quota)", "Top private medical colleges (management quota)", "ESIC Medical Colleges"],
+                percentile: "95–98.5", rank: "15,000–50,000 (AIR)", tip: "Government MBBS in some states; explore private govt-aided" },
+              { range: "450–500", label: "Borderline", color: "#ef4444", emoji: "⚠️",
+                colleges: ["Private MBBS (high fees ~50L–1Cr)", "BDS (Dental) in government colleges", "AYUSH (BAMS/BHMS) govt colleges"],
+                percentile: "85–95", rank: "50,000–1,20,000 (AIR)", tip: "Minimum NEET qualifying cutoff is 50th percentile (General)" },
+              { range: "Below 450", label: "Limited", color: "#94a3b8", emoji: "📚",
+                colleges: ["BDS / BAMS / BHMS private", "Veterinary (BVSC)", "Consider re-attempting NEET"],
+                percentile: "Below 85", rank: "1,20,000+ (AIR)", tip: "Minimum qualifying percentile: 50th (General), 40th (SC/ST)" },
+            ],
+            categories: [
+              { cat: "General", note: "Min: 50th percentile (~720×50% ≈ 360+ marks)." },
+              { cat: "OBC/SC/ST", note: "Min: 40th percentile. Same seats, lower cutoff." },
+              { cat: "PWD", note: "Min: 45th percentile for PH quota seats." },
+            ],
+            footer: "Source: MCC NEET-UG counselling 2021–2025 (Rounds 1–3). AIIMS has separate AIIMS MBBS counselling. Scores are approx and shift each year.",
+          },
+          cuet_ug: {
+            title: "CUET UG → DU / BHU / JNU / Central University Admission",
+            subtitle: "Score → Programme mapping (CUET 2022–2025, General category, Per-subject out of 200)",
+            note: "CUET scores are per subject. Colleges set their own cutoffs based on subject combinations. Data is indicative.",
+            scoreKey: "Score per subject (out of 200)",
+            maxScore: 200,
+            bands: [
+              { range: "185–200", label: "Elite", color: "#22c55e", emoji: "🏆",
+                colleges: ["Miranda House – English / Eco / Hist", "Lady Shri Ram – Eco/Psych", "Hindu College – B.Sc./B.A.", "SRCC – B.Com(H)"],
+                percentile: "Top 1%", rank: "Open/Unreserved seats", tip: "DU's top colleges require near-perfect scores for popular courses" },
+              { range: "165–185", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+                colleges: ["Hansraj College – Sciences", "Ramjas College – English/Eco", "Kirori Mal – Maths/Physics", "JMC (Journalism) DU"],
+                percentile: "Top 5%", rank: "Good DU colleges", tip: "Most DU college/course combinations open at this range" },
+              { range: "140–165", label: "Strong", color: "#f59e0b", emoji: "💪",
+                colleges: ["BHU – BA/B.Sc./B.Com", "Jamia Millia Islamia – BA/B.Sc.", "Dyal Singh / Zakir Husain – DU", "Gargi College DU"],
+                percentile: "Top 15%", rank: "Mid-range central universities", tip: "BHU and Jamia accessible; some DU evening colleges" },
+              { range: "110–140", label: "Moderate", color: "#f97316", emoji: "📈",
+                colleges: ["JNU – BA (Hons) some programmes", "Hyderabad Central University", "Pondicherry University", "EFLU Hyderabad"],
+                percentile: "Top 30%", rank: "Good central universities outside DU", tip: "Many central universities have good programmes at this range" },
+              { range: "80–110", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+                colleges: ["Various central universities", "Banaras Hindu University (some courses)", "North-East central universities"],
+                percentile: "Top 50%", rank: "General qualifying range", tip: "Minimum qualifying score is typically 50–60 out of 200" },
+              { range: "Below 80", label: "Limited", color: "#94a3b8", emoji: "📚",
+                colleges: ["Private universities", "State universities", "Consider re-attempting CUET"],
+                percentile: "Below 50%", rank: "Borderline", tip: "Most central universities set minimum at 40–60 marks per subject" },
+            ],
+            categories: [
+              { cat: "General/Unreserved", note: "Highest cutoff. Scores shown above are for Open category." },
+              { cat: "OBC-NCL", note: "~5–10% lower scores typically open OBC seats." },
+              { cat: "SC/ST/EWS", note: "Significantly lower cutoffs. Apply to reserved seats." },
+            ],
+            footer: "Source: CUET-UG 2022–2025 (DU 1st–4th cutoffs, BHU, JNU admissions). Scores vary widely by subject and programme. Always check official cutoffs.",
+          },
+        };
+
+        const data = ORACLE_DATA[selectedExam] || ORACLE_DATA.jee_main;
+        const _examColor = examInfo.color; // reserved for future use (colour-coded bands)
+
+        return (
+          <section className="premium-section" style={{ paddingTop: 0 }}>
+            {/* Header */}
+            <div style={{ background: `linear-gradient(135deg,rgba(139,92,246,.1),rgba(99,102,241,.06))`, border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                <span style={{ fontSize: "2rem" }}>🔮</span>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: ".95rem", marginBottom: 3 }}>{data.title}</div>
+                  <div style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", marginBottom: 4 }}>{data.subtitle}</div>
+                  <div style={{ fontSize: ".72rem", color: "#fbbf24", background: "rgba(245,158,11,.08)", borderRadius: 6, padding: "4px 10px", display: "inline-block" }}>⚠️ {data.note}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Score bands */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+              {data.bands.map((band, i) => (
+                <div key={i} style={{ background: "var(--panel,#1e293b)", border: `2px solid ${band.color}33`, borderRadius: 12, padding: "14px 16px", display: "grid", gridTemplateColumns: "120px 1fr auto", gap: 14, alignItems: "start" }}>
+                  {/* Score range */}
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: ".6rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 4 }}>{data.scoreKey.split("(")[0].trim()}</div>
+                    <div style={{ fontSize: "1.1rem", fontWeight: 900, color: band.color }}>{band.range}</div>
+                    <div style={{ fontSize: ".65rem", marginTop: 4 }}>{band.emoji} <span style={{ fontWeight: 700, color: band.color }}>{band.label}</span></div>
+                    <div style={{ fontSize: ".58rem", color: "var(--muted,#64748b)", marginTop: 2 }}>{band.percentile}</div>
+                    <div style={{ fontSize: ".55rem", color: "var(--muted,#475569)" }}>{band.rank}</div>
+                  </div>
+                  {/* Colleges */}
+                  <div>
+                    <div style={{ fontSize: ".65rem", fontWeight: 700, color: "var(--muted,#64748b)", marginBottom: 6 }}>Accessible with this score:</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+                      {band.colleges.map((c, ci) => (
+                        <span key={ci} style={{ fontSize: ".65rem", background: `${band.color}12`, color: band.color, border: `1px solid ${band.color}30`, padding: "3px 8px", borderRadius: 6, fontWeight: 600 }}>{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Tip */}
+                  <div style={{ fontSize: ".65rem", color: "var(--muted,#64748b)", fontStyle: "italic", maxWidth: 180, lineHeight: 1.4 }}>
+                    💡 {band.tip}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Category guide */}
+            <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#a78bfa", marginBottom: 10 }}>📊 Category-wise Cutoff Guide</div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {data.categories.map((cat, i) => (
+                  <div key={i} style={{ background: "rgba(139,92,246,.06)", border: "1px solid rgba(139,92,246,.18)", borderRadius: 7, padding: "7px 12px", flex: "1 1 200px" }}>
+                    <div style={{ fontSize: ".7rem", fontWeight: 700, color: "#c4b5fd", marginBottom: 2 }}>{cat.cat}</div>
+                    <div style={{ fontSize: ".65rem", color: "var(--muted,#94a3b8)" }}>{cat.note}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div style={{ fontSize: ".65rem", color: "var(--muted,#475569)", fontStyle: "italic", textAlign: "center" }}>
+              🔮 {data.footer}
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── Quick Reference mode ── */}
       {activeMode === "reference" && (() => {

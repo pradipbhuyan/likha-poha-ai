@@ -1452,10 +1452,14 @@ def start_simulated_test(
     subjects_map = EXAM_SUBJECTS_MAP.get(exam_type, {})
     subject_names = list(subjects_map.keys())
 
-    # Build question list — up to 90 questions (30 per subject for JEE)
+    # Build question list — per NTA 2024-2026 official patterns:
+    #   JEE Main: 25/subject × 3 = 75 total
+    #   NEET UG:  45/subject × 3 = 135 (Biology covers Botany+Zoology)
+    #   CUET UG:  40/subject × varies
+    _PER_SUBJECT = {"jee_main": 25, "neet_ug": 45, "cuet_ug": 40}
+    per_subject = _PER_SUBJECT.get(exam_type, max(10, 90 // max(1, len(subject_names))))
     question_ids = []
     try:
-        per_subject = max(10, 90 // max(1, len(subject_names)))
         for subj in subject_names:
             q_result = (
                 db.table("exam_prep_questions")
