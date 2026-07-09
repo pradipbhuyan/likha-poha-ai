@@ -9,22 +9,19 @@
  *   - Pack prices are managed by admin via Subscription Settings
  */
 
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Loader, CheckCircle, XCircle, Lock, ShoppingCart } from "lucide-react";
 import {
-  getExamPrepDashboard,
   getExamPrepSubjects,
   getExamPrepTopics,
   getExamPrepQuestions,
   submitQuestionAnswer,
-  askFollowUp,
   startSimulatedTest,
   submitSimulatedTest,
 } from "../api/examPrep";
 import { getMyPacks, getPackPrices, createPackOrder, verifyPackPayment } from "../api/examPrepPacks";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const EXAMS = {
   jee_main: { label: "JEE Main",  icon: "📐", color: "#6366f1", subLabel: "Engineering entrance" },
@@ -205,7 +202,7 @@ function PackPurchaseModal({ examType, prices, user, onSuccess, onClose }) {
 }
 
 // ── Landing/Preview Page ──────────────────────────────────────────────────────
-function ExamPrepLanding({ packs, prices, user, onEnterExam, onBuyPack }) {
+function ExamPrepLanding({ packs, prices, onEnterExam, onBuyPack }) {
   return (
     <div className="premium-page">
       <section className="premium-section">
@@ -332,12 +329,10 @@ export default function ExamPrepPage({ user }) {
   const [activeExam, setActiveExam] = useState(null);  // null = landing, string = inside exam
   const [purchaseModal, setPurchaseModal] = useState(null); // exam type to show modal for
   const [loading, setLoading]       = useState(true);
-  const [error, setError]           = useState("");
 
   // Practice state
   const [subjects, setSubjects]         = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
-  const [topics, setTopics]             = useState([]);
   const [questions, setQuestions]       = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [feedbacks, setFeedbacks]       = useState({});
@@ -348,7 +343,6 @@ export default function ExamPrepPage({ user }) {
   const [testResult, setTestResult]     = useState(null);
   const [testLoading, setTestLoading]   = useState(false);
   const testStartRef = useRef(null);
-  const [testStartTS, setTestStartTS]   = useState(0);
 
   const grade = user?.grade || "";
   const isAdmin = user?.role === "admin";
@@ -368,18 +362,18 @@ export default function ExamPrepPage({ user }) {
         if (cancelled) return;
         setPacks(packsData.packs || {});
         setPrices(pricesData.prices || {});
-      } catch { if (!cancelled) setError("Could not load pack status."); }
+      } catch { /* non-critical — packs default to empty */ }
       finally { if (!cancelled) setLoading(false); }
     })();
     return () => { cancelled = true; };
-  }, [accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [accessToken]);
 
   function loadPacks() {
     if (!user?.accessToken) return;
     setLoading(true);
     Promise.all([getMyPacks(user.accessToken), getPackPrices()])
       .then(([pd, pr]) => { setPacks(pd.packs || {}); setPrices(pr.prices || {}); })
-      .catch(() => setError("Could not refresh packs."))
+      .catch(() => { /* non-critical */ })
       .finally(() => setLoading(false));
   }
 
@@ -433,15 +427,14 @@ export default function ExamPrepPage({ user }) {
 
   // Exam practice functions
   async function handleSelectSubject(name) {
-    if (selectedSubject === name) { setSelectedSubject(null); setTopics([]); setQuestions([]); return; }
+    if (selectedSubject === name) { setSelectedSubject(null); setQuestions([]); return; }
     setSelectedSubject(name);
     setLoadingQ(true);
     try {
-      const [topicsData, questionsData] = await Promise.all([
+      const [, questionsData] = await Promise.all([
         getExamPrepTopics(user.accessToken, activeExam, name),
         getExamPrepQuestions(user.accessToken, { exam: activeExam, subject: name, limit: 20 }),
       ]);
-      setTopics(topicsData.topics || []);
       setQuestions(questionsData.questions || []);
     } catch { setQuestions([]); }
     finally { setLoadingQ(false); }
@@ -461,7 +454,7 @@ export default function ExamPrepPage({ user }) {
     try {
       const data = await startSimulatedTest(user.accessToken, activeExam);
       setTestSession(data);
-      const now = Date.now(); testStartRef.current = now; setTestStartTS(now);
+      const now = Date.now(); testStartRef.current = now;
       setTestAnswers({});
       setActiveMode("test");
       const qData = await getExamPrepQuestions(user.accessToken, { exam: activeExam, limit: 90 });
@@ -503,7 +496,6 @@ export default function ExamPrepPage({ user }) {
         <ExamPrepLanding
           packs={packs}
           prices={prices}
-          user={user}
           onEnterExam={handleEnterExam}
           onBuyPack={(et) => setPurchaseModal(et)}
         />
