@@ -557,3 +557,17 @@ export async function searchRag({
 
   return response.json();
 }
+
+export async function uploadRagText({ username, grade, board, subject, chapter, title, text }, accessToken) {
+  /** Upload plain text as a RAG document — embeddings generated server-side. */
+  const response = await fetch(`${API_BASE_URL}/api/rag/upload-text`, {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify({ username, grade, board, subject, chapter, title, text }),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || "RAG text upload failed");
+  }
+  return response.json();
+}

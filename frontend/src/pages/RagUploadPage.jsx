@@ -22,6 +22,7 @@ import {
   analyzeSofImages,
   confirmSofUpload,
   searchRag,
+  uploadRagText,
 } from "../api/rag";
 import { getDefaultSelection } from "../utils/syllabusDefaults";
 
@@ -2694,21 +2695,15 @@ function RagUploadPage({ user }) {
               setPasteUploading(true);
               setPasteResult(null);
               try {
-                const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-                const resp = await fetch(`${API_BASE}/api/rag/upload-text`, {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json", "Authorization": `Bearer ${user?.accessToken}` },
-                  body: JSON.stringify({
-                    username: user?.username || "admin",
-                    grade: pasteGrade,
-                    board: pasteBoardVal,
-                    subject: pasteSubject,
-                    chapter: pasteChapter,
-                    title: pasteTitle || `${pasteGrade} ${pasteSubject} — ${pasteChapter}`,
-                    text: pasteText,
-                  }),
-                });
-                const data = await resp.json();
+                const data = await uploadRagText({
+                  username: user?.username || "admin",
+                  grade: pasteGrade,
+                  board: pasteBoardVal,
+                  subject: pasteSubject,
+                  chapter: pasteChapter,
+                  title: pasteTitle || `${pasteGrade} ${pasteSubject} — ${pasteChapter}`,
+                  text: pasteText,
+                }, user?.accessToken);
                 setPasteResult(data);
               } catch (e) {
                 setPasteResult({ success: false, message: e.message });
