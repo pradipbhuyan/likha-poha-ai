@@ -39,11 +39,14 @@ const EXAMS = {
   cuet_ug: { label: "CUET UG", icon: "🏛️", color: "#f59e0b", active: true },
 };
 
-// Exam-specific simulation config
+// Exam-specific simulation config — aligned to NTA 2024–2026 official patterns
 const EXAM_SIM_CONFIG = {
-  jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 90, marking: "+4 / -1" },
-  neet_ug:  { subjects: ["Physics", "Chemistry", "Biology"],     duration: 200, questions: 200, marking: "+4 / -1" },
-  cuet_ug:  { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / -1" },
+  // JEE Main: 75 questions (25/subject = 20 MCQ + 5 Numerical), 180 min, 300 marks, +4/−1
+  jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 75, questionsPerSubject: 25, marking: "+4 / −1 (MCQ & Numerical)", totalMarks: 300 },
+  // NEET UG: 180 questions (45/subject), 180 min, 720 marks, +4/−1, Botany & Zoology separate
+  neet_ug:  { subjects: ["Physics", "Chemistry", "Botany", "Zoology"], duration: 180, questions: 180, questionsPerSubject: 45, marking: "+4 / −1", totalMarks: 720 },
+  // CUET UG: varies by subject selection, +5/−1
+  cuet_ug:  { subjects: ["English", "General Test", "Domain Subject"], duration: 195, questions: 150, marking: "+5 / −1", totalMarks: null },
 };
 
 // ── CUET UG — NTA 2024 subject combination presets ────────────────────────────
@@ -162,8 +165,8 @@ if (typeof document !== "undefined" && !document.getElementById("_qp_print_block
   document.head.appendChild(s);
 }
 
-const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿" };
-const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e" };
+const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿", Botany: "🌱", Zoology: "🦎" };
+const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e", Botany: "#16a34a", Zoology: "#0891b2" };
 const PRIORITY_COLORS = { HIGH: "#ef4444", MED: "#f59e0b", LOW: "#22c55e" };
 const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" };
 
@@ -1071,7 +1074,7 @@ const QUICK_REFERENCE = {
     },
   },
   neet_ug: {
-    subjects: ["Physics", "Chemistry", "Biology"],
+    subjects: ["Physics", "Chemistry", "Botany", "Zoology"],
     Physics: {
       formulas: [
         { expr: "v = u + at · s = ut + ½at²", desc: "SUVAT kinematics — same as JEE" },
@@ -1122,35 +1125,86 @@ const QUICK_REFERENCE = {
         "SN2 = inversion (backside attack) · SN1 = racemic mixture (carbocation)",
       ],
     },
-    Biology: {
+    Botany: {
       formulas: [
-        { expr: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", desc: "Photosynthesis — light-dependent products: ATP, NADPH, O₂" },
-        { expr: "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 38 ATP", desc: "Aerobic respiration — net gain is 36-38 ATP" },
-        { expr: "Hardy-Weinberg: p² + 2pq + q² = 1", desc: "Allele frequencies — p + q = 1 always" },
+        { expr: "6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂", desc: "Photosynthesis — overall equation · Z-scheme for light reactions" },
+        { expr: "3CO₂ + 3RuBP → 6PGA → 1G3P (Calvin cycle)", desc: "Calvin cycle (C3) — 3 turns per G3P · occurs in stroma" },
+        { expr: "C4 pathway: CO₂ → OAA → malate → bundle sheath → Calvin", desc: "C4 plants (maize, sugarcane) — less photorespiration" },
+        { expr: "Transpiration pull — water column cohesion-tension theory", desc: "Ascent of water: transpiration pull > root pressure" },
+        { expr: "Hardy-Weinberg: p² + 2pq + q² = 1 · p + q = 1", desc: "Genetic equilibrium — 5 conditions required" },
       ],
       constants: [
-        { name: "Cells discovered by", value: "Robert Hooke (1665) — cork cells" },
-        { name: "DNA structure", value: "Double helix by Watson & Crick (1953)" },
-        { name: "Cell cycle: S phase", value: "DNA replication occurs in S (Synthesis) phase" },
+        { name: "Cells discovered by", value: "Robert Hooke (1665) — cork cells under microscope" },
+        { name: "Cell theory", value: "Schleiden & Schwann (1838-39) · Virchow added omnis cellula e cellula" },
+        { name: "Photosynthesis site", value: "Light reactions: thylakoid membrane · Calvin: stroma" },
+        { name: "C3 vs C4 first product", value: "C3 = 3-phosphoglycerate · C4 = oxaloacetate (OAA)" },
+        { name: "DNA replication", value: "S phase of cell cycle · semi-conservative (Meselson-Stahl)" },
       ],
       traps: [
-        "Glycolysis occurs in cytoplasm (not mitochondria) — produces 2 ATP, 2 NADH, 2 pyruvate.",
-        "All plants have cell walls; animal cells do NOT have cell walls.",
-        "Mitosis produces 2 genetically identical diploid cells · Meiosis produces 4 haploid cells.",
-        "C4 plants (maize, sugarcane): CO₂ fixation in mesophyll + bundle sheath cells.",
-        "DNA is antiparallel — one strand 5'→3', complementary strand 3'→5'.",
+        "Glycolysis: cytoplasm, not mitochondria — produces 2 ATP (net), 2 NADH, 2 pyruvate.",
+        "Krebs cycle: mitochondrial matrix · ETC: inner mitochondrial membrane.",
+        "C4 plants fix CO₂ into OAA in MESOPHYLL first, then Calvin in BUNDLE SHEATH.",
+        "Transpiration is water loss · Guttation is water drops from hydathodes (cool nights).",
+        "Gymnosperms have naked seeds · Angiosperms have seeds in fruit.",
+        "Mitosis: 2 identical diploid cells · Meiosis: 4 genetically different haploid cells.",
+        "Apical meristem = primary growth (length) · Lateral meristem = secondary growth (girth).",
+        "Xylem: unidirectional, dead cells · Phloem: bidirectional, living cells.",
       ],
       mnemonics: [
-        "PMAT — Prophase, Metaphase, Anaphase, Telophase (mitosis stages)",
-        "King Philip Came Over For Good Soup — Kingdom, Phylum, Class, Order, Family, Genus, Species",
-        "AT·GC pairing — A pairs with T (2 H-bonds), G pairs with C (3 H-bonds)",
+        "PMAT — Prophase, Metaphase, Anaphase, Telophase (cell division stages)",
+        "KPCOFGS — King Philip Came Over For Good Soup (Kingdom, Phylum, Class, Order, Family, Genus, Species)",
+        "ATP synthase: F0-F1 complex — F1 is the catalytic part (CF1 in chloroplasts)",
+        "ETC order: NADH → Complex I → CoQ → Complex III → Cyt c → Complex IV → O₂",
       ],
       revision: [
-        "Meristematic tissue = actively dividing · Permanent tissue = differentiated",
-        "Xylem: water and minerals upward · Phloem: sugar (sucrose) bidirectional",
-        "Endocrine glands: pituitary (master gland), thyroid, adrenal, pancreas (Islets of Langerhans)",
-        "Blood groups: AB = universal recipient · O = universal donor (for RBC)",
-        "Krebs cycle: 1 acetyl-CoA → 3 NADH + 1 FADH₂ + 1 GTP + 2 CO₂",
+        "Photosystems: PS-II absorbs 680nm · PS-I absorbs 700nm · Z-scheme connects them",
+        "Meristematic tissue: actively dividing · Permanent tissue: differentiated (no more division)",
+        "Xylem: tracheids + vessels + fibers + parenchyma · conducts water and minerals",
+        "Phloem: sieve tubes + companion cells + fibers + parenchyma · conducts sugars (source to sink)",
+        "Mendelian ratios: 3:1 (monohybrid) · 9:3:3:1 (dihybrid) · 1:2:1 (incomplete dominance F2)",
+        "DNA: anti-parallel double helix · A-T (2 H-bonds) · G-C (3 H-bonds) · 3.4 nm per turn",
+        "High-weight chapters: Photosynthesis · Respiration · Plant Growth · Genetics · Ecology",
+      ],
+    },
+    Zoology: {
+      formulas: [
+        { expr: "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 38 ATP", desc: "Aerobic respiration · net ATP: glycolysis=2 + Krebs=2 + ETC=34" },
+        { expr: "Cardiac output = Heart rate × Stroke volume", desc: "Normal CO = 72 × 70 = ~5L/min" },
+        { expr: "GFR = ~125 mL/min in healthy kidneys", desc: "Ultrafiltration in Bowman's capsule" },
+        { expr: "Hardy-Weinberg: p² + 2pq + q² = 1", desc: "Population genetics — violation = evolution" },
+        { expr: "BMI = weight(kg) / height(m)²", desc: "Body Mass Index — not in NEET but useful" },
+      ],
+      constants: [
+        { name: "Normal blood glucose", value: "70–110 mg/dL (fasting) · insulin lowers, glucagon raises" },
+        { name: "RBC lifespan", value: "120 days · made in red bone marrow · destroyed in spleen" },
+        { name: "Normal BP", value: "120/80 mmHg (systolic/diastolic)" },
+        { name: "ATP yield (aerobic)", value: "1 glucose = ~36-38 ATP (38 theoretical)" },
+        { name: "DNA structure", value: "Double helix · Watson & Crick 1953 · B-form most common" },
+      ],
+      traps: [
+        "Krebs cycle occurs in MITOCHONDRIAL MATRIX, not cytoplasm.",
+        "ETC (oxidative phosphorylation) occurs on INNER mitochondrial MEMBRANE.",
+        "Insulin: lowers blood glucose (beta cells) · Glucagon: raises blood glucose (alpha cells).",
+        "Nephron: glomerulus → Bowman's capsule → PCT → Loop of Henle → DCT → collecting duct.",
+        "ADH (vasopressin): increases water reabsorption · Aldosterone: increases Na⁺ reabsorption.",
+        "Antibody structure: 2 heavy + 2 light chains · Y-shaped · produced by B lymphocytes.",
+        "Innate immunity: non-specific, fast · Adaptive immunity: specific, slower, has memory.",
+        "DNA is antiparallel: one strand 5'→3', the complementary strand 3'→5'.",
+      ],
+      mnemonics: [
+        "PMAT — Prophase, Metaphase, Anaphase, Telophase (cell division)",
+        "AT·GC — A pairs T (2 bonds), G pairs C (3 bonds) in DNA",
+        "ETC order: NADH → CI → CoQ → CIII → Cyt c → CIV → O₂ (NADH→I→Q→III→c→IV→O₂)",
+        "Blood cells: RBC (erythrocyte) · WBC (leukocyte) · Platelets (thrombocyte)",
+      ],
+      revision: [
+        "Krebs cycle: 1 acetyl-CoA → 3 NADH + 1 FADH₂ + 1 GTP + 2 CO₂ per turn",
+        "Digestion enzymes: amylase (starch) · pepsin (protein) · lipase (fats) · trypsin (protein)",
+        "Blood groups: AB = universal recipient (no antibodies) · O = universal donor (both antibodies)",
+        "Endocrine glands: pituitary (master) · thyroid (T3/T4) · adrenal (adrenaline/cortisol) · pancreas (insulin/glucagon)",
+        "Muscle types: striated/voluntary (skeletal) · smooth/involuntary · cardiac (striated, involuntary)",
+        "High-weight chapters: Human Physiology · Genetics · Biotechnology · Ecology · Evolution",
+        "Mendelian laws: Segregation (monohybrid 3:1) · Independent Assortment (dihybrid 9:3:3:1)",
       ],
     },
   },
@@ -1839,20 +1893,24 @@ export default function ExamPrepPage({ user, setActivePage }) {
             <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 10 }}>🎯 {examInfo.label} — Exam Strategy</div>
             {selectedExam === "jee_main" && (
               <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
-                <li>90 questions · 3 hours · 300 marks (+4 / –1)</li>
-                <li>Physics & Chemistry: 30 questions each · Mathematics: 30 questions</li>
-                <li>Section B (numerical): attempt only when confident (no negative marking)</li>
-                <li>Target: 60–70% accuracy to clear cutoff. Prioritise HIGH-weightage chapters first.</li>
-                <li>Daily practice: 15–20 questions per subject. Weekly full simulation.</li>
+                <li><strong style={{color:"#a5b4fc"}}>75 questions · 3 hours · 300 marks · +4/−1 (MCQ & Numerical)</strong></li>
+                <li>Each subject: 25 questions (20 MCQ + 5 Numerical Value) · Physics / Chemistry / Mathematics</li>
+                <li>Numerical: correct = +4 · wrong = −1 (negative marking applies — attempt only when confident)</li>
+                <li>Difficulty mix: ~20% easy · ~55% moderate · ~25% hard · Average time: 2.4 min/question</li>
+                <li>Topic weightage: Calculus ~35% · Algebra ~30% · Coordinate Geometry ~20% · Vectors ~10%</li>
+                <li>Chemistry is easiest · Physics is calculation-heavy · Maths is consistently toughest</li>
+                <li>Target: 70%+ accuracy. Focus on Mechanics, Electrostatics, Organic, Calculus first.</li>
               </ul>
             )}
             {selectedExam === "neet_ug" && (
               <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
-                <li>200 questions (180 to attempt) · 3 hours 20 min · 720 marks (+4 / –1)</li>
-                <li>Biology: 100 questions (most weightage) · Chemistry + Physics: 50 each</li>
-                <li>NCERT Biology is paramount — 85% of questions are directly from NCERT text</li>
-                <li>Target: 550+ score. Biology alone can carry you if done thoroughly.</li>
-                <li>Revise NCERT diagrams, exceptions, and examples meticulously.</li>
+                <li><strong style={{color:"#34d399"}}>180 questions · 3 hours · 720 marks · +4/−1 · Pen & Paper (OMR)</strong></li>
+                <li>4 subjects: Physics (45 Qs) · Chemistry (45 Qs) · Botany (45 Qs) · Zoology (45 Qs)</li>
+                <li>Biology (Botany + Zoology) = 90 questions = 360 marks — most weightage!</li>
+                <li>Difficulty mix: ~30% easy · ~50% moderate · ~20% hard · Average time: 1.0 min/question</li>
+                <li>90–95% of Biology questions come directly from NCERT text — read every line</li>
+                <li>High-weight Biology chapters: Genetics · Human Physiology · Ecology · Biotechnology</li>
+                <li>Target: 550+ score. Biology alone can carry you — Physics has most difficult questions.</li>
               </ul>
             )}
             {selectedExam === "cuet_ug" && (
@@ -1998,15 +2056,14 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 return (
                   <>
                     <p style={{ color: "var(--muted,#64748b)", fontSize: ".85rem", marginBottom: 24, lineHeight: 1.6 }}>
-                      A full {examInfo.label} simulation with ~{cfg.questions} questions across {cfg.subjects.join(", ")}.
-                      {cfg.duration} minutes · Marking: {cfg.marking}
+                      {cfg.questions} questions across {cfg.subjects.length} subjects · {cfg.duration} min · {cfg.totalMarks ? `${cfg.totalMarks} marks · ` : ""}{cfg.marking}
                     </p>
                     <div style={{ display: "grid", gridTemplateColumns: `repeat(${cfg.subjects.length},1fr)`, gap: 10, marginBottom: 28 }}>
                       {cfg.subjects.map(s => (
                         <div key={s} style={{ background: "var(--panel,#1e293b)", border: "1px solid var(--border,#334155)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
                           <div style={{ fontSize: "1.3rem", marginBottom: 4 }}>{SUBJECT_ICONS[s] || "📚"}</div>
                           <div style={{ fontSize: ".75rem", fontWeight: 700 }}>{s}</div>
-                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>~{Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
+                          <div style={{ fontSize: ".62rem", color: "var(--muted,#64748b)" }}>{cfg.questionsPerSubject || Math.round(cfg.questions / cfg.subjects.length)} Qs</div>
                         </div>
                       ))}
                     </div>
