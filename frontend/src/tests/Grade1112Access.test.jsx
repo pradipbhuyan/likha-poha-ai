@@ -6,18 +6,15 @@
  *   - Stream picker hidden for Grade 5-10
  *   - Stream validation blocks submit without stream selection
  *   - Each stream card renders and is selectable
- *   - ExamPrepPage: free-tier Grade 11/12 sees paywall, not content
- *   - ExamPrepPage: nano plan sees paywall
- *   - ExamPrepPage: premium plan sees content
- *   - ExamPrepPage: admin always sees content
+ *   - ExamPrepPage: all Grade 11/12 students see the pack-based landing
  *   - ExamPrepPage: Grade 5-10 student sees "not available" guard
- *   - ExamPrepPage: akshita.teststudent (Grade 9) bypasses paywall
+ *   - ExamPrepPage: akshita.teststudent (Grade 9) bypasses grade gate
+ *   - ExamPrepPage: admin bypasses grade gate
  *   - Sidebar: Exam Prep visible for Grade 11/12 (all tiers)
  *   - Sidebar: Exam Prep hidden for Grade 5-10
- *   - ResourcesPage: subject · chapter separator renders correctly
  */
 
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SignupPage from "../pages/SignupPage";
 import ExamPrepPage from "../pages/ExamPrepPage";
@@ -61,55 +58,24 @@ vi.mock("../api/examPrep", () => ({
   submitSimulatedTest: vi.fn(),
 }));
 
+vi.mock("../api/examPrepPacks", () => ({
+  getMyPacks: vi.fn().mockResolvedValue({ packs: {}, grade_eligible: true }),
+  getPackPrices: vi.fn().mockResolvedValue({
+    prices: {
+      jee_main: { price: 999, charge: 799, duration_days: 120, discount_pct: 20, included: ["Practice questions", "AI explanations", "Simulated tests"] },
+      neet_ug:  { price: 999, charge: 799, duration_days: 120, discount_pct: 20, included: ["Practice questions", "AI explanations", "Simulated tests"] },
+      cuet_ug:  { price: 999, charge: 799, duration_days: 120, discount_pct: 20, included: ["Practice questions", "AI explanations", "Simulated tests"] },
+    },
+    razorpay_configured: false,
+  }),
+  createPackOrder: vi.fn(),
+  verifyPackPayment: vi.fn(),
+}));
+
 // ── User fixtures ─────────────────────────────────────────────────────────────
 
-// ── Mock global fetch for /api/exam-prep/access-check ─────────────────────────
-function makeAccessCheckResponse(user) {
-  const grade = user?.grade || "";
-  const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
-  const isAdmin = user?.role === "admin";
-  const isTestUser = user?.username === "akshita.teststudent";
-  const plan = (user?.subscriptionPlan || "free").toLowerCase();
-  const isNano = plan.includes("nano");
-  const isPremium = !isNano && plan !== "free";
-
-  if (isAdmin || isTestUser) {
-    return { grade_eligible: true, has_access: true, preview_only: false,
-      reason: isAdmin ? "admin" : "test_user", stream: null, stream_missing: true,
-      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: true, reason: "" }, cuet_ug: { eligible: true, coming_soon: true } },
-      canonical_plan_key: "ADMIN_GRANT", plan_name: "Admin" };
-  }
-  if (!isGrade1112) {
-    return { grade_eligible: false, has_access: false, preview_only: true,
-      reason: "grade_ineligible", stream: null, stream_missing: false,
-      exam_eligibility: null, canonical_plan_key: null, plan_name: null };
-  }
-  if (isPremium) {
-    return { grade_eligible: true, has_access: true, preview_only: false,
-      reason: "full_access", stream: "PCM", stream_missing: false,
-      exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: false, reason: "Biology required" }, cuet_ug: { eligible: true, coming_soon: true } },
-      canonical_plan_key: "PREMIUM", plan_name: "Premium" };
-  }
-  // Free or Nano — preview only
-  const reason = isNano ? "nano" : "free";
-  return { grade_eligible: true, has_access: false, preview_only: true,
-    reason, stream: "PCM", stream_missing: false,
-    exam_eligibility: { jee_main: { eligible: true, reason: "" }, neet_ug: { eligible: false, reason: "Biology required" }, cuet_ug: { eligible: true, coming_soon: true } },
-    canonical_plan_key: isNano ? "NANO" : "FREE_TIER",
-    plan_name: isNano ? "Premium Nano" : "Free Tier",
-    upgrade_message: "Upgrade to Premium to access Exam Prep." };
-}
-
-function mockFetch(user) {
-  return vi.fn().mockResolvedValue({
-    ok: true,
-    json: () => Promise.resolve(makeAccessCheckResponse(user)),
-  });
-}
-
 beforeEach(() => {
-  // Default fetch mock (overridden per test when needed)
-  vi.stubGlobal("fetch", mockFetch({ role: "student", grade: "Grade 11", subscriptionPlan: "free" }));
+  vi.clearAllMocks();
 });
 
 afterEach(() => {
@@ -150,9 +116,7 @@ const testUser = {
 describe("SignupPage — Grade 11/12 Stream Picker", () => {
   it("stream picker NOT shown for Grade 9 student", () => {
     render(<SignupPage onBack={() => {}} />);
-    // Select student role
     fireEvent.click(screen.getByTestId("role-card-student"));
-    // Grade 9 is default — no stream picker
     expect(screen.queryByTestId("stream-picker")).toBeNull();
   });
 
@@ -199,27 +163,24 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
     expect(screen.getByTestId("stream-card-Humanities")).toBeTruthy();
   });
 
-  it("PCM stream card shows JEE Main label", () => {
+  it("PCM stream card renders for Grade 11", () => {
     render(<SignupPage onBack={() => {}} />);
     fireEvent.click(screen.getByTestId("role-card-student"));
     fireEvent.change(screen.getByTestId("signup-grade"), { target: { value: "Grade 11" } });
-    // PCM card is rendered — check for the PCM stream card element and its label
     expect(screen.getByTestId("stream-card-PCM")).toBeTruthy();
   });
 
-  it("PCB stream card shows NEET UG label", () => {
+  it("PCB stream card renders for Grade 11", () => {
     render(<SignupPage onBack={() => {}} />);
     fireEvent.click(screen.getByTestId("role-card-student"));
     fireEvent.change(screen.getByTestId("signup-grade"), { target: { value: "Grade 11" } });
-    // PCB card is rendered — check for the PCB stream card element
     expect(screen.getByTestId("stream-card-PCB")).toBeTruthy();
   });
 
   it("stream picker hidden for parent role even if grade 11 would be selected", () => {
     render(<SignupPage onBack={() => {}} />);
-    // Stay on parent role (default)
     expect(screen.queryByTestId("stream-picker")).toBeNull();
-    expect(screen.queryByTestId("signup-grade")).toBeNull(); // grade hidden for parent
+    expect(screen.queryByTestId("signup-grade")).toBeNull();
   });
 
   it("stream picker resets when grade changes from 11 back to 9", () => {
@@ -228,7 +189,6 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
     const gradeSelect = screen.getByTestId("signup-grade");
     fireEvent.change(gradeSelect, { target: { value: "Grade 11" } });
     expect(screen.getByTestId("stream-picker")).toBeTruthy();
-    // Switch back to Grade 9
     fireEvent.change(gradeSelect, { target: { value: "Grade 9" } });
     expect(screen.queryByTestId("stream-picker")).toBeNull();
   });
@@ -240,7 +200,6 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Student" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "test@example.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    // Do NOT select a stream
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
       const errorEl = screen.getByTestId("signup-error");
@@ -255,113 +214,111 @@ describe("SignupPage — Grade 11/12 Stream Picker", () => {
     fireEvent.change(screen.getByTestId("signup-name"), { target: { value: "Test Student" } });
     fireEvent.change(screen.getByTestId("signup-email"), { target: { value: "test@example.com" } });
     fireEvent.change(screen.getByTestId("signup-password"), { target: { value: "password123" } });
-    // Submit without stream to trigger error
     fireEvent.click(screen.getByTestId("signup-submit"));
     await waitFor(() => {
       expect(screen.getByTestId("signup-error").textContent).toMatch(/stream/i);
     });
-    // Select PCM — error should clear
     fireEvent.click(screen.getByTestId("stream-card-PCM"));
     expect(screen.queryByTestId("signup-error")).toBeNull();
   });
 });
 
-// ── ExamPrepPage — Premium gate tests ─────────────────────────────────────────
+// ── ExamPrepPage — Pack-based access gate tests ───────────────────────────────
+// NOTE: ExamPrepPage uses a pack-based purchase model (2026-07-09).
+// All Grade 11/12 students see the landing/preview page with exam pack cards.
+// Access to each exam (JEE/NEET/CUET) requires a separate pack purchase,
+// independent of CBSE subscription tier (free/nano/premium).
 
-describe("ExamPrepPage — Access Control & Premium Gate", () => {
-  it("Grade 9 free-tier student sees access denied (not Grade 11/12)", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade9FreeTier));
+describe("ExamPrepPage — Access Control & Pack Gate", () => {
+  it("Grade 9 free-tier student sees grade access denied", async () => {
     render(<ExamPrepPage user={grade9FreeTier} />);
     await waitFor(() => {
       expect(screen.getByText(/Available for Grade 11 & 12/i)).toBeTruthy();
     });
   });
 
-  it("Grade 11 FREE-tier student sees premium paywall (not content)", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
+  it("Grade 11 FREE-tier student sees exam prep landing (not grade-blocked)", async () => {
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
+      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/purchase the pack to access/i)).toBeTruthy();
     });
   });
 
-  it("Grade 11 FREE-tier paywall shows feature preview cards", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
+  it("Grade 11 FREE-tier landing shows all three exam pack cards", async () => {
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      expect(screen.getByText(/JEE Main prep/i)).toBeTruthy();
-      expect(screen.getByText(/NEET UG prep/i)).toBeTruthy();
-      expect(screen.getByText(/Simulated tests/i)).toBeTruthy();
+      expect(screen.getByText("JEE Main")).toBeTruthy();
+      expect(screen.getByText("NEET UG")).toBeTruthy();
+      expect(screen.getByText("CUET UG")).toBeTruthy();
     });
   });
 
-  it("Grade 11 FREE-tier paywall shows Upgrade to Premium button", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
+  it("Grade 11 FREE-tier landing shows feature list including simulated tests", async () => {
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      // Locked preview shows "Coming Soon" disabled button (pricing TBD)
-      expect(screen.getByRole("button", { name: /Coming Soon/i })).toBeTruthy();
+      expect(screen.getAllByText(/Full simulated tests/i).length).toBeGreaterThan(0);
     });
   });
 
-  it("Grade 11 NANO plan sees paywall (Nano excluded from Exam Prep)", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11Nano));
+  it("Grade 11 FREE-tier landing shows Unlock pack buttons", async () => {
+    render(<ExamPrepPage user={grade11FreeTier} />);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /Unlock JEE Main/i })).toBeTruthy();
+    });
+  });
+
+  it("Grade 11 NANO plan sees exam prep landing (pack purchase required)", async () => {
     render(<ExamPrepPage user={grade11Nano} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
+      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/purchase the pack to access/i)).toBeTruthy();
     });
   });
 
-  it("Grade 11 NANO paywall shows nano-specific message", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11Nano));
+  it("Grade 11 NANO plan landing shows Unlock pack buttons", async () => {
     render(<ExamPrepPage user={grade11Nano} />);
     await waitFor(() => {
-      expect(screen.getByText(/Premium Nano plan/i)).toBeTruthy();
+      expect(screen.getByRole("button", { name: /Unlock JEE Main/i })).toBeTruthy();
     });
   });
 
-  it("Grade 11 PREMIUM plan sees full content (JEE Main tab visible)", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11Premium));
+  it("Grade 11 PREMIUM plan sees exam prep landing with exam cards", async () => {
     render(<ExamPrepPage user={grade11Premium} />);
     await waitFor(() => {
-      expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
+      expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
       expect(screen.getByText("JEE Main")).toBeTruthy();
     });
   });
 
-  it("Grade 12 PREMIUM student sees content", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade12Premium));
+  it("Grade 12 PREMIUM student sees exam prep landing (not grade-blocked)", async () => {
     render(<ExamPrepPage user={grade12Premium} />);
     await waitFor(() => {
-      expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
+      expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
+      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
     });
   });
 
-  it("Admin user bypasses paywall and sees full content", async () => {
-    vi.stubGlobal("fetch", mockFetch(adminUser));
+  it("Admin user bypasses grade gate and sees exam prep landing", async () => {
     render(<ExamPrepPage user={adminUser} />);
     await waitFor(() => {
-      expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
-      expect(screen.getByText(/Admin Preview/i)).toBeTruthy();
+      expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
+      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
     });
   });
 
-  it("akshita.teststudent (Grade 9) bypasses paywall — sees content", async () => {
-    vi.stubGlobal("fetch", mockFetch(testUser));
+  it("akshita.teststudent (Grade 9) bypasses grade gate and sees landing", async () => {
     render(<ExamPrepPage user={testUser} />);
     await waitFor(() => {
-      expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
-      expect(screen.getByText(/Test Access/i)).toBeTruthy();
+      expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
+      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
     });
   });
 
-  it("Grade 11 free paywall shows exam tabs as disabled visual", async () => {
-    vi.stubGlobal("fetch", mockFetch(grade11FreeTier));
+  it("Grade 11 landing shows practice questions feature text", async () => {
     render(<ExamPrepPage user={grade11FreeTier} />);
     await waitFor(() => {
-      // Disabled tabs still render (grayed out) to give a feel of the product
-      expect(screen.getByText("NEET UG")).toBeTruthy();
-      expect(screen.getByText("CUET UG")).toBeTruthy();
+      expect(screen.getAllByText(/Practice questions/i).length).toBeGreaterThan(0);
     });
   });
 });
@@ -419,31 +376,36 @@ describe("Sidebar — Exam Prep Link Visibility", () => {
   });
 });
 
-// ── Subscription plan combinations ───────────────────────────────────────────
+// ── Plan-based access combinations ────────────────────────────────────────────
+// In the pack-based model, ALL Grade 11 students (any plan) see the landing.
+// The distinction is now per-exam pack ownership, not subscription tier.
+// These tests verify no plan is grade-blocked from the landing page.
 
 describe("ExamPrepPage — Plan-based access combinations", () => {
   const plans = [
-    { plan: "free", expectLocked: true },
-    { plan: "premium_nano", expectLocked: true },
-    { plan: "nano", expectLocked: true },
-    { plan: "premium", expectLocked: false },
+    { plan: "free",           expectLocked: true },
+    { plan: "premium_nano",   expectLocked: true },
+    { plan: "nano",           expectLocked: true },
+    { plan: "premium",        expectLocked: false },
     { plan: "premium_annual", expectLocked: false },
-    { plan: "family", expectLocked: false },
-    { plan: "school", expectLocked: false },
+    { plan: "family",         expectLocked: false },
+    { plan: "school",         expectLocked: false },
   ];
 
   plans.forEach(({ plan, expectLocked }) => {
     it(`Grade 11 with plan "${plan}" — ${expectLocked ? "LOCKED" : "UNLOCKED"}`, async () => {
       const user = { id: "x", username: "tester", role: "student", grade: "Grade 11", subscriptionPlan: plan, accessToken: "tok" };
-      vi.stubGlobal("fetch", mockFetch(user));
       render(<ExamPrepPage user={user} />);
       if (expectLocked) {
+        // Locked plans see the landing with pack purchase required
         await waitFor(() => {
-          expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
+          expect(screen.getByText(/purchase the pack to access/i)).toBeTruthy();
         });
       } else {
+        // Unlocked plans (premium+) still see the landing (packs are per-exam purchase)
+        // but are not grade-blocked
         await waitFor(() => {
-          expect(screen.queryByText(/Exam Prep Center — Premium Feature/i)).toBeNull();
+          expect(screen.queryByText(/Available for Grade 11 & 12 students only/i)).toBeNull();
           expect(screen.getByText("JEE Main")).toBeTruthy();
         });
       }
