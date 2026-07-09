@@ -333,6 +333,9 @@ function App() {
   );
   const [oauthLoading, setOauthLoading] = useState(false);
   const [oauthError, setOauthError] = useState(null);    // visible error with retry
+  // Welcome transition — shown for 2.5s after every fresh login/signup
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [welcomeUser, setWelcomeUser] = useState(null);
   // Safety-net: if the OAuth spinner is somehow stuck, auto-clear after 15 s
   useEffect(() => {
     if (!oauthLoading) return;
@@ -927,6 +930,13 @@ function App() {
       setActivePage("dashboard");
       localStorage.setItem("tutor_active_page", "dashboard");
     }
+
+    // Show welcome transition screen for 2.5s (skip for admin/sales roles)
+    if (!["admin", "sales"].includes(enrichedUser.role)) {
+      setWelcomeUser(enrichedUser);
+      setShowWelcome(true);
+      setTimeout(() => setShowWelcome(false), 2500);
+    }
   }
 
   /** Refresh user profile from DB after a successful payment or promo-code redemption.
@@ -1455,6 +1465,95 @@ function App() {
           setSignupInitialPlan("free");
         }}
       />
+    );
+  }
+
+  // ── Welcome transition screen — shown for 2.5s after fresh login ──────────
+  if (showWelcome && welcomeUser) {
+    const wu = welcomeUser;
+    const firstName = (wu.username || "").split(" ")[0] || "there";
+    const role = wu.role;
+    const grade = wu.grade || "";
+
+    const roleConfig = {
+      student: {
+        icon: "📚",
+        headline: `Hello ${firstName}${grade ? `, ${grade}` : ""}!`,
+        line1: "Your AI tutor is ready.",
+        line2: "Lessons, mock tests and doubts — all set for you.",
+        color: "#6366f1",
+        dots: ["●", "●", "●", "●", "●"],
+      },
+      parent: {
+        icon: "👨‍👩‍👧",
+        headline: `Welcome, ${firstName}!`,
+        line1: "Your child's learning dashboard is set up.",
+        line2: "Track progress, tests, and activity — all in one place.",
+        color: "#10b981",
+        dots: ["●", "●", "●", "●", "●"],
+      },
+      teacher: {
+        icon: "🎓",
+        headline: `Welcome, ${firstName}!`,
+        line1: "Your classroom and student roster are ready.",
+        line2: "Start assigning lessons and tracking progress today.",
+        color: "#f59e0b",
+        dots: ["●", "●", "●", "●", "●"],
+      },
+    };
+    const cfg = roleConfig[role] || roleConfig.student;
+
+    return (
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        background: "#0f172a",
+        animation: "wfadeIn .3s ease",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      }}>
+        <style>{`
+          @keyframes wfadeIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+          @keyframes wdots{0%,80%,100%{opacity:.25}40%{opacity:1}}
+          @keyframes wbar{0%{width:0%}100%{width:100%}}
+        `}</style>
+
+        {/* Logo */}
+        <img src="/loading-logo.gif" alt="Likha Poha AI" height="80"
+          style={{ width: "auto", marginBottom: 32, opacity: .9 }} />
+
+        {/* Icon + headline */}
+        <div style={{ fontSize: "2.8rem", marginBottom: 12 }}>{cfg.icon}</div>
+        <h2 style={{ fontSize: "1.5rem", fontWeight: 900, color: "#f1f5f9", margin: "0 0 10px", textAlign: "center", padding: "0 24px" }}>
+          {cfg.headline}
+        </h2>
+        <p style={{ fontSize: ".9rem", color: "#94a3b8", margin: "0 0 4px", textAlign: "center" }}>{cfg.line1}</p>
+        <p style={{ fontSize: ".82rem", color: "#64748b", margin: "0 0 32px", textAlign: "center" }}>{cfg.line2}</p>
+
+        {/* Animated dots progress */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+          {[0,1,2,3,4].map(i => (
+            <div key={i} style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: cfg.color,
+              animation: `wdots 1.2s ease-in-out ${i * 0.18}s infinite`,
+            }} />
+          ))}
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ width: 220, height: 3, background: "#1e293b", borderRadius: 4, overflow: "hidden" }}>
+          <div style={{
+            height: "100%",
+            background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}88)`,
+            borderRadius: 4,
+            animation: "wbar 2.5s ease-out forwards",
+          }} />
+        </div>
+        <p style={{ fontSize: ".72rem", color: "#475569", marginTop: 12 }}>
+          Taking you to your dashboard…
+        </p>
+      </div>
     );
   }
 
