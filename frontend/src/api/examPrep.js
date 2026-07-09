@@ -249,3 +249,17 @@ export async function adminImportBulk(accessToken, questions) {
   });
   return handleResponse(res);
 }
+
+/**
+ * Fetch the student's last N completed simulated test results for a given exam.
+ * Used by Cutoff Oracle to show performance trend and "Your Standing" panel.
+ * Returns: { success, history: [{ id, exam_type, score_raw, score_normalized,
+ *   correct, wrong, total_questions, time_spent_seconds, submitted_at }] }
+ */
+export async function getSimTestHistory(accessToken, exam = "jee_main", limit = 10) {
+  const res = await fetch(
+    `${API_BASE}/api/exam-prep/simulated-tests/history?exam=${encodeURIComponent(exam)}&limit=${limit}`,
+    { headers: authHeaders(accessToken) },
+  );
+  return handleResponse(res);
+}

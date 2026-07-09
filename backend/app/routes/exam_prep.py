@@ -360,6 +360,24 @@ def get_result(
     return {"success": True, "result": result}
 
 
+@router.get("/simulated-tests/history")
+def get_sim_test_history(
+    exam: str = "jee_main",
+    limit: int = 10,
+    ctx=Depends(_require_exam_prep_access),
+):
+    """Return the student's last N completed simulated tests for a given exam type.
+    Used by Cutoff Oracle to show performance trend.
+    """
+    user = ctx["user"]
+    history = svc.get_sim_test_history(
+        user_id=user.id,
+        exam_type=exam,
+        limit=min(limit, 20),
+    )
+    return {"success": True, "history": history}
+
+
 # ── Legacy PYQ endpoints (backward compat) ─────────────────────────────────────
 
 EXAM_CHAPTER_PATTERNS = {

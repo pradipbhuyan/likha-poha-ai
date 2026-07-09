@@ -24,6 +24,7 @@ import {
   askFollowUp,
   startSimulatedTest,
   submitSimulatedTest,
+  getSimTestHistory,
 } from "../api/examPrep";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -1312,6 +1313,10 @@ export default function ExamPrepPage({ user, setActivePage }) {
   // CUET: stores the subjects the student selected in CUETTestSetup
   const [cuetSelectedSubjects, setCuetSelectedSubjects] = useState([]);
 
+  // Sim test history for Cutoff Oracle
+  const [simHistory, setSimHistory] = useState([]);
+  const [simHistoryLoading, setSimHistoryLoading] = useState(false);
+
   const isTestUser = TEST_ACCESS_USERS.has(user?.username);
   const isAdmin = user?.role === "admin";
 
@@ -1326,6 +1331,16 @@ export default function ExamPrepPage({ user, setActivePage }) {
       .then(d => setAccessCheck(d))
       .catch(() => setAccessCheck({ grade_eligible: false, has_access: false, preview_only: true, reason: "error" }));
   }, [user?.accessToken]);
+
+  // ── Fetch sim history when oracle tab is active ────────────────────────────
+  useEffect(() => {
+    if (activeMode !== "oracle" || !user?.accessToken || !accessCheck?.has_access) return;
+    setSimHistoryLoading(true);
+    getSimTestHistory(user.accessToken, selectedExam, 10)
+      .then(d => setSimHistory(d.history || []))
+      .catch(() => setSimHistory([]))
+      .finally(() => setSimHistoryLoading(false));
+  }, [activeMode, selectedExam, user?.accessToken, accessCheck?.has_access]);
 
   // ── Load dashboard ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -1734,8 +1749,145 @@ export default function ExamPrepPage({ user, setActivePage }) {
         const data = ORACLE_DATA[selectedExam] || ORACLE_DATA.jee_main;
         const _examColor = examInfo.color; // reserved for future use (colour-coded bands)
 
+        // ── Compute "Your Standing" from history ──────────────────────────────
+        const latestEntry = simHistory.length > 0 ? simHistory[0] : null;
+        const latestRawScore = latestEntry
+          ? (latestEntry.score_raw != null ? latestEntry.score_raw : Math.round(latestEntry.score_normalized / 100 * data.maxScore))
+          : null;
+        // Find which band the latest score falls in
+        const activeBandIdx = latestRawScore != null
+          ? data.bands.findIndex(band => {
+              const [lo, hi] = band.range.replace("Below ", "0–").replace("–", " ").split(" ").map(Number);
+              return latestRawScore >= lo && (hi ? latestRawScore <= hi : true);
+            })
+          : -1;
+        // Trend: compare latest 2 scores
+        const trend = simHistory.length >= 2
+          ? (simHistory[0].score_normalized > simHistory[1].score_normalized ? "up"
+            : simHistory[0].score_normalized < simHistory[1].score_normalized ? "down" : "same")
+          : "none";
+        const trendIcon = trend === "up" ? "↗️" : trend === "down" ? "↘️" : trend === "same" ? "→" : "";
+        const trendColor = trend === "up" ? "#22c55e" : trend === "down" ? "#ef4444" : "#94a3b8";
+
         return (
           <section className="premium-section" style={{ paddingTop: 0 }}>
+
+            {/* ── Your Standing panel ── */}
+            {simHistoryLoading && (
+              <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, padding: "14px 18px", marginBottom: 20, display: "flex", alignItems: "center", gap: 10, fontSize: ".78rem", color: "var(--muted,#64748b)" }}>
+                <Loader size={13} style={{ animation: "spin 1s linear infinite" }} /> Loading your test performance…
+              </div>
+            )}
+
+            {!simHistoryLoading && simHistory.length === 0 && (
+              <div style={{ background: "rgba(139,92,246,.06)", border: "1px dashed rgba(139,92,246,.35)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                  <span style={{ fontSize: "1.4rem" }}>📊</span>
+                  <div style={{ fontWeight: 800, fontSize: ".88rem", color: "#a78bfa" }}>Your Standing</div>
+                </div>
+                <div style={{ fontSize: ".75rem", color: "var(--muted,#64748b)", lineHeight: 1.6 }}>
+                  No simulated tests taken yet for <strong>{examInfo.label}</strong>.<br />
+                  Take the <button onClick={() => setActiveMode("test")} style={{ background: "none", border: "none", color: "#8b5cf6", fontWeight: 700, fontSize: ".75rem", cursor: "pointer", padding: 0, fontFamily: "inherit" }}>Simulated Test →</button> to see which college band you fall in.
+                </div>
+              </div>
+            )}
+
+            {!simHistoryLoading && simHistory.length > 0 && latestRawScore != null && (
+              <div style={{ background: "linear-gradient(135deg,rgba(139,92,246,.1),rgba(99,102,241,.07))", border: "2px solid rgba(139,92,246,.35)", borderRadius: 14, padding: "18px 20px", marginBottom: 20 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                  <span style={{ fontSize: "1.6rem" }}>📊</span>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: ".95rem", color: "#a78bfa" }}>Your Standing — {examInfo.label}</div>
+                    <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)" }}>Based on your last {simHistory.length} simulated test{simHistory.length > 1 ? "s" : ""}</div>
+                  </div>
+                </div>
+
+                {/* Stats row */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 10, marginBottom: 14 }}>
+                  {/* Latest score */}
+                  <div style={{ background: "rgba(139,92,246,.1)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
+                    <div style={{ fontSize: "1.4rem", fontWeight: 900, color: activeBandIdx >= 0 ? data.bands[activeBandIdx].color : "#a78bfa" }}>
+                      {latestRawScore}
+                    </div>
+                    <div style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", marginTop: 2 }}>Latest Score<br />{data.scoreKey.split("(")[1]?.replace(")", "") || ""}</div>
+                  </div>
+                  {/* Percentile/band */}
+                  {activeBandIdx >= 0 && (
+                    <div style={{ background: `${data.bands[activeBandIdx].color}14`, border: `1px solid ${data.bands[activeBandIdx].color}40`, borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
+                      <div style={{ fontSize: "1.1rem", marginBottom: 2 }}>{data.bands[activeBandIdx].emoji}</div>
+                      <div style={{ fontSize: ".75rem", fontWeight: 800, color: data.bands[activeBandIdx].color }}>{data.bands[activeBandIdx].label}</div>
+                      <div style={{ fontSize: ".58rem", color: "var(--muted,#64748b)" }}>{data.bands[activeBandIdx].percentile}</div>
+                    </div>
+                  )}
+                  {/* Tests taken */}
+                  <div style={{ background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
+                    <div style={{ fontSize: "1.4rem", fontWeight: 900, color: "#a5b4fc" }}>{simHistory.length}</div>
+                    <div style={{ fontSize: ".6rem", color: "var(--muted,#64748b)", marginTop: 2 }}>Tests Taken</div>
+                  </div>
+                  {/* Trend */}
+                  {trend !== "none" && (
+                    <div style={{ background: `${trendColor}12`, border: `1px solid ${trendColor}35`, borderRadius: 10, padding: "10px 12px", textAlign: "center" }}>
+                      <div style={{ fontSize: "1.4rem" }}>{trendIcon}</div>
+                      <div style={{ fontSize: ".65rem", fontWeight: 700, color: trendColor, marginTop: 2 }}>
+                        {trend === "up" ? "Improving" : trend === "down" ? "Declining" : "Stable"}
+                      </div>
+                      <div style={{ fontSize: ".55rem", color: "var(--muted,#64748b)" }}>vs prev test</div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Sparkline — last up-to-8 tests as mini bars */}
+                {simHistory.length >= 2 && (() => {
+                  const bars = simHistory.slice(0, 8).reverse();
+                  const maxNorm = Math.max(...bars.map(t => t.score_normalized), 1);
+                  return (
+                    <div style={{ marginBottom: 14 }}>
+                      <div style={{ fontSize: ".62rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 6 }}>Score Trend</div>
+                      <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 40 }}>
+                        {bars.map((t, i) => {
+                          const h = Math.max(4, Math.round((t.score_normalized / maxNorm) * 36));
+                          const isLatest = i === bars.length - 1;
+                          const barColor = isLatest ? "#8b5cf6" : "#334155";
+                          return (
+                            <div key={t.id} title={`${new Date(t.submitted_at).toLocaleDateString()}: ${t.score_normalized.toFixed(1)}%`}
+                              style={{ flex: 1, height: h, background: barColor, borderRadius: 3, transition: "height .3s", minWidth: 8 }} />
+                          );
+                        })}
+                      </div>
+                      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
+                        <span style={{ fontSize: ".58rem", color: "var(--muted,#475569)" }}>Oldest</span>
+                        <span style={{ fontSize: ".58rem", color: "#8b5cf6", fontWeight: 700 }}>Latest</span>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* Best score & improvement needed */}
+                {simHistory.length >= 2 && (() => {
+                  const best = Math.max(...simHistory.map(t => t.score_normalized));
+                  const bestRaw = Math.round(best / 100 * data.maxScore);
+                  const nextBandIdx = activeBandIdx > 0 ? activeBandIdx - 1 : -1;
+                  return (
+                    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", fontSize: ".7rem" }}>
+                      <div style={{ background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.2)", borderRadius: 7, padding: "5px 10px", color: "#4ade80" }}>
+                        🏅 Best: <strong>{bestRaw}</strong> / {data.maxScore}
+                      </div>
+                      {nextBandIdx >= 0 && (
+                        <div style={{ background: "rgba(251,191,36,.08)", border: "1px solid rgba(251,191,36,.2)", borderRadius: 7, padding: "5px 10px", color: "#fbbf24" }}>
+                          🎯 Next band: <strong>{data.bands[nextBandIdx].label}</strong> — aim for {data.bands[nextBandIdx].range}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+
+                <button onClick={() => setActiveMode("test")}
+                  style={{ marginTop: 14, padding: "8px 18px", background: "linear-gradient(135deg,#8b5cf6,#6366f1)", border: "none", borderRadius: 8, color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  📝 Take Another Test →
+                </button>
+              </div>
+            )}
+
             {/* Header */}
             <div style={{ background: `linear-gradient(135deg,rgba(139,92,246,.1),rgba(99,102,241,.06))`, border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>

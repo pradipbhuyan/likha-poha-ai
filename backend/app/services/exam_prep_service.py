@@ -1737,6 +1737,44 @@ def get_test_result(test_id: str, user_id: str) -> dict:
         raise HTTPException(500, "Failed to fetch test result") from exc
 
 
+def get_sim_test_history(user_id: str, exam_type: str, limit: int = 10) -> list:
+    """Return the last N completed simulated tests for a user + exam.
+
+    Each entry includes:
+      id, exam_type, score_raw, score_normalized, correct, wrong,
+      total_questions, time_spent_seconds, submitted_at
+
+    Ordered newest first. Only returns status='submitted' rows.
+    """
+    db = _get_db()
+    try:
+        result = (
+            db.table("exam_prep_simulated_tests")
+            .select(
+                "id, exam_type, score_raw, score_normalized, correct, wrong, "
+                "total_questions, attempted, time_spent_seconds, submitted_at"
+            )
+            .eq("user_id", user_id)
+            .eq("exam_type", exam_type)
+            .eq("status", "submitted")
+            .order("submitted_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        rows = result.data or []
+        # Normalise: ensure numeric types
+        for row in rows:
+            row["score_normalized"] = float(row["score_normalized"] or 0)
+            row["score_raw"] = row["score_raw"]  # may be None for old rows
+            row["correct"] = row.get("correct") or 0
+            row["wrong"] = row.get("wrong") or 0
+            row["total_questions"] = row.get("total_questions") or 0
+        return rows
+    except Exception as exc:
+        _log.warning("exam_prep.sim_history.failed", error=str(exc))
+        return []
+
+
 # ── Admin: Prewarm jobs ─────────────────────────────────────────────────────────
 
 def get_question_bank_status(exam_type: Optional[str] = None) -> dict:
