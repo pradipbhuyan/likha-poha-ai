@@ -740,6 +740,60 @@ grade: str,
 
     source_type = "RAG" if rag_results else "LLM"
 
+    # ── Anti-hallucination guard for language & literature subjects ───────────
+    # English, Hindi, Sanskrit and Social Science chapters contain specific
+    # story/passage text that the LLM does NOT know accurately.
+    # If RAG returns 0 results for these subjects, do NOT let the LLM generate
+    # an answer from parametric memory — it will fabricate story content.
+    # Instead, return a clear "content not available" response so the student
+    # is not given wrong information.
+    #
+    # Example of harm avoided: for "Grade 5 English / Papa's Spectacles / Worked Examples"
+    # with no RAG context, the LLM invented a completely wrong story with
+    # a dustbin, father's anger, and hugging — none of which exists in the book.
+    _STORY_DEPENDENT_SUBJECTS = {
+        "english", "hindi", "sanskrit",
+        "social science", "social studies", "history", "geography",
+        "economics", "civics", "political science",
+    }
+    _subject_lower = (subject or "").lower()
+    if not rag_results and any(s in _subject_lower for s in _STORY_DEPENDENT_SUBJECTS):
+        _no_content_msg = (
+            f"📚 **Textbook content not yet available**\n\n"
+            f"The lesson content for **{chapter}** ({subject}, {grade}) has not been "
+            f"uploaded to our knowledge base yet.\n\n"
+            f"This lesson requires the actual NCERT textbook passage to answer accurately. "
+            f"Without it, the AI cannot give you a reliable answer and will not guess.\n\n"
+            f"**What you can do:**\n"
+            f"- Read the relevant passage/story in your NCERT textbook\n"
+            f"- Ask your teacher for help with this chapter\n"
+            f"- Come back soon — we are regularly adding more content\n\n"
+            f"_We apologise for the inconvenience. Accuracy is more important than speed._"
+        )
+        # Store in cache so this response is returned consistently
+        store_lesson_cache(
+            cache_key=cache_key,
+            lesson_content=_no_content_msg,
+            source_type="NO_CONTENT",
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+            step_title=step_title,
+            teacher_persona=teacher_persona or "",
+            practice_questions=[],
+        )
+        return {
+            "lesson": _no_content_msg,
+            "source_type": "NO_CONTENT",
+            "sources": [],
+            "textbook_visuals": [],
+            "practice_questions": [],
+            "from_cache": False,
+        }
+    # ── End anti-hallucination guard ─────────────────────────────────────────
+
     textbook_context = "\n\n".join(
         item.get("chunk_text", "")
         for item in rag_results
