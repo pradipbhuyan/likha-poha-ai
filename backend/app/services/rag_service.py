@@ -48,6 +48,17 @@ def strip_chapter_display_prefix(chapter):
     ).strip()
 
 
+def strip_chapter_number_prefix(chapter: str) -> str:
+    """Strip leading numeric index from chapter name.
+
+    Examples:
+      "1. Papa's Spectacles"  →  "Papa's Spectacles"
+      "12. Sound"             →  "Sound"
+      "Papa's Spectacles"     →  "Papa's Spectacles"  (unchanged)
+    """
+    return re.sub(r"^\s*\d+\.\s*", "", str(chapter or "")).strip()
+
+
 def upload_textbook_text(
     username,
     grade,

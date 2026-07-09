@@ -71,6 +71,11 @@ def get_cached_lesson(cache_key: str, grade: str | None = None) -> dict | None:
 
         row = result.data[0]
 
+        # Skip NO_CONTENT entries — they were cached before RAG was uploaded.
+        # Once RAG is uploaded the next request should try fresh and find it.
+        if row.get("source_type") == "NO_CONTENT":
+            return None
+
         # Update access stats fire-and-forget — failure is acceptable
         try:
             supabase.table("lesson_cache").update({

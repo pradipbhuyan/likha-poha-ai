@@ -1,7 +1,7 @@
 
 import os as _os
 from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm, PREWARM_TEXT_MODEL
-from app.services.rag_service import search_textbook_content
+from app.services.rag_service import search_textbook_content, strip_chapter_number_prefix
 from app.services.rag_visual_service import (
     find_visual_assets_for_question,
     get_lesson_step_visual_assets,
@@ -728,6 +728,7 @@ grade: str,
         match_count=15,
     )
 
+    # Fallback 1: no chapter filter (broadens to all subject content)
     if not rag_results:
         rag_results = search_textbook_content(
             query=rag_query,
@@ -737,6 +738,20 @@ grade: str,
             chapter=None,
             match_count=15,
         )
+
+    # Fallback 2: strip numeric chapter prefix (e.g. "1. Papa's Spectacles"
+    # → "Papa's Spectacles") to handle uploads stored without the number prefix.
+    if not rag_results and chapter:
+        _stripped_num = strip_chapter_number_prefix(chapter)
+        if _stripped_num and _stripped_num != chapter:
+            rag_results = search_textbook_content(
+                query=rag_query,
+                board=board,
+                grade=grade,
+                subject=subject,
+                chapter=_stripped_num,
+                match_count=15,
+            )
 
     source_type = "RAG" if rag_results else "LLM"
 
@@ -770,20 +785,9 @@ grade: str,
             f"- Come back soon — we are regularly adding more content\n\n"
             f"_We apologise for the inconvenience. Accuracy is more important than speed._"
         )
-        # Store in cache so this response is returned consistently
-        store_lesson_cache(
-            cache_key=cache_key,
-            lesson_content=_no_content_msg,
-            source_type="NO_CONTENT",
-            board=board,
-            grade=grade,
-            subject=subject,
-            chapter=chapter,
-            mode=mode,
-            step_title=step_title,
-            teacher_persona=teacher_persona or "",
-            practice_questions=[],
-        )
+        # Do NOT cache NO_CONTENT responses — once the admin uploads RAG content,
+        # the next request should try fresh and find the uploaded material.
+        # Caching NO_CONTENT would permanently block RAG from being picked up.
         return {
             "lesson": _no_content_msg,
             "source_type": "NO_CONTENT",
