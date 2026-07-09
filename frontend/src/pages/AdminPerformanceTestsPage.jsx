@@ -431,6 +431,7 @@ function AdminPerformanceTestsPage({ user }) {
 
       <PaymentTestSection user={user} />
       <PlanUpgradeTestSection user={user} />
+      <ExamPackTestSection user={user} />
       <OfferGateTestSection user={user} />
     </div>
   );
@@ -1162,6 +1163,202 @@ function PlanUpgradeTestSection({ user }) {
             <code> /api/payments/admin-test-create-order</code> (admin role required).
           </p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Exam Prep Pack ₹1 Test Section ───────────────────────────────────────────
+const EXAM_PACK_SCENARIOS = [
+  { examType: "jee_main",  label: "JEE Main",  icon: "📐", color: "#6366f1", actualPrice: "₹499", validity: "120 days" },
+  { examType: "neet_ug",   label: "NEET UG",   icon: "🔬", color: "#10b981", actualPrice: "₹499", validity: "300 days" },
+  { examType: "cuet_ug",   label: "CUET UG",   icon: "🏛️", color: "#f59e0b", actualPrice: "₹399", validity: "240 days" },
+];
+
+function ExamPackTestSection({ user }) {
+  const [userQuery, setUserQuery] = useState("");
+  const [userResults, setUserResults] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedScenario, setSelectedScenario] = useState(EXAM_PACK_SCENARIOS[0]);
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [activatedPacks, setActivatedPacks] = useState(null);
+
+  // User search — same endpoint as PlanUpgradeTestSection
+  useEffect(() => {
+    if (!userQuery || userQuery.length < 2 || selectedUser) { setUserResults([]); return; }
+    const t = setTimeout(async () => {
+      try {
+        const r = await fetch(
+          `${API_BASE_URL}/api/admin-control/search-users?q=${encodeURIComponent(userQuery)}&limit=10`,
+          { headers: { Authorization: `Bearer ${user.accessToken}` } }
+        );
+        const d = await r.json();
+        setUserResults(d.users || []);
+      } catch { setUserResults([]); }
+    }, 300);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userQuery]);
+
+  async function handleTestPack() {
+    if (!selectedUser) { setStatus("❌ Select a user first."); return; }
+    setLoading(true); setStatus("⏳ Creating ₹1 order…"); setActivatedPacks(null);
+
+    try {
+      // Step 1: create ₹1 order
+      const orderResp = await fetch(`${API_BASE_URL}/api/exam-prep/admin-test-pack-order`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${user.accessToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ target_user_id: selectedUser.id, exam_type: selectedScenario.examType }),
+      });
+      if (!orderResp.ok) { const e = await orderResp.json(); throw new Error(e.detail || "Order failed"); }
+      const orderData = await orderResp.json();
+
+      setStatus("💳 Opening ₹1 Razorpay checkout…");
+
+      // Step 2: load Razorpay if needed
+      if (!window.Razorpay) {
+        await new Promise((res, rej) => {
+          const s = document.createElement("script");
+          s.src = "https://checkout.razorpay.com/v1/checkout.js";
+          s.onload = res; s.onerror = rej;
+          document.body.appendChild(s);
+        });
+      }
+
+      // Step 3: open Razorpay
+      await new Promise((resolve, reject) => {
+        const rzp = new window.Razorpay({
+          key: orderData.key_id,
+          amount: orderData.amount * 100,
+          currency: "INR",
+          order_id: orderData.order_id,
+          name: "Likha Poha AI — Admin Test",
+          description: `${selectedScenario.label} Pack Test · ₹1`,
+          prefill: { email: user.email || "", name: user.username || "" },
+          theme: { color: selectedScenario.color },
+          handler: async (response) => {
+            try {
+              setStatus("✅ Payment captured · Activating pack…");
+              const verifyResp = await fetch(`${API_BASE_URL}/api/exam-prep/admin-test-pack-verify`, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${user.accessToken}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  target_user_id: selectedUser.id,
+                  exam_type: selectedScenario.examType,
+                }),
+              });
+              if (!verifyResp.ok) { const e = await verifyResp.json(); throw new Error(e.detail || "Verify failed"); }
+              const verifyData = await verifyResp.json();
+              setActivatedPacks(verifyData.active_packs);
+              setStatus(`🎉 ${selectedScenario.label} pack activated for ${selectedUser.username}! Expires: ${verifyData.expires_at ? new Date(verifyData.expires_at).toLocaleDateString("en-IN") : "—"} · Charged ₹1 · Intended ${selectedScenario.actualPrice}`);
+              resolve();
+            } catch (e) { reject(e); }
+          },
+          modal: { ondismiss: () => reject(new Error("Checkout cancelled")) },
+        });
+        rzp.open();
+      });
+    } catch (err) {
+      setStatus("❌ " + (err.message || "Test failed."));
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <section className="premium-section" style={{ marginTop: 24 }}>
+      <div className="premium-header">
+        <p className="eyebrow">Exam Prep Pack — Admin Test · ₹1 Real Transactions</p>
+        <h3>🎯 Exam Prep Pack Payment Test</h3>
+        <p>
+          Test the full JEE / NEET / CUET pack purchase flow using ₹1 real transactions.
+          Pays ₹1 through Razorpay — activates the <strong>full intended pack</strong> (120–300 day validity).
+        </p>
+      </div>
+
+      <div className="premium-card" style={{ maxWidth: 640 }}>
+        <div style={{ background: "rgba(239,68,68,.07)", border: "1px solid rgba(239,68,68,.25)", borderRadius: 8, padding: "10px 14px", marginBottom: 18, fontSize: ".82rem" }}>
+          <strong>🔒 Admin-only</strong> — <code>POST /api/exam-prep/admin-test-pack-order</code> and{" "}
+          <code>POST /api/exam-prep/admin-test-pack-verify</code> require <strong>admin</strong> role.
+        </div>
+
+        {/* Step 1: User search */}
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ fontSize: ".88rem", display: "block", marginBottom: 8 }}>Step 1 — Select a user</strong>
+          <input type="text" value={userQuery}
+            onChange={e => { setUserQuery(e.target.value); setSelectedUser(null); setActivatedPacks(null); }}
+            placeholder="Search by username or email…"
+            style={{ width: "100%", marginBottom: 6 }} />
+          {userResults.length > 0 && !selectedUser && (
+            <div style={{ border: "1px solid var(--border)", borderRadius: 8, overflow: "hidden", maxHeight: 180, overflowY: "auto" }}>
+              {userResults.map(u => (
+                <div key={u.id} onClick={() => { setSelectedUser(u); setUserQuery(u.username); setUserResults([]); }}
+                  style={{ padding: "8px 12px", cursor: "pointer", fontSize: ".85rem", borderBottom: "1px solid var(--border)" }}>
+                  <strong>{u.username}</strong>
+                  <span style={{ color: "var(--muted)", marginLeft: 8, fontSize: ".78rem" }}>{u.email} · {u.grade || "—"}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedUser && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 12px", background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.3)", borderRadius: 8, fontSize: ".85rem" }}>
+              <span>✅ <strong>{selectedUser.username}</strong> — {selectedUser.email} · {selectedUser.grade || "—"}</span>
+              <button onClick={() => { setSelectedUser(null); setUserQuery(""); setActivatedPacks(null); }}
+                style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8" }}>×</button>
+            </div>
+          )}
+        </div>
+
+        {/* Step 2: Pack scenario */}
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ fontSize: ".88rem", display: "block", marginBottom: 8 }}>Step 2 — Choose exam pack to test</strong>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {EXAM_PACK_SCENARIOS.map(s => {
+              const sel = selectedScenario.examType === s.examType;
+              return (
+                <div key={s.examType} onClick={() => setSelectedScenario(s)}
+                  style={{ flex: 1, minWidth: 160, padding: "12px 14px", borderRadius: 10, cursor: "pointer", border: `2px solid ${sel ? s.color : "var(--border)"}`, background: sel ? `${s.color}10` : "var(--surface2,rgba(0,0,0,.02))" }}>
+                  <div style={{ fontSize: "1.4rem", marginBottom: 4 }}>{s.icon}</div>
+                  <div style={{ fontWeight: 700, fontSize: ".88rem", color: sel ? s.color : undefined }}>{s.label}</div>
+                  <div style={{ fontSize: ".72rem", color: "var(--muted)", marginTop: 2 }}>Actual {s.actualPrice} · {s.validity}</div>
+                  <div style={{ fontSize: ".68rem", color: "#22c55e", marginTop: 4, fontWeight: 700 }}>Charged: ₹1</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Launch */}
+        <button onClick={handleTestPack} disabled={loading || !selectedUser}
+          style={{ padding: "11px 28px", background: selectedUser ? `linear-gradient(135deg,${selectedScenario.color},${selectedScenario.color}cc)` : "var(--border)", border: "none", borderRadius: 10, color: selectedUser ? "#fff" : "var(--muted)", fontWeight: 700, fontSize: ".9rem", cursor: selectedUser ? "pointer" : "not-allowed", fontFamily: "inherit", marginBottom: 14 }}>
+          {loading ? "Processing…" : `Open ₹1 Checkout — ${selectedScenario.label} Pack`}
+        </button>
+
+        {status && (
+          <div style={{ padding: "10px 14px", background: "rgba(99,102,241,.06)", border: "1px solid rgba(99,102,241,.2)", borderRadius: 8, fontSize: ".82rem", marginBottom: 10, whiteSpace: "pre-wrap" }}>
+            {status}
+          </div>
+        )}
+
+        {/* Active packs after activation */}
+        {activatedPacks && (
+          <div style={{ marginTop: 10 }}>
+            <div style={{ fontSize: ".78rem", fontWeight: 700, color: "#a5b4fc", marginBottom: 8 }}>Active packs for {selectedUser?.username}:</div>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              {Object.entries(activatedPacks).map(([et, p]) => (
+                <div key={et} style={{ padding: "6px 12px", borderRadius: 8, background: p.active ? "rgba(34,197,94,.1)" : "rgba(100,116,139,.08)", border: `1px solid ${p.active ? "rgba(34,197,94,.3)" : "#334155"}`, fontSize: ".75rem", fontWeight: 600 }}>
+                  {p.active ? "✅" : "🔒"} {et.replace("_", " ").toUpperCase()}
+                  {p.active && p.expires_at && <span style={{ color: "var(--muted)", marginLeft: 6, fontSize: ".65rem" }}>until {new Date(p.expires_at).toLocaleDateString("en-IN")}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -399,3 +399,178 @@ def admin_revoke_pack(user_id: str, exam_type: str, admin=Depends(require_admin)
     }).eq("user_id", user_id).eq("exam_type", exam_type).execute()
 
     return {"success": True, "user_id": user_id, "exam_type": exam_type, "status": "revoked"}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Admin ₹1 test endpoints for Exam Prep Pack payment flow
+# ─────────────────────────────────────────────────────────────────────────────
+
+ADMIN_TEST_CHARGE_RUPEES = 1  # ₹1 real transaction for testing
+
+
+class AdminTestPackOrderRequest(BaseModel):
+    target_user_id: str
+    exam_type: str  # jee_main | neet_ug | cuet_ug
+
+
+class AdminTestPackVerifyRequest(BaseModel):
+    razorpay_order_id: str
+    razorpay_payment_id: str
+    razorpay_signature: str
+    target_user_id: str
+    exam_type: str
+
+
+@router.post("/admin-test-pack-order")
+def admin_test_pack_order(
+    data: AdminTestPackOrderRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Admin-only: create a Razorpay ₹1 order that will activate a real exam prep pack.
+
+    Security:
+    - Admin role required — normal Grade 11/12 students cannot call this.
+    - Normal pack-order endpoint is unaffected; it still charges the full pack price.
+    - Target user can be any grade/role (for testing purposes — admin bypasses grade gate).
+    - Payment record stores full audit metadata: exam_type, target_user_id, adminTriggered.
+    """
+    if not _razorpay_configured():
+        raise HTTPException(503, "Razorpay not configured.")
+
+    if data.exam_type not in VALID_EXAM_TYPES:
+        raise HTTPException(400, f"Invalid exam_type. Must be one of: {sorted(VALID_EXAM_TYPES)}")
+
+    # Verify target user exists
+    target_resp = (
+        admin_client.table("profiles")
+        .select("id, username, email, role, grade")
+        .eq("id", data.target_user_id).limit(1).execute()
+    )
+    if not (target_resp.data or []):
+        raise HTTPException(404, "Target user not found.")
+
+    target = target_resp.data[0]
+    admin_id = admin["profile"]["id"]
+
+    import time  # noqa: PLC0415
+    pack_key = EXAM_TYPE_TO_PACK[data.exam_type]
+    plan = _get_pack_plan(pack_key)
+
+    receipt = f"admpk_{data.exam_type[:3]}_{data.target_user_id[:8]}_{int(time.time())}"
+    notes = {
+        "admin_id": admin_id,
+        "target_user_id": data.target_user_id,
+        "exam_type": data.exam_type,
+        "pack_key": pack_key,
+        "intended_price": str(plan.get("price", 0)),
+        "charged_amount": str(ADMIN_TEST_CHARGE_RUPEES),
+        "test_mode": "true",
+    }
+
+    resp = req_lib.post(
+        "https://api.razorpay.com/v1/orders",
+        auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET),
+        json={"amount": ADMIN_TEST_CHARGE_RUPEES * 100, "currency": "INR",
+              "receipt": receipt, "notes": notes},
+        timeout=20,
+    )
+    if resp.status_code >= 400:
+        raise HTTPException(502, "Razorpay could not create order.")
+
+    order = resp.json()
+
+    # Pre-record order
+    try:
+        admin_client.table("exam_prep_subscriptions").upsert({
+            "user_id": data.target_user_id,
+            "exam_type": data.exam_type,
+            "status": "created",
+            "plan_key": pack_key,
+            "razorpay_order_id": order["id"],
+            "amount_paid": ADMIN_TEST_CHARGE_RUPEES,
+        }, on_conflict="user_id,exam_type").execute()
+    except Exception as e:
+        _log.warning("admin_test_pack_order pre-record failed: %s", e)
+
+    return {
+        "success": True,
+        "order_id": order["id"],
+        "amount": ADMIN_TEST_CHARGE_RUPEES,
+        "currency": "INR",
+        "key_id": settings.RAZORPAY_KEY_ID,
+        "exam_type": data.exam_type,
+        "target_user": {"id": target["id"], "username": target.get("username"), "grade": target.get("grade")},
+        "intended_pack": plan.get("label", pack_key),
+        "intended_price": plan.get("price", 0),
+        "duration_days": plan.get("duration_days", 120),
+    }
+
+
+@router.post("/admin-test-pack-verify")
+def admin_test_pack_verify(
+    data: AdminTestPackVerifyRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Admin-only: verify ₹1 payment and activate the INTENDED exam prep pack for target user.
+    The pack activated is the full-duration intended pack — only the charge was ₹1.
+    """
+    if not _razorpay_configured():
+        raise HTTPException(503, "Razorpay not configured.")
+
+    if data.exam_type not in VALID_EXAM_TYPES:
+        raise HTTPException(400, "Invalid exam_type.")
+
+    if not _verify_razorpay_signature(data.razorpay_order_id, data.razorpay_payment_id, data.razorpay_signature):
+        raise HTTPException(400, "Payment verification failed.")
+
+    pack_key = EXAM_TYPE_TO_PACK[data.exam_type]
+    plan = _get_pack_plan(pack_key)
+    expires_at = _pack_expires_at(plan)
+    admin_id = admin["profile"]["id"]
+
+    # Activate pack for target user
+    admin_client.table("exam_prep_subscriptions").update({
+        "status": "active",
+        "razorpay_payment_id": data.razorpay_payment_id,
+        "expires_at": expires_at,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }).eq("user_id", data.target_user_id).eq("exam_type", data.exam_type).execute()
+
+    _log.info("admin_test_pack_verify.activated admin=%s target=%s exam=%s expires=%s",
+              admin_id[:8], data.target_user_id[:8], data.exam_type, expires_at)
+
+    # Audit log
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "user_id": admin_id,
+            "event": "exam_prep_pack.admin_test_activated",
+            "metadata": {
+                "target_user_id": data.target_user_id,
+                "exam_type": data.exam_type,
+                "pack_key": pack_key,
+                "expires_at": expires_at,
+                "charged_amount": ADMIN_TEST_CHARGE_RUPEES,
+                "intended_price": plan.get("price"),
+                "order_id": data.razorpay_order_id,
+                "payment_id": data.razorpay_payment_id,
+            },
+        }).execute()
+    except Exception:
+        pass
+
+    # Fetch updated pack state
+    updated_packs = _get_active_packs(data.target_user_id)
+
+    return {
+        "success": True,
+        "exam_type": data.exam_type,
+        "target_user_id": data.target_user_id,
+        "expires_at": expires_at,
+        "duration_days": plan.get("duration_days"),
+        "pack_label": plan.get("label"),
+        "charged_amount": ADMIN_TEST_CHARGE_RUPEES,
+        "intended_price": plan.get("price"),
+        "active_packs": updated_packs,
+    }
