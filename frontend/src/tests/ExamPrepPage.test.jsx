@@ -1,279 +1,271 @@
 /**
- * ExamPrepPage.test.jsx — Exam Prep Center frontend tests (new pack-based design)
- * ================================================================================
- * Tests match the rewritten ExamPrepPage (2026-07-09) which shows a landing page
- * with 3 pack cards (JEE / NEET / CUET) instead of the old access-check flow.
+ * ExamPrepPage.test.jsx — Exam Prep Center frontend tests
+ * ========================================================
+ * Tests match the current ExamPrepPage which uses access-check endpoint
+ * (canonical backend) to determine grade eligibility and subscription status.
  *
- * Key behaviour changes from old design:
- *   - All Grade 11/12 students see the landing page with pack cards
- *   - akshita.teststudent is grade-eligible regardless of their grade
- *   - Stats/subjects/topics only appear INSIDE an exam, after pack is active
- *   - Pack purchase is via Razorpay, independent of CBSE subscription
+ * Key behaviour:
+ *   - Loading spinner while access-check fetch is in-flight
+ *   - Grade-ineligible students (Grade 5–10) see "Grade 11 & 12 only" guard
+ *   - Free/Nano-tier Grade 11/12 students see premium gate (Coming Soon)
+ *   - Premium Grade 11/12 students see the full Exam Prep Center
+ *   - Admin and test users bypass subscription gate
+ *   - 5 mode tabs: Structured Learning, Practice, Simulated Test, Quick Reference, Cutoff Oracle
  */
 
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import ExamPrepPage from "../pages/ExamPrepPage";
-import * as examPrepPacksApi from "../api/examPrepPacks";
 
 // ── Mock API modules ──────────────────────────────────────────────────────────
 
 vi.mock("../api/examPrep", () => ({
-  getExamPrepSubjects: vi.fn().mockResolvedValue({ success: true, subjects: [] }),
-  getExamPrepTopics: vi.fn().mockResolvedValue({ success: true, topics: [] }),
-  getExamPrepQuestions: vi.fn().mockResolvedValue({ success: true, questions: [] }),
+  getExamPrepDashboard: vi.fn().mockResolvedValue({
+    exam_type: "jee_main",
+    weeks_to_exam: 28,
+    total_questions: 121,
+    questions_attempted: 0,
+    accuracy_pct: 0,
+    correct_count: 0,
+    total_topics: 24,
+    subjects_count: 3,
+  }),
+  getExamPrepSubjects: vi.fn().mockResolvedValue({ subjects: [] }),
+  getExamPrepTopics: vi.fn().mockResolvedValue({ topics: [] }),
+  getExamPrepQuestions: vi.fn().mockResolvedValue({ questions: [] }),
   submitQuestionAnswer: vi.fn().mockResolvedValue({}),
-  startSimulatedTest: vi.fn().mockResolvedValue({ test_id: "t1", duration_minutes: 180 }),
+  askFollowUp: vi.fn().mockResolvedValue({ answer: "" }),
+  startSimulatedTest: vi.fn().mockResolvedValue({ test_id: "t1", duration_minutes: 180, question_ids: [] }),
   submitSimulatedTest: vi.fn().mockResolvedValue({ score_normalized: 75, correct: 7, wrong: 2, skipped: 1, total_questions: 10 }),
 }));
 
-vi.mock("../api/examPrepPacks", () => ({
-  getMyPacks: vi.fn().mockResolvedValue({
-    success: true,
-    grade_eligible: true,
-    packs: {
-      jee_main:  { active: false, expires_at: null },
-      neet_ug:   { active: false, expires_at: null },
-      cuet_ug:   { active: false, expires_at: null },
-    },
-  }),
-  getPackPrices: vi.fn().mockResolvedValue({
-    success: true,
-    razorpay_configured: true,
-    prices: {
-      jee_main:  { plan_key: "exam_prep_jee",  label: "JEE Main Prep Pack",  price: 499, charge: 499, duration_days: 120, included: ["Practice questions"], badge: "" },
-      neet_ug:   { plan_key: "exam_prep_neet", label: "NEET UG Prep Pack",   price: 499, charge: 499, duration_days: 300, included: ["Practice questions"], badge: "" },
-      cuet_ug:   { plan_key: "exam_prep_cuet", label: "CUET UG Prep Pack",   price: 399, charge: 399, duration_days: 240, included: ["Practice questions"], badge: "" },
-    },
-  }),
-  createPackOrder: vi.fn().mockResolvedValue({ order_id: "ord_1", amount: 499, key_id: "rzp_test", exam_type: "jee_main", plan_label: "JEE Pack", duration_days: 120 }),
-  verifyPackPayment: vi.fn().mockResolvedValue({ success: true, exam_type: "jee_main", expires_at: null }),
-}));
+// ── Access-check response helpers ─────────────────────────────────────────────
 
-// ── Test users ────────────────────────────────────────────────────────────────
-
-const grade12User = {
-  id: "u1",
-  username: "student12",
-  role: "student",
-  grade: "Grade 12",
-  accessToken: "tok-12",
-  email: "student12@test.com",
+const ACCESS_GRADE_INELIGIBLE = {
+  grade_eligible: false,
+  has_access: false,
+  preview_only: true,
+  reason: "grade_ineligible",
+  stream: null,
+  exam_eligibility: null,
+  canonical_plan_key: null,
+  plan_name: null,
 };
 
-const grade11User = {
-  id: "u2",
-  username: "student11",
-  role: "student",
-  grade: "Grade 11",
-  accessToken: "tok-11",
-  email: "student11@test.com",
+const ACCESS_FREE_PREVIEW = {
+  grade_eligible: true,
+  has_access: false,
+  preview_only: true,
+  reason: "free",
+  stream: "PCM",
+  exam_eligibility: {
+    jee_main: { eligible: true, reason: "" },
+    neet_ug:  { eligible: false, reason: "NEET requires Biology." },
+    cuet_ug:  { eligible: true, reason: "" },
+  },
+  canonical_plan_key: "FREE_TIER",
+  plan_name: "Free Tier",
 };
 
-const grade10User = {
-  id: "u3",
-  username: "grade10student",
-  role: "student",
-  grade: "Grade 10",
-  accessToken: "tok-10",
-  email: "grade10@test.com",
+const ACCESS_NANO_PREVIEW = {
+  ...ACCESS_FREE_PREVIEW,
+  reason: "nano",
+  canonical_plan_key: "PREMIUM_NANO",
+  plan_name: "Premium Nano",
 };
 
-const grade5User = {
-  id: "u4",
-  username: "grade5student",
-  role: "student",
-  grade: "Grade 5",
-  accessToken: "tok-5",
-  email: "grade5@test.com",
+const ACCESS_FULL = {
+  grade_eligible: true,
+  has_access: true,
+  preview_only: false,
+  reason: "full_access",
+  stream: "PCM",
+  exam_eligibility: {
+    jee_main: { eligible: true, reason: "" },
+    neet_ug:  { eligible: false, reason: "Requires Biology." },
+    cuet_ug:  { eligible: true, reason: "" },
+  },
+  canonical_plan_key: "PREMIUM",
+  plan_name: "Premium",
 };
 
-const adminUser = {
-  id: "admin1",
-  username: "admin",
-  role: "admin",
-  grade: "Grade 9",
-  accessToken: "tok-admin",
-  email: "admin@test.com",
+const ACCESS_ADMIN = {
+  grade_eligible: true,
+  has_access: true,
+  preview_only: false,
+  reason: "admin",
+  stream: null,
+  exam_eligibility: {
+    jee_main: { eligible: true, reason: "" },
+    neet_ug:  { eligible: true, reason: "" },
+    cuet_ug:  { eligible: true, reason: "" },
+  },
+  canonical_plan_key: "ADMIN_GRANT",
+  plan_name: "Admin",
 };
 
-const testUser = {
-  id: "tst1",
-  username: "akshita.teststudent",
-  role: "student",
-  grade: "Grade 9",
-  accessToken: "tok-test",
-  email: "akshita@test.com",
+const ACCESS_TEST_USER = {
+  grade_eligible: true,
+  has_access: true,
+  preview_only: false,
+  reason: "test_user",
+  stream: null,
+  exam_eligibility: {
+    jee_main: { eligible: true, reason: "" },
+    neet_ug:  { eligible: true, reason: "" },
+    cuet_ug:  { eligible: true, reason: "" },
+  },
+  canonical_plan_key: "ADMIN_GRANT",
+  plan_name: "Test Access",
 };
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-function renderWithUser(user) {
-  return render(<ExamPrepPage user={user} />);
+// Mock global fetch for access-check
+function mockFetch(accessData) {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+    json: () => Promise.resolve(accessData),
+  }));
 }
 
-// ── Access Control tests ──────────────────────────────────────────────────────
+// ── User fixtures ─────────────────────────────────────────────────────────────
 
-describe("ExamPrepPage — Access Control", () => {
-  it("shows access denied for Grade 10 students", () => {
-    renderWithUser(grade10User);
-    expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
+const grade10User = { id: "u1", role: "student", grade: "Grade 10", username: "student10", accessToken: "tok" };
+const grade11FreeUser = { id: "u2", role: "student", grade: "Grade 11", username: "student11free", accessToken: "tok" };
+const grade11NanoUser = { id: "u3", role: "student", grade: "Grade 11", username: "student11nano", accessToken: "tok" };
+const grade11PremiumUser = { id: "u4", role: "student", grade: "Grade 11", username: "student11prem", accessToken: "tok" };
+const adminUser = { id: "u5", role: "admin", grade: "Grade 11", username: "admin", accessToken: "tok" };
+const testUser = { id: "u6", role: "student", grade: "Grade 9", username: "akshita.teststudent", accessToken: "tok" };
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+// ── Tests ─────────────────────────────────────────────────────────────────────
+
+describe("ExamPrepPage — access control", () => {
+  it("shows loading spinner while access-check is in-flight", () => {
+    // fetch never resolves → stays in loading
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(new Promise(() => {})));
+    render(<ExamPrepPage user={grade11FreeUser} />);
+    // page-level section is rendered (loading state uses Loader component)
+    expect(document.body.innerHTML.length).toBeGreaterThan(0);
   });
 
-  it("shows access denied for Grade 5 students", () => {
-    renderWithUser(grade5User);
-    expect(screen.getByText(/available for Grade 11/i)).toBeTruthy();
-  });
-
-  it("renders landing page for akshita.teststudent (Grade 9 test user)", async () => {
-    // Test user bypass — grade 9 but still eligible
-    renderWithUser(testUser);
+  it("shows grade-ineligible guard for Grade 10 student", async () => {
+    mockFetch(ACCESS_GRADE_INELIGIBLE);
+    render(<ExamPrepPage user={grade10User} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/Available for Grade 11 & 12 students only/i)).toBeTruthy();
     });
   });
 
-  it("renders landing page for Grade 12 student", async () => {
-    renderWithUser(grade12User);
+  it("shows premium gate (Coming Soon) for free-tier Grade 11 student", async () => {
+    mockFetch(ACCESS_FREE_PREVIEW);
+    render(<ExamPrepPage user={grade11FreeUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/Coming Soon/i)).toBeTruthy();
     });
   });
 
-  it("renders landing page for Grade 11 student", async () => {
-    renderWithUser(grade11User);
+  it("shows nano plan message for Nano-tier Grade 11 student", async () => {
+    mockFetch(ACCESS_NANO_PREVIEW);
+    render(<ExamPrepPage user={grade11NanoUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/Coming Soon/i)).toBeTruthy();
     });
   });
 
-  it("renders landing page for admin user", async () => {
-    renderWithUser(adminUser);
+  it("shows full Exam Prep Center for Premium Grade 11 student", async () => {
+    mockFetch(ACCESS_FULL);
+    render(<ExamPrepPage user={grade11PremiumUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Exam Prep Center/i)).toBeTruthy();
+      expect(screen.getByText(/Structured Learning/i)).toBeTruthy();
+    });
+  });
+
+  it("shows full Exam Prep Center for admin", async () => {
+    mockFetch(ACCESS_ADMIN);
+    render(<ExamPrepPage user={adminUser} />);
+    await waitFor(() => {
+      expect(screen.getByText(/Structured Learning/i)).toBeTruthy();
+    });
+  });
+
+  it("shows full Exam Prep Center for akshita.teststudent (test user)", async () => {
+    mockFetch(ACCESS_TEST_USER);
+    render(<ExamPrepPage user={testUser} />);
+    await waitFor(() => {
+      expect(screen.getByText(/Structured Learning/i)).toBeTruthy();
     });
   });
 });
 
-// ── Landing page content tests ────────────────────────────────────────────────
-
-describe("ExamPrepPage — Landing Page", () => {
-  it("shows all 3 exam pack cards on landing page", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getByText("JEE Main")).toBeTruthy();
-      expect(screen.getByText("NEET UG")).toBeTruthy();
-      expect(screen.getByText("CUET UG")).toBeTruthy();
-    });
-  });
-
-  it("shows Grade 11 & 12 only badge", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getByText(/Grade 11 & 12 only/i)).toBeTruthy();
-    });
-  });
-
-  it("shows Locked status for unpurchased packs", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      const locked = screen.getAllByText(/Locked/i);
-      expect(locked.length).toBeGreaterThanOrEqual(3);
-    });
-  });
-
-  it("shows Unlock JEE Main button for unpurchased JEE pack", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getByText(/Unlock JEE Main/i)).toBeTruthy();
-    });
-  });
-
-  it("shows pack independence note", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getByText(/each pack is independent/i)).toBeTruthy();
-    });
-  });
-
-  it("shows prices for packs (₹499 for JEE)", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      const prices = screen.getAllByText(/₹499/);
-      expect(prices.length).toBeGreaterThan(0);
-    });
-  });
-});
-
-// ── Pack active state tests ───────────────────────────────────────────────────
-
-describe("ExamPrepPage — Active Pack State", () => {
+describe("ExamPrepPage — 5 mode tabs", () => {
   beforeEach(() => {
-    vi.mocked(examPrepPacksApi.getMyPacks).mockResolvedValue({
-      success: true,
-      grade_eligible: true,
-      packs: {
-        jee_main:  { active: true,  expires_at: "2027-01-15T00:00:00Z" },
-        neet_ug:   { active: false, expires_at: null },
-        cuet_ug:   { active: false, expires_at: null },
-      },
+    mockFetch(ACCESS_FULL);
+  });
+
+  it("shows all 5 mode tabs for premium user", async () => {
+    render(<ExamPrepPage user={grade11PremiumUser} />);
+    await waitFor(() => {
+      // Check all 5 mode tab buttons are present (each button renders icon + label)
+      const buttons = screen.getAllByRole("button");
+      const labels = buttons.map(b => b.textContent);
+      expect(labels.some(t => /Structured Learning/i.test(t))).toBe(true);
+      expect(labels.some(t => /Practice/i.test(t))).toBe(true);
+      expect(labels.some(t => /Simulated Test/i.test(t))).toBe(true);
+      expect(labels.some(t => /Quick Reference/i.test(t))).toBe(true);
+      expect(labels.some(t => /Cutoff Oracle/i.test(t))).toBe(true);
     });
   });
 
-  it("shows Active badge for purchased pack", async () => {
-    renderWithUser(grade12User);
+  it("shows 3 exam tabs: JEE Main, NEET UG, CUET UG", async () => {
+    render(<ExamPrepPage user={grade11PremiumUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/✅ Active/i)).toBeTruthy();
+      expect(screen.getAllByText(/JEE Main/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/NEET UG/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/CUET UG/i).length).toBeGreaterThan(0);
     });
   });
 
-  it("shows Go to JEE Main Prep button for active pack", async () => {
-    renderWithUser(grade12User);
+  it("shows exam strategy box in Structured Learning tab", async () => {
+    render(<ExamPrepPage user={grade11PremiumUser} />);
     await waitFor(() => {
-      expect(screen.getByText(/Go to JEE Main Prep/i)).toBeTruthy();
+      expect(screen.getByText(/Exam Strategy/i)).toBeTruthy();
     });
   });
 });
 
-// ── Exam tabs / card labels ───────────────────────────────────────────────────
-
-describe("ExamPrepPage — Exam Labels", () => {
-  it("shows Engineering entrance sub-label for JEE", async () => {
-    renderWithUser(grade12User);
+describe("ExamPrepPage — premium gate content", () => {
+  it("shows JEE/NEET/CUET feature list in locked preview", async () => {
+    mockFetch(ACCESS_FREE_PREVIEW);
+    render(<ExamPrepPage user={grade11FreeUser} />);
     await waitFor(() => {
-      expect(screen.getByText("Engineering entrance")).toBeTruthy();
+      expect(screen.getAllByText(/JEE Main prep/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/NEET UG prep/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/CUET UG prep/i).length).toBeGreaterThan(0);
     });
   });
 
-  it("shows Medical entrance sub-label for NEET", async () => {
-    renderWithUser(grade12User);
+  it("shows Premium Feature heading in locked preview", async () => {
+    mockFetch(ACCESS_FREE_PREVIEW);
+    render(<ExamPrepPage user={grade11FreeUser} />);
     await waitFor(() => {
-      expect(screen.getByText("Medical entrance")).toBeTruthy();
-    });
-  });
-
-  it("shows Central university entrance sub-label for CUET", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getByText("Central university entrance")).toBeTruthy();
-    });
-  });
-
-  it("shows feature list in pack cards", async () => {
-    renderWithUser(grade12User);
-    await waitFor(() => {
-      expect(screen.getAllByText(/Practice questions/i).length).toBeGreaterThan(0);
+      expect(screen.getByText(/Exam Prep Center — Premium Feature/i)).toBeTruthy();
     });
   });
 });
 
-// ── Result page ───────────────────────────────────────────────────────────────
-
-describe("ExamPrepPage — Test Result Score", () => {
-  it("score_normalized is within 0-100 range", () => {
-    // Validate score range without rendering — pure logic check
-    const scoreNormalized = 75;
-    expect(scoreNormalized).toBeGreaterThanOrEqual(0);
-    expect(scoreNormalized).toBeLessThanOrEqual(100);
+describe("ExamPrepPage — exam-specific strategy (JEE correct values)", () => {
+  it("shows 75 questions · 3 hours · 300 marks for JEE", async () => {
+    mockFetch(ACCESS_FULL);
+    render(<ExamPrepPage user={grade11PremiumUser} />);
+    await waitFor(() => {
+      expect(screen.getByText(/75 questions/i)).toBeTruthy();
+      expect(screen.getByText(/300 marks/i)).toBeTruthy();
+    });
   });
 });

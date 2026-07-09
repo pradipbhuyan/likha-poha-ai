@@ -314,8 +314,8 @@ class TestPromptTemplates:
         app.dependency_overrides.pop(require_admin, None)
 
     def test_list_prompts_empty_when_no_templates(self, monkeypatch):
-        import app.services.ai_studio_service as svc
-        monkeypatch.setattr(svc, "get_prompt_templates", lambda: [])
+        import app.routes.ai_studio as route_mod
+        monkeypatch.setattr(route_mod, "get_prompt_templates", lambda: [])
         with TestClient(app) as client:
             resp = client.get("/api/admin/ai-studio/prompts",
                               headers={"Authorization": "Bearer fake-admin"})
