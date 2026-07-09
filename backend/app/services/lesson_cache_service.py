@@ -223,6 +223,10 @@ def get_cached_lesson_by_chapter_text(
 
         row = result.data[0]
 
+        # Skip NO_CONTENT entries — same policy as get_cached_lesson
+        if row.get("source_type") == "NO_CONTENT":
+            return None
+
         # Update access stats fire-and-forget
         try:
             supabase.table("lesson_cache").update({
