@@ -142,3 +142,19 @@ export async function startAudioPrewarm(gradeSlug, accessToken) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 }
+
+export async function clearChapterCache({ grade, subject, chapter }, accessToken) {
+  /**
+   * Mark all lesson_cache rows stale for a specific chapter (admin-only).
+   * Uses ilike matching so both old and renamed chapter variants are cleared.
+   * Safe: marks rows as 'stale', does not delete permanently.
+   */
+  return authFetch("/api/cache-management/cache/lessons/chapter", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ grade, subject, chapter }),
+  });
+}

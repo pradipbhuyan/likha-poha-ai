@@ -15,6 +15,7 @@ import {
   getLkbOverview,
   getAudioOverview,
   startAudioPrewarm,
+  clearChapterCache,
 } from "../api/cacheManagement";
 import { adminGetQBStatus, adminPrewarm, runExamPrepMigration, adminImportBulk } from "../api/examPrep";
 
@@ -862,6 +863,9 @@ function AdminCacheManagementPage({ user }) {
         </div>
       </section>
 
+      {/* ── Clear Chapter Cache ─────────────────────────────────────────── */}
+      <ClearChapterCacheSection user={user} chapterList={chapterList} chapterListLoading={chapterListLoading} />
+
       <section className="premium-section">
         <div className="premium-header">
           <h3>📋 Pre-Generation Cost Estimates</h3>
@@ -934,6 +938,166 @@ function AdminCacheManagementPage({ user }) {
       {/* ── Exam Prep Question Bank ── */}
       <ExamPrepQBSection user={user} />
     </div>
+  );
+}
+
+// ── Clear Chapter Cache Section ───────────────────────────────────────────────
+
+function ClearChapterCacheSection({ user }) {
+  const [clearGrade, setClearGrade] = useState("Grade 5");
+  const [clearChapters, setClearChapters] = useState([]);
+  const [clearLoading, setClearLoading] = useState(false);
+  const [clearSubject, setClearSubject] = useState("");
+  const [clearChapter, setClearChapter] = useState("");
+  const [clearing, setClearing] = useState(false);
+  const [clearMsg, setClearMsg] = useState("");
+  const [clearErr, setClearErr] = useState("");
+
+  async function loadClearChapters(grade) {
+    setClearLoading(true);
+    setClearChapters([]);
+    setClearSubject("");
+    setClearChapter("");
+    setClearMsg("");
+    setClearErr("");
+    try {
+      const result = await getChaptersForGrade(gradeToSlug(grade), user.accessToken);
+      const chapters = result.chapters || [];
+      setClearChapters(chapters);
+      if (chapters.length > 0) {
+        setClearSubject(chapters[0].subject);
+        setClearChapter(chapters[0].chapter);
+      }
+    } catch {
+      // fail silently — section is optional
+    } finally {
+      setClearLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (user?.accessToken && clearGrade) {
+      loadClearChapters(clearGrade);
+    }
+  }, [clearGrade, user?.accessToken]);
+
+  async function handleClearChapterCache() {
+    if (!clearSubject || !clearChapter) return;
+    if (!window.confirm(
+      `Mark lesson cache stale for:\n\nGrade: ${clearGrade}\nSubject: ${clearSubject}\nChapter: ${clearChapter}\n\nThe next lesson request will regenerate fresh from the uploaded RAG content.\nThis does NOT delete — rows are marked stale and can be re-generated.`
+    )) return;
+
+    setClearing(true);
+    setClearMsg("");
+    setClearErr("");
+    try {
+      const result = await clearChapterCache(
+        { grade: clearGrade, subject: clearSubject, chapter: clearChapter },
+        user.accessToken
+      );
+      setClearMsg(result.message || `Cache cleared for ${clearChapter}.`);
+    } catch (err) {
+      setClearErr(err.message || "Failed to clear chapter cache.");
+    } finally {
+      setClearing(false);
+    }
+  }
+
+  return (
+    <section className="premium-section">
+      <div className="premium-header">
+        <p className="eyebrow">Fix Stale or Incorrect Lessons</p>
+        <h3>🧹 Clear Lesson Cache — Selected Chapter</h3>
+        <p>
+          Use this after renaming a chapter, updating its RAG content, or when a
+          lesson shows wrong or outdated content. Marks the cached lesson steps
+          as stale so the next request regenerates fresh from the uploaded textbook.
+          Works across all grades and subjects. Does not affect other chapters.
+        </p>
+      </div>
+
+      <div className="premium-card" style={{ maxWidth: 580 }}>
+        <div className="form-grid premium-rag-form-grid">
+          <label>
+            Grade
+            <select
+              value={clearGrade}
+              onChange={(e) => setClearGrade(e.target.value)}
+            >
+              {ALL_GRADE_OPTIONS.map((g) => (
+                <option key={g} value={g}>{g}</option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Subject
+            <select
+              value={clearSubject}
+              onChange={(e) => {
+                setClearSubject(e.target.value);
+                const first = clearChapters.find((c) => c.subject === e.target.value);
+                setClearChapter(first ? first.chapter : "");
+              }}
+              disabled={clearLoading || clearChapters.length === 0}
+            >
+              {[...new Set(clearChapters.map((c) => c.subject))].map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <label style={{ display: "block", marginTop: 12 }}>
+          Chapter
+          <select
+            value={clearChapter}
+            onChange={(e) => setClearChapter(e.target.value)}
+            disabled={clearLoading || !clearSubject}
+            style={{ width: "100%", marginTop: 4 }}
+          >
+            {clearChapters
+              .filter((c) => c.subject === clearSubject)
+              .map((c) => (
+                <option key={c.chapter} value={c.chapter}>{c.chapter}</option>
+              ))}
+          </select>
+        </label>
+
+        {clearLoading && (
+          <p style={{ fontSize: "0.85rem", color: "#888", marginTop: 8 }}>Loading chapters…</p>
+        )}
+        {clearChapters.length === 0 && !clearLoading && (
+          <p style={{ fontSize: "0.85rem", color: "#888", marginTop: 8 }}>
+            No RAG content uploaded for {clearGrade} yet.
+          </p>
+        )}
+
+        <div style={{ marginTop: 16 }}>
+          <button
+            className="secondary-btn"
+            onClick={handleClearChapterCache}
+            disabled={clearing || clearLoading || !clearChapter}
+            style={{ background: "#fef2f2", color: "#991b1b", border: "1px solid #fecaca" }}
+          >
+            {clearing ? "⏳ Clearing cache…" : "🧹 Clear Cache for This Chapter"}
+          </button>
+        </div>
+
+        {clearMsg && (
+          <div className="info-box" style={{ marginTop: 12 }}>{clearMsg}</div>
+        )}
+        {clearErr && (
+          <div className="error-box" style={{ marginTop: 12 }}>{clearErr}</div>
+        )}
+
+        <div style={{ marginTop: 12, fontSize: "0.8rem", color: "#888", lineHeight: 1.5 }}>
+          💡 After clearing, go to the lesson page and click <strong>Generate Lesson</strong> to
+          regenerate with the latest uploaded content. The old cached content is kept as
+          stale (not deleted) and can be recovered if needed.
+        </div>
+      </div>
+    </section>
   );
 }
 
