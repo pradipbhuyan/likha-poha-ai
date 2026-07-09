@@ -43,7 +43,11 @@ import pdfplumber
 import requests
 import urllib3
 
-from app.services.auth_service import admin_client as supabase
+# Grade 11/12 content must go to the second Supabase project (grade_1112_client),
+# NOT the primary admin_client (Supabase 1).
+# search_textbook_content for Grade 11/12 reads from grade_1112_client.
+# If we write to admin_client here, the content is never found by the lesson/doubt search.
+from app.services.supabase_grade_1112_client import grade_1112_client as supabase
 from app.services.rag_service import create_embedding
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

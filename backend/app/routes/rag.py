@@ -266,8 +266,36 @@ def preview_rag_document(
     document_id: str,
     _admin=Depends(require_admin),
 ):
-    """Return a short chunk preview so admins can verify title/content alignment."""
-    chunks = get_rag_document_preview(document_id)
+    """
+    Return a short chunk preview so admins can verify title/content alignment.
+
+    The document's grade must be resolved first so get_content_db() routes
+    to the correct Supabase project (Supabase 1 for Grade 1-10,
+    Supabase 2 for Grade 11-12). Without passing grade, the preview always
+    reads from Supabase 1 which makes Grade 11/12 previews show wrong content.
+    """
+    # Step 1: Resolve the document grade by checking both databases.
+    # We check Supabase 1 first (most documents), then Supabase 2 (Grade 11/12).
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+    grade = None
+    for candidate_grade in (None, "Grade 11", "Grade 12"):
+        db = get_content_db(candidate_grade)
+        try:
+            doc_resp = (
+                db.table("rag_documents")
+                .select("grade")
+                .eq("id", document_id)
+                .limit(1)
+                .execute()
+            )
+            if doc_resp.data:
+                grade = doc_resp.data[0].get("grade")
+                break
+        except Exception:
+            continue
+
+    chunks = get_rag_document_preview(document_id, grade=grade)
 
     return {
         "success": True,
