@@ -979,7 +979,7 @@ function ClearChapterCacheSection({ user }) {
     if (user?.accessToken && clearGrade) {
       loadClearChapters(clearGrade);
     }
-  }, [clearGrade, user?.accessToken]);
+  }, [clearGrade, user?.accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleClearChapterCache() {
     if (!clearSubject || !clearChapter) return;
