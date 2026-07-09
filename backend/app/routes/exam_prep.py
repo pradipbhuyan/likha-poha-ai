@@ -298,6 +298,25 @@ def start_simulated_test(
     return {"success": True, **result}
 
 
+@router.get("/simulated-tests/history")
+def get_sim_test_history(
+    exam: str = "jee_main",
+    limit: int = 10,
+    ctx=Depends(_require_exam_prep_access),
+):
+    """Return the student's last N completed simulated tests for a given exam type.
+    Used by Cutoff Oracle to show performance trend.
+    MUST be registered before /simulated-tests/{test_id} to avoid route shadowing.
+    """
+    user = ctx["user"]
+    history = svc.get_sim_test_history(
+        user_id=user.id,
+        exam_type=exam,
+        limit=min(limit, 20),
+    )
+    return {"success": True, "history": history}
+
+
 @router.get("/simulated-tests/{test_id}")
 def get_simulated_test(
     test_id: str,
@@ -358,24 +377,6 @@ def get_result(
     user = ctx["user"]
     result = svc.get_test_result(test_id=test_id, user_id=user.id)
     return {"success": True, "result": result}
-
-
-@router.get("/simulated-tests/history")
-def get_sim_test_history(
-    exam: str = "jee_main",
-    limit: int = 10,
-    ctx=Depends(_require_exam_prep_access),
-):
-    """Return the student's last N completed simulated tests for a given exam type.
-    Used by Cutoff Oracle to show performance trend.
-    """
-    user = ctx["user"]
-    history = svc.get_sim_test_history(
-        user_id=user.id,
-        exam_type=exam,
-        limit=min(limit, 20),
-    )
-    return {"success": True, "history": history}
 
 
 # ── Legacy PYQ endpoints (backward compat) ─────────────────────────────────────
