@@ -65,6 +65,11 @@ HEADERS = {
 GRADE_5_BOOKS = [
     ("Maths",   "eemh1", "Math Magic 5",          "Maths",   16),
     ("EVS",     "eebu1", "Buds (EVS/Science) 5",  "EVS",     20),
+    # Santoor — new Grade 5 English textbook (NEP 2020 / NCF-SE 2023, first edition June 2025)
+    # Book code: eesa1   Contains: Papa's Spectacles, Gone with the Scooter, The Rainbow,
+    # The Wise Parrot, The Frog, What a Tank!, Gilli Danda, The Decision of the Panchayat,
+    # Vocation, Glass Bangles (10 chapters)
+    ("English", "eesa1", "Santoor (English) 5",   "English", 10),
 ]
 
 GRADE_6_BOOKS = [

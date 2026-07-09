@@ -75,6 +75,10 @@ ALL_BOOKS = [
     # Grade 5
     ("Grade 5",  "Maths",   "eemh1", "Math Magic 5",            "Grade_5/Maths"),
     ("Grade 5",  "EVS",     "eebu1", "Buds EVS Grade 5",        "Grade_5/EVS"),
+    # Santoor — new Grade 5 English textbook (NEP 2020 / NCF-SE 2023, first edition June 2025)
+    # Chapters: Papa's Spectacles, Gone with the Scooter, The Rainbow, The Wise Parrot,
+    # The Frog, What a Tank!, Gilli Danda, The Decision of the Panchayat, Vocation, Glass Bangles
+    ("Grade 5",  "English", "eesa1", "Santoor English Grade 5", "Grade_5/English"),
     # Grade 6
     ("Grade 6",  "Maths",   "fegp1", "Ganita Prakash Grade 6",  "Grade_6/Maths"),
     ("Grade 6",  "Science", "fecu1", "Curiosity Science Grade 6","Grade_6/Science"),
