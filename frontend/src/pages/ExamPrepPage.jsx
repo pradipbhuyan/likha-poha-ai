@@ -889,6 +889,280 @@ function CUETTestSetup({ onStart, testLoading }) {
   );
 }
 
+// ── Quick Reference Data — static, hardcoded per exam × subject ───────────────
+// No backend call needed. Organized by exam key → subject name → sections.
+// Each section: formulas[], constants[], traps[], mnemonics[], revision[]
+const QUICK_REFERENCE = {
+  jee_main: {
+    subjects: ["Physics", "Chemistry", "Mathematics"],
+    Physics: {
+      formulas: [
+        { expr: "v = u + at", desc: "Kinematics · time-based velocity" },
+        { expr: "s = ut + ½at²", desc: "Kinematics · displacement (use when final velocity unknown)" },
+        { expr: "v² = u² + 2as", desc: "Kinematics · time-independent (use when t not given)" },
+        { expr: "F = ma", desc: "Newton's 2nd Law · net force = mass × acceleration" },
+        { expr: "W = Fd cos θ", desc: "Work · F=force, d=displacement, θ=angle between them" },
+        { expr: "KE = ½mv²", desc: "Kinetic energy" },
+        { expr: "PE = mgh", desc: "Gravitational potential energy" },
+        { expr: "F = GMm/r²", desc: "Gravitation · G = 6.67 × 10⁻¹¹ N m² kg⁻²" },
+        { expr: "T = 2π√(l/g)", desc: "Simple pendulum period" },
+        { expr: "PV = nRT", desc: "Ideal Gas Law · R = 8.314 J mol⁻¹ K⁻¹" },
+        { expr: "F = qE = qvB sin θ", desc: "Lorentz force on charge in E and B fields" },
+        { expr: "V = IR", desc: "Ohm's Law · V=voltage, I=current, R=resistance" },
+        { expr: "1/f = 1/v + 1/u", desc: "Mirror/Lens formula · sign convention: distances from pole/centre" },
+        { expr: "E = hf = hc/λ", desc: "Photon energy · h = 6.63 × 10⁻³⁴ J s" },
+      ],
+      constants: [
+        { name: "g (Earth)", value: "9.8 m/s² — use 10 m/s² in JEE calculations unless told otherwise" },
+        { name: "c (light speed)", value: "3 × 10⁸ m/s" },
+        { name: "h (Planck)", value: "6.63 × 10⁻³⁴ J·s" },
+        { name: "e (electron charge)", value: "1.6 × 10⁻¹⁹ C" },
+        { name: "m_e (electron mass)", value: "9.1 × 10⁻³¹ kg" },
+      ],
+      traps: [
+        "Deceleration → a is negative. Always declare sign convention before solving.",
+        "Projectile: horizontal velocity is CONSTANT — gravity acts only vertically.",
+        "At highest point: v_y = 0 but v_x ≠ 0 (object still moving horizontally).",
+        "Lenz's Law: induced current OPPOSES change — not the flux itself.",
+        "Mirror formula: real image → distances are negative (if using standard sign convention).",
+      ],
+      mnemonics: [
+        "SUVAT — S=displacement, U=initial, V=final, A=acceleration, T=time → 5 equations cover all kinematics",
+        "FLINT — Faraday, Lenz, Induction, N-S poles, Transformer → key EM induction concepts",
+      ],
+      revision: [
+        "Range of projectile is max at 45° · height is max at 90°",
+        "Time of flight: T = 2u sinθ / g · Range: R = u² sin2θ / g",
+        "Series circuits: R_total = R₁ + R₂ · Parallel: 1/R = 1/R₁ + 1/R₂",
+        "Photon has momentum p = h/λ (de Broglie)",
+        "For any SHM: a = –ω²x · T = 2π/ω",
+      ],
+    },
+    Chemistry: {
+      formulas: [
+        { expr: "n = m/M", desc: "Mole concept · n=moles, m=mass(g), M=molar mass" },
+        { expr: "PV = nRT", desc: "Ideal gas · R = 0.0821 L·atm·mol⁻¹·K⁻¹ or 8.314 J·mol⁻¹·K⁻¹" },
+        { expr: "ΔG = ΔH − TΔS", desc: "Gibbs free energy · ΔG < 0 → spontaneous" },
+        { expr: "ΔG° = −nFE°cell", desc: "Electrochemistry · n=moles e⁻, F=96500 C/mol" },
+        { expr: "Rate = k[A]^m[B]^n", desc: "Rate Law · m,n = order w.r.t. A,B (from experiment, not stoichiometry)" },
+        { expr: "Kc = [products]/[reactants]", desc: "Equilibrium constant (molar concentrations)" },
+        { expr: "pH = −log[H⁺]", desc: "For strong acids: [H⁺] = concentration directly" },
+        { expr: "π = iCRT", desc: "Osmotic pressure · i=van't Hoff factor, C=molarity" },
+        { expr: "E°cell = E°cathode − E°anode", desc: "Cell EMF · cathode = reduction, anode = oxidation" },
+      ],
+      constants: [
+        { name: "Avogadro's Number (Nₐ)", value: "6.022 × 10²³ mol⁻¹" },
+        { name: "Faraday constant (F)", value: "96500 C mol⁻¹" },
+        { name: "R (gas constant)", value: "8.314 J mol⁻¹ K⁻¹ · 0.0821 L·atm mol⁻¹ K⁻¹" },
+        { name: "STP conditions", value: "0°C (273 K) and 1 atm · 1 mol gas = 22.4 L at STP" },
+      ],
+      traps: [
+        "Rate order is determined from EXPERIMENT, never from stoichiometric coefficients.",
+        "Kc and Kp are different: Kp = Kc(RT)^Δn — only equal if Δn = 0.",
+        "Buffer solution: pH = pKa + log([A⁻]/[HA]) — Henderson-Hasselbalch.",
+        "Nucleophiles attack carbon with +δ charge; electrophiles attack carbon with −δ or lone pairs.",
+        "Inductive effect is permanent; resonance effect depends on delocalisation.",
+      ],
+      mnemonics: [
+        "OIL RIG — Oxidation Is Loss, Reduction Is Gain (of electrons)",
+        "SHOP — S(trong acids/bases) are completely ionised; H(ydrolysis) occurs for salts of weak acid/base",
+        "LEO GER — Lose Electrons = Oxidation; Gain Electrons = Reduction",
+      ],
+      revision: [
+        "Noble gases: He Ne Ar Kr Xe Rn — atomic radii increase down the group",
+        "Electronegativity: F > O > N > Cl > Br — decreases down group, increases across period",
+        "Benzene is aromatic: 6 π electrons, planar, all C-C bonds equal length (1.40 Å)",
+        "SN2 reactions: inversion of configuration (Walden inversion) · SN1: racemic mixture",
+        "For aldol reaction: α-carbon must have H — enolate attacks carbonyl of another molecule",
+      ],
+    },
+    Mathematics: {
+      formulas: [
+        { expr: "sin²θ + cos²θ = 1", desc: "Pythagorean identity — most used in JEE" },
+        { expr: "d/dx(xⁿ) = nxⁿ⁻¹", desc: "Power rule for differentiation" },
+        { expr: "∫xⁿ dx = xⁿ⁺¹/(n+1) + C", desc: "Power rule for integration (n ≠ −1)" },
+        { expr: "d/dx(sin x) = cos x", desc: "Standard derivative — memorise all 6 trig derivatives" },
+        { expr: "lim(x→0) sin x/x = 1", desc: "Standard limit — base of many calculus problems" },
+        { expr: "Quadratic: x = (−b ± √(b²−4ac))/2a", desc: "For ax² + bx + c = 0 · Discriminant = b²−4ac" },
+        { expr: "nCr = n! / (r!(n−r)!)", desc: "Combinations · nPr = n! / (n−r)! for permutations" },
+        { expr: "|z|² = a² + b²", desc: "Complex number modulus · z = a + bi" },
+        { expr: "Area = ½|x₁(y₂−y₃) + x₂(y₃−y₁) + x₃(y₁−y₂)|", desc: "Area of triangle from coordinates" },
+        { expr: "∫₀^a f(x)dx = ∫₀^a f(a−x)dx", desc: "King's property of definite integrals — very frequently tested in JEE" },
+      ],
+      constants: [
+        { name: "e (Euler's number)", value: "2.718... · ln(e) = 1 · derivative of eˣ = eˣ" },
+        { name: "π (pi)", value: "3.14159... · sin(π) = 0 · cos(π) = -1" },
+      ],
+      traps: [
+        "Integration by parts: ∫u dv = uv − ∫v du — choose u = ILATE order (Inverse, Log, Algebraic, Trig, Exponential).",
+        "Definite integral ≠ area when function is negative — take modulus for actual area.",
+        "Permutation vs Combination: PnR when ORDER matters, CnR when it doesn't.",
+        "For quadratic with real roots: Discriminant ≥ 0. Equal roots: D = 0.",
+        "log(ab) = log a + log b · log(a/b) = log a − log b — never log(a+b) = log a + log b.",
+      ],
+      mnemonics: [
+        "ILATE — Integration by parts priority: Inverse trig > Logarithm > Algebraic > Trigonometric > Exponential",
+        "SOH CAH TOA — Sin=Opposite/Hypotenuse, Cos=Adjacent/Hypotenuse, Tan=Opposite/Adjacent",
+      ],
+      revision: [
+        "sin(A+B) = sinA cosB + cosA sinB · cos(A+B) = cosA cosB − sinA sinB",
+        "Sum of AP: S = n/2 · (2a + (n-1)d) · Sum of GP: S = a(rⁿ−1)/(r−1)",
+        "Parabola y² = 4ax: focus at (a,0), directrix x = -a, vertex at origin",
+        "In a matrix A, det(AB) = det(A)·det(B) · det(Aᵀ) = det(A)",
+        "Binomial theorem: (1+x)ⁿ ≈ 1 + nx for small x (approximation)",
+      ],
+    },
+  },
+  neet_ug: {
+    subjects: ["Physics", "Chemistry", "Biology"],
+    Physics: {
+      formulas: [
+        { expr: "v = u + at · s = ut + ½at²", desc: "SUVAT kinematics — same as JEE" },
+        { expr: "F = ma · W = mg", desc: "Newton · g = 9.8 m/s² ≈ 10 for NEET" },
+        { expr: "P = W/t = Fv", desc: "Power · P in Watts, W in Joules, t in seconds" },
+        { expr: "V = IR · P = I²R = V²/R", desc: "Ohm's Law and power in circuits" },
+        { expr: "1/f = 1/v + 1/u", desc: "Lens/Mirror formula — learn sign convention carefully" },
+        { expr: "λ = h/mv", desc: "de Broglie wavelength — h = 6.63 × 10⁻³⁴ J·s" },
+      ],
+      constants: [
+        { name: "g", value: "9.8 m/s² (use 10 in NEET)" },
+        { name: "h (Planck)", value: "6.63 × 10⁻³⁴ J·s" },
+        { name: "c", value: "3 × 10⁸ m/s" },
+      ],
+      traps: [
+        "NEET Physics is from Class 11 & 12 NCERT only — focus on NCERT examples and exercises.",
+        "Lenz's law: induced current opposes the CHANGE in flux, not the flux itself.",
+        "In ray optics: real images are on the same side as the object for mirrors.",
+      ],
+      mnemonics: ["SUVAT covers all kinematics", "OIL RIG for redox (same in Chemistry)"],
+      revision: [
+        "Ohm's law: V = IR · Series: same current · Parallel: same voltage",
+        "KVL: sum of voltages in a loop = 0 · KCL: sum of currents at a node = 0",
+        "Nuclear decay: α loses 4 mass, 2 atomic number · β⁻ gains atomic number by 1",
+      ],
+    },
+    Chemistry: {
+      formulas: [
+        { expr: "n = m/M · N = n × Nₐ", desc: "Mole concept — most fundamental in chemistry" },
+        { expr: "pH = −log[H⁺]", desc: "Strong acid: [H⁺] = molarity · Weak acid: use Ka" },
+        { expr: "ΔG = ΔH − TΔS", desc: "Spontaneity · ΔG < 0 → spontaneous at that T" },
+        { expr: "Rate = k[A]^m[B]^n", desc: "Rate law — order from experiment, not equation" },
+      ],
+      constants: [
+        { name: "Nₐ", value: "6.022 × 10²³ mol⁻¹" },
+        { name: "STP", value: "0°C, 1 atm · molar volume = 22.4 L" },
+      ],
+      traps: [
+        "NEET Chemistry: 85% questions from NCERT text — read every line of NCERT.",
+        "Colligative properties depend on NUMBER of particles, not their nature.",
+        "Aromatic compounds require: planar, cyclic, 4n+2 π electrons (Hückel's rule).",
+      ],
+      mnemonics: ["OIL RIG — Oxidation Is Loss, Reduction Is Gain", "LEO GER — Lose Electrons Oxidation, Gain Electrons Reduction"],
+      revision: [
+        "Electronegativity order: F > O > N > Cl — essential for bond polarity",
+        "Hybridisation: sp = linear · sp² = trigonal planar · sp³ = tetrahedral",
+        "Benzene: 6π electrons, all bonds equal, planar ring",
+        "SN2 = inversion (backside attack) · SN1 = racemic mixture (carbocation)",
+      ],
+    },
+    Biology: {
+      formulas: [
+        { expr: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", desc: "Photosynthesis — light-dependent products: ATP, NADPH, O₂" },
+        { expr: "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 38 ATP", desc: "Aerobic respiration — net gain is 36-38 ATP" },
+        { expr: "Hardy-Weinberg: p² + 2pq + q² = 1", desc: "Allele frequencies — p + q = 1 always" },
+      ],
+      constants: [
+        { name: "Cells discovered by", value: "Robert Hooke (1665) — cork cells" },
+        { name: "DNA structure", value: "Double helix by Watson & Crick (1953)" },
+        { name: "Cell cycle: S phase", value: "DNA replication occurs in S (Synthesis) phase" },
+      ],
+      traps: [
+        "Glycolysis occurs in cytoplasm (not mitochondria) — produces 2 ATP, 2 NADH, 2 pyruvate.",
+        "All plants have cell walls; animal cells do NOT have cell walls.",
+        "Mitosis produces 2 genetically identical diploid cells · Meiosis produces 4 haploid cells.",
+        "C4 plants (maize, sugarcane): CO₂ fixation in mesophyll + bundle sheath cells.",
+        "DNA is antiparallel — one strand 5'→3', complementary strand 3'→5'.",
+      ],
+      mnemonics: [
+        "PMAT — Prophase, Metaphase, Anaphase, Telophase (mitosis stages)",
+        "King Philip Came Over For Good Soup — Kingdom, Phylum, Class, Order, Family, Genus, Species",
+        "AT·GC pairing — A pairs with T (2 H-bonds), G pairs with C (3 H-bonds)",
+      ],
+      revision: [
+        "Meristematic tissue = actively dividing · Permanent tissue = differentiated",
+        "Xylem: water and minerals upward · Phloem: sugar (sucrose) bidirectional",
+        "Endocrine glands: pituitary (master gland), thyroid, adrenal, pancreas (Islets of Langerhans)",
+        "Blood groups: AB = universal recipient · O = universal donor (for RBC)",
+        "Krebs cycle: 1 acetyl-CoA → 3 NADH + 1 FADH₂ + 1 GTP + 2 CO₂",
+      ],
+    },
+  },
+  cuet_ug: {
+    subjects: ["English", "General Test"],
+    English: {
+      formulas: [
+        { expr: "Active → Passive: Object + be(tense) + V3 + by + Subject", desc: "Voice change rule" },
+        { expr: "Direct → Indirect: change pronouns + tense (backshift) + remove quotes", desc: "Reported speech" },
+        { expr: "Conditional Type 1: If + present simple, will + base verb", desc: "Real/possible future condition" },
+        { expr: "Conditional Type 2: If + past simple, would + base verb", desc: "Unreal/hypothetical present" },
+      ],
+      constants: [
+        { name: "Articles", value: "a (before consonant sounds) · an (before vowel sounds) · the (specific/unique)" },
+        { name: "Prepositions of time", value: "at (clock time) · on (days/dates) · in (months/years/periods)" },
+        { name: "Degrees of comparison", value: "Positive / Comparative (-er/more) / Superlative (-est/most)" },
+      ],
+      traps: [
+        "Its (possessive) vs It's (it is) — extremely common CUET trap.",
+        "Effect (noun) vs Affect (verb) — 'The effect was great' vs 'It affected me'.",
+        "'Less' for uncountable nouns · 'Fewer' for countable nouns.",
+        "Lie (to recline, intransitive) vs Lay (to place, transitive) — lay needs an object.",
+      ],
+      mnemonics: [
+        "FANBOYS — For, And, Nor, But, Or, Yet, So (coordinating conjunctions)",
+        "BEING — Be, Been, Being, Is, Are, Am, Was, Were (auxiliary verbs of 'be')",
+      ],
+      revision: [
+        "Reading comprehension: skim for main idea → scan for specific answers",
+        "Vocabulary: learn word roots — struct (build), port (carry), aud (hear), vis (see)",
+        "Sentence correction: check subject-verb agreement first, then tense, then pronoun",
+        "Spotting errors: read each part separately, identify grammatical category of error",
+      ],
+    },
+    "General Test": {
+      formulas: [
+        { expr: "Simple Interest = PRT/100", desc: "P=principal, R=rate%, T=time(years)" },
+        { expr: "Compound Interest = P(1 + R/100)ᵀ − P", desc: "Grows faster than SI — common in CUET QA" },
+        { expr: "Profit% = (Profit/CP) × 100", desc: "Always % on Cost Price unless specified" },
+        { expr: "Speed = Distance/Time", desc: "Average speed = total distance / total time (not average of speeds)" },
+        { expr: "Work done in 1 day = 1/n (if n days to complete)", desc: "Combined rate: 1/A + 1/B = 1/T" },
+        { expr: "Probability = Favourable outcomes / Total outcomes", desc: "P(A or B) = P(A) + P(B) − P(A and B)" },
+      ],
+      constants: [
+        { name: "Divisibility by 3", value: "Sum of digits divisible by 3" },
+        { name: "Divisibility by 9", value: "Sum of digits divisible by 9" },
+        { name: "Square roots to memorise", value: "√2=1.414 · √3=1.732 · √5=2.236" },
+      ],
+      traps: [
+        "Average speed ≠ (speed1 + speed2) / 2. Use: 2s1s2 / (s1+s2) for equal distances.",
+        "Compound interest: if compounded half-yearly, halve rate and double time.",
+        "Seating arrangements: circular = (n-1)! · Linear = n!",
+        "Percentage change = (New − Old)/Old × 100",
+      ],
+      mnemonics: [
+        "BODMAS — Brackets, Of, Division, Multiplication, Addition, Subtraction (operation order)",
+        "DMAS for quick calculation: Division → Multiplication → Addition → Subtraction",
+      ],
+      revision: [
+        "LCM × HCF = Product of two numbers (only for two numbers)",
+        "Sum of first n natural numbers = n(n+1)/2",
+        "For partnership: profit ratio = capital × time ratio",
+        "Distance = Speed × Time · Time = Distance / Speed · Speed = Distance / Time",
+        "If A can do work in x days and B in y days: together = xy/(x+y) days",
+      ],
+    },
+  },
+};
+
 // ── Resource Links ─────────────────────────────────────────────────────────────
 
 const RESOURCES = [
@@ -915,7 +1189,8 @@ export default function ExamPrepPage({ user, setActivePage }) {
   const [loadingQuestions, setLoadingQuestions] = useState(false);
   const [loadingTopics, setLoadingTopics] = useState(false);
   const [loadingDash, setLoadingDash] = useState(true);
-  const [activeMode, setActiveMode] = useState("learn"); // learn | practice | test | result
+  const [activeMode, setActiveMode] = useState("learn"); // learn | practice | test | reference | result
+  const [refSubject, setRefSubject] = useState(""); // selected subject in Quick Reference tab
   const [testSession, setTestSession] = useState(null);
   const [testAnswers, setTestAnswers] = useState({});
   const [testResult, setTestResult] = useState(null);
@@ -1214,20 +1489,150 @@ export default function ExamPrepPage({ user, setActivePage }) {
           </div>
         )}
 
-        {/* Mode tabs */}
+        {/* Mode tabs — 4 tabs */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           {[
-            { key: "learn",    label: "Structured Learning", icon: "📖" },
-            { key: "practice", label: "Practice",            icon: "⚡" },
-            { key: "test",     label: "Simulated Test",      icon: "📝" },
+            { key: "learn",     label: "Structured Learning", icon: "📖" },
+            { key: "practice",  label: "Practice",            icon: "⚡" },
+            { key: "test",      label: "Simulated Test",      icon: "📝" },
+            { key: "reference", label: "Quick Reference",     icon: "📋" },
           ].map(m => (
-            <button key={m.key} onClick={() => setActiveMode(m.key)}
-              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? "#6366f1" : "var(--border,#334155)"}`, background: activeMode === m.key ? "rgba(99,102,241,.12)" : "var(--panel,#1e293b)", color: activeMode === m.key ? "#a5b4fc" : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
+            <button key={m.key}
+              onClick={() => {
+                setActiveMode(m.key);
+                // When opening reference, default to first subject of current exam
+                if (m.key === "reference") {
+                  const examRef = QUICK_REFERENCE[selectedExam];
+                  if (examRef) setRefSubject(examRef.subjects?.[0] || "");
+                }
+              }}
+              style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${activeMode === m.key ? (m.key === "reference" ? "#10b981" : "#6366f1") : "var(--border,#334155)"}`, background: activeMode === m.key ? (m.key === "reference" ? "rgba(16,185,129,.12)" : "rgba(99,102,241,.12)") : "var(--panel,#1e293b)", color: activeMode === m.key ? (m.key === "reference" ? "#34d399" : "#a5b4fc") : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit" }}>
               {m.icon} {m.label}
             </button>
           ))}
         </div>
       </section>
+
+      {/* ── Quick Reference mode ── */}
+      {activeMode === "reference" && (() => {
+        const examRef = QUICK_REFERENCE[selectedExam] || QUICK_REFERENCE.jee_main;
+        const refSubjects = examRef.subjects || [];
+        const activeRefSubj = refSubject || refSubjects[0] || "";
+        const subjData = examRef[activeRefSubj] || {};
+        const subjColor = SUBJECT_COLORS[activeRefSubj] || "#10b981";
+        return (
+          <section className="premium-section" style={{ paddingTop: 0 }}>
+            <div style={{ fontSize: ".7rem", fontWeight: 700, color: "var(--muted,#64748b)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 14 }}>
+              📋 {examInfo.label} — Quick Reference · Formulas · Traps · Mnemonics
+            </div>
+
+            {/* Subject tabs */}
+            <div style={{ display: "flex", gap: 6, marginBottom: 20, flexWrap: "wrap" }}>
+              {refSubjects.map(s => {
+                const sc = SUBJECT_COLORS[s] || "#10b981";
+                const isActive = activeRefSubj === s;
+                return (
+                  <button key={s} onClick={() => setRefSubject(s)}
+                    style={{ padding: "7px 16px", borderRadius: 8, border: `2px solid ${isActive ? sc : "var(--border,#334155)"}`, background: isActive ? `${sc}18` : "var(--panel,#1e293b)", color: isActive ? sc : "var(--muted,#94a3b8)", fontWeight: 700, fontSize: ".8rem", cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
+                    <span>{SUBJECT_ICONS[s] || "📚"}</span><span>{s}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Content sections */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+              {/* Key Formulas */}
+              {subjData.formulas?.length > 0 && (
+                <div style={{ background: "var(--panel,#1e293b)", border: `1px solid ${subjColor}33`, borderRadius: 12, overflow: "hidden" }}>
+                  <div style={{ background: `${subjColor}10`, padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: subjColor, borderBottom: `1px solid ${subjColor}22` }}>
+                    📐 Key Formulas
+                  </div>
+                  <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 6 }}>
+                    {subjData.formulas.map((f, i) => (
+                      <div key={i} style={{ display: "flex", gap: 12, padding: "7px 10px", background: "rgba(99,102,241,.04)", border: "1px solid rgba(99,102,241,.12)", borderRadius: 7 }}>
+                        <code style={{ fontSize: ".75rem", color: "#c7d2fe", fontFamily: "monospace", fontWeight: 700, flexShrink: 0, minWidth: 180 }}>{f.expr}</code>
+                        <span style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", lineHeight: 1.4 }}>{f.desc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Constants */}
+              {subjData.constants?.length > 0 && (
+                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(16,185,129,.25)", borderRadius: 12, overflow: "hidden" }}>
+                  <div style={{ background: "rgba(16,185,129,.08)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#34d399", borderBottom: "1px solid rgba(16,185,129,.18)" }}>
+                    ⚡ Important Constants & Facts
+                  </div>
+                  <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
+                    {subjData.constants.map((c, i) => (
+                      <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                        <span style={{ fontSize: ".72rem", fontWeight: 700, color: "#34d399", flexShrink: 0, minWidth: 160 }}>{c.name}</span>
+                        <span style={{ fontSize: ".72rem", color: "var(--muted,#94a3b8)", lineHeight: 1.5 }}>{c.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Exam Traps */}
+              {subjData.traps?.length > 0 && (
+                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(239,68,68,.25)", borderRadius: 12, overflow: "hidden" }}>
+                  <div style={{ background: "rgba(239,68,68,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#f87171", borderBottom: "1px solid rgba(239,68,68,.18)" }}>
+                    ⚠️ Common Exam Traps — Students Lose Marks Here
+                  </div>
+                  <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
+                    {subjData.traps.map((t, i) => (
+                      <div key={i} style={{ fontSize: ".72rem", color: "#fca5a5", padding: "5px 8px", background: "rgba(239,68,68,.05)", borderRadius: 5, borderLeft: "3px solid rgba(239,68,68,.4)" }}>
+                        {t}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Mnemonics */}
+              {subjData.mnemonics?.length > 0 && (
+                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(139,92,246,.25)", borderRadius: 12, overflow: "hidden" }}>
+                  <div style={{ background: "rgba(139,92,246,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#a78bfa", borderBottom: "1px solid rgba(139,92,246,.18)" }}>
+                    🧠 Memory Mnemonics
+                  </div>
+                  <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 5 }}>
+                    {subjData.mnemonics.map((m, i) => (
+                      <div key={i} style={{ fontSize: ".72rem", color: "#c4b5fd", padding: "5px 8px", background: "rgba(139,92,246,.05)", borderRadius: 5 }}>
+                        {m}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Last-minute Revision */}
+              {subjData.revision?.length > 0 && (
+                <div style={{ background: "var(--panel,#1e293b)", border: "1px solid rgba(245,158,11,.25)", borderRadius: 12, overflow: "hidden" }}>
+                  <div style={{ background: "rgba(245,158,11,.07)", padding: "10px 16px", fontWeight: 700, fontSize: ".78rem", color: "#fbbf24", borderBottom: "1px solid rgba(245,158,11,.18)" }}>
+                    🎯 Last-minute Revision Bullets
+                  </div>
+                  <div style={{ padding: "12px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
+                    {subjData.revision.map((r, i) => (
+                      <div key={i} style={{ fontSize: ".72rem", color: "#94a3b8", padding: "3px 0", paddingLeft: 12, position: "relative" }}>
+                        <span style={{ position: "absolute", left: 0, color: "#fbbf24" }}>•</span>
+                        {r}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div style={{ marginTop: 16, fontSize: ".7rem", color: "var(--muted,#475569)", textAlign: "center", fontStyle: "italic" }}>
+              Content covers JEE · NEET · CUET — switch exam tab above to change subjects.
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── Structured Learning mode ── */}
       {activeMode === "learn" && (
@@ -1280,9 +1685,13 @@ export default function ExamPrepPage({ user, setActivePage }) {
                           },
                           {
                             phase: "Phase 2", icon: "📝", label: "Note Key Concepts",
-                            desc: "Write formulas, reactions, and important points in a revision notebook",
-                            color: "#8b5cf6", actionLabel: "Open Formula Sheets →",
-                            onClick: () => setActivePage && setActivePage("formulaSheet"),
+                            desc: "Formulas, constants, mnemonics and exam traps — your personalised revision notebook",
+                            color: "#8b5cf6", actionLabel: "Open Quick Reference →",
+                            onClick: () => {
+                              const examRef = QUICK_REFERENCE[selectedExam];
+                              if (examRef) setRefSubject(examRef.subjects?.[0] || "");
+                              setActiveMode("reference");
+                            },
                           },
                           {
                             phase: "Phase 3", icon: "⚡", label: "Practice Questions",
