@@ -346,11 +346,20 @@ function App() {
   const [pendingOauthUser, setPendingOauthUser] = useState(null);
   const [oauthRole, setOauthRole] = useState("student");
   const [oauthGrade, setOauthGrade] = useState("Grade 9");
+  const [oauthStream, setOauthStream] = useState("");
   const [oauthStep, setOauthStep] = useState("role");      // "role" → "grade" → done
   const [oauthSaving, setOauthSaving] = useState(false);
   const [oauthSaveError, setOauthSaveError] = useState(null);
   const [_oauthDiagnostics, setOauthDiagnostics] = useState([]);  // safe stages for display — eslint-disable-line no-unused-vars
-  const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10"];
+  const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+  const OAUTH_NEEDS_STREAM = ["Grade 11","Grade 12"];
+  const OAUTH_STREAM_OPTIONS = [
+    { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics", icon: "⚛️" },
+    { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology",     icon: "🔬" },
+    { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths & Biology", icon: "🧬" },
+    { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics", icon: "💼" },
+    { key: "Humanities", label: "Humanities",       desc: "History, Pol. Science, Geography", icon: "🏛️" },
+  ];
   // Prevent double-firing — module-level (not React ref) so it survives re-renders
   // and is keyed to the URL so each unique callback is processed exactly once.
   const oauthProcessed = useRef(false);
@@ -1282,13 +1291,56 @@ function App() {
           <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 8 }}>
             Select your class
           </label>
-          <select value={oauthGrade} onChange={e => setOauthGrade(e.target.value)} style={selectStyle}>
+          <select
+            value={oauthGrade}
+            onChange={e => { setOauthGrade(e.target.value); setOauthStream(""); }}
+            style={selectStyle}
+          >
             {OAUTH_GRADES.map(g => <option key={g}>{g}</option>)}
           </select>
+
+          {/* Stream picker — shown for Grade 11 and Grade 12 */}
+          {OAUTH_NEEDS_STREAM.includes(oauthGrade) && (
+            <div style={{ marginBottom: 20 }}>
+              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#cbd5e1", marginBottom: 10 }}>
+                Choose your academic stream for {oauthGrade}
+              </label>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {OAUTH_STREAM_OPTIONS.map(s => (
+                  <div
+                    key={s.key}
+                    onClick={() => setOauthStream(s.key)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 12,
+                      padding: "11px 14px", borderRadius: 10, cursor: "pointer",
+                      background: oauthStream === s.key ? "rgba(99,102,241,.15)" : "#111827",
+                      border: `2px solid ${oauthStream === s.key ? "#6366f1" : "#1e293b"}`,
+                      transition: "all .15s",
+                    }}
+                  >
+                    <span style={{ fontSize: "1.2rem", flexShrink: 0 }}>{s.icon}</span>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: ".85rem", color: oauthStream === s.key ? "#a5b4fc" : "#f8fafc" }}>{s.label}</div>
+                      <div style={{ fontSize: ".72rem", color: "#64748b", marginTop: 1 }}>{s.desc}</div>
+                    </div>
+                    {oauthStream === s.key && (
+                      <span style={{ marginLeft: "auto", color: "#6366f1", fontWeight: 800, fontSize: ".8rem" }}>✓</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <button
-            disabled={oauthSaving}
+            disabled={oauthSaving || (OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream)}
             onClick={async () => {
               setOauthSaveError(null);
+              // Validate stream for Grade 11/12
+              if (OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream) {
+                setOauthSaveError("Please choose your academic stream to continue.");
+                return;
+              }
               setOauthSaving(true);
               try {
                 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -1298,10 +1350,15 @@ function App() {
                   if (refreshed?.session?.access_token) freshToken = refreshed.session.access_token;
                 } catch { /* use original token */ }
 
+                const body = { role: "student", grade: oauthGrade, full_name: pendingOauthUser.username };
+                if (OAUTH_NEEDS_STREAM.includes(oauthGrade) && oauthStream) {
+                  body.stream = oauthStream;
+                }
+
                 const resp = await fetch(`${API_BASE}/api/auth/oauth/complete-profile`, {
                   method: "POST",
                   headers: { "Content-Type": "application/json", Authorization: `Bearer ${freshToken}` },
-                  body: JSON.stringify({ role: "student", grade: oauthGrade, full_name: pendingOauthUser.username }),
+                  body: JSON.stringify(body),
                 });
                 const result = await resp.json();
 
@@ -1321,9 +1378,19 @@ function App() {
                 setOauthSaving(false);
               }
             }}
-            style={{ ...btnBase, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }}
+            style={{
+              ...btnBase,
+              background: (OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream)
+                ? "#334155"
+                : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+              color: "#fff",
+              cursor: (OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream) ? "not-allowed" : "pointer",
+              opacity: (OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream) ? 0.6 : 1,
+            }}
           >
-            {oauthSaving ? "Saving…" : `Continue as ${oauthGrade} student →`}
+            {oauthSaving ? "Saving…" : OAUTH_NEEDS_STREAM.includes(oauthGrade) && !oauthStream
+              ? "Select a stream to continue"
+              : `Continue as ${oauthGrade} student →`}
           </button>
           {oauthSaveError && (
             <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 8,
