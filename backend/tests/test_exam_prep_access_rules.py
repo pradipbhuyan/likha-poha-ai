@@ -90,23 +90,26 @@ class TestAuthorizeFeatureExamPrep:
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
         assert r["allowed"] is False  # Nano explicitly excluded
 
+    @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")
-    def test_premium_content_allowed(self, mock_sub):
+    def test_premium_content_allowed(self, mock_sub, _mock_flag):
         mock_sub.return_value = {"canonical_plan_key": "PREMIUM", "plan_name": "Premium", "has_full_access": True}
         from app.services.feature_authorization_service import authorize_feature, Feature
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
         assert r["allowed"] is True
         assert r["limited"] is False
 
+    @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")
-    def test_family_premium_content_allowed(self, mock_sub):
+    def test_family_premium_content_allowed(self, mock_sub, _mock_flag):
         mock_sub.return_value = {"canonical_plan_key": "FAMILY_PREMIUM", "plan_name": "Family Premium", "has_full_access": True}
         from app.services.feature_authorization_service import authorize_feature, Feature
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
         assert r["allowed"] is True
 
+    @patch("app.services.feature_authorization_service._get_plan_feature_flag", return_value=True)
     @patch("app.services.feature_authorization_service.resolve_user_subscription")
-    def test_admin_grant_content_allowed(self, mock_sub):
+    def test_admin_grant_content_allowed(self, mock_sub, _mock_flag):
         mock_sub.return_value = {"canonical_plan_key": "ADMIN_GRANT", "plan_name": "Admin", "has_full_access": True}
         from app.services.feature_authorization_service import authorize_feature, Feature
         r = authorize_feature("uid", Feature.EXAM_PREP_CONTENT)
@@ -162,11 +165,13 @@ class TestBuildExamEligibility:
         assert e["jee_main"]["eligible"] is False
         assert e["neet_ug"]["eligible"] is False
 
-    def test_cuet_always_coming_soon(self):
+    def test_cuet_now_active_for_all_streams(self):
+        """CUET UG is now fully active — eligible for all streams, no coming_soon flag."""
         from app.services.exam_prep_service import build_exam_eligibility
         for stream in ("PCM", "PCB", "PCMB", "Commerce", "Humanities", None):
             e = build_exam_eligibility(stream)
-            assert e["cuet_ug"]["coming_soon"] is True
+            assert e["cuet_ug"]["eligible"] is True, f"CUET should be eligible for stream={stream}"
+            assert "coming_soon" not in e["cuet_ug"], f"CUET should not have coming_soon for stream={stream}"
 
     def test_ineligible_jee_has_math_reason(self):
         from app.services.exam_prep_service import build_exam_eligibility

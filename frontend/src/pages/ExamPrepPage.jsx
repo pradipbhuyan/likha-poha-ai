@@ -138,8 +138,8 @@ function formatMathText(text) {
   t = t.replace(/\^([a-zA-Z])/g, (_, exp) => `<sup>${exp}</sup>`);
 
   // Subscripts: _{...} or _X
-  t = t.replace(/\_\{([^}]+)\}/g, (_, sub) => `<sub>${sub}</sub>`);
-  t = t.replace(/\_(\d+)/g, (_, sub) => `<sub>${sub}</sub>`);
+  t = t.replace(/_\{([^}]+)\}/g, (_, sub) => `<sub>${sub}</sub>`);
+  t = t.replace(/_(\d+)/g, (_, sub) => `<sub>${sub}</sub>`);
 
   // Chemistry formulas: number after uppercase letter (e.g., H2O, CO2, NH3, CH4)
   // Only convert if not already wrapped in sub/sup tags

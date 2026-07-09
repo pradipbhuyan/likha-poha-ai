@@ -350,9 +350,14 @@ def authorize_feature(
     # ── DB-driven access grant for normally-denied plans ─────────────────────
     # If the canonical matrix denies this plan, but the admin has enabled the
     # feature flag in DB for this plan, grant access.
+    # Exception: NANO is explicitly excluded from EXAM_PREP_CONTENT regardless
+    # of DB flags — the spec says Nano users get preview only, not content.
     db_flag_name = _DB_DRIVEN_FEATURES.get(feature)
     if db_flag_name:
         db_plan_key = _CANONICAL_TO_DB_PLAN_KEY.get(cpk)
+        # NANO is permanently excluded from EXAM_PREP_CONTENT — cannot be overridden by admin
+        if feature == Feature.EXAM_PREP_CONTENT and cpk == "NANO":
+            db_plan_key = None
         if db_plan_key:
             flag_value = _get_plan_feature_flag(db_plan_key, db_flag_name, default=False)
             if flag_value:
