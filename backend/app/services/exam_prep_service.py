@@ -1697,23 +1697,29 @@ def _build_recommendations(weak_topics: list[str], score_pct: float) -> list[str
 
 
 def _save_test_result(db, test_id: str, result: dict, time_spent_seconds: int) -> None:
+    # score_raw column is int — must cast Python float to int to avoid PostgREST type rejection
+    raw_score = result.get("score_raw")
+    safe_score_raw = int(round(raw_score)) if raw_score is not None else None
+
     try:
         db.table("exam_prep_simulated_tests").update({
             "status": "submitted",
             "submitted_at": datetime.now(timezone.utc).isoformat(),
-            "score_raw": result.get("score_raw"),
-            "score_normalized": result.get("score_normalized"),
+            "score_raw": safe_score_raw,
+            "score_normalized": float(result.get("score_normalized") or 0),
             "subject_scores": result.get("subject_scores"),
             "topic_accuracy": result.get("topic_accuracy"),
             "weak_topics": result.get("weak_topics", []),
-            "time_spent_seconds": time_spent_seconds,
-            "attempted": result.get("attempted", 0),
-            "correct": result.get("correct", 0),
-            "wrong": result.get("wrong", 0),
+            "time_spent_seconds": int(time_spent_seconds or 0),
+            "attempted": int(result.get("attempted") or 0),
+            "correct": int(result.get("correct") or 0),
+            "wrong": int(result.get("wrong") or 0),
             "ai_recommendations": result.get("ai_recommendations"),
         }).eq("id", test_id).execute()
+        _log.info("exam_prep.save_test_result.ok", test_id=test_id,
+                  score_raw=safe_score_raw, status="submitted")
     except Exception as exc:
-        _log.warning("exam_prep.save_test_result.failed", error=str(exc))
+        _log.warning("exam_prep.save_test_result.failed", test_id=test_id, error=str(exc))
 
 
 def get_test_result(test_id: str, user_id: str) -> dict:
