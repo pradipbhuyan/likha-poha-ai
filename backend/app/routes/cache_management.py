@@ -40,6 +40,13 @@ class PrewarmChapterRequest(BaseModel):
     subject: str
     chapter: str
 
+
+class ClearChapterCacheRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    board: str = "CBSE"
+
 router = APIRouter()
 
 # Cache & Question Bank management only covers Grades 5–10.
@@ -465,6 +472,53 @@ def deduplicate_lesson_cache(
             f"{len(to_stale)} flat-content rows {'would be' if dry_run else 'have been'} marked stale. "
             f"{'Run with dry_run=false to apply.' if dry_run else 'Lesson Lab will now show structured content only.'}"
         ),
+    }
+
+
+@router.delete("/cache/lessons/chapter")
+def clear_chapter_cache(
+    data: ClearChapterCacheRequest,
+    admin=Depends(require_admin),
+):
+    """
+    Mark all lesson_cache rows stale for a specific chapter (admin-only).
+
+    Uses ilike matching on the chapter column so both the old name
+    ('Part 1 - 1. Papa's Spectacles') and the renamed name
+    ('1. Papa's Spectacles') are cleared in one call.
+
+    Safe: marks rows as 'stale', does not delete them permanently.
+    """
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+    db = get_content_db(data.grade)
+    # Strip "Part X - " prefix so the search catches both the old and new name.
+    import re as _re  # noqa: PLC0415
+    core = _re.sub(r"^\s*part\s*\d+\s*[-:]\s*", "", data.chapter, flags=_re.IGNORECASE).strip()
+    if not core:
+        core = data.chapter
+
+    try:
+        resp = (
+            db.table("lesson_cache")
+            .update({"status": "stale"})
+            .eq("grade", data.grade)
+            .eq("subject", data.subject)
+            .ilike("chapter", f"%{core}%")
+            .in_("status", ["active", "stale"])
+            .execute()
+        )
+        cleared = len(resp.data or [])
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Cache clear failed: {exc}") from exc
+
+    return {
+        "success": True,
+        "message": f"Marked {cleared} lesson cache row(s) as stale for '{data.chapter}' (matched on '{core}').",
+        "cleared": cleared,
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
     }
 
 
