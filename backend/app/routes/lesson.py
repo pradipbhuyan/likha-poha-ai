@@ -46,29 +46,37 @@ def call_with_optional_board(func, board: str, **kwargs):
     """
     Call upgraded services with board, while tolerating older test doubles.
 
-    Also strips cache_only gracefully when the target function (e.g. a test
-    double) does not accept it, so tests written before cache_only was added
-    continue to work without modification.
+    Strips board, cache_only, and force_refresh gracefully when the target
+    function (e.g. a test double) does not accept them, so tests written
+    before these kwargs were added continue to work without modification.
     """
+    # Optional kwargs that test doubles may not accept — strip on TypeError
+    _OPTIONAL_KWARGS = ("cache_only", "force_refresh")
+
+    def _try_call(fn, use_board: bool, kw: dict):
+        """Attempt the call, stripping optional kwargs one at a time on TypeError."""
+        try:
+            return fn(board=board, **kw) if use_board else fn(**kw)
+        except TypeError as exc:
+            msg = str(exc)
+            stripped = False
+            for opt in _OPTIONAL_KWARGS:
+                if f"unexpected keyword argument '{opt}'" in msg and opt in kw:
+                    kw = {k: v for k, v in kw.items() if k != opt}
+                    stripped = True
+                    break
+            if stripped:
+                return _try_call(fn, use_board, kw)
+            raise
+
     try:
         return func(board=board, **kwargs)
     except TypeError as error:
         err = str(error)
         if "unexpected keyword argument 'board'" in err:
-            try:
-                return func(**kwargs)
-            except TypeError as inner:
-                if "unexpected keyword argument 'cache_only'" in str(inner):
-                    kwargs.pop("cache_only", None)
-                    return func(**kwargs)
-                raise
-        if "unexpected keyword argument 'cache_only'" in err:
-            kwargs.pop("cache_only", None)
-            try:
-                return func(board=board, **kwargs)
-            except TypeError:
-                return func(**kwargs)
-        raise
+            return _try_call(func, False, dict(kwargs))
+        # board accepted but something else rejected — strip optional kwargs
+        return _try_call(func, True, dict(kwargs))
 
 
 def validate_required_text(value: str, field_name: str):
