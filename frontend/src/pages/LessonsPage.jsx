@@ -1601,24 +1601,39 @@ function LessonsPage({ user, setActivePage }) {
   const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
 
   // ── Top-bar layout: compact horizontal selector strip ─────────────────────
+  // Inline style helpers shared by all top-bar selects — adaptive to light/dark.
+  // CSS variables alone aren't enough because the dark defaults (rgba white) are
+  // invisible against a light background; we use explicit light-mode-safe values.
+  const _selectStyle = {
+    fontSize: ".78rem",
+    padding: "5px 10px",
+    borderRadius: 8,
+    border: "1px solid var(--border, #d1d5db)",
+    background: "var(--panel, #ffffff)",
+    color: "var(--text, #111827)",
+    cursor: "pointer",
+    fontFamily: "inherit",
+  };
+
   const topBarControls = USE_TOP_BAR_LAYOUT ? (
     <div style={{
       display: "flex",
       alignItems: "center",
       gap: 8,
       padding: "10px 16px",
-      background: "var(--card-bg, rgba(255,255,255,.04))",
-      border: "1px solid var(--border, rgba(255,255,255,.1))",
+      background: "var(--panel, #ffffff)",
+      border: "1px solid var(--border, #e5e7eb)",
       borderRadius: 12,
       marginBottom: 16,
       flexWrap: "wrap",
+      boxShadow: "0 1px 4px rgba(0,0,0,.06)",
     }}>
       {/* Compact selectors */}
       <span style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted, #6b7280)", marginRight: 2 }}>📚</span>
       <select
         value={grade}
         onChange={(e) => handleGradeChange(e.target.value)}
-        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 100 }}
+        style={{ ..._selectStyle, maxWidth: 105 }}
       >
         {grades.map(g => <option key={g} value={g}>{g}</option>)}
       </select>
@@ -1626,7 +1641,7 @@ function LessonsPage({ user, setActivePage }) {
         value={subject}
         onChange={(e) => handleSubjectChange(e.target.value)}
         disabled={subjects.length === 0}
-        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 110 }}
+        style={{ ..._selectStyle, maxWidth: 115 }}
       >
         {subjects.map(s => <option key={s} value={s}>{s}</option>)}
       </select>
@@ -1638,7 +1653,7 @@ function LessonsPage({ user, setActivePage }) {
           setSourceInfo(""); setFollowUpQuestion(""); setFollowUpMessages([]);
           resetPracticeState();
         }}
-        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 200, flex: 1 }}
+        style={{ ..._selectStyle, maxWidth: 220, flex: 1 }}
       >
         {chapters.map(c => {
           const locked = c.includes("Exemplar:") && !hasPaidAccessForLessons;
