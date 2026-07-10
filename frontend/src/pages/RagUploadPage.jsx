@@ -226,14 +226,14 @@ function LessonPrewarmTab({ user, syllabusData }) {
     }
   }
 
-  async function handleStore() {
+  async function handleStore(force = false) {
     if (!lessonContent.trim()) return;
     setStoring(true);
     setStoreResult(null);
     try {
       const result = await storePrewarmLesson(user.accessToken, {
         grade: lpGrade, subject: lpSubject, chapter: lpChapter,
-        stepTitle: lpStep, mode: lpMode, lessonContent,
+        stepTitle: lpStep, mode: lpMode, lessonContent, force,
       });
       setStoreResult(result);
       if (result.success) setLessonContent("");
@@ -365,7 +365,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
             style={{ width: "100%", height: "300px", fontFamily: "monospace", fontSize: "0.8rem",
               border: "1.5px solid #dee2e6", borderRadius: 6, padding: "0.75rem", resize: "vertical" }}
           />
-          <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
             <button
               className="premium-rag-upload-btn"
               onClick={handleStore}
@@ -373,8 +373,18 @@ function LessonPrewarmTab({ user, syllabusData }) {
             >
               {storing ? "⏳ Storing..." : "💾 Store as Pre-warmed Lesson"}
             </button>
+            {storeResult && storeResult.already_cached && (
+              <button
+                className="premium-rag-upload-btn"
+                style={{ background: "#e67e22" }}
+                onClick={() => handleStore(true)}
+                disabled={storing}
+              >
+                🔄 Force Overwrite
+              </button>
+            )}
             {storeResult && (
-              <span style={{ fontSize: "0.85rem", color: storeResult.success ? "#28a745" : "#dc3545" }}>
+              <span style={{ fontSize: "0.85rem", color: storeResult.success ? "#28a745" : "#e67e22" }}>
                 {storeResult.success
                   ? `✅ Stored! (${storeResult.chars} chars, source: ${storeResult.source_type})`
                   : `⚠️ ${storeResult.message}`}
