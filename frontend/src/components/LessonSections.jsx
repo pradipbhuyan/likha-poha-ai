@@ -564,7 +564,7 @@ function WorkbookSection({
               Leave for thinking
             </button>
           </div>
-          {questionMode === "think" && <p className="lesson-inline-thinking-note">Saved as a thinking prompt.</p>}
+          {questionMode === "think" && <p className="lesson-inline-thinking-note">Saved as a thinking prompt. No answer will be checked.</p>}
           {questionMode === "answer" && (
             <div className="lesson-inline-answer-panel">
               <textarea
