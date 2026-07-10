@@ -317,17 +317,27 @@ function LessonPrewarmTab({ user, syllabusData }) {
             {promptResult.rag_chunks_found} RAG chunk(s) found · Chapter type: <strong>{promptResult.chapter_type}</strong>
           </p>
           <div style={{ marginBottom: "0.75rem" }}>
-            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>SYSTEM PROMPT</label>
+            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>
+              SYSTEM PROMPT
+              <span style={{ marginLeft: "0.5rem", fontWeight: 400, color: "#28a745", fontSize: "0.75rem" }}>
+                ✅ Skip if you have the Custom GPT set up — it already has this
+              </span>
+            </label>
             <textarea
               readOnly
               value={promptResult.system_prompt}
-              style={{ width: "100%", height: "120px", fontSize: "0.75rem", fontFamily: "monospace",
-                background: "#f8f9fa", border: "1px solid #dee2e6", borderRadius: 6, padding: "0.5rem",
-                marginTop: "0.25rem", resize: "vertical" }}
+              style={{ width: "100%", height: "80px", fontSize: "0.75rem", fontFamily: "monospace",
+                background: "#f0fff4", border: "1px solid #c3e6cb", borderRadius: 6, padding: "0.5rem",
+                marginTop: "0.25rem", resize: "vertical", opacity: 0.7 }}
             />
           </div>
           <div style={{ marginBottom: "0.75rem" }}>
-            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>USER PROMPT (includes RAG context)</label>
+            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>
+              USER PROMPT (includes RAG context)
+              <span style={{ marginLeft: "0.5rem", fontWeight: 400, color: "#007bff", fontSize: "0.75rem" }}>
+                ← Copy this into your Custom GPT
+              </span>
+            </label>
             <textarea
               readOnly
               value={promptResult.user_prompt}
