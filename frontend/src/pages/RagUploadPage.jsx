@@ -393,7 +393,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
           <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
             <button
               className="premium-rag-upload-btn"
-              onClick={handleStore}
+              onClick={() => handleStore()}
               disabled={!lessonContent.trim() || storing}
             >
               {storing ? "⏳ Storing..." : "💾 Store as Pre-warmed Lesson"}
