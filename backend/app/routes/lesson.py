@@ -1023,7 +1023,7 @@ Generate exactly 2 practice questions as a JSON array:
 Output ONLY the JSON array. No explanation, no markdown code blocks."""
 
     try:
-        raw = ask_llm(system_prompt, user_prompt, username=user.get("username", "admin"), feature="prewarm_questions")
+        raw = ask_llm(system_prompt, user_prompt, username=getattr(user, "username", None) or getattr(user, "email", "admin"), feature="prewarm_questions")
         # Strip markdown code fences if present
         raw = raw.strip()
         if raw.startswith("```"):
