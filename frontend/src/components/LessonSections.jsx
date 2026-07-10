@@ -638,7 +638,8 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
             {tocOpen ? "✕" : "≡"}
           </button>
 
-          {/* Floating TOC panel — opens to the LEFT of the button */}
+          {/* Floating TOC panel — opens to the LEFT of the button
+              Always dark background → always use explicit light text for contrast */}
           {tocOpen && (
             <nav style={{
               position: "absolute",
@@ -646,10 +647,10 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
               top: "50%",
               transform: "translateY(-50%)",
               minWidth: 220, maxWidth: 260,
-              background: "var(--card-bg, rgba(20,22,40,.95))",
-              border: "1px solid var(--border, rgba(255,255,255,.12))",
+              background: "rgba(15,23,42,.96)",
+              border: "1px solid rgba(255,255,255,.12)",
               borderRadius: 12,
-              boxShadow: "0 8px 32px rgba(0,0,0,.4)",
+              boxShadow: "0 8px 32px rgba(0,0,0,.45)",
               backdropFilter: "blur(16px)",
               overflow: "hidden",
               zIndex: 200,
@@ -657,8 +658,8 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
               <div style={{
                 padding: "10px 14px 8px",
                 fontSize: ".65rem", fontWeight: 800, textTransform: "uppercase",
-                letterSpacing: ".1em", color: "var(--muted, #6b7280)",
-                borderBottom: "1px solid var(--border, rgba(255,255,255,.08))",
+                letterSpacing: ".1em", color: "#94a3b8",
+                borderBottom: "1px solid rgba(255,255,255,.08)",
               }}>
                 On this page
               </div>
@@ -674,7 +675,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
                         display: "flex", alignItems: "center", gap: 8,
                         padding: "7px 14px",
                         textDecoration: "none",
-                        color: "var(--text, #e2e8f0)",
+                        color: "#e2e8f0",   /* explicit light — panel is always dark */
                         fontSize: ".78rem", lineHeight: 1.4,
                         borderLeft: `2px solid transparent`,
                         transition: "all .12s",
@@ -687,7 +688,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
                       onMouseLeave={(e) => {
                         e.currentTarget.style.borderLeftColor = "transparent";
                         e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "var(--text, #e2e8f0)";
+                        e.currentTarget.style.color = "#e2e8f0";
                       }}
                     >
                       <span style={{ fontSize: ".8rem", flexShrink: 0 }}>{c.icon}</span>
