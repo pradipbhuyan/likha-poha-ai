@@ -2057,40 +2057,7 @@ function LessonsPage({ user, setActivePage }) {
                   />
                 </div>
 
-                {/* ── Phase 2: Next Step button after lesson content ── */}
-                {currentStepIndex < lessonSteps.length - 1 && (
-                  <div style={{ display: "flex", justifyContent: "flex-end", margin: "1.2rem 0 0.4rem 0" }}>
-                    <button
-                      className="primary-btn"
-                      style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", padding: "0.65rem 1.4rem" }}
-                      onClick={async () => {
-                        const newIndex = currentStepIndex + 1;
-                        const newHighest = Math.max(highestUnlockedStep, newIndex);
-                        setHighestUnlockedStep(newHighest);
-                        setCurrentStepIndex(newIndex);
-                        setLesson(stepLessons[String(newIndex)] || "");
-                        setAudioUrl("");
-                        resetTextbookVisualBrowser();
-                        resetPracticeState();
-                        await saveChapterProgress({
-                          username: user.username,
-                          grade,
-                          mode,
-                          subject,
-                          chapter,
-                          current_step_index: newIndex,
-                          highest_unlocked_step: newHighest,
-                          completed: false,
-                          last_lesson: "",
-                          step_lessons: stepLessons,
-                        });
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    >
-                      {lessonSteps[currentStepIndex + 1]} →
-                    </button>
-                  </div>
-                )}
+
 
                 <div className="lesson-audio-section premium-card">
                   <button
