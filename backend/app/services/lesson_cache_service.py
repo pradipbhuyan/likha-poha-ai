@@ -62,6 +62,7 @@ def get_cached_lesson(cache_key: str, grade: str | None = None) -> dict | None:
             .select("lesson_content, practice_questions, source_type, access_count")
             .eq("cache_key", cache_key)
             .eq("status", "active")
+            .order("created_at", desc=True)
             .limit(1)
             .execute()
         )
