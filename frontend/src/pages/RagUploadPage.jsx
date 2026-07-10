@@ -175,19 +175,30 @@ function getReadableSectionTitleFromFile(file, index) {
 
 
 // ── LessonPrewarmTab ─────────────────────────────────────────────────────────
-const LESSON_STEPS = [
-  "What We Learn",
-  "Core Concepts",
-  "Worked Examples",
-  "Exam-style problems",
-  "Revision",
-];
+/** Return the grade-appropriate step names — MUST match LessonsPage.jsx exactly */
+function getLessonStepsForGrade(grade) {
+  const g = (grade || "").toLowerCase();
+  if (g === "grade 1" || g === "grade 2" || g === "grade 3") {
+    return ["Introduction", "Let's Practice", "Quick Review"];
+  }
+  if (g === "grade 4" || g === "grade 5") {
+    return ["What We Learn", "Worked Examples", "Recap"];
+  }
+  if (g === "grade 6" || g === "grade 7" || g === "grade 8") {
+    return ["Concept introduction", "Core explanation", "Worked examples", "Revision and recap"];
+  }
+  if (g === "grade 10" || g === "grade 11" || g === "grade 12") {
+    return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap", "Exam preparation"];
+  }
+  // Grade 9 + fallback
+  return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap"];
+}
 
 function LessonPrewarmTab({ user, syllabusData }) {
   const [lpGrade, setLpGrade] = useState("");
   const [lpSubject, setLpSubject] = useState("");
   const [lpChapter, setLpChapter] = useState("");
-  const [lpStep, setLpStep] = useState(LESSON_STEPS[0]);
+  const [lpStep, setLpStep] = useState("");
   const [lpMode, setLpMode] = useState("CBSE");
 
   const [promptResult, setPromptResult] = useState(null);
@@ -201,6 +212,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
 
   // syllabusData structure: { "Grade 5": { "CBSE": { "English": ["ch1", ...] } } }
   const grades = syllabusData ? Object.keys(syllabusData).sort() : [];
+  const lessonStepsForGrade = getLessonStepsForGrade(lpGrade);
   const modes = lpGrade && syllabusData?.[lpGrade] ? Object.keys(syllabusData[lpGrade]) : ["CBSE"];
   const subjects = lpGrade && syllabusData?.[lpGrade]?.[lpMode]
     ? Object.keys(syllabusData[lpGrade][lpMode]).sort()
@@ -271,7 +283,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
         <h3 style={{ marginBottom: "1rem" }}>Step 1 — Select Chapter & Step</h3>
         <div className="premium-rag-form-row">
           <label>Grade</label>
-          <select value={lpGrade} onChange={(e) => { setLpGrade(e.target.value); setLpSubject(""); setLpChapter(""); }}>
+          <select value={lpGrade} onChange={(e) => { const newGrade = e.target.value; setLpGrade(newGrade); setLpSubject(""); setLpChapter(""); setLpStep(getLessonStepsForGrade(newGrade)[0] || ""); }}>
             <option value="">— select grade —</option>
             {grades.map((g) => <option key={g} value={g}>{g}</option>)}
           </select>
@@ -292,8 +304,9 @@ function LessonPrewarmTab({ user, syllabusData }) {
         </div>
         <div className="premium-rag-form-row">
           <label>Step</label>
-          <select value={lpStep} onChange={(e) => setLpStep(e.target.value)}>
-            {LESSON_STEPS.map((s) => <option key={s} value={s}>{s}</option>)}
+          <select value={lpStep} onChange={(e) => setLpStep(e.target.value)} disabled={!lpGrade}>
+            {!lpGrade && <option value="">— select grade first —</option>}
+            {lessonStepsForGrade.map((s, i) => <option key={s} value={s}>Step {i+1}: {s}</option>)}
           </select>
         </div>
         <div className="premium-rag-form-row">
