@@ -986,14 +986,33 @@ def generate_prewarm_questions(
 
     textbook_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
 
+    # Step-specific question focus — each step asks about a different aspect of the chapter
+    _step_focus_map = {
+        # Grade 4-5
+        "What We Learn": "Ask about what the chapter introduces — the setting, topic, or main character. Focus on vocabulary and the first impression of the chapter.",
+        "Worked Examples": "Ask about specific events, actions, or examples from the chapter. Focus on what happened and why, using details from the text.",
+        "Recap": "Ask about the theme, moral, or overall message of the chapter. Focus on revision — what the student should remember after completing all steps.",
+        # Grade 1-3
+        "Introduction": "Ask about the opening idea or character introduced. Use very simple language.",
+        "Let's Practice": "Ask about a specific action or fact from the text that the student can practise.",
+        "Quick Review": "Ask a simple recall question to test what was learned.",
+        # Grade 6-8 / 9-12
+        "Concept introduction": "Ask about the definition or core concept introduced. Focus on what the term means or what the idea represents.",
+        "Core explanation": "Ask about how the concept works — cause, effect, process, or mechanism explained in the text.",
+        "Worked examples": "Ask about a specific worked example, calculation, or case study from the textbook.",
+        "Revision and recap": "Ask a synthesis question — how concepts connect or what the student should remember overall.",
+        "Exam-style problems": "Ask a challenging problem-solving or analysis question in CBSE exam style.",
+        "Exam preparation": "Ask a board-exam level question on the most important concept in the chapter.",
+    }
+    step_focus = _step_focus_map.get(data.step_title, f"Ask about key content from the '{data.step_title}' section of this chapter.")
+
     system_prompt = """You are a CBSE question setter generating practice questions from textbook content.
 Generate EXACTLY 2 practice questions in valid JSON format.
 Rules:
-- Questions must come directly from the textbook content provided.
+- Questions must come DIRECTLY from the textbook content provided. No invented details.
+- Questions for EACH step must be DIFFERENT — focus on the specific aspect described in the Step Focus.
 - Never ask generic questions like "What did this lesson teach?" or "What is the main idea?".
-- Always ask about specific people, events, facts, or details in the text.
-- For English prose/poem chapters: ask about specific characters, events, lines, vocabulary.
-- For Science/Maths: ask about definitions, processes, calculations from the text.
+- Always ask about specific people, events, facts, lines, or details in the text.
 - Output ONLY valid JSON — no explanation, no markdown, no extra text.
 """
 
@@ -1002,20 +1021,23 @@ Subject: {data.subject}
 Chapter: {data.chapter}
 Step: {data.step_title}
 
+Step Focus (what THIS step's questions should test):
+{step_focus}
+
 Textbook content:
 {textbook_context[:3000]}
 
-Generate exactly 2 practice questions as a JSON array:
+Generate exactly 2 practice questions focused on the Step Focus above:
 [
   {{
     "type": "mcq",
-    "question": "<specific question about the textbook content>",
+    "question": "<specific question from the textbook content, focused on the step topic>",
     "options": ["<option A>", "<option B>", "<option C>", "<option D>"],
     "answer": "<exact text of correct option>"
   }},
   {{
     "type": "descriptive",
-    "question": "<short-answer question from the textbook content>",
+    "question": "<short-answer question from the textbook content, focused on the step topic>",
     "answer": "<model answer based on the textbook>"
   }}
 ]
