@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 from app.services.logger_service import get_logger
 
 _log = get_logger("routes.lesson")
