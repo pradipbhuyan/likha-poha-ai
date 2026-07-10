@@ -26,6 +26,9 @@ import {
   generatePrewarmPrompt,
   storePrewarmLesson,
   generatePrewarmQuestions,
+  listLkbChips,
+  deleteLkbChip,
+  deleteAllLkbChips,
 } from "../api/rag";
 import { getDefaultSelection } from "../utils/syllabusDefaults";
 
@@ -212,6 +215,9 @@ function LessonPrewarmTab({ user, syllabusData }) {
   const [useCustomGpt, setUseCustomGpt] = useState(false);
   const [genQLoading, setGenQLoading] = useState(false);
   const [genQResult, setGenQResult] = useState(null);
+  const [lkbChips, setLkbChips] = useState(null);
+  const [lkbLoading, setLkbLoading] = useState(false);
+  const [lkbMsg, setLkbMsg] = useState("");
 
   // syllabusData structure: { "Grade 5": { "CBSE": { "English": ["ch1", ...] } } }
   const grades = syllabusData ? Object.keys(syllabusData).sort() : [];
@@ -275,6 +281,33 @@ function LessonPrewarmTab({ user, syllabusData }) {
     } finally {
       setGenQLoading(false);
     }
+  }
+
+  async function handleLoadChips() {
+    setLkbLoading(true); setLkbMsg(""); setLkbChips(null);
+    try {
+      const r = await listLkbChips(user.accessToken, { grade: lpGrade, subject: lpSubject, chapter: lpChapter, stepTitle: lpStep });
+      setLkbChips(r.chips || []);
+    } catch(e) { setLkbMsg("Failed: " + e.message); }
+    finally { setLkbLoading(false); }
+  }
+
+  async function handleDeleteChip(chipId) {
+    try {
+      await deleteLkbChip(user.accessToken, { chipId, grade: lpGrade });
+      setLkbChips(prev => prev.filter(c => c.id !== chipId));
+    } catch(e) { setLkbMsg("Delete failed: " + e.message); }
+  }
+
+  async function handleDeleteAllChips() {
+    if (!window.confirm("Delete ALL chips for this step? They will regenerate from RAG on next student request.")) return;
+    setLkbLoading(true);
+    try {
+      const r = await deleteAllLkbChips(user.accessToken, { grade: lpGrade, subject: lpSubject, chapter: lpChapter, stepTitle: lpStep });
+      setLkbMsg(r.message || "Done");
+      setLkbChips([]);
+    } catch(e) { setLkbMsg("Delete all failed: " + e.message); }
+    finally { setLkbLoading(false); }
   }
 
   function handleCopyPrompt() {
@@ -508,6 +541,69 @@ function LessonPrewarmTab({ user, syllabusData }) {
                 <p style={{ color: "#dc3545", fontSize: "0.85rem" }}>❌ {genQResult.message}</p>
               )}
             </div>
+          )}
+        </div>
+      )}
+
+      {/* ── Step 5: Review & Delete Chip Questions ──────────────────────── */}
+      {lpGrade && lpSubject && lpChapter && lpStep && (
+        <div className="premium-rag-form-card" style={{ marginTop: "1.5rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>Step 5 — Review Follow-up Chip Questions</h3>
+          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
+            These chip questions appear in the "Ask a follow-up" section. Delete fabricated
+            or incorrect chips — the next student request will regenerate them from RAG.
+          </p>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button className="premium-rag-upload-btn" onClick={handleLoadChips}
+              disabled={lkbLoading} style={{ background: "#17a2b8" }}>
+              {lkbLoading ? "⏳ Loading..." : "🔍 Load Chip Questions"}
+            </button>
+            {lkbChips && lkbChips.length > 0 && (
+              <button onClick={handleDeleteAllChips} disabled={lkbLoading}
+                style={{ background: "#dc3545", color: "#fff", border: "none",
+                  borderRadius: 8, padding: "0.5rem 1rem", cursor: "pointer", fontWeight: 600 }}>
+                🗑️ Delete All {lkbChips.length} Chips
+              </button>
+            )}
+          </div>
+          {lkbMsg && (
+            <p style={{ fontSize: "0.85rem", color: "#28a745", marginTop: "0.5rem" }}>{lkbMsg}</p>
+          )}
+          {lkbChips !== null && (
+            <div style={{ marginTop: "0.75rem" }}>
+              {lkbChips.length === 0 ? (
+                <p style={{ color: "#888", fontSize: "0.85rem" }}>
+                  No chips stored for this step. Students will generate on first visit.
+                </p>
+              ) : (
+                lkbChips.map((chip) => (
+                  <div key={chip.id} style={{ background: "#f8f9fa", border: "1px solid #dee2e6",
+                    borderRadius: 6, padding: "0.6rem 0.8rem", marginBottom: "0.5rem",
+                    display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontWeight: 600, fontSize: "0.8rem", marginBottom: "0.2rem" }}>
+                        Q: {chip.question}
+                      </p>
+                      <p style={{ fontSize: "0.75rem", color: "#555" }}>
+                        A: {chip.answer}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleDeleteChip(chip.id)}
+                      style={{ background: "none", border: "1px solid #dc3545", color: "#dc3545",
+                        borderRadius: 4, padding: "0.2rem 0.5rem", cursor: "pointer",
+                        fontSize: "0.75rem", whiteSpace: "nowrap", flexShrink: 0 }}>
+                      🗑️ Delete
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+          {lkbChips !== null && lkbChips.length === 0 && (
+            <p style={{ fontSize: "0.8rem", color: "#28a745", marginTop: "0.5rem" }}>
+              ✅ All chips cleared. Fresh chips will be generated from RAG on next student request.
+            </p>
           )}
         </div>
       )}

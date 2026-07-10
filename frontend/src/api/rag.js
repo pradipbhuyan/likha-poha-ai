@@ -627,3 +627,33 @@ export async function generatePrewarmQuestions(
   }
   return response.json();
 }
+
+// ── LKB Chip Review ────────────────────────────────────────────────────────
+export async function listLkbChips(accessToken, { grade, subject, chapter, stepTitle }) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const p = new URLSearchParams({ grade, subject, chapter, step_title: stepTitle });
+  const r = await fetch(`${API_BASE}/api/lesson/prewarm/lkb-chips?${p}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  return r.json();
+}
+
+export async function deleteLkbChip(accessToken, { chipId, grade }) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const p = new URLSearchParams({ grade });
+  const r = await fetch(`${API_BASE}/api/lesson/prewarm/lkb-chips/${chipId}?${p}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  return r.json();
+}
+
+export async function deleteAllLkbChips(accessToken, { grade, subject, chapter, stepTitle }) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const p = new URLSearchParams({ grade, subject, chapter, step_title: stepTitle });
+  const r = await fetch(`${API_BASE}/api/lesson/prewarm/lkb-chips?${p}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  return r.json();
+}

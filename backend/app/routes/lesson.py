@@ -1097,3 +1097,68 @@ Output ONLY the JSON array. No explanation, no markdown code blocks."""
         "message": f"Generated and stored {len(questions)} practice question(s)",
         "questions": questions,
     }
+
+
+@router.get("/prewarm/lkb-chips")
+def list_lkb_chips_for_review(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    user=Depends(get_current_user),
+):
+    """Return all LKB chips for the given chapter/step for admin review."""
+    from app.services.lesson_kb_service import get_lkb_chips  # noqa: PLC0415
+    chips = get_lkb_chips(grade, subject, chapter, step_title, limit=20)
+    return {"success": True, "chips": chips, "count": len(chips)}
+
+
+@router.delete("/prewarm/lkb-chips/{chip_id}")
+def delete_lkb_chip(
+    chip_id: str,
+    grade: str,
+    user=Depends(get_current_user),
+):
+    """
+    Delete (deactivate) a fabricated/wrong LKB chip.
+    The next student request will regenerate chips from RAG.
+    Pass grade so the correct DB is targeted (Grade 11/12 uses second DB).
+    """
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+    db = get_content_db(grade)
+    try:
+        db.table("lesson_kb").update({"status": "deleted"}).eq("id", chip_id).execute()
+        return {"success": True, "message": f"Chip {chip_id} deleted"}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+
+@router.delete("/prewarm/lkb-chips")
+def delete_all_lkb_chips_for_step(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    user=Depends(get_current_user),
+):
+    """
+    Delete ALL LKB chips for a chapter/step in one click.
+    Useful when the entire chip set was generated with wrong/hallucinated content.
+    The next student request will regenerate all chips from RAG.
+    """
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+    db = get_content_db(grade)
+    try:
+        result = (
+            db.table("lesson_kb")
+            .update({"status": "deleted"})
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("chapter", chapter)
+            .eq("step_title", step_title)
+            .execute()
+        )
+        deleted = len(result.data or [])
+        return {"success": True, "message": f"Deleted {deleted} chip(s). Will regenerate from RAG on next student request."}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
