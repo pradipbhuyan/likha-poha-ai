@@ -419,6 +419,29 @@ def generate_practice_questions(
     LLM fallback generates questions directly from the lesson step content so
     they are always relevant to what was just taught.
     """
+    # ── Prewarm cache check — highest priority ────────────────────────────────
+    # Admin-generated questions from RAG textbook content (via Lesson Prewarm tab)
+    # take precedence over the question bank. They are chapter-specific and accurate.
+    try:
+        from app.services.lesson_cache_service import make_lesson_cache_key, get_cached_lesson  # noqa: PLC0415
+        _cache_key = make_lesson_cache_key(
+            board="CBSE",
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode="CBSE",
+            step_title=step_title,
+            teacher_persona="",
+        )
+        _cached = get_cached_lesson(_cache_key, grade=grade)
+        if _cached:
+            _prewarm_qs = _cached.get("practice_questions") or []
+            if _prewarm_qs and len(_prewarm_qs) >= 1:
+                return {"questions": _prewarm_qs}
+    except Exception:
+        pass
+    # ── End prewarm cache check ───────────────────────────────────────────────
+
     # ── Question bank only — no LLM ───────────────────────────────────────────
     # With 100,000+ questions in the bank, every chapter should have enough.
     # Tries multiple difficulty levels to maximise hit rate.
