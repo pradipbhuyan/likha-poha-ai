@@ -284,6 +284,11 @@ _POEM_KEYWORDS = {
     "dust of snow", "fire and ice", "a tiger in the zoo", "how to tell",
     "the ball poem", "amanda", "animals", "the trees", "fog",
     "the tale of custard", "for anne gregory", "god made the country",
+    # ── Grade 5 Santoor English poems (confirmed from RAG content) ──────────
+    "papa's spectacles", "spectacles",  # Chapter 1
+    "the rainbow",                       # Chapter 3
+    "the frog",                          # Chapter 5
+    "vocation",                          # Chapter 9
 }
 _GRAMMAR_KEYWORDS = {
     "grammar", "tense", "voice", "reported speech", "narration",
