@@ -32,7 +32,17 @@ def split_text_into_chunks(text, chunk_size=1200):
 
 
 def create_embedding(text: str):
-    response = get_openai_client().embeddings.create(
+    """Create a text embedding using the dedicated OpenAI embeddings key.
+
+    Embeddings MUST use the .env OPENAI_API_KEY directly — NOT the admin
+    settings override key (which is for LLM calls only).  Using the wrong key
+    causes silent 401 failures and makes all RAG searches return empty results.
+    """
+    from app.config import settings as _cfg  # noqa: PLC0415
+    from openai import OpenAI as _OpenAI  # noqa: PLC0415
+    # Always use the env-file key for embeddings regardless of admin overrides
+    _client = _OpenAI(api_key=_cfg.OPENAI_API_KEY, timeout=60.0)
+    response = _client.embeddings.create(
         model=EMBEDDING_MODEL,
         input=text,
     )
@@ -173,12 +183,18 @@ def search_textbook_content(
     db = get_content_db(grade)
     try:
         query_embedding = create_embedding(query)
-    except Exception:
+    except Exception as _emb_exc:
+        import logging as _log  # noqa: PLC0415
+        _log.getLogger("likhapoha.rag_debug").error(
+            "create_embedding FAILED grade=%s subject=%s chapter=%r error=%s",
+            grade, subject, chapter, _emb_exc,
+        )
         return []
 
     requested_board = normalize_board(board)
     rpc_match_count = match_count * 4 if board else match_count
 
+    _filter_chapter = strip_chapter_display_prefix(chapter) if chapter else chapter
     try:
         response = db.rpc(
             "match_rag_chunks",
@@ -187,11 +203,21 @@ def search_textbook_content(
                 "match_count": rpc_match_count,
                 "filter_grade": grade,
                 "filter_subject": subject,
-                "filter_chapter": strip_chapter_display_prefix(chapter) if chapter else chapter,
+                "filter_chapter": _filter_chapter,
             },
         ).execute()
         results = response.data or []
-    except Exception:
+        import logging as _log  # noqa: PLC0415
+        _log.getLogger("likhapoha.rag_debug").info(
+            "match_rag_chunks raw=%d grade=%s subject=%s chapter=%r",
+            len(results), grade, subject, _filter_chapter,
+        )
+    except Exception as _exc:
+        import logging as _log  # noqa: PLC0415
+        _log.getLogger("likhapoha.rag_debug").error(
+            "match_rag_chunks EXCEPTION grade=%s subject=%s chapter=%r error=%s",
+            grade, subject, _filter_chapter, _exc,
+        )
         # DB unavailable (e.g. Grade 11/12 key rotation) — return empty so
         # the tutor falls back to LLM generation rather than crashing.
         return []
