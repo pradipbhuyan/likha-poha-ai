@@ -1,0 +1,54 @@
+document_id,grade,subject,chapter,title,chunk_count,flagged_count,has_pdf_source,avg_overall,avg_completeness,avg_boundary,avg_fidelity,critical_findings,high_findings,medium_findings,low_findings,audited_at
+553,Grade 6,Hindi,13. पेड़ की बात,Grade 6 CBSE Hindi Text Book - 13. पेड़ की बात,21,0,False,98,99,94,100,0,0,21,0,2026-07-10T04:53:41.226890+00:00
+552,Grade 6,Hindi,12. हिंद महासागर में छोटा-सा हिंदुस्ान,Grade 6 CBSE Hindi Text Book - 12. हिंद महासागर में छोटा-सा हिंदुस्ान,20,0,False,98,100,95,100,0,0,16,0,2026-07-10T04:53:41.772483+00:00
+551,Grade 6,Hindi,11. चेतक की वीरता,Grade 6 CBSE Hindi Text Book - 11. चेतक की वीरता,5,0,False,99,100,96,100,0,0,3,0,2026-07-10T04:53:41.962229+00:00
+550,Grade 6,Hindi,10. परीक्ा,Grade 6 CBSE Hindi Text Book - 10. परीक्ा,16,0,False,97,98,94,100,0,0,18,0,2026-07-10T04:53:42.250749+00:00
+549,Grade 6,Hindi,9. मैया मैं नमहं माखन खायो,Grade 6 CBSE Hindi Text Book - 9. मैया मैं नमहं माखन खायो,9,0,False,98,100,94,100,0,0,8,0,2026-07-10T04:53:42.452055+00:00
+548,Grade 6,Hindi,8. समरिया और मबहू नृत्य,Grade 6 CBSE Hindi Text Book - 8. समरिया और मबहू नृत्य,19,0,False,98,100,94,100,0,0,17,0,2026-07-10T04:53:42.922537+00:00
+547,Grade 6,Hindi,7. जलाते चलो,Grade 6 CBSE Hindi Text Book - 7. जलाते चलो,11,0,False,98,100,94,100,0,0,10,0,2026-07-10T04:53:43.152750+00:00
+546,Grade 6,Hindi,6. मेरी माँ,Grade 6 CBSE Hindi Text Book - 6. मेरी माँ,11,0,False,97,97,94,100,1,0,9,0,2026-07-10T04:53:43.371444+00:00
+545,Grade 6,Hindi,5. रहीम के दोहे,Grade 6 CBSE Hindi Text Book - 5. रहीम के दोहे,6,0,False,98,100,94,100,0,0,5,0,2026-07-10T04:53:43.535336+00:00
+544,Grade 6,Hindi,4. हार की जीत,Grade 6 CBSE Hindi Text Book - 4. हार की जीत,11,0,False,98,100,94,100,0,0,9,0,2026-07-10T04:53:43.762784+00:00
+543,Grade 6,Hindi,3. पहली बूँद,Grade 6 CBSE Hindi Text Book - 3. पहली बूँद,6,0,False,98,100,94,100,0,0,5,0,2026-07-10T04:53:43.927653+00:00
+542,Grade 6,Hindi,2. गोल,Grade 6 CBSE Hindi Text Book - 2. गोल,13,0,False,98,100,94,100,0,0,12,0,2026-07-10T04:53:44.174386+00:00
+541,Grade 6,Hindi,1. मातृभूमि,Grade 6 CBSE Hindi Text Book - 1. मातृभूमि,8,0,False,98,100,95,100,0,0,6,0,2026-07-10T04:53:44.375882+00:00
+540,Grade 6,Social Science,14. Economic Activities Around Us,Grade 6 CBSE Social Science Text Book - 14. Economic Activities Around Us,14,0,False,96,99,90,100,0,0,22,1,2026-07-10T04:53:44.565070+00:00
+539,Grade 6,Social Science,13. The Value of Work,Grade 6 CBSE Social Science Text Book - 13. The Value of Work,11,0,False,96,100,89,100,0,0,17,0,2026-07-10T04:53:44.749346+00:00
+538,Grade 6,Social Science,12. Grassroots Democracy — Part 3: Local Government in Urban Areas,Grade 6 CBSE Social Science Text Book - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas,10,0,False,97,100,91,100,0,0,13,0,2026-07-10T04:53:44.931454+00:00
+537,Grade 6,Social Science,11. Grassroots Democracy — Part 2: Local Government in Rural Areas,Grade 6 CBSE Social Science Text Book - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas,12,0,False,97,100,90,100,0,0,17,0,2026-07-10T04:53:45.118377+00:00
+536,Grade 6,Social Science,10. Grassroots Democracy — Part 1: Governance,Grade 6 CBSE Social Science Text Book - 10. Grassroots Democracy — Part 1: Governance,14,0,False,96,100,90,100,0,0,20,0,2026-07-10T04:53:45.326569+00:00
+535,Grade 6,Social Science,9. Family and Community,Grade 6 CBSE Social Science Text Book - 9. Family and Community,13,0,False,96,100,90,100,0,0,19,0,2026-07-10T04:53:45.523790+00:00
+534,Grade 6,Social Science,"8. Unity in Diversity, or 'Many in the One'","Grade 6 CBSE Social Science Text Book - 8. Unity in Diversity, or 'Many in the One'",13,0,False,97,99,92,100,0,0,17,0,2026-07-10T04:53:45.713034+00:00
+533,Grade 6,Social Science,7. India's Cultural Roots,Grade 6 CBSE Social Science Text Book - 7. India's Cultural Roots,25,0,False,95,99,87,100,0,0,47,0,2026-07-10T04:53:46.015942+00:00
+532,Grade 6,Social Science,6. The Beginnings of Indian Civilisation,Grade 6 CBSE Social Science Text Book - 6. The Beginnings of Indian Civilisation,20,0,False,96,100,89,100,0,0,32,0,2026-07-10T04:53:46.250718+00:00
+531,Grade 6,Social Science,"5. India, That Is Bharat","Grade 6 CBSE Social Science Text Book - 5. India, That Is Bharat",9,0,False,97,100,92,100,0,0,10,0,2026-07-10T04:53:46.436166+00:00
+530,Grade 6,Social Science,4. Timeline and Sources of History,Grade 6 CBSE Social Science Text Book - 4. Timeline and Sources of History,17,0,False,96,99,89,100,0,0,28,0,2026-07-10T04:53:46.672416+00:00
+529,Grade 6,Social Science,3. Landforms and Life,Grade 6 CBSE Social Science Text Book - 3. Landforms and Life,19,0,False,96,99,90,100,0,0,30,0,2026-07-10T04:53:46.897182+00:00
+528,Grade 6,Social Science,2. Oceans and Continents,Grade 6 CBSE Social Science Text Book - 2. Oceans and Continents,15,0,False,96,100,89,100,0,0,23,0,2026-07-10T04:53:47.112448+00:00
+527,Grade 6,Social Science,1. Locating Places on the Earth,Grade 6 CBSE Social Science Text Book - 1. Locating Places on the Earth,28,0,False,96,99,89,100,0,0,48,0,2026-07-10T04:53:47.573369+00:00
+521,Grade 6,English,Unit 5: Culture and Tradition,Grade 6 CBSE English Text Book - Unit 5: Culture and Tradition,29,0,False,96,100,89,100,0,0,48,0,2026-07-10T04:53:48.091738+00:00
+520,Grade 6,English,Unit 4: Sports and Wellness,Grade 6 CBSE English Text Book - Unit 4: Sports and Wellness,26,0,False,96,100,89,100,0,0,40,0,2026-07-10T04:53:48.428237+00:00
+519,Grade 6,English,Unit 3: Nurturing Nature,Grade 6 CBSE English Text Book - Unit 3: Nurturing Nature,25,0,False,96,100,87,100,0,0,45,0,2026-07-10T04:53:48.771935+00:00
+517,Grade 6,English,Unit 1: Fables and Folk Tales,Grade 6 CBSE English Text Book - Unit 1: Fables and Folk Tales,28,0,False,96,100,90,100,0,0,42,0,2026-07-10T04:53:49.298845+00:00
+516,Grade 6,Science,Chapter 12: Beyond Earth,Grade 6 CBSE Science Text Book - Chapter 12: Beyond Earth,29,0,False,96,100,90,100,0,0,45,0,2026-07-10T04:53:49.667979+00:00
+515,Grade 6,Science,Chapter 11: Nature’s Treasures,Grade 6 CBSE Science Text Book - Chapter 11: Nature’s Treasures,31,0,False,97,100,90,100,0,0,43,0,2026-07-10T04:53:50.088414+00:00
+514,Grade 6,Science,Chapter 10: Living Creatures: Exploring their Characteristics,Grade 6 CBSE Science Text Book - Chapter 10: Living Creatures: Exploring their Characteristics,33,0,False,96,100,88,100,0,0,58,0,2026-07-10T04:53:50.493777+00:00
+513,Grade 6,Science,Chapter 9: Methods of Separation in Everyday Life,Grade 6 CBSE Science Text Book - Chapter 9: Methods of Separation in Everyday Life,23,0,False,96,100,89,100,0,0,35,0,2026-07-10T04:53:50.893859+00:00
+512,Grade 6,Science,Chapter 8: A Journey through States of Water,Grade 6 CBSE Science Text Book - Chapter 8: A Journey through States of Water,35,0,False,95,100,88,100,0,0,64,0,2026-07-10T04:53:51.354827+00:00
+511,Grade 6,Science,Chapter 7: Temperature and its Measurement,Grade 6 CBSE Science Text Book - Chapter 7: Temperature and its Measurement,23,0,False,96,100,89,100,0,0,37,0,2026-07-10T04:53:51.631828+00:00
+510,Grade 6,Science,Chapter 6: Materials Around Us,Grade 6 CBSE Science Text Book - Chapter 6: Materials Around Us,28,0,False,96,100,89,100,0,0,44,0,2026-07-10T04:53:52.010529+00:00
+509,Grade 6,Science,Chapter 5: Measurement of Length and Motion,Grade 6 CBSE Science Text Book - Chapter 5: Measurement of Length and Motion,23,0,False,96,100,89,100,0,0,36,0,2026-07-10T04:53:52.303551+00:00
+508,Grade 6,Science,Chapter 4: Exploring Magnets,Grade 6 CBSE Science Text Book - Chapter 4: Exploring Magnets,20,0,False,96,100,89,100,0,0,31,0,2026-07-10T04:53:52.556796+00:00
+507,Grade 6,Science,Chapter 3: Mindful Eating: A Path to a Healthy Body,Grade 6 CBSE Science Text Book - Chapter 3: Mindful Eating: A Path to a Healthy Body,33,0,False,96,99,90,100,0,0,51,0,2026-07-10T04:53:53.100355+00:00
+506,Grade 6,Science,Chapter 2: Diversity in the Living World,Grade 6 CBSE Science Text Book - Chapter 2: Diversity in the Living World,36,0,False,96,100,88,100,0,0,62,0,2026-07-10T04:53:53.735678+00:00
+505,Grade 6,Science,Chapter 1: The Wonderful World of Science,Grade 6 CBSE Science Text Book - Chapter 1: The Wonderful World of Science,9,0,False,96,100,88,100,0,0,15,0,2026-07-10T04:53:53.931638+00:00
+504,Grade 6,Maths,Chapter 10 The Other Side of Zero,Grade 6 CBSE Maths Text Book - Chapter 10 The Other Side of Zero,47,0,False,96,99,91,100,0,0,69,0,2026-07-10T04:53:55.025759+00:00
+503,Grade 6,Maths,Chapter 9 Symmetry,Grade 6 CBSE Maths Text Book - Chapter 9 Symmetry,25,0,False,95,99,88,100,0,0,49,0,2026-07-10T04:53:55.340931+00:00
+502,Grade 6,Maths,Chapter 8 Playing with Constructions,Grade 6 CBSE Maths Text Book - Chapter 8 Playing with Constructions,26,0,False,96,99,90,100,0,0,41,0,2026-07-10T04:53:55.731909+00:00
+501,Grade 6,Maths,Chapter 7 Fractions,Grade 6 CBSE Maths Text Book - Chapter 7 Fractions,42,0,False,97,100,90,100,0,0,59,0,2026-07-10T04:53:56.659999+00:00
+500,Grade 6,Maths,Chapter 6 Perimeter and Area,Grade 6 CBSE Maths Text Book - Chapter 6 Perimeter and Area,28,0,False,96,100,90,100,0,0,41,0,2026-07-10T04:53:57.051977+00:00
+499,Grade 6,Maths,Chapter 5 Prime Time,Grade 6 CBSE Maths Text Book - Chapter 5 Prime Time,40,0,False,97,100,91,100,0,0,53,0,2026-07-10T04:53:57.847226+00:00
+498,Grade 6,Maths,Chapter 4 Data Handling and Presentation,Grade 6 CBSE Maths Text Book - Chapter 4 Data Handling and Presentation,44,0,False,96,100,90,100,0,0,68,0,2026-07-10T04:53:58.614573+00:00
+497,Grade 6,Maths,Chapter 3 Number Play,Grade 6 CBSE Maths Text Book - Chapter 3 Number Play,34,0,False,96,100,90,100,0,0,52,0,2026-07-10T04:53:59.265238+00:00
+496,Grade 6,Maths,Chapter 2 Lines and Angles,Grade 6 CBSE Maths Text Book - Chapter 2 Lines and Angles,43,0,False,96,100,90,100,0,0,64,0,2026-07-10T04:54:00.124329+00:00
+495,Grade 6,Maths,Chapter 1 Patterns in Mathematics,Grade 6 CBSE Maths Text Book - Chapter 1 Patterns in Mathematics,17,0,False,96,99,89,100,0,1,26,0,2026-07-10T04:54:00.391763+00:00

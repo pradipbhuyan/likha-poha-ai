@@ -1,21 +1,21 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 5,Maths,Chapter 2: Fractions,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.671426+00:00
-Grade 10,English,Supplementary Reader - Chapter 3: The Midnight Visitor,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.671601+00:00
-Grade 6,Maths,Chapter 5 Prime Time,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.671741+00:00
-Grade 10,Social Science,Text Book - Chapter 1: Development,1,94,100,90,80,98,100,0,0,0,1,2026-07-06T17:18:27.671947+00:00
-Grade 10,Maths,Exemplar: Pair of Linear Equations in Two Variables,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.672100+00:00
-Grade 5,English,2. Gone with the Scooter,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.672404+00:00
-Grade 6,English,Unit 2: Friendship,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.672503+00:00
-Grade 6,Hindi,6. मेरी माँ,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.672704+00:00
-Grade 5,Hindi,10. तीन मछलियाँ,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.672972+00:00
-Grade 6,English,Unit 5: Culture and Tradition,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.673152+00:00
-Grade 6,Hindi,4. हार की जीत,1,93,95,90,80,100,100,0,0,1,0,2026-07-06T17:18:27.673369+00:00
-Grade 10,Science,Chapter 13: Our Environment,1,94,100,90,80,98,100,0,0,0,1,2026-07-06T17:18:27.673485+00:00
-Grade 5,Maths,The Fish Tale,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.673631+00:00
-Grade 5,EVS,Chapter 2: Journey of a River,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.673889+00:00
-Grade 10,Hindi,अध्याय 11: यतींद्र मिश्र,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674077+00:00
-Grade 10,English,Supplementary Reader - Chapter 5: Footprints without Feet,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674184+00:00
-Grade 10,Science,Exemplar: Management of Natural Resources,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674208+00:00
-Grade 10,Maths,Exemplar: Areas Related to Circles,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674341+00:00
-Grade 10,Maths,Chapter 1: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674472+00:00
-Grade 10,Hindi,अध्याय 2: तुलसीदास,1,94,100,90,80,100,100,0,0,0,0,2026-07-06T17:18:27.674597+00:00
+Grade 6,Hindi,1. मातृभूमि,1,94,100,90,80,98,100,0,0,0,1,2026-07-09T15:11:49.068251+00:00
+Grade 10,English,Supplementary Reader - Chapter 9: The Book That Saved the Earth,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.068439+00:00
+Grade 5,Maths,Chapter 8: Weight and Capacity,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.068678+00:00
+Grade 10,Social Science,Geography - Chapter 7: Lifelines of National Economy,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.068826+00:00
+Grade 10,Maths,Chapter 9: Some Applications of Trigonometry,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.069146+00:00
+Grade 6,Hindi,8. समरिया और मबहू नृत्य,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.069365+00:00
+Grade 10,Social Science,Text Book - Chapter 4: Globalisation and the Indian Economy,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.069617+00:00
+Grade 10,Social Science,History - Chapter 2: Nationalism in India,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.069733+00:00
+Grade 10,Science,Exemplar: Human Eye and the Colourful World,1,94,100,90,80,98,100,0,0,0,1,2026-07-09T15:11:49.069925+00:00
+Grade 10,Science,Exemplar: Our Environment,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.070248+00:00
+Grade 10,Maths,Exemplar: Circles,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.070388+00:00
+Grade 10,English,Supplementary Reader - Chapter 2: The Thief's Story,1,93,95,90,80,100,100,0,0,1,0,2026-07-09T15:11:49.070630+00:00
+Grade 10,English,Supplementary Reader - Chapter 5: Footprints without Feet,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.070956+00:00
+Grade 10,Maths,Chapter 1: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.071229+00:00
+Grade 10,Social Science,History - Chapter 3: The Making of a Global World,1,94,100,90,80,98,100,0,0,0,1,2026-07-09T15:11:49.071557+00:00
+Grade 10,Science,Exemplar: Chemical Reactions and Equations,1,94,100,90,80,98,100,0,0,0,1,2026-07-09T15:11:49.071782+00:00
+Grade 10,Hindi,अध्याय 5: नागार्जुन,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.071971+00:00
+Grade 10,English,Workbook - Chapter 5: Glimpses of India,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.072211+00:00
+Grade 5,EVS,Chapter 2: Journey of a River,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.072424+00:00
+Grade 10,Maths,Exemplar: Constructions,1,94,100,90,80,100,100,0,0,0,0,2026-07-09T15:11:49.072623+00:00

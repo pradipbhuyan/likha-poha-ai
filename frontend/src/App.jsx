@@ -31,6 +31,7 @@ import AdminIssuesPage from "./pages/AdminIssuesPage";
 import ReportIssueModal from "./components/ReportIssueModal";
 import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
+import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
@@ -357,11 +358,11 @@ function App() {
   const OAUTH_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
   const OAUTH_NEEDS_STREAM = ["Grade 11","Grade 12"];
   const OAUTH_STREAM_OPTIONS = [
-    { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics", icon: "⚛️" },
-    { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology",     icon: "🔬" },
-    { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths & Biology", icon: "🧬" },
-    { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics", icon: "💼" },
-    { key: "Humanities", label: "Humanities",       desc: "History, Pol. Science, Geography", icon: "🏛️" },
+    { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics",     Icon: Atom },
+    { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology",         Icon: Microscope },
+    { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths & Biology", Icon: FlaskConical },
+    { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics",    Icon: Briefcase },
+    { key: "Humanities", label: "Humanities",       desc: "History, Pol. Science, Geography",    Icon: Landmark },
   ];
   // Prevent double-firing — module-level (not React ref) so it survives re-renders
   // and is keyed to the URL so each unique callback is processed exactly once.
@@ -835,7 +836,7 @@ function App() {
         background: "#0f172a", color: "#f8fafc", gap: 16,
         fontFamily: "-apple-system, sans-serif", padding: 24,
       }}>
-        <div style={{ fontSize: "2.5rem" }}>⚠️</div>
+        <AlertTriangle size={44} style={{ color: "#fca5a5", marginBottom: 4 }} strokeWidth={1.8} />
         <p style={{ fontSize: "1rem", color: "#fca5a5", textAlign: "center", maxWidth: 360 }}>
           {oauthError}
         </p>
@@ -1201,9 +1202,9 @@ function App() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 8 }}>
               {[
-                { r: "student", icon: "🎓", label: "Student", desc: "I want to learn and take practice tests" },
-                { r: "parent",  icon: "👨‍👩‍👧", label: "Parent",  desc: "I want to track my child's learning" },
-              ].map(({ r, icon, label, desc }) => (
+              { r: "student", Icon: GraduationCap, label: "Student", desc: "I want to learn and take practice tests" },
+              { r: "parent",  Icon: Users,          label: "Parent",  desc: "I want to track my child's learning" },
+              ].map(({ r, Icon: RoleIcon, label, desc }) => (
                 <div key={r}
                   onClick={() => setOauthRole(r)}
                   style={{
@@ -1214,7 +1215,7 @@ function App() {
                     transition: "all .15s",
                   }}
                 >
-                  <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>{icon}</span>
+                  <RoleIcon size={22} strokeWidth={1.8} style={{ flexShrink: 0, color: oauthRole === r ? "#a5b4fc" : "#64748b" }} />
                   <div>
                     <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{label}</div>
                     <div style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{desc}</div>
@@ -1328,7 +1329,7 @@ function App() {
                       transition: "all .15s",
                     }}
                   >
-                    <span style={{ fontSize: "1.2rem", flexShrink: 0 }}>{s.icon}</span>
+                    <s.Icon size={18} strokeWidth={1.8} style={{ flexShrink: 0, color: oauthStream === s.key ? "#a5b4fc" : "#64748b" }} />
                     <div>
                       <div style={{ fontWeight: 700, fontSize: ".85rem", color: oauthStream === s.key ? "#a5b4fc" : "#f8fafc" }}>{s.label}</div>
                       <div style={{ fontSize: ".72rem", color: "#64748b", marginTop: 1 }}>{s.desc}</div>
@@ -1477,28 +1478,25 @@ function App() {
 
     const roleConfig = {
       student: {
-        icon: "📚",
+        Icon: BookOpen,
         headline: `Hello ${firstName}${grade ? `, ${grade}` : ""}!`,
         line1: "Your AI tutor is ready.",
         line2: "Lessons, mock tests and doubts — all set for you.",
         color: "#6366f1",
-        dots: ["●", "●", "●", "●", "●"],
       },
       parent: {
-        icon: "👨‍👩‍👧",
+        Icon: Users,
         headline: `Welcome, ${firstName}!`,
         line1: "Your child's learning dashboard is set up.",
         line2: "Track progress, tests, and activity — all in one place.",
         color: "#10b981",
-        dots: ["●", "●", "●", "●", "●"],
       },
       teacher: {
-        icon: "🎓",
+        Icon: GraduationCap,
         headline: `Welcome, ${firstName}!`,
         line1: "Your classroom and student roster are ready.",
         line2: "Start assigning lessons and tracking progress today.",
         color: "#f59e0b",
-        dots: ["●", "●", "●", "●", "●"],
       },
     };
     const cfg = roleConfig[role] || roleConfig.student;
@@ -1523,7 +1521,7 @@ function App() {
           style={{ width: "auto", marginBottom: 32, opacity: .9 }} />
 
         {/* Icon + headline */}
-        <div style={{ fontSize: "2.8rem", marginBottom: 12 }}>{cfg.icon}</div>
+        <cfg.Icon size={56} strokeWidth={1.4} style={{ color: cfg.color, marginBottom: 12 }} />
         <h2 style={{ fontSize: "1.5rem", fontWeight: 900, color: "#f1f5f9", margin: "0 0 10px", textAlign: "center", padding: "0 24px" }}>
           {cfg.headline}
         </h2>

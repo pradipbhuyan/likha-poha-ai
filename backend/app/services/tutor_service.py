@@ -292,37 +292,70 @@ _GRAMMAR_KEYWORDS = {
     "determiners", "modals", "subject-verb", "parts of speech",
 }
 
-def _extract_step_number(step_title: str) -> int:
+def _extract_step_number(step_title: str, grade: str = "") -> int:
     """
-    Extract the lesson step number from the step_title string.
+    Map a lesson step_title to the correct PROSE_LITERATURE_SYSTEM / POEM_SYSTEM
+    section number (1-5), taking the grade's step count into account.
 
-    step_title examples: "Concept introduction", "Step 2: Simple explanation",
-    "Deeper explanation", etc. Falls back to 1 if no number found.
-    The returned number tells the prose/poem prompt which section to generate.
+    Each grade band has a different number of steps; mapping must be proportional
+    so that every grade distributes evenly across the 5-section prose/poem system.
 
-    Step mapping (matches frontend chip order 1-5):
-      1 → Overview / Introduction
-      2 → Paragraph breakdown / Stanza explanation
-      3 → Characters & Theme / Theme & Message
-      4 → Literary Devices / Poetic Devices
-      5 → CBSE Q&A
+    Grade 1-3  (3 steps): Introduction → 1, Let's Practice → 3, Quick Review → 5
+    Grade 4-5  (3 steps): What We Learn → 1, Worked Examples → 2, Recap → 5
+    Grade 6-8  (4 steps): Concept intro → 1, Core explanation → 2,
+                           Worked examples → 3, Revision and recap → 5
+    Grade 9+   (5-6 steps): keyword-based fallback — works for all named steps
     """
+    lower = (step_title or "").lower().strip()
+    grade_lower = (grade or "").lower().strip()
+
+    # ── Grade 4/5: 3 steps → map proportionally across 5-section prose system ──
+    if grade_lower in ("grade 4", "grade 5"):
+        _G45 = {
+            "what we learn": 1,       # Overview / Context
+            "worked examples": 2,     # Paragraph/Section Breakdown (story walkthrough)
+            "recap": 5,               # CBSE-style Questions and Revision
+        }
+        if lower in _G45:
+            return _G45[lower]
+        return 1  # fallback
+
+    # ── Grade 1/2/3: 3 steps → same proportional mapping ─────────────────────
+    if grade_lower in ("grade 1", "grade 2", "grade 3"):
+        _G13 = {
+            "introduction": 1,        # Overview
+            "let's practice": 3,      # Characters & Theme (simple identification)
+            "quick review": 5,        # Summary / Q&A
+        }
+        if lower in _G13:
+            return _G13[lower]
+        return 1
+
+    # ── Grade 6/7/8: 4 steps → skip step 4 (Literary Devices) ───────────────
+    if grade_lower in ("grade 6", "grade 7", "grade 8"):
+        _G68 = {
+            "concept introduction": 1,
+            "core explanation": 2,
+            "worked examples": 3,
+            "revision and recap": 5,
+        }
+        if lower in _G68:
+            return _G68[lower]
+
+    # ── Grade 9+ / fallback: keyword-based mapping ───────────────────────────
     import re as _step_re  # noqa: PLC0415
-    # Explicit number in title like "Step 3:" or "3."
     m = _step_re.search(r'\b([1-5])\b', str(step_title or ''))
     if m:
         return int(m.group(1))
-    # Map common step_title keywords to step numbers
-    lower = (step_title or '').lower()
-    if any(k in lower for k in ['overview', 'introduction', 'intro', 'concept', 'context', 'background']):
+    if any(k in lower for k in ['overview', 'introduction', 'intro', 'concept', 'context', 'background', 'what we learn']):
         return 1
-    if any(k in lower for k in ['paragraph', 'paraphrase', 'breakdown', 'stanza', 'section', 'simple', 'explanation']):
+    if any(k in lower for k in ['paragraph', 'paraphrase', 'breakdown', 'stanza', 'section', 'explanation', 'core']):
         return 2
-    if any(k in lower for k in ['character', 'theme', 'message', 'moral', 'deeper', 'analysis']):
+    if any(k in lower for k in ['character', 'theme', 'message', 'moral', 'analysis', 'example', 'examples', 'worked']):
         return 3
-    if any(k in lower for k in ['device', 'language', 'literary', 'poetic', 'style', 'figure', 'rhyme', 'vocabulary']):
+    if any(k in lower for k in ['device', 'literary', 'poetic', 'style', 'rhyme', 'vocabulary']):
         return 4
-    if any(k in lower for k in ['question', 'answer', 'cbse', 'exam', 'qa', 'practice', 'summary']):
+    if any(k in lower for k in ['question', 'answer', 'cbse', 'exam', 'practice', 'summary', 'recap', 'review', 'revision']):
         return 5
     return 1
 
@@ -585,6 +618,7 @@ grade: str,
     board: str = "CBSE",
     model: str = DEFAULT_TEXT_MODEL,
     cache_only: bool = False,
+    force_refresh: bool = False,
 ):
     """
     Generate one focused lesson step using RAG when uploaded context exists.
@@ -592,6 +626,10 @@ grade: str,
     Cache-first: checks lesson_cache before calling the LLM. On cache hit the
     lesson is returned instantly with zero token cost. On cache miss the LLM
     generates as normal and the result is stored for future requests.
+
+    Pass force_refresh=True to bypass the cache entirely and regenerate fresh.
+    The new content overwrites the existing cache entry so future requests are
+    served the corrected version (used by the "Refresh lesson" button).
 
     Pass model=PREWARM_TEXT_MODEL for offline pre-generation (75% cheaper).
     Live student requests use DEFAULT_TEXT_MODEL for best quality.
@@ -610,11 +648,15 @@ grade: str,
         step_title=step_title,
         teacher_persona=teacher_persona or "",
     )
-    cached = get_cached_lesson(cache_key, grade=grade)
+    # force_refresh=True skips ALL cache lookups so the lesson regenerates
+    # from RAG + LLM and overwrites the existing (potentially stale) cache entry.
+    cached = None if force_refresh else get_cached_lesson(cache_key, grade=grade)
 
     # Fallback 1 (PERSONA): prewarm stores lessons with teacher_persona="".
+    # Fallback 1 (PERSONA): prewarm stores lessons with teacher_persona="".
     # Try the empty-persona key when the request has a non-empty persona.
-    if not cached and (teacher_persona or "").strip():
+    # Skip all fallbacks when force_refresh is active.
+    if not cached and not force_refresh and (teacher_persona or "").strip():
         fallback_key = make_lesson_cache_key(
             board=board,
             grade=grade,
@@ -630,7 +672,7 @@ grade: str,
     # multi-book display prefixes were introduced (e.g. "Text Book - Chapter 7").
     # Try the same lookups with the source prefix stripped from the chapter name.
     stripped_chapter = _strip_chapter_source_prefix(chapter)
-    if not cached and stripped_chapter and stripped_chapter != chapter:
+    if not cached and not force_refresh and stripped_chapter and stripped_chapter != chapter:
         # Try stripped chapter with original persona
         stripped_key = make_lesson_cache_key(
             board=board,
@@ -661,7 +703,7 @@ grade: str,
     # the same chapter.  As a last resort, query the lesson_cache table by the
     # core chapter text (ilike) so 'Economics - Chapter 1: Development' and
     # 'Text Book - Chapter 1: Development' both resolve to the same row.
-    if not cached:
+    if not cached and not force_refresh:
         cached = get_cached_lesson_by_chapter_text(
             board=board,
             grade=grade,
@@ -929,12 +971,13 @@ question should be inside the "Quick check question" section.
         _chapter_type = detect_chapter_type(subject, chapter)
         if _chapter_type == "prose":
             _system = PROSE_LITERATURE_SYSTEM
-            # Augment the prompt with explicit step instruction for prose
-            _step_num = _extract_step_number(step_title)
+            # Augment the prompt with explicit step instruction for prose.
+            # Pass grade so lower-grade step titles map proportionally.
+            _step_num = _extract_step_number(step_title, grade)
             prompt = f"You are teaching STEP {_step_num} of a Prose/Literature lesson.\n\n" + prompt
         elif _chapter_type == "poem":
             _system = POEM_SYSTEM
-            _step_num = _extract_step_number(step_title)
+            _step_num = _extract_step_number(step_title, grade)
             prompt = f"You are teaching STEP {_step_num} of a Poem lesson.\n\n" + prompt
         else:
             _system = TUTOR_SYSTEM

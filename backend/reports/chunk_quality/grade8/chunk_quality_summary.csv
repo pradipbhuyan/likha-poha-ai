@@ -1,0 +1,81 @@
+document_id,grade,subject,chapter,title,chunk_count,flagged_count,has_pdf_source,avg_overall,avg_completeness,avg_boundary,avg_fidelity,critical_findings,high_findings,medium_findings,low_findings,audited_at
+932,Grade 8,Science,Exemplar: Reaching the Age of Adolescence,NCERT Exemplar Grade 8 Science — Reaching the Age of Adolescence,26,0,False,93,100,94,49,0,25,23,0,2026-07-10T05:25:05.669956+00:00
+931,Grade 8,Science,Exemplar: Cell - Structure and Functions,NCERT Exemplar Grade 8 Science — Cell - Structure and Functions,15,0,False,93,100,94,52,0,14,14,0,2026-07-10T05:25:05.884725+00:00
+930,Grade 8,Science,Exemplar: Pollution of Air and Water,NCERT Exemplar Grade 8 Science — Pollution of Air and Water,15,0,False,94,100,96,51,0,14,9,0,2026-07-10T05:25:06.095226+00:00
+929,Grade 8,Science,Exemplar: Stars and the Solar System,NCERT Exemplar Grade 8 Science — Stars and the Solar System,17,0,False,93,100,95,49,0,17,14,0,2026-07-10T05:25:06.302547+00:00
+928,Grade 8,Science,Exemplar: Light,NCERT Exemplar Grade 8 Science — Light,22,0,False,93,100,94,50,0,22,19,0,2026-07-10T05:25:06.534034+00:00
+927,Grade 8,Science,Exemplar: Some Natural Phenomena,NCERT Exemplar Grade 8 Science — Some Natural Phenomena,13,0,False,94,100,96,50,0,12,9,0,2026-07-10T05:25:06.707376+00:00
+926,Grade 8,Science,Exemplar: Chemical Effects of Electric Current,NCERT Exemplar Grade 8 Science — Chemical Effects of Electric Current,19,0,False,93,100,94,49,0,18,17,0,2026-07-10T05:25:06.904456+00:00
+925,Grade 8,Science,Exemplar: Sound,NCERT Exemplar Grade 8 Science — Sound,18,0,False,93,100,94,50,0,17,16,0,2026-07-10T05:25:07.106636+00:00
+924,Grade 8,Science,Exemplar: Friction,NCERT Exemplar Grade 8 Science — Friction,25,0,False,93,99,96,51,0,24,20,0,2026-07-10T05:25:07.306569+00:00
+923,Grade 8,Science,Exemplar: Force and Pressure,NCERT Exemplar Grade 8 Science — Force and Pressure,18,0,False,93,100,95,50,0,18,12,0,2026-07-10T05:25:07.482822+00:00
+922,Grade 8,Science,Exemplar: Reproduction in Animals,NCERT Exemplar Grade 8 Science — Reproduction in Animals,29,0,False,93,100,95,50,0,28,24,0,2026-07-10T05:25:07.685213+00:00
+921,Grade 8,Science,Exemplar: Conservation of Plants and Animals,NCERT Exemplar Grade 8 Science — Conservation of Plants and Animals,15,0,False,93,100,95,51,0,14,11,0,2026-07-10T05:25:07.866954+00:00
+920,Grade 8,Science,Exemplar: Combustion and Flame,NCERT Exemplar Grade 8 Science — Combustion and Flame,31,0,False,93,100,95,50,0,30,24,0,2026-07-10T05:25:08.144740+00:00
+919,Grade 8,Science,Exemplar: Coal and Petroleum,NCERT Exemplar Grade 8 Science — Coal and Petroleum,23,0,False,93,100,94,49,0,22,21,0,2026-07-10T05:25:08.331239+00:00
+918,Grade 8,Science,Exemplar: Materials: Metals and Non-Metals,NCERT Exemplar Grade 8 Science — Materials: Metals and Non-Metals,22,0,False,93,100,95,50,0,21,17,0,2026-07-10T05:25:08.516965+00:00
+917,Grade 8,Science,Exemplar: Synthetic Fibres and Plastics,NCERT Exemplar Grade 8 Science — Synthetic Fibres and Plastics,17,0,False,93,100,94,50,0,16,15,0,2026-07-10T05:25:08.772642+00:00
+916,Grade 8,Science,Exemplar: Microorganisms: Friend and Foe,NCERT Exemplar Grade 8 Science — Microorganisms: Friend and Foe,19,0,False,93,100,94,49,0,18,17,0,2026-07-10T05:25:09.005389+00:00
+915,Grade 8,Science,Exemplar: Crop Production and Management,NCERT Exemplar Grade 8 Science — Crop Production and Management,22,0,False,93,99,94,49,0,22,20,0,2026-07-10T05:25:09.210848+00:00
+914,Grade 8,Maths,Exemplar: Direct and Inverse Proportions,NCERT Exemplar Grade 8 Maths — Direct and Inverse Proportions,40,0,False,94,100,96,50,0,39,25,0,2026-07-10T05:25:09.582746+00:00
+913,Grade 8,Maths,Exemplar: Introduction to Graphs,NCERT Exemplar Grade 8 Maths — Introduction to Graphs,105,0,False,93,100,94,50,0,105,91,0,2026-07-10T05:25:10.839430+00:00
+912,Grade 8,Maths,Exemplar: Exponents and Powers,NCERT Exemplar Grade 8 Maths — Exponents and Powers,102,0,False,93,100,95,48,0,101,82,0,2026-07-10T05:25:12.192823+00:00
+911,Grade 8,Maths,Exemplar: Visualising Solid Shapes,NCERT Exemplar Grade 8 Maths — Visualising Solid Shapes,106,0,False,93,100,94,48,0,104,95,0,2026-07-10T05:25:13.420753+00:00
+910,Grade 8,Maths,Exemplar: Playing with Numbers,NCERT Exemplar Grade 8 Maths — Playing with Numbers,116,0,False,93,100,95,48,0,116,91,0,2026-07-10T05:25:14.916353+00:00
+909,Grade 8,Maths,Exemplar: Mensuration,NCERT Exemplar Grade 8 Maths — Mensuration,111,0,False,93,100,95,48,0,111,82,0,2026-07-10T05:25:16.355360+00:00
+908,Grade 8,Maths,Exemplar: Algebraic Expressions and Identities,NCERT Exemplar Grade 8 Maths — Algebraic Expressions and Identities,102,0,False,93,99,96,47,0,102,80,0,2026-07-10T05:25:17.912336+00:00
+907,Grade 8,Maths,Exemplar: Comparing Quantities,NCERT Exemplar Grade 8 Maths — Comparing Quantities,111,0,False,93,100,94,48,0,111,92,0,2026-07-10T05:25:19.242702+00:00
+906,Grade 8,Maths,Exemplar: Understanding Quadrilaterals and Practical Geometry,NCERT Exemplar Grade 8 Maths — Understanding Quadrilaterals and Practical Geometry,134,0,False,93,100,95,49,0,134,102,0,2026-07-10T05:25:21.078896+00:00
+905,Grade 8,Maths,Exemplar: Linear Equation in One Variable,NCERT Exemplar Grade 8 Maths — Linear Equation in One Variable,82,0,False,93,100,95,48,0,82,61,0,2026-07-10T05:25:21.973834+00:00
+904,Grade 8,Maths,Exemplar: Square-Square Root and Cube-Cube Root,NCERT Exemplar Grade 8 Maths — Square-Square Root and Cube-Cube Root,108,0,False,93,100,94,49,0,107,95,0,2026-07-10T05:25:23.335025+00:00
+903,Grade 8,Maths,Exemplar: Data Handling,NCERT Exemplar Grade 8 Maths — Data Handling,136,0,False,93,100,94,48,0,135,119,0,2026-07-10T05:25:25.170981+00:00
+902,Grade 8,Maths,Exemplar: Rational Numbers,NCERT Exemplar Grade 8 Maths — Rational Numbers,80,0,False,93,100,95,47,0,79,56,0,2026-07-10T05:25:26.100218+00:00
+191,Grade 8,Maths,Chapter 7: Area,Maths Text Book Part 2 - Chapter 7: Area,23,0,False,96,100,89,100,0,0,36,0,2026-07-10T05:25:26.433340+00:00
+190,Grade 8,Maths,Chapter 6: Algebra Play,Maths Text Book Part 2 - Chapter 6: Algebra Play,14,0,False,96,98,90,100,0,0,23,0,2026-07-10T05:25:26.682332+00:00
+189,Grade 8,Maths,Chapter 5: Tales by Dots and Lines,Maths Text Book Part 2 - Chapter 5: Tales by Dots and Lines,35,0,False,96,100,89,100,0,0,56,0,2026-07-10T05:25:27.299173+00:00
+188,Grade 8,Maths,Chapter 4: Exploring Some Geometric Themes,Maths Text Book Part 2 - Chapter 4: Exploring Some Geometric Themes,30,0,False,96,100,88,100,0,0,53,0,2026-07-10T05:25:27.684332+00:00
+187,Grade 8,Maths,Chapter 3: Proportional Reasoning-2,Maths Text Book Part 2 - Chapter 3: Proportional Reasoning-2,20,0,False,96,100,90,100,0,0,29,0,2026-07-10T05:25:27.984353+00:00
+186,Grade 8,Maths,Chapter 2: The Baudhayana-Pythagoras Theorem,Maths Text Book Part 2 - Chapter 2: The Baudhayana-Pythagoras Theorem,23,0,False,97,100,91,100,0,0,31,0,2026-07-10T05:25:28.301961+00:00
+185,Grade 8,Maths,Chapter 1: Fractions in Disguise,Maths Text Book Part 2 - Chapter 1: Fractions in Disguise,43,0,False,96,100,89,100,0,0,69,0,2026-07-10T05:25:29.235523+00:00
+184,Grade 8,Maths,Chapter 7: Proportional Reasoning,Maths Text Book Part 1 - Chapter 7: Proportional Reasoning,36,0,False,96,100,88,100,0,0,63,0,2026-07-10T05:25:29.961062+00:00
+183,Grade 8,Maths,"Chapter 6: We Distribute, Yet Things Multiply","Maths Text Book Part 1 - Chapter 6: We Distribute, Yet Things Multiply",36,0,False,96,98,91,100,0,0,55,0,2026-07-10T05:25:30.748924+00:00
+182,Grade 8,Maths,Chapter 5: Number Play,Maths Text Book Part 1 - Chapter 5: Number Play,48,0,False,96,99,90,100,0,0,72,0,2026-07-10T05:25:31.831946+00:00
+181,Grade 8,Maths,Chapter 4: Quadrilaterals,Maths Text Book Part 1 - Chapter 4: Quadrilaterals,40,0,False,97,100,90,100,0,0,56,0,2026-07-10T05:25:32.618665+00:00
+180,Grade 8,Maths,Chapter 3: A Story of Numbers,Maths Text Book Part 1 - Chapter 3: A Story of Numbers,47,0,False,96,100,88,100,0,0,78,0,2026-07-10T05:25:33.496753+00:00
+179,Grade 8,Maths,Chapter 2: Power Play,Maths Text Book Part 1 - Chapter 2: Power Play,46,0,False,96,99,89,100,0,1,77,0,2026-07-10T05:25:34.442536+00:00
+178,Grade 8,Maths,Chapter 1: A Square and A Cube,Maths Text Book Part 1 - Chapter 1: A Square and A Cube,26,0,False,96,99,88,100,0,0,46,0,2026-07-10T05:25:34.867512+00:00
+177,Grade 8,Social Science,Chapter 7: Factors of Production,Social Text Book - Chapter 7: Factors of Production,26,0,False,96,100,88,100,0,0,44,0,2026-07-10T05:25:35.225304+00:00
+176,Grade 8,Social Science,Chapter 6: The Parliamentary System: Legislature and Executive,Social Text Book - Chapter 6: The Parliamentary System: Legislature and Executive,32,0,False,96,98,90,100,0,0,51,0,2026-07-10T05:25:35.789787+00:00
+175,Grade 8,Social Science,Chapter 5: Universal Franchise and India’s Electoral System,Social Text Book - Chapter 5: Universal Franchise and India’s Electoral System,26,0,False,96,99,88,100,0,0,46,0,2026-07-10T05:25:36.310281+00:00
+174,Grade 8,Social Science,Chapter 4: The Colonial Era in India,Social Text Book - Chapter 4: The Colonial Era in India,47,0,False,95,99,89,100,0,0,86,0,2026-07-10T05:25:37.188570+00:00
+173,Grade 8,Social Science,Chapter 3: The Rise of the Marathas,Social Text Book - Chapter 3: The Rise of the Marathas,29,0,False,96,99,89,100,0,0,50,0,2026-07-10T05:25:37.669766+00:00
+172,Grade 8,Social Science,Chapter 2: Reshaping India’s Political Map,Social Text Book - Chapter 2: Reshaping India’s Political Map,48,0,False,96,99,89,100,0,0,81,0,2026-07-10T05:25:38.579341+00:00
+171,Grade 8,Social Science,Chapter 1: Natural Resources and Their Use,Social Text Book - Chapter 1: Natural Resources and Their Use,27,0,False,96,99,89,100,0,0,45,0,2026-07-10T05:25:39.062904+00:00
+170,Grade 8,Science,"Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet","Science Text Book - Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet",35,0,False,96,100,89,100,0,0,57,0,2026-07-10T05:25:39.776897+00:00
+169,Grade 8,Science,Chapter 12: How Nature Works in Harmony,Science Text Book - Chapter 12: How Nature Works in Harmony,33,0,False,96,100,88,100,0,0,59,0,2026-07-10T05:25:40.316396+00:00
+168,Grade 8,Science,Chapter 11: Keeping Time with the Skies,Science Text Book - Chapter 11: Keeping Time with the Skies,35,0,False,96,100,89,100,0,0,56,0,2026-07-10T05:25:40.932798+00:00
+167,Grade 8,Science,Chapter 10: Light: Mirrors and Lenses,Science Text Book - Chapter 10: Light: Mirrors and Lenses,28,0,False,95,99,89,100,1,0,45,0,2026-07-10T05:25:41.295436+00:00
+166,Grade 8,Science,"Chapter 9: The Amazing World of Solutes, Solvents, and Solutions","Science Text Book - Chapter 9: The Amazing World of Solutes, Solvents, and Solutions",30,0,False,96,100,90,100,0,0,45,0,2026-07-10T05:25:41.675475+00:00
+165,Grade 8,Science,"Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures","Science Text Book - Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures",29,0,False,96,99,89,100,1,0,44,0,2026-07-10T05:25:42.046473+00:00
+164,Grade 8,Science,Chapter 7: Particulate Nature of Matter,Science Text Book - Chapter 7: Particulate Nature of Matter,26,0,False,96,100,90,100,0,0,39,0,2026-07-10T05:25:42.359964+00:00
+163,Grade 8,Science,"Chapter 6: Pressure, Winds, Storms, and Cyclones","Science Text Book - Chapter 6: Pressure, Winds, Storms, and Cyclones",30,0,False,96,100,88,100,0,0,50,0,2026-07-10T05:25:42.739958+00:00
+148,Grade 8,Science,Chapter 5: Exploring Forces,Science Text Book - Chapter 5: Exploring Forces,28,0,False,97,100,91,100,0,0,38,0,2026-07-10T05:25:43.101781+00:00
+147,Grade 8,Science,Chapter 4: Electricity: Magnetic and Heating Effects,Science Text Book - Chapter 4: Electricity — Magnetic and Heating Effects,26,0,False,96,100,89,100,0,0,42,0,2026-07-10T05:25:43.432934+00:00
+146,Grade 8,Science,Chapter 3: Interpreting Health: The Ultimate Treasure,Science Text Book - Chapter 3: Interpreting Health and Media Claims,29,0,False,96,99,90,100,1,0,41,0,2026-07-10T05:25:43.928830+00:00
+145,Grade 8,Science,Chapter 2: The Invisible Living World: Beyond Our Naked Eye,Science Text Book - Chapter 2: The Invisible Living World — Beyond Our Naked Eye,34,0,False,97,100,90,100,0,0,47,0,2026-07-10T05:25:44.492697+00:00
+144,Grade 8,Science,Chapter 1: Exploring the Investigative World of Science,Science Text Book - Chapter 1: Exploring the Investigative World of Science,12,0,False,96,100,88,100,0,0,20,0,2026-07-10T05:25:44.691154+00:00
+143,Grade 8,Hindi,Chapter 10: तरुण केे स्वप्न,Grade 8 Hindi Text Book - Chapter 10: तरुण क स्‍�प्‍न,28,0,False,97,98,93,100,0,0,33,0,2026-07-10T05:25:45.347251+00:00
+142,Grade 8,Hindi,Chapter 9: आदमी का अनुपात,Grade 8 Hindi Text Book - Chapter 9: आदमी का अनुपात,16,0,False,98,100,93,100,0,0,15,0,2026-07-10T05:25:45.580347+00:00
+141,Grade 8,Hindi,Chapter 8: नए मेहेमाान,Grade 8 Hindi Text Book - Chapter 8: नए मेहेमाान,36,0,False,97,99,94,100,0,0,39,0,2026-07-10T05:25:46.350333+00:00
+140,Grade 8,Hindi,Chapter 7: मत बाँधो,Grade 8 Hindi Text Book - Chapter 7: मत बाँधो,19,0,False,98,100,95,100,0,0,14,0,2026-07-10T05:25:46.628438+00:00
+139,Grade 8,Hindi,Chapter 6: एक टोकरी भर,Grade 8 Hindi Text Book - Chapter 6: एक टोकरी भर,22,0,False,98,100,95,100,0,0,17,0,2026-07-10T05:25:47.094219+00:00
+138,Grade 8,Hindi,Chapter 5: कबीर के दोहे,Grade 8 Hindi Text Book - Chapter 5: कबीर के दोहे,18,0,False,98,99,93,100,0,0,19,0,2026-07-10T05:25:47.357189+00:00
+137,Grade 8,Hindi,Chapter 4: हरिद्वार,Grade 8 Hindi Text Book - Chapter 4: हरिद्वार,28,0,False,98,100,94,100,0,0,26,0,2026-07-10T05:25:47.883356+00:00
+136,Grade 8,Hindi,Chapter 3: एक आशीर्वाद,Grade 8 Hindi Text Book - Chapter 3: एक आशीर्वाद,11,0,False,98,100,94,100,0,0,9,0,2026-07-10T05:25:48.099365+00:00
+135,Grade 8,Hindi,Chapter 2: दो गौरैैयाा,Grade 8 Hindi Text Book - Chapter 2: दो गौरैैयाा,34,0,False,98,100,94,100,0,0,30,0,2026-07-10T05:25:48.826034+00:00
+134,Grade 8,Hindi,Chapter 1: स्वदेश,Grade 8 Hindi Text Book - Chapter 1: स्वदेश,14,0,False,97,99,94,100,0,1,13,1,2026-07-10T05:25:49.133542+00:00
+133,Grade 8,English,Unit 5: Science and Curiosity,Text Book - Unit 5: Science and Curiosity,59,0,False,96,100,89,100,0,0,89,0,2026-07-10T05:25:50.271340+00:00
+132,Grade 8,English,Unit 4: Environment,Text Book - Unit 4: Environment,60,0,False,96,100,89,100,0,0,102,0,2026-07-10T05:25:51.509662+00:00
+131,Grade 8,English,Unit 3: Mystery and Magic,Text Book - Unit 3: Mystery and Magic,66,0,False,96,100,90,100,0,0,99,0,2026-07-10T05:25:52.921977+00:00
+130,Grade 8,English,Unit 2: Values and Dispositions,Text Book - Unit 2: Values and Dispositions,65,0,False,96,100,89,100,0,0,100,1,2026-07-10T05:25:54.332157+00:00
+129,Grade 8,English,Unit 1: Wit and Wisdom,Text Book - Unit 1: Wit and Wisdom,58,0,False,96,100,89,100,0,0,94,0,2026-07-10T05:25:55.536365+00:00

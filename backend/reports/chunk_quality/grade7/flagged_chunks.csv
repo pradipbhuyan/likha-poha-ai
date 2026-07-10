@@ -1,0 +1,1 @@
+document_id,grade,subject,chapter,chunk_id,chunk_index,overall_score,completeness_score,boundary_score,fidelity_score,cosine_similarity,jaccard_similarity,finding_count,top_finding_severity,top_finding_message,chunk_text_preview

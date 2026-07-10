@@ -288,16 +288,48 @@ def _count_existing(grade: str, subject: str, chapter: str, step_title: str) -> 
 
 
 def _get_rag_context(grade: str, subject: str, chapter: str, step_title: str) -> str:
-    """Fetch relevant RAG content for the chapter to ground answers in NCERT."""
+    """
+    Fetch relevant RAG content for the chapter to ground LKB answers in NCERT text.
+
+    Uses search_textbook_content (the correct function name in rag_service).
+    Returns all retrieved chunk_text joined so the LLM has real textbook content.
+
+    Bug fixed: previous version imported non-existent 'search_rag', which raised
+    ImportError caught silently, returning empty string — causing ALL LKB chips
+    to be generated purely from LLM training data with no textbook grounding.
+    """
     try:
-        from app.services.rag_service import search_rag  # noqa: PLC0415
-        query = f"{step_title} {chapter} {subject}"
-        results = search_rag(query=query, grade=grade, subject=subject, chapter=chapter, limit=5)
+        from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+        # Use a broad query to pull all relevant chunks for this chapter
+        query = f"{chapter} {subject} {step_title} key concepts definitions examples"
+        results = search_textbook_content(
+            query=query,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            match_count=12,  # increased from 5 to get more textbook coverage
+        )
         if not results:
+            # Fallback: broaden to subject-level (handles chapter name mismatches)
+            results = search_textbook_content(
+                query=query,
+                grade=grade,
+                subject=subject,
+                chapter=None,
+                match_count=8,
+            )
+        if not results:
+            logger.warning(
+                "LKB: No RAG context found for %s/%s/%s — chips will be generated "
+                "from LLM knowledge only, not textbook content.",
+                grade, subject, chapter,
+            )
             return ""
-        return "\n\n".join(r.get("content", "") for r in results if r.get("content"))
+        # Return the actual textbook text chunks (chunk_text key, not content)
+        chunks = [r.get("chunk_text", "") or r.get("content", "") for r in results]
+        return "\n\n---\n\n".join(c for c in chunks if c.strip())
     except Exception as exc:
-        logger.debug("RAG context fetch failed: %s", exc)
+        logger.warning("RAG context fetch failed for LKB: %s", exc)
         return ""
 
 
@@ -317,29 +349,53 @@ def _generate_chips(
         rag_context = _get_rag_context(grade, subject, chapter, step_title)
         context_section = f"\n\nNCERT CONTENT FOR REFERENCE:\n{rag_context}" if rag_context else ""
 
+        has_rag = bool(rag_context.strip())
+        rag_warning = (
+            "\n\nWARNING: No textbook content was retrieved. "
+            "If you cannot answer strictly from NCERT knowledge for this chapter, "
+            "generate generic but educationally sound questions for this topic."
+        ) if not has_rag else ""
+
         system_prompt = (
             f"You are a CBSE {grade} {subject} subject-matter expert. "
-            "Generate lesson chip Q&A pairs grounded strictly in NCERT textbook content. "
+            "Generate lesson chip Q&A pairs grounded STRICTLY in the NCERT textbook content "
+            "provided below. NEVER use general knowledge or outside sources. "
+            "Every question and every answer bullet MUST be directly answerable from "
+            "the textbook text provided. "
             "Return valid JSON only — no markdown, no preamble."
         )
 
-        user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}"{context_section}
+        grounding_instruction = (
+            "CRITICAL GROUNDING RULES:\n"
+            "- Read the NCERT CONTENT FOR REFERENCE above carefully.\n"
+            "- Every question MUST be about something explicitly mentioned in that content.\n"
+            "- Every answer bullet MUST be a fact that appears in that content.\n"
+            "- Do NOT use general subject knowledge not present in the retrieved text.\n"
+            "- Do NOT invent examples, characters, or facts not in the textbook chunks.\n"
+            "- If the retrieved content covers only some topics, generate questions only for those topics.\n"
+        ) if has_rag else (
+            "NOTE: No textbook chunks were retrieved. Generate questions that are "
+            "highly specific to this exact chapter title and step — never generic.\n"
+        )
 
+        user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}" | Grade: {grade}{context_section}{rag_warning}
+
+{grounding_instruction}
 Generate exactly 5 question-answer pairs a student needs after reading this lesson step.
-Each answer = 6 to 10 bullet points (each on its own line, starting with "- ") from the NCERT chapter only.
+Each answer = 6 to 10 bullet points (each on its own line, starting with "- ") sourced ONLY from the NCERT content above.
 
-RULES:
-- Questions must be specific to THIS chapter — not generic study tips.
-- Every bullet point must state a factual point from the chapter.
+ADDITIONAL RULES:
+- Questions must name specific things from THIS chapter (characters, concepts, events, processes).
+- Do NOT ask "What did you learn?" or generic meta-questions.
 - Do NOT reference diagrams, figures, or visualisations.
-- Keep each bullet to one clear sentence.
+- Keep each bullet to one clear, complete sentence from the textbook.
 - Use "- " (hyphen space) for each bullet, one bullet per line.
 
 Respond ONLY with JSON array:
 [
   {{
-    "question": "Specific chapter question",
-    "answer": "- Fact 1\\n- Fact 2\\n- Fact 3\\n- Fact 4\\n- Fact 5\\n- Fact 6"
+    "question": "Specific chapter question referencing actual content",
+    "answer": "- Textbook fact 1\\n- Textbook fact 2\\n- Textbook fact 3\\n- Textbook fact 4\\n- Textbook fact 5\\n- Textbook fact 6"
   }}
 ]"""
 

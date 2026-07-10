@@ -4,7 +4,7 @@
  * Business rules: access_cbse=false, role=parent|student|teacher
  */
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Atom, Microscope, FlaskConical, Briefcase, Landmark, Sparkles, Check } from "lucide-react";
 import logo from "../assets/AITutorLogo1.png";
 import { supabase } from "../api/supabaseClient";
 import { STREAM_SUBJECTS } from "../utils/subjectAccess";
@@ -23,11 +23,11 @@ const GRADES = [
 ];
 
 const STREAM_OPTIONS = [
-  { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics, English", icon: "⚛️" },
-  { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology, English",     icon: "🔬" },
-  { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths, Biology, English", icon: "🧬" },
-  { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics, English",icon: "💼" },
-  { key: "Humanities", label: "Humanities",       desc: "History, Polsci, Geography, Economics, English", icon: "🏛️" },
+  { key: "PCM",        label: "Science — PCM",    desc: "Physics, Chemistry, Mathematics, English", Icon: Atom },
+  { key: "PCB",        label: "Science — PCB",    desc: "Physics, Chemistry, Biology, English",     Icon: Microscope },
+  { key: "PCMB",       label: "Science — PCMB",   desc: "Physics, Chemistry, Maths, Biology, English", Icon: FlaskConical },
+  { key: "Commerce",   label: "Commerce",         desc: "Accountancy, Business, Economics, English", Icon: Briefcase },
+  { key: "Humanities", label: "Humanities",       desc: "History, Polsci, Geography, Economics, English", Icon: Landmark },
 ];
 
 const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
@@ -188,7 +188,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
     return (
       <div className="ait-login-page" data-testid="signup-setting-up" style={{display:"flex",alignItems:"center",justifyContent:"center",minHeight:"100vh",background:"var(--bg,#0f172a)"}}>
         <div style={{textAlign:"center",color:"#fff",padding:32}}>
-          <div style={{fontSize:"2rem",marginBottom:16}}>✨</div>
+          <div style={{marginBottom:16,color:"#7c3aed",display:"flex",justifyContent:"center"}}><Sparkles size={40} strokeWidth={1.5} /></div>
           <h2 style={{margin:"0 0 8px",fontSize:"1.3rem",fontWeight:800}}>Setting up your {settingUpRole} account…</h2>
           <p style={{color:"rgba(255,255,255,.6)",fontSize:".9rem"}}>Just a moment while we get everything ready.</p>
           <div style={{marginTop:20,width:40,height:40,border:"3px solid rgba(255,255,255,.2)",borderTop:"3px solid #7c3aed",borderRadius:"50%",animation:"spin 0.8s linear infinite",margin:"20px auto"}} />
@@ -212,7 +212,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
           <div className="ait-feature-list">
             {["Personalized Lessons", "Smart Doubt Solving", "Practice & Tests", "Progress Analytics"].map(f => (
               <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                <span style={{ color: "#7c3aed" }}>✦</span>
+                <Check size={15} style={{ color: "#7c3aed", flexShrink: 0 }} strokeWidth={2.5} />
                 <span style={{ fontSize: ".88rem", color: "rgba(255,255,255,.85)" }}>{f}</span>
               </div>
             ))}
@@ -354,7 +354,11 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                           transition: "border-color .12s,background .12s",
                         }}
                       >
-                        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>{s.icon}</span>
+                        <s.Icon
+                          size={20}
+                          strokeWidth={1.8}
+                          style={{ flexShrink: 0, color: stream === s.key ? "#6366f1" : "var(--text-muted,#64748b)" }}
+                        />
                         <div style={{ flex: 1 }}>
                           <div style={{ fontWeight: 700, fontSize: ".82rem", color: stream === s.key ? "#6366f1" : "var(--text,#1e293b)" }}>
                             {s.label}

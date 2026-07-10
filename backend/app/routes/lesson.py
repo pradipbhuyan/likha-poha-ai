@@ -361,6 +361,7 @@ def generate_lesson(
             teacher_persona=data.teacher_persona,
             username=username_key,
             cache_only=False,  # Free-trial offer users get full lesson access during validity
+            force_refresh=getattr(data, "force_refresh", False),
         )
 
         _log.info(
@@ -698,6 +699,70 @@ def get_lkb_chips(
         return {"success": True, "lkb_chips": chips}
     except Exception:
         return {"success": True, "lkb_chips": []}
+
+
+@router.get("/prewarm/debug-cache")
+def debug_cache_lookup(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    mode: str = "CBSE",
+    board: str = "CBSE",
+    user=Depends(get_current_user),
+):
+    """
+    Debug endpoint: show what's in lesson_cache for given parameters.
+    Returns the computed cache_key hash, any matching rows, and their status.
+    Helps diagnose why uploaded content is not being served.
+    """
+    from app.services.lesson_cache_service import make_lesson_cache_key  # noqa: PLC0415
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+    cache_key = make_lesson_cache_key(
+        board=board,
+        grade=grade,
+        subject=subject,
+        chapter=chapter,
+        mode=mode,
+        step_title=step_title,
+        teacher_persona="",
+    )
+
+    db = get_content_db(grade)
+
+    # All rows matching this exact cache_key (any status)
+    try:
+        exact = db.table("lesson_cache").select(
+            "id, cache_key, status, source_type, created_at, access_count, "
+            "grade, subject, chapter, step_title, mode"
+        ).eq("cache_key", cache_key).order("created_at", desc=True).execute()
+        exact_rows = exact.data or []
+    except Exception as e:
+        exact_rows = [{"error": str(e)}]
+
+    # All rows for this grade/subject/chapter/step (any cache_key, any status)
+    try:
+        loose = db.table("lesson_cache").select(
+            "id, cache_key, status, source_type, created_at, access_count, "
+            "grade, subject, chapter, step_title, mode"
+        ).eq("grade", grade).eq("subject", subject).eq("step_title", step_title
+        ).ilike("chapter", f"%{chapter.split('.')[-1].strip()[:20]}%"
+        ).order("created_at", desc=True).limit(10).execute()
+        loose_rows = loose.data or []
+    except Exception as e:
+        loose_rows = [{"error": str(e)}]
+
+    return {
+        "success": True,
+        "computed_cache_key": cache_key[:32] + "...",
+        "full_cache_key": cache_key,
+        "params": {"grade": grade, "subject": subject, "chapter": chapter, "step_title": step_title, "mode": mode, "board": board},
+        "exact_key_matches": len(exact_rows),
+        "exact_rows": exact_rows,
+        "loose_chapter_matches": len(loose_rows),
+        "loose_rows": loose_rows,
+    }
 
 
 @router.get("/lkb-chips/ensure")

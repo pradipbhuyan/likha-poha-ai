@@ -108,30 +108,51 @@ def store_lesson_cache(
     """
     Store a generated lesson (and optional practice questions) in the cache.
 
+    Uses UPDATE-then-INSERT to guarantee only one active row per cache_key.
+    A plain upsert with on_conflict requires a DB-level unique constraint; if
+    that constraint is absent, Supabase silently inserts a duplicate row and
+    get_cached_lesson may return the wrong (older) entry.
+
     Failures are silently ignored — a failed cache store must never prevent
     the lesson from being delivered to the student.
     """
     supabase = get_content_db(grade)
     try:
         clean_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-        supabase.table("lesson_cache").upsert(
-            {
-                "cache_key": cache_key,
-                "board": board,
-                "grade": grade,
-                "subject": subject,
-                "chapter": clean_chapter,
-                "mode": mode,
-                "step_title": step_title,
-                "teacher_persona": teacher_persona or "",
-                "lesson_content": lesson_content,
-                "practice_questions": practice_questions or [],
-                "source_type": source_type,
-                "status": "active",
-                "access_count": 1,
-            },
-            on_conflict="cache_key",
-        ).execute()
+        payload = {
+            "board": board,
+            "grade": grade,
+            "subject": subject,
+            "chapter": clean_chapter,
+            "mode": mode,
+            "step_title": step_title,
+            "teacher_persona": teacher_persona or "",
+            "lesson_content": lesson_content,
+            "practice_questions": practice_questions or [],
+            "source_type": source_type,
+            "status": "active",
+        }
+
+        # Step 1: check if any row with this cache_key already exists
+        # (SELECT is more reliable than UPDATE for detecting existence — Supabase
+        # Python client may return empty data[] from UPDATE even on success)
+        existing_check = supabase.table("lesson_cache").select(
+            "id"
+        ).eq("cache_key", cache_key).limit(1).execute()
+
+        row_exists = len(existing_check.data or []) > 0
+
+        if row_exists:
+            # UPDATE all rows with this cache_key (handles duplicates too)
+            supabase.table("lesson_cache").update(
+                payload
+            ).eq("cache_key", cache_key).execute()
+        else:
+            # No existing row — INSERT a new one
+            supabase.table("lesson_cache").insert(
+                {**payload, "cache_key": cache_key, "access_count": 1}
+            ).execute()
+
     except Exception:
         pass
 

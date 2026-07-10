@@ -21,6 +21,9 @@ class LessonRequest(BaseModel):
     step_title: str
     teacher_persona: str = ""
     username: str = "unknown"
+    # When True the cache is skipped and the lesson is regenerated fresh.
+    # Used by the "Refresh lesson" button to replace stale prewarmed content.
+    force_refresh: bool = False
 
 
 class LessonResponse(BaseModel):

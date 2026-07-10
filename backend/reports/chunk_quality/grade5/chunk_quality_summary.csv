@@ -1,0 +1,50 @@
+document_id,grade,subject,chapter,title,chunk_count,flagged_count,has_pdf_source,avg_overall,avg_completeness,avg_boundary,avg_fidelity,critical_findings,high_findings,medium_findings,low_findings,audited_at
+1016,Grade 5,English,1. Papa's Spectacles,Santoor English Grade 5 — Papa's Spectacles,2,0,False,98,100,93,100,0,0,2,0,2026-07-10T04:49:22.186536+00:00
+901,Grade 5,Maths,Shapes and Angles,Math Magic 5 — Shapes and Angles,7,0,False,92,97,96,52,0,7,7,0,2026-07-10T04:49:22.348725+00:00
+900,Grade 5,Maths,The Fish Tale,Math Magic 5 — The Fish Tale,41,0,False,92,99,94,46,0,41,41,0,2026-07-10T04:49:22.662475+00:00
+600,Grade 5,EVS,Chapter 10: Earth — Our Shared Home,Grade 5 CBSE EVS Text Book - Chapter 10: Earth — Our Shared Home,15,0,False,96,100,88,100,0,0,26,0,2026-07-10T04:49:22.877898+00:00
+599,Grade 5,EVS,Chapter 9: Rhythms of Nature,Grade 5 CBSE EVS Text Book - Chapter 9: Rhythms of Nature,13,0,False,97,100,91,100,0,0,16,0,2026-07-10T04:49:23.143496+00:00
+598,Grade 5,EVS,Chapter 8: Clothes — How Things are Made,Grade 5 CBSE EVS Text Book - Chapter 8: Clothes — How Things are Made,11,0,False,96,100,89,100,0,0,17,0,2026-07-10T04:49:23.337650+00:00
+597,Grade 5,EVS,Chapter 7: Energy — How Things Work,Grade 5 CBSE EVS Text Book - Chapter 7: Energy — How Things Work,16,0,False,96,100,89,100,0,0,25,0,2026-07-10T04:49:23.559844+00:00
+596,Grade 5,EVS,Chapter 6: Some Unique Places,Grade 5 CBSE EVS Text Book - Chapter 6: Some Unique Places,14,0,False,96,100,88,100,0,0,24,0,2026-07-10T04:49:23.782818+00:00
+595,Grade 5,EVS,Chapter 5: Our Vibrant Country,Grade 5 CBSE EVS Text Book - Chapter 5: Our Vibrant Country,16,0,False,97,100,91,100,0,0,21,0,2026-07-10T04:49:24.078478+00:00
+594,Grade 5,EVS,Chapter 4: Our School — A Happy Place,Grade 5 CBSE EVS Text Book - Chapter 4: Our School — A Happy Place,15,0,False,96,100,88,100,0,0,26,0,2026-07-10T04:49:24.306451+00:00
+593,Grade 5,EVS,Chapter 3: The Mystery of Food,Grade 5 CBSE EVS Text Book - Chapter 3: The Mystery of Food,14,0,False,97,100,91,100,0,0,18,0,2026-07-10T04:49:24.530440+00:00
+592,Grade 5,EVS,Chapter 2: Journey of a River,Grade 5 CBSE EVS Text Book - Chapter 2: Journey of a River,13,0,False,97,100,91,100,0,0,17,0,2026-07-10T04:49:24.725862+00:00
+591,Grade 5,EVS,Chapter 1: Water — The Essence of Life,Grade 5 CBSE EVS Text Book - Chapter 1: Water — The Essence of Life,15,0,False,96,98,91,100,1,0,19,0,2026-07-10T04:49:24.941669+00:00
+590,Grade 5,English,10. Glass Bangles,Grade 5 CBSE English Text Book - 10. Glass Bangles,14,0,False,98,100,92,100,0,0,15,0,2026-07-10T04:49:25.133012+00:00
+589,Grade 5,English,9. Vocation,Grade 5 CBSE English Text Book - 9. Vocation,7,0,False,97,100,91,100,0,0,9,0,2026-07-10T04:49:25.313960+00:00
+588,Grade 5,English,8. The Decision of the Panchayat,Grade 5 CBSE English Text Book - 8. The Decision of the Panchayat,9,0,False,97,100,91,100,0,0,12,0,2026-07-10T04:49:28.884214+00:00
+587,Grade 5,English,7. Gilli Danda,Grade 5 CBSE English Text Book - 7. Gilli Danda,9,0,False,96,98,91,100,0,0,13,0,2026-07-10T04:49:29.064286+00:00
+586,Grade 5,English,6. What a Tank!,Grade 5 CBSE English Text Book - 6. What a Tank!,10,0,False,95,97,90,100,1,0,14,0,2026-07-10T04:49:29.260721+00:00
+585,Grade 5,English,5. The Frog,Grade 5 CBSE English Text Book - 5. The Frog,6,0,False,96,100,90,100,0,0,9,0,2026-07-10T04:49:29.430607+00:00
+584,Grade 5,English,4. The Wise Parrot,Grade 5 CBSE English Text Book - 4. The Wise Parrot,9,0,False,97,100,90,100,0,0,13,0,2026-07-10T04:49:29.614896+00:00
+583,Grade 5,English,3. The Rainbow,Grade 5 CBSE English Text Book - 3. The Rainbow,8,0,False,96,99,91,100,0,0,11,0,2026-07-10T04:49:29.787803+00:00
+582,Grade 5,English,2. Gone with the Scooter,Grade 5 CBSE English Text Book - 2. Gone with the Scooter,10,0,False,97,100,92,100,0,0,12,0,2026-07-10T04:49:29.976293+00:00
+580,Grade 5,Hindi,12. गंगा की कहानी,Grade 5 CBSE Hindi Text Book - 12. गंगा की कहानी,14,0,False,98,100,96,100,0,0,9,0,2026-07-10T04:49:30.236394+00:00
+579,Grade 5,Hindi,11. हमारे ये कलामंदिर,Grade 5 CBSE Hindi Text Book - 11. हमारे ये कलामंदिर,10,0,False,98,100,94,100,0,0,9,0,2026-07-10T04:49:30.443773+00:00
+578,Grade 5,Hindi,10. तीन मछलियाँ,Grade 5 CBSE Hindi Text Book - 10. तीन मछलियाँ,9,0,False,98,100,95,100,0,0,7,0,2026-07-10T04:49:30.656695+00:00
+577,Grade 5,Hindi,9. न्याय,Grade 5 CBSE Hindi Text Book - 9. न्याय,16,0,False,97,99,93,100,0,1,15,0,2026-07-10T04:49:30.936533+00:00
+576,Grade 5,Hindi,8. काजीरंगा राष्ट्ीय उद्ान की यात्,Grade 5 CBSE Hindi Text Book - 8. काजीरंगा राष्ट्ीय उद्ान की यात्,11,0,False,98,100,94,100,0,0,9,0,2026-07-10T04:49:31.177528+00:00
+575,Grade 5,Hindi,7. मेरा बचपन,Grade 5 CBSE Hindi Text Book - 7. मेरा बचपन,9,0,False,98,100,95,100,0,0,7,0,2026-07-10T04:49:31.375097+00:00
+574,Grade 5,Hindi,6. चतुर चित्रकार,Grade 5 CBSE Hindi Text Book - 6. चतुर चित्रकार,12,0,False,98,99,95,100,0,0,10,0,2026-07-10T04:49:31.625916+00:00
+573,Grade 5,Hindi,5. सुंदरिया,Grade 5 CBSE Hindi Text Book - 5. सुंदरिया,13,0,False,98,100,95,100,0,0,10,0,2026-07-10T04:49:31.889966+00:00
+572,Grade 5,Hindi,4. साङके न,Grade 5 CBSE Hindi Text Book - 4. साङके न,10,0,False,98,100,95,100,0,0,7,0,2026-07-10T04:49:32.088738+00:00
+571,Grade 5,Hindi,3. चाँद का कु रता,Grade 5 CBSE Hindi Text Book - 3. चाँद का कु रता,9,0,False,99,100,96,100,0,0,5,0,2026-07-10T04:49:32.272282+00:00
+570,Grade 5,Hindi,2. न्याय की कु सी,Grade 5 CBSE Hindi Text Book - 2. न्याय की कु सी,12,0,False,98,99,94,100,0,0,12,0,2026-07-10T04:49:32.511276+00:00
+569,Grade 5,Hindi,1. किरन,Grade 5 CBSE Hindi Text Book - 1. किरन,5,0,False,98,100,94,100,0,0,4,0,2026-07-10T04:49:32.722407+00:00
+568,Grade 5,Maths,Chapter 15: Data Through Pictures,Grade 5 CBSE Maths Text Book - Chapter 15: Data Through Pictures,9,0,False,97,100,92,100,0,0,10,0,2026-07-10T04:49:32.902474+00:00
+567,Grade 5,Maths,Chapter 14: Maps and Locations,Grade 5 CBSE Maths Text Book - Chapter 14: Maps and Locations,8,0,False,96,99,90,100,0,0,12,0,2026-07-10T04:49:33.073473+00:00
+566,Grade 5,Maths,Chapter 13: Animal Jumps,Grade 5 CBSE Maths Text Book - Chapter 13: Animal Jumps,7,0,False,97,100,90,100,0,0,10,0,2026-07-10T04:49:33.244369+00:00
+565,Grade 5,Maths,Chapter 12: Racing Seconds,Grade 5 CBSE Maths Text Book - Chapter 12: Racing Seconds,7,0,False,97,100,92,99,0,0,8,0,2026-07-10T04:49:33.434230+00:00
+564,Grade 5,Maths,Chapter 11: Grandmother’s Quilt,Grade 5 CBSE Maths Text Book - Chapter 11: Grandmother’s Quilt,8,0,False,97,100,91,100,0,0,10,0,2026-07-10T04:49:33.600682+00:00
+563,Grade 5,Maths,Chapter 10: Symmetrical Designs,Grade 5 CBSE Maths Text Book - Chapter 10: Symmetrical Designs,6,0,False,97,100,92,100,0,0,7,0,2026-07-10T04:49:33.758319+00:00
+562,Grade 5,Maths,Chapter 9: Coconut Farm,Grade 5 CBSE Maths Text Book - Chapter 9: Coconut Farm,19,0,False,97,100,90,100,0,0,27,0,2026-07-10T04:49:34.079823+00:00
+561,Grade 5,Maths,Chapter 8: Weight and Capacity,Grade 5 CBSE Maths Text Book - Chapter 8: Weight and Capacity,15,0,False,95,98,89,100,1,0,24,0,2026-07-10T04:49:34.301062+00:00
+560,Grade 5,Maths,Chapter 7: Shapes and Patterns,Grade 5 CBSE Maths Text Book - Chapter 7: Shapes and Patterns,11,0,False,95,99,89,100,0,0,19,0,2026-07-10T04:49:34.494179+00:00
+559,Grade 5,Maths,Chapter 6: The Dairy Farm,Grade 5 CBSE Maths Text Book - Chapter 6: The Dairy Farm,21,0,False,94,96,91,100,0,2,37,0,2026-07-10T04:49:34.802670+00:00
+558,Grade 5,Maths,Chapter 5: Far and Near,Grade 5 CBSE Maths Text Book - Chapter 5: Far and Near,12,0,False,96,100,89,100,0,0,19,0,2026-07-10T04:49:34.999055+00:00
+557,Grade 5,Maths,Chapter 4: We the Travellers — II,Grade 5 CBSE Maths Text Book - Chapter 4: We the Travellers — II,16,0,False,97,100,91,100,0,0,20,0,2026-07-10T04:49:35.227069+00:00
+556,Grade 5,Maths,Chapter 3: Angles as Turns,Grade 5 CBSE Maths Text Book - Chapter 3: Angles as Turns,9,0,False,97,100,91,99,0,0,11,0,2026-07-10T04:49:35.408004+00:00
+555,Grade 5,Maths,Chapter 2: Fractions,Grade 5 CBSE Maths Text Book - Chapter 2: Fractions,10,0,False,96,99,90,100,0,0,16,0,2026-07-10T04:49:35.623233+00:00
+554,Grade 5,Maths,Chapter 1: We the Travellers — I,Grade 5 CBSE Maths Text Book - Chapter 1: We the Travellers — I,16,0,False,96,100,91,100,0,0,22,0,2026-07-10T04:49:35.847968+00:00

@@ -1,0 +1,142 @@
+document_id,grade,subject,chapter,title,chunk_count,flagged_count,has_pdf_source,avg_overall,avg_completeness,avg_boundary,avg_fidelity,critical_findings,high_findings,medium_findings,low_findings,audited_at
+965,Grade 9,Science,Exemplar: Animals - Their Structure and Functions,NCERT Exemplar Grade 9 Science — Animals - Their Structure and Functions,49,0,False,93,100,95,47,0,49,39,0,2026-07-10T06:23:32.783175+00:00
+964,Grade 9,Science,Exemplar: Cells - Their Structure and Functions,NCERT Exemplar Grade 9 Science — Cells - Their Structure and Functions,60,0,False,93,100,95,49,0,59,48,0,2026-07-10T06:23:33.265513+00:00
+963,Grade 9,Science,Exemplar: Improvement in Food Resources,NCERT Exemplar Grade 9 Science — Improvement in Food Resources,30,0,False,93,100,95,47,0,30,23,0,2026-07-10T06:23:33.522126+00:00
+962,Grade 9,Science,Exemplar: Natural Resources,NCERT Exemplar Grade 9 Science — Natural Resources,30,0,False,93,100,94,50,0,29,30,0,2026-07-10T06:23:33.786706+00:00
+961,Grade 9,Science,Exemplar: Why Do We Fall Ill,NCERT Exemplar Grade 9 Science — Why Do We Fall Ill,20,0,False,93,99,95,49,0,19,18,0,2026-07-10T06:23:33.977074+00:00
+960,Grade 9,Science,Exemplar: Sound,NCERT Exemplar Grade 9 Science — Sound,12,0,False,93,100,94,48,0,12,10,0,2026-07-10T06:23:34.162372+00:00
+959,Grade 9,Science,Exemplar: Work and Energy,NCERT Exemplar Grade 9 Science — Work and Energy,18,0,False,93,100,93,51,0,17,19,0,2026-07-10T06:23:34.362037+00:00
+958,Grade 9,Science,Exemplar: Gravitation,NCERT Exemplar Grade 9 Science — Gravitation,24,0,False,93,100,95,49,0,24,19,0,2026-07-10T06:23:34.581903+00:00
+957,Grade 9,Science,Exemplar: Force and Laws of Motion,NCERT Exemplar Grade 9 Science — Force and Laws of Motion,16,0,False,93,100,94,51,0,15,15,0,2026-07-10T06:23:34.766667+00:00
+956,Grade 9,Science,Exemplar: Motion,NCERT Exemplar Grade 9 Science — Motion,17,0,False,93,100,94,50,0,16,17,0,2026-07-10T06:23:34.969893+00:00
+955,Grade 9,Science,Exemplar: Diversity in Living Organisms,NCERT Exemplar Grade 9 Science — Diversity in Living Organisms,32,0,False,93,100,95,48,0,32,24,0,2026-07-10T06:23:35.203572+00:00
+954,Grade 9,Science,Exemplar: Tissues,NCERT Exemplar Grade 9 Science — Tissues,31,0,False,93,100,94,48,0,31,26,0,2026-07-10T06:23:35.616370+00:00
+953,Grade 9,Science,Exemplar: The Fundamental Unit of Life,NCERT Exemplar Grade 9 Science — The Fundamental Unit of Life,33,0,False,93,100,94,49,0,33,30,0,2026-07-10T06:23:35.903406+00:00
+952,Grade 9,Science,Exemplar: Structure of the Atom,NCERT Exemplar Grade 9 Science — Structure of the Atom,29,0,False,93,100,95,50,0,29,23,0,2026-07-10T06:23:36.135062+00:00
+951,Grade 9,Science,Exemplar: Atoms and Molecules,NCERT Exemplar Grade 9 Science — Atoms and Molecules,29,0,False,93,100,95,50,0,28,22,0,2026-07-10T06:23:36.379651+00:00
+950,Grade 9,Science,Exemplar: Is Matter Around Us Pure,NCERT Exemplar Grade 9 Science — Is Matter Around Us Pure,41,0,False,93,99,94,48,0,41,37,0,2026-07-10T06:23:36.680612+00:00
+949,Grade 9,Science,Exemplar: Matter in Our Surroundings,NCERT Exemplar Grade 9 Science — Matter in Our Surroundings,23,0,False,93,100,95,48,0,23,16,0,2026-07-10T06:23:36.926228+00:00
+948,Grade 9,Maths,Exemplar: Coordinate Geometry (Advanced),NCERT Exemplar Grade 9 Maths — Coordinate Geometry (Advanced),37,0,False,93,99,95,49,0,35,30,0,2026-07-10T06:23:37.292591+00:00
+947,Grade 9,Maths,Exemplar: Probability,NCERT Exemplar Grade 9 Maths — Probability,39,0,False,93,99,96,49,0,38,28,0,2026-07-10T06:23:37.610830+00:00
+946,Grade 9,Maths,Exemplar: Statistics,NCERT Exemplar Grade 9 Maths — Statistics,81,0,False,93,100,96,48,0,81,54,0,2026-07-10T06:23:38.459727+00:00
+945,Grade 9,Maths,Exemplar: Surface Areas and Volumes,NCERT Exemplar Grade 9 Maths — Surface Areas and Volumes,31,0,False,93,100,95,53,0,27,28,0,2026-07-10T06:23:38.727258+00:00
+944,Grade 9,Maths,Exemplar: Heron's Formula,NCERT Exemplar Grade 9 Maths — Heron's Formula,28,0,False,94,100,94,53,0,27,22,0,2026-07-10T06:23:38.981375+00:00
+943,Grade 9,Maths,Exemplar: Constructions,NCERT Exemplar Grade 9 Maths — Constructions,14,0,False,93,100,94,51,0,12,13,0,2026-07-10T06:23:39.168176+00:00
+942,Grade 9,Maths,Exemplar: Circles,NCERT Exemplar Grade 9 Maths — Circles,34,0,False,93,100,95,50,0,33,26,0,2026-07-10T06:23:39.481390+00:00
+941,Grade 9,Maths,Exemplar: Areas of Parallelograms and Triangles,NCERT Exemplar Grade 9 Maths — Areas of Parallelograms and Triangles,34,0,False,93,100,96,50,0,33,23,0,2026-07-10T06:23:39.763740+00:00
+940,Grade 9,Maths,Exemplar: Quadrilaterals,NCERT Exemplar Grade 9 Maths — Quadrilaterals,49,0,False,93,100,95,50,0,48,40,0,2026-07-10T06:23:40.137170+00:00
+939,Grade 9,Maths,Exemplar: Triangles,NCERT Exemplar Grade 9 Maths — Triangles,41,0,False,93,99,96,48,0,41,29,0,2026-07-10T06:23:40.481386+00:00
+938,Grade 9,Maths,Exemplar: Lines and Angles,NCERT Exemplar Grade 9 Maths — Lines and Angles,26,0,False,94,100,96,49,0,26,15,0,2026-07-10T06:23:40.741754+00:00
+937,Grade 9,Maths,Exemplar: Introduction to Euclid's Geometry,NCERT Exemplar Grade 9 Maths — Introduction to Euclid's Geometry,51,0,False,93,100,94,48,0,50,45,0,2026-07-10T06:23:41.130041+00:00
+936,Grade 9,Maths,Exemplar: Linear Equations in Two Variables,NCERT Exemplar Grade 9 Maths — Linear Equations in Two Variables,49,0,False,93,100,94,50,0,47,44,0,2026-07-10T06:23:41.537726+00:00
+935,Grade 9,Maths,Exemplar: Coordinate Geometry,NCERT Exemplar Grade 9 Maths — Coordinate Geometry,31,0,False,93,99,95,52,0,28,28,0,2026-07-10T06:23:41.837653+00:00
+934,Grade 9,Maths,Exemplar: Polynomials,NCERT Exemplar Grade 9 Maths — Polynomials,38,0,False,93,99,96,50,0,37,28,0,2026-07-10T06:23:42.209117+00:00
+933,Grade 9,Maths,Exemplar: Number Systems,NCERT Exemplar Grade 9 Maths — Number Systems,34,0,False,93,100,96,48,0,32,23,0,2026-07-10T06:23:42.549595+00:00
+633,Grade 9,Advanced Science,Advanced - Engineering Life: Miracles in Biotechnology,Advanced - Engineering Life: Miracles in Biotechnology — Grade 9 Advanced,85,0,False,92,99,94,46,0,84,87,0,2026-07-10T06:23:43.076676+00:00
+632,Grade 9,Advanced Science,Advanced - Microscope and Microscopy,Advanced - Microscope and Microscopy — Grade 9 Advanced,94,0,False,92,99,94,47,0,93,92,0,2026-07-10T06:23:44.012165+00:00
+631,Grade 9,Advanced Science,Advanced - Mixtures and their Separation,Advanced - Mixtures and their Separation — Grade 9 Advanced,24,0,False,93,100,94,51,0,23,24,0,2026-07-10T06:23:44.211982+00:00
+630,Grade 9,Advanced Science,Advanced - Chemical Bonding,Advanced - Chemical Bonding — Grade 9 Advanced,38,0,False,93,100,94,49,0,37,37,0,2026-07-10T06:23:44.529641+00:00
+629,Grade 9,Advanced Science,Advanced - Structure of Atom,Advanced - Structure of Atom — Grade 9 Advanced,48,0,False,92,100,93,48,0,48,50,0,2026-07-10T06:23:44.835808+00:00
+628,Grade 9,Advanced Science,Advanced - Work and Energy,Advanced - Work and Energy — Grade 9 Advanced,17,0,False,93,100,95,48,0,17,14,0,2026-07-10T06:23:45.018083+00:00
+627,Grade 9,Advanced Science,Advanced - The Geometry of Power: Advanced Simple Machines,Advanced - The Geometry of Power: Advanced Simple Machines — Grade 9 Advanced,22,0,False,93,99,94,48,0,21,21,0,2026-07-10T06:23:45.219416+00:00
+626,Grade 9,Advanced Science,Advanced - Newton's Laws of Motion,Advanced - Newton's Laws of Motion — Grade 9 Advanced,50,0,False,93,100,94,49,0,49,50,0,2026-07-10T06:23:45.567300+00:00
+625,Grade 9,Advanced Science,Advanced - Understanding Motion through Experience,Advanced - Understanding Motion through Experience — Grade 9 Advanced,25,0,False,93,100,94,49,0,24,22,0,2026-07-10T06:23:45.788574+00:00
+624,Grade 9,Advanced Science,Advanced - Measurement: Foundation of Science,Advanced - Measurement: Foundation of Science — Grade 9 Advanced,22,0,False,93,99,94,49,0,21,21,0,2026-07-10T06:23:46.050673+00:00
+623,Grade 9,Advanced Mathematics,Advanced - Exploring some more Progressions,Advanced - Exploring some more Progressions — Grade 9 Advanced,48,0,False,93,100,94,47,0,48,41,0,2026-07-10T06:23:46.534439+00:00
+622,Grade 9,Advanced Mathematics,Advanced - Combinatorics,Advanced - Combinatorics — Grade 9 Advanced,67,0,False,92,99,94,47,0,66,64,0,2026-07-10T06:23:47.146586+00:00
+621,Grade 9,Advanced Mathematics,Advanced - Coordinate Geometry,Advanced - Coordinate Geometry — Grade 9 Advanced,66,0,False,93,100,95,49,0,64,55,0,2026-07-10T06:23:47.710982+00:00
+620,Grade 9,Advanced Mathematics,Advanced - Relations and Functions,Advanced - Relations and Functions — Grade 9 Advanced,63,0,False,93,99,95,48,0,61,53,0,2026-07-10T06:23:48.410085+00:00
+619,Grade 9,Advanced Mathematics,Advanced - Logarithms,Advanced - Logarithms — Grade 9 Advanced,55,0,False,93,100,95,47,0,55,42,0,2026-07-10T06:23:49.084185+00:00
+618,Grade 9,Advanced Mathematics,Advanced - Sets,Advanced - Sets — Grade 9 Advanced,86,0,False,93,99,95,48,0,86,75,0,2026-07-10T06:23:50.013505+00:00
+454,Grade 9,Science Olympiad,Chapter 5 - Cell The Fundamental Unit of Life,SOF-ISO Grade 9 - Cell-The Fundamental Unit of Life - Chapter Content,4,0,False,94,96,90,100,0,0,8,0,2026-07-10T06:23:50.232410+00:00
+393,Grade 9,Hindi,अध्याय 12: घर की याद,Grade 9 CBSE Hindi Text Book - अध्याय 12: घर की याद,14,0,False,98,100,94,100,0,0,13,0,2026-07-10T06:23:50.482341+00:00
+392,Grade 9,Hindi,अध्याय 11: झाँसी की रानी,Grade 9 CBSE Hindi Text Book - अध्याय 11: झाँसी की रानी,20,0,False,98,99,94,100,0,0,20,0,2026-07-10T06:23:50.961181+00:00
+391,Grade 9,Hindi,"अध्याय 10: भारत्त, जय, विजयकरे!","Grade 9 CBSE Hindi Text Book - अध्याय 10: भारत्त, जय, विजयकरे!",11,0,False,98,100,94,100,0,0,9,0,2026-07-10T06:23:51.248056+00:00
+390,Grade 9,Hindi,अध्याय 9: राम-लक्षमण-परशुराम संवाद,Grade 9 CBSE Hindi Text Book - अध्याय 9: राम-लक्षमण-परशुराम संवाद,15,0,False,98,100,94,100,0,0,13,0,2026-07-10T06:23:51.526227+00:00
+389,Grade 9,Hindi,अध्याय 8: पद,Grade 9 CBSE Hindi Text Book - अध्याय 8: पद,8,0,False,98,100,95,100,0,0,6,0,2026-07-10T06:23:51.726672+00:00
+388,Grade 9,Hindi,अध्याय 7: मैं और मेरा देश,Grade 9 CBSE Hindi Text Book - अध्याय 7: मैं और मेरा देश,34,0,False,98,100,93,100,0,0,32,0,2026-07-10T06:23:52.537428+00:00
+387,Grade 9,Hindi,अध्याय 6: रीढ़ की हड्डी,Grade 9 CBSE Hindi Text Book - अध्याय 6: रीढ़ की हड्डी,27,0,False,97,98,94,100,0,0,31,0,2026-07-10T06:23:53.167328+00:00
+386,Grade 9,Hindi,अध्याय 5: आलखरी चट्टान तक,Grade 9 CBSE Hindi Text Book - अध्याय 5: आलखरी चट्टान तक,24,0,False,98,100,94,100,0,0,21,0,2026-07-10T06:23:53.750240+00:00
+385,Grade 9,Hindi,अध्याय 4: ऐसी भी बातीें होती हैं,Grade 9 CBSE Hindi Text Book - अध्याय 4: ऐसी भी बातीें होती हैं,35,0,False,98,100,94,100,0,0,33,0,2026-07-10T06:23:54.622637+00:00
+384,Grade 9,Hindi,अध्याय 3: संवादहीन,Grade 9 CBSE Hindi Text Book - अध्याय 3: संवादहीन,24,0,False,97,99,94,100,0,1,24,0,2026-07-10T06:23:55.180553+00:00
+383,Grade 9,Hindi,अध्याय 2:  क््या लिखू,Grade 9 CBSE Hindi Text Book - अध्याय 2:  क््या लिखू,24,0,False,98,100,93,100,0,0,23,0,2026-07-10T06:23:55.746173+00:00
+382,Grade 9,Hindi,अध्याय 1: दो बैलों की कथा,Grade 9 CBSE Hindi Text Book - अध्याय 1: दो बैलों की कथा,37,0,False,98,100,94,100,0,0,33,0,2026-07-10T06:23:56.617277+00:00
+381,Grade 9,English,Chapter 8: Follow That Dream,Grade 9 CBSE English Text Book - Chapter 8: Follow That Dream,31,0,False,96,100,89,100,0,0,50,0,2026-07-10T06:23:57.209037+00:00
+380,Grade 9,English,Chapter 7: Carrier of Words,Grade 9 CBSE English Text Book - Chapter 7: Carrier of Words,29,0,False,96,100,89,100,0,0,44,0,2026-07-10T06:23:57.731026+00:00
+379,Grade 9,English,Chapter 6: Twin Melodies,Grade 9 CBSE English Text Book - Chapter 6: Twin Melodies,34,0,False,96,100,90,100,0,0,53,0,2026-07-10T06:23:58.348616+00:00
+378,Grade 9,English,Chapter 5: The World of Limitless Possibilities,Grade 9 CBSE English Text Book - Chapter 5: The World of Limitless Possibilities,30,0,False,97,100,91,100,0,0,37,0,2026-07-10T06:23:58.903552+00:00
+377,Grade 9,English,Chapter 4: Vitamin-M,Grade 9 CBSE English Text Book - Chapter 4: Vitamin-M,42,0,False,95,100,88,100,0,0,76,0,2026-07-10T06:23:59.678590+00:00
+376,Grade 9,English,Chapter 3: Winds of Change,Grade 9 CBSE English Text Book - Chapter 3: Winds of Change,30,0,False,96,100,90,100,0,0,45,0,2026-07-10T06:24:00.241082+00:00
+375,Grade 9,English,Chapter 2: The Pot Maker,Grade 9 CBSE English Text Book - Chapter 2: The Pot Maker,37,0,False,96,100,88,100,0,0,63,0,2026-07-10T06:24:00.904273+00:00
+374,Grade 9,English,Chapter 1: How I Taught My Grandmother to Read,Grade 9 CBSE English Text Book - Chapter 1: How I Taught My Grandmother to Read,33,0,False,97,100,90,100,0,0,47,0,2026-07-10T06:24:01.479111+00:00
+365,Grade 9,Maths,Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions,Grade 9 CBSE Maths Text Book - Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions,33,0,False,96,99,90,100,0,0,51,0,2026-07-10T06:24:02.171492+00:00
+364,Grade 9,Maths,Chapter 7: The Mathematics of Maybe: Introduction to Probability,Grade 9 CBSE Maths Text Book - Chapter 7: The Mathematics of Maybe: Introduction to Probability,28,0,False,96,99,89,100,0,0,48,0,2026-07-10T06:24:02.561357+00:00
+363,Grade 9,Maths,Chapter 6: Measuring Space: Perimeter and Area,Grade 9 CBSE Maths Text Book - Chapter 6: Measuring Space: Perimeter and Area,46,0,False,96,100,89,100,0,0,75,0,2026-07-10T06:24:03.516906+00:00
+362,Grade 9,Maths,"Chapter 5: I’m Up and Down, and Round and Round","Grade 9 CBSE Maths Text Book - Chapter 5: I’m Up and Down, and Round and Round",34,0,False,96,99,91,100,0,0,48,0,2026-07-10T06:24:04.184418+00:00
+361,Grade 9,Maths,Chapter 4: Exploring Algebraic Identities,Grade 9 CBSE Maths Text Book - Chapter 4: Exploring Algebraic Identities,27,0,False,97,100,91,100,0,0,33,0,2026-07-10T06:24:04.640506+00:00
+360,Grade 9,Maths,Chapter 3: The World of Numbers,Grade 9 CBSE Maths Text Book - Chapter 3: The World of Numbers,35,0,False,96,100,90,100,0,0,50,0,2026-07-10T06:24:05.279643+00:00
+359,Grade 9,Maths,Chapter 2: Introduction to Linear Polynomials,Grade 9 CBSE Maths Text Book - Chapter 2: Introduction to Linear Polynomials,29,0,False,96,100,89,100,0,0,44,0,2026-07-10T06:24:05.748407+00:00
+358,Grade 9,Maths,Chapter 1: Orienting Yourself: The Use of Coordinates,Grade 9 CBSE Maths Text Book - Chapter 1: Orienting Yourself: The Use of Coordinates,19,0,False,96,99,89,100,0,1,29,0,2026-07-10T06:24:06.022656+00:00
+357,Grade 9,Science,"Chapter 13: Earth as a System: Energy, Matter, and Life","Grade 9 CBSE Science Text Book - Chapter 13: Earth as a System: Energy, Matter, and Life",45,0,False,96,99,88,100,0,0,80,0,2026-07-10T06:24:06.901922+00:00
+356,Grade 9,Science,Chapter 12: Patterns in Life: Diversity and Classification,Grade 9 CBSE Science Text Book - Chapter 12: Patterns in Life: Diversity and Classification,50,0,False,96,100,88,100,0,0,85,0,2026-07-10T06:24:07.703487+00:00
+355,Grade 9,Science,Chapter 11: Reproduction: How Life Continues,Grade 9 CBSE Science Text Book - Chapter 11: Reproduction: How Life Continues,45,0,False,95,99,88,100,0,0,81,0,2026-07-10T06:24:08.471791+00:00
+354,Grade 9,Science,Chapter 10: Sound Waves: Characteristics and Applications,Grade 9 CBSE Science Text Book - Chapter 10: Sound Waves: Characteristics and Applications,46,0,False,96,100,88,100,0,0,79,0,2026-07-10T06:24:09.319691+00:00
+353,Grade 9,Science,Chapter 9: Atomic Foundations of Matter,Grade 9 CBSE Science Text Book - Chapter 9: Atomic Foundations of Matter,41,0,False,96,100,88,100,0,0,68,0,2026-07-10T06:24:10.045641+00:00
+352,Grade 9,Science,Chapter 8: Journey Inside the Atom,Grade 9 CBSE Science Text Book - Chapter 8: Journey Inside the Atom,41,0,False,96,99,89,100,0,1,66,0,2026-07-10T06:24:10.810207+00:00
+351,Grade 9,Science,"Chapter 7: Work, Energy, and Simple Machines","Grade 9 CBSE Science Text Book - Chapter 7: Work, Energy, and Simple Machines",51,0,False,96,99,88,100,0,0,88,0,2026-07-10T06:24:11.995980+00:00
+350,Grade 9,Science,Chapter 6: How Forces Affect Motion,Grade 9 CBSE Science Text Book - Chapter 6: How Forces Affect Motion,48,0,False,96,100,87,100,0,0,86,0,2026-07-10T06:24:12.989376+00:00
+349,Grade 9,Science,Chapter 5: Exploring Mixtures and Their Separation,Grade 9 CBSE Science Text Book - Chapter 5: Exploring Mixtures and Their Separation,43,0,False,96,100,89,100,0,1,67,0,2026-07-10T06:24:13.708826+00:00
+348,Grade 9,Science,Chapter 4: Describing Motion Around Us,Grade 9 CBSE Science Text Book - Chapter 4: Describing Motion Around Us,49,0,False,96,100,88,100,0,0,84,0,2026-07-10T06:24:14.633579+00:00
+347,Grade 9,Science,Chapter 3: Tissues in Action,Grade 9 CBSE Science Text Book - Chapter 3: Tissues in Action,40,0,False,95,99,89,100,0,0,70,0,2026-07-10T06:24:15.274089+00:00
+346,Grade 9,Science,Chapter 2: Cell: The Building Block of Life,Grade 9 CBSE Science Text Book - Chapter 2: Cell: The Building Block of Life,42,0,False,96,100,88,100,0,0,76,0,2026-07-10T06:24:15.979076+00:00
+345,Grade 9,Science,Chapter 1: Exploration: Entering the World of Secondary Science,Grade 9 CBSE Science Text Book - Chapter 1: Exploration: Entering the World of Secondary Science,16,0,False,96,100,90,100,0,0,23,0,2026-07-10T06:24:16.210584+00:00
+259,Grade 9,English,Chapter 12: A Visit to Kaziranga and Sivasagar,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 12: A Visit to Kaziranga and Sivasagar,17,0,False,96,100,88,100,0,0,29,0,2026-07-10T06:24:16.446714+00:00
+258,Grade 9,English,Chapter 11: If I Were You,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 11: If I Were You,17,0,False,96,99,90,100,0,0,27,0,2026-07-10T06:24:16.692284+00:00
+257,Grade 9,English,Chapter 10: Kathmandu,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 10: Kathmandu,14,0,False,96,100,89,100,0,0,22,0,2026-07-10T06:24:16.907932+00:00
+256,Grade 9,English,Chapter 9: The Bond of Love,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 9: The Bond of Love,20,0,False,96,100,89,100,0,0,31,0,2026-07-10T06:24:17.193948+00:00
+255,Grade 9,English,Chapter 8: Reach for the Top,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 8: Reach for the Top,21,0,False,97,100,91,100,0,0,28,0,2026-07-10T06:24:17.521102+00:00
+254,Grade 9,English,Chapter 7: Packing,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 7: Packing,17,0,False,97,100,91,100,0,0,22,0,2026-07-10T06:24:17.774898+00:00
+253,Grade 9,English,Chapter 6: My Childhood,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 6: My Childhood,16,0,False,96,100,89,100,0,0,26,0,2026-07-10T06:24:18.017468+00:00
+252,Grade 9,English,Chapter 5: The Snake and the Mirror,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 5: The Snake and the Mirror,16,0,False,96,99,90,100,0,0,26,0,2026-07-10T06:24:18.261305+00:00
+251,Grade 9,English,Chapter 4: A Truly Beautiful Mind,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 4: A Truly Beautiful Mind,15,0,False,95,99,89,100,0,0,26,0,2026-07-10T06:24:18.488607+00:00
+250,Grade 9,English,Chapter 3: The Little Girl,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 3: The Little Girl,18,0,False,96,100,90,100,0,0,27,0,2026-07-10T06:24:18.736574+00:00
+249,Grade 9,English,Chapter 2: The Sound of Music,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 2: The Sound of Music,21,0,False,96,99,90,100,0,0,31,0,2026-07-10T06:24:19.021765+00:00
+248,Grade 9,English,Chapter 1: The Fun They Had,ssam State Board - Claas 9 - English Text Book - Beehive - Chapter 1: The Fun They Had,14,0,False,97,100,90,100,0,0,19,0,2026-07-10T06:24:19.240077+00:00
+247,Grade 9,English Supplementary Reader,Chapter 10: The Beggar,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 10: The Beggar,9,0,False,96,100,89,100,0,0,14,0,2026-07-10T06:24:19.430275+00:00
+246,Grade 9,English Supplementary Reader,Chapter 9: The Accidental Tourist,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 9: The Accidental Tourist,7,0,False,95,98,90,100,0,0,12,0,2026-07-10T06:24:19.610686+00:00
+245,Grade 9,English Supplementary Reader,Chapter 8: A House Is Not a Home,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 8: A House Is Not a Home,9,0,False,96,100,89,100,0,0,14,0,2026-07-10T06:24:19.809201+00:00
+244,Grade 9,English Supplementary Reader,Chapter 7: The Last Leaf,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 7: The Last Leaf,6,0,False,96,100,90,100,0,0,9,0,2026-07-10T06:24:19.984891+00:00
+243,Grade 9,English Supplementary Reader,Chapter 6: Weathering the Storm in Ersama,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 6: Weathering the Storm in Ersama,8,0,False,96,100,89,100,0,0,13,0,2026-07-10T06:24:20.214624+00:00
+242,Grade 9,English Supplementary Reader,Chapter 5: The Happy Prince,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 5: The Happy Prince,12,0,False,96,100,88,100,0,0,21,0,2026-07-10T06:24:20.429894+00:00
+241,Grade 9,English Supplementary Reader,Chapter 4: In the Kingdom of Fools,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 4: In the Kingdom of Fools,12,0,False,96,100,90,100,0,0,17,0,2026-07-10T06:24:20.640917+00:00
+240,Grade 9,English Supplementary Reader,Chapter 3: Iswaran the Storyteller,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 3: Iswaran the Storyteller,10,0,False,97,100,91,100,0,0,13,0,2026-07-10T06:24:20.837468+00:00
+239,Grade 9,English Supplementary Reader,Chapter 2: The Adventures of Toto,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 2: The Adventures of Toto,7,0,False,97,100,91,100,0,0,9,0,2026-07-10T06:24:21.021137+00:00
+238,Grade 9,English Supplementary Reader,Chapter 1: The Lost Child,Assam State Board - Claas 9 - English Supplementary Reader- Moments - Chapter 1: The Lost Child,8,0,False,96,100,89,100,0,0,13,0,2026-07-10T06:24:21.201046+00:00
+97,Grade 9,Maths Olympiad,Logical Reasoning,SOF-IMO Grade 9 - Logical Reasoning - Chapter Content,13,0,False,97,100,92,100,0,0,15,0,2026-07-10T06:24:21.444789+00:00
+96,Grade 9,Maths Olympiad,Introduction to Probability,SOF-IMO Grade 9 - Introduction to Probability - Exercise,14,0,False,96,100,89,100,0,0,22,0,2026-07-10T06:24:21.673138+00:00
+95,Grade 9,Maths Olympiad,Statistics,SOF-IMO Grade 9 - Statistics - Exercise,14,0,False,97,100,90,100,0,0,19,0,2026-07-10T06:24:21.899882+00:00
+94,Grade 9,Maths Olympiad,Surface Areas and Volumes,SOF-IMO Grade 9 - Surface Areas and Volumes - Exercise,14,0,False,96,100,90,100,0,0,21,0,2026-07-10T06:24:22.171920+00:00
+93,Grade 9,Maths Olympiad,Area and Perimeter,SOF-IMO Grade 9 - Area and Perimeter - Exercise,14,0,False,96,100,89,100,0,0,22,0,2026-07-10T06:24:22.409171+00:00
+92,Grade 9,Maths Olympiad,Constructions,SOF-IMO Grade 9 - Constructions - Exercise,14,0,False,97,100,90,100,0,0,19,0,2026-07-10T06:24:22.718555+00:00
+91,Grade 9,Maths Olympiad,Circles,SOF-IMO Grade 9 - Circles - Exercise,14,0,False,96,100,88,100,0,0,25,0,2026-07-10T06:24:22.968785+00:00
+90,Grade 9,Maths Olympiad,Areas of Parallelograms and Triangles,SOF-IMO Grade 9 - Areas of Parallelograms and Triangles - Exercise,7,0,False,98,100,93,100,0,0,7,0,2026-07-10T06:24:23.153073+00:00
+89,Grade 9,Maths Olympiad,Quadrilaterals,SOF-IMO Grade 9 - Quadrilaterals - Exercise,3,0,False,98,100,93,100,0,0,3,0,2026-07-10T06:24:23.324195+00:00
+88,Grade 9,Maths Olympiad,Triangles,SOF-IMO Grade 9 - Triangles - Exercise,3,0,False,97,100,91,100,0,0,4,0,2026-07-10T06:24:23.532290+00:00
+87,Grade 9,Maths Olympiad,Lines and Angles,SOF-IMO Grade 9 - Lines and Angles - Exercise,12,0,False,96,99,89,100,0,0,21,0,2026-07-10T06:24:23.747891+00:00
+86,Grade 9,Maths Olympiad,Introduction to Euclid's Geometry,SOF-IMO Grade 9 - Introduction to Euclid's Geometry - Exercise,15,0,False,95,98,90,100,1,0,21,0,2026-07-10T06:24:23.979420+00:00
+85,Grade 9,Maths Olympiad,Sequences and Progressions,SOF-IMO Grade 9 - Sequences and Progressions - Exercise,14,0,False,97,99,92,100,0,0,19,0,2026-07-10T06:24:24.247530+00:00
+84,Grade 9,Maths Olympiad,Coordinate Geometry,SOF-IMO Grade 9 - Coordinate Geometry - Chapter Content,11,0,False,97,100,90,100,0,0,15,0,2026-07-10T06:24:24.476175+00:00
+83,Grade 9,Maths Olympiad,Linear Equations in Two Variables,SOF-IMO Grade 9 - Linear Equations in Two Variables - Exercise,14,0,False,96,99,90,100,0,0,21,0,2026-07-10T06:24:24.724212+00:00
+82,Grade 9,Maths Olympiad,Coordinate Geometry,SOF-IMO Grade 9 - Coordinate Geometry - Exercise,5,0,False,97,100,90,100,0,0,7,0,2026-07-10T06:24:24.892996+00:00
+81,Grade 9,Maths Olympiad,Polynomials,SOF-IMO Grade 9 - Polynomials - Exercise,3,0,False,97,100,93,99,0,0,3,0,2026-07-10T06:24:25.068914+00:00
+80,Grade 9,Maths Olympiad,Polynomials,SOF-IMO Grade 9 - Polynomials - Exercise,14,0,False,96,100,90,100,0,0,21,0,2026-07-10T06:24:25.332947+00:00
+79,Grade 9,Maths Olympiad,SOF-IMO Model Test Paper-1,SOF-IMO Model Test Paper-1,11,0,False,95,95,94,100,0,1,16,0,2026-07-10T06:24:25.586545+00:00
+78,Grade 9,Maths Olympiad,Algebraic Identities,SOF-IMO Grade 9 - Algebraic Identities - Exercise,14,0,False,96,99,90,100,0,0,21,0,2026-07-10T06:24:25.867516+00:00
+63,Grade 9,Maths Olympiad,Number Systems,"Number Systems - Rational and Irrational Numbers, Decimal Expansions, Operations, and Laws of Exponents",2,0,False,98,100,93,100,0,0,2,0,2026-07-10T06:24:26.030332+00:00
+62,Grade 9,Science Olympiad,Chapter 3 - Atoms and Molecules,Molecular Mass and Formula Unit Mass,1,0,False,100,100,100,100,0,0,0,0,2026-07-10T06:24:26.217953+00:00
+61,Grade 9,Science Olympiad,Chapter 3 - Atoms and Molecules,"Atoms, Molecules and Writing Chemical Formulae",1,0,False,100,100,100,100,0,0,0,0,2026-07-10T06:24:26.407467+00:00
+60,Grade 9,Science Olympiad,Chapter 3 - Atoms and Molecules,Laws of Chemical Combination and Dalton's Atomic Theory,1,0,False,100,100,100,99,0,0,0,0,2026-07-10T06:24:26.571738+00:00
+59,Grade 9,Science Olympiad,Chapter 2 - Is Matter Pure Around Us,Chapter 2 - Is Matter Pure Around Us - Properties and Classification,2,0,False,98,100,93,100,0,0,2,0,2026-07-10T06:24:26.731866+00:00
+58,Grade 9,Science Olympiad,Physical and Chemical Changes,Physical and Chemical Changes,2,0,False,97,100,93,99,0,0,2,0,2026-07-10T06:24:26.892076+00:00
+57,Grade 9,Science Olympiad,Chapter 1 - Matter in Our Surroundings,States of Matter and Interconversion,12,0,False,96,99,89,100,0,1,19,0,2026-07-10T06:24:27.107699+00:00
+56,Grade 9,English Olympiad,Nouns,Chapter 1: Nouns,9,0,False,97,100,91,100,0,0,11,0,2026-07-10T06:24:27.288697+00:00

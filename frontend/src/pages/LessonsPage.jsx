@@ -404,6 +404,10 @@ function LessonsPage({ user, setActivePage }) {
   const [cachedChipQuestions, setCachedChipQuestions] = useState(new Set());
   const [activeChip, setActiveChip] = useState(null); // tracks which chip is loading
   const chatBottomRef = useRef(null); // scroll target after AI response
+  // Set to true by Next/Previous nav handlers when the destination step has no
+  // saved lesson. A useEffect picks this up AFTER state commits and auto-calls
+  // handleGenerateLesson(true) to serve the prewarmed lesson without a button click.
+  const autoGenerateRef = useRef(false);
 
   const [audioUrl, setAudioUrl] = useState("");
   const [ttsLoading, setTtsLoading] = useState(false);
@@ -683,6 +687,22 @@ function LessonsPage({ user, setActivePage }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [grade, subject, chapter, currentStepIndex]);
 
+  // ── Auto-load prewarmed lesson on step navigation ─────────────────────────
+  // When the user clicks Next/Previous and the target step has no saved lesson,
+  // autoGenerateRef.current is set to true inside the nav handler. This effect
+  // fires AFTER React has committed the new currentStepIndex/stepTitle, so
+  // handleGenerateLesson sees the correct step. Prewarmed cache hits return in
+  // < 1 s with no LLM cost; non-cached steps generate normally.
+  useEffect(() => {
+    if (!autoGenerateRef.current) return;
+    if (!grade || !subject || !chapter || !stepTitle) return;
+    if (generating) return;
+    if (isExemplarLocked) { autoGenerateRef.current = false; return; }
+    autoGenerateRef.current = false;
+    handleGenerateLesson(true); // skipGifDelay=true — instant for cache hits
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStepIndex, grade, subject, chapter]);
+
   useEffect(() => {
     loadTextbookVisuals();
   }, [grade, mode, subject, chapter, user.username]);
@@ -761,6 +781,7 @@ function LessonsPage({ user, setActivePage }) {
 
   function resetLessonState() {
     /** Clear generated lesson artifacts when the selected topic changes. */
+    autoGenerateRef.current = false; // cancel any pending auto-generation
     setLesson("");
     setAudioUrl("");
     resetTextbookVisualBrowser();
@@ -985,12 +1006,16 @@ function LessonsPage({ user, setActivePage }) {
     setPracticeFocusWarnings(0);
   }
 
-  async function handleGenerateLesson() {
+  async function handleGenerateLesson(skipGifDelay = false, forceRefresh = false) {
     /** Generate one lesson step, save it to progress, and store RAG source metadata.
-     *  GIF plays for 5 s, fades out over 1 s, lesson appears at 6 s.
+     *  Normal: GIF plays for 5 s, fades out over 1 s, lesson appears at 6 s.
+     *  skipGifDelay=true (auto-load from prewarm cache): no forced wait — lesson
+     *  appears as soon as the backend responds (cache hit ≈ 500 ms).
+     *  forceRefresh=true: bypasses backend cache — regenerates fresh and overwrites
+     *  stale prewarmed content (used by the "Refresh lesson" button).
      */
-    const GIF_FADE_AT_MS = 5000;
-    const MIN_GIF_MS = 6000;
+    const GIF_FADE_AT_MS = skipGifDelay ? 100 : 5000;
+    const MIN_GIF_MS = skipGifDelay ? 0 : 6000;
     const gifStart = Date.now();
 
     setGenerating(true);
@@ -1016,6 +1041,7 @@ function LessonsPage({ user, setActivePage }) {
         chapter,
         step_title: stepTitle,
         teacher_persona: TEACHER_PERSONAS[teacherPersona],
+        force_refresh: forceRefresh,
       });
   
       if (!result.success) {
@@ -1762,15 +1788,35 @@ function LessonsPage({ user, setActivePage }) {
                   textDecoration: "underline",
                   padding: "0",
                 }}
-                onClick={() => {
-                  // Clear this step from local cache so it re-fetches from backend
-                  setStepLessons((prev) => {
-                    const updated = { ...prev };
-                    delete updated[String(currentStepIndex)];
-                    return updated;
-                  });
+                onClick={async () => {
+                  // Clear this step from BOTH local state AND the DB progress
+                  // so that loadProgress() on the next page load doesn't restore
+                  // the stale lesson from the saved step_lessons record.
+                  // After clearing, the "Generate Lesson" button re-appears and
+                  // the next generate call serves the admin-uploaded cache content.
+                  const updatedStepLessons = { ...stepLessons };
+                  delete updatedStepLessons[String(currentStepIndex)];
+                  setStepLessons(updatedStepLessons);
                   setLesson("");
                   setAudioUrl("");
+                  // Persist the removal so the DB progress doesn't restore old content
+                  try {
+                    await saveChapterProgress({
+                      username: user.username,
+                      grade,
+                      mode,
+                      board: requestBoard,
+                      subject,
+                      chapter,
+                      current_step_index: currentStepIndex,
+                      highest_unlocked_step: highestUnlockedStep,
+                      completed: false,
+                      last_lesson: "",
+                      step_lessons: updatedStepLessons,
+                    });
+                  } catch {
+                    // Non-critical — local state is already cleared
+                  }
                 }}
               >
                 🔄 Refresh lesson
@@ -1928,8 +1974,10 @@ function LessonsPage({ user, setActivePage }) {
                   style={{ padding: "6px 16px", fontSize: "0.85rem" }}
                   onClick={async () => {
                     const newIndex = currentStepIndex - 1;
+                    const savedLesson = stepLessons[String(newIndex)] || "";
+                    if (!savedLesson) autoGenerateRef.current = true;
                     setCurrentStepIndex(newIndex);
-                    setLesson(stepLessons[String(newIndex)] || "");
+                    setLesson(savedLesson);
                     setAudioUrl("");
                     resetTextbookVisualBrowser();
                     setCompleted(false);
@@ -1964,9 +2012,11 @@ function LessonsPage({ user, setActivePage }) {
                     if (newIndex >= lessonSteps.length) return;
                     // All steps freely navigable — no unlock gate
                     const newHighest = Math.max(highestUnlockedStep, newIndex);
+                    const savedLesson = stepLessons[String(newIndex)] || "";
+                    if (!savedLesson) autoGenerateRef.current = true;
                     setHighestUnlockedStep(newHighest);
                     setCurrentStepIndex(newIndex);
-                    setLesson(stepLessons[String(newIndex)] || "");
+                    setLesson(savedLesson);
                     setAudioUrl("");
                     resetTextbookVisualBrowser();
                     resetPracticeState();
@@ -2680,8 +2730,10 @@ function LessonsPage({ user, setActivePage }) {
                     style={{ padding: "6px 16px", fontSize: "0.85rem" }}
                     onClick={async () => {
                       const newIndex = currentStepIndex - 1;
+                      const savedLesson = stepLessons[String(newIndex)] || "";
+                      if (!savedLesson) autoGenerateRef.current = true;
                       setCurrentStepIndex(newIndex);
-                      setLesson(stepLessons[String(newIndex)] || "");
+                      setLesson(savedLesson);
                       setAudioUrl("");
                       resetTextbookVisualBrowser();
                       setCompleted(false);
@@ -2704,9 +2756,11 @@ function LessonsPage({ user, setActivePage }) {
                       const newIndex = currentStepIndex + 1;
                       if (newIndex >= lessonSteps.length) return;
                       const newHighest = Math.max(highestUnlockedStep, newIndex);
+                      const savedLesson = stepLessons[String(newIndex)] || "";
+                      if (!savedLesson) autoGenerateRef.current = true;
                       setHighestUnlockedStep(newHighest);
                       setCurrentStepIndex(newIndex);
-                      setLesson(stepLessons[String(newIndex)] || "");
+                      setLesson(savedLesson);
                       setAudioUrl("");
                       resetTextbookVisualBrowser();
                       resetPracticeState();
@@ -2746,7 +2800,7 @@ function LessonsPage({ user, setActivePage }) {
                     <div style={{ fontSize: "0.75rem", color: "var(--text-muted, #6b7280)", marginTop: 2 }}>
                       {stepLessons[String(currentStepIndex + 1)]
                         ? "Ready to continue — click Next ➡ to load it."
-                        : "Click Next ➡ to generate this lesson step."}
+                        : "Click Next ➡ — will auto-load from pre-warmed cache ⚡"}
                     </div>
                   </div>
                 </div>
