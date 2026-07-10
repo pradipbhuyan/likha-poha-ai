@@ -571,3 +571,42 @@ export async function uploadRagText({ username, grade, board, subject, chapter, 
   }
   return response.json();
 }
+
+// ── Lesson Prewarm — ChatGPT manual lesson import ─────────────────────────
+
+export async function generatePrewarmPrompt(
+  accessToken,
+  { grade, subject, chapter, stepTitle, mode = "CBSE", board = "CBSE" }
+) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const response = await fetch(`${API_BASE}/api/lesson/prewarm/prompt`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({ grade, subject, chapter, step_title: stepTitle, mode, board }),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to generate prewarm prompt");
+  }
+  return response.json();
+}
+
+export async function storePrewarmLesson(
+  accessToken,
+  { grade, subject, chapter, stepTitle, lessonContent, mode = "CBSE", board = "CBSE", force = false }
+) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const response = await fetch(`${API_BASE}/api/lesson/prewarm/store`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({
+      grade, subject, chapter, step_title: stepTitle,
+      lesson_content: lessonContent, mode, board, force,
+    }),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to store prewarm lesson");
+  }
+  return response.json();
+}

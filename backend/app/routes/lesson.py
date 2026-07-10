@@ -732,3 +732,193 @@ def ensure_lkb_chips(
         return {"success": True, "lkb_chips": chips, "generated": was_generated}
     except Exception:
         return {"success": True, "lkb_chips": [], "generated": False}
+
+
+# ── Lesson Prewarm — ChatGPT manual lesson import ────────────────────────────
+
+class PrewarmPromptRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    step_title: str
+    mode: str = "CBSE"
+    board: str = "CBSE"
+
+
+class PrewarmStoreRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    step_title: str
+    lesson_content: str
+    mode: str = "CBSE"
+    board: str = "CBSE"
+    force: bool = False
+
+
+@router.post("/prewarm/prompt")
+def generate_prewarm_prompt(
+    data: PrewarmPromptRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Generate the full ChatGPT prompt for a lesson step, including the RAG chunks.
+
+    Admin pastes this into ChatGPT desktop to manually generate a lesson, then
+    stores the output via POST /api/lesson/prewarm/store.
+    """
+    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+    from app.services.tutor_service import (  # noqa: PLC0415
+        PROSE_LITERATURE_SYSTEM, POEM_SYSTEM, TUTOR_SYSTEM, DIAGRAM_HINT,
+        detect_chapter_type,
+    )
+
+    # Fetch RAG chunks for this chapter
+    rag_results = search_textbook_content(
+        query=f"{data.grade} {data.subject} {data.chapter} {data.step_title}",
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        match_count=10,
+    )
+    if not rag_results:
+        rag_results = search_textbook_content(
+            query=f"{data.grade} {data.subject} {data.chapter}",
+            board=data.board,
+            grade=data.grade,
+            subject=data.subject,
+            chapter=None,
+            match_count=10,
+        )
+
+    textbook_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
+    rag_found = len(rag_results)
+
+    chapter_type = detect_chapter_type(data.subject, data.chapter)
+    if chapter_type == "prose":
+        system_prompt = PROSE_LITERATURE_SYSTEM
+    elif chapter_type == "poem":
+        system_prompt = POEM_SYSTEM
+    else:
+        system_prompt = TUTOR_SYSTEM
+
+    default_steps = ["What We Learn", "Core Concepts", "Worked Examples", "Exam-style problems", "Revision"]
+    step_num = (default_steps.index(data.step_title) + 1
+                if data.step_title in default_steps else 1)
+
+    step_prefix = ""
+    if chapter_type in ("prose", "poem"):
+        label = "Prose/Literature" if chapter_type == "prose" else "Poem"
+        step_prefix = f"You are teaching STEP {step_num} of a {label} lesson.\n\n"
+
+    user_prompt = f"""{step_prefix}Grade: {data.grade}
+Mode: {data.mode}
+Subject: {data.subject}
+Chapter: {data.chapter}
+Current sub-topic: {data.step_title}
+
+Teacher Persona: Standard CBSE tutor
+
+Relevant textbook/RAG context:
+{textbook_context if textbook_context else "No uploaded textbook context found."}
+
+Create a focused step-wise lesson only for this sub-topic.
+Do not cover unrelated topics.
+
+Textbook coverage rules:
+- Use the uploaded textbook context deeply.
+- Extract and teach all important concepts present in the retrieved textbook context.
+- Include important definitions, examples, activities, and review questions.
+
+Depth instructions:
+- Teach this topic at the right depth for {data.grade}.
+- Use simpler words, concrete examples, and shorter steps for Classes 1-5.
+
+{DIAGRAM_HINT}
+
+Worked example: Start with "Question: <complete problem statement>", then step-by-step solution.
+NEVER ask the student to draw or sketch.
+
+End with a short next-step instruction, not a question.
+"""
+
+    return {
+        "success": True,
+        "system_prompt": system_prompt.strip(),
+        "user_prompt": user_prompt.strip(),
+        "rag_chunks_found": rag_found,
+        "chapter_type": chapter_type,
+    }
+
+
+@router.post("/prewarm/store")
+def store_prewarm_lesson(
+    data: PrewarmStoreRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Store a manually-generated lesson (from ChatGPT desktop) in lesson_cache.
+
+    The stored lesson is served instantly to all students with zero LLM cost.
+    """
+    from app.services.lesson_cache_service import (  # noqa: PLC0415
+        make_lesson_cache_key, store_lesson_cache, get_cached_lesson,
+    )
+    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+
+    if not data.lesson_content or not data.lesson_content.strip():
+        from fastapi import HTTPException  # noqa: PLC0415
+        raise HTTPException(status_code=400, detail="lesson_content is required")
+
+    cache_key = make_lesson_cache_key(
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        mode=data.mode,
+        step_title=data.step_title,
+        teacher_persona="",
+    )
+
+    # Skip if already cached (unless force=True)
+    existing = get_cached_lesson(cache_key, grade=data.grade)
+    if existing and not data.force:
+        return {
+            "success": False,
+            "message": "Already cached. Pass force=true to overwrite.",
+            "already_cached": True,
+        }
+
+    # Determine source_type
+    rag_results = search_textbook_content(
+        query=f"{data.grade} {data.subject} {data.chapter}",
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        match_count=3,
+    )
+    source_type = "RAG" if rag_results else "LLM"
+
+    store_lesson_cache(
+        cache_key=cache_key,
+        lesson_content=data.lesson_content.strip(),
+        source_type=source_type,
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        mode=data.mode,
+        step_title=data.step_title,
+        teacher_persona="",
+        practice_questions=[],
+    )
+
+    return {
+        "success": True,
+        "message": f"Lesson stored successfully as {source_type}",
+        "cache_key": cache_key[:20] + "...",
+        "chars": len(data.lesson_content.strip()),
+        "source_type": source_type,
+    }

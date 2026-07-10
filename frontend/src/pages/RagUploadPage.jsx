@@ -23,6 +23,8 @@ import {
   confirmSofUpload,
   searchRag,
   uploadRagText,
+  generatePrewarmPrompt,
+  storePrewarmLesson,
 } from "../api/rag";
 import { getDefaultSelection } from "../utils/syllabusDefaults";
 
@@ -60,6 +62,11 @@ const RAG_WORKSPACE_TABS = [
     id: "library",
     label: "Library / Test",
     description: "Search, preview, repair, and delete RAG content",
+  },
+  {
+    id: "lessonPrewarm",
+    label: "📋 Lesson Prewarm",
+    description: "Import ChatGPT lessons into the pre-warm cache",
   },
 ];
 
@@ -165,6 +172,226 @@ function getReadableSectionTitleFromFile(file, index) {
       .trim() || `Section ${index + 1}`
   );
 }
+
+
+// ── LessonPrewarmTab ─────────────────────────────────────────────────────────
+const LESSON_STEPS = [
+  "What We Learn",
+  "Core Concepts",
+  "Worked Examples",
+  "Exam-style problems",
+  "Revision",
+];
+
+function LessonPrewarmTab({ user, syllabusData }) {
+  const [lpGrade, setLpGrade] = useState("");
+  const [lpSubject, setLpSubject] = useState("");
+  const [lpChapter, setLpChapter] = useState("");
+  const [lpStep, setLpStep] = useState(LESSON_STEPS[0]);
+  const [lpMode, setLpMode] = useState("CBSE");
+
+  const [promptResult, setPromptResult] = useState(null);
+  const [loadingPrompt, setLoadingPrompt] = useState(false);
+  const [promptCopied, setPromptCopied] = useState(false);
+
+  const [lessonContent, setLessonContent] = useState("");
+  const [storeResult, setStoreResult] = useState(null);
+  const [storing, setStoring] = useState(false);
+
+  // syllabusData structure: { "Grade 5": { "CBSE": { "English": ["ch1", ...] } } }
+  const grades = syllabusData ? Object.keys(syllabusData).sort() : [];
+  const modes = lpGrade && syllabusData?.[lpGrade] ? Object.keys(syllabusData[lpGrade]) : ["CBSE"];
+  const subjects = lpGrade && syllabusData?.[lpGrade]?.[lpMode]
+    ? Object.keys(syllabusData[lpGrade][lpMode]).sort()
+    : [];
+  const chapters = lpGrade && lpSubject && syllabusData?.[lpGrade]?.[lpMode]?.[lpSubject]
+    ? syllabusData[lpGrade][lpMode][lpSubject]
+    : [];
+
+  async function handleGeneratePrompt() {
+    if (!lpGrade || !lpSubject || !lpChapter) return;
+    setLoadingPrompt(true);
+    setPromptResult(null);
+    setStoreResult(null);
+    try {
+      const result = await generatePrewarmPrompt(user.accessToken, {
+        grade: lpGrade, subject: lpSubject, chapter: lpChapter,
+        stepTitle: lpStep, mode: lpMode,
+      });
+      setPromptResult(result);
+    } catch (e) {
+      setPromptResult({ error: e.message });
+    } finally {
+      setLoadingPrompt(false);
+    }
+  }
+
+  async function handleStore() {
+    if (!lessonContent.trim()) return;
+    setStoring(true);
+    setStoreResult(null);
+    try {
+      const result = await storePrewarmLesson(user.accessToken, {
+        grade: lpGrade, subject: lpSubject, chapter: lpChapter,
+        stepTitle: lpStep, mode: lpMode, lessonContent,
+      });
+      setStoreResult(result);
+      if (result.success) setLessonContent("");
+    } catch (e) {
+      setStoreResult({ success: false, message: e.message });
+    } finally {
+      setStoring(false);
+    }
+  }
+
+  function handleCopyPrompt() {
+    if (!promptResult) return;
+    const full = promptResult.system_prompt + "\n\n---USER PROMPT---\n\n" + promptResult.user_prompt;
+    navigator.clipboard.writeText(full).then(() => {
+      setPromptCopied(true);
+      setTimeout(() => setPromptCopied(false), 2000);
+    });
+  }
+
+  return (
+    <section className="premium-rag-section">
+      <div className="premium-rag-section-header">
+        <h2>📋 Lesson Prewarm — ChatGPT Import</h2>
+        <p className="premium-rag-section-description">
+          Generate the ChatGPT prompt for any chapter step, paste it into ChatGPT desktop,
+          then paste the response here to store it as a pre-warmed lesson.
+        </p>
+      </div>
+
+      {/* Step 1: Select chapter + step */}
+      <div className="premium-rag-form-card" style={{ marginBottom: "1.5rem" }}>
+        <h3 style={{ marginBottom: "1rem" }}>Step 1 — Select Chapter & Step</h3>
+        <div className="premium-rag-form-row">
+          <label>Grade</label>
+          <select value={lpGrade} onChange={(e) => { setLpGrade(e.target.value); setLpSubject(""); setLpChapter(""); }}>
+            <option value="">— select grade —</option>
+            {grades.map((g) => <option key={g} value={g}>{g}</option>)}
+          </select>
+        </div>
+        <div className="premium-rag-form-row">
+          <label>Subject</label>
+          <select value={lpSubject} onChange={(e) => { setLpSubject(e.target.value); setLpChapter(""); }} disabled={!lpGrade}>
+            <option value="">— select subject —</option>
+            {subjects.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+        <div className="premium-rag-form-row">
+          <label>Chapter</label>
+          <select value={lpChapter} onChange={(e) => setLpChapter(e.target.value)} disabled={!lpSubject}>
+            <option value="">— select chapter —</option>
+            {chapters.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+        <div className="premium-rag-form-row">
+          <label>Step</label>
+          <select value={lpStep} onChange={(e) => setLpStep(e.target.value)}>
+            {LESSON_STEPS.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+        <div className="premium-rag-form-row">
+          <label>Mode</label>
+          <select value={lpMode} onChange={(e) => { setLpMode(e.target.value); setLpSubject(""); setLpChapter(""); }}>
+            {modes.map((m) => <option key={m} value={m}>{m}</option>)}
+          </select>
+        </div>
+        <button
+          className="premium-rag-upload-btn"
+          onClick={handleGeneratePrompt}
+          disabled={!lpGrade || !lpSubject || !lpChapter || loadingPrompt}
+          style={{ marginTop: "1rem" }}
+        >
+          {loadingPrompt ? "⏳ Fetching RAG chunks..." : "✨ Generate ChatGPT Prompt"}
+        </button>
+      </div>
+
+      {/* Step 2: Show the prompt to copy */}
+      {promptResult && !promptResult.error && (
+        <div className="premium-rag-form-card" style={{ marginBottom: "1.5rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>Step 2 — Copy & Paste into ChatGPT</h3>
+          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "1rem" }}>
+            {promptResult.rag_chunks_found} RAG chunk(s) found · Chapter type: <strong>{promptResult.chapter_type}</strong>
+          </p>
+          <div style={{ marginBottom: "0.75rem" }}>
+            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>SYSTEM PROMPT</label>
+            <textarea
+              readOnly
+              value={promptResult.system_prompt}
+              style={{ width: "100%", height: "120px", fontSize: "0.75rem", fontFamily: "monospace",
+                background: "#f8f9fa", border: "1px solid #dee2e6", borderRadius: 6, padding: "0.5rem",
+                marginTop: "0.25rem", resize: "vertical" }}
+            />
+          </div>
+          <div style={{ marginBottom: "0.75rem" }}>
+            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>USER PROMPT (includes RAG context)</label>
+            <textarea
+              readOnly
+              value={promptResult.user_prompt}
+              style={{ width: "100%", height: "200px", fontSize: "0.75rem", fontFamily: "monospace",
+                background: "#f8f9fa", border: "1px solid #dee2e6", borderRadius: 6, padding: "0.5rem",
+                marginTop: "0.25rem", resize: "vertical" }}
+            />
+          </div>
+          <button className="premium-rag-upload-btn" onClick={handleCopyPrompt}
+            style={{ background: promptCopied ? "#28a745" : undefined }}>
+            {promptCopied ? "✅ Copied!" : "📋 Copy Full Prompt to Clipboard"}
+          </button>
+          <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.5rem" }}>
+            Paste the SYSTEM PROMPT in ChatGPT Custom Instructions (or as the first message),
+            then send the USER PROMPT. Copy ChatGPT's full response for Step 3.
+          </p>
+        </div>
+      )}
+
+      {promptResult && promptResult.error && (
+        <div className="premium-rag-error" style={{ marginBottom: "1.5rem" }}>❌ {promptResult.error}</div>
+      )}
+
+      {/* Step 3: Paste ChatGPT response and store */}
+      {promptResult && !promptResult.error && (
+        <div className="premium-rag-form-card">
+          <h3 style={{ marginBottom: "0.5rem" }}>Step 3 — Paste ChatGPT Response & Store</h3>
+          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
+            Paste the full ChatGPT lesson response below, then click Store.
+          </p>
+          <textarea
+            value={lessonContent}
+            onChange={(e) => setLessonContent(e.target.value)}
+            placeholder="Paste ChatGPT's lesson response here..."
+            style={{ width: "100%", height: "300px", fontFamily: "monospace", fontSize: "0.8rem",
+              border: "1.5px solid #dee2e6", borderRadius: 6, padding: "0.75rem", resize: "vertical" }}
+          />
+          <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <button
+              className="premium-rag-upload-btn"
+              onClick={handleStore}
+              disabled={!lessonContent.trim() || storing}
+            >
+              {storing ? "⏳ Storing..." : "💾 Store as Pre-warmed Lesson"}
+            </button>
+            {storeResult && (
+              <span style={{ fontSize: "0.85rem", color: storeResult.success ? "#28a745" : "#dc3545" }}>
+                {storeResult.success
+                  ? `✅ Stored! (${storeResult.chars} chars, source: ${storeResult.source_type})`
+                  : `⚠️ ${storeResult.message}`}
+              </span>
+            )}
+          </div>
+          {storeResult && storeResult.success && (
+            <p style={{ fontSize: "0.8rem", color: "#28a745", marginTop: "0.5rem" }}>
+              Students will now get this lesson instantly. Repeat for other steps.
+            </p>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+// ── End LessonPrewarmTab ─────────────────────────────────────────────────────
 
 function RagUploadPage({ user }) {
   /** Admin-only workspace for uploading, analyzing, searching, and deleting RAG documents. */
@@ -2969,6 +3196,11 @@ function RagUploadPage({ user }) {
           </div>
         )}
       </section>
+      )}
+
+      {/* ── Lesson Prewarm Tab ──────────────────────────────────────────── */}
+      {activeRagWorkspace === "lessonPrewarm" && (
+        <LessonPrewarmTab user={user} syllabusData={syllabusData} />
       )}
     </div>
   );
