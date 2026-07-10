@@ -1749,6 +1749,34 @@ function LessonsPage({ user, setActivePage }) {
                 : "✨ Generate Lesson"}
             </button>
 
+            {/* Allow re-fetch if admin has updated the pre-warmed lesson */}
+            {hasSavedLesson && !isExemplarLocked && !generating && (
+              <button
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#888",
+                  fontSize: "0.75rem",
+                  cursor: "pointer",
+                  marginTop: "0.3rem",
+                  textDecoration: "underline",
+                  padding: "0",
+                }}
+                onClick={() => {
+                  // Clear this step from local cache so it re-fetches from backend
+                  setStepLessons((prev) => {
+                    const updated = { ...prev };
+                    delete updated[String(currentStepIndex)];
+                    return updated;
+                  });
+                  setLesson("");
+                  setAudioUrl("");
+                }}
+              >
+                🔄 Refresh lesson
+              </button>
+            )}
+
             {/* Mark Step Complete and Restart Chapter hidden in refined layout.
                 Their state logic (highestUnlockedStep, completed) is preserved. */}
             {!USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
