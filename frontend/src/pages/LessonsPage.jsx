@@ -1691,35 +1691,6 @@ function LessonsPage({ user, setActivePage }) {
           🔄 Refresh
         </button>
       ) : null}
-      {/* Prev / Next */}
-      <div style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
-        <button
-          className="secondary-btn"
-          disabled={currentStepIndex === 0}
-          onClick={async () => {
-            const ni = currentStepIndex - 1;
-            const sl = stepLessons[String(ni)] || "";
-            if (!sl) autoGenerateRef.current = true;
-            setCurrentStepIndex(ni); setLesson(sl); setAudioUrl(""); resetTextbookVisualBrowser(); setCompleted(false); resetPracticeState();
-            await saveChapterProgress({ username: user.username, grade, mode, subject, chapter, current_step_index: ni, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: stepLessons });
-          }}
-          style={{ fontSize: ".75rem", padding: "4px 10px" }}
-        >⬅</button>
-        <button
-          className="secondary-btn"
-          disabled={currentStepIndex >= lessonSteps.length - 1}
-          onClick={async () => {
-            const ni = currentStepIndex + 1;
-            if (ni >= lessonSteps.length) return;
-            const nh = Math.max(highestUnlockedStep, ni);
-            const sl = stepLessons[String(ni)] || "";
-            if (!sl) autoGenerateRef.current = true;
-            setHighestUnlockedStep(nh); setCurrentStepIndex(ni); setLesson(sl); setAudioUrl(""); resetTextbookVisualBrowser(); resetPracticeState();
-            await saveChapterProgress({ username: user.username, grade, mode, subject, chapter, current_step_index: ni, highest_unlocked_step: nh, completed: false, last_lesson: "", step_lessons: stepLessons });
-          }}
-          style={{ fontSize: ".75rem", padding: "4px 10px" }}
-        >➡</button>
-      </div>
     </div>
   ) : null;
 
