@@ -7,9 +7,12 @@ import rehypeKatex from "rehype-katex";
 import StructuredVisualBlock from "./StructuredVisualBlock";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
-// ── Feature flag — set to false to instantly roll back to accordion layout ───
-// To roll back: change true → false, save, done. No other changes needed.
-const USE_CARD_FEED_LAYOUT = true;
+// ── Layout flags — pick ONE to be true, the rest false ──────────────────────
+// OPTION A: Scrollable colour-coded card feed (mobile-first)
+const USE_CARD_FEED_LAYOUT  = false;
+// OPTION B: 3-panel workbook (desktop-first — TOC + content + section labels)
+const USE_WORKBOOK_LAYOUT   = true;
+// (both false = legacy accordion)
 
 // ── Card Feed: section type detection ────────────────────────────────────────
 // Colors use semi-transparent backgrounds + strong left-border accent so they
@@ -99,6 +102,21 @@ function parseSections(markdown) {
       if (title.length >= 3) return title;
     }
 
+    // Pattern 5: "Step N: Title" style headings (plain text, no markdown wrapper)
+    //   "Step 2: Worked Examples"    ← IS a heading (no terminal .)
+    //   "Step 1: Identify the problem."  ← NOT a heading (ends with .)
+    //   "Question: Title"            ← IS a heading if short and no terminal .
+    m = line.match(/^(Step\s+\d+|Question|Summary|Introduction|Conclusion|Common\s+Mistake|Quick\s+Check|What\s+You\s+Will\s+Learn|Worked\s+Example|Overview)\s*:\s*(.*)$/i);
+    if (m) {
+      const label = m[1].trim();
+      const rest = (m[2] || "").trim();
+      const combined = rest ? `${label}: ${rest}` : label;
+      // Reject if combined title ends with sentence punctuation (it's a list item, not a heading)
+      if (combined.length >= 3 && combined.length <= 70 && !/[.?!]$/.test(combined)) {
+        return combined;
+      }
+    }
+
     // Pattern 4: standalone bold line used as a heading
     //   "**What you will learn:**"  |  "**Summary**"
     // Must be the ENTIRE line (no surrounding prose), and long enough to be a heading.
@@ -184,6 +202,16 @@ function getQuestionPrompt(section) {
 
 function getRenderableContent(section, questionPrompt) {
   if (!questionPrompt) return section.content;
+
+  // ── Key fix: if "Question:" is followed by a solution (Step N:, Answer:, etc.)
+  // the content is a WORKED EXAMPLE — show full body INCLUDING the question+solution.
+  // The question also shows in the inline box. Both coexist.
+  const afterQuestion = section.content.split(/question\s*:/i)[1] || "";
+  const hasSolution = /(?:step\s+\d+|answer\s*:|solution\s*:|therefore|hint\s*:)/i.test(afterQuestion);
+  if (hasSolution) {
+    return section.content;  // Show everything — don't discard the solution
+  }
+
   const title = section.title.toLowerCase();
   const withoutLabelledQuestion = section.content.replace(
     /(?:^|\n)\s*(?:[-*]\s*)?(?:\*\*)?(?:question|quick check(?: question)?|try this|your turn)(?:\*\*)?\s*:\s*[\s\S]*$/i,
@@ -422,6 +450,152 @@ function CardFeedSection({
   );
 }
 
+// ── Option B: Workbook section (inline expanded, colour left-border) ──────────
+function WorkbookSection({
+  section, index, subject,
+  questionModes, setQuestionModes,
+  questionAnswers, setQuestionAnswers,
+  questionFeedback, setQuestionFeedback,
+  questionLoading, setQuestionLoading,
+  onEvaluateQuestion,
+}) {
+  const type = getSectionType(section.title);
+  const colours = CARD_TYPES[type];
+  const questionPrompt = getQuestionPrompt(section);
+  const renderableContent = getRenderableContent(section, questionPrompt);
+  const questionMode = questionModes[index] || "";
+  const answer = questionAnswers[index] || "";
+  const feedback = questionFeedback[index] || "";
+  const loading = questionLoading[index] || false;
+  const anchorId = `ws-section-${index}`;
+
+  async function handleEvaluate() {
+    if (!answer.trim() || !onEvaluateQuestion) return;
+    setQuestionLoading((p) => ({ ...p, [index]: true }));
+    setQuestionFeedback((p) => ({ ...p, [index]: "" }));
+    try {
+      const result = await onEvaluateQuestion({ question: questionPrompt, answer });
+      setQuestionFeedback((p) => ({ ...p, [index]: result?.evaluation || result?.message || "Reviewed." }));
+    } catch {
+      setQuestionFeedback((p) => ({ ...p, [index]: "Could not evaluate right now." }));
+    } finally {
+      setQuestionLoading((p) => ({ ...p, [index]: false }));
+    }
+  }
+
+  return (
+    <div
+      id={anchorId}
+      style={{
+        borderLeft: `3px solid ${colours.accent}`,
+        borderRadius: "0 10px 10px 0",
+        padding: "16px 18px 14px 18px",
+        marginBottom: 22,
+        background: colours.bg,
+        scrollMarginTop: 80,
+      }}
+    >
+      {/* Section heading row */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        <span style={{
+          width: 26, height: 26, borderRadius: 7,
+          background: colours.iconBg,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: ".85rem", flexShrink: 0,
+        }}>
+          {colours.icon}
+        </span>
+        <span style={{
+          fontSize: ".6rem", fontWeight: 800, textTransform: "uppercase",
+          letterSpacing: ".1em", color: colours.labelColor,
+        }}>
+          {colours.label}
+        </span>
+        <span style={{ fontSize: ".95rem", fontWeight: 700, lineHeight: 1.3 }}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+            components={{ p: ({ children }) => <>{children}</> }}
+          >
+            {section.title}
+          </ReactMarkdown>
+        </span>
+      </div>
+
+      {/* Section body */}
+      {renderableContent && (
+        <div className="lesson-section-body" style={{ fontSize: ".9rem", lineHeight: 1.75 }}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+            components={{ code: LessonMarkdownCode }}
+          >
+            {renderableContent}
+          </ReactMarkdown>
+        </div>
+      )}
+
+      {/* Inline question */}
+      {questionPrompt && (
+        <div className="lesson-inline-question-box" style={{ marginTop: 14 }}>
+          <div>
+            <p className="lesson-inline-question-label">Want to try this question?</p>
+            <div className="lesson-inline-question-text">
+              <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                {formatMcqPrompt(questionPrompt)}
+              </ReactMarkdown>
+            </div>
+          </div>
+          <div className="lesson-inline-question-actions">
+            {!isHindiSubject(subject) && (
+              <button
+                type="button"
+                className={questionMode === "answer" ? "inline-question-choice active" : "inline-question-choice"}
+                onClick={() => setQuestionModes((p) => ({ ...p, [index]: "answer" }))}
+              >
+                Answer and evaluate
+              </button>
+            )}
+            <button
+              type="button"
+              className={questionMode === "think" || isHindiSubject(subject) ? "inline-question-choice active muted" : "inline-question-choice muted"}
+              onClick={() => setQuestionModes((p) => ({ ...p, [index]: "think" }))}
+            >
+              Leave for thinking
+            </button>
+          </div>
+          {questionMode === "think" && <p className="lesson-inline-thinking-note">Saved as a thinking prompt.</p>}
+          {questionMode === "answer" && (
+            <div className="lesson-inline-answer-panel">
+              <textarea
+                value={answer}
+                onChange={(e) => setQuestionAnswers((p) => ({ ...p, [index]: e.target.value }))}
+                placeholder="Write your answer here..."
+                rows={4}
+              />
+              <button
+                type="button"
+                className="primary-btn lesson-inline-evaluate-btn"
+                disabled={!answer.trim() || loading}
+                onClick={handleEvaluate}
+              >
+                {loading ? "Evaluating..." : "Evaluate my answer"}
+              </button>
+              {feedback && (
+                <div className="lesson-inline-feedback">
+                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                    {feedback}
+                  </ReactMarkdown>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main export — switches between Card Feed (Option A) and legacy accordion ──
 function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "default", cardTheme = "brand" }) {
   const sections = parseSections(normalizeTutorMarkdown(lesson));
@@ -432,6 +606,128 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
   const [questionAnswers, setQuestionAnswers] = useState({});
   const [questionFeedback, setQuestionFeedback] = useState({});
   const [questionLoading, setQuestionLoading] = useState({});
+  // Floating TOC state for workbook layout
+  const [tocOpen, setTocOpen] = useState(false);
+
+  // ── Option B: Workbook Layout with floating TOC ────────────────────────────
+  if (USE_WORKBOOK_LAYOUT) {
+    return (
+      <div className={`lesson-workbook style-${cardStyle} theme-${cardTheme}`} style={{ position: "relative" }}>
+
+        {/* ── Floating TOC toggle button ── */}
+        <div style={{ position: "fixed", right: 16, top: "50%", transform: "translateY(-50%)", zIndex: 200 }}>
+          {/* Toggle button */}
+          <button
+            onClick={() => setTocOpen(o => !o)}
+            title={tocOpen ? "Close contents" : "On this page"}
+            style={{
+              width: 36, height: 36,
+              borderRadius: "50%",
+              background: tocOpen ? "var(--accent, #6366f1)" : "var(--card-bg, rgba(30,30,50,.85))",
+              border: "1px solid var(--border, rgba(255,255,255,.15))",
+              color: tocOpen ? "#fff" : "var(--text, #e2e8f0)",
+              fontSize: "1rem",
+              cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 2px 12px rgba(0,0,0,.3)",
+              transition: "all .2s",
+              backdropFilter: "blur(8px)",
+              flexShrink: 0,
+            }}
+          >
+            {tocOpen ? "✕" : "≡"}
+          </button>
+
+          {/* Floating TOC panel — opens to the LEFT of the button */}
+          {tocOpen && (
+            <nav style={{
+              position: "absolute",
+              right: 44,
+              top: "50%",
+              transform: "translateY(-50%)",
+              minWidth: 220, maxWidth: 260,
+              background: "var(--card-bg, rgba(20,22,40,.95))",
+              border: "1px solid var(--border, rgba(255,255,255,.12))",
+              borderRadius: 12,
+              boxShadow: "0 8px 32px rgba(0,0,0,.4)",
+              backdropFilter: "blur(16px)",
+              overflow: "hidden",
+              zIndex: 200,
+            }}>
+              <div style={{
+                padding: "10px 14px 8px",
+                fontSize: ".65rem", fontWeight: 800, textTransform: "uppercase",
+                letterSpacing: ".1em", color: "var(--muted, #6b7280)",
+                borderBottom: "1px solid var(--border, rgba(255,255,255,.08))",
+              }}>
+                On this page
+              </div>
+              <div style={{ maxHeight: "60vh", overflowY: "auto", padding: "4px 0" }}>
+                {sections.map((s, i) => {
+                  const c = CARD_TYPES[getSectionType(s.title)];
+                  return (
+                    <a
+                      key={i}
+                      href={`#ws-section-${i}`}
+                      onClick={() => setTocOpen(false)}
+                      style={{
+                        display: "flex", alignItems: "center", gap: 8,
+                        padding: "7px 14px",
+                        textDecoration: "none",
+                        color: "var(--text, #e2e8f0)",
+                        fontSize: ".78rem", lineHeight: 1.4,
+                        borderLeft: `2px solid transparent`,
+                        transition: "all .12s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderLeftColor = c.accent;
+                        e.currentTarget.style.background = c.bg;
+                        e.currentTarget.style.color = c.labelColor;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderLeftColor = "transparent";
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--text, #e2e8f0)";
+                      }}
+                    >
+                      <span style={{ fontSize: ".8rem", flexShrink: 0 }}>{c.icon}</span>
+                      <span style={{
+                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                        maxWidth: 170,
+                      }}>
+                        {s.title}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </nav>
+          )}
+        </div>
+
+        {/* Full-width sections — no grid column */}
+        <div>
+          {sections.map((section, index) => (
+            <WorkbookSection
+              key={index}
+              section={section}
+              index={index}
+              subject={subject}
+              questionModes={questionModes}
+              setQuestionModes={setQuestionModes}
+              questionAnswers={questionAnswers}
+              setQuestionAnswers={setQuestionAnswers}
+              questionFeedback={questionFeedback}
+              setQuestionFeedback={setQuestionFeedback}
+              questionLoading={questionLoading}
+              setQuestionLoading={setQuestionLoading}
+              onEvaluateQuestion={onEvaluateQuestion}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   // ── Option A: Card Feed Layout ─────────────────────────────────────────────
   if (USE_CARD_FEED_LAYOUT) {

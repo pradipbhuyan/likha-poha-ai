@@ -1,21 +1,21 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 5,Maths,Chapter 11: Grandmother’s Quilt,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.670571+00:00
-Grade 5,EVS,Chapter 8: Clothes — How Things are Made,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.670658+00:00
-Grade 10,Social Science,Geography - Chapter 1: Resources and Development,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.670891+00:00
-Grade 6,Science,Chapter 12: Beyond Earth,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T12:49:11.671229+00:00
-Grade 10,Social Science,Political Science - Chapter 1: Power-sharing,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.671262+00:00
-Grade 10,English,Workbook - Chapter 3: Two Stories About Flying,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.671428+00:00
-Grade 10,Social Science,Geography - Chapter 3: Water Resources,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.671747+00:00
-Grade 10,English,Text Book - Chapter 9: The Proposal,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T12:49:11.672080+00:00
-Grade 10,Social Science,History - Chapter 4: The Age of Industrialisation,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.672510+00:00
-Grade 10,Maths,Chapter 3: Pair of Linear Equations in Two Variables,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.672696+00:00
-Grade 10,Social Science,Text Book - Chapter 3: Money and Credit,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.672829+00:00
-Grade 10,Maths,Exemplar: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.673042+00:00
-Grade 5,English,8. The Decision of the Panchayat,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.673232+00:00
-Grade 10,English,Text Book - Chapter 3: Two Stories about Flying,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.673581+00:00
-Grade 5,Maths,Chapter 2: Fractions,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.673811+00:00
-Grade 10,Social Science,Political Science - Chapter 4: Political Parties,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T12:49:11.674133+00:00
-Grade 10,English,Text Book - Chapter 6: Mijbil the Otter,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.674430+00:00
-Grade 10,Science,Exemplar: Electricity,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T12:49:11.674620+00:00
-Grade 10,Maths,Chapter 13: Statistics,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T12:49:11.674780+00:00
-Grade 10,Science,Chapter 10: The Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T12:49:11.675150+00:00
+Grade 6,Hindi,9. मैया मैं नमहं माखन खायो,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.699325+00:00
+Grade 10,Maths,Exemplar: Coordinate Geometry,1,93,95,90,80,100,100,0,0,1,0,2026-07-10T14:57:50.699538+00:00
+Grade 10,Science,Chapter 7: How do Organisms Reproduce?,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.699823+00:00
+Grade 5,Hindi,7. मेरा बचपन,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.699866+00:00
+Grade 6,English,Unit 1: Fables and Folk Tales,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T14:57:50.700010+00:00
+Grade 10,Science,Exemplar: Our Environment,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T14:57:50.700283+00:00
+Grade 10,Maths,Chapter 1: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.700467+00:00
+Grade 10,English,Workbook - Chapter 8: The Sermon at Benares,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.700675+00:00
+Grade 10,English,Text Book - Chapter 4: From the Diary of Anne Frank,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.700941+00:00
+Grade 10,English,Text Book - Chapter 7: Madam Rides the Bus,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.701110+00:00
+Grade 10,Social Science,Geography - Chapter 2: Forest and Wildlife Resources,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.701317+00:00
+Grade 10,Hindi,अध्याय 8: रामवृक्ष बेनीपुरी,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.701517+00:00
+Grade 10,Social Science,Geography - Chapter 3: Water Resources,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.701533+00:00
+Grade 10,Hindi,अध्याय 6: मंगलेश डबराल,1,94,100,90,80,98,100,0,0,0,1,2026-07-10T14:57:50.701682+00:00
+Grade 10,Science,Exemplar: Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.701917+00:00
+Grade 10,Hindi,अध्याय 3: जयशंकर प्रसाद,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.702075+00:00
+Grade 10,Social Science,"Political Science - Chapter 3: Gender, Religion and Caste",1,94,100,90,80,98,100,0,0,0,1,2026-07-10T14:57:50.702243+00:00
+Grade 10,Maths,Exemplar: Statistics,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.702450+00:00
+Grade 10,Hindi,अध्याय 1: सूरदास,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.702580+00:00
+Grade 10,Social Science,Text Book - Chapter 1: Development,1,94,100,90,80,100,100,0,0,0,0,2026-07-10T14:57:50.702597+00:00

@@ -129,8 +129,11 @@ function getLoadingMessage(stepIndex, subject) {
   return pool.default;
 }
 
-// ── Layout feature flag — set to false to instantly roll back all layout changes ──
+// ── Layout feature flags ──────────────────────────────────────────────────────
+// Set USE_TOP_BAR_LAYOUT=true to move Learning Path to a compact top bar so
+// the lesson content takes the full width. Set false to roll back to left sidebar.
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
+const USE_TOP_BAR_LAYOUT = true;
 
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
 // Grade 10 visuals restricted to Science and Maths only
@@ -1597,10 +1600,131 @@ function LessonsPage({ user, setActivePage }) {
   const hasPaidAccessForLessons = hasPaidAccess(user);
   const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
 
+  // ── Top-bar layout: compact horizontal selector strip ─────────────────────
+  const topBarControls = USE_TOP_BAR_LAYOUT ? (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "10px 16px",
+      background: "var(--card-bg, rgba(255,255,255,.04))",
+      border: "1px solid var(--border, rgba(255,255,255,.1))",
+      borderRadius: 12,
+      marginBottom: 16,
+      flexWrap: "wrap",
+    }}>
+      {/* Compact selectors */}
+      <span style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted, #6b7280)", marginRight: 2 }}>📚</span>
+      <select
+        value={grade}
+        onChange={(e) => handleGradeChange(e.target.value)}
+        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 100 }}
+      >
+        {grades.map(g => <option key={g} value={g}>{g}</option>)}
+      </select>
+      <select
+        value={subject}
+        onChange={(e) => handleSubjectChange(e.target.value)}
+        disabled={subjects.length === 0}
+        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 110 }}
+      >
+        {subjects.map(s => <option key={s} value={s}>{s}</option>)}
+      </select>
+      <select
+        value={chapter}
+        onChange={(e) => {
+          setChapter(e.target.value);
+          setLesson(""); setAudioUrl(""); resetTextbookVisualBrowser();
+          setSourceInfo(""); setFollowUpQuestion(""); setFollowUpMessages([]);
+          resetPracticeState();
+        }}
+        style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 200, flex: 1 }}
+      >
+        {chapters.map(c => {
+          const locked = c.includes("Exemplar:") && !hasPaidAccessForLessons;
+          return <option key={c} value={c}>{locked ? `🔒 ${c}` : c}</option>;
+        })}
+      </select>
+      {/* Step progress pill */}
+      <span style={{
+        fontSize: ".72rem", fontWeight: 700, color: "#fff",
+        background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
+        borderRadius: 99, padding: "3px 10px", whiteSpace: "nowrap",
+      }}>
+        Step {currentStepIndex + 1}/{lessonSteps.length} · {stepTitle}
+      </span>
+      {/* Generate / Refresh */}
+      {!hasSavedLesson && !isExemplarLocked ? (
+        <button
+          className="primary-btn"
+          onClick={handleGenerateLesson}
+          disabled={generating}
+          style={{ fontSize: ".78rem", padding: "5px 14px", borderRadius: 8, whiteSpace: "nowrap" }}
+        >
+          {generating ? "…" : "✨ Generate"}
+        </button>
+      ) : hasSavedLesson && !isExemplarLocked ? (
+        <button
+          onClick={async () => {
+            const upd = { ...stepLessons };
+            delete upd[String(currentStepIndex)];
+            setStepLessons(upd); setLesson(""); setAudioUrl("");
+            try { await saveChapterProgress({ username: user.username, grade, mode, board: requestBoard, subject, chapter, current_step_index: currentStepIndex, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: upd }); } catch (e) { /* non-critical */ }
+          }}
+          style={{ fontSize: ".72rem", background: "none", border: "none", color: "var(--muted, #888)", cursor: "pointer", textDecoration: "underline" }}
+        >
+          🔄 Refresh
+        </button>
+      ) : null}
+      {/* Prev / Next */}
+      <div style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
+        <button
+          className="secondary-btn"
+          disabled={currentStepIndex === 0}
+          onClick={async () => {
+            const ni = currentStepIndex - 1;
+            const sl = stepLessons[String(ni)] || "";
+            if (!sl) autoGenerateRef.current = true;
+            setCurrentStepIndex(ni); setLesson(sl); setAudioUrl(""); resetTextbookVisualBrowser(); setCompleted(false); resetPracticeState();
+            await saveChapterProgress({ username: user.username, grade, mode, subject, chapter, current_step_index: ni, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: stepLessons });
+          }}
+          style={{ fontSize: ".75rem", padding: "4px 10px" }}
+        >⬅</button>
+        <button
+          className="secondary-btn"
+          disabled={currentStepIndex >= lessonSteps.length - 1}
+          onClick={async () => {
+            const ni = currentStepIndex + 1;
+            if (ni >= lessonSteps.length) return;
+            const nh = Math.max(highestUnlockedStep, ni);
+            const sl = stepLessons[String(ni)] || "";
+            if (!sl) autoGenerateRef.current = true;
+            setHighestUnlockedStep(nh); setCurrentStepIndex(ni); setLesson(sl); setAudioUrl(""); resetTextbookVisualBrowser(); resetPracticeState();
+            await saveChapterProgress({ username: user.username, grade, mode, subject, chapter, current_step_index: ni, highest_unlocked_step: nh, completed: false, last_lesson: "", step_lessons: stepLessons });
+          }}
+          style={{ fontSize: ".75rem", padding: "4px 10px" }}
+        >➡</button>
+      </div>
+    </div>
+  ) : null;
+
   return (
-    <div className="lesson-workspace premium-page premium-lessons-page">
-      <div className="lesson-layout premium-lesson-layout">
-        <aside className="lesson-control-panel">
+    <div
+      className="lesson-workspace premium-page premium-lessons-page"
+      style={USE_TOP_BAR_LAYOUT ? { display: "block" } : undefined}
+    >
+      {/* Top bar replaces sidebar when USE_TOP_BAR_LAYOUT is true */}
+      {USE_TOP_BAR_LAYOUT && topBarControls}
+
+      <div
+        className="lesson-layout premium-lesson-layout"
+        style={USE_TOP_BAR_LAYOUT ? { display: "block" } : undefined}
+      >
+        {/* Sidebar hidden in top-bar mode */}
+        <aside
+          className="lesson-control-panel"
+          style={USE_TOP_BAR_LAYOUT ? { display: "none" } : undefined}
+        >
           <div className="premium-section premium-lesson-controls">
             <div className="premium-header">
               <p className="eyebrow">Learning Path</p>

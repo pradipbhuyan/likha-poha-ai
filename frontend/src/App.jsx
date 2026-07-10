@@ -1714,12 +1714,12 @@ function App() {
               {darkMode ? "☀️ Light" : "🌙 Dark"}
             </button>
 
-            <div className="status-pill">
-              <span className="status-dot"></span>
-              AI Ready
-            </div>
-
             <div className="profile-pill">{user.username}</div>
+
+            {/* Likha Poha AI Guide — inline in header, no longer floating */}
+            {["student", "parent"].includes(user.role) && (
+              <FirstTimeGuide user={user} activePage={activePage} />
+            )}
           </div>
         </header>
 
@@ -1789,10 +1789,6 @@ function App() {
         </AnimatePresence>
       </main>
 
-      {/* Likha Poha AI Guide — fixed top-right, always starts minimised */}
-      {user && ["student", "parent"].includes(user.role) && (
-        <FirstTimeGuide user={user} activePage={activePage} />
-      )}
       <ChatWidget />
 
       {/* Global floating Report Issue button — visible to student/parent/teacher */}

@@ -544,21 +544,67 @@ Important:
   return (
     <div className="doubt-page premium-page premium-doubt-page">
       {/* Compact context bar — replaces the redundant hero that repeated the page title */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 0 4px", flexWrap: "wrap" }}>
-        <span style={{ fontSize: "1.1rem" }}>🤖</span>
-        <div>
-          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>AI Study Companion</span>
-          <span style={{ marginLeft: 8, fontSize: "0.82rem", color: "var(--muted)" }}>
-            {grade} • {mode || "No Access"}{mode === "SOF" && subject ? ` • ${subject}` : ""}
-          </span>
-        </div>
-        <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
-          Textbook-aware explanations, examples, and step-by-step help
+      {/* ── Compact top bar: replaces the left sidebar ───────────────────── */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 8,
+        padding: "10px 16px",
+        background: "var(--card-bg, rgba(255,255,255,.04))",
+        border: "1px solid var(--border, rgba(255,255,255,.1))",
+        borderRadius: 12,
+        marginBottom: 12,
+        flexWrap: "wrap",
+      }}>
+        <span style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted, #6b7280)" }}>🤖</span>
+        {/* Grade */}
+        <select
+          value={grade}
+          onChange={(e) => handleGradeChange(e.target.value)}
+          style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 100 }}
+        >
+          {grades.map(g => <option key={g} value={g}>{g}</option>)}
+        </select>
+        {/* Mode */}
+        {allowedModes.length > 0 && (
+          <select
+            value={mode}
+            onChange={(e) => handleModeChange(e.target.value)}
+            style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 90 }}
+          >
+            {allowedModes.map(m => <option key={m} value={m}>{m}</option>)}
+          </select>
+        )}
+        {/* Subject */}
+        {allowedSubjects.length > 0 && (
+          <select
+            value={subject}
+            onChange={(e) => handleSubjectChange(e.target.value)}
+            style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 120 }}
+          >
+            {mode !== "SOF" && <option value="">Open subject</option>}
+            {allowedSubjects.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+        )}
+        {/* Chapter */}
+        {subject && availableChapters.length > 0 && (
+          <select
+            value={chapter}
+            onChange={(e) => handleChapterChange(e.target.value)}
+            style={{ fontSize: ".78rem", padding: "4px 8px", borderRadius: 7, border: "1px solid var(--border, rgba(255,255,255,.15))", background: "var(--input-bg, rgba(255,255,255,.06))", color: "var(--text)", cursor: "pointer", maxWidth: 220, flex: 1 }}
+          >
+            <option value="">Open chapter</option>
+            {availableChapters.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+        )}
+        <span style={{ marginLeft: "auto", fontSize: ".72rem", color: "var(--muted, #6b7280)", fontStyle: "italic" }}>
+          Textbook-aware · step-by-step help
         </span>
       </div>
 
-      <section className="premium-doubt-layout premium-doubt-open-layout">
-        <aside className="premium-section premium-doubt-context">
+      <section
+        className="premium-doubt-layout premium-doubt-open-layout"
+        style={{ display: "block" }}
+      >
+        <aside className="premium-section premium-doubt-context" style={{ display: "none" }}>
           <div className="premium-header">
             <p className="eyebrow">Mentor Context</p>
             <h3>🎯 Choose Learning Level</h3>

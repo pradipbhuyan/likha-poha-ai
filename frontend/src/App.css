@@ -759,6 +759,10 @@ textarea:focus {
   padding: 26px;
   box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(18px);
+  /* backdrop-filter creates a stacking context — give the topbar a high z-index
+     so the guide panel (position:fixed inside it) renders above all page cards */
+  position: relative;
+  z-index: 500;
 }
 
 .eyebrow {
@@ -2676,6 +2680,60 @@ body.dark-mode .podium-card {
   background: #0f172a !important;
   border-color: #1e293b !important;
   color: #f8fafc !important;
+}
+
+/* ── Inline question box — dark mode overrides ─────────────────────────────
+   The light-mode box uses white gradients and dark text.
+   In dark mode we swap to a dark card with light text.                     */
+body.dark-mode .lesson-inline-question-box {
+  background: linear-gradient(180deg, #0f172a, #1e293b) !important;
+  border-color: #334155 !important;
+}
+body.dark-mode .lesson-inline-question-label {
+  color: #93c5fd !important;
+}
+body.dark-mode .lesson-inline-question-text,
+body.dark-mode .lesson-inline-question-text p,
+body.dark-mode .lesson-inline-question-text strong,
+body.dark-mode .lesson-inline-question-text li {
+  color: #e2e8f0 !important;
+}
+body.dark-mode .inline-question-choice {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #93c5fd !important;
+}
+body.dark-mode .inline-question-choice.active {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+body.dark-mode .inline-question-choice.muted {
+  background: #0f172a !important;
+  color: #94a3b8 !important;
+}
+body.dark-mode .inline-question-choice.active.muted {
+  background: #1e3a5f !important;
+  border-color: #3b82f6 !important;
+  color: #bfdbfe !important;
+}
+body.dark-mode .lesson-inline-thinking-note {
+  color: #34d399 !important;
+}
+body.dark-mode .lesson-inline-answer-panel textarea {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f1f5f9 !important;
+}
+body.dark-mode .lesson-inline-feedback {
+  background: #052e16 !important;
+  border-color: #166534 !important;
+  color: #bbf7d0 !important;
+}
+body.dark-mode .lesson-inline-feedback p,
+body.dark-mode .lesson-inline-feedback li,
+body.dark-mode .lesson-inline-feedback strong {
+  color: #bbf7d0 !important;
 }
 
 body.dark-mode .topbar {
@@ -13392,10 +13450,7 @@ body.dark-mode .performance-results-table td {
 
 /* First-time guide themes */
 .first-guide-launcher {
-  position: fixed;
-  right: 24px;
-  top: 108px;
-  z-index: 80;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -13424,8 +13479,8 @@ body.dark-mode .performance-results-table td {
 .first-guide-layer {
   position: fixed;
   right: 24px;
-  top: 162px;
-  z-index: 90;
+  top: 80px;
+  z-index: 1200;
   max-width: min(325px, calc(100vw - 32px));
 }
 
