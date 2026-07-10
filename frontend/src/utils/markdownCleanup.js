@@ -331,27 +331,52 @@ function normalizeBulletPoints(text) {
     .join("\n");
 }
 
+/**
+ * Fix $$ used INLINE (mid-sentence) by downgrading to $ $ inline math.
+ *
+ * Proper display math: $$ on its own line as a block.
+ * Bad LLM output: "x = v0t + 1/2 $$at^2$$" or "use equation $$at^2"
+ *
+ * Strategy (multiline per-line matching):
+ *   - If a line contains $$ with non-whitespace before it → inline usage
+ *   - Closed inline: text $$expr$$ more → text $expr$ more
+ *   - Unclosed inline: text $$expr         → text $expr$
+ */
+function normalizeInlineDisplayMath(text) {
+  if (!text || !text.includes("$$")) return text;
+  return text
+    // Step 1: closed inline $$...$$ on same line with text before the first $$
+    .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
+      `${before}$${content.trim()}$${after}`)
+    // Step 2: unclosed inline $$ on same line with text before it
+    .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
+      // Only convert if before has non-whitespace (truly inline, not indented display)
+      if (/\S/.test(before)) return `${before}$${content.trim()}$`;
+      return _m; // leave block-level $$ alone
+    });
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
    * Order matters:
-   *  0. normalizeBulletPoints       — • Point → - Point (LKB answers)
-   *  1. normalizeMermaidBlocks      — wrap loose graph TD blocks
-   *  2. normalizeLatexParentheses   — (\frac{}{}) → $...$
-   *  3. normalizePlainAlgebra       — (a+b)^2 → $...$
-   *  4. normalizeSquareBracketMath  — [ \LaTeX ] and \[...\] → $$...$$
-   *                                  MUST run before normalizePlainExponents so
-   *                                  10^{11} inside bracket formulas isn't
-   *                                  pre-converted to $ 10^{11} $ first
-   *  5. normalizePlainExponents     — 10^7 → $10^{7}$ (outside existing math)
-   *  6. normalizeDollarMath         — fix $10...$ currency-lookalike spacing
-   *  7. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  0. normalizeInlineDisplayMath  — $$ used inline → $ $ (NEW)
+   *  1. normalizeBulletPoints       — • Point → - Point (LKB answers)
+   *  2. normalizeMermaidBlocks      — wrap loose graph TD blocks
+   *  3. normalizeLatexParentheses   — (\frac{}{}) → $...$
+   *  4. normalizePlainAlgebra       — (a+b)^2 → $...$
+   *  5. normalizeSquareBracketMath  — [ \LaTeX ] and \[...\] → $$...$$
+   *  6. normalizePlainExponents     — 10^7 → $10^{7}$ (outside existing math)
+   *  7. normalizeDollarMath         — fix $10...$ currency-lookalike spacing
+   *  8. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
       normalizePlainExponents(
         normalizeSquareBracketMath(
-          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(text))))
+          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
+            normalizeInlineDisplayMath(text)
+          ))))
         )
       )
     )
