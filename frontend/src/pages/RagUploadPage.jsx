@@ -197,6 +197,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
   const [lessonContent, setLessonContent] = useState("");
   const [storeResult, setStoreResult] = useState(null);
   const [storing, setStoring] = useState(false);
+  const [useCustomGpt, setUseCustomGpt] = useState(false);
 
   // syllabusData structure: { "Grade 5": { "CBSE": { "English": ["ch1", ...] } } }
   const grades = syllabusData ? Object.keys(syllabusData).sort() : [];
@@ -246,7 +247,9 @@ function LessonPrewarmTab({ user, syllabusData }) {
 
   function handleCopyPrompt() {
     if (!promptResult) return;
-    const full = promptResult.system_prompt + "\n\n---USER PROMPT---\n\n" + promptResult.user_prompt;
+    const full = useCustomGpt
+      ? promptResult.user_prompt
+      : promptResult.system_prompt + "\n\n---USER PROMPT---\n\n" + promptResult.user_prompt;
     navigator.clipboard.writeText(full).then(() => {
       setPromptCopied(true);
       setTimeout(() => setPromptCopied(false), 2000);
@@ -313,24 +316,36 @@ function LessonPrewarmTab({ user, syllabusData }) {
       {promptResult && !promptResult.error && (
         <div className="premium-rag-form-card" style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ marginBottom: "0.5rem" }}>Step 2 — Copy & Paste into ChatGPT</h3>
-          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "1rem" }}>
+          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
             {promptResult.rag_chunks_found} RAG chunk(s) found · Chapter type: <strong>{promptResult.chapter_type}</strong>
           </p>
-          <div style={{ marginBottom: "0.75rem" }}>
-            <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>
-              SYSTEM PROMPT
-              <span style={{ marginLeft: "0.5rem", fontWeight: 400, color: "#28a745", fontSize: "0.75rem" }}>
-                ✅ Skip if you have the Custom GPT set up — it already has this
-              </span>
-            </label>
-            <textarea
-              readOnly
-              value={promptResult.system_prompt}
-              style={{ width: "100%", height: "80px", fontSize: "0.75rem", fontFamily: "monospace",
-                background: "#f0fff4", border: "1px solid #c3e6cb", borderRadius: 6, padding: "0.5rem",
-                marginTop: "0.25rem", resize: "vertical", opacity: 0.7 }}
+          <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem",
+            cursor: "pointer", fontSize: "0.85rem", fontWeight: 500, color: "#28a745" }}>
+            <input
+              type="checkbox"
+              checked={useCustomGpt}
+              onChange={(e) => setUseCustomGpt(e.target.checked)}
+              style={{ width: 16, height: 16, cursor: "pointer" }}
             />
-          </div>
+            I have the Custom GPT set up — copy User Prompt only (skip System Prompt)
+          </label>
+          {!useCustomGpt && (
+            <div style={{ marginBottom: "0.75rem" }}>
+              <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>
+                SYSTEM PROMPT
+                <span style={{ marginLeft: "0.5rem", fontWeight: 400, color: "#28a745", fontSize: "0.75rem" }}>
+                  (paste this once when creating the Custom GPT)
+                </span>
+              </label>
+              <textarea
+                readOnly
+                value={promptResult.system_prompt}
+                style={{ width: "100%", height: "80px", fontSize: "0.75rem", fontFamily: "monospace",
+                  background: "#f0fff4", border: "1px solid #c3e6cb", borderRadius: 6, padding: "0.5rem",
+                  marginTop: "0.25rem", resize: "vertical", opacity: 0.7 }}
+              />
+            </div>
+          )}
           <div style={{ marginBottom: "0.75rem" }}>
             <label style={{ fontWeight: 600, fontSize: "0.8rem", color: "#555" }}>
               USER PROMPT (includes RAG context)
@@ -348,7 +363,7 @@ function LessonPrewarmTab({ user, syllabusData }) {
           </div>
           <button className="premium-rag-upload-btn" onClick={handleCopyPrompt}
             style={{ background: promptCopied ? "#28a745" : undefined }}>
-            {promptCopied ? "✅ Copied!" : "📋 Copy Full Prompt to Clipboard"}
+            {promptCopied ? "✅ Copied!" : useCustomGpt ? "📋 Copy User Prompt to Clipboard" : "📋 Copy Full Prompt to Clipboard"}
           </button>
           <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.5rem" }}>
             Paste the SYSTEM PROMPT in ChatGPT Custom Instructions (or as the first message),
