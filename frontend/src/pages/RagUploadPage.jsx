@@ -25,6 +25,7 @@ import {
   uploadRagText,
   generatePrewarmPrompt,
   storePrewarmLesson,
+  generatePrewarmQuestions,
 } from "../api/rag";
 import { getDefaultSelection } from "../utils/syllabusDefaults";
 
@@ -209,6 +210,8 @@ function LessonPrewarmTab({ user, syllabusData }) {
   const [storeResult, setStoreResult] = useState(null);
   const [storing, setStoring] = useState(false);
   const [useCustomGpt, setUseCustomGpt] = useState(false);
+  const [genQLoading, setGenQLoading] = useState(false);
+  const [genQResult, setGenQResult] = useState(null);
 
   // syllabusData structure: { "Grade 5": { "CBSE": { "English": ["ch1", ...] } } }
   const grades = syllabusData ? Object.keys(syllabusData).sort() : [];
@@ -254,6 +257,23 @@ function LessonPrewarmTab({ user, syllabusData }) {
       setStoreResult({ success: false, message: e.message });
     } finally {
       setStoring(false);
+    }
+  }
+
+  async function handleGenerateQuestions() {
+    if (!lpGrade || !lpSubject || !lpChapter || !lpStep) return;
+    setGenQLoading(true);
+    setGenQResult(null);
+    try {
+      const result = await generatePrewarmQuestions(user.accessToken, {
+        grade: lpGrade, subject: lpSubject, chapter: lpChapter,
+        stepTitle: lpStep, mode: lpMode,
+      });
+      setGenQResult(result);
+    } catch (e) {
+      setGenQResult({ success: false, message: e.message, questions: [] });
+    } finally {
+      setGenQLoading(false);
     }
   }
 
@@ -433,6 +453,61 @@ function LessonPrewarmTab({ user, syllabusData }) {
             <p style={{ fontSize: "0.8rem", color: "#28a745", marginTop: "0.5rem" }}>
               Students will now get this lesson instantly. Repeat for other steps.
             </p>
+          )}
+        </div>
+      )}
+
+      {/* ── Step 4: Generate & Store Practice Questions ──────────────────── */}
+      {lpGrade && lpSubject && lpChapter && lpStep && (
+        <div className="premium-rag-form-card" style={{ marginTop: "1.5rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>Step 4 — Generate Textbook Practice Questions</h3>
+          <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
+            Generates 2 questions directly from the uploaded RAG textbook chunks — specific
+            comprehension and MCQ questions, not generic ones. Uses your platform LLM.
+          </p>
+          <button
+            className="premium-rag-upload-btn"
+            onClick={handleGenerateQuestions}
+            disabled={genQLoading}
+            style={{ background: "#6f42c1" }}
+          >
+            {genQLoading ? "⏳ Generating from textbook..." : "🎯 Generate & Store Practice Questions"}
+          </button>
+
+          {genQResult && (
+            <div style={{ marginTop: "0.75rem" }}>
+              {genQResult.success ? (
+                <>
+                  <p style={{ color: "#28a745", fontSize: "0.85rem", marginBottom: "0.5rem" }}>
+                    ✅ {genQResult.message}
+                  </p>
+                  {(genQResult.questions || []).map((q, i) => (
+                    <div key={i} style={{ background: "#f8f9fa", border: "1px solid #dee2e6",
+                      borderRadius: 6, padding: "0.6rem 0.8rem", marginBottom: "0.5rem" }}>
+                      <p style={{ fontWeight: 600, fontSize: "0.8rem", marginBottom: "0.25rem" }}>
+                        Q{i + 1} ({q.type === "mcq" ? "MCQ" : "Short Answer"}): {q.question}
+                      </p>
+                      {q.options && (
+                        <ul style={{ margin: "0.25rem 0", paddingLeft: "1.2rem", fontSize: "0.75rem" }}>
+                          {q.options.map((o, j) => (
+                            <li key={j} style={{ color: o === q.answer ? "#28a745" : "#555" }}>
+                              {o === q.answer ? "✓ " : ""}{o}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {q.type !== "mcq" && (
+                        <p style={{ fontSize: "0.75rem", color: "#28a745", marginTop: "0.25rem" }}>
+                          Answer: {q.answer}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <p style={{ color: "#dc3545", fontSize: "0.85rem" }}>❌ {genQResult.message}</p>
+              )}
+            </div>
           )}
         </div>
       )}

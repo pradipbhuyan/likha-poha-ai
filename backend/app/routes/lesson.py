@@ -936,3 +936,142 @@ def store_prewarm_lesson(
         "chars": len(data.lesson_content.strip()),
         "source_type": source_type,
     }
+
+
+@router.post("/prewarm/generate-questions")
+def generate_prewarm_questions(
+    data: PrewarmPromptRequest,
+    user=Depends(get_current_user),
+):
+    """
+    Generate textbook-based practice questions from RAG content and store
+    them in lesson_cache.practice_questions for the given chapter step.
+
+    Questions are generated directly from the uploaded textbook chunks so
+    they always ask about real content (not generic meta-questions about
+    'what this lesson teaches'). Stored in the cache and served instantly.
+    """
+    from app.services.rag_service import search_textbook_content  # noqa: PLC0415
+    from app.services.openai_service import ask_llm  # noqa: PLC0415
+    from app.services.lesson_cache_service import (  # noqa: PLC0415
+        make_lesson_cache_key, store_lesson_cache, get_cached_lesson,
+    )
+    import json as _json  # noqa: PLC0415
+
+    # Fetch RAG chunks
+    rag_results = search_textbook_content(
+        query=f"{data.grade} {data.subject} {data.chapter} questions answers",
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        match_count=10,
+    )
+    if not rag_results:
+        rag_results = search_textbook_content(
+            query=f"{data.grade} {data.subject} {data.chapter}",
+            board=data.board,
+            grade=data.grade,
+            subject=data.subject,
+            chapter=None,
+            match_count=10,
+        )
+
+    if not rag_results:
+        return {
+            "success": False,
+            "message": "No RAG content found for this chapter. Upload textbook content first.",
+            "questions": [],
+        }
+
+    textbook_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
+
+    system_prompt = """You are a CBSE question setter generating practice questions from textbook content.
+Generate EXACTLY 2 practice questions in valid JSON format.
+Rules:
+- Questions must come directly from the textbook content provided.
+- Never ask generic questions like "What did this lesson teach?" or "What is the main idea?".
+- Always ask about specific people, events, facts, or details in the text.
+- For English prose/poem chapters: ask about specific characters, events, lines, vocabulary.
+- For Science/Maths: ask about definitions, processes, calculations from the text.
+- Output ONLY valid JSON — no explanation, no markdown, no extra text.
+"""
+
+    user_prompt = f"""Grade: {data.grade}
+Subject: {data.subject}
+Chapter: {data.chapter}
+Step: {data.step_title}
+
+Textbook content:
+{textbook_context[:3000]}
+
+Generate exactly 2 practice questions as a JSON array:
+[
+  {{
+    "type": "mcq",
+    "question": "<specific question about the textbook content>",
+    "options": ["<option A>", "<option B>", "<option C>", "<option D>"],
+    "answer": "<exact text of correct option>"
+  }},
+  {{
+    "type": "descriptive",
+    "question": "<short-answer question from the textbook content>",
+    "answer": "<model answer based on the textbook>"
+  }}
+]
+
+Output ONLY the JSON array. No explanation, no markdown code blocks."""
+
+    try:
+        raw = ask_llm(system_prompt, user_prompt, username=user.get("username", "admin"), feature="prewarm_questions")
+        # Strip markdown code fences if present
+        raw = raw.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        raw = raw.strip().rstrip("`").strip()
+        questions = _json.loads(raw)
+        if not isinstance(questions, list):
+            raise ValueError("Not a list")
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Failed to generate questions: {e}",
+            "questions": [],
+        }
+
+    # Store in lesson_cache.practice_questions
+    cache_key = make_lesson_cache_key(
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        mode=data.mode,
+        step_title=data.step_title,
+        teacher_persona="",
+    )
+
+    # Get existing cached lesson content (if any) so we don't overwrite it
+    existing = get_cached_lesson(cache_key, grade=data.grade)
+    lesson_content = existing.get("lesson_content", "") if existing else ""
+
+    store_lesson_cache(
+        cache_key=cache_key,
+        lesson_content=lesson_content,
+        source_type=existing.get("source_type", "RAG") if existing else "RAG",
+        board=data.board,
+        grade=data.grade,
+        subject=data.subject,
+        chapter=data.chapter,
+        mode=data.mode,
+        step_title=data.step_title,
+        teacher_persona="",
+        practice_questions=questions,
+    )
+
+    return {
+        "success": True,
+        "message": f"Generated and stored {len(questions)} practice question(s)",
+        "questions": questions,
+    }

@@ -610,3 +610,20 @@ export async function storePrewarmLesson(
   }
   return response.json();
 }
+
+export async function generatePrewarmQuestions(
+  accessToken,
+  { grade, subject, chapter, stepTitle, mode = "CBSE", board = "CBSE" }
+) {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const response = await fetch(`${API_BASE}/api/lesson/prewarm/generate-questions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({ grade, subject, chapter, step_title: stepTitle, mode, board }),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to generate questions");
+  }
+  return response.json();
+}
