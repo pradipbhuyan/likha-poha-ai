@@ -214,6 +214,7 @@ def get_cached_lesson_by_chapter_text(
             .eq("step_title", step_title)
             .eq("status", "active")
             .ilike("chapter", f"%{core}%")
+            .order("created_at", desc=True)
             .limit(1)
             .execute()
         )
