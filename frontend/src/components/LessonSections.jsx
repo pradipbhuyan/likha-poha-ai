@@ -338,17 +338,17 @@ function CardFeedSection({
           width: 28, height: 28, borderRadius: 8,
           background: colours.iconBg,
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: ".9rem", flexShrink: 0,
+          fontSize: "1rem", flexShrink: 0,
         }}>
           {colours.icon}
         </span>
         <span style={{
-          fontSize: ".62rem", fontWeight: 800, textTransform: "uppercase",
+          fontSize: "0.65rem", fontWeight: 800, textTransform: "uppercase",
           letterSpacing: ".1em", color: colours.labelColor, marginRight: 4,
         }}>
           {colours.label}
         </span>
-        <span style={{ fontSize: ".92rem", fontWeight: 700, lineHeight: 1.3 }}>
+        <span style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.3 }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
@@ -361,7 +361,7 @@ function CardFeedSection({
 
       {/* Card body — rendered markdown */}
       {renderableContent && (
-        <div className="lesson-section-body lesson-card-body" style={{ fontSize: ".9rem", lineHeight: 1.7 }}>
+        <div className="lesson-section-body lesson-card-body" style={{ fontSize: "1rem", lineHeight: 1.7 }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
@@ -501,17 +501,17 @@ function WorkbookSection({
           width: 26, height: 26, borderRadius: 7,
           background: colours.iconBg,
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: ".85rem", flexShrink: 0,
+          fontSize: "1rem", flexShrink: 0,
         }}>
           {colours.icon}
         </span>
         <span style={{
-          fontSize: ".6rem", fontWeight: 800, textTransform: "uppercase",
+          fontSize: "0.65rem", fontWeight: 800, textTransform: "uppercase",
           letterSpacing: ".1em", color: colours.labelColor,
         }}>
           {colours.label}
         </span>
-        <span style={{ fontSize: ".95rem", fontWeight: 700, lineHeight: 1.3 }}>
+        <span style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.3 }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
@@ -524,7 +524,7 @@ function WorkbookSection({
 
       {/* Section body */}
       {renderableContent && (
-        <div className="lesson-section-body" style={{ fontSize: ".9rem", lineHeight: 1.75 }}>
+        <div className="lesson-section-body" style={{ fontSize: "1rem", lineHeight: 1.7 }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
