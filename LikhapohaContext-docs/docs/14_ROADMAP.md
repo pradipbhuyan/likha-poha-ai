@@ -190,6 +190,50 @@ _Last updated: 2026-06-28_
 
 ---
 
+---
+
+## Completed — Lesson Layout & Rendering (July 10, 2026)
+
+### Lesson Page — Workbook Layout + Top Bar
+- [x] Option B Workbook layout: all sections expanded inline, colour-coded left border
+- [x] Floating ≡ TOC button (position:fixed, right side) — opens/closes section nav panel
+- [x] Option A Card Feed layout preserved (flag: `USE_CARD_FEED_LAYOUT`)
+- [x] Compact horizontal top bar replaces left sidebar (`USE_TOP_BAR_LAYOUT`)
+- [x] Top bar: Grade/Subject/Chapter selectors + Step pill + Generate/Refresh
+- [x] DoubtPage: same compact top bar; Mentor Context sidebar hidden; full-width textbox
+- [x] Likha Poha AI Guide: moved from `position:fixed` floating to inline header button
+- [x] AI Ready status pill removed from header
+- [x] `.topbar { z-index: 500 }` — fixes guide panel hidden behind page cards (backdrop-filter stacking context)
+- [x] `first-guide-layer { z-index: 1200; top: 80px }` — guide panel above all content
+
+### parseSections() Bug Fix
+- [x] 5 heading patterns supported: numbered+hash, numbered+bold, hash-only, bold-only, `Step N: Title`
+- [x] Guard: numbered items ending `.` not treated as headings
+- [x] `getRenderableContent()` — worked examples (Question: + Step N:) never lose solution
+- [x] Parser debug script: `backend/scripts/trace_parser_chapter1.py`
+
+### Rendering Quality
+- [x] `fixInlineDisplayMath()` — `$$inline$$` → `$inline$` (applied at render time in LessonSections)
+- [x] `normalizeInlineDisplayMath()` — same fix in `normalizeTutorMarkdown()` pipeline (step 0)
+- [x] Font consistency: body `1rem`, section titles `1rem`, type badges `0.65rem`, line-height `1.7`
+- [x] Dark mode inline question box: full CSS overrides in `body.dark-mode .lesson-inline-question-box`
+- [x] Light mode top bar: CSS variables with explicit light-mode fallbacks (`var(--panel, #ffffff)`)
+- [x] TOC panel light mode: explicit `#e2e8f0` text (panel always dark background)
+
+### Grade 5 Content Fixes
+- [x] Papa's Spectacles (Chapter 1) detected as poem — `POEM_SYSTEM` used
+- [x] The Rainbow (Ch3), The Frog (Ch5), Vocation (Ch9) added to `_POEM_KEYWORDS`
+
+### Practice Question Quality
+- [x] Pass threshold raised: `score >= 6` → `score >= 7`
+- [x] Keyword score floor: `max(1,...)` → `max(0,...)`
+- [x] EVALUATOR_SYSTEM: strict textbook-grounded feedback
+- [x] Prewarm question count scales with RAG chunks (1 / 2 / 3)
+- [x] Textbook exercise Q&A used directly before generating new questions
+- [x] MCQ explanation field added (one textbook sentence)
+
+---
+
 ## Pending — Audio & TTS
 
 - [ ] Option 3 LaTeX-to-speech conversion (sqrt, frac, powers → natural English)
@@ -202,3 +246,18 @@ _Last updated: 2026-06-28_
 - [ ] Scan Grade 10 Science for broken LaTeX (same process as Maths)
 - [ ] Scan Grade 8 Science for broken LaTeX
 - [ ] After broken lessons repaired: add quality gate to prewarm script
+- [ ] Regenerate Grade 5 Santoor poem chapters with POEM_SYSTEM (Papa's Spectacles, Rainbow, Frog, Vocation) — archive stale cached lessons and re-prewarm
+- [ ] Regenerate all Grade 5 lessons that had format issues (Step N: flat format) → now properly detected by parser, but content is thin — consider refreshing
+
+## Pending — Lesson Page UX
+
+- [ ] Workbook layout responsive: on mobile `< 768px`, hide floating TOC button, show inline section links at top
+- [ ] "Next step" preview card at bottom of lesson — smooth navigation
+- [ ] Section progress tracking: mark sections as read as student scrolls
+- [ ] Grade 5 font size check: `1rem` body may be too large for Grade 1–3 content; consider `0.95rem` floor
+
+## Pending — Practice Question Quality
+
+- [ ] Re-run prewarm question generation for all Grade 5 chapters to pick up the new stricter prompts
+- [ ] Add `expected_keywords` extraction step for descriptive questions (derive from model answer)
+- [ ] Question bank search for Grade 5 chapters (very few currently in bank)

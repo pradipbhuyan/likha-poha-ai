@@ -381,3 +381,73 @@ Only 3 models work on free-tier nvapi-* accounts:
 - `meta/llama-3.1-8b-instruct` (fastest, recommended for batch)
 - `meta/llama-3.1-70b-instruct` (best quality)
 - `meta/llama-3.2-3b-instruct` (ultra-fast)
+
+---
+
+## Lesson Layout Redesign (Added 2026-07-10)
+
+### New Layout Flags
+```js
+// frontend/src/pages/LessonsPage.jsx
+const USE_TOP_BAR_LAYOUT = true;   // compact horizontal top bar; false = left sidebar
+
+// frontend/src/components/LessonSections.jsx
+const USE_WORKBOOK_LAYOUT  = true;  // Option B: inline expanded sections + floating TOC
+const USE_CARD_FEED_LAYOUT = false; // Option A: colour-coded card feed
+// both false = legacy accordion
+```
+
+### CSS Critical Rules (topbar stacking context)
+`.topbar` has `backdrop-filter: blur(18px)` which creates a CSS stacking context.
+All child elements (including `position:fixed`) compete within this context.
+**RULE:** `.topbar` MUST have `position: relative; z-index: 500` to keep the guide panel above page cards.
+File: `frontend/src/App.css`
+
+### parseSections() — 5 Patterns (CRITICAL)
+`LessonSections.jsx` — Never rewrite to fewer patterns. All 5 are needed for different LLM outputs:
+1. Numbered+hash: `## 1. Title`
+2. Numbered+bold: `**1. Title**`
+3. Hash only: `## Title` (no number)
+4. Bold only: `**Title**`
+5. Plain Step: `Step N: Title` (no terminal `.`)
+
+Guard rule: numbered items ending with `.` (e.g. `1. Read carefully.`) must NOT be treated as headings.
+
+### getRenderableContent() — Worked Example Rule (CRITICAL)
+If section content contains `Question:` followed by `Step N:` or `Answer:`, it is a **worked example**.
+**NEVER** strip content after `Question:` in a worked example — the solution must be visible.
+The question also appears in the inline box — both coexist.
+File: `frontend/src/components/LessonSections.jsx`
+
+### Inline LaTeX Fix
+```js
+// LessonSections.jsx — applied directly at render time
+function fixInlineDisplayMath(text) { ... }  // $$ inline → $ $
+// markdownCleanup.js — step 0 in normalizeTutorMarkdown()
+function normalizeInlineDisplayMath(text) { ... }
+```
+
+### New Parser Debug Script
+```
+backend/scripts/trace_parser_chapter1.py
+```
+Shows rendered vs discarded words per section. Run to diagnose lesson content loss.
+
+### Poem Chapter Detection — Grade 5 Santoor
+`_POEM_KEYWORDS` in `tutor_service.py` now includes Grade 5 Santoor poem chapters:
+`papa's spectacles`, `the rainbow`, `the frog`, `vocation`
+
+### Practice Question Quality Rules (CRITICAL — DO NOT WEAKEN)
+- Keyword pass threshold: `score >= 7` (was 6)
+- Keyword floor: `max(0,...)` (was max(1,...))
+- EVALUATOR_SYSTEM: strict textbook-grounded — flags vague/general answers
+- Prewarm question count: scales with RAG chunks (1/2/3)
+- Textbook exercise Q&A used directly before generating new questions
+Files: `backend/app/services/evaluation_service.py`, `backend/app/routes/lesson.py`
+
+### Light Mode CSS Variable Rule (CRITICAL)
+When writing inline styles in React components that must work in both light AND dark mode:
+- Use `var(--panel, #ffffff)` not `var(--card-bg, rgba(255,255,255,.04))` for backgrounds
+- Use `var(--border, #d1d5db)` not `var(--border, rgba(255,255,255,.15))` for borders
+- Use `var(--text, #111827)` not hardcoded light text like `#f8fafc`
+- The fallback value must be the LIGHT MODE default (dark mode sets the variable)

@@ -438,6 +438,102 @@ color: "#f1f5f9"                        ← hardcoded light (invisible on white)
 
 ---
 
+## 2026-07-10: Lesson Layout — Option B Workbook + Full-Width Top Bar
+
+**Decision:** Replace the left sidebar "Learning Path" panel on the Lessons page with a compact horizontal top bar. Lesson content takes the full page width. Introduced Option B "Workbook" layout with floating TOC.
+
+**Layout flags in `LessonSections.jsx`:**
+- `USE_WORKBOOK_LAYOUT = true` — Option B: all sections inline, floating ≡ TOC button (right side, `position:fixed`)
+- `USE_CARD_FEED_LAYOUT = false` — Option A: colour-coded card feed
+- Both false → legacy accordion
+
+**Layout flag in `LessonsPage.jsx`:**
+- `USE_TOP_BAR_LAYOUT = true` — moves Grade/Subject/Chapter/Step selectors to compact top bar; sidebar hidden
+
+**Floating TOC:** `position: fixed; right: 16px; top: 50%`. Opens to the left of the button. Panel uses explicit dark background (`rgba(15,23,42,.96)`) with explicit light text (`#e2e8f0`) to work in both light and dark modes.
+
+**topbar z-index fix:** `.topbar` had `backdrop-filter: blur(18px)` which creates a stacking context. Guide panel was hidden behind page cards. Fixed by adding `position: relative; z-index: 500` to `.topbar` CSS.
+
+**Files changed:**
+- `frontend/src/components/LessonSections.jsx` — workbook layout, parseSections, floating TOC
+- `frontend/src/pages/LessonsPage.jsx` — compact top bar, USE_TOP_BAR_LAYOUT flag
+- `frontend/src/pages/DoubtPage.jsx` — same compact top bar pattern
+- `frontend/src/App.css` — topbar z-index, dark mode question box, first-guide-layer z-index
+
+---
+
+## 2026-07-10: parseSections() Bug — Content Silently Discarded
+
+**Bug:** `parseSections()` in `LessonSections.jsx` only recognised headings with a leading number (`1. Title`). Lessons using `## Heading`, `**Bold**`, or `Step N: Title` formats collapsed entirely into ONE card labelled "Introduction".
+
+**Impact discovered:** Grade 5 Physics "Worked Examples" step had **272 out of 299 words discarded** (91% loss). `getRenderableContent()` was also stripping everything after "Question:" including the full worked solution.
+
+**Fixes:**
+1. `parseSections()` now handles 5 heading patterns:
+   - `## 1. Title`, `**1. Title**` (numbered + hash/bold)
+   - `## Title` (hash without number)
+   - `**Title**` (bold standalone)
+   - `Step N: Title` (plain text without terminal `.`)
+2. `getRenderableContent()` detects worked examples (Question: + Step N: solution) and returns full body — never discards solution content.
+
+**Verification script:** `backend/scripts/trace_parser_chapter1.py` — shows rendered vs discarded words per section.
+
+---
+
+## 2026-07-10: Grade 5 Santoor Poem Chapter Detection
+
+**Bug:** `detect_chapter_type("English", "1. Papa's Spectacles")` returned `"prose"`. The RAG confirms it's a poem (chunk starts with "THE POEM Today our papa..."). Lesson was generated with `PROSE_LITERATURE_SYSTEM` instead of `POEM_SYSTEM`.
+
+**Fix:** Added Grade 5 Santoor poem chapter keywords to `_POEM_KEYWORDS` in `tutor_service.py`:
+```python
+"papa's spectacles", "spectacles",  # Chapter 1
+"the rainbow",                       # Chapter 3
+"the frog",                          # Chapter 5
+"vocation",                          # Chapter 9
+```
+
+**File:** `backend/app/services/tutor_service.py`
+
+---
+
+## 2026-07-10: Inline $$ LaTeX Fix
+
+**Bug:** LLM sometimes writes display-math delimiter `$$` inline within a sentence (e.g. `x = v0t + 1/2 $$at^2.`). KaTeX treats `$$` as a block delimiter — invalid inline — causing red broken text.
+
+**Fix:** `fixInlineDisplayMath()` function in `LessonSections.jsx`, called directly on `renderableContent` before passing to ReactMarkdown. Also added `normalizeInlineDisplayMath()` as step 0 in `normalizeTutorMarkdown()` pipeline in `markdownCleanup.js`.
+
+**Rules:**
+- `text $$expr$$ more` → `text $expr$ more`
+- `text $$expr` (unclosed) → `text $expr$`
+- Standalone `$$\nformula\n$$` block → unchanged
+
+**Files:** `frontend/src/components/LessonSections.jsx`, `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-10: Stricter Practice Question Quality
+
+**Decisions:**
+1. **Scoring:** Pass threshold raised from `score >= 6` to `score >= 7` (70% keyword coverage required). Keyword score now `max(0,...)` not `max(1,...)` — no free marks for attempt alone.
+2. **EVALUATOR_SYSTEM:** Now explicitly strict — flags vague/general answers. "Your answer is too general — use specific facts from the chapter."
+3. **Question count scaled by RAG chunks:** ≤2 chunks → 1 question; 3–5 chunks → 2 questions; 6+ chunks → 3 questions. Small chapters never over-tested.
+4. **Textbook questions first:** Prewarm generator is instructed to look for existing exercise Q&A in the RAG content and use them directly before generating new ones. Zero general knowledge allowed.
+5. **MCQ explanation field:** Now generated from the textbook sentence explaining the correct answer.
+
+**Files:** `backend/app/services/evaluation_service.py`, `backend/app/routes/lesson.py` (prewarm/generate-questions endpoint)
+
+---
+
+## 2026-07-10: Dark Mode Inline Question Box Fix
+
+**Bug:** `.lesson-inline-question-box` used hardcoded white gradient background with hardcoded dark text. In dark mode, `body.dark-mode` sets `color: #f8fafc` globally — child `<p>` elements rendered by ReactMarkdown inherited white text, invisible on white background.
+
+**Fix:** Added `body.dark-mode` overrides in `App.css` for the entire inline question box component — background, text, buttons, feedback, textarea.
+
+**File:** `frontend/src/App.css`
+
+---
+
 ## 2026-07-03: Broken Maths Lesson Detection and Repair
 
 **Process established:**

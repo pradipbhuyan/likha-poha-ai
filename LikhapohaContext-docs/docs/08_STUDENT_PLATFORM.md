@@ -162,3 +162,76 @@ Response fields:
 - LLM prompt strengthened: all math expressions must be in `$...$`
 - Broken lessons (with rendering issues) are detected, archived, and regenerated
 - Students should see clean rendered math; report via "Report Issue" if still broken
+
+---
+
+## Lesson Page — July 2026 Redesign
+
+### Layout Architecture
+The Lessons page uses a **compact horizontal top bar** replacing the old left sidebar.
+
+**Top bar** contains (left to right): 📚 Grade selector · Subject selector · Chapter selector · Step N/N pill · ✨ Generate / 🔄 Refresh
+
+**Lesson content** takes the full width of the page.
+
+**Feature flags** in `LessonsPage.jsx`:
+```js
+const USE_TOP_BAR_LAYOUT = true;   // compact top bar; set false to roll back to sidebar
+```
+
+### Workbook Layout (Option B — Active)
+`LessonSections.jsx` renders all sections **expanded inline** with a colour-coded left border.
+
+**Feature flags:**
+```js
+const USE_WORKBOOK_LAYOUT = true;   // Option B (active)
+const USE_CARD_FEED_LAYOUT = false; // Option A (colour cards)
+// both false = legacy accordion
+```
+
+**Floating TOC button:** `≡` button fixed to right side of screen (`position:fixed; right:16px`). Opens a dark-background panel listing all section headings. Clicking a heading scrolls to that section and closes the panel.
+
+**Section type → colour coding:**
+| Type | Border colour | Icon |
+|---|---|---|
+| Introduction/Overview | Blue | 🎯 |
+| Concept/Explanation | Amber | 📘 |
+| Example/Worked | Green | 🧪 |
+| Warning/Mistake | Orange | ⚠️ |
+| Quick Check/Question | Red | ✅ |
+| Summary/Recap | Purple | 📌 |
+
+### parseSections() — 5 Heading Patterns
+`LessonSections.jsx` supports 5 patterns for splitting lesson markdown into sections:
+1. `## 1. Title` or `**1. Title**` — numbered with hash/bold wrapper
+2. `## Title` — markdown H2/H3 without number
+3. `**Title**` or `**Title:**` — standalone bold line
+4. `Step N: Title` — plain text (no terminal `.`)
+
+Numbered list items (e.g. `1. Read the sentence carefully.`) end with `.` and are correctly **not** treated as section headings.
+
+### getRenderableContent() — Worked Example Protection
+If a section contains `Question:` followed by `Step N:` or `Answer:` (i.e. a worked example with solution), the **full body is rendered** including question + solution. Previously, everything after `Question:` was stripped (272 words lost in a real lesson).
+
+### Inline Math Fix
+`fixInlineDisplayMath()` runs directly on `renderableContent` before ReactMarkdown renders. Converts `$$expr$$` or unclosed `$$expr` inline to `$expr$`. Does not touch proper standalone display math blocks.
+
+### Ask Doubt Page — Full Width
+`DoubtPage.jsx` uses the same compact top bar pattern. Mentor Context sidebar is hidden. Doubt textbox takes full width.
+
+**Feature flag:** Currently inline styles applied directly — no flag needed. To revert, restore the `<aside>` display and `<section>` grid styles.
+
+### Practice Questions — Stricter Scoring
+| Metric | Old value | New value |
+|---|---|---|
+| Keyword score floor | `max(1,...)` | `max(0,...)` |
+| Pass threshold | `score >= 6` | `score >= 7` |
+| Evaluator mode | Warm/encouraging | Strict/textbook-grounded |
+
+### Prewarm Question Generation — RAG Scaling
+The `/api/lesson/prewarm/generate-questions` endpoint scales question count by available RAG content:
+- ≤ 2 RAG chunks: 1 question (tiny chapter)
+- 3–5 RAG chunks: 2 questions
+- 6+ RAG chunks: 3 questions
+
+Existing textbook exercise questions in the RAG chunks are used **directly** before generating new ones.
