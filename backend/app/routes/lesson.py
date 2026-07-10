@@ -804,9 +804,22 @@ def generate_prewarm_prompt(
     else:
         system_prompt = TUTOR_SYSTEM
 
-    default_steps = ["What We Learn", "Core Concepts", "Worked Examples", "Exam-style problems", "Revision"]
-    step_num = (default_steps.index(data.step_title) + 1
-                if data.step_title in default_steps else 1)
+    # Grade-specific step lists — MUST mirror LessonsPage.jsx lessonSteps logic
+    def _grade_steps(grade_str):
+        g = (grade_str or "").lower()
+        if g in ("grade 1", "grade 2", "grade 3"):
+            return ["Introduction", "Let's Practice", "Quick Review"]
+        if g in ("grade 4", "grade 5"):
+            return ["What We Learn", "Worked Examples", "Recap"]
+        if g in ("grade 6", "grade 7", "grade 8"):
+            return ["Concept introduction", "Core explanation", "Worked examples", "Revision and recap"]
+        if g in ("grade 10", "grade 11", "grade 12"):
+            return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap", "Exam preparation"]
+        return ["Concept introduction", "Core explanation", "Worked examples", "Exam-style problems", "Revision and recap"]
+
+    grade_steps = _grade_steps(data.grade)
+    step_num = (grade_steps.index(data.step_title) + 1
+                if data.step_title in grade_steps else 1)
 
     step_prefix = ""
     if chapter_type in ("prose", "poem"):
