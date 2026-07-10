@@ -7,6 +7,18 @@ import rehypeKatex from "rehype-katex";
 import StructuredVisualBlock from "./StructuredVisualBlock";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
+/** Fix $$ used inline (mid-sentence) by downgrading to $ $ inline math.
+ *  Applied right before ReactMarkdown renders section content.
+ *  Handles both closed ($$expr$$) and unclosed ($$expr) inline display math.
+ */
+function fixInlineDisplayMath(text) {
+  if (!text || !text.includes("$$")) return text;
+  return text
+    .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, b, c, a) => `${b}$${c.trim()}$${a}`)
+    .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, b, c) =>
+      /\S/.test(b) ? `${b}$${c.trim()}$` : _m);
+}
+
 // ── Layout flags — pick ONE to be true, the rest false ──────────────────────
 // OPTION A: Scrollable colour-coded card feed (mobile-first)
 const USE_CARD_FEED_LAYOUT  = false;
@@ -367,7 +379,7 @@ function CardFeedSection({
             rehypePlugins={[rehypeKatex]}
             components={{ code: LessonMarkdownCode }}
           >
-            {renderableContent}
+            {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
         </div>
       )}
@@ -530,7 +542,7 @@ function WorkbookSection({
             rehypePlugins={[rehypeKatex]}
             components={{ code: LessonMarkdownCode }}
           >
-            {renderableContent}
+            {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
         </div>
       )}
