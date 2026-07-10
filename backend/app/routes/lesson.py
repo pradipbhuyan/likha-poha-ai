@@ -1059,6 +1059,17 @@ def generate_prewarm_questions(
 
     textbook_context = "\n\n".join(r.get("chunk_text", "") for r in rag_results)
 
+    # ── Scale question count by RAG chunk count ───────────────────────────────
+    # Small chapters (few RAG chunks) should not generate the same number of
+    # questions as large chapters. Cap based on available textbook content.
+    chunk_count = len(rag_results)
+    if chunk_count <= 2:
+        num_questions = 1   # tiny chapter — 1 question only
+    elif chunk_count <= 5:
+        num_questions = 2   # small chapter — 2 questions
+    else:
+        num_questions = 3   # full chapter — up to 3 questions
+
     # Step-specific question focus — each step asks about a different aspect of the chapter
     _step_focus_map = {
         # Grade 4-5
@@ -1079,41 +1090,52 @@ def generate_prewarm_questions(
     }
     step_focus = _step_focus_map.get(data.step_title, f"Ask about key content from the '{data.step_title}' section of this chapter.")
 
-    system_prompt = """You are a CBSE question setter generating practice questions from textbook content.
-Generate EXACTLY 2 practice questions in valid JSON format.
-Rules:
-- Questions must come DIRECTLY from the textbook content provided. No invented details.
-- Questions for EACH step must be DIFFERENT — focus on the specific aspect described in the Step Focus.
-- Never ask generic questions like "What did this lesson teach?" or "What is the main idea?".
-- Always ask about specific people, events, facts, lines, or details in the text.
-- Output ONLY valid JSON — no explanation, no markdown, no extra text.
+    system_prompt = f"""You are a strict CBSE question setter generating practice questions from uploaded textbook content.
+Generate EXACTLY {num_questions} practice question(s) in valid JSON format.
+
+CRITICAL RULES — follow exactly:
+1. Questions MUST come word-for-word from the textbook content provided below. Zero invented details.
+2. If the textbook already contains exercise questions, Q&A sections, or numbered questions — USE THOSE DIRECTLY. Do not rephrase.
+3. Every question must quote or paraphrase a SPECIFIC line, fact, or figure from the textbook.
+4. NEVER ask generic questions like "What did this lesson teach?" — only specific textbook facts.
+5. If the textbook has < 3 chunks, generate only 1 simple factual question.
+6. Output ONLY valid JSON array — no explanation, no markdown, no extra text.
 """
 
     user_prompt = f"""Grade: {data.grade}
 Subject: {data.subject}
 Chapter: {data.chapter}
 Step: {data.step_title}
+Questions to generate: {num_questions}
 
 Step Focus (what THIS step's questions should test):
 {step_focus}
 
-Textbook content:
+Textbook content (USE ONLY THIS — no general knowledge):
 {textbook_context[:3000]}
 
-Generate exactly 2 practice questions focused on the Step Focus above:
+FIRST: Look for existing questions/exercises in the textbook content above.
+If found, use them directly (reformat into JSON only).
+If not found, create {num_questions} question(s) based STRICTLY on specific textbook facts.
+
+Output format (JSON array, exactly {num_questions} item(s)):
 [
   {{
     "type": "mcq",
-    "question": "<specific question from the textbook content, focused on the step topic>",
+    "question": "<specific question — must reference a fact from the textbook above>",
     "options": ["<option A>", "<option B>", "<option C>", "<option D>"],
-    "answer": "<exact text of correct option>"
-  }},
-  {{
-    "type": "descriptive",
-    "question": "<short-answer question from the textbook content, focused on the step topic>",
-    "answer": "<model answer based on the textbook>"
+    "answer": "<exact text of correct option>",
+    "explanation": "<one sentence from the textbook explaining why this is correct>"
   }}
 ]
+
+For descriptive questions use:
+  {{
+    "type": "descriptive",
+    "question": "<specific short-answer question from the textbook>",
+    "answer": "<model answer using ONLY textbook facts>",
+    "expected_keywords": ["<keyword1>", "<keyword2>", "<keyword3>"]
+  }}
 
 Output ONLY the JSON array. No explanation, no markdown code blocks."""
 

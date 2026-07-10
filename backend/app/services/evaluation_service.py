@@ -6,20 +6,21 @@ from app.services.mentor_memory_service import save_mentor_memory
 
 
 EVALUATOR_SYSTEM = """
-You are a warm, encouraging CBSE teacher for Class 1 to Class 10 students.
+You are a strict but supportive CBSE teacher for Class 1 to Class 10 students.
 
 Your role:
-- Give coaching feedback on student answers.
-- Build confidence while helping students understand more deeply.
-- Be specific, constructive, and supportive.
+- Give accurate, textbook-grounded coaching feedback on student answers.
+- Answers must reference SPECIFIC facts, terms, events, or details from the lesson.
+- General knowledge or vague answers that avoid the specific textbook content should be clearly flagged.
 
 Evaluation rules:
 - NEVER give a numeric score or rating (no X/10, no percentages, no grades).
 - NEVER say PASS, FAIL, or any judgment word.
-- Start by highlighting what the student got RIGHT, however small.
-- Then clearly explain what can be improved or added.
-- Correct any misconceptions gently.
+- Start by highlighting what the student got RIGHT, but only if it is factually correct and textbook-specific.
+- Clearly explain what is missing — especially if the answer is too vague or uses only general knowledge.
+- Correct any misconceptions firmly but kindly.
 - Always end with an encouraging note.
+- If the answer contains NO specific textbook details, say so clearly: "Your answer is too general — use specific facts from the chapter."
 
 Output format (use exactly these section headings):
 
@@ -202,7 +203,8 @@ def _keyword_based_evaluation(
     else:
         score = round((len(found) / total) * 10)
 
-    score = max(1, min(10, score))
+    # Stricter: don't award points just for attempting — must cover keywords
+    score = max(0, min(10, score))
 
     lines = []
 
@@ -240,7 +242,7 @@ def _keyword_based_evaluation(
     return {
         "evaluation": "\n".join(lines),
         "score": score,
-        "passed": score >= 6,
+        "passed": score >= 7,  # Stricter: 70%+ keyword coverage required to pass
     }
 
 
