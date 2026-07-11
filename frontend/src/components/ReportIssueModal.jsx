@@ -9,8 +9,36 @@
  *   context     {object}  — { route, grade, subject, chapter, lessonId, lessonStep }
  *   user        {object}  — current user (for accessToken)
  */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+
+// ── Screenshot compression (Canvas → JPEG base64, max 400KB) ─────────────────
+async function compressScreenshot(file) {
+  return new Promise((resolve) => {
+    try {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const scale = Math.min(1, 900 / img.width);
+            const w = Math.round(img.width * scale);
+            const h = Math.round(img.height * scale);
+            const canvas = document.createElement("canvas");
+            canvas.width = w; canvas.height = h;
+            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+            const url = canvas.toDataURL("image/jpeg", 0.8);
+            resolve(url.length > 400 * 1024 ? canvas.toDataURL("image/jpeg", 0.5) : url);
+          } catch { resolve(null); }
+        };
+        img.onerror = () => resolve(null);
+        img.src = ev.target.result;
+      };
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+    } catch { resolve(null); }
+  });
+}
 
 const ISSUE_TYPES = [
   { value: "content_issue",      label: "Content issue" },
@@ -39,11 +67,30 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [screenshotPreview, setScreenshotPreview] = useState(null);
+  const [screenshotProcessing, setScreenshotProcessing] = useState(false);
+  const [screenshotDataUrl, setScreenshotDataUrl] = useState(null);
+  const fileInputRef = useRef(null);
 
   function reset() {
     setForm({ issue_type: "content_issue", severity: "medium", description: "" });
-    setSuccess(false);
-    setError(null);
+    setSuccess(false); setError(null);
+    setScreenshotPreview(null); setScreenshotDataUrl(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  async function handleFileChange(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { setError("Please attach an image file."); return; }
+    setScreenshotProcessing(true); setError(null);
+    setScreenshotPreview(URL.createObjectURL(file));
+    setScreenshotDataUrl(await compressScreenshot(file));
+    setScreenshotProcessing(false);
+  }
+  function removeScreenshot() {
+    setScreenshotPreview(null); setScreenshotDataUrl(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
   function handleClose() {
@@ -75,14 +122,50 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
         chapter: context.chapter || pageCtx.chapter || null,
         lesson_id: context.lessonId || pageCtx.lessonId || null,
         lesson_step: context.lessonStep || pageCtx.lessonStep || null,
-        browser_info: {
-          userAgent: navigator.userAgent?.slice(0, 200),
-          platform: navigator.platform,
-          language: navigator.language,
-          screenWidth: window.screen?.width,
-          screenHeight: window.screen?.height,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        },
+        browser_info: (() => {
+          const pageCtx2 = (typeof window !== "undefined" && window.__LIKHAPOHA_CONTEXT__) || {};
+          let computedFont = null;
+          try {
+            const el = document.querySelector(".markdown-content") || document.querySelector(".lesson-output");
+            if (el) computedFont = window.getComputedStyle(el).fontFamily?.slice(0, 150);
+          } catch { /**/ }
+          let elementAtCenter = null;
+          try {
+            const el = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2);
+            if (el && el !== document.body) {
+              const cs = window.getComputedStyle(el);
+              elementAtCenter = { tag: el.tagName, classes: el.className?.slice(0, 80),
+                fontSize: cs.fontSize, fontFamily: cs.fontFamily?.slice(0, 80), display: cs.display };
+            }
+          } catch { /**/ }
+          let stepTextContent = null;
+          try {
+            const el = document.querySelector(".markdown-content") || document.querySelector(".lesson-output");
+            if (el) stepTextContent = el.textContent?.trim().slice(0, 500) || null;
+          } catch { /**/ }
+          let pageLoadMs = null;
+          try {
+            if (performance?.timing?.navigationStart) pageLoadMs = Date.now() - performance.timing.navigationStart;
+          } catch { /**/ }
+          return {
+            userAgent: navigator.userAgent?.slice(0, 200),
+            platform: navigator.platform,
+            language: navigator.language,
+            screenWidth: window.screen?.width, screenHeight: window.screen?.height,
+            viewportWidth: window.innerWidth, viewportHeight: window.innerHeight,
+            devicePixelRatio: window.devicePixelRatio,
+            scrollY: Math.round(window.scrollY), online: navigator.onLine, pageLoadMs,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            computedFont, elementAtCenter, stepTextContent,
+            lessonStepIndex: context.lessonStepIndex ?? pageCtx2.lessonStepIndex ?? null,
+            totalSteps: context.totalSteps ?? pageCtx2.totalSteps ?? null,
+            url: window.location.href?.slice(0, 300),
+            recentJsErrors: (window.__LIKHAPOHA_JS_ERRORS__ || []).slice(-5),
+            recentApiErrors: (window.__LIKHAPOHA_API_ERRORS__ || []).slice(-5),
+            screenshotDataUrl: screenshotDataUrl || null,
+            screenshotCaptured: !!screenshotDataUrl,
+          };
+        })(),
       };
 
       await authFetch("/api/issues/report", {
@@ -191,6 +274,56 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Diagnostics summary badge */}
+            {(() => {
+              const jsErrCnt = (window.__LIKHAPOHA_JS_ERRORS__ || []).length;
+              return (
+                <div style={{ background: "rgba(16,185,129,.04)", borderRadius: 8, padding: "8px 12px",
+                  fontSize: ".72rem", color: "#4b5563", marginBottom: 14, border: "1px solid rgba(16,185,129,.15)" }}>
+                  <span style={{ fontWeight: 700, color: "#10b981" }}>Auto-captured: </span>
+                  {[
+                    "Viewport " + window.innerWidth + "x" + window.innerHeight,
+                    "DPR " + window.devicePixelRatio,
+                    window.innerWidth < 768 ? "Mobile" : "Desktop",
+                    jsErrCnt > 0 ? (jsErrCnt + " JS error(s)") : null,
+                    screenshotDataUrl ? "Screenshot attached" : null,
+                  ].filter(Boolean).join("  ·  ")}
+                </div>
+              );
+            })()}
+
+            {/* Screenshot attachment */}
+            <div style={{ marginBottom: 14 }}>
+              <label style={label}>Screenshot (optional)</label>
+              <input ref={fileInputRef} type="file" accept="image/*" data-testid="screenshot-input"
+                onChange={handleFileChange} style={{ display: "none" }} />
+              {!screenshotPreview ? (
+                <button type="button" data-testid="attach-screenshot-btn"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={screenshotProcessing}
+                  style={{ width: "100%", padding: "9px", borderRadius: 8, cursor: "pointer",
+                    border: "1.5px dashed var(--border,#cbd5e1)", background: "transparent",
+                    fontFamily: "inherit", fontSize: ".82rem", color: "#6366f1", fontWeight: 600 }}>
+                  {screenshotProcessing ? "Compressing..." : "📎 Attach Screenshot"}
+                </button>
+              ) : (
+                <div style={{ position: "relative", borderRadius: 8, overflow: "hidden",
+                  border: "1px solid var(--border,#e5e7eb)" }}>
+                  <img src={screenshotPreview} alt="Screenshot preview" data-testid="screenshot-preview"
+                    style={{ width: "100%", display: "block", maxHeight: 200, objectFit: "contain" }} />
+                  <button type="button" data-testid="remove-screenshot-btn"
+                    onClick={removeScreenshot}
+                    style={{ position: "absolute", top: 6, right: 6, background: "rgba(0,0,0,0.6)",
+                      border: "none", borderRadius: "50%", width: 24, height: 24, color: "#fff",
+                      cursor: "pointer", fontSize: ".8rem", lineHeight: 1 }}>✕</button>
+                  <div style={{ padding: "4px 10px", fontSize: ".7rem", color: "#22c55e",
+                    background: "rgba(34,197,94,.08)", fontWeight: 600 }}>
+                    Screenshot attached and will be included in the report
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Description */}

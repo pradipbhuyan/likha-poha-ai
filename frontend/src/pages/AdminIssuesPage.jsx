@@ -93,6 +93,19 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
         <p style={{ margin: 0, fontSize: ".83rem", lineHeight: 1.6 }}>{issue.description}</p>
       </div>
 
+      {/* Screenshot — shown if browser_info.screenshotDataUrl is present */}
+      {issue.browser_info?.screenshotDataUrl && (
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: ".72rem", fontWeight: 700, color: "#64748b", marginBottom: 6 }}>
+            SCREENSHOT
+          </div>
+          <img src={issue.browser_info.screenshotDataUrl} alt="Issue screenshot"
+            data-testid="issue-screenshot"
+            style={{ width: "100%", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)",
+              display: "block", maxHeight: 280, objectFit: "contain", background: "#000" }} />
+        </div>
+      )}
+
       {/* Context */}
       <div style={{ background: "var(--surface2,#f8fafc)", borderRadius: 8, padding: "10px 12px", marginBottom: 14, fontSize: ".78rem" }}>
         <div style={{ fontWeight: 600, color: "#64748b", marginBottom: 6 }}>CONTEXT</div>
@@ -103,6 +116,11 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
           ["Chapter", issue.chapter],
           ["Lesson Step", issue.lesson_step],
           ["Route", issue.route],
+          ["Viewport", issue.browser_info?.viewportWidth ? (issue.browser_info.viewportWidth + "x" + issue.browser_info.viewportHeight) : null],
+          ["DPR", issue.browser_info?.devicePixelRatio ? String(issue.browser_info.devicePixelRatio) : null],
+          ["Platform", issue.browser_info?.platform || null],
+          ["Font (lesson)", issue.browser_info?.computedFont ? issue.browser_info.computedFont.split(",")[0].trim() : null],
+          ["JS Errors", issue.browser_info?.recentJsErrors?.length > 0 ? (issue.browser_info.recentJsErrors.length + " logged") : null],
           ["Reported", issue.created_at ? new Date(issue.created_at).toLocaleString() : null],
         ].filter(([, v]) => v).map(([k, v]) => (
           <div key={k} style={{ display: "flex", gap: 6, marginBottom: 3 }}>

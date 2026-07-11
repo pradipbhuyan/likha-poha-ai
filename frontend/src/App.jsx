@@ -1,3 +1,32 @@
+// ── Global diagnostic collectors (run before any component mounts) ────────────
+// Stores last 10 JS errors and last 10 API errors so ReportIssueModal can
+// include them in the bug report for faster root-cause analysis.
+if (typeof window !== "undefined") {
+  window.__LIKHAPOHA_JS_ERRORS__ = window.__LIKHAPOHA_JS_ERRORS__ || [];
+  window.__LIKHAPOHA_API_ERRORS__ = window.__LIKHAPOHA_API_ERRORS__ || [];
+
+  window.addEventListener("error", (e) => {
+    window.__LIKHAPOHA_JS_ERRORS__.push({
+      ts: new Date().toISOString(),
+      message: e.message?.slice(0, 200),
+      filename: e.filename?.replace(window.location.origin, ""),
+      lineno: e.lineno,
+      colno: e.colno,
+    });
+    if (window.__LIKHAPOHA_JS_ERRORS__.length > 10) window.__LIKHAPOHA_JS_ERRORS__.shift();
+  });
+
+  window.addEventListener("unhandledrejection", (e) => {
+    window.__LIKHAPOHA_JS_ERRORS__.push({
+      ts: new Date().toISOString(),
+      message: ("Unhandled Promise: " + (e.reason?.message || String(e.reason) || "unknown")).slice(0, 200),
+      filename: "promise",
+      lineno: null,
+    });
+    if (window.__LIKHAPOHA_JS_ERRORS__.length > 10) window.__LIKHAPOHA_JS_ERRORS__.shift();
+  });
+}
+
 import { useEffect, useRef, useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
