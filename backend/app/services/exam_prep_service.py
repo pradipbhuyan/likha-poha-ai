@@ -60,6 +60,10 @@ def build_exam_eligibility(stream: str | None) -> dict:
             "eligible": True,
             "reason": "",
         },
+        # Global standardised tests — eligible for all streams
+        "sat": {"eligible": True, "reason": ""},
+        "ielts": {"eligible": True, "reason": ""},
+        "toefl_ibt": {"eligible": True, "reason": ""},
     }
 
 
@@ -182,9 +186,12 @@ def get_access_check_response(user_id: str, profile: dict) -> dict:
             "stream": stream,
             "stream_missing": stream is None,
             "exam_eligibility": {
-                "jee_main": {"eligible": True, "reason": ""},
-                "neet_ug":  {"eligible": True, "reason": ""},
-                "cuet_ug":  {"eligible": True, "reason": ""},
+                "jee_main":   {"eligible": True, "reason": ""},
+                "neet_ug":    {"eligible": True, "reason": ""},
+                "cuet_ug":    {"eligible": True, "reason": ""},
+                "sat":        {"eligible": True, "reason": ""},
+                "ielts":      {"eligible": True, "reason": ""},
+                "toefl_ibt":  {"eligible": True, "reason": ""},
             },
             "canonical_plan_key": "ADMIN_GRANT",
             "plan_name": "Test Access",
@@ -1183,6 +1190,84 @@ CUET_SUBJECTS = {
     },
 }  # end CUET_SUBJECTS
 
+# ── SAT (Digital SAT) Subjects ───────────────────────────────────────────────
+SAT_SUBJECTS = {
+    "Reading & Writing": {
+        "topics": [
+            {"name": "Reading Comprehension", "priority": "high", "ncert_chapter": "Information and Ideas"},
+            {"name": "Vocabulary in Context", "priority": "high", "ncert_chapter": "Craft and Structure"},
+            {"name": "Standard English Conventions", "priority": "high", "ncert_chapter": "Grammar and Usage"},
+            {"name": "Expression of Ideas", "priority": "medium", "ncert_chapter": "Rhetorical Skills"},
+            {"name": "Rhetorical Synthesis", "priority": "medium", "ncert_chapter": "Argument and Evidence"},
+            {"name": "Text Structure and Purpose", "priority": "medium", "ncert_chapter": "Textual Analysis"},
+        ],
+    },
+    "Mathematics": {
+        "topics": [
+            {"name": "Algebra", "priority": "high", "ncert_chapter": "Linear equations, inequalities, functions (~35%)"},
+            {"name": "Advanced Mathematics", "priority": "high", "ncert_chapter": "Quadratic, exponential, polynomial (~35%)"},
+            {"name": "Problem Solving & Data Analysis", "priority": "medium", "ncert_chapter": "Ratios, percentages, statistics (~15%)"},
+            {"name": "Geometry & Trigonometry", "priority": "medium", "ncert_chapter": "Coordinate geometry, circles, trig ratios (~15%)"},
+        ],
+    },
+}
+
+# ── IELTS (Academic) Subjects ─────────────────────────────────────────────────
+IELTS_SUBJECTS = {
+    "Listening": {
+        "topics": [
+            {"name": "Everyday Conversation", "priority": "high", "ncert_chapter": "Social and everyday contexts"},
+            {"name": "Academic Discussion", "priority": "high", "ncert_chapter": "Academic and professional contexts"},
+            {"name": "Lecture Comprehension", "priority": "high", "ncert_chapter": "Monologue — academic topic"},
+            {"name": "MCQ & Form Completion", "priority": "medium", "ncert_chapter": "Question types: MCQ, gap-fill"},
+        ],
+    },
+    "Reading": {
+        "topics": [
+            {"name": "Matching Headings", "priority": "high", "ncert_chapter": "Academic passages — identifying main ideas"},
+            {"name": "True / False / Not Given", "priority": "high", "ncert_chapter": "Factual accuracy identification"},
+            {"name": "Sentence Completion", "priority": "high", "ncert_chapter": "Specific facts and details"},
+            {"name": "Multiple Choice", "priority": "medium", "ncert_chapter": "Comprehension and inference"},
+            {"name": "Summary Completion", "priority": "medium", "ncert_chapter": "Paraphrasing and key ideas"},
+        ],
+    },
+    "Vocabulary & Grammar": {
+        "topics": [
+            {"name": "Academic Vocabulary", "priority": "high", "ncert_chapter": "Word meanings and collocations"},
+            {"name": "Grammar in Context", "priority": "medium", "ncert_chapter": "Tense, voice, reported speech"},
+            {"name": "Paraphrasing", "priority": "medium", "ncert_chapter": "Synonyms and restatement"},
+        ],
+    },
+}
+
+# ── TOEFL iBT Subjects ────────────────────────────────────────────────────────
+TOEFL_SUBJECTS = {
+    "Reading": {
+        "topics": [
+            {"name": "Reading Comprehension", "priority": "high", "ncert_chapter": "Academic passages — 20 questions, 35 min"},
+            {"name": "Vocabulary in Context", "priority": "high", "ncert_chapter": "Word choice in academic texts"},
+            {"name": "Inference Questions", "priority": "high", "ncert_chapter": "Implied meaning and author purpose"},
+            {"name": "Sentence Insertion", "priority": "medium", "ncert_chapter": "Paragraph and text structure"},
+            {"name": "Prose Summary", "priority": "medium", "ncert_chapter": "Main ideas and supporting details"},
+        ],
+    },
+    "Listening": {
+        "topics": [
+            {"name": "Lecture Comprehension", "priority": "high", "ncert_chapter": "Academic lectures — main ideas and details"},
+            {"name": "Campus Conversations", "priority": "high", "ncert_chapter": "Service encounters and office hours"},
+            {"name": "Purpose and Attitude", "priority": "medium", "ncert_chapter": "Speaker intent and tone"},
+            {"name": "Connecting Information", "priority": "medium", "ncert_chapter": "Relationships between ideas"},
+        ],
+    },
+    "Integrated Skills": {
+        "topics": [
+            {"name": "Integrated Writing Task", "priority": "high", "ncert_chapter": "Synthesise reading and lecture"},
+            {"name": "Academic Discussion Writing", "priority": "high", "ncert_chapter": "Contribute to an online discussion"},
+            {"name": "Note-taking Strategy", "priority": "medium", "ncert_chapter": "Key points, supporting details"},
+        ],
+    },
+}
+
 EXAM_SUBJECTS_MAP = {
     "jee_main": JEE_SUBJECTS,
     "neet_ug": {
@@ -1191,13 +1276,19 @@ EXAM_SUBJECTS_MAP = {
         "Biology": NEET_BIOLOGY,
     },
     "cuet_ug": CUET_SUBJECTS,
+    "sat":      SAT_SUBJECTS,
+    "ielts":    IELTS_SUBJECTS,
+    "toefl_ibt": TOEFL_SUBJECTS,
 }
 
 # Exam date targets
 EXAM_DATES = {
-    "jee_main": (2027, 1, 15),   # JEE Session 1 (approximate)
-    "neet_ug": (2027, 5, 4),     # NEET UG (approximate)
-    "cuet_ug": (2027, 5, 20),    # CUET UG (approximate)
+    "jee_main":  (2027, 1, 15),   # JEE Session 1 (approximate)
+    "neet_ug":   (2027, 5, 4),    # NEET UG (approximate)
+    "cuet_ug":   (2027, 5, 20),   # CUET UG (approximate)
+    "sat":       (2027, 3, 8),    # SAT March test date (approximate)
+    "ielts":     (2027, 2, 15),   # IELTS — multiple dates, approximate
+    "toefl_ibt": (2027, 2, 22),   # TOEFL iBT — multiple dates, approximate
 }
 
 

@@ -35,14 +35,20 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const TEST_ACCESS_USERS = new Set(["akshita.teststudent"]);
 
 const EXAMS = {
-  jee_main: { label: "JEE Main", icon: "📐", color: "#6366f1", active: true },
-  neet_ug: { label: "NEET UG", icon: "🔬", color: "#10b981", active: true },
-  cuet_ug: { label: "CUET UG", icon: "🏛️", color: "#f59e0b", active: true },
+  jee_main:   { label: "JEE Main",   icon: "📐",  color: "#6366f1", active: true },
+  neet_ug:    { label: "NEET UG",    icon: "🔬",  color: "#10b981", active: true },
+  cuet_ug:    { label: "CUET UG",    icon: "🏛️",  color: "#f59e0b", active: true },
+  sat:        { label: "SAT",        icon: "🎓",  color: "#3b82f6", active: true },
+  ielts:      { label: "IELTS",      icon: "🌐",  color: "#8b5cf6", active: true },
+  toefl_ibt:  { label: "TOEFL iBT", icon: "📡",  color: "#06b6d4", active: true },
 };
 
 // Exam-specific simulation config — aligned to NTA 2024–2026 official patterns
 const EXAM_SIM_CONFIG = {
   // JEE Main: 75 questions (25/subject = 20 MCQ + 5 Numerical), 180 min, 300 marks, +4/−1
+  sat:       { subjects: ["Reading & Writing", "Mathematics"], duration: 134, questions: 98, questionsPerSubject: null, marking: "+1 / 0 (No negative)", totalMarks: 1600 },
+  ielts:     { subjects: ["Listening", "Reading", "Vocabulary & Grammar"], duration: 100, questions: 80, questionsPerSubject: null, marking: "+1 / 0 (Band 0–9)", totalMarks: 9 },
+  toefl_ibt: { subjects: ["Reading", "Listening", "Integrated Skills"], duration: 71, questions: 48, questionsPerSubject: null, marking: "+1 / 0 (Score 0–120)", totalMarks: 120 },
   jee_main: { subjects: ["Physics", "Chemistry", "Mathematics"], duration: 180, questions: 75, questionsPerSubject: 25, marking: "+4 / −1 (MCQ & Numerical)", totalMarks: 300 },
   // NEET UG: 180 questions (45/subject), 180 min, 720 marks, +4/−1, Botany & Zoology separate
   neet_ug:  { subjects: ["Physics", "Chemistry", "Botany", "Zoology"], duration: 180, questions: 180, questionsPerSubject: 45, marking: "+4 / −1", totalMarks: 720 },
@@ -1273,10 +1279,304 @@ const QUICK_REFERENCE = {
       ],
     },
   },
+  sat: {
+    subjects: ["Reading & Writing", "Mathematics"],
+    "Reading & Writing": {
+      formulas: [
+        { expr: "Active → Passive: Object + be(tense) + V3 + by + Subject", desc: "Voice conversion — very frequent in SAT grammar" },
+        { expr: "Subject + Verb + Object (SVO) — base sentence structure", desc: "Check subject-verb agreement before all else" },
+        { expr: "Parallel structure: A, B, and C must match grammatical form", desc: "Lists must be grammatically parallel" },
+        { expr: "Modifier must be adjacent to what it modifies", desc: "Misplaced modifier trap in SAT sentence completion" },
+      ],
+      constants: [
+        { name: "No negative marking", value: "Every question answered = no penalty. Always answer all 54 R&W questions." },
+        { name: "Section structure", value: "2 modules × 27 questions each · Module 2 adapts based on Module 1" },
+        { name: "Adaptive scoring", value: "High M1 score → harder M2 → higher score ceiling (~700–800)" },
+        { name: "Time per question", value: "~71 seconds per R&W question · skim first, then scan for answer" },
+      ],
+      traps: [
+        "Vocabulary in context: choose the word that fits the PASSAGE meaning, not just the most common definition.",
+        "True/False questions: 'Not Given' ≠ 'False' — if the passage doesn't say it, it's Not Given.",
+        "Transition words: but/however = contrast · therefore/thus = result · for example = illustration.",
+        "Apostrophe traps: its (possessive) vs it's (it is) · their vs they're vs there.",
+        "Pronoun agreement: singular subject → singular pronoun. 'Everyone' → 'their' is now widely accepted on SAT.",
+        "Verb tense consistency: once you set the tense, don't switch without reason.",
+      ],
+      mnemonics: [
+        "FANBOYS — For, And, Nor, But, Or, Yet, So (coordinating conjunctions that join independent clauses)",
+        "ACES — Answer, Citation, Explanation, So what? (SAT evidence-based reading response structure)",
+        "MICE — Main idea, Inference, Context vocabulary, Evidence (4 core R&W question types)",
+      ],
+      revision: [
+        "Skim passage for main idea → answer big-picture questions without re-reading",
+        "Scan for specific details → go back to passage for evidence questions",
+        "Eliminate 2 wrong answers first, then choose between remaining 2",
+        "SAT Reading rewards inference — the correct answer is implied, not always stated",
+        "Grammar priority order: 1) Subject-verb agreement 2) Pronoun case 3) Modifier placement 4) Parallel structure",
+        "Rhetorical synthesis: identify the student's claim → find evidence that best supports it",
+      ],
+    },
+    Mathematics: {
+      formulas: [
+        { expr: "Linear: y = mx + b · slope = (y₂−y₁)/(x₂−x₁)", desc: "Algebra — ~35% of Maths section" },
+        { expr: "Systems: { ax+by=c, dx+ey=f } — substitution or elimination", desc: "Linear systems — very frequent" },
+        { expr: "Quadratic: x = (−b ± √(b²−4ac)) / 2a · vertex: (−b/2a, f(−b/2a))", desc: "Advanced Math — ~35%" },
+        { expr: "Exponential: f(x) = a·b^x · growth if b>1, decay if 0<b<1", desc: "Exponential functions — common in word problems" },
+        { expr: "Mean = Σx/n · Median = middle value · Standard deviation ≈ spread", desc: "Statistics — Data Analysis ~15%" },
+        { expr: "Probability = favourable/total · P(A and B) = P(A)×P(B) if independent", desc: "Probability — Data Analysis" },
+        { expr: "Area circle = πr² · Circumference = 2πr · Arc = (θ/360)×2πr", desc: "Geometry — ~15% of Maths section" },
+        { expr: "sin θ = opp/hyp · cos θ = adj/hyp · tan θ = opp/adj", desc: "Trigonometry — right triangle ratios" },
+        { expr: "Pythagorean theorem: a² + b² = c²", desc: "Geometry — very frequent" },
+        { expr: "Distance = √((x₂−x₁)² + (y₂−y₁)²) · Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2)", desc: "Coordinate geometry" },
+      ],
+      constants: [
+        { name: "No negative marking", value: "Answer every question — a wrong answer costs nothing on Digital SAT" },
+        { name: "Calculator allowed", value: "Desmos graphing calculator built-in throughout the Math section" },
+        { name: "Section structure", value: "2 modules × 22 questions each · Module 2 adapts based on Module 1" },
+        { name: "Question types", value: "~75% Multiple Choice · ~25% Student-Produced Response (grid-in)" },
+        { name: "SAT Math focus", value: "Algebra + Advanced Math = 70% of score. Master these first." },
+      ],
+      traps: [
+        "Word problems: identify what the question is ACTUALLY asking before calculating.",
+        "Exponent trap: x² = 9 → x = ±3 (not just +3).",
+        "Percent trap: 'X% more than Y' = Y × (1 + X/100), not Y + X.",
+        "Function notation: f(g(x)) ≠ f(x) × g(x). Evaluate from inside out.",
+        "Absolute value: |x − 3| = 5 gives TWO solutions: x = 8 and x = −2.",
+        "Average trap: if average of n numbers is A, the SUM is n×A.",
+        "System of equations: if no solution → parallel lines (same slope, diff intercept). If infinite → same line.",
+      ],
+      mnemonics: [
+        "SOHCAHTOA — Sin=Opp/Hyp, Cos=Adj/Hyp, Tan=Opp/Adj",
+        "FOIL — First, Outer, Inner, Last (for multiplying two binomials)",
+        "PEMDAS — Parentheses, Exponents, Multiplication/Division, Addition/Subtraction",
+        "Vertex form: f(x) = a(x−h)² + k → vertex at (h, k); a>0 opens up, a<0 opens down",
+      ],
+      revision: [
+        "Use Desmos for any graph question — plug in values to verify",
+        "Check units in word problems — rates, percentages, and ratios have units",
+        "Grid-in answers: if your answer is a fraction, leave it as a fraction (not decimal) unless it repeats",
+        "Algebra tip: if stuck, plug in a simple number (like x=2) to check which answer works",
+        "Data analysis: always read axes labels and units on charts before answering",
+        "Geometry: if a diagram looks like a specific shape, the SAT usually tells you — don't assume",
+      ],
+    },
+  },
+  ielts: {
+    subjects: ["Listening", "Reading", "Vocabulary & Grammar"],
+    Listening: {
+      formulas: [
+        { expr: "Gap-fill: answer = exact word(s) from recording (max 2–3 words or a number)", desc: "Follow word limit strictly — 'cat and dog' → wrong if limit is 2 words" },
+        { expr: "MCQ: read options BEFORE audio plays · predict word category", desc: "Pre-reading maximises comprehension speed" },
+        { expr: "Matching: read all options first → cross off matched ones during audio", desc: "Systematic elimination technique" },
+        { expr: "Note-completion: predict WORD TYPE (noun/verb/number) before audio", desc: "Predicting type narrows candidates to 1–2 words" },
+      ],
+      constants: [
+        { name: "Duration", value: "30 min + 10 min transfer time (Paper-based only)" },
+        { name: "Questions", value: "40 questions across 4 recordings" },
+        { name: "Band scoring", value: "40 correct = Band 9 · 35 = Band 8 · 30 = Band 7 · 23 = Band 6" },
+        { name: "Word limit", value: "Gap-fill: 'NO MORE THAN X WORDS' — exceeding → wrong even if answer is correct" },
+        { name: "Spellings", value: "British English spellings accepted (colour/color) — but must be correct spelling" },
+      ],
+      traps: [
+        "Distractors: speaker often says the wrong answer first, then corrects it. Wait for the final answer.",
+        "Word limit: 'one word and/or a number' — writing 2 words = wrong.",
+        "Spelling: all gap-fill answers must be spelled correctly. Misspelt = wrong.",
+        "Negatives: 'the lecture is NOT on Tuesday' — students write 'Tuesday' because they heard it.",
+        "Plurals: 'students' ≠ 'student' — the recording may say either, check if the gap needs plural.",
+        "Predictions: if you predicted 'Paris' but the audio says 'France', write 'France' — follow the audio.",
+      ],
+      mnemonics: [
+        "CUPS — Copy, Underline (key words), Predict word type, Scan (next question while listening)",
+        "PAWN — Predict, Attend, Write (exact words), Note (next question during pause)",
+        "4 recordings: Social/everyday → Social/training → Monologue/general → Academic lecture",
+      ],
+      revision: [
+        "Practice with authentic BBC Radio, TED Talks, and ETS TOEFL lecture samples",
+        "Train yourself to listen for signposting phrases: 'However', 'In contrast', 'The main reason is'",
+        "Map/diagram tasks: identify compass directions and room names before audio",
+        "Form completion: read ALL fields before audio — the recording follows the form order",
+        "Section 4 (academic lecture) has NO pause — full concentration required",
+        "Speed tip: you hear each section ONCE only — no replay. Note-taking is essential.",
+      ],
+    },
+    Reading: {
+      formulas: [
+        { expr: "True/False/Not Given: True = passage confirms it · False = passage contradicts it · NG = not mentioned", desc: "Most important distinction — NG ≠ False" },
+        { expr: "Matching Headings: read heading list → skim each paragraph for main idea → match", desc: "Never match a heading from a detail — headings = main idea" },
+        { expr: "Sentence completion: word must fit grammatically AND factually from passage", desc: "Two conditions both required" },
+        { expr: "Scanning speed formula: title → intro/conclusion → topic sentences → details (only if needed)", desc: "Skimming sequence for academic IELTS passages" },
+      ],
+      constants: [
+        { name: "Duration", value: "60 min — no extra transfer time (unlike Listening)" },
+        { name: "Structure", value: "3 passages, increasing difficulty · 40 questions total · 13–14 per passage" },
+        { name: "Band scoring", value: "40 correct = Band 9 · 35 = Band 8 · 30 = Band 7 · 23 = Band 6" },
+        { name: "Question order", value: "Answers generally follow passage order — use this to locate quickly" },
+        { name: "Passage themes", value: "Academic topics: science, history, social science, environment, technology" },
+      ],
+      traps: [
+        "True/False/Not Given: 'The study found' + your knowledge = you may write True when it's NG because you know the fact is true in real life.",
+        "Yes/No/Not Given: Yes/No tests OPINIONS, not facts. Same NG logic applies.",
+        "Matching headings: subheadings, examples, and data ≠ main idea. Don't match on these.",
+        "Paragraph letters: sections may be labelled A, B, C, not paragraphs — watch for this.",
+        "Paraphrase: the correct answer uses different words than the passage. If exact same words → likely a trap.",
+        "Time management: if stuck on a question after 2 minutes, mark it and move on.",
+      ],
+      mnemonics: [
+        "TFNG — True: Text Firmly Nods (passage agrees) · False: Text Firmly Negates · NG: Text Never Goes there",
+        "SQR3 — Survey, Question, Read, Recall, Review (academic reading strategy)",
+        "SKIM → SCAN → SOLVE: first pass for main idea, second pass for specific answer, third to check",
+      ],
+      revision: [
+        "Daily reading: The Economist, BBC News Science, National Geographic — 1 article/day",
+        "True/False/Not Given: underline the key claim → find in passage → compare carefully",
+        "Matching headings: cover all options → summarise each paragraph in 3 words → match",
+        "Time allocation: ~18-20 min per passage · if a question takes >2 min, skip and return",
+        "Difficult vocabulary: use context clues — prefix/suffix/sentence structure to infer meaning",
+        "Academic word list (AWL): learn top 200 academic words — they appear in every IELTS passage",
+      ],
+    },
+    "Vocabulary & Grammar": {
+      formulas: [
+        { expr: "Collocation: make a decision (not 'do a decision') · do homework (not 'make homework')", desc: "Verb-noun collocations are tested in writing and speaking" },
+        { expr: "Cohesive devices: addition (furthermore) · contrast (however) · result (therefore) · example (for instance)", desc: "Essential for Writing Task 2 coherence score" },
+        { expr: "Complex sentence: [Main clause] + [subordinating conjunction] + [subordinate clause]", desc: "Required for Band 7+ grammar in Writing" },
+        { expr: "Passive voice: be + past participle — used to de-emphasise actor or when actor unknown", desc: "Academic style often uses passive" },
+      ],
+      constants: [
+        { name: "Lexical resource", value: "IELTS Writing/Speaking bands reward varied vocabulary and collocations" },
+        { name: "Accuracy vs range", value: "Band 6: some errors but understandable · Band 7: few errors · Band 8: natural, flexible" },
+        { name: "Academic word list", value: "570 word families cover ~10% of academic text. Learn these for band 7+." },
+        { name: "Spelling", value: "Must be correct in Writing. American OR British English accepted — but be consistent." },
+      ],
+      traps: [
+        "Confusables: affect (verb) vs effect (noun) · principal (main) vs principle (rule) · complement vs compliment.",
+        "Over-formal vs under-formal: choose vocabulary appropriate to the context (academic vs casual).",
+        "Collocation errors: 'make a mistake' not 'do a mistake' · 'strong tea' not 'powerful tea'.",
+        "Preposition errors: 'interested IN' not 'interested ON' · 'depend ON' not 'depend OF'.",
+        "Tense trap: present perfect ('has increased') vs simple past ('increased') — wrong tense loses marks.",
+      ],
+      mnemonics: [
+        "CALF — Cohesion, Accuracy, Lexis (vocab), Fluency (the 4 IELTS writing/speaking criteria)",
+        "AWL (Academic Word List): analyse, approach, concept, constitute, context, data, define, significant, structure, theory",
+        "Discourse markers: Addition=Furthermore · Contrast=Nevertheless · Result=Consequently · Example=To illustrate",
+      ],
+      revision: [
+        "Topic vocabulary sets: environment, education, health, technology, crime — learn 15 words per theme",
+        "Paraphrase practice: take any IELTS task question → rewrite it 3 ways using synonyms",
+        "Sentence types: simple (1 clause) · compound (2 independent) · complex (main + subordinate)",
+        "Writing Task 2: PEEL — Point, Evidence, Explain, Link back to question",
+        "Commonly misspelled: necessary (1 c, 2 s) · occurrence (2 c, 2 r) · accommodation (2 c, 2 m)",
+        "Band 7 vocabulary checklist: varied vocabulary, some idiomatic language, few spelling errors",
+      ],
+    },
+  },
+  toefl_ibt: {
+    subjects: ["Reading", "Listening", "Integrated Skills"],
+    Reading: {
+      formulas: [
+        { expr: "Passage structure: Introduction → Body paragraphs → Conclusion (academic article format)", desc: "Expect TOEFL passages to follow this pattern — helps predict content" },
+        { expr: "Factual detail: scan for the specific fact asked → verify against surrounding context", desc: "Most common question type (~30% of Reading)" },
+        { expr: "Vocabulary in context: substitute each option → select the best fit for that context", desc: "Look at how the word is used, not just dictionary meaning" },
+        { expr: "Insert sentence: read before and after target position → check pronoun and logical flow", desc: "The sentence must logically and grammatically follow what precedes it" },
+      ],
+      constants: [
+        { name: "Duration", value: "35 min · 2 passages · 10 questions each" },
+        { name: "Scoring", value: "0–30 per section · scaled score" },
+        { name: "Passage length", value: "~700 words each · academic texts from university courses" },
+        { name: "No negative marking", value: "Always answer — leave no blanks" },
+        { name: "Categories", value: "Factual (~30%), Inference (~20%), Vocabulary (~20%), Summary/purpose (~30%)" },
+      ],
+      traps: [
+        "Prose summary: choose 3 of 6 statements — wrong choices are either details (not main ideas) or not in passage.",
+        "Inference questions: the answer must be STRONGLY implied by the passage — not just plausible.",
+        "Vocabulary: the correct answer replaces the word in the SENTENCE context, not just as a synonym.",
+        "Negative factual: 'According to the passage, which is NOT mentioned?' — these are easy to rush and get wrong.",
+        "Rhetorical purpose: 'Why does the author mention X?' — look for the function in the paragraph, not just what X is.",
+        "Sentence insertion: watch for demonstrative pronouns (this, these, such) — they must refer to something in the preceding sentence.",
+      ],
+      mnemonics: [
+        "FLIP — Factual, Logic/inference, Idea (main), Purpose (rhetorical) — the 4 TOEFL Reading question families",
+        "3Rs — Skim for the Road (structure) → Read for the River (flow) → Return for the Rocks (detail questions)",
+      ],
+      revision: [
+        "Daily reading: Scientific American, Nature News, The Atlantic — academic English with complex structure",
+        "Prose summary tip: eliminate choices that are true but too specific (supporting detail not main idea)",
+        "Vocabulary strategy: substitute each option into the sentence and read it aloud — choose the most natural",
+        "Time management: spend ~3 min per question max · flag and return if stuck",
+        "Practice with ETS Official TOEFL Prep — the authentic source matches actual test style closely",
+      ],
+    },
+    Listening: {
+      formulas: [
+        { expr: "Lecture structure: topic → background → main argument → supporting evidence → conclusion", desc: "Predict the flow to stay oriented during listening" },
+        { expr: "Conversation structure: problem/situation → discussion → solution/decision", desc: "Campus service conversations follow this pattern" },
+        { expr: "Note-taking: abbreviate key terms → use arrows (→) for cause/effect · use = for definition", desc: "Efficient shorthand is critical — you cannot replay audio" },
+        { expr: "Purpose questions: 'Why does the student visit...?' → answer = the problem/goal stated explicitly", desc: "Listen for the reason stated in the OPENING of the conversation" },
+      ],
+      constants: [
+        { name: "Duration", value: "36 min · 3 lectures (6 Qs each) + 2 conversations (5 Qs each)" },
+        { name: "Scoring", value: "0–30 · scaled score" },
+        { name: "Lecture length", value: "~3–5 min each · complex academic topics" },
+        { name: "Conversation length", value: "~2–3 min · campus/office settings" },
+        { name: "No replay", value: "Each audio plays ONCE — note-taking is essential" },
+      ],
+      traps: [
+        "Connecting content: 'What is the relationship between X and Y?' — must understand the LOGICAL link, not just the facts.",
+        "Stance and attitude: 'What is the professor's attitude toward...?' — listen for hedging language (perhaps, might, tends to).",
+        "Function questions: 'Why does the professor say X?' — focus on the discourse function (example, contrast, correction), not the content.",
+        "Gist purpose: 'What is the main purpose of this lecture?' — choose the most GENERAL accurate description.",
+        "Details: pay attention when professor says 'importantly', 'note that', 'this is key' — these signal testable details.",
+        "Distractors: conversations often present a problem and then RESOLVE it — don't answer based on the initial problem.",
+      ],
+      mnemonics: [
+        "NOTE — Note key terms, Organize logically, Track transitions, Extract main idea each paragraph",
+        "LAPS — Listen for Label (topic), Attitude, Purpose, Support (evidence) in every lecture",
+        "Signal phrases to write down: 'In contrast', 'As a result', 'The main point is', 'To summarize'",
+      ],
+      revision: [
+        "Practice with TED-Ed, Coursera lectures, and PBS Learning Media — academic English in real contexts",
+        "Note-taking drill: listen to any 3-min audio → summarize in 5 bullets → compare to transcript",
+        "Transition signals: addition (also/furthermore), contrast (however/on the other hand), causation (therefore/as a result)",
+        "Predict question types: after each lecture note, ask yourself — main idea? detail? professor's opinion? example purpose?",
+        "Upgrade from general English to ACADEMIC English: Lexico Academic Word List is the top resource",
+      ],
+    },
+    "Integrated Skills": {
+      formulas: [
+        { expr: "Integrated Writing: Read (3 min) → Listen (2 min) → Write (20 min, 150–225 words)", desc: "Structure: intro + 3 body paragraphs (one per lecture point vs reading)" },
+        { expr: "Academic Discussion Writing: Read prompt + 2 classmates' posts → Respond (10 min, 100+ words)", desc: "Add NEW information or a well-reasoned opinion — don't just agree" },
+        { expr: "Integrated template: 'The reading claims X. However, the lecture argues Y by stating Z.'", desc: "This structure guarantees coverage of both sources" },
+      ],
+      constants: [
+        { name: "Integrated Writing", value: "Read (3 min) + Listen → Write 150–225 words in 20 min" },
+        { name: "Academic Discussion", value: "Read prompt → Write 100+ words in 10 min" },
+        { name: "Total Writing time", value: "29 min · scored 0–30" },
+        { name: "Scoring criteria", value: "Development (accuracy of lecture points) + Language use (grammar/vocabulary)" },
+        { name: "Integrated task goal", value: "Summarise how the LECTURE challenges/supports the READING — do NOT give your opinion" },
+      ],
+      traps: [
+        "Integrated Writing: students often summarise the READING instead of explaining how the LECTURE addresses it. Focus on the lecture.",
+        "Do NOT include your own opinion in Integrated Writing — only report what the reading and lecture say.",
+        "Academic Discussion: generic statements score low. Add a specific reason, example, or counter-argument.",
+        "Word count: aim for 200–230 words for Integrated, 120–150 words for Academic Discussion.",
+        "Vocabulary: 'the passage mentions' / 'the lecture states' / 'the professor argues' — use varied attribution verbs.",
+      ],
+      mnemonics: [
+        "IDEAL for Integrated Writing: Introduce (the topic) → Describe (reading claim) → Explain (lecture challenge) → Amplify (with details) → Link (conclusion)",
+        "3C for Academic Discussion: Claim (your view) → Concrete example → Connect (to classmate or question)",
+      ],
+      revision: [
+        "Integrated Writing practice: read any Wikipedia article for 3 min → listen to a related podcast → write 200 words comparing them",
+        "Academic Discussion: practice responding to opinion prompts in 10 min with a specific example from current events or your studies",
+        "Connectors to use: 'The lecture contradicts the reading by...' / 'This challenges the reading's claim that...' / 'In contrast to the reading...'",
+        "Proofread in last 2 min: check for subject-verb agreement, article use (a/an/the), and run-on sentences",
+        "ETS official scoring rubric: 5 = complete, accurate, coherent · 4 = minor omissions or language errors · 3 = key point missing or significant errors",
+      ],
+    },
+  },
 };
 
 // ── Resource Links ─────────────────────────────────────────────────────────────
-
 const RESOURCES = [
   { icon: "📖", label: "NCERT Chapters", desc: "Grade 11 & 12 textbooks", color: "#6366f1", onClick: null },
   { icon: "📐", label: "Formula Sheets", desc: "Chapter-wise formulas", color: "#10b981", onClick: "formulaSheet" },
@@ -1752,6 +2052,107 @@ export default function ExamPrepPage({ user, setActivePage }) {
               { cat: "SC/ST/EWS", note: "Significantly lower cutoffs. Apply to reserved seats." },
             ],
             footer: "Source: CUET-UG 2022–2025 (DU 1st–4th cutoffs, BHU, JNU admissions). Scores vary widely by subject and programme. Always check official cutoffs.",
+          },
+          sat: {
+            title: "SAT (Digital SAT) → US / Global University Admissions",
+            subtitle: "Score → University tier mapping (College Board 2022–2025, General applicants)",
+            note: "SAT is accepted by 1,900+ US universities. Scores are scaled (not raw). No negative marking.",
+            scoreKey: "SAT Score (400–1600)",
+            maxScore: 1600,
+            bands: [
+              { range: "1500–1600", label: "Elite", color: "#22c55e", emoji: "🏆",
+                colleges: ["MIT", "Harvard", "Stanford", "Princeton", "Yale", "Columbia", "University of Chicago"],
+                percentile: "99th+", rank: "Top ~500 scorers globally", tip: "1600 is perfect score. These universities look beyond SAT — also need top GPA, essays, ECs." },
+              { range: "1400–1499", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+                colleges: ["UC Berkeley", "UCLA", "University of Michigan", "NYU", "Boston University", "Purdue (CS/Engg)"],
+                percentile: "96th–99th", rank: "Top 4%", tip: "Strong scores for top 50 US universities. Merit scholarships often require 1400+." },
+              { range: "1300–1399", label: "Strong", color: "#f59e0b", emoji: "💪",
+                colleges: ["Penn State", "University of Wisconsin", "Arizona State", "Florida International", "Singapore (NUS/NTU — international SAT accepted)"],
+                percentile: "88th–96th", rank: "Top 12%", tip: "Good for admission to many well-ranked US public universities. Apply broadly." },
+              { range: "1200–1299", label: "Moderate", color: "#f97316", emoji: "📈",
+                colleges: ["Many US mid-range universities", "Community college transfer track", "UK/Australia universities (some use SAT)"],
+                percentile: "74th–88th", rank: "Top 26%", tip: "Above average score. Accepted by many US universities. Strengthen GPA and extracurriculars." },
+              { range: "1100–1199", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+                colleges: ["Regional US universities", "Test-optional universities (may not need SAT)", "State colleges"],
+                percentile: "56th–74th", rank: "Above average", tip: "Many universities are test-optional (post-COVID). A strong application may outweigh a moderate SAT." },
+              { range: "Below 1100", label: "Consider Retaking", color: "#94a3b8", emoji: "📚",
+                colleges: ["Test-optional universities", "Community colleges", "Non-US alternatives (IELTS/TOEFL pathway)"],
+                percentile: "Below 56th", rank: "Average", tip: "Digital SAT can be taken multiple times. Khan Academy free prep. Target 1200+ with focused study." },
+            ],
+            categories: [
+              { cat: "Reading & Writing (200–800)", note: "Grammar, comprehension, vocabulary, reasoning — 54 questions, 64 min." },
+              { cat: "Mathematics (200–800)", note: "Algebra (35%), Advanced Math (35%), Data Analysis (15%), Geometry/Trig (15%) — 44 questions, 70 min." },
+              { cat: "Adaptive Scoring", note: "Module 2 difficulty adapts based on Module 1 performance. Higher performance in M1 → harder (higher-ceiling) M2." },
+            ],
+            footer: "Source: College Board SAT percentile data 2022–2025. University median SAT scores from Common Data Sets. Scores vary by programme and year.",
+          },
+          ielts: {
+            title: "IELTS Academic → University Admissions Worldwide",
+            subtitle: "Band score → University tier mapping (British Council / IDP 2022–2025, Academic IELTS)",
+            note: "IELTS uses a 0–9 Band scale. Most universities require Band 6.0–7.0. No negative marking.",
+            scoreKey: "Overall Band Score (0–9)",
+            maxScore: 9,
+            bands: [
+              { range: "8.0–9.0", label: "Expert/Very Good", color: "#22c55e", emoji: "🏆",
+                colleges: ["Oxford / Cambridge", "Imperial College London", "UCL", "LSE", "University of Toronto", "NUS Singapore"],
+                percentile: "Top 5%", rank: "Expert user", tip: "Band 9 is very rare. Most top UK universities require Band 7.5–8.0 minimum for competitive programmes." },
+              { range: "7.0–7.5", label: "Good", color: "#3b82f6", emoji: "🎯",
+                colleges: ["Most UK Russell Group universities", "Australian Group of 8", "McGill / UBC Canada", "ETH Zurich", "TU Munich (English programmes)"],
+                percentile: "Top 15%", rank: "Good user", tip: "Band 7.0 is the most common minimum for postgraduate programmes. Many UK master's require 7.0 overall, 6.5 in each component." },
+              { range: "6.5", label: "Competent+", color: "#f59e0b", emoji: "💪",
+                colleges: ["Many UK / Australian / Canadian universities", "Ireland universities", "Netherlands English-taught programmes"],
+                percentile: "Top 25%", rank: "Competent user", tip: "The most widely accepted minimum overall. Often paired with a minimum of 6.0 per band." },
+              { range: "6.0", label: "Competent", color: "#f97316", emoji: "📈",
+                colleges: ["Entry-level UK / Australian / Canadian universities", "Many pathway programmes", "Foundation Year entry"],
+                percentile: "Top 40%", rank: "Competent user", tip: "Minimum for most undergraduate international admissions. Some universities accept 6.0 with conditions." },
+              { range: "5.5", label: "Modest", color: "#ef4444", emoji: "⚠️",
+                colleges: ["Pre-sessional / Foundation entry", "Some universities with conditional offers", "English language courses"],
+                percentile: "Top 55%", rank: "Modest user", tip: "Often only sufficient for pre-sessional English courses before university. Most universities require 6.0+." },
+              { range: "Below 5.5", label: "Limited", color: "#94a3b8", emoji: "📚",
+                colleges: ["English language schools", "IELTS preparation institutes", "Foundation programmes"],
+                percentile: "Below 55%", rank: "Limited user", tip: "Retake recommended. Study for 2–4 months. Focus on Listening and Reading for quickest improvement." },
+            ],
+            categories: [
+              { cat: "Listening (0–9)", note: "4 recordings, 40 questions, 30 min. Everyday and academic contexts. MCQ, gap-fill, matching." },
+              { cat: "Reading (0–9)", note: "3 academic passages, 40 questions, 60 min. Matching headings, T/F/NG, sentence completion." },
+              { cat: "Writing (0–9)", note: "Task 1: Describe a graph/chart (150 words). Task 2: Essay (250 words). 60 min total." },
+              { cat: "Speaking (0–9)", note: "3-part interview with examiner. 11–14 min. Introduction, cue card, discussion." },
+            ],
+            footer: "Source: British Council / IDP IELTS band descriptors 2022–2025. University requirements from official admissions pages. Band requirements vary by programme.",
+          },
+          toefl_ibt: {
+            title: "TOEFL iBT → University Admissions (US & Global)",
+            subtitle: "Score → University tier mapping (ETS 2022–2025, iBT Internet-Based Test)",
+            note: "TOEFL iBT scores 0–120. Each of 4 sections scored 0–30. No negative marking. Duration ~2 hours.",
+            scoreKey: "TOEFL iBT Score (0–120)",
+            maxScore: 120,
+            bands: [
+              { range: "110–120", label: "Elite", color: "#22c55e", emoji: "🏆",
+                colleges: ["MIT", "Harvard", "Yale", "Stanford", "Princeton", "Top US research universities"],
+                percentile: "Top 5%", rank: "Expert Level", tip: "Most Ivy League and T20 US universities require 100+ for admission. 110+ is competitive for top programmes." },
+              { range: "100–109", label: "Top-Tier", color: "#3b82f6", emoji: "🎯",
+                colleges: ["Top 50 US universities", "University of Toronto", "McGill", "Australian Group of 8 (many accept TOEFL)"],
+                percentile: "Top 15%", rank: "Advanced", tip: "100+ is the most common minimum for competitive graduate programmes in the US." },
+              { range: "90–99", label: "Strong", color: "#f59e0b", emoji: "💪",
+                colleges: ["Most top 100 US universities", "University of Edinburgh", "Some UK universities", "European English-taught programmes"],
+                percentile: "Top 30%", rank: "High Intermediate", tip: "90+ accepted by most US universities. Graduate programmes often require 90–100." },
+              { range: "80–89", label: "Moderate", color: "#f97316", emoji: "📈",
+                colleges: ["Many US state universities", "UK universities (some)", "Canada (conditional admission)"],
+                percentile: "Top 45%", rank: "Intermediate", tip: "80+ is sufficient for many undergraduate US admissions. Graduate programmes may require higher." },
+              { range: "60–79", label: "Qualifying", color: "#ef4444", emoji: "🔑",
+                colleges: ["Community colleges and transfer pathways", "ESL bridge programmes", "Conditional university admissions"],
+                percentile: "Top 60%", rank: "Low-Intermediate", tip: "Below minimum for most 4-year universities. Retake recommended or consider IELTS alternative." },
+              { range: "Below 60", label: "Limited", color: "#94a3b8", emoji: "📚",
+                colleges: ["Intensive English programmes", "Foundation courses", "TOEFL preparation institutes"],
+                percentile: "Below 60%", rank: "Basic", tip: "Significant improvement needed. ETS official prep materials + daily academic reading in English recommended." },
+            ],
+            categories: [
+              { cat: "Reading (0–30)", note: "2 academic passages, 20 questions, 35 min. Comprehension, inference, vocabulary, sentence insertion." },
+              { cat: "Listening (0–30)", note: "3 lectures + 2 conversations, 28 questions, 36 min. Main ideas, detail, purpose, inference." },
+              { cat: "Speaking (0–30)", note: "4 integrated tasks, 16 min. 3 integrated (read/listen/speak) + 1 independent." },
+              { cat: "Writing (0–30)", note: "Integrated writing (20 min) + Academic Discussion Writing (10 min). Total 29 min." },
+            ],
+            footer: "Source: ETS TOEFL score data 2022–2025. University minimum requirements from official admissions pages. Scores and requirements vary by programme and year.",
           },
         };
 
@@ -2255,6 +2656,42 @@ export default function ExamPrepPage({ user, setActivePage }) {
                 <li>Focus on Class 12 NCERT thoroughly — most questions come directly from it</li>
                 <li>General Test: current affairs, quantitative aptitude, logical reasoning</li>
                 <li>Choose domain subjects matching your target university programme.</li>
+              </ul>
+            )}
+            {selectedExam === "sat" && (
+              <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
+                <li><strong style={{color:"#3b82f6"}}>98 questions · 134 min · Score 400–1600 · No negative marking · Digital Adaptive Test</strong></li>
+                <li>Reading & Writing: 54 questions, 64 min · Mathematics: 44 questions, 70 min</li>
+                <li>Adaptive: Module 1 performance determines Module 2 difficulty. Higher M1 → harder M2 → higher ceiling.</li>
+                <li>No penalty for wrong answers — always guess if unsure. Blank = 0, guess = chance of +1.</li>
+                <li>Desmos graphing calculator available throughout Math section — use it for graph/equation questions.</li>
+                <li>Math focus: Algebra + Advanced Math = 70% of score. Master linear equations, quadratics, functions first.</li>
+                <li>R&W focus: vocabulary in context, grammar (subject-verb agreement, parallel structure), evidence-based reading.</li>
+                <li>Target: 1400+ for top 50 US universities. 1200+ opens most mid-tier universities.</li>
+              </ul>
+            )}
+            {selectedExam === "ielts" && (
+              <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
+                <li><strong style={{color:"#8b5cf6"}}>4 skills · ~2h45m total · Band Score 0–9 · No negative marking</strong></li>
+                <li>Listening (30 min) · Reading (60 min) · Writing (60 min) · Speaking (11–14 min, separate appointment)</li>
+                <li>Spelling counts in Listening and Writing — one wrong letter = wrong answer in gap-fill.</li>
+                <li>True/False/Not Given: "Not Given" ≠ "False". If passage doesn't mention it → Not Given.</li>
+                <li>Word limit: 'NO MORE THAN 2 WORDS' means 2 max — writing 3 words = wrong even if correct fact.</li>
+                <li>Writing Task 2 (essay, 250+ words) carries the most weight in the Writing band score.</li>
+                <li>Speaking: recorded. Focus on fluency over accuracy — don't stop to correct yourself mid-sentence.</li>
+                <li>Target: Band 6.5 for most universities · Band 7.0 for UK postgraduate · Band 7.5+ for top programmes.</li>
+              </ul>
+            )}
+            {selectedExam === "toefl_ibt" && (
+              <ul style={{ fontSize: ".78rem", color: "var(--muted,#94a3b8)", lineHeight: 2, margin: 0, paddingLeft: 18 }}>
+                <li><strong style={{color:"#06b6d4"}}>4 sections · ~2 hours total · Score 0–120 (30 per section) · No negative marking</strong></li>
+                <li>Reading (35 min, 20 Qs) · Listening (36 min, 28 Qs) · Speaking (16 min) · Writing (29 min)</li>
+                <li>Each audio plays ONCE — note-taking during Listening is essential. Never relying on memory alone.</li>
+                <li>Integrated Writing: summarise how the LECTURE challenges the READING — do NOT give your own opinion.</li>
+                <li>Academic Discussion Writing: add a NEW point or reason, don't just agree with classmates' posts.</li>
+                <li>Reading: Prose Summary questions ask you to choose 3 of 6 — wrong answers are too specific (details, not main ideas).</li>
+                <li>Official ETS materials are the gold standard for practice — other sources vary in difficulty calibration.</li>
+                <li>Target: 100+ for top US grad programmes · 90+ for most US universities · 80+ for many undergrad programmes.</li>
               </ul>
             )}
           </div>

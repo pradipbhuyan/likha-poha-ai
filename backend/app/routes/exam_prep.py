@@ -132,9 +132,12 @@ def get_status(ctx=Depends(_require_exam_prep_access)):
         "grade": profile.get("grade"),
         "username": profile.get("username"),
         "exams": {
-            "jee_main": {"label": "JEE Main", "active": True, "coming_soon": False},
-            "neet_ug": {"label": "NEET UG", "active": True, "coming_soon": False},
-            "cuet_ug": {"label": "CUET UG", "active": True, "coming_soon": False},
+            "jee_main":   {"label": "JEE Main",    "active": True, "coming_soon": False},
+            "neet_ug":    {"label": "NEET UG",     "active": True, "coming_soon": False},
+            "cuet_ug":    {"label": "CUET UG",     "active": True, "coming_soon": False},
+            "sat":        {"label": "SAT",         "active": True, "coming_soon": False},
+            "ielts":      {"label": "IELTS",       "active": True, "coming_soon": False},
+            "toefl_ibt":  {"label": "TOEFL iBT",  "active": True, "coming_soon": False},
         },
     }
 
@@ -853,7 +856,7 @@ def admin_import_bulk(
 
     db = svc._get_db()
 
-    VALID_EXAM_TYPES = {"jee_main", "neet_ug", "cuet_ug"}
+    VALID_EXAM_TYPES = {"jee_main", "neet_ug", "cuet_ug", "sat", "ielts", "toefl_ibt"}
     VALID_DIFFICULTIES = {"easy", "medium", "hard"}
     VALID_OPTIONS_KEYS = {"A", "B", "C", "D"}
     VALID_CORRECT_OPTIONS = {"A", "B", "C", "D"}
@@ -908,7 +911,7 @@ def admin_import_bulk(
 
         # ── 2. Field value validation ─────────────────────────────────────────
         if q.get("exam_type") not in VALID_EXAM_TYPES:
-            issues.append(f"Invalid exam_type '{q['exam_type']}'. Must be: jee_main, neet_ug, cuet_ug")
+            issues.append(f"Invalid exam_type '{q['exam_type']}'. Must be: jee_main, neet_ug, cuet_ug, sat, ielts, toefl_ibt")
 
         if q.get("difficulty") not in VALID_DIFFICULTIES:
             issues.append(f"Invalid difficulty '{q.get('difficulty')}'. Must be: easy, medium, hard")
