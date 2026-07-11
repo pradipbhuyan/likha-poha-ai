@@ -1551,15 +1551,37 @@ function PasteImportSection({ user, onImportSuccess }) {
     }
 
     if (!parsed1) {
-      // Attempt 3: escape ASCII double quotes that appear mid-string
-      // (e.g. detailed_explanation: "The statement "library..." directly supports")
-      // Heuristic: a " surrounded by word chars / common punctuation on both sides
-      // is almost certainly a content quote that should be escaped.
-      const deepFixed = sanitized.replace(
-        /([a-zA-Z0-9 ,.'!?;:()-])(")([ a-zA-Z0-9])/g,
-        '$1\\"$3'
-      );
-      try { parsed1 = JSON.parse(deepFixed); parseErr = null; } catch { /* keep original error */ }
+      // Attempt 3: state-machine JSON repairer — walks char-by-char and escapes
+      // any " that appears inside a string value but is NOT a structural close quote.
+      // Correctly handles: ""text"" (SAT option pattern), "text "quote" text" (mid-string),
+      // and leaves structural "key": "value" quotes untouched.
+      // Rule: inside a string, a " closes the string ONLY if the next significant char
+      // is : , } ] (JSON structural). Otherwise it's a content quote → escape it.
+      const repaired = (() => {
+        let r = '', k = 0, inStr = false;
+        while (k < sanitized.length) {
+          const ch = sanitized[k];
+          if (!inStr) {
+            r += ch;
+            if (ch === '"') inStr = true;
+          } else if (ch === '\\') {
+            r += ch; k++;
+            if (k < sanitized.length) r += sanitized[k];
+          } else if (ch === '"') {
+            let j = k + 1;
+            while (j < sanitized.length && ' \t\r\n'.includes(sanitized[j])) j++;
+            const nxt = sanitized[j] !== undefined ? sanitized[j] : '';
+            if (':,}]'.includes(nxt) || nxt === '') {
+              inStr = false; r += ch; // structural close
+            } else {
+              r += '\\"'; // content quote — escape it
+            }
+          } else { r += ch; }
+          k++;
+        }
+        return r;
+      })();
+      try { parsed1 = JSON.parse(repaired); parseErr = null; } catch { /* keep original error */ }
     }
 
     if (!parsed1) {
