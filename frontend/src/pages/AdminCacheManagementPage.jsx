@@ -1556,7 +1556,7 @@ function PasteImportSection({ user, onImportSuccess }) {
       // Heuristic: a " surrounded by word chars / common punctuation on both sides
       // is almost certainly a content quote that should be escaped.
       const deepFixed = sanitized.replace(
-        /([a-zA-Z0-9 ,.'!?;:()\-])(")([ a-zA-Z0-9])/g,
+        /([a-zA-Z0-9 ,.'!?;:()-])(")([ a-zA-Z0-9])/g,
         '$1\\"$3'
       );
       try { parsed1 = JSON.parse(deepFixed); parseErr = null; } catch { /* keep original error */ }
