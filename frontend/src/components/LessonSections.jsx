@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -326,6 +326,14 @@ function CardFeedSection({
   const answer = questionAnswers[index] || "";
   const feedback = questionFeedback[index] || "";
   const loading = questionLoading[index] || false;
+  const feedbackRef = useRef(null);
+
+  // Scroll to feedback when it appears after evaluation
+  useEffect(() => {
+    if (feedback && feedbackRef.current) {
+      feedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [feedback]);
 
   async function handleEvaluate() {
     if (!answer.trim() || !onEvaluateQuestion) return;
@@ -456,7 +464,7 @@ function CardFeedSection({
                 {loading ? "Evaluating..." : "Evaluate my answer"}
               </button>
               {feedback && (
-                <div className="lesson-inline-feedback">
+                <div className="lesson-inline-feedback" ref={feedbackRef}>
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm, remarkMath]}
                     rehypePlugins={[rehypeKatex]}
@@ -491,6 +499,14 @@ function WorkbookSection({
   const feedback = questionFeedback[index] || "";
   const loading = questionLoading[index] || false;
   const anchorId = `ws-section-${index}`;
+  const feedbackRef = useRef(null);
+
+  // Scroll to feedback when it appears after evaluation
+  useEffect(() => {
+    if (feedback && feedbackRef.current) {
+      feedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [feedback]);
 
   async function handleEvaluate() {
     if (!answer.trim() || !onEvaluateQuestion) return;
@@ -605,7 +621,7 @@ function WorkbookSection({
                 {loading ? "Evaluating..." : "Evaluate my answer"}
               </button>
               {feedback && (
-                <div className="lesson-inline-feedback">
+                <div className="lesson-inline-feedback" ref={feedbackRef}>
                   <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
                     {feedback}
                   </ReactMarkdown>
