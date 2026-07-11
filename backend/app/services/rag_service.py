@@ -192,7 +192,11 @@ def search_textbook_content(
         return []
 
     requested_board = normalize_board(board)
-    rpc_match_count = match_count * 4 if board else match_count
+    # 2× safety buffer (was 4×) — enough to cover board-mismatch filtering
+    # while cutting egress in half vs the old formula.
+    # After the SQL migration (match_rag_chunks returns doc fields inline),
+    # board mismatches are detected in the same RPC call so no over-fetch needed.
+    rpc_match_count = match_count * 2 if board else match_count
 
     _filter_chapter = strip_chapter_display_prefix(chapter) if chapter else chapter
     try:
@@ -222,32 +226,57 @@ def search_textbook_content(
         # the tutor falls back to LLM generation rather than crashing.
         return []
 
-    for item in results:
-        doc_id = item.get("document_id")
-        if doc_id:
-            try:
-                doc_response = (
-                    db.table("rag_documents")
-                    .select("title, board, subject, chapter, grade")
-                    .eq("id", doc_id)
-                    .execute()
-                )
-            except Exception as exc:
-                if "board" not in str(exc).lower():
-                    raise
-                doc_response = (
-                    db.table("rag_documents")
-                    .select("title, subject, chapter, grade")
-                    .eq("id", doc_id)
-                    .execute()
-                )
+    # ── Fast path: SQL migration applied ────────────────────────────────────
+    # After applying the match_rag_chunks SQL update (which adds doc_board,
+    # doc_title, etc. as return columns), document metadata is already in the
+    # RPC response. Zero N+1 queries — one DB call handles everything.
+    if results and "doc_board" in results[0]:
+        import logging as _log  # noqa: PLC0415
+        _log.getLogger("likhapoha.rag_debug").info(
+            "match_rag_chunks using fast-path (no N+1) grade=%s subject=%s",
+            grade, subject,
+        )
+        for item in results:
+            item["document"] = {
+                "title":   item.pop("doc_title", ""),
+                "board":   item.pop("doc_board", ""),
+                "subject": item.pop("doc_subject", ""),
+                "chapter": item.pop("doc_chapter", ""),
+                "grade":   item.pop("doc_grade", ""),
+            }
+            document_board = normalize_board(item["document"].get("board"))
+            if board and document_board != requested_board:
+                item["_board_mismatch"] = True
+    else:
+        # ── Legacy path: N+1 queries (SQL migration not yet applied) ────────
+        # Each chunk triggers one rag_documents lookup to get board/title info.
+        # This path is removed once the SQL migration is confirmed on both DBs.
+        for item in results:
+            doc_id = item.get("document_id")
+            if doc_id:
+                try:
+                    doc_response = (
+                        db.table("rag_documents")
+                        .select("title, board, subject, chapter, grade")
+                        .eq("id", doc_id)
+                        .execute()
+                    )
+                except Exception as exc:
+                    if "board" not in str(exc).lower():
+                        raise
+                    doc_response = (
+                        db.table("rag_documents")
+                        .select("title, subject, chapter, grade")
+                        .eq("id", doc_id)
+                        .execute()
+                    )
 
-            if doc_response.data:
-                document = doc_response.data[0]
-                item["document"] = document
-                document_board = normalize_board(document.get("board"))
-                if board and document_board != requested_board:
-                    item["_board_mismatch"] = True
+                if doc_response.data:
+                    document = doc_response.data[0]
+                    item["document"] = document
+                    document_board = normalize_board(document.get("board"))
+                    if board and document_board != requested_board:
+                        item["_board_mismatch"] = True
 
     filtered_results = [r for r in results if not r.get("_board_mismatch")]
     return filtered_results[:match_count]
