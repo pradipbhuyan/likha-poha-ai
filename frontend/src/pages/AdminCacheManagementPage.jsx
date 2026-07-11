@@ -1437,6 +1437,65 @@ function ExamPrepQBSection({ user }) {
   );
 }
 
+// ── JSON sanitizer for ChatGPT / Custom GPT output ───────────────────────────
+// ChatGPT commonly produces JSON with:
+//   1. Unicode "smart quotes"  "  "  (U+201C / U+201D) instead of  "
+//   2. Unicode smart apostrophes  '  '  (U+2018 / U+2019)
+//   3. Trailing commas before } or ]  (invalid JSON)
+//   4. Markdown code fences  ```json  ...  ```
+//   5. Non-breaking spaces (U+00A0) and zero-width characters
+//   6. Byte-order mark (U+FEFF) at start
+//   7. Escaped Unicode sequences that need normalisation
+
+function sanitizeJsonFromChatGPT(raw) {
+  let s = raw;
+
+  // 1. Strip BOM
+  s = s.replace(/^\uFEFF/, "");
+
+  // 2. Strip markdown code fences (```json ... ``` or ``` ... ```)
+  s = s.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+
+  // 3. Replace Unicode "smart" double quotes with straight ASCII double quotes
+  //    U+201C  "  (left double quotation mark)
+  //    U+201D  "  (right double quotation mark)
+  //    U+201E  „  (double low-9 quotation mark — German style)
+  //    U+00AB  «  and  U+00BB  »  (guillemets)
+  s = s.replace(/[\u201C\u201D\u201E\u00AB\u00BB]/g, '"');
+
+  // 4. Replace Unicode smart single quotes / apostrophes with straight ASCII
+  //    U+2018  '  (left single quotation mark)
+  //    U+2019  '  (right single quotation mark — also used as apostrophe)
+  //    U+201A  ‚  (single low-9 quotation mark)
+  //    U+2039  ‹  and  U+203A  ›  (single angle quotation marks)
+  s = s.replace(/[\u2018\u2019\u201A\u2039\u203A]/g, "'");
+
+  // 5. Replace non-breaking space (U+00A0) and en/em dashes used as hyphens
+  s = s.replace(/\u00A0/g, " ");
+  s = s.replace(/[\u2013\u2014]/g, "-"); // en-dash / em-dash → hyphen
+
+  // 6. Remove zero-width characters individually (splitting avoids ESLint no-misleading-character-class
+  //    warning — \u200D (ZWJ) in a character class is flagged as a "joined character sequence")
+  s = s.replace(/\u200B/g, ""); // zero-width space
+  s = s.replace(/\u200C/g, ""); // zero-width non-joiner
+  s = s.replace(/\u200D/g, ""); // zero-width joiner (ZWJ)
+  s = s.replace(/\uFEFF/g, ""); // BOM / zero-width no-break space
+
+  // 7. Remove trailing commas before } or ] (common ChatGPT error)
+  //    Handles: { "key": "val", }  and  [1, 2, 3,]
+  s = s.replace(/,\s*([}\]])/g, "$1");
+
+  // 8. Extract JSON array/object if surrounded by extra text
+  //    Find first [ or { and last ] or }
+  const firstBracket = s.search(/[{[]/);
+  const lastBracket = Math.max(s.lastIndexOf("}"), s.lastIndexOf("]"));
+  if (firstBracket !== -1 && lastBracket > firstBracket) {
+    s = s.slice(firstBracket, lastBracket + 1);
+  }
+
+  return s.trim();
+}
+
 // ── Paste & Import from Custom GPT / ChatGPT ───────────────────────────────────
 
 function PasteImportSection({ user, onImportSuccess }) {
@@ -1451,14 +1510,28 @@ function PasteImportSection({ user, onImportSuccess }) {
     setResult(null);
     setShowReport(false);
 
-    // Parse JSON
+    // Sanitize and parse JSON — auto-fix common ChatGPT formatting issues
     let questions;
+    let sanitized = sanitizeJsonFromChatGPT(jsonText);
     try {
-      const parsed = JSON.parse(jsonText.trim());
+      const parsed = JSON.parse(sanitized);
       questions = Array.isArray(parsed) ? parsed : [parsed];
-    } catch {
-      setError("❌ Invalid JSON. Make sure you paste a valid JSON array from ChatGPT.");
-      return;
+    } catch (firstErr) {
+      // Second attempt: try the raw trimmed text in case sanitizer over-stripped
+      try {
+        const parsed = JSON.parse(jsonText.trim());
+        questions = Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        setError(
+          `❌ Invalid JSON — could not auto-fix. Common causes:\n` +
+          `• Smart/curly quotes inside values (auto-fixed normally)\n` +
+          `• Trailing comma after last item in array or object\n` +
+          `• Missing comma between items\n` +
+          `• Unescaped newline inside a string value\n\n` +
+          `Error detail: ${firstErr.message}`
+        );
+        return;
+      }
     }
 
     if (questions.length === 0) {
@@ -1534,11 +1607,19 @@ function PasteImportSection({ user, onImportSuccess }) {
           <span>{jsonText.length.toLocaleString()} chars</span>
           {(() => {
             try {
-              const p = JSON.parse(jsonText.trim());
+              const sanitized = sanitizeJsonFromChatGPT(jsonText);
+              const p = JSON.parse(sanitized);
               const count = Array.isArray(p) ? p.length : 1;
-              return <span style={{ color: count > 100 ? "#f87171" : "#22c55e" }}>{count} question{count !== 1 ? "s" : ""} detected</span>;
+              return (
+                <>
+                  <span style={{ color: count > 100 ? "#f87171" : "#22c55e" }}>{count} question{count !== 1 ? "s" : ""} detected</span>
+                  {sanitized !== jsonText.trim() && (
+                    <span style={{ color: "#f59e0b", fontSize: ".65rem" }}>⚡ Auto-fix applied (smart quotes/trailing commas removed)</span>
+                  )}
+                </>
+              );
             } catch {
-              return <span style={{ color: "#f87171" }}>⚠️ Invalid JSON</span>;
+              return <span style={{ color: "#f87171" }}>⚠️ Invalid JSON — auto-fix could not repair (check for missing commas)</span>;
             }
           })()}
         </div>
