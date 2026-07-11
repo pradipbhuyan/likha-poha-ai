@@ -1456,12 +1456,15 @@ function sanitizeJsonFromChatGPT(raw) {
   // 2. Strip markdown code fences (```json ... ``` or ``` ... ```)
   s = s.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
 
-  // 3. Replace Unicode "smart" double quotes with straight ASCII double quotes
+  // 3. Replace Unicode "smart" double quotes with escaped ASCII double quotes.
+  //    These appear INSIDE JSON string values (e.g. quoting passage text in SAT options:
+  //    "A": ""the expansion..."" where inner "" are U+201C/U+201D smart quotes).
+  //    Replacing with \" (escaped quote) produces valid JSON: "A": "\"the expansion...\""
   //    U+201C  "  (left double quotation mark)
   //    U+201D  "  (right double quotation mark)
   //    U+201E  „  (double low-9 quotation mark — German style)
   //    U+00AB  «  and  U+00BB  »  (guillemets)
-  s = s.replace(/[\u201C\u201D\u201E\u00AB\u00BB]/g, '"');
+  s = s.replace(/[\u201C\u201D\u201E\u00AB\u00BB]/g, '\\"');
 
   // 4. Replace Unicode smart single quotes / apostrophes with straight ASCII
   //    U+2018  '  (left single quotation mark)
