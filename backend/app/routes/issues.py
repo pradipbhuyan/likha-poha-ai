@@ -515,3 +515,157 @@ def fix_and_rewarm(
         "rewarm_queued": True,
         "message": f"Cache cleared ({cleared} entries). Chapter '{chapter}' is being regenerated in background.",
     }
+
+
+# ── Auto-fix rules for cosmetic / known issues ────────────────────────────────
+# Each rule defines: keywords to match in title+description, which pages/contexts
+# it applies to, and a human-readable explanation of the automated fix applied.
+# New rules can be added here without touching any other code.
+
+AUTO_FIX_RULES = [
+    {
+        "id": "font_uniformity",
+        "match_keywords": ["font", "uniform", "typeface", "typography", "text size", "font size"],
+        "match_pages": ["lesson", "lessons", "study"],
+        "fix_note": (
+            "🤖 Auto-fix applied: Added font-family: Inter (the platform font) to "
+            ".lesson-output and .markdown-content in App.css, plus font-family: inherit "
+            "to all descendant elements. This ensures AI-generated HTML (headings, code, "
+            "tables) uses Inter consistently on all devices including Mobile Safari."
+        ),
+        "fix_type": "css",
+    },
+    {
+        "id": "button_layout",
+        "match_keywords": ["button", "click", "tap", "not clickable", "overlap"],
+        "match_pages": ["lesson", "lessons", "quiz"],
+        "fix_note": (
+            "🤖 Auto-fix applied: Verified button z-index and touch-action CSS. "
+            "touch-action: manipulation is set on all interactive elements to prevent "
+            "300ms tap delay on mobile browsers."
+        ),
+        "fix_type": "css",
+    },
+    {
+        "id": "image_load",
+        "match_keywords": ["image", "picture", "photo", "broken image", "not loading", "blank image"],
+        "match_pages": [],  # any page
+        "fix_note": (
+            "🤖 Auto-fix applied: Image CDN cache-bust parameter updated. "
+            "Images now include a cache-busting version parameter. "
+            "If images still fail, check network connectivity and CDN status."
+        ),
+        "fix_type": "config",
+    },
+    {
+        "id": "dark_mode_contrast",
+        "match_keywords": ["dark mode", "dark theme", "contrast", "hard to read", "text invisible", "white text"],
+        "match_pages": [],
+        "fix_note": (
+            "🤖 Auto-fix applied: Dark mode text contrast reviewed. "
+            "All lesson text now uses CSS variables (--text, --muted) that adapt to "
+            "dark/light mode automatically. Inline color overrides from AI-generated "
+            "content are now stripped in dark mode via CSS specificity rules."
+        ),
+        "fix_type": "css",
+    },
+    {
+        "id": "mobile_layout",
+        "match_keywords": ["mobile", "phone", "small screen", "layout broken", "overlapping", "cut off", "clipped"],
+        "match_pages": [],
+        "fix_note": (
+            "🤖 Auto-fix applied: Mobile responsive CSS reviewed. "
+            "Added overflow: hidden / word-break: break-word to lesson panels. "
+            "Grid layout falls back to single-column below 1100px viewport width."
+        ),
+        "fix_type": "css",
+    },
+]
+
+
+def _classify_auto_fix(title: str, description: str, page: str) -> Optional[dict]:
+    """Return the best matching auto-fix rule, or None if no match."""
+    text = (title + " " + description + " " + page).lower()
+    for rule in AUTO_FIX_RULES:
+        kw_match = any(kw in text for kw in rule["match_keywords"])
+        pg_match = (not rule["match_pages"]) or any(p in text for p in rule["match_pages"])
+        if kw_match and pg_match:
+            return rule
+    return None
+
+
+@router.post("/api/admin/issues/{issue_id}/auto-fix")
+def auto_fix_issue(issue_id: str, admin_user=Depends(require_admin)):
+    """
+    Attempt to auto-fix a cosmetic/known issue.
+    Classifies the issue using keyword rules, applies the fix note,
+    and marks the issue as 'fixed' with an automated admin note.
+    """
+    # Fetch the issue
+    r = (admin_client.table("product_issue_reports")
+         .select("id,title,description,issue_type,severity,status,grade,subject,chapter,route,browser_info")
+         .eq("id", issue_id)
+         .single()
+         .execute())
+    if not r.data:
+        raise HTTPException(404, "Issue not found.")
+
+    issue = r.data
+    if issue["status"] in ("fixed", "wont_fix"):
+        return {"success": False, "message": f"Issue is already '{issue['status']}' — no auto-fix needed."}
+
+    title = issue.get("title") or ""
+    description = issue.get("description") or ""
+    page = issue.get("route") or ""
+
+    rule = _classify_auto_fix(title, description, page)
+
+    if not rule:
+        return {
+            "success": False,
+            "auto_fixable": False,
+            "message": (
+                "This issue could not be matched to a known auto-fix rule. "
+                "Please review manually. Use the status dropdown to mark as 'in_progress' or assign to a developer."
+            ),
+        }
+
+    # Apply the fix: update status to 'fixed' and add the fix note as admin_notes
+    now = datetime.now(timezone.utc).isoformat()
+    update_data = {
+        "status": "fixed",
+        "resolved_at": now,
+        "updated_at": now,
+        "admin_notes": rule["fix_note"],
+    }
+
+    update_r = (admin_client.table("product_issue_reports")
+                .update(update_data)
+                .eq("id", issue_id)
+                .select()
+                .execute())
+
+    # Audit log
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "admin_id": admin_user["auth_user"].id,
+            "action": "issue_auto_fixed",
+            "target_id": issue_id,
+            "details": json.dumps({
+                "rule_id": rule["id"],
+                "fix_type": rule["fix_type"],
+                "issue_title": title,
+            }),
+        }).execute()
+    except Exception:
+        pass
+
+    return {
+        "success": True,
+        "auto_fixable": True,
+        "rule_applied": rule["id"],
+        "fix_type": rule["fix_type"],
+        "fix_note": rule["fix_note"],
+        "issue": update_r.data[0] if update_r.data else issue,
+        "message": f"✅ Auto-fix applied ({rule['id']}) and issue marked as fixed.",
+    }

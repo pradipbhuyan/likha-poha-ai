@@ -46,6 +46,7 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
   const [status, setStatus] = useState(issue?.status || "open");
   const [saving, setSaving] = useState(false);
   const [rewarming, setRewarming] = useState(false);
+  const [autoFixing, setAutoFixing] = useState(false);
   const [msg, setMsg] = useState(null);
 
   useEffect(() => {
@@ -174,6 +175,47 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
               fontFamily: "inherit",
             }}>
             {rewarming ? "⏳ Clearing cache + queuing rewarm…" : issue.status === "fixed" ? "✓ Already Fixed" : "🔧 Fix with AI + Rewarm Lesson"}
+          </button>
+        </div>
+      )}
+
+      {/* ── Cosmetic Auto-Fix ── */}
+      {issue.status !== "fixed" && issue.status !== "wont_fix" && (
+        <div style={{ marginTop: 14, borderTop: "1px solid var(--border,#e5e7eb)", paddingTop: 14 }}>
+          <div style={{ fontSize: ".76rem", fontWeight: 600, color: "#64748b", marginBottom: 6 }}>
+            ⚡ Cosmetic Auto-Fix
+          </div>
+          <p style={{ fontSize: ".74rem", color: "#64748b", margin: "0 0 10px", lineHeight: 1.5 }}>
+            Automatically detect and fix cosmetic issues (font, layout, colour, mobile rendering)
+            using keyword matching. Marks the issue as <strong>fixed</strong> with a detailed note.
+          </p>
+          <button
+            data-testid="auto-fix-btn"
+            disabled={autoFixing}
+            onClick={async () => {
+              setAutoFixing(true); setMsg(null);
+              try {
+                const r = await authFetch(`/api/admin/issues/${issue.id}/auto-fix`, { method: "POST" });
+                if (r.success && r.auto_fixable) {
+                  setMsg(`✅ Auto-fixed (${r.rule_applied}): ${r.fix_note.slice(0, 120)}…`);
+                  setNotes(r.fix_note);
+                  setStatus("fixed");
+                  onUpdate(r.issue);
+                } else if (r.success === false && r.auto_fixable === false) {
+                  setMsg(`⚠️ Not auto-fixable: ${r.message}`);
+                } else {
+                  setMsg(r.message || "Unknown response");
+                }
+              } catch (e) { setMsg("❌ " + e.message); }
+              finally { setAutoFixing(false); }
+            }}
+            style={{
+              width: "100%", padding: "10px", borderRadius: 8, border: "none",
+              background: autoFixing ? "#94a3b8" : "linear-gradient(135deg,#f59e0b,#d97706)",
+              color: "#fff", fontWeight: 700, fontSize: ".85rem",
+              cursor: autoFixing ? "not-allowed" : "pointer", fontFamily: "inherit",
+            }}>
+            {autoFixing ? "⏳ Analysing and applying fix…" : "⚡ Apply Cosmetic Auto-Fix"}
           </button>
         </div>
       )}

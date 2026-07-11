@@ -295,10 +295,28 @@ textarea:focus {
 
 .lesson-output {
   line-height: 1.7;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Force uniform Inter font on ALL lesson content descendants.
+   AI-generated HTML may include <code>, <pre>, <table>, <blockquote>
+   which fall back to browser-default monospace/serif on Mobile Safari. */
+.lesson-output *,
+.lesson-output *::before,
+.lesson-output *::after {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Code blocks keep monospace but stay within Inter family stack */
+.lesson-output code,
+.lesson-output pre,
+.lesson-output kbd {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .markdown-content {
   color: #1f2937;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .markdown-content h1,
