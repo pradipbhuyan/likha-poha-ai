@@ -1538,28 +1538,43 @@ function PasteImportSection({ user, onImportSuccess }) {
     setShowReport(false);
 
     // Sanitize and parse JSON — auto-fix common ChatGPT formatting issues
-    let questions;
     let sanitized = sanitizeJsonFromChatGPT(jsonText);
-    try {
-      const parsed = JSON.parse(sanitized);
-      questions = Array.isArray(parsed) ? parsed : [parsed];
-    } catch (firstErr) {
-      // Second attempt: try the raw trimmed text in case sanitizer over-stripped
-      try {
-        const parsed = JSON.parse(jsonText.trim());
-        questions = Array.isArray(parsed) ? parsed : [parsed];
-      } catch {
-        setError(
-          `❌ Invalid JSON — could not auto-fix. Common causes:\n` +
-          `• Smart/curly quotes inside values (auto-fixed normally)\n` +
-          `• Trailing comma after last item in array or object\n` +
-          `• Missing comma between items\n` +
-          `• Unescaped newline inside a string value\n\n` +
-          `Error detail: ${firstErr.message}`
-        );
-        return;
-      }
+
+    // Attempt 1: sanitized version
+    let parsed1 = null;
+    let parseErr = null;
+    try { parsed1 = JSON.parse(sanitized); } catch (e) { parseErr = e; }
+
+    if (!parsed1) {
+      // Attempt 2: raw text (in case sanitizer over-stripped)
+      try { parsed1 = JSON.parse(jsonText.trim()); parseErr = null; } catch { /* keep first error */ }
     }
+
+    if (!parsed1) {
+      // Attempt 3: escape ASCII double quotes that appear mid-string
+      // (e.g. detailed_explanation: "The statement "library..." directly supports")
+      // Heuristic: a " surrounded by word chars / common punctuation on both sides
+      // is almost certainly a content quote that should be escaped.
+      const deepFixed = sanitized.replace(
+        /([a-zA-Z0-9 ,.'!?;:()\-])(")([ a-zA-Z0-9])/g,
+        '$1\\"$3'
+      );
+      try { parsed1 = JSON.parse(deepFixed); parseErr = null; } catch { /* keep original error */ }
+    }
+
+    if (!parsed1) {
+      setError(
+        `❌ Invalid JSON — could not auto-fix. Common causes:\n` +
+        `• Smart/curly quotes inside values (auto-fixed normally)\n` +
+        `• Trailing comma after last item in array or object\n` +
+        `• Missing comma between items\n` +
+        `• Unescaped newline inside a string value\n\n` +
+        `Error detail: ${parseErr?.message || "unknown"}`
+      );
+      return;
+    }
+
+    const questions = Array.isArray(parsed1) ? parsed1 : [parsed1];
 
     if (questions.length === 0) {
       setError("❌ No questions found in the JSON.");
