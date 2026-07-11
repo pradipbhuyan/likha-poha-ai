@@ -1481,11 +1481,25 @@ function sanitizeJsonFromChatGPT(raw) {
   s = s.replace(/\u200D/g, ""); // zero-width joiner (ZWJ)
   s = s.replace(/\uFEFF/g, ""); // BOM / zero-width no-break space
 
-  // 7. Remove trailing commas before } or ] (common ChatGPT error)
+  // 7. Fix unescaped literal newlines / carriage returns / tabs inside JSON string values.
+  //    ChatGPT sometimes writes multi-line strings with actual newlines instead of \n.
+  //    Strategy: find each "..." string token and escape any bare control characters inside it.
+  //    The regex matches a JSON string: opening " then any mix of escaped chars or non-quote chars.
+  s = s.replace(/"(?:[^"\\]|\\.)*"/g, (match) => {
+    // Inside a matched string token, replace bare control characters with their JSON escapes.
+    // We skip already-escaped sequences (the regex already consumed them as \\X).
+    return match
+      .replace(/\r\n/g, "\\n")  // CRLF → \n
+      .replace(/\r/g,   "\\r")  // bare CR → \r
+      .replace(/\n/g,   "\\n")  // bare LF → \n
+      .replace(/\t/g,   "\\t"); // bare TAB → \t (sometimes causes issues)
+  });
+
+  // 8. Remove trailing commas before } or ] (common ChatGPT error)
   //    Handles: { "key": "val", }  and  [1, 2, 3,]
   s = s.replace(/,\s*([}\]])/g, "$1");
 
-  // 8. Extract JSON array/object if surrounded by extra text
+  // 9. Extract JSON array/object if surrounded by extra text
   //    Find first [ or { and last ] or }
   const firstBracket = s.search(/[{[]/);
   const lastBracket = Math.max(s.lastIndexOf("}"), s.lastIndexOf("]"));
