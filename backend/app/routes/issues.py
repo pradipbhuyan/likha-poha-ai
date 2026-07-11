@@ -114,12 +114,31 @@ class IssueUpdateIn(BaseModel):
 
 
 def _sanitize_browser_info(bi: Optional[dict]) -> Optional[dict]:
-    """Keep only safe browser info fields."""
+    """Store rich diagnostics from the enhanced ReportIssueModal.
+    String fields are truncated; structured fields (dicts/lists) kept as-is."""
     if not bi:
         return None
-    safe_keys = {"userAgent", "platform", "language", "screenWidth", "screenHeight",
-                 "timezone", "appVersion"}
-    return {k: str(v)[:200] for k, v in bi.items() if k in safe_keys}
+    STRING_FIELDS = {
+        "userAgent", "platform", "language", "screenWidth", "screenHeight",
+        "viewportWidth", "viewportHeight", "devicePixelRatio", "scrollY", "scrollX",
+        "online", "pageLoadMs", "timezone", "computedFont", "url",
+        "lessonStepIndex", "totalSteps", "screenshotCaptured",
+    }
+    STRUCT_FIELDS = {"elementAtCenter", "recentJsErrors", "recentApiErrors"}
+    # screenshotDataUrl is stored separately — keep as string, no truncation limit here
+    # (column is jsonb so size is fine up to PG limit)
+    result: dict = {}
+    for k, v in bi.items():
+        if k == "screenshotDataUrl":
+            result[k] = v  # base64 JPEG — stored in full
+        elif k in STRING_FIELDS:
+            result[k] = str(v)[:300] if v is not None else None
+        elif k in STRUCT_FIELDS:
+            result[k] = v  # dict or list — stored as-is
+        elif k == "stepTextContent":
+            result[k] = str(v)[:600] if v is not None else None
+        # ignore unknown keys
+    return result
 
 
 # ── Student: Submit Issue ──────────────────────────────────────────────────────
@@ -152,8 +171,14 @@ def report_issue(body: IssueReportIn, user=Depends(get_current_user)):
     if not r.data:
         raise HTTPException(500, "Failed to save issue report.")
 
-    return {"success": True, "id": r.data[0]["id"],
-            "message": "Thank you for reporting this issue. Our team will review it."}
+    inserted = r.data[0]
+    defect_number = inserted.get("defect_number", "")
+    return {
+        "success": True,
+        "id": inserted["id"],
+        "defect_number": defect_number,
+        "message": f"Issue reported ({defect_number}). Our team will review it.",
+    }
 
 
 # ── Student: My Reports ────────────────────────────────────────────────────────
@@ -161,7 +186,7 @@ def report_issue(body: IssueReportIn, user=Depends(get_current_user)):
 @router.get("/api/issues/my-reports")
 def get_my_reports(user=Depends(get_current_user)):
     r = (admin_client.table("product_issue_reports")
-         .select("id,issue_type,severity,title,status,created_at,grade,subject,chapter")
+         .select("id,defect_number,issue_type,severity,title,status,created_at,grade,subject,chapter")
          .eq("reporter_user_id", user.id)
          .order("created_at", desc=True)
          .limit(50)
@@ -183,6 +208,7 @@ def list_issues(
     offset: int = Query(0),
     _admin=Depends(require_admin),
 ):
+    # Include defect_number in list queries so admin table can show it
     q = (admin_client.table("product_issue_reports")
          .select("*")
          .order("created_at", desc=True))

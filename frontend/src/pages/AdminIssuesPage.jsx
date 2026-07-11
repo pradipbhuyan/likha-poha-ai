@@ -80,6 +80,28 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
         <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.2rem", color: "#94a3b8" }}>✕</button>
       </div>
 
+      {/* Defect number — shown prominently for traceability */}
+      {issue.defect_number && (
+        <div style={{ background: "rgba(99,102,241,.08)", borderRadius: 8, padding: "6px 12px",
+          marginBottom: 10, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontWeight: 900, fontSize: "1rem", color: "#6366f1",
+            letterSpacing: ".04em", fontFamily: "monospace" }}>
+            {issue.defect_number}
+          </span>
+          <button
+            data-testid="copy-defect-number-btn"
+            onClick={() => {
+              navigator.clipboard?.writeText(issue.defect_number);
+              setMsg("Defect number copied");
+              setTimeout(() => setMsg(null), 2000);
+            }}
+            style={{ background: "none", border: "none", cursor: "pointer",
+              fontSize: ".72rem", color: "#6366f1", fontWeight: 700, fontFamily: "inherit" }}>
+            Copy
+          </button>
+        </div>
+      )}
+
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
         <Badge label={issue.severity} color={SEV_COLOR[issue.severity] || "#94a3b8"} />
         <Badge label={issue.status?.replace("_"," ")} color={STATUS_COLOR[issue.status] || "#94a3b8"} />
@@ -235,6 +257,45 @@ function IssueDrawer({ issue, onClose, onUpdate }) {
             }}>
             {autoFixing ? "⏳ Analysing and applying fix…" : "⚡ Apply Cosmetic Auto-Fix"}
           </button>
+        </div>
+      )}
+
+      {/* Copy Fix Commit Message — for Git traceability */}
+      {issue.defect_number && (
+        <div style={{ marginTop: 14, borderTop: "1px solid var(--border,#e5e7eb)", paddingTop: 14 }}>
+          <div style={{ fontSize: ".76rem", fontWeight: 600, color: "#64748b", marginBottom: 6 }}>
+            🔗 Traceable Fix Commit
+          </div>
+          <p style={{ fontSize: ".72rem", color: "#64748b", margin: "0 0 8px", lineHeight: 1.5 }}>
+            Use this commit message format so every fix in Git is linked to this defect number.
+          </p>
+          {(() => {
+            const descSnippet = (issue.title || issue.description || "").slice(0, 60).trim();
+            const fixType = issue.status === "fixed" ? "fix" : "wip";
+            const commitMsg = `${fixType}(${issue.defect_number}): ${descSnippet}`;
+            return (
+              <div>
+                <div style={{ background: "var(--surface2,#f0f0ff)", borderRadius: 7, padding: "8px 10px",
+                  fontFamily: "monospace", fontSize: ".76rem", color: "#1e293b", marginBottom: 6,
+                  border: "1px solid rgba(99,102,241,.2)", wordBreak: "break-all" }}>
+                  {commitMsg}
+                </div>
+                <button
+                  data-testid="copy-commit-msg-btn"
+                  onClick={() => {
+                    navigator.clipboard?.writeText(commitMsg);
+                    setMsg("Commit message copied — paste it in your next git commit");
+                    setTimeout(() => setMsg(null), 3000);
+                  }}
+                  style={{ width: "100%", padding: "8px", borderRadius: 7,
+                    border: "1px solid rgba(99,102,241,.4)", background: "transparent",
+                    color: "#6366f1", fontWeight: 700, fontSize: ".78rem",
+                    cursor: "pointer", fontFamily: "inherit" }}>
+                  Copy Commit Message
+                </button>
+              </div>
+            );
+          })()}
         </div>
       )}
 
@@ -414,25 +475,26 @@ export default function AdminIssuesPage({ user: _user }) {
           <div style={{ display: "grid", gridTemplateColumns: "80px 90px 140px 1fr 100px 90px",
             background: "var(--surface2,#f8fafc)", padding: "8px 14px",
             fontSize: ".72rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: ".04em" }}>
-            <span>Severity</span><span>Status</span><span>Type</span>
-            <span>Description</span><span>Context</span><span>Date</span>
+              <span>ID</span><span>Severity</span><span>Status</span><span>Type</span>
+            <span>Description</span><span>Date</span>
           </div>
           {issues.map(issue => (
             <div key={issue.id} data-testid="issue-row"
               onClick={() => setSelectedIssue(issue)}
-              style={{ display: "grid", gridTemplateColumns: "80px 90px 140px 1fr 100px 90px",
+              style={{ display: "grid", gridTemplateColumns: "110px 80px 90px 140px 1fr 90px",
                 padding: "10px 14px", borderTop: "1px solid var(--border,#f1f5f9)",
                 cursor: "pointer", alignItems: "center",
                 background: selectedIssue?.id === issue.id ? "var(--surface2,#f0f0ff)" : "var(--panel,#fff)",
               }}>
+              <span style={{ fontFamily: "monospace", fontSize: ".72rem", fontWeight: 700,
+                color: "#6366f1", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {issue.defect_number || "—"}
+              </span>
               <span><Badge label={issue.severity} color={SEV_COLOR[issue.severity] || "#94a3b8"} /></span>
               <span><Badge label={issue.status?.replace("_"," ")} color={STATUS_COLOR[issue.status] || "#94a3b8"} /></span>
               <span style={{ fontSize: ".78rem" }}>{ISSUE_TYPE_LABELS[issue.issue_type] || issue.issue_type}</span>
               <span style={{ fontSize: ".78rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {issue.title || issue.description?.slice(0, 80)}
-              </span>
-              <span style={{ fontSize: ".72rem", color: "#64748b" }}>
-                {[issue.grade, issue.subject].filter(Boolean).join(" · ") || "—"}
               </span>
               <span style={{ fontSize: ".72rem", color: "#94a3b8" }}>
                 {issue.created_at ? new Date(issue.created_at).toLocaleDateString() : "—"}
