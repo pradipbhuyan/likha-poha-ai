@@ -1104,9 +1104,12 @@ function ClearChapterCacheSection({ user }) {
 // ── Exam Prep Question Bank Section ───────────────────────────────────────────
 
 const EXAM_OPTIONS = [
-  { value: "jee_main", label: "JEE Main", icon: "📐", color: "#6366f1" },
-  { value: "neet_ug",  label: "NEET UG",  icon: "🔬", color: "#10b981" },
-  { value: "cuet_ug",  label: "CUET UG",  icon: "🏛️", color: "#f59e0b" },
+  { value: "jee_main",  label: "JEE Main",   icon: "📐", color: "#6366f1" },
+  { value: "neet_ug",   label: "NEET UG",    icon: "🔬", color: "#10b981" },
+  { value: "cuet_ug",   label: "CUET UG",    icon: "🏛️", color: "#f59e0b" },
+  { value: "sat",       label: "SAT",        icon: "🎓", color: "#3b82f6" },
+  { value: "ielts",     label: "IELTS",      icon: "🌐", color: "#8b5cf6" },
+  { value: "toefl_ibt", label: "TOEFL iBT",  icon: "📡", color: "#06b6d4" },
 ];
 
 const EXAM_SUBJECTS = {
@@ -1121,6 +1124,9 @@ const EXAM_SUBJECTS = {
     "History", "Geography", "Political Science", "Economics",
     "Accountancy", "Business Studies", "Sociology", "Psychology", "Legal Studies",
   ],
+  sat:       ["Reading & Writing", "Mathematics"],
+  ielts:     ["Listening", "Reading", "Vocabulary & Grammar"],
+  toefl_ibt: ["Reading", "Listening", "Integrated Skills"],
 };
 
 const EXAM_GRADE_OPTIONS = ["Grade 11", "Grade 12", "Both"];
@@ -1214,9 +1220,9 @@ function ExamPrepQBSection({ user }) {
     <section className="premium-section">
       <div className="premium-header">
         <p className="eyebrow">Grade 11 & 12 — Competitive Exams</p>
-        <h3>🎯 Exam Prep Question Bank (JEE / NEET / CUET)</h3>
+        <h3>🎯 Exam Prep Question Bank (JEE / NEET / CUET / SAT / IELTS / TOEFL)</h3>
         <p>
-          Generate AI-powered MCQ questions for JEE Main, NEET UG, and CUET UG.
+          Generate AI-powered MCQ questions for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT.
           Questions are saved as <em>draft</em> by default — review and publish them
           from the Exam Prep Center page.
         </p>
@@ -1644,9 +1650,12 @@ function PasteImportSection({ user, onImportSuccess }) {
 // ── Question Review & Publish Panel ───────────────────────────────────────────
 
 const REVIEW_EXAM_OPTIONS = [
-  { value: "jee_main", label: "JEE Main", color: "#6366f1" },
-  { value: "neet_ug",  label: "NEET UG",  color: "#10b981" },
-  { value: "cuet_ug",  label: "CUET UG",  color: "#f59e0b" },
+  { value: "jee_main",  label: "JEE Main",   color: "#6366f1" },
+  { value: "neet_ug",   label: "NEET UG",    color: "#10b981" },
+  { value: "cuet_ug",   label: "CUET UG",    color: "#f59e0b" },
+  { value: "sat",       label: "SAT",        color: "#3b82f6" },
+  { value: "ielts",     label: "IELTS",      color: "#8b5cf6" },
+  { value: "toefl_ibt", label: "TOEFL iBT",  color: "#06b6d4" },
 ];
 const REVIEW_STATUS_OPTIONS = ["draft", "published", "archived"];
 
