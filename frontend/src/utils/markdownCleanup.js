@@ -332,6 +332,36 @@ function normalizeBulletPoints(text) {
 }
 
 /**
+ * Strip nested $...$ inline-math delimiters that appear INSIDE a $$...$$ display
+ * math block.  The LLM sometimes writes things like:
+ *
+ *   $$\frac{7.50$\times 10^{4}$\;\text{m}}{4500}$$
+ *
+ * Inside a display-math block, $ is not a valid delimiter — it breaks KaTeX
+ * tokenisation.  Stripping the inner $ signs (keeping the content) fixes it:
+ *
+ *   $$\frac{7.50\times 10^{4}\;\text{m}}{4500}$$
+ *
+ * Only acts on CLOSED $$...$$  blocks.  Unclosed ones are left to
+ * normalizeInlineDisplayMath.
+ */
+function normalizeNestedDollarSignsInDisplay(text) {
+  if (!text || !text.includes("$$")) return text;
+  const PLACEHOLDER = "\u2060\u2060"; // word-joiners — won't appear in LaTeX content
+  return transformOutsideCodeFences(text, (content) =>
+    // Match $$...$$  (non-greedy, any character including newlines)
+    content.replace(/\$\$([\s\S]*?)\$\$/g, (_m, inner) => {
+      // Inside display math: strip any $ that is NOT part of a $$ pair
+      const cleaned = inner
+        .replace(/\$\$/g, PLACEHOLDER)     // temporarily hide $$ pairs
+        .replace(/\$/g, "")               // strip lone $
+        .replace(new RegExp(PLACEHOLDER.replace(/./g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4,"0")}`), "g"), "$$"); // restore $$
+      return `$$${cleaned}$$`;
+    })
+  );
+}
+
+/**
  * Fix $$ used INLINE (mid-sentence) by downgrading to $ $ inline math.
  *
  * Proper display math: $$ on its own line as a block.
@@ -391,23 +421,26 @@ export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
    * Order matters:
-   *  0. normalizeInlineDisplayMath    — $$ used inline → $ $; trailing $$ stripped
-   *  1. normalizeOrphanedDollarSigns  — odd $ count on a line → strip trailing orphan
-   *  2. normalizeBulletPoints         — • Point → - Point (LKB answers)
-   *  3. normalizeMermaidBlocks        — wrap loose graph TD blocks
-   *  4. normalizeLatexParentheses     — (\frac{}{}) → $...$
-   *  5. normalizePlainAlgebra         — (a+b)^2 → $...$
-   *  6. normalizeSquareBracketMath    — [ \LaTeX ] and \[...\] → $$...$$
-   *  7. normalizePlainExponents       — 10^7 → $10^{7}$ (outside existing math)
-   *  8. normalizeDollarMath           — fix $10...$ currency-lookalike spacing
-   *  9. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  0. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
+   *  1. normalizeInlineDisplayMath    — $$ used inline → $ $; trailing $$ stripped
+   *  2. normalizeOrphanedDollarSigns  — odd $ count on a line → strip trailing orphan
+   *  3. normalizeBulletPoints         — • Point → - Point (LKB answers)
+   *  4. normalizeMermaidBlocks        — wrap loose graph TD blocks
+   *  5. normalizeLatexParentheses     — (\frac{}{}) → $...$
+   *  6. normalizePlainAlgebra         — (a+b)^2 → $...$
+   *  7. normalizeSquareBracketMath    — [ \LaTeX ] and \[...\] → $$...$$
+   *  8. normalizePlainExponents       — 10^7 → $10^{7}$ (outside existing math)
+   *  9. normalizeDollarMath           — fix $10...$ currency-lookalike spacing
+   * 10. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
       normalizePlainExponents(
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
-            normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(text))
+            normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(
+              normalizeNestedDollarSignsInDisplay(text)
+            ))
           ))))
         )
       )
