@@ -11,6 +11,7 @@ import {
   deleteUser,
   getAdminFamilies,
   getAiSettings,
+  getEgressHealth,
   updateChildAccess,
   updateChildLimits,
 } from "../api/adminControl";
@@ -53,6 +54,7 @@ vi.mock("../api/adminControl", () => ({
   getAdminFamilies: vi.fn(),
   createAdminParent: vi.fn(),
   createAdminChild: vi.fn(),
+  createAdminStudent: vi.fn(),
   createAdminTeacher: vi.fn(),
   assignTeacherStudent: vi.fn(),
   deleteTeacherAssignment: vi.fn(),
@@ -61,6 +63,10 @@ vi.mock("../api/adminControl", () => ({
   deleteUser: vi.fn(),
   getAiSettings: vi.fn(),
   updateAiSettings: vi.fn(),
+  listOfferCodes: vi.fn().mockResolvedValue({ offer_codes: [] }),
+  getInfluencerSummary: vi.fn().mockResolvedValue({ influencers: [] }),
+  getOfferCodeEnrollments: vi.fn().mockResolvedValue({ codes: [] }),
+  getEgressHealth: vi.fn().mockResolvedValue(null),
 }));
 
 const adminUser = {
