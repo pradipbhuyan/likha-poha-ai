@@ -11,7 +11,6 @@ import {
   deleteUser,
   getAdminFamilies,
   getAiSettings,
-  getEgressHealth,
   updateChildAccess,
   updateChildLimits,
 } from "../api/adminControl";
