@@ -25,6 +25,9 @@
 --   N+1 path automatically. No downtime or coordination needed.
 -- ============================================================
 
+-- Drop existing function first (PostgreSQL requires this when changing RETURNS TABLE columns)
+DROP FUNCTION IF EXISTS match_rag_chunks(vector, integer, text, text, text);
+
 CREATE OR REPLACE FUNCTION match_rag_chunks(
     query_embedding vector(1536),
     match_count     INT  DEFAULT 5,
