@@ -7,9 +7,12 @@ Student endpoints:
 
 Admin endpoints:
   GET    /api/admin/issues                     — list/filter all issues
+  GET    /api/admin/issues/summary             — dashboard counts
   GET    /api/admin/issues/{id}                — get issue detail
   PATCH  /api/admin/issues/{id}                — update status/notes/assignee
   POST   /api/admin/issues/{id}/fix-and-rewarm — clear cache + regenerate + mark fixed
+  POST   /api/admin/issues/{id}/auto-fix       — keyword-based cosmetic auto-fix
+  POST   /api/admin/issues/bulk-close          — close up to 200 issues at once (fixed|wont_fix)
 ─────────────────────────────────────────────────────────────────────────────
 """
 from __future__ import annotations
@@ -132,7 +135,7 @@ def _sanitize_browser_info(bi: Optional[dict]) -> Optional[dict]:
         if k == "screenshotDataUrl":
             result[k] = v  # base64 JPEG — stored in full
         elif k in STRING_FIELDS:
-            result[k] = str(v)[:300] if v is not None else None
+            result[k] = str(v)[:200] if v is not None else None
         elif k in STRUCT_FIELDS:
             result[k] = v  # dict or list — stored as-is
         elif k == "stepTextContent":
@@ -540,6 +543,85 @@ def fix_and_rewarm(
         "cache_entries_cleared": cleared,
         "rewarm_queued": True,
         "message": f"Cache cleared ({cleared} entries). Chapter '{chapter}' is being regenerated in background.",
+    }
+
+
+# ── Admin: Bulk close issues ──────────────────────────────────────────────────
+
+class BulkCloseIn(BaseModel):
+    issue_ids: list[str]
+    status: str = "fixed"   # "fixed" | "wont_fix"
+
+    @field_validator("status")
+    @classmethod
+    def validate_bulk_status(cls, v):
+        if v not in ("fixed", "wont_fix"):
+            raise ValueError("Bulk close status must be 'fixed' or 'wont_fix'.")
+        return v
+
+    @field_validator("issue_ids")
+    @classmethod
+    def validate_ids(cls, v):
+        if not v:
+            raise ValueError("issue_ids must not be empty.")
+        if len(v) > 200:
+            raise ValueError("Cannot close more than 200 issues at once.")
+        return v
+
+
+@router.post("/api/admin/issues/bulk-close")
+def bulk_close_issues(body: BulkCloseIn, admin_user=Depends(require_admin)):
+    """
+    Close (mark as fixed or wont_fix) multiple issues in one request.
+
+    Accepts up to 200 issue IDs. Each issue gets:
+    - status updated to body.status
+    - resolved_at set to now
+    - updated_at set to now
+
+    Returns the count of updated rows and any IDs that were not found.
+    """
+    now = datetime.now(timezone.utc).isoformat()
+    update_data = {
+        "status": body.status,
+        "resolved_at": now,
+        "updated_at": now,
+    }
+
+    try:
+        r = (
+            admin_client.table("product_issue_reports")
+            .update(update_data)
+            .in_("id", body.issue_ids)
+            .execute()
+        )
+        updated_ids = [row["id"] for row in (r.data or [])]
+        not_found = [uid for uid in body.issue_ids if uid not in updated_ids]
+    except Exception as exc:
+        raise HTTPException(500, f"Bulk close failed: {str(exc)[:200]}")
+
+    # Audit log (single entry summarising the bulk action)
+    try:
+        admin_client.table("platform_audit_logs").insert({
+            "admin_id": admin_user["auth_user"].id,
+            "action": "bulk_close_issues",
+            "target_id": None,
+            "details": json.dumps({
+                "status": body.status,
+                "requested": len(body.issue_ids),
+                "updated": len(updated_ids),
+                "issue_ids": body.issue_ids[:50],   # store first 50 for audit trail
+            }),
+        }).execute()
+    except Exception:
+        pass
+
+    return {
+        "success": True,
+        "status": body.status,
+        "updated": len(updated_ids),
+        "not_found": not_found,
+        "message": f"{len(updated_ids)} issue(s) marked as '{body.status}'.",
     }
 
 
