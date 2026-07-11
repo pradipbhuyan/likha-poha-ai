@@ -28,6 +28,7 @@ import {
   deleteTeacherAssignment,
   updateChildAccess,
   updateChildLimits,
+  getEgressHealth,
   deleteUser,
   getAiSettings,
   updateAiSettings,
@@ -121,6 +122,15 @@ function AdminControlPage({ user }) {
   /** Admin operations page for managing families, access, subscriptions, and AI limits. */
   const [families, setFamilies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [egressHealth, setEgressHealth] = useState(null);
+
+  // Load egress health on mount (non-blocking — shown as a top banner)
+  useEffect(() => {
+    if (!user?.accessToken) return;
+    getEgressHealth(user.accessToken)
+      .then(data => { if (data) setEgressHealth(data); })
+      .catch(() => {});
+  }, [user?.accessToken]);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -1518,8 +1528,48 @@ function AdminControlPage({ user }) {
     URL.revokeObjectURL(url);
   }
 
+  // Egress health banner colours
+  const _egressColours = {
+    green:   { bg: "rgba(34,197,94,.08)",  border: "rgba(34,197,94,.3)",   icon: "🟢", label: "#15803d" },
+    yellow:  { bg: "rgba(245,158,11,.08)", border: "rgba(245,158,11,.3)",  icon: "🟡", label: "#b45309" },
+    red:     { bg: "rgba(239,68,68,.1)",   border: "rgba(239,68,68,.35)",  icon: "🔴", label: "#dc2626" },
+    unknown: { bg: "rgba(107,114,128,.06)", border: "rgba(107,114,128,.2)", icon: "⚪", label: "#6b7280" },
+  };
+
   return (
     <div className="premium-page admin-control-page" data-testid="admin-control-page">
+
+      {/* ── Supabase Egress Health Banner ──────────────────────────────── */}
+      {egressHealth && (
+        <div style={{
+          margin: "8px 12px 0",
+          padding: "10px 14px",
+          background: (_egressColours[egressHealth.status] || _egressColours.unknown).bg,
+          border: `1px solid ${(_egressColours[egressHealth.status] || _egressColours.unknown).border}`,
+          borderRadius: 10,
+          display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
+        }}>
+          <span style={{ fontSize: "1.1rem" }}>
+            {(_egressColours[egressHealth.status] || _egressColours.unknown).icon}
+          </span>
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <span style={{
+              fontSize: ".82rem", fontWeight: 700,
+              color: (_egressColours[egressHealth.status] || _egressColours.unknown).label,
+            }}>
+              Supabase Egress — {egressHealth.estimated_gb} GB / {egressHealth.free_limit_gb} GB free ({egressHealth.pct_of_free_limit}%)
+            </span>
+            <span style={{ fontSize: ".78rem", color: "var(--text-muted, #6b7280)", marginLeft: 8 }}>
+              {egressHealth.message}
+            </span>
+          </div>
+          {egressHealth.status !== "green" && (
+            <span style={{ fontSize: ".72rem", color: "var(--text-muted, #6b7280)", whiteSpace: "nowrap" }}>
+              Top: {(egressHealth.top_features || []).slice(0, 3).map(f => `${f.feature}(${f.calls})`).join(" · ")}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* ── Tab Navigation + Search + Notifications ─────────────────────── */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px 0", flexWrap: "wrap" }}>

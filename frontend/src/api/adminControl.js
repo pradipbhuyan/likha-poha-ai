@@ -586,3 +586,15 @@ export async function adminOfferGateTest(payload, accessToken) {
   }
   return response.json();
 }
+
+export async function getEgressHealth(accessToken) {
+  /** Estimate Supabase DB egress from ai_usage_logs (last 30 days).
+   *  Returns: { status: "green"|"yellow"|"red", estimated_gb, pct_of_free_limit,
+   *             message, top_features, total_calls_30d }
+   */
+  const response = await adminFetch("/api/admin-control/egress-health", {
+    headers: authHeaders(accessToken),
+  });
+  if (!response.ok) return null;
+  return response.json();
+}

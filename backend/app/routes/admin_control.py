@@ -2527,3 +2527,84 @@ def unlink_parent_from_child(child_id: str, admin=Depends(require_admin)):
         "message": f"Parent association removed from student '{child.get('username')}'.",
         "child_id": child_id,
     }
+
+
+# ── Supabase Egress Health Monitor ──────────────────────────────────────────
+# Estimates Supabase DB egress from ai_usage_logs.
+# Each RAG-triggering call generates ~762 KB egress (N+1 query pattern).
+# Non-RAG calls generate ~5 KB.
+# Thresholds (Supabase Free = 5 GB/month):
+#   GREEN:  < 2 GB estimated  → safe
+#   YELLOW: 2–4 GB estimated  → approaching limit
+#   RED:    > 4 GB estimated  → action required
+
+_RAG_FEATURES = {
+    "lkb_build", "doubt_kb_prewarm", "question_bank_build",
+    "lesson", "doubt", "lesson_followup",
+    "prewarm_questions", "answer_evaluation",
+}
+_EGRESS_PER_RAG_CALL_KB = 762  # 1 RPC (42KB) + 60 N+1 rag_documents queries (720KB)
+_EGRESS_PER_SMALL_CALL_KB = 5   # auth, non-RAG responses
+_SUPABASE_FREE_LIMIT_GB = 5.0
+
+
+@router.get("/egress-health")
+def get_egress_health(admin=Depends(require_admin)):
+    """
+    Estimate Supabase DB egress from ai_usage_logs for the last 30 days.
+    Returns a traffic-light status (green/yellow/red) and per-feature breakdown.
+    """
+    from datetime import datetime, timezone, timedelta  # noqa: PLC0415
+
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+    try:
+        resp = admin_client.table("ai_usage_logs") \
+            .select("feature, created_at") \
+            .gte("created_at", cutoff) \
+            .execute()
+        logs = resp.data or []
+    except Exception:
+        return {"status": "unknown", "error": "Could not fetch usage logs"}
+
+    # Count calls per feature
+    feature_counts: dict[str, int] = {}
+    for log in logs:
+        feat = log.get("feature", "unknown")
+        feature_counts[feat] = feature_counts.get(feat, 0) + 1
+
+    # Estimate egress
+    total_kb = 0.0
+    breakdown = []
+    for feat, count in sorted(feature_counts.items(), key=lambda x: -x[1]):
+        kb_per_call = _EGRESS_PER_RAG_CALL_KB if feat in _RAG_FEATURES else _EGRESS_PER_SMALL_CALL_KB
+        feat_kb = count * kb_per_call
+        total_kb += feat_kb
+        breakdown.append({
+            "feature": feat,
+            "calls": count,
+            "estimated_mb": round(feat_kb / 1024, 1),
+        })
+
+    total_gb = round(total_kb / 1024 / 1024, 2)
+    pct = round(total_gb / _SUPABASE_FREE_LIMIT_GB * 100, 1)
+
+    if total_gb < 2.0:
+        status = "green"
+        message = f"Estimated egress {total_gb} GB — well within free tier ({pct}% of 5 GB)"
+    elif total_gb < 4.0:
+        status = "yellow"
+        message = f"Estimated egress {total_gb} GB — approaching limit ({pct}% of 5 GB). Reduce prewarm operations."
+    else:
+        status = "red"
+        message = f"Estimated egress {total_gb} GB — OVER/NEAR limit ({pct}% of 5 GB). Apply N+1 fix urgently."
+
+    return {
+        "status": status,
+        "message": message,
+        "estimated_gb": total_gb,
+        "pct_of_free_limit": pct,
+        "free_limit_gb": _SUPABASE_FREE_LIMIT_GB,
+        "top_features": breakdown[:8],
+        "total_calls_30d": len(logs),
+        "note": "Estimate uses N+1 formula (762KB/RAG call). After applying the N+1 fix, multiply by 0.06 for actual post-fix egress.",
+    }
