@@ -1484,6 +1484,16 @@ function sanitizeJsonFromChatGPT(raw) {
   s = s.replace(/\u200D/g, ""); // zero-width joiner (ZWJ)
   s = s.replace(/\uFEFF/g, ""); // BOM / zero-width no-break space
 
+  // 6b. Fix ASCII double quotes used as inner content quotes inside JSON string values.
+  //     This handles the ChatGPT SAT pattern where passage excerpts are wrapped in
+  //     ASCII double quotes: "A":""the expansion..."" (all quotes are ASCII)
+  //     The JSON parser sees: empty string "" + unexpected text → parse error.
+  //     Fix: convert to "A":"\"the expansion...\"" (escaped inner quotes).
+  //     The regex is deliberately narrow: only matches when content between inner
+  //     quotes contains NO JSON structural characters (no " { } [ ] ,) to avoid
+  //     corrupting legitimate empty strings "" or valid JSON constructs.
+  s = s.replace(/:\s*""([^"{}[\],\r\n]+)""/g, ': "\\"$1\\""');
+
   // 7. Fix unescaped literal newlines / carriage returns / tabs inside JSON string values.
   //    ChatGPT sometimes writes multi-line strings with actual newlines instead of \n.
   //    Strategy: find each "..." string token and escape any bare control characters inside it.
