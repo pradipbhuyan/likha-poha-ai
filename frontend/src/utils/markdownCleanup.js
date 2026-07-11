@@ -341,6 +341,7 @@ function normalizeBulletPoints(text) {
  *   - If a line contains $$ with non-whitespace before it → inline usage
  *   - Closed inline: text $$expr$$ more → text $expr$ more
  *   - Unclosed inline: text $$expr         → text $expr$
+ *   - Trailing $$: text$$  (end-of-line) → text  (strip the dangling $$)
  */
 function normalizeInlineDisplayMath(text) {
   if (!text || !text.includes("$$")) return text;
@@ -348,34 +349,65 @@ function normalizeInlineDisplayMath(text) {
     // Step 1: closed inline $$...$$ on same line with text before the first $$
     .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
-    // Step 2: unclosed inline $$ on same line with text before it
+    // Step 2: unclosed inline $$ on same line with text before it AND content after $$
     .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
-      // Only convert if before has non-whitespace (truly inline, not indented display)
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
-      return _m; // leave block-level $$ alone
-    });
+      return _m;
+    })
+    // Step 3: trailing $$ at end of line with non-whitespace content before
+    //   "at^2$$"  →  "at^2"   (dangling closing $$ with nothing after)
+    //   "x = ...$$ "  →  "x = ..."
+    //   Standalone "$$\n" lines are left alone (block-level display math)
+    .replace(/^(\s*\S[^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
+}
+
+/**
+ * Remove orphaned (unmatched) trailing $ signs on a line that break KaTeX.
+ *
+ * The LLM sometimes emits lines like:
+ *   "$v^2$ = $v0^2$ + 2ax$"   ← 3 dollar signs, last one unmatched
+ *   "x = x0 + v0t + $ 1/2 $at^2$"  ← trailing $ after at^2
+ *
+ * Strategy: count unescaped $ signs per line (outside code fences).
+ * If the count is odd, one $ is unmatched. Remove the last standalone $
+ * that is NOT part of a $$ pair and is followed only by whitespace/end.
+ */
+function normalizeOrphanedDollarSigns(text) {
+  if (!text || !text.includes("$")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    content.split("\n").map((line) => {
+      // Count single $ signs (not part of $$)
+      // Replace $$ with a placeholder so they don't count as two singles
+      const withoutPairs = line.replace(/\$\$/g, "##");
+      const singleCount = (withoutPairs.match(/\$/g) || []).length;
+      if (singleCount % 2 === 0) return line; // even → balanced
+      // Odd count: strip the last trailing $ that's not preceded by another $
+      return line.replace(/(?<!\$)\$\s*$/, "");
+    }).join("\n")
+  );
 }
 
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
    * Order matters:
-   *  0. normalizeInlineDisplayMath  — $$ used inline → $ $ (NEW)
-   *  1. normalizeBulletPoints       — • Point → - Point (LKB answers)
-   *  2. normalizeMermaidBlocks      — wrap loose graph TD blocks
-   *  3. normalizeLatexParentheses   — (\frac{}{}) → $...$
-   *  4. normalizePlainAlgebra       — (a+b)^2 → $...$
-   *  5. normalizeSquareBracketMath  — [ \LaTeX ] and \[...\] → $$...$$
-   *  6. normalizePlainExponents     — 10^7 → $10^{7}$ (outside existing math)
-   *  7. normalizeDollarMath         — fix $10...$ currency-lookalike spacing
-   *  8. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  0. normalizeInlineDisplayMath    — $$ used inline → $ $; trailing $$ stripped
+   *  1. normalizeOrphanedDollarSigns  — odd $ count on a line → strip trailing orphan
+   *  2. normalizeBulletPoints         — • Point → - Point (LKB answers)
+   *  3. normalizeMermaidBlocks        — wrap loose graph TD blocks
+   *  4. normalizeLatexParentheses     — (\frac{}{}) → $...$
+   *  5. normalizePlainAlgebra         — (a+b)^2 → $...$
+   *  6. normalizeSquareBracketMath    — [ \LaTeX ] and \[...\] → $$...$$
+   *  7. normalizePlainExponents       — 10^7 → $10^{7}$ (outside existing math)
+   *  8. normalizeDollarMath           — fix $10...$ currency-lookalike spacing
+   *  9. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
       normalizePlainExponents(
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
-            normalizeInlineDisplayMath(text)
+            normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(text))
           ))))
         )
       )

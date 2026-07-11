@@ -250,6 +250,17 @@ function formatMcqPrompt(prompt) {
     .trim();
 }
 
+// ── Shared ReactMarkdown table renderer — horizontally scrollable on mobile ──
+function LessonMarkdownTable({ children }) {
+  return (
+    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", marginBottom: "1em", maxWidth: "100%" }}>
+      <table style={{ borderCollapse: "collapse", minWidth: "100%", fontSize: "0.92rem" }}>
+        {children}
+      </table>
+    </div>
+  );
+}
+
 // ── Shared ReactMarkdown code renderer (used by both layouts) ─────────────────
 function LessonMarkdownCode({ className, children, node }) {
   const language = className || "";
@@ -377,7 +388,7 @@ function CardFeedSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode }}
+            components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -540,7 +551,7 @@ function WorkbookSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode }}
+            components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -825,7 +836,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm, remarkMath]}
                     rehypePlugins={[rehypeKatex]}
-                    components={{ code: LessonMarkdownCode }}
+                    components={{ code: LessonMarkdownCode, table: LessonMarkdownTable }}
                   >
                     {renderableContent}
                   </ReactMarkdown>

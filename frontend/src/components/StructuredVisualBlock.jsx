@@ -1,4 +1,24 @@
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+
 const VISUAL_TYPES = new Set(["flow", "steps", "cycle", "compare"]);
+
+/** Render a short label that may contain inline LaTeX (e.g. $v = v_0 + at$). */
+function VisualItemText({ children }) {
+  if (!children || (!children.includes("$") && !children.includes("\\"))) {
+    return <>{children}</>;
+  }
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkMath]}
+      rehypePlugins={[rehypeKatex]}
+      components={{ p: ({ children: c }) => <>{c}</> }}
+    >
+      {children}
+    </ReactMarkdown>
+  );
+}
 
 function cleanText(value) {
   /** Normalize visual labels without changing their meaning. */
@@ -94,7 +114,7 @@ function FlowVisual({ visual }) {
     <div className="structured-flow" aria-label={visual.title}>
       {visual.items.map((item, index) => (
         <div key={`${item}-${index}`} className="structured-flow-row">
-          <div className="structured-flow-node">{item}</div>
+          <div className="structured-flow-node"><VisualItemText>{item}</VisualItemText></div>
           {index < visual.items.length - 1 && (
             <div className="structured-flow-arrow" aria-hidden="true">
               ↓
@@ -113,7 +133,7 @@ function StepsVisual({ visual }) {
       {visual.items.map((item, index) => (
         <li key={`${item}-${index}`}>
           <span>{index + 1}</span>
-          <p>{item}</p>
+          <p><VisualItemText>{item}</VisualItemText></p>
         </li>
       ))}
     </ol>
@@ -127,7 +147,7 @@ function CycleVisual({ visual }) {
       {visual.items.map((item, index) => (
         <div key={`${item}-${index}`} className="structured-cycle-node">
           <span>{index + 1}</span>
-          <p>{item}</p>
+          <p><VisualItemText>{item}</VisualItemText></p>
         </div>
       ))}
     </div>
@@ -137,20 +157,20 @@ function CycleVisual({ visual }) {
 function CompareVisual({ visual }) {
   /** Render comparisons as real HTML tables for reliable wrapping. */
   return (
-    <div className="structured-compare-wrap">
+    <div className="structured-compare-wrap" style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
       <table className="structured-compare">
         <thead>
           <tr>
             {visual.columns.map((column) => (
-              <th key={column}>{column}</th>
+              <th key={column}><VisualItemText>{column}</VisualItemText></th>
             ))}
           </tr>
         </thead>
         <tbody>
           {visual.rows.map((row, index) => (
             <tr key={index}>
-              {row.map((cell) => (
-                <td key={cell}>{cell}</td>
+              {row.map((cell, ci) => (
+                <td key={ci}><VisualItemText>{cell}</VisualItemText></td>
               ))}
             </tr>
           ))}
