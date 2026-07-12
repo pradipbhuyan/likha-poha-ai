@@ -7,7 +7,7 @@
  * - Route guard: redirect to (tabs) if already signed in
  */
 import { useEffect, useState } from "react";
-import { Stack, useRouter, useSegments } from "expo-router";
+import { Stack, useRouter, useSegments, useNavigationContainerRef } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { supabase } from "../lib/supabase";
 
@@ -16,6 +16,20 @@ export default function RootLayout() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const segments = useSegments();
+  const navigationRef = useNavigationContainerRef();
+  const [navigationReady, setNavigationReady] = useState(false);
+
+  // Wait for navigation container to be ready before any redirects
+  useEffect(() => {
+    const unsubscribe = navigationRef?.addListener?.("state", () => {});
+    if (navigationRef?.isReady?.()) {
+      setNavigationReady(true);
+    } else {
+      const timer = setTimeout(() => setNavigationReady(true), 200);
+      return () => clearTimeout(timer);
+    }
+    return unsubscribe;
+  }, [navigationRef]);
 
   useEffect(() => {
     // Check existing session on mount
@@ -35,7 +49,7 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    if (loading) return;
+    if (loading || !navigationReady) return;
 
     const inAuthGroup = segments[0] === "auth";
 
@@ -46,7 +60,7 @@ export default function RootLayout() {
       // Has session → send to dashboard
       router.replace("/(tabs)");
     }
-  }, [session, segments, loading]);
+  }, [session, segments, loading, navigationReady]);
 
   return (
     <>
