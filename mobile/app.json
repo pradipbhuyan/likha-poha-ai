@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "in.likhapoha.app",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
@@ -35,12 +35,8 @@
     "scheme": "likhapoha",
     "plugins": [
       "expo-secure-store",
-      "expo-router",
-      "expo-web-browser"
+      "expo-router"
     ],
-    "experiments": {
-      "typedRoutes": true
-    },
     "extra": {
       "router": {},
       "eas": {
