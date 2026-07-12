@@ -6,6 +6,43 @@ This file records key technical decisions made during development, including the
 
 ---
 
+## ⚙️ How to Keep This File Up To Date
+
+When updating this file (and `CODEX_CONTEXT.md`), always review git commits since the last `_Last updated_` date to ensure nothing is missed.
+
+**Step 1 — Find the last update date from the header above.**
+
+**Step 2 — List all commits since that date:**
+```bash
+cd /Users/a0247716/Pradips_Project/cbse-tutor-platform
+git log --oneline --since="2026-07-12" --no-merges
+```
+Replace the date with the `_Last updated_` value at the top of this file.
+
+**Step 3 — For each commit, check what changed:**
+```bash
+git show <commit-hash> --stat          # files changed
+git show <commit-hash> --name-only     # file names only
+```
+
+**Step 4 — For each changed file, ask:**
+- Does this change a business rule, API contract, or permission? → Add to DECISION_LOG
+- Does this add/remove an endpoint, table, or service? → Update CODEX_CONTEXT
+- Does this fix a critical bug with a root cause worth documenting? → Add to DECISION_LOG
+- Is this a minor style/lint fix with no behavioral impact? → Skip
+
+**Step 5 — Update the `_Last updated_` date** at the top of this file and in `CODEX_CONTEXT.md`.
+
+**Step 6 — Commit the doc updates separately** from code changes so doc history is easy to scan:
+```bash
+git add LikhapohaContext-docs/
+git commit -m "docs: update DECISION_LOG and CODEX_CONTEXT through <date>"
+```
+
+> **Why this matters:** Codex reads these docs before every task. Stale docs cause Codex to repeat fixed bugs, use wrong column names, or ignore recent architectural decisions. Docs that lag more than 2 days behind the codebase are effectively incorrect.
+
+---
+
 ## 2026-06-28: Google OAuth Race Condition — Session Recovery Skipped on OAuth Return
 
 **Decision:** Session recovery `useEffect` must NOT run when `?code=` or `#access_token=` is present in the URL.
