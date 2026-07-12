@@ -148,7 +148,7 @@ export default function PlatformChat({ user }) {
       });
     }
     return () => { if (unsubRef.current) { unsubRef.current(); unsubRef.current = null; } };
-  }, [activeRoom, view, user?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeRoom, view, user?.id]); // eslint-disable-line
 
   async function openContact(contact) {
     try {
