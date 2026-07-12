@@ -90,11 +90,13 @@ import AdminPaymentsPage from "./pages/AdminPaymentsPage";
 import AdminOperationsPage from "./pages/AdminOperationsPage";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
+import PlatformChat from "./components/PlatformChat";
 import FirstTimeGuide from "./components/FirstTimeGuide";
 import AdminUnansweredQuestionsPage from "./pages/AdminUnansweredQuestionsPage";
 import AdminLessonRepairPage from "./pages/AdminLessonRepairPage";
 import AdminLessonExperiencePage from "./pages/AdminLessonExperiencePage";
 import AdminAIStudioPage from "./pages/AdminAIStudioPage";
+import AdminChatPage from "./pages/AdminChatPage";
 import ExamPrepPage from "./pages/ExamPrepPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
@@ -147,6 +149,12 @@ const PAGE_META = {
   adminIssues: {
     title: "Product Bugs",
     icon: "🐛",
+    roles: ["admin"],
+  },
+  adminChat: {
+    title: "Platform Chat",
+    subtitle: "Configure chat service, grant per-user access, and moderate conversations.",
+    icon: "💬",
     roles: ["admin"],
   },
   adminQACenter: {
@@ -1684,6 +1692,8 @@ function App() {
         return <AdminLessonExperiencePage user={user} />;
       case "aiStudio":
         return <AdminAIStudioPage user={user} />;
+      case "adminChat":
+        return <AdminChatPage user={user} />;
       case "examPrep":
         return <ExamPrepPage user={user} setActivePage={handlePageChange} />;
       default:
@@ -1819,6 +1829,7 @@ function App() {
       </main>
 
       <ChatWidget />
+      <PlatformChat user={user} />
 
       {/* Global floating Report Issue button — visible to student/parent/teacher */}
       {user && user.canReportIssues === true && (
