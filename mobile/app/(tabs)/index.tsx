@@ -1,18 +1,18 @@
 /**
  * Student Dashboard (Home tab).
- *
- * Calls GET /api/student/dashboard/summary — same endpoint as the web app.
- * Uses hasPaidAccess() from @likhapoha/shared for subscription checks.
+ * Calls GET /api/student/dashboard/summary.
+ * Shows a welcome screen for new students who don't have a profile yet.
  */
 import { useEffect, useState } from "react";
 import {
   View, Text, ScrollView, StyleSheet, RefreshControl,
-  TouchableOpacity, ActivityIndicator,
+  TouchableOpacity, ActivityIndicator, Image,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { authFetch } from "../../lib/authFetch";
 import { signOut } from "../../lib/auth";
 import { BRAND_COLOR } from "../../constants";
+import { supabase } from "../../lib/supabase";
 
 interface DashboardSummary {
   student?: {
@@ -32,14 +32,20 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   async function loadDashboard() {
     try {
       setError("");
+      // Get current user email
+      const { data: { session } } = await supabase.auth.getSession();
+      setUserEmail(session?.user?.email ?? "");
+
       const result = await authFetch("/api/student/dashboard/summary");
       setData(result);
     } catch (err: any) {
-      setError(err.message ?? "Could not load dashboard.");
+      // Don't show scary error for new students — they just don't have a profile yet
+      setError(err.message ?? "");
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -55,101 +61,120 @@ export default function HomeScreen() {
 
   if (loading) {
     return (
-      <View style={styles.center}>
+      <View style={s.center}>
         <ActivityIndicator size="large" color={BRAND_COLOR} />
-        <Text style={styles.loadingText}>Loading your dashboard…</Text>
+        <Text style={s.loadingText}>Loading…</Text>
       </View>
     );
   }
 
-  const student = data?.student;
-  const recentProgress = data?.recent_progress ?? [];
-  const testHistory = data?.test_history ?? [];
+  // New student — no backend profile yet
+  if (error || !data?.student) {
+    return (
+      <ScrollView
+        style={s.container}
+        contentContainerStyle={s.content}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); loadDashboard(); }} tintColor={BRAND_COLOR} />
+        }
+      >
+        {/* Welcome card */}
+        <View style={s.welcomeCard}>
+          <Image source={require("../../assets/icon.png")} style={s.welcomeLogo} resizeMode="contain" />
+          <Text style={s.welcomeTitle}>Welcome to Likha Poha AI! 🎉</Text>
+          <Text style={s.welcomeSub}>
+            Your AI-powered CBSE tutor for Grades 5–12.{"\n"}
+            Start learning right away — no setup needed.
+          </Text>
+        </View>
+
+        {/* Quick action: start a lesson */}
+        <Text style={s.sectionTitle}>⚡ Get Started</Text>
+
+        <TouchableOpacity style={s.bigBtn} onPress={() => router.push("/(tabs)/lessons")}>
+          <Text style={s.bigBtnEmoji}>📚</Text>
+          <View>
+            <Text style={s.bigBtnTitle}>Start a Lesson</Text>
+            <Text style={s.bigBtnSub}>Pick any subject, chapter, and let AI teach you</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[s.bigBtn, { marginTop: 10 }]} onPress={() => router.push("/(tabs)/mocktest")}>
+          <Text style={s.bigBtnEmoji}>✍️</Text>
+          <View>
+            <Text style={s.bigBtnTitle}>Take a Mock Test</Text>
+            <Text style={s.bigBtnSub}>Practice with AI-generated CBSE questions</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={handleSignOut} style={s.signOutRow}>
+          <Text style={s.signOutText}>Sign out ({userEmail})</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
+
+  // Existing student with profile
+  const student = data.student;
+  const recentProgress = data.recent_progress ?? [];
+  const testHistory = data.test_history ?? [];
 
   return (
     <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
+      style={s.container}
+      contentContainerStyle={s.content}
       refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={() => { setRefreshing(true); loadDashboard(); }}
-          tintColor={BRAND_COLOR}
-        />
+        <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); loadDashboard(); }} tintColor={BRAND_COLOR} />
       }
     >
       {/* Header */}
-      <View style={styles.header}>
+      <View style={s.header}>
         <View>
-          <Text style={styles.greeting}>
-            👋 Hello, {student?.display_name ?? "Student"}!
-          </Text>
-          <Text style={styles.gradeText}>
-            {student?.grade ?? ""} · {student?.subscription_plan === "free" ? "Free Plan" : "Premium"}
+          <Text style={s.greeting}>👋 Hello, {student.display_name ?? "Student"}!</Text>
+          <Text style={s.gradeText}>
+            {student.grade ?? ""} · {student.subscription_plan === "free" ? "Free Plan" : "Premium"}
           </Text>
         </View>
-        <TouchableOpacity onPress={handleSignOut} style={styles.signOutBtn}>
-          <Text style={styles.signOutText}>Sign out</Text>
+        <TouchableOpacity onPress={handleSignOut} style={s.signOutBtn}>
+          <Text style={s.signOutText}>Sign out</Text>
         </TouchableOpacity>
       </View>
 
-      {error ? (
-        <View style={styles.errorBox}>
-          <Text style={styles.errorText}>{error}</Text>
-        </View>
-      ) : null}
-
-      {/* Stats row */}
-      <View style={styles.statsRow}>
-        <StatCard emoji="🔥" label="Day streak" value={String(data?.streak_days ?? 0)} />
-        <StatCard emoji="✅" label="Chapters done" value={String(data?.completed_chapters ?? 0)} />
+      {/* Stats */}
+      <View style={s.statsRow}>
+        <StatCard emoji="🔥" label="Day streak" value={String(data.streak_days ?? 0)} />
+        <StatCard emoji="✅" label="Chapters done" value={String(data.completed_chapters ?? 0)} />
         <StatCard emoji="📊" label="Tests taken" value={String(testHistory.length)} />
       </View>
 
-      {/* Recent progress */}
       {recentProgress.length > 0 && (
         <Section title="📚 Continue Learning">
           {recentProgress.slice(0, 3).map((item, i) => (
-            <TouchableOpacity
-              key={i}
-              style={styles.progressCard}
-              onPress={() => router.push("/(tabs)/lessons")}
-            >
-              <Text style={styles.progressSubject}>{item.subject}</Text>
-              <Text style={styles.progressChapter} numberOfLines={1}>{item.chapter}</Text>
-              <View style={styles.progressBarBg}>
-                <View
-                  style={[
-                    styles.progressBarFill,
-                    { width: `${Math.round((item.completed_steps / item.total_steps) * 100)}%` },
-                  ]}
-                />
+            <TouchableOpacity key={i} style={s.progressCard} onPress={() => router.push("/(tabs)/lessons")}>
+              <Text style={s.progressSubject}>{item.subject}</Text>
+              <Text style={s.progressChapter} numberOfLines={1}>{item.chapter}</Text>
+              <View style={s.progressBarBg}>
+                <View style={[s.progressBarFill, { width: `${Math.round((item.completed_steps / item.total_steps) * 100)}%` as any }]} />
               </View>
-              <Text style={styles.progressPct}>
-                {item.completed_steps}/{item.total_steps} steps
-              </Text>
+              <Text style={s.progressPct}>{item.completed_steps}/{item.total_steps} steps</Text>
             </TouchableOpacity>
           ))}
         </Section>
       )}
 
-      {/* Recent test scores */}
       {testHistory.length > 0 && (
         <Section title="🎯 Recent Test Scores">
           {testHistory.slice(0, 3).map((t, i) => (
-            <View key={i} style={styles.scoreRow}>
-              <Text style={styles.scoreSubject}>{t.subject}</Text>
-              <Text style={[styles.scoreValue, t.percentage >= 70 ? styles.scoreGood : styles.scoreWeak]}>
-                {t.percentage}%
-              </Text>
+            <View key={i} style={s.scoreRow}>
+              <Text style={s.scoreSubject}>{t.subject}</Text>
+              <Text style={[s.scoreValue, t.percentage >= 70 ? s.scoreGood : s.scoreWeak]}>{t.percentage}%</Text>
             </View>
           ))}
         </Section>
       )}
 
-      {/* Quick actions */}
       <Section title="⚡ Quick Actions">
-        <View style={styles.actionsRow}>
+        <View style={s.actionsRow}>
           <QuickAction emoji="📖" label="Lessons" onPress={() => router.push("/(tabs)/lessons")} />
           <QuickAction emoji="✍️" label="Mock Test" onPress={() => router.push("/(tabs)/mocktest")} />
         </View>
@@ -160,18 +185,18 @@ export default function HomeScreen() {
 
 function StatCard({ emoji, label, value }: { emoji: string; label: string; value: string }) {
   return (
-    <View style={styles.statCard}>
-      <Text style={styles.statEmoji}>{emoji}</Text>
-      <Text style={styles.statValue}>{value}</Text>
-      <Text style={styles.statLabel}>{label}</Text>
+    <View style={s.statCard}>
+      <Text style={s.statEmoji}>{emoji}</Text>
+      <Text style={s.statValue}>{value}</Text>
+      <Text style={s.statLabel}>{label}</Text>
     </View>
   );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>{title}</Text>
+    <View style={s.section}>
+      <Text style={s.sectionTitle}>{title}</Text>
       {children}
     </View>
   );
@@ -179,25 +204,45 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function QuickAction({ emoji, label, onPress }: { emoji: string; label: string; onPress: () => void }) {
   return (
-    <TouchableOpacity style={styles.quickActionBtn} onPress={onPress}>
-      <Text style={styles.quickActionEmoji}>{emoji}</Text>
-      <Text style={styles.quickActionLabel}>{label}</Text>
+    <TouchableOpacity style={s.quickActionBtn} onPress={onPress}>
+      <Text style={s.quickActionEmoji}>{emoji}</Text>
+      <Text style={s.quickActionLabel}>{label}</Text>
     </TouchableOpacity>
   );
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8fafc" },
   content: { padding: 16, paddingBottom: 40 },
   center: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#f8fafc" },
   loadingText: { marginTop: 12, color: "#6b7280" },
+
+  // Welcome state for new students
+  welcomeCard: {
+    backgroundColor: "#fff", borderRadius: 16, padding: 24,
+    alignItems: "center", marginBottom: 24,
+    borderWidth: 1, borderColor: "#e5e7eb",
+  },
+  welcomeLogo: { width: 72, height: 72, borderRadius: 16, marginBottom: 12 },
+  welcomeTitle: { fontSize: 18, fontWeight: "800", color: "#111827", textAlign: "center", marginBottom: 8 },
+  welcomeSub: { fontSize: 14, color: "#6b7280", textAlign: "center", lineHeight: 22 },
+
+  bigBtn: {
+    flexDirection: "row", alignItems: "center", gap: 14,
+    backgroundColor: "#fff", borderRadius: 14, padding: 18,
+    borderWidth: 1, borderColor: "#e5e7eb",
+  },
+  bigBtnEmoji: { fontSize: 36 },
+  bigBtnTitle: { fontSize: 16, fontWeight: "700", color: "#111827", marginBottom: 2 },
+  bigBtnSub: { fontSize: 13, color: "#6b7280" },
+  signOutRow: { marginTop: 32, alignItems: "center" },
+
+  // Dashboard state
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 },
   greeting: { fontSize: 20, fontWeight: "800", color: "#111827" },
   gradeText: { fontSize: 13, color: "#6b7280", marginTop: 2 },
   signOutBtn: { padding: 6 },
   signOutText: { color: "#ef4444", fontSize: 13, fontWeight: "600" },
-  errorBox: { backgroundColor: "#fef2f2", borderRadius: 10, padding: 12, marginBottom: 16 },
-  errorText: { color: "#dc2626", fontSize: 14 },
   statsRow: { flexDirection: "row", gap: 10, marginBottom: 20 },
   statCard: { flex: 1, backgroundColor: "#fff", borderRadius: 14, padding: 14, alignItems: "center", borderWidth: 1, borderColor: "#e5e7eb" },
   statEmoji: { fontSize: 22, marginBottom: 4 },
