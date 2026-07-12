@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "in.likhapoha.app",
-      "versionCode": 9,
+      "versionCode": 10,
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
@@ -27,14 +27,16 @@
         "INTERNET",
         "VIBRATE"
       ],
-      "predictiveBackGestureEnabled": false,
-      "newArchEnabled": false
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "scheme": "likhapoha",
-    "plugins": [],
+    "plugins": [
+      "expo-secure-store",
+      "expo-router"
+    ],
     "extra": {
       "router": {},
       "eas": {
