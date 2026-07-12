@@ -82,7 +82,8 @@ async function compressImage(file, quality = 0.8) {
 }
 
 /**
- * Upload a file attachment to Supabase Storage via a signed URL.
+ * Upload a file attachment directly via the Supabase JS client.
+ * Requires Storage policies: INSERT + SELECT for authenticated users on chat-attachments.
  * Returns { url, name, size, mime } on success.
  */
 export async function uploadChatFile(roomId, file) {
@@ -93,38 +94,29 @@ export async function uploadChatFile(roomId, file) {
     uploadFile = await compressImage(file, 0.8);
   }
 
-  // Get signed upload URL from backend
-  const res = await authFetch("/api/chat/upload", {
-    method: "POST",
-    body: JSON.stringify({
-      room_id: roomId,
-      file_name: file.name,
-      content_type: uploadFile.type || "application/octet-stream",
-      file_size: uploadFile.size,
-    }),
-  });
+  // Get current user ID for path namespacing
+  const { data: { user }, error: authErr } = await supabase.auth.getUser();
+  if (authErr || !user) throw new Error("Not authenticated");
 
-  if (!res.success || !res.upload_url) {
-    throw new Error(res.detail || "Could not get upload URL");
-  }
+  const safeName = file.name.replace(/[^\w.\-]/g, "_").slice(0, 100);
+  const storagePath = `${roomId}/${user.id}_${Date.now()}_${safeName}`;
 
-  // Upload directly to Supabase Storage
-  const uploadResp = await fetch(res.upload_url, {
-    method: "PUT",
-    headers: { "Content-Type": uploadFile.type || "application/octet-stream" },
-    body: uploadFile,
-  });
+  // Upload directly via Supabase JS (uses user's JWT — bypasses need for signed upload URLs)
+  const { data: uploadData, error: uploadErr } = await supabase.storage
+    .from(BUCKET)
+    .upload(storagePath, uploadFile, {
+      contentType: uploadFile.type || "application/octet-stream",
+      upsert: false,
+    });
 
-  if (!uploadResp.ok) {
-    throw new Error(`Upload failed: ${uploadResp.status}`);
-  }
+  if (uploadErr) throw new Error(uploadErr.message);
 
   // Get a signed download URL (1 hour expiry)
-  const { data: signedData, error } = await supabase.storage
+  const { data: signedData, error: signErr } = await supabase.storage
     .from(BUCKET)
-    .createSignedUrl(res.path, 3600);
+    .createSignedUrl(uploadData.path, 3600);
 
-  if (error) throw new Error(error.message);
+  if (signErr) throw new Error(signErr.message);
 
   return {
     url: signedData.signedUrl,
