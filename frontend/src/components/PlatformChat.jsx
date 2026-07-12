@@ -4,6 +4,7 @@
  * Uses Supabase Realtime for live message delivery
  */
 import { useEffect, useRef, useState } from "react";
+import { MessagesSquare, X } from "lucide-react";
 import {
   getChatSettings, getChatContacts, getChatRooms,
   getOrCreateRoom, getRoomMessages, sendMessage,
@@ -482,9 +483,9 @@ export default function PlatformChat({ user }) {
 
       {/* ── FLOATING BUTTON ── */}
       <button onClick={() => setOpen(v => !v)}
-        style={{ position: "fixed", bottom: 20, right: 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#10b981,#0ea5e9)", color: "#fff", fontSize: 20, cursor: "pointer", boxShadow: "0 4px 20px rgba(16,185,129,.4)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
+        style={{ position: "fixed", bottom: 20, right: 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#0ea5e9,#6366f1)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(99,102,241,.5)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
         title="Messages">
-        {open ? "×" : "👥"}
+        {open ? <X size={22} strokeWidth={2.5} /> : <MessagesSquare size={24} strokeWidth={2} />}
         {!open && totalUnread > 0 && (
           <span style={{ position: "absolute", top: 0, right: 0, background: "#ef4444", color: "#fff", borderRadius: "50%", width: 18, height: 18, fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>{totalUnread}</span>
         )}
