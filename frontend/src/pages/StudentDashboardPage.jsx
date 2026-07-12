@@ -5,6 +5,7 @@
  * Safety: feature auth, score normalization, no premium feature leakage.
  */
 import { useCallback, useEffect, useState } from "react";
+import { Quote } from "lucide-react";
 import { getStudentDashboardSummary, getStudentExams, addStudentExam, deleteStudentExam } from "../api/analytics";
 import { getAnalytics } from "../api/analytics";
 import { getStudentProfile } from "../api/profile";
@@ -526,7 +527,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           <div style={{fontSize:".9rem",fontStyle:"italic",marginBottom:4}}>&ldquo;{qItem.q}&rdquo;</div>
           <div style={{fontSize:".75rem",opacity:.8}}>— {qItem.a}</div>
         </div>
-        <div style={{fontSize:"4rem",opacity:.6}}>📚</div>
+        <Quote size={72} strokeWidth={1.2} style={{opacity:.25,color:"#fff",flexShrink:0}} />
       </div>
 
       {/* Add Exam Modal */}
