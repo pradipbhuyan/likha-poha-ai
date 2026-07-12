@@ -48,9 +48,8 @@ function AttachmentPreview({ msg }) {
     return (
       <div style={{ marginTop: 6 }}>
         <img src={msg.attachment_url} alt={msg.attachment_name || "image"}
-          style={{ maxWidth: 220, maxHeight: 160, borderRadius: 8, objectFit: "cover",
-            cursor: "pointer", display: "block" }}
-          onClick={() => window.open(msg.attachment_url, "_blank")} />
+          onClick={() => window.open(msg.attachment_url, "_blank")}
+          style={{ maxWidth: "min(220px, 100%)", maxHeight: 160, borderRadius: 8, objectFit: "cover", cursor: "pointer", display: "block" }} />
       </div>
     );
   }
@@ -58,7 +57,7 @@ function AttachmentPreview({ msg }) {
     return (
       <div style={{ marginTop: 6 }}>
         <audio controls src={msg.attachment_url}
-          style={{ maxWidth: 220, height: 36 }} />
+          style={{ width: "100%", maxWidth: 220, height: 36, display: "block" }} />
       </div>
     );
   }
@@ -267,7 +266,21 @@ export default function PlatformChat({ user }) {
   // Don't render at all if user has no chat access
   if (!user || !chatSettings?.can_use_chat) return null;
 
-  const panelStyle = {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 520;
+
+  const panelStyle = isMobile ? {
+    // Mobile: full-width bottom sheet
+    position: "fixed", bottom: 0, right: 0, left: 0, zIndex: 9998,
+    width: "100vw", height: "82vh", maxHeight: "82vh",
+    background: "#0f172a", border: "none",
+    borderTop: "1px solid #334155",
+    borderRadius: "18px 18px 0 0",
+    display: "flex", flexDirection: "column",
+    boxShadow: "0 -8px 32px rgba(0,0,0,0.6)",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    overflow: "hidden",
+  } : {
+    // Desktop: floating panel beside the button
     position: "fixed", bottom: 88, right: 84, zIndex: 9998,
     width: 340, maxWidth: "calc(100vw - 104px)",
     height: 520, maxHeight: "calc(100vh - 120px)",
@@ -481,15 +494,17 @@ export default function PlatformChat({ user }) {
         </div>
       )}
 
-      {/* ── FLOATING BUTTON ── */}
-      <button onClick={() => setOpen(v => !v)}
-        style={{ position: "fixed", bottom: 20, right: 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#0ea5e9,#6366f1)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(99,102,241,.5)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
-        title="Messages">
-        {open ? <X size={22} strokeWidth={2.5} /> : <MessagesSquare size={24} strokeWidth={2} />}
-        {!open && totalUnread > 0 && (
-          <span style={{ position: "absolute", top: 0, right: 0, background: "#ef4444", color: "#fff", borderRadius: "50%", width: 18, height: 18, fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>{totalUnread}</span>
-        )}
-      </button>
+      {/* ── FLOATING BUTTON — hidden on mobile when panel is open ── */}
+      {(!open || !isMobile) && (
+        <button onClick={() => setOpen(v => !v)}
+          style={{ position: "fixed", bottom: 20, right: isMobile ? 20 : 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#0ea5e9,#6366f1)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(99,102,241,.5)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
+          title="Messages">
+          {open ? <X size={22} strokeWidth={2.5} /> : <MessagesSquare size={24} strokeWidth={2} />}
+          {!open && totalUnread > 0 && (
+            <span style={{ position: "absolute", top: 0, right: 0, background: "#ef4444", color: "#fff", borderRadius: "50%", width: 18, height: 18, fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>{totalUnread}</span>
+          )}
+        </button>
+      )}
 
       <style>{`
         @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
