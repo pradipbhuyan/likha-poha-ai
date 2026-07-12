@@ -1,8 +1,62 @@
 # Decision Log
 
-_Last updated: 2026-07-12 (evening)_
+_Last updated: 2026-07-12 (late morning — mobile Phase 1+2)_
 
 This file records key technical decisions made during development, including the reasoning and any constraints that must not be violated.
+
+---
+
+## 2026-07-12: Mobile App — Phase 1+2 Implemented
+
+### Phase 1: Monorepo + shared/ package
+
+**Decision:** Adopt a monorepo (npm workspaces) so that shared business logic is written once and used by both the web (`frontend/`) and mobile (`mobile/`) apps. The web `frontend/` directory is never modified during mobile work.
+
+**Structure:**
+```
+cbse-tutor-platform/
+├── frontend/    ← web (untouched during mobile work)
+├── shared/      ← @likhapoha/shared — pure JS, no platform code
+│   ├── api/     ← all 8 API client modules
+│   ├── utils/   ← markdownCleanup, resolveSubscription, subjectAccess, syllabusDefaults
+│   └── config/  ← subscriptionPlans
+└── mobile/      ← React Native / Expo
+```
+
+**Key rule:** `frontend/.npmrc` has `workspaces=false` to prevent npm workspace root hoisting from deduplicating `jsdom` out of `frontend/node_modules`, which would break vitest. Always run `cd frontend && npm install` after any root-level `npm install`.
+
+**Files:** `package.json` (root), `shared/package.json`, `frontend/.npmrc`
+
+---
+
+### Phase 2: Expo App Scaffold (MVP)
+
+**Decision:** React Native with Expo SDK 57 (blank-typescript template), Expo Router for file-based navigation. Android-first; iOS deferred.
+
+**Auth architecture on mobile:**
+- `expo-secure-store` replaces `localStorage` for session persistence
+- `detectSessionInUrl: false` in Supabase client (Expo handles deep links, not browser)
+- Google OAuth via `expo-auth-session` + `WebBrowser.openAuthSessionAsync()`
+- After OAuth, calls `GET /api/auth/me` — same backend state machine as web
+- `app/scheme: "likhapoha"` for OAuth deep link redirect URI
+
+**Screens implemented (MVP):**
+
+| Screen | File | Backend endpoint |
+|---|---|---|
+| Root layout + session guard | `app/_layout.tsx` | — |
+| Login | `app/auth/login.tsx` | `POST /api/auth/signin` |
+| Signup | `app/auth/signup.tsx` | `POST /api/auth/signup` |
+| Student Dashboard | `app/(tabs)/index.tsx` | `GET /api/student/dashboard/summary` |
+| Lessons | `app/(tabs)/lessons.tsx` | `GET /api/syllabus` + `POST /api/lesson/generate` |
+| Mock Test | `app/(tabs)/mocktest.tsx` | `POST /api/mock-test/generate` |
+| Account | `app/(tabs)/account.tsx` | `GET /api/auth/profile` |
+
+**LaTeX:** Phase 1 uses `react-native-markdown-display` (plain markdown, no math). Phase 2 will add `react-native-math-view` per formula block.
+
+**Error mapping:** `lib/authFetch.ts` maps HTTP 401/403/409 to the same user-friendly messages as `frontend/src/api/authClient.js`. 401 = session expired; 403 = role mismatch (never "session expired").
+
+**Files:** `mobile/app.json`, `mobile/eas.json`, `mobile/.env.example`, `mobile/lib/supabase.ts`, `mobile/lib/auth.ts`, `mobile/lib/authFetch.ts`, `mobile/constants/index.ts`
 
 ---
 

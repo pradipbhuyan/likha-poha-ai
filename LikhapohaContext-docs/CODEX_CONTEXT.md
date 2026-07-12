@@ -1,6 +1,6 @@
 # Likhapoha AI — Codex Context
 
-_Last updated: 2026-07-12 (evening)_
+_Last updated: 2026-07-12 (late morning — mobile Phase 1+2)_
 
 ## What is Likhapoha AI
 
@@ -503,3 +503,14 @@ All ReactMarkdown section body renders use `LessonMarkdownTable` as the custom `
 | **Structured visual block** | `frontend/src/components/StructuredVisualBlock.jsx` |
 | **Lesson page (scroll-to-top, step nav)** | `frontend/src/pages/LessonsPage.jsx` |
 | **Lesson + section CSS** | `frontend/src/App.css` |
+| **Mobile app root** | `mobile/` (React Native / Expo SDK 57) |
+| **Mobile Supabase client** | `mobile/lib/supabase.ts` (expo-secure-store adapter) |
+| **Mobile auth helpers** | `mobile/lib/auth.ts` (signInWithEmail, signInWithGoogle, checkAuthState) |
+| **Mobile authFetch** | `mobile/lib/authFetch.ts` (JWT fetch with same 401/403 mapping as web) |
+| **Mobile screens** | `mobile/app/(tabs)/` — index (Dashboard), lessons, mocktest, account |
+| **Mobile auth screens** | `mobile/app/auth/` — login.tsx, signup.tsx |
+| **Shared JS package** | `shared/@likhapoha/shared` — API clients + utils used by both web and mobile |
+| **Shared API clients** | `shared/api/` — auth, lesson, doubt, mockTest, analytics, progress, syllabus, tts |
+| **Shared utils** | `shared/utils/` — markdownCleanup, resolveSubscription, subjectAccess, syllabusDefaults |
+| **Mobile env template** | `mobile/.env.example` |
+| **EAS Build config** | `mobile/eas.json` |
