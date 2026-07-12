@@ -28,6 +28,7 @@ import {
   BrainCircuit,
   Layers,
   Bug,
+  MessageSquare,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -95,6 +96,12 @@ function Sidebar({
       key: "adminIssues",
       label: "Product Bugs",
       icon: Bug,
+      roles: ["admin"],
+    },
+    {
+      key: "adminChat",
+      label: "Platform Chat",
+      icon: MessageSquare,
       roles: ["admin"],
     },
     {
