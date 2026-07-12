@@ -27,7 +27,8 @@
         "INTERNET",
         "VIBRATE"
       ],
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "newArchEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
