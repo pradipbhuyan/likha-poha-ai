@@ -1,10 +1,24 @@
-import { Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Tabs } from "expo-router";
-import type { ColorValue } from "react-native";
 import { BRAND_COLOR } from "../../constants";
 
 function TabIcon({ icon, focused }: { icon: string; focused: boolean }) {
   return <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.45 }}>{icon}</Text>;
+}
+
+function HeaderLogo() {
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+      <Image
+        source={require("../../assets/icon.png")}
+        style={{ width: 28, height: 28, borderRadius: 6 }}
+        resizeMode="contain"
+      />
+      <Text style={{ fontSize: 16, fontWeight: "800", color: BRAND_COLOR }}>
+        Likha Poha AI
+      </Text>
+    </View>
+  );
 }
 
 export default function TabsLayout() {
@@ -13,27 +27,41 @@ export default function TabsLayout() {
       screenOptions={{
         tabBarActiveTintColor: BRAND_COLOR,
         tabBarInactiveTintColor: "#9ca3af",
-        tabBarStyle: { borderTopColor: "#e5e7eb" },
+        tabBarStyle: { borderTopColor: "#e5e7eb", backgroundColor: "#fff" },
         headerStyle: { backgroundColor: "#fff" },
         headerTintColor: "#111827",
         headerTitleStyle: { fontWeight: "700" },
+        headerLeft: () => <View style={{ marginLeft: 16 }}><HeaderLogo /></View>,
+        headerTitle: () => null,
       }}
     >
       <Tabs.Screen
         name="index"
-        options={{ title: "Home", tabBarIcon: ({ focused }) => <TabIcon icon="🏠" focused={focused} /> }}
+        options={{
+          title: "Home",
+          tabBarIcon: ({ focused }) => <TabIcon icon="🏠" focused={focused} />,
+        }}
       />
       <Tabs.Screen
         name="lessons"
-        options={{ title: "Lessons", tabBarIcon: ({ focused }) => <TabIcon icon="📚" focused={focused} /> }}
+        options={{
+          title: "Lessons",
+          tabBarIcon: ({ focused }) => <TabIcon icon="📚" focused={focused} />,
+        }}
       />
       <Tabs.Screen
         name="mocktest"
-        options={{ title: "Mock Test", tabBarIcon: ({ focused }) => <TabIcon icon="✍️" focused={focused} /> }}
+        options={{
+          title: "Mock Test",
+          tabBarIcon: ({ focused }) => <TabIcon icon="✍️" focused={focused} />,
+        }}
       />
       <Tabs.Screen
         name="account"
-        options={{ title: "Account", tabBarIcon: ({ focused }) => <TabIcon icon="👤" focused={focused} /> }}
+        options={{
+          title: "Account",
+          tabBarIcon: ({ focused }) => <TabIcon icon="👤" focused={focused} />,
+        }}
       />
     </Tabs>
   );
