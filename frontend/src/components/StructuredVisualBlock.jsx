@@ -2,12 +2,25 @@ import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
+import { normalizePlainExponents, normalizePlainAlgebra } from "../utils/markdownCleanup";
+
 const VISUAL_TYPES = new Set(["flow", "steps", "cycle", "compare"]);
 
-/** Render a short label that may contain inline LaTeX (e.g. $v = v_0 + at$). */
+/** Render a short visual-aid label that may contain inline math.
+ *
+ *  Visual JSON items are inside code fences so normalizeTutorMarkdown never
+ *  processes them.  This component applies the two most common plain-text
+ *  math patterns so equations like "v^2 = v0^2 + 2ax" render with proper
+ *  KaTeX superscripts even when the DB content has no $ delimiters.
+ */
 function VisualItemText({ children }) {
-  if (!children || (!children.includes("$") && !children.includes("\\"))) {
-    return <>{children}</>;
+  if (!children) return <>{children}</>;
+
+  // Apply exponent and algebra normalizations (safe: no-op if nothing matches)
+  const normalized = normalizePlainAlgebra(normalizePlainExponents(children));
+
+  if (!normalized.includes("$") && !normalized.includes("\\")) {
+    return <>{normalized}</>;
   }
   return (
     <ReactMarkdown
@@ -15,7 +28,7 @@ function VisualItemText({ children }) {
       rehypePlugins={[rehypeKatex]}
       components={{ p: ({ children: c }) => <>{c}</> }}
     >
-      {children}
+      {normalized}
     </ReactMarkdown>
   );
 }

@@ -332,6 +332,28 @@ function normalizeBulletPoints(text) {
 }
 
 /**
+ * Fix $ expr $ patterns where remark-math ignores inline math when the opening
+ * dollar sign is immediately followed by a space.
+ *
+ * remark-math rule: opening $ must NOT be followed by whitespace.
+ * So "$ 1/2 $" is treated as literal text, not math.
+ *
+ * This pass strips the inner leading/trailing spaces:
+ *   "$ 1/2 $"  →  "$1/2$"   ← remark-math now parses it as math
+ *   "$ at^2 $" →  "$at^2$"
+ *
+ * Only matches $ SPACE content SPACE $ (single-space-padded) to avoid
+ * touching legitimate prose like "$100 and $200 are different".
+ */
+function normalizeSpacedDollarMath(text) {
+  if (!text || !text.includes("$ ")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    // $ space content space $ — strip the padding spaces
+    content.replace(/\$ ([^$\n]+?) \$/g, (_m, inner) => `$${inner.trim()}$`)
+  );
+}
+
+/**
  * Strip nested $...$ inline-math delimiters that appear INSIDE a $$...$$ display
  * math block.  The LLM sometimes writes things like:
  *
@@ -422,16 +444,17 @@ export function normalizeTutorMarkdown(text) {
    *
    * Order matters:
    *  0. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
-   *  1. normalizeInlineDisplayMath    — $$ used inline → $ $; trailing $$ stripped
-   *  2. normalizeOrphanedDollarSigns  — odd $ count on a line → strip trailing orphan
-   *  3. normalizeBulletPoints         — • Point → - Point (LKB answers)
-   *  4. normalizeMermaidBlocks        — wrap loose graph TD blocks
-   *  5. normalizeLatexParentheses     — (\frac{}{}) → $...$
-   *  6. normalizePlainAlgebra         — (a+b)^2 → $...$
-   *  7. normalizeSquareBracketMath    — [ \LaTeX ] and \[...\] → $$...$$
-   *  8. normalizePlainExponents       — 10^7 → $10^{7}$ (outside existing math)
-   *  9. normalizeDollarMath           — fix $10...$ currency-lookalike spacing
-   * 10. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  1. normalizeSpacedDollarMath    — "$ expr $" (spaced) → "$expr$" for remark-math
+   *  2. normalizeInlineDisplayMath   — $$ used inline → $ $; trailing $$ stripped
+   *  3. normalizeOrphanedDollarSigns — odd $ count on a line → strip trailing orphan
+   *  4. normalizeBulletPoints        — • Point → - Point (LKB answers)
+   *  5. normalizeMermaidBlocks       — wrap loose graph TD blocks
+   *  6. normalizeLatexParentheses    — (\frac{}{}) → $...$
+   *  7. normalizePlainAlgebra        — (a+b)^2 → $...$
+   *  8. normalizeSquareBracketMath   — [ \LaTeX ] and \[...\] → $$...$$
+   *  9. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
+   * 10. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 11. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeDollarMath(
@@ -439,7 +462,7 @@ export function normalizeTutorMarkdown(text) {
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
             normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(
-              normalizeNestedDollarSignsInDisplay(text)
+              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(text))
             ))
           ))))
         )

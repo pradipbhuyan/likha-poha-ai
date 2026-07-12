@@ -706,6 +706,19 @@ function LessonsPage({ user, setActivePage }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStepIndex, grade, subject, chapter]);
 
+  // ── Scroll to top on step navigation (Previous / Next) ───────────────────
+  // Fires after every step change so the user always starts reading from the
+  // top of the new step, not from wherever they were in the previous one.
+  // Skip the initial mount (isFirstStepRender) to avoid jarring scroll on load.
+  const isFirstStepRender = useRef(true);
+  useEffect(() => {
+    if (isFirstStepRender.current) {
+      isFirstStepRender.current = false;
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentStepIndex]);
+
   useEffect(() => {
     loadTextbookVisuals();
   }, [grade, mode, subject, chapter, user.username]);
