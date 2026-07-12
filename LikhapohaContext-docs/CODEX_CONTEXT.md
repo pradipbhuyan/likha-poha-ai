@@ -1,6 +1,6 @@
 # Likhapoha AI — Codex Context
 
-_Last updated: 2026-07-12_
+_Last updated: 2026-07-12 (evening)_
 
 ## What is Likhapoha AI
 
@@ -18,9 +18,9 @@ Likhapoha AI is a CBSE learning platform (Grade 5–10 primary, Grade 11-12 avai
 
 ## Current Test State
 
-- **Backend:** 1295+ tests passing (includes 33 security/issue tests, OAuth flow, Lesson Repair)
+- **Backend:** 2201 tests passing, 37 skipped (full suite confirmed 2026-07-12)
 - **Frontend:** 688 tests passing (51 test files, vitest)
-- **Lint:** 0 errors, 50 warnings (at CI maximum — do not add new warnings)
+- **Lint:** 0 errors, 50 warnings (AT CI maximum — do NOT add any new warnings)
 
 ## ⚠️ MANDATORY Pre-Push Checklist
 
@@ -404,11 +404,49 @@ cd backend
 
 ## CI Configuration
 
-- **Max warnings:** 50 (ESLint) — project currently at ~48
+- **Max warnings:** 50 (ESLint) — project currently AT 50 (the maximum)
 - **Test runner:** vitest (frontend), pytest (backend)
 - **Lint runner:** `eslint src/ --max-warnings 50` on entire `src/` directory
 - **Test isolation:** All API calls mocked. No live backend/Supabase in tests.
 - **Key constraint:** `findAllByTestId` (async) must be used for elements that appear after data fetches — never `getAllByTestId` (sync) after an initial `findBy*`
+
+## Lesson Rendering Pipeline — normalizeTutorMarkdown (Updated 2026-07-12)
+
+`normalizeTutorMarkdown()` in `frontend/src/utils/markdownCleanup.js` runs 12 passes in this order:
+
+| Step | Function | Purpose |
+|---|---|---|
+| 0 | `normalizeNestedDollarSignsInDisplay` | Strip `$...$` nested inside `$$...$$` display blocks |
+| 1 | `normalizeSpacedDollarMath` | `$ expr $` → `$expr$` (remark-math ignores dollar+space) |
+| 2 | `normalizeInlineDisplayMath` | `$$` inline → `$`; trailing `$$` at end-of-line stripped |
+| 3 | `normalizeOrphanedDollarSigns` | Odd `$` count on a line → strip trailing orphan `$` |
+| 4 | `normalizeBulletPoints` | `•` bullets → `- ` markdown lists |
+| 5 | `normalizeMermaidBlocks` | Wrap loose `graph TD` in code fences |
+| 6 | `normalizeLatexParentheses` | `(\frac{}{})` → `$...$` |
+| 7 | `normalizePlainAlgebra` | `(a+b)^2` → `$...$` |
+| 8 | `normalizeSquareBracketMath` | `[\LaTeX]` and `\[...\]` → `$$...$$` |
+| 9 | `normalizePlainExponents` | `10^7` → `$10^{7}$` (outside existing math) |
+| 10 | `normalizeDollarMath` | Fix `$10...$` currency-lookalike spacing |
+| 11 | `removeUnsupportedQuestionClosers` | Rewrite "Would you like..." prompts |
+
+**Critical:** `normalizeTutorMarkdown` only runs on LESSON MARKDOWN — not inside code fences and not on visual-json items. `StructuredVisualBlock.VisualItemText` separately applies `normalizePlainExponents` + `normalizePlainAlgebra` so visual items get math rendering even without `$` delimiters.
+
+## Lesson Rendering Rules (Updated 2026-07-12)
+
+### Tables (Mobile)
+All ReactMarkdown section body renders use `LessonMarkdownTable` as the custom `table` component — wraps every `<table>` in `<div style={{ overflowX: "auto" }}>` so tables scroll horizontally on mobile instead of clipping.
+
+### Font Uniformity
+- `.lesson-section-body code`: `font-family: inherit` — inline code uses prose typeface
+- `.lesson-section-body h1-h4`: normalized to `1rem / 700` — no heading size jumps
+- `.lesson-unwrapped-block p`: explicit `16px` to match `.lesson-section-body p`
+
+### Scroll Behaviour
+- **Scroll to feedback:** `WorkbookSection` and `CardFeedSection` auto-scroll to the AI feedback div via `scrollIntoView({ behavior: "smooth", block: "nearest" })` when feedback appears
+- **Scroll to top:** `LessonsPage.jsx` has a `useEffect([currentStepIndex])` that calls `window.scrollTo({ top: 0, behavior: "smooth" })` on every step change (skips initial mount via `isFirstStepRender` ref)
+
+### Visual Aid Math
+`StructuredVisualBlock.VisualItemText` applies `normalizePlainExponents(normalizePlainAlgebra(text))` before rendering — plain-text items like `v^2 = v0^2 + 2ax` render with KaTeX superscripts even without `$` delimiters in the DB content.
 
 ## File Locations
 
@@ -460,3 +498,8 @@ cd backend
 | **Admin Chat settings page** | `frontend/src/pages/AdminChatPage.jsx` |
 | **Product Bugs page** | `frontend/src/pages/AdminIssuesPage.jsx` |
 | **Product Bugs backend** | `backend/app/routes/issues.py` (includes bulk-close) |
+| **Markdown normalization pipeline** | `frontend/src/utils/markdownCleanup.js` |
+| **Lesson sections renderer** | `frontend/src/components/LessonSections.jsx` |
+| **Structured visual block** | `frontend/src/components/StructuredVisualBlock.jsx` |
+| **Lesson page (scroll-to-top, step nav)** | `frontend/src/pages/LessonsPage.jsx` |
+| **Lesson + section CSS** | `frontend/src/App.css` |

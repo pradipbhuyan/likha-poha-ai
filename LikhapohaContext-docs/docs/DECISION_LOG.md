@@ -1,6 +1,6 @@
 # Decision Log
 
-_Last updated: 2026-07-12_
+_Last updated: 2026-07-12 (evening)_
 
 This file records key technical decisions made during development, including the reasoning and any constraints that must not be violated.
 
@@ -583,6 +583,206 @@ color: "#f1f5f9"                        ← hardcoded light (invisible on white)
 **Security fix in same PR:** `_sanitize_browser_info()` STRING_FIELDS truncation corrected from 300→200 chars to match the `test_browser_info_truncates_long_values` security test contract.
 
 **Files:** `backend/app/routes/issues.py`, `frontend/src/pages/AdminIssuesPage.jsx`
+
+---
+
+## 2026-07-12: Lesson Rendering — normalizeSpacedDollarMath
+
+**Bug:** LLM sometimes writes `$ 1/2 $` (with a space after the opening `$` and before the closing `$`). remark-math's inline math rule requires that the opening `$` is NOT immediately followed by whitespace — so `$ 1/2 $` is treated as two literal dollar signs, rendering visibly on screen.
+
+**Root cause:** The LLM generates content like:
+```
+The equations are: v = v0 + at, x = x0 + v0t + $ 1/2 $at^2$
+```
+The `$ 1/2 $` with padding spaces is ignored by remark-math and shows as raw `$ 1/2 $` text.
+
+**Fix:** Added `normalizeSpacedDollarMath()` as step 1 in `normalizeTutorMarkdown()` pipeline:
+```js
+content.replace(/\$ ([^$\n]+?) \$/g, (_m, inner) => `$${inner.trim()}$`)
+```
+Converts `$ 1/2 $` → `$1/2$` — remark-math then parses it correctly.
+
+**File:** `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-12: Lesson Rendering — normalizeNestedDollarSignsInDisplay
+
+**Bug:** LLM sometimes nests `$...$` inline math inside `$$...$$` display math blocks:
+```
+$$v_{\text{avg}}=\frac{7.50$times10^{4}$;\text{m}}{4500;\text{s}}$$
+```
+The inner `$` signs break KaTeX tokenisation of the display block entirely.
+
+**Fix:** Added `normalizeNestedDollarSignsInDisplay()` as step 0 in pipeline:
+- Matches all closed `$$...$$` display blocks
+- Inside each block, temporarily replaces `$$` with a unicode placeholder, strips all lone `$`, then restores `$$`
+- Content (e.g. `times10^{4}`) is preserved — only the invalid `$` delimiters are removed
+
+**Rule:** `$...$` inside `$$...$$` is always invalid. The outer display context already makes everything math.
+
+**File:** `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-12: Lesson Rendering — normalizeInlineDisplayMath Step 3 (Trailing $$)
+
+**Bug:** `normalizeInlineDisplayMath` handled `$$expr$$` and `$$expr` (unclosed inline) but NOT a trailing `$$` at end-of-line with content before it:
+```
+x = x0 + v0t + 1/2 1/2at^2$$
+```
+The trailing `$$` started a display-math block that consumed all subsequent lines until the next `$$`.
+
+**Fix:** Added Step 3 to `normalizeInlineDisplayMath()`:
+```js
+.replace(/^(\s*\S[^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd())
+```
+Strips trailing `$$` from any line with non-whitespace content before it. Standalone `$$\n` block-level lines are left alone.
+
+**File:** `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-12: Lesson Rendering — normalizeOrphanedDollarSigns
+
+**Bug:** Lines with an odd number of `$` signs (e.g. `$v^2$ = $v0^2$ + 2ax$` — 3 singles + an orphan trailing `$`) break KaTeX tokenisation for the entire paragraph.
+
+**Fix:** Added `normalizeOrphanedDollarSigns()` as step 2 in pipeline:
+- Counts single `$` signs per line (masking `$$` pairs first as `##`)
+- If count is odd → strips the last trailing `$` that is not preceded by another `$`
+- Even count → line untouched
+
+**Why this is safe:** An odd count always means one `$` is unmatched. The trailing position is the safest to remove — it converts `$v^2$ = $v0^2$ + 2ax$` to `$v^2$ = $v0^2$ + 2ax` which renders correctly.
+
+**File:** `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-12: Lesson Rendering — normalizeTutorMarkdown Pipeline Order (Updated)
+
+The full normalization pipeline now runs in this order:
+
+```
+0. normalizeNestedDollarSignsInDisplay  — strip $...$ inside $$...$$ blocks
+1. normalizeSpacedDollarMath            — "$ expr $" → "$expr$"
+2. normalizeInlineDisplayMath           — $$ inline → $; trailing $$ stripped
+3. normalizeOrphanedDollarSigns         — odd $ count → strip trailing orphan
+4. normalizeBulletPoints
+5. normalizeMermaidBlocks
+6. normalizeLatexParentheses
+7. normalizePlainAlgebra
+8. normalizeSquareBracketMath
+9. normalizePlainExponents
+10. normalizeDollarMath
+11. removeUnsupportedQuestionClosers
+```
+
+**File:** `frontend/src/utils/markdownCleanup.js`
+
+---
+
+## 2026-07-12: Lesson Rendering — Mobile Table Scroll (LessonMarkdownTable)
+
+**Bug:** `.lesson-section-body` had `overflow-x: hidden` which clipped wide markdown tables on mobile, causing misalignment with no way to scroll.
+
+**Fix:** Added `LessonMarkdownTable` component in `LessonSections.jsx`:
+```jsx
+function LessonMarkdownTable({ children }) {
+  return (
+    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", ... }}>
+      <table style={{ borderCollapse: "collapse", minWidth: "100%" }}>
+        {children}
+      </table>
+    </div>
+  );
+}
+```
+Registered as `table: LessonMarkdownTable` in `components` prop on all three ReactMarkdown section body renders (WorkbookSection, CardFeedSection, legacy accordion).
+
+**File:** `frontend/src/components/LessonSections.jsx`
+
+---
+
+## 2026-07-12: Lesson Rendering — Visual Aid Math (StructuredVisualBlock)
+
+**Bug:** `StructuredVisualBlock` visual items (FlowVisual, StepsVisual, etc.) are inside code fences — `normalizeTutorMarkdown` explicitly skips code fences via `transformOutsideCodeFences`. Even after adding ReactMarkdown+KaTeX to `VisualItemText`, plain-text items like `v^2 = v0^2 + 2ax` had no `$` markers so the math render was bypassed.
+
+**Fix:** `VisualItemText` now applies `normalizePlainAlgebra(normalizePlainExponents(children))` before checking for math markers:
+```jsx
+const normalized = normalizePlainAlgebra(normalizePlainExponents(children));
+if (!normalized.includes("$") && !normalized.includes("\\")) {
+  return <>{normalized}</>;
+}
+return <ReactMarkdown ...>{normalized}</ReactMarkdown>;
+```
+This converts `v^2` → `$v^{2}$`, `(1/2)` → `$1/2$` — KaTeX then renders superscripts correctly even with no `$` signs in the DB content.
+
+**Imports added:** `normalizePlainExponents, normalizePlainAlgebra` from `../utils/markdownCleanup`.
+
+**File:** `frontend/src/components/StructuredVisualBlock.jsx`
+
+---
+
+## 2026-07-12: Lesson Rendering — Font Uniformity in Lesson Sections
+
+**Bug:** Inline `<code>` elements inside lesson sections were rendering in browser-default monospace font, causing visual font jumps. Markdown `##`/`###` headings generated by ReactMarkdown had varying browser-default sizes, causing inconsistent heading sizes between sections.
+
+**Fix (App.css):**
+1. `.lesson-section-body code`: added `font-family: inherit; font-size: 0.93em` — inline code now uses the same typeface as surrounding prose
+2. `.lesson-section-body h1, h2, h3, h4`: normalized to `font-size: 1rem; font-weight: 700` — prevents heading size jumps between sections
+3. `.lesson-unwrapped-block p`: added explicit `font-size: 16px; font-family: inherit` to match `.lesson-section-body p`
+
+**File:** `frontend/src/App.css`
+
+---
+
+## 2026-07-12: Lesson UX — Scroll to Feedback After Evaluation
+
+**Bug:** After clicking "Evaluate my answer", the AI feedback appeared but was often below the fold. The page did not auto-scroll to the feedback.
+
+**Fix:** Added `feedbackRef = useRef(null)` and:
+```jsx
+useEffect(() => {
+  if (feedback && feedbackRef.current) {
+    feedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}, [feedback]);
+```
+in both `WorkbookSection` and `CardFeedSection`. The feedback `<div>` gets `ref={feedbackRef}`.
+
+**Behaviour:** `block: "nearest"` means no scroll if already visible — prevents disorienting movement on desktop.
+
+**File:** `frontend/src/components/LessonSections.jsx`
+
+---
+
+## 2026-07-12: Lesson UX — Scroll to Top on Step Navigation
+
+**Bug:** Clicking Previous/Next step left the page scrolled to the same position as the previous step — the user had to manually scroll up to start reading the new step.
+
+**Fix:** Added a `useEffect([currentStepIndex])` in `LessonsPage.jsx`:
+```jsx
+const isFirstStepRender = useRef(true);
+useEffect(() => {
+  if (isFirstStepRender.current) { isFirstStepRender.current = false; return; }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentStepIndex]);
+```
+`isFirstStepRender` ref prevents the scroll from firing on initial page load. All Previous/Next buttons (top nav bar + bottom nav bar + legacy sidebar) benefit automatically — no per-button changes.
+
+**File:** `frontend/src/pages/LessonsPage.jsx`
+
+---
+
+## 2026-07-12: Lesson Cache — Grade 11 Physics Units and Measurements (Bulk Archive)
+
+**Issue:** Multiple lessons for "Grade 11, Physics, Units and Measurements" were reported with broken LaTeX rendering (malformed `$` delimiters, nested `$$` in display blocks, kinematic equations as plain text).
+
+**Root cause:** LLM-generated content had several malformed patterns that pre-dated the normalization pipeline improvements.
+
+**Fix:** All `lesson_cache` rows for `grade = 'Grade 11', subject = 'Physics', chapter ILIKE '%Units%'` were archived (HTTP 200 / HTTP 204). Lessons will regenerate fresh from the AI on next student access, picking up the improved MATH RULES in `tutor_service.py` and the new normalization pipeline.
+
+**Pattern:** When broken LaTeX is reported repeatedly for the same chapter after normalization fixes, archive the lesson_cache rows rather than patching the content manually.
 
 ---
 
