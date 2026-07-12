@@ -1,6 +1,6 @@
 # Likhapoha AI — Codex Context
 
-_Last updated: 2026-06-29 (evening)_
+_Last updated: 2026-07-12_
 
 ## What is Likhapoha AI
 
@@ -18,9 +18,9 @@ Likhapoha AI is a CBSE learning platform (Grade 5–10 primary, Grade 11-12 avai
 
 ## Current Test State
 
-- **Backend:** 535+ tests passing (includes 21 OAuth flow tests + 28 Lesson Repair tests)
-- **Frontend:** 578 tests passing (46 test files, vitest)
-- **Lint:** 0 errors, 49 warnings (below 50 CI maximum)
+- **Backend:** 1295+ tests passing (includes 33 security/issue tests, OAuth flow, Lesson Repair)
+- **Frontend:** 688 tests passing (51 test files, vitest)
+- **Lint:** 0 errors, 50 warnings (at CI maximum — do not add new warnings)
 
 ## ⚠️ MANDATORY Pre-Push Checklist
 
@@ -47,6 +47,87 @@ If either command fails, fix before pushing. These take ~15 seconds total.
 - `// eslint-disable-line` goes on the closing `}, []);` line for mount-only effects.
 - Never put `// eslint-disable-line` on the `[darkMode]` reactive effect — that effect IS correct and needs no suppression.
 - `_finishOAuthLogin` inside the OAuth `useEffect` is intentionally excluded from deps to prevent infinite re-subscription.
+
+## Platform Chat (User-to-User Messaging) — Added 2026-07-12
+
+### Overview
+Real-time user-to-user chat between teachers↔students, parents↔teachers, admin↔anyone.  
+Backed by Supabase Realtime (WebSocket) + PostgreSQL + Supabase Storage.
+
+### Access Rules
+- Admin + Teacher: always enabled
+- Paid subscription plan: auto-enabled
+- Free users: admin-grant only (stored in `admin_settings.chat_access_users`)
+- Global kill-switch: `admin_settings.platform_chat_settings.global_enabled`
+
+### DB Tables (migration: `20260712_platform_chat.sql`)
+- `chat_rooms` — participant_a_id, participant_b_id, room_type, is_active, last_message_at. RLS: participants only.
+- `chat_messages` — room_id, sender_id, content, message_type (text|image|voice|file), attachment_url/name/size/mime, read_at, deleted_at, expires_at. RLS: room participants only.
+
+### Storage
+- Bucket: `chat-attachments` (private, 10 MB limit)
+- Policies: `20260712_chat_storage_policies.sql` — INSERT/SELECT/DELETE for `authenticated` role
+- Files served via `createSignedUrl()` (1-hour expiry) — never publicly accessible
+- Images >2 MB auto-compressed client-side (JPEG 80%, max 1920px) before upload
+
+### API Routes (Chat)
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/chat/settings` | Check if current user can use chat |
+| GET | `/api/chat/contacts` | Role-scoped contact list |
+| GET | `/api/chat/rooms` | My rooms with last message + unread count |
+| POST | `/api/chat/rooms` | Get-or-create room with another user |
+| GET | `/api/chat/rooms/{id}/messages` | Paginated history |
+| POST | `/api/chat/rooms/{id}/messages` | Send text/image/voice/file |
+| POST | `/api/chat/rooms/{id}/read` | Mark unread as read |
+| POST | `/api/chat/upload` | Get signed Supabase Storage upload URL |
+| DELETE | `/api/chat/messages/{id}` | Soft-delete own message |
+| GET | `/api/admin/chat/settings` | Admin: global chat settings |
+| PUT | `/api/admin/chat/settings` | Admin: update settings |
+| GET | `/api/admin/chat/users` | Admin: list explicit grants |
+| PATCH | `/api/admin/chat/users/{id}` | Admin: grant/revoke per user |
+| GET | `/api/admin/chat/rooms` | Admin: moderation view |
+| DELETE | `/api/admin/chat/rooms/{id}` | Admin: deactivate room |
+
+### Frontend Components
+
+| File | Purpose |
+|---|---|
+| `frontend/src/components/PlatformChat.jsx` | Floating 💬 widget — rooms, contacts, messages, Realtime |
+| `frontend/src/api/platformChat.js` | API client + `subscribeToRoom()` + `uploadChatFile()` |
+| `frontend/src/pages/AdminChatPage.jsx` | Admin: settings, per-user grants, room moderation |
+
+### Realtime
+- Subscribe: `supabase.channel('chat:{roomId}').on('postgres_changes', {event:'INSERT', table:'chat_messages', filter:'room_id=eq.{id}'}, ...)`
+- Enable: Supabase Dashboard → Database → Replication → add `chat_messages` table (or run `ALTER PUBLICATION supabase_realtime ADD TABLE chat_messages;`)
+
+### Contact Routing
+- Student → assigned teacher(s) + parent
+- Teacher → all assigned students
+- Parent → teachers assigned to their children
+- Admin → all active users
+
+## Product Bugs Page — Updated 2026-07-11
+
+### New Features
+- **Hide Closed toggle** (default ON) — filters `fixed`/`wont_fix` issues from view
+- **Per-row Close button** — marks issue fixed and removes from list instantly
+- **IssueDrawer "✓ Close Issue" button** — in drawer header for open issues
+- **Row checkboxes** + Select All / Deselect All
+- **Bulk action toolbar** (appears when ≥1 row selected):
+  - ✓ Close Selected (fixed) — calls `POST /api/admin/issues/bulk-close`
+  - ✗ Won't Fix — bulk-close with wont_fix status
+  - 📋 Copy All for Codex (N) — builds consolidated markdown prompt for all selected issues
+
+### API Routes (Issues — Updated)
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/api/admin/issues/bulk-close` | Close up to 200 issues at once (fixed\|wont_fix) |
+
+### Security Fix
+`_sanitize_browser_info()` STRING_FIELDS truncation changed from 300→200 chars to match `test_browser_info_truncates_long_values` security test contract.
 
 ## API Routes (Student)
 
@@ -371,3 +452,11 @@ cd backend
 | Auth client (friendly errors) | `frontend/src/api/authClient.js` |
 | Signup page | `frontend/src/pages/SignupPage.jsx` |
 | Content management docs | `LikhapohaContext-docs/docs/CONTENT_MANAGEMENT.md` |
+| **Platform Chat widget** | `frontend/src/components/PlatformChat.jsx` |
+| **Platform Chat API client** | `frontend/src/api/platformChat.js` |
+| **Platform Chat backend routes** | `backend/app/routes/platform_chat.py` |
+| **Platform Chat DB migration** | `backend/migrations/20260712_platform_chat.sql` |
+| **Chat Storage policies** | `backend/migrations/20260712_chat_storage_policies.sql` |
+| **Admin Chat settings page** | `frontend/src/pages/AdminChatPage.jsx` |
+| **Product Bugs page** | `frontend/src/pages/AdminIssuesPage.jsx` |
+| **Product Bugs backend** | `backend/app/routes/issues.py` (includes bulk-close) |

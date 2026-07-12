@@ -1,6 +1,6 @@
 # Decision Log
 
-_Last updated: 2026-06-28_
+_Last updated: 2026-07-12_
 
 This file records key technical decisions made during development, including the reasoning and any constraints that must not be violated.
 
@@ -531,6 +531,58 @@ color: "#f1f5f9"                        ← hardcoded light (invisible on white)
 **Fix:** Added `body.dark-mode` overrides in `App.css` for the entire inline question box component — background, text, buttons, feedback, textarea.
 
 **File:** `frontend/src/App.css`
+
+---
+
+## 2026-07-12: Platform Chat — Use Supabase JS Client for File Uploads
+
+**Decision:** File/voice/screenshot uploads in `PlatformChat.jsx` use `supabase.storage.from('chat-attachments').upload()` directly from the frontend (the user's authenticated session) rather than a backend-generated signed upload URL.
+
+**Reason:** The backend `create_signed_upload_url()` Python SDK call returned a response in a different structure than expected (`data.signedUrl` vs top-level `signedUrl`), causing "Object not found" errors on upload. Direct frontend upload using the user's JWT is simpler, more reliable, and doesn't require a backend round-trip per file.
+
+**Security:** The Supabase Storage bucket has RLS policies (`20260712_chat_storage_policies.sql`):
+- `INSERT` allowed for `authenticated` role → any logged-in user can upload
+- `SELECT` allowed for `authenticated` role → any logged-in user can download (signed URLs used anyway)
+- Files served via `createSignedUrl()` (1-hour expiry) — bucket is NOT public
+
+**Compression:** Images >2 MB are compressed client-side to JPEG 80%, max 1920px before upload.
+
+**Files:** `frontend/src/api/platformChat.js`
+
+---
+
+## 2026-07-12: Platform Chat — No Student-to-Student Messaging
+
+**Decision:** The platform intentionally does NOT support student-to-student direct messaging.
+
+**Reasons:**
+1. The platform serves minors (students Grade 5–12) — direct peer messaging creates child safety risk
+2. The primary use case is teacher↔student academic communication and parent↔teacher coordination
+3. No parental consent / moderation framework in place for peer messaging
+
+**Contact routing:**
+- Student → assigned teacher(s) + their parent only
+- Teacher → all assigned students
+- Parent → teachers assigned to their children
+- Admin → all active users
+
+**File:** `backend/app/routes/platform_chat.py` (`list_contacts()` function)
+
+---
+
+## 2026-07-11: Product Bugs — Bulk Close and Hide-Closed Toggle
+
+**Decision:** Add three new admin capabilities to the Product Bugs page:
+1. **Hide Closed toggle** (default ON) — removes `fixed`/`wont_fix` issues from the visible list client-side. Reduces noise for triage sessions.
+2. **Per-row Close button** — quick action to mark fixed + remove from view without opening the drawer.
+3. **Bulk close via checkboxes** — `POST /api/admin/issues/bulk-close` closes up to 200 issues in a single DB call.
+4. **Bulk Copy for Codex** — builds one consolidated markdown prompt for all selected issues.
+
+**Backend bulk-close:** Updates `status`, `resolved_at`, `updated_at` for all matching IDs in one query. Writes a single audit log entry summarizing the bulk action.
+
+**Security fix in same PR:** `_sanitize_browser_info()` STRING_FIELDS truncation corrected from 300→200 chars to match the `test_browser_info_truncates_long_values` security test contract.
+
+**Files:** `backend/app/routes/issues.py`, `frontend/src/pages/AdminIssuesPage.jsx`
 
 ---
 

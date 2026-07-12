@@ -83,6 +83,32 @@ Admin can enable/disable per-plan without code deployment:
 
 These changes take effect immediately for new subscriptions/feature checks without backend restart.
 
+## Platform Chat Feature Matrix (Added 2026-07-12)
+
+| Feature | Free Tier | Paid Plan | Teacher | Admin |
+|---|---|---|---|---|
+| Access platform chat | ❌ (admin-grant only) | ✅ Auto | ✅ Always | ✅ Always |
+| Send text messages | Admin-granted only | ✅ | ✅ | ✅ |
+| Send file attachments | Admin-granted only | ✅ (if global ON) | ✅ (if global ON) | ✅ (if global ON) |
+| Send voice messages | Admin-granted only | ✅ (if global ON) | ✅ (if global ON) | ✅ (if global ON) |
+| Contact routing | Student↔Teacher+Parent | Student↔Teacher+Parent | All students | All users |
+| Admin kill-switch | `global_enabled=false` disables for everyone | — | — | Can toggle |
+
+**Access enforcement:**
+1. `GET /api/chat/settings` — always call before showing chat widget; never infer from plan string
+2. `global_enabled=false` in `admin_settings.platform_chat_settings` overrides all other rules
+3. Teachers always enabled (no subscription check)
+4. Admins always enabled
+5. Non-free plan → auto-enabled
+6. Free users → only if their user_id is in `admin_settings.chat_access_users`
+
+**Attachment rules:**
+- Max file size: configurable by admin, default 10 MB
+- Images >2 MB auto-compressed client-side before upload
+- All files served via Supabase signed URL (1-hour expiry) — never public
+- Voice: WebM format via MediaRecorder API (browser-native)
+- Screenshot paste: Ctrl+V supported in conversation input
+
 ## Access Enforcement Requirements
 
 For every feature above:

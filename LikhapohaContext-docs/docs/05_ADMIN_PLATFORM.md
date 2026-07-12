@@ -1,6 +1,6 @@
 # Admin Platform
 
-_Last updated: 2026-07-08_
+_Last updated: 2026-07-12_
 
 ## Admin Console Structure
 
@@ -145,6 +145,72 @@ All form controls in admin pages use CSS variables with light-mode-compatible fa
 **Migration required:** Run `backend/migrations/20260708_subscription_plan_feature_flags.sql` on main Supabase (`dpivlbbyzlbpwnwgajso`) to activate Duration, Exam Prep, and Exemplar toggles.
 
 **Graceful fallback:** If migration hasn't been run, saving strips the new columns and saves remaining fields without error.
+
+## Platform Chat (Admin Controls) — Added 2026-07-12
+
+### Admin Chat Page (`/admin` → "Platform Chat" in Sidebar)
+
+Admin-only page (`AdminChatPage.jsx`) with three sections:
+
+**1. Global Settings**
+- Enable/disable chat platform-wide (kill-switch)
+- File & screenshot sharing toggle
+- Voice messages toggle
+- Max file size (MB) — default 10 MB
+- Message retention (days, 0 = forever) — default 90 days
+- Saved via `PUT /api/admin/chat/settings` → `admin_settings.platform_chat_settings`
+
+**2. Per-User Chat Access**
+- Search users by username/email
+- Grant Chat / Revoke Chat buttons per user
+- Explicit grants stored in `admin_settings.chat_access_users`
+- Note: admin + teacher always have chat; paid-plan users auto-enabled
+
+**3. Chat Room Moderation**
+- Lists all active rooms with participant names + message counts
+- Deactivate room — prevents further messages (soft disable, data preserved)
+
+### Access Control Logic
+```
+global_enabled=false  → nobody can chat (kill-switch)
+role=admin|teacher    → always enabled
+user_id in chat_access_users → enabled (admin manual grant)
+subscription_plan != 'free' → enabled (paid plan auto)
+otherwise             → chat disabled
+```
+
+## Product Bugs Page — Updated 2026-07-11
+
+### New Features Added
+
+**Hide Closed toggle** (default ON):
+- Hides `fixed` and `wont_fix` issues from the list by default
+- Toggle button shows "✓ Hiding Closed" (green) or "Show All" (grey)
+- Friendly empty state: "All visible issues are closed. Toggle 'Show All' to see them."
+
+**Per-row Close button**:
+- Green "Close" button on each row in the Action column
+- Instantly marks issue `fixed`, removes from visible list
+- Already-closed rows show dimmed "✓" indicator
+
+**IssueDrawer "✓ Close Issue" button**:
+- Green button in drawer header for open/in-progress issues
+- Closes drawer and removes issue from list
+- Shows "✓ Closed" badge for already-closed issues
+
+**Row checkboxes + bulk toolbar**:
+- Checkbox on each row + Select All/Deselect All in header
+- Bulk toolbar appears when ≥1 row selected:
+  - ✓ Close Selected (fixed) — `POST /api/admin/issues/bulk-close` with `status=fixed`
+  - ✗ Won't Fix — bulk-close with `status=wont_fix`
+  - 📋 Copy All for Codex (N) — builds consolidated markdown prompt for all selected issues
+  - Select All Visible / Deselect All convenience buttons
+
+### New Backend Endpoint
+`POST /api/admin/issues/bulk-close` — closes up to 200 issues in one DB call:
+- Sets `status`, `resolved_at`, `updated_at` on all matching IDs
+- Writes single audit log entry
+- Returns count of updated rows + any not-found IDs
 
 ## Admin Safety
 

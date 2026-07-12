@@ -1,453 +1,462 @@
-# Likha Poha AI — Codex Context File
+# Likhapoha AI — Codex Context
 
-> Feed this single file to any AI agent before starting a new task.
-> Last updated: 2026-06-27
+_Last updated: 2026-07-12_
 
----
+## What is Likhapoha AI
 
-## What This Product Is
+Likhapoha AI is a CBSE learning platform (Grade 5–10 primary, Grade 11-12 available) with AI-powered lessons, mock tests, doubt solving, exemplar practice, formula sheets, and progress analytics.
 
-Likha Poha AI is a CBSE tutoring platform for Indian students (Grades 1–12) and their families.
+## Platform Roles
 
-**Personas**: Students, Parents, Teachers, Admins.
+| Role | Dashboard | Notes |
+|---|---|---|
+| `student` | StudentDashboardPage | Redesigned (2026-06-28) — card-based layout |
+| `parent` | ParentDashboardPage | Phase 1–3 complete |
+| `teacher` | TeacherDashboardPage | Phase 1–3 complete |
+| `admin` | AdminControlPage | Full operations + Platform QA Center |
+| `sales` | SalesLeadPage | — |
 
-**Core features**: AI-powered CBSE lessons, doubt solving, mock tests, NCERT Exemplar access, progress tracking, parent dashboard, teacher classroom management.
+## Current Test State
 
-**Tech stack**:
-- Frontend: React + Vite (single-page app)
-- Backend: FastAPI + Python
-- Database: Supabase (Postgres + Auth)
-- Payments: Razorpay
-- AI: OpenAI GPT models
+- **Backend:** 1295+ tests passing (includes 33 security/issue tests, OAuth flow, Lesson Repair)
+- **Frontend:** 688 tests passing (51 test files, vitest)
+- **Lint:** 0 errors, 50 warnings (at CI maximum — do not add new warnings)
 
----
+## ⚠️ MANDATORY Pre-Push Checklist
 
-## Directory Layout
+**Always run these before `git push` to prevent CI failures:**
 
-```
-/backend
-  app/
-    routes/          — FastAPI route modules by domain
-    services/        — Reusable domain logic
-    data/            — Static data (syllabus, subscription plans)
-    models/          — Pydantic schemas
-  tests/             — pytest tests
-  migrations/        — SQL migration files (idempotent)
-
-/frontend
-  src/
-    api/             — API client functions (one file per domain)
-    components/      — Shared UI components
-    components/teacher/ — Teacher portal components
-    pages/           — Route-level page components
-    utils/           — Shared utilities (resolveSubscription, etc.)
-    tests/           — Vitest tests
-    config/          — Frontend config (subscriptionPlans.js)
-```
-
----
-
-## Subscription Plans
-
-| Canonical Key | Plan Name | Price | Duration | Access |
-|---|---|---|---|---|
-| `FREE_TIER` | Free Tier | ₹0 | indefinite | Limited |
-| `NANO` | Premium Nano | ₹99 | 8 days | Full |
-| `PREMIUM` | Premium | ₹299 | 30 days | Full |
-| `FAMILY_PREMIUM` | Family Premium | ₹499 | 30 days | Full (2 children) |
-| `ADMIN_GRANT` | Admin Access | admin | perpetual | Full |
-
-**The DB column `subscription_plan` uses raw keys: `free`, `starter`, `premium`, `family_premium`.** The `free` key is shared by both Free Tier AND Nano paid users. NEVER branch on raw plan key without using the canonical resolver.
-
----
-
-## Canonical Subscription Resolver
-
-**Backend**: `backend/app/services/subscription_resolver_service.py`
-- Function: `resolve_user_subscription(user_id: str) -> dict`
-- Returns: `canonical_plan_key`, `plan_name`, `has_full_access`, `restrictions`, `access_source`
-
-**Frontend**: `frontend/src/utils/resolveSubscription.js`
-- Function: `resolveSubscription(user, offerAccess) -> { activeTier, canonicalPlanKey, hasFullAccess, ... }`
-- Helper: `hasPaidAccess(user)` — returns true if user has active paid access
-
-**DO NOT** branch on `user.subscriptionPlan`, `profile.access_cbse`, or `user.parentId` directly. Use the resolver.
-
----
-
-## CRITICAL: parentId Never Grants Paid Access
-
-A student created by a parent has `parent_id` set. This does NOT mean they have a paid subscription.
-
-**Rule**: Paid access = `access_cbse = true` on the student's OWN profile (set by payment webhook) AND `subscription_expires_at` in the future (if time-limited).
-
-**Wrong** (historical bug — now fixed):
-```js
-if (user.parentId) return true;  // WRONG — used in old hasPaidAccess()
-const isFreeUser = !user.accessCbse && !user.parentId;  // WRONG — used in old MockTestPage
-```
-
-**Correct**:
-```js
-import { hasPaidAccess } from "../utils/resolveSubscription";
-const isPaid = hasPaidAccess(user); // checks accessCbse + subscriptionExpiresAt only
-const isFreeUser = user?.role === "student" && !hasPaidAccess(user);
-```
-
----
-
-## Canonical Feature Authorization
-
-**Backend**: `backend/app/services/feature_authorization_service.py`
-
-```python
-from app.services.feature_authorization_service import authorize_feature, Feature, require_feature
-
-# Use require_feature to auto-raise 403:
-require_feature(user_id, Feature.EXEMPLAR)
-
-# Or inspect:
-result = authorize_feature(user_id, Feature.MOCK_TEST_UNLIMITED)
-if not result["allowed"]:
-    raise HTTPException(403, detail=result["restriction_message"])
-```
-
-Feature constants: `Feature.LESSONS`, `Feature.EXEMPLAR`, `Feature.EXEMPLAR_RESEARCH`, `Feature.MOCK_TEST`, `Feature.MOCK_TEST_UNLIMITED`, `Feature.ASK_DOUBTS`, `Feature.AI_ASSISTANT`, `Feature.LESSON_DOWNLOAD`
-
-**Frontend**: `GET /api/subscription/features` returns per-feature `{allowed, limited}` for current user.
-
----
-
-## Feature Access Matrix
-
-| Feature | FREE_TIER | NANO | PREMIUM | FAMILY | ADMIN_GRANT |
-|---|---|---|---|---|---|
-| LESSONS | Limited (DKB-only) | Full | Full | Full | Full |
-| LESSON_DOWNLOAD | No | Yes | Yes | Yes | Yes |
-| EXEMPLAR | **No** | Yes | Yes | Yes | Yes |
-| EXEMPLAR_RESEARCH | **No** | Yes | Yes | Yes | Yes |
-| MOCK_TEST | Limited (5/day) | Full | Full | Full | Full |
-| MOCK_TEST_UNLIMITED | **No** | Yes | Yes | Yes | Yes |
-| ASK_DOUBTS | Limited (DKB-only) | Full | Full | Full | Full |
-| AI_ASSISTANT | Limited | Full | Full | Full | Full |
-
-**Mock test daily limit**: `FREE_MOCK_TEST_DAILY_LIMIT = 5` (backend) = `FREE_DAILY_MOCK_LIMIT = 5` (frontend). Both must stay in sync.
-
----
-
-## Exemplar Chapter Gating
-
-Exemplar lesson chapters are named with prefix `"Exemplar:"` in the syllabus (e.g., `"Exemplar: Chemical Reactions and Equations"`).
-
-**Backend gate in `lesson.py`** (after free-user bypass):
-```python
-_chapter_name = (data.chapter or "").strip()
-if _chapter_name.lower().startswith("exemplar") or ": exemplar" in _chapter_name.lower():
-    from app.services.feature_authorization_service import authorize_feature, Feature
-    _fauth = authorize_feature(user.id, Feature.EXEMPLAR)
-    if not _fauth["allowed"]:
-        raise HTTPException(403, ...)
-```
-
-**Frontend gate in `LessonsPage.jsx`**:
-```js
-import { hasPaidAccess } from "../utils/resolveSubscription";
-const hasPaidAccessForLessons = hasPaidAccess(user);  // NOT user.parentId
-const isExemplarLocked = chapter?.startsWith("Exemplar:") && !hasPaidAccessForLessons;
-```
-
----
-
-## Backend Route Map
-
-```
-/api/auth/           — signup, login, profile, password reset, Google OAuth
-/api/syllabus/       — syllabus data, admin chapter overrides
-/api/lesson/         — lesson generation, follow-up, textbook visuals
-/api/doubt/          — doubt answering (DKB + LLM)
-/api/mock-test/      — mock test generation
-/api/analytics/      — test history, progress
-/api/progress/       — chapter progress save/load
-/api/subscription/   — resolve, features endpoint, expiry job, catalog
-/api/payments/       — Razorpay order creation/verification, admin test payment
-/api/offer/          — offer code redemption
-/api/parent-dashboard/ — parent/child data
-/api/teacher/        — teacher classroom management (Phase 1 + 2)
-/api/teacher-dashboard/ — teacher summary (legacy)
-/api/admin/          — admin operations, bulk, views, analytics, support
-/api/admin-control/  — platform settings (AI on/off, lesson card style)
-/api/chatbot/        — public chatbot widget (no auth)
-/api/rag/            — RAG document management (admin-only)
-```
-
----
-
-## Frontend API Client Map
-
-```
-src/api/
-  auth.js            — login, signup, profile
-  lesson.js          — generateLesson, askLessonFollowUp, textbook visuals
-  doubt.js           — answerDoubt, getDoubtHistory
-  mockTest.js        — generateMockTest
-  analytics.js       — saveTestHistory, saveWrongAnswers
-  progress.js        — getChapterProgress, saveChapterProgress
-  syllabus.js        — getSyllabus
-  teacherDashboard.js — all teacher APIs (Phase 1 + 2)
-  platformSettings.js — getLessonCardPublicSettings
-  adminControl.js    — admin control APIs
-```
-
----
-
-## Teacher Portal Structure
-
-```
-TeacherDashboardPage.jsx       — command center (single-page, tabs for deep-dive)
-  ├── Dashboard tab            — KPIs + attention queue + tasks + invitations + student preview
-  ├── Students tab             — full roster → opens StudentWorkspace
-  ├── Classrooms tab           — manage + ClassroomAnalyticsCard
-  ├── Invitations tab          — CRUD with status filter
-  └── Tasks tab                — open/completed/dismissed + create form
-
-components/teacher/
-  StudentWorkspace.jsx         — 7-section slide-over: Overview/Progress/Assessments/Notes/Activity/Parent/Settings
-  TeacherAssistantCard.jsx     — rule-based summary (no AI)
-  InterventionQueue.jsx        — critical/medium/low groups with actions
-  SuggestedTaskModal.jsx       — pre-filled task from intervention
-  ClassroomAnalyticsCard.jsx   — per-classroom metrics (graceful "Not available yet")
-```
-
-Teacher Phase 2 API endpoints at `/api/teacher/`:
-- `GET /students/{id}/timeline`, `GET /interventions`
-- `GET/POST/PATCH /tasks`, `/tasks/{id}/complete`, `/tasks/{id}/dismiss`
-- `GET /classrooms/{id}/analytics`
-- `GET/POST/PATCH/DELETE /students/{id}/notes`
-- `GET /students/{id}/parent-contact`, `POST /students/{id}/message-parent`
-
-**Security rules for teacher notes**:
-- Notes are `visibility=teacher_private`
-- Note CONTENT must never appear in audit log metadata
-- Notes are never exposed to students or parents via any API
-
----
-
-## Subscription Resolver Logic (Precedence Order)
-
-1. Active paid subscription (`subscription_expires_at` in future) → PREMIUM
-2. Perpetual paid plan (non-`free` key + `access_cbse=True` + no expiry) → PREMIUM
-3. Legacy Nano (`free` key + `access_cbse=True` + no expiry + role≠parent) → NANO
-4. Valid offer/free-trial redemption (`offer_redemptions` table) → FREE_TIER with limited access
-5. Admin grant (`access_cbse=True`, no expiry, no offer) → ADMIN_GRANT
-6. Default → FREE_TIER
-
-**Expiry job** (`expiry_job_service.py`): sets `access_cbse=False`, `subscription_expires_at=None` for expired plans. Must never revoke admin grants. Idempotent.
-
----
-
-## Payment Flow
-
-1. `POST /api/payments/create-order` — creates Razorpay order
-2. Frontend: user pays
-3. `POST /api/payments/verify` — verifies signature, idempotency guard, activates plan
-4. `POST /api/payments/webhook` — Razorpay webhook backup (also idempotent)
-5. Plan activation: sets `access_cbse=True`, `subscription_expires_at`, `subscription_plan` on profile
-6. Child profiles inherit access only if payment explicitly covers them (Family plan)
-
----
-
-## Offer Codes
-
-Two types:
-- `free_trial` — sets `access_cbse=False` (DKB-only access, limited)
-- `discount` — sets `access_cbse=True` (paid access at discount)
-
-Offer check: `is_free_tier_user(user_id)` from `offer_access_service.py` — returns True for all free/expired users.
-
----
-
-## Key Safety Rules for Agents
-
-1. **Backend owns authorization** — frontend gating is UX only, never security.
-2. **Use `authorize_feature()` for all premium features** — never roll custom access checks.
-3. **Use `hasPaidAccess(user)` in frontend** — never check `user.parentId` or `user.subscriptionPlan === "free"` for access decisions.
-4. **`parentId` ≠ paid access** — a child of a free parent has `parentId` but no paid features.
-5. **Exemplar chapters start with `"Exemplar:"` in syllabus data** — gate them in both backend and frontend.
-6. **Never expose**: Supabase service-role key, JWTs, API keys, Razorpay secrets, temporary passwords in audit logs.
-7. **Never break**: existing test suite (102 backend + 376 frontend passing), subscription resolver, payment idempotency.
-8. **Add regression tests** for every behavior change, especially authorization changes.
-9. **Teacher notes content** must never appear in audit log `metadata` field.
-10. **`subscription_plan = "free"` is ambiguous** — it means both Free Tier AND Nano paid. Always use `canonical_plan_key`.
-
----
-
-## Test Suite Summary
-
-Backend tests (pytest):
-```
-tests/test_feature_authorization.py   — 69 tests, feature matrix, bug regressions
-tests/test_subscription_resolver_regression.py — resolver correctness
-tests/test_subscription_states.py     — subscription state transitions
-tests/test_mock_test.py               — mock test access
-tests/test_security.py                — endpoint security
-tests/test_admin_access.py            — admin-only enforcement
-tests/test_payments.py                — payment flows
-tests/test_teacher_classroom_platform.py — Phase 1 teacher
-tests/test_teacher_p2.py              — Phase 2 teacher (23 tests)
-```
-
-Frontend tests (Vitest):
-```
-src/tests/TeacherDashboard.test.jsx   — teacher command center
-src/tests/TeacherDashboardPage.test.jsx — teacher tabs
-src/tests/TeacherUXPhase3.test.jsx    — student workspace, interventions, tasks (25 tests)
-src/tests/AdminAnalyticsCorrectness.test.jsx
-src/tests/AdminOperationsPage.test.jsx
-```
-
-Run backend: `cd backend && .venv/bin/python -m pytest`
-Run frontend: `cd frontend && npm run test`
-
----
-
-## CI Rules
-
-- `npm run lint -- --max-warnings 50` must pass (0 errors, ≤50 warnings)
-- All backend and frontend tests must pass before pushing
-- Error messages in backend endpoints must match what existing tests assert
-
----
-
-## What NOT to Do
-
-- Do not add `if (user.parentId) return true` to any access check
-- Do not check `user.subscriptionPlan === "free"` for access decisions (ambiguous)
-- Do not bypass `enforce_learning_access` without checking Exemplar chapter names
-- Do not store note content in audit log metadata
-- Do not call `resolve_user_subscription` or `is_free_tier_user` inside tight loops — cache if needed
-- Do not expose parent email from `/api/teacher/students/{id}/parent-contact` — only `has_email: bool`
-- Do not create new subscription tiers without updating: resolver, feature matrix, FEATURE_MATRIX.md, subscription plans config, and tests
-- Do not rename `subscription_plan` DB column
-- Do not add new raw plan keys — normalize to canonical keys
-
----
-
-## Audio Cache System (Added 2026-07-03)
-
-### New Files
-```
-backend/app/services/audio_cache_service.py   — store_audio(), get_cached_audio_url(), routing logic
-backend/app/routes/tts.py                     — GET /tts/cached-url, GET /tts/audio-cache/overview
-backend/scripts/prewarm_lesson_audio.py       — CLI prewarm script (--grade, --subject, --resume, --limit)
-backend/migrations/20260703_lesson_audio_cache.sql
-```
-
-### New API Routes (prefix: /api/tts)
-- `GET  /api/tts/cached-url?grade=&subject=&chapter=&step_title=` → `{cached: bool, url?: str}`
-- `GET  /api/tts/audio-cache/overview?grade=` → admin summary
-
-### New API Routes (prefix: /api/cache-management)
-- `GET  /api/cache-management/audio/overview/{grade_slug}` → `{audio_cached, audio_expected, total_mb}`
-- `POST /api/cache-management/prewarm/audio/{grade_slug}` → triggers background TTS prewarm
-
-### Storage Routing Rule (CRITICAL)
-- Grade 9 audio → Supabase 1 `lesson-audio` bucket
-- All other grades → Supabase 2 `lesson-audio` bucket
-- `lesson_audio_cache` DB table → always Supabase 1
-- Do NOT change this routing without updating `audio_cache_service.py`
-
-### TTS Voice Routing Rule
-- Subject contains "hindi" → `hi-IN-SwaraNeural`
-- All other subjects → `en-IN-NeerjaNeural`
-- Source: `frontend/src/pages/LessonsPage.jsx` `getVoiceForSubject()`
-
-### TUTOR_SYSTEM MATH RULES (Critical — DO NOT WEAKEN)
-Every math expression MUST be in `$...$`. NEVER write math in plain `()`. NEVER use `$$` inside `()`. NEVER repeat a variable like `x^2 x 2`. See `backend/app/services/tutor_service.py` MATH RULES section.
-
-### Broken Lesson Repair Pattern
 ```bash
-# 1. Scan for broken LaTeX
-# 2. Archive broken rows in lesson_cache (status='archived')
-# 3. Regenerate:
-echo "yes" | python3 scripts/prewarm_lessons.py --grade "Grade N" --subject "Maths"
+# From the project root
+cd frontend && npx vitest run && npx eslint src/ --max-warnings 50
 ```
 
-### New Frontend Constants (LessonsPage.jsx)
-- `HINDI_VOICE = "hi-IN-SwaraNeural"`
-- `getVoiceForSubject(subject)` — auto-detects Hindi
+If either command fails, fix before pushing. These take ~15 seconds total.
 
-### Admin Guide — NVIDIA Models (Confirmed Working July 2026)
-Only 3 models work on free-tier nvapi-* accounts:
-- `meta/llama-3.1-8b-instruct` (fastest, recommended for batch)
-- `meta/llama-3.1-70b-instruct` (best quality)
-- `meta/llama-3.2-3b-instruct` (ultra-fast)
+### Why CI fails but local doesn't — 3 known failure modes
 
----
+1. **Test assertions for old broken behavior** — If you fix a bug, tests written for the broken state will now fail in CI. Always run `npx vitest run` locally after every fix.
 
-## Lesson Layout Redesign (Added 2026-07-10)
+2. **ESLint warning count exceeds 50** — CI runs `eslint src/ --max-warnings 50` on the ENTIRE directory. Running ESLint on a single file locally misses the aggregate count. Always run on all of `src/`.
 
-### New Layout Flags
-```js
-// frontend/src/pages/LessonsPage.jsx
-const USE_TOP_BAR_LAYOUT = true;   // compact horizontal top bar; false = left sidebar
+3. **Async timing race in tests** — Never use `getAllBy*` (synchronous) after `findBy*` (async) when the element you're looking for appears after a data fetch. Use `findAllBy*` (async retry) instead.
 
-// frontend/src/components/LessonSections.jsx
-const USE_WORKBOOK_LAYOUT  = true;  // Option B: inline expanded sections + floating TOC
-const USE_CARD_FEED_LAYOUT = false; // Option A: colour-coded card feed
-// both false = legacy accordion
+### ESLint `react-hooks/exhaustive-deps` rules in App.jsx
+
+- The warning is reported on the `useEffect(() => {` opening line (line number), not the closing `}, [deps])` line.
+- `// eslint-disable-line` goes on the closing `}, []);` line for mount-only effects.
+- Never put `// eslint-disable-line` on the `[darkMode]` reactive effect — that effect IS correct and needs no suppression.
+- `_finishOAuthLogin` inside the OAuth `useEffect` is intentionally excluded from deps to prevent infinite re-subscription.
+
+## Platform Chat (User-to-User Messaging) — Added 2026-07-12
+
+### Overview
+Real-time user-to-user chat between teachers↔students, parents↔teachers, admin↔anyone.  
+Backed by Supabase Realtime (WebSocket) + PostgreSQL + Supabase Storage.
+
+### Access Rules
+- Admin + Teacher: always enabled
+- Paid subscription plan: auto-enabled
+- Free users: admin-grant only (stored in `admin_settings.chat_access_users`)
+- Global kill-switch: `admin_settings.platform_chat_settings.global_enabled`
+
+### DB Tables (migration: `20260712_platform_chat.sql`)
+- `chat_rooms` — participant_a_id, participant_b_id, room_type, is_active, last_message_at. RLS: participants only.
+- `chat_messages` — room_id, sender_id, content, message_type (text|image|voice|file), attachment_url/name/size/mime, read_at, deleted_at, expires_at. RLS: room participants only.
+
+### Storage
+- Bucket: `chat-attachments` (private, 10 MB limit)
+- Policies: `20260712_chat_storage_policies.sql` — INSERT/SELECT/DELETE for `authenticated` role
+- Files served via `createSignedUrl()` (1-hour expiry) — never publicly accessible
+- Images >2 MB auto-compressed client-side (JPEG 80%, max 1920px) before upload
+
+### API Routes (Chat)
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/chat/settings` | Check if current user can use chat |
+| GET | `/api/chat/contacts` | Role-scoped contact list |
+| GET | `/api/chat/rooms` | My rooms with last message + unread count |
+| POST | `/api/chat/rooms` | Get-or-create room with another user |
+| GET | `/api/chat/rooms/{id}/messages` | Paginated history |
+| POST | `/api/chat/rooms/{id}/messages` | Send text/image/voice/file |
+| POST | `/api/chat/rooms/{id}/read` | Mark unread as read |
+| POST | `/api/chat/upload` | Get signed Supabase Storage upload URL |
+| DELETE | `/api/chat/messages/{id}` | Soft-delete own message |
+| GET | `/api/admin/chat/settings` | Admin: global chat settings |
+| PUT | `/api/admin/chat/settings` | Admin: update settings |
+| GET | `/api/admin/chat/users` | Admin: list explicit grants |
+| PATCH | `/api/admin/chat/users/{id}` | Admin: grant/revoke per user |
+| GET | `/api/admin/chat/rooms` | Admin: moderation view |
+| DELETE | `/api/admin/chat/rooms/{id}` | Admin: deactivate room |
+
+### Frontend Components
+
+| File | Purpose |
+|---|---|
+| `frontend/src/components/PlatformChat.jsx` | Floating 💬 widget — rooms, contacts, messages, Realtime |
+| `frontend/src/api/platformChat.js` | API client + `subscribeToRoom()` + `uploadChatFile()` |
+| `frontend/src/pages/AdminChatPage.jsx` | Admin: settings, per-user grants, room moderation |
+
+### Realtime
+- Subscribe: `supabase.channel('chat:{roomId}').on('postgres_changes', {event:'INSERT', table:'chat_messages', filter:'room_id=eq.{id}'}, ...)`
+- Enable: Supabase Dashboard → Database → Replication → add `chat_messages` table (or run `ALTER PUBLICATION supabase_realtime ADD TABLE chat_messages;`)
+
+### Contact Routing
+- Student → assigned teacher(s) + parent
+- Teacher → all assigned students
+- Parent → teachers assigned to their children
+- Admin → all active users
+
+## Product Bugs Page — Updated 2026-07-11
+
+### New Features
+- **Hide Closed toggle** (default ON) — filters `fixed`/`wont_fix` issues from view
+- **Per-row Close button** — marks issue fixed and removes from list instantly
+- **IssueDrawer "✓ Close Issue" button** — in drawer header for open issues
+- **Row checkboxes** + Select All / Deselect All
+- **Bulk action toolbar** (appears when ≥1 row selected):
+  - ✓ Close Selected (fixed) — calls `POST /api/admin/issues/bulk-close`
+  - ✗ Won't Fix — bulk-close with wont_fix status
+  - 📋 Copy All for Codex (N) — builds consolidated markdown prompt for all selected issues
+
+### API Routes (Issues — Updated)
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/api/admin/issues/bulk-close` | Close up to 200 issues at once (fixed\|wont_fix) |
+
+### Security Fix
+`_sanitize_browser_info()` STRING_FIELDS truncation changed from 300→200 chars to match `test_browser_info_truncates_long_values` security test contract.
+
+## API Routes (Student)
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/student/dashboard/summary` | All student dashboard data |
+| GET | `/api/student/exams` | Student exam schedule |
+| POST | `/api/student/exams` | Add exam date |
+| PATCH | `/api/student/exams/{id}` | Update exam |
+| DELETE | `/api/student/exams/{id}` | Cancel exam |
+| GET | `/api/student/formula-sheets` | Formula sheets (chapter-wise, freemium) |
+
+## API Routes (Parent)
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/parent/dashboard/summary` | Canonical parent dashboard |
+| GET | `/api/parent/children/{id}/detail` | Child detail |
+| GET | `/api/parent/children/{id}/analytics` | Child analytics |
+| GET | `/api/parent/children/{id}/academic-insights` | Insights |
+| GET | `/api/parent/children/{id}/progress-report` | Report |
+| GET | `/api/parent/notifications` | Notification center |
+| POST | `/api/parent/notifications/{id}/read` | Mark read |
+| POST | `/api/parent/notifications/read-all` | Mark all read |
+| POST | `/api/parent-dashboard/create-student` | Add child |
+| GET | `/api/parent/children/{id}/exams` | Child exam schedule |
+| POST | `/api/parent/children/{id}/exams` | Add exam for child |
+
+## API Routes (Admin QA Center)
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/admin/qa/lesson-quality/latest` | Latest lesson quality report |
+| GET | `/api/admin/qa/lesson-quality/history` | Run history |
+| POST | `/api/admin/qa/lesson-quality/run` | Start audit job |
+| GET | `/api/admin/qa/lesson-quality/status/{id}` | Poll job |
+| GET | `/api/admin/qa/lesson-quality/report` | Download report |
+| GET | `/api/admin/qa/feature-authorization/latest` | Latest auth audit report |
+| GET | `/api/admin/qa/feature-authorization/history` | Run history |
+| POST | `/api/admin/qa/feature-authorization/run` | Start auth audit |
+| GET | `/api/admin/qa/feature-authorization/status/{id}` | Poll job |
+| GET | `/api/admin/qa/feature-authorization/report` | Download report |
+
+## API Routes (Admin Lesson Repair)
+
+Admin-only (require_admin on all). Backed by in-memory store with graceful DB fallback.
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/admin/qa/lesson-repair/llm-info` | Currently configured provider, model, cost estimates (no key exposed) |
+| GET | `/api/admin/qa/lesson-repair/latest` | Latest repair job + audit report metadata |
+| GET | `/api/admin/qa/lesson-repair/history` | Recent job history |
+| POST | `/api/admin/qa/lesson-repair/run` | Start repair job (mode, grade/subject/chapter filter, use_llm, override_api_key) |
+| GET | `/api/admin/qa/lesson-repair/status/{job_id}` | Poll job status |
+| GET | `/api/admin/qa/lesson-repair/tasks/{job_id}` | List tasks for a job |
+| GET | `/api/admin/qa/lesson-repair/task/{task_id}` | Full task detail (issues, before, after, validation) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/approve` | Approve draft (requires ready_for_review) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/publish` | Publish to lesson_cache (requires approved) |
+| POST | `/api/admin/qa/lesson-repair/task/{task_id}/rerun` | Re-run LLM repair for failed/validation_failed tasks |
+| POST | `/api/admin/qa/lesson-repair/job/{job_id}/cancel` | Cancel queued/running job |
+| GET | `/api/admin/qa/lesson-repair/report` | Download report (JSON/CSV/MD) |
+
+## Critical Database Rules
+
+1. **Use `student_progress`** — not `chapter_progress` (does not exist)
+2. **Use `test_history.percentage`** — not `score` or `total_questions` (don't exist)
+3. **Use `ai_usage_logs`** — not `ai_conversation_logs` (does not exist)
+4. **Missing tables return graceful empty** via `_safe_query()` — never crash
+5. **`formula_sheets` v2 columns** — check for 42703 error, fall back to base columns if missing
+
+## Critical Code Rules
+
+1. **`_normalize_score_pct(percentage, raw_score, max_score)`** — use for ALL score display
+   - Never multiply `percentage` by 100
+   - Returns None for invalid/missing data
+   - Lives in `parent_dashboard_v2.py`
+
+2. **`get_feature_summary(user_id)`** — canonical feature access
+   - Never use raw `subscription_plan` for feature gating
+   - Never infer paid access from `parentId`
+
+3. **`_verify_child_ownership(parent_id, child_id)`** — all parent child endpoints
+4. **`require_student`** — all student endpoints
+5. **`require_parent`** — all parent endpoints
+6. **`require_admin`** — all admin QA endpoints
+
+## Google OAuth Rules (CRITICAL — Updated 2026-06-29)
+
+### Architecture
+
+OAuth onboarding now uses a deterministic backend state machine. The `oauth_profile_complete` DB column is the authoritative signal — NOT identity age heuristics.
+
+| State | Condition | Frontend action |
+|-------|-----------|-----------------|
+| A | `profile_complete=true` | Route to dashboard immediately |
+| B | `needs_role_selection=true` (new user) | Show one-time role picker |
+| C | `needs_role_selection=true` (no profile) | Show one-time role picker |
+| D | `409 role_conflict` from complete-profile | Show friendly error, block |
+
+### New Endpoints
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| GET | `/api/auth/me` | Canonical OAuth state check — returns `profile_complete`, `needs_role_selection` |
+| POST | `/api/auth/oauth/complete-profile` | Secure role assignment — idempotent, blocks role switching |
+
+### DB Migration Required
+
+`backend/migrations/20260629_oauth_profile_complete.sql` — adds `oauth_profile_complete BOOLEAN DEFAULT TRUE`. **Run in Supabase SQL Editor before deploying.**
+
+- Existing profiles: `DEFAULT TRUE` → no forced re-onboarding
+- New OAuth profiles: trigger sets `FALSE` → role picker shown once
+- After role selected: `/oauth/complete-profile` sets `TRUE`
+
+### Business Rules
+
+1. One role per Google account — enforced by backend (`409` if role differs)
+2. `oauth_profile_complete=FALSE` placeholder has `daily_token_limit=0` — AI endpoints blocked even if frontend bypassed
+3. **Role cannot be changed via direct Supabase client call** — all role changes go through `/oauth/complete-profile`
+4. All new OAuth profiles start FREE_TIER: `access_cbse=False`, `subscription_plan='free'`
+5. Legacy rows (pre-migration, `oauth_profile_complete=NULL`) are treated as `True` — no forced re-onboarding
+
+### authClient.js Error Mapping (Fixed 2026-06-29)
+
+| HTTP Status | User-facing message |
+|-------------|---------------------|
+| 401 | "Your session has expired. Please sign in again." |
+| 403 (parent) | "This account is not registered as a Parent." |
+| 403 (student) | "This account is not registered as a Student." |
+| 403 (teacher) | "This account is not registered as a Teacher." |
+| 403 (generic) | "This account does not have access to this page." |
+| 409 | Show the `detail` message (safe — role conflict text) |
+
+**NEVER map 403 to "session expired"** — 403 = role mismatch, 401 = token expired.
+
+### Frontend (App.jsx) OAuth Flow
+
+1. `onAuthStateChange` fires with `event=SIGNED_IN` for non-email providers
+2. Clear stale `localStorage` before processing
+3. Call `GET /api/auth/me` (retry up to 4×, 800ms gap, for trigger async delay)
+4. If `needs_role_selection=true` → show role picker (`pendingOauthUser`)
+5. Role picker calls `POST /api/auth/oauth/complete-profile` (backend-validated)
+6. `_finishOAuthLogin(meData, session)` builds normalized user + calls `handleLogin`
+
+### OAuth Cross-Device Reliability Layer (Updated 2026-06-29)
+
+**Root cause of cross-device silent failure:**  
+Supabase PKCE auto-exchanges `code=` and clears the URL before `onAuthStateChange` fires. Old heuristics (URL params + identity age < 5 min) both fail on a second device login → silent failure with no error, no dashboard.
+
+**Fix:** Single reliable rule in App.jsx:
+```javascript
+const hasAppProfile = !!localStorage.getItem("tutor_user");
+// SIGNED_IN + no app profile → fresh login on any device
+if (!hasAppProfile) { /* always process as fresh login */ }
 ```
 
-### CSS Critical Rules (topbar stacking context)
-`.topbar` has `backdrop-filter: blur(18px)` which creates a CSS stacking context.
-All child elements (including `position:fixed`) compete within this context.
-**RULE:** `.topbar` MUST have `position: relative; z-index: 500` to keep the guide panel above page cards.
-File: `frontend/src/App.css`
+**New file: `frontend/src/api/oauthDiagnostics.js`**
+- `getOrCreateCorrelationId()` — generates/restores from sessionStorage
+- `storeCorrelationIdBeforeRedirect()` — call before `signInWithOAuth()`
+- `recordStage(stage, status, message, errorCode)` — 14 named stages, **NEVER records tokens**
+- `inspectCallbackUrl(url)` — detects `code=`/`error=`/`access_token=` safely (boolean only)
+- `getErrorMessage(errorCode)` — user-friendly messages, never raw codes
+- `clearOAuthSession()` — removes only `oauth_*` sessionStorage keys, never `sb-*`
 
-### parseSections() — 5 Patterns (CRITICAL)
-`LessonSections.jsx` — Never rewrite to fewer patterns. All 5 are needed for different LLM outputs:
-1. Numbered+hash: `## 1. Title`
-2. Numbered+bold: `**1. Title**`
-3. Hash only: `## Title` (no number)
-4. Bold only: `**Title**`
-5. Plain Step: `Step N: Title` (no terminal `.`)
+**App.jsx reliability improvements:**
+1. Explicit PKCE exchange on mount: `supabase.auth.exchangeCodeForSession(window.location.href)`
+2. Bounded session retry: 8-attempt backoff (100ms → 1500ms) + 1.5s event listener fallback
+3. Correlation ID sent as `X-OAuth-Correlation-ID` header to `/auth/me`
+4. Provider error (`error=` in URL) → immediate visible error, not silent spinner
+5. Double-invocation guard keyed to `window.location.href`
+6. Only `tutor_user` + `tutor_active_page` cleared — never `sb-*` Supabase auth keys
 
-Guard rule: numbered items ending with `.` (e.g. `1. Read carefully.`) must NOT be treated as headings.
+**Legacy rules (now superseded — do not use):**
+- ~~Identity age fallback~~ — removed, was unreliable
+- ~~URL param detection~~ — removed, Supabase clears URL before handler runs
 
-### getRenderableContent() — Worked Example Rule (CRITICAL)
-If section content contains `Question:` followed by `Step N:` or `Answer:`, it is a **worked example**.
-**NEVER** strip content after `Question:` in a worked example — the solution must be visible.
-The question also appears in the inline box — both coexist.
-File: `frontend/src/components/LessonSections.jsx`
+## Signup Rules
 
-### Inline LaTeX Fix
-```js
-// LessonSections.jsx — applied directly at render time
-function fixInlineDisplayMath(text) { ... }  // $$ inline → $ $
-// markdownCleanup.js — step 0 in normalizeTutorMarkdown()
-function normalizeInlineDisplayMath(text) { ... }
+- Teacher role NOT in public signup (admin-created only)
+- Student signup: Grade 5–10 selector required
+- Parent signup: no grade needed
+- All new signups: `access_cbse=false`, `subscription_plan="free"`
+- No payment/offer code in signup flow
+- Add Child grade dropdown: Grade 5–10 only
+
+## Score Display Rules
+
+Never show scores > 100%. Always use `_normalize_score_pct()` or `safePct()`.
+
+## Feature Matrix
+
+| Feature | Free Tier | Paid |
+|---|---|---|
+| AI Lessons | Limited | Full |
+| Mock Tests | 5/day | Unlimited |
+| Ask Doubts | Limited | Full |
+| Exemplar | Locked | Full |
+| Exemplar Research | Locked | Full |
+| Formula Sheet page | Open | Open |
+| Formula Sheet expansion | Locked | Full |
+
+## Formula Sheet Rules
+
+- `FORMULA_SHEET_PREMIUM` feature key controls expansion/details
+- Free users: see formula name + expression + description (first 3 per chapter)
+- Paid users: full expansion — examples, solution steps, memory tips, MCQ practice
+- Upgrade modal: same pattern as Exemplar Research (not inline text)
+- Upgrade routes to `subscriptionPlans` (NOT `subscription`)
+- `formula_sheets` table — use v2 columns if available, fall back to base if 42703 error
+
+## Platform QA Center
+
+### Lesson Quality Audit
+- CLI: `python scripts/audit_lesson_quality.py --sample|--all|--fail-critical|--use-llm`
+- Reports: `reports/lesson_quality/` (JSON + MD + CSV)
+- DB table: `lesson_quality_audit_runs`
+
+### Feature Authorization Audit
+- CLI: `python scripts/audit_feature_authorization.py --sample|--all|--fail-critical|--json`
+- Reports: `reports/feature_authorization/` (JSON + MD + CSV)
+- Patches `feature_authorization_service.resolve_user_subscription` (NOT resolver module)
+- 42+ checks: Free/Paid/Expired plans × all features + scenario checks
+
+### Lesson Sections Audit → Repair Pipeline
+
+**Step 1: Audit** — finds lessons missing/failing the 8 canonical sections:
+```
+introduction | what_you_will_learn | simple_explanation | step_by_step_breakdown
+worked_example | common_mistake | quick_check_question | summary
+```
+Report saved to `reports/lesson_sections/lesson_sections_report.json`.
+
+**Step 2: Repair (Admin UI — Lesson Repair page)**
+- Mode: `sample` (10 lessons) | `filtered` (grade/subject/chapter) | `all`
+- LLM repair: opt-in only — `use_llm=True` required
+- AI Provider panel shows current provider, model, cost estimates per lesson
+- Session API key override: takes precedence over Admin Settings, never logged/stored
+- Draft-first safety: LLM generates → validation (score ≥90, depth ≥85, 0 critical) → admin reviews → approve → publish
+- Publish only writes to `lesson_cache` after explicit admin approval
+
+**Step 2: Repair (CLI)**
+```bash
+cd backend
+.venv/bin/python scripts/repair_lesson_sections.py --sample          # 10 failures
+.venv/bin/python scripts/repair_lesson_sections.py --grade 9 --use-llm  # LLM repair
+.venv/bin/python scripts/repair_lesson_sections.py --list-failures    # show failures only
+.venv/bin/python scripts/repair_lesson_sections.py --validate-only    # validate a draft JSON
 ```
 
-### New Parser Debug Script
-```
-backend/scripts/trace_parser_chapter1.py
-```
-Shows rendered vs discarded words per section. Run to diagnose lesson content loss.
+**Repair task statuses:**
+`queued` → `running` → `ready_for_review` (no LLM) or `validation_failed` / `ready_for_review` (LLM)
+→ `approved` → `published`  |  `failed` → rerun
 
-### Poem Chapter Detection — Grade 5 Santoor
-`_POEM_KEYWORDS` in `tutor_service.py` now includes Grade 5 Santoor poem chapters:
-`papa's spectacles`, `the rainbow`, `the frog`, `vocation`
+**DB tables** (migration: `20260629_lesson_repair_jobs.sql`):
+- `lesson_repair_jobs` — job metadata, counters
+- `lesson_repair_tasks` — per-lesson tasks with before/after content, validation results
 
-### Practice Question Quality Rules (CRITICAL — DO NOT WEAKEN)
-- Keyword pass threshold: `score >= 7` (was 6)
-- Keyword floor: `max(0,...)` (was max(1,...))
-- EVALUATOR_SYSTEM: strict textbook-grounded — flags vague/general answers
-- Prewarm question count: scales with RAG chunks (1/2/3)
-- Textbook exercise Q&A used directly before generating new questions
-Files: `backend/app/services/evaluation_service.py`, `backend/app/routes/lesson.py`
+**Safety rules (never violate):**
+- `original_content_json` preserved forever — never deleted
+- `publish_repaired_task()` only works when `status == 'approved'`
+- LLM never runs automatically — `use_llm=True` required in request
+- `override_api_key` never logged, never stored, in-memory only
+- `requested_by_admin_id` stripped from all API responses
 
-### Light Mode CSS Variable Rule (CRITICAL)
-When writing inline styles in React components that must work in both light AND dark mode:
-- Use `var(--panel, #ffffff)` not `var(--card-bg, rgba(255,255,255,.04))` for backgrounds
-- Use `var(--border, #d1d5db)` not `var(--border, rgba(255,255,255,.15))` for borders
-- Use `var(--text, #111827)` not hardcoded light text like `#f8fafc`
-- The fallback value must be the LIGHT MODE default (dark mode sets the variable)
+## Child Limits by Plan
+
+| Plan | Child Limit |
+|---|---|
+| FREE_TIER | 1 |
+| NANO | 1 |
+| PREMIUM | 1 |
+| FAMILY_PREMIUM | 2 |
+| ADMIN_GRANT | None (unlimited) |
+
+## CI Configuration
+
+- **Max warnings:** 50 (ESLint) — project currently at ~48
+- **Test runner:** vitest (frontend), pytest (backend)
+- **Lint runner:** `eslint src/ --max-warnings 50` on entire `src/` directory
+- **Test isolation:** All API calls mocked. No live backend/Supabase in tests.
+- **Key constraint:** `findAllByTestId` (async) must be used for elements that appear after data fetches — never `getAllByTestId` (sync) after an initial `findBy*`
+
+## File Locations
+
+| Purpose | File |
+|---|---|
+| **OAuth state machine** | `frontend/src/App.jsx` (onAuthStateChange handler) |
+| **OAuth diagnostics utility** | `frontend/src/api/oauthDiagnostics.js` (correlation IDs, stages, URL inspection) |
+| **OAuth endpoints** | `backend/app/routes/auth.py` (GET /me, POST /oauth/complete-profile) |
+| **OAuth DB migration** | `backend/migrations/20260629_oauth_profile_complete.sql` |
+| **OAuth backend tests** | `backend/tests/test_oauth_flow.py` (21 tests) |
+| **OAuth reliability tests** | `frontend/src/tests/OAuthReliability.test.jsx` (22 tests) |
+| **Auth error mapping** | `frontend/src/api/authClient.js` |
+| **Auth error mapping tests** | `frontend/src/tests/OAuthErrorMapping.test.jsx` |
+| **Auth reliability tests** | `frontend/src/tests/AuthSessionReliability.test.jsx` |
+| **Lesson Repair page** | `frontend/src/pages/AdminLessonRepairPage.jsx` |
+| **Lesson Repair API client** | `frontend/src/api/lessonRepair.js` |
+| **Lesson Repair API routes** | `backend/app/routes/lesson_repair.py` (11 admin endpoints) |
+| **Lesson Repair service** | `backend/app/services/lesson_repair_service.py` |
+| **Lesson Repair CLI** | `backend/scripts/repair_lesson_sections.py` |
+| **Lesson Repair DB migration** | `backend/migrations/20260629_lesson_repair_jobs.sql` |
+| **Lesson Repair backend tests** | `backend/tests/test_lesson_repair.py` (28 tests) |
+| **Lesson Repair frontend tests** | `frontend/src/tests/AdminLessonRepairPage.test.jsx` (23 tests) |
+| Student dashboard | `frontend/src/pages/StudentDashboardPage.jsx` |
+| Student dashboard CSS | `frontend/src/pages/StudentDashboardPage.css` |
+| Student dashboard API | `backend/app/routes/student_dashboard.py` |
+| Formula Sheet page | `frontend/src/pages/FormulaSheetPage.jsx` |
+| Formula Sheet API | `backend/app/routes/formula_sheets.py` |
+| Formula Sheet seed | `backend/scripts/seed_formula_sheets.py` |
+| Exam schedule API | `backend/app/routes/exam_schedule.py` |
+| Parent dashboard | `frontend/src/pages/ParentDashboardPage.jsx` |
+| Parent components | `frontend/src/components/parent/` |
+| Admin QA Center | `frontend/src/pages/AdminQACenterPage.jsx` |
+| Feature Auth Audit | `frontend/src/pages/FeatureAuthAuditPage.jsx` |
+| QA Center APIs | `backend/app/routes/admin_qa.py` |
+| Lesson Quality Audit | `backend/scripts/audit_lesson_quality.py` |
+| Feature Auth Audit | `backend/scripts/audit_feature_authorization.py` |
+| Lesson Sections Audit | `backend/scripts/audit_lesson_sections.py` |
+| Score normalization | `_normalize_score_pct()` in `parent_dashboard_v2.py` |
+| Subscription resolver | `backend/app/services/subscription_resolver_service.py` |
+| Feature authorization | `backend/app/services/feature_authorization_service.py` |
+| Auth client (friendly errors) | `frontend/src/api/authClient.js` |
+| Signup page | `frontend/src/pages/SignupPage.jsx` |
+| Content management docs | `LikhapohaContext-docs/docs/CONTENT_MANAGEMENT.md` |
+| **Platform Chat widget** | `frontend/src/components/PlatformChat.jsx` |
+| **Platform Chat API client** | `frontend/src/api/platformChat.js` |
+| **Platform Chat backend routes** | `backend/app/routes/platform_chat.py` |
+| **Platform Chat DB migration** | `backend/migrations/20260712_platform_chat.sql` |
+| **Chat Storage policies** | `backend/migrations/20260712_chat_storage_policies.sql` |
+| **Admin Chat settings page** | `frontend/src/pages/AdminChatPage.jsx` |
+| **Product Bugs page** | `frontend/src/pages/AdminIssuesPage.jsx` |
+| **Product Bugs backend** | `backend/app/routes/issues.py` (includes bulk-close) |
