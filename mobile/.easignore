@@ -1,0 +1,22 @@
+# Exclude large directories not needed for the cloud build
+# This reduces the archive size from ~198MB to ~2MB
+
+# node_modules — EAS Build installs these fresh from package.json
+node_modules/
+
+# Expo cache
+.expo/
+
+# Local env — EAS uses secrets instead
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+android/
+ios/
+
+# Dev tools
+.DS_Store
+*.log
