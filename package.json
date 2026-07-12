@@ -1,4 +1,10 @@
 {
+  "name": "cbse-tutor-platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "shared"
+  ],
   "dependencies": {
     "katex": "^0.17.0",
     "rehype-katex": "^7.0.1",
