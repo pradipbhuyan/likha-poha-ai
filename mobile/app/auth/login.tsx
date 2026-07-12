@@ -12,6 +12,7 @@ export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function handleLogin() {
     if (!email || !password) {
@@ -19,9 +20,17 @@ export default function LoginScreen() {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    if (error) Alert.alert("Login failed", error.message);
+    setErrorMsg("");
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      console.log("LOGIN RESULT:", JSON.stringify({ data: data?.user?.email, error: error?.message }));
+      setLoading(false);
+      if (error) setErrorMsg(error.message);
+    } catch (e: any) {
+      console.error("LOGIN EXCEPTION:", e?.message ?? String(e));
+      setLoading(false);
+      setErrorMsg(e?.message ?? "Unknown error. Check console.");
+    }
   }
 
   return (
@@ -59,6 +68,12 @@ export default function LoginScreen() {
             <Text style={s.btnText}>Sign In</Text>
           )}
         </TouchableOpacity>
+
+        {errorMsg ? (
+          <Text style={{ color: "#dc2626", textAlign: "center", marginBottom: 12, fontSize: 13, backgroundColor: "#fef2f2", padding: 10, borderRadius: 8 }}>
+            ❌ {errorMsg}
+          </Text>
+        ) : null}
 
         <TouchableOpacity onPress={() => router.push("/auth/signup")}>
           <Text style={s.link}>Don't have an account? Sign up</Text>
