@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { Bot, X } from "lucide-react";
 import logoImg from "../assets/AITutorLogo1.png";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -263,15 +264,15 @@ export default function ChatWidget() {
           width: 58, height: 58, borderRadius: "50%", border: "none",
           background: open
             ? "#334155"
-            : "linear-gradient(135deg, #2563eb, #7c3aed)",
-          color: "#fff", fontSize: 24, cursor: "pointer",
-          boxShadow: "0 4px 20px rgba(37,99,235,0.4)",
+            : "linear-gradient(135deg, #7c3aed, #2563eb)",
+          color: "#fff", cursor: "pointer",
+          boxShadow: "0 4px 20px rgba(124,58,237,0.45)",
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.2s",
         }}
         title="Ask us anything"
       >
-        {open ? "×" : "💬"}
+        {open ? <X size={22} strokeWidth={2.5} /> : <Bot size={26} strokeWidth={1.8} />}
         {/* Unread badge */}
         {!open && unread > 0 && (
           <span style={{
