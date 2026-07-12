@@ -98,7 +98,7 @@ export async function uploadChatFile(roomId, file) {
   const { data: { user }, error: authErr } = await supabase.auth.getUser();
   if (authErr || !user) throw new Error("Not authenticated");
 
-  const safeName = file.name.replace(/[^\w.\-]/g, "_").slice(0, 100);
+  const safeName = file.name.replace(/[^\w.-]/g, "_").slice(0, 100);
   const storagePath = `${roomId}/${user.id}_${Date.now()}_${safeName}`;
 
   // Upload directly via Supabase JS (uses user's JWT — bypasses need for signed upload URLs)
