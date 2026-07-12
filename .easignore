@@ -1,0 +1,25 @@
+# Root-level .easignore — reduces EAS Build archive size
+# node_modules directories throughout the repo
+mobile/node_modules/
+frontend/node_modules/
+node_modules/
+
+# Large non-build dirs
+frontend/src/
+LikhapohaContext-docs/
+backend/
+docs/
+screenshots/
+test-results/
+RAG DB/
+
+# Dev artifacts
+**/.expo/
+**/dist/
+**/build/
+**/android/
+**/ios/
+
+# Secrets and local config
+**/.env
+**/.env.local
