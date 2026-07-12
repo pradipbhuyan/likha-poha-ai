@@ -503,7 +503,7 @@ All ReactMarkdown section body renders use `LessonMarkdownTable` as the custom `
 | **Structured visual block** | `frontend/src/components/StructuredVisualBlock.jsx` |
 | **Lesson page (scroll-to-top, step nav)** | `frontend/src/pages/LessonsPage.jsx` |
 | **Lesson + section CSS** | `frontend/src/App.css` |
-| **Mobile app root** | `mobile/` (React Native / Expo SDK 57) |
+| **Mobile app root** | `mobile/` (React Native / Expo SDK 54, react-native 0.81.5, expo-router 6.x) |
 | **Mobile Supabase client** | `mobile/lib/supabase.ts` (expo-secure-store adapter) |
 | **Mobile auth helpers** | `mobile/lib/auth.ts` (signInWithEmail, signInWithGoogle, checkAuthState) |
 | **Mobile authFetch** | `mobile/lib/authFetch.ts` (JWT fetch with same 401/403 mapping as web) |

@@ -891,3 +891,71 @@ useEffect(() => {
 - Grade 6, 7: clean
 
 **Note:** Pre-warmed lessons in `lesson_cache` are NOT auto-updated by prompt changes. Must archive + regenerate manually.
+
+---
+
+## 2026-07-12: Mobile App — Expo SDK & Build System Decisions
+
+### Problem: Expo SDK version mismatch with Play Store Expo Go
+
+**Symptom:** App scaffolded with Expo SDK 57 (React Native 0.86). Play Store Expo Go in India only supports SDK 54. Standalone APKs (builds #1–11) also crashed silently on OxygenOS 16.
+
+**Root causes found (in order of discovery):**
+1. `index.ts` used `registerRootComponent(App)` — bypassed Expo Router entirely
+2. `punycode` not installed — `react-native-markdown-display` → `markdown-it` requires it
+3. `.env` was excluded from EAS archive — all `EXPO_PUBLIC_*` vars were empty strings, crashing Supabase `createClient("","")`
+4. `experiments.typedRoutes: true` — requires TS declarations not generated in EAS builds
+5. `newArchEnabled: false` — React Native 0.81.5 requires New Architecture in standalone mode
+6. Wrong `expo-router` version — SDK 54 needs `expo-router ~6.x`, not `~4.x`
+7. Wrong React Native version — SDK 54 uses `react-native 0.81.5`, not `0.76.9`
+8. Wrong React version — SDK 54 uses `react 19.1.0`, not `18.3.x`
+
+**Final working stack:**
+- `expo: ~54.0.0` (installed 54.0.35)
+- `expo-router: ~6.0.24`
+- `react: 19.1.0`
+- `react-native: 0.81.5` (set via `npx expo install react-native react`)
+- `newArchEnabled: true`
+
+**Rule established:** Always use `npx expo install <package>` instead of `npm install` for Expo packages. This auto-selects the correct version for the installed SDK.
+
+---
+
+### Problem: EAS Build archive too large (198MB)
+
+**Root cause:** EAS archives from the **repo root**, not from `mobile/`. The `mobile/.easignore` only excluded files relative to `mobile/` but `mobile/node_modules` (387MB) was at the repo root level.
+
+**Fix:** Added `.easignore` at repo root excluding `mobile/node_modules/`, `frontend/node_modules/`, `backend/`, `LikhapohaContext-docs/`, etc.
+
+**Result:** Archive reduced from 198MB → ~28MB.
+
+---
+
+### Problem: CI `npm ci` failing after mobile work
+
+**Root cause:** Added `workspaces: ["frontend", "shared"]` to root `package.json`. When GitHub Actions ran `npm ci` in `frontend/` with `working-directory: frontend`, npm walked up to the repo root, found the workspace config, and tried to use the root `package-lock.json` (which didn't have all workspace packages).
+
+**Fix:** Removed `workspaces` from root `package.json`. The `mobile/` references `shared/` via `file:../shared` path in its own `package.json` — npm workspaces not needed for this.
+
+---
+
+### Problem: New Supabase accounts can't log in
+
+**Root cause:** Supabase requires email confirmation before login. The error "invalid login credentials" is returned for both unconfirmed accounts AND wrong passwords.
+
+**Workarounds:**
+1. Admin confirmed specific accounts via Supabase admin API: `PUT /auth/v1/admin/users/:id` with `{"email_confirm": true}`
+2. Long-term: Disable "Confirm email" in Supabase Dashboard → Authentication → Email Templates
+
+**Current test accounts (confirmed):**
+- `admin@tutor.com` — admin role
+- `likhapohaai@gmail.com` — new student (confirmed)
+- `marketing.student@likhapoha.in` — pre-seeded student
+- `vijay.sim.student@example.test` — pre-seeded student
+
+---
+
+### Decision: Mobile app logo
+
+The `mobile/assets/icon.png` was the default Expo template blue shield icon. Replaced with `frontend/public/android-chrome-512x512.png` which is the actual Likha Poha AI branded logo (512x512 RGBA PNG from the web app).
+
