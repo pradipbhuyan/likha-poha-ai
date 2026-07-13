@@ -27,16 +27,148 @@ function SCard({label,value,color,testid}){
 
 function mkPrompt(iss){
   const bi=iss.browser_info||{},p=[];
-  p.push("# Bug Report -- Likhapoha AI Platform","","**Defect:** "+(iss.defect_number||iss.id));
-  p.push("**Type:** "+(iss.issue_type||"").replace(/_/g," "));
-  p.push("**Severity:** "+iss.severity,"**Status:** "+iss.status);
-  p.push("**Reported:** "+(iss.created_at?new Date(iss.created_at).toLocaleString():"?"),"");
-  p.push("## Description",iss.description||"","## Context");
-  p.push("- Route: "+(iss.route||"?"),"- Grade: "+(iss.grade||"?"),"- Subject: "+(iss.subject||"?"));
-  p.push("- Chapter: "+(iss.chapter||"?"),"- Step: "+(iss.lesson_step||"?"),"");
-  p.push("## Browser","- Platform: "+(bi.platform||"?"),"- Viewport: "+bi.viewportWidth+"x"+bi.viewportHeight,"");
-  if(bi.recentJsErrors&&bi.recentJsErrors.length>0){p.push("## JS Errors");bi.recentJsErrors.forEach(e=>p.push("- "+(e.message||"")));}
-  p.push("## Admin Notes",iss.admin_notes||"(none)","","---","Platform: Likhapoha AI -- React+FastAPI+Supabase. Please investigate and fix.");
+  const route=(iss.route||"").toLowerCase();
+  const itype=(iss.issue_type||"").toLowerCase();
+  const isLesson=route.includes("lesson")||itype.includes("content")||itype.includes("formula")||itype.includes("explanation")||itype.includes("section");
+  const isAuth=route.includes("login")||route.includes("signup")||itype.includes("login");
+  const isDashboard=route.includes("dashboard");
+  const isPayment=route.includes("payment")||route.includes("subscription")||itype.includes("access");
+
+  // ── SECTION 1: Defect Identity ────────────────────────────────────────────
+  p.push("# Bug Report — Likha Poha AI","","## SECTION 1 — Defect Identity","");
+  p.push("| Field | Value |","|---|---|");
+  p.push("| **Defect ID** | `"+(iss.defect_number||iss.id)+"` |");
+  p.push("| **Type** | `"+(iss.issue_type||"").replace(/_/g," ")+"` |");
+  p.push("| **Severity** | `"+iss.severity+"` |");
+  p.push("| **Status** | `"+iss.status+"` |");
+  p.push("| **Reported** | `"+(iss.created_at?new Date(iss.created_at).toLocaleString():"?")+"` |","");
+
+  // ── SECTION 2: What the user sees ─────────────────────────────────────────
+  p.push("## SECTION 2 — What the User Sees (Exact Description)","","```");
+  p.push(iss.description||"(no description)");
+  p.push("```","");
+  p.push("### Context","","| Field | Value |","|---|---|");
+  p.push("| **Route** | `"+(iss.route||"?")+"` |");
+  p.push("| **Grade** | `"+(iss.grade||"?")+"` |");
+  p.push("| **Subject** | `"+(iss.subject||"?")+"` |");
+  p.push("| **Chapter** | `"+(iss.chapter||"?")+"` |");
+  p.push("| **Step / Section** | `"+(iss.lesson_step||"?")+"` |");
+  p.push("| **User role** | `"+(iss.reporter_role||"student")+"` |");
+  p.push("| **Platform** | `"+(bi.platform||"?")+"` |");
+  p.push("| **Viewport** | `"+(bi.viewportWidth||"?")+"×"+(bi.viewportHeight||"?")+"` |");
+  if(bi.recentJsErrors&&bi.recentJsErrors.length>0){
+    p.push("","**JS Errors logged:**");
+    bi.recentJsErrors.slice(0,5).forEach(e=>p.push("- `"+(e.message||"")+(e.source?" @ "+e.source:"")+(e.lineno?":"+e.lineno:"")+"` "));
+  }
+  p.push("");
+
+  // ── SECTION 3: Admin notes ────────────────────────────────────────────────
+  p.push("## SECTION 3 — Suspected Root Cause (Admin Notes)","");
+  p.push(iss.admin_notes||"*(No admin notes — agent should investigate)*","");
+
+  // ── SECTION 4: Definition of Done ─────────────────────────────────────────
+  p.push("## SECTION 4 — Definition of Done","");
+  p.push("- [ ] The visual bug / incorrect output is no longer reproducible");
+  p.push("- [ ] Regression test added covering the exact input that caused the bug");
+  p.push("- [ ] No existing tests were broken");
+  p.push("- [ ] `cd frontend && npx vitest run` — all tests pass");
+  p.push("- [ ] `cd frontend && npx eslint src/ --max-warnings 50` — 0 errors, ≤ 49 warnings");
+  if(isPayment||isAuth)p.push("- [ ] `cd backend && .venv/bin/python -m pytest` — all tests pass");
+  if(isLesson)p.push("- [ ] If fix is rendering-only: verify on localhost:5173 with hard refresh (Cmd+Shift+R)");
+  if(isLesson)p.push("- [ ] If cached lesson is corrupt: click 🔄 Refresh lesson to regenerate from LLM");
+  p.push("");
+
+  // ── CODEX BOOTSTRAP ───────────────────────────────────────────────────────
+  p.push("---","---","","# CODEX SESSION BOOTSTRAP — Auto-Context","","**Repo root:** `/Users/a0247716/Pradips_Project/cbse-tutor-platform/`","All paths below are relative to this root.","");
+
+  // Mandatory reading
+  p.push("## Mandatory Pre-Task Reading","");
+  p.push("1. `LikhapohaContext-docs/docs/CODEX_BOOTSTRAP.md`");
+  p.push("2. `LikhapohaContext-docs/docs/CODEX_CONTEXT.md`");
+  p.push("3. `LikhapohaContext-docs/CODEX_CONTEXT.md` (latest snapshot)");
+  if(isLesson) p.push("4. `LikhapohaContext-docs/docs/09_AI_PLATFORM.md` ← **required for lessons/LLM bugs**");
+  if(isPayment) p.push("4. `LikhapohaContext-docs/docs/03_SUBSCRIPTIONS.md` + `FEATURE_MATRIX.md` ← **required for payment/access bugs**");
+  if(isAuth) p.push("4. `LikhapohaContext-docs/docs/02_ARCHITECTURE.md` ← **required for auth/login bugs**");
+  if(isDashboard) p.push("4. `LikhapohaContext-docs/docs/08_STUDENT_PLATFORM.md` ← **required for dashboard bugs**");
+  p.push("");
+
+  // Relevant files
+  p.push("## Files Directly Relevant to This Bug","","| File | Relevance |","|---|---|");
+  if(isLesson){
+    p.push("| `frontend/src/utils/markdownCleanup.js` | Math/markdown normalization — `normalizeTutorMarkdown()` |");
+    p.push("| `frontend/src/components/LessonSections.jsx` | Lesson rendering — `parseSections()`, `fixInlineDisplayMath()` |");
+    p.push("| `frontend/src/pages/LessonsPage.jsx` | Lessons route |");
+    p.push("| `backend/app/services/tutor_service.py` | LLM prompt + cache-first lesson generation |");
+    p.push("| `backend/app/services/lesson_cache_service.py` | Supabase `lesson_cache` table |");
+  }
+  if(isAuth){
+    p.push("| `frontend/src/App.jsx` | OAuth state machine + auth routing |");
+    p.push("| `frontend/src/api/authClient.js` | Auth error mapping |");
+    p.push("| `frontend/src/api/oauthDiagnostics.js` | OAuth diagnostics |");
+  }
+  if(isPayment){
+    p.push("| `backend/app/services/subscription_resolver_service.py` | Canonical subscription resolver |");
+    p.push("| `backend/app/services/feature_authorization_service.py` | Feature authorization |");
+    p.push("| `frontend/src/utils/resolveSubscription.js` | `hasPaidAccess(user)` |");
+  }
+  if(isDashboard){
+    p.push("| `frontend/src/pages/StudentDashboardPage.jsx` | Student dashboard |");
+    p.push("| `frontend/src/pages/ParentDashboardPage.jsx` | Parent dashboard |");
+  }
+  p.push("| `frontend/src/App.css` | Theme CSS variables (light/dark mode) |","");
+
+  // Relevant hard rules
+  p.push("## Hard Rules Relevant to This Bug","");
+  if(isLesson){
+    p.push("- `normalizeTutorMarkdown()` **runs client-side at render time** — never server-side");
+    p.push("- Supabase `lesson_cache` stores **raw LLM output** — normalization is never written back");
+    p.push("- Inline `$$expr$$` → always fix with `fixInlineDisplayMath()` before ReactMarkdown");
+    p.push("- `parseSections()` handles 5 heading patterns — never reduce");
+    p.push("- `getRenderableContent()`: `Question:` + `Step N:` = worked example — **never strip the solution**");
+    p.push("- Use `🔄 Refresh lesson` (`force_refresh=True`) to regenerate stale or malformatted cached content");
+  }
+  if(isAuth){
+    p.push("- Auth state source of truth: `oauth_profile_complete` DB column — NOT identity age heuristics");
+    p.push("- `onAuthStateChange`: check `isOAuthRedirect` BEFORE `localStorage.getItem('tutor_user')`");
+    p.push("- HTTP 401 = session expired; HTTP 403 = role mismatch — **never** map 403 to 'session expired'");
+    p.push("- Never clear `sb-*` Supabase auth keys from localStorage — only clear `tutor_user` + `tutor_active_page`");
+  }
+  if(isPayment){
+    p.push("- **NEVER** use `user.parentId` to infer paid access");
+    p.push("- **NEVER** branch on `user.subscriptionPlan === 'free'` (ambiguous — maps to Free Tier AND Nano)");
+    p.push("- **ALWAYS** use `hasPaidAccess(user)` in frontend");
+    p.push("- **ALWAYS** use `authorize_feature(user_id, Feature.X)` in backend for premium features");
+    p.push("- Frontend Exemplar gating: `chapter?.includes('Exemplar:')` — never `startsWith`");
+  }
+  p.push("- CSS inline fallbacks must be light-mode: `var(--text, #111827)` not `var(--text, #f8fafc)`");
+  p.push("- `react-hooks/exhaustive-deps` disable comment goes on the **closing** `}, []);` line");
+  p.push("");
+
+  // Test counts
+  p.push("## Test Counts (Do Not Regress)","");
+  p.push("| Suite | Count |","|---|---|");
+  p.push("| Backend (pytest) | 535+ |");
+  p.push("| Frontend (vitest) | 578 |","");
+  p.push("**Mandatory pre-push:**");
+  p.push("```bash","cd frontend && npx vitest run && npx eslint src/ --max-warnings 50","```","");
+
+  // Anti-patterns
+  p.push("## Anti-Patterns (Never Do These)","");
+  p.push("| Anti-Pattern | Reason |","|---|---|");
+  p.push("| `if (user.parentId) return true` | parentId ≠ paid access |");
+  p.push("| `subscriptionPlan === 'free'` for access | ambiguous |");
+  p.push("| `percentage * 100` | already 0–100 |");
+  p.push("| `startsWith('Exemplar:')` | Part prefix breaks it |");
+  if(isLesson){
+    p.push("| Calling `normalizeTutorMarkdown()` server-side | client-only render-time function |");
+    p.push("| Writing normalized content back to `lesson_cache` | raw LLM output must be preserved |");
+    p.push("| Testing `normalizeTutorMarkdown()` only with `$$\\n..\\n$$` blocks | must also test `$$eq$$` single-line |");
+  }
+  p.push("| `chapter_progress` table | does not exist — use `student_progress` |");
+  p.push("| `test_history.score` or `.total_questions` | do not exist — use `.percentage` |");
+  p.push("| Hardcoded dark text in inline styles | use light fallbacks |");
+  p.push("");
+
   return p.join("\n");
 }
 
