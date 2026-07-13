@@ -1915,8 +1915,9 @@ function LessonsPage({ user, setActivePage }) {
                   // Clear this step from BOTH local state AND the DB progress
                   // so that loadProgress() on the next page load doesn't restore
                   // the stale lesson from the saved step_lessons record.
-                  // After clearing, the "Generate Lesson" button re-appears and
-                  // the next generate call serves the admin-uploaded cache content.
+                  // Then immediately force-refresh from the LLM (bypassing the
+                  // Supabase lesson_cache) so the student gets regenerated content
+                  // and doesn't get the same stale cache entry back.
                   const updatedStepLessons = { ...stepLessons };
                   delete updatedStepLessons[String(currentStepIndex)];
                   setStepLessons(updatedStepLessons);
@@ -1940,6 +1941,10 @@ function LessonsPage({ user, setActivePage }) {
                   } catch {
                     // Non-critical — local state is already cleared
                   }
+                  // Force-regenerate from LLM — bypass the Supabase cache entirely
+                  // so the student always receives fresh content, not the stale
+                  // cache entry that caused the reported issue.
+                  handleGenerateLesson(true, true);
                 }}
               >
                 🔄 Refresh lesson
