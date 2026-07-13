@@ -8,6 +8,15 @@ import {
   removeUnsupportedQuestionClosers,
 } from "../utils/markdownCleanup";
 
+// ---------------------------------------------------------------------------
+// Regression: Defect 8467c3f3 — single-line display math ($$eq$$) was
+// corrupted by normalizeInlineDisplayMath Step 3.  The regex used \S which
+// matched the leading $ of a display-math line, causing $$eq$$ → $$eq
+// (closing $$ stripped).  Subsequent pipeline steps then cascaded errors
+// producing garbled output like "v = v0 + at x = x0 + v0t + 1/2at^2$$".
+// Fix: Step 3 now uses [^\s$] so lines starting with $ are excluded.
+// ---------------------------------------------------------------------------
+
 describe("markdownCleanup", () => {
   test("converts parenthesized LaTeX expressions into inline math", () => {
     const input =
@@ -78,5 +87,49 @@ describe("markdownCleanup", () => {
     expect(removeUnsupportedQuestionClosers(input)).toBe(
       "This summary prepares you for the next idea. Review these key points, then move to the next lesson section when ready."
     );
+  });
+
+  // ── Regression: defect 8467c3f3 ──────────────────────────────────────────
+  test("preserves single-line display math $$eq$$ without stripping closing $$", () => {
+    // LLM commonly writes each kinematic equation on its own line as $$eq$$.
+    // The old Step 3 regex (\S) matched the leading $ and stripped the trailing
+    // $$, breaking KaTeX rendering entirely.
+    const input = [
+      "$$v = v_0 + at$$",
+      "$$x = x_0 + v_0t + \\frac{1}{2}at^2$$",
+      "$$v^2 = v_0^2 + 2ax$$",
+    ].join("\n");
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toContain("$$v = v_0 + at$$");
+    expect(result).toContain("$$x = x_0 + v_0t + \\frac{1}{2}at^2$$");
+    expect(result).toContain("$$v^2 = v_0^2 + 2ax$$");
+  });
+
+  test("still strips genuinely dangling trailing $$ from prose lines", () => {
+    // Lines that start with prose text (not $) and end with an orphan $$
+    // must still be cleaned up by Step 3.
+    const input = "The displacement is x = x_0 + v_0t + at^2$$";
+    const result = normalizeTutorMarkdown(input);
+    expect(result).not.toMatch(/at\^2\$\$/);
+  });
+
+  test("splits multiple $$eq$$ blocks on the same line into individual display-math lines", () => {
+    // The LLM sometimes emits all three kinematic equations on one line:
+    //   "$$v = v_0 + at$$ $$x = x_0 + v_0t + \frac{1}{2}at^2$$ $$v^2 = v_0^2 + 2ax$$"
+    // The pre-step must split these at the "$$[space]$$" boundary and the
+    // JS replacement must use a function to avoid "$$" → "$" string escaping.
+    const input = [
+      "$$v = v_0 + at$$",
+      "$$x = x_0 + v_0t + \\frac{1}{2}at^2$$",
+      "$$v^2 = v_0^2 + 2ax$$",
+    ].join(" "); // intentionally joined with spaces (same line)
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toContain("$$v = v_0 + at$$");
+    expect(result).toContain("$$x = x_0 + v_0t + \\frac{1}{2}at^2$$");
+    expect(result).toContain("$$v^2 = v_0^2 + 2ax$$");
   });
 });

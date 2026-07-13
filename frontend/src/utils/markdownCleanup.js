@@ -394,10 +394,24 @@ function normalizeNestedDollarSignsInDisplay(text) {
  *   - Closed inline: text $$expr$$ more → text $expr$ more
  *   - Unclosed inline: text $$expr         → text $expr$
  *   - Trailing $$: text$$  (end-of-line) → text  (strip the dangling $$)
+ *
+ * IMPORTANT: lines that START with $ (i.e. display-math blocks like $$eq$$)
+ * must NEVER be touched by Step 3.  The old pattern used \S which matched the
+ * leading $ itself, causing $$eq$$ → $$eq (closing $$ stripped).  The fix
+ * uses [^\s$] so the first captured character must be neither whitespace nor $,
+ * which excludes any line that opens with a display-math delimiter.
  */
 function normalizeInlineDisplayMath(text) {
   if (!text || !text.includes("$$")) return text;
   return text
+    // Pre-step: when two $$...$$ blocks are separated only by whitespace on the
+    // same line, the closing $$ of block N and the opening $$ of block N+1 form
+    // a "$$[spaces]$$" sequence.  Split it onto separate lines so Step 1 cannot
+    // treat the gap as inline formula content.
+    //   "$$eq1$$ $$eq2$$ $$eq3$$"  →  "$$eq1$$\n$$eq2$$\n$$eq3$$"
+    // NOTE: replacement must be a function — in a string replacement "$$" → "$"
+    // (JS special pattern), so "$$\n$$" would produce "$\n$" which is wrong.
+    .replace(/\$\$([ \t]+)\$\$/g, () => "$$\n$$")
     // Step 1: closed inline $$...$$ on same line with text before the first $$
     .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
@@ -406,11 +420,12 @@ function normalizeInlineDisplayMath(text) {
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
       return _m;
     })
-    // Step 3: trailing $$ at end of line with non-whitespace content before
+    // Step 3: trailing $$ at end of line with non-$ non-whitespace content before.
     //   "at^2$$"  →  "at^2"   (dangling closing $$ with nothing after)
     //   "x = ...$$ "  →  "x = ..."
-    //   Standalone "$$\n" lines are left alone (block-level display math)
-    .replace(/^(\s*\S[^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
+    //   Lines starting with $ ($$eq$$ display blocks) are intentionally excluded
+    //   so that valid single-line display math like $$v = v_0 + at$$ is preserved.
+    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
 }
 
 /**
