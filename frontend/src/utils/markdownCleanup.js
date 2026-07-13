@@ -260,12 +260,12 @@ export function normalizePlainExponents(text) {
   return transformOutsideCodeFences(text, (content) =>
     transformOutsideInlineMath(content, (part) =>
       part.replace(
-        // Negative lookbehind (?<!\/) prevents matching digit-starting bases like
-        // "2at^2" that appear as fraction denominators (e.g. "1/2at^2").  Without
-        // it, normalizePlainExponents converts "2at^2" → "$2at^2$", which then
-        // sits adjacent to a neighbouring "$...$" block, creating a "$$" junction
-        // that remark-math reads as a display-math delimiter.
-        /(?<!\/)\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
+        // Negative lookbehind (?<![/}]) prevents matching digit-starting bases that
+        // appear after / (fraction denominators: "1/2at^2") or } (LaTeX braces:
+        // "\frac{1}{2}at^2").  Without it, normalizePlainExponents converts "2at^2"
+        // → "$2at^2$", which sits adjacent to a neighbouring "$...$" block and
+        // creates a "$$" junction that remark-math reads as a display-math delimiter.
+        /(?<![/}])\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
         (_match, base, exp) => {
           // Wrap multi-digit exponents in {} so KaTeX renders all digits
           // e.g. 10^11 → $10^{11}$ not $10^1$1
