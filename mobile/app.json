@@ -4,7 +4,7 @@
     "slug": "likhapohaai",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-1024.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash-icon.png",
@@ -17,10 +17,9 @@
     },
     "android": {
       "package": "in.likhapoha.app",
-      "versionCode": 13,
+      "versionCode": 15,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
+        "foregroundImage": "./assets/icon-1024.png",
         "backgroundColor": "#6366f1"
       },
       "permissions": [
@@ -28,7 +27,7 @@
         "VIBRATE"
       ],
       "predictiveBackGestureEnabled": false,
-      "newArchEnabled": true
+      "newArchEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
