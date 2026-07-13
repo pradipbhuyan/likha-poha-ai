@@ -404,6 +404,12 @@ function normalizeNestedDollarSignsInDisplay(text) {
 function normalizeInlineDisplayMath(text) {
   if (!text || !text.includes("$$")) return text;
   return text
+    // Compact step: re-join $$...$$ equations that the LLM line-wrapped.
+    //   "$$eq_start +\ncontinuation$$"  →  "$$eq_start + continuation$$"
+    // Only matches when line N starts with $$ + content (not a bare $$) and
+    // line N+1 ends with $$ — i.e. the continuation of that equation.
+    // This runs BEFORE the pre-step split so the pre-step sees intact blocks.
+    .replace(/^(\$\$[^$\n][^\n]*)\n([^\n]*\$\$)/gm, (_m, a, b) => `${a} ${b}`)
     // Pre-step: when two $$...$$ blocks are separated only by whitespace on the
     // same line, the closing $$ of block N and the opening $$ of block N+1 form
     // a "$$[spaces]$$" sequence.  Split it onto separate lines so Step 1 cannot
