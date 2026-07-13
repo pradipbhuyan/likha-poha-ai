@@ -42,7 +42,7 @@ export default function LoginScreen() {
       <ScrollView contentContainerStyle={s.container} keyboardShouldPersistTaps="handled">
         {/* Logo */}
         <Image
-          source={require("../../assets/icon.png")}
+          source={require("../../assets/logo.png")}
           style={s.logo}
           resizeMode="contain"
         />

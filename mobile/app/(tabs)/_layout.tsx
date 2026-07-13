@@ -10,7 +10,7 @@ function HeaderLogo() {
   return (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
       <Image
-        source={require("../../assets/icon.png")}
+        source={require("../../assets/logo.png")}
         style={{ width: 28, height: 28, borderRadius: 6 }}
         resizeMode="contain"
       />
