@@ -89,17 +89,26 @@ def validate_required_text(value: str, field_name: str):
 
 
 def get_profile_by_user_id(user_id: str):
-    """Load access flags and status for the authenticated user profile."""
-    response = (
-        admin_client
-        .table("profiles")
-        .select("*")
-        .eq("id", user_id)
-        .single()
-        .execute()
-    )
-
-    return response.data
+    """Load access flags and status for the authenticated user profile.
+    Returns None if the user has no profile (e.g. signed up via mobile
+    without going through the full onboarding flow).
+    """
+    try:
+        response = (
+            admin_client
+            .table("profiles")
+            .select("*")
+            .eq("id", user_id)
+            .single()
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        # PGRST116 = 0 rows returned by .single() — user has no profile yet
+        err_str = str(e)
+        if "PGRST116" in err_str or "0 rows" in err_str:
+            return None
+        raise
 
 
 def normalize_grade(value: str | None):
