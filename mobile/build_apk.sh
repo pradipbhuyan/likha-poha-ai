@@ -31,7 +31,8 @@ npm install
 # ── 3. Generate native Android project ───────────────────────
 echo ""
 echo "🔨 Generating Android project (expo prebuild)..."
-npx expo prebuild --platform android --clean --no-install
+# CI=1 skips the "uncommitted changes" interactive prompt
+CI=1 npx expo prebuild --platform android --clean --no-install
 
 # ── 4. Create minimal network_security_config (no Zscaler) ───
 echo ""
