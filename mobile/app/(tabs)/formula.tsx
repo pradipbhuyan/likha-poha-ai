@@ -1,0 +1,485 @@
+/**
+ * Formula Sheet tab — CBSE syllabus-aligned formula reference.
+ * Uses GET /api/student/formula-sheets?grade=&subject=
+ *
+ * Features:
+ *  - Grade 5–12 + subject selector
+ *  - Chapter navigation (horizontal chips)
+ *  - Formula cards: name, expression (LaTeX→Unicode), description
+ *  - Premium expansion: explanation, when to use, step-by-step, mistakes, memory tip
+ *  - Search across all chapters/formulas
+ *  - Lock indicator for free users
+ */
+import { useEffect, useState } from "react";
+import {
+  View, Text, ScrollView, TextInput, StyleSheet,
+  TouchableOpacity, ActivityIndicator,
+} from "react-native";
+import { authFetch } from "../../lib/authFetch";
+import { BRAND_COLOR } from "../../constants";
+
+// ── LaTeX → Unicode (same as lessons.tsx / doubt.tsx) ────────────────────────
+function mathToUnicode(latex: string): string {
+  if (!latex) return "";
+  return latex
+    .replace(/\\text\{([^}]+)\}/g, "$1")
+    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)")
+    .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
+    .replace(/\\sqrt\s*([a-zA-Z0-9])/g, "√$1")
+    .replace(/\^\{2\}/g, "²").replace(/\^2(?![0-9{])/g, "²")
+    .replace(/\^\{3\}/g, "³").replace(/\^3(?![0-9{])/g, "³")
+    .replace(/\^\{n\}/g, "ⁿ").replace(/\^\{([^}]+)\}/g, "^($1)")
+    .replace(/\_\{1\}/g, "₁").replace(/_1(?![0-9])/g, "₁")
+    .replace(/\_\{2\}/g, "₂").replace(/_2(?![0-9])/g, "₂")
+    .replace(/\_\{0\}/g, "₀").replace(/_0(?![0-9])/g, "₀")
+    .replace(/\_\{([^}]+)\}/g, "_($1)")
+    .replace(/\\times/g, "×").replace(/\\cdot/g, "·")
+    .replace(/\\div/g, "÷").replace(/\\pm/g, "±")
+    .replace(/\\leq/g, "≤").replace(/\\geq/g, "≥").replace(/\\neq/g, "≠")
+    .replace(/\\approx/g, "≈").replace(/\\infty/g, "∞")
+    .replace(/\\rightarrow/g, "→").replace(/\\leftarrow/g, "←")
+    .replace(/\\pi/g, "π").replace(/\\alpha/g, "α").replace(/\\beta/g, "β")
+    .replace(/\\gamma/g, "γ").replace(/\\delta/g, "δ").replace(/\\theta/g, "θ")
+    .replace(/\\lambda/g, "λ").replace(/\\mu/g, "μ").replace(/\\sigma/g, "σ")
+    .replace(/\\Sigma/g, "Σ").replace(/\\Delta/g, "Δ").replace(/\\omega/g, "ω")
+    .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan")
+    .replace(/\\log/g, "log").replace(/\\ln/g, "ln").replace(/\\int/g, "∫")
+    .replace(/\\[a-zA-Z]+\{([^}]+)\}/g, "$1")
+    .replace(/\\[a-zA-Z]+/g, "")
+    .replace(/\{([^}]*)\}/g, "$1")
+    .replace(/\s+/g, " ").trim();
+}
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+interface Formula {
+  id?: string;
+  name: string;
+  expression?: string;
+  expression_latex?: string;
+  description?: string;
+  difficulty?: string;
+  chapter?: string;
+  tags?: string[];
+  locked: boolean;
+  preview_allowed: boolean;
+  // Premium fields
+  explanation?: string;
+  variables_list?: { symbol: string; meaning: string }[];
+  when_to_use?: string;
+  steps?: string[];
+  common_mistakes?: string[];
+  memory_tip?: string;
+  related_formulas?: string[];
+}
+
+interface Topic { topic_name: string; formulas: Formula[]; }
+interface Chapter { chapter_id: string; chapter_name: string; unlocked_count: number; total_formulas: number; locked: boolean; topics: Topic[]; }
+interface SheetData {
+  available: boolean;
+  has_premium: boolean;
+  chapters: Chapter[];
+  subjects: string[];
+  total_count: number;
+  unlocked_count: number;
+  message?: string;
+}
+
+const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+
+// ── Formula Card ─────────────────────────────────────────────────────────────
+function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  const expr = mathToUnicode(formula.expression_latex || formula.expression || "");
+
+  const diffColor = formula.difficulty === "easy" ? "#16a34a"
+    : formula.difficulty === "hard" ? "#dc2626" : "#7c3aed";
+
+  return (
+    <View style={[fc.card, formula.locked && { opacity: 0.75 }]}>
+      {/* Header */}
+      <View style={fc.header}>
+        <View style={{ flex: 1 }}>
+          <Text style={fc.name}>
+            {formula.locked ? "🔒 " : ""}
+            {formula.name}
+          </Text>
+          <View style={fc.tagRow}>
+            {formula.difficulty ? (
+              <View style={[fc.badge, { backgroundColor: diffColor + "20" }]}>
+                <Text style={[fc.badgeText, { color: diffColor }]}>{formula.difficulty}</Text>
+              </View>
+            ) : null}
+            {formula.chapter ? (
+              <View style={[fc.badge, { backgroundColor: "rgba(34,197,94,.12)" }]}>
+                <Text style={[fc.badgeText, { color: "#15803d" }]} numberOfLines={1}>{formula.chapter}</Text>
+              </View>
+            ) : null}
+          </View>
+        </View>
+      </View>
+
+      {/* Expression */}
+      {formula.preview_allowed && expr ? (
+        <View style={fc.exprBox}>
+          <Text style={fc.expr} selectable>{expr}</Text>
+        </View>
+      ) : !formula.preview_allowed ? (
+        <View style={fc.exprBoxLocked}>
+          <Text style={fc.exprLocked}>••••••••</Text>
+        </View>
+      ) : null}
+
+      {/* Description */}
+      {formula.preview_allowed && formula.description ? (
+        <Text style={fc.desc}>{formula.description}</Text>
+      ) : null}
+
+      {/* Expand button */}
+      {formula.preview_allowed && !formula.locked && (
+        <TouchableOpacity style={fc.expandBtn} onPress={() => setExpanded(v => !v)}>
+          <Text style={fc.expandBtnText}>
+            {expanded ? "▲ Collapse" : hasPremium ? "▼ Show details" : "🔒 Premium details"}
+          </Text>
+        </TouchableOpacity>
+      )}
+
+      {/* Lock note */}
+      {formula.locked && (
+        <View style={fc.lockNote}>
+          <Text style={fc.lockNoteText}>🔒 Upgrade to unlock this formula with examples and memory tips.</Text>
+        </View>
+      )}
+
+      {/* Expanded premium content */}
+      {expanded && hasPremium && !formula.locked && (
+        <View style={fc.expandedBox}>
+          {formula.explanation ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#6366f1" }]}>📖 What this formula means</Text>
+              <Text style={fc.sectionBody}>{formula.explanation}</Text>
+            </View>
+          ) : null}
+
+          {formula.variables_list && formula.variables_list.length > 0 ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#0891b2" }]}>🔤 Variables</Text>
+              <View style={fc.varBox}>
+                {formula.variables_list.map((v, i) => (
+                  <View key={i} style={fc.varRow}>
+                    <Text style={fc.varSymbol}>{v.symbol}</Text>
+                    <Text style={fc.varMeaning}>{v.meaning}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : null}
+
+          {formula.when_to_use ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#16a34a" }]}>🎯 When to use</Text>
+              <Text style={fc.sectionBody}>{formula.when_to_use}</Text>
+            </View>
+          ) : null}
+
+          {formula.steps && formula.steps.length > 0 ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#d97706" }]}>✏️ Step-by-step example</Text>
+              <View style={fc.stepsBox}>
+                {formula.steps.map((step, i) => (
+                  <View key={i} style={fc.stepRow}>
+                    <View style={fc.stepNum}><Text style={fc.stepNumText}>{i + 1}</Text></View>
+                    <Text style={fc.stepText}>{step}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : null}
+
+          {formula.common_mistakes && formula.common_mistakes.length > 0 ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#dc2626" }]}>⚠️ Common mistakes</Text>
+              <View style={fc.mistakesBox}>
+                {formula.common_mistakes.map((m, i) => (
+                  <View key={i} style={fc.mistakeRow}>
+                    <Text style={fc.mistakeX}>✗</Text>
+                    <Text style={fc.mistakeText}>{m}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : null}
+
+          {formula.memory_tip ? (
+            <View style={[fc.section, fc.tipBox]}>
+              <Text style={[fc.sectionLabel, { color: "#d97706", marginBottom: 4 }]}>💡 Memory tip</Text>
+              <Text style={[fc.sectionBody, { fontStyle: "italic" }]}>{formula.memory_tip}</Text>
+            </View>
+          ) : null}
+
+          {formula.related_formulas && formula.related_formulas.length > 0 ? (
+            <View style={fc.section}>
+              <Text style={[fc.sectionLabel, { color: "#7c3aed" }]}>🔗 Related formulas</Text>
+              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+                {formula.related_formulas.map((r, i) => (
+                  <View key={i} style={fc.relatedChip}>
+                    <Text style={fc.relatedChipText}>{r}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : null}
+        </View>
+      )}
+
+      {/* Free user: show upgrade prompt when expanded without premium */}
+      {expanded && !hasPremium && !formula.locked && (
+        <View style={fc.upgradeBanner}>
+          <Text style={fc.upgradeBannerText}>
+            🔒 Upgrade to Premium to see solved examples, step-by-step solutions, memory tips, and practice MCQs.
+          </Text>
+        </View>
+      )}
+    </View>
+  );
+}
+
+const fc = StyleSheet.create({
+  card: { backgroundColor: "#fff", borderRadius: 12, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: "#e5e7eb", borderLeftWidth: 3, borderLeftColor: BRAND_COLOR },
+  header: { flexDirection: "row", alignItems: "flex-start", marginBottom: 8 },
+  name: { fontSize: 14, fontWeight: "700", color: "#111827", marginBottom: 4, lineHeight: 20 },
+  tagRow: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
+  badge: { paddingHorizontal: 7, paddingVertical: 2, borderRadius: 99 },
+  badgeText: { fontSize: 10, fontWeight: "700" },
+  exprBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: "10px 12px" as any, marginBottom: 8, borderWidth: 1, borderColor: "#e2e8f0" },
+  expr: { fontFamily: "monospace", fontSize: 15, fontWeight: "600", color: "#1e293b" },
+  exprBoxLocked: { backgroundColor: "#f1f5f9", borderRadius: 8, padding: 10, marginBottom: 8 },
+  exprLocked: { fontFamily: "monospace", fontSize: 15, color: "#94a3b8", letterSpacing: 4 },
+  desc: { fontSize: 12, color: "#6b7280", lineHeight: 18, marginBottom: 8 },
+  expandBtn: { alignSelf: "flex-start", marginTop: 2 },
+  expandBtnText: { fontSize: 12, fontWeight: "700", color: BRAND_COLOR },
+  lockNote: { backgroundColor: "#f8fafc", borderRadius: 7, padding: 8, marginTop: 6, borderWidth: 1, borderColor: "#e2e8f0", borderStyle: "dashed" },
+  lockNoteText: { fontSize: 12, color: "#64748b", fontStyle: "italic" },
+  expandedBox: { marginTop: 14, borderTopWidth: 1, borderTopColor: "#f3f4f6", paddingTop: 12 },
+  section: { marginBottom: 12 },
+  sectionLabel: { fontSize: 10, fontWeight: "800", textTransform: "uppercase", letterSpacing: 0.6, marginBottom: 6 },
+  sectionBody: { fontSize: 13, color: "#374151", lineHeight: 20 },
+  varBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#e5e7eb" },
+  varRow: { flexDirection: "row", gap: 8, marginBottom: 4, alignItems: "flex-start" },
+  varSymbol: { fontFamily: "monospace", fontSize: 13, fontWeight: "700", color: BRAND_COLOR, minWidth: 36 },
+  varMeaning: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
+  stepsBox: { backgroundColor: "#fffbeb", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fde68a" },
+  stepRow: { flexDirection: "row", gap: 8, marginBottom: 6, alignItems: "flex-start" },
+  stepNum: { width: 20, height: 20, borderRadius: 10, backgroundColor: "#f59e0b", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 },
+  stepNumText: { fontSize: 10, fontWeight: "800", color: "#fff" },
+  stepText: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
+  mistakesBox: { backgroundColor: "#fff1f2", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fecdd3" },
+  mistakeRow: { flexDirection: "row", gap: 6, marginBottom: 4, alignItems: "flex-start" },
+  mistakeX: { color: "#dc2626", fontWeight: "700", fontSize: 13, flexShrink: 0, marginTop: 1 },
+  mistakeText: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
+  tipBox: { backgroundColor: "#fefce8", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fde68a" },
+  relatedChip: { backgroundColor: "rgba(124,58,237,.08)", borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1, borderColor: "rgba(124,58,237,.2)" },
+  relatedChipText: { fontSize: 11, color: "#7c3aed", fontWeight: "600" },
+  upgradeBanner: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, marginTop: 8, borderWidth: 1, borderColor: "#e2e8f0", borderStyle: "dashed" },
+  upgradeBannerText: { fontSize: 12, color: "#64748b", fontStyle: "italic", lineHeight: 18 },
+});
+
+// ── Main Screen ───────────────────────────────────────────────────────────────
+export default function FormulaScreen() {
+  const [grade, setGrade]           = useState("Grade 9");
+  const [subject, setSubject]       = useState("Mathematics");
+  const [data, setData]             = useState<SheetData | null>(null);
+  const [loading, setLoading]       = useState(false);
+  const [error, setError]           = useState("");
+  const [search, setSearch]         = useState("");
+  const [activeChapter, setChapter] = useState<string | null>(null);
+
+  async function loadSheet() {
+    setLoading(true); setError(""); setData(null); setChapter(null);
+    try {
+      const params = new URLSearchParams({ grade, subject });
+      const res: any = await authFetch(`/api/student/formula-sheets?${params}`);
+      setData(res);
+      if (res?.chapters?.length > 0) setChapter(res.chapters[0].chapter_id);
+    } catch (e: any) {
+      setError(e.message || "Could not load formula sheets.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { loadSheet(); }, [grade, subject]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Filter by search
+  function getDisplayed(): Chapter[] {
+    if (!data?.chapters) return [];
+    const q = search.toLowerCase().trim();
+    if (!q) {
+      return data.chapters.filter(ch => ch.chapter_id === activeChapter);
+    }
+    return data.chapters.map(ch => ({
+      ...ch,
+      topics: ch.topics.map(t => ({
+        ...t,
+        formulas: t.formulas.filter(f =>
+          f.name.toLowerCase().includes(q) ||
+          (f.expression || "").toLowerCase().includes(q) ||
+          (f.description || "").toLowerCase().includes(q)
+        ),
+      })).filter(t => t.formulas.length > 0),
+    })).filter(ch => ch.topics.length > 0);
+  }
+
+  const displayed = getDisplayed();
+  const hasPremium = !!(data?.has_premium);
+
+  return (
+    <ScrollView style={s.container} contentContainerStyle={s.content}>
+      <Text style={s.pageTitle}>📐 Formula Sheet</Text>
+      <Text style={s.pageSubtitle}>CBSE syllabus-aligned quick reference</Text>
+
+      {/* Grade selector */}
+      <Text style={s.label}>Grade</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
+        {GRADES.map(g => (
+          <TouchableOpacity key={g} style={[s.chip, grade === g && s.chipActive]} onPress={() => setGrade(g)}>
+            <Text style={[s.chipText, grade === g && s.chipTextActive]}>{g.replace("Grade ", "")}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* Subject selector */}
+      <Text style={s.label}>Subject</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
+        {(data?.subjects?.length ? data.subjects : ["Mathematics","Science","Physics","Chemistry","Biology"]).map(sub => (
+          <TouchableOpacity key={sub} style={[s.chip, subject === sub && s.chipActive]} onPress={() => setSubject(sub)}>
+            <Text style={[s.chipText, subject === sub && s.chipTextActive]}>{sub}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* Search */}
+      <TextInput
+        style={s.searchInput}
+        placeholder="Search formulas, chapters…"
+        placeholderTextColor="#9ca3af"
+        value={search}
+        onChangeText={setSearch}
+      />
+
+      {/* Loading */}
+      {loading && (
+        <View style={s.center}>
+          <ActivityIndicator color={BRAND_COLOR} size="large" />
+          <Text style={s.loadingText}>Loading formulas…</Text>
+        </View>
+      )}
+
+      {/* Error */}
+      {!loading && error ? (
+        <View style={s.errorBox}>
+          <Text style={s.errorText}>❌ {error}</Text>
+          <TouchableOpacity onPress={loadSheet} style={{ marginTop: 8 }}>
+            <Text style={{ color: BRAND_COLOR, fontWeight: "700", fontSize: 13 }}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+
+      {/* Not available */}
+      {!loading && !error && data && !data.available ? (
+        <View style={s.emptyBox}>
+          <Text style={s.emptyIcon}>📋</Text>
+          <Text style={s.emptyTitle}>{data.message || "Formula sheet coming soon"}</Text>
+          <Text style={s.emptySubtitle}>Formula content for this subject is being added. Check back soon.</Text>
+        </View>
+      ) : null}
+
+      {/* Upgrade banner */}
+      {!loading && data?.available && !hasPremium && (
+        <View style={s.upgradeBanner}>
+          <View>
+            <Text style={s.upgradeBannerTitle}>🔒 Unlock Full Formula Library</Text>
+            <Text style={s.upgradeBannerSub}>{data.unlocked_count} of {data.total_count} formulas shown. Upgrade for examples and memory tips.</Text>
+          </View>
+        </View>
+      )}
+
+      {/* Chapter navigation */}
+      {!loading && !error && data?.available && !search && (
+        <>
+          <Text style={s.label}>Chapter</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
+            {data.chapters.map(ch => (
+              <TouchableOpacity key={ch.chapter_id}
+                style={[s.chip, activeChapter === ch.chapter_id && s.chipActive]}
+                onPress={() => setChapter(ch.chapter_id)}>
+                <Text style={[s.chipText, activeChapter === ch.chapter_id && s.chipTextActive]} numberOfLines={1}>
+                  {ch.locked ? "🔒 " : ""}{ch.chapter_name.length > 22 ? ch.chapter_name.slice(0, 20) + "…" : ch.chapter_name}
+                </Text>
+                <Text style={[s.chipCount, activeChapter === ch.chapter_id && { color: "rgba(255,255,255,.7)" }]}>
+                  {ch.unlocked_count}/{ch.total_formulas}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </>
+      )}
+
+      {/* Formula cards */}
+      {!loading && !error && data?.available && (
+        <>
+          {displayed.length === 0 ? (
+            <View style={s.emptyBox}>
+              <Text style={s.emptySubtitle}>{search ? "No formulas match your search." : "Select a chapter to view formulas."}</Text>
+            </View>
+          ) : (
+            displayed.map(ch => (
+              <View key={ch.chapter_id} style={{ marginBottom: 20 }}>
+                {search ? (
+                  <Text style={s.chapterTitle}>{ch.chapter_name}</Text>
+                ) : null}
+                {ch.topics.map(t => (
+                  <View key={t.topic_name}>
+                    {t.topic_name !== "General" ? (
+                      <Text style={s.topicTitle}>{t.topic_name}</Text>
+                    ) : null}
+                    {t.formulas.map((f, i) => (
+                      <FormulaCard key={f.id || f.name + i} formula={f} hasPremium={hasPremium} />
+                    ))}
+                  </View>
+                ))}
+              </View>
+            ))
+          )}
+        </>
+      )}
+    </ScrollView>
+  );
+}
+
+const s = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#f8fafc" },
+  content: { padding: 16, paddingBottom: 80 },
+  pageTitle: { fontSize: 22, fontWeight: "800", color: "#111827", marginBottom: 4 },
+  pageSubtitle: { fontSize: 13, color: "#6b7280", marginBottom: 18, lineHeight: 19 },
+  label: { fontSize: 11, fontWeight: "700", color: "#6b7280", textTransform: "uppercase", letterSpacing: 0.6, marginBottom: 8, marginTop: 14 },
+  chipRow: { flexDirection: "row", marginBottom: 4 },
+  chip: { paddingHorizontal: 12, paddingVertical: 7, borderRadius: 99, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff", marginRight: 8, alignItems: "center" },
+  chipActive: { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR },
+  chipText: { fontSize: 12, fontWeight: "600", color: "#374151" },
+  chipTextActive: { color: "#fff" },
+  chipCount: { fontSize: 9, color: "#9ca3af", fontWeight: "600", marginTop: 1 },
+  searchInput: { backgroundColor: "#fff", borderWidth: 1.5, borderColor: "#d1d5db", borderRadius: 10, padding: 10, fontSize: 14, color: "#111827", marginBottom: 14 },
+  center: { alignItems: "center", paddingVertical: 32 },
+  loadingText: { color: "#6b7280", marginTop: 10, fontSize: 13 },
+  errorBox: { backgroundColor: "#fef2f2", borderRadius: 10, padding: 14, marginBottom: 14 },
+  errorText: { color: "#dc2626", fontSize: 14 },
+  emptyBox: { alignItems: "center", paddingVertical: 32 },
+  emptyIcon: { fontSize: 40, marginBottom: 10 },
+  emptyTitle: { fontSize: 15, fontWeight: "700", color: "#111827", marginBottom: 6, textAlign: "center" },
+  emptySubtitle: { fontSize: 13, color: "#6b7280", textAlign: "center", lineHeight: 19 },
+  upgradeBanner: { backgroundColor: "rgba(99,102,241,.08)", borderRadius: 12, padding: 14, marginBottom: 14, borderWidth: 1, borderColor: "rgba(99,102,241,.2)" },
+  upgradeBannerTitle: { fontSize: 13, fontWeight: "700", color: BRAND_COLOR, marginBottom: 4 },
+  upgradeBannerSub: { fontSize: 12, color: "#374151", lineHeight: 18 },
+  chapterTitle: { fontSize: 14, fontWeight: "800", color: BRAND_COLOR, marginBottom: 10, paddingBottom: 6, borderBottomWidth: 1, borderBottomColor: "#e0e7ff" },
+  topicTitle: { fontSize: 10, fontWeight: "700", color: "#9ca3af", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 8 },
+});

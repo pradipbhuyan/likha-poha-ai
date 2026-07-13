@@ -51,6 +51,7 @@ import {
   normalizeSubjectName,
   parseSubjectList,
 } from "../utils/subjectAccess";
+import { authFetch } from "../api/authClient";
 
 const STUDENT_GRADE_OPTIONS = Array.from(
   { length: 12 },
@@ -1004,10 +1005,7 @@ function AdminControlPage({ user }) {
   async function loadCollaborators() {
     setCollabLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators`, {
-        headers: { Authorization: `Bearer ${user?.accessToken}` },
-      });
-      const data = await res.json();
+      const data = await authFetch("/api/admin-control/blog-collaborators");
       if (!data.success && data.error?.includes("GITHUB_TOKEN")) {
         setGithubTokenMissing(true);
       } else {
@@ -1023,13 +1021,10 @@ function AdminControlPage({ user }) {
     setCollabMsg(""); setCollabErr("");
     if (!collabUsername.trim()) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators`, {
+      const data = await authFetch("/api/admin-control/blog-collaborators", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
         body: JSON.stringify({ github_username: collabUsername.trim(), permission: "push" }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Failed");
       setCollabMsg(data.message || "Invitation sent!");
       setCollabUsername("");
       await loadCollaborators();
@@ -1039,8 +1034,8 @@ function AdminControlPage({ user }) {
   async function removeCollaborator(ghUsername) {
     if (!window.confirm(`Remove @${ghUsername} as blog collaborator?`)) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/blog-collaborators/${ghUsername}`, {
-        method: "DELETE", headers: { Authorization: `Bearer ${user?.accessToken}` },
+      await authFetch(`/api/admin-control/blog-collaborators/${ghUsername}`, {
+        method: "DELETE",
       });
       setCollabMsg(`@${ghUsername} removed.`);
       await loadCollaborators();
@@ -1050,10 +1045,7 @@ function AdminControlPage({ user }) {
   async function loadLoggingSettings() {
     setLoggingLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/logging-settings`, {
-        headers: { Authorization: `Bearer ${user?.accessToken}` },
-      });
-      const data = await res.json();
+      const data = await authFetch("/api/admin-control/logging-settings");
       setLoggingEnabled(data.logging_enabled ?? true);
       setLogLevel(data.log_level || "INFO");
     } catch { /* silently ignore */ }
@@ -1063,12 +1055,10 @@ function AdminControlPage({ user }) {
   async function saveLoggingSettings(enabled, level) {
     setLoggingMsg("");
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}/api/admin-control/logging-settings`, {
+      const data = await authFetch("/api/admin-control/logging-settings", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
         body: JSON.stringify({ logging_enabled: enabled, log_level: level }),
       });
-      const data = await res.json();
       setLoggingEnabled(data.logging_enabled ?? enabled);
       setLogLevel(data.log_level || level);
       setLoggingMsg(data.message || (enabled ? "Logging enabled." : "Logging disabled."));
@@ -1077,7 +1067,7 @@ function AdminControlPage({ user }) {
 
   // Load offer codes, influencer summary, and enrollments on mount
   useEffect(() => {
-    if (user?.accessToken) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); loadLoggingSettings(); loadCollaborators(); }
+    if (user) { loadOfferCodes(); loadInfluencers(); loadEnrollments(); loadLoggingSettings(); loadCollaborators(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken]);
 

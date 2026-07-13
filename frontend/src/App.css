@@ -5914,6 +5914,8 @@ body.dark-mode .premium-header p {
   max-width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
+  font-size: 16px !important;  /* uniform size across top bar */
+  padding: 5px 10px !important;
 }
 
 .premium-lesson-controls label {
@@ -6359,18 +6361,59 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
     .premium-submit-test-btn {
       width: 100%;
     }
-  
+
     .premium-test-sticky-header {
       position: static;
       align-items: flex-start;
       flex-direction: column;
     }
-  
+
     .premium-question-header {
       flex-direction: column;
     }
+
+    .premium-question-header h4 {
+      font-size: 18px !important;
+    }
+
+    .premium-option-row {
+      font-size: 16px !important;
+      padding: 12px 14px !important;
+    }
+
+    .premium-question-card {
+      padding: 16px !important;
+    }
+
+    .mock-nav-btn {
+      width: 44px !important;
+      height: 44px !important;
+    }
   }
-  
+
+/* ── Mock Test Format Grid ─────────────────────────────────────────────────── */
+.mock-format-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .mock-format-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* ── Question Navigator Button ────────────────────────────────────────────── */
+.mock-nav-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
   /* Premium Analytics Page polish
    Paste this at the bottom of frontend/src/App.css */
 

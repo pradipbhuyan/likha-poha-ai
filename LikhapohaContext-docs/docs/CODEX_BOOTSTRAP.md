@@ -43,6 +43,14 @@ For role-specific changes also read:
 10. Add or update tests for behavior changes.
 11. Update docs when product rules, API contracts, permissions, or architecture change.
 
+## Mobile App Rules (expo-router / React Native)
+
+- **Never place data-only `.ts` files in `mobile/app/`** — expo-router treats every file there as a potential route.
+- **Never combine `href: null` with `tabBarButton`** in a `Tabs.Screen options` block — use `href: null` alone to suppress a screen from the tab bar.
+- **Never pass raw markdown to `<Markdown>`** — always use `<MathAwareMarkdown>` so LaTeX is converted to Unicode before rendering.
+- **Google OAuth on mobile** uses `expo-auth-session` + `makeRedirectUri` → backend `/api/auth/mobile/google` (exchanges code for session). Never use `supabase.auth.signInWithOAuth` directly on mobile (requires browser redirect, breaks native app flow).
+- **`mobile/lib/`** is for shared utilities and data modules. **`mobile/app/`** is exclusively for expo-router screens and layouts.
+
 ## Implementation Style
 
 - Prefer small additive changes.

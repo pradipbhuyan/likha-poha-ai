@@ -1,152 +1,211 @@
 /**
- * Signup screen — student or parent, email/password.
- * Grade 5–10 selector required for students.
+ * Signup screen — two-zone layout with dark mode support.
+ *   FIXED:    title, subtitle, role buttons, grade chips
+ *   SCROLL:   stream picker (Grade 11/12), email, password, button
  */
 import { useState } from "react";
 import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
   Alert, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import { signUpWithEmail } from "../../lib/auth";
+import { useTheme } from "../../lib/theme";
 import { BRAND_COLOR } from "../../constants";
 
-const GRADES = ["Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10"];
+const GRADES = ["5", "6", "7", "8", "9", "10", "11", "12"];
+const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
+const STREAMS = [
+  { key: "PCM",        label: "Science — PCM",  desc: "Physics · Chemistry · Maths · English" },
+  { key: "PCB",        label: "Science — PCB",  desc: "Physics · Chemistry · Biology · English" },
+  { key: "PCMB",       label: "Science — PCMB", desc: "Physics · Chemistry · Maths · Biology · English" },
+  { key: "Commerce",   label: "Commerce",       desc: "Accountancy · Business · Economics · English" },
+  { key: "Humanities", label: "Humanities",     desc: "History · Polsci · Geography · Economics · English" },
+];
 
 export default function SignupScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<"student" | "parent">("student");
   const [grade, setGrade] = useState("Grade 9");
+  const [stream, setStream] = useState("");
   const [loading, setLoading] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [contentH, setContentH] = useState(0);
+  const [viewH, setViewH] = useState(0);
+
+  const needs1112Stream = role === "student" && GRADE_11_12.has(grade);
+  const isScrollable = contentH > viewH && viewH > 0;
+  const TRACK_H = viewH - 16;
+  const thumbH = isScrollable ? Math.max(36, (viewH / contentH) * TRACK_H) : 0;
+  const maxScroll = Math.max(1, contentH - viewH);
+  const thumbTop = 8 + Math.min(scrollY / maxScroll, 1) * (TRACK_H - thumbH);
+
+  function handleGradeChange(g: string) { setGrade(g); setStream(""); }
 
   async function handleSignup() {
-    if (!email.trim() || !password.trim()) {
-      Alert.alert("Error", "Please fill in all fields.");
-      return;
-    }
-    if (password.length < 8) {
-      Alert.alert("Error", "Password must be at least 8 characters.");
-      return;
-    }
+    if (!email.trim() || !password.trim()) { Alert.alert("Error", "Please fill in all fields."); return; }
+    if (password.length < 8) { Alert.alert("Error", "Password must be at least 8 characters."); return; }
+    if (needs1112Stream && !stream) { Alert.alert("Error", "Please choose your academic stream."); return; }
     setLoading(true);
     try {
-      const { error } = await signUpWithEmail(
-        email.trim(), password, role, role === "student" ? grade : undefined
-      );
+      const { error } = await signUpWithEmail(email.trim(), password, role,
+        role === "student" ? grade : undefined, needs1112Stream ? stream : undefined);
       if (error) throw error;
-      Alert.alert(
-        "Check your email",
-        "We've sent a confirmation link. Please verify your email to continue.",
-        [{ text: "OK", onPress: () => router.replace("/auth/login") }]
-      );
-    } catch (err: any) {
-      Alert.alert("Sign up failed", err.message ?? "Please try again.");
-    } finally {
-      setLoading(false);
-    }
+      Alert.alert("Check your email", "We've sent a confirmation link.",
+        [{ text: "OK", onPress: () => router.replace("/auth/login") }]);
+    } catch (err: any) { Alert.alert("Sign up failed", err.message ?? "Please try again."); }
+    finally { setLoading(false); }
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
-      <ScrollView contentContainerStyle={styles.inner} keyboardShouldPersistTaps="handled">
-        <Text style={styles.title}>Create account</Text>
-        <Text style={styles.subtitle}>Join Likha Poha AI</Text>
+    <KeyboardAvoidingView style={[s.container, { backgroundColor: colors.bg }]} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <StatusBar style={colors.statusBar} />
 
-        {/* Role selector */}
-        <View style={styles.roleRow}>
+      {/* ── FIXED HEADER ── */}
+      <View style={[s.header, { paddingTop: insets.top + 12, backgroundColor: colors.bg }]}>
+        <Text style={[s.title, { color: colors.text }]}>Create account</Text>
+        <Text style={[s.subtitle, { color: colors.textMuted }]}>Join Likha Poha AI</Text>
+
+        <View style={s.roleRow}>
           {(["student", "parent"] as const).map((r) => (
-            <TouchableOpacity
-              key={r}
-              style={[styles.roleBtn, role === r && styles.roleBtnActive]}
+            <TouchableOpacity key={r}
+              style={[s.roleBtn, { backgroundColor: colors.surface, borderColor: colors.borderInput },
+                role === r && { borderColor: BRAND_COLOR, backgroundColor: colors.brandLight }]}
               onPress={() => setRole(r)}
             >
-              <Text style={[styles.roleBtnText, role === r && styles.roleBtnTextActive]}>
+              <Text style={[s.roleBtnText, { color: colors.textMuted }, role === r && { color: BRAND_COLOR }]}>
                 {r === "student" ? "🎓 Student" : "👪 Parent"}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        {/* Grade selector — students only */}
         {role === "student" && (
           <>
-            <Text style={styles.label}>Grade</Text>
-            <View style={styles.gradeRow}>
-              {GRADES.map((g) => (
-                <TouchableOpacity
-                  key={g}
-                  style={[styles.gradeChip, grade === g && styles.gradeChipActive]}
-                  onPress={() => setGrade(g)}
-                >
-                  <Text style={[styles.gradeChipText, grade === g && styles.gradeChipTextActive]}>
-                    {g.replace("Grade ", "")}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+            <Text style={[s.label, { color: colors.textSubtle }]}>Grade</Text>
+            <View style={s.gradeRow}>
+              {GRADES.map((g) => {
+                const fullGrade = `Grade ${g}`;
+                const active = grade === fullGrade;
+                return (
+                  <TouchableOpacity key={g}
+                    style={[s.gradeChip, { borderColor: colors.borderInput, backgroundColor: colors.surface },
+                      active && { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR }]}
+                    onPress={() => handleGradeChange(fullGrade)}
+                  >
+                    <Text style={[s.gradeChipText, { color: colors.textSubtle }, active && { color: "#fff" }]}>{g}</Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
           </>
         )}
+      </View>
 
-        <TextInput
-          style={styles.input}
-          placeholder="Email address"
-          placeholderTextColor="#9ca3af"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password (min 8 characters)"
-          placeholderTextColor="#9ca3af"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-
-        <TouchableOpacity
-          style={[styles.btn, styles.btnPrimary]}
-          onPress={handleSignup}
-          disabled={loading}
+      {/* ── SCROLLABLE SECTION ── */}
+      <View style={s.scrollWrapper}>
+        <ScrollView
+          contentContainerStyle={s.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          scrollEventThrottle={16}
+          onScroll={(e) => setScrollY(e.nativeEvent.contentOffset.y)}
+          onContentSizeChange={(_w, h) => setContentH(h)}
+          onLayout={(e) => setViewH(e.nativeEvent.layout.height)}
         >
-          {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.btnText}>Create account</Text>}
-        </TouchableOpacity>
+          {needs1112Stream && (
+            <>
+              <Text style={[s.label, { color: colors.textSubtle }]}>
+                Stream <Text style={{ color: "#ef4444" }}>*</Text>
+                <Text style={[s.labelSub, { color: colors.textMuted }]}> — Choose your stream for {grade}</Text>
+              </Text>
+              {STREAMS.map((st) => {
+                const active = stream === st.key;
+                return (
+                  <TouchableOpacity key={st.key}
+                    style={[s.streamCard, { borderColor: colors.border, backgroundColor: colors.surface },
+                      active && { borderColor: BRAND_COLOR, backgroundColor: colors.brandLight }]}
+                    onPress={() => setStream(st.key)}
+                  >
+                    <View style={s.streamRow}>
+                      <View style={[s.radioOuter, { borderColor: colors.borderInput }, active && { borderColor: BRAND_COLOR }]}>
+                        {active && <View style={s.radioDot} />}
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={[s.streamLabel, { color: colors.textSubtle }, active && { color: BRAND_COLOR }]}>{st.label}</Text>
+                        <Text style={[s.streamDesc, { color: colors.textMuted }]}>{st.desc}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+              <View style={{ height: 8 }} />
+            </>
+          )}
 
-        <TouchableOpacity style={styles.linkRow} onPress={() => router.replace("/auth/login")}>
-          <Text style={styles.link}>Already have an account? Sign in</Text>
-        </TouchableOpacity>
-      </ScrollView>
+          <TextInput
+            style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
+            placeholder="Email address" placeholderTextColor={colors.textMuted}
+            value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" autoCorrect={false}
+          />
+          <TextInput
+            style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
+            placeholder="Password (min 8 characters)" placeholderTextColor={colors.textMuted}
+            value={password} onChangeText={setPassword} secureTextEntry
+          />
+
+          <TouchableOpacity style={s.btn} onPress={handleSignup} disabled={loading}>
+            {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnText}>Create account</Text>}
+          </TouchableOpacity>
+
+          <TouchableOpacity style={s.linkRow} onPress={() => router.replace("/auth/login")}>
+            <Text style={[s.link, { color: BRAND_COLOR }]}>Already have an account? Sign in</Text>
+          </TouchableOpacity>
+        </ScrollView>
+
+        {isScrollable && (
+          <View style={s.scrollTrack} pointerEvents="none">
+            <View style={[s.scrollThumb, { height: thumbH, top: thumbTop }]} />
+          </View>
+        )}
+      </View>
     </KeyboardAvoidingView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f8fafc" },
-  inner: { flexGrow: 1, padding: 28, paddingTop: 60 },
-  title: { fontSize: 26, fontWeight: "800", color: "#111827", marginBottom: 4 },
-  subtitle: { fontSize: 14, color: "#6b7280", marginBottom: 28 },
-  label: { fontSize: 13, fontWeight: "700", color: "#374151", marginBottom: 8 },
-  roleRow: { flexDirection: "row", gap: 10, marginBottom: 20 },
-  roleBtn: { flex: 1, padding: 12, borderRadius: 10, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff", alignItems: "center" },
-  roleBtnActive: { borderColor: BRAND_COLOR, backgroundColor: "#eef2ff" },
-  roleBtnText: { fontWeight: "600", color: "#6b7280" },
-  roleBtnTextActive: { color: BRAND_COLOR },
-  gradeRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 20 },
-  gradeChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 99, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff" },
-  gradeChipActive: { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR },
-  gradeChipText: { fontWeight: "700", color: "#374151" },
-  gradeChipTextActive: { color: "#fff" },
-  input: { borderWidth: 1, borderColor: "#d1d5db", borderRadius: 12, padding: 14, marginBottom: 14, fontSize: 16, backgroundColor: "#fff", color: "#111827" },
-  btn: { borderRadius: 12, padding: 14, alignItems: "center", marginBottom: 12 },
-  btnPrimary: { backgroundColor: BRAND_COLOR },
+const s = StyleSheet.create({
+  container: { flex: 1 },
+  header: { paddingHorizontal: 24, paddingBottom: 12 },
+  title: { fontSize: 26, fontWeight: "800", marginBottom: 4 },
+  subtitle: { fontSize: 13, marginBottom: 20 },
+  label: { fontSize: 13, fontWeight: "700", marginBottom: 8 },
+  labelSub: { fontSize: 12, fontWeight: "500" },
+  roleRow: { flexDirection: "row", gap: 10, marginBottom: 16 },
+  roleBtn: { flex: 1, padding: 12, borderRadius: 10, borderWidth: 1.5, alignItems: "center" },
+  roleBtnText: { fontWeight: "600" },
+  gradeRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  gradeChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 99, borderWidth: 1.5 },
+  gradeChipText: { fontWeight: "700" },
+  scrollWrapper: { flex: 1, position: "relative" },
+  scrollContent: { paddingHorizontal: 24, paddingTop: 16, paddingBottom: 40 },
+  scrollTrack: { position: "absolute", right: 3, top: 0, bottom: 0, width: 4, backgroundColor: "rgba(0,0,0,0.07)", borderRadius: 2 },
+  scrollThumb: { position: "absolute", right: 0, width: 4, backgroundColor: "rgba(99,102,241,0.55)", borderRadius: 2 },
+  streamCard: { borderWidth: 1.5, borderRadius: 12, padding: 12, marginBottom: 8 },
+  streamRow: { flexDirection: "row", alignItems: "center", gap: 12 },
+  radioOuter: { width: 20, height: 20, borderRadius: 10, borderWidth: 2, alignItems: "center", justifyContent: "center" },
+  radioDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: BRAND_COLOR },
+  streamLabel: { fontSize: 14, fontWeight: "700" },
+  streamDesc: { fontSize: 11, marginTop: 2 },
+  input: { borderWidth: 1, borderRadius: 12, padding: 14, marginBottom: 14, fontSize: 16 },
+  btn: { backgroundColor: BRAND_COLOR, borderRadius: 12, padding: 14, alignItems: "center", marginBottom: 12 },
   btnText: { color: "#fff", fontWeight: "700", fontSize: 16 },
   linkRow: { marginTop: 16, alignItems: "center" },
-  link: { color: BRAND_COLOR, fontWeight: "600", fontSize: 14 },
+  link: { fontWeight: "600", fontSize: 14 },
 });

@@ -297,8 +297,8 @@ function MockTestPage({ user, setActivePage }) {
               🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
             </p>
 
-            {/* Exam format selector — 3 equal cards across full width */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+            {/* Exam format selector — 3 equal cards across full width (responsive via CSS class) */}
+            <div className="mock-format-grid">
               {[
                 { fmt: FORMAT_MCQ,     icon: "🅰️", label: "MCQ Practice",     sub: "Multiple choice — Free for all",        free: true  },
                 { fmt: FORMAT_WRITTEN, icon: "✍️", label: "Written Practice",  sub: "Short & long answers — AI step-marking", free: false },
@@ -468,8 +468,9 @@ function MockTestPage({ user, setActivePage }) {
               const done = isAnswered(q, idx);
               return (
                 <button key={q.id} type="button" onClick={() => navigateTo(idx)}
+                  className="mock-nav-btn"
                   style={{
-                    width: 36, height: 36, borderRadius: 8, border: "none", cursor: "pointer",
+                    borderRadius: 8, border: "none", cursor: "pointer",
                     fontWeight: 700, fontSize: "0.8rem", fontFamily: "inherit",
                     background: activeQuestion === idx ? "#6366f1" : done ? "#16a34a" : "#e5e7eb",
                     color: activeQuestion === idx || done ? "#fff" : "#374151",
@@ -497,16 +498,23 @@ function MockTestPage({ user, setActivePage }) {
                 </div>
                 {q.section && <p className="muted">Section: {q.section}</p>}
 
-                {/* MCQ options */}
-                {isMCQ(q) && (
+                {/* MCQ options — guard against empty options dict */}
+                {isMCQ(q) && q.options && Object.keys(q.options).length > 0 && (
                   <div className="premium-option-list">
-                    {Object.entries(q.options || {}).map(([key, val]) => (
+                    {Object.entries(q.options).map(([key, val]) => (
                       <label key={key} className={answers[q.id] === key ? "option-row premium-option-row selected" : "option-row premium-option-row"}>
                         <input type="radio" name={`q-${q.id}`} checked={answers[q.id] === key}
                           onChange={() => handleAnswerChange(q.id, key)} />
                         <span><strong>{key}.</strong> <MathText text={val} /></span>
                       </label>
                     ))}
+                  </div>
+                )}
+                {isMCQ(q) && (!q.options || Object.keys(q.options).length === 0) && (
+                  <div style={{ marginTop: 10, padding: "10px 14px", borderRadius: 8,
+                    background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.2)",
+                    fontSize: "0.85rem", color: "var(--muted, #6b7280)" }}>
+                    ⚠ Answer options unavailable for this question.
                   </div>
                 )}
 

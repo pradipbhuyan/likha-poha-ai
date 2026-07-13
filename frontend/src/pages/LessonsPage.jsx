@@ -1618,7 +1618,7 @@ function LessonsPage({ user, setActivePage }) {
   // CSS variables alone aren't enough because the dark defaults (rgba white) are
   // invisible against a light background; we use explicit light-mode-safe values.
   const _selectStyle = {
-    fontSize: ".78rem",
+    fontSize: "16px",
     padding: "5px 10px",
     borderRadius: 8,
     border: "1px solid var(--border, #d1d5db)",
@@ -1675,9 +1675,9 @@ function LessonsPage({ user, setActivePage }) {
       </select>
       {/* Step progress pill */}
       <span style={{
-        fontSize: ".72rem", fontWeight: 700, color: "#fff",
+        fontSize: "16px", fontWeight: 700, color: "#fff",
         background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
-        borderRadius: 99, padding: "3px 10px", whiteSpace: "nowrap",
+        borderRadius: 99, padding: "5px 12px", whiteSpace: "nowrap",
       }}>
         Step {currentStepIndex + 1}/{lessonSteps.length} · {stepTitle}
       </span>
@@ -1687,7 +1687,7 @@ function LessonsPage({ user, setActivePage }) {
           className="primary-btn"
           onClick={handleGenerateLesson}
           disabled={generating}
-          style={{ fontSize: ".78rem", padding: "5px 14px", borderRadius: 8, whiteSpace: "nowrap" }}
+          style={{ fontSize: "16px", padding: "5px 14px", borderRadius: 8, whiteSpace: "nowrap" }}
         >
           {generating ? "…" : "✨ Generate"}
         </button>
@@ -1699,7 +1699,7 @@ function LessonsPage({ user, setActivePage }) {
             setStepLessons(upd); setLesson(""); setAudioUrl("");
             try { await saveChapterProgress({ username: user.username, grade, mode, board: requestBoard, subject, chapter, current_step_index: currentStepIndex, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: upd }); } catch (e) { /* non-critical */ }
           }}
-          style={{ fontSize: ".72rem", background: "none", border: "none", color: "var(--muted, #888)", cursor: "pointer", textDecoration: "underline" }}
+          style={{ fontSize: "16px", background: "none", border: "none", color: "var(--muted, #888)", cursor: "pointer", textDecoration: "underline" }}
         >
           🔄 Refresh
         </button>

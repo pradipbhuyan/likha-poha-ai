@@ -1,6 +1,6 @@
 # Likhapoha AI — Codex Context
 
-_Last updated: 2026-07-12 (late morning — mobile Phase 1+2)_
+_Last updated: 2026-07-13 (mobile Phase 3 — formula rendering, MCQ, lesson structured cards, mock test fixes; examprep crash fix; Google Auth; Grade 11/12 + stream signup; admin JWT fix)_
 
 ## What is Likhapoha AI
 
@@ -19,7 +19,7 @@ Likhapoha AI is a CBSE learning platform (Grade 5–10 primary, Grade 11-12 avai
 ## Current Test State
 
 - **Backend:** 2201 tests passing, 37 skipped (full suite confirmed 2026-07-12)
-- **Frontend:** 688 tests passing (51 test files, vitest)
+- **Frontend:** 719 tests passing (52 test files, vitest) — +28 MockTestPage tests + 3 new MCQWidget/lesson tests
 - **Lint:** 0 errors, 50 warnings (AT CI maximum — do NOT add any new warnings)
 
 ## ⚠️ MANDATORY Pre-Push Checklist
@@ -448,6 +448,252 @@ All ReactMarkdown section body renders use `LessonMarkdownTable` as the custom `
 ### Visual Aid Math
 `StructuredVisualBlock.VisualItemText` applies `normalizePlainExponents(normalizePlainAlgebra(text))` before rendering — plain-text items like `v^2 = v0^2 + 2ax` render with KaTeX superscripts even without `$` delimiters in the DB content.
 
+## Web MockTestPage — Mobile Fixes (2026-07-13)
+
+### Problems Fixed
+1. **Format selector 3-column grid broken on mobile** — inline `gridTemplateColumns: "repeat(3, 1fr)"` was never overridden. Now uses CSS class `mock-format-grid` → stacks to 1 column on ≤ 600px.
+2. **MCQ empty options guard** — If `question.options` is `{}` (empty dict from LLM), was silently rendering zero radio buttons. Now shows "⚠ Answer options unavailable" warning.
+3. **Question navigator touch targets 36px** (below 44px recommended). Now `.mock-nav-btn` CSS class with 44×44px on mobile.
+4. **Option font 20px + question header 28px** — reduced to 16px / 18px at ≤ 760px breakpoint.
+
+### CSS additions (App.css)
+- `.mock-format-grid` — `repeat(3,1fr)` on desktop, `1fr` on ≤ 600px
+- `.mock-nav-btn` — 36×36px desktop, 44×44px on ≤ 760px
+- `@media (max-width: 760px)`: `.premium-option-row` font 16px, `.premium-question-header h4` font 18px, `.premium-question-card` padding 16px
+
+### Tests Added
+`frontend/src/tests/MockTestPage.test.jsx` — **28 tests** covering:
+- Setup phase: 3 format cards, free/paid lock badges, daily limit counter, Generate button states
+- Exam phase: phase transition, navigator buttons, 12 radio inputs, answer selection, answered count
+- Empty options guard: warning shown, zero radios, valid options work normally
+- Written question: textarea rendered, AI Feedback button shown
+- Result phase: score, Answer Review section, Take Another Test navigation
+
+---
+
+## Mobile App — Exam Prep Crash Fix (2026-07-13)
+
+### Root Cause
+`mobile/app/(tabs)/examprep-data.ts` was a pure data module (no default React export) placed inside the expo-router `app/` directory. Its `Tabs.Screen` entry in `_layout.tsx` set **both** `href: null` and `tabBarButton: () => null` simultaneously — expo-router v6 forbids this combination and throws:
+
+> Render Error: Cannot use `href` and `tabBarButton` together.
+
+### Fix Applied
+1. **`mobile/app/(tabs)/_layout.tsx`** — removed `tabBarButton: () => null` and `tabBarItemStyle: { display: "none" }` from the `examprep-data` Tabs.Screen entry, keeping only `href: null`. This is the canonical expo-router pattern for fully excluding a screen from tab navigation.
+2. **`examprep-data.ts` relocated** — moved from `mobile/app/(tabs)/examprep-data.ts` → `mobile/lib/examprep-data.ts`. Data-only modules (no default React export) must not live in the expo-router `app/` directory.
+3. **`mobile/app/(tabs)/examprep.tsx`** — import updated from `"./examprep-data"` → `"../../lib/examprep-data"`.
+4. **`examprep-data` Tabs.Screen entry removed** from `_layout.tsx` entirely (file no longer in `app/`).
+
+### Rule (add to mobile development guidelines)
+- **Never place data-only `.ts` files in `mobile/app/`** — expo-router treats every file there as a potential route.
+- **Never combine `href: null` with `tabBarButton`** in a `Tabs.Screen options` — use `href: null` alone to suppress a screen from the tab bar.
+
+---
+
+## Mobile App — Google Auth (2026-07-13)
+
+### Files Changed
+| File | Change |
+|---|---|
+| `mobile/lib/auth.ts` | `signInWithGoogle()` updated: added `skipBrowserRedirect: true`, now returns `{ url, redirectUri, error }` — caller controls browser open |
+| `mobile/app/_layout.tsx` | Added `processSession()` — calls `GET /api/auth/me` after every session change; routes to `/auth/role-select` if `needs_role_selection`, `/(tabs)` if ready, `/auth/login` if unauthenticated |
+| `mobile/app/auth/login.tsx` | Added Google Sign-In button above email form. Uses `WebBrowser.openAuthSessionAsync` + `supabase.auth.exchangeCodeForSession` |
+| `mobile/app/auth/role-select.tsx` | **New** — one-time role picker for Google OAuth new users. POST `/api/auth/oauth/complete-profile` → `supabase.auth.refreshSession()` → `_layout.tsx` routes to `/(tabs)` |
+| `mobile/.env.example` | Added Google OAuth setup instructions (Supabase Dashboard + Google Cloud Console redirect URIs) |
+
+### Auth State Machine (`_layout.tsx`)
+
+```
+loading → check session → call /api/auth/me
+  ├─ needs_role_selection=true → /auth/role-select (Google new user)
+  ├─ profile_complete=true     → /(tabs)           (returning user)
+  ├─ /api/auth/me unreachable  → /(tabs)           (graceful fallback)
+  └─ no session                → /auth/login
+```
+
+### Google OAuth Flow (end-to-end)
+
+1. User taps **"Continue with Google"** on `/auth/login`
+2. `signInWithGoogle()` calls `supabase.auth.signInWithOAuth({ provider: 'google', skipBrowserRedirect: true })` → returns OAuth URL
+3. `WebBrowser.openAuthSessionAsync(url, redirectUri)` opens in-app browser
+4. User authenticates with Google; browser redirects to `likhapoha://...?code=...`
+5. `supabase.auth.exchangeCodeForSession(result.url)` exchanges PKCE code for Supabase session
+6. `_layout.tsx` `onAuthStateChange` fires → `processSession()` → `GET /api/auth/me`
+7. **New user** (`needs_role_selection=true`) → `/auth/role-select` → pick role + grade → `POST /api/auth/oauth/complete-profile` → `refreshSession()` → `/(tabs)`
+8. **Returning user** (`profile_complete=true`) → `/(tabs)` directly
+
+### Metro / Expo Startup on Zscaler Network
+When Zscaler intercepts network traffic, `npx expo start --clear` fails with `TypeError: fetch failed` (Expo CLI's dependency version check is blocked). Always use:
+```bash
+npx expo start --clear --offline
+```
+`--offline` skips the dependency network check and Metro starts normally.
+
+### Setup Required (one-time, in Supabase Dashboard)
+
+1. **Authentication → Providers → Google** — enable, add Google Client ID + Secret
+2. **Authentication → URL Configuration → Redirect URLs** — add:
+   - `likhapoha://` (production)
+   - `exp://127.0.0.1:8081` (Expo Go Android)
+   - `exp://localhost:8081` (Expo Go iOS)
+3. **Google Cloud Console → OAuth 2.0 Credentials → Authorized redirect URIs** — add:
+   - `https://dpivlbbyzlbpwnwgajso.supabase.co/auth/v1/callback`
+
+### Business Rules Enforced
+- Teacher role not available via Google OAuth (not shown in role picker)
+- Student grade selector: 5–10 only
+- 409 role conflict → friendly error, user blocked (same as web)
+- HTTP 401 = session expired; HTTP 403 = role mismatch (never conflated)
+- `oauth_profile_complete` DB column is authoritative — not heuristics
+
+---
+
+## Mobile App — Grade 11/12 + Stream Selection (2026-07-13)
+
+### Files Changed
+| File | Change |
+|---|---|
+| `mobile/lib/auth.ts` | `signUpWithEmail()` and `completeOAuthProfile()` both accept optional `stream` param (sent to backend) |
+| `mobile/app/auth/signup.tsx` | Grades extended 5–10 → **5–12**; stream picker shown for Grade 11/12 |
+| `mobile/app/auth/role-select.tsx` | Same Grade 5–12 chips + stream picker (Google OAuth new users) |
+
+### Stream Options (Grade 11/12 only)
+| Key | Label | Subjects |
+|---|---|---|
+| `PCM` | Science — PCM | Physics · Chemistry · Maths · English |
+| `PCB` | Science — PCB | Physics · Chemistry · Biology · English |
+| `PCMB` | Science — PCMB | Physics · Chemistry · Maths · Biology · English |
+| `Commerce` | Commerce | Accountancy · Business · Economics · English |
+| `Humanities` | Humanities | History · Polsci · Geography · Economics · English |
+
+### Rules
+- Selecting Grade 11 or 12 reveals the stream picker (required field)
+- Changing grade resets stream selection
+- Selecting Grade 5–10 hides stream picker
+- Stream passed to backend as `stream` field (backend stores in `profiles.stream` + populates `cbse_subjects`)
+- Mirrors web `SignupPage.jsx` logic exactly
+
+---
+
+## Admin Control Page — JWT Fix (2026-07-13)
+
+### Root Cause
+`AdminControlPage.jsx` had 5 raw `fetch()` calls using `user?.accessToken`. The `user` object does not have an `accessToken` field → token was `undefined` → `Authorization: Bearer undefined` → backend JWT library throws "token contains an invalid number of segments".
+
+Affected endpoints (all 401 in logs):
+- `GET /api/admin-control/blog-collaborators`
+- `POST /api/admin-control/blog-collaborators`
+- `DELETE /api/admin-control/blog-collaborators/:ghUsername`
+- `GET /api/admin-control/logging-settings`
+- `POST /api/admin-control/logging-settings`
+
+### Fix
+- Added `import { authFetch } from "../api/authClient"` to `AdminControlPage.jsx`
+- Replaced all 5 raw `fetch()` calls with `authFetch()` — gets live Supabase session token with 3-retry backoff
+- `useEffect` guard changed from `if (user?.accessToken)` → `if (user)`
+
+### Rule
+Never use raw `fetch()` with `user?.accessToken` in the web frontend. Always use `authFetch()` from `../api/authClient` for protected backend calls.
+
+---
+
+## Mobile App — Mock Test Fixes (2026-07-13)
+
+### File: `mobile/app/(tabs)/mocktest.tsx`
+
+#### Bug 1 — Answer options never shown (CRITICAL)
+Backend returns `options` as dict `{A:"...", B:"...", C:"...", D:"..."}`. Old code used `Array.isArray(q.options)` → always `false` → `options = []` → no answer choices rendered.
+
+**Fix:** `typeof q.options === "object" && !Array.isArray(q.options)` → `Object.entries(q.options)` to render `A. ...`, `B. ...` etc.
+
+#### Bug 2 — Wrong answer field name
+Used `q.correct_answer` (undefined) instead of `q.answer` (the actual backend field). Fixed in data normalization and score calculation.
+
+#### Bug 3 — Score always 0
+Compared option text values to the wrong field. Now compares selected KEY (`"A"`) to `q.answer` KEY (`"A"`).
+
+#### Bug 4 — Question bank cache miss (slow generation)
+Sent `difficulty: "medium"` (lowercase) but `question_bank.difficulty` stores `"Medium"` (capitalized, matching web app). Bank lookup uses `eq("difficulty", value)` — case-sensitive exact match → 0 rows → LLM fallback → 5–15s wait every time.
+
+**Fix:** `DIFFICULTIES = ["Easy", "Medium", "Hard"]` + `useState("Medium")` — difficulty now matches the DB column exactly. Bank hits → <1s response.
+
+---
+
+## Mobile App — Lessons Phase 3 (2026-07-13)
+
+### File: `mobile/app/(tabs)/lessons.tsx`
+
+#### Structured Section Cards
+`parseSections()` + `getSectionType()` ported from web `LessonSections.jsx`. Each section auto-detected and rendered as a color-coded card:
+- 🎯 Introduction (blue) — keywords: introduction, overview, context
+- 📘 Concept (amber) — keywords: explanation, concept, breakdown
+- 🧪 Examples (green) — keywords: worked example, step-by-step
+- ⚠️ Watch Out (orange) — keywords: common mistake, warning, avoid
+- ✅ Quick Check (red) — keywords: quick check, practice, self check
+- 📌 Summary (purple) — keywords: summary, recap, revision, key points
+
+#### Likha Poha AI GIF Loading Screen
+`getLoadingMessage(stepIndex, subject)` — exact port from `LessonsPage.jsx` — 6 steps × 6 subjects (Maths/Science/Hindi/Social/English/default). Shows `likhapohaai.gif` + animated bouncing dots + subject/step/chapter info while lesson generates.
+- Android: GIF animates natively via `Image` component
+- iOS: static first frame + `ActivityIndicator` overlay (no expo-image needed)
+
+#### Quick Check Interactive MCQ
+`parseMCQ(content)` extracts question/options (A/B/C/D)/answer/explanation from Quick Check section markdown. `MCQWidget` renders:
+- Tappable A/B/C/D option buttons
+- Instant validation: green ✓ correct / red ✗ wrong + dimmed others
+- Explanation shown after answer
+- "🔄 Try Again" button for wrong answers
+- Falls back to plain markdown if no MCQ detected
+
+#### Math Formula Rendering — LaTeX → Unicode
+`react-native-markdown-display` has no KaTeX support. `$$...$$ ` and `$...$` were showing as raw LaTeX text.
+
+**Fix: `mathToUnicode(latex)`** — 60+ regex transformations:
+- `\sqrt{x}` → `√(x)`, `^2` → `²`, `_1` → `₁`
+- `\frac{a}{b}` → `(a)/(b)`, `\text{Word}` → `Word`
+- `\times → ×`, `\pm → ±`, `\leq → ≤`, `\pi → π`, `\infty → ∞`
+
+**Fix: `MathAwareMarkdown` component** — splits content by `$$...$$` blocks:
+- Display math: rendered as styled 📐 formula card (accent-color left border)
+- Inline `$...$`: converted to Unicode inline within `<Markdown>`
+- Regular markdown: passes through unchanged
+
+**IMPORTANT for future mobile lesson work:**
+- Do NOT pass raw lesson markdown directly to `<Markdown>` — always use `<MathAwareMarkdown>`
+- `SectionCard` uses `MathAwareMarkdown` for all non-MCQ sections
+- MCQ widget `parseMCQ()` strips `**` bold before parsing — handles both bold and plain formats
+
+#### Quick Check MCQ Format (Backend Enforced — 2026-07-13)
+`TUTOR_SYSTEM` in `tutor_service.py` now requires ALL Quick Check questions to use MCQ (4 options A/B/C/D) or True/False format with an explicit `Answer: X` line. Open-ended descriptive questions are banned from this section.
+
+**Required format in generated lessons:**
+```
+Which of the following is an irrational number?
+
+A) 0.5
+B) √2
+C) 22/7
+D) 1.25
+
+Answer: B
+
+Explanation: √2 is irrational because it cannot be expressed as p/q.
+```
+
+**Why this matters:**
+- `parseMCQ()` in `mobile/app/(tabs)/lessons.tsx` detects `A) B) C) D)` options + `Answer:` line to render the interactive MCQ widget
+- Without this format, Quick Check falls back to plain markdown (no interactivity)
+- Old **cached** lessons still have open-ended questions — use the "Refresh lesson" button (admin) or wait for cache expiry to get MCQ format on existing chapters
+
+**Do NOT invalidate the lesson cache globally** — refresh on a per-chapter basis as needed.
+
+#### Step Navigation
+- Prev ◀ / Next ▶ bar with step counter "2/5" and step name
+- Progress dots (gray=upcoming, brand=current, green=completed) — tappable to jump
+- Footer nav after lesson loads: Previous / Next Step / ✅ Complete
+
+---
+
 ## File Locations
 
 | Purpose | File |
@@ -503,12 +749,17 @@ All ReactMarkdown section body renders use `LessonMarkdownTable` as the custom `
 | **Structured visual block** | `frontend/src/components/StructuredVisualBlock.jsx` |
 | **Lesson page (scroll-to-top, step nav)** | `frontend/src/pages/LessonsPage.jsx` |
 | **Lesson + section CSS** | `frontend/src/App.css` |
+| **Mock Test page (web)** | `frontend/src/pages/MockTestPage.jsx` |
+| **Mock Test page tests** | `frontend/src/tests/MockTestPage.test.jsx` (28 tests) |
 | **Mobile app root** | `mobile/` (React Native / Expo SDK 54, react-native 0.81.5, expo-router 6.x) |
 | **Mobile Supabase client** | `mobile/lib/supabase.ts` (expo-secure-store adapter) |
 | **Mobile auth helpers** | `mobile/lib/auth.ts` (signInWithEmail, signInWithGoogle, checkAuthState) |
 | **Mobile authFetch** | `mobile/lib/authFetch.ts` (JWT fetch with same 401/403 mapping as web) |
-| **Mobile screens** | `mobile/app/(tabs)/` — index (Dashboard), lessons, mocktest, account |
-| **Mobile auth screens** | `mobile/app/auth/` — login.tsx, signup.tsx |
+| **Mobile screens** | `mobile/app/(tabs)/` — index (Dashboard), lessons, mocktest, account, examprep |
+| **Exam Prep screen** | `mobile/app/(tabs)/examprep.tsx` |
+| **Exam Prep data** | `mobile/lib/examprep-data.ts` — static reference data (EXAMS, SC, QR) — NOT a route |
+| **Mobile auth screens** | `mobile/app/auth/` — login.tsx, signup.tsx, role-select.tsx |
+| **Mobile Google OAuth role picker** | `mobile/app/auth/role-select.tsx` — shown once for new Google OAuth users |
 | **Shared JS package** | `shared/@likhapoha/shared` — API clients + utils used by both web and mobile |
 | **Shared API clients** | `shared/api/` — auth, lesson, doubt, mockTest, analytics, progress, syllabus, tts |
 | **Shared utils** | `shared/utils/` — markdownCleanup, resolveSubscription, subjectAccess, syllabusDefaults |

@@ -14,18 +14,26 @@ import { API_BASE_URL } from "../constants";
 
 WebBrowser.maybeCompleteAuthSession();
 
-/** Sign in with Google OAuth using expo-auth-session + Supabase. */
-export async function signInWithGoogle() {
+/**
+ * Sign in with Google OAuth using Supabase + expo-web-browser.
+ *
+ * Returns the OAuth URL to open — caller opens the browser and exchanges
+ * the callback URL for a Supabase session via exchangeCodeForSession().
+ *
+ * Using skipBrowserRedirect: true so WE control when the browser opens
+ * (prevents Supabase from triggering a web-only automatic redirect).
+ */
+export async function signInWithGoogle(): Promise<{ url: string | null; redirectUri: string; error: Error | null }> {
   const redirectUri = AuthSession.makeRedirectUri({ scheme: "likhapoha" });
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
-    options: { redirectTo: redirectUri },
+    options: {
+      redirectTo: redirectUri,
+      skipBrowserRedirect: true,
+    },
   });
-  if (error) return { error };
-  if (data?.url) {
-    await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
-  }
-  return { error: null };
+  if (error) return { url: null, redirectUri, error };
+  return { url: data.url ?? null, redirectUri, error: null };
 }
 
 /** Sign in with email + password. */
@@ -38,13 +46,14 @@ export async function signUpWithEmail(
   email: string,
   password: string,
   role: "student" | "parent",
-  grade?: string
+  grade?: string,
+  stream?: string   // Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
 ) {
   return supabase.auth.signUp({
     email,
     password,
     options: {
-      data: { role, grade: grade ?? null },
+      data: { role, grade: grade ?? null, stream: stream ?? null },
     },
   });
 }
@@ -73,7 +82,8 @@ export async function checkAuthState(accessToken: string) {
 export async function completeOAuthProfile(
   accessToken: string,
   role: string,
-  grade?: string
+  grade?: string,
+  stream?: string   // Grade 11/12 students: PCM|PCB|PCMB|Commerce|Humanities
 ) {
   const res = await fetch(`${API_BASE_URL}/api/auth/oauth/complete-profile`, {
     method: "POST",
@@ -81,7 +91,7 @@ export async function completeOAuthProfile(
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ role, grade: grade ?? null }),
+    body: JSON.stringify({ role, grade: grade ?? null, stream: stream ?? null }),
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
