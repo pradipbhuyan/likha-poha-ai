@@ -21,6 +21,51 @@ cd mobile
 echo "✅ Code: $(git log --oneline -1)"
 echo ""
 
+# ── 0b. Verify all required features are present ─────────────
+echo "🔍 Verifying feature checklist..."
+FAIL=0
+
+check() {
+  local desc="$1"
+  local file="$2"
+  local pattern="$3"
+  # Script runs from mobile/ directory
+  if grep -q "$pattern" "$file" 2>/dev/null; then
+    echo "  ✅ $desc"
+  else
+    echo "  ❌ MISSING: $desc  ($file)"
+    FAIL=1
+  fi
+}
+
+check "Google OAuth WebView (Zscaler-safe)"  "app/auth/login.tsx"        "NativeWebView"
+check "Username login"                        "app/auth/login.tsx"        "lookup-email"
+check "Dark mode (useTheme)"                  "app/auth/login.tsx"        "useTheme"
+check "Grades 5-12 in signup"                 "app/auth/signup.tsx"       '"11", "12"'
+check "Stream selector (PCM/PCB)"             "app/auth/signup.tsx"       "STREAMS"
+check "Google OAuth role picker"              "app/auth/role-select.tsx"  "completeOAuthProfile"
+check "Grade lock (free tier)"                "app/(tabs)/lessons.tsx"    "isGradeLocked"
+check "Exemplar locked banner"                "app/(tabs)/lessons.tsx"    "isExemplarLocked"
+check "Exam Prep 3 tabs"                      "app/(tabs)/examprep.tsx"   "Simulated Test"
+check "NTA countdown timer"                   "app/(tabs)/examprep.tsx"   "CountdownTimer"
+check "Simulated Test submit snake_case"      "app/(tabs)/examprep.tsx"   "time_spent_seconds"
+check "SafeAreaProvider at root"              "app/_layout.tsx"           "SafeAreaProvider"
+check "expo-router entry point"               "index.ts"                  "expo-router/entry"
+
+# File existence checks (no grep needed)
+[ -f "assets/icon-1024.png" ] && echo "  ✅ App icon 1024px (icon-1024.png)" || { echo "  ❌ MISSING: App icon 1024px"; FAIL=1; }
+
+if [ $FAIL -ne 0 ]; then
+  echo ""
+  echo "❌ VERIFICATION FAILED — some features are missing!"
+  echo "   Run: git pull  (to make sure you have latest code)"
+  echo "   Then retry: bash build_apk.sh"
+  exit 1
+fi
+echo ""
+echo "✅ All features verified — proceeding with build"
+echo ""
+
 # ── 1. Set environment variables ──────────────────────────────
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
