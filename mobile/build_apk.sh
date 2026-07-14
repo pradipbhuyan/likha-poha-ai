@@ -11,6 +11,16 @@ set -e  # Exit on any error
 echo "🚀 Likha Poha AI — Building Android APK"
 echo "========================================="
 
+# ── 0. Pull latest code from git ─────────────────────────────
+echo ""
+echo "📥 Pulling latest code from GitHub..."
+# Go up one level to repo root to pull, then come back
+cd ..
+git pull
+cd mobile
+echo "✅ Code: $(git log --oneline -1)"
+echo ""
+
 # ── 1. Set environment variables ──────────────────────────────
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
