@@ -81,7 +81,7 @@ export default function TabsLayout() {
         name="mocktest"
         options={{
           title: "Mock Test",
-          tabBarLabel: "Mock",
+          tabBarLabel: "Mock Test",
           tabBarIcon: ({ focused }) => <TabIcon name="edit-3" focused={focused} />,
         }}
       />
@@ -129,7 +129,7 @@ export default function TabsLayout() {
         name="learn"
         options={{
           title: "Learn More",
-          tabBarLabel: "Learn",
+          tabBarLabel: "Learn More",
           tabBarIcon: ({ focused }) => <TabIcon name="external-link" focused={focused} />,
         }}
       />
