@@ -54,8 +54,31 @@ export default function HomeScreen() {
       setError("");
       const { data: { session } } = await supabase.auth.getSession();
       setUserEmail(session?.user?.email ?? "");
-      const result = await authFetch("/api/student/dashboard/summary");
-      setData(result);
+
+      // Try backend summary; on failure, build a minimal response from Supabase session
+      try {
+        const result = await authFetch("/api/student/dashboard/summary");
+        setData(result);
+      } catch {
+        // Backend unreachable (wrong API URL, no WiFi to local server, etc.)
+        // Show logged-in dashboard using Supabase auth metadata as fallback
+        const meta = session?.user?.user_metadata ?? {};
+        const email = session?.user?.email ?? "";
+        const username = meta.username ?? meta.display_name ?? email.split("@")[0] ?? "Student";
+        setData({
+          student: {
+            username,
+            display_name: meta.display_name ?? username,
+            grade: meta.grade ?? "",
+            study_streak_days: 0,
+            lessons_completed: 0,
+          },
+          subscription: { plan_name: "Free Plan", has_full_access: false },
+          recent_progress: [],
+          mock_tests: { recent: [] },
+          test_history: [],
+        });
+      }
     } catch (err: any) {
       setError(err.message ?? "");
     } finally {
