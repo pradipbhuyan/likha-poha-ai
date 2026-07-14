@@ -9,13 +9,15 @@
 set -e  # Exit on any error
 
 # ── Script version ────────────────────────────────────────────
-BUILD_SCRIPT_VERSION="v5.0"
+BUILD_SCRIPT_VERSION="v6.0"
 BUILD_SCRIPT_DATE="2026-07-14"
 # v1.0 — initial build script
 # v2.0 — added git pull (auto-fetch latest code)
 # v3.0 — added 14-point feature verification checklist
 # v4.0 — added version header + CI fix (vitest env vars)
 # v5.0 — rm -rf android/ before prebuild (fixes ENOTEMPTY on second+ builds)
+# v5.1 — verify all required assets exist before building
+# v6.0 — Metro bundle test (catches missing imports BEFORE 10-min Gradle build)
 
 echo "🚀 Likha Poha AI — Building Android APK"
 echo "========================================="
@@ -97,6 +99,41 @@ echo "✅ Java: $("$JAVA_HOME/bin/java" -version 2>&1 | head -1)"
 echo ""
 echo "📦 Installing dependencies..."
 npm install
+
+# ── 2b. Metro bundle test — verifies all imports resolve ─────
+echo ""
+echo "🔬 Metro bundle test (catches missing imports fast, ~2 min)..."
+BUNDLE_OUT="/tmp/likhapoha-test-bundle.js"
+ASSETS_OUT="/tmp/likhapoha-test-assets"
+BUNDLE_LOG="/tmp/likhapoha-bundle-log.txt"
+rm -rf "$BUNDLE_OUT" "$ASSETS_OUT" "$BUNDLE_LOG"
+
+# Temporarily disable set -e so we can capture the exit code ourselves
+set +e
+npx react-native bundle \
+  --platform android \
+  --dev false \
+  --entry-file index.ts \
+  --bundle-output "$BUNDLE_OUT" \
+  --assets-dest "$ASSETS_OUT" \
+  --reset-cache > "$BUNDLE_LOG" 2>&1
+BUNDLE_EXIT=$?
+set -e
+
+# Show the last relevant lines (errors/success indicator)
+grep -E "error|Error|Bundled|FAIL|Unable to resolve|Cannot find" "$BUNDLE_LOG" | tail -15 || true
+
+rm -rf "$BUNDLE_OUT" "$ASSETS_OUT" "$BUNDLE_LOG"
+
+if [ $BUNDLE_EXIT -ne 0 ]; then
+  echo ""
+  echo "❌ Metro bundle test FAILED — fix the import errors above before Gradle build"
+  echo "   Common causes: missing assets (gif/png), wrong import paths, missing lib files"
+  echo "   Run: git pull && bash build_apk.sh"
+  exit 1
+fi
+echo "✅ Metro bundle test passed — all 1000+ modules resolved"
+echo ""
 
 # ── 3. Generate native Android project ───────────────────────
 echo ""
