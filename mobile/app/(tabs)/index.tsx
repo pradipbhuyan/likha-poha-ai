@@ -87,7 +87,7 @@ export default function HomeScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); loadDashboard(); }} tintColor={BRAND_COLOR} />}>
 
         <View style={s.welcomeCard}>
-          <Image source={require("../../assets/icon.png")} style={s.welcomeLogo} resizeMode="contain" />
+          <Image source={require("../../assets/logo.png")} style={s.welcomeLogo} resizeMode="contain" />
           <Text style={s.welcomeTitle}>Welcome to Likha Poha AI</Text>
           <Text style={s.welcomeSub}>AI-powered CBSE tutor for Grades 5–12.{"\n"}Start learning right away — no setup needed.</Text>
         </View>

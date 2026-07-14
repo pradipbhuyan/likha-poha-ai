@@ -105,6 +105,7 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleLogin() {
     if (!email.trim() || !password) { setErrorMsg("Please enter your email or username and password."); return; }
@@ -183,7 +184,7 @@ export default function LoginScreen() {
       )}
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={["top", "bottom"]}>
       <StatusBar style={colors.statusBar} />
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <ScrollView
           contentContainerStyle={[s.container, { backgroundColor: colors.bg }]}
           keyboardShouldPersistTaps="handled"
@@ -228,11 +229,17 @@ export default function LoginScreen() {
               value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" autoCorrect={false}
             />
             <Text style={[s.label, { color: colors.textSubtle }]}>Password</Text>
-            <TextInput
-              style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
-              placeholder="Password" placeholderTextColor={colors.textMuted}
-              value={password} onChangeText={setPassword} secureTextEntry
-            />
+            <View style={[s.inputRow, { backgroundColor: colors.surface, borderColor: colors.borderInput }]}>
+              <TextInput
+                style={[s.inputInner, { color: colors.text }]}
+                placeholder="Password" placeholderTextColor={colors.textMuted}
+                value={password} onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword(v => !v)} style={s.eyeBtn}>
+                <Feather name={showPassword ? "eye-off" : "eye"} size={20} color={colors.textMuted} />
+              </TouchableOpacity>
+            </View>
             {errorMsg ? (
               <View style={[s.errorBox, { backgroundColor: colors.errorBg }]}>
                 <Text style={[s.errorText, { color: colors.errorText }]}>❌ {errorMsg}</Text>
@@ -272,7 +279,10 @@ const s = StyleSheet.create({
   dividerLine: { flex: 1, height: 1 },
   dividerTxt: { fontSize: 12, fontWeight: "500" },
   label: { fontSize: 13, fontWeight: "600", marginBottom: 6 },
-  input: { borderWidth: 1, borderRadius: 12, padding: 14, marginBottom: 16, fontSize: 16 },
+  input: { borderWidth: 1.5, borderRadius: 12, padding: 14, marginBottom: 16, fontSize: 16 },
+  inputRow: { flexDirection: "row", alignItems: "center", borderWidth: 1.5, borderRadius: 12, marginBottom: 16 },
+  inputInner: { flex: 1, padding: 14, fontSize: 16 },
+  eyeBtn: { padding: 14 },
   errorBox: { borderRadius: 10, padding: 12, marginBottom: 14 },
   errorText: { fontSize: 14 },
   btn: { backgroundColor: BRAND_COLOR, borderRadius: 12, padding: 16, alignItems: "center", marginTop: 4 },
