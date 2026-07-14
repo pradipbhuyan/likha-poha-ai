@@ -107,6 +107,7 @@ export default function DoubtScreen() {
   const [subject, setSubject]     = useState("");
   const [studentGrade, setStudentGrade] = useState<string | null>(null);
   const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
+  const [studentStream, setStudentStream] = useState<string>("");
   const [hasFullAccess, setHasFullAccess] = useState(false);
   const [question, setQuestion]   = useState("");
   const [answerStyle, setStyle]   = useState("simple");
@@ -129,6 +130,7 @@ export default function DoubtScreen() {
       if (sg) setGrade(sg);
       const subs = me?.cbse_subjects ?? [];
       setCbseSubjects(subs);
+      setStudentStream(me?.stream ?? "");
     }).catch(() => {});
     authFetch("/api/subscription/features").then((d: any) => {
       setHasFullAccess(d?.has_full_access ?? false);
@@ -137,9 +139,18 @@ export default function DoubtScreen() {
 
   // Grade lock for free users
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
-  // Subject list: enrolled subjects for Grade 11/12, otherwise default
+  // Subject list: use cbse_subjects if available, fall back to stream-derived
+  const STREAM_SUBJECTS_DOUBT: Record<string, string[]> = {
+    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+  };
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
-  const availableSubjects = isGrade1112 && cbseSubjects.length > 0 ? cbseSubjects : SUBJECTS;
+  const effectiveSubjectsDoubt = cbseSubjects.length > 0 ? cbseSubjects
+    : (studentStream && STREAM_SUBJECTS_DOUBT[studentStream] ? STREAM_SUBJECTS_DOUBT[studentStream] : []);
+  const availableSubjects = isGrade1112 && effectiveSubjectsDoubt.length > 0 ? effectiveSubjectsDoubt : SUBJECTS;
 
   // Load suggestions when grade/subject changes
   useEffect(() => {

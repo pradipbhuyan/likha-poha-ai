@@ -45,18 +45,27 @@ export default function MockTestScreen() {
   const [difficulty, setDifficulty] = useState("Medium");
   const [studentGrade, setStudentGrade] = useState<string | null>(null);
   const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
+  const [studentStream, setStudentStream] = useState<string>("");
   const [hasFullAccess, setHasFullAccess] = useState(false);
+
+  const STREAM_SUBJECTS: Record<string, string[]> = {
+    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+  };
 
   useEffect(() => {
     authFetch("/api/auth/me").then((me: any) => {
       const sg = me?.grade ?? null;
       setStudentGrade(sg);
       if (sg) setGrade(sg);
-      // cbse_subjects from profile (non-empty for Grade 11/12)
-      const subjects = me?.cbse_subjects ?? [];
-      setCbseSubjects(subjects);
-      // Set default subject to first enrolled subject
-      if (subjects.length > 0) setSubject(subjects[0]);
+      const subs = me?.cbse_subjects ?? [];
+      setCbseSubjects(subs);
+      setStudentStream(me?.stream ?? "");
+      const effective = subs.length > 0 ? subs : (me?.stream && STREAM_SUBJECTS[me.stream] ? STREAM_SUBJECTS[me.stream] : []);
+      if (effective.length > 0) setSubject(effective[0]);
     }).catch(() => {});
     authFetch("/api/subscription/features").then((d: any) => {
       setHasFullAccess(d?.has_full_access ?? false);
@@ -65,9 +74,11 @@ export default function MockTestScreen() {
 
   // Grade lock: free users locked to enrolled grade
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
-  // Subject list: use enrolled cbse_subjects for Grade 11/12, otherwise default list
+  // Subject list: use cbse_subjects if available, fall back to stream-derived subjects
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
-  const subjects = isGrade1112 && cbseSubjects.length > 0 ? cbseSubjects : DEFAULT_SUBJECTS;
+  const effectiveSubjects = cbseSubjects.length > 0 ? cbseSubjects
+    : (studentStream && STREAM_SUBJECTS[studentStream] ? STREAM_SUBJECTS[studentStream] : []);
+  const subjects = isGrade1112 && effectiveSubjects.length > 0 ? effectiveSubjects : DEFAULT_SUBJECTS;
   const [questions, setQuestions] = useState<Question[]>([]);
   // answers[questionIndex] = selected option KEY (e.g. "A", "B", "C", "D")
   const [answers, setAnswers] = useState<Record<number, string>>({});
