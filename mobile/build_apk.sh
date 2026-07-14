@@ -8,8 +8,19 @@
 
 set -e  # Exit on any error
 
+# ── Script version ────────────────────────────────────────────
+BUILD_SCRIPT_VERSION="v4.0"
+BUILD_SCRIPT_DATE="2026-07-14"
+# v1.0 — initial build script
+# v2.0 — added git pull (auto-fetch latest code)
+# v3.0 — added 14-point feature verification checklist
+# v4.0 — added version header + CI fix (vitest env vars)
+
 echo "🚀 Likha Poha AI — Building Android APK"
 echo "========================================="
+echo "📋 Build script: $BUILD_SCRIPT_VERSION ($BUILD_SCRIPT_DATE)"
+echo "   ✅ This is the CORRECT version (has git pull + feature checks)"
+echo ""
 
 # ── 0. Pull latest code from git ─────────────────────────────
 echo ""
