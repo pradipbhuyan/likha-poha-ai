@@ -10,7 +10,7 @@
  *  - Score calculation now compares selected KEY to q.answer key.
  *  - Empty options guard added (matches web app behavior).
  */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
   ActivityIndicator, Alert,
@@ -20,7 +20,8 @@ import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
-const SUBJECTS = ["Science","Maths","Social Science","English","Hindi","Physics","Chemistry","Biology"];
+const ALL_SUBJECTS = ["Science","Maths","Social Science","English","Hindi","Physics","Chemistry","Biology","Mathematics","Accountancy","Business Studies","Economics","History","Geography","Political Science"];
+const DEFAULT_SUBJECTS = ["Science","Maths","Social Science","English","Hindi"];
 // Must match question_bank.difficulty column values exactly (capitalized)
 // so the bank-first lookup hits the pre-warmed Supabase question bank instead
 // of falling through to LLM generation (which takes 5-15s vs <1s from bank).
@@ -42,6 +43,31 @@ export default function MockTestScreen() {
   const [grade, setGrade] = useState("Grade 9");
   const [subject, setSubject] = useState("Science");
   const [difficulty, setDifficulty] = useState("Medium");
+  const [studentGrade, setStudentGrade] = useState<string | null>(null);
+  const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
+  const [hasFullAccess, setHasFullAccess] = useState(false);
+
+  useEffect(() => {
+    authFetch("/api/auth/me").then((me: any) => {
+      const sg = me?.grade ?? null;
+      setStudentGrade(sg);
+      if (sg) setGrade(sg);
+      // cbse_subjects from profile (non-empty for Grade 11/12)
+      const subjects = me?.cbse_subjects ?? [];
+      setCbseSubjects(subjects);
+      // Set default subject to first enrolled subject
+      if (subjects.length > 0) setSubject(subjects[0]);
+    }).catch(() => {});
+    authFetch("/api/subscription/features").then((d: any) => {
+      setHasFullAccess(d?.has_full_access ?? false);
+    }).catch(() => {});
+  }, []); // eslint-disable-line
+
+  // Grade lock: free users locked to enrolled grade
+  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  // Subject list: use enrolled cbse_subjects for Grade 11/12, otherwise default list
+  const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
+  const subjects = isGrade1112 && cbseSubjects.length > 0 ? cbseSubjects : DEFAULT_SUBJECTS;
   const [questions, setQuestions] = useState<Question[]>([]);
   // answers[questionIndex] = selected option KEY (e.g. "A", "B", "C", "D")
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -140,24 +166,32 @@ export default function MockTestScreen() {
         <Text style={styles.pageTitle}>Mock Test</Text>
       </View>
 
-      <Text style={styles.label}>Grade</Text>
+      <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
+        <Text style={styles.label}>Grade</Text>
+        {isGradeLocked && studentGrade && <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>🔒 {studentGrade}</Text>}
+      </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
-        {GRADES.map((g) => (
-          <TouchableOpacity
-            key={g}
-            style={[styles.chip, grade === g && styles.chipActive]}
-            onPress={() => setGrade(g)}
-          >
-            <Text style={[styles.chipText, grade === g && styles.chipTextActive]}>
-              {g.replace("Grade ", "")}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {GRADES.map((g) => {
+          const locked = isGradeLocked && g !== studentGrade;
+          const active = grade === g;
+          return (
+            <TouchableOpacity
+              key={g}
+              style={[styles.chip, active && styles.chipActive, locked && styles.chipLocked]}
+              onPress={() => !locked && setGrade(g)}
+              disabled={locked}
+            >
+              <Text style={[styles.chipText, active && styles.chipTextActive, locked && { color:"#9ca3af" }]}>
+                {g.replace("Grade ", "")}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
 
       <Text style={styles.label}>Subject</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
-        {SUBJECTS.map((s) => (
+        {subjects.map((s) => (
           <TouchableOpacity
             key={s}
             style={[styles.chip, subject === s && styles.chipActive]}
@@ -277,6 +311,7 @@ const styles = StyleSheet.create({
   chipRow: { flexDirection: "row", marginBottom: 4 },
   chip: { paddingHorizontal: 12, paddingVertical: 7, borderRadius: 99, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff", marginRight: 8 },
   chipActive: { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR },
+  chipLocked: { borderColor: "#e5e7eb", backgroundColor: "#f9fafb", opacity: 0.55 },
   chipText: { fontSize: 13, fontWeight: "600", color: "#374151" },
   chipTextActive: { color: "#fff" },
   generateBtn: { backgroundColor: BRAND_COLOR, borderRadius: 12, padding: 14, alignItems: "center", marginTop: 20, marginBottom: 16 },

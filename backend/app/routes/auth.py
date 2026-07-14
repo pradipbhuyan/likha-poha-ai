@@ -1202,6 +1202,10 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         "access_sof_english": False,
         "daily_token_limit": 0,
         "monthly_token_limit": 0,
+        # Mark email signups as profile-complete so they go straight to dashboard
+        # (oauth_profile_complete=false is only needed for Google OAuth new users who
+        # haven't picked a role yet; email signups already have role from the form)
+        "oauth_profile_complete": True,
         # subscription_expires_at intentionally absent — free tier has no expiry
     }
 

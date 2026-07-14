@@ -50,7 +50,12 @@ function GoogleOAuthWebView({
   function handleNavChange(navState: { url?: string }) {
     const navUrl = navState.url ?? "";
     // Detect when the OAuth callback redirects back to our app scheme
-    if (navUrl.startsWith("likhapoha://") || navUrl.startsWith(redirectUri)) {
+    // Also catch when Supabase redirects to likhapoha.in with a code param
+    if (
+      navUrl.startsWith("likhapoha://") ||
+      navUrl.startsWith(redirectUri) ||
+      (navUrl.startsWith("https://likhapoha.in") && navUrl.includes("code="))
+    ) {
       onSuccess(navUrl);
     }
   }
@@ -85,7 +90,14 @@ function GoogleOAuthWebView({
             // Chrome UA does NOT contain "wv" so Google allows the OAuth flow.
             userAgent="Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
             onShouldStartLoadWithRequest={(req: { url: string }) => {
-              if (req.url.startsWith("likhapoha://") || req.url.startsWith(redirectUri)) {
+              // Intercept the OAuth callback deep link (likhapoha://)
+              // Also intercept https://likhapoha.in in case Supabase redirects there
+              // when likhapoha:// isn't in its allowed redirect URL list yet
+              if (
+                req.url.startsWith("likhapoha://") ||
+                req.url.startsWith(redirectUri) ||
+                (req.url.startsWith("https://likhapoha.in") && req.url.includes("code="))
+              ) {
                 onSuccess(req.url); return false;
               }
               return true;

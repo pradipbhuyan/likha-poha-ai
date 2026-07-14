@@ -105,6 +105,9 @@ const SUBJECTS = ["Mathematics","Science","Social Science","English","Hindi","Ph
 export default function DoubtScreen() {
   const [grade, setGrade]         = useState("Grade 9");
   const [subject, setSubject]     = useState("");
+  const [studentGrade, setStudentGrade] = useState<string | null>(null);
+  const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
+  const [hasFullAccess, setHasFullAccess] = useState(false);
   const [question, setQuestion]   = useState("");
   const [answerStyle, setStyle]   = useState("simple");
   const [answer, setAnswer]       = useState("");
@@ -117,6 +120,26 @@ export default function DoubtScreen() {
   const [fuAnswer, setFuAnswer]   = useState("");
   const [showHistory, setShowHist] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
+
+  // Load student grade + subjects on mount
+  useEffect(() => {
+    authFetch("/api/auth/me").then((me: any) => {
+      const sg = me?.grade ?? null;
+      setStudentGrade(sg);
+      if (sg) setGrade(sg);
+      const subs = me?.cbse_subjects ?? [];
+      setCbseSubjects(subs);
+    }).catch(() => {});
+    authFetch("/api/subscription/features").then((d: any) => {
+      setHasFullAccess(d?.has_full_access ?? false);
+    }).catch(() => {});
+  }, []); // eslint-disable-line
+
+  // Grade lock for free users
+  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+  // Subject list: enrolled subjects for Grade 11/12, otherwise default
+  const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
+  const availableSubjects = isGrade1112 && cbseSubjects.length > 0 ? cbseSubjects : SUBJECTS;
 
   // Load suggestions when grade/subject changes
   useEffect(() => {
@@ -202,13 +225,22 @@ export default function DoubtScreen() {
         <Text style={styles.pageSubtitle}>Ask any CBSE doubt — concepts, problems, textbook questions</Text>
 
         {/* ── Grade selector ── */}
-        <Text style={styles.label}>Grade</Text>
+        <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
+          <Text style={styles.label}>Grade</Text>
+          {isGradeLocked && studentGrade && <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>🔒 {studentGrade}</Text>}
+        </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
-          {GRADES.map(g => (
-            <TouchableOpacity key={g} style={[styles.chip, grade === g && styles.chipActive]} onPress={() => setGrade(g)}>
-              <Text style={[styles.chipText, grade === g && styles.chipTextActive]}>{g.replace("Grade ", "")}</Text>
-            </TouchableOpacity>
-          ))}
+          {GRADES.map(g => {
+            const locked = isGradeLocked && g !== studentGrade;
+            const active = grade === g;
+            return (
+              <TouchableOpacity key={g}
+                style={[styles.chip, active && styles.chipActive, locked && { borderColor:"#e5e7eb", backgroundColor:"#f9fafb", opacity:0.55 }]}
+                onPress={() => !locked && setGrade(g)} disabled={locked}>
+                <Text style={[styles.chipText, active && styles.chipTextActive, locked && { color:"#9ca3af" }]}>{g.replace("Grade ", "")}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
 
         {/* ── Subject selector (optional) ── */}
@@ -217,7 +249,7 @@ export default function DoubtScreen() {
           <TouchableOpacity style={[styles.chip, subject === "" && styles.chipActive]} onPress={() => setSubject("")}>
             <Text style={[styles.chipText, subject === "" && styles.chipTextActive]}>Any</Text>
           </TouchableOpacity>
-          {SUBJECTS.map(s => (
+          {availableSubjects.map(s => (
             <TouchableOpacity key={s} style={[styles.chip, subject === s && styles.chipActive]} onPress={() => setSubject(s)}>
               <Text style={[styles.chipText, subject === s && styles.chipTextActive]}>{s}</Text>
             </TouchableOpacity>
