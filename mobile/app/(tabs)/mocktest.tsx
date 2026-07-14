@@ -44,6 +44,7 @@ export default function MockTestScreen() {
   const [subject, setSubject] = useState("Science");
   const [difficulty, setDifficulty] = useState("Medium");
   const [studentGrade, setStudentGrade] = useState<string | null>(null);
+  const [studentUsername, setStudentUsername] = useState<string>("");
   const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
   const [studentStream, setStudentStream] = useState<string>("");
   const [hasFullAccess, setHasFullAccess] = useState(false);
@@ -61,6 +62,7 @@ export default function MockTestScreen() {
       const sg = me?.grade ?? null;
       setStudentGrade(sg);
       if (sg) setGrade(sg);
+      setStudentUsername(me?.username ?? me?.email?.split("@")[0] ?? "student");
       const subs = me?.cbse_subjects ?? [];
       setCbseSubjects(subs);
       setStudentStream(me?.stream ?? "");
@@ -166,6 +168,25 @@ export default function MockTestScreen() {
     });
     setScore(correct);
     setSubmitted(true);
+
+    // Save result to backend for analytics (non-blocking)
+    const pct = Math.round((correct / questions.length) * 100);
+    authFetch("/api/analytics/test-history", {
+      method: "POST",
+      body: JSON.stringify({
+        username: studentUsername,
+        grade: grade,
+        mode: "CBSE",
+        subject,
+        difficulty,
+        rawScore: correct,
+        finalScore: correct,
+        maxScore: questions.length,
+        wrongCount: questions.length - correct,
+        percentage: pct,
+        submittedAt: new Date().toISOString(),
+      }),
+    }).catch(() => {}); // Non-fatal — never block the UI
   }
 
   return (
