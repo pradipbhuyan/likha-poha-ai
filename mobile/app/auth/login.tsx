@@ -80,6 +80,10 @@ function GoogleOAuthWebView({
             javaScriptEnabled
             domStorageEnabled
             style={{ flex: 1, backgroundColor: colors.bg }}
+            // Override user agent to Chrome for Android — Google blocks OAuth in WebViews
+            // because the default Android WebView UA contains "wv" (Error 403: disallowed_useragent).
+            // Chrome UA does NOT contain "wv" so Google allows the OAuth flow.
+            userAgent="Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
             onShouldStartLoadWithRequest={(req: { url: string }) => {
               if (req.url.startsWith("likhapoha://") || req.url.startsWith(redirectUri)) {
                 onSuccess(req.url); return false;
