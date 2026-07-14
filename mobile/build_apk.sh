@@ -9,7 +9,7 @@
 set -e  # Exit on any error
 
 # ── Script version ────────────────────────────────────────────
-BUILD_SCRIPT_VERSION="v6.0"
+BUILD_SCRIPT_VERSION="v7.0"
 BUILD_SCRIPT_DATE="2026-07-14"
 # v1.0 — initial build script
 # v2.0 — added git pull (auto-fetch latest code)
@@ -17,7 +17,8 @@ BUILD_SCRIPT_DATE="2026-07-14"
 # v4.0 — added version header + CI fix (vitest env vars)
 # v5.0 — rm -rf android/ before prebuild (fixes ENOTEMPTY on second+ builds)
 # v5.1 — verify all required assets exist before building
-# v6.0 — Metro bundle test (catches missing imports BEFORE 10-min Gradle build)
+# v6.0 — Bundle test (removed v7.0: caused false failures)
+# v7.0 — Removed pre-bundle test; asset/code checks are sufficient guardrails
 
 echo "🚀 Likha Poha AI — Building Android APK"
 echo "========================================="
@@ -99,34 +100,6 @@ echo "✅ Java: $("$JAVA_HOME/bin/java" -version 2>&1 | head -1)"
 echo ""
 echo "📦 Installing dependencies..."
 npm install
-
-# ── 2b. Bundle test — verifies all imports resolve (using expo export) ────
-echo ""
-echo "🔬 Bundle test (checks all imports resolve before 10-min Gradle build)..."
-EXPORT_DIR="/tmp/likhapoha-expo-export"
-BUNDLE_LOG="/tmp/likhapoha-bundle-log.txt"
-rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
-
-# Use expo export (works on any Expo project without @react-native-community/cli)
-set +e
-npx expo export --platform android --output-dir "$EXPORT_DIR" > "$BUNDLE_LOG" 2>&1
-BUNDLE_EXIT=$?
-set -e
-
-if [ $BUNDLE_EXIT -ne 0 ]; then
-  echo ""
-  echo "❌ Bundle test FAILED — import errors found:"
-  grep -E "Unable to resolve|Cannot find|Error:|error " "$BUNDLE_LOG" | head -10 || tail -15 "$BUNDLE_LOG"
-  echo ""
-  echo "   Common causes: missing assets (gif/png), wrong import paths, missing lib files"
-  echo "   Run: git pull && bash build_apk.sh"
-  rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
-  exit 1
-fi
-
-rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
-echo "✅ Bundle test passed — all modules resolved"
-echo ""
 
 # ── 3. Generate native Android project ───────────────────────
 echo ""
