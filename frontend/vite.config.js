@@ -75,5 +75,11 @@ export default defineConfig({
       "dist/**",
       "e2e/**",
     ],
+    // Provide stub env vars so Supabase/API clients initialise without throwing in CI
+    env: {
+      VITE_SUPABASE_URL:     "https://test-project.supabase.co",
+      VITE_SUPABASE_ANON_KEY: "test-anon-key",
+      VITE_API_BASE_URL:      "http://localhost:8000",
+    },
   },
 });
