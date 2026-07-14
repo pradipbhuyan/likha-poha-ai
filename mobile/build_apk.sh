@@ -100,39 +100,32 @@ echo ""
 echo "📦 Installing dependencies..."
 npm install
 
-# ── 2b. Metro bundle test — verifies all imports resolve ─────
+# ── 2b. Bundle test — verifies all imports resolve (using expo export) ────
 echo ""
-echo "🔬 Metro bundle test (catches missing imports fast, ~2 min)..."
-BUNDLE_OUT="/tmp/likhapoha-test-bundle.js"
-ASSETS_OUT="/tmp/likhapoha-test-assets"
+echo "🔬 Bundle test (checks all imports resolve before 10-min Gradle build)..."
+EXPORT_DIR="/tmp/likhapoha-expo-export"
 BUNDLE_LOG="/tmp/likhapoha-bundle-log.txt"
-rm -rf "$BUNDLE_OUT" "$ASSETS_OUT" "$BUNDLE_LOG"
+rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
 
-# Temporarily disable set -e so we can capture the exit code ourselves
+# Use expo export (works on any Expo project without @react-native-community/cli)
 set +e
-npx react-native bundle \
-  --platform android \
-  --dev false \
-  --entry-file index.ts \
-  --bundle-output "$BUNDLE_OUT" \
-  --assets-dest "$ASSETS_OUT" \
-  --reset-cache > "$BUNDLE_LOG" 2>&1
+npx expo export --platform android --output-dir "$EXPORT_DIR" > "$BUNDLE_LOG" 2>&1
 BUNDLE_EXIT=$?
 set -e
 
-# Show the last relevant lines (errors/success indicator)
-grep -E "error|Error|Bundled|FAIL|Unable to resolve|Cannot find" "$BUNDLE_LOG" | tail -15 || true
-
-rm -rf "$BUNDLE_OUT" "$ASSETS_OUT" "$BUNDLE_LOG"
-
 if [ $BUNDLE_EXIT -ne 0 ]; then
   echo ""
-  echo "❌ Metro bundle test FAILED — fix the import errors above before Gradle build"
+  echo "❌ Bundle test FAILED — import errors found:"
+  grep -E "Unable to resolve|Cannot find|Error:|error " "$BUNDLE_LOG" | head -10 || tail -15 "$BUNDLE_LOG"
+  echo ""
   echo "   Common causes: missing assets (gif/png), wrong import paths, missing lib files"
   echo "   Run: git pull && bash build_apk.sh"
+  rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
   exit 1
 fi
-echo "✅ Metro bundle test passed — all 1000+ modules resolved"
+
+rm -rf "$EXPORT_DIR" "$BUNDLE_LOG"
+echo "✅ Bundle test passed — all modules resolved"
 echo ""
 
 # ── 3. Generate native Android project ───────────────────────
