@@ -618,6 +618,7 @@ export default function LessonsScreen() {
   const [grade, setGrade] = useState("Grade 9");
   const [studentGrade, setStudentGrade] = useState<string | null>(null);
   const [studentCbseSubjects, setStudentCbseSubjects] = useState<string[]>([]);
+  const [studentStream, setStudentStream] = useState<string>("");
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
   const [stepIndex, setStepIndex] = useState(0);
@@ -650,9 +651,10 @@ export default function LessonsScreen() {
       const enrolledGrade = me?.grade ?? "Grade 9";
       setStudentGrade(enrolledGrade);
       setGrade(enrolledGrade);
-      // Store enrolled subjects for Grade 11/12 stream filtering
+      // Store enrolled subjects + stream for Grade 11/12 filtering
       const enrolledSubjects: string[] = me?.cbse_subjects ?? [];
       setStudentCbseSubjects(enrolledSubjects);
+      setStudentStream(me?.stream ?? "");
 
       if (featureData?.features) {
         setFeatures(featureData.features);
@@ -680,13 +682,26 @@ export default function LessonsScreen() {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Filter subjects for Grade 11/12 by enrolled cbse_subjects (stream-specific)
+  // Filter subjects for Grade 11/12 by enrolled cbse_subjects or stream
   const allSyllabusSubjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
-  const subjects = isGrade1112 && studentCbseSubjects.length > 0
+  // Build the effective subject list: use cbse_subjects if available, else derive from stream
+  const STREAM_SUBJECTS: Record<string, string[]> = {
+    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
+    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
+    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
+    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
+    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
+  };
+  const effectiveSubjects = studentCbseSubjects.length > 0
+    ? studentCbseSubjects
+    : (studentStream && STREAM_SUBJECTS[studentStream] ? STREAM_SUBJECTS[studentStream] : []);
+  const subjects = isGrade1112 && effectiveSubjects.length > 0
     ? allSyllabusSubjects.filter(s =>
-        studentCbseSubjects.some(es =>
-          s.toLowerCase().includes(es.toLowerCase()) || es.toLowerCase().includes(s.toLowerCase())
+        effectiveSubjects.some(es =>
+          s.toLowerCase() === es.toLowerCase() ||
+          s.toLowerCase().includes(es.toLowerCase()) ||
+          es.toLowerCase().includes(s.toLowerCase())
         )
       )
     : allSyllabusSubjects;
