@@ -54,8 +54,12 @@ For role-specific changes also read:
 - **Grade lock**: `isGradeLocked = studentGrade !== null && !hasFullAccess`. Premium/admin users (`hasFullAccess=true`) see all grades. Free users are locked to enrolled grade.
 - **Feature gating**: always fetch from `GET /api/subscription/features` — never infer from `subscription_plan` string. Use `hasFullAccess` for grade lock, `features.EXEMPLAR.allowed` for Exemplar access.
 - **Simulated Test submit body**: snake_case — `question_id`, `selected_option`, `time_spent_seconds`. The `startSimulatedTest` API returns `question_ids` (UUIDs only), NOT full question objects — always fetch questions separately per subject after start.
-- **Build APK**: use `mobile/build_apk.sh` v5.0+ — auto git pull, 14-point feature verification, `rm -rf android` before prebuild. Never build without running this script.
+- **Build APK**: use `mobile/build_apk.sh` v7.0+ — auto git pull, 17-point feature verification, `rm -rf android` before prebuild. Never build without running this script.
 - **`mobile/index.ts`** must contain only `import "expo-router/entry"` — never replace with `registerRootComponent`.
+- **`mobile/.env` EXPO_PUBLIC_API_BASE_URL must use `http://` not `https://`** for local development. Using `https://` against a local IP (no SSL cert) causes `TypeError: Network request failed` on Android for ALL API calls. The backend runs plain HTTP on port 8000.
+- **Backend `.env` must be copied manually** to any new machine — it is gitignored. Contains Supabase service role key, LLM API keys, etc.
+- **APK env vars are baked at build time** — changing `mobile/.env` only takes effect on the NEXT `bash build_apk.sh`. Changing `.env` without rebuilding has no effect on the installed APK.
+- **Verify baked URL** before troubleshooting: `grep -ao "192.168.[^\"' ]*" android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle | head -3`
 
 ## Implementation Style
 
