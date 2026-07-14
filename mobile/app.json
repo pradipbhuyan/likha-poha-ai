@@ -20,7 +20,7 @@
       "versionCode": 15,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-1024.png",
-        "backgroundColor": "#6366f1"
+        "backgroundColor": "#ffffff"
       },
       "permissions": [
         "INTERNET",
