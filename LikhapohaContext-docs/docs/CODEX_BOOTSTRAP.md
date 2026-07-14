@@ -48,8 +48,14 @@ For role-specific changes also read:
 - **Never place data-only `.ts` files in `mobile/app/`** — expo-router treats every file there as a potential route.
 - **Never combine `href: null` with `tabBarButton`** in a `Tabs.Screen options` block — use `href: null` alone to suppress a screen from the tab bar.
 - **Never pass raw markdown to `<Markdown>`** — always use `<MathAwareMarkdown>` so LaTeX is converted to Unicode before rendering.
-- **Google OAuth on mobile** uses `expo-auth-session` + `makeRedirectUri` → backend `/api/auth/mobile/google` (exchanges code for session). Never use `supabase.auth.signInWithOAuth` directly on mobile (requires browser redirect, breaks native app flow).
+- **Google OAuth on mobile** uses `signInWithGoogle()` in `mobile/lib/auth.ts` which calls `supabase.auth.signInWithOAuth({ skipBrowserRedirect: true })` and returns `{url, redirectUri}`. The login screen opens an in-app WebView (`react-native-webview`) or `WebBrowser.openAuthSessionAsync` — never use `supabase.auth.signInWithOAuth` directly (requires browser redirect, breaks native app).
 - **`mobile/lib/`** is for shared utilities and data modules. **`mobile/app/`** is exclusively for expo-router screens and layouts.
+- **Username login on mobile**: if input has no `@`, call `GET /api/auth/lookup-email/{username}` to resolve to email before calling `supabase.auth.signInWithPassword`.
+- **Grade lock**: `isGradeLocked = studentGrade !== null && !hasFullAccess`. Premium/admin users (`hasFullAccess=true`) see all grades. Free users are locked to enrolled grade.
+- **Feature gating**: always fetch from `GET /api/subscription/features` — never infer from `subscription_plan` string. Use `hasFullAccess` for grade lock, `features.EXEMPLAR.allowed` for Exemplar access.
+- **Simulated Test submit body**: snake_case — `question_id`, `selected_option`, `time_spent_seconds`. The `startSimulatedTest` API returns `question_ids` (UUIDs only), NOT full question objects — always fetch questions separately per subject after start.
+- **Build APK**: use `mobile/build_apk.sh` v5.0+ — auto git pull, 14-point feature verification, `rm -rf android` before prebuild. Never build without running this script.
+- **`mobile/index.ts`** must contain only `import "expo-router/entry"` — never replace with `registerRootComponent`.
 
 ## Implementation Style
 

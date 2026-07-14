@@ -765,3 +765,53 @@ Explanation: √2 is irrational because it cannot be expressed as p/q.
 | **Shared utils** | `shared/utils/` — markdownCleanup, resolveSubscription, subjectAccess, syllabusDefaults |
 | **Mobile env template** | `mobile/.env.example` |
 | **EAS Build config** | `mobile/eas.json` |
+| **Mobile theme** | `mobile/lib/theme.ts` — dark/light mode palette via `useTheme()` |
+| **Mobile dark mode** | All auth screens (login, signup, role-select) use `useTheme()` |
+| **Mobile app icon** | `mobile/assets/icon-1024.png` — 1024×1024 Likha Poha AI logo (purple bg) |
+| **Local APK build script** | `mobile/build_apk.sh` v5.0 — auto git pull + 14-point verification + rm -rf android |
+| **Analytics screen** | `mobile/app/(tabs)/analytics.tsx` |
+| **Doubt screen** | `mobile/app/(tabs)/doubt.tsx` |
+| **Exemplar screen** | `mobile/app/(tabs)/exemplar.tsx` |
+| **Formula screen** | `mobile/app/(tabs)/formula.tsx` |
+| **Learn screen** | `mobile/app/(tabs)/learn.tsx` |
+
+---
+
+## Session Changes — 2026-07-13 to 2026-07-14
+
+### Mobile Auth
+- **`login.tsx`**: Google OAuth via WebView (Zscaler-safe using `react-native-webview`); username login via `GET /api/auth/lookup-email/{username}`; dark mode via `useTheme()`
+- **`signup.tsx`**: Grades 5–12 selector; stream picker for Grade 11/12 (PCM/PCB/PCMB/Commerce/Humanities); dark mode
+- **`role-select.tsx`** (NEW): Shown once after Google OAuth for new users to pick grade + stream
+- **`auth.ts`**: `signInWithGoogle()` WebView flow; stream passed to `completeOAuthProfile`
+
+### Mobile Screens
+- **`lessons.tsx`**: Grade selector locked for free tier (`isGradeLocked = studentGrade !== null && !hasFullAccess`); Exemplar chapters locked for free tier (`isExemplarLocked`); feature access from `GET /api/subscription/features`; LaTeX → Unicode via `mathToUnicode()`; interactive MCQ widget in Quick Check sections; animated loading dots + Likha Poha AI GIF
+- **`examprep.tsx`** (NEW): 3 tabs — Quick Reference | Practice | Simulated Test. Simulated Test = NTA-style timed exam with countdown timer, question palette (grey/green/purple/brand), Mark & Next / Clear / Save & Next, submit with snake_case body (`question_id`, `selected_option`, `time_spent_seconds`), score screen (correct/wrong/skipped). API: `POST /api/exam-prep/simulated-tests/start` → fetch questions per subject → `POST /api/exam-prep/simulated-tests/{id}/submit`
+- **`index.tsx`**: "Exam Prep" button added to both welcome state and loaded Quick Actions grid
+- **`app/_layout.tsx`**: SafeAreaProvider at root; auth state machine
+
+### Mobile Libs
+- **`lib/theme.ts`** (NEW): dark/light mode palette, `useTheme()` hook
+- **`lib/authFetch.ts`**: Fixed `detail.toLowerCase()` crash when detail is not a string
+
+### Mobile Build
+- **`build_apk.sh`** v5.0: auto `git pull` + 14-point feature verification (aborts if any check fails) + `rm -rf android` before prebuild + version header printed at start
+- **`index.ts`**: Fixed to `import "expo-router/entry"` (was using old `registerRootComponent(MinimalApp)`)
+- **`MinimalApp.tsx`**: Deleted (was showing purple test screen)
+- **`app.json`**: icon updated to `./assets/icon-1024.png`
+- **`assets/icon-1024.png`**: 1024×1024 Likha Poha AI logo, adaptive icon with purple background
+
+### Frontend Web
+- **`App.css`**: Mobile responsiveness fixes; lesson card font sizes unified to 16px
+- **`AdminControlPage.jsx`**: authFetch compatibility fix
+- **`LessonsPage.jsx`**: Font size consistency fixes
+- **`MockTestPage.jsx`**: CSS fixes
+- **`vite.config.js`**: Added stub env vars (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) in test section → fixes `AdminControlPage.test.jsx` CI failure
+
+### Key API Patterns (mobile)
+- Username → email: `GET /api/auth/lookup-email/{username}` → `{email}` → `supabase.auth.signInWithPassword`
+- Feature gating: `GET /api/subscription/features` → `{has_full_access, features: {EXEMPLAR: {allowed}, ...}}`
+- Simulated test start: `POST /api/exam-prep/simulated-tests/start` body `{exam: "jee_main"}` → `{test_id, question_ids, duration_minutes}`
+- Questions per subject: `GET /api/exam-prep/questions?exam={}&subject={}&limit={}` → `{questions}`
+- Simulated test submit: `POST /api/exam-prep/simulated-tests/{id}/submit` body `{answers: [{question_id, selected_option}], time_spent_seconds}`
