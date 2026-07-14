@@ -65,7 +65,10 @@ check "SafeAreaProvider at root"              "app/_layout.tsx"           "SafeA
 check "expo-router entry point"               "index.ts"                  "expo-router/entry"
 
 # File existence checks (no grep needed)
-[ -f "assets/icon-1024.png" ] && echo "  ✅ App icon 1024px (icon-1024.png)" || { echo "  ❌ MISSING: App icon 1024px"; FAIL=1; }
+[ -f "assets/icon-1024.png"       ] && echo "  ✅ App icon 1024px"             || { echo "  ❌ MISSING: assets/icon-1024.png";       FAIL=1; }
+[ -f "assets/likhapohaai.gif"     ] && echo "  ✅ Likha Poha AI loading GIF"   || { echo "  ❌ MISSING: assets/likhapohaai.gif";     FAIL=1; }
+[ -f "assets/google-logo.png"     ] && echo "  ✅ Google logo"                 || { echo "  ❌ MISSING: assets/google-logo.png";     FAIL=1; }
+[ -f "lib/examprep-data.ts"       ] && echo "  ✅ Exam Prep data module"       || { echo "  ❌ MISSING: lib/examprep-data.ts";       FAIL=1; }
 
 if [ $FAIL -ne 0 ]; then
   echo ""
