@@ -113,16 +113,34 @@ export default function LoginScreen() {
     try {
       let loginEmail = email.trim().toLowerCase();
 
-      // Username login — if input has no @, resolve to email via /api/auth/lookup-email
+      // Username login — if input has no @, resolve to email
       if (!loginEmail.includes("@")) {
-        const res = await fetch(`${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginEmail)}`);
-        if (!res.ok) {
-          setErrorMsg("Username not found. Please check your username or use your email.");
-          setLoading(false);
-          return;
+        // Try backend first; fall back to Supabase direct query (works when backend is unreachable)
+        let resolved = false;
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/auth/lookup-email/${encodeURIComponent(loginEmail)}`);
+          if (res.ok) {
+            const data = await res.json();
+            loginEmail = data.email;
+            resolved = true;
+          }
+        } catch { /* backend unreachable — try Supabase directly */ }
+
+        if (!resolved) {
+          // Direct Supabase query — works without backend, uses anon key
+          const { data: rows } = await supabase
+            .from("profiles")
+            .select("email")
+            .ilike("username", loginEmail)
+            .limit(1);
+          if (rows && rows.length > 0 && rows[0].email) {
+            loginEmail = rows[0].email;
+          } else {
+            setErrorMsg("Username not found. Please check your username or use your email.");
+            setLoading(false);
+            return;
+          }
         }
-        const data = await res.json();
-        loginEmail = data.email;
       }
 
       const { error } = await supabase.auth.signInWithPassword({ email: loginEmail, password });
