@@ -96,6 +96,22 @@ if ! "$JAVA_HOME/bin/java" -version 2>/dev/null; then
 fi
 echo "✅ Java: $("$JAVA_HOME/bin/java" -version 2>&1 | head -1)"
 
+# ── 2. Read + increment version ───────────────────────────────
+APP_VERSION=$(python3 -c "import json; print(json.load(open('app.json'))['expo']['version'])" 2>/dev/null || echo "1.0.0")
+OLD_BUILD=$(python3 -c "import json; print(json.load(open('app.json'))['expo']['android']['versionCode'])" 2>/dev/null || echo "1")
+NEW_BUILD=$((OLD_BUILD + 1))
+
+echo "📦 Version: v${APP_VERSION} → build ${NEW_BUILD}"
+
+# Auto-increment versionCode in app.json
+python3 << PYEOF
+import json
+with open("app.json") as f: d = json.load(f)
+d["expo"]["android"]["versionCode"] = ${NEW_BUILD}
+with open("app.json", "w") as f: json.dump(d, f, indent=2)
+PYEOF
+echo "✅ app.json versionCode updated to ${NEW_BUILD}"
+
 # ── 2. Install JS dependencies ────────────────────────────────
 echo ""
 echo "📦 Installing dependencies..."
@@ -145,19 +161,22 @@ cd android
 ./gradlew assembleRelease
 cd ..
 
-# ── 6. Done ───────────────────────────────────────────────────
-APK_PATH="android/app/build/outputs/apk/release/app-release.apk"
-APK_SIZE=$(du -sh "$APK_PATH" | cut -f1)
+# ── 6. Rename APK + Done ─────────────────────────────────────
+RAW_APK="android/app/build/outputs/apk/release/app-release.apk"
+NAMED_APK="android/app/build/outputs/apk/release/likhapohaai-v${APP_VERSION}-build${NEW_BUILD}.apk"
+cp "$RAW_APK" "$NAMED_APK"
+APK_SIZE=$(du -sh "$NAMED_APK" | cut -f1)
 
 echo ""
 echo "========================================="
 echo "✅ BUILD SUCCESSFUL!"
-echo "📱 APK: $APK_PATH ($APK_SIZE)"
+echo "📱 APK: $NAMED_APK ($APK_SIZE)"
+echo "   (also at: $RAW_APK)"
 echo ""
 echo "To install on phone via USB:"
-echo "  $ANDROID_HOME/platform-tools/adb install $APK_PATH"
+echo "  $ANDROID_HOME/platform-tools/adb install $NAMED_APK"
 echo ""
-echo "Or copy $APK_PATH to Google Drive and install from phone."
+echo "Or copy $NAMED_APK to Google Drive and install from phone."
 echo "========================================="
 
 # Open Finder at APK location (macOS only)
