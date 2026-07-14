@@ -11,9 +11,9 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
-import { signUpWithEmail } from "../../lib/auth";
 import { useTheme } from "../../lib/theme";
-import { BRAND_COLOR } from "../../constants";
+import { BRAND_COLOR, API_BASE_URL } from "../../constants";
+import { supabase } from "../../lib/supabase";
 
 const GRADES = ["5", "6", "7", "8", "9", "10", "11", "12"];
 const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
@@ -29,6 +29,7 @@ export default function SignupScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<"student" | "parent">("student");
@@ -49,16 +50,38 @@ export default function SignupScreen() {
   function handleGradeChange(g: string) { setGrade(g); setStream(""); }
 
   async function handleSignup() {
+    if (!name.trim()) { Alert.alert("Error", "Please enter your name."); return; }
     if (!email.trim() || !password.trim()) { Alert.alert("Error", "Please fill in all fields."); return; }
     if (password.length < 8) { Alert.alert("Error", "Password must be at least 8 characters."); return; }
     if (needs1112Stream && !stream) { Alert.alert("Error", "Please choose your academic stream."); return; }
     setLoading(true);
     try {
-      const { error } = await signUpWithEmail(email.trim(), password, role,
-        role === "student" ? grade : undefined, needs1112Stream ? stream : undefined);
-      if (error) throw error;
-      Alert.alert("Check your email", "We've sent a confirmation link.",
-        [{ text: "OK", onPress: () => router.replace("/auth/login") }]);
+      // Call backend signup-free — creates account immediately (no email confirmation),
+      // sets up profile with username, and sends welcome email via Resend API
+      const res = await fetch(`${API_BASE_URL}/api/auth/signup-free`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          role,
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          grade: role === "student" ? grade : undefined,
+          stream: needs1112Stream ? stream : undefined,
+          password: password.trim(),
+        }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(body?.detail ?? body?.message ?? `Signup failed (${res.status})`);
+      }
+
+      // Account created — auto-login immediately (no email confirmation needed)
+      const { error: loginErr } = await supabase.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password: password.trim(),
+      });
+      if (loginErr) throw loginErr;
+      // _layout.tsx onAuthStateChange will route to /(tabs) automatically
     } catch (err: any) { Alert.alert("Sign up failed", err.message ?? "Please try again."); }
     finally { setLoading(false); }
   }
@@ -150,6 +173,11 @@ export default function SignupScreen() {
             </>
           )}
 
+          <TextInput
+            style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
+            placeholder="Your name (used as login username)" placeholderTextColor={colors.textMuted}
+            value={name} onChangeText={setName} autoCapitalize="words" autoCorrect={false}
+          />
           <TextInput
             style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
             placeholder="Email address" placeholderTextColor={colors.textMuted}
