@@ -9,12 +9,13 @@
 set -e  # Exit on any error
 
 # ── Script version ────────────────────────────────────────────
-BUILD_SCRIPT_VERSION="v4.0"
+BUILD_SCRIPT_VERSION="v5.0"
 BUILD_SCRIPT_DATE="2026-07-14"
 # v1.0 — initial build script
 # v2.0 — added git pull (auto-fetch latest code)
 # v3.0 — added 14-point feature verification checklist
 # v4.0 — added version header + CI fix (vitest env vars)
+# v5.0 — rm -rf android/ before prebuild (fixes ENOTEMPTY on second+ builds)
 
 echo "🚀 Likha Poha AI — Building Android APK"
 echo "========================================="
@@ -97,6 +98,9 @@ npm install
 # ── 3. Generate native Android project ───────────────────────
 echo ""
 echo "🔨 Generating Android project (expo prebuild)..."
+# Force-remove android/ so expo prebuild --clean doesn't fail with ENOTEMPTY
+echo "  Removing old android/ directory..."
+rm -rf android
 # CI=1 skips the "uncommitted changes" interactive prompt
 CI=1 npx expo prebuild --platform android --clean --no-install
 
