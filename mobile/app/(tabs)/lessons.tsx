@@ -617,6 +617,7 @@ export default function LessonsScreen() {
   const [syllabus, setSyllabus] = useState<SyllabusData | null>(null);
   const [grade, setGrade] = useState("Grade 9");
   const [studentGrade, setStudentGrade] = useState<string | null>(null);
+  const [studentCbseSubjects, setStudentCbseSubjects] = useState<string[]>([]);
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
   const [stepIndex, setStepIndex] = useState(0);
@@ -649,6 +650,9 @@ export default function LessonsScreen() {
       const enrolledGrade = me?.grade ?? "Grade 9";
       setStudentGrade(enrolledGrade);
       setGrade(enrolledGrade);
+      // Store enrolled subjects for Grade 11/12 stream filtering
+      const enrolledSubjects: string[] = me?.cbse_subjects ?? [];
+      setStudentCbseSubjects(enrolledSubjects);
 
       if (featureData?.features) {
         setFeatures(featureData.features);
@@ -657,7 +661,13 @@ export default function LessonsScreen() {
 
       if (syllabusData?.syllabus) {
         setSyllabus(syllabusData.syllabus);
-        const firstSubject = Object.keys(syllabusData.syllabus?.[enrolledGrade]?.["CBSE"] ?? {})[0] ?? "";
+        const allSubjects = Object.keys(syllabusData.syllabus?.[enrolledGrade]?.["CBSE"] ?? {});
+        // For Grade 11/12: only show enrolled stream subjects
+        const isG1112 = enrolledGrade === "Grade 11" || enrolledGrade === "Grade 12";
+        const filteredSubjects = isG1112 && enrolledSubjects.length > 0
+          ? allSubjects.filter(s => enrolledSubjects.some(es => s.toLowerCase().includes(es.toLowerCase()) || es.toLowerCase().includes(s.toLowerCase())))
+          : allSubjects;
+        const firstSubject = filteredSubjects[0] ?? allSubjects[0] ?? "";
         const firstChapter = syllabusData.syllabus?.[enrolledGrade]?.["CBSE"]?.[firstSubject]?.[0] ?? "";
         setSubject(firstSubject);
         setChapter(firstChapter);
@@ -670,7 +680,16 @@ export default function LessonsScreen() {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const subjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
+  // Filter subjects for Grade 11/12 by enrolled cbse_subjects (stream-specific)
+  const allSyllabusSubjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
+  const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
+  const subjects = isGrade1112 && studentCbseSubjects.length > 0
+    ? allSyllabusSubjects.filter(s =>
+        studentCbseSubjects.some(es =>
+          s.toLowerCase().includes(es.toLowerCase()) || es.toLowerCase().includes(s.toLowerCase())
+        )
+      )
+    : allSyllabusSubjects;
   const chapters = syllabus?.[grade]?.["CBSE"]?.[subject] ?? [];
 
   function handleGradeChange(g: string) {
