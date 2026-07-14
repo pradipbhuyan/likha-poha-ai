@@ -8,6 +8,7 @@ import {
   View, Text, TextInput, TouchableOpacity, StyleSheet,
   Alert, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
@@ -36,6 +37,7 @@ export default function SignupScreen() {
   const [grade, setGrade] = useState("Grade 9");
   const [stream, setStream] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [contentH, setContentH] = useState(0);
   const [viewH, setViewH] = useState(0);
@@ -87,7 +89,7 @@ export default function SignupScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={[s.container, { backgroundColor: colors.bg }]} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+    <KeyboardAvoidingView style={[s.container, { backgroundColor: colors.bg }]} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <StatusBar style={colors.statusBar} />
 
       {/* ── FIXED HEADER ── */}
@@ -183,11 +185,16 @@ export default function SignupScreen() {
             placeholder="Email address" placeholderTextColor={colors.textMuted}
             value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" autoCorrect={false}
           />
-          <TextInput
-            style={[s.input, { backgroundColor: colors.surface, borderColor: colors.borderInput, color: colors.text }]}
-            placeholder="Password (min 8 characters)" placeholderTextColor={colors.textMuted}
-            value={password} onChangeText={setPassword} secureTextEntry
-          />
+          <View style={[s.inputRow, { backgroundColor: colors.surface, borderColor: colors.borderInput }]}>
+            <TextInput
+              style={[s.inputInner, { color: colors.text }]}
+              placeholder="Password (min 8 characters)" placeholderTextColor={colors.textMuted}
+              value={password} onChangeText={setPassword} secureTextEntry={!showPassword}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(v => !v)} style={s.eyeBtn}>
+              <Feather name={showPassword ? "eye-off" : "eye"} size={20} color={colors.textMuted} />
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity style={s.btn} onPress={handleSignup} disabled={loading}>
             {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnText}>Create account</Text>}
@@ -232,6 +239,9 @@ const s = StyleSheet.create({
   streamLabel: { fontSize: 14, fontWeight: "700" },
   streamDesc: { fontSize: 11, marginTop: 2 },
   input: { borderWidth: 1, borderRadius: 12, padding: 14, marginBottom: 14, fontSize: 16 },
+  inputRow: { flexDirection: "row", alignItems: "center", borderWidth: 1, borderRadius: 12, marginBottom: 14 },
+  inputInner: { flex: 1, padding: 14, fontSize: 16 },
+  eyeBtn: { padding: 14 },
   btn: { backgroundColor: BRAND_COLOR, borderRadius: 12, padding: 14, alignItems: "center", marginBottom: 12 },
   btnText: { color: "#fff", fontWeight: "700", fontSize: 16 },
   linkRow: { marginTop: 16, alignItems: "center" },
