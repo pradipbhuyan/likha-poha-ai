@@ -31,7 +31,6 @@ export default function AppHeader({ showBack = true }: AppHeaderProps) {
           resizeMode="contain"
         />
         <View>
-          <Text style={s.brandName}>Likha Poha AI</Text>
           <Text style={s.tagline}>Your Personal Tutor</Text>
         </View>
       </View>
@@ -58,6 +57,5 @@ const s = StyleSheet.create({
   backPlaceholder: { width: 36, marginRight: 12 },
   logoRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   logo: { width: 64, height: 64, borderRadius: 14 },
-  brandName: { fontSize: 15, fontWeight: "800", color: BRAND_COLOR, letterSpacing: -0.2 },
-  tagline: { fontSize: 12, fontWeight: "500", color: "#6b7280", marginTop: 1 },
+  tagline: { fontSize: 18, fontWeight: "700", color: "#374151", letterSpacing: -0.3 },
 });

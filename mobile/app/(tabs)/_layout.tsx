@@ -30,10 +30,7 @@ function HeaderLogo() {
         resizeMode="contain"
       />
       <View>
-        <Text style={{ fontSize: 15, fontWeight: "800", color: BRAND_COLOR, letterSpacing: -0.2 }}>
-          Likha Poha AI
-        </Text>
-        <Text style={{ fontSize: 12, fontWeight: "500", color: "#6b7280", marginTop: 1 }}>
+        <Text style={{ fontSize: 18, fontWeight: "700", color: "#374151", letterSpacing: -0.3 }}>
           Your Personal Tutor
         </Text>
       </View>
