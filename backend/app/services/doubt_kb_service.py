@@ -79,24 +79,31 @@ def search_doubt_kb(
     """
     supabase = get_content_db(grade)
     try:
-        # Pass 0: exact text match — works for suggestion chip questions and
-        # databases that don't have the match_doubt_kb pgvector RPC function
-        # (e.g. the Grade 11/12 Supabase project).
-        # Try with status filter first; if that fails (column missing), try without.
+        # Pass 0: text match — works for suggestion chip questions and
+        # databases that don't have the match_doubt_kb pgvector RPC function.
+        # Try: (a) exact ILIKE, (b) contains ILIKE on first 50 chars,
+        # (c) retry (a) and (b) without status filter if status column missing.
+        _q_clean = question.strip().rstrip("?").strip()
+        _q_prefix = _q_clean[:50]  # first 50 chars as prefix for contains match
         for _with_status in (True, False):
             try:
-                q_exact = (
-                    supabase
-                    .table("doubt_kb")
-                    .select("id, question, answer, hit_count")
-                    .ilike("question", question)
-                    .eq("grade", grade)
-                )
-                if _with_status:
-                    q_exact = q_exact.eq("status", "active")
-                if subject:
-                    q_exact = q_exact.eq("subject", subject)
-                exact_rows = q_exact.limit(1).execute().data or []
+                def _base():
+                    b = (supabase.table("doubt_kb")
+                         .select("id, question, answer, hit_count")
+                         .eq("grade", grade))
+                    if _with_status:
+                        b = b.eq("status", "active")
+                    if subject:
+                        b = b.eq("subject", subject)
+                    return b
+
+                # (a) exact case-insensitive match
+                exact_rows = _base().ilike("question", question).limit(1).execute().data or []
+
+                # (b) contains match — handles trailing punctuation / whitespace variants
+                if not exact_rows and _q_prefix:
+                    exact_rows = _base().ilike("question", f"%{_q_prefix}%").order("hit_count", desc=True).limit(1).execute().data or []
+
                 if exact_rows:
                     row = exact_rows[0]
                     try:
@@ -113,12 +120,12 @@ def search_doubt_kb(
                         "id": row["id"],
                         "similarity": 1.0,
                     }
-                break  # query succeeded (even if empty), no need to retry without status
+                break  # query ran OK (0 rows), no need to retry
             except Exception as pass0_exc:
                 if _with_status:
-                    logger.debug("DKB Pass 0 with status filter failed, retrying without: %s", pass0_exc)
-                    continue  # retry without status filter
-                logger.warning("DKB Pass 0 failed: %s", pass0_exc)
+                    logger.debug("DKB Pass 0 with status filter failed, retrying: %s", pass0_exc)
+                    continue
+                logger.warning("DKB Pass 0 text match failed: %s", pass0_exc)
                 break
 
         embedding = create_embedding(question)
