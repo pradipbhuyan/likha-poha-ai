@@ -80,9 +80,17 @@ export function getUserGrade(user, fallbackGrade = "Grade 9") {
   return text;
 }
 
+// Grades below Grade 5 are not offered on the platform — hide them everywhere.
+const MIN_GRADE_NUMBER = 5;
+
 export function getVisibleGrades(syllabusData, user) {
-  /** Restrict student-facing grade dropdowns to the student's onboarded grade. */
-  const allGrades = Object.keys(syllabusData || {});
+  /** Restrict student-facing grade dropdowns to the student's onboarded grade.
+   *  Also filters out Grade 1-4 which are not supported on the platform.
+   */
+  const allGrades = Object.keys(syllabusData || {}).filter(g => {
+    const num = parseInt(g.replace(/\D/g, ""), 10);
+    return !isNaN(num) && num >= MIN_GRADE_NUMBER;
+  });
 
   if (user?.role !== "student" || isAllAccessTestUser(user)) {
     return allGrades;
