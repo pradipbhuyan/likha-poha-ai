@@ -28,8 +28,10 @@ NON_ACADEMIC_MESSAGE = (
     "📚 **I'm focused on your studies**\n\n"
     "This question is about current events or politics, which can change "
     "frequently and is outside my area as an academic tutor. I'm here to "
-    "help with Science, Maths, English, Social Science, and Hindi for "
-    "CBSE Grade 5–10.\n\n"
+    "help with all CBSE subjects for Grades 5–12 — including Science, Maths, "
+    "English, Social Science, Hindi, Physics, Chemistry, Biology, Mathematics, "
+    "Accountancy, Business Studies, Economics, History, Geography, Political "
+    "Science, and more.\n\n"
     "Try asking something from your textbook or homework!"
 )
 
