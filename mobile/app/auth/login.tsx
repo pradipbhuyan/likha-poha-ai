@@ -2,7 +2,7 @@
  * Login screen — email/password + Google OAuth.
  * Supports light and dark mode via useTheme().
  */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   View, Text, TextInput, TouchableOpacity, Image,
   StyleSheet, KeyboardAvoidingView, Platform, ActivityIndicator,
@@ -163,6 +163,8 @@ export default function LoginScreen() {
 
   const [oauthUrl, setOauthUrl] = useState<string | null>(null);
   const [oauthRedirectUri, setOauthRedirectUri] = useState<string>("");
+  // Guard: prevents handleNavChange + onShouldStartLoadWithRequest both triggering exchange
+  const oauthExchangeInProgress = useRef(false);
 
   async function handleGoogleLogin() {
     setGoogleLoading(true); setErrorMsg("");
@@ -194,12 +196,52 @@ export default function LoginScreen() {
   }
 
   async function handleOAuthSuccess(callbackUrl: string) {
+    // Prevent double-calling: both onNavigationStateChange and onShouldStartLoadWithRequest
+    // can fire for the same callback URL — only process the first one.
+    if (oauthExchangeInProgress.current) return;
+    oauthExchangeInProgress.current = true;
+
     setOauthUrl(null);
+    setGoogleLoading(true);
+    setErrorMsg("");
+
     try {
-      const { error } = await supabase.auth.exchangeCodeForSession(callbackUrl);
-      if (error) setErrorMsg(error.message);
-      // On success _layout.tsx onAuthStateChange routes the user
-    } catch (e: any) { setErrorMsg(e?.message ?? "Sign-in failed after OAuth."); }
+      // Extract just the `code` param — more reliable than passing a non-HTTP scheme URL
+      // (e.g. likhapoha://?code=xxx) to exchangeCodeForSession which expects an HTTP URL.
+      let codeOrUrl: string = callbackUrl;
+      try {
+        const urlObj = new URL(callbackUrl);
+        const code = urlObj.searchParams.get("code");
+        if (code) codeOrUrl = code;
+      } catch {
+        // URL() can't parse custom schemes on all platforms — try regex fallback
+        const m = callbackUrl.match(/[?&]code=([^&\s#]+)/);
+        if (m?.[1]) codeOrUrl = m[1];
+      }
+
+      const { data, error } = await supabase.auth.exchangeCodeForSession(codeOrUrl);
+      if (error) {
+        setErrorMsg(error.message || "Google sign-in failed. Please try again.");
+        return;
+      }
+      if (!data.session) {
+        setErrorMsg("Sign-in completed but no session was returned. Please try again.");
+        return;
+      }
+      // ✅ Session established — route directly to mobile app dashboard.
+      // Don't rely on onAuthStateChange timing — navigate immediately.
+      router.replace("/(tabs)");
+    } catch (e: any) {
+      const msg: string = e?.message ?? "Google sign-in failed.";
+      if (msg.includes("invalid") || msg.includes("expired")) {
+        setErrorMsg("Sign-in session expired. Please try signing in again.");
+      } else {
+        setErrorMsg(msg);
+      }
+    } finally {
+      setGoogleLoading(false);
+      oauthExchangeInProgress.current = false;
+    }
   }
 
   return (

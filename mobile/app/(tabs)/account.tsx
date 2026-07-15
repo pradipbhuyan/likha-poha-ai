@@ -5,9 +5,10 @@
 import { useEffect, useState } from "react";
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  ActivityIndicator, Alert,
+  ActivityIndicator, Alert, Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
+import Constants from "expo-constants";
 import { authFetch } from "../../lib/authFetch";
 import { signOut } from "../../lib/auth";
 import { BRAND_COLOR } from "../../constants";
@@ -102,7 +103,9 @@ export default function AccountScreen() {
         <Text style={styles.signOutText}>Sign out</Text>
       </TouchableOpacity>
 
-      <Text style={styles.versionText}>Likha Poha AI v1.0.0 · Android</Text>
+      <Text style={styles.versionText}>
+        Likha Poha AI v{Constants.expoConfig?.version ?? Constants.manifest2?.runtimeVersion ?? "1.0.0"} · {Platform.OS === "ios" ? "iOS" : "Android"}
+      </Text>
     </ScrollView>
   );
 }
