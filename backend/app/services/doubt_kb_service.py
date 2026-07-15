@@ -82,36 +82,44 @@ def search_doubt_kb(
         # Pass 0: exact text match — works for suggestion chip questions and
         # databases that don't have the match_doubt_kb pgvector RPC function
         # (e.g. the Grade 11/12 Supabase project).
-        exact_q = {
-            "query_embedding": None,  # not needed for text match
-        }
-        exact_filter = (
-            supabase
-            .table("doubt_kb")
-            .select("id, question, answer, hit_count")
-            .ilike("question", question)
-            .eq("grade", grade)
-            .eq("status", "active")
-        )
-        if subject:
-            exact_filter = exact_filter.eq("subject", subject)
-        exact_rows = exact_filter.limit(1).execute().data or []
-        if exact_rows:
-            row = exact_rows[0]
+        # Try with status filter first; if that fails (column missing), try without.
+        for _with_status in (True, False):
             try:
-                supabase.table("doubt_kb").update({
-                    "hit_count": (row.get("hit_count") or 0) + 1,
-                    "last_hit_at": "now()",
-                }).eq("id", row["id"]).execute()
-            except Exception:
-                pass
-            return {
-                "answer": row["answer"],
-                "question": row["question"],
-                "source_type": "DOUBT_KB",
-                "id": row["id"],
-                "similarity": 1.0,
-            }
+                q_exact = (
+                    supabase
+                    .table("doubt_kb")
+                    .select("id, question, answer, hit_count")
+                    .ilike("question", question)
+                    .eq("grade", grade)
+                )
+                if _with_status:
+                    q_exact = q_exact.eq("status", "active")
+                if subject:
+                    q_exact = q_exact.eq("subject", subject)
+                exact_rows = q_exact.limit(1).execute().data or []
+                if exact_rows:
+                    row = exact_rows[0]
+                    try:
+                        supabase.table("doubt_kb").update({
+                            "hit_count": (row.get("hit_count") or 0) + 1,
+                            "last_hit_at": "now()",
+                        }).eq("id", row["id"]).execute()
+                    except Exception:
+                        pass
+                    return {
+                        "answer": row["answer"],
+                        "question": row["question"],
+                        "source_type": "DOUBT_KB",
+                        "id": row["id"],
+                        "similarity": 1.0,
+                    }
+                break  # query succeeded (even if empty), no need to retry without status
+            except Exception as pass0_exc:
+                if _with_status:
+                    logger.debug("DKB Pass 0 with status filter failed, retrying without: %s", pass0_exc)
+                    continue  # retry without status filter
+                logger.warning("DKB Pass 0 failed: %s", pass0_exc)
+                break
 
         embedding = create_embedding(question)
 
