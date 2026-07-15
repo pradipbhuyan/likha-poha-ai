@@ -303,26 +303,51 @@ def answer_student_doubt(
             "message": "Academic guardrail: non-academic question redirected",
         }
 
-    # ── DKB search: runs for ALL users (free + paid) ─────────────────────────
-    # Pre-loaded suggestion questions have DKB answers that cost zero tokens.
-    # Return the DKB answer immediately to any user — no LLM, no access gate.
-    # Only when DKB misses do we fall through to the LLM (gated for free users).
-    #
-    # Use display_question (the clean original question without the style
-    # instruction suffix) so DKB similarity search matches the stored question.
-    # data.question may be enriched: "Q\n\nPreferred answer style: ..."
-    dkb_search_query = (
-        data.display_question
-        or data.question.split("Preferred answer style:", 1)[0]
-    ).strip()
-    dkb_result = search_doubt_kb(
-        question=dkb_search_query,
-        grade=data.grade,
-        subject=data.subject or None,  # None → SQL IS NULL → no subject filter
-        chapter=data.chapter or None,  # None → SQL IS NULL → no chapter filter
-        mode=data.mode,
-        board=request_board,
-    )
+    # ── DKB lookup: runs for ALL users (free + paid) ─────────────────────────
+    # Suggestion chips send dkb_id → direct PK lookup (O(1), no text matching).
+    # Manual questions fall back to text search.
+    # Return DKB answer to ANY user at zero LLM cost.
+    dkb_result = None
+
+    # Pass A: direct ID lookup (suggestion chip tapped)
+    if data.dkb_id:
+        try:
+            from app.services.grade_db_router import get_content_db as _get_db  # noqa: PLC0415
+            _supabase = _get_db(data.grade)
+            _row = _supabase.table("doubt_kb").select("id, question, answer, hit_count").eq("id", data.dkb_id).limit(1).execute().data
+            if _row:
+                dkb_result = {
+                    "answer": _row[0]["answer"],
+                    "question": _row[0]["question"],
+                    "source_type": "DOUBT_KB",
+                    "id": _row[0]["id"],
+                    "similarity": 1.0,
+                }
+                try:
+                    _supabase.table("doubt_kb").update({
+                        "hit_count": (_row[0].get("hit_count") or 0) + 1,
+                        "last_hit_at": "now()",
+                    }).eq("id", data.dkb_id).execute()
+                except Exception:
+                    pass
+        except Exception as _dkb_id_exc:
+            import logging as _log  # noqa: PLC0415
+            _log.getLogger(__name__).warning("DKB ID lookup failed: %s", _dkb_id_exc)
+
+    # Pass B: text search (manual questions or dkb_id lookup missed)
+    if not dkb_result:
+        dkb_search_query = (
+            data.display_question
+            or data.question.split("Preferred answer style:", 1)[0]
+        ).strip()
+        dkb_result = search_doubt_kb(
+            question=dkb_search_query,
+            grade=data.grade,
+            subject=data.subject or None,  # None → SQL IS NULL → no subject filter
+            chapter=data.chapter or None,  # None → SQL IS NULL → no chapter filter
+            mode=data.mode,
+            board=request_board,
+        )
     if dkb_result:
         return {
             "success": True,

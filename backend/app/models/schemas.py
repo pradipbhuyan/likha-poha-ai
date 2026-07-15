@@ -100,6 +100,7 @@ class DoubtRequest(BaseModel):
     question: str
     username: str = "unknown"
     display_question: str | None = None
+    dkb_id: str | None = None          # suggestion chip ID — enables direct DKB lookup by PK
     save_to_history: bool = True
 
 

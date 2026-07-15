@@ -181,6 +181,20 @@ export default function DoubtScreen() {
     };
   }
 
+  function buildPayloadFromSuggestion(s: { id: string; question: string }, save = true) {
+    const style = ANSWER_STYLES.find(st => st.key === answerStyle);
+    const enriched = style ? `${s.question.trim()}\n\nPreferred answer style: ${style.instruction}` : s.question.trim();
+    return {
+      grade, mode: "CBSE", board: "CBSE",
+      subject: subject || "",
+      chapter: "",
+      question: enriched,
+      display_question: s.question.trim(),
+      dkb_id: s.id,  // Direct DKB lookup — bypasses text matching entirely
+      save_to_history: save,
+    };
+  }
+
   async function handleAsk(overrideQ?: string) {
     const q = overrideQ ?? question;
     if (!q.trim()) { setError("Please type your question."); return; }
@@ -284,7 +298,20 @@ export default function DoubtScreen() {
             <View style={styles.suggestChips}>
               {suggestions.map(s => (
                 <TouchableOpacity key={s.id} style={styles.suggestChip}
-                  onPress={() => { setQuestion(s.question); handleAsk(s.question); }}>
+                  onPress={() => {
+                    setQuestion(s.question);
+                    // Use dkb_id for direct lookup — no text matching needed
+                    setAsking(true); setError(""); setAnswer(""); setFuAnswer(""); setFollowUp("");
+                    authFetch("/api/doubt/answer", {
+                      method: "POST",
+                      body: JSON.stringify(buildPayloadFromSuggestion(s)),
+                    }).then((res: any) => {
+                      if (res?.success) setAnswer(res.answer || "");
+                      else setError(res?.message || "Could not answer.");
+                      setTimeout(() => {}, 300);
+                    }).catch((e: any) => setError(e?.message || "Could not answer."))
+                     .finally(() => setAsking(false));
+                  }}>
                   <Text style={styles.suggestChipText} numberOfLines={2}>{s.question}</Text>
                 </TouchableOpacity>
               ))}
