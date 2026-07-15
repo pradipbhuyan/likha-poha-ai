@@ -1016,22 +1016,62 @@ question should be inside the "Quick check question" section.
 
     # ── Select system prompt based on chapter type (Phase 1) ──────────────────
     # Rollback: set ENABLE_TYPED_LESSONS=false in Railway to revert to TUTOR_SYSTEM
+    _step_num = _extract_step_number(step_title, grade)  # computed for ALL subjects now
     if _TYPED_LESSONS_ENABLED:
         _chapter_type = detect_chapter_type(subject, chapter)
         if _chapter_type == "prose":
             _system = PROSE_LITERATURE_SYSTEM
-            # Augment the prompt with explicit step instruction for prose.
-            # Pass grade so lower-grade step titles map proportionally.
-            _step_num = _extract_step_number(step_title, grade)
             prompt = f"You are teaching STEP {_step_num} of a Prose/Literature lesson.\n\n" + prompt
         elif _chapter_type == "poem":
             _system = POEM_SYSTEM
-            _step_num = _extract_step_number(step_title, grade)
             prompt = f"You are teaching STEP {_step_num} of a Poem lesson.\n\n" + prompt
         else:
             _system = TUTOR_SYSTEM
     else:
         _system = TUTOR_SYSTEM
+
+    # ── Quick Check gate: suppress for Steps 1 and 2 ─────────────────────────
+    # Quick Check questions require the student to have learned the core
+    # concept first.  Steps 1 and 2 are introductory; self-check only
+    # appears from Step 3 onwards across ALL subject types.
+    if _step_num <= 2:
+        prompt += (
+            "\n\nCRITICAL RULE FOR THIS STEP: "
+            f"This is Step {_step_num} (an introductory step). "
+            "Do NOT include a 'Quick check question' section in this lesson. "
+            "Quick check questions are reserved for Step 3 and beyond. "
+            "End this lesson with the Summary or a next-step instruction instead."
+        )
+
+    # ── New Words vocabulary (Step 1 only, English/Hindi subjects) ───────────
+    # Vocabulary must be extracted ONLY from the textbook/RAG context provided
+    # in the prompt — not invented by the LLM from general knowledge.
+    _VOCAB_SUBJECTS = {"english", "hindi"}
+    _is_vocab_subject = any(s in (subject or "").lower() for s in _VOCAB_SUBJECTS)
+    if _step_num == 1 and _is_vocab_subject and textbook_context:
+        prompt += (
+            "\n\nMANDATORY NEW WORDS SECTION FOR STEP 1 (LANGUAGE/LITERATURE CHAPTERS):\n"
+            "At the very beginning of your lesson (before any other section), include a "
+            "'New Words' section with the heading:\n"
+            "## New Words\n"
+            "### Vocabulary from the chapter\n\n"
+            "Rules for the New Words section:\n"
+            "1. EXTRACT 5-8 WORDS ONLY from the TEXTBOOK CONTEXT provided above. "
+            "   Do NOT use words from your general knowledge — only words that APPEAR "
+            "   in the uploaded textbook passage.\n"
+            "2. For each word, provide: the WORD in bold, then ' — ' then the meaning "
+            "   AS USED IN THIS SPECIFIC TEXT (not a dictionary definition).\n"
+            "   Example format:\n"
+            "   **spectacles** — another word for glasses that help you see clearly\n"
+            "   **misplaced** — lost or put in the wrong place by mistake\n"
+            "3. Choose words that are unusual, subject-specific, or likely to be new "
+            "   to students at this grade level.\n"
+            "4. NEVER invent words or meanings. Every word MUST appear in the textbook "
+            "   context above. If the textbook context has fewer than 5 new words, "
+            "   include only those that appear.\n"
+            "5. After the New Words section, continue with the rest of the Step 1 lesson "
+            "   as normal (Overview / Context / Introduction etc.)."
+        )
 
     lesson = ask_llm(
         _system,
