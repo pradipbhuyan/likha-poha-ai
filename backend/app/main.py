@@ -37,6 +37,7 @@ from app.routes.parent_dashboard_v2 import router as parent_dashboard_v2_router
 from app.routes.student_dashboard import router as student_dashboard_router
 from app.routes.exam_schedule import router as exam_schedule_router
 from app.routes.formula_sheets import router as formula_sheets_router
+from app.routes.formula_import import router as formula_import_router
 from app.routes.admin_qa import router as admin_qa_router
 from app.routes.parent_dashboard_p2 import router as parent_dashboard_p2_router
 from app.routes.admin_control import router as admin_control_router
@@ -65,6 +66,7 @@ from app.routes.lesson_repair import router as lesson_repair_router
 from app.routes.ai_studio import router as ai_studio_router
 from app.routes.exam_prep import router as exam_prep_router, admin_router as exam_prep_admin_router
 from app.routes.exam_prep_packs import router as exam_prep_packs_router
+from app.routes.study_planner import router as study_planner_router
 from app.routes.lesson_lab import router as lesson_lab_router
 from app.routes.lesson_experience import router as lesson_experience_router
 
@@ -235,6 +237,12 @@ app.include_router(
     formula_sheets_router,
     prefix="/api/student",
     tags=["Formula Sheets"],
+)
+
+app.include_router(
+    formula_import_router,
+    prefix="/api/admin",
+    tags=["Admin Formula Import"],
 )
 
 app.include_router(
@@ -412,6 +420,7 @@ app.include_router(
 app.include_router(exam_prep_router)
 app.include_router(exam_prep_admin_router)
 app.include_router(exam_prep_packs_router)
+app.include_router(study_planner_router)
 
 @app.get("/api/platform-settings/lesson-card")
 def get_lesson_card_settings_public():

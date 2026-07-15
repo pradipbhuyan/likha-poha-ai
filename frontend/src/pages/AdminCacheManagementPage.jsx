@@ -937,6 +937,9 @@ function AdminCacheManagementPage({ user }) {
 
       {/* ── Exam Prep Question Bank ── */}
       <ExamPrepQBSection user={user} />
+
+      {/* ── Formula Sheet JSON Import ── */}
+      <FormulaSheetImportSection user={user} />
     </div>
   );
 }
@@ -2108,6 +2111,397 @@ function QuestionReviewPanel({ user, refreshKey }) {
         </div>
       )}
     </div>
+  );
+}
+
+// ── Formula Sheet Import Section ──────────────────────────────────────────────
+// Placed at the bottom of Cache & Question Bank page.
+// Lets admin paste GPT-generated formula JSON and bulk-import into formula_sheets.
+// Uses the same authFetch + VITE_API_BASE_URL pattern as the rest of this page.
+
+const FORMULA_IMPORT_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+const FORMULA_IMPORT_SUBJECTS = ["Mathematics","Science","Physics","Chemistry","Biology","English","Hindi","Social Science"];
+const FORMULA_REQUIRED_FIELDS = ["formula_name", "expression", "chapter"];
+
+// ── Grade-from-chapters heuristic ────────────────────────────────────────────
+// Returns the most likely grade string based on chapter names in the JSON.
+// Used to warn if the selected grade doesn't match the content.
+const GRADE_CHAPTER_HINTS = {
+  "Grade 6":  ["knowing our numbers","whole numbers","playing with numbers","basic geometrical","understanding elementary","integers","fractions","decimals","mensuration","algebra","ratio and proportion"],
+  "Grade 7":  ["fractions and decimals","data handling","simple equations","triangle and its propert","congruence of triangle","comparing quantit","rational numbers","practical geometr","perimeter and area","algebraic expression","exponents and powers","symmetr","visualising solid","lines and angle"],
+  "Grade 8":  ["linear equations in one variable","understanding quadrilateral","squares and square","cubes and cube","algebraic expressions and identities","direct and inverse","factori","introduction to graphs","playing with numbers"],
+  "Grade 9":  ["number system","polynomials","coordinate geometry","linear equations in two","euclid","triangles","quadrilateral","circles","constructions","heron","surface areas and volumes","statistics","probability"],
+  "Grade 10": ["real numbers","pair of linear","quadratic equation","arithmetic progression","introduction to trigonometry","applications of trigonometry","areas related to circles"],
+  "Grade 11": ["sets","relations and functions","trigonometric functions","mathematical induction","complex numbers","linear inequalities","permutations and combinations","binomial theorem","sequences and series","straight lines","conic sections","3d geometry","limits and derivatives","mathematical reasoning"],
+  "Grade 12": ["inverse trigonometric","matrices","determinants","continuity and differentiability","applications of derivatives","integrals","differential equations","vector algebra","three dimensional","linear programming"],
+};
+
+function detectGradeFromChapters(chapters) {
+  const lower = chapters.map(c => (c || "").toLowerCase());
+  const scores = {};
+  for (const [g, hints] of Object.entries(GRADE_CHAPTER_HINTS)) {
+    scores[g] = lower.reduce((acc, ch) => acc + hints.filter(h => ch.includes(h)).length, 0);
+  }
+  const best = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
+  return best && best[1] > 0 ? best[0] : null;
+}
+
+function FormulaSheetImportSection({ user }) {
+  const [grade, setGrade]     = useState("Grade 9");
+  const [subject, setSubject] = useState("Mathematics");
+  const [jsonText, setJsonText] = useState("");
+  const [preview, setPreview]   = useState(null);
+  const [importing, setImporting] = useState(false);
+  const [importResult, setImportResult] = useState(null);
+  const [importError, setImportError]   = useState(null);
+  // Confirmation modal state
+  const [confirmModal, setConfirmModal] = useState(null); // null | { grade, subject, detectedGrade, mismatch, parsed }
+
+  function runValidation(parsed) {
+    const errors = [];
+    parsed.forEach((f, i) => {
+      FORMULA_REQUIRED_FIELDS.forEach(field => {
+        if (!f[field]) errors.push(`Entry ${i + 1}: missing required field "${field}"`);
+      });
+    });
+    const uniqueNames = new Set(parsed.map(f => `${f.formula_name}|${f.chapter}`));
+    if (uniqueNames.size < parsed.length) errors.push("Warning: duplicate formula_name+chapter combinations detected.");
+    const chapters = [...new Set(parsed.map(f => f.chapter).filter(Boolean))];
+    const detected = FORMULA_REQUIRED_FIELDS.filter(f => parsed[0] && f in parsed[0]);
+    const optional = ["explanation","variables","example","solution_steps","memory_tip","tags","difficulty","topic","display_order","chapter_order"].filter(f => parsed[0] && f in parsed[0]);
+    setPreview({ valid: errors.filter(e => !e.startsWith("Warning")).length === 0, count: parsed.length, chapters, detected, optional, errors, entries: parsed.slice(0, 3) });
+  }
+
+  function handleValidate() {
+    setPreview(null); setImportResult(null); setImportError(null);
+    if (!jsonText.trim()) { setPreview({ valid: false, errors: ["JSON is empty."] }); return; }
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText.trim());
+    } catch (e) {
+      setPreview({ valid: false, errors: [`JSON parse error: ${e.message}`] });
+      return;
+    }
+    if (!Array.isArray(parsed)) { setPreview({ valid: false, errors: ["Root must be a JSON array."] }); return; }
+    if (parsed.length === 0) { setPreview({ valid: false, errors: ["Array is empty — no formulas found."] }); return; }
+
+    // Detect grade from chapter names in JSON
+    const chapters = [...new Set(parsed.map(f => f.chapter).filter(Boolean))];
+    const detectedGrade = detectGradeFromChapters(chapters);
+    const mismatch = detectedGrade && detectedGrade !== grade;
+
+    // Show confirmation modal (always — with mismatch warning if applicable)
+    setConfirmModal({ grade, subject, detectedGrade, mismatch, parsed });
+  }
+
+  function handleConfirm() {
+    const { parsed } = confirmModal;
+    setConfirmModal(null);
+    runValidation(parsed);
+  }
+
+  function handleCancelConfirm() {
+    setConfirmModal(null);
+  }
+
+  async function handleImport() {
+    if (!preview?.valid) return;
+    setImporting(true); setImportResult(null); setImportError(null);
+    try {
+      const parsed = JSON.parse(jsonText.trim());
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const res = await fetch(`${API_BASE}/api/admin/formula-sheets/import`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.accessToken}` },
+        body: JSON.stringify({ grade, subject, formulas: parsed }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data?.success) {
+        setImportResult(data);
+        setJsonText("");
+        setPreview(null);
+      } else {
+        setImportError(data?.message || "Import failed. Check server logs.");
+      }
+    } catch (e) {
+      setImportError(e.message || "Import failed.");
+    } finally {
+      setImporting(false);
+    }
+  }
+
+  const TEMPLATE = `[
+  {
+    "formula_name": "Remainder Theorem",
+    "expression": "p(a) = remainder when p(x) divided by (x - a)",
+    "expression_latex": "p(a) = \\\\text{remainder when } p(x) \\\\div (x-a)",
+    "chapter": "Polynomials",
+    "topic": "Core Theorems",
+    "chapter_order": 2,
+    "display_order": 1,
+    "difficulty": "medium",
+    "explanation": "If p(x) is divided by (x - a), the remainder equals p(a).",
+    "variables": "p(x) = polynomial, a = value from divisor, p(a) = remainder",
+    "example": "p(x) = x^3+2x-5, divisor (x-2) -> p(2) = 8+4-5 = 7",
+    "solution_steps": "1. Find a from divisor\\n2. Substitute x=a\\n3. Evaluate p(a)",
+    "memory_tip": "Sign flips! (x+3) -> plug in -3.",
+    "tags": ["polynomial", "remainder", "division"],
+    "active": true
+  }
+]`;
+
+  return (
+    <section className="premium-section">
+      <div className="premium-header">
+        <p className="eyebrow">CBSE Grades 5–12 — Formula Library</p>
+        <h3>📐 Formula Sheet — JSON Import</h3>
+        <p>
+          Paste GPT-generated formula JSON to bulk-import into the formula_sheets table.
+          Existing formulas matching <strong>formula_name + grade + subject + chapter</strong> are updated; new ones are inserted.
+        </p>
+      </div>
+
+      {/* Grade + Subject selectors */}
+      <div style={{ display: "flex", gap: 12, marginBottom: 14, flexWrap: "wrap", alignItems: "flex-end" }}>
+        <label style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <span style={{ fontSize: ".75rem", fontWeight: 700 }}>Grade</span>
+          <select value={grade} onChange={e => setGrade(e.target.value)}
+            style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid var(--border,#e2e8f0)", fontFamily: "inherit", fontSize: ".85rem" }}>
+            {FORMULA_IMPORT_GRADES.map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
+        </label>
+        <label style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <span style={{ fontSize: ".75rem", fontWeight: 700 }}>Subject</span>
+          <select value={subject} onChange={e => setSubject(e.target.value)}
+            style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid var(--border,#e2e8f0)", fontFamily: "inherit", fontSize: ".85rem" }}>
+            {FORMULA_IMPORT_SUBJECTS.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </label>
+        <p style={{ fontSize: ".78rem", color: "var(--muted,#64748b)", marginBottom: 4 }}>
+          → All formulas will be tagged to <strong>{grade} · {subject}</strong>
+        </p>
+      </div>
+
+      {/* JSON textarea */}
+      <div className="premium-card" style={{ marginBottom: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+          <strong style={{ fontSize: ".85rem" }}>Paste Formula JSON</strong>
+          <button
+            onClick={() => { setJsonText(TEMPLATE); setPreview(null); setImportResult(null); setImportError(null); }}
+            className="secondary-btn"
+            style={{ fontSize: ".78rem", padding: "5px 12px" }}
+          >
+            📋 Load Template
+          </button>
+        </div>
+        <textarea
+          value={jsonText}
+          onChange={e => { setJsonText(e.target.value); setPreview(null); setImportResult(null); setImportError(null); }}
+          placeholder={'[\n  {\n    "formula_name": "...",\n    "expression": "...",\n    "chapter": "..."\n  }\n]'}
+          rows={10}
+          style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border,#e2e8f0)", fontFamily: "monospace", fontSize: ".8rem", resize: "vertical", boxSizing: "border-box" }}
+        />
+        {jsonText.trim() && (
+          <div style={{ fontSize: ".72rem", color: "#888", marginTop: 4 }}>
+            {jsonText.length.toLocaleString()} chars ·{" "}
+            {(() => {
+              try {
+                const p = JSON.parse(jsonText.trim());
+                const cnt = Array.isArray(p) ? p.length : 1;
+                return <span style={{ color: "#22c55e" }}>{cnt} formula{cnt !== 1 ? "s" : ""} detected</span>;
+              } catch {
+                return <span style={{ color: "#f87171" }}>⚠️ Invalid JSON</span>;
+              }
+            })()}
+          </div>
+        )}
+      </div>
+
+      {/* Action buttons */}
+      <div className="button-row" style={{ marginBottom: 14 }}>
+        <button className="primary-btn" onClick={handleValidate} disabled={!jsonText.trim()}
+          style={{ background: jsonText.trim() ? undefined : "#94a3b8", cursor: jsonText.trim() ? "pointer" : "not-allowed" }}>
+          ✅ Validate & Preview
+        </button>
+        <button className="primary-btn" onClick={handleImport} disabled={!preview?.valid || importing}
+          style={{ background: preview?.valid && !importing ? "#059669" : "#94a3b8", cursor: preview?.valid && !importing ? "pointer" : "not-allowed" }}>
+          {importing ? "Importing…" : "📥 Import to Database"}
+        </button>
+        {jsonText && (
+          <button className="secondary-btn" onClick={() => { setJsonText(""); setPreview(null); setImportResult(null); setImportError(null); }}>
+            Clear
+          </button>
+        )}
+      </div>
+
+      {/* Validation preview */}
+      {preview && (
+        <div style={{ background: preview.valid ? "#f0fdf4" : "#fff1f2", border: `1px solid ${preview.valid ? "#bbf7d0" : "#fecdd3"}`, borderRadius: 10, padding: "14px 16px", marginBottom: 12 }}>
+          <div style={{ fontWeight: 700, marginBottom: 8, color: preview.valid ? "#16a34a" : "#dc2626" }}>
+            {preview.valid ? `✅ JSON Valid — ${preview.count} formula${preview.count !== 1 ? "s" : ""} ready to import` : "❌ Validation failed"}
+          </div>
+          {preview.valid && (
+            <p style={{ fontSize: ".82rem", color: "#475569", lineHeight: 1.6 }}>
+              <strong>Grade · Subject:</strong> {grade} · {subject}<br />
+              <strong>Chapters:</strong> {preview.chapters?.join(", ") || "—"}<br />
+              <strong>Required fields:</strong> {preview.detected?.join(" ✓, ")} ✓<br />
+              {preview.optional?.length > 0 && <><strong>Optional fields:</strong> {preview.optional?.join(", ")}</>}
+            </p>
+          )}
+          {preview.errors?.map((e, i) => (
+            <div key={i} style={{ fontSize: ".78rem", color: e.startsWith("Warning") ? "#d97706" : "#dc2626", display: "flex", gap: 6, marginTop: 4 }}>
+              <span>{e.startsWith("Warning") ? "⚠️" : "✗"}</span><span>{e}</span>
+            </div>
+          ))}
+          {preview.valid && preview.entries?.length > 0 && (
+            <div style={{ marginTop: 10 }}>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em", color: "#64748b", marginBottom: 6 }}>Preview (first {preview.entries.length})</div>
+              {preview.entries.map((f, i) => (
+                <div key={i} className="premium-card" style={{ marginBottom: 6, fontSize: ".8rem" }}>
+                  <strong>{f.formula_name}</strong>
+                  <span style={{ color: "#64748b", marginLeft: 8 }}>{f.chapter}</span>
+                  {f.difficulty && <span style={{ marginLeft: 8, fontSize: ".72rem", background: "rgba(99,102,241,.1)", color: "#6366f1", padding: "1px 6px", borderRadius: 8 }}>{f.difficulty}</span>}
+                  {f.expression && <div style={{ marginTop: 4, fontFamily: "monospace", fontSize: ".78rem", color: "#334155" }}>{f.expression}</div>}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Import success */}
+      {importResult && (
+        <div className="success-box" style={{ marginBottom: 12 }}>
+          <div style={{ fontWeight: 700, marginBottom: 4 }}>✅ Import complete</div>
+          <div style={{ fontSize: ".82rem" }}>
+            <strong>Inserted:</strong> {importResult.inserted ?? 0} · <strong>Updated:</strong> {importResult.updated ?? 0} · <strong>Skipped:</strong> {importResult.skipped ?? 0}
+          </div>
+        </div>
+      )}
+
+      {/* Import error */}
+      {importError && (
+        <div className="error-box">
+          <strong>❌ Import failed</strong><br />
+          <span style={{ fontSize: ".82rem" }}>{importError}</span>
+        </div>
+      )}
+
+      {/* ── Grade/Subject Confirmation Modal ── */}
+      {confirmModal && (
+        <div
+          onClick={handleCancelConfirm}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.55)", zIndex: 800,
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+          <div onClick={e => e.stopPropagation()}
+            style={{ background: "var(--panel,#fff)", borderRadius: 16, padding: "28px 24px",
+              width: "100%", maxWidth: 440, boxShadow: "0 20px 60px rgba(0,0,0,.3)",
+              borderTop: `4px solid ${confirmModal.mismatch ? "#ef4444" : "#6366f1"}` }}>
+
+            {/* Mismatch warning */}
+            {confirmModal.mismatch && (
+              <div style={{ background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: 10,
+                padding: "12px 14px", marginBottom: 18, display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>⚠️</span>
+                <div>
+                  <div style={{ fontWeight: 700, color: "#b91c1c", marginBottom: 4, fontSize: ".88rem" }}>
+                    Grade Mismatch Detected
+                  </div>
+                  <div style={{ fontSize: ".8rem", color: "#7f1d1d", lineHeight: 1.5 }}>
+                    The chapter names in your JSON suggest this content is for{" "}
+                    <strong>{confirmModal.detectedGrade}</strong>, but you have{" "}
+                    <strong>{confirmModal.grade}</strong> selected.
+                    <br /><br />
+                    If you imported Grade 7 formulas as Grade 9 before — this is the same mistake.
+                    Please change your Grade selection below before confirming.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Title */}
+            <div style={{ fontWeight: 800, fontSize: "1.05rem", marginBottom: 6 }}>
+              {confirmModal.mismatch ? "⛔ Please verify before importing" : "✅ Confirm Import Target"}
+            </div>
+            <div style={{ fontSize: ".82rem", color: "var(--muted,#64748b)", marginBottom: 20, lineHeight: 1.5 }}>
+              All {confirmModal.parsed.length} formula{confirmModal.parsed.length !== 1 ? "s" : ""} will be tagged to the grade and subject below.
+              This cannot be undone without a manual database delete.
+            </div>
+
+            {/* Grade/Subject display */}
+            <div style={{ background: confirmModal.mismatch ? "#fef2f2" : "#f0fdf4",
+              border: `1px solid ${confirmModal.mismatch ? "#fecdd3" : "#bbf7d0"}`,
+              borderRadius: 10, padding: "14px 16px", marginBottom: 20 }}>
+              <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+                <div>
+                  <div style={{ fontSize: ".68rem", fontWeight: 700, textTransform: "uppercase",
+                    letterSpacing: ".06em", color: "var(--muted,#64748b)", marginBottom: 3 }}>Grade</div>
+                  <div style={{ fontWeight: 800, fontSize: "1.1rem",
+                    color: confirmModal.mismatch ? "#b91c1c" : "#166534" }}>{confirmModal.grade}</div>
+                </div>
+                <div style={{ fontSize: "1.2rem", color: "var(--muted,#64748b)" }}>·</div>
+                <div>
+                  <div style={{ fontSize: ".68rem", fontWeight: 700, textTransform: "uppercase",
+                    letterSpacing: ".06em", color: "var(--muted,#64748b)", marginBottom: 3 }}>Subject</div>
+                  <div style={{ fontWeight: 800, fontSize: "1.1rem",
+                    color: confirmModal.mismatch ? "#b91c1c" : "#166534" }}>{confirmModal.subject}</div>
+                </div>
+                {confirmModal.detectedGrade && (
+                  <div style={{ marginLeft: "auto", textAlign: "right" }}>
+                    <div style={{ fontSize: ".68rem", fontWeight: 700, textTransform: "uppercase",
+                      letterSpacing: ".06em", color: "var(--muted,#64748b)", marginBottom: 3 }}>Detected from JSON</div>
+                    <div style={{ fontWeight: 700, fontSize: ".88rem",
+                      color: confirmModal.mismatch ? "#ef4444" : "#059669" }}>
+                      {confirmModal.mismatch ? `⚠️ ${confirmModal.detectedGrade}` : `✓ ${confirmModal.detectedGrade}`}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* If mismatch, show instruction to change grade */}
+            {confirmModal.mismatch && (
+              <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 9,
+                padding: "10px 13px", marginBottom: 18, fontSize: ".8rem", color: "#92400e" }}>
+                💡 <strong>To fix:</strong> Click <strong>Cancel</strong>, change the Grade selector
+                to <strong>{confirmModal.detectedGrade}</strong>, then click Validate again.
+              </div>
+            )}
+
+            {/* Buttons */}
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              {!confirmModal.mismatch && (
+                <button
+                  onClick={handleConfirm}
+                  style={{ flex: 1, padding: "11px 0", borderRadius: 9, border: "none",
+                    background: "linear-gradient(135deg,#059669,#047857)", color: "#fff",
+                    fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+                  ✅ Yes, tag as {confirmModal.grade} · {confirmModal.subject}
+                </button>
+              )}
+              {confirmModal.mismatch && (
+                <button
+                  onClick={handleConfirm}
+                  style={{ flex: 1, padding: "11px 0", borderRadius: 9,
+                    border: "2px solid #ef4444", background: "transparent",
+                    color: "#b91c1c", fontWeight: 700, fontSize: ".82rem",
+                    cursor: "pointer", fontFamily: "inherit" }}>
+                  Import anyway (risk)
+                </button>
+              )}
+              <button
+                onClick={handleCancelConfirm}
+                style={{ flex: 1, padding: "11px 0", borderRadius: 9,
+                  border: "1px solid var(--border,#e2e8f0)", background: "transparent",
+                  color: "var(--muted,#64748b)", fontWeight: 600, fontSize: ".85rem",
+                  cursor: "pointer", fontFamily: "inherit" }}>
+                ← Cancel / Change Selection
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 

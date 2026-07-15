@@ -1193,6 +1193,8 @@ CUET_SUBJECTS = {
 # ── SAT (Digital SAT) Subjects ───────────────────────────────────────────────
 SAT_SUBJECTS = {
     "Reading & Writing": {
+        "chapters": 4,          # 4 domain areas: Information & Ideas, Craft & Structure, Expression of Ideas, Standard English
+        "weightage_pct": 50,
         "topics": [
             {"name": "Reading Comprehension", "priority": "high", "ncert_chapter": "Information and Ideas"},
             {"name": "Vocabulary in Context", "priority": "high", "ncert_chapter": "Craft and Structure"},
@@ -1203,6 +1205,8 @@ SAT_SUBJECTS = {
         ],
     },
     "Mathematics": {
+        "chapters": 4,          # 4 domain areas: Algebra, Advanced Math, Data Analysis, Geometry/Trig
+        "weightage_pct": 50,
         "topics": [
             {"name": "Algebra", "priority": "high", "ncert_chapter": "Linear equations, inequalities, functions (~35%)"},
             {"name": "Advanced Mathematics", "priority": "high", "ncert_chapter": "Quadratic, exponential, polynomial (~35%)"},
@@ -1215,6 +1219,8 @@ SAT_SUBJECTS = {
 # ── IELTS (Academic) Subjects ─────────────────────────────────────────────────
 IELTS_SUBJECTS = {
     "Listening": {
+        "chapters": 4,   # 4 recording types: social/everyday, training, monologue, academic lecture
+        "weightage_pct": 25,
         "topics": [
             {"name": "Everyday Conversation", "priority": "high", "ncert_chapter": "Social and everyday contexts"},
             {"name": "Academic Discussion", "priority": "high", "ncert_chapter": "Academic and professional contexts"},
@@ -1223,6 +1229,8 @@ IELTS_SUBJECTS = {
         ],
     },
     "Reading": {
+        "chapters": 3,   # 3 academic passages per test
+        "weightage_pct": 25,
         "topics": [
             {"name": "Matching Headings", "priority": "high", "ncert_chapter": "Academic passages — identifying main ideas"},
             {"name": "True / False / Not Given", "priority": "high", "ncert_chapter": "Factual accuracy identification"},
@@ -1232,6 +1240,8 @@ IELTS_SUBJECTS = {
         ],
     },
     "Vocabulary & Grammar": {
+        "chapters": 3,   # 3 skill areas: vocabulary, grammar, paraphrasing
+        "weightage_pct": 50,  # Writing + Speaking combined band
         "topics": [
             {"name": "Academic Vocabulary", "priority": "high", "ncert_chapter": "Word meanings and collocations"},
             {"name": "Grammar in Context", "priority": "medium", "ncert_chapter": "Tense, voice, reported speech"},
@@ -1243,6 +1253,8 @@ IELTS_SUBJECTS = {
 # ── TOEFL iBT Subjects ────────────────────────────────────────────────────────
 TOEFL_SUBJECTS = {
     "Reading": {
+        "chapters": 2,   # 2 academic passages per TOEFL iBT Reading section
+        "weightage_pct": 30,
         "topics": [
             {"name": "Reading Comprehension", "priority": "high", "ncert_chapter": "Academic passages — 20 questions, 35 min"},
             {"name": "Vocabulary in Context", "priority": "high", "ncert_chapter": "Word choice in academic texts"},
@@ -1252,6 +1264,8 @@ TOEFL_SUBJECTS = {
         ],
     },
     "Listening": {
+        "chapters": 5,   # 3 lectures + 2 conversations per TOEFL iBT Listening section
+        "weightage_pct": 30,
         "topics": [
             {"name": "Lecture Comprehension", "priority": "high", "ncert_chapter": "Academic lectures — main ideas and details"},
             {"name": "Campus Conversations", "priority": "high", "ncert_chapter": "Service encounters and office hours"},
@@ -1260,6 +1274,8 @@ TOEFL_SUBJECTS = {
         ],
     },
     "Integrated Skills": {
+        "chapters": 2,   # 2 writing tasks: Integrated Writing + Academic Discussion
+        "weightage_pct": 40,
         "topics": [
             {"name": "Integrated Writing Task", "priority": "high", "ncert_chapter": "Synthesise reading and lecture"},
             {"name": "Academic Discussion Writing", "priority": "high", "ncert_chapter": "Contribute to an online discussion"},
@@ -1439,7 +1455,10 @@ def get_questions(
         if subject:
             query = query.eq("subject", subject)
         if topic:
-            query = query.eq("topic", topic)
+            # Use ILIKE for flexible matching — handles case differences and partial matches.
+            # e.g. "Reading Comprehension" matches "SAT Reading Comprehension" and vice versa.
+            # Falls back to all subject questions if no exact/partial match exists.
+            query = query.ilike("topic", f"%{topic}%")
         result = query.limit(limit).execute()
         return result.data or []
     except Exception as exc:

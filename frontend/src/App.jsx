@@ -98,6 +98,7 @@ import AdminLessonExperiencePage from "./pages/AdminLessonExperiencePage";
 import AdminAIStudioPage from "./pages/AdminAIStudioPage";
 import AdminChatPage from "./pages/AdminChatPage";
 import ExamPrepPage from "./pages/ExamPrepPage";
+import StudyPlannerPage from "./pages/StudyPlannerPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -325,6 +326,11 @@ const PAGE_META = {
     title: "Exam Prep Center",
     subtitle: "JEE Main · NEET UG · CUET UG — Practice questions, simulated tests, and AI explanations for Grade 11 & 12.",
     icon: "🎯",
+  },
+  studyPlanner: {
+    title: "AI Study Planner",
+    subtitle: "Personalised day-by-day study schedule with countdown, weekly timeline, and daily task checklist.",
+    icon: "📅",
   },
 };
 
@@ -1696,6 +1702,8 @@ function App() {
         return <AdminChatPage user={user} />;
       case "examPrep":
         return <ExamPrepPage user={user} setActivePage={handlePageChange} />;
+      case "studyPlanner":
+        return <StudyPlannerPage user={user} setActivePage={handlePageChange} />;
       default:
         return <LessonsPage user={user} />;
     }

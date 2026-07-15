@@ -9,6 +9,13 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+import { hasPaidAccess } from "../utils/resolveSubscription";
+
+const ALL_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
+const SUBJECT_ICONS = {
+  Mathematics:"📐", Science:"🔬", Physics:"⚛️", Chemistry:"🧪",
+  Biology:"🌱", "Social Science":"📖", English:"📝", Hindi:"📜",
+};
 
 // ── KaTeX renderer (lazy) ─────────────────────────────────────────────────────
 let katex = null;
@@ -717,7 +724,7 @@ function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
 }
 
 // ── Formula Card ─────────────────────────────────────────────────────────────
-function FormulaCard({ formula, hasPremium, onUpgrade }) {
+function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAskAI }) {
   const [expanded, setExpanded] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
@@ -736,13 +743,14 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
 
   return (
     <div data-testid="formula-card"
-      style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: "12px 14px", borderLeft: `3px solid ${formula.locked ? "#94a3b8" : "#6366f1"}`, opacity: formula.locked ? 0.8 : 1 }}>
+      style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: "12px 14px", borderLeft: `3px solid ${formula.locked ? "#94a3b8" : studied ? "#22c55e" : "#6366f1"}`, opacity: formula.locked ? 0.8 : 1 }}>
 
       {/* Card header — always visible */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: ".82rem", marginBottom: 3 }}>
             {formula.locked && <span style={{ color: "#94a3b8" }}>🔒 </span>}
+            {studied && <span style={{ color: "#22c55e", fontSize: ".7rem", marginRight: 4 }}>✓</span>}
             {formula.name}
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginBottom: 4 }}>
@@ -771,14 +779,36 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
         <div style={{ fontSize: ".77rem", color: "var(--text-muted,#64748b)", marginBottom: 4, lineHeight: 1.4 }}>{formula.description}</div>
       )}
 
-      {/* Expand / collapse button */}
+      {/* Action row: expand + studied + ask AI */}
       {formula.preview_allowed && (
-        <button
-          data-testid={canExpand ? "expand-btn" : "expand-locked-btn"}
-          onClick={handleExpand}
-          style={{ background: "none", border: "none", color: canExpand ? "#6366f1" : "#94a3b8", fontSize: ".72rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", padding: 0, marginBottom: 2 }}>
-          {expanded ? "▲ Collapse" : (canExpand ? "▼ Show details" : "🔒 Upgrade to expand")}
-        </button>
+        <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", marginTop: 4 }}>
+          <button
+            data-testid={canExpand ? "expand-btn" : "expand-locked-btn"}
+            onClick={handleExpand}
+            style={{ background: "none", border: "none", color: canExpand ? "#6366f1" : "#94a3b8", fontSize: ".72rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
+            {expanded ? "▲ Collapse" : (canExpand ? "▼ Show details" : "🔒 Upgrade to expand")}
+          </button>
+          {/* Studied toggle — visible for all preview formulas */}
+          <button
+            data-testid="studied-toggle"
+            onClick={() => onStudied && onStudied(formula.id || formula.name)}
+            style={{ fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
+              border: `1px solid ${studied ? "#22c55e" : "var(--border,#e5e7eb)"}`,
+              background: studied ? "#dcfce7" : "none", cursor: "pointer",
+              color: studied ? "#16a34a" : "var(--text-muted,#64748b)", fontFamily: "inherit", fontWeight: 600 }}>
+            {studied ? "✓ Studied" : "Mark studied"}
+          </button>
+          {/* Ask AI — navigate to doubt page with formula name as context */}
+          <button
+            data-testid="ask-ai-btn"
+            onClick={() => onAskAI && onAskAI(formula.name)}
+            style={{ fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
+              border: "1px solid rgba(124,58,237,.35)",
+              background: "rgba(124,58,237,.05)", cursor: "pointer",
+              color: "#7c3aed", fontFamily: "inherit", fontWeight: 600 }}>
+            ✦ Ask AI
+          </button>
+        </div>
       )}
 
       {/* Expanded content — premium rich view */}
@@ -795,40 +825,99 @@ function FormulaCard({ formula, hasPremium, onUpgrade }) {
   );
 }
 
+// ── localStorage key for studied formulas ────────────────────────────────────
+function getStudiedKey(grade, subject) {
+  return `fs_studied_${grade}_${subject}`;
+}
+function loadStudied(grade, subject) {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(getStudiedKey(grade, subject)) || "[]"));
+  } catch { return new Set(); }
+}
+function saveStudied(grade, subject, set) {
+  try {
+    localStorage.setItem(getStudiedKey(grade, subject), JSON.stringify([...set]));
+  } catch { /* ignore storage errors */ }
+}
+
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function FormulaSheetPage({ user, setActivePage }) {
-  const grade = user?.grade || "Grade 9";
-  const [subject, setSubject]         = useState("Mathematics");
-  const [data, setData]               = useState(null);
-  const [loading, setLoading]         = useState(false);
-  const [err, setErr]                 = useState(null);
-  const [search, setSearch]           = useState("");
+  const enrolledGrade = user?.grade || "Grade 9";
+  const isPaid = hasPaidAccess(user);
+
+  // Grade selector: paid users can browse any grade; free users locked to enrolled
+  const [selectedGrade, setSelectedGrade] = useState(enrolledGrade);
+  const [subject, setSubject]             = useState("Mathematics");
+  const [data, setData]                   = useState(null);
+  const [loading, setLoading]             = useState(false);
+  const [err, setErr]                     = useState(null);
+  const [search, setSearch]               = useState("");
   const [activeChapter, setActiveChapter] = useState(null);
+  const [diffFilter, setDiffFilter]       = useState("");
+  const [sortBy, setSortBy]               = useState("default");
+  const [studiedSet, setStudiedSet]       = useState(() => loadStudied(enrolledGrade, "Mathematics"));
 
   const hasPremium = !!(data?.has_premium);
+
+  // Sync studied set when grade or subject changes
+  useEffect(() => {
+    setStudiedSet(loadStudied(selectedGrade, subject));
+  }, [selectedGrade, subject]);
 
   const load = useCallback(async () => {
     setLoading(true); setErr(null); setActiveChapter(null);
     try {
-      const params = new URLSearchParams({ grade, subject });
+      const params = new URLSearchParams({ grade: selectedGrade, subject });
       const res = await authFetch(`/api/student/formula-sheets?${params}`);
       setData(res);
       if (res?.chapters?.length > 0) setActiveChapter(res.chapters[0].chapter_id);
     } catch { setErr("Could not load formula sheets. Please try again."); }
     finally { setLoading(false); }
-  }, [grade, subject]);
+  }, [selectedGrade, subject]);
 
   useEffect(() => { load(); }, [load]);
 
   function nav(page) { if (setActivePage) setActivePage(page); }
   function handleUpgrade() { nav("subscriptionPlans"); }
 
-  // Filter formulas by search
+  function handleStudied(formulaKey) {
+    setStudiedSet(prev => {
+      const next = new Set(prev);
+      if (next.has(formulaKey)) { next.delete(formulaKey); } else { next.add(formulaKey); }
+      saveStudied(selectedGrade, subject, next);
+      return next;
+    });
+  }
+
+  function handleAskAI(formulaName) {
+    // Navigate to doubt page — the doubt page will open with the formula name as context
+    if (setActivePage) setActivePage("doubt");
+    // Store context for doubt page to pick up
+    try { sessionStorage.setItem("doubt_prefill", `Explain the formula: ${formulaName}`); } catch { /* ignore */ }
+  }
+
+  // Client-side difficulty filter + sort
+  function applyClientFilters(chapters) {
+    return chapters.map(ch => ({
+      ...ch,
+      topics: ch.topics.map(t => {
+        let formulas = [...t.formulas];
+        if (diffFilter) formulas = formulas.filter(f => f.difficulty === diffFilter);
+        if (sortBy === "az") formulas = [...formulas].sort((a, b) => a.name.localeCompare(b.name));
+        else if (sortBy === "diff") {
+          const order = { easy: 0, medium: 1, hard: 2 };
+          formulas = [...formulas].sort((a, b) => (order[a.difficulty] ?? 1) - (order[b.difficulty] ?? 1));
+        }
+        return { ...t, formulas };
+      }).filter(t => t.formulas.length > 0),
+    })).filter(ch => ch.topics.length > 0);
+  }
+
+  // Search filter
   function getFiltered() {
     if (!data?.chapters) return [];
     const q = search.toLowerCase().trim();
-    if (!q) return data.chapters;
-    return data.chapters.map(ch => ({
+    let chapters = q ? data.chapters.map(ch => ({
       ...ch,
       topics: ch.topics.map(t => ({
         ...t,
@@ -839,47 +928,103 @@ export default function FormulaSheetPage({ user, setActivePage }) {
           ch.chapter_name.toLowerCase().includes(q)
         ),
       })).filter(t => t.formulas.length > 0),
-    })).filter(ch => ch.topics.length > 0);
+    })).filter(ch => ch.topics.length > 0) : data.chapters;
+    return applyClientFilters(chapters);
   }
 
   const filteredChapters = getFiltered();
-  const displayed = search ? filteredChapters : filteredChapters.filter(ch => ch.chapter_id === activeChapter);
+  const displayed = search || diffFilter || sortBy !== "default"
+    ? filteredChapters
+    : applyClientFilters(filteredChapters.filter(ch => ch.chapter_id === activeChapter));
+
+  // Count total studied for this grade+subject
+  const totalStudied = studiedSet.size;
 
   return (
     <div data-testid="formula-sheet-page" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 0 60px" }}>
 
       {/* Header */}
-      <div style={{ marginBottom: 14 }}>
+      <div style={{ marginBottom: 12 }}>
         <h2 style={{ fontWeight: 800, fontSize: "1.15rem", margin: "0 0 3px" }}>📐 Formula Sheet</h2>
-        <div style={{ fontSize: ".85rem", color: "var(--text-muted,#64748b)" }}>
-          {grade} · CBSE Reference
+        <div style={{ fontSize: ".85rem", color: "var(--text-muted,#64748b)", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <span>{selectedGrade} · CBSE Reference</span>
           {data && (
-            <span style={{ marginLeft: 10, fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".77rem" }}>
+            <span style={{ fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".77rem" }}>
               {hasPremium ? `✓ ${data.total_count} formulas unlocked` : `🔒 ${data.unlocked_count} of ${data.total_count} preview`}
+            </span>
+          )}
+          {totalStudied > 0 && (
+            <span style={{ fontSize: ".72rem", fontWeight: 600, color: "#16a34a", background: "#dcfce7", padding: "1px 7px", borderRadius: 10 }}>
+              ✓ {totalStudied} studied
             </span>
           )}
         </div>
       </div>
 
+      {/* Grade selector — paid: all grades; free: locked to enrolled */}
+      <div data-testid="grade-selector-row" style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
+        <span style={{ fontSize: ".65rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--text-muted,#94a3b8)" }}>Grade:</span>
+        {ALL_GRADES.map(g => {
+          const isLocked = !isPaid && g !== enrolledGrade;
+          return (
+            <button
+              key={g}
+              data-testid={"grade-btn-" + g.toLowerCase().replace(" ", "-")}
+              onClick={() => !isLocked && setSelectedGrade(g)}
+              title={isLocked ? "Upgrade to browse other grades" : g}
+              style={{ padding: "4px 11px", borderRadius: 20, border: "none",
+                background: selectedGrade === g ? "#6366f1" : isLocked ? "var(--surface2,#f1f5f9)" : "var(--surface2,#f1f5f9)",
+                color: selectedGrade === g ? "#fff" : isLocked ? "#94a3b8" : "var(--text,#374151)",
+                fontWeight: selectedGrade === g ? 700 : 500, fontSize: ".77rem",
+                cursor: isLocked ? "default" : "pointer", fontFamily: "inherit",
+                opacity: isLocked ? 0.55 : 1 }}>
+              {g.replace("Grade ", "")}
+              {isLocked && <span style={{ marginLeft: 2, fontSize: ".6rem" }}>🔒</span>}
+            </button>
+          );
+        })}
+      </div>
+
       {/* Subject selector */}
-      <div style={{ display: "flex", gap: 7, marginBottom: 12, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 7, marginBottom: 10, flexWrap: "wrap" }}>
         {(data?.subjects || ["Mathematics","Science","Physics","Chemistry"]).map(s => (
           <button key={s} data-testid={"fs-subject-"+s.toLowerCase().replace(/ /g,"-")}
             onClick={() => setSubject(s)}
-            style={{ padding: "6px 16px", borderRadius: 20, border: "none",
+            style={{ padding: "5px 14px", borderRadius: 20, border: "none",
               background: subject===s ? "#6366f1" : "var(--surface2,#f1f5f9)",
               color: subject===s ? "#fff" : "var(--text,#374151)",
-              fontWeight: 600, fontSize: ".82rem", cursor: "pointer", fontFamily: "inherit" }}>
-            {s}
+              fontWeight: 600, fontSize: ".81rem", cursor: "pointer", fontFamily: "inherit" }}>
+            {SUBJECT_ICONS[s] || "📚"} {s}
           </button>
         ))}
       </div>
 
-      {/* Search */}
-      <input data-testid="formula-search" placeholder="Search formulas, chapters..." value={search}
-        onChange={e => setSearch(e.target.value)}
-        style={{ width: "100%", padding: "8px 14px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)",
-          fontFamily: "inherit", fontSize: ".85rem", boxSizing: "border-box", marginBottom: 12 }}/>
+      {/* Search + filters row */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap", alignItems: "center" }}>
+        <input data-testid="formula-search" placeholder="Search formulas, chapters..." value={search}
+          onChange={e => { setSearch(e.target.value); setActiveChapter(null); }}
+          style={{ flex: 1, minWidth: 160, padding: "7px 12px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)",
+            fontFamily: "inherit", fontSize: ".84rem" }}/>
+        <select data-testid="difficulty-filter" value={diffFilter} onChange={e => setDiffFilter(e.target.value)}
+          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".8rem" }}>
+          <option value="">All Difficulties</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <select data-testid="sort-select" value={sortBy} onChange={e => setSortBy(e.target.value)}
+          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".8rem" }}>
+          <option value="default">Sort: Default</option>
+          <option value="az">A → Z</option>
+          <option value="diff">Difficulty ↑</option>
+        </select>
+        {data && (
+          <span style={{ fontSize: ".72rem", fontWeight: 700, padding: "4px 9px", borderRadius: 18,
+            background: "rgba(99,102,241,.1)", color: "#6366f1", whiteSpace: "nowrap" }}>
+            {data.total_count} formulas
+          </span>
+        )}
+      </div>
 
       {/* Upgrade banner for free users */}
       {!loading && data && data.available && !hasPremium && (
@@ -927,7 +1072,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
         <div data-testid="formula-sheet-content" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
 
           {/* Chapter sidebar */}
-          {!search && (
+          {!search && !diffFilter && (
             <div data-testid="chapter-sidebar" style={{ width: 190, flexShrink: 0, minWidth: 140 }}>
               <div style={{ fontWeight: 700, fontSize: ".7rem", color: "var(--text-muted,#94a3b8)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 8 }}>Chapters</div>
               {data.chapters.map(ch => (
@@ -952,7 +1097,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             {displayed.length === 0 ? (
               <div style={{ color: "var(--text-muted,#94a3b8)", padding: 20 }}>
-                {search ? "No formulas match your search." : "Select a chapter to view formulas."}
+                {search || diffFilter ? "No formulas match your filters." : "Select a chapter to view formulas."}
               </div>
             ) : displayed.map(ch => (
               <div key={ch.chapter_id} style={{ marginBottom: 24 }}>
@@ -973,8 +1118,15 @@ export default function FormulaSheetPage({ user, setActivePage }) {
                     )}
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(270px,1fr))", gap: 10 }}>
                       {t.formulas.map(f => (
-                        <FormulaCard key={f.id || f.name} formula={f} hasPremium={hasPremium}
-                          onUpgrade={handleUpgrade} />
+                        <FormulaCard
+                          key={f.id || f.name}
+                          formula={f}
+                          hasPremium={hasPremium}
+                          onUpgrade={handleUpgrade}
+                          studied={studiedSet.has(f.id || f.name)}
+                          onStudied={handleStudied}
+                          onAskAI={handleAskAI}
+                        />
                       ))}
                     </div>
                   </div>

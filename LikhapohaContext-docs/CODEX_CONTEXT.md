@@ -138,7 +138,38 @@ Backed by Supabase Realtime (WebSocket) + PostgreSQL + Supabase Storage.
 | POST | `/api/student/exams` | Add exam date |
 | PATCH | `/api/student/exams/{id}` | Update exam |
 | DELETE | `/api/student/exams/{id}` | Cancel exam |
-| GET | `/api/student/formula-sheets` | Formula sheets (chapter-wise, freemium) |
+| GET | `/api/student/formula-sheets` | Formula sheets (chapter-wise, freemium, Grade 5-12) |
+
+## API Routes (Admin — Formula Import)
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/api/admin/formula-sheets/import` | Bulk-upsert GPT-generated formula JSON into `formula_sheets` table. Admin only. |
+
+**Formula Import body:**
+```json
+{
+  "grade": "Grade 9",
+  "subject": "Mathematics",
+  "formulas": [
+    {
+      "formula_name": "Remainder Theorem",
+      "expression": "p(a) = remainder when p(x) divided by (x - a)",
+      "chapter": "Polynomials",
+      "difficulty": "medium",
+      "explanation": "...",
+      "variables": "...",
+      "example": "...",
+      "solution_steps": "...",
+      "memory_tip": "...",
+      "tags": ["polynomial"],
+      "active": true
+    }
+  ]
+}
+```
+**Upsert key:** `formula_name (ilike) + grade + subject + chapter` — existing rows are updated, new rows inserted.  
+**Returns:** `{ success, inserted, updated, skipped, errors[], message }`
 
 ## API Routes (Parent)
 

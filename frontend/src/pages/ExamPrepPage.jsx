@@ -172,8 +172,20 @@ if (typeof document !== "undefined" && !document.getElementById("_qp_print_block
   document.head.appendChild(s);
 }
 
-const SUBJECT_ICONS = { Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐", Biology: "🌿", Botany: "🌱", Zoology: "🦎" };
-const SUBJECT_COLORS = { Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b", Biology: "#22c55e", Botany: "#16a34a", Zoology: "#0891b2" };
+const SUBJECT_ICONS = {
+  Physics: "⚛️", Chemistry: "🧪", Mathematics: "📐",
+  Biology: "🌿", Botany: "🌱", Zoology: "🦎",
+  "Reading & Writing": "✍️",
+  "Listening": "🎧", "Reading": "📖",
+  "Vocabulary & Grammar": "📝", "Integrated Skills": "🌐",
+};
+const SUBJECT_COLORS = {
+  Physics: "#6366f1", Chemistry: "#10b981", Mathematics: "#f59e0b",
+  Biology: "#22c55e", Botany: "#16a34a", Zoology: "#0891b2",
+  "Reading & Writing": "#3b82f6",
+  "Listening": "#8b5cf6", "Reading": "#0891b2",
+  "Vocabulary & Grammar": "#06b6d4", "Integrated Skills": "#f97316",
+};
 const PRIORITY_COLORS = { HIGH: "#ef4444", MED: "#f59e0b", LOW: "#22c55e" };
 const DIFFICULTY_COLORS = { easy: "#22c55e", medium: "#f59e0b", hard: "#ef4444" };
 
@@ -191,17 +203,24 @@ function StatCard({ value, label, icon, color = "#6366f1" }) {
   );
 }
 
-function SubjectCard({ subject, onClick, selected }) {
+// Exams that use "sections" / "domain areas" instead of NCERT "chapters"
+const NON_NCERT_EXAMS = new Set(["sat", "ielts", "toefl_ibt"]);
+
+function SubjectCard({ subject, onClick, selected, examType }) {
   const color = SUBJECT_COLORS[subject.name] || "#6366f1";
+  const isNonNcert = NON_NCERT_EXAMS.has(examType);
+  const chapterLabel = isNonNcert ? "sections" : "chapters";
   return (
     <div onClick={onClick} className="premium-card" style={{ background: selected ? `${color}18` : undefined, border: `2px solid ${selected ? color : "var(--border,#334155)"}`, borderRadius: 12, padding: "16px", cursor: "pointer", transition: "all .15s", marginBottom: 0 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
         <span style={{ fontSize: "1.6rem" }}>{SUBJECT_ICONS[subject.name] || "📚"}</span>
-        <span style={{ fontSize: ".65rem", fontWeight: 700, background: `${color}22`, color, padding: "2px 8px", borderRadius: 20 }}>{subject.weightage_pct}%</span>
+        {subject.weightage_pct > 0 && (
+          <span style={{ fontSize: ".65rem", fontWeight: 700, background: `${color}22`, color, padding: "2px 8px", borderRadius: 20 }}>{subject.weightage_pct}%</span>
+        )}
       </div>
       <div style={{ fontWeight: 800, fontSize: ".9rem", marginBottom: 4 }}>{subject.name}</div>
       <div style={{ fontSize: ".7rem", color: "var(--muted,#64748b)", marginBottom: 10 }}>
-        {subject.chapters} chapters · {subject.topic_count} topics
+        {subject.chapters > 0 ? `${subject.chapters} ${chapterLabel} · ` : ""}{subject.topic_count} topics
       </div>
       <div style={{ background: "rgba(99,102,241,.1)", borderRadius: 6, height: 4, overflow: "hidden" }}>
         <div style={{ width: `${Math.min(100, (subject.question_count / 50) * 100)}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 6 }} />
@@ -472,9 +491,13 @@ function NTATestView({ questions, testSession, testAnswers, setTestAnswers, onSu
   // Fallback: match by duration — but note JEE (180min) and CUET (195min) differ, so this is safer.
   const isCuet = cuetSubjects && cuetSubjects.length > 0;
   const cfg = isCuet ? null : (
-    _examLabel === "NEET UG" ? EXAM_SIM_CONFIG.neet_ug :
-    _examLabel === "JEE Main" ? EXAM_SIM_CONFIG.jee_main :
-    Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes) || EXAM_SIM_CONFIG.jee_main
+    _examLabel === "NEET UG"   ? EXAM_SIM_CONFIG.neet_ug   :
+    _examLabel === "JEE Main"  ? EXAM_SIM_CONFIG.jee_main  :
+    _examLabel === "SAT"       ? EXAM_SIM_CONFIG.sat        :
+    _examLabel === "IELTS"     ? EXAM_SIM_CONFIG.ielts      :
+    _examLabel === "TOEFL iBT" ? EXAM_SIM_CONFIG.toefl_ibt :
+    Object.values(EXAM_SIM_CONFIG).find(c => c.duration === testSession?.duration_minutes)
+    || EXAM_SIM_CONFIG.jee_main
   );
   const subjects = isCuet ? cuetSubjects : cfg.subjects;
   const perSubj = Math.max(1, Math.ceil(questions.length / subjects.length));
@@ -1583,7 +1606,7 @@ const RESOURCES = [
   { icon: "🧪", label: "Topic Tests", desc: "Quick 10-question tests", color: "#f59e0b", onClick: null },
   { icon: "🤖", label: "Ask AI Tutor", desc: "Instant doubt solving", color: "#8b5cf6", onClick: "doubt" },
   { icon: "📝", label: "Mock Tests", desc: "CBSE-style full tests", color: "#06b6d4", onClick: "mockTest" },
-  { icon: "📅", label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: null },
+  { icon: "📅", label: "Study Planner", desc: "AI-driven revision plan", color: "#ec4899", onClick: "studyPlanner" },
 ];
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
@@ -1684,7 +1707,12 @@ export default function ExamPrepPage({ user, setActivePage }) {
   // ── Practice a topic ───────────────────────────────────────────────────────
   function handlePracticeTopic(topic) {
     setFilterTopic(topic.name);
-    loadQuestions(selectedSubject, topic.name);
+    // Always load ALL questions for the selected subject when a topic card is clicked.
+    // Topic names in topic cards are broad categories (e.g. "Kinematics", "Reading Comprehension")
+    // while questions in the DB have fine-grained topics. Loading all subject questions
+    // ensures practice is never empty — the topic label in the header still shows the focus area.
+    // The backend ILIKE filter handles partial matches, but loading all subject Qs is more reliable.
+    loadQuestions(selectedSubject, null);
   }
 
   // ── Answer selection ───────────────────────────────────────────────────────
@@ -2711,7 +2739,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: 12, marginBottom: selectedSubject ? 20 : 0 }}>
                 {subjects.map(s => (
-                  <SubjectCard key={s.name} subject={s} selected={selectedSubject === s.name} onClick={() => handleSelectSubject(s.name)} />
+                  <SubjectCard key={s.name} subject={s} selected={selectedSubject === s.name} onClick={() => handleSelectSubject(s.name)} examType={selectedExam} />
                 ))}
               </div>
             )}

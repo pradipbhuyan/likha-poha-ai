@@ -9,7 +9,15 @@ import FeatureAuthAuditPage from "./FeatureAuthAuditPage";
 import LessonSectionsAuditPage from "./LessonSectionsAuditPage";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
-const SUBJECTS = ["Mathematics","Science","Physics","Chemistry","English","Hindi","Social Science"];
+const SUBJECTS = ["Mathematics","Science","Physics","Chemistry","Biology","English","Hindi","Social Science"];
+
+// Formula JSON Import lives in Cache & Question Bank page (AdminCacheManagementPage).
+
+/* ── placeholder start ── */
+const _FORMULA_IMPORT_MOVED = true; // not a function — no hooks, no ESLint issues
+/* ── placeholder end ── */
+
+
 const SEV_COLOR = { critical:"#ef4444", high:"#f59e0b", medium:"#6366f1", low:"#94a3b8" };
 
 function Card({ children, testid, style, onClick }) {
@@ -164,7 +172,15 @@ export default function AdminQACenterPage({ user: _user, setActivePage }) {
             ● Active{activeModule==="lessonSections" ? " · Selected" : ""}
           </div>
         </Card>
-        <FutureModule icon="📐" name="Formula Sheet Audit"/>
+        <Card testid="module-formula-import"
+          style={{ borderLeft:"4px solid #7c3aed", cursor:"pointer",
+            background:activeModule==="formulaImport"?"#7c3aed15":"var(--panel,#fff)" }}
+          onClick={() => setActiveModule("formulaImport")}>
+          <div style={{ fontWeight:700, fontSize:".85rem" }}>📐 Formula Import</div>
+          <div style={{ fontSize:".7rem", color:"#7c3aed", marginTop:2 }}>
+            ● Active{activeModule==="formulaImport" ? " · Selected" : ""}
+          </div>
+        </Card>
         <Card testid="module-feature-auth"
           style={{ borderLeft:"4px solid #0ea5e9", cursor:"pointer",
             background:activeModule==="featureAuth"?"#0ea5e915":"var(--panel,#fff)" }}
@@ -216,6 +232,43 @@ export default function AdminQACenterPage({ user: _user, setActivePage }) {
             </span>
           </div>
           <LessonSectionsAuditPage setActivePage={setActivePage} />
+        </div>
+      )}
+
+      {/* Formula Import module */}
+      {activeModule === "formulaImport" && (
+        <div data-testid="module-content-formula-import">
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
+            <button data-testid="back-from-formula-import"
+              onClick={() => setActiveModule("lessonQuality")}
+              style={{ background:"none", border:"1px solid var(--border,#e5e7eb)", borderRadius:7,
+                padding:"5px 12px", cursor:"pointer", fontFamily:"inherit", fontSize:".76rem",
+                color:"var(--text-muted,#64748b)" }}>
+              ← Lesson Quality
+            </button>
+            <span style={{ fontSize:".82rem", color:"var(--text-muted,#64748b)" }}>
+              Platform QA Center → 📐 Formula Import
+            </span>
+          </div>
+          <Card>
+            <div style={{ textAlign:"center", padding: "32px 20px" }}>
+              <div style={{ fontSize:"2rem", marginBottom:10 }}>📐</div>
+              <div style={{ fontWeight:700, fontSize:".95rem", marginBottom:8 }}>Formula JSON Import has moved</div>
+              <div style={{ fontSize:".82rem", color:"var(--text-muted,#64748b)", lineHeight:1.6, marginBottom:16 }}>
+                The Formula Sheet JSON Import is now in{" "}
+                <strong>Cache & Question Bank</strong> — scroll to the bottom of that page.
+              </div>
+              {setActivePage && (
+                <button
+                  onClick={() => setActivePage("cacheManagement")}
+                  style={{ padding:"10px 20px", borderRadius:9, border:"none",
+                    background:"#7c3aed", color:"#fff", fontWeight:700,
+                    fontSize:".85rem", cursor:"pointer", fontFamily:"inherit" }}>
+                  Go to Cache & Question Bank →
+                </button>
+              )}
+            </div>
+          </Card>
         </div>
       )}
 

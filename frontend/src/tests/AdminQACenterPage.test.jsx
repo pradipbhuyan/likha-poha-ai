@@ -78,7 +78,8 @@ describe("AdminQACenterPage", () => {
     render(<AdminQACenterPage setActivePage={vi.fn()} />);
     await screen.findByTestId("admin-qa-center");
     expect(document.body.textContent).toContain("Coming soon");
-    expect(document.body.textContent).toContain("Formula Sheet Audit");
+    // Formula Import module card is active (points to Cache & Question Bank)
+    expect(document.body.textContent).toContain("Formula Import");
   });
 });
 
@@ -215,6 +216,17 @@ describe("AdminQACenterPage", () => {
     authFetch.mockResolvedValueOnce(EMPTY_REPORT);
     render(<AdminQACenterPage user={ADMIN} />);
     await screen.findByTestId("admin-qa-center");
-    expect(document.body.textContent).toContain("Formula Sheet Audit");
+    // Formula Import module card redirects to Cache & Question Bank
+    expect(document.body.textContent).toContain("Formula Import");
     expect(document.body.textContent).toContain("Coming soon");
+  });
+
+  test("formula import module shows redirect message", async () => {
+    authFetch.mockResolvedValueOnce(EMPTY_REPORT);
+    render(<AdminQACenterPage user={ADMIN} setActivePage={vi.fn()} />);
+    await screen.findByTestId("admin-qa-center");
+    fireEvent.click(screen.getByTestId("module-formula-import"));
+    expect(await screen.findByTestId("module-content-formula-import")).toBeInTheDocument();
+    expect(document.body.textContent).toContain("Formula JSON Import has moved");
+    expect(document.body.textContent).toContain("Cache");
   });
