@@ -160,7 +160,7 @@ function GeneratingProgress({ examLabel, weakTopics, weeksRemaining, dailyHours,
 }
 
 function CountdownTimer({ daysRemaining, weeksRemaining, examDate, examLabel, color }) {
-  const [tick, setTick] = useState(0);
+  const [_tick, setTick] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setTick(t => t + 1), 1000);
     return () => clearInterval(id);
@@ -344,7 +344,7 @@ export default function StudyPlannerPage({ user, setActivePage }) {
   const [migrating, setMigrating] = useState(false);
   const [migrationDone, setMigrationDone] = useState(false);
   const [activeTab, setActiveTab] = useState("today"); // today | weekly
-  const [expandedWeeks, setExpandedWeeks] = useState(new Set([1]));
+  const [_expandedWeeks, setExpandedWeeks] = useState(new Set([1]));
 
   const examInfo = EXAMS.find(e => e.value === selectedExam) || EXAMS[0];
 
