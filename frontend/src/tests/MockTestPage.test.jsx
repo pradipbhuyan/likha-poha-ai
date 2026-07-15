@@ -87,6 +87,10 @@ beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
   hasPaidAccess.mockReturnValue(true);
+  // jsdom does not implement scrollIntoView — mock it so the setTimeout in
+  // MockTestPage.jsx (examTopRef.current?.scrollIntoView) doesn't throw an
+  // unhandled exception after the test ends.
+  window.HTMLElement.prototype.scrollIntoView = vi.fn();
 });
 afterEach(() => { localStorage.clear(); });
 
