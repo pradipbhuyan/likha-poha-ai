@@ -177,6 +177,8 @@ def test_answer_doubt_saves_full_history(monkeypatch):
         captured_history.update(kwargs)
         return {"id": "history-42"}
 
+    # DKB returns None → falls through to LLM path (which is what this test exercises)
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
     monkeypatch.setattr(doubt_route, "save_doubt_history", fake_save_doubt_history)
 
@@ -318,6 +320,7 @@ def test_admin_selected_gpt5_mini_is_used_for_doubt(monkeypatch):
             "mentor_suggestions": [],
         }
 
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
 
     response = client.post(

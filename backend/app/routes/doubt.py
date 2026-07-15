@@ -237,9 +237,10 @@ def answer_student_doubt(
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)
     enforce_profile_board(profile, request_board)
-    # Offer-code users bypass the standard CBSE access gate — they have a valid
-    # offer redemption that grants them limited (DKB-only) platform access.
-    # The offer gate further downstream handles the DKB-only restriction.
+    # For ALL users (free or paid), try the DKB BEFORE the LLM access gate.
+    # Pre-loaded suggestion questions have answers in DKB and are free to serve
+    # at zero LLM cost — even free-tier students should see them.
+    # The LLM (paid) gate only fires when DKB has no matching answer.
     if not is_offer_code_user(user.id):
         enforce_learning_access(profile, data.mode, data.subject)
 
@@ -302,31 +303,42 @@ def answer_student_doubt(
             "message": "Academic guardrail: non-academic question redirected",
         }
 
-    # ── Offer-code gate: DKB-only, no LLM calls ──────────────────────────────
-    # Users with offer-code access (no paid subscription) are served from the
-    # DKB only.  If the DKB has no matching answer, return the upgrade prompt
-    # immediately — zero token cost.
+    # ── DKB search: runs for ALL users (free + paid) ─────────────────────────
+    # Pre-loaded suggestion questions have DKB answers that cost zero tokens.
+    # Return the DKB answer immediately to any user — no LLM, no access gate.
+    # Only when DKB misses do we fall through to the LLM (gated for free users).
+    #
+    # Use display_question (the clean original question without the style
+    # instruction suffix) so DKB similarity search matches the stored question.
+    # data.question may be enriched: "Q\n\nPreferred answer style: ..."
+    dkb_search_query = (
+        data.display_question
+        or data.question.split("Preferred answer style:", 1)[0]
+    ).strip()
+    dkb_result = search_doubt_kb(
+        question=dkb_search_query,
+        grade=data.grade,
+        subject=data.subject or "",
+        chapter=data.chapter or None,
+        mode=data.mode,
+        board=request_board,
+    )
+    if dkb_result:
+        return {
+            "success": True,
+            "answer": dkb_result["answer"],
+            "source_type": "DOUBT_KB",
+            "sources": [],
+            "textbook_visuals": [],
+            "mentor_suggestions": [],
+            "history_id": None,
+            "message": "Answered from knowledge base",
+        }
+
+    # ── DKB miss: apply LLM access gate ──────────────────────────────────────
+    # Free-tier / offer-code users cannot make LLM calls on a DKB miss.
+    # Paid users continue to the LLM path below.
     if is_offer_code_user(user.id):
-        dkb_result = search_doubt_kb(
-            question=data.question,
-            grade=data.grade,
-            subject=data.subject or "",
-            chapter=data.chapter or None,
-            mode=data.mode,
-            board=request_board,
-        )
-        if dkb_result:
-            return {
-                "success": True,
-                "answer": dkb_result["answer"],
-                "source_type": "DOUBT_KB",
-                "sources": [],
-                "textbook_visuals": [],
-                "mentor_suggestions": [],
-                "history_id": None,
-                "message": "Answered from knowledge base",
-            }
-        # DKB miss → return upgrade prompt, no LLM call
         gate = build_offer_gate_response()
         return {
             "success": True,
