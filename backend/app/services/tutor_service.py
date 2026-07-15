@@ -1051,8 +1051,9 @@ question should be inside the "Quick check question" section.
     if _step_num == 1 and _is_vocab_subject and textbook_context:
         prompt += (
             "\n\nMANDATORY NEW WORDS SECTION FOR STEP 1 (LANGUAGE/LITERATURE CHAPTERS):\n"
-            "At the very beginning of your lesson (before any other section), include a "
-            "'New Words' section with the heading:\n"
+            "Place this section JUST BEFORE the Summary section (at the end of the lesson, "
+            "after the main explanation but before the closing Summary).\n\n"
+            "Use this exact heading:\n"
             "## New Words\n"
             "### Vocabulary from the chapter\n\n"
             "Rules for the New Words section:\n"
@@ -1069,8 +1070,8 @@ question should be inside the "Quick check question" section.
             "4. NEVER invent words or meanings. Every word MUST appear in the textbook "
             "   context above. If the textbook context has fewer than 5 new words, "
             "   include only those that appear.\n"
-            "5. After the New Words section, continue with the rest of the Step 1 lesson "
-            "   as normal (Overview / Context / Introduction etc.)."
+            "5. The New Words section goes ABOVE the Summary — not at the beginning. "
+            "   Lesson structure: [Introduction] → [Main explanation] → [New Words] → [Summary]"
         )
 
     lesson = ask_llm(
