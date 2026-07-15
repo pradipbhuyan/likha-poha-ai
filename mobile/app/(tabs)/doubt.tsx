@@ -68,8 +68,56 @@ const ANSWER_MARKDOWN_STYLES = {
   paragraph: { marginBottom: 8, lineHeight: 24 },
 };
 
+// ── Structured visual renderer (flow / steps / cycle) ────────────────────────
+function StructuredVisual({ visual }: { visual: { type: string; title?: string; items: string[]; note?: string } }) {
+  const isFlow = visual.type === "flow" || visual.type === "steps";
+  return (
+    <View style={{ backgroundColor: "rgba(99,102,241,.06)", borderRadius: 12, padding: 14, marginVertical: 8, borderWidth: 1, borderColor: "rgba(99,102,241,.2)" }}>
+      {visual.title ? (
+        <Text style={{ fontSize: 13, fontWeight: "800", color: BRAND_COLOR, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 10 }}>
+          {isFlow ? "📊" : visual.type === "cycle" ? "🔄" : "📋"} {visual.title}
+        </Text>
+      ) : null}
+      {visual.items.map((item, idx) => (
+        <View key={idx}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <View style={{ width: 26, height: 26, borderRadius: 6, backgroundColor: BRAND_COLOR, alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <Text style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}>{idx + 1}</Text>
+            </View>
+            <Text style={{ flex: 1, fontSize: 14, fontWeight: "600", color: "#111827", lineHeight: 20 }}>{item}</Text>
+          </View>
+          {isFlow && idx < visual.items.length - 1 && (
+            <Text style={{ textAlign: "center", color: BRAND_COLOR, fontSize: 18, marginBottom: 4 }}>↓</Text>
+          )}
+        </View>
+      ))}
+      {visual.note ? (
+        <View style={{ marginTop: 8, backgroundColor: "rgba(99,102,241,.08)", borderRadius: 8, padding: 8 }}>
+          <Text style={{ fontSize: 12, color: "#374151", fontStyle: "italic", lineHeight: 17 }}>💡 {visual.note}</Text>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+// Try to parse a structured visual JSON block from a string
+function tryParseVisual(text: string): { type: string; title?: string; items: string[]; note?: string } | null {
+  try {
+    const v = JSON.parse(text.trim());
+    if (v && typeof v === "object" && ["flow","steps","cycle","compare"].includes(v.type) && Array.isArray(v.items) && v.items.length >= 2) {
+      return v;
+    }
+  } catch { /* not JSON */ }
+  return null;
+}
+
 function MathAnswer({ content }: { content: string }) {
-  const parts = content.split(/(\$\$[\s\S]+?\$\$)/g);
+  // Split on $$...$$ display math AND code fences that might contain visual JSON
+  const DISPLAY_MATH_RE = /(\$\$[\s\S]+?\$\$)/g;
+  const CODE_FENCE_RE = /(```[\s\S]*?```)/g;
+
+  // First strip any JSON visual blocks from the content and collect them
+  const parts = content.split(/(\$\$[\s\S]+?\$\$|```[\s\S]*?```)/g);
   return (
     <View>
       {parts.map((part, i) => {
@@ -82,6 +130,17 @@ function MathAnswer({ content }: { content: string }) {
             </View>
           );
         }
+        // Code fence — check if it contains a visual JSON block
+        if (part.startsWith("```")) {
+          const inner = part.replace(/^```[^\n]*\n?/, "").replace(/```$/, "").trim();
+          const visual = tryParseVisual(inner);
+          if (visual) return <StructuredVisual key={i} visual={visual} />;
+          // Regular code block
+          return <Markdown key={i} style={ANSWER_MARKDOWN_STYLES}>{part}</Markdown>;
+        }
+        // Inline JSON visual (no code fence, just raw JSON in text)
+        const inlineVisual = tryParseVisual(part.trim());
+        if (inlineVisual) return <StructuredVisual key={i} visual={inlineVisual} />;
         const processed = part.replace(/\$([^$\n]+)\$/g, (_m, l) => mathToUnicode(l));
         if (!processed.trim()) return null;
         return <Markdown key={i} style={ANSWER_MARKDOWN_STYLES}>{processed}</Markdown>;
