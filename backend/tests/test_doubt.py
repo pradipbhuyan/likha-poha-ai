@@ -33,6 +33,7 @@ def test_answer_doubt_api(monkeypatch):
             ],
         }
 
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
 
     payload = {
@@ -82,6 +83,7 @@ def test_answer_doubt_response_has_valid_data_types(monkeypatch):
             "mentor_suggestions": [],
         }
 
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
 
     payload = {
@@ -143,6 +145,7 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
             "mentor_suggestions": [],
         }
 
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
 
     payload = {
@@ -219,6 +222,7 @@ def test_answer_doubt_can_skip_history_for_followups(monkeypatch):
         captured["called"] = True
         return {"id": "history-should-not-exist"}
 
+    monkeypatch.setattr(doubt_route, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(doubt_route, "answer_doubt", fake_answer_doubt)
     monkeypatch.setattr(doubt_route, "save_doubt_history", fake_save_doubt_history)
 

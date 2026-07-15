@@ -318,8 +318,8 @@ def answer_student_doubt(
     dkb_result = search_doubt_kb(
         question=dkb_search_query,
         grade=data.grade,
-        subject=data.subject or "",
-        chapter=data.chapter or None,
+        subject=data.subject or None,  # None → SQL IS NULL → no subject filter
+        chapter=data.chapter or None,  # None → SQL IS NULL → no chapter filter
         mode=data.mode,
         board=request_board,
     )
