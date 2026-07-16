@@ -10,7 +10,7 @@
  * This mirrors the web App.jsx OAuth state machine so mobile Google auth
  * follows the same backend-authoritative profile_complete check.
  */
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -24,6 +24,11 @@ function RootNavigation() {
   const router = useRouter();
   const segments = useSegments();
 
+  // Track whether the user has ever been authenticated in this session.
+  // Prevents a transient SIGNED_OUT (e.g. during OAuth token exchange) from
+  // routing an already-authenticated user back to the login screen.
+  const wasAuthenticated = useRef(false);
+
   /**
    * Process a Supabase session by calling GET /api/auth/me.
    * Sets authState based on backend profile_complete flag.
@@ -31,15 +36,7 @@ function RootNavigation() {
    */
   const processSession = useCallback(async (sess: any) => {
     if (!sess) {
-      // Grace period: SIGNED_OUT can fire immediately before SIGNED_IN during OAuth exchange
-      // (old session replaced by new). Wait 1.5s and re-check before going unauthenticated.
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const { data } = await supabase.auth.getSession();
-      if (!data.session) {
-        setAuthState("unauthenticated");
-      }
-      // If a new session appeared during the grace period, the SIGNED_IN event
-      // will trigger processSession again with the real session — no action needed here.
+      setAuthState("unauthenticated");
       return;
     }
     try {
@@ -72,11 +69,21 @@ function RootNavigation() {
     const inAuth = segs[0] === "auth";
     const onRoleSelect = segs[0] === "auth" && segs[1] === "role-select";
 
+    // Mark as authenticated once we've confirmed a valid session.
+    // After this point, a transient SIGNED_OUT (OAuth exchange) won't kick
+    // the user back to login — only an explicit sign-out should do that.
+    if (authState === "ready" || authState === "needs_role") {
+      wasAuthenticated.current = true;
+    }
+
     if (authState === "ready" && inAuth) {
       router.replace("/(tabs)");
     } else if (authState === "needs_role" && !onRoleSelect) {
       router.replace("/auth/role-select" as any);
-    } else if (authState === "unauthenticated" && !inAuth) {
+    } else if (authState === "unauthenticated" && !inAuth && !wasAuthenticated.current) {
+      // Only route to login if user was never authenticated in this session.
+      // wasAuthenticated.current = true means they logged in successfully but
+      // a transient SIGNED_OUT fired (OAuth exchange) — don't send them to login.
       router.replace("/auth/login");
     }
   }, [authState, segments]); // eslint-disable-line
