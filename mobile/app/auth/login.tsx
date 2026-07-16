@@ -201,50 +201,57 @@ export default function LoginScreen() {
     if (oauthExchangeInProgress.current) return;
     oauthExchangeInProgress.current = true;
 
+    console.log("[OAuth] handleOAuthSuccess called, url prefix:", callbackUrl.substring(0, 60));
     setOauthUrl(null);
     setGoogleLoading(true);
     setErrorMsg("");
 
     try {
       // Extract just the `code` param — more reliable than passing a non-HTTP scheme URL
-      // (e.g. likhapoha://?code=xxx) to exchangeCodeForSession which expects an HTTP URL.
       let codeOrUrl: string = callbackUrl;
       try {
         const urlObj = new URL(callbackUrl);
         const code = urlObj.searchParams.get("code");
-        if (code) codeOrUrl = code;
+        if (code) { codeOrUrl = code; console.log("[OAuth] code extracted via URL parser, len:", code.length); }
       } catch {
-        // URL() can't parse custom schemes on all platforms — try regex fallback
         const m = callbackUrl.match(/[?&]code=([^&\s#]+)/);
-        if (m?.[1]) codeOrUrl = m[1];
+        if (m?.[1]) { codeOrUrl = m[1]; console.log("[OAuth] code extracted via regex, len:", m[1].length); }
+        else { console.log("[OAuth] WARNING: no code found in URL"); }
       }
 
+      console.log("[OAuth] calling exchangeCodeForSession...");
       const { data, error } = await supabase.auth.exchangeCodeForSession(codeOrUrl);
       if (error) {
+        console.log("[OAuth] exchangeCodeForSession ERROR:", error.message, error.status);
         setErrorMsg(error.message || "Google sign-in failed. Please try again.");
         return;
       }
       if (!data.session) {
+        console.log("[OAuth] exchangeCodeForSession: no session returned");
         setErrorMsg("Sign-in completed but no session was returned. Please try again.");
         return;
       }
-      // ✅ Session established.
-      // Check backend to determine if role selection is needed (new OAuth users)
-      // or if the user can go straight to the dashboard. Do this HERE in login.tsx
-      // so we route before onAuthStateChange in _layout.tsx can conflict.
+      console.log("[OAuth] session established, user:", data.session.user?.email);
+
+      // Check backend to determine if role selection needed
       try {
+        console.log("[OAuth] calling checkAuthState...");
         const meData = await checkAuthState(data.session.access_token);
+        console.log("[OAuth] checkAuthState:", JSON.stringify({ needs_role: meData.needs_role_selection, role: meData.role }));
         if (meData.needs_role_selection) {
+          console.log("[OAuth] routing to role-select");
           router.replace("/auth/role-select" as any);
         } else {
+          console.log("[OAuth] routing to /(tabs)");
           router.replace("/(tabs)");
         }
-      } catch {
-        // Backend unreachable — gracefully allow access
+      } catch (e2: any) {
+        console.log("[OAuth] checkAuthState failed:", e2?.message, "→ defaulting to /(tabs)");
         router.replace("/(tabs)");
       }
     } catch (e: any) {
       const msg: string = e?.message ?? "Google sign-in failed.";
+      console.log("[OAuth] OUTER catch:", msg);
       if (msg.includes("invalid") || msg.includes("expired")) {
         setErrorMsg("Sign-in session expired. Please try signing in again.");
       } else {
