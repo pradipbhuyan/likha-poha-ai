@@ -14,7 +14,7 @@ import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { Feather } from "@expo/vector-icons";
 import { supabase } from "../../lib/supabase";
-import { signInWithGoogle } from "../../lib/auth";
+import { signInWithGoogle, checkAuthState } from "../../lib/auth";
 import { useTheme } from "../../lib/theme";
 import { BRAND_COLOR, API_BASE_URL } from "../../constants";
 
@@ -228,9 +228,21 @@ export default function LoginScreen() {
         setErrorMsg("Sign-in completed but no session was returned. Please try again.");
         return;
       }
-      // ✅ Session established — route directly to mobile app dashboard.
-      // Don't rely on onAuthStateChange timing — navigate immediately.
-      router.replace("/(tabs)");
+      // ✅ Session established.
+      // Check backend to determine if role selection is needed (new OAuth users)
+      // or if the user can go straight to the dashboard. Do this HERE in login.tsx
+      // so we route before onAuthStateChange in _layout.tsx can conflict.
+      try {
+        const meData = await checkAuthState(data.session.access_token);
+        if (meData.needs_role_selection) {
+          router.replace("/auth/role-select" as any);
+        } else {
+          router.replace("/(tabs)");
+        }
+      } catch {
+        // Backend unreachable — gracefully allow access
+        router.replace("/(tabs)");
+      }
     } catch (e: any) {
       const msg: string = e?.message ?? "Google sign-in failed.";
       if (msg.includes("invalid") || msg.includes("expired")) {
