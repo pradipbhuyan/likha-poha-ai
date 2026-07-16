@@ -810,13 +810,28 @@ grade: str,
     Find textbook explanation, definitions, examples, formulas, important points.
     """
 
+    # ── Hybrid match_count to reduce Supabase egress without quality loss ──
+    # Language/literature subjects need more context for long prose passages.
+    # Hard sciences at Grade 11-12 benefit from extra chunks for long chapters.
+    # All others (Maths/Science Gr 5-10) are well-served by 8 focused chunks.
+    _subj_lower = (subject or "").lower()
+    _is_language = any(s in _subj_lower for s in ("english", "hindi", "sanskrit"))
+    _is_long_subject = any(s in _subj_lower for s in ("physics", "chemistry", "mathematics", "biology"))
+    _is_grade_1112 = grade in ("Grade 11", "Grade 12")
+    if _is_language:
+        _lesson_match_count = 12  # prose chapters need more context
+    elif _is_long_subject and _is_grade_1112:
+        _lesson_match_count = 10  # long Gr 11-12 chapters
+    else:
+        _lesson_match_count = 8   # Gr 5-10 Science/Maths + all others
+
     rag_results = search_textbook_content(
         query=rag_query,
         board=board,
         grade=grade,
         subject=subject,
         chapter=chapter,
-        match_count=15,
+        match_count=_lesson_match_count,
     )
 
     # Fallback 1: no chapter filter (broadens to all subject content)
@@ -827,7 +842,7 @@ grade: str,
             grade=grade,
             subject=subject,
             chapter=None,
-            match_count=15,
+            match_count=_lesson_match_count,
         )
 
     # Fallback 2: strip numeric chapter prefix (e.g. "1. Papa's Spectacles"
@@ -841,7 +856,7 @@ grade: str,
                 grade=grade,
                 subject=subject,
                 chapter=_stripped_num,
-                match_count=15,
+                match_count=_lesson_match_count,
             )
 
     source_type = "RAG" if rag_results else "LLM"
@@ -1185,13 +1200,15 @@ IMPORTANT:
     Find any relevant textbook explanation, definition, formula, example, or concept.
     """
 
+    # Doubts are narrow/specific — 6 targeted chunks is always sufficient.
+    # This is the biggest egress saving: doubts are frequent and short-context.
     rag_results = search_textbook_content(
         query=rag_query,
         board=board,
         grade=grade,
         subject=subject if subject else None,
         chapter=chapter if chapter else None,
-        match_count=15,
+        match_count=6,
     )
 
     if not rag_results:
@@ -1201,7 +1218,7 @@ IMPORTANT:
             grade=grade,
             subject=None,
             chapter=None,
-            match_count=15,
+            match_count=6,
         )
 
     source_type = "RAG" if rag_results else "LLM"
