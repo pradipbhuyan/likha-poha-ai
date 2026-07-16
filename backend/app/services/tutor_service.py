@@ -38,6 +38,17 @@ def _strip_chapter_source_prefix(chapter: str) -> str:
     """Remove a book-source display prefix from a chapter label for cache fallback."""
     return _CHAPTER_SOURCE_PREFIX_RE.sub("", chapter or "").strip()
 
+
+# Subjects whose lessons depend on specific story/passage text that the LLM
+# does NOT know accurately from parametric memory alone. Shared by every
+# lesson-content generator (step lessons, LKB chips, etc.) so none of them
+# guess when there is no textbook grounding for the requested chapter.
+STORY_DEPENDENT_SUBJECTS = {
+    "english", "hindi", "sanskrit",
+    "social science", "social studies", "history", "geography",
+    "economics", "civics", "political science",
+}
+
 TUTOR_SYSTEM = """
 	You are a patient CBSE and SOF Olympiad tutor for Class 1 to Class 10 students.
 
@@ -872,13 +883,8 @@ grade: str,
     # Example of harm avoided: for "Grade 5 English / Papa's Spectacles / Worked Examples"
     # with no RAG context, the LLM invented a completely wrong story with
     # a dustbin, father's anger, and hugging — none of which exists in the book.
-    _STORY_DEPENDENT_SUBJECTS = {
-        "english", "hindi", "sanskrit",
-        "social science", "social studies", "history", "geography",
-        "economics", "civics", "political science",
-    }
     _subject_lower = (subject or "").lower()
-    if not rag_results and any(s in _subject_lower for s in _STORY_DEPENDENT_SUBJECTS):
+    if not rag_results and any(s in _subject_lower for s in STORY_DEPENDENT_SUBJECTS):
         _no_content_msg = (
             f"📚 **Textbook content not yet available**\n\n"
             f"The lesson content for **{chapter}** ({subject}, {grade}) has not been "

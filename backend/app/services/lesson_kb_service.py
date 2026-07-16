@@ -23,6 +23,7 @@ import re
 
 from app.services.grade_db_router import get_content_db
 from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
+from app.services.tutor_service import STORY_DEPENDENT_SUBJECTS
 
 logger = logging.getLogger("likhapoha.lesson_kb")
 
@@ -347,9 +348,26 @@ def _generate_chips(
     """
     try:
         rag_context = _get_rag_context(grade, subject, chapter, step_title)
-        context_section = f"\n\nNCERT CONTENT FOR REFERENCE:\n{rag_context}" if rag_context else ""
-
         has_rag = bool(rag_context.strip())
+
+        # Anti-hallucination guard for language & literature subjects (mirrors
+        # the guard in tutor_service.generate_step_lesson). Without RAG context,
+        # instructing the LLM to "generate generic questions anyway" for a
+        # story-dependent subject reliably produces confidently wrong content —
+        # e.g. "Grade 11 English / The Frog" (a Norman Gale poem) with no RAG
+        # match returned fabricated Class 11 Biology questions about real frogs
+        # (respiration, digestion, metamorphosis), because the LLM defaulted to
+        # its strongest prior for "grade 11" + "frog" once nothing grounded it.
+        _subject_lower = (subject or "").lower()
+        if not has_rag and any(s in _subject_lower for s in STORY_DEPENDENT_SUBJECTS):
+            logger.warning(
+                "LKB: skipping chip generation for %s/%s/%s — story-dependent "
+                "subject with no RAG grounding, refusing to guess.",
+                grade, subject, chapter,
+            )
+            return []
+
+        context_section = f"\n\nNCERT CONTENT FOR REFERENCE:\n{rag_context}" if rag_context else ""
         rag_warning = (
             "\n\nWARNING: No textbook content was retrieved. "
             "If you cannot answer strictly from NCERT knowledge for this chapter, "

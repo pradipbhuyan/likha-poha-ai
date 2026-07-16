@@ -10,7 +10,7 @@ from app.models.schemas import (
     LessonFollowUpResponse,
 )
 
-from app.services.auth_service import get_current_user, admin_client
+from app.services.auth_service import get_current_user, admin_client, require_admin
 from app.services.usage_service import enforce_token_limits
 
 from app.services.tutor_service import (
@@ -726,7 +726,7 @@ def debug_cache_lookup(
     step_title: str,
     mode: str = "CBSE",
     board: str = "CBSE",
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Debug endpoint: show what's in lesson_cache for given parameters.
@@ -839,10 +839,43 @@ class PrewarmStoreRequest(BaseModel):
     force: bool = False
 
 
+# Phrases that only show up when an admin pastes ChatGPT's own meta-commentary
+# (a refusal, hedge, or "this doesn't match" aside) instead of actual lesson
+# content — e.g. a Grade 11 English chapter mismatched against a Biology
+# passage produced "...Not relevant to the lesson." as literal pasted text.
+_PREWARM_HALLUCINATION_PHRASES = (
+    "not relevant to the lesson",
+    "not relevant to this lesson",
+    "irrelevant to the lesson",
+    "irrelevant to this lesson",
+    "outside the scope of this lesson",
+    "as an ai language model",
+    "i don't have access to",
+    "i do not have access to",
+    "i cannot generate",
+    "i'm unable to",
+    "i am unable to",
+)
+
+
+def _prewarm_hallucination_reason(lesson_content):
+    """Return a rejection reason if pasted content looks like a ChatGPT
+    disclaimer/refusal aside rather than real lesson content, else None."""
+    lowered = lesson_content.lower()
+    for phrase in _PREWARM_HALLUCINATION_PHRASES:
+        if phrase in lowered:
+            return (
+                f"This content contains the phrase \"{phrase}\", which looks like "
+                "ChatGPT's own commentary rather than lesson content. Please "
+                "re-check the pasted text before storing it."
+            )
+    return None
+
+
 @router.post("/prewarm/prompt")
 def generate_prewarm_prompt(
     data: PrewarmPromptRequest,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Generate the full ChatGPT prompt for a lesson step, including the RAG chunks.
@@ -951,7 +984,7 @@ End with a short next-step instruction, not a question.
 @router.post("/prewarm/store")
 def store_prewarm_lesson(
     data: PrewarmStoreRequest,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Store a manually-generated lesson (from ChatGPT desktop) in lesson_cache.
@@ -966,6 +999,11 @@ def store_prewarm_lesson(
     if not data.lesson_content or not data.lesson_content.strip():
         from fastapi import HTTPException  # noqa: PLC0415
         raise HTTPException(status_code=400, detail="lesson_content is required")
+
+    _reject_reason = _prewarm_hallucination_reason(data.lesson_content)
+    if _reject_reason:
+        from fastapi import HTTPException  # noqa: PLC0415
+        raise HTTPException(status_code=400, detail=_reject_reason)
 
     cache_key = make_lesson_cache_key(
         board=data.board,
@@ -1023,7 +1061,7 @@ def store_prewarm_lesson(
 @router.post("/prewarm/generate-questions")
 def generate_prewarm_questions(
     data: PrewarmPromptRequest,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Generate textbook-based practice questions from RAG content and store
@@ -1149,7 +1187,8 @@ For descriptive questions use:
 Output ONLY the JSON array. No explanation, no markdown code blocks."""
 
     try:
-        raw = ask_llm(system_prompt, user_prompt, username=getattr(user, "username", None) or getattr(user, "email", "admin"), feature="prewarm_questions")
+        _auth_user = user.get("auth_user") if isinstance(user, dict) else user
+        raw = ask_llm(system_prompt, user_prompt, username=getattr(_auth_user, "username", None) or getattr(_auth_user, "email", "admin"), feature="prewarm_questions")
         # Strip markdown code fences if present
         raw = raw.strip()
         if raw.startswith("```"):
@@ -1209,7 +1248,7 @@ def list_lkb_chips_for_review(
     subject: str,
     chapter: str,
     step_title: str,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """Return all LKB chips for the given chapter/step for admin review."""
     from app.services.lesson_kb_service import get_lkb_chips  # noqa: PLC0415
@@ -1221,7 +1260,7 @@ def list_lkb_chips_for_review(
 def delete_lkb_chip(
     chip_id: str,
     grade: str,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Delete (deactivate) a fabricated/wrong LKB chip.
@@ -1243,7 +1282,7 @@ def delete_all_lkb_chips_for_step(
     subject: str,
     chapter: str,
     step_title: str,
-    user=Depends(get_current_user),
+    user=Depends(require_admin),
 ):
     """
     Delete ALL LKB chips for a chapter/step in one click.
