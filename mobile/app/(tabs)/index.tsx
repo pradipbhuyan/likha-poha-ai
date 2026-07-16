@@ -48,6 +48,7 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [googleName, setGoogleName] = useState("");  // full_name from Google user_metadata
 
   async function loadDashboard() {
     try {
@@ -55,20 +56,24 @@ export default function HomeScreen() {
       const { data: { session } } = await supabase.auth.getSession();
       setUserEmail(session?.user?.email ?? "");
 
+      // Extract Google's display name from Supabase user_metadata
+      // (Google OAuth sets full_name / name in user_metadata)
+      const meta = session?.user?.user_metadata ?? {};
+      const gName = meta.full_name || meta.name || "";
+      if (gName) setGoogleName(gName);
+
       // Try backend summary; on failure, build a minimal response from Supabase session
       try {
         const result = await authFetch("/api/student/dashboard/summary");
         setData(result);
       } catch {
-        // Backend unreachable (wrong API URL, no WiFi to local server, etc.)
-        // Show logged-in dashboard using Supabase auth metadata as fallback
-        const meta = session?.user?.user_metadata ?? {};
+        // Backend unreachable — show dashboard from Supabase session data
         const email = session?.user?.email ?? "";
-        const username = meta.username ?? meta.display_name ?? email.split("@")[0] ?? "Student";
+        const username = gName || meta.username || meta.display_name || email.split("@")[0] || "Student";
         setData({
           student: {
             username,
-            display_name: meta.display_name ?? username,
+            display_name: gName || meta.display_name || username,
             grade: meta.grade ?? "",
             study_streak_days: 0,
             lessons_completed: 0,
@@ -145,8 +150,8 @@ export default function HomeScreen() {
   const student = data.student;
   const recentProgress = data.recent_progress ?? [];
   const testHistory = data.test_history ?? data.mock_tests?.recent ?? [];
-  // Resolve name: prefer display_name, fallback to username, fallback to "Student"
-  const studentName = student?.display_name || student?.username || "Student";
+  // Resolve name: prefer DB display_name, then username, then Google full_name, fallback "Student"
+  const studentName = student?.display_name || student?.username || googleName || "Student";
   // Resolve plan label
   const planLabel = data.subscription?.plan_name ?? (data.subscription?.has_full_access ? "Premium" : "Free Plan");
   // Resolve stats

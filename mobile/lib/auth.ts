@@ -30,6 +30,10 @@ export async function signInWithGoogle(): Promise<{ url: string | null; redirect
     options: {
       redirectTo: redirectUri,
       skipBrowserRedirect: true,
+      queryParams: {
+        // Force Google account picker on every sign-in (prevents auto-login with cached session)
+        prompt: "select_account",
+      },
     },
   });
   if (error) return { url: null, redirectUri, error };
