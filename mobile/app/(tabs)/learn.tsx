@@ -50,20 +50,33 @@ export default function LearnScreen() {
   const [resources, setResources] = useState<Resource[]>([]);
   const [loading, setLoading]   = useState(false);
   const [syllabusLoading, setSyllabusLoading] = useState(true);
+  // Grade lock
+  const [studentGrade, setStudentGrade]   = useState<string | null>(null);
+  const [hasFullAccess, setHasFullAccess] = useState(false);
+  const isGradeLocked = studentGrade !== null && !hasFullAccess;
 
-  // Load syllabus
+  // Load syllabus + enrolled grade + subscription in parallel
   useEffect(() => {
-    authFetch("/api/syllabus")
-      .then((r: any) => {
-        setSyllabus(r.syllabus);
-        const firstSubject = Object.keys(r.syllabus?.["Grade 9"]?.["CBSE"] ?? {})[0] ?? "";
-        const firstChapter = r.syllabus?.["Grade 9"]?.["CBSE"]?.[firstSubject]?.[0] ?? "";
+    Promise.all([
+      authFetch("/api/syllabus").catch(() => null),
+      authFetch("/api/auth/me").catch(() => null),
+      authFetch("/api/subscription/features").catch(() => null),
+    ]).then(([syllabusRes, me, featureData]) => {
+      const enrolledGrade = me?.grade ?? "Grade 9";
+      setStudentGrade(enrolledGrade);
+      setGrade(enrolledGrade);
+      if (featureData?.has_full_access !== undefined) {
+        setHasFullAccess(featureData.has_full_access ?? false);
+      }
+      if (syllabusRes?.syllabus) {
+        setSyllabus(syllabusRes.syllabus);
+        const firstSubject = Object.keys(syllabusRes.syllabus?.[enrolledGrade]?.["CBSE"] ?? {})[0] ?? "";
+        const firstChapter = syllabusRes.syllabus?.[enrolledGrade]?.["CBSE"]?.[firstSubject]?.[0] ?? "";
         setSubject(firstSubject);
         setChapter(firstChapter);
-      })
-      .catch(() => {})
-      .finally(() => setSyllabusLoading(false));
-  }, []);
+      }
+    }).catch(() => {}).finally(() => setSyllabusLoading(false));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load resources when grade/subject/chapter change
   useEffect(() => {
@@ -115,13 +128,30 @@ export default function LearnScreen() {
       ) : (
         <>
           {/* Grade selector */}
-          <Text style={s.label}>Grade</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 14, marginBottom: 8 }}>
+            <Text style={s.label}>Grade</Text>
+            {isGradeLocked && studentGrade && (
+              <Text style={{ fontSize: 10, fontWeight: "600", color: "#6366f1" }}>🔒 Locked to {studentGrade}</Text>
+            )}
+          </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
-            {GRADES.map(g => (
-              <TouchableOpacity key={g} style={[s.chip, grade === g && s.chipActive]} onPress={() => handleGradeChange(g)}>
-                <Text style={[s.chipText, grade === g && s.chipTextActive]}>{g.replace("Grade ", "")}</Text>
-              </TouchableOpacity>
-            ))}
+            {GRADES.map(g => {
+              const locked = isGradeLocked && g !== studentGrade;
+              const isActive = grade === g;
+              return (
+                <TouchableOpacity
+                  key={g}
+                  style={[s.chip, isActive && s.chipActive, locked && s.chipLocked]}
+                  onPress={() => !locked && handleGradeChange(g)}
+                  disabled={locked}
+                  activeOpacity={locked ? 1 : 0.7}
+                >
+                  <Text style={[s.chipText, isActive && s.chipTextActive, locked && s.chipTextLocked]}>
+                    {g.replace("Grade ", "")}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
 
           {/* Subject selector */}
@@ -225,8 +255,10 @@ const s = StyleSheet.create({
   chipRow: { flexDirection: "row", marginBottom: 4 },
   chip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 99, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff", marginRight: 8 },
   chipActive: { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR },
+  chipLocked: { borderColor: "#e5e7eb", backgroundColor: "#f9fafb", opacity: 0.55 },
   chipText: { fontSize: 12, fontWeight: "600", color: "#374151" },
   chipTextActive: { color: "#fff" },
+  chipTextLocked: { color: "#9ca3af" },
   center: { alignItems: "center", paddingVertical: 32, gap: 10 },
   loadingText: { color: "#6b7280", fontSize: 13 },
   emptyBox: { alignItems: "center", paddingVertical: 40, gap: 10 },

@@ -98,6 +98,18 @@ interface SheetData {
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
+// ── Grade label row (shared) ──────────────────────────────────────────────────
+function GradeLabelRow({ isGradeLocked, studentGrade }: { isGradeLocked: boolean; studentGrade: string | null }) {
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 14, marginBottom: 8 }}>
+      <Text style={{ fontSize: 11, fontWeight: "700", color: "#6b7280", textTransform: "uppercase", letterSpacing: 0.6 }}>Grade</Text>
+      {isGradeLocked && studentGrade && (
+        <Text style={{ fontSize: 10, fontWeight: "600", color: "#6366f1" }}>🔒 Locked to {studentGrade}</Text>
+      )}
+    </View>
+  );
+}
+
 // ── Formula Card ──────────────────────────────────────────────────────────────
 function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: boolean }) {
   const [expanded, setExpanded] = useState(false);
@@ -286,6 +298,25 @@ export default function FormulaScreen() {
   const [error, setError]           = useState("");
   const [search, setSearch]         = useState("");
   const [activeChapter, setChapter] = useState<string | null>(null);
+  // Grade lock
+  const [studentGrade, setStudentGrade]   = useState<string | null>(null);
+  const [hasFullAccess, setHasFullAccess] = useState(false);
+  const isGradeLocked = studentGrade !== null && !hasFullAccess;
+
+  // Fetch enrolled grade + subscription on mount
+  useEffect(() => {
+    Promise.all([
+      authFetch("/api/auth/me").catch(() => null),
+      authFetch("/api/subscription/features").catch(() => null),
+    ]).then(([me, featureData]) => {
+      const enrolledGrade = me?.grade ?? "Grade 9";
+      setStudentGrade(enrolledGrade);
+      setGrade(enrolledGrade);
+      if (featureData?.has_full_access !== undefined) {
+        setHasFullAccess(featureData.has_full_access ?? false);
+      }
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function loadSheet() {
     setLoading(true); setError(""); setData(null); setChapter(null);
@@ -329,13 +360,25 @@ export default function FormulaScreen() {
       <Text style={s.pageSubtitle}>CBSE syllabus-aligned quick reference</Text>
 
       {/* Grade selector */}
-      <Text style={s.label}>Grade</Text>
+      <GradeLabelRow isGradeLocked={isGradeLocked} studentGrade={studentGrade} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.chipRow}>
-        {GRADES.map(g => (
-          <TouchableOpacity key={g} style={[s.chip, grade === g && s.chipActive]} onPress={() => setGrade(g)}>
-            <Text style={[s.chipText, grade === g && s.chipTextActive]}>{g.replace("Grade ", "")}</Text>
-          </TouchableOpacity>
-        ))}
+        {GRADES.map(g => {
+          const locked = isGradeLocked && g !== studentGrade;
+          const isActive = grade === g;
+          return (
+            <TouchableOpacity
+              key={g}
+              style={[s.chip, isActive && s.chipActive, locked && s.chipLocked]}
+              onPress={() => !locked && setGrade(g)}
+              disabled={locked}
+              activeOpacity={locked ? 1 : 0.7}
+            >
+              <Text style={[s.chipText, isActive && s.chipTextActive, locked && s.chipTextLocked]}>
+                {g.replace("Grade ", "")}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
 
       {/* Subject selector */}
@@ -452,8 +495,10 @@ const s = StyleSheet.create({
   chipRow: { flexDirection: "row", marginBottom: 4 },
   chip: { paddingHorizontal: 12, paddingVertical: 7, borderRadius: 99, borderWidth: 1.5, borderColor: "#d1d5db", backgroundColor: "#fff", marginRight: 8, alignItems: "center" },
   chipActive: { borderColor: BRAND_COLOR, backgroundColor: BRAND_COLOR },
+  chipLocked: { borderColor: "#e5e7eb", backgroundColor: "#f9fafb", opacity: 0.55 },
   chipText: { fontSize: 12, fontWeight: "600", color: "#374151" },
   chipTextActive: { color: "#fff" },
+  chipTextLocked: { color: "#9ca3af" },
   chipCount: { fontSize: 9, color: "#9ca3af", fontWeight: "600", marginTop: 1 },
   searchInput: { backgroundColor: "#fff", borderWidth: 1.5, borderColor: "#d1d5db", borderRadius: 10, padding: 10, fontSize: 14, color: "#111827", marginBottom: 14 },
   center: { alignItems: "center", paddingVertical: 32 },
