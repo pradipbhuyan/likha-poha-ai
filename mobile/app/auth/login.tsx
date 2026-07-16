@@ -213,20 +213,13 @@ export default function LoginScreen() {
     setErrorMsg("");
 
     try {
-      // Extract just the `code` param — more reliable than passing a non-HTTP scheme URL
-      let codeOrUrl: string = callbackUrl;
-      try {
-        const urlObj = new URL(callbackUrl);
-        const code = urlObj.searchParams.get("code");
-        if (code) { codeOrUrl = code; console.log("[OAuth] code extracted via URL parser, len:", code.length); }
-      } catch {
-        const m = callbackUrl.match(/[?&]code=([^&\s#]+)/);
-        if (m?.[1]) { codeOrUrl = m[1]; console.log("[OAuth] code extracted via regex, len:", m[1].length); }
-        else { console.log("[OAuth] WARNING: no code found in URL"); }
-      }
-
-      console.log("[OAuth] calling exchangeCodeForSession...");
-      const { data, error } = await supabase.auth.exchangeCodeForSession(codeOrUrl);
+      // IMPORTANT: Pass the FULL callback URL, not just the code.
+      // Supabase PKCE v2 stores the code_verifier keyed by the 'state' param.
+      // Stripping the state from the URL means the verifier can't be found → exchange fails.
+      // Supabase JS handles likhapoha:// custom scheme URLs via regex fallback internally.
+      // If the URL is an HTTPS redirect (e.g. https://likhapoha.in?code=...), also pass in full.
+      console.log("[OAuth] calling exchangeCodeForSession with full URL...");
+      const { data, error } = await supabase.auth.exchangeCodeForSession(callbackUrl);
       if (error) {
         console.log("[OAuth] exchangeCodeForSession ERROR:", error.message, error.status);
         setErrorMsg(error.message || "Google sign-in failed. Please try again.");
