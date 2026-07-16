@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
+import * as Application from "expo-application";
 import { authFetch } from "../../lib/authFetch";
 import { signOut } from "../../lib/auth";
 import { BRAND_COLOR } from "../../constants";
@@ -104,7 +105,7 @@ export default function AccountScreen() {
       </TouchableOpacity>
 
       <Text style={styles.versionText}>
-        Likha Poha AI v{Constants.expoConfig?.version ?? Constants.manifest2?.runtimeVersion ?? "1.0.0"} · {Platform.OS === "ios" ? "iOS" : "Android"}
+        Likha Poha AI v{Constants.expoConfig?.version ?? "1.1.0"} ({Platform.OS === "ios" ? "iOS" : "Android"} build {Application.nativeBuildVersion ?? "—"})
       </Text>
     </ScrollView>
   );
