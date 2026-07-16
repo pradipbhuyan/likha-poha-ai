@@ -213,23 +213,47 @@ export default function LoginScreen() {
     setErrorMsg("");
 
     try {
-      // IMPORTANT: Pass the FULL callback URL, not just the code.
-      // Supabase PKCE v2 stores the code_verifier keyed by the 'state' param.
-      // Stripping the state from the URL means the verifier can't be found → exchange fails.
-      // Supabase JS handles likhapoha:// custom scheme URLs via regex fallback internally.
-      // If the URL is an HTTPS redirect (e.g. https://likhapoha.in?code=...), also pass in full.
-      console.log("[OAuth] calling exchangeCodeForSession with full URL...");
-      const { data, error } = await supabase.auth.exchangeCodeForSession(callbackUrl);
-      if (error) {
-        console.log("[OAuth] exchangeCodeForSession ERROR:", error.message, error.status);
-        setErrorMsg(error.message || "Google sign-in failed. Please try again.");
-        return;
+      // Parse the callback URL to detect PKCE (code in query) vs Implicit flow (token in hash)
+      const hashFragment = callbackUrl.includes('#') ? callbackUrl.split('#')[1] : '';
+      const hashParams = new URLSearchParams(hashFragment);
+      const accessToken = hashParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token');
+
+      let session: any = null;
+
+      if (accessToken) {
+        // ── IMPLICIT FLOW: Supabase returned tokens directly in URL hash ──
+        // This happens when the Supabase project uses implicit grant (not PKCE).
+        // Use setSession to establish the session from the tokens.
+        console.log("[OAuth] Implicit flow detected — calling setSession...");
+        const { data, error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken ?? '',
+        });
+        if (error) {
+          console.log("[OAuth] setSession ERROR:", error.message);
+          setErrorMsg(error.message || "Google sign-in failed. Please try again.");
+          return;
+        }
+        session = data.session;
+      } else {
+        // ── PKCE FLOW: Supabase returned a code in the URL query ──
+        console.log("[OAuth] PKCE flow detected — calling exchangeCodeForSession...");
+        const { data, error } = await supabase.auth.exchangeCodeForSession(callbackUrl);
+        if (error) {
+          console.log("[OAuth] exchangeCodeForSession ERROR:", error.message, error.status);
+          setErrorMsg(error.message || "Google sign-in failed. Please try again.");
+          return;
+        }
+        session = data.session;
       }
-      if (!data.session) {
-        console.log("[OAuth] exchangeCodeForSession: no session returned");
+
+      if (!session) {
+        console.log("[OAuth] no session returned");
         setErrorMsg("Sign-in completed but no session was returned. Please try again.");
         return;
       }
+      const data = { session };
       console.log("[OAuth] session established, user:", data.session.user?.email);
 
       // Check backend to determine if role selection needed
