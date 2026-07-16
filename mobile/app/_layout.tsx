@@ -31,7 +31,15 @@ function RootNavigation() {
    */
   const processSession = useCallback(async (sess: any) => {
     if (!sess) {
-      setAuthState("unauthenticated");
+      // Grace period: SIGNED_OUT can fire immediately before SIGNED_IN during OAuth exchange
+      // (old session replaced by new). Wait 1.5s and re-check before going unauthenticated.
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) {
+        setAuthState("unauthenticated");
+      }
+      // If a new session appeared during the grace period, the SIGNED_IN event
+      // will trigger processSession again with the real session — no action needed here.
       return;
     }
     try {
