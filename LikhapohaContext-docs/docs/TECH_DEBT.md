@@ -21,7 +21,7 @@ These five were flagged as the highest-impact items in the 2026-07-16 assessment
 | ID | Item | Category | Status |
 |---|---|---|---|
 | ~~TD-01~~ | ~~OAuth docs contradict actual behavior~~ | Security / Docs | ✅ Done — see [Resolved](#resolved) |
-| [TD-02](#td-02-no-production-observability) | No production observability (errors, uptime) | Operational | Open |
+| [TD-02](#td-02-no-production-observability) | No production observability (errors, uptime) | Operational | In Progress — backend Sentry wired, DSN setup pending on you |
 | [TD-03](#td-03-monolithic-files-at-the-eslint-ceiling) | Monolithic files driving CI lint ceiling | Architecture | Open |
 | [TD-04](#td-04-exam-prep-subscription-model-is-ambiguous) | Exam Prep subscription model is ambiguous | Architecture / Billing | Open |
 | [TD-05](#td-05-mobile-release-process-is-a-single-fragile-local-script) | Mobile release process is a single fragile local script | Operational | Open |
@@ -94,9 +94,21 @@ It's unclear from the code alone which one is authoritative, or whether the lega
 ## Operational
 
 ### TD-02: No production observability
-**Status:** Open · **Priority:** P0
+**Status:** In Progress · **Priority:** P0
 
 No error tracking (Sentry or equivalent), no uptime monitoring, no load testing — all listed as still-pending under `14_ROADMAP.md`'s "Production Readiness" section. The platform is a live paid product; right now, outages and errors are discovered via support tickets, not alerts.
+
+**Progress (2026-07-16):** Backend Sentry wiring is code-complete but dormant — `app/services/observability_service.py`'s `init_sentry()` is called at startup, reads `SENTRY_DSN`/`ENVIRONMENT` from `app/config.py`, and no-ops safely when `SENTRY_DSN` is unset (verified: app imports and boots cleanly either way, `tests/test_health.py` passes). It does nothing until a real DSN is supplied. While in there, also fixed a duplicate `/api/health` route registration in `main.py` that was silently shadowing a dead handler.
+
+**⚠️ Reminder — action needed from you (not automatable):**
+1. Create a Sentry project at sentry.io (Python/FastAPI platform).
+2. Copy its DSN into `SENTRY_DSN` in the real backend `.env` (local) **and** in Railway's env vars (production) — see `backend/.env.example` for the exact var names.
+3. Set `ENVIRONMENT=production` in Railway specifically (defaults to `development` otherwise, which would mistag production events).
+
+**Still open after that:**
+- Frontend (`@sentry/react`) and mobile (`sentry-expo`) Sentry wiring — backend-only so far.
+- Uptime monitor (e.g. UptimeRobot) hitting `GET /api/health`.
+- Load testing — `backend/simulations/*.py` exist as manual journey scripts but aren't scheduled/automated.
 
 ---
 

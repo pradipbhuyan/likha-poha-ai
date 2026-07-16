@@ -34,5 +34,9 @@ class Settings:
     R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME", "lesson-audio")
     R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "")       # e.g. https://pub-xxxx.r2.dev
 
+    # ── Observability ──────────────────────────────────────────────────
+    SENTRY_DSN = os.getenv("SENTRY_DSN")                 # unset = Sentry disabled (local/dev default)
+    ENVIRONMENT = os.getenv("ENVIRONMENT", "development")  # tags Sentry events: development | production
+
 
 settings = Settings()

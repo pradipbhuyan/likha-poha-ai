@@ -16,6 +16,12 @@ from app.services.ssl_service import enable_system_truststore as _enable_ssl
 _enable_ssl()
 _log.info("SSL trust store initialised.")
 
+from app.services.observability_service import init_sentry as _init_sentry
+if _init_sentry():
+    _log.info("Sentry error tracking initialised.", environment=settings.ENVIRONMENT)
+else:
+    _log.info("Sentry disabled (SENTRY_DSN not set).")
+
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
@@ -444,14 +450,6 @@ def health_check():
         "status": "ok",
         "message": "CBSE Tutor API is running"
     }
-
-@app.get("/api/health")
-def api_health():
-    """Return a compact API health response for clients expecting success=true."""
-    return {
-        "success": True
-    }
-
 
 @app.get("/api/health/dependencies")
 def dependency_health():
