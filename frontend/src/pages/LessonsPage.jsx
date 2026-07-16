@@ -2258,6 +2258,7 @@ function LessonsPage({ user, setActivePage }) {
                     lesson={lesson}
                     onEvaluateQuestion={handleEvaluateInlineLessonQuestion}
                     subject={subject}
+                    grade={grade}
                     cardStyle={cardStyle}
                     cardTheme={cardTheme}
                   />

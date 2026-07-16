@@ -1260,6 +1260,122 @@ textarea:focus {
   font-size: 0.98rem !important;
 }
 
+/* ── Grade 5 Quick Check flip card ───────────────────────────────────────────
+   Replaces the type-and-evaluate Quick Check box for Grade 5 lessons only.
+   Front: MCQ question + options. Back (tap/click to flip): correct answer +
+   explanation. Pure CSS 3D transform, no animation library.                */
+.quick-check-flip-card {
+  perspective: 1400px;
+  cursor: pointer;
+}
+
+.quick-check-flip-card:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+.quick-check-flip-inner {
+  position: relative;
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.quick-check-flip-card.is-flipped .quick-check-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.quick-check-flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1.5px solid #fecaca;
+  background: linear-gradient(180deg, #fff5f5, #ffffff);
+}
+
+.quick-check-flip-back {
+  transform: rotateY(180deg);
+  border-color: #bbf7d0;
+  background: linear-gradient(180deg, #f0fdf4, #ffffff);
+}
+
+.quick-check-flip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #dc2626;
+}
+
+.quick-check-flip-back .quick-check-flip-header {
+  color: #16a34a;
+}
+
+.quick-check-options {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.quick-check-options li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.quick-check-option-key {
+  font-weight: 900;
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+.quick-check-answer-line {
+  margin: 0 !important;
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  color: #166534 !important;
+}
+
+.quick-check-answer-key {
+  color: #166534;
+}
+
+.quick-check-explanation {
+  margin-top: 10px;
+  color: #14532d !important;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.quick-check-flip-hint {
+  margin: 14px 0 0 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-check-flip-inner {
+    transition: none;
+  }
+}
+
 .lesson-section-body ul,
 .lesson-section-body ol {
   background: transparent;
@@ -2777,6 +2893,31 @@ body.dark-mode .lesson-inline-feedback p,
 body.dark-mode .lesson-inline-feedback li,
 body.dark-mode .lesson-inline-feedback strong {
   color: #bbf7d0 !important;
+}
+
+/* ── Grade 5 Quick Check flip card — dark mode overrides ────────────────── */
+body.dark-mode .quick-check-flip-face {
+  background: linear-gradient(180deg, #1f1315, #1e293b) !important;
+  border-color: #7f1d1d !important;
+}
+body.dark-mode .quick-check-flip-back {
+  background: linear-gradient(180deg, #052e16, #1e293b) !important;
+  border-color: #166534 !important;
+}
+body.dark-mode .quick-check-options li {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+  color: #f1f5f9 !important;
+}
+body.dark-mode .quick-check-answer-line,
+body.dark-mode .quick-check-answer-key {
+  color: #86efac !important;
+}
+body.dark-mode .quick-check-explanation {
+  color: #bbf7d0 !important;
+}
+body.dark-mode .quick-check-flip-hint {
+  color: #64748b !important;
 }
 
 body.dark-mode .topbar {
@@ -5422,6 +5563,10 @@ body.dark-mode .selected-files-box {
   .lesson-inline-evaluate-btn {
     width: 100%;
     min-width: 0;
+  }
+
+  .quick-check-flip-face {
+    padding: 14px;
   }
 }
 /* Premium AI recommendation cards */

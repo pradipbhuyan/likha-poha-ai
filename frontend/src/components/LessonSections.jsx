@@ -250,6 +250,123 @@ function formatMcqPrompt(prompt) {
     .trim();
 }
 
+// ── Grade 5 Quick Check flip card ────────────────────────────────────────────
+// The backend always formats "Quick check question" sections as MCQ or
+// True/False with an explicit "Answer: X" + "Explanation: ..." (see
+// TUTOR_SYSTEM in tutor_service.py). This parses that structure out of the
+// already-cleaned questionPrompt string so the answer can be hidden on the
+// front of the card and revealed on the back, instead of shown inline.
+// Returns null for anything that doesn't match (legacy cached lessons without
+// the MCQ format) so callers can fall back to the existing behaviour.
+function parseMcqQuestion(prompt) {
+  if (!prompt) return null;
+  let text = prompt.trim();
+
+  const explanationMatch = text.match(/\bExplanation\s*:\s*([\s\S]*)$/i);
+  const explanation = explanationMatch ? explanationMatch[1].trim() : "";
+  if (explanationMatch) text = text.slice(0, explanationMatch.index).trim();
+
+  const answerMatch = text.match(/\bAnswer\s*:\s*([A-D])\b/i);
+  if (!answerMatch) return null;
+  const answerKey = answerMatch[1].toUpperCase();
+  text = text.slice(0, answerMatch.index).trim();
+
+  const optionRegex = /\b([A-D])\)\s*([\s\S]*?)(?=\s*\b[A-D]\)|$)/g;
+  const options = [];
+  let match;
+  while ((match = optionRegex.exec(text)) !== null) {
+    const optionText = match[2].trim();
+    if (optionText) options.push({ key: match[1].toUpperCase(), text: optionText });
+  }
+  if (options.length < 2) return null;
+
+  const firstOptionIndex = text.search(/\b[A-D]\)/);
+  const questionText = (firstOptionIndex > 0 ? text.slice(0, firstOptionIndex) : "").trim();
+  if (!questionText) return null;
+
+  const answerOption = options.find((o) => o.key === answerKey);
+  if (!answerOption) return null;
+
+  return { questionText, options, answerKey, answerText: answerOption.text, explanation };
+}
+
+function QuickCheckFlipCard({ mcq, colours }) {
+  const [flipped, setFlipped] = useState(false);
+
+  function toggle() {
+    setFlipped((f) => !f);
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggle();
+    }
+  }
+
+  const unwrapP = { p: ({ children }) => <>{children}</> };
+
+  return (
+    <div
+      className={`quick-check-flip-card${flipped ? " is-flipped" : ""}`}
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      aria-label={flipped ? "Showing the answer. Tap to see the question again." : "Tap the card to reveal the answer."}
+      onClick={toggle}
+      onKeyDown={handleKeyDown}
+    >
+      <div className="quick-check-flip-inner">
+        <div className="quick-check-flip-face quick-check-flip-front">
+          <div className="quick-check-flip-header">
+            <span>{colours.icon}</span>
+            <span>{colours.label}</span>
+          </div>
+          <div className="lesson-inline-question-text">
+            <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={unwrapP}>
+              {mcq.questionText}
+            </ReactMarkdown>
+          </div>
+          <ul className="quick-check-options">
+            {mcq.options.map((opt) => (
+              <li key={opt.key}>
+                <span className="quick-check-option-key">{opt.key})</span>
+                <span>
+                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={unwrapP}>
+                    {opt.text}
+                  </ReactMarkdown>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="quick-check-flip-hint">Tap the card to see the answer</p>
+        </div>
+
+        <div className="quick-check-flip-face quick-check-flip-back">
+          <div className="quick-check-flip-header">
+            <span>✅</span>
+            <span>Answer</span>
+          </div>
+          <p className="quick-check-answer-line">
+            <span className="quick-check-answer-key">{mcq.answerKey})</span>{" "}
+            <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={unwrapP}>
+              {mcq.answerText}
+            </ReactMarkdown>
+          </p>
+          {mcq.explanation && (
+            <div className="quick-check-explanation">
+              <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                {mcq.explanation}
+              </ReactMarkdown>
+            </div>
+          )}
+          <p className="quick-check-flip-hint">Tap the card to see the question again</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Shared ReactMarkdown table renderer — horizontally scrollable on mobile ──
 function LessonMarkdownTable({ children }) {
   return (
@@ -483,7 +600,7 @@ function CardFeedSection({
 
 // ── Option B: Workbook section (inline expanded, colour left-border) ──────────
 function WorkbookSection({
-  section, index, subject,
+  section, index, subject, grade,
   questionModes, setQuestionModes,
   questionAnswers, setQuestionAnswers,
   questionFeedback, setQuestionFeedback,
@@ -501,12 +618,37 @@ function WorkbookSection({
   const anchorId = `ws-section-${index}`;
   const feedbackRef = useRef(null);
 
+  // Grade 5 only: Quick Check sections render as a flip card (question on the
+  // front, correct answer + explanation on the back) instead of the type-and-
+  // evaluate box. Falls back to the standard box if the content isn't in the
+  // expected MCQ/True-False format (e.g. legacy cached lessons).
+  const isGrade5 = (grade || "").trim().toLowerCase() === "grade 5";
+  const mcq = type === "check" && isGrade5 ? parseMcqQuestion(questionPrompt) : null;
+
   // Scroll to feedback when it appears after evaluation
   useEffect(() => {
     if (feedback && feedbackRef.current) {
       feedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }, [feedback]);
+
+  if (mcq) {
+    return (
+      <div
+        id={anchorId}
+        style={{
+          borderLeft: `3px solid ${colours.accent}`,
+          borderRadius: "0 10px 10px 0",
+          padding: "16px 18px 14px 18px",
+          marginBottom: 22,
+          background: colours.bg,
+          scrollMarginTop: 80,
+        }}
+      >
+        <QuickCheckFlipCard mcq={mcq} colours={colours} />
+      </div>
+    );
+  }
 
   async function handleEvaluate() {
     if (!answer.trim() || !onEvaluateQuestion) return;
@@ -636,7 +778,7 @@ function WorkbookSection({
 }
 
 // ── Main export — switches between Card Feed (Option A) and legacy accordion ──
-function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "default", cardTheme = "brand" }) {
+function LessonSections({ lesson, onEvaluateQuestion, subject, grade, cardStyle = "default", cardTheme = "brand" }) {
   const sections = parseSections(normalizeTutorMarkdown(lesson));
 
   // Shared state for both layouts
@@ -753,6 +895,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, cardStyle = "defa
               section={section}
               index={index}
               subject={subject}
+              grade={grade}
               questionModes={questionModes}
               setQuestionModes={setQuestionModes}
               questionAnswers={questionAnswers}
