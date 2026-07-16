@@ -105,7 +105,17 @@ export default function AccountScreen() {
       </TouchableOpacity>
 
       <Text style={styles.versionText}>
-        Likha Poha AI v{Constants.expoConfig?.version ?? "1.1.0"} ({Platform.OS === "ios" ? "iOS" : "Android"} build {Application.nativeBuildVersion ?? "—"})
+        {(() => {
+          const version = Constants.expoConfig?.version ?? "1.1.0";
+          const os = Platform.OS === "ios" ? "iOS" : "Android";
+          // In Expo Go, nativeBuildVersion is Expo Go's own build number (irrelevant).
+          // Constants.appOwnership === "expo" means running inside Expo Go.
+          const isExpoGo = Constants.appOwnership === "expo";
+          const buildInfo = isExpoGo
+            ? "dev"
+            : (Application.nativeBuildVersion ?? "—");
+          return `Likha Poha AI v${version} (${os} ${isExpoGo ? "Expo Go" : `build ${buildInfo}`})`;
+        })()}
       </Text>
     </ScrollView>
   );
