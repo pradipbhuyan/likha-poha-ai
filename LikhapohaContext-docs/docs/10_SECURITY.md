@@ -1,6 +1,6 @@
 # Security
 
-_Last updated: 2026-06-28_
+_Last updated: 2026-07-16_
 
 ## Authentication
 
@@ -9,27 +9,57 @@ _Last updated: 2026-06-28_
 - Google OAuth: `supabase.auth.signInWithOAuth({ provider: "google" })`
 - PKCE flow (default in Supabase v2): `?code=` returned in redirect URL
 
-### Google OAuth — Critical Rules
+### Google OAuth
 
-**Race condition prevention:**
-- Session recovery `useEffect` MUST skip when `?code=` or `#access_token=` is in URL
-- Both would call `getSession()` + `refreshSession()` concurrently → second refresh invalidates first
-- Guard: `if (savedUser && !_isOAuthReturn) { /* session recovery */ }`
+Flow differs by platform because of how each Supabase client is configured —
+this is intentional, don't try to make them consistent.
 
-**isOAuthRedirect check order:**
-- Check `isOAuthRedirect` FIRST in `onAuthStateChange` before `localStorage.getItem("tutor_user")`
-- User with existing session clicking Google → found localStorage → returned early (WRONG)
-- Fix: localStorage shortcut only for non-OAuth page reloads
+| Platform | Flow     | Why |
+|----------|----------|-----|
+| Web      | PKCE     | Default Supabase v2 browser client behavior. `?code=` in the redirect URL, exchanged via `exchangeCodeForSession`. |
+| Mobile   | Implicit | Tokens arrive in the redirect URL **hash** (`#access_token=...`), not a `?code=`. Calling `exchangeCodeForSession` on this fails with *"both auth code and code verifier should be non-empty"* — never use it as the primary path on mobile. |
 
-**Identity age fallback:**
-- Supabase PKCE exchanges `?code=` in `getSession()` and cleans URL
-- By the time `onAuthStateChange` fires, `window.location.search` has no `code=`
-- Fallback: if `session.user.identities[0].created_at < 5 minutes`, treat as fresh OAuth
+#### Web: `frontend/src/App.jsx`
 
-**authFetch post-OAuth retry:**
-- After `handleLogin()`, pages call `authFetch()` immediately
-- `getSession()` may return null in the 0-800ms window after OAuth exchange
-- Fix: 3-step retrieval — `getSession()` → `refreshSession()` → wait 800ms + retry
+Reliability rule — the only heuristic in use, everything else was tried and removed (see Retired, below):
+
+```js
+const hasAppProfile = !!localStorage.getItem("tutor_user");
+// SIGNED_IN + no app profile → always process as a fresh login, on any device
+```
+
+Explicit PKCE exchange happens before `onAuthStateChange` fires (not left to the listener alone):
+`supabase.auth.exchangeCodeForSession(window.location.href)` on mount, with bounded session retry.
+
+Backend state machine (`backend/app/routes/auth.py` — `GET /me`, `POST /oauth/complete-profile`):
+
+| State | Condition | Frontend action |
+|-------|-----------|------------------|
+| A | `profile_complete=true` | Route to dashboard immediately |
+| B | `needs_role_selection=true` (new user) | Show one-time role picker |
+| C | `needs_role_selection=true` (no profile yet) | Show one-time role picker |
+| D | `409 role_conflict` from `complete-profile` | Friendly error, block |
+
+`oauth_profile_complete` (DB column, default `TRUE`) is the authoritative signal for this table — not identity age, not URL params.
+
+#### Mobile: `mobile/app/auth/login.tsx` — `handleOAuthSuccess()`
+
+Detects which flow actually arrived in the callback URL and branches:
+- `#access_token=` present → implicit flow → `supabase.auth.setSession({ access_token, refresh_token })`
+- `?code=` present, no hash tokens → PKCE flow (not the normal path here, but handled) → `supabase.auth.exchangeCodeForSession(callbackUrl)`
+
+Known fragile points on mobile, each with a specific fix already in place — check these first if OAuth breaks again, in this order:
+
+1. **Secure storage fails silently on an emulator without a lock screen.** Android Keystore requires a secure lock screen for `expo-secure-store`; without one, `setItemAsync` fails silently and the PKCE `code_verifier` (or session) is lost. Fixed by `RobustStorageAdapter` in `mobile/lib/supabase.ts` — writes to an in-memory `Map` first, then best-effort to `SecureStore`; reads try `SecureStore` first, fall back to the `Map`.
+2. **Spurious `SIGNED_OUT` on session replacement.** Supabase fires `SIGNED_OUT` then `SIGNED_IN` when a new OAuth session replaces an old one — without a guard this routes the user back to login mid-flow. Fixed by the `wasAuthenticated` ref in `mobile/app/_layout.tsx`: once `authState` has reached `ready` or `needs_role`, a later `unauthenticated` state is never treated as a real logout (only an explicit `signOut()` resets it).
+3. **Double token exchange.** Both `onNavigationStateChange` and `onShouldStartLoadWithRequest` can fire for the same redirect and both try to exchange it. Fixed by the `oauthExchangeInProgress` ref guard in `handleOAuthSuccess`.
+4. **Post-OAuth routing timing.** Do NOT rely on `_layout.tsx`'s `onAuthStateChange` listener to route after login — `handleOAuthSuccess` calls `checkAuthState(session.access_token)` directly and routes explicitly (`needs_role_selection=true` → `/auth/role-select`, else → `/(tabs)`). Relying on the listener causes timing-conflict misroutes.
+5. **Repeat sign-in auto-logs-in the cached Google account.** Fixed by `queryParams: { prompt: "select_account" }` on `signInWithOAuth` in `mobile/lib/auth.ts`, forcing the account picker every time.
+
+#### Retired — do not reimplement
+
+- ~~Identity age fallback~~ (`session.user.identities[0].created_at < 5min`) — unreliable, removed 2026-06-29.
+- ~~URL param detection~~ (checking for `?code=` presence in `onAuthStateChange`) — Supabase clears the URL before the handler runs, so this never worked reliably.
 
 ### Child Accounts
 - Children log in with username (display name) as login ID

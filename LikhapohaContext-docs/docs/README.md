@@ -40,6 +40,7 @@ Future implementation prompts should reference these documents instead of repeat
 | `PLATFORM_GLOSSARY.md` | Canonical product terminology. |
 | `API_GUIDELINES.md` | API response, error, pagination, and authorization standards. |
 | `DECISION_LOG.md` | Major product and architecture decisions. |
+| `TECH_DEBT.md` | Tracked architecture, security, and operational debt, with status and priority. |
 | `MOBILE_APP.md` | Mobile app strategy, React Native/Expo setup, Play Store submission guide. |
 
 ## Guiding Principles
