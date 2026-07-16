@@ -6,9 +6,16 @@
  *  - Grade 5–12 + subject selector
  *  - Chapter navigation (horizontal chips)
  *  - Formula cards: name, expression (LaTeX→Unicode), description
- *  - Premium expansion: explanation, when to use, step-by-step, mistakes, memory tip
+ *  - Premium expansion: variables, worked example, step-by-step, memory tip
  *  - Search across all chapters/formulas
  *  - Lock indicator for free users
+ *
+ * Field mapping (backend → mobile):
+ *  description   → shown below expression (brief)
+ *  variables     → plain string e.g. "A = area, b = base"
+ *  example       → worked example text (premium)
+ *  solution_steps → step-by-step array or newline string (premium)
+ *  memory_tip    → memory tip (premium)
  */
 import { useEffect, useState } from "react";
 import {
@@ -18,7 +25,7 @@ import {
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 
-// ── LaTeX → Unicode (same as lessons.tsx / doubt.tsx) ────────────────────────
+// ── LaTeX → Unicode ───────────────────────────────────────────────────────────
 function mathToUnicode(latex: string): string {
   if (!latex) return "";
   return latex
@@ -50,30 +57,35 @@ function mathToUnicode(latex: string): string {
     .replace(/\s+/g, " ").trim();
 }
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// ── Types — matches backend _build_chapters() output fields ──────────────────
 interface Formula {
   id?: string;
   name: string;
   expression?: string;
   expression_latex?: string;
-  description?: string;
+  description?: string;         // brief description shown below expression
+  variables?: string;           // plain string e.g. "A = area, b = base, h = height"
   difficulty?: string;
   chapter?: string;
+  topic?: string;
   tags?: string[];
   locked: boolean;
   preview_allowed: boolean;
-  // Premium fields
-  explanation?: string;
-  variables_list?: { symbol: string; meaning: string }[];
-  when_to_use?: string;
-  steps?: string[];
-  common_mistakes?: string[];
-  memory_tip?: string;
-  related_formulas?: string[];
+  // Premium fields — only returned by backend when has_premium=true
+  example?: string;                        // worked example text
+  solution_steps?: string | string[];      // step-by-step (array or newline string)
+  memory_tip?: string;                     // memory tip
 }
 
 interface Topic { topic_name: string; formulas: Formula[]; }
-interface Chapter { chapter_id: string; chapter_name: string; unlocked_count: number; total_formulas: number; locked: boolean; topics: Topic[]; }
+interface Chapter {
+  chapter_id: string;
+  chapter_name: string;
+  unlocked_count: number;
+  total_formulas: number;
+  locked: boolean;
+  topics: Topic[];
+}
 interface SheetData {
   available: boolean;
   has_premium: boolean;
@@ -86,13 +98,22 @@ interface SheetData {
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
-// ── Formula Card ─────────────────────────────────────────────────────────────
+// ── Formula Card ──────────────────────────────────────────────────────────────
 function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const expr = mathToUnicode(formula.expression_latex || formula.expression || "");
 
   const diffColor = formula.difficulty === "easy" ? "#16a34a"
     : formula.difficulty === "hard" ? "#dc2626" : "#7c3aed";
+
+  // Normalise solution_steps to array
+  const steps: string[] = formula.solution_steps
+    ? (Array.isArray(formula.solution_steps)
+        ? (formula.solution_steps as string[])
+        : String(formula.solution_steps).split(/\n+/).filter(Boolean))
+    : [];
+
+  const hasPremiumContent = !!(formula.variables || formula.example || steps.length > 0 || formula.memory_tip);
 
   return (
     <View style={[fc.card, formula.locked && { opacity: 0.75 }]}>
@@ -134,11 +155,15 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
         <Text style={fc.desc}>{formula.description}</Text>
       ) : null}
 
-      {/* Expand button */}
+      {/* Expand / collapse button */}
       {formula.preview_allowed && !formula.locked && (
         <TouchableOpacity style={fc.expandBtn} onPress={() => setExpanded(v => !v)}>
           <Text style={fc.expandBtnText}>
-            {expanded ? "▲ Collapse" : hasPremium ? "▼ Show details" : "🔒 Premium details"}
+            {expanded
+              ? "▲ Collapse"
+              : hasPremium
+                ? (hasPremiumContent ? "▼ Show details" : "▼ Details")
+                : "🔒 Premium details"}
           </Text>
         </TouchableOpacity>
       )}
@@ -150,42 +175,36 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
         </View>
       )}
 
-      {/* Expanded premium content */}
+      {/* ── Expanded: premium content ── */}
       {expanded && hasPremium && !formula.locked && (
         <View style={fc.expandedBox}>
-          {formula.explanation ? (
-            <View style={fc.section}>
-              <Text style={[fc.sectionLabel, { color: "#6366f1" }]}>📖 What this formula means</Text>
-              <Text style={fc.sectionBody}>{formula.explanation}</Text>
-            </View>
-          ) : null}
 
-          {formula.variables_list && formula.variables_list.length > 0 ? (
+          {/* Variables */}
+          {formula.variables ? (
             <View style={fc.section}>
               <Text style={[fc.sectionLabel, { color: "#0891b2" }]}>🔤 Variables</Text>
               <View style={fc.varBox}>
-                {formula.variables_list.map((v, i) => (
-                  <View key={i} style={fc.varRow}>
-                    <Text style={fc.varSymbol}>{v.symbol}</Text>
-                    <Text style={fc.varMeaning}>{v.meaning}</Text>
-                  </View>
-                ))}
+                <Text style={fc.sectionBody}>{formula.variables}</Text>
               </View>
             </View>
           ) : null}
 
-          {formula.when_to_use ? (
+          {/* Worked example */}
+          {formula.example ? (
             <View style={fc.section}>
-              <Text style={[fc.sectionLabel, { color: "#16a34a" }]}>🎯 When to use</Text>
-              <Text style={fc.sectionBody}>{formula.when_to_use}</Text>
+              <Text style={[fc.sectionLabel, { color: "#d97706" }]}>✏️ Worked example</Text>
+              <View style={fc.stepsBox}>
+                <Text style={fc.stepText}>{formula.example}</Text>
+              </View>
             </View>
           ) : null}
 
-          {formula.steps && formula.steps.length > 0 ? (
+          {/* Step-by-step solution */}
+          {steps.length > 0 ? (
             <View style={fc.section}>
-              <Text style={[fc.sectionLabel, { color: "#d97706" }]}>✏️ Step-by-step example</Text>
+              <Text style={[fc.sectionLabel, { color: "#16a34a" }]}>📋 Step-by-step solution</Text>
               <View style={fc.stepsBox}>
-                {formula.steps.map((step, i) => (
+                {steps.map((step, i) => (
                   <View key={i} style={fc.stepRow}>
                     <View style={fc.stepNum}><Text style={fc.stepNumText}>{i + 1}</Text></View>
                     <Text style={fc.stepText}>{step}</Text>
@@ -195,20 +214,7 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
             </View>
           ) : null}
 
-          {formula.common_mistakes && formula.common_mistakes.length > 0 ? (
-            <View style={fc.section}>
-              <Text style={[fc.sectionLabel, { color: "#dc2626" }]}>⚠️ Common mistakes</Text>
-              <View style={fc.mistakesBox}>
-                {formula.common_mistakes.map((m, i) => (
-                  <View key={i} style={fc.mistakeRow}>
-                    <Text style={fc.mistakeX}>✗</Text>
-                    <Text style={fc.mistakeText}>{m}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          ) : null}
-
+          {/* Memory tip */}
           {formula.memory_tip ? (
             <View style={[fc.section, fc.tipBox]}>
               <Text style={[fc.sectionLabel, { color: "#d97706", marginBottom: 4 }]}>💡 Memory tip</Text>
@@ -216,26 +222,21 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
             </View>
           ) : null}
 
-          {formula.related_formulas && formula.related_formulas.length > 0 ? (
-            <View style={fc.section}>
-              <Text style={[fc.sectionLabel, { color: "#7c3aed" }]}>🔗 Related formulas</Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
-                {formula.related_formulas.map((r, i) => (
-                  <View key={i} style={fc.relatedChip}>
-                    <Text style={fc.relatedChipText}>{r}</Text>
-                  </View>
-                ))}
-              </View>
+          {/* Fallback if premium but no extra data in DB yet */}
+          {!hasPremiumContent ? (
+            <View style={fc.noDataBox}>
+              <Text style={fc.noDataText}>Detailed notes for this formula are being added soon.</Text>
             </View>
           ) : null}
+
         </View>
       )}
 
-      {/* Free user: show upgrade prompt when expanded without premium */}
+      {/* ── Expanded: free user upgrade prompt ── */}
       {expanded && !hasPremium && !formula.locked && (
         <View style={fc.upgradeBanner}>
           <Text style={fc.upgradeBannerText}>
-            🔒 Upgrade to Premium to see solved examples, step-by-step solutions, memory tips, and practice MCQs.
+            🔒 Upgrade to Premium to see solved examples, step-by-step solutions, and memory tips.
           </Text>
         </View>
       )}
@@ -250,7 +251,7 @@ const fc = StyleSheet.create({
   tagRow: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
   badge: { paddingHorizontal: 7, paddingVertical: 2, borderRadius: 99 },
   badgeText: { fontSize: 10, fontWeight: "700" },
-  exprBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: "10px 12px" as any, marginBottom: 8, borderWidth: 1, borderColor: "#e2e8f0" },
+  exprBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, marginBottom: 8, borderWidth: 1, borderColor: "#e2e8f0" },
   expr: { fontFamily: "monospace", fontSize: 15, fontWeight: "600", color: "#1e293b" },
   exprBoxLocked: { backgroundColor: "#f1f5f9", borderRadius: 8, padding: 10, marginBottom: 8 },
   exprLocked: { fontFamily: "monospace", fontSize: 15, color: "#94a3b8", letterSpacing: 4 },
@@ -264,21 +265,14 @@ const fc = StyleSheet.create({
   sectionLabel: { fontSize: 10, fontWeight: "800", textTransform: "uppercase", letterSpacing: 0.6, marginBottom: 6 },
   sectionBody: { fontSize: 13, color: "#374151", lineHeight: 20 },
   varBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#e5e7eb" },
-  varRow: { flexDirection: "row", gap: 8, marginBottom: 4, alignItems: "flex-start" },
-  varSymbol: { fontFamily: "monospace", fontSize: 13, fontWeight: "700", color: BRAND_COLOR, minWidth: 36 },
-  varMeaning: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
   stepsBox: { backgroundColor: "#fffbeb", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fde68a" },
   stepRow: { flexDirection: "row", gap: 8, marginBottom: 6, alignItems: "flex-start" },
   stepNum: { width: 20, height: 20, borderRadius: 10, backgroundColor: "#f59e0b", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 },
   stepNumText: { fontSize: 10, fontWeight: "800", color: "#fff" },
   stepText: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
-  mistakesBox: { backgroundColor: "#fff1f2", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fecdd3" },
-  mistakeRow: { flexDirection: "row", gap: 6, marginBottom: 4, alignItems: "flex-start" },
-  mistakeX: { color: "#dc2626", fontWeight: "700", fontSize: 13, flexShrink: 0, marginTop: 1 },
-  mistakeText: { fontSize: 12, color: "#374151", flex: 1, lineHeight: 18 },
   tipBox: { backgroundColor: "#fefce8", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#fde68a" },
-  relatedChip: { backgroundColor: "rgba(124,58,237,.08)", borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1, borderColor: "rgba(124,58,237,.2)" },
-  relatedChipText: { fontSize: 11, color: "#7c3aed", fontWeight: "600" },
+  noDataBox: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, borderWidth: 1, borderColor: "#e2e8f0" },
+  noDataText: { fontSize: 12, color: "#9ca3af", fontStyle: "italic", textAlign: "center" },
   upgradeBanner: { backgroundColor: "#f8fafc", borderRadius: 8, padding: 10, marginTop: 8, borderWidth: 1, borderColor: "#e2e8f0", borderStyle: "dashed" },
   upgradeBannerText: { fontSize: 12, color: "#64748b", fontStyle: "italic", lineHeight: 18 },
 });
@@ -309,13 +303,10 @@ export default function FormulaScreen() {
 
   useEffect(() => { loadSheet(); }, [grade, subject]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Filter by search
   function getDisplayed(): Chapter[] {
     if (!data?.chapters) return [];
     const q = search.toLowerCase().trim();
-    if (!q) {
-      return data.chapters.filter(ch => ch.chapter_id === activeChapter);
-    }
+    if (!q) return data.chapters.filter(ch => ch.chapter_id === activeChapter);
     return data.chapters.map(ch => ({
       ...ch,
       topics: ch.topics.map(t => ({
@@ -396,10 +387,8 @@ export default function FormulaScreen() {
       {/* Upgrade banner */}
       {!loading && data?.available && !hasPremium && (
         <View style={s.upgradeBanner}>
-          <View>
-            <Text style={s.upgradeBannerTitle}>🔒 Unlock Full Formula Library</Text>
-            <Text style={s.upgradeBannerSub}>{data.unlocked_count} of {data.total_count} formulas shown. Upgrade for examples and memory tips.</Text>
-          </View>
+          <Text style={s.upgradeBannerTitle}>🔒 Unlock Full Formula Library</Text>
+          <Text style={s.upgradeBannerSub}>{data.unlocked_count} of {data.total_count} formulas shown. Upgrade for examples and memory tips.</Text>
         </View>
       )}
 
@@ -426,17 +415,15 @@ export default function FormulaScreen() {
 
       {/* Formula cards */}
       {!loading && !error && data?.available && (
-        <>
-          {displayed.length === 0 ? (
-            <View style={s.emptyBox}>
-              <Text style={s.emptySubtitle}>{search ? "No formulas match your search." : "Select a chapter to view formulas."}</Text>
-            </View>
-          ) : (
-            displayed.map(ch => (
+        displayed.length === 0 ? (
+          <View style={s.emptyBox}>
+            <Text style={s.emptySubtitle}>{search ? "No formulas match your search." : "Select a chapter to view formulas."}</Text>
+          </View>
+        ) : (
+          <>
+            {displayed.map(ch => (
               <View key={ch.chapter_id} style={{ marginBottom: 20 }}>
-                {search ? (
-                  <Text style={s.chapterTitle}>{ch.chapter_name}</Text>
-                ) : null}
+                {search ? <Text style={s.chapterTitle}>{ch.chapter_name}</Text> : null}
                 {ch.topics.map(t => (
                   <View key={t.topic_name}>
                     {t.topic_name !== "General" ? (
@@ -448,9 +435,9 @@ export default function FormulaScreen() {
                   </View>
                 ))}
               </View>
-            ))
-          )}
-        </>
+            ))}
+          </>
+        )
       )}
     </ScrollView>
   );
