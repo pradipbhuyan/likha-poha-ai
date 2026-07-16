@@ -112,7 +112,25 @@ with open("app.json", "w") as f: json.dump(d, f, indent=2)
 PYEOF
 echo "✅ app.json versionCode updated to ${NEW_BUILD}"
 
-# ── 2. Install JS dependencies ────────────────────────────────
+# ── 2a. Commit + push the version bump immediately ────────────
+# Do this BEFORE building so the bump is never lost — not to a
+# failed build, and not to a `git checkout -- app.json` on another
+# machine before its next pull. app.json in git is the single
+# source of truth for versionCode; this keeps it that way.
+cd ..
+git add mobile/app.json
+if git commit -m "chore(mobile): bump versionCode to ${NEW_BUILD} [build_apk.sh]" >/dev/null 2>&1; then
+  if git push >/dev/null 2>&1; then
+    echo "✅ versionCode ${NEW_BUILD} committed + pushed"
+  else
+    echo "⚠️  versionCode ${NEW_BUILD} committed locally but push failed — push manually before building on another machine"
+  fi
+else
+  echo "ℹ️  versionCode ${NEW_BUILD} already committed"
+fi
+cd mobile
+
+# ── 2b. Install JS dependencies ────────────────────────────────
 echo ""
 echo "📦 Installing dependencies..."
 npm install
