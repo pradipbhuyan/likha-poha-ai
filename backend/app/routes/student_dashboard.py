@@ -201,6 +201,7 @@ def get_student_dashboard_summary(student=Depends(require_student)):
         "student": {
             "id": uid,
             "username": username,
+            "display_name": profile.get("display_name") or profile.get("full_name") or username or "",
             "grade": profile.get("grade", "Grade 9"),
             "board": profile.get("board", "CBSE"),
             "avatar": profile.get("avatar", ""),
