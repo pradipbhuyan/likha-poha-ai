@@ -126,18 +126,34 @@ rm -rf android
 # CI=1 skips the "uncommitted changes" interactive prompt
 CI=1 npx expo prebuild --platform android --clean --no-install
 
-# ── 4. Create minimal network_security_config (no Zscaler) ───
+# ── 4. Create network_security_config with Zscaler cert support ─
 echo ""
 echo "🔐 Creating network security config..."
 mkdir -p android/app/src/main/res/xml
+mkdir -p android/app/src/main/res/raw
 
-cat > android/app/src/main/res/xml/network_security_config.xml << 'XML'
+# ── 4a. Embed Zscaler CA cert if present on this machine ─────────
+ZSCALER_CERT_ADDED=""
+if security find-certificate -a -p -c 'Zscaler' /Library/Keychains/System.keychain > /tmp/zscaler_root_ca.pem 2>/dev/null && \
+   [ -s /tmp/zscaler_root_ca.pem ]; then
+  # Convert PEM to DER and copy into APK raw resources
+  openssl x509 -in /tmp/zscaler_root_ca.pem -outform DER \
+    -out android/app/src/main/res/raw/zscaler_root_ca.der 2>/dev/null && \
+  ZSCALER_CERT_ADDED='<certificates src="@raw/zscaler_root_ca" />' && \
+  echo "  ✅ Zscaler Root CA embedded in APK (corporate network support)"
+else
+  echo "  ℹ️  Zscaler cert not found — non-corporate build (safe to ignore)"
+fi
+
+# ── 4b. Write network_security_config.xml ────────────────────────
+cat > android/app/src/main/res/xml/network_security_config.xml << XML
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>
             <certificates src="system" />
             <certificates src="user" />
+            ${ZSCALER_CERT_ADDED}
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
