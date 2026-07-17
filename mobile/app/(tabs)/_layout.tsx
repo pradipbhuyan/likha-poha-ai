@@ -96,7 +96,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="formula"
         options={{
-          title: "Formulas",
+          title: "Formulas & Concepts",
           tabBarLabel: "Formula",
           tabBarIcon: ({ focused }) => <TabIcon name="grid" focused={focused} />,
         }}
