@@ -37,18 +37,50 @@ async function loadKatex() {
   return katex;
 }
 
+// ── Detect whether an expression is a math formula or plain text ─────────────
+// Returns true if the string contains math symbols → render with KaTeX.
+// Returns false if it looks like a plain-text definition/concept → render as text.
+function isMathFormula(expr) {
+  if (!expr) return false;
+  // Strong math indicators
+  const mathSymbols = /[=+\-*/^÷×∝→←≈≠≤≥∞∑∫√π²³¹₀₁₂₃αβγδθλμωΩ]/;
+  if (mathSymbols.test(expr)) return true;
+  // LaTeX commands (e.g. \frac, \int)
+  if (/\\[a-zA-Z]/.test(expr)) return true;
+  // Short expressions like "F = ma" or "PV = nRT" are formulas
+  if (expr.length < 30 && /[A-Z]/.test(expr)) return true;
+  // Long sentences with no math → plain text definition
+  return false;
+}
+
 function MathExpr({ tex, display = false }) {
   const ref = useRef(null);
+  const isFormula = isMathFormula(tex);
+
   useEffect(() => {
-    if (!tex || !ref.current) return;
+    if (!isFormula || !tex || !ref.current) return;
     loadKatex().then(k => {
       if (!k || !ref.current) return;
       try {
         k.render(tex, ref.current, { throwOnError: false, displayMode: display, output: "html" });
       } catch { if (ref.current) ref.current.textContent = tex; }
     });
-  }, [tex, display]);
-  // Show expression text while KaTeX loads
+  }, [tex, display, isFormula]);
+
+  if (!isFormula) {
+    // Plain text definition — render as readable text, not math
+    return (
+      <span style={{
+        fontFamily: "inherit", fontSize: ".88rem", fontStyle: "normal",
+        fontWeight: 500, color: "var(--text,#374151)",
+        wordBreak: "break-word", whiteSpace: "normal",
+      }}>
+        {tex}
+      </span>
+    );
+  }
+
+  // Math formula — render with KaTeX
   return (
     <span ref={ref} style={{ fontFamily: "monospace", fontSize: display ? "1rem" : ".95rem" }}>
       {tex}
@@ -764,10 +796,29 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
 
       {/* Expression — visible for preview formulas, blurred for fully locked */}
       {formula.preview_allowed ? (
-        <div data-testid="formula-expression"
-          style={{ fontFamily: "monospace", fontSize: ".93rem", fontWeight: 600, background: "var(--surface2,#f8fafc)", padding: "6px 10px", borderRadius: 6, marginBottom: 6, userSelect: "all", wordBreak: "break-word", overflowWrap: "anywhere", whiteSpace: "normal", overflow: "hidden" }}>
-          <MathExpr tex={formula.expression_latex || formula.expression} />
-        </div>
+        (() => {
+          const exprText = formula.expression_latex || formula.expression || "";
+          const isFormula = isMathFormula(exprText);
+          return (
+            <div data-testid="formula-expression"
+              style={{
+                fontFamily: isFormula ? "monospace" : "inherit",
+                fontSize: isFormula ? ".93rem" : ".85rem",
+                fontWeight: isFormula ? 600 : 500,
+                fontStyle: isFormula ? "normal" : "normal",
+                background: isFormula ? "var(--surface2,#f8fafc)" : "rgba(99,102,241,0.06)",
+                border: isFormula ? "none" : "1px solid rgba(99,102,241,0.15)",
+                padding: "6px 10px", borderRadius: 6, marginBottom: 6,
+                userSelect: "all", wordBreak: "break-word",
+                overflowWrap: "anywhere", whiteSpace: "normal", overflow: "hidden",
+                color: isFormula ? "inherit" : "#374151",
+                lineHeight: 1.5,
+              }}>
+              {!isFormula && <span style={{ fontSize: ".65rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", display: "block", marginBottom: 3 }}>📖 Key Concept</span>}
+              <MathExpr tex={exprText} />
+            </div>
+          );
+        })()
       ) : (
         <div style={{ fontFamily: "monospace", fontSize: ".88rem", background: "#f1f5f9", padding: "5px 10px", borderRadius: 6, marginBottom: 6, filter: "blur(4px)", userSelect: "none", pointerEvents: "none" }}>
           {formula.expression?.substring(0, 10)}•••
