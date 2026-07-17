@@ -765,7 +765,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
       {/* Expression — visible for preview formulas, blurred for fully locked */}
       {formula.preview_allowed ? (
         <div data-testid="formula-expression"
-          style={{ fontFamily: "monospace", fontSize: ".93rem", fontWeight: 600, background: "var(--surface2,#f8fafc)", padding: "6px 10px", borderRadius: 6, marginBottom: 6, userSelect: "all" }}>
+          style={{ fontFamily: "monospace", fontSize: ".93rem", fontWeight: 600, background: "var(--surface2,#f8fafc)", padding: "6px 10px", borderRadius: 6, marginBottom: 6, userSelect: "all", wordBreak: "break-word", overflowWrap: "anywhere", whiteSpace: "normal", overflow: "hidden" }}>
           <MathExpr tex={formula.expression_latex || formula.expression} />
         </div>
       ) : (
