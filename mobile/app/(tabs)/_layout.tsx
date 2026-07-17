@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { Tabs, useRouter } from "expo-router";
+import { Tabs, useRouter, useSegments } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { BRAND_COLOR } from "../../constants";
+import { authFetch } from "../../lib/authFetch";
+import ReportIssueModal from "../../components/ReportIssueModal";
 
 // Professional Feather vector icon tab component
 // Feather is the upstream of Lucide — identical icon designs
@@ -39,7 +42,21 @@ function HeaderLogo() {
 }
 
 export default function TabsLayout() {
+  const [canReportIssues, setCanReportIssues] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const segments = useSegments();
+
+  // Current screen = last segment (e.g. "lessons", "doubt", "formula")
+  const currentScreen = segments[segments.length - 1] || "home";
+
+  useEffect(() => {
+    authFetch("/api/auth/me").then((me: any) => {
+      setCanReportIssues(!!me?.can_report_issues);
+    }).catch(() => {});
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
+    <>
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: BRAND_COLOR,
@@ -96,7 +113,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="formula"
         options={{
-          title: "Formulas",
+          title: "Formulas & Concepts",
           tabBarLabel: "Formula",
           tabBarIcon: ({ focused }) => <TabIcon name="grid" focused={focused} />,
         }}
@@ -142,5 +159,31 @@ export default function TabsLayout() {
         }}
       />
     </Tabs>
+
+    {/* Floating Report Issue button — only for authorized users */}
+    {canReportIssues && (
+      <>
+        <TouchableOpacity
+          onPress={() => setReportOpen(true)}
+          style={{
+            position: "absolute", bottom: 88, right: 16, zIndex: 900,
+            backgroundColor: "#6366f1", borderRadius: 24,
+            paddingHorizontal: 14, paddingVertical: 9,
+            flexDirection: "row", alignItems: "center", gap: 6,
+            shadowColor: "#6366f1", shadowOffset: { width: 0, height: 3 },
+            shadowOpacity: 0.4, shadowRadius: 8, elevation: 6,
+          }}>
+          <Feather name="alert-circle" size={15} color="#fff" />
+          <Text style={{ color: "#fff", fontSize: 12, fontWeight: "700" }}>Report Issue</Text>
+        </TouchableOpacity>
+
+        <ReportIssueModal
+          visible={reportOpen}
+          onClose={() => setReportOpen(false)}
+          currentScreen={currentScreen}
+        />
+      </>
+    )}
+    </>
   );
 }

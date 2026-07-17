@@ -2284,15 +2284,44 @@ function FormulaSheetImportSection({ user }) {
 
       {/* JSON textarea */}
       <div className="premium-card" style={{ marginBottom: 14 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
           <strong style={{ fontSize: ".85rem" }}>Paste Formula JSON</strong>
-          <button
-            onClick={() => { setJsonText(TEMPLATE); setPreview(null); setImportResult(null); setImportError(null); }}
-            className="secondary-btn"
-            style={{ fontSize: ".78rem", padding: "5px 12px" }}
-          >
-            📋 Load Template
-          </button>
+          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+            {/* ── Upload JSON file button ── */}
+            <label
+              title="Upload a .json file"
+              style={{ fontSize: ".78rem", padding: "5px 12px", borderRadius: 7, border: "1px solid var(--border,#e2e8f0)", background: "var(--surface2,#f8fafc)", cursor: "pointer", fontFamily: "inherit", fontWeight: 600, color: "var(--text,#374151)", display: "inline-flex", alignItems: "center", gap: 4 }}>
+              📂 Upload JSON
+              <input
+                type="file"
+                accept=".json,application/json"
+                style={{ display: "none" }}
+                onChange={e => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const reader = new FileReader();
+                  reader.onload = ev => {
+                    const text = ev.target?.result || "";
+                    setJsonText(text);
+                    setPreview(null);
+                    setImportResult(null);
+                    setImportError(null);
+                  };
+                  reader.onerror = () => alert("Could not read file.");
+                  reader.readAsText(file);
+                  // Reset input so same file can be re-uploaded
+                  e.target.value = "";
+                }}
+              />
+            </label>
+            <button
+              onClick={() => { setJsonText(TEMPLATE); setPreview(null); setImportResult(null); setImportError(null); }}
+              className="secondary-btn"
+              style={{ fontSize: ".78rem", padding: "5px 12px" }}
+            >
+              📋 Load Template
+            </button>
+          </div>
         </div>
         <textarea
           value={jsonText}

@@ -110,10 +110,21 @@ function GradeLabelRow({ isGradeLocked, studentGrade }: { isGradeLocked: boolean
   );
 }
 
+// ── Detect whether expression is a math formula or plain-text concept ────────
+function isMathFormula(expr: string): boolean {
+  if (!expr) return false;
+  if (/[=+\-*/^÷×∝→←≈≠≤≥∞∑∫√π²³¹₀₁₂₃αβγδθλμωΩ]/.test(expr)) return true;
+  if (/\\[a-zA-Z]/.test(expr)) return true;
+  if (expr.length < 30 && /[A-Z]/.test(expr)) return true;
+  return false;
+}
+
 // ── Formula Card ──────────────────────────────────────────────────────────────
 function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: boolean }) {
   const [expanded, setExpanded] = useState(false);
-  const expr = mathToUnicode(formula.expression_latex || formula.expression || "");
+  const rawExpr = formula.expression_latex || formula.expression || "";
+  const expr = mathToUnicode(rawExpr);
+  const isFormula = isMathFormula(rawExpr);
 
   const diffColor = formula.difficulty === "easy" ? "#16a34a"
     : formula.difficulty === "hard" ? "#dc2626" : "#7c3aed";
@@ -151,10 +162,13 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
         </View>
       </View>
 
-      {/* Expression */}
+      {/* Expression — math formula or plain-text concept */}
       {formula.preview_allowed && expr ? (
-        <View style={fc.exprBox}>
-          <Text style={fc.expr} selectable>{expr}</Text>
+        <View style={[fc.exprBox, !isFormula && { backgroundColor: "rgba(99,102,241,0.06)", borderWidth: 1, borderColor: "rgba(99,102,241,0.15)" }]}>
+          {!isFormula && (
+            <Text style={{ fontSize: 9, fontWeight: "800", color: BRAND_COLOR, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 3 }}>📖 Key Concept</Text>
+          )}
+          <Text style={[fc.expr, !isFormula && { fontFamily: undefined, fontStyle: "normal", fontSize: 13, fontWeight: "500", color: "#374151" }]} selectable>{expr}</Text>
         </View>
       ) : !formula.preview_allowed ? (
         <View style={fc.exprBoxLocked}>
@@ -356,7 +370,7 @@ export default function FormulaScreen() {
 
   return (
     <ScrollView style={s.container} contentContainerStyle={s.content}>
-      <Text style={s.pageTitle}>📐 Formula Sheet</Text>
+      <Text style={s.pageTitle}>📐 Formulas & Concepts</Text>
       <Text style={s.pageSubtitle}>CBSE syllabus-aligned quick reference</Text>
 
       {/* Grade selector */}

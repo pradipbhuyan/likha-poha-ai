@@ -99,8 +99,8 @@ const ROLE_STEPS = {
       icon: HelpCircle,
     },
     {
-      title: "Formula Sheet",
-      text: "Go to Formula Sheet → pick your Grade and Subject → see all key formulas chapter-wise. Free preview included. Full access with paid plan.",
+      title: "Formulas & Concepts",
+      text: "Go to Formulas & Concepts → pick your Grade and Subject → see all key formulas, definitions, and concepts chapter-wise. Free preview included. Full access with paid plan.",
       icon: ClipboardList,
     },
     {
