@@ -308,7 +308,7 @@ function Sidebar({
     },
     {
       key: "formulaSheet",
-      label: "Formula Sheet",
+      label: "Formulas & Concepts",
       icon: Calculator,
       roles: ["student"],
       hideForAdmin: true,

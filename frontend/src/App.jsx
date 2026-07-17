@@ -164,7 +164,7 @@ const PAGE_META = {
     icon: "🧪",
   },
   formulaSheet: {
-    title: "Formula Sheet",
+    title: "Formulas & Concepts",
     subtitle: "Chapter-wise CBSE formula reference for your grade. Preview free, unlock all with Premium.",
     icon: "📐",
   },

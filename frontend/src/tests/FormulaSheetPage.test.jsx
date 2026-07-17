@@ -137,7 +137,7 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
     authFetch.mockResolvedValueOnce(FREE_RESPONSE);
     render(<FormulaSheetPage user={USER_FREE} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("formula-sheet-page")).toBeInTheDocument();
-    expect(document.body.textContent).toContain("Formula Sheet");
+    expect(document.body.textContent).toContain("Formulas");
   });
 
   test("shows grade in heading", async () => {

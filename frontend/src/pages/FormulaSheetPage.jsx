@@ -996,9 +996,9 @@ export default function FormulaSheetPage({ user, setActivePage }) {
 
       {/* Header */}
       <div style={{ marginBottom: 12 }}>
-        <h2 style={{ fontWeight: 800, fontSize: "1.15rem", margin: "0 0 3px" }}>📐 Formula Sheet</h2>
+        <h2 style={{ fontWeight: 800, fontSize: "1.15rem", margin: "0 0 3px" }}>📐 Formulas & Concepts</h2>
         <div style={{ fontSize: ".85rem", color: "var(--text-muted,#64748b)", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <span>{selectedGrade} · CBSE Reference</span>
+          <span>{selectedGrade} · CBSE formulas, definitions & key concepts — chapter-wise</span>
           {data && (
             <span style={{ fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".77rem" }}>
               {hasPremium ? `✓ ${data.total_count} formulas unlocked` : `🔒 ${data.unlocked_count} of ${data.total_count} preview`}
@@ -1084,9 +1084,9 @@ export default function FormulaSheetPage({ user, setActivePage }) {
             borderRadius: 10, padding: "10px 16px", marginBottom: 12,
             display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
           <div>
-            <div style={{ fontWeight: 700, fontSize: ".88rem" }}>Unlock Full Formula Library</div>
+            <div style={{ fontWeight: 700, fontSize: ".88rem" }}>Unlock Full Formula & Concept Library</div>
             <div style={{ fontSize: ".75rem", opacity: .9 }}>
-              You have {data.unlocked_count} preview formulas. Upgrade to unlock all {data.total_count} with examples and memory tips.
+              You have {data.unlocked_count} previews. Upgrade to unlock all {data.total_count} formulas & concepts with examples and memory tips.
             </div>
           </div>
           <button data-testid="upgrade-cta" onClick={handleUpgrade}
