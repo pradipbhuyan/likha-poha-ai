@@ -4,6 +4,7 @@ import {
   normalizeDollarMath,
   normalizeLatexParentheses,
   normalizePlainAlgebra,
+  normalizeSquareBracketMath,
   normalizeTutorMarkdown,
   removeUnsupportedQuestionClosers,
 } from "../utils/markdownCleanup";
@@ -131,5 +132,56 @@ describe("markdownCleanup", () => {
     expect(result).toContain("$$v = v_0 + at$$");
     expect(result).toContain("$$x = x_0 + v_0t + \\frac{1}{2}at^2$$");
     expect(result).toContain("$$v^2 = v_0^2 + 2ax$$");
+  });
+
+  test("splits multiple $$eq$$ blocks with NO separator between them (defect 8467c3f3)", () => {
+    // The LLM sometimes concatenates display-math blocks with zero whitespace
+    // between the closing $$ of one equation and the opening $$ of the next:
+    //   "$$v = v_0 + at$$$$x = x_0 + v_0t + \frac{1}{2}at^2$$$$v^2 = v_0^2 + 2ax$$"
+    // The old pre-step regex required at least one space/tab between the two
+    // $$ pairs ([ \t]+), so a bare "$$$$" boundary fell through untouched and
+    // the per-line Step 1 regex paired the dollar signs incorrectly, producing
+    // garbled output like "v = v0 + at x = x0 + v0t + 1/2at^2$$ v^2 v0^2 + 2ax"
+    // with stray literal "$$" and mismatched inline/display delimiters.
+    const input =
+      "$$v = v_0 + at$$$$x = x_0 + v_0t + \\frac{1}{2}at^2$$$$v^2 = v_0^2 + 2ax$$";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe(
+      [
+        "$$v = v_0 + at$$",
+        "$$x = x_0 + v_0t + \\frac{1}{2}at^2$$",
+        "$$v^2 = v_0^2 + 2ax$$",
+      ].join("\n")
+    );
+    expect(result).not.toMatch(/\$\$\$/);
+  });
+
+  test("normalizeSquareBracketMath does not catastrophically backtrack on interval-style brackets", () => {
+    // Discovered while auditing broken math rendering: a Grade 11 Trigonometric
+    // Functions lesson containing interval notation like "[0°,360°)" mixed with
+    // several backslash-letter LaTeX sequences (e.g. \circ) elsewhere in the
+    // same paragraph froze the browser tab — normalizeTutorMarkdown() never
+    // returned. Root cause: the old pattern
+    //   /(?<![!])\[\s*((?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+)\s*\]/g
+    // repeats a group containing two adjacent unbounded [^\[\]]* quantifiers,
+    // which is catastrophically backtracking whenever the text has several
+    // "\letter" anchors and the overall match ultimately fails (e.g. no closing
+    // bracket). Fixed by dropping the redundant (?:...)+  repetition — a single
+    // application already absorbs multiple backslash commands via the trailing
+    // [^\[\]]*, so behavior is unchanged but there is nothing left to backtrack.
+    //
+    // This adversarial input (many "\b" anchors, no closing "]") took ~850ms
+    // for just 10 repetitions with the old pattern and grows exponentially;
+    // the fixed pattern must stay near-instant regardless of size.
+    const evil = "[" + "a \\b ".repeat(40);
+
+    const start = Date.now();
+    normalizeSquareBracketMath(evil);
+    normalizeTutorMarkdown(evil);
+    const elapsed = Date.now() - start;
+
+    expect(elapsed).toBeLessThan(500);
   });
 });

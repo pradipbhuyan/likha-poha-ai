@@ -304,8 +304,20 @@ export function normalizeSquareBracketMath(text) {
 
     // 2. [ ... ] single square brackets where content contains a LaTeX command
     // Careful not to match markdown links [text](url) or list items
+    //
+    // NOT `(?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+` (repeated group) — that shape is
+    // catastrophically backtracking: two adjacent unbounded `[^\[\]]*` inside a
+    // `+`-repeated group gives the engine exponentially many ways to split a
+    // long bracket-free run across repetitions before failing, which hangs the
+    // browser tab for seconds-to-indefinitely on real lesson content (observed
+    // hang on Grade 11 Trigonometric Functions content with interval notation
+    // like "[0°,360°)" mixed with "\[...\]" elsewhere in the same paragraph).
+    // A single (non-repeated) application already matches multiple backslash
+    // commands inside one bracket pair, since the trailing `[^\[\]]*` freely
+    // absorbs any further commands up to the closing `]` — verified behaviorally
+    // identical to the old pattern on every non-hanging test case.
     result = result.replace(
-      /(?<![!])\[\s*((?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+)\s*\]/g,
+      /(?<![!])\[\s*([^\[\]]*\\[a-zA-Z{][^\[\]]*)\s*\]/g,
       (_match, inner) => {
         // Skip if it looks like a markdown link (has following parenthesis)
         return `$$${inner.trim()}$$`;
@@ -415,14 +427,16 @@ function normalizeInlineDisplayMath(text) {
     // line N+1 ends with $$ — i.e. the continuation of that equation.
     // This runs BEFORE the pre-step split so the pre-step sees intact blocks.
     .replace(/^(\$\$[^$\n][^\n]*)\n([^\n]*\$\$)/gm, (_m, a, b) => `${a} ${b}`)
-    // Pre-step: when two $$...$$ blocks are separated only by whitespace on the
-    // same line, the closing $$ of block N and the opening $$ of block N+1 form
-    // a "$$[spaces]$$" sequence.  Split it onto separate lines so Step 1 cannot
-    // treat the gap as inline formula content.
+    // Pre-step: when two $$...$$ blocks are separated only by whitespace (or
+    // nothing at all) on the same line, the closing $$ of block N and the
+    // opening $$ of block N+1 form a "$$[spaces]$$" or bare "$$$$" sequence.
+    // Split it onto separate lines so Step 1 cannot treat the gap — or the
+    // adjacent block — as inline formula content.
     //   "$$eq1$$ $$eq2$$ $$eq3$$"  →  "$$eq1$$\n$$eq2$$\n$$eq3$$"
+    //   "$$eq1$$$$eq2$$$$eq3$$"    →  "$$eq1$$\n$$eq2$$\n$$eq3$$"
     // NOTE: replacement must be a function — in a string replacement "$$" → "$"
     // (JS special pattern), so "$$\n$$" would produce "$\n$" which is wrong.
-    .replace(/\$\$([ \t]+)\$\$/g, () => "$$\n$$")
+    .replace(/\$\$([ \t]*)\$\$/g, () => "$$\n$$")
     // Step 1: closed inline $$...$$ on same line with text before the first $$
     .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
