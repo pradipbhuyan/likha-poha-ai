@@ -5,7 +5,9 @@ Pre-warmed Q&A chips for lesson follow-up suggestion buttons.
 
 Design goals
 ------------
-- 5 chip questions per lesson step per chapter, grounded in NCERT content.
+- Up to 5 chip questions per lesson step per chapter, grounded in NCERT content
+  (fewer for thin chapters/matches — see _target_chip_count — rather than
+  padding with repetitive or ungrounded filler to force a fixed count).
 - Answers are 6-10 concise bullet points sourced from the chapter's RAG content.
 - Chips are served instantly (zero LLM cost after pre-warm).
 - Admin triggers pre-warm via Cache & Question Bank Management panel.
@@ -23,7 +25,6 @@ import re
 
 from app.services.grade_db_router import get_content_db
 from app.services.openai_service import ask_llm, PREWARM_TEXT_MODEL
-from app.services.tutor_service import STORY_DEPENDENT_SUBJECTS
 
 logger = logging.getLogger("likhapoha.lesson_kb")
 
@@ -225,10 +226,15 @@ def build_lkb_for_grade(grade: str, mode: str = "CBSE") -> dict:
         for chapter in chapters:
             for step_title in steps:
                 try:
-                    # Skip if already fully pre-warmed
+                    # Skip if this step already has any active chips. Not
+                    # ">= CHIPS_PER_STEP" — a thin chapter can legitimately
+                    # settle on fewer than 5 chips (see _target_chip_count),
+                    # and comparing against the old fixed target would mean
+                    # a properly-processed thin step never counts as "done"
+                    # and gets re-sent to the LLM on every future prewarm run.
                     existing = _count_existing(grade, subject, chapter, step_title)
-                    if existing >= CHIPS_PER_STEP:
-                        skipped += CHIPS_PER_STEP
+                    if existing >= 1:
+                        skipped += existing
                         continue
 
                     # Generate chips using LLM with RAG context
@@ -253,9 +259,10 @@ def build_lkb_for_chapter(grade: str, subject: str, chapter: str, mode: str = "C
 
     for step_title in steps:
         try:
+            # See build_lkb_for_grade for why this is ">= 1", not ">= CHIPS_PER_STEP".
             existing = _count_existing(grade, subject, chapter, step_title)
-            if existing >= CHIPS_PER_STEP:
-                skipped += CHIPS_PER_STEP
+            if existing >= 1:
+                skipped += existing
                 continue
 
             chips = _generate_chips(grade, subject, chapter, step_title, mode)
@@ -334,6 +341,27 @@ def _get_rag_context(grade: str, subject: str, chapter: str, step_title: str) ->
         return ""
 
 
+# Word-count thresholds mapping RAG richness to how many chips are worth
+# asking for. A short chapter (or a narrow match) only has enough distinct
+# content for a couple of well-grounded questions — asking for 5 regardless
+# just pressures the model to pad with repetitive or weakly-grounded filler.
+_CHIP_COUNT_THRESHOLDS = [
+    (80, 1),
+    (180, 2),
+    (320, 3),
+    (500, 4),
+]
+
+
+def _target_chip_count(rag_context: str) -> int:
+    """Map available RAG word count to a chip target between 1 and CHIPS_PER_STEP."""
+    word_count = len(rag_context.split())
+    for threshold, count in _CHIP_COUNT_THRESHOLDS:
+        if word_count < threshold:
+            return count
+    return CHIPS_PER_STEP
+
+
 def _generate_chips(
     grade: str,
     subject: str,
@@ -342,7 +370,8 @@ def _generate_chips(
     mode: str = "CBSE",
 ) -> list[dict]:
     """
-    Call LLM to generate 5 chip Q&A pairs for this lesson step.
+    Call LLM to generate up to CHIPS_PER_STEP chip Q&A pairs for this lesson step
+    (fewer for thin RAG content — see _target_chip_count).
     Answers are 6-10 bullet points grounded in NCERT content.
     Returns list of {"question": str, "answer": str}.
     """
@@ -350,29 +379,41 @@ def _generate_chips(
         rag_context = _get_rag_context(grade, subject, chapter, step_title)
         has_rag = bool(rag_context.strip())
 
-        # Anti-hallucination guard for language & literature subjects (mirrors
-        # the guard in tutor_service.generate_step_lesson). Without RAG context,
-        # instructing the LLM to "generate generic questions anyway" for a
-        # story-dependent subject reliably produces confidently wrong content —
-        # e.g. "Grade 11 English / The Frog" (a Norman Gale poem) with no RAG
-        # match returned fabricated Class 11 Biology questions about real frogs
-        # (respiration, digestion, metamorphosis), because the LLM defaulted to
-        # its strongest prior for "grade 11" + "frog" once nothing grounded it.
-        _subject_lower = (subject or "").lower()
-        if not has_rag and any(s in _subject_lower for s in STORY_DEPENDENT_SUBJECTS):
+        # Anti-hallucination guard — applies to EVERY subject, not just
+        # language/literature ones. Originally this only fired for
+        # STORY_DEPENDENT_SUBJECTS (mirroring tutor_service.generate_step_lesson),
+        # because a language chapter with no RAG match reliably produced
+        # confidently wrong content — e.g. "Grade 11 English / The Frog" (a
+        # Norman Gale poem) returned fabricated Class 11 Biology questions
+        # about real frogs, because the LLM defaulted to its strongest prior
+        # for "grade 11" + "frog" once nothing grounded it.
+        #
+        # Widened after an audit found ALL 21k+ existing LKB chips were
+        # generated during a period when RAG lookup was silently broken
+        # (search_rag didn't exist — see _get_rag_context's docstring), so
+        # every chip, in every subject, was "generate generic questions
+        # anyway" output with zero textbook grounding. Math/Science chapters
+        # with a genuine RAG coverage gap have the exact same failure mode as
+        # a story chapter with no match: nothing to ground the answer in, so
+        # the model guesses from training-data priors instead of the actual
+        # NCERT text. Refusing to guess (empty chips) is strictly better than
+        # serving plausible-sounding but ungrounded content.
+        if not has_rag:
             logger.warning(
-                "LKB: skipping chip generation for %s/%s/%s — story-dependent "
-                "subject with no RAG grounding, refusing to guess.",
+                "LKB: skipping chip generation for %s/%s/%s — no RAG grounding "
+                "found, refusing to guess rather than generate ungrounded content.",
                 grade, subject, chapter,
             )
             return []
 
-        context_section = f"\n\nNCERT CONTENT FOR REFERENCE:\n{rag_context}" if rag_context else ""
-        rag_warning = (
-            "\n\nWARNING: No textbook content was retrieved. "
-            "If you cannot answer strictly from NCERT knowledge for this chapter, "
-            "generate generic but educationally sound questions for this topic."
-        ) if not has_rag else ""
+        # Scale the requested chip count to how much textbook content actually
+        # came back, instead of always demanding 5. A short chapter (or a
+        # narrow RAG match) genuinely only supports a couple of distinct,
+        # well-grounded questions — forcing 5 out of thin content just
+        # reintroduces padding/repetition/ungrounded filler by another route.
+        target_count = _target_chip_count(rag_context)
+
+        context_section = f"\n\nNCERT CONTENT FOR REFERENCE:\n{rag_context}"
 
         system_prompt = (
             f"You are a CBSE {grade} {subject} subject-matter expert. "
@@ -391,15 +432,12 @@ def _generate_chips(
             "- Do NOT use general subject knowledge not present in the retrieved text.\n"
             "- Do NOT invent examples, characters, or facts not in the textbook chunks.\n"
             "- If the retrieved content covers only some topics, generate questions only for those topics.\n"
-        ) if has_rag else (
-            "NOTE: No textbook chunks were retrieved. Generate questions that are "
-            "highly specific to this exact chapter title and step — never generic.\n"
         )
 
-        user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}" | Grade: {grade}{context_section}{rag_warning}
+        user_prompt = f"""Chapter: "{chapter}" | Lesson step: "{step_title}" | Grade: {grade}{context_section}
 
 {grounding_instruction}
-Generate exactly 5 question-answer pairs a student needs after reading this lesson step.
+Generate UP TO {target_count} question-answer pair(s) a student needs after reading this lesson step.
 Each answer = 6 to 10 bullet points (each on its own line, starting with "- ") sourced ONLY from the NCERT content above.
 
 ADDITIONAL RULES:
@@ -408,6 +446,9 @@ ADDITIONAL RULES:
 - Do NOT reference diagrams, figures, or visualisations.
 - Keep each bullet to one clear, complete sentence from the textbook.
 - Use "- " (hyphen space) for each bullet, one bullet per line.
+- If the content above only supports fewer than {target_count} distinct, well-grounded
+  questions, return FEWER — never pad with repetitive, generic, or weakly-grounded questions
+  just to reach {target_count}.
 
 Respond ONLY with JSON array:
 [
@@ -453,7 +494,7 @@ Respond ONLY with JSON array:
             if q and a and ("•" in a or "- " in a):
                 validated.append({"question": q, "answer": a})
 
-        return validated[:CHIPS_PER_STEP]
+        return validated[:target_count]
 
     except Exception as exc:
         logger.warning("LKB chip generation failed for %s/%s/%s: %s", subject, chapter, step_title, exc)
