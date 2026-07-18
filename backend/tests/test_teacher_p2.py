@@ -37,8 +37,8 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 import pytest
 
-import app.routes.teacher_classroom_p2 as p2
-from app.routes.teacher_classroom_p2 import (
+import app.routes.teacher_classroom as p2
+from app.routes.teacher_classroom import (
     get_student_timeline,
     get_interventions,
     list_tasks,

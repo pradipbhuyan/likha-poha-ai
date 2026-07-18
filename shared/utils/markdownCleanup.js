@@ -260,7 +260,12 @@ export function normalizePlainExponents(text) {
   return transformOutsideCodeFences(text, (content) =>
     transformOutsideInlineMath(content, (part) =>
       part.replace(
-        /\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
+        // Negative lookbehind (?<![/}]) prevents matching digit-starting bases that
+        // appear after / (fraction denominators: "1/2at^2") or } (LaTeX braces:
+        // "\frac{1}{2}at^2").  Without it, normalizePlainExponents converts "2at^2"
+        // → "$2at^2$", which sits adjacent to a neighbouring "$...$" block and
+        // creates a "$$" junction that remark-math reads as a display-math delimiter.
+        /(?<![/}])\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
         (_match, base, exp) => {
           // Wrap multi-digit exponents in {} so KaTeX renders all digits
           // e.g. 10^11 → $10^{11}$ not $10^1$1
@@ -299,8 +304,20 @@ export function normalizeSquareBracketMath(text) {
 
     // 2. [ ... ] single square brackets where content contains a LaTeX command
     // Careful not to match markdown links [text](url) or list items
+    //
+    // NOT `(?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+` (repeated group) — that shape is
+    // catastrophically backtracking: two adjacent unbounded `[^\[\]]*` inside a
+    // `+`-repeated group gives the engine exponentially many ways to split a
+    // long bracket-free run across repetitions before failing, which hangs the
+    // browser tab for seconds-to-indefinitely on real lesson content (observed
+    // hang on Grade 11 Trigonometric Functions content with interval notation
+    // like "[0°,360°)" mixed with "\[...\]" elsewhere in the same paragraph).
+    // A single (non-repeated) application already matches multiple backslash
+    // commands inside one bracket pair, since the trailing `[^\[\]]*` freely
+    // absorbs any further commands up to the closing `]` — verified behaviorally
+    // identical to the old pattern on every non-hanging test case.
     result = result.replace(
-      /(?<![!])\[\s*((?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+)\s*\]/g,
+      /(?<![!])\[\s*([^\[\]]*\\[a-zA-Z{][^\[\]]*)\s*\]/g,
       (_match, inner) => {
         // Skip if it looks like a markdown link (has following parenthesis)
         return `$$${inner.trim()}$$`;
@@ -394,10 +411,32 @@ function normalizeNestedDollarSignsInDisplay(text) {
  *   - Closed inline: text $$expr$$ more → text $expr$ more
  *   - Unclosed inline: text $$expr         → text $expr$
  *   - Trailing $$: text$$  (end-of-line) → text  (strip the dangling $$)
+ *
+ * IMPORTANT: lines that START with $ (i.e. display-math blocks like $$eq$$)
+ * must NEVER be touched by Step 3.  The old pattern used \S which matched the
+ * leading $ itself, causing $$eq$$ → $$eq (closing $$ stripped).  The fix
+ * uses [^\s$] so the first captured character must be neither whitespace nor $,
+ * which excludes any line that opens with a display-math delimiter.
  */
 function normalizeInlineDisplayMath(text) {
   if (!text || !text.includes("$$")) return text;
   return text
+    // Compact step: re-join $$...$$ equations that the LLM line-wrapped.
+    //   "$$eq_start +\ncontinuation$$"  →  "$$eq_start + continuation$$"
+    // Only matches when line N starts with $$ + content (not a bare $$) and
+    // line N+1 ends with $$ — i.e. the continuation of that equation.
+    // This runs BEFORE the pre-step split so the pre-step sees intact blocks.
+    .replace(/^(\$\$[^$\n][^\n]*)\n([^\n]*\$\$)/gm, (_m, a, b) => `${a} ${b}`)
+    // Pre-step: when two $$...$$ blocks are separated only by whitespace (or
+    // nothing at all) on the same line, the closing $$ of block N and the
+    // opening $$ of block N+1 form a "$$[spaces]$$" or bare "$$$$" sequence.
+    // Split it onto separate lines so Step 1 cannot treat the gap — or the
+    // adjacent block — as inline formula content.
+    //   "$$eq1$$ $$eq2$$ $$eq3$$"  →  "$$eq1$$\n$$eq2$$\n$$eq3$$"
+    //   "$$eq1$$$$eq2$$$$eq3$$"    →  "$$eq1$$\n$$eq2$$\n$$eq3$$"
+    // NOTE: replacement must be a function — in a string replacement "$$" → "$"
+    // (JS special pattern), so "$$\n$$" would produce "$\n$" which is wrong.
+    .replace(/\$\$([ \t]*)\$\$/g, () => "$$\n$$")
     // Step 1: closed inline $$...$$ on same line with text before the first $$
     .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
@@ -406,11 +445,12 @@ function normalizeInlineDisplayMath(text) {
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
       return _m;
     })
-    // Step 3: trailing $$ at end of line with non-whitespace content before
+    // Step 3: trailing $$ at end of line with non-$ non-whitespace content before.
     //   "at^2$$"  →  "at^2"   (dangling closing $$ with nothing after)
     //   "x = ...$$ "  →  "x = ..."
-    //   Standalone "$$\n" lines are left alone (block-level display math)
-    .replace(/^(\s*\S[^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
+    //   Lines starting with $ ($$eq$$ display blocks) are intentionally excluded
+    //   so that valid single-line display math like $$v = v_0 + at$$ is preserved.
+    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
 }
 
 /**

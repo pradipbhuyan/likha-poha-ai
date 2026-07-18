@@ -15,6 +15,13 @@ Design goals:
   - Never breaks business flow (all calls are wrapped in try/except)
   - Admin endpoint can expose current counters for quick diagnostics
 
+Known limitation: counters are process-local and reset on every deploy/restart
+(reset_counters()) — they do not aggregate across multiple worker processes or
+horizontally-scaled instances. app/main.py logs a startup warning if
+WEB_CONCURRENCY > 1 is detected, but that check cannot see replica scaling done
+outside this process. See docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.2
+for the Redis/shared-store fix.
+
 Counter names (non-exhaustive):
   signup.success
   signup.failure

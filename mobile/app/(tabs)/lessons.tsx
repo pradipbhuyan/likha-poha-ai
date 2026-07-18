@@ -20,6 +20,7 @@ import Markdown from "react-native-markdown-display";
 import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
+import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
 
 // ── Dynamic loading messages — mirrors web LessonsPage.jsx getLoadingMessage ──
 const LOADING_MESSAGES: Record<number, Record<string, string>> = {
@@ -686,13 +687,6 @@ export default function LessonsScreen() {
   const allSyllabusSubjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
   // Build the effective subject list: use cbse_subjects if available, else derive from stream
-  const STREAM_SUBJECTS: Record<string, string[]> = {
-    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-  };
   const effectiveSubjects = studentCbseSubjects.length > 0
     ? studentCbseSubjects
     : (studentStream && STREAM_SUBJECTS[studentStream] ? STREAM_SUBJECTS[studentStream] : []);

@@ -29,7 +29,7 @@ from fastapi import APIRouter, Depends
 from app.services.auth_service import require_student, admin_client
 from app.services.subscription_resolver_service import resolve_user_subscription
 from app.services.feature_authorization_service import get_feature_summary, Feature
-from app.routes.parent_dashboard_v2 import _safe_query, _normalize_score_pct
+from app.routes.parent_dashboard import _safe_query, _normalize_score_pct
 
 router = APIRouter()
 _log = logging.getLogger("likhapoha.student.dashboard")

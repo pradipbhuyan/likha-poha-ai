@@ -1,6 +1,7 @@
 import { isAllAccessTestUser } from "./testAccounts";
 
-/** Map stream key → subjects shown in Grade 11/12 lesson selector */
+/** Map stream key → subjects shown in Grade 11/12 lesson selector
+ *  @type {Record<string, string[]>} */
 export const STREAM_SUBJECTS = {
   PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
   PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],

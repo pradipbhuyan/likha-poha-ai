@@ -1,12 +1,11 @@
 {
   "name": "@likhapoha/shared",
   "version": "1.0.0",
-  "description": "Shared API clients, utilities, and config for Likha Poha AI (web + mobile)",
+  "description": "Shared utilities and config for Likha Poha AI (web + mobile)",
   "main": "index.js",
   "license": "UNLICENSED",
   "private": true,
   "exports": {
-    "./api/*": "./api/*.js",
     "./utils/*": "./utils/*.js",
     "./config/*": "./config/*.js"
   }

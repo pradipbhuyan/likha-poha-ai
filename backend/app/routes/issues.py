@@ -472,6 +472,9 @@ def fix_and_rewarm(
         from app.services.lesson_cache_service import make_lesson_cache_key  # noqa: PLC0415
         from app.services.prewarm_service import get_lesson_steps_for_grade  # noqa: PLC0415
 
+        from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+        content_db = get_content_db(grade)
+
         steps_to_clear = (
             [lesson_step]
             if lesson_step
@@ -484,7 +487,7 @@ def fix_and_rewarm(
                     chapter=chapter, mode=mode, step_title=step, teacher_persona="",
                 )
                 try:
-                    admin_client.table("lesson_cache").delete().eq("cache_key", cache_key).execute()
+                    content_db.table("lesson_cache").delete().eq("cache_key", cache_key).execute()
                     cleared += 1
                 except Exception:
                     pass

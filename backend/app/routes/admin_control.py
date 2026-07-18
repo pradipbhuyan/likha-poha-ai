@@ -2547,6 +2547,47 @@ _EGRESS_PER_RAG_CALL_KB = 762  # 1 RPC (42KB) + 60 N+1 rag_documents queries (72
 _EGRESS_PER_SMALL_CALL_KB = 5   # auth, non-RAG responses
 _SUPABASE_FREE_LIMIT_GB = 5.0
 
+# ── Grade 11/12 second-project capacity snapshot ────────────────────────────
+# ai_usage_logs above lives only on the primary project and isn't tagged with
+# grade, so it can't be split to estimate the Grade 11/12 project's egress.
+# Supabase free-tier limits are row/storage-based as much as egress-based, so
+# a direct row-count snapshot of the second project's content tables is a more
+# useful early-warning signal than trying to force the egress estimate to
+# cover it. See docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.3 — this
+# whole second project exists to stay on Supabase free tier until there are
+# paying subscribers, so knowing when it's approaching that cap matters.
+_GRADE_1112_CONTENT_TABLES = ["rag_documents", "lesson_cache", "doubt_kb", "question_bank"]
+
+
+def _grade_1112_capacity_snapshot() -> dict:
+    """Row-count snapshot for the Grade 11/12 Supabase project's content tables."""
+    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
+
+    if grade_1112_client is None:
+        return {
+            "configured": False,
+            "note": (
+                "SUPABASE_GRADE_1112_URL / SUPABASE_GRADE_1112_SERVICE_KEY not set — "
+                "Grade 11/12 project capacity cannot be checked."
+            ),
+        }
+
+    table_row_counts: dict[str, int | None] = {}
+    errors: dict[str, str] = {}
+    for table in _GRADE_1112_CONTENT_TABLES:
+        try:
+            r = grade_1112_client.table(table).select("id", count="exact").limit(1).execute()
+            table_row_counts[table] = r.count or 0
+        except Exception as exc:
+            table_row_counts[table] = None
+            errors[table] = str(exc)[:150]
+
+    return {
+        "configured": True,
+        "table_row_counts": table_row_counts,
+        "errors": errors,
+    }
+
 
 @router.get("/egress-health")
 def get_egress_health(admin=Depends(require_admin)):
@@ -2607,4 +2648,5 @@ def get_egress_health(admin=Depends(require_admin)):
         "top_features": breakdown[:8],
         "total_calls_30d": len(logs),
         "note": "Estimate uses N+1 formula (762KB/RAG call). After applying the N+1 fix, multiply by 0.06 for actual post-fix egress.",
+        "grade_1112_capacity": _grade_1112_capacity_snapshot(),
     }

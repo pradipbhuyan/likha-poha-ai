@@ -18,6 +18,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
+import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const ALL_SUBJECTS = ["Science","Maths","Social Science","English","Hindi","Physics","Chemistry","Biology","Mathematics","Accountancy","Business Studies","Economics","History","Geography","Political Science"];
@@ -48,14 +49,6 @@ export default function MockTestScreen() {
   const [cbseSubjects, setCbseSubjects] = useState<string[]>([]);
   const [studentStream, setStudentStream] = useState<string>("");
   const [hasFullAccess, setHasFullAccess] = useState(false);
-
-  const STREAM_SUBJECTS: Record<string, string[]> = {
-    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-  };
 
   useEffect(() => {
     authFetch("/api/auth/me").then((me: any) => {

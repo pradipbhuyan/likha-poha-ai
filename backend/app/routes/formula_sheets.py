@@ -22,7 +22,7 @@ from fastapi import APIRouter, Depends, Query
 
 from app.services.auth_service import require_student, admin_client
 from app.services.feature_authorization_service import Feature, get_feature_summary
-from app.routes.parent_dashboard_v2 import _safe_query
+from app.routes.parent_dashboard import _safe_query
 
 router = APIRouter()
 _log = logging.getLogger("likhapoha.formula_sheets")

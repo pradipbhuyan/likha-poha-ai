@@ -20,7 +20,7 @@ from __future__ import annotations
 from unittest.mock import MagicMock, patch
 import pytest
 
-from app.routes.parent_dashboard_v2 import (
+from app.routes.parent_dashboard import (
     _plan_display,
     _build_feature_badges,
     _build_recommendations,
@@ -433,7 +433,7 @@ class TestChildOwnership:
     def test_returns_child_when_parent_owns_it(self, monkeypatch):
         child_data = {"id": "child-1", "username": "Alice", "parent_id": "parent-1"}
         monkeypatch.setattr(
-            "app.routes.parent_dashboard_v2.admin_client",
+            "app.routes.parent_dashboard.admin_client",
             MagicMock(table=lambda t: MagicMock(
                 select=lambda *a: MagicMock(
                     eq=lambda f, v: MagicMock(
@@ -452,7 +452,7 @@ class TestChildOwnership:
 
     def test_returns_none_when_parent_does_not_own_child(self, monkeypatch):
         monkeypatch.setattr(
-            "app.routes.parent_dashboard_v2.admin_client",
+            "app.routes.parent_dashboard.admin_client",
             MagicMock(table=lambda t: MagicMock(
                 select=lambda *a: MagicMock(
                     eq=lambda f, v: MagicMock(

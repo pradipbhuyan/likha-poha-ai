@@ -33,7 +33,7 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 from app.services.auth_service import require_admin, admin_client
-from app.routes.parent_dashboard_v2 import _safe_query
+from app.routes.parent_dashboard import _safe_query
 
 router = APIRouter()
 _log = logging.getLogger("likhapoha.admin_qa")

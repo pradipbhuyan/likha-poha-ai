@@ -28,7 +28,7 @@ from __future__ import annotations
 from unittest.mock import MagicMock, patch
 import pytest
 
-from app.routes.parent_dashboard_p2 import (
+from app.routes.parent_dashboard import (
     _metric,
     _unavailable,
     _generate_rule_based_notifications,
@@ -84,21 +84,21 @@ class TestMetricHelper:
 class TestOwnershipEnforcement:
     def test_analytics_enforces_parent_ownership(self, monkeypatch):
         """Parent cannot access analytics for unrelated child."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: None)
         with pytest.raises(HTTPException) as exc:
             get_child_analytics("foreign-child", parent=PARENT)
         assert exc.value.status_code == 403
 
     def test_academic_insights_enforces_ownership(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: None)
         with pytest.raises(HTTPException) as exc:
             get_academic_insights("foreign-child", parent=PARENT)
         assert exc.value.status_code == 403
 
     def test_progress_report_enforces_ownership(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: None)
         with pytest.raises(HTTPException) as exc:
             get_progress_report("foreign-child", parent=PARENT)
@@ -110,11 +110,11 @@ class TestOwnershipEnforcement:
 class TestMissingTablesGraceful:
     def _mock_no_data(self, monkeypatch):
         """Patch _verify_child_ownership and _safe_query to return empty."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
 
     def test_analytics_missing_progress_returns_no_data(self, monkeypatch):
@@ -154,9 +154,9 @@ class TestMissingTablesGraceful:
         assert result["data_availability"]["exams"] is False
 
     def test_academic_insights_homework_unavailable(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         result = get_academic_insights("child-1", parent=PARENT)
         assert result["success"] is True
@@ -164,9 +164,9 @@ class TestMissingTablesGraceful:
         assert "not enabled yet" in result["homework"]["message"].lower()
 
     def test_academic_insights_exams_unavailable(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         result = get_academic_insights("child-1", parent=PARENT)
         assert result["exams"]["available"] is False
@@ -177,9 +177,9 @@ class TestMissingTablesGraceful:
 
 class TestAcademicInsightsMockRecommendations:
     def test_no_tests_produces_start_mock_test_recommendation(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         result = get_academic_insights("child-1", parent=PARENT)
         recs = result["mock_test_recommendations"]["recommendations"]
@@ -187,7 +187,7 @@ class TestAcademicInsightsMockRecommendations:
         assert "start_mock_test" in types
 
     def test_low_score_produces_improve_score_recommendation(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
         call_n = {"n": 0}
         def mock_safe_q(fn):
@@ -196,14 +196,14 @@ class TestAcademicInsightsMockRecommendations:
                 # test_history rows with low scores (use percentage column)
                 return [{"percentage": 30.0, "raw_score": 3.0, "max_score": 10.0, "subject": "Science", "chapter": "Motion", "created_at": "2026-06-01"}], None
             return [], None
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_safe_q)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", mock_safe_q)
         result = get_academic_insights("child-1", parent=PARENT)
         recs = result["mock_test_recommendations"]["recommendations"]
         types = [r["type"] for r in recs]
         assert "improve_score" in types
 
     def test_good_score_produces_maintain_recommendation(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
         call_n = {"n": 0}
         def mock_safe_q(fn):
@@ -211,7 +211,7 @@ class TestAcademicInsightsMockRecommendations:
             if call_n["n"] == 1:
                 return [{"percentage": 80.0, "raw_score": 8.0, "max_score": 10.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-01"}], None
             return [], None
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_safe_q)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", mock_safe_q)
         result = get_academic_insights("child-1", parent=PARENT)
         recs = result["mock_test_recommendations"]["recommendations"]
         types = [r["type"] for r in recs]
@@ -223,13 +223,13 @@ class TestAcademicInsightsMockRecommendations:
 class TestProgressReport:
     def test_progress_report_excludes_teacher_notes(self, monkeypatch):
         """teacher_student_notes table NEVER queried in progress report."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.get_feature_summary",
+        monkeypatch.setattr("app.routes.parent_dashboard.get_feature_summary",
                             lambda uid: {"features": {}})
         result = get_progress_report("child-1", parent=PARENT)
         assert result["success"] is True
@@ -240,26 +240,26 @@ class TestProgressReport:
         assert "private_note" not in str(result)
 
     def test_progress_report_has_disclaimer(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _paid_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.get_feature_summary",
+        monkeypatch.setattr("app.routes.parent_dashboard.get_feature_summary",
                             lambda uid: {"features": {}})
         result = get_progress_report("child-1", parent=PARENT)
         assert "disclaimer" in result
         assert len(result["disclaimer"]) > 0
 
     def test_progress_report_includes_generated_timestamp(self, monkeypatch):
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _paid_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.get_feature_summary",
+        monkeypatch.setattr("app.routes.parent_dashboard.get_feature_summary",
                             lambda uid: {"features": {}})
         result = get_progress_report("child-1", parent=PARENT)
         assert "generated_at" in result
@@ -271,9 +271,9 @@ class TestProgressReport:
 class TestRuleBasedNotifications:
     def test_free_tier_child_generates_feature_locked_notification(self, monkeypatch):
         """FREE_TIER child generates 'feature_locked' notification."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         children = [{"id": "child-1", "username": "Aarav", "grade": "Grade 10"}]
         notifs = _generate_rule_based_notifications("parent-1", children)
@@ -282,9 +282,9 @@ class TestRuleBasedNotifications:
 
     def test_inactive_child_generates_child_inactive_notification(self, monkeypatch):
         """Child with no recent activity generates 'child_inactive' notification."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         children = [{"id": "child-1", "username": "Aarav", "grade": "Grade 10"}]
         notifs = _generate_rule_based_notifications("parent-1", children)
@@ -293,9 +293,9 @@ class TestRuleBasedNotifications:
 
     def test_paid_child_no_feature_locked_notification(self, monkeypatch):
         """PREMIUM child should NOT generate feature_locked notification."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _paid_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         children = [{"id": "child-1", "username": "Riya", "grade": "Grade 9"}]
         notifs = _generate_rule_based_notifications("parent-1", children)
@@ -304,9 +304,9 @@ class TestRuleBasedNotifications:
 
     def test_notifications_only_for_own_parent(self, monkeypatch):
         """Notifications are parent-scoped — parent_id in all generated notifs."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         children = [{"id": "child-1", "username": "Aarav", "grade": "Grade 10"}]
         notifs = _generate_rule_based_notifications("parent-1", children)
@@ -316,9 +316,9 @@ class TestRuleBasedNotifications:
     def test_expiry_generates_plan_expiring_notification(self, monkeypatch):
         """Soon-expiring plan generates plan_expiring notification."""
         expiring_sub = {**_paid_sub(), "expiring_soon": True, "days_remaining": 2}
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: expiring_sub)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))
         children = [{"id": "child-1", "username": "Riya", "grade": "Grade 9"}]
         notifs = _generate_rule_based_notifications("parent-1", children)
@@ -331,7 +331,7 @@ class TestRuleBasedNotifications:
 class TestMarkRead:
     def test_mark_read_stateless_rule_based_id(self, monkeypatch):
         """Rule-based notification IDs (rule-*) are stateless — acknowledge gracefully."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_one",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_one",
                             lambda fn: (None, "table not found"))
         result = mark_notification_read("rule-free-child-1", parent=PARENT)
         assert result["success"] is True
@@ -339,7 +339,7 @@ class TestMarkRead:
 
     def test_read_all_handles_missing_table(self, monkeypatch):
         """read-all gracefully handles missing parent_notifications table."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], "table does not exist"))
         result = mark_all_notifications_read(parent=PARENT)
         assert result["success"] is True
@@ -347,7 +347,7 @@ class TestMarkRead:
 
     def test_read_all_no_unread_returns_zero(self, monkeypatch):
         """read-all with no unread notifications returns updated=0."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))  # empty unread list, no error
         result = mark_all_notifications_read(parent=PARENT)
         assert result["success"] is True
@@ -384,8 +384,8 @@ class TestNotificationMetadataSanitization:
 class TestRecommendationPlanAwareness:
     def test_free_tier_analytics_recommend_has_upgrade_type(self, monkeypatch):
         """Free Tier child in analytics has upgrade recommendation."""
-        from app.routes.parent_dashboard_p2 import _metric
-        from app.routes.parent_dashboard_v2 import _build_recommendations
+        from app.routes.parent_dashboard import _metric
+        from app.routes.parent_dashboard import _build_recommendations
         sub = _free_sub()
         features = {
             "EXEMPLAR": {"allowed": False, "limited": False},
@@ -397,7 +397,7 @@ class TestRecommendationPlanAwareness:
 
     def test_paid_tier_analytics_no_upgrade_recommendation(self, monkeypatch):
         """PREMIUM child in analytics should NOT have upgrade recommendation."""
-        from app.routes.parent_dashboard_v2 import _build_recommendations
+        from app.routes.parent_dashboard import _build_recommendations
         sub = _paid_sub()
         features = {
             "EXEMPLAR": {"allowed": True, "limited": False},
@@ -421,9 +421,9 @@ class TestActiveStudentDataMapping:
 
     def _mock_active_student(self, monkeypatch):
         """Mock all three tables with realistic active student data."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _paid_sub())
 
         call_n = {"n": 0}
@@ -456,7 +456,7 @@ class TestActiveStudentDataMapping:
                 ], None
             return [], None
 
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", smart_mock)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", smart_mock)
 
     def test_analytics_mock_tests_return_data_for_active_student(self, monkeypatch):
         """Active student with mock history → mock_tests.status=data, avg score returned."""
@@ -516,11 +516,11 @@ class TestActiveStudentDataMapping:
 
     def test_no_data_student_shows_no_activity_not_unavailable(self, monkeypatch):
         """Empty results from existing tables → status=no_activity (not unavailable)."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query",
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query",
                             lambda fn: ([], None))  # empty but no error
         result = get_child_analytics("child-1", parent=PARENT)
         # Tables exist but empty → no_activity, not unavailable
@@ -538,60 +538,60 @@ class TestScoreNormalization:
     Regression: score values must never exceed 100%.
     _normalize_score_pct is the canonical score formatter.
     """
-    from app.routes.parent_dashboard_v2 import _normalize_score_pct as _n
+    from app.routes.parent_dashboard import _normalize_score_pct as _n
 
     def test_percentage_60_returns_60(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(60.0) == 60.0
 
     def test_percentage_0_returns_0(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(0.0) == 0.0
 
     def test_percentage_100_returns_100(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(100.0) == 100.0
 
     def test_percentage_0_75_treated_as_already_percent(self):
         """0.75 stored as percentage means 0.75% — caller must pass correct column."""
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         # 0.75 is within 0-100 → returned as 0.75% (not multiplied by 100)
         result = _normalize_score_pct(0.75)
         assert result == 0.8  # rounded
 
     def test_raw_score_12_max_20_returns_60(self):
         """raw_score=12, max_score=20 → 60%"""
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(None, raw_score=12, max_score=20) == 60.0
 
     def test_raw_score_3_max_5_returns_60(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(None, raw_score=3, max_score=5) == 60.0
 
     def test_percentage_1200_returns_none(self):
         """1200% is invalid — must return None, not display 1200%."""
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         result = _normalize_score_pct(1200.0)
         assert result is None, "REGRESSION: 1200% score must not be displayed"
 
     def test_percentage_200_returns_none(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(200.0) is None
 
     def test_no_data_returns_none(self):
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(None, None, None) is None
 
     def test_max_score_zero_does_not_divide(self):
         """max_score=0 must not cause ZeroDivisionError."""
-        from app.routes.parent_dashboard_v2 import _normalize_score_pct
+        from app.routes.parent_dashboard import _normalize_score_pct
         assert _normalize_score_pct(None, raw_score=5, max_score=0) is None
 
     def test_analytics_avg_score_never_exceeds_100(self, monkeypatch):
         """Integration: analytics avg_score never > 100% even with boundary data."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
         call_n = {"n": 0}
         def mock_q(fn):
@@ -602,7 +602,7 @@ class TestScoreNormalization:
                     {"percentage": 60.0, "raw_score": 3.0, "max_score": 5.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-23"},
                 ], None
             return [], None
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_q)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", mock_q)
         result = get_child_analytics("child-1", parent=PARENT)
         avg_val = result["mock_tests"]["average_score"]["value"]
         if avg_val is not None:
@@ -612,9 +612,9 @@ class TestScoreNormalization:
 
     def test_recent_tests_scores_all_within_100(self, monkeypatch):
         """Recent test scores in analytics must all be within 0-100."""
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._verify_child_ownership",
+        monkeypatch.setattr("app.routes.parent_dashboard._verify_child_ownership",
                             lambda p, c: CHILD)
-        monkeypatch.setattr("app.routes.parent_dashboard_p2.resolve_user_subscription",
+        monkeypatch.setattr("app.routes.parent_dashboard.resolve_user_subscription",
                             lambda uid: _free_sub())
         call_n = {"n": 0}
         def mock_q(fn):
@@ -625,7 +625,7 @@ class TestScoreNormalization:
                     {"percentage": 20.0, "raw_score": 1.0, "max_score": 5.0, "subject": "Maths", "chapter": "Fractions", "created_at": "2026-06-23"},
                 ], None
             return [], None
-        monkeypatch.setattr("app.routes.parent_dashboard_p2._safe_query", mock_q)
+        monkeypatch.setattr("app.routes.parent_dashboard._safe_query", mock_q)
         result = get_child_analytics("child-1", parent=PARENT)
         for t in result["mock_tests"].get("trend", []):
             score = t.get("score")

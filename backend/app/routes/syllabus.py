@@ -813,6 +813,8 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
     visible label rename must also update matching rag_documents rows.
     """
     renamed_pairs = []
+    from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+    content_db = get_content_db(grade)
 
     for item in items:
         old_label = str(item.original_chapter or "").strip()
@@ -826,7 +828,7 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
             continue
 
         response = (
-            admin_client
+            content_db
             .table("rag_documents")
             .select("id,title,board,chapter")
             .eq("grade", grade)
@@ -858,7 +860,7 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
                 else current_title
             )
 
-            admin_client.table("rag_documents").update({
+            content_db.table("rag_documents").update({
                 "chapter": clean_new_label,
                 "title": next_title,
             }).eq("id", document["id"]).execute()

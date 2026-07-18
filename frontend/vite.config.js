@@ -66,6 +66,16 @@ function fixBlogUtilsPlugin() {
 export default defineConfig({
   plugins: [react(), rawMarkdownPlugin(), fixBlogUtilsPlugin()],
 
+  server: {
+    // frontend/src/utils/resolveSubscription.js, subjectAccess.js, and
+    // frontend/src/config/subscriptionPlans.js re-export from ../../../shared/,
+    // a sibling package outside this project root. Allow the dev server to
+    // serve it regardless of Vite's auto-detected workspace root.
+    fs: {
+      allow: [".."],
+    },
+  },
+
   test: {
     globals: true,
     environment: "jsdom",

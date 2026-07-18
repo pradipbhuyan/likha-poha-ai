@@ -22,6 +22,26 @@ if _init_sentry():
 else:
     _log.info("Sentry disabled (SENTRY_DSN not set).")
 
+# rate_limit_service and metrics_service hold their state in-process (see their
+# module docstrings) — safe for a single Uvicorn/Gunicorn worker, silently wrong
+# across multiple. WEB_CONCURRENCY is the standard env var Gunicorn/Uvicorn read
+# for worker count; if it's set above 1 we can only warn here, not fix it — this
+# check has no visibility into horizontal replica scaling done outside this
+# process (e.g. a Render/Railway dashboard setting), only same-process worker count.
+_web_concurrency = os.getenv("WEB_CONCURRENCY", "1")
+try:
+    if int(_web_concurrency) > 1:
+        _log.warning(
+            "Multiple workers configured — rate_limit_service and metrics_service "
+            "state is per-process and will NOT be shared across workers, silently "
+            "multiplying effective rate limits and fragmenting metrics. See "
+            "docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.1/3.2 for the "
+            "Redis-backed fix.",
+            web_concurrency=_web_concurrency,
+        )
+except ValueError:
+    pass
+
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
@@ -38,14 +58,12 @@ from app.routes import usage
 from app.routes import recommendations
 from app.routes import profile
 from app.routes.evaluation import router as evaluation_router
-from app.routes.parent_dashboard import router as parent_dashboard_router
-from app.routes.parent_dashboard_v2 import router as parent_dashboard_v2_router
+from app.routes.parent_dashboard import router as parent_dashboard_router, router_parent as parent_dashboard_extended_router
 from app.routes.student_dashboard import router as student_dashboard_router
 from app.routes.exam_schedule import router as exam_schedule_router
 from app.routes.formula_sheets import router as formula_sheets_router
 from app.routes.formula_import import router as formula_import_router
 from app.routes.admin_qa import router as admin_qa_router
-from app.routes.parent_dashboard_p2 import router as parent_dashboard_p2_router
 from app.routes.admin_control import router as admin_control_router
 from app.routes.offer import router as offer_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
@@ -58,7 +76,6 @@ from app.routes.cache_management import router as cache_management_router
 from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
 from app.routes.teacher_classroom import router as teacher_classroom_router
-from app.routes.teacher_classroom_p2 import router as teacher_classroom_p2_router
 from app.routes.subscription import router as subscription_router
 from app.routes.issues import router as issues_router
 from app.routes.platform_chat import router as platform_chat_router
@@ -292,15 +309,9 @@ app.include_router(
 )
 
 app.include_router(
-    parent_dashboard_v2_router,
+    parent_dashboard_extended_router,
     prefix="/api/parent",
-    tags=["Parent Dashboard Phase 1"],
-)
-
-app.include_router(
-    parent_dashboard_p2_router,
-    prefix="/api/parent",
-    tags=["Parent Dashboard Phase 2"],
+    tags=["Parent Dashboard Extended"],
 )
 
 app.include_router(
@@ -393,12 +404,6 @@ app.include_router(
     teacher_classroom_router,
     prefix="/api/teacher",
     tags=["Teacher Classroom"],
-)
-
-app.include_router(
-    teacher_classroom_p2_router,
-    prefix="/api/teacher",
-    tags=["Teacher Classroom Phase 2"],
 )
 
 app.include_router(

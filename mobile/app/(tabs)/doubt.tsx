@@ -19,6 +19,7 @@ import {
 import Markdown from "react-native-markdown-display";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
+import { STREAM_SUBJECTS as STREAM_SUBJECTS_DOUBT } from "@likhapoha/shared/utils/subjectAccess";
 
 // ── Shared math utilities (inline — mirrors mobile/app/(tabs)/lessons.tsx) ───
 function mathToUnicode(latex: string): string {
@@ -199,13 +200,6 @@ export default function DoubtScreen() {
   // Grade lock for free users
   const isGradeLocked = studentGrade !== null && !hasFullAccess;
   // Subject list: use cbse_subjects if available, fall back to stream-derived
-  const STREAM_SUBJECTS_DOUBT: Record<string, string[]> = {
-    PCM:        ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
-    PCB:        ["Physics", "Chemistry", "Biology", "English", "Hindi"],
-    PCMB:       ["Physics", "Chemistry", "Mathematics", "Biology", "English", "Hindi"],
-    Commerce:   ["Mathematics", "Business Studies", "Accountancy", "Economics", "English", "Hindi"],
-    Humanities: ["History", "Geography", "Political Science", "Sociology", "English", "Hindi"],
-  };
   const isGrade1112 = grade === "Grade 11" || grade === "Grade 12";
   const effectiveSubjectsDoubt = cbseSubjects.length > 0 ? cbseSubjects
     : (studentStream && STREAM_SUBJECTS_DOUBT[studentStream] ? STREAM_SUBJECTS_DOUBT[studentStream] : []);

@@ -97,7 +97,7 @@ The platform operates on two surfaces: a **React web app** and a **React Native 
 
 ### Framework & Language
 - **FastAPI** (Python 3.11) — async REST API
-- **Uvicorn** ASGI server managed by **Gunicorn** worker manager
+- **Uvicorn** ASGI server, single process (no Gunicorn/worker manager — see Procfile). rate_limit_service and metrics_service hold in-process state and are NOT safe with multiple workers/replicas; see docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.1/3.2 before changing this.
 - Deployed on **Railway** PaaS via `nixpacks.toml` auto-build
 - Base URL: `https://likha-poha-ai-production.up.railway.app`
 
@@ -580,7 +580,7 @@ Email failures are always non-fatal — account creation and test submission are
 
 ### Backend (Railway)
 - **Auto-deploy**: push to `main` branch → Railway detects `nixpacks.toml` → builds and deploys
-- **Procfile**: `web: gunicorn app.main:app -k uvicorn.workers.UvicornWorker`
+- **Procfile**: `web: uvicorn app.main:app --host 0.0.0.0 --port $PORT` (single process, no Gunicorn/worker manager)
 - **Environment variables**: set in Railway dashboard (not in code)
 - **Cold start**: ~5s on Railway free tier
 
@@ -770,7 +770,7 @@ This is also why Google OAuth uses a **WebView** (which respects `network_securi
 | **Mobile Language** | TypeScript | 5.x | Apache 2.0 |
 | **Backend Framework** | FastAPI | 0.11x | MIT |
 | **Backend Language** | Python | 3.11 | PSF |
-| **ASGI Server** | Uvicorn + Gunicorn | — | MIT / MIT |
+| **ASGI Server** | Uvicorn (single process) | — | MIT |
 | **Backend Hosting** | Railway | — | Proprietary SaaS |
 | **Database** | PostgreSQL (Supabase) | 15 | PostgreSQL License |
 | **Auth** | Supabase Auth | — | Apache 2.0 (open-core) |

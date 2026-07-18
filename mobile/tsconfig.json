@@ -5,11 +5,17 @@
     "jsx": "react-native",
     "types": [
       "react/canary"
-    ]
+    ],
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@likhapoha/shared/*": ["../shared/*"]
+    }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".expo/types/**/*.d.ts"
+    ".expo/types/**/*.d.ts",
+    "../shared/**/*.js"
   ]
 }

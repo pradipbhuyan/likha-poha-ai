@@ -30,7 +30,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 from app.services.auth_service import require_student, require_parent, admin_client
-from app.routes.parent_dashboard_v2 import _safe_query, _safe_one, _verify_child_ownership
+from app.routes.parent_dashboard import _safe_query, _safe_one, _verify_child_ownership
 
 router = APIRouter()
 _log = logging.getLogger("likhapoha.exam_schedule")

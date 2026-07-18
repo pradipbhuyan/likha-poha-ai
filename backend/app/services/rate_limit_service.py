@@ -30,6 +30,10 @@ Thread safety
 Uses a threading.Lock for the window list, so it is safe under Uvicorn's
 default multi-threaded request handling.  It is NOT shared across multiple
 worker processes — use Redis-backed limiting for multi-process deployments.
+app/main.py logs a startup warning if WEB_CONCURRENCY > 1 is detected, but
+that check has no visibility into horizontal replica scaling done outside
+this process (e.g. a Render/Railway dashboard setting) — see
+docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.1 for the full fix.
 """
 from __future__ import annotations
 
