@@ -218,6 +218,25 @@ $$
 - To write factored expressions like (x-2)(x+3), ALWAYS use:
   $(x - 2)(x + 3)$ — NOT (x - 2)(x + 3) in plain text
 
+- Once an expression is wrapped in $...$ or $$...$$, every parenthesis INSIDE
+  it (grouping terms, binomial coefficients, function arguments) MUST stay a
+  literal ( ) character. NEVER replace an inner ( ) with another $ or $$ —
+  that splits one formula into broken fragments and leaves stray $ signs
+  visible as literal text to the student.
+  Bad: $$a + b$$^n                     (splits (a+b)^n into two pieces)
+  Bad: \\frac{n!}{r!$n - r$!}            (n-r should stay literal parentheses)
+  Good: $$(a + b)^n$$
+  Good: $\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$
+
+- ALWAYS put a space between an inline $...$ expression and the word right
+  next to it. NEVER let a $ touch the surrounding letters directly — that
+  merges separate variables into one broken run and pairs up dollar signs
+  the wrong way.
+  Bad: $a$and$b$are coprime          |  Bad: $p$x$at$x = k$
+  Good: $a$ and $b$ are coprime       |  Good: $p(x)$ at $x = k$
+  Function notation like p(x), f(x), g(x) ALWAYS keeps the literal
+  parenthesis inside one $...$ — never write the argument as its own $x$.
+
 - To write a fraction, ALWAYS use LaTeX:
   Good: $\\frac{x^2 - 4}{x^2 - 9}$
   Never: \\frac{x^2 - 4}{x^2 - 9} or (\\frac{x^2-4}{x^2-9})
@@ -1279,6 +1298,16 @@ MATH RULES — CRITICAL, FOLLOW EXACTLY:
 - NEVER use $$ inside () like (x - 2$$x + 2) — that is broken syntax.
 - NEVER repeat a variable like "x^2 x 2" — write $x^2$ only.
 - Factored products: $(x - 2)(x + 3)$ — always inside $ not plain text.
+- Once wrapped in $...$ or $$...$$, parentheses INSIDE the expression stay
+  literal ( ) characters — never replace an inner ( ) with another $ or $$.
+  Bad: $$a + b$$^n  |  Bad: \\frac{{n!}}{{r!$n - r$!}}
+  Good: $$(a + b)^n$$  |  Good: $\\binom{{n}}{{r}} = \\frac{{n!}}{{r!(n-r)!}}$
+- ALWAYS put a space between an inline $...$ expression and the word next to
+  it — never let a $ touch the surrounding letters directly.
+  Bad: $a$and$b$are coprime  |  Bad: $p$x$at$x = k$
+  Good: $a$ and $b$ are coprime  |  Good: $p(x)$ at $x = k$
+  Function notation like p(x), f(x) ALWAYS keeps the literal parenthesis
+  inside one $...$ — never write the argument as its own $x$.
 - Fractions: $\\frac{{x^2 - 4}}{{x - 2}}$ — always LaTeX.
 """
 
