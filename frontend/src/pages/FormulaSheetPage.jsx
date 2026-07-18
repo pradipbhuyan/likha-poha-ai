@@ -756,7 +756,9 @@ function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
 }
 
 // ── Formula Card ─────────────────────────────────────────────────────────────
-function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAskAI }) {
+function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAskAI, subject }) {
+  // Biology is always Key Concepts — never render as math formula
+  const isBiology = (subject || "").toLowerCase() === "biology";
   const [expanded, setExpanded] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
@@ -798,7 +800,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
       {formula.preview_allowed ? (
         (() => {
           const exprText = formula.expression_latex || formula.expression || "";
-          const isFormula = isMathFormula(exprText);
+          const isFormula = !isBiology && isMathFormula(exprText);
           return (
             <div data-testid="formula-expression"
               style={{
@@ -1179,6 +1181,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
                           studied={studiedSet.has(f.id || f.name)}
                           onStudied={handleStudied}
                           onAskAI={handleAskAI}
+                          subject={subject}
                         />
                       ))}
                     </div>
