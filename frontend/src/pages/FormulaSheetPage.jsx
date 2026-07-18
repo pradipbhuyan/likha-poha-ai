@@ -1038,7 +1038,9 @@ export default function FormulaSheetPage({ user, setActivePage }) {
 
       {/* Subject selector */}
       <div style={{ display: "flex", gap: 7, marginBottom: 10, flexWrap: "wrap" }}>
-        {(data?.subjects || ["Mathematics","Science","Physics","Chemistry"]).map(s => (
+        {(data?.subjects || (["Grade 11","Grade 12"].includes(selectedGrade)
+          ? ["Biology","Chemistry","Mathematics","Physics"]
+          : ["Mathematics","Science","Physics","Chemistry"])).map(s => (
           <button key={s} data-testid={"fs-subject-"+s.toLowerCase().replace(/ /g,"-")}
             onClick={() => setSubject(s)}
             style={{ padding: "5px 14px", borderRadius: 20, border: "none",

@@ -211,6 +211,10 @@ def get_formula_sheets(
         .execute()
     )
     subjects = sorted(set(r["subject"] for r in subj_rows if r.get("subject")))
+    # For Grade 11 and 12, always surface Biology even if no formulas imported yet
+    # so the tab is visible and admins can import content for it.
+    if eff_grade in ("Grade 11", "Grade 12") and "Biology" not in subjects:
+        subjects = sorted(set(subjects) | {"Biology"})
 
     # Build chapters with freemium logic
     chapters = _build_chapters(rows, has_premium)
