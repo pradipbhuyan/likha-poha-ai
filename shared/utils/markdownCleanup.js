@@ -109,10 +109,21 @@ export function normalizeMermaidBlocks(text) {
 }
 
 function hasProseAroundLatex(expression) {
-  /** Detect parentheticals that mix normal sentence text with a LaTeX formula. */
+  /**
+   * Detect parentheticals that mix normal sentence text with a LaTeX formula.
+   *
+   * Uses a global-flagged copy of LATEX_COMMAND_PATTERN, not the shared
+   * constant directly — LATEX_COMMAND_PATTERN is reused elsewhere with
+   * .test(), and a global regex's .test() carries lastIndex state between
+   * calls (alternating true/false on repeated calls with the same object).
+   * A non-global .replace() here also only strips the FIRST command match,
+   * so an expression with the same command repeated (e.g. three \sqrt{}
+   * terms) left the other two miscounted as prose words — sending it down
+   * the wrong branch (split into multiple $ pairs instead of one).
+   */
   const proseWords =
     expression
-      .replace(LATEX_COMMAND_PATTERN, "")
+      .replace(new RegExp(LATEX_COMMAND_PATTERN.source, "g"), "")
       .match(/[A-Za-z]{2,}/g) || [];
 
   return proseWords.length >= 2;
@@ -137,7 +148,14 @@ export function normalizeLatexParentheses(text) {
 
   return transformOutsideCodeFences(text, (content) => {
     const withLatexCommands = content.replace(
-      /\(([^()\n]*\\[^()\n]*)\)/g,
+      // (?<!\\) — skip when the "(" is itself part of a "\(" LaTeX inline-math
+      // escape sequence. Without this, "\(\sqrt{2},\sqrt{3},\sqrt{5}\)" gets
+      // its "(...)" matched as if it were a plain parenthetical, stripping
+      // the parens and leaving the surrounding backslashes stranded as
+      // literal text — normalizeSquareBracketMath's dedicated \( \) handler
+      // (which runs later and includes the backslashes in its own match)
+      // is the correct place to convert this, not here.
+      /(?<!\\)\(([^()\n]*\\[^()\n]*)\)/g,
       (match, expression) => {
         if (!LATEX_COMMAND_PATTERN.test(expression)) {
           return match;
@@ -279,14 +297,15 @@ export function normalizePlainExponents(text) {
 
 export function normalizeSquareBracketMath(text) {
   /**
-   * Convert LaTeX display-math written with square-bracket notation to $$ delimiters.
+   * Convert LaTeX written with bracket/paren notation to $ / $$ delimiters.
    *
    * The LLM sometimes outputs:
    *   [ \text{Per Capita Income} = \frac{\text{Total Income}}{\text{Population}} ]
    *   \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+   *   \( x^2 + 1 \)
    *
-   * Both forms are valid LaTeX but remark-math only recognises $$ for display math.
-   * This pass converts them so KaTeX can render them correctly.
+   * All are valid LaTeX but remark-math only recognises $ (inline) and $$
+   * (display). This pass converts them so KaTeX can render them correctly.
    */
   if (!text) return "";
 
@@ -322,6 +341,21 @@ export function normalizeSquareBracketMath(text) {
         // Skip if it looks like a markdown link (has following parenthesis)
         return `$$${inner.trim()}$$`;
       }
+    );
+
+    // 3. \( ... \) escaped-parenthesis inline math (LaTeX's other standard
+    // inline delimiter). remark-math only recognises $...$ for inline math,
+    // so \(x\) renders as literal backslash-paren text otherwise. Seen from
+    // models that default to \( \) / \[ \] style regardless of prompt
+    // instructions to use $ (e.g. Ollama gpt-oss:120b), not just square
+    // brackets. No content gate needed — unlike bare [ ], the literal
+    // "\(" / "\)" escape sequence never occurs by accident in ordinary
+    // prose or markdown syntax, so a gate only causes false negatives
+    // (e.g. a bare single-variable "\(p\)" has no LaTeX command or
+    // operator to match on and would otherwise be skipped).
+    result = result.replace(
+      /\\\(\s*([\s\S]*?)\s*\\\)/g,
+      (_match, inner) => `$${inner.trim()}$`
     );
 
     return result;
@@ -367,6 +401,40 @@ function normalizeSpacedDollarMath(text) {
   return transformOutsideCodeFences(text, (content) =>
     // $ space content space $ — strip the padding spaces
     content.replace(/\$ ([^$\n]+?) \$/g, (_m, inner) => `$${inner.trim()}$`)
+  );
+}
+
+/**
+ * Insert a space between a $...$ inline-math span and an adjacent word with
+ * no space between them — "$a$and$b$are coprime" → "$a$ and $b$ are coprime".
+ *
+ * The MATH RULES prompt now tells the LLM to always space inline math from
+ * surrounding words, but this is a defensive client-side backstop: some
+ * models (seen with Ollama gpt-oss:120b) don't reliably follow that
+ * instruction every time it's asked, even on separate generations of the
+ * same content. Without the space, "$a$and$b$" isn't just a rendering
+ * quirk — it merges what should be two separate math spans and their
+ * surrounding text into one visually squashed run.
+ *
+ * (?<!\$)/(?!\$) on each delimiter keeps this from touching $$ display math.
+ */
+function normalizeInlineMathWordSpacing(text) {
+  if (!text || !text.includes("$")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    // Match one whole $...$ span, then look at the actual characters just
+    // outside the match in the ORIGINAL string (not lookaround assertions
+    // embedded in the pattern) — a $ is both the open and close delimiter,
+    // so a lookaround-only approach can't tell "letter right before the
+    // closing $ (part of the math content)" apart from "letter right
+    // before the opening $ (surrounding prose)"; reading the real
+    // before/after characters removes that ambiguity.
+    content.replace(/(?<!\$)\$([^$\n]+?)\$(?!\$)/g, (match, inner, offset, full) => {
+      const before = full[offset - 1];
+      const after = full[offset + match.length];
+      const spaceBefore = before && /[A-Za-z]/.test(before) ? " " : "";
+      const spaceAfter = after && /[A-Za-z]/.test(after) ? " " : "";
+      return `${spaceBefore}$${inner}$${spaceAfter}`;
+    })
   );
 }
 
@@ -494,9 +562,11 @@ export function normalizeTutorMarkdown(text) {
    *  8. normalizeSquareBracketMath   — [ \LaTeX ] and \[...\] → $$...$$
    *  9. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
    * 10. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
-   * 11. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   * 11. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
+   * 12. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
+    normalizeInlineMathWordSpacing(
     normalizeDollarMath(
       normalizePlainExponents(
         normalizeSquareBracketMath(
@@ -507,6 +577,7 @@ export function normalizeTutorMarkdown(text) {
           ))))
         )
       )
+    )
     )
   );
 }

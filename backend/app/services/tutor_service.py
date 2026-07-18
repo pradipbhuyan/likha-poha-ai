@@ -50,7 +50,7 @@ STORY_DEPENDENT_SUBJECTS = {
 }
 
 TUTOR_SYSTEM = """
-	You are a patient CBSE and SOF Olympiad tutor for Class 1 to Class 10 students.
+	You are a patient CBSE tutor for Class 1 to Class 10 students.
 
 	Teach only the requested sub-topic.
 	Do not give the full chapter at once.
@@ -156,12 +156,6 @@ PEDAGOGY RULES:
 - In Summary, tell the student what to do next, for example:
   "Review these key points, then move to the next lesson step when ready."
 
-For Olympiad mode:
-- include reasoning
-- HOTS thinking
-- tricks
-- patterns
-
 For Hindi:
 - explain in Hindi.
 
@@ -236,6 +230,12 @@ $$
   Good: $a$ and $b$ are coprime       |  Good: $p(x)$ at $x = k$
   Function notation like p(x), f(x), g(x) ALWAYS keeps the literal
   parenthesis inside one $...$ — never write the argument as its own $x$.
+
+- Interval notation like (0, π), [-1, 1], (-π/2, π/2) ALWAYS keeps its
+  literal parentheses/brackets inside ONE $...$ — never drop the opening
+  bracket and leave a bare $$ where it should be.
+  Bad: in$0, \\pi$$                    |  Bad: the range is$-\\frac{\\pi}{2}, \\frac{\\pi}{2}$$
+  Good: in $(0, \\pi)$                  |  Good: the range is $(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$
 
 - To write a fraction, ALWAYS use LaTeX:
   Good: $\\frac{x^2 - 4}{x^2 - 9}$
@@ -444,7 +444,7 @@ def detect_chapter_type(subject: str, chapter: str) -> str:
     Classify the chapter as 'prose', 'poem', 'grammar', or 'default'.
 
     Used to route lesson generation to the correct subject-type prompt.
-    Returns 'default' for Science, Maths, SOF, and any non-English chapter.
+    Returns 'default' for Science, Maths, and any non-English chapter.
 
     Rollback: set ENABLE_TYPED_LESSONS=false — this function's result is ignored.
     """
@@ -1014,7 +1014,7 @@ Textbook coverage rules:
 
 Use uploaded textbook/RAG context when available.
 If RAG context is available, align the explanation with it.
-If RAG context is not available, use standard CBSE/SOF knowledge.
+If RAG context is not available, use standard CBSE knowledge.
 
 {DIAGRAM_HINT}
 
@@ -1283,7 +1283,7 @@ Relevant textbook/RAG context:
 
 Use uploaded textbook/RAG context when available.
 If RAG context is available, align the answer with it.
-If RAG context is not available, use standard CBSE/SOF knowledge.
+If RAG context is not available, use standard CBSE knowledge.
 
 Do not use markdown tables.
 Use bullet points instead.
@@ -1308,6 +1308,10 @@ MATH RULES — CRITICAL, FOLLOW EXACTLY:
   Good: $a$ and $b$ are coprime  |  Good: $p(x)$ at $x = k$
   Function notation like p(x), f(x) ALWAYS keeps the literal parenthesis
   inside one $...$ — never write the argument as its own $x$.
+- Interval notation like (0, π), [-1, 1] ALWAYS keeps its literal
+  parentheses/brackets inside ONE $...$ — never drop the opening bracket
+  and leave a bare $$ where it should be.
+  Bad: in$0, \\pi$$  |  Good: in $(0, \\pi)$
 - Fractions: $\\frac{{x^2 - 4}}{{x - 2}}$ — always LaTeX.
 """
 

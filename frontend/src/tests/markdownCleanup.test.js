@@ -184,4 +184,87 @@ describe("markdownCleanup", () => {
 
     expect(elapsed).toBeLessThan(500);
   });
+
+  // ── Regression: \( \) inline math delimiter support ──────────────────────
+  test("converts \\( \\) escaped-parenthesis inline math to $ $", () => {
+    // Found while regenerating Maths lesson content through an alternate
+    // model (Ollama gpt-oss:120b) that defaults to \( \) / \[ \] delimiters
+    // regardless of prompt instructions to use $. remark-math only
+    // recognises $ for inline math, so \(x\) rendered as literal
+    // backslash-paren text to students without this.
+    const input = "Property: if a prime $p$ divides \\(a^{2}\\) then \\(p\\) divides \\(a\\).";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe(
+      "Property: if a prime $p$ divides $a^{2}$ then $p$ divides $a$."
+    );
+  });
+
+  test("converts a single \\( \\) spanning multiple comma-separated terms without splitting them", () => {
+    // Regression: normalizeLatexParentheses ran BEFORE the \( \) handler and
+    // its plain "(...)" regex didn't check for a preceding backslash, so it
+    // matched the "(...)" portion of an escaped "\(...\)" sequence too —
+    // stripping the parens and leaving the surrounding backslashes stranded
+    // as literal text: "\(\sqrt{2},\sqrt{3},\sqrt{5}\)" became the garbled
+    // "\$\sqrt{2}$,$\sqrt{3}$,$\sqrt{5}$\" instead of one clean $...$ span.
+    const input = "Irrationality proofs for \\(\\sqrt{2},\\sqrt{3},\\sqrt{5}\\) using the property.";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe(
+      "Irrationality proofs for $\\sqrt{2},\\sqrt{3},\\sqrt{5}$ using the property."
+    );
+    expect(result).not.toMatch(/\\\$/);
+    expect(result).not.toMatch(/\\\(|\\\)/);
+  });
+
+  test("normalizeLatexParentheses handles a LaTeX command repeated inside one parenthetical", () => {
+    // Regression: hasProseAroundLatex stripped LATEX_COMMAND_PATTERN matches
+    // with a non-global regex, so only the FIRST of several repeated
+    // commands (e.g. three \sqrt{} terms) was removed before counting
+    // leftover "prose words" — the un-stripped remaining command names
+    // (like "sqrt") were miscounted as prose, incorrectly triggering the
+    // fragment-splitting branch instead of a single clean $...$ wrap.
+    const input = "Compare (\\sqrt{2} + \\sqrt{3} + \\sqrt{5}) to a whole number.";
+
+    const result = normalizeLatexParentheses(input);
+
+    expect(result).toBe(
+      "Compare $\\sqrt{2} + \\sqrt{3} + \\sqrt{5}$ to a whole number."
+    );
+  });
+
+  test("adds a space between inline $...$ math and an adjacent word with no space", () => {
+    // Regression: found in Maths lesson content regenerated via an alternate
+    // model (Ollama gpt-oss:120b) that doesn't reliably follow the MATH
+    // RULES prompt's "always space inline math from surrounding words"
+    // instruction — "$a$and$b$are coprime" merges what should be two
+    // separate math spans and the words around them into one squashed run.
+    // This is a defensive client-side backstop, not a replacement for the
+    // prompt fix — it must also leave already-correct spacing untouched and
+    // never touch $$ display math.
+    const input =
+      "Then, $\\sqrt{2} = \\frac{a}{b}$, where $a$and$b$are coprime, and$b \\neq 0$. This implies $a^2$is even.";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe(
+      "Then, $\\sqrt{2} = \\frac{a}{b}$, where $a$ and $b$ are coprime, and $b \\neq 0$. This implies $a^2$ is even."
+    );
+  });
+
+  test("does not add spurious spaces to already-correctly-spaced inline math", () => {
+    const input = "The value of $x$ is 5, and $y$ equals 3.";
+
+    expect(normalizeTutorMarkdown(input)).toBe(input);
+  });
+
+  test("does not touch $$ display math when adding word spacing", () => {
+    const input = "$$x^2 + 1$$\nThe result follows from the above.";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toContain("$$x^2 + 1$$");
+  });
 });
