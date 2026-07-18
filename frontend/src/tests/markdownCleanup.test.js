@@ -3,6 +3,7 @@ import { describe, expect, test } from "vitest";
 import {
   normalizeDollarMath,
   normalizeLatexParentheses,
+  normalizeLeftRightDelimiters,
   normalizePlainAlgebra,
   normalizeSquareBracketMath,
   normalizeTutorMarkdown,
@@ -266,5 +267,47 @@ describe("markdownCleanup", () => {
     const result = normalizeTutorMarkdown(input);
 
     expect(result).toContain("$$x^2 + 1$$");
+  });
+
+  // ── Regression: \left / \right missing their required delimiter ─────────
+  test("normalizeLeftRightDelimiters fixes \\left$ / \\right$ missing their bracket", () => {
+    // Found regenerating Inverse Trig Functions content — even claude-sonnet-5
+    // dropped the required delimiter after \left / \right and used a bare $
+    // instead, which reads as a dangling dollar sign to remark-math.
+    const input = "$\\cos^{-1}\\left$\\dfrac{-\\sqrt{3}}{2}\\right$$";
+
+    expect(normalizeLeftRightDelimiters(input)).toBe(
+      "$\\cos^{-1}\\left(\\dfrac{-\\sqrt{3}}{2}\\right)$"
+    );
+  });
+
+  test("normalizeLeftRightDelimiters handles nested \\left$ / \\right$ pairs", () => {
+    const input =
+      "= a\\left$\\left $x+\\frac{b}{2a}\\right$^2 + \\left $\\frac{c}{a}\\right$\\right$$";
+
+    const result = normalizeLeftRightDelimiters(input);
+
+    expect(result).not.toMatch(/\\left\s*\$/);
+    expect(result).not.toMatch(/\\right\s*\$/);
+  });
+
+  test("normalizeLatexParentheses does not re-wrap the (...) that belongs to \\left(...\\right)", () => {
+    // Regression: normalizeLatexParentheses's plain-parenthetical regex
+    // didn't know \left(...\right) is already complete, valid LaTeX on its
+    // own — it matched the "(" from \left( as a generic parenthetical open
+    // and rewrapped the content in $...$, recreating the exact bare-$
+    // delimiter bug normalizeLeftRightDelimiters exists to fix, just fed
+    // backward through the pipeline order.
+    const input = "$\\cos^{-1}\\left(\\dfrac{-\\sqrt{3}}{2}\\right)$";
+
+    expect(normalizeLatexParentheses(input)).toBe(input);
+  });
+
+  test("full pipeline fixes \\left$/\\right$ end to end without reintroducing it", () => {
+    const input = "$\\cos^{-1}\\left$\\dfrac{-\\sqrt{3}}{2}\\right$$";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe("$\\cos^{-1}\\left(\\dfrac{-\\sqrt{3}}{2}\\right)$");
   });
 });

@@ -10,6 +10,30 @@ const PLAIN_ALGEBRA_DOUBLE_PAREN_PATTERN =
 const PLAIN_ALGEBRA_GROUPED_POWER_PATTERN =
   /\(\(([^()\n]{1,60})\)\^(\d+)([^()\n]{0,120})\)/g;
 
+export function normalizeLeftRightDelimiters(text) {
+  /**
+   * Fix \left / \right LaTeX sizing commands missing their delimiter.
+   *
+   * \left and \right ALWAYS require a real bracket character immediately
+   * after them (\left(, \left[, \left\{, etc.) — there is no valid LaTeX
+   * where \left or \right is followed by a bare $. Models sometimes drop
+   * the delimiter and write \left$ / \right$ instead (seen even from
+   * claude-sonnet-5 on inverse-trig principal-value ranges), which reads
+   * as a dangling dollar sign to remark-math and confuses every downstream
+   * $-counting pass. This is unambiguous — unlike bare parentheses, there
+   * is no legitimate content to preserve, so no gate is needed — and must
+   * run FIRST, before anything else tries to balance/pair dollar signs.
+   *
+   *   \left$\frac{1}{2}\right$$  →  \left(\frac{1}{2}\right)
+   */
+  if (!text || !text.includes("\\left") && !text.includes("\\right")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    content
+      .replace(/\\left\s*\$/g, "\\left(")
+      .replace(/\\right\s*\$/g, "\\right)")
+  );
+}
+
 function transformOutsideCodeFences(text, transform) {
   /** Apply markdown cleanup only to prose, leaving fenced code blocks untouched. */
   return text
@@ -155,7 +179,16 @@ export function normalizeLatexParentheses(text) {
       // literal text — normalizeSquareBracketMath's dedicated \( \) handler
       // (which runs later and includes the backslashes in its own match)
       // is the correct place to convert this, not here.
-      /(?<!\\)\(([^()\n]*\\[^()\n]*)\)/g,
+      //
+      // (?<!\\left) — skip when the "(" is the required delimiter for a
+      // \left sizing command. \left(...\right) is already valid, complete
+      // LaTeX on its own — it doesn't need (and must not get) its own
+      // separate $...$ wrap. Without this, "\left(\dfrac{-\sqrt{3}}{2}\right)"
+      // gets its "(...)" matched as a plain parenthetical and rewrapped into
+      // "\left$\dfrac{-\sqrt{3}}{2}$\right" — recreating the exact bare-$
+      // delimiter bug normalizeLeftRightDelimiters exists to fix, just from
+      // the opposite direction.
+      /(?<!\\)(?<!\\left)\(([^()\n]*\\[^()\n]*)\)/g,
       (match, expression) => {
         if (!LATEX_COMMAND_PATTERN.test(expression)) {
           return match;
@@ -551,19 +584,22 @@ export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
    * Order matters:
-   *  0. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
-   *  1. normalizeSpacedDollarMath    — "$ expr $" (spaced) → "$expr$" for remark-math
-   *  2. normalizeInlineDisplayMath   — $$ used inline → $ $; trailing $$ stripped
-   *  3. normalizeOrphanedDollarSigns — odd $ count on a line → strip trailing orphan
-   *  4. normalizeBulletPoints        — • Point → - Point (LKB answers)
-   *  5. normalizeMermaidBlocks       — wrap loose graph TD blocks
-   *  6. normalizeLatexParentheses    — (\frac{}{}) → $...$
-   *  7. normalizePlainAlgebra        — (a+b)^2 → $...$
-   *  8. normalizeSquareBracketMath   — [ \LaTeX ] and \[...\] → $$...$$
-   *  9. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
-   * 10. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
-   * 11. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
-   * 12. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  0. normalizeLeftRightDelimiters — \left$ / \right$ → \left( / \right)
+   *     (must run first — an unfixed \left$ reads as a dangling $ to every
+   *     later $-counting/pairing pass below)
+   *  1. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
+   *  2. normalizeSpacedDollarMath    — "$ expr $" (spaced) → "$expr$" for remark-math
+   *  3. normalizeInlineDisplayMath   — $$ used inline → $ $; trailing $$ stripped
+   *  4. normalizeOrphanedDollarSigns — odd $ count on a line → strip trailing orphan
+   *  5. normalizeBulletPoints        — • Point → - Point (LKB answers)
+   *  6. normalizeMermaidBlocks       — wrap loose graph TD blocks
+   *  7. normalizeLatexParentheses    — (\frac{}{}) → $...$
+   *  8. normalizePlainAlgebra        — (a+b)^2 → $...$
+   *  9. normalizeSquareBracketMath   — [ \LaTeX ] and \[...\] → $$...$$
+   * 10. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
+   * 11. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 12. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
+   * 13. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeInlineMathWordSpacing(
@@ -572,7 +608,7 @@ export function normalizeTutorMarkdown(text) {
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
             normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(
-              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(text))
+              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(normalizeLeftRightDelimiters(text)))
             ))
           ))))
         )
