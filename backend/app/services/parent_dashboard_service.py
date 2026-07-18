@@ -9,7 +9,6 @@ def get_family_profile(user_id: str):
         .select(
             "id, email, username, role, parent_id, family_id, "
             "subscription_plan, account_status, access_cbse, "
-            "access_sof_science, access_sof_maths, access_sof_english, "
             "daily_token_limit, monthly_token_limit, avatar"
         )
         .eq("id", user_id)
@@ -39,7 +38,6 @@ def get_family_members(user_id: str):
         .select(
             "id, email, username, role, parent_id, family_id, "
             "subscription_plan, account_status, access_cbse, "
-            "access_sof_science, access_sof_maths, access_sof_english, "
             "daily_token_limit, monthly_token_limit, avatar"
         )
         .eq("family_id", family_id)
@@ -79,7 +77,6 @@ def get_child_by_id(parent_user_id: str, child_id: str):
         .select(
             "id, email, username, role, parent_id, family_id, "
             "subscription_plan, account_status, access_cbse, "
-            "access_sof_science, access_sof_maths, access_sof_english, "
             "daily_token_limit, monthly_token_limit, avatar"
         )
         .eq("id", child_id)

@@ -58,7 +58,7 @@ function buildSubjectStats(history: HistoryItem[]): SubjectStat[] {
 
 function getInsight(avg: number): string {
   if (avg >= 85)
-    return "Excellent consistency. You are ready for harder questions and Olympiad-level practice.";
+    return "Excellent consistency. You are ready for harder questions and Hard-level practice.";
   if (avg >= 65)
     return "Good progress. Focus on weaker subjects and review mistakes after every mock test.";
   return "Revision needed. Start with concept review, then attempt short quizzes before mock tests.";

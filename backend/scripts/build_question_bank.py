@@ -7,7 +7,7 @@ them in the question_bank table for random sampling.
 Run this ONCE when your OpenAI API key is ready and the question_bank table
 has been created in Supabase (backend/sql/add_question_bank.sql).
 
-Estimated cost: ~$8.73 for all Grade 9 CBSE + SOF question pools.
+Estimated cost: ~$8.73 for all Grade 9 CBSE question pools.
 Estimated time: ~60 minutes (rate limited to ~0.5 req/sec).
 
 Usage:
@@ -25,7 +25,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app.data.syllabus import CBSE_9, SOF_9
+from app.data.syllabus import CBSE_9
 from app.services.openai_service import ask_llm
 from app.services.question_bank_service import add_questions_to_bank, get_questions_from_bank
 
@@ -192,5 +192,4 @@ if __name__ == "__main__":
     print(f"Skipped (already in bank): {skipped}")
     print()
     print("All future CBSE mock test requests will be served from the bank.")
-    print("SOF mock tests continue using RAG-based generation (by design).")
     print("=" * 60)

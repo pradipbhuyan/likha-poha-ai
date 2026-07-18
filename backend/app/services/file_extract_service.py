@@ -284,7 +284,7 @@ def build_extracted_page(
     warnings: list[str] | None = None,
 ) -> dict:
     """
-    Build normalized page metadata for upload review and SOF grouping.
+    Build normalized page metadata for upload review.
 
     Low-word pages are flagged because they often indicate a blurry scan or a
     PDF page that needs OCR rather than embedded-text extraction.
@@ -330,8 +330,8 @@ def extract_pages_from_pdf(filename: str, file_bytes: bytes) -> list[dict]:
     """
     Extract per-page text from a PDF, falling back to embedded-image OCR.
 
-    Per-page output is important for SOF bulk upload because the organizer groups
-    pages by subject/chapter after extraction.
+    Per-page output lets downstream chapter-detection group pages by
+    subject/chapter after extraction.
     """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp.write(file_bytes)
@@ -485,7 +485,7 @@ def extract_pages_from_uploaded_file(filename: str, file_bytes: bytes) -> list[d
     """
     Return page-like extraction records for any supported upload type.
 
-    Single-document formats are represented as one page so downstream SOF upload
+    Single-document formats are represented as one page so downstream upload
     code can process all inputs through one grouping pipeline.
     """
     ext = os.path.splitext(filename.lower())[1]

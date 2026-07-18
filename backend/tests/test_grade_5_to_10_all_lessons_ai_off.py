@@ -32,7 +32,7 @@ from tests.conftest import fake_student_profile, patch_route_profile
 import app.routes.lesson as lesson_route
 import app.services.tutor_service as tutor_service
 from app.services.lesson_cache_service import make_lesson_cache_key
-from app.data.syllabus import CBSE_9, SOF_9
+from app.data.syllabus import CBSE_9
 
 client = TestClient(app)
 
@@ -67,12 +67,8 @@ UPPER_PRIMARY_CBSE_SUBJECTS = [
     "English", "Hindi", "Maths",
     "Science", "Social Science", "Computer Science",
 ]
-GENERIC_SOF_SUBJECTS = [
-    "Science Olympiad", "Maths Olympiad", "English Olympiad",
-]
 
 CBSE_PLACEHOLDER = "Uploaded Book Content"
-SOF_PLACEHOLDER  = "Uploaded SOF Chapter Content"
 PREWARM_BOARD    = "CBSE"
 PREWARM_PERSONA  = ""
 
@@ -84,19 +80,10 @@ PREWARM_PERSONA  = ""
 def combos_for_grade(grade):
     """Return [(mode, subject, chapter)] for a grade."""
     if grade == "Grade 5":
-        return (
-            [("CBSE", s, CBSE_PLACEHOLDER) for s in GRADE_5_CBSE_SUBJECTS]
-            + [("SOF", s, SOF_PLACEHOLDER) for s in GENERIC_SOF_SUBJECTS]
-        )
+        return [("CBSE", s, CBSE_PLACEHOLDER) for s in GRADE_5_CBSE_SUBJECTS]
     if grade == "Grade 9":
-        return (
-            [("CBSE", s, ch) for s, chs in CBSE_9.items() for ch in chs]
-            + [("SOF",  s, ch) for s, chs in SOF_9.items()  for ch in chs]
-        )
-    return (
-        [("CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS]
-        + [("SOF", s, SOF_PLACEHOLDER) for s in GENERIC_SOF_SUBJECTS]
-    )
+        return [("CBSE", s, ch) for s, chs in CBSE_9.items() for ch in chs]
+    return [("CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS]
 
 
 def all_fixtures():
@@ -159,9 +146,6 @@ def patch_grade(monkeypatch, grade):
     profile = fake_student_profile(
         grade=grade,
         access_cbse=True,
-        access_sof_science=True,
-        access_sof_maths=True,
-        access_sof_english=True,
         cbse_subjects=[],
     )
     patch_route_profile(monkeypatch, lesson_route, profile)
@@ -224,17 +208,12 @@ class TestCacheKeyConsistency:
          "The French Revolution", "Concept introduction"),
         ("Grade 9",  "CBSE", "Hindi",
          "दो बैलों की कथा", "Core explanation"),
-        ("Grade 9",  "SOF", "Science Olympiad",  "Motion",        "Revision and recap"),
-        ("Grade 9",  "SOF", "Maths Olympiad",    "Number Systems", "Concept introduction"),
-        ("Grade 9",  "SOF", "English Olympiad",  "Nouns",         "Core explanation"),
         ("Grade 5",  "CBSE", "EVS",    CBSE_PLACEHOLDER, "What We Learn"),
         ("Grade 5",  "CBSE", "Maths",  CBSE_PLACEHOLDER, "Worked Examples"),
-        ("Grade 5",  "SOF",  "Science Olympiad", SOF_PLACEHOLDER, "Recap"),
         ("Grade 6",  "CBSE", "Science", CBSE_PLACEHOLDER, "Core explanation"),
         ("Grade 7",  "CBSE", "Maths",   CBSE_PLACEHOLDER, "Revision and recap"),
         ("Grade 8",  "CBSE", "English", CBSE_PLACEHOLDER, "Concept introduction"),
         ("Grade 10", "CBSE", "Science", CBSE_PLACEHOLDER, "Exam preparation"),
-        ("Grade 10", "SOF",  "Maths Olympiad", SOF_PLACEHOLDER, "Exam-style problems"),
     ])
     def test_empty_persona_key_is_deterministic(self, grade, mode, subj, ch, step):
         """Same params always produce the same SHA-256 key."""
@@ -271,11 +250,6 @@ class TestCacheKeyConsistency:
             "Expected different keys: empty vs non-empty persona. "
             "This confirms the persona-mismatch bug."
         )
-
-    def test_sof_resolves_to_cbse_board(self):
-        """SOF mode must resolve to board=CBSE, matching the prewarm key."""
-        from app.services.board_service import resolve_request_board
-        assert resolve_request_board("SOF", "CBSE") == "CBSE"
 
     def test_cbse_resolves_to_cbse_board(self):
         from app.services.board_service import resolve_request_board
@@ -347,42 +321,7 @@ class TestGrade9CbseAllChapters:
 
 
 # ===========================================================================
-# 3. Grade 9 SOF -- all chapters, all steps, AI off -> cache hit
-# ===========================================================================
-
-class TestGrade9SofAllChapters:
-    """Grade 9 SOF: every chapter x step served from cache when AI is off."""
-
-    @pytest.mark.parametrize("subject,chapter", [
-        (s, ch) for s, chs in SOF_9.items() for ch in chs
-    ])
-    def test_all_sof_steps_from_cache(self, monkeypatch, subject, chapter):
-        patch_ai_off_prewarm_cache(monkeypatch, "Grade 9")
-        failures = []
-
-        for step in STEPS_BY_GRADE["Grade 9"]:
-            resp = call_lesson("Grade 9", "SOF", subject, chapter, step, persona="")
-            if resp.status_code != 200 or not resp.json().get("success"):
-                failures.append({
-                    "step": step,
-                    "status_code": resp.status_code,
-                    "diagnosis": "CACHE_MISS" if resp.status_code == 503 else "OTHER",
-                })
-
-        if failures:
-            fail_lines = [
-                f"  [{f['diagnosis']}] step={f['step']} -> HTTP {f['status_code']}"
-                for f in failures
-            ]
-            pytest.fail(
-                f"Grade 9 SOF | {subject} | {chapter}: "
-                f"{len(failures)} step(s) failed with AI off:\n"
-                + "\n".join(fail_lines)
-            )
-
-
-# ===========================================================================
-# 4. Grades 5, 6, 7, 8, 10 -- all subjects, all steps, AI off -> cache hit
+# 3. Grades 5, 6, 7, 8, 10 -- all subjects, all steps, AI off -> cache hit
 # ===========================================================================
 
 class TestGrades5To8And10AllSubjects:
@@ -391,24 +330,14 @@ class TestGrades5To8And10AllSubjects:
     @pytest.mark.parametrize("grade,mode,subject,chapter", [
         # Grade 5 CBSE
         *[("Grade 5", "CBSE", s, CBSE_PLACEHOLDER) for s in GRADE_5_CBSE_SUBJECTS],
-        # Grade 5 SOF
-        *[("Grade 5", "SOF",  s, SOF_PLACEHOLDER)  for s in GENERIC_SOF_SUBJECTS],
         # Grade 6 CBSE
         *[("Grade 6", "CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS],
-        # Grade 6 SOF
-        *[("Grade 6", "SOF",  s, SOF_PLACEHOLDER)  for s in GENERIC_SOF_SUBJECTS],
         # Grade 7 CBSE
         *[("Grade 7", "CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS],
-        # Grade 7 SOF
-        *[("Grade 7", "SOF",  s, SOF_PLACEHOLDER)  for s in GENERIC_SOF_SUBJECTS],
         # Grade 8 CBSE
         *[("Grade 8", "CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS],
-        # Grade 8 SOF
-        *[("Grade 8", "SOF",  s, SOF_PLACEHOLDER)  for s in GENERIC_SOF_SUBJECTS],
         # Grade 10 CBSE
         *[("Grade 10", "CBSE", s, CBSE_PLACEHOLDER) for s in UPPER_PRIMARY_CBSE_SUBJECTS],
-        # Grade 10 SOF
-        *[("Grade 10", "SOF",  s, SOF_PLACEHOLDER)  for s in GENERIC_SOF_SUBJECTS],
     ])
     def test_all_steps_from_cache(self, monkeypatch, grade, mode, subject, chapter):
         patch_ai_off_prewarm_cache(monkeypatch, grade)
@@ -444,7 +373,6 @@ class TestAiOffWithNoCacheGives503:
     @pytest.mark.parametrize("grade,mode,subject,chapter,step", [
         ("Grade 9",  "CBSE", "Science",
          "Cell: The Building Block of Life", "Concept introduction"),
-        ("Grade 9",  "SOF",  "Science Olympiad", "Motion", "Core explanation"),
         ("Grade 5",  "CBSE", "EVS",     CBSE_PLACEHOLDER, "What We Learn"),
         ("Grade 6",  "CBSE", "Maths",   CBSE_PLACEHOLDER, "Core explanation"),
         ("Grade 10", "CBSE", "Science", CBSE_PLACEHOLDER, "Exam preparation"),
@@ -497,7 +425,6 @@ class TestPersonaMismatchCausesCacheMiss:
     @pytest.mark.parametrize("grade,mode,subject,chapter,step", [
         ("Grade 9",  "CBSE", "Science",
          "Cell: The Building Block of Life", "Concept introduction"),
-        ("Grade 9",  "SOF",  "Science Olympiad", "Motion", "Core explanation"),
         ("Grade 5",  "CBSE", "EVS",     CBSE_PLACEHOLDER, "What We Learn"),
         ("Grade 10", "CBSE", "Science", CBSE_PLACEHOLDER, "Exam preparation"),
     ])
@@ -526,7 +453,6 @@ class TestPersonaMismatchCausesCacheMiss:
     @pytest.mark.parametrize("grade,mode,subject,chapter,step", [
         ("Grade 9",  "CBSE", "Science",
          "Cell: The Building Block of Life", "Concept introduction"),
-        ("Grade 9",  "SOF",  "Science Olympiad", "Motion", "Core explanation"),
         ("Grade 5",  "CBSE", "EVS",     CBSE_PLACEHOLDER, "What We Learn"),
         ("Grade 10", "CBSE", "Science", CBSE_PLACEHOLDER, "Exam preparation"),
     ])
@@ -721,9 +647,6 @@ class TestGrade10LessonSourcePrefixFix:
         profile = fake_student_profile(
             grade="Grade 10",
             access_cbse=True,
-            access_sof_science=True,
-            access_sof_maths=True,
-            access_sof_english=True,
             cbse_subjects=[],
         )
         patch_route_profile(monkeypatch, lesson_route, profile)
@@ -768,13 +691,11 @@ class TestPersonaFallbackFix:
          "Cell: The Building Block of Life", "Concept introduction"),
         ("Grade 9",  "CBSE", "Maths",
          "Orienting Yourself: The Use of Coordinates", "Core explanation"),
-        ("Grade 9",  "SOF",  "Science Olympiad", "Motion", "Worked examples"),
         ("Grade 5",  "CBSE", "EVS",     CBSE_PLACEHOLDER, "What We Learn"),
         ("Grade 6",  "CBSE", "Science", CBSE_PLACEHOLDER, "Core explanation"),
         ("Grade 7",  "CBSE", "Maths",   CBSE_PLACEHOLDER, "Revision and recap"),
         ("Grade 8",  "CBSE", "English", CBSE_PLACEHOLDER, "Concept introduction"),
         ("Grade 10", "CBSE", "Science", CBSE_PLACEHOLDER, "Exam preparation"),
-        ("Grade 10", "SOF",  "Maths Olympiad", SOF_PLACEHOLDER, "Exam-style problems"),
     ])
     def test_nonempty_persona_still_hits_cache_via_fallback(
         self, monkeypatch, grade, mode, subject, chapter, step

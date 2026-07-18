@@ -19,7 +19,6 @@ def fake_student_profile(**overrides):
 
     Tests can override access flags like:
         fake_student_profile(access_cbse=False)
-        fake_student_profile(access_sof_science=False)
     """
     profile = {
         "id": TEST_USER_ID,
@@ -36,9 +35,6 @@ def fake_student_profile(**overrides):
         "ai_model_preference": "default",
         "access_cbse": True,
         "cbse_subjects": [],
-        "access_sof_science": True,
-        "access_sof_maths": True,
-        "access_sof_english": True,
     }
 
     profile.update(overrides)
@@ -63,9 +59,6 @@ def fake_admin_profile(**overrides):
         "mode": None,
         "account_status": "active",
         "access_cbse": False,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
     }
 
     profile.update(overrides)

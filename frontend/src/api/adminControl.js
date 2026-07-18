@@ -168,7 +168,7 @@ export async function deleteTeacherAssignment(assignmentId, accessToken) {
 }
 
 export async function updateChildAccess(childId, payload, accessToken) {
-  /** Save a student's subscription plan, status, and CBSE/SOF access flags. */
+  /** Save a student's subscription plan, status, and CBSE access flags. */
   const response = await adminFetch(
     `/api/admin-control/access/${childId}`,
     {

@@ -166,7 +166,7 @@ def enforce_profile_board(profile: dict, requested_board: str):
 
 def enforce_learning_access(profile: dict, mode: str, subject: str):
     """
-    Enforce plan access for CBSE and subject-specific SOF lessons.
+    Enforce plan access for CBSE lessons.
 
     Admins bypass student plan gates; all other users must be active/trial and
     have the exact access flag needed by the requested learning mode.
@@ -200,27 +200,6 @@ def enforce_learning_access(profile: dict, mode: str, subject: str):
                 status_code=403,
                 detail=f"{subject_label} access is not enabled for this student.",
             )
-        return
-
-    if mode == "SOF":
-        if subject == "Science Olympiad" and not profile.get("access_sof_science"):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF Science access is not enabled for this student.",
-            )
-
-        if subject == "Maths Olympiad" and not profile.get("access_sof_maths"):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF Maths access is not enabled for this student.",
-            )
-
-        if subject == "English Olympiad" and not profile.get("access_sof_english"):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF English access is not enabled for this student.",
-            )
-
         return
 
     raise HTTPException(

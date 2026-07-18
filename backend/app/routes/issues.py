@@ -481,16 +481,15 @@ def fix_and_rewarm(
             else get_lesson_steps_for_grade(grade)
         )
         for step in steps_to_clear:
-            for mode in ("CBSE", "Olympiad"):
-                cache_key = make_lesson_cache_key(
-                    board="CBSE", grade=grade, subject=subject,
-                    chapter=chapter, mode=mode, step_title=step, teacher_persona="",
-                )
-                try:
-                    content_db.table("lesson_cache").delete().eq("cache_key", cache_key).execute()
-                    cleared += 1
-                except Exception:
-                    pass
+            cache_key = make_lesson_cache_key(
+                board="CBSE", grade=grade, subject=subject,
+                chapter=chapter, mode="CBSE", step_title=step, teacher_persona="",
+            )
+            try:
+                content_db.table("lesson_cache").delete().eq("cache_key", cache_key).execute()
+                cleared += 1
+            except Exception:
+                pass
     except Exception as e:
         # Non-fatal — continue to rewarm even if cache clear partially fails
         pass

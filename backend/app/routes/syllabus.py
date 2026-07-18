@@ -16,16 +16,12 @@ router = APIRouter()
 
 UPLOAD_PLACEHOLDER_CHAPTERS = {
     "Uploaded Book Content",
-    "Uploaded SOF Chapter Content",
-    "Uploaded SOF Exercises",
-    "Uploaded SOF Model Test Papers",
-    "Uploaded SOF Answer Keys and Explanations",
 }
 
 
 def placeholder_chapter_for_mode(mode):
     """Return the only non-RAG chapter placeholder allowed for an empty subject."""
-    return "Uploaded SOF Chapter Content" if mode == "SOF" else "Uploaded Book Content"
+    return "Uploaded Book Content"
 
 
 def is_uploaded_placeholder(chapter):
@@ -467,7 +463,7 @@ def apply_subject_overrides(merged, subject_overrides):
         if not subjects:
             continue
 
-        grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
+        grade_data = merged.setdefault(grade, {"CBSE": {}})
         mode_data = grade_data.setdefault(mode, {})
         reviewed_mode_data = {}
 
@@ -612,10 +608,10 @@ def fetch_rag_chapter_counts():
         subject = document.get("subject")
         chapter = document.get("chapter")
 
-        if not grade or not subject or not chapter:
+        if not grade or not subject or not chapter or "Olympiad" in subject:
             continue
 
-        mode = "SOF" if "Olympiad" in subject else normalize_board(document.get("board"))
+        mode = normalize_board(document.get("board"))
         key = (
             grade,
             mode,
@@ -703,7 +699,7 @@ def apply_syllabus_overrides(merged, overrides):
         if not chapters:
             continue
 
-        grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
+        grade_data = merged.setdefault(grade, {"CBSE": {}})
         mode_data = grade_data.setdefault(mode, {})
         mode_data[subject] = merge_reviewed_and_live_chapters(
             chapters,
@@ -733,7 +729,7 @@ def merge_uploaded_rag_chapters(syllabus):
         subject = document.get("subject")
         raw_chapter = document.get("chapter")
 
-        if not grade or not subject or not raw_chapter:
+        if not grade or not subject or not raw_chapter or "Olympiad" in subject:
             continue
 
         # Strip non-printable characters (e.g. \x08 backspace from PDF uploads)
@@ -743,7 +739,7 @@ def merge_uploaded_rag_chapters(syllabus):
             continue
 
         grade_data = merged.setdefault(grade, {"CBSE": {}})
-        mode = "SOF" if "Olympiad" in subject else normalize_board(document.get("board"))
+        mode = normalize_board(document.get("board"))
         mode_data = grade_data.setdefault(mode, {})
         chapters = mode_data.setdefault(subject, [])
 
@@ -795,7 +791,7 @@ def merge_uploaded_rag_chapters(syllabus):
         chapters = clean_chapter_list(override.get("chapters") or [])
         if not chapters:
             continue
-        grade_data = merged.setdefault(grade, {"CBSE": {}, "SOF": {}})
+        grade_data = merged.setdefault(grade, {"CBSE": {}})
         mode_data = grade_data.setdefault(mode, {})
         mode_data[subject] = chapters
 
@@ -838,11 +834,7 @@ def rename_rag_chapter_labels(grade, mode, subject, items):
         old_lookup_key = normalize_rag_chapter_lookup(old_label)
 
         for document in response.data or []:
-            document_mode = (
-                "SOF"
-                if "Olympiad" in subject
-                else normalize_board(document.get("board"))
-            )
+            document_mode = normalize_board(document.get("board"))
 
             if document_mode != mode:
                 continue

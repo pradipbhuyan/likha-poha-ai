@@ -63,12 +63,12 @@ One sentence explaining WHY the correct answer is right.
 
 def _is_math_subject(subject: str) -> bool:
     """Identify maths subjects for MCQ-only practice generation."""
-    return subject in {"Maths", "Maths Olympiad", "Mathematics"}
+    return subject in {"Maths", "Mathematics"}
 
 
 def _is_hindi_subject(subject: str) -> bool:
     """Identify Hindi subjects for MCQ-only practice generation."""
-    return subject in {"Hindi", "Hindi Olympiad"}
+    return subject == "Hindi"
 
 
 def _extract_json_array(text: str) -> list[dict]:

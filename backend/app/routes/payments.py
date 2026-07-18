@@ -216,7 +216,7 @@ def profile_access_from_plan(plan):
     """
     Convert a subscription plan row into profile access fields.
 
-    This is the single mapping that decides which CBSE/SOF flags and AI token
+    This is the single mapping that decides which CBSE flags and AI token
     limits are applied after a successful payment or family premium activation.
     Includes subscription_expires_at so time-limited plans (e.g. ₹99/8-day
     Premium Nano) revert to free tier automatically after the access window.
@@ -225,9 +225,6 @@ def profile_access_from_plan(plan):
         "subscription_plan": plan["key"],
         "account_status": "active",
         "access_cbse": bool(plan.get("access_cbse")),
-        "access_sof_science": bool(plan.get("access_sof_science")),
-        "access_sof_maths": bool(plan.get("access_sof_maths")),
-        "access_sof_english": bool(plan.get("access_sof_english")),
         "daily_token_limit": int(plan.get("daily_token_limit") or 0),
         "monthly_token_limit": int(plan.get("monthly_token_limit") or 0),
         "subscription_expires_at": plan_expires_at(plan),
@@ -1132,8 +1129,7 @@ def admin_test_user_status(user_id: str, admin=Depends(require_admin)):
         .table("profiles")
         .select(
             "id, username, email, role, subscription_plan, "
-            "access_cbse, access_sof_science, access_sof_maths, "
-            "subscription_expires_at, account_status"
+            "access_cbse, subscription_expires_at, account_status"
         )
         .eq("id", user_id)
         .limit(1)

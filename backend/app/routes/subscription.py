@@ -103,7 +103,7 @@ def resolve_subscription(user=Depends(get_current_user)):
         1. Active paid subscription  (subscription_expires_at in future)
         2. Perpetual paid plan       (access flag + non-free plan key)
         3. Valid offer / free-trial  (offer_redemptions row valid now)
-        4. Admin-granted access      (access_cbse / SOF flags, no expiry)
+        4. Admin-granted access      (access_cbse, no expiry)
         5. Default free tier
     """
     result = resolve_user_subscription(user.id)

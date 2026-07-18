@@ -216,8 +216,6 @@ function PlanEditPanel({ planKey, plan, onUpdate, onUpdateComparison }) {
             ["aiUsage", "AI Usage"],
             ["cbse", "CBSE Access"],
             ["parentDashboard", "Parent Dashboard"],
-            ["sof", "SOF"],
-            ["ragSof", "RAG SOF"],
           ].map(([field, label]) => (
             <Field key={field} label={label}>
               <input

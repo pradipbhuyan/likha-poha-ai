@@ -989,7 +989,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
           <p className="eyebrow">Parent Subscription</p>
           <h2>Choose the right plan for your family</h2>
           <p>
-            Compare CBSE access, SOF preparation, AI limits, and parent controls
+            Compare CBSE access, AI limits, and parent controls
             before activating a plan.
           </p>
         </div>
@@ -1193,10 +1193,8 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
             <span>Includes</span>
             <strong>
               {selectedPlan.key === "family_premium"
-                ? "2 children + CBSE + SOF + AI"
-                : selectedPlan.access_sof_science
-                  ? "CBSE + SOF + AI"
-                  : "CBSE + AI"}
+                ? "2 children + CBSE + AI"
+                : "CBSE + AI"}
             </strong>
           </div>
 

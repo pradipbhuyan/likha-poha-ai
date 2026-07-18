@@ -57,8 +57,7 @@ def run_expiry_job() -> dict[str, Any]:
             .table("profiles")
             .select(
                 "id, username, subscription_plan, subscription_expires_at, "
-                "access_cbse, access_sof_science, access_sof_maths, "
-                "access_sof_english, parent_id"
+                "access_cbse, parent_id"
             )
             .lt("subscription_expires_at", now_iso)   # past expiry
             .not_.is_("subscription_expires_at", "null")
@@ -79,17 +78,12 @@ def run_expiry_job() -> dict[str, Any]:
 
         try:
             # ── Already revoked? ─────────────────────────────────────────────
-            # For student profiles: access_cbse / SOF flags are the signal.
-            # For parent profiles: those flags are never set; but subscription_plan
+            # For student profiles: access_cbse is the signal.
+            # For parent profiles: that flag is never set; but subscription_plan
             # and subscription_expires_at may still be non-null after Family Premium
             # expires — clear those too so the resolver doesn't keep seeing a stale
             # expired expiry date.
-            has_any_access = bool(
-                profile.get("access_cbse")
-                or profile.get("access_sof_science")
-                or profile.get("access_sof_maths")
-                or profile.get("access_sof_english")
-            )
+            has_any_access = bool(profile.get("access_cbse"))
             if not has_any_access:
                 # For parent profiles that have subscription_plan / subscription_expires_at
                 # set (from Family Premium activation) but no access flags, clean up the
@@ -126,9 +120,6 @@ def run_expiry_job() -> dict[str, Any]:
             old_plan = profile.get("subscription_plan", "free")
             admin_client.table("profiles").update({
                 "access_cbse": False,
-                "access_sof_science": False,
-                "access_sof_maths": False,
-                "access_sof_english": False,
                 "subscription_expires_at": None,   # clear so it doesn't trigger again
             }).eq("id", user_id).execute()
 

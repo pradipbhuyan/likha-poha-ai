@@ -36,9 +36,9 @@ export function calculateAchievements({
     : 0;
 
   achievements.push({
-    id: "olympiad-ready",
+    id: "top-scorer",
     icon: "🌟",
-    title: "Olympiad Ready",
+    title: "Top Scorer",
     description: "Score 90% or above in a test.",
     unlocked: bestScore >= 90,
   });

@@ -39,22 +39,12 @@ describe("subjectAccess", () => {
       role: "student",
       username: "akshita.teststudent",
       accessCbse: false,
-      accessSofScience: false,
-      accessSofMaths: false,
-      accessSofEnglish: false,
       cbseSubjects: ["Science"],
     };
 
     expect(
       filterAllowedSubjects(user, ["English", "Maths", "Science"], "ICSE")
     ).toEqual(["English", "Maths", "Science"]);
-    expect(
-      filterAllowedSubjects(
-        user,
-        ["Science Olympiad", "Maths Olympiad", "English Olympiad"],
-        "SOF"
-      )
-    ).toEqual(["Science Olympiad", "Maths Olympiad", "English Olympiad"]);
   });
 
   test("parses comma and newline subject lists without duplicates", () => {

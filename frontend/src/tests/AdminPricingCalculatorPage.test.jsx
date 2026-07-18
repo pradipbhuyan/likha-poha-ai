@@ -21,18 +21,4 @@ describe("AdminPricingCalculatorPage", () => {
     expect(screen.getByText(/estimated margin is/i)).toBeInTheDocument();
     expect(screen.getByText(/\(-/)).toBeInTheDocument();
   });
-
-  test("can include SOF subjects in the monthly usage mix", () => {
-    /** Enabling SOF rows should be possible for premium-plan pricing checks. */
-    render(<AdminPricingCalculatorPage />);
-
-    const sofScienceRow = screen.getByText("SOF Science").closest(".pricing-usage-row");
-    const sofCheckbox = sofScienceRow.querySelector("input[type='checkbox']");
-
-    expect(sofCheckbox.checked).toBe(false);
-
-    fireEvent.click(sofCheckbox);
-
-    expect(sofCheckbox.checked).toBe(true);
-  });
 });

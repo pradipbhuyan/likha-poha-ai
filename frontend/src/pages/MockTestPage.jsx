@@ -107,11 +107,11 @@ function MockTestPage({ user, setActivePage }) {
 
   // ── Derived ──────────────────────────────────────────────────────────────────
   const grades = getVisibleGrades(syllabusData, user);
-  const modes  = Object.keys(syllabusData[grade]).filter(m => m !== "SOF" || grade === "Grade 9");
+  const modes  = Object.keys(syllabusData[grade]);
   function getAllowed(all, sm) { return filterAllowedSubjects(user, all, sm); }
   const subjects     = getAllowed(Object.keys(syllabusData[grade][mode]), mode);
   const chapters     = subject ? syllabusData[grade][mode][subject] || [] : [];
-  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
+  const requestBoard = mode;
 
   const isMCQ     = q => !q.question_type || q.question_type === "mcq";
   const isWritten = q => q.question_type === "written_short" || q.question_type === "written_long";
@@ -124,14 +124,14 @@ function MockTestPage({ user, setActivePage }) {
   function formatTime(s) { return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; }
 
   function perf(pct) {
-    if (pct >= 90) return { title: "🌟 Olympiad Ready",      msg: "Outstanding! You have mastered this chapter." };
+    if (pct >= 90) return { title: "🌟 Mastery Achieved",    msg: "Outstanding! You have mastered this chapter." };
     if (pct >= 75) return { title: "👏 Strong Foundation",   msg: "Very good! Concepts are strong and improving." };
     if (pct >= 60) return { title: "👍 Good Progress",       msg: "Improving well. More practice will boost you further." };
     return           { title: "💪 Revision Needed",          msg: "Keep practicing — revising core concepts will help." };
   }
 
   function rec(pct) {
-    if (pct >= 85) return "Recommended next: Hard / Olympiad HOTS";
+    if (pct >= 85) return "Recommended next: Hard difficulty";
     if (pct >= 60) return "Recommended next: Medium difficulty";
     return "Recommended: Easy with thorough revision";
   }
@@ -194,11 +194,6 @@ function MockTestPage({ user, setActivePage }) {
         !isFreeUser && !user.accessCbse && !user.offerAccess) {
       setError(`No access to ${mode} mock tests.`); return;
     }
-    if (mode === "SOF" && user?.role !== "admin" && !isAllAccessTestUser(user) &&
-        !(user.accessSofScience || user.accessSofMaths || user.accessSofEnglish)) {
-      setError("No access to SOF mock tests."); return;
-    }
-
     setLoading(true); setError(""); setResults(null);
     setAnswers({}); setWrittenAnswers({}); setWrittenEvals({}); setWrittenLoading({});
 
@@ -373,7 +368,7 @@ function MockTestPage({ user, setActivePage }) {
               </label>
               <label>Difficulty
                 <select value={difficulty} onChange={e => setDifficulty(e.target.value)}>
-                  <option>Easy</option><option>Medium</option><option>Hard</option><option>Olympiad HOTS</option>
+                  <option>Easy</option><option>Medium</option><option>Hard</option>
                 </select>
               </label>
               <label>Questions <small style={{ color: "var(--muted)" }}>(max 100)</small>

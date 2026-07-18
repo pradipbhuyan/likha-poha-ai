@@ -131,7 +131,7 @@ function AnalyticsPage({ user }) {
 
   const insightText =
     averageScore >= 85
-      ? "Excellent consistency. You are ready for harder questions and Olympiad-level practice."
+      ? "Excellent consistency. You are ready for harder questions and Hard-level practice."
       : averageScore >= 65
       ? "Good progress. Focus on weaker subjects and review mistakes after every mock test."
       : "Revision needed. Start with concept review, then attempt short quizzes before mock tests.";

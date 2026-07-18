@@ -410,7 +410,7 @@ function SalesCollateralPage({ user }) {
                 onChange={(event) =>
                   setForm((prev) => ({ ...prev, title: event.target.value }))
                 }
-                placeholder="Grade 9 SOF launch WhatsApp poster"
+                placeholder="Grade 9 CBSE launch WhatsApp poster"
                 required
               />
             </label>

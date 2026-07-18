@@ -56,7 +56,7 @@ function mockSalesSummary() {
         id: "attr-1",
         sales_profile_id: "sales-1",
         student_id: "student-1",
-        package_label: "Premium SOF",
+        package_label: "Premium CBSE",
         package_amount: 999,
         incentive_percent: 7.5,
         incentive_amount: 74.93,
@@ -135,7 +135,7 @@ describe("SalesIncentivePage", () => {
     render(<SalesIncentivePage user={salesUser} />);
 
     expect(await screen.findByText("My Sales Ledger")).toBeInTheDocument();
-    expect(screen.getByText("Premium SOF")).toBeInTheDocument();
+    expect(screen.getByText("Premium CBSE")).toBeInTheDocument();
     expect(screen.getByText(/7.5%/i)).toBeInTheDocument();
     expect(screen.queryByText("Onboard Salesperson")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /save student sale/i })).not.toBeInTheDocument();

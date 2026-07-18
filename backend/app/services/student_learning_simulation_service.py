@@ -266,9 +266,6 @@ def setup_simulation_users(dry_run: bool = False) -> dict:
                 "board":               spec["board"],
                 "subscription_plan":   "family_premium",
                 "access_cbse":         True,
-                "access_sof_science":  False,
-                "access_sof_maths":    False,
-                "access_sof_english":  False,
                 "cbse_subjects":       [],
                 "daily_token_limit":   2000000,
                 "monthly_token_limit": 50000000,
@@ -278,9 +275,6 @@ def setup_simulation_users(dry_run: bool = False) -> dict:
             profile.update({
                 "subscription_plan": "family_premium",
                 "access_cbse":       True,
-                "access_sof_science": False,
-                "access_sof_maths":   False,
-                "access_sof_english": False,
             })
 
         _upsert_profile(profile)

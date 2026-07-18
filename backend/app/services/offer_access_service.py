@@ -8,7 +8,7 @@ answer, the platform returns an upgrade prompt instead of calling the LLM,
 keeping token cost at zero for free users.
 
 Free Tier = any user who does NOT have an active paid subscription:
-  - No access_cbse / SOF flags set from payment
+  - No access_cbse flag set from payment
   - No subscription_expires_at in the future
 
 Offer codes are kept as an optional upgrade path but are NOT required for
@@ -40,7 +40,7 @@ def is_free_tier_user(user_id: str) -> bool:
     Return True if the user is on the Free Tier (limited, DKB-only access).
 
     Free Tier = user has NO active paid subscription:
-      • access_cbse / SOF flags are all False (not set by payment or admin)
+      • access_cbse is False (not set by payment or admin)
       • subscription_expires_at is absent or in the past
 
     This replaces the old is_offer_code_user() gate.  Now ALL free users get
@@ -57,9 +57,7 @@ def is_free_tier_user(user_id: str) -> bool:
             admin_client
             .table("profiles")
             .select(
-                "id, role, access_cbse, "
-                "access_sof_science, access_sof_maths, access_sof_english, "
-                "subscription_expires_at"
+                "id, role, access_cbse, subscription_expires_at"
             )
             .eq("id", user_id)
             .single()
@@ -75,12 +73,7 @@ def is_free_tier_user(user_id: str) -> bool:
             return False
 
         # If user has any paid access flag → not free tier
-        has_paid_access = bool(
-            profile.get("access_cbse")
-            or profile.get("access_sof_science")
-            or profile.get("access_sof_maths")
-            or profile.get("access_sof_english")
-        )
+        has_paid_access = bool(profile.get("access_cbse"))
         if has_paid_access:
             # Also verify subscription_expires_at is still in the future
             # (the profile endpoint revokes flags on expiry, but check here too)

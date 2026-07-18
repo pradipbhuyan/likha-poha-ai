@@ -55,39 +55,12 @@ const SUBJECT_USAGE_PRESETS = [
     outputTokens: 1000,
     model: "gpt-4.1-mini",
   },
-  {
-    key: "sofScience",
-    label: "SOF Science",
-    enabled: false,
-    requests: 70,
-    inputTokens: 2600,
-    outputTokens: 2000,
-    model: "gpt-4.1-mini",
-  },
-  {
-    key: "sofMaths",
-    label: "SOF Maths",
-    enabled: false,
-    requests: 70,
-    inputTokens: 2400,
-    outputTokens: 1900,
-    model: "gpt-4.1-mini",
-  },
-  {
-    key: "sofEnglish",
-    label: "SOF English",
-    enabled: false,
-    requests: 50,
-    inputTokens: 2200,
-    outputTokens: 1800,
-    model: "gpt-4.1-mini",
-  },
 ];
 
 // Pricing per 1M tokens (USD).
 // Source: OpenAI pricing page — keep aligned with openai_service.py constants.
 // gpt-4.1-mini: current default for ALL features (Phase 1 cost reduction).
-// gpt-4.1:      future upgrade for premium SOF features when budget improves.
+// gpt-4.1:      future upgrade for premium features when budget improves.
 const MODEL_COSTS = {
   "gpt-4.1-mini": {
     input: 0.40,

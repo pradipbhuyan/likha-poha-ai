@@ -26,7 +26,7 @@ const STUDENT_SCREENS = [
     icon: LockKeyhole,
     title: "Student sign-in",
     subtitle: "A focused entry point with role-aware routing after login.",
-    stats: ["Grade 9", "CBSE + SOF", "AI Ready"],
+    stats: ["Grade 9", "CBSE", "AI Ready"],
     layout: "login",
   },
   {
@@ -110,7 +110,7 @@ const PARENT_SCREENS = [
     icon: Users,
     title: "Family learning center",
     subtitle: "Children, parents, progress, and plan details in one dashboard.",
-    stats: ["2 children", "Premium SOF", "₹1,499/month"],
+    stats: ["2 children", "Premium CBSE", "₹1,499/month"],
     layout: "parentDashboard",
   },
   {
@@ -128,7 +128,7 @@ const PARENT_SCREENS = [
     icon: HelpCircle,
     title: "Doubt history overview",
     subtitle: "Parents can review the kinds of questions their child is asking.",
-    stats: ["18 doubts", "5 saved", "3 SOF"],
+    stats: ["18 doubts", "5 saved", "3 flagged"],
     layout: "parentDoubts",
   },
   {
@@ -374,7 +374,7 @@ function RealLoginPreview({ flowKey, screen, theme }) {
       </section>
       <aside>
         <strong>AI Tutor</strong>
-        <span>CBSE + SOF + Multi-board</span>
+        <span>CBSE + Multi-board</span>
         <small>Demo data only</small>
       </aside>
     </div>
@@ -390,8 +390,8 @@ function ScreenContent({ flowKey, screen }) {
           <p className="eyebrow">Learning Path</p>
           <h5>Select Lesson Setup</h5>
           <div className="sales-real-field">Grade 9</div>
-          <div className="sales-real-field">SOF</div>
-          <div className="sales-real-field">Maths Olympiad</div>
+          <div className="sales-real-field">CBSE</div>
+          <div className="sales-real-field">Maths</div>
           <div className="sales-real-field">Number Systems</div>
           <div className="sales-real-progress"><span style={{ width: "64%" }} /></div>
         </div>
@@ -453,7 +453,7 @@ function ScreenContent({ flowKey, screen }) {
       <div className="sales-real-card">
         <p className="eyebrow">Learn More</p>
         <h5>Recommended resources</h5>
-        {["Concept video: Osmosis", "NCERT reference notes", "SOF practice worksheet"].map((item) => (
+        {["Concept video: Osmosis", "NCERT reference notes", "Extra practice worksheet"].map((item) => (
           <div key={item} className="sales-real-resource">
             <PlayCircle size={18} />
             <span>{item}</span>
@@ -552,7 +552,7 @@ function RealAppPreview({ flowKey, flow, screen, theme }) {
           <img src={appLogo} alt="Likha Poha AI" />
           <div>
             <strong>AI Tutor</strong>
-            <span>CBSE + SOF</span>
+            <span>CBSE</span>
           </div>
         </div>
         <div className="sales-real-profile">

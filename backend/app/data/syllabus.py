@@ -109,98 +109,6 @@ CBSE_9 = {
 }
 
 
-SOF_9 = {
-
-    "Science Olympiad": [
-
-        "Matter in Our Surroundings",
-        "Is Matter Around Us Pure?",
-        "Atoms and Molecules",
-        "Structure of the Atom",
-        "Cell – The Fundamental Unit of Life",
-        "Tissues",
-        "Diversity in Living Organisms",
-        "Motion",
-        "Force and Laws of Motion",
-        "Gravitation",
-        "Work and Energy",
-        "Sound",
-        "Human Health and Diseases",
-        "Improvement in Food Resources",
-        "Logical Reasoning",
-        "SOF National Science Olympiad - 2025",
-        "Hints & Explanations",
-        "SOF-ISO Model Test Paper-1",
-        "SOF-ISO Model Test Paper-2"
-    ],
-
-    "Maths Olympiad": [
-
-        "Number Systems",
-        "Algebraic Identities",
-        "Polynomials",
-        "Coordinate Geometry",
-        "Linear Equations in Two Variables",
-        "Sequences and Progressions",
-        "Introduction to Euclid's Geometry",
-        "Lines and Angles",
-        "Triangles",
-        "Quadrilaterals",
-        "Areas of Parallelograms and Triangles",
-        "Circles",
-        "Constructions",
-        "Area and Perimeter",
-        "Surface Areas and Volumes",
-        "Statistics",
-        "Introduction to Probability",
-        "Logical Reasoning",
-        "SOF International Mathematics Olympiad - 2025",
-        "Hints & Explanations",
-        "SOF-IMO Model Test Paper-1",
-        "SOF-IMO Model Test Paper-2"
-    ],
-
-    "English Olympiad": [
-
-        "Nouns",
-        "Pronouns",
-        "Verbs",
-        "Adverbs",
-        "Adjectives",
-        "Articles",
-        "Prepositions",
-        "Conjunctions",
-        "Voices",
-        "Subject-Verb Agreement",
-        "Tenses",
-        "Modals",
-        "Reported Speech",
-        "Word Power-1",
-        "Word Power-2",
-        "Vocabulary",
-        "Synonyms",
-        "Antonyms",
-        "Spelling",
-        "Question Tags and Conditionals",
-        "Nouns and Pronouns",
-        "Adjectives and Adverbs",
-        "Articles and Prepositions",
-        "Idioms, Phrases and Phrasal Verbs",
-        "Conjunctions and Determiners",
-        "Tenses and Concords",
-        "Verbs: Finite, Non-finite, Auxiliary",
-        "Voice and Narration",
-        "Collocations, Homophones/Homonyms",
-        "Comprehension",
-        "Spoken and Written Expression",
-        "SOF International English Olympiad - 2025",
-        "Answer Keys",
-        "SOF-IEO Model Test Paper-1",
-        "SOF-IEO Model Test Paper-2"
-    ]
-}
-
-
 LESSON_STEPS = {
 
     "Science": {
@@ -270,51 +178,6 @@ LESSON_STEPS = {
             "Proof based questions",
             "Chapter recap"
         ]
-    },
-
-    "Science Olympiad": {
-
-        "Physics": [
-
-            "Motion reasoning",
-            "Force based HOTS",
-            "Gravitation concepts",
-            "Work and energy problems",
-            "Numericals",
-            "Assertion and reason",
-            "Olympiad practice",
-            "Mock test"
-        ]
-    },
-
-    "Maths Olympiad": {
-
-        "Mathematical Reasoning": [
-
-            "Pattern recognition",
-            "Logical puzzles",
-            "Number reasoning",
-            "Algebraic thinking",
-            "Geometry reasoning",
-            "Data interpretation",
-            "HOTS practice",
-            "Mock test"
-        ]
-    },
-
-    "English Olympiad": {
-
-        "Reading": [
-
-            "Vocabulary building",
-            "Sentence correction",
-            "Grammar rules",
-            "Reading comprehension",
-            "Inference questions",
-            "Para jumbles",
-            "Olympiad practice",
-            "Mock test"
-        ]
     }
 }
 UPLOAD_READY_CBSE_SUBJECTS = {
@@ -335,28 +198,6 @@ UPPER_PRIMARY_CBSE_SUBJECTS = {
     "Science": ["Uploaded Book Content"],
     "Social Science": ["Uploaded Book Content"],
     "Computer Science": ["Uploaded Book Content"],
-}
-
-
-GENERIC_SOF = {
-    "Science Olympiad": [
-        "Uploaded SOF Chapter Content",
-        "Uploaded SOF Exercises",
-        "Uploaded SOF Model Test Papers",
-        "Uploaded SOF Answer Keys and Explanations",
-    ],
-    "Maths Olympiad": [
-        "Uploaded SOF Chapter Content",
-        "Uploaded SOF Exercises",
-        "Uploaded SOF Model Test Papers",
-        "Uploaded SOF Answer Keys and Explanations",
-    ],
-    "English Olympiad": [
-        "Uploaded SOF Chapter Content",
-        "Uploaded SOF Exercises",
-        "Uploaded SOF Model Test Papers",
-        "Uploaded SOF Answer Keys and Explanations",
-    ],
 }
 
 
@@ -413,20 +254,16 @@ SYLLABUS = {
     **{
         f"Grade {grade_number}": {
             "CBSE": build_upload_ready_cbse_catalog(grade_number),
-            "SOF": GENERIC_SOF,
         }
-        for grade_number in range(1, 11)
+        for grade_number in range(5, 11)
     },
     "Grade 9": {
         "CBSE": CBSE_9,
-        "SOF": SOF_9,
     },
     "Grade 11": {
         "CBSE": GRADE_11_CBSE_SUBJECTS,
-        "SOF": GENERIC_SOF,
     },
     "Grade 12": {
         "CBSE": GRADE_12_CBSE_SUBJECTS,
-        "SOF": GENERIC_SOF,
     },
 }

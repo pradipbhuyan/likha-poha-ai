@@ -560,7 +560,7 @@ def prewarm_doubt_kb_for_chapter(
     # Step 1: Generate question list
     q_system = (
         "You are an education specialist who knows exactly what questions "
-        "students ask about CBSE/SOF textbook chapters. "
+        "students ask about CBSE textbook chapters. "
         "Return ONLY a valid JSON array of question strings. No markdown."
     )
     q_prompt = f"""
@@ -682,7 +682,7 @@ def prewarm_doubt_kb_for_grade(grade: str, mode: str = "CBSE") -> dict:
     total_errors = 0
 
     for current_mode, mode_data in syllabus.items():
-        if current_mode not in ("CBSE", "SOF"):
+        if current_mode != "CBSE":
             continue
         for subject, chapters in mode_data.items():
             for chapter in chapters:

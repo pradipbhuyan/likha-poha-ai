@@ -35,9 +35,6 @@ def _base_plan(**overrides):
         "key": "free",
         "billing_label": "8 days",
         "access_cbse": True,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "daily_token_limit": 100000,
         "monthly_token_limit": 1000000,
     }
@@ -46,10 +43,7 @@ def _base_plan(**overrides):
 
 def _needs_subscription_gate(user: dict) -> bool:
     """Mirror of App.jsx needsSubscription condition."""
-    has_direct = (
-        user.get("accessCbse") or user.get("accessSofScience") or
-        user.get("accessSofMaths") or user.get("accessSofEnglish")
-    )
+    has_direct = user.get("accessCbse")
     return (
         user.get("role") == "student"
         and user.get("subscriptionPlan") == "free"
@@ -173,14 +167,6 @@ class TestProfileAccessFromPlan:
         assert fields["daily_token_limit"] == 150000
         assert fields["monthly_token_limit"] == 5000000
 
-    def test_sof_flags_propagated(self):
-        """SOF access flags are set correctly from the plan."""
-        fields = profile_access_from_plan(_base_plan(
-            access_sof_science=True, access_sof_maths=True, access_sof_english=False))
-        assert fields["access_sof_science"] is True
-        assert fields["access_sof_maths"] is True
-        assert fields["access_sof_english"] is False
-
     def test_unknown_billing_gives_no_expiry(self):
         """Plans with unrecognised billing labels must have subscription_expires_at=None."""
         fields = profile_access_from_plan(_base_plan(billing_label="custom"))
@@ -191,7 +177,7 @@ class TestProfileAccessFromPlan:
         fields = profile_access_from_plan(_base_plan())
         for key in [
             "subscription_plan", "account_status",
-            "access_cbse", "access_sof_science", "access_sof_maths", "access_sof_english",
+            "access_cbse",
             "daily_token_limit", "monthly_token_limit", "subscription_expires_at",
         ]:
             assert key in fields, f"Required field missing: {key}"
@@ -383,9 +369,6 @@ class TestSubscriptionStateMachine:
         revoked_profile = {
             "subscription_plan": "free",
             "access_cbse": False,           # revoked
-            "access_sof_science": False,
-            "access_sof_maths": False,
-            "access_sof_english": False,
             "subscription_expires_at": None,  # cleared
         }
         # Verify the revoked state is the free tier

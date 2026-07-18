@@ -63,9 +63,9 @@ def test_calculate_rank_title_higher_levels():
 
     Expected result:
     - Level 10 should return "Concept Champion".
-    - Level 15 should return "Olympiad Master".
+    - Level 15 should return "Subject Master".
     - Level 20 should return "AI Scholar".
     """
     assert calculate_rank_title(10) == "Concept Champion"
-    assert calculate_rank_title(15) == "Olympiad Master"
+    assert calculate_rank_title(15) == "Subject Master"
     assert calculate_rank_title(20) == "AI Scholar"

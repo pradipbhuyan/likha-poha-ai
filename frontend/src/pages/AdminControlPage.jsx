@@ -780,9 +780,6 @@ function AdminControlPage({ user }) {
         child.id,
         {
           access_cbse: !!child.access_cbse,
-          access_sof_science: !!child.access_sof_science,
-          access_sof_maths: !!child.access_sof_maths,
-          access_sof_english: !!child.access_sof_english,
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
@@ -823,9 +820,6 @@ function AdminControlPage({ user }) {
         child.id,
         {
           access_cbse: !!child.access_cbse,
-          access_sof_science: !!child.access_sof_science,
-          access_sof_maths: !!child.access_sof_maths,
-          access_sof_english: !!child.access_sof_english,
           subscription_plan: child.subscription_plan || "free",
           account_status: child.account_status || "active",
           grade: child.grade || "Grade 9",
@@ -888,9 +882,6 @@ function AdminControlPage({ user }) {
                   ...child,
                   subscription_plan: planName,
                   access_cbse: preset.access_cbse,
-                  access_sof_science: preset.access_sof_science,
-                  access_sof_maths: preset.access_sof_maths,
-                  access_sof_english: preset.access_sof_english,
                   daily_token_limit: preset.daily_token_limit,
                   monthly_token_limit: preset.monthly_token_limit,
                   cbse_subjects: [],
@@ -3160,7 +3151,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                 </label>
 
                 <label>
-                  AI Model for SOF Mock & Doubts
+                  AI Model for Doubts
                   <select
                     value={child.ai_model_preference || "default"}
                     onChange={(e) =>
@@ -3184,9 +3175,6 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
               <div style={{ marginTop: 16 }}>
                 {[
                   ["access_cbse", "Platform Access"],
-                  ["access_sof_science", "SOF Science"],
-                  ["access_sof_maths", "SOF Maths"],
-                  ["access_sof_english", "SOF English"],
                 ].map(([field, label]) => (
                   <label
                     key={field}

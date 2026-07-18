@@ -87,9 +87,6 @@ class AssignTeacherStudentRequest(BaseModel):
 
 class UpdateAccessRequest(BaseModel):
     access_cbse: bool
-    access_sof_science: bool
-    access_sof_maths: bool
-    access_sof_english: bool
     cbse_subjects: list[str] = Field(default_factory=list)
     subscription_plan: str = "free"
     account_status: str = "active"
@@ -117,9 +114,6 @@ class SubscriptionPlanSettings(BaseModel):
     is_public: bool = True
     display_order: int = 999
     access_cbse: bool = True
-    access_sof_science: bool = False
-    access_sof_maths: bool = False
-    access_sof_english: bool = False
     daily_token_limit: int = 0
     monthly_token_limit: int = 0
     included: list[str] = []
@@ -320,9 +314,6 @@ def normalize_subscription_plan_row(row: dict):
         "is_public": row.get("is_public") is not False,
         "display_order": int(row.get("display_order") or 999),
         "access_cbse": bool(row.get("access_cbse")),
-        "access_sof_science": bool(row.get("access_sof_science")),
-        "access_sof_maths": bool(row.get("access_sof_maths")),
-        "access_sof_english": bool(row.get("access_sof_english")),
         "daily_token_limit": int(row.get("daily_token_limit") or 0),
         "monthly_token_limit": int(row.get("monthly_token_limit") or 0),
         "included": _to_list(row.get("included")),
@@ -665,8 +656,7 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
     """
     Create a parent auth account/profile, creating a family when needed.
 
-    Admin-created parents default to the free plan with CBSE enabled and SOF
-    disabled until plan/access is updated.
+    Admin-created parents default to the free plan until plan/access is updated.
     """
     family_id = data.family_id
 
@@ -720,9 +710,6 @@ def create_parent(data: CreateParentRequest, admin=Depends(require_admin)):
         "account_status": "active",
         "subscription_plan": "free",
         "access_cbse": True,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
     }
 
     response = (
@@ -777,9 +764,6 @@ def create_child(data: CreateChildRequest, admin=Depends(require_admin)):
         "account_status": "active",
         "subscription_plan": "free",
         "access_cbse": True,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "cbse_subjects": [],
         "daily_token_limit": 50000,
         "monthly_token_limit": 1000000,
@@ -1249,9 +1233,6 @@ def create_teacher(data: CreateTeacherRequest, admin=Depends(require_admin)):
         "account_status": data.status or "active",
         "subscription_plan": "teacher",
         "access_cbse": True,
-        "access_sof_science": True,
-        "access_sof_maths": True,
-        "access_sof_english": True,
     }
 
     metadata = {
@@ -1368,9 +1349,6 @@ def update_child_access(
         .table("profiles")
         .update({
             "access_cbse": data.access_cbse,
-            "access_sof_science": data.access_sof_science,
-            "access_sof_maths": data.access_sof_maths,
-            "access_sof_english": data.access_sof_english,
             "cbse_subjects": clean_subject_access_list(data.cbse_subjects),
             "subscription_plan": data.subscription_plan,
             "account_status": data.account_status,
@@ -1844,7 +1822,7 @@ def offer_gate_test(
     profile_resp = (
         admin_client
         .table("profiles")
-        .select("id, username, role, access_cbse, access_sof_science, access_sof_maths, access_sof_english")
+        .select("id, username, role, access_cbse")
         .ilike("username", username)
         .limit(1)
         .execute()
@@ -1856,12 +1834,7 @@ def offer_gate_test(
     user_id = profile["id"]
 
     # Determine current state
-    has_paid_access = bool(
-        profile.get("access_cbse")
-        or profile.get("access_sof_science")
-        or profile.get("access_sof_maths")
-        or profile.get("access_sof_english")
-    )
+    has_paid_access = bool(profile.get("access_cbse"))
     now_iso = datetime.now(timezone.utc).isoformat()
     redemption_resp = (
         admin_client
@@ -1882,9 +1855,6 @@ def offer_gate_test(
             "is_offer_gated": is_currently_gated,
             "has_paid_access": has_paid_access,
             "access_cbse": bool(profile.get("access_cbse")),
-            "access_sof_science": bool(profile.get("access_sof_science")),
-            "access_sof_maths": bool(profile.get("access_sof_maths")),
-            "access_sof_english": bool(profile.get("access_sof_english")),
             "active_redemptions": len(redemption_resp.data or []),
             "redemption_ids": [r["id"] for r in (redemption_resp.data or [])],
         }
@@ -1893,9 +1863,6 @@ def offer_gate_test(
         # 1. Strip all paid access flags
         admin_client.table("profiles").update({
             "access_cbse": False,
-            "access_sof_science": False,
-            "access_sof_maths": False,
-            "access_sof_english": False,
         }).eq("id", user_id).execute()
 
         # 2. Ensure a test offer code exists

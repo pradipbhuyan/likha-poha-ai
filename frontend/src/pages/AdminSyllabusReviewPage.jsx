@@ -159,7 +159,7 @@ function AdminSyllabusReviewPage({ user }) {
   }
 
   function handleModeChange(value) {
-    /** Reset the editor when switching CBSE/SOF. */
+    /** Reset the editor when switching mode. */
     setMode(value);
     setActiveSubject("");
     setDraftItems([]);
@@ -225,7 +225,7 @@ function AdminSyllabusReviewPage({ user }) {
 
         cleanedSubjects.forEach((subject) => {
           nextModeData[subject] = currentModeData[subject] || [
-            mode === "CBSE" ? "Uploaded Book Content" : "Uploaded SOF Chapter Content",
+            "Uploaded Book Content",
           ];
         });
 

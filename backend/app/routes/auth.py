@@ -85,9 +85,6 @@ def _build_me_response(auth_user, profile: dict, needs_role_selection: bool = Fa
         "subscription_plan": profile.get("subscription_plan") or "free",
         "account_status": profile.get("account_status") or "active",
         "access_cbse": bool(profile.get("access_cbse")),
-        "access_sof_science": bool(profile.get("access_sof_science")),
-        "access_sof_maths": bool(profile.get("access_sof_maths")),
-        "access_sof_english": bool(profile.get("access_sof_english")),
         "cbse_subjects": profile.get("cbse_subjects") or [],
         "daily_token_limit": profile.get("daily_token_limit"),
         "monthly_token_limit": profile.get("monthly_token_limit"),
@@ -469,9 +466,6 @@ def oauth_complete_profile(
                 "account_status": "active",
                 # Free Tier — no token quota, no CBSE access
                 "access_cbse": False,
-                "access_sof_science": False,
-                "access_sof_maths": False,
-                "access_sof_english": False,
                 "subscription_plan": "free",
                 "subscription_expires_at": None,
             }
@@ -595,9 +589,6 @@ def oauth_complete_profile(
             "subscription_plan": "free",
             "account_status": "active",
             "access_cbse": False,
-            "access_sof_science": False,
-            "access_sof_maths": False,
-            "access_sof_english": False,
             "daily_token_limit": 0,
             "monthly_token_limit": 0,
             "subscription_expires_at": None,
@@ -777,9 +768,6 @@ def _profile_access_fields(plan: dict) -> dict:
         "subscription_plan": plan["key"],
         "account_status": "active",
         "access_cbse": bool(plan.get("access_cbse")),
-        "access_sof_science": bool(plan.get("access_sof_science")),
-        "access_sof_maths": bool(plan.get("access_sof_maths")),
-        "access_sof_english": bool(plan.get("access_sof_english")),
         "daily_token_limit": int(plan.get("daily_token_limit") or 50000),
         "monthly_token_limit": int(plan.get("monthly_token_limit") or 1000000),
         "subscription_expires_at": plan_expires_at(plan),
@@ -814,7 +802,7 @@ def get_my_profile(user=Depends(get_current_user)):
     profile = profile_resp.data[0]
 
     # ── Auto-revoke expired time-limited subscriptions ───────────────────────
-    # If subscription_expires_at is set and is in the past, revoke CBSE/SOF
+    # If subscription_expires_at is set and is in the past, revoke CBSE
     # access flags so the student hits the subscription gate again.
     expires_at_str = profile.get("subscription_expires_at")
     if expires_at_str:
@@ -824,16 +812,10 @@ def get_my_profile(user=Depends(get_current_user)):
                 # Subscription expired — revoke access flags
                 admin_client.table("profiles").update({
                     "access_cbse": False,
-                    "access_sof_science": False,
-                    "access_sof_maths": False,
-                    "access_sof_english": False,
                     "subscription_expires_at": None,  # clear so it doesn't trigger again
                 }).eq("id", user.id).execute()
                 # Update local profile dict to reflect revoked state
                 profile["access_cbse"] = False
-                profile["access_sof_science"] = False
-                profile["access_sof_maths"] = False
-                profile["access_sof_english"] = False
                 profile["subscription_expires_at"] = None
         except Exception:
             pass  # Never block profile load on expiry check failure
@@ -861,9 +843,6 @@ def get_my_profile(user=Depends(get_current_user)):
         "board": profile.get("board"),
         "subscription_plan": profile.get("subscription_plan"),
         "access_cbse": bool(profile.get("access_cbse")),
-        "access_sof_science": bool(profile.get("access_sof_science")),
-        "access_sof_maths": bool(profile.get("access_sof_maths")),
-        "access_sof_english": bool(profile.get("access_sof_english")),
         "cbse_subjects": profile.get("cbse_subjects") or [],
         "stream": profile.get("stream") or None,
         "daily_token_limit": profile.get("daily_token_limit"),
@@ -1197,9 +1176,6 @@ def signup_free(data: FreeSignupRequest, _rl=Depends(rate_limit_dependency(SIGNU
         "subscription_plan": "free",
         "account_status": "active",
         "access_cbse": False,        # Free Tier: DKB-only access
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "daily_token_limit": 0,
         "monthly_token_limit": 0,
         # Mark email signups as profile-complete so they go straight to dashboard
@@ -1513,9 +1489,6 @@ def signup_with_offer_code(data: OfferCodeSignupRequest, _rl=Depends(rate_limit_
         "subscription_plan": "free",
         "account_status": "active",
         "access_cbse": is_discount_code,   # True for discount, False for free_trial
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "daily_token_limit": 50000,
         "monthly_token_limit": 1000000,
     }

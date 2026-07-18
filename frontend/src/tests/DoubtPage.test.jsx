@@ -11,11 +11,6 @@ vi.mock("../api/syllabus", () => ({
         CBSE: {
           Science: ["Matter in Our Surroundings"],
         },
-        SOF: {
-          "Science Olympiad": ["Matter in Our Surroundings"],
-          "Maths Olympiad": ["Number Systems"],
-          "English Olympiad": ["Nouns"],
-        },
       },
     },
   })),
@@ -34,9 +29,6 @@ const studentUser = {
   role: "student",
   username: "student_one",
   accessCbse: true,
-  accessSofScience: true,
-  accessSofMaths: false,
-  accessSofEnglish: false,
 };
 
 describe("DoubtPage", () => {
@@ -55,20 +47,11 @@ describe("DoubtPage", () => {
     });
   });
 
-  test("requires an allowed SOF subject and sends it with the doubt", async () => {
+  test("sends a CBSE doubt with the selected mode and subject", async () => {
     render(<DoubtPage user={studentUser} />);
 
     expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
-
-    fireEvent.change(screen.getByLabelText(/mode/i), {
-      target: { value: "SOF" },
-    });
-
-    const subjectSelect = screen.getByLabelText(/olympiad subject/i);
-    expect(subjectSelect).toHaveValue("Science Olympiad");
-    expect(
-      screen.queryByRole("option", { name: "Maths Olympiad" })
-    ).not.toBeInTheDocument();
+    expect(screen.getByLabelText(/mode/i)).toHaveValue("CBSE");
 
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "What is matter?" },
@@ -78,8 +61,7 @@ describe("DoubtPage", () => {
     await waitFor(() => {
       expect(answerDoubt).toHaveBeenCalledWith(
         expect.objectContaining({
-          mode: "SOF",
-          subject: "Science Olympiad",
+          mode: "CBSE",
           username: "student_one",
           question: expect.stringContaining("What is matter?"),
           display_question: "What is matter?",

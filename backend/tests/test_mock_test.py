@@ -1,7 +1,6 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.services.openai_service import GPT5_TEXT_MODEL
 import app.routes.mock_test as mock_test_route
 
 client = TestClient(app)
@@ -76,120 +75,6 @@ def test_generate_cbse_mock_test_api_with_mocked_service(monkeypatch):
     assert data["questions"][0]["question"] == "What is matter?"
     assert data["questions"][0]["answer"] == "C"
     assert data["message"] == "Mock test generated successfully"
-
-
-def test_generate_olympiad_mock_test_api_with_mocked_service(monkeypatch):
-    """
-    Test that the mock test API can generate an Olympiad-style mock test.
-
-    This checks the special branch where mock_type is exactly:
-    "SOF Olympiad Mock Test"
-
-    In that case, the route should call generate_olympiad_mock_test instead
-    of generate_cbse_mock_test.
-
-    Expected result:
-    - The endpoint should return HTTP 200.
-    - success should be True.
-    - questions should contain the mocked Olympiad question.
-    """
-
-    def fake_generate_olympiad_mock_test(
-        olympiad,
-        num_questions,
-        difficulty,
-        **kwargs,
-    ):
-        return [
-            {
-                "id": 1,
-                "section": "Science",
-                "question": "Which planet is known as the Red Planet?",
-                "options": {
-                    "A": "Earth",
-                    "B": "Mars",
-                    "C": "Venus",
-                    "D": "Jupiter",
-                },
-                "answer": "B",
-                "explanation": "Mars is called the Red Planet.",
-                "marks": 1,
-            }
-        ]
-
-    monkeypatch.setattr(
-        mock_test_route,
-        "generate_olympiad_mock_test",
-        fake_generate_olympiad_mock_test,
-    )
-
-    payload = {
-        "username": "test_user",
-        "grade": "Grade 9",
-        "mode": "SOF",
-        "subject": "Science Olympiad",
-        "chapter": "General Science",
-        "mock_type": "SOF Olympiad Mock Test",
-        "exam_type": "Olympiad",
-        "question_count": 1,
-        "difficulty": "medium",
-    }
-
-    response = client.post("/api/mock-test/generate", json=payload)
-
-    assert response.status_code == 200
-
-    data = response.json()
-
-    assert data["success"] is True
-    assert len(data["questions"]) == 1
-    assert data["questions"][0]["answer"] == "B"
-
-
-def test_family_premium_sof_mock_test_uses_gpt5(monkeypatch):
-    """Family Premium students should get GPT-5 for SOF mock generation."""
-    from tests.conftest import fake_student_profile, patch_route_profile
-
-    captured = {}
-    profile = fake_student_profile(subscription_plan="family_premium")
-    patch_route_profile(monkeypatch, mock_test_route, profile)
-
-    def fake_generate_olympiad_mock_test(**kwargs):
-        captured.update(kwargs)
-        return [
-            {
-                "id": 1,
-                "section": "Science",
-                "question": "What changes when force acts?",
-                "options": {"A": "Color", "B": "Motion", "C": "Mass", "D": "Volume"},
-                "answer": "B",
-                "explanation": "Force can change motion.",
-                "marks": 1,
-            }
-        ]
-
-    monkeypatch.setattr(
-        mock_test_route,
-        "generate_olympiad_mock_test",
-        fake_generate_olympiad_mock_test,
-    )
-
-    response = client.post(
-        "/api/mock-test/generate",
-        json={
-            "grade": "Grade 9",
-            "mode": "SOF",
-            "subject": "Science Olympiad",
-            "chapter": "Force and Laws of Motion",
-            "mock_type": "SOF Olympiad Mock Test",
-            "exam_type": "Olympiad",
-            "question_count": 1,
-            "difficulty": "medium",
-        },
-    )
-
-    assert response.status_code == 200
-    assert captured["model"] == GPT5_TEXT_MODEL
 
 
 def test_generate_mock_test_response_has_valid_data_types(monkeypatch):

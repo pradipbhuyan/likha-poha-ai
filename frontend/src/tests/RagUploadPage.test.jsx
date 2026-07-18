@@ -10,8 +10,6 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import RagUploadPage from "../pages/RagUploadPage";
 import {
   analyzeBookSetFiles,
-  analyzeSofImages,
-  confirmSofUpload,
   getRagDocuments,
   getRagUploadJob,
   previewRagDocument,
@@ -23,22 +21,10 @@ import {
 vi.mock("../api/syllabus", () => ({
   getSyllabus: vi.fn(async () => ({
     syllabus: {
-      "Grade 1": {
-        CBSE: {
-          EVS: ["Uploaded Book Content"],
-          Maths: ["Uploaded Book Content"],
-        },
-        SOF: {
-          "Science Olympiad": ["Uploaded Book Content"],
-        },
-      },
       "Grade 5": {
         CBSE: {
           Maths: ["Uploaded Book Content"],
           Science: ["Uploaded Book Content"],
-        },
-        SOF: {
-          "Maths Olympiad": ["Uploaded Book Content"],
         },
       },
     },
@@ -154,37 +140,6 @@ vi.mock("../api/rag", () => ({
   })),
   deleteRagDocument: vi.fn(),
   analyzeRagImage: vi.fn(),
-  analyzeSofImages: vi.fn(async () => ({
-    success: true,
-    message: "SOF files analyzed successfully.",
-    pages: [
-      {
-        filename: "sof-page.jpg",
-        page_number: 1,
-        source_page_number: 1,
-        extraction_method: "image_ocr",
-        word_count: 50,
-        warnings: [],
-      },
-    ],
-    groups: [
-      {
-        grade: "Grade 9",
-        subject: "Maths Olympiad",
-        chapter: "Coordinate Geometry",
-        title: "SOF-IMO Grade 9 - Coordinate Geometry - Chapter Content",
-        page_numbers: [1],
-        confidence: "High",
-        combined_text: "Original recognized Coordinate Geometry text.",
-      },
-    ],
-    raw_ai_response: "",
-  })),
-  confirmSofUpload: vi.fn(async () => ({
-    success: true,
-    message: "1 of 1 SOF groups uploaded.",
-    results: [],
-  })),
   searchRag: vi.fn(),
 }));
 
@@ -577,145 +532,6 @@ describe("RagUploadPage", () => {
           "Chapter 6: Pressure, Winds, Storms, and Cyclones\nChapter 7: Particulate Nature of Matter",
         files: [chapterSixFile, chapterSevenFile],
       });
-    });
-  });
-
-  test("allows admin to correct SOF group context before confirming upload", async () => {
-    /*
-     * This validates the SOF review loop.
-     *
-     * Expected result:
-     * - Admin analyzes SOF images.
-     * - Admin edits the detected chapter and RAG context text.
-     * - Confirm upload sends the edited group to the API.
-     */
-
-    // analyzeSofImages now starts a background job — return a job_id
-    analyzeSofImages.mockResolvedValueOnce({
-      success: true,
-      job_id: "sof-analysis-job",
-      message: "SOF files queued for analysis.",
-    });
-
-    // getRagUploadJob returns the completed SOF analysis result with groups
-    getRagUploadJob.mockResolvedValue({
-      success: true,
-      job: {
-        id: "sof-analysis-job",
-        status: "completed",
-        percent: 100,
-        result: {
-          success: true,
-          message: "SOF files analyzed successfully.",
-          pages: [
-            {
-              filename: "sof-page.jpg",
-              page_number: 1,
-              source_page_number: 1,
-              extraction_method: "image_ocr",
-              word_count: 50,
-              warnings: [],
-            },
-          ],
-          groups: [
-            {
-              grade: "Grade 9",
-              subject: "Maths Olympiad",
-              chapter: "Coordinate Geometry",
-              title: "SOF-IMO Grade 9 - Coordinate Geometry - Chapter Content",
-              page_numbers: [1],
-              confidence: "High",
-              combined_text: "Original recognized Coordinate Geometry text.",
-            },
-          ],
-          file_warnings: [],
-        },
-      },
-    });
-
-    render(
-      <RagUploadPage
-        user={{
-          role: "admin",
-          username: "admin",
-        }}
-      />
-    );
-
-    fireEvent.click(
-      await screen.findByRole("button", {
-        name: /sof upload/i,
-      })
-    );
-
-    expect(
-      await screen.findByRole("heading", {
-        name: /sof bulk book upload/i,
-      })
-    ).toBeInTheDocument();
-
-    const sofSection = screen
-      .getByRole("heading", {
-        name: /sof bulk book upload/i,
-      })
-      .closest("section");
-    const sofControls = within(sofSection);
-
-    const file = new File(["image"], "sof-page.jpg", {
-      type: "image/jpeg",
-    });
-
-    fireEvent.change(sofControls.getByLabelText("SOF PDFs or Page Photos"), {
-      target: {
-        files: [file],
-      },
-    });
-
-    fireEvent.click(
-      sofControls.getByRole("button", {
-        name: /analyze & organize sof files/i,
-      })
-    );
-
-    expect(
-      await screen.findByDisplayValue("Coordinate Geometry")
-    ).toBeInTheDocument();
-
-    fireEvent.change(screen.getByDisplayValue("Coordinate Geometry"), {
-      target: {
-        value: "Algebraic Identities",
-      },
-    });
-
-    fireEvent.change(
-      screen.getByDisplayValue("Original recognized Coordinate Geometry text."),
-      {
-        target: {
-          value: "Corrected Algebraic Identities context.",
-        },
-      }
-    );
-
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: /confirm sof upload to rag/i,
-      })
-    );
-
-    await waitFor(() => {
-      expect(confirmSofUpload).toHaveBeenCalledWith({
-        username: "admin",
-        groups: [
-          expect.objectContaining({
-            chapter: "Algebraic Identities",
-            combined_text: "Corrected Algebraic Identities context.",
-          }),
-        ],
-      });
-    });
-    expect(analyzeSofImages).toHaveBeenCalledWith({
-      grade: "Grade 1",
-      files: [file],
     });
   });
 

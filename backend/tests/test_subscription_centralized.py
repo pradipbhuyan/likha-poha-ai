@@ -46,9 +46,6 @@ def _base_plan(**overrides):
         "billing_label": "month",
         "duration_days": None,
         "access_cbse": True,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "daily_token_limit": 100000,
         "monthly_token_limit": 3000000,
         "access_exam_prep": True,
@@ -228,19 +225,10 @@ class TestProfileAccessFromPlan:
 
     def test_free_tier_no_expiry_in_profile(self):
         plan = {"key": "free_tier", "billing_label": "free forever", "duration_days": None,
-                "access_cbse": False, "access_sof_science": False,
-                "access_sof_maths": False, "access_sof_english": False,
+                "access_cbse": False,
                 "daily_token_limit": 0, "monthly_token_limit": 0}
         fields = profile_access_from_plan(plan)
         assert fields["subscription_expires_at"] is None
-
-    def test_sof_flags_preserved(self):
-        """SOF flags from plan are set correctly on profile."""
-        plan = _base_plan(access_sof_science=True, access_sof_maths=True, access_sof_english=False)
-        fields = profile_access_from_plan(plan)
-        assert fields["access_sof_science"] is True
-        assert fields["access_sof_maths"] is True
-        assert fields["access_sof_english"] is False
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -610,9 +598,6 @@ class TestBillingLabelBackwardCompatibility:
             "key": "starter",
             "billing_label": "month",
             "access_cbse": True,
-            "access_sof_science": False,
-            "access_sof_maths": False,
-            "access_sof_english": False,
             "daily_token_limit": 100000,
             "monthly_token_limit": 3000000,
         }

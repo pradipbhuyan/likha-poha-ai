@@ -8,7 +8,7 @@ from app.services.openai_service import (
 DEFAULT_MODEL_PREFERENCE = "default"
 
 # Supported per-student AI model preference values that map to real model IDs.
-# Admins set these via the Admin Control "AI Model for SOF Mock & Doubts" dropdown.
+# Admins set these via the Admin Control "AI Model for Doubts" dropdown.
 SUPPORTED_MODEL_PREFERENCES = {
     DEFAULT_MODEL_PREFERENCE,
     "gpt-4.1-mini",
@@ -51,14 +51,11 @@ def is_complex_doubt(mode: str, question: str) -> bool:
     """
     Decide whether an Ask Doubt request deserves the premium reasoning model.
 
-    SOF doubts and questions asking for reasoning, proof, diagrams, formulas, or
-    step-wise explanation benefit most from GPT-5. Short factual CBSE questions
-    stay on the default model unless an admin override is set.
+    Questions asking for reasoning, proof, diagrams, formulas, or step-wise
+    explanation benefit most from GPT-5. Short factual CBSE questions stay on
+    the default model unless an admin override is set.
     """
     text = (question or "").strip().lower()
-
-    if (mode or "").strip().upper() == "SOF":
-        return True
 
     if len(text.split()) >= 24:
         return True
@@ -76,8 +73,8 @@ def resolve_student_feature_model(
     Select the LLM model for premium student features.
 
     Admin-selected `ai_model_preference` wins. If the preference is default,
-    Family Premium students use GPT-5 for SOF mock generation and complex Ask
-    Doubt requests. Everyone else stays on the existing default model.
+    Family Premium students use GPT-5 for complex Ask Doubt requests. Everyone
+    else stays on the existing default model.
     """
     profile = profile or {}
     preference = normalize_model_preference(profile.get("ai_model_preference"))
@@ -89,10 +86,7 @@ def resolve_student_feature_model(
     if profile.get("subscription_plan") != "family_premium":
         return DEFAULT_TEXT_MODEL
 
-    # Family Premium auto-upgrade: use gpt-4.1-mini for SOF and complex doubts.
-    if feature == "sof_mock_test":
-        return GPT_MINI_TEXT_MODEL
-
+    # Family Premium auto-upgrade: use gpt-4.1-mini for complex doubts.
     if feature == "doubt" and is_complex_doubt(mode, question):
         return GPT_MINI_TEXT_MODEL
 

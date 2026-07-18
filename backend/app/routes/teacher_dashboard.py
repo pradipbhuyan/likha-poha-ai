@@ -297,9 +297,6 @@ def create_student(data: CreateStudentRequest, teacher=Depends(require_teacher))
         "subscription_plan": "free",
         "account_status": "active",
         "access_cbse": False,   # Free Tier — limited access (DKB-only lessons, limited mock tests)
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
         "daily_token_limit": 0,
         "monthly_token_limit": 0,
         "cbse_subjects": [],

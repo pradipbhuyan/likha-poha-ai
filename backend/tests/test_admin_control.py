@@ -610,9 +610,6 @@ def test_update_child_access_updates_subscription_and_access_flags(monkeypatch):
 
     request = admin_control_route.UpdateAccessRequest(
         access_cbse=True,
-        access_sof_science=True,
-        access_sof_maths=False,
-        access_sof_english=True,
         subscription_plan="premium",
         account_status="active",
     )
@@ -627,9 +624,6 @@ def test_update_child_access_updates_subscription_and_access_flags(monkeypatch):
     assert result["profile"]["id"] == "child-1"
     assert result["profile"]["role"] == "student"
     assert result["profile"]["access_cbse"] is True
-    assert result["profile"]["access_sof_science"] is True
-    assert result["profile"]["access_sof_maths"] is False
-    assert result["profile"]["access_sof_english"] is True
     assert result["profile"]["subscription_plan"] == "premium"
 
     update_call = [
@@ -905,7 +899,7 @@ def test_update_subscription_plans_returns_persisted_discount(monkeypatch):
                 daily_token_limit=75000,
                 monthly_token_limit=1500000,
                 included=["Everything in Free Trial"],
-                not_included=["SOF RAG mock tests"],
+                not_included=[],
                 comparison={"children": "1"},
             )
         ],

@@ -469,9 +469,6 @@ def create_sales_person(
         "account_status": data.status or "active",
         "subscription_plan": "sales",
         "access_cbse": False,
-        "access_sof_science": False,
-        "access_sof_maths": False,
-        "access_sof_english": False,
     }
     metadata = {
         "profile_id": auth_user.id,

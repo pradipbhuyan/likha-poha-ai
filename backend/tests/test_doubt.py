@@ -139,7 +139,7 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
         captured["mode"] = mode
         captured["username"] = username
         return {
-            "answer": "SOF answer",
+            "answer": "CBSE answer",
             "source_type": "MOCK",
             "sources": [],
             "mentor_suggestions": [],
@@ -151,8 +151,8 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
     payload = {
         "username": "spoofed_user",
         "grade": "Grade 9",
-        "mode": "SOF",
-        "subject": "Science Olympiad",
+        "mode": "CBSE",
+        "subject": "Science",
         "chapter": "",
         "question": "What is motion?",
     }
@@ -161,7 +161,7 @@ def test_answer_doubt_uses_authenticated_profile_username(monkeypatch):
 
     assert response.status_code == 200
     assert captured["username"] == "test_user"
-    assert captured["mode"] == "SOF"
+    assert captured["mode"] == "CBSE"
 
 
 def test_answer_doubt_saves_full_history(monkeypatch):
@@ -343,42 +343,17 @@ def test_admin_selected_gpt5_mini_is_used_for_doubt(monkeypatch):
     assert captured["model"] == GPT5_MINI_TEXT_MODEL
 
 
-def test_answer_doubt_rejects_sof_subject_without_access(monkeypatch):
-    from tests.conftest import fake_student_profile, patch_route_profile
-
-    profile = fake_student_profile(
-        access_sof_science=True,
-        access_sof_maths=False,
-        access_sof_english=False,
-    )
-    patch_route_profile(monkeypatch, doubt_route, profile)
-
-    payload = {
-        "username": "test_user",
-        "grade": "Grade 9",
-        "mode": "SOF",
-        "subject": "Maths Olympiad",
-        "chapter": "",
-        "question": "Solve this olympiad problem.",
-    }
-
-    response = client.post("/api/doubt/answer", json=payload)
-
-    assert response.status_code == 403
-    assert "SOF Maths access is not enabled" in response.json()["detail"]
-
-
-def test_answer_doubt_requires_sof_subject():
+def test_answer_doubt_rejects_unsupported_mode():
     payload = {
         "username": "test_user",
         "grade": "Grade 9",
         "mode": "SOF",
         "subject": "",
         "chapter": "",
-        "question": "Explain this olympiad question.",
+        "question": "Explain this question.",
     }
 
     response = client.post("/api/doubt/answer", json=payload)
 
-    assert response.status_code == 400
-    assert "Please select Science, Maths, or English Olympiad" in response.json()["detail"]
+    assert response.status_code == 403
+    assert "Invalid learning mode" in response.json()["detail"]

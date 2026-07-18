@@ -1,5 +1,5 @@
 """
-Free learning resources for Grade 9 CBSE + SOF Olympiad tutor app.
+Free learning resources for the Grade 9 CBSE tutor app.
 
 Use get_learning_resources(subject, chapter) in app.py so every chapter shows
 curated links when available and safe fallback links otherwise.
@@ -243,29 +243,6 @@ LEARNING_RESOURCES = {
     "English": {},
     "Social Science": {},
     "Hindi": {},
-    "Science Olympiad": {
-        "Logical Reasoning": [{"title": "YouTube Search - Class 9 Science Olympiad Logical Reasoning", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+olympiad+logical+reasoning"}],
-        "Physics": [{"title": "YouTube Search - Class 9 Science Olympiad Physics", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+olympiad+physics"}],
-        "Chemistry": [{"title": "YouTube Search - Class 9 Science Olympiad Chemistry", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+olympiad+chemistry"}],
-        "Biology": [{"title": "YouTube Search - Class 9 Science Olympiad Biology", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+olympiad+biology"}],
-        "Achievers Section": [{"title": "YouTube Search - Class 9 NSO Achievers Section", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+nso+achievers+section"}],
-        "Mock Tests": [{"title": "YouTube Search - Class 9 NSO Mock Test", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+nso+mock+test"}],
-    },
-    "Maths Olympiad": {
-        "Logical Reasoning": [{"title": "YouTube Search - Class 9 IMO Logical Reasoning", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+logical+reasoning"}],
-        "Mathematical Reasoning": [{"title": "YouTube Search - Class 9 IMO Mathematical Reasoning", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+mathematical+reasoning"}],
-        "Everyday Mathematics": [{"title": "YouTube Search - Class 9 IMO Everyday Mathematics", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+everyday+mathematics"}],
-        "Higher Order Thinking Skills": [{"title": "YouTube Search - Class 9 IMO HOTS", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+higher+order+thinking+skills"}],
-        "Achievers Section": [{"title": "YouTube Search - Class 9 IMO Achievers Section", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+achievers+section"}],
-        "Mock Tests": [{"title": "YouTube Search - Class 9 IMO Mock Test", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+imo+mock+test"}],
-    },
-    "English Olympiad": {
-        "Word and Structure Knowledge": [{"title": "YouTube Search - Class 9 IEO Word and Structure Knowledge", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+ieo+word+and+structure+knowledge"}],
-        "Reading": [{"title": "YouTube Search - Class 9 IEO Reading", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+ieo+reading+comprehension"}],
-        "Spoken and Written Expression": [{"title": "YouTube Search - Class 9 IEO Spoken and Written Expression", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+ieo+spoken+and+written+expression"}],
-        "Achievers Section": [{"title": "YouTube Search - Class 9 IEO Achievers Section", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+ieo+achievers+section"}],
-        "Mock Tests": [{"title": "YouTube Search - Class 9 IEO Mock Test", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+ieo+mock+test"}],
-    },
 }
 
 # Add fallback-style resources for chapters where we have not manually curated specific items.

@@ -359,62 +359,6 @@ class TestCbseAccessControl:
 
 
 # ---------------------------------------------------------------------------
-# 7. SOF access control
-# ---------------------------------------------------------------------------
-
-class TestSofAccessControl:
-    """Students without SOF subscription must be blocked from SOF content."""
-
-    def test_student_without_sof_science_cannot_ask_sof_doubt(self, monkeypatch):
-        no_sof = fake_student_profile(
-            access_sof_science=False,
-            access_sof_maths=False,
-            access_sof_english=False,
-        )
-        patch_route_profile(monkeypatch, doubt_route, no_sof)
-
-        r = client.post("/api/doubt/answer", json={
-            **DOUBT_PAYLOAD,
-            "mode": "SOF",
-            "subject": "Science Olympiad",
-        })
-        assert r.status_code == 403
-        assert "sof" in r.json().get("detail", "").lower() or \
-               "access" in r.json().get("detail", "").lower()
-
-    def test_student_without_sof_maths_cannot_ask_sof_maths_doubt(self, monkeypatch):
-        no_sof_maths = fake_student_profile(
-            access_sof_science=True,
-            access_sof_maths=False,
-            access_sof_english=False,
-        )
-        patch_route_profile(monkeypatch, doubt_route, no_sof_maths)
-
-        r = client.post("/api/doubt/answer", json={
-            **DOUBT_PAYLOAD,
-            "mode": "SOF",
-            "subject": "Maths Olympiad",
-        })
-        assert r.status_code == 403
-
-    def test_student_without_sof_access_cannot_take_sof_mock_test(self, monkeypatch):
-        no_sof = fake_student_profile(
-            access_sof_science=False,
-            access_sof_maths=False,
-            access_sof_english=False,
-        )
-        patch_route_profile(monkeypatch, mock_test_route, no_sof)
-
-        r = client.post("/api/mock-test/generate", json={
-            **MOCK_TEST_PAYLOAD,
-            "mode": "SOF",
-            "subject": "Science Olympiad",
-            "mock_type": "SOF Olympiad Mock Test",
-        })
-        assert r.status_code == 403
-
-
-# ---------------------------------------------------------------------------
 # 8. Input validation
 # ---------------------------------------------------------------------------
 
@@ -453,16 +397,10 @@ class TestInputValidation:
         })
         assert r.status_code in [400, 422]
 
-    def test_sof_doubt_without_subject_is_rejected(self):
-        """
-        POST /api/doubt/answer in SOF mode without a subject must return 400.
-        SOF doubts require a concrete Olympiad subject for retrieval and access checks.
-        """
+    def test_doubt_with_unsupported_mode_is_rejected(self):
+        """POST /api/doubt/answer with an unrecognized mode must return 403."""
         r = client.post("/api/doubt/answer", json={
             **DOUBT_PAYLOAD,
             "mode": "SOF",
-            "subject": "",
         })
-        assert r.status_code == 400
-        assert "Olympiad" in r.json().get("detail", "") or \
-               "subject" in r.json().get("detail", "").lower()
+        assert r.status_code == 403

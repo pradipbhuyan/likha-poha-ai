@@ -136,7 +136,7 @@ function DoubtPage({ user, setActivePage }) {
   const modes = Object.keys(syllabusData[grade]);
 
   function hasModeAccess(selectedMode) {
-    /** Check whether the signed-in user may use CBSE or at least one SOF subject.
+    /** Check whether the signed-in user may use CBSE.
      *  Offer-code / free-trial users have accessCbse=false but are still allowed
      *  into CBSE mode — the backend applies the DKB-only gate for their doubts.
      */
@@ -148,14 +148,6 @@ function DoubtPage({ user, setActivePage }) {
       return !!user.accessCbse || isFreeTrialUser || !!user.offerAccess;
     }
 
-    if (selectedMode === "SOF") {
-      return (
-        !!user.accessSofScience ||
-        !!user.accessSofMaths ||
-        !!user.accessSofEnglish
-      );
-    }
-
     return false;
   }
 
@@ -165,13 +157,7 @@ function DoubtPage({ user, setActivePage }) {
   const availableChapters = subject
     ? syllabusData[grade][mode]?.[subject] || []
     : [];
-  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
-
-  function getAllowedSofSubjectsForGrade(selectedGrade) {
-    /** Return only SOF subjects the user can access for the selected grade. */
-    const sofSubjects = Object.keys(syllabusData[selectedGrade]?.SOF || {});
-    return filterAllowedSubjects(user, sofSubjects, "SOF");
-  }
+  const requestBoard = mode;
 
   function getDoubtSubject() {
     /** Provide the selected subject to the backend for RAG filtering and access checks. */
@@ -235,20 +221,18 @@ function DoubtPage({ user, setActivePage }) {
 
     setMode(firstAllowedMode);
     setSubject(
-      firstAllowedMode === "SOF"
-        ? getAllowedSofSubjectsForGrade(value)[0] || ""
-        : filterAllowedSubjects(
-            user,
-            Object.keys(syllabusData[value][firstAllowedMode] || {}),
-            firstAllowedMode
-          )[0] || ""
+      filterAllowedSubjects(
+        user,
+        Object.keys(syllabusData[value][firstAllowedMode] || {}),
+        firstAllowedMode
+      )[0] || ""
     );
     setChapter("");
     clearAnswerState();
   }
 
   function handleModeChange(value) {
-    /** Change CBSE/SOF mode only when the user has access to it. */
+    /** Change mode only when the user has access to it. */
     if (!hasModeAccess(value)) {
       setError(`You do not have access to ${value}.`);
       return;
@@ -256,20 +240,18 @@ function DoubtPage({ user, setActivePage }) {
 
     setMode(value);
     setSubject(
-      value === "SOF"
-        ? getAllowedSofSubjectsForGrade(grade)[0] || ""
-        : filterAllowedSubjects(
-            user,
-            Object.keys(syllabusData[grade][value] || {}),
-            value
-          )[0] || ""
+      filterAllowedSubjects(
+        user,
+        Object.keys(syllabusData[grade][value] || {}),
+        value
+      )[0] || ""
     );
     setChapter("");
     clearAnswerState();
   }
 
   function handleSubjectChange(value) {
-    /** Change the SOF subject and clear stale answer state. */
+    /** Change the selected subject and clear stale answer state. */
     setSubject(value);
     setChapter("");
     clearAnswerState();
@@ -341,11 +323,6 @@ function DoubtPage({ user, setActivePage }) {
 
     if (!question.trim()) {
       setError("Please type your question.");
-      return;
-    }
-
-    if (mode === "SOF" && !subject) {
-      setError("Please select Science, Maths, or English Olympiad.");
       return;
     }
 
@@ -426,11 +403,6 @@ function DoubtPage({ user, setActivePage }) {
       return;
     }
 
-    if (mode === "SOF" && !subject) {
-      setError("Please select Science, Maths, or English Olympiad.");
-      return;
-    }
-
     if (isSchoolBoardMode(mode) && allowedSubjects.length === 0) {
       setError("You do not have access to this CBSE subject.");
       return;
@@ -485,11 +457,6 @@ Rules:
     /** Ask a custom deeper follow-up while preserving the original doubt as context. */
     if (!hasModeAccess(mode)) {
       setError(`You do not have access to ${mode}.`);
-      return;
-    }
-
-    if (mode === "SOF" && !subject) {
-      setError("Please select Science, Maths, or English Olympiad.");
       return;
     }
 
@@ -581,7 +548,7 @@ Important:
             onChange={(e) => handleSubjectChange(e.target.value)}
             style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", maxWidth: 120 }}
           >
-            {mode !== "SOF" && <option value="">Open subject</option>}
+            <option value="">Open subject</option>
             {allowedSubjects.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         )}
@@ -651,7 +618,7 @@ Important:
 
             {mode && (
               <label>
-                {mode === "SOF" ? "Olympiad Subject" : "Subject"}
+                Subject
                 <select
                   value={subject}
                   onChange={(e) => handleSubjectChange(e.target.value)}
@@ -659,9 +626,9 @@ Important:
                 >
                   {allowedSubjects.length === 0 ? (
                     <option value="">No subject access</option>
-                  ) : mode !== "SOF" ? (
+                  ) : (
                     <option value="">Open subject</option>
-                  ) : null}
+                  )}
 
                   {allowedSubjects.length === 0 ? null : (
                     allowedSubjects.map((subjectName) => (
@@ -712,9 +679,7 @@ Important:
           <div className="premium-open-mentor-note">
             <strong>How this works</strong>
             <p>
-              {mode === "SOF"
-                ? "Select the Olympiad subject. Chapter is optional, but choosing it helps the AI search the matching SOF content before adding wider explanation."
-                : "Subject and chapter are optional. Add them when you know the source topic, or leave them open for a broader textbook search."}
+              Subject and chapter are optional. Add them when you know the source topic, or leave them open for a broader textbook search.
             </p>
           </div>
         </aside>
@@ -725,7 +690,7 @@ Important:
               <div>
                 <p className="eyebrow">Ask AI Tutor</p>
                 <h3>💬 What are you stuck on?</h3>
-                <p>Ask any concept, homework, textbook, or Olympiad doubt.</p>
+                <p>Ask any concept, homework, or textbook doubt.</p>
               </div>
 
               <span className="composer-badge">Open Mentor</span>

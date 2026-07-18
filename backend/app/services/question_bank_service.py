@@ -17,6 +17,84 @@ from app.services.grade_db_router import get_content_db
 from app.services.auth_service import admin_client as _primary_client
 
 
+def _fetch_question_pool(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str | None,
+    difficulty: str,
+) -> list[dict]:
+    """
+    Fetch the full pool of servable bank questions for a chapter/difficulty.
+
+    Filters out malformed rows and deduplicates by question text so the pool
+    size equals the number of distinct questions a test could contain.
+    """
+    supabase = get_content_db(grade)
+    clean_chapter = "".join(
+        c for c in (chapter or "") if c.isprintable()
+    ).strip()
+
+    query = (
+        supabase
+        .table("question_bank")
+        .select("id, section, question, options, answer, explanation, marks")
+        .eq("board", board)
+        .eq("grade", grade)
+        .eq("subject", subject)
+        .eq("difficulty", difficulty)
+        .eq("status", "active")
+    )
+
+    if clean_chapter:
+        query = query.eq("chapter", clean_chapter)
+
+    # Fetch a large pool so exclusion still leaves enough candidates
+    result = query.limit(1000).execute()
+    questions = result.data or []
+
+    # Filter out malformed questions (< 4 options, short explanation, bad answer)
+    questions = [
+        q for q in questions
+        if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) >= 4
+        and all(str(v).strip() for v in q["options"].values())
+        and q.get("answer") in ("A", "B", "C", "D")
+        and q.get("question") and len(str(q.get("question", ""))) >= 10
+        and q.get("explanation") and len(str(q.get("explanation", ""))) >= 15
+    ]
+
+    # Deduplicate by question text (keep first occurrence) to prevent
+    # the same question appearing twice in one test when the bank has duplicates.
+    seen_texts: set = set()
+    deduped: list = []
+    for q in questions:
+        text_key = str(q.get("question", "")).strip().lower()[:120]
+        if text_key not in seen_texts:
+            seen_texts.add(text_key)
+            deduped.append(q)
+
+    return deduped
+
+
+def get_bank_capacity(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str | None,
+    difficulty: str,
+) -> int:
+    """
+    Number of distinct, servable questions the bank holds for this selection.
+
+    Used to tell the student how many questions a (small) chapter can support
+    instead of failing silently. Returns 0 when the bank is unavailable.
+    """
+    try:
+        return len(_fetch_question_pool(board, grade, subject, chapter, difficulty))
+    except Exception:
+        return 0
+
+
 def get_questions_from_bank(
     board: str,
     grade: str,
@@ -31,68 +109,32 @@ def get_questions_from_bank(
     Sample random questions from the bank for a mock test.
 
     Returns a randomly sampled list of num_questions questions if the bank
-    has enough active questions, otherwise returns [] to trigger LLM fallback.
+    has enough distinct active questions, otherwise returns [] so the caller
+    can report the bank shortfall to the user (no LLM fallback).
 
     excluded_ids: database row IDs (as strings) of questions shown in recent
-    tests for this user.  These are filtered out before sampling so the same
-    question cannot appear in the same test or the next 30 tests.
-
-    The caller should always handle the empty-list case.
+    tests for this user. Unseen questions are preferred; if exclusions leave
+    fewer than num_questions, previously seen questions top up the test —
+    repetition across tests is allowed as a last resort, repetition within
+    one test never is.
     """
-    supabase = get_content_db(grade)
     try:
-        clean_chapter = "".join(
-            c for c in (chapter or "") if c.isprintable()
-        ).strip()
+        pool = _fetch_question_pool(board, grade, subject, chapter, difficulty)
 
-        query = (
-            supabase
-            .table("question_bank")
-            .select("id, section, question, options, answer, explanation, marks")
-            .eq("board", board)
-            .eq("grade", grade)
-            .eq("subject", subject)
-            .eq("difficulty", difficulty)
-            .eq("status", "active")
-        )
+        if len(pool) < num_questions:
+            return []  # Bank too small — caller reports capacity to the user
 
-        if clean_chapter:
-            query = query.eq("chapter", clean_chapter)
+        excluded_set = {str(eid) for eid in (excluded_ids or [])}
+        fresh = [q for q in pool if str(q.get("id", "")) not in excluded_set]
 
-        # Fetch a large pool so exclusion still leaves enough candidates
-        result = query.limit(1000).execute()
-        questions = result.data or []
-
-        # Filter out recently-shown questions to prevent repetition
-        if excluded_ids:
-            excluded_set = {str(eid) for eid in excluded_ids}
-            questions = [q for q in questions if str(q.get("id", "")) not in excluded_set]
-
-        # Filter out malformed questions (< 4 options, short explanation, bad answer)
-        questions = [
-            q for q in questions
-            if q.get("options") and isinstance(q["options"], dict) and len(q["options"]) >= 4
-            and all(str(v).strip() for v in q["options"].values())
-            and q.get("answer") in ("A", "B", "C", "D")
-            and q.get("question") and len(str(q.get("question", ""))) >= 10
-            and q.get("explanation") and len(str(q.get("explanation", ""))) >= 15
-        ]
-
-        # Deduplicate by question text (keep first occurrence) to prevent
-        # the same question appearing twice in one test when the bank has duplicates.
-        seen_texts: set = set()
-        deduped: list = []
-        for q in questions:
-            text_key = str(q.get("question", "")).strip().lower()[:120]
-            if text_key not in seen_texts:
-                seen_texts.add(text_key)
-                deduped.append(q)
-        questions = deduped
-
-        if len(questions) < num_questions:
-            return []  # Not enough after filtering — caller falls back to LLM
-
-        sampled = random.sample(questions, num_questions)
+        if len(fresh) >= num_questions:
+            sampled = random.sample(fresh, num_questions)
+        else:
+            # Not enough unseen questions — keep all fresh ones and top up
+            # with previously seen ones so the test still has no internal dupes.
+            seen = [q for q in pool if str(q.get("id", "")) in excluded_set]
+            sampled = fresh + random.sample(seen, num_questions - len(fresh))
+            random.shuffle(sampled)
 
         # Store original DB ids BEFORE renumbering so the frontend can send them
         # back as excluded_ids in the next test request.

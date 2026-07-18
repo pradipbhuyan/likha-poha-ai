@@ -460,7 +460,7 @@ describe("LessonsPage", () => {
           question: "What is Likha Poha AI?",
           answer:
             "Likha Poha AI was initially developed to help Akshita with her studies.",
-          subject: "Maths Olympiad",
+          subject: "Maths",
           chapter: "Number Systems",
         },
       ],

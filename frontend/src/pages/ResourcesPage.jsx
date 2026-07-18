@@ -361,7 +361,7 @@ function ResourcesPage({ user }) {
             <h3>🔬 NCERT Exemplar Practice Problems</h3>
             <p>
               Official NCERT higher-order thinking problems for {grade} {subject}.
-              These are ideal for board exam preparation and SOF Olympiad practice.
+              These are ideal for board exam preparation and advanced practice.
             </p>
           </div>
           <div className="premium-resource-grid">

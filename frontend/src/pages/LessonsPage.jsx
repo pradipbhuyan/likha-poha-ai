@@ -40,7 +40,7 @@ const TEACHER_PERSONAS = {
     "Focus on exam preparation, accuracy, common mistakes, and scoring.",
   "Slow Step-by-Step Teacher":
     "Explain slowly, with very small steps and simple examples.",
-  "Olympiad Coach":
+  "HOTS Coach":
     "Focus on reasoning, HOTS, shortcuts, and tricky question patterns.",
   "Storytelling Teacher":
     "Explain concepts using stories, analogies, and real-life examples.",
@@ -144,14 +144,13 @@ const GRADE10_VISUAL_SUBJECTS = new Set([
 
 function isHindiSubjectName(subject) {
   /** Identify Hindi subjects so practice can stay objective and lightweight. */
-  return subject === "Hindi" || subject === "Hindi Olympiad";
+  return subject === "Hindi";
 }
 
 function buildPracticeFallbackQuestions(subject) {
   /** Keep practice usable if the backend cannot generate structured questions. */
   const isMath =
     subject === "Maths" ||
-    subject === "Maths Olympiad" ||
     subject === "Mathematics";
 
   if (isMath || isHindiSubjectName(subject)) {
@@ -627,7 +626,7 @@ function LessonsPage({ user, setActivePage }) {
         try {
           const suggestionsResult = await getLessonDoubtSuggestions({
             grade, mode, subject, chapter,
-            board: mode === "SOF" ? getUserBoard(user) : mode,
+            board: mode,
           });
           const dkbChips = Array.isArray(suggestionsResult?.doubt_suggestions)
             ? suggestionsResult.doubt_suggestions.slice(0, 6)
@@ -739,7 +738,7 @@ function LessonsPage({ user, setActivePage }) {
       const result = await getLessonTextbookVisuals({
         grade,
         mode,
-        board: mode === "SOF" ? getUserBoard(user) : mode,
+        board: mode,
         subject,
         chapter,
       });
@@ -767,16 +766,10 @@ function LessonsPage({ user, setActivePage }) {
   }
 
   const grades = getVisibleGrades(syllabusData, user);
-  // SOF/Olympiad mode is only available for Grade 9.
-  // All other grades show CBSE only.
-  // To enable SOF for additional grades, add them to SOF_ENABLED_GRADES.
-  const SOF_ENABLED_GRADES = ["Grade 9"];
-  const modes = Object.keys(syllabusData[grade]).filter(
-    m => m !== "SOF" || SOF_ENABLED_GRADES.includes(grade)
-  );
+  const modes = Object.keys(syllabusData[grade]);
 
   function getAllowedSubjects(allSubjects, selectedMode) {
-    /** Filter subjects by the student's subscription access for CBSE and SOF modes.
+    /** Filter subjects by the student's subscription access for CBSE mode.
      *  Uses effectiveUser (which has up-to-date stream/cbseSubjects) rather than user. */
     return filterAllowedSubjects(effectiveUser, allSubjects, selectedMode);
   }
@@ -784,7 +777,7 @@ function LessonsPage({ user, setActivePage }) {
   const allSubjects = Object.keys(syllabusData[grade][mode]);
   const subjects = getAllowedSubjects(allSubjects, mode);
   const chapters = subject ? syllabusData[grade][mode][subject] || [] : [];
-  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
+  const requestBoard = mode;
 
   function resetTextbookVisualBrowser() {
     /** Clear textbook visual browser state when the lesson context changes. */
@@ -981,7 +974,7 @@ function LessonsPage({ user, setActivePage }) {
       const result = await getLessonTextbookVisuals({
         grade,
         mode,
-        board: mode === "SOF" ? getUserBoard(user) : mode,
+        board: mode,
         subject,
         chapter,
         query,

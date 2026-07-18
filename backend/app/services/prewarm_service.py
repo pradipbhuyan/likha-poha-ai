@@ -16,7 +16,6 @@ import time
 
 logger = logging.getLogger(__name__)
 
-from app.data.syllabus import CBSE_9, SOF_9
 from app.services.tutor_service import generate_step_lesson
 from app.services.lesson_cache_service import get_cached_lesson, make_lesson_cache_key
 from app.services.question_bank_service import add_questions_to_bank
@@ -158,8 +157,8 @@ def get_all_job_statuses() -> dict[str, str]:
 
 def get_syllabus_for_grade(grade: str) -> dict:
     """
-    Return {mode: {subject: [chapter, ...]}} for CBSE and SOF only, using the
-    same reviewed syllabus data the student-facing UI uses.
+    Return {mode: {subject: [chapter, ...]}} for CBSE only, using the same
+    reviewed syllabus data the student-facing UI uses.
 
     State Board is excluded so count_expected_lessons and the full-grade prewarm
     do not include State Board chapters uploaded as RAG content.
@@ -182,18 +181,19 @@ def get_syllabus_for_grade(grade: str) -> dict:
             .eq("grade", grade)
             .execute()
         )
-        syllabus: dict = {"CBSE": {}, "SOF": {}}
+        syllabus: dict = {"CBSE": {}}
         for doc in response.data or []:
             subject = doc.get("subject") or ""
             chapter = doc.get("chapter") or ""
-            mode = "SOF" if "Olympiad" in subject else "CBSE"
+            if "Olympiad" in subject:
+                continue
             if subject and chapter:
-                syllabus[mode].setdefault(subject, [])
-                if chapter not in syllabus[mode][subject]:
-                    syllabus[mode][subject].append(chapter)
+                syllabus["CBSE"].setdefault(subject, [])
+                if chapter not in syllabus["CBSE"][subject]:
+                    syllabus["CBSE"][subject].append(chapter)
         return syllabus
     except Exception:
-        return {"CBSE": {}, "SOF": {}}
+        return {"CBSE": {}}
 
 
 def has_rag_content_for_chapter(board: str, grade: str, subject: str, chapter: str) -> bool:
@@ -375,7 +375,7 @@ def prewarm_lessons_for_grade(grade: str) -> None:
         lesson_steps = get_lesson_steps_for_grade(grade)
 
         for mode, mode_data in syllabus.items():
-            board = "CBSE" if mode != "SOF" else "CBSE"
+            board = "CBSE"
             for subject, chapters in mode_data.items():
                 for chapter in chapters:
                     # Skip chapters with no uploaded RAG content
@@ -623,14 +623,14 @@ def _get_rag_chapters_for_grade(grade: str) -> set:
     return _rag_chapters_cache.get(grade, set())
 
 
-# Only CBSE and SOF are valid lesson generation modes — State Board chapters
+# Only CBSE is a valid lesson generation mode — State Board chapters
 # uploaded as RAG content are excluded from the prewarm chapter panel.
-_PREWARM_MODES = {"CBSE", "SOF"}
+_PREWARM_MODES = {"CBSE"}
 
 
 def get_chapters_for_grade(grade: str) -> list[dict]:
     """
-    Return deduplicated {mode, subject, chapter} dicts for CBSE and SOF only,
+    Return deduplicated {mode, subject, chapter} dicts for CBSE only,
     using the same reviewed syllabus data students see in their lesson dropdown.
 
     State Board chapters are excluded — they are not accessible from the

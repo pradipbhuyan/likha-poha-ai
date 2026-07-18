@@ -4,8 +4,6 @@ SUPPORTED_SCHOOL_BOARDS = [
     "State Board",
 ]
 
-SOF_MODE = "SOF"
-
 
 def normalize_board(value: str | None) -> str:
     """Normalize missing or free-text board labels while keeping CBSE default."""
@@ -19,7 +17,6 @@ def normalize_board(value: str | None) -> str:
         "icse": "ICSE",
         "state": "State Board",
         "state board": "State Board",
-        "sof": SOF_MODE,
     }
 
     return canonical.get(text.lower(), text)

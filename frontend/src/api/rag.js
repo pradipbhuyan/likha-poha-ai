@@ -469,61 +469,6 @@ export async function analyzeRagImage(file) {
   return response.json();
 }
 
-export async function analyzeSofImages({
-  grade,
-  files,
-}) {
-  /** OCR and group SOF files into canonical subject/chapter upload groups. */
-  const formData = new FormData();
-
-  formData.append("grade", grade);
-
-  files.forEach((file) => {
-    formData.append("files", file);
-  });
-
-  const response = await fetch(
-    `${API_BASE_URL}/api/rag/analyze-sof-images`,
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("SOF image analysis failed");
-  }
-
-  return response.json();
-}
-
-
-export async function confirmSofUpload({
-  username,
-  groups,
-}) {
-  /** Persist reviewed SOF upload groups into the RAG database. */
-  const response = await fetch(
-    `${API_BASE_URL}/api/rag/confirm-sof-upload`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        groups,
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("SOF upload failed");
-  }
-
-  return response.json();
-}
-
 export async function searchRag({
   grade,
   board = "CBSE",

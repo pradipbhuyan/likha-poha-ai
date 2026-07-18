@@ -105,7 +105,7 @@ const ROLE_STEPS = {
     },
     {
       title: "Exemplar Research",
-      text: "Go to Exemplar Research → pick a hard NCERT Exemplar topic → get an instant AI explanation + practice link. Great for Olympiad prep and HOTS questions.",
+      text: "Go to Exemplar Research → pick a hard NCERT Exemplar topic → get an instant AI explanation + practice link. Great for advanced prep and HOTS questions.",
       icon: Sparkles,
     },
     {

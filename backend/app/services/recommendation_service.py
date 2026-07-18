@@ -69,7 +69,7 @@ def build_study_recommendations(history: list[dict]):
         recommendations.append({
             "type": "strength",
             "title": f"Strong in {strongest_subject}",
-            "message": f"You are performing well in {strongest_subject}. Try Olympiad-level questions to stretch your thinking.",
+            "message": f"You are performing well in {strongest_subject}. Try Hard difficulty questions to stretch your thinking.",
             "priority": "low",
         })
 
@@ -87,7 +87,7 @@ def build_study_recommendations(history: list[dict]):
         recommendations.append({
             "type": "latest_high",
             "title": "Ready for harder practice",
-            "message": "Excellent latest score. Move to Olympiad HOTS questions for this chapter.",
+            "message": "Excellent latest score. Move to Hard difficulty questions for this chapter.",
             "priority": "low",
         })
 

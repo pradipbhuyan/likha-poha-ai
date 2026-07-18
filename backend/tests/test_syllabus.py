@@ -2,23 +2,26 @@ from app.data.syllabus import SYLLABUS
 from app.routes import syllabus as syllabus_route
 
 
-def test_syllabus_supports_class_1_to_class_10_without_losing_grade_9():
+def test_syllabus_supports_class_5_to_class_10_without_losing_grade_9():
     """
-    Ensure the product can expose Class 1-10 selectors while preserving the
-    existing Grade 9 CBSE and SOF catalogs that current students use.
+    Ensure the product exposes Class 5-10 selectors while preserving the
+    existing Grade 9 CBSE catalog that current students use.
+
+    Grades 1-4 and SOF (Olympiad) are not supported on the platform.
     """
-    for grade_number in range(1, 11):
+    for grade_number in range(5, 11):
         grade = f"Grade {grade_number}"
 
         assert grade in SYLLABUS
         assert "CBSE" in SYLLABUS[grade]
-        assert "SOF" in SYLLABUS[grade]
+        assert "SOF" not in SYLLABUS[grade]
         assert SYLLABUS[grade]["CBSE"]
 
+    for grade_number in range(1, 5):
+        assert f"Grade {grade_number}" not in SYLLABUS
+
     assert "Science" in SYLLABUS["Grade 9"]["CBSE"]
-    assert "Science Olympiad" in SYLLABUS["Grade 9"]["SOF"]
     assert "Cell: The Building Block of Life" in SYLLABUS["Grade 9"]["CBSE"]["Science"]
-    assert "Force and Laws of Motion" in SYLLABUS["Grade 9"]["SOF"]["Science Olympiad"]
 
 
 class FakeSyllabusQuery:

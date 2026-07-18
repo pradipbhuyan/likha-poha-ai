@@ -36,14 +36,6 @@ from app.services.auth_service import (
 router = APIRouter()
 
 
-SOF_SUBJECT_ACCESS = {
-    "science olympiad": "access_sof_science",
-    "maths olympiad": "access_sof_maths",
-    "mathematics olympiad": "access_sof_maths",
-    "english olympiad": "access_sof_english",
-}
-
-
 def call_with_optional_board(func, board: str, **kwargs):
     """Call upgraded tutor services with board, while tolerating old test doubles."""
     try:
@@ -130,18 +122,8 @@ def enforce_profile_board(profile: dict, requested_board: str):
         )
 
 
-def normalize_subject(subject: str):
-    """Normalize SOF subject text so UI aliases map to the same access flag."""
-    return (subject or "").strip().lower()
-
-
 def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
-    """
-    Enforce CBSE/SOF doubt access for the authenticated profile.
-
-    SOF doubts require a concrete Olympiad subject so Science, Maths, and English
-    plan flags stay independent and RAG retrieval can be subject-targeted.
-    """
+    """Enforce CBSE doubt access for the authenticated profile."""
     if not profile:
         raise HTTPException(
             status_code=403,
@@ -174,24 +156,6 @@ def enforce_learning_access(profile: dict, mode: str, subject: str = ""):
                 status_code=403,
                 detail=f"{subject_label} access is not enabled.",
             )
-        return
-
-    if mode == "SOF":
-        subject_key = SOF_SUBJECT_ACCESS.get(normalize_subject(subject))
-
-        if not subject_key:
-            raise HTTPException(
-                status_code=400,
-                detail="Please select Science, Maths, or English Olympiad for SOF doubts.",
-            )
-
-        if not profile.get(subject_key):
-            readable_subject = subject.replace(" Olympiad", "")
-            raise HTTPException(
-                status_code=403,
-                detail=f"SOF {readable_subject} access is not enabled.",
-            )
-
         return
 
     raise HTTPException(
@@ -232,7 +196,7 @@ def answer_student_doubt(
     profile = get_profile_by_user_id(user.id)
     canonical_username = profile.get("username") or data.username
 
-    # Access checks happen before token/LLM work so unauthorized SOF subjects do
+    # Access checks happen before token/LLM work so unauthorized subjects do
     # not consume paid AI resources.
     request_board = resolve_request_board(data.mode, data.board)
     enforce_profile_grade(profile, data.grade)

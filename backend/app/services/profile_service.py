@@ -21,7 +21,7 @@ def calculate_rank_title(level: int) -> str:
     if level >= 20:
         return "AI Scholar"
     if level >= 15:
-        return "Olympiad Master"
+        return "Subject Master"
     if level >= 10:
         return "Concept Champion"
     if level >= 5:

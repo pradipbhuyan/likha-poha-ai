@@ -1,18 +1,10 @@
 import json
 import re
-import uuid
-from datetime import date
 
 from app.services.openai_service import ask_llm
-from app.services.openai_service import DEFAULT_TEXT_MODEL
-from app.services.rag_service import search_textbook_content
-from app.services.sof_catalog_service import (
-    get_sof_exam_paper_chapters,
-    get_sof_support_chapters,
-)
 from app.services.question_bank_service import (
     get_questions_from_bank,
-    add_questions_to_bank,
+    get_bank_capacity,
 )
 
 # Display-source prefixes added by the syllabus review UI when multiple books
@@ -82,8 +74,47 @@ def get_questions_from_bank_with_fallback(
     return questions
 
 
+def get_bank_capacity_with_fallback(
+    board: str,
+    grade: str,
+    subject: str,
+    chapter: str | None,
+    difficulty: str,
+) -> int:
+    """Bank capacity lookup with the same display-prefix fallback as sampling."""
+    capacity = get_bank_capacity(board, grade, subject, chapter, difficulty)
+    if capacity:
+        return capacity
+
+    stripped = strip_source_display_prefix(chapter or "")
+    if stripped and stripped != chapter:
+        return get_bank_capacity(board, grade, subject, stripped, difficulty)
+
+    return capacity
+
+
+def bank_shortfall_message(available: int, num_questions: int, selection: str) -> str:
+    """
+    User-facing message when the bank cannot fill the requested test.
+
+    Mock tests are served only from pre-built bank questions, so the student
+    must either lower the question count or pick different material.
+    """
+    if available <= 0:
+        return (
+            f"Practice questions for '{selection}' are still being prepared. "
+            "Please try another chapter or check back soon."
+        )
+    return (
+        f"'{selection}' is too small for a {num_questions}-question test — "
+        f"it has {available} practice questions available. "
+        f"Please request {available} or fewer questions, or choose a bigger "
+        "chapter or another difficulty."
+    )
+
+
 MOCK_TEST_SYSTEM = """
-You create original CBSE and SOF mock tests for the grade requested by the user.
+You create original CBSE mock tests for the grade requested by the user.
 
 Return ONLY valid JSON. No markdown.
 
@@ -102,376 +133,6 @@ JSON schema:
   ]
 }
 """
-
-
-def build_rag_context(items, label="RAG"):
-    """
-    Format retrieved RAG chunks with source metadata for prompt injection.
-
-    The section labels let the model distinguish chapter content, exercises,
-    model papers, and answer explanations when composing SOF questions.
-    """
-    if not items:
-        return ""
-
-    chunks = []
-
-    for item in items:
-        text = item.get("chunk_text", "")
-
-        document = item.get("document") or {}
-
-        title = document.get("title", "")
-        subject = document.get("subject", "")
-        chapter = document.get("chapter", "")
-
-        chunks.append(
-            f"""
-RAG Section: {label}
-Source: {title}
-Subject: {subject}
-Chapter: {chapter}
-
-{text}
-"""
-        )
-
-    return "\n\n".join(chunks)
-
-
-def get_sof_rag_context(
-    olympiad,
-    chapter=None,
-    grade="Grade 9",
-):
-    """
-    Gather all RAG material needed for a high-quality SOF mock test.
-
-    Chapter content teaches concepts, exercise content informs practice style,
-    model papers shape exam patterns, and answer-key sections improve
-    explanations.
-    """
-    context_parts = []
-
-    if chapter:
-        chapter_items = search_textbook_content(
-            query=(
-                f"{chapter} SOF chapter concepts definitions examples "
-                "formulas important points"
-            ),
-            grade=grade,
-            subject=olympiad,
-            chapter=chapter,
-            match_count=10,
-        )
-
-        exercise_items = search_textbook_content(
-            query=(
-                f"{chapter} SOF exercise practice questions solved examples "
-                "answer explanations"
-            ),
-            grade=grade,
-            subject=olympiad,
-            chapter=chapter,
-            match_count=10,
-        )
-
-        chapter_context = build_rag_context(
-            chapter_items,
-            label="SOF chapter content",
-        )
-        exercise_context = build_rag_context(
-            exercise_items,
-            label="SOF chapter exercises",
-        )
-
-        if chapter_context:
-            context_parts.append(chapter_context)
-
-        if exercise_context:
-            context_parts.append(exercise_context)
-
-    model_paper_items = []
-
-    for paper_chapter in get_sof_exam_paper_chapters(olympiad):
-        paper_items = search_textbook_content(
-            query=(
-                f"{paper_chapter} SOF workbook paper mock test questions "
-                f"pattern difficulty sample questions answer explanations {olympiad}"
-            ),
-            grade=grade,
-            subject=olympiad,
-            chapter=paper_chapter,
-            match_count=8,
-        )
-        model_paper_items.extend(paper_items)
-
-    support_items = []
-
-    for support_chapter in get_sof_support_chapters(olympiad):
-        support_items.extend(
-            search_textbook_content(
-                query=(
-                    f"{support_chapter} SOF workbook answer key hints "
-                    f"explanations solutions reasoning {olympiad}"
-                ),
-                grade=grade,
-                subject=olympiad,
-                chapter=support_chapter,
-                match_count=8,
-            )
-        )
-
-    model_paper_items.extend(
-        search_textbook_content(
-            query=(
-                f"uploaded SOF mock test paper model paper sample paper "
-                f"section pattern question difficulty answer explanations {olympiad}"
-            ),
-            grade=grade,
-            subject=olympiad,
-            chapter=None,
-            match_count=10,
-        )
-    )
-
-    model_paper_context = build_rag_context(
-        model_paper_items,
-        label="SOF uploaded mock or model test papers",
-    )
-
-    if model_paper_context:
-        context_parts.append(model_paper_context)
-
-    support_context = build_rag_context(
-        support_items,
-        label="SOF workbook answer keys and explanations",
-    )
-
-    if support_context:
-        context_parts.append(support_context)
-
-    return "\n\n".join(context_parts)
-
-
-def create_generation_variant(username="admin"):
-    """
-    Create a per-request seed so repeated mock tests differ on the same day.
-
-    The seed is included in the LLM prompt, not used for deterministic random
-    generation, because the model itself performs the question generation.
-    """
-    return f"{username}-{date.today().isoformat()}-{uuid.uuid4().hex[:8]}"
-
-
-def validate_sof_rag_context(rag_context, olympiad, chapter):
-    """
-    Ensure SOF mock tests are generated only from uploaded RAG material.
-
-    This protects the product promise that SOF mock tests are grounded in the
-    uploaded workbook/exercise/model-paper content.
-    """
-    if rag_context.strip():
-        return
-
-    chapter_text = f" - {chapter}" if chapter else ""
-
-    raise ValueError(
-        f"No RAG content found for {olympiad}{chapter_text}. "
-        "Upload SOF chapter pages, exercises, or mock test papers before "
-        "generating an SOF mock test."
-    )
-
-
-def generate_olympiad_mock_test(
-    olympiad,
-    num_questions=10,
-    difficulty="Medium",
-    chapter=None,
-    grade="Grade 9",
-    username="admin",
-    model=DEFAULT_TEXT_MODEL,
-):
-    """
-    Generate an original SOF mock test grounded in uploaded RAG context.
-
-    Bank-first: if question bank already contains questions for this chapter
-    and difficulty, serve them instantly at zero token cost.
-    Falls back to RAG + LLM generation only when the bank is empty.
-    Explanations may add wider model knowledge, but every question must be
-    inspired by uploaded SOF content so the test stays aligned with the workbook.
-    """
-    # ------------------------------------------------------------------ bank
-    bank_questions = get_questions_from_bank(
-        board="CBSE",
-        grade=grade,
-        subject=olympiad,
-        chapter=chapter or "",
-        difficulty=difficulty,
-        num_questions=num_questions,
-        exam_type="General",
-    )
-    if bank_questions:
-        return bank_questions
-    # --------------------------------------------------------------- end bank
-
-    if olympiad == "Science Olympiad":
-        pattern = f"""
-Create a {grade} SOF Science Olympiad style mock test.
-
-Pattern:
-- Logical Reasoning: about 20%
-- Science: about 70%
-- Achievers Section/HOTS: about 10%
-
-Include Physics, Chemistry, Biology, reasoning, application and HOTS.
-"""
-
-    elif olympiad == "Maths Olympiad":
-        pattern = f"""
-Create a {grade} SOF Maths Olympiad style mock test.
-
-Pattern:
-- Logical Reasoning: about 20%
-- Mathematical Reasoning: about 50%
-- Everyday Mathematics: about 20%
-- Achievers Section/HOTS: about 10%
-
-Include number systems, algebra, geometry, mensuration, statistics, probability, logical puzzles and HOTS.
-"""
-
-    elif olympiad == "English Olympiad":
-        pattern = f"""
-Create a {grade} SOF English Olympiad style mock test.
-
-Pattern:
-- Word and Structure Knowledge
-- Reading
-- Spoken and Written Expression
-- Achievers Section/HOTS
-
-Include vocabulary, grammar, sentence correction, comprehension, inference, para jumbles and usage.
-"""
-
-    else:
-        pattern = f"""
-Create a {grade} SOF Olympiad style mock test.
-"""
-
-    rag_context = get_sof_rag_context(
-        olympiad=olympiad,
-        chapter=chapter,
-        grade=grade,
-    )
-
-    validate_sof_rag_context(rag_context, olympiad, chapter)
-
-    generation_variant = create_generation_variant(username=username)
-
-    prompt = f"""
-{pattern}
-
-Grade: {grade}
-Olympiad: {olympiad}
-Chapter: {chapter or "Mixed SOF syllabus"}
-Difficulty: {difficulty}
-Number of questions: {num_questions}
-Generation variation seed: {generation_variant}
-
-Use the RAG context below as the mandatory source material.
-
-Rules:
-- Every question must be based on a concept, example, pattern, or exercise present in the uploaded RAG context.
-- Use SOF chapter RAG content for tested concepts.
-- Use SOF exercise RAG content for practice-question style and common traps.
-- Use SOF workbook/mock/model test paper RAG content for exam pattern, section mix, wording style, difficulty and option design.
-- Use uploaded SOF answer keys, hints, and explanations to improve answer reasoning.
-- Do not introduce unrelated syllabus areas that are not supported by RAG.
-- Do not copy exact questions from the RAG context.
-- Create fresh original questions inspired by the uploaded SOF material.
-- Use the generation variation seed to make this test different from other tests generated today.
-- Keep questions suitable for {grade}.
-- Every question must have 4 options.
-- Every answer must be one of A, B, C or D.
-- Explanations must first use the uploaded RAG concept that supports the answer.
-- Explanations may then add wider conceptual clarification, reasoning shortcuts, and common-mistake notes from general LLM knowledge.
-- Include a clear explanation for every answer.
-
-RAG CONTEXT:
-{rag_context[:14000]}
-
-Return only valid JSON.
-"""
-
-    raw = ask_llm(
-        MOCK_TEST_SYSTEM,
-        prompt,
-        username=username,
-        feature="sof_mock_test",
-        model=model,
-    )
-
-    try:
-        data = json.loads(raw)
-        questions = data.get("questions", [])
-    except Exception:
-        return []
-
-    # Store newly generated questions in the bank for future zero-cost requests
-    if questions:
-        add_questions_to_bank(
-            questions=questions,
-            board="CBSE",
-            grade=grade,
-            subject=olympiad,
-            chapter=chapter or "",
-            difficulty=difficulty,
-            exam_type="General",
-        )
-
-    return questions
-
-
-def generate_science_olympiad_mock_test(
-    num_questions=10,
-    difficulty="Medium",
-    chapter=None,
-):
-    """Convenience wrapper for Science Olympiad mock-test generation."""
-    return generate_olympiad_mock_test(
-        "Science Olympiad",
-        num_questions,
-        difficulty,
-        chapter,
-    )
-
-
-def generate_maths_olympiad_mock_test(
-    num_questions=10,
-    difficulty="Medium",
-    chapter=None,
-):
-    """Convenience wrapper for Maths Olympiad mock-test generation."""
-    return generate_olympiad_mock_test(
-        "Maths Olympiad",
-        num_questions,
-        difficulty,
-        chapter,
-    )
-
-
-def generate_english_olympiad_mock_test(
-    num_questions=10,
-    difficulty="Medium",
-    chapter=None,
-):
-    """Convenience wrapper for English Olympiad mock-test generation."""
-    return generate_olympiad_mock_test(
-        "English Olympiad",
-        num_questions,
-        difficulty,
-        chapter,
-    )
 
 
 def calculate_score(questions, user_answers):
@@ -524,17 +185,20 @@ def generate_cbse_mock_test(
     question_format: str = "mcq",
 ):
     """
-    Generate a CBSE mock test.
+    Serve a CBSE mock test.
 
     question_format controls the type of questions generated:
-      "mcq"     → standard MCQ only (default, uses question bank cache)
+      "mcq"     → standard MCQ only (default, served from the question bank)
       "written" → short/long answer questions only (AI-generated, no bank)
       "mixed"   → mix of MCQ + written questions (AI-generated, no bank)
 
-    Bank-first: checks the question_bank before calling the LLM. On bank hit
-    returns a random sample instantly with zero token cost. On bank miss the
-    LLM generates as normal and the result is added to the bank.
-    Written/Mixed always bypass the bank (written questions are not cacheable).
+    MCQ tests are served exclusively from the pre-built question bank — no
+    LLM call at serving time. The bank is populated offline via the admin
+    prewarm pipeline. When the bank cannot fill the request, a ValueError
+    with a user-facing message is raised (chapter too small / not prepared).
+
+    cache_only is kept for caller compatibility; bank-only is now the
+    behavior for every user.
     """
     # ── Written / Mixed format: always generate fresh via LLM (no bank) ────
     if question_format in ("written", "mixed"):
@@ -544,7 +208,6 @@ def generate_cbse_mock_test(
             difficulty=difficulty, question_format=question_format,
         )
 
-    # ------------------------------------------------------------------ bank
     # Uses fallback that strips display prefixes (e.g. "Text Book - ")
     # so chapters stored under their plain name are still found even when
     # the frontend sends the prefixed display label.
@@ -560,95 +223,13 @@ def generate_cbse_mock_test(
     )
     if bank_questions:
         return bank_questions
-    # --------------------------------------------------------------- end bank
 
-    # Free-trial offer users are limited to pre-banked questions only.
-    # If the question bank has no questions for this chapter, do NOT call
-    # the LLM — return an empty list so the caller shows a "not available" message.
-    if cache_only:
-        from fastapi import HTTPException  # noqa: PLC0415
-        raise HTTPException(
-            status_code=403,
-            detail=(
-                "🔒 Practice questions for this chapter are being prepared. "
-                "Most chapters are already available. "
-                "To generate any test on demand, upgrade to a paid plan."
-            ),
-        )
-
-    prompt = f"""
-Create a {board} {grade} mock test.
-
-Grade: {grade}
-Board: {board}
-Subject: {subject}
-Chapter: {chapter}
-Exam Type: {exam_type}
-Difficulty: {difficulty}
-Questions: {num_questions}
-
-Follow {board} textbook and exam style.
-
-For:
-- Class Test -> short chapter focused questions
-- Mid Term -> moderate difficulty
-- Annual Exam -> mixed conceptual and application questions
-
-Include:
-- MCQs
-- Assertion Reason
-- Case based questions where suitable
-- Numericals for Maths/Science
-- Grammar/Comprehension for English/Hindi
-
-Return ONLY valid JSON.
-
-JSON schema:
-{{
-  "questions": [
-    {{
-      "id": 1,
-      "section": "...",
-      "question": "...",
-      "options": {{
-        "A": "...",
-        "B": "...",
-        "C": "...",
-        "D": "..."
-      }},
-      "answer": "A",
-      "explanation": "...",
-      "marks": 1
-    }}
-  ]
-}}
-"""
-
-    raw = ask_llm(
-        MOCK_TEST_SYSTEM,
-        prompt,
-        username="admin",
-        feature="cbse_mock_test",
+    available = get_bank_capacity_with_fallback(
+        board, grade, subject, chapter, difficulty,
     )
-
-    try:
-        data = json.loads(raw)
-        questions = data.get("questions", [])
-    except Exception:
-        return []
-
-    # Store new LLM questions in bank for future requests
-    add_questions_to_bank(
-        questions=questions,
-        board=board,
-        grade=grade,
-        subject=subject,
-        chapter=chapter or "",
-        difficulty=difficulty,
-        exam_type=exam_type,
+    raise ValueError(
+        bank_shortfall_message(available, num_questions, chapter or subject)
     )
-
-    return questions
 
 
 def _generate_written_questions(

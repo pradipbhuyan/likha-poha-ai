@@ -83,7 +83,7 @@ function QuizPage({ user }) {
 
   const grades = getVisibleGrades(syllabusData, user);
   const modes = Object.keys(syllabusData[grade]);
-  const requestBoard = mode === "SOF" ? getUserBoard(user) : mode;
+  const requestBoard = mode;
   const subjects = Object.keys(syllabusData[grade][mode]);
   const chapters = syllabusData[grade][mode][subject] || [];
 
@@ -108,7 +108,7 @@ function QuizPage({ user }) {
   }
 
   function handleModeChange(value) {
-    /** Change CBSE/SOF mode and reset subject and chapter selections. */
+    /** Change mode and reset subject and chapter selections. */
     const newSubject = Object.keys(syllabusData[grade][value])[0];
     const newChapter = syllabusData[grade][value][newSubject][0];
 
@@ -268,7 +268,6 @@ function QuizPage({ user }) {
               <option>Easy</option>
               <option>Medium</option>
               <option>Hard</option>
-              <option>Olympiad HOTS</option>
             </select>
           </label>
 

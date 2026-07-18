@@ -314,7 +314,7 @@ export default function AdminProductCataloguePage({ user }) {
 
         <div className="premium-card">
           {[
-            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 1–10 CBSE", "SOF Olympiad (NSO/IMO/IEO)", "Ask Doubt (RAG)", "70,000+ Question Bank", "Parent Dashboard", "Teacher Module"] },
+            { phase: "Now — Live",       color: "#22c55e", items: ["Grade 5–10 CBSE", "Ask Doubt (RAG)", "70,000+ Question Bank", "Parent Dashboard", "Teacher Module"] },
             { phase: "Phase 2 (Ready to unlock)", color: "#f59e0b", items: ["Grade 11 CBSE — Science, Commerce, Arts", "Grade 12 CBSE — Science, Commerce, Arts", "Stream selection at signup"] },
             { phase: "Phase 3 (Content + UI needed)", color: "#a78bfa", items: ["JEE Mains + Advanced prep", "NEET UG prep", "CUET prep", "Negative marking mock tests", "Topic-wise progress tracking"] },
             { phase: "Phase 4 (Future)",  color: "#64748b", items: ["ICSE + State Board content", "Vernacular (Hindi/Marathi/Tamil) UI", "School white-labelling", "Mobile app (native)"] },

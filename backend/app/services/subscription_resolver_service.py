@@ -11,7 +11,7 @@ Precedence (highest → lowest):
   1. Active paid subscription  — subscription_expires_at in future
   2. Perpetual paid plan       — access_cbse=True + plan key != "free" + no expiry
   3. Valid offer / free-trial  — offer_redemptions row with valid_until > now
-  4. Admin-granted access      — access_cbse (or SOF flags) set, no offer, no expiry
+  4. Admin-granted access      — access_cbse set, no offer, no expiry
   5. Default free              — no access
 
 Why offer (3) is checked AFTER paid (1, 2):
@@ -108,8 +108,7 @@ def resolve_user_subscription(user_id: str) -> dict:
             .table("profiles")
             .select(
                 "id, role, subscription_plan, subscription_expires_at, "
-                "access_cbse, access_sof_science, access_sof_maths, "
-                "access_sof_english, parent_id"
+                "access_cbse, parent_id"
             )
             .eq("id", user_id)
             .limit(1)
@@ -155,12 +154,7 @@ def resolve_user_subscription(user_id: str) -> dict:
 
         # ── 2. Perpetual paid plan (non-"free" key + access flag, no expiry) ─
         plan_key = profile.get("subscription_plan") or "free"
-        has_access_flag = bool(
-            profile.get("access_cbse")
-            or profile.get("access_sof_science")
-            or profile.get("access_sof_maths")
-            or profile.get("access_sof_english")
-        )
+        has_access_flag = bool(profile.get("access_cbse"))
         if has_access_flag and plan_key != "free" and not expires_at_str:
             ck = _canonical_plan_key(plan_key)
             return {

@@ -51,7 +51,6 @@ def clean_text_for_tts(text: str) -> str:
         # Academic/exam
         (r"\bHOTS\b", "higher order thinking skills"),
         (r"\bCBSE\b", "C B S E"),
-        (r"\bSOF\b", "S O F"),
         (r"\bNCERT\b", "N C E R T"),
         (r"\bLHS\b", "left hand side"),
         (r"\bRHS\b", "right hand side"),

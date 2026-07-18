@@ -6,10 +6,8 @@ from app.models.schemas import (
 )
 
 from app.services.mock_test_service import (
-    generate_olympiad_mock_test,
     generate_cbse_mock_test,
 )
-from app.services.model_routing_service import resolve_student_feature_model
 
 from app.services.auth_service import (
     get_current_user,
@@ -128,13 +126,7 @@ def enforce_profile_board(profile: dict, requested_board: str):
 
 
 def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = ""):
-    """
-    Enforce mock-test access for CBSE and each SOF Olympiad subject.
-
-    SOF mock tests are intentionally subject-specific because uploaded SOF RAG
-    material, subscriptions, and parent-facing plan benefits are split by
-    Science, Maths, and English.
-    """
+    """Enforce mock-test access for CBSE (the only supported mock-test mode)."""
     if not profile:
         raise HTTPException(
             status_code=403,
@@ -171,7 +163,7 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
             # This preserves the original intent (free users get limited access).
             pass  # daily limit is enforced at a higher level in the route
         elif not profile.get("access_cbse"):
-            # Paid user with no CBSE access (e.g. SOF-only plan) → block
+            # Paid user with no CBSE access → block
             access_label = "CBSE" if normalize_board(mode) == "CBSE" else "School-board"
             raise HTTPException(
                 status_code=403,
@@ -187,36 +179,6 @@ def enforce_mock_access(profile: dict, mode: str, subject: str, user_id: str = "
                 status_code=403,
                 detail=f"{subject_label} access is not enabled.",
             )
-        return
-
-    if mode == "SOF":
-        if (
-            subject == "Science Olympiad"
-            and not profile.get("access_sof_science")
-        ):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF Science access is not enabled.",
-            )
-
-        if (
-            subject == "Maths Olympiad"
-            and not profile.get("access_sof_maths")
-        ):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF Maths access is not enabled.",
-            )
-
-        if (
-            subject == "English Olympiad"
-            and not profile.get("access_sof_english")
-        ):
-            raise HTTPException(
-                status_code=403,
-                detail="SOF English access is not enabled.",
-            )
-
         return
 
     raise HTTPException(
@@ -244,12 +206,7 @@ def generate_mock_test(
     data: MockTestRequest,
     user=Depends(get_current_user),
 ):
-    """
-    Generate either a CBSE mock test or an SOF RAG-based mock test.
-
-    SOF tests route to the Olympiad generator, which requires uploaded RAG
-    context; CBSE tests route to the general CBSE generator.
-    """
+    """Generate a CBSE mock test, served from the pre-built question bank."""
     profile = get_profile_by_user_id(user.id)
 
     request_board = resolve_request_board(data.mode, data.board)
@@ -269,35 +226,19 @@ def generate_mock_test(
         question_count = max(1, min(100, int(data.question_count or 10)))
         excluded_ids = list(data.excluded_ids or [])
 
-        if data.mock_type == "SOF Olympiad Mock Test":
-            model = resolve_student_feature_model(
-                profile,
-                feature="sof_mock_test",
-            )
-            questions = generate_olympiad_mock_test(
-                olympiad=data.subject,
-                chapter=data.chapter,
-                grade=data.grade,
-                num_questions=question_count,
-                difficulty=data.difficulty,
-                username=profile.get("username") or "admin",
-                model=model,
-            )
-
-        else:
-            questions = call_with_optional_board(
-                generate_cbse_mock_test,
-                grade=data.grade,
-                board=request_board,
-                subject=data.subject,
-                chapter=data.chapter,
-                exam_type=data.exam_type or "Class Test",
-                num_questions=question_count,
-                difficulty=data.difficulty,
-                cache_only=False,
-                excluded_ids=excluded_ids,
-                question_format=getattr(data, "question_format", "mcq"),
-            )
+        questions = call_with_optional_board(
+            generate_cbse_mock_test,
+            grade=data.grade,
+            board=request_board,
+            subject=data.subject,
+            chapter=data.chapter,
+            exam_type=data.exam_type or "Class Test",
+            num_questions=question_count,
+            difficulty=data.difficulty,
+            cache_only=False,
+            excluded_ids=excluded_ids,
+            question_format=getattr(data, "question_format", "mcq"),
+        )
 
         return MockTestResponse(
             success=True,
