@@ -1,446 +1,10 @@
 {
-  "audited_at": "2026-07-15T07:07:12.674260+00:00",
+  "audited_at": "2026-07-19T08:38:14.813092+00:00",
   "lessons": [
     {
       "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 10: The Human Eye and the Colourful World",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.670319+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Exemplar: Magnetic Effects of Electric Current",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.670443+00:00"
-    },
-    {
-      "grade": "Grade 10",
       "subject": "English",
-      "chapter": "Supplementary Reader - Chapter 4: A Question of Trust",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.670547+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Political Science - Chapter 1: Power-sharing",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.670764+00:00"
-    },
-    {
-      "grade": "Grade 5",
-      "subject": "Hindi",
-      "chapter": "6. \u091a\u0924\u0941\u0930 \u091a\u093f\u0924\u094d\u0930\u0915\u093e\u0930",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "What We Learn",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671008+00:00"
-    },
-    {
-      "grade": "Grade 5",
-      "subject": "Maths",
-      "chapter": "Chapter 11: Grandmother\u2019s Quilt",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "What We Learn",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671131+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "Text Book - Chapter 1: Development",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671163+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Maths",
-      "chapter": "Chapter 9: Some Applications of Trigonometry",
-      "step_count": 2,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 98,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        },
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671515+00:00"
-    },
-    {
-      "grade": "Grade 6",
-      "subject": "Hindi",
-      "chapter": "6. \u092e\u0947\u0930\u0940 \u092e\u093e\u0901",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 1
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 98,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [
-        {
-          "severity": "low",
-          "category": "pedagogy",
-          "message": "Step 'Concept introduction' lacks real-world context.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Concept introduction",
-          "findings": [
-            {
-              "severity": "low",
-              "category": "pedagogy",
-              "message": "Step 'Concept introduction' lacks real-world context.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671739+00:00"
-    },
-    {
-      "grade": "Grade 6",
-      "subject": "Hindi",
-      "chapter": "12. \u0939\u093f\u0902\u0926 \u092e\u0939\u093e\u0938\u093e\u0917\u0930 \u092e\u0947\u0902 \u091b\u094b\u091f\u093e-\u0938\u093e \u0939\u093f\u0902\u0926\u0941\u0938\u094d\u093e\u0928",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Core explanation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671933+00:00"
-    },
-    {
-      "grade": "Grade 6",
-      "subject": "English",
-      "chapter": "Unit 5: Culture and Tradition",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.671969+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Social Science",
-      "chapter": "History - Chapter 1: The Rise of Nationalism in Europe",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.672161+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Maths",
-      "chapter": "Chapter 10: Circles",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.672510+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Maths",
-      "chapter": "Exemplar: Constructions",
+      "chapter": "Workbook - Chapter 1: A Letter to God",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -466,12 +30,167 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-07-15T07:07:12.672699+00:00"
+      "audited_at": "2026-07-19T08:38:14.801482+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Chapter 6: Triangles",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.801849+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Chapter 10: The Human Eye and the Colourful World",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.802601+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Exemplar: Magnetic Effects of Electric Current",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.804416+00:00"
+    },
+    {
+      "grade": "Grade 5",
+      "subject": "EVS",
+      "chapter": "Chapter 5: Our Vibrant Country",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Recap",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.805616+00:00"
     },
     {
       "grade": "Grade 6",
       "subject": "Maths",
-      "chapter": "Chapter 8 Playing with Constructions",
+      "chapter": "Chapter 10 The Other Side of Zero",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.805761+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Exemplar: Control and Coordination",
       "step_count": 1,
       "total_findings": 1,
       "critical_count": 0,
@@ -511,119 +230,12 @@
           "finding_count": 1
         }
       ],
-      "audited_at": "2026-07-15T07:07:12.673005+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Exemplar: Carbon and Its Compounds",
-      "step_count": 1,
-      "total_findings": 1,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 1,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 95,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 93
-      },
-      "findings": [
-        {
-          "severity": "medium",
-          "category": "structure",
-          "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-          "detail": ""
-        }
-      ],
-      "steps": [
-        {
-          "step_title": "Revision and recap",
-          "findings": [
-            {
-              "severity": "medium",
-              "category": "structure",
-              "message": "Step 'Revision and recap' summary section lacks clear summary language.",
-              "detail": ""
-            }
-          ],
-          "finding_count": 1
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.673645+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Science",
-      "chapter": "Chapter 13: Our Environment",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Worked examples",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.673892+00:00"
+      "audited_at": "2026-07-19T08:38:14.806730+00:00"
     },
     {
       "grade": "Grade 10",
       "subject": "Social Science",
-      "chapter": "Geography - Chapter 7: Lifelines of National Economy",
-      "step_count": 1,
-      "total_findings": 0,
-      "critical_count": 0,
-      "findings_summary": {
-        "critical": 0,
-        "high": 0,
-        "medium": 0,
-        "low": 0
-      },
-      "scores": {
-        "completeness_score": 100,
-        "formula_quality_score": 90,
-        "mcq_quality_score": 80,
-        "pedagogy_score": 100,
-        "student_flow_score": 100,
-        "overall_score": 94
-      },
-      "findings": [],
-      "steps": [
-        {
-          "step_title": "Exam preparation",
-          "findings": [],
-          "finding_count": 0
-        }
-      ],
-      "audited_at": "2026-07-15T07:07:12.674109+00:00"
-    },
-    {
-      "grade": "Grade 10",
-      "subject": "Maths",
-      "chapter": "Chapter 4: Quadratic Equations",
+      "chapter": "Text Book - Chapter 2: Sectors of the Indian Economy",
       "step_count": 1,
       "total_findings": 0,
       "critical_count": 0,
@@ -649,7 +261,435 @@
           "finding_count": 0
         }
       ],
-      "audited_at": "2026-07-15T07:07:12.674205+00:00"
+      "audited_at": "2026-07-19T08:38:14.807347+00:00"
+    },
+    {
+      "grade": "Grade 6",
+      "subject": "Hindi",
+      "chapter": "4. \u0939\u093e\u0930 \u0915\u0940 \u091c\u0940\u0924",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 98,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.807752+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Exemplar: Polynomials",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.808174+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Text Book - Chapter 4: From the Diary of Anne Frank",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.809009+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Hindi",
+      "chapter": "\u0905\u0927\u094d\u092f\u093e\u092f 4: \u0938\u0942\u0930\u094d\u092f\u0915\u093e\u0902\u0924 \u0924\u094d\u0930\u093f\u092a\u093e\u0920\u0940 '\u0928\u093f\u0930\u093e\u0932\u093e'",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 98,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.809475+00:00"
+    },
+    {
+      "grade": "Grade 6",
+      "subject": "Hindi",
+      "chapter": "10. \u092a\u0930\u0940\u0915\u094d\u093e",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.809617+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Science",
+      "chapter": "Chapter 9: Light \u2013 Reflection and Refraction",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.809900+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Exemplar: Circles",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 1
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 98,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "category": "pedagogy",
+          "message": "Step 'Concept introduction' lacks real-world context.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Concept introduction",
+          "findings": [
+            {
+              "severity": "low",
+              "category": "pedagogy",
+              "message": "Step 'Concept introduction' lacks real-world context.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.810309+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "English",
+      "chapter": "Text Book - Chapter 7: Madam Rides the Bus",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.811315+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Exemplar: Probability",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Exam-style problems",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.811866+00:00"
+    },
+    {
+      "grade": "Grade 5",
+      "subject": "Maths",
+      "chapter": "Chapter 1: We the Travellers \u2014 I",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Worked Examples",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.812013+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Social Science",
+      "chapter": "Political Science - Chapter 4: Political Parties",
+      "step_count": 1,
+      "total_findings": 1,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 95,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 93
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "category": "structure",
+          "message": "Step 'Exam preparation' may lack a clear title/heading.",
+          "detail": ""
+        }
+      ],
+      "steps": [
+        {
+          "step_title": "Exam preparation",
+          "findings": [
+            {
+              "severity": "medium",
+              "category": "structure",
+              "message": "Step 'Exam preparation' may lack a clear title/heading.",
+              "detail": ""
+            }
+          ],
+          "finding_count": 1
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.812590+00:00"
+    },
+    {
+      "grade": "Grade 10",
+      "subject": "Maths",
+      "chapter": "Chapter 9: Some Applications of Trigonometry",
+      "step_count": 1,
+      "total_findings": 0,
+      "critical_count": 0,
+      "findings_summary": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "scores": {
+        "completeness_score": 100,
+        "formula_quality_score": 90,
+        "mcq_quality_score": 80,
+        "pedagogy_score": 100,
+        "student_flow_score": 100,
+        "overall_score": 94
+      },
+      "findings": [],
+      "steps": [
+        {
+          "step_title": "Core explanation",
+          "findings": [],
+          "finding_count": 0
+        }
+      ],
+      "audited_at": "2026-07-19T08:38:14.812894+00:00"
     }
   ]
 }

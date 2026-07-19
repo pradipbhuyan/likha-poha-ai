@@ -1,9 +1,9 @@
 # Lesson Quality Audit Report
 
-_Generated: 2026-07-15 12:37 UTC_
+_Generated: 2026-07-19 14:08 UTC_
 
-**Lessons audited:** 19
-**Total findings:** 4
+**Lessons audited:** 20
+**Total findings:** 5
 **Critical issues:** 0
 **Average overall score:** 94%
 
@@ -13,16 +13,16 @@ _Generated: 2026-07-15 12:37 UTC_
 
 | Grade | Subject | Chapter | Steps | Overall | Critical | High |
 |---|---|---|---|---|---|---|
-| Grade 10 | Science | Exemplar: Carbon and Its Compounds | 1 | 93 | 0 | 0 |
+| Grade 10 | Social Science | Political Science - Chapter 4: Political Parties | 1 | 93 | 0 | 0 |
+| Grade 10 | English | Workbook - Chapter 1: A Letter to God | 1 | 94 | 0 | 0 |
+| Grade 10 | Maths | Chapter 6: Triangles | 1 | 94 | 0 | 0 |
 | Grade 10 | Science | Chapter 10: The Human Eye and the Colourful World | 1 | 94 | 0 | 0 |
 | Grade 10 | Science | Exemplar: Magnetic Effects of Electric Current | 1 | 94 | 0 | 0 |
-| Grade 10 | English | Supplementary Reader - Chapter 4: A Question of Trust | 1 | 94 | 0 | 0 |
-| Grade 10 | Social Science | Political Science - Chapter 1: Power-sharing | 1 | 94 | 0 | 0 |
-| Grade 5 | Hindi | 6. चतुर चित्रकार | 1 | 94 | 0 | 0 |
-| Grade 5 | Maths | Chapter 11: Grandmother’s Quilt | 1 | 94 | 0 | 0 |
-| Grade 10 | Social Science | Text Book - Chapter 1: Development | 1 | 94 | 0 | 0 |
-| Grade 10 | Maths | Chapter 9: Some Applications of Trigonometry | 2 | 94 | 0 | 0 |
-| Grade 6 | Hindi | 6. मेरी माँ | 1 | 94 | 0 | 0 |
+| Grade 5 | EVS | Chapter 5: Our Vibrant Country | 1 | 94 | 0 | 0 |
+| Grade 6 | Maths | Chapter 10 The Other Side of Zero | 1 | 94 | 0 | 0 |
+| Grade 10 | Science | Exemplar: Control and Coordination | 1 | 94 | 0 | 0 |
+| Grade 10 | Social Science | Text Book - Chapter 2: Sectors of the Indian Economy | 1 | 94 | 0 | 0 |
+| Grade 6 | Hindi | 4. हार की जीत | 1 | 94 | 0 | 0 |
 
 ## Critical Issues
 
@@ -31,13 +31,13 @@ _Generated: 2026-07-15 12:37 UTC_
 
 | Grade | Subject | Lessons | Avg Overall | Avg Completeness | Avg MCQ | Critical |
 |---|---|---|---|---|---|---|
-| Grade 10 | English | 1 | 94 | 100 | 80 | 0 |
-| Grade 10 | Maths | 4 | 94 | 100 | 80 | 0 |
-| Grade 10 | Science | 4 | 94 | 99 | 80 | 0 |
-| Grade 10 | Social Science | 4 | 94 | 100 | 80 | 0 |
-| Grade 5 | Hindi | 1 | 94 | 100 | 80 | 0 |
+| Grade 10 | English | 3 | 94 | 100 | 80 | 0 |
+| Grade 10 | Hindi | 1 | 94 | 100 | 80 | 0 |
+| Grade 10 | Maths | 5 | 94 | 100 | 80 | 0 |
+| Grade 10 | Science | 4 | 94 | 100 | 80 | 0 |
+| Grade 10 | Social Science | 2 | 94 | 98 | 80 | 0 |
+| Grade 5 | EVS | 1 | 94 | 100 | 80 | 0 |
 | Grade 5 | Maths | 1 | 94 | 100 | 80 | 0 |
-| Grade 6 | English | 1 | 94 | 100 | 80 | 0 |
 | Grade 6 | Hindi | 2 | 94 | 100 | 80 | 0 |
 | Grade 6 | Maths | 1 | 94 | 100 | 80 | 0 |
 
