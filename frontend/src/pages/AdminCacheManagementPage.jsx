@@ -1605,8 +1605,8 @@ function PasteImportSection({ user, onImportSuccess }) {
       setError("❌ No questions found in the JSON.");
       return;
     }
-    if (questions.length > 100) {
-      setError(`❌ Too many questions (${questions.length}). Maximum is 100 per import.`);
+    if (questions.length > 200) {
+      setError(`❌ Too many questions (${questions.length}). Maximum is 200 per import.`);
       return;
     }
 
@@ -1704,7 +1704,7 @@ function PasteImportSection({ user, onImportSuccess }) {
               const count = Array.isArray(p) ? p.length : 1;
               return (
                 <>
-                  <span style={{ color: count > 100 ? "#f87171" : "#22c55e" }}>{count} question{count !== 1 ? "s" : ""} detected</span>
+                  <span style={{ color: count > 200 ? "#f87171" : "#22c55e" }}>{count} question{count !== 1 ? "s" : ""} detected</span>
                   {sanitized !== jsonText.trim() && (
                     <span style={{ color: "#f59e0b", fontSize: ".65rem" }}>⚡ Auto-fix applied (smart quotes/trailing commas removed)</span>
                   )}
