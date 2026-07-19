@@ -1,0 +1,33 @@
+##############################################################################
+# LikhaPoha AI — Render Keepalive
+#
+# Render's free tier spins the backend down after ~15 minutes of inactivity;
+# the first request after that can take 50+ seconds to wake it back up. This
+# pings the health endpoint every 10 minutes to keep it warm.
+#
+# Temporary measure — remove once the Render service is on a paid plan
+# (paid instances don't spin down) or once Railway is fully decommissioned
+# and this stops mattering some other way.
+##############################################################################
+name: Render Keepalive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    name: "Ping Render backend"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "GET /api/health"
+        run: |
+          HTTP=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 \
+            "https://api.likhapoha.in/api/health")
+          echo "HTTP $HTTP"
+          if [ "$HTTP" != "200" ]; then
+            echo "❌ Render backend did not return 200 (got $HTTP)"
+            exit 1
+          fi
+          echo "✅ Render backend is awake"

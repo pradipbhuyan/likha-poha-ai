@@ -147,7 +147,7 @@ jobs:
 
       - name: Production build
         env:
-          VITE_API_BASE_URL: ${{ secrets.RAILWAY_BACKEND_URL || 'https://likha-poha-ai-production.up.railway.app' }}
+          VITE_API_BASE_URL: https://api.likhapoha.in
         run: npm run build
 
       - name: Upload build artefact
