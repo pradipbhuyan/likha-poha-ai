@@ -150,6 +150,7 @@ def get_questions_from_bank(
             db_ids = [q.get("db_id") for q in sampled if q.get("db_id")]
             if db_ids:
                 # Use SQL expression via RPC to safely increment the counter
+                supabase = get_content_db(grade)
                 supabase.rpc("increment_times_shown", {"question_ids": db_ids}).execute()
         except Exception:
             pass  # times_shown is advisory — never fail the test for this
