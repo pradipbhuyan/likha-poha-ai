@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { BookOpen, Sparkles, RotateCcw, ArrowLeft, ArrowRight } from "lucide-react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -134,6 +135,29 @@ function getLoadingMessage(stepIndex, subject) {
 // the lesson content takes the full width. Set false to roll back to left sidebar.
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
 const USE_TOP_BAR_LAYOUT = true;
+
+// ── Shared sizing for the top bar + step-nav controls ─────────────────────────
+// One scale for every chip/button/select across both rows so nothing reads
+// taller or shorter than its neighbor (previously each row had its own
+// font-size/padding, so the "% complete" pill was visibly shorter than the
+// Previous/Next buttons next to it).
+const STEP_CONTROL_FONT_SIZE = "0.875rem";
+const stepChipStyle = (complete) => ({
+  fontSize: STEP_CONTROL_FONT_SIZE,
+  fontWeight: 700,
+  color: "#fff",
+  background: complete ? "#16a34a" : "#0891b2",
+  borderRadius: 999,
+  padding: "7px 14px",
+  lineHeight: 1,
+  whiteSpace: "nowrap",
+});
+const stepButtonStyle = {
+  padding: "7px 16px",
+  fontSize: STEP_CONTROL_FONT_SIZE,
+  borderRadius: 8,
+  lineHeight: 1,
+};
 
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
 // Grade 10 visuals restricted to Science and Maths only
@@ -1611,8 +1635,8 @@ function LessonsPage({ user, setActivePage }) {
   // CSS variables alone aren't enough because the dark defaults (rgba white) are
   // invisible against a light background; we use explicit light-mode-safe values.
   const _selectStyle = {
-    fontSize: "16px",
-    padding: "5px 10px",
+    fontSize: STEP_CONTROL_FONT_SIZE,
+    padding: "7px 10px",
     borderRadius: 8,
     border: "1px solid var(--border, #d1d5db)",
     background: "var(--panel, #ffffff)",
@@ -1635,7 +1659,7 @@ function LessonsPage({ user, setActivePage }) {
       boxShadow: "0 1px 4px rgba(0,0,0,.06)",
     }}>
       {/* Compact selectors */}
-      <span style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted, #6b7280)", marginRight: 2 }}>📚</span>
+      <BookOpen size={16} strokeWidth={2.4} color="var(--muted, #6b7280)" style={{ marginRight: 2, flexShrink: 0 }} />
       <select
         value={grade}
         onChange={(e) => handleGradeChange(e.target.value)}
@@ -1667,11 +1691,7 @@ function LessonsPage({ user, setActivePage }) {
         })}
       </select>
       {/* Step progress pill */}
-      <span style={{
-        fontSize: "16px", fontWeight: 700, color: "#fff",
-        background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
-        borderRadius: 99, padding: "5px 12px", whiteSpace: "nowrap",
-      }}>
+      <span style={{ ...stepChipStyle(Object.keys(stepLessons).length === lessonSteps.length), whiteSpace: "nowrap" }}>
         Step {currentStepIndex + 1}/{lessonSteps.length} · {stepTitle}
       </span>
       {/* Generate / Refresh */}
@@ -1680,9 +1700,9 @@ function LessonsPage({ user, setActivePage }) {
           className="primary-btn"
           onClick={handleGenerateLesson}
           disabled={generating}
-          style={{ fontSize: "16px", padding: "5px 14px", borderRadius: 8, whiteSpace: "nowrap" }}
+          style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}
         >
-          {generating ? "…" : "✨ Generate"}
+          {generating ? "…" : <><Sparkles size={16} strokeWidth={2.4} /> Generate</>}
         </button>
       ) : hasSavedLesson && !isExemplarLocked ? (
         <button
@@ -1692,9 +1712,13 @@ function LessonsPage({ user, setActivePage }) {
             setStepLessons(upd); setLesson(""); setAudioUrl("");
             try { await saveChapterProgress({ username: user.username, grade, mode, board: requestBoard, subject, chapter, current_step_index: currentStepIndex, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: upd }); } catch (e) { /* non-critical */ }
           }}
-          style={{ fontSize: "16px", background: "none", border: "none", color: "var(--muted, #888)", cursor: "pointer", textDecoration: "underline" }}
+          style={{
+            ...stepButtonStyle,
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "none", border: "none", color: "var(--muted, #888)", cursor: "pointer", textDecoration: "underline",
+          }}
         >
-          🔄 Refresh
+          <RotateCcw size={16} strokeWidth={2.4} /> Refresh
         </button>
       ) : null}
     </div>
@@ -2069,7 +2093,7 @@ function LessonsPage({ user, setActivePage }) {
               }}
             >
               {/* Left: step label */}
-              <span style={{ fontSize: "0.85rem", color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
+              <span style={{ fontSize: STEP_CONTROL_FONT_SIZE, color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
                 Step {currentStepIndex + 1} of {lessonSteps.length}:&nbsp;
                 <strong style={{ color: "var(--text, #111827)" }}>{stepTitle}</strong>
               </span>
@@ -2077,22 +2101,14 @@ function LessonsPage({ user, setActivePage }) {
               {/* Right: progress % + nav buttons */}
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 {/* Progress badge — solid colors work in both light and dark mode */}
-                <span style={{
-                  fontSize: "0.78rem",
-                  fontWeight: 700,
-                  color: "#fff",
-                  background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
-                  borderRadius: "999px",
-                  padding: "3px 12px",
-                  letterSpacing: "0.01em",
-                }}>
+                <span style={stepChipStyle(Object.keys(stepLessons).length === lessonSteps.length)}>
                   {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
                 </span>
 
                 <button
                   className="secondary-btn"
                   disabled={currentStepIndex === 0}
-                  style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                  style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
                   onClick={async () => {
                     const newIndex = currentStepIndex - 1;
                     const savedLesson = stepLessons[String(newIndex)] || "";
@@ -2117,7 +2133,7 @@ function LessonsPage({ user, setActivePage }) {
                     });
                   }}
                 >
-                  ⬅ Previous
+                  <ArrowLeft size={16} strokeWidth={2.4} /> Previous
                 </button>
                 <button
                   className="secondary-btn"
@@ -2127,7 +2143,7 @@ function LessonsPage({ user, setActivePage }) {
                       ? "You are on the last step"
                       : `Go to Step ${currentStepIndex + 2}: ${lessonSteps[currentStepIndex + 1] || ""}`
                   }
-                  style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                  style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
                   onClick={async () => {
                     const newIndex = currentStepIndex + 1;
                     if (newIndex >= lessonSteps.length) return;
@@ -2155,7 +2171,7 @@ function LessonsPage({ user, setActivePage }) {
                     });
                   }}
                 >
-                  Next ➡
+                  Next <ArrowRight size={16} strokeWidth={2.4} />
                 </button>
               </div>
             </div>
@@ -2832,24 +2848,18 @@ function LessonsPage({ user, setActivePage }) {
                 flexWrap: "wrap",
                 gap: 10,
               }}>
-                <span style={{ fontSize: "0.85rem", color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
+                <span style={{ fontSize: STEP_CONTROL_FONT_SIZE, color: "var(--text-muted, #6b7280)", fontWeight: 500 }}>
                   Step {currentStepIndex + 1} of {lessonSteps.length}:&nbsp;
                   <strong style={{ color: "var(--text, #111827)" }}>{stepTitle}</strong>
                 </span>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{
-                    fontSize: "0.78rem", fontWeight: 700,
-                    color: "#fff",
-                    background: Object.keys(stepLessons).length === lessonSteps.length ? "#16a34a" : "#0891b2",
-                    borderRadius: "999px", padding: "3px 12px",
-                    letterSpacing: "0.01em",
-                  }}>
+                  <span style={stepChipStyle(Object.keys(stepLessons).length === lessonSteps.length)}>
                     {Math.round(Object.keys(stepLessons).length / lessonSteps.length * 100)}% complete
                   </span>
                   <button
                     className="secondary-btn"
                     disabled={currentStepIndex === 0}
-                    style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                    style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
                     onClick={async () => {
                       const newIndex = currentStepIndex - 1;
                       const savedLesson = stepLessons[String(newIndex)] || "";
@@ -2868,12 +2878,12 @@ function LessonsPage({ user, setActivePage }) {
                       });
                     }}
                   >
-                    ⬅ Previous
+                    <ArrowLeft size={16} strokeWidth={2.4} /> Previous
                   </button>
                   <button
                     className="secondary-btn"
                     disabled={currentStepIndex >= lessonSteps.length - 1}
-                    style={{ padding: "6px 16px", fontSize: "0.85rem" }}
+                    style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
                     onClick={async () => {
                       const newIndex = currentStepIndex + 1;
                       if (newIndex >= lessonSteps.length) return;
@@ -2894,7 +2904,7 @@ function LessonsPage({ user, setActivePage }) {
                       });
                     }}
                   >
-                    Next ➡
+                    Next <ArrowRight size={16} strokeWidth={2.4} />
                   </button>
                 </div>
               </div>
