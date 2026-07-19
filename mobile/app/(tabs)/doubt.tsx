@@ -17,6 +17,7 @@ import {
   Platform, Alert,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
+import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS as STREAM_SUBJECTS_DOUBT } from "@likhapoha/shared/utils/subjectAccess";
@@ -75,9 +76,12 @@ function StructuredVisual({ visual }: { visual: { type: string; title?: string; 
   return (
     <View style={{ backgroundColor: "rgba(99,102,241,.06)", borderRadius: 12, padding: 14, marginVertical: 8, borderWidth: 1, borderColor: "rgba(99,102,241,.2)" }}>
       {visual.title ? (
-        <Text style={{ fontSize: 13, fontWeight: "800", color: BRAND_COLOR, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 10 }}>
-          {isFlow ? "📊" : visual.type === "cycle" ? "🔄" : "📋"} {visual.title}
-        </Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 10 }}>
+          <Feather name={isFlow ? "bar-chart-2" : visual.type === "cycle" ? "refresh-cw" : "list"} size={14} color={BRAND_COLOR} />
+          <Text style={{ fontSize: 13, fontWeight: "800", color: BRAND_COLOR, textTransform: "uppercase", letterSpacing: 0.5 }}>
+            {visual.title}
+          </Text>
+        </View>
       ) : null}
       {visual.items.map((item, idx) => (
         <View key={idx}>
@@ -93,8 +97,9 @@ function StructuredVisual({ visual }: { visual: { type: string; title?: string; 
         </View>
       ))}
       {visual.note ? (
-        <View style={{ marginTop: 8, backgroundColor: "rgba(99,102,241,.08)", borderRadius: 8, padding: 8 }}>
-          <Text style={{ fontSize: 12, color: "#374151", fontStyle: "italic", lineHeight: 17 }}>💡 {visual.note}</Text>
+        <View style={{ marginTop: 8, backgroundColor: "rgba(99,102,241,.08)", borderRadius: 8, padding: 8, flexDirection: "row", gap: 6, alignItems: "flex-start" }}>
+          <Feather name="info" size={13} color="#374151" style={{ marginTop: 2 }} />
+          <Text style={{ flex: 1, fontSize: 12, color: "#374151", fontStyle: "italic", lineHeight: 17 }}>{visual.note}</Text>
         </View>
       ) : null}
     </View>
@@ -126,7 +131,7 @@ function MathAnswer({ content }: { content: string }) {
           const rendered = mathToUnicode(part.slice(2, -2).trim());
           return (
             <View key={i} style={{ flexDirection: "row", alignItems: "flex-start", gap: 8, borderLeftWidth: 3, borderLeftColor: BRAND_COLOR, backgroundColor: "rgba(99,102,241,.06)", borderRadius: 8, padding: 12, marginVertical: 6 }}>
-              <Text style={{ fontSize: 16 }}>📐</Text>
+              <Feather name="divide" size={16} color={BRAND_COLOR} />
               <Text style={{ flex: 1, fontSize: 15, fontFamily: "monospace", fontWeight: "600", color: "#111827", lineHeight: 22 }}>{rendered}</Text>
             </View>
           );
@@ -299,13 +304,21 @@ export default function DoubtScreen() {
       <ScrollView ref={scrollRef} style={styles.container} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
 
         {/* ── Page title ── */}
-        <Text style={styles.pageTitle}>💬 Ask AI Tutor</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+          <Feather name="message-circle" size={20} color="#111827" />
+          <Text style={styles.pageTitle}>Ask AI Tutor</Text>
+        </View>
         <Text style={styles.pageSubtitle}>Ask any CBSE doubt — concepts, problems, textbook questions</Text>
 
         {/* ── Grade selector ── */}
         <View style={{ flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
           <Text style={styles.label}>Grade</Text>
-          {isGradeLocked && studentGrade && <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>🔒 {studentGrade}</Text>}
+          {isGradeLocked && studentGrade && (
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+              <Feather name="lock" size={11} color={BRAND_COLOR} />
+              <Text style={{ fontSize:11, color:BRAND_COLOR, fontWeight:"600" }}>{studentGrade}</Text>
+            </View>
+          )}
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipRow}>
           {GRADES.map(g => {
@@ -347,7 +360,10 @@ export default function DoubtScreen() {
         {/* ── Suggested question chips ── */}
         {suggestions.length > 0 && (
           <View style={styles.suggestBox}>
-            <Text style={styles.suggestLabel}>💡 Common questions:</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 4, marginBottom: 8 }}>
+              <Feather name="help-circle" size={12} color="#6b7280" />
+              <Text style={[styles.suggestLabel, { marginBottom: 0 }]}>Common questions:</Text>
+            </View>
             <View style={styles.suggestChips}>
               {suggestions.map(s => (
                 <TouchableOpacity key={s.id} style={styles.suggestChip}
@@ -385,10 +401,20 @@ export default function DoubtScreen() {
         />
 
         <TouchableOpacity style={[styles.askBtn, asking && styles.askBtnDisabled]} onPress={() => handleAsk()} disabled={asking}>
-          {asking ? <ActivityIndicator color="#fff" /> : <Text style={styles.askBtnText}>✨ Ask AI Tutor</Text>}
+          {asking ? <ActivityIndicator color="#fff" /> : (
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+              <Feather name="zap" size={16} color="#fff" />
+              <Text style={styles.askBtnText}>Ask AI Tutor</Text>
+            </View>
+          )}
         </TouchableOpacity>
 
-        {error ? <View style={styles.errorBox}><Text style={styles.errorText}>❌ {error}</Text></View> : null}
+        {error ? (
+          <View style={[styles.errorBox, { flexDirection: "row", alignItems: "center", gap: 6 }]}>
+            <Feather name="alert-circle" size={14} color="#dc2626" />
+            <Text style={[styles.errorText, { flex: 1 }]}>{error}</Text>
+          </View>
+        ) : null}
 
         {/* ── Generating state ── */}
         {asking && (
@@ -402,8 +428,9 @@ export default function DoubtScreen() {
         {!asking && answer ? (
           <View style={styles.answerCard}>
             <View style={styles.answerHeader}>
-              <View style={styles.answerBadge}>
-                <Text style={styles.answerBadgeText}>🤖 AI Tutor</Text>
+              <View style={[styles.answerBadge, { flexDirection: "row", alignItems: "center", gap: 4 }]}>
+                <Feather name="cpu" size={12} color={BRAND_COLOR} />
+                <Text style={styles.answerBadgeText}>AI Tutor</Text>
               </View>
               {subject ? <Text style={styles.answerContext}>{grade} · {subject}</Text> : <Text style={styles.answerContext}>{grade}</Text>}
             </View>
@@ -412,7 +439,10 @@ export default function DoubtScreen() {
 
             {/* Follow-up */}
             <View style={styles.followUpSection}>
-              <Text style={styles.followUpLabel}>💬 Ask a follow-up</Text>
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                <Feather name="message-circle" size={13} color="#374151" />
+                <Text style={[styles.followUpLabel, { marginBottom: 0 }]}>Ask a follow-up</Text>
+              </View>
               <TextInput
                 style={styles.followUpInput}
                 placeholder="Go deeper on any part of this answer…"

@@ -3,6 +3,19 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import {
+  Bot,
+  Target,
+  BookOpen,
+  Book,
+  MessageCircle,
+  Sparkles,
+  Puzzle,
+  Brain,
+  Lock,
+  Copy,
+  Microscope,
+} from "lucide-react";
 
 import { getSyllabus } from "../api/syllabus";
 import { answerDoubt, getDoubtHistory, getDoubtSuggestions } from "../api/doubt";
@@ -522,7 +535,7 @@ Important:
         flexWrap: "wrap",
         boxShadow: "0 1px 4px rgba(0,0,0,.06)",
       }}>
-        <span style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted, #6b7280)" }}>🤖</span>
+        <Bot size={16} strokeWidth={2.4} color="var(--muted, #6b7280)" />
         {/* Grade */}
         <select
           value={grade}
@@ -575,7 +588,7 @@ Important:
         <aside className="premium-section premium-doubt-context" style={{ display: "none" }}>
           <div className="premium-header">
             <p className="eyebrow">Mentor Context</p>
-            <h3>🎯 Choose Learning Level</h3>
+            <h3><Target size={18} strokeWidth={2.4} /> Choose Learning Level</h3>
             <p>
               Ask Doubt is open-topic, but access is restricted by your enabled
               learning modes.
@@ -652,7 +665,8 @@ Important:
                 color: "var(--text)",
                 lineHeight: 1.55,
               }}>
-                📚 <strong>Social Science — Grade 9 content coming soon</strong>
+                <BookOpen size={16} strokeWidth={2.4} style={{ verticalAlign: "middle", marginRight: 6 }} />
+                <strong>Social Science — Grade 9 content coming soon</strong>
                 <br />
                 NCERT has not yet released the updated Class 9 Social Science textbook. Content will be added as soon as the official book is published.
               </div>
@@ -689,7 +703,7 @@ Important:
             <div className="composer-header">
               <div>
                 <p className="eyebrow">Ask AI Tutor</p>
-                <h3>💬 What are you stuck on?</h3>
+                <h3><MessageCircle size={18} strokeWidth={2.4} /> What are you stuck on?</h3>
                 <p>Ask any concept, homework, or textbook doubt.</p>
               </div>
 
@@ -754,7 +768,11 @@ Important:
               onClick={handleAskDoubt}
               disabled={asking || !mode}
             >
-              {asking ? "Thinking..." : "✨ Ask AI Tutor"}
+              {asking ? "Thinking..." : (
+                <>
+                  <Sparkles size={16} strokeWidth={2.4} /> Ask AI Tutor
+                </>
+              )}
             </button>
           </section>
 
@@ -811,19 +829,19 @@ Important:
 
               <div className="premium-grid premium-grid-3">
                 <div className="premium-card premium-glow-card glow-blue">
-                  <h3>🧩 Concept Help</h3>
+                  <h3><Puzzle size={18} strokeWidth={2.4} /> Concept Help</h3>
                   <p>Break difficult topics into simple steps.</p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-purple">
-                  <h3>📘 RAG + LLM</h3>
+                  <h3><Book size={18} strokeWidth={2.4} /> RAG + LLM</h3>
                   <p>
                     Uses textbook context and general AI knowledge together.
                   </p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-green">
-                  <h3>🧠 Mentor Memory</h3>
+                  <h3><Brain size={18} strokeWidth={2.4} /> Mentor Memory</h3>
                   <p>
                     Adapts to previous doubts and preferred explanation style.
                   </p>
@@ -841,7 +859,9 @@ Important:
                 padding: "24px 28px",
                 textAlign: "center",
               }}>
-                <p style={{ fontSize: "1.5rem", marginBottom: 8 }}>🔒</p>
+                <div style={{ marginBottom: 8 }}>
+                  <Lock size={26} strokeWidth={2} />
+                </div>
                 <h3 style={{ margin: "0 0 10px", fontSize: "1.05rem" }}>
                   This doubt is outside your current access
                 </h3>
@@ -938,10 +958,10 @@ Important:
 
               <div className="doubt-answer-actions">
                 <button type="button" onClick={handleCopyAnswer} title="Copy answer to clipboard">
-                  📋 Copy answer
+                  <Copy size={14} strokeWidth={2.4} /> Copy answer
                 </button>
                 <button type="button" onClick={handleStartManualFollowUp} title="Ask a deeper follow-up question about this answer">
-                  💬 Ask follow-up
+                  <MessageCircle size={14} strokeWidth={2.4} /> Ask follow-up
                 </button>
               </div>
 
@@ -954,7 +974,7 @@ Important:
                     border: "1px solid #bbf7d0", borderRadius: 999,
                     fontSize: 13, fontWeight: 800, color: "#047857",
                   }}>
-                    📖 This answer is based on your {grade}{subject ? ` ${subject}` : ""} textbook
+                    <BookOpen size={14} strokeWidth={2.4} /> This answer is based on your {grade}{subject ? ` ${subject}` : ""} textbook
                   </span>
                 )}
                 <a
@@ -985,7 +1005,7 @@ Important:
                       textDecoration: "none",
                     }}
                   >
-                    🔬 Try Exemplar Practice →
+                    <Microscope size={14} strokeWidth={2.4} /> Try Exemplar Practice →
                   </a>
                 )}
               </div>
@@ -1044,7 +1064,7 @@ Important:
               {/* DKB-backed related questions — answered instantly, no AI needed */}
               {relatedDkbQuestions.length > 0 && (
                 <div className="mentor-suggestion-section">
-                  <h4>🧠 Suggested Next Steps</h4>
+                  <h4><Brain size={16} strokeWidth={2.4} /> Suggested Next Steps</h4>
                   <div className="mentor-suggestion-card-grid">
                     {relatedDkbQuestions.map((s) => (
                       <div key={s.id} className="mentor-suggestion-card">
@@ -1058,7 +1078,7 @@ Important:
                             }, 50);
                           }}
                         >
-                          <span>🧠</span>
+                          <Brain size={16} strokeWidth={2.4} />
                           <strong>{s.question.length > 60 ? s.question.slice(0, 57) + "…" : s.question}</strong>
                           <small>Ask this question</small>
                         </button>
@@ -1070,7 +1090,7 @@ Important:
 
               {mentorSuggestions.length > 0 && relatedDkbQuestions.length === 0 && (
                 <div className="mentor-suggestion-section">
-                  <h4>🧠 Suggested Next Steps</h4>
+                  <h4><Brain size={16} strokeWidth={2.4} /> Suggested Next Steps</h4>
 
                   <div className="mentor-suggestion-card-grid">
                     {mentorSuggestions.map((suggestion, index) => (
@@ -1084,7 +1104,7 @@ Important:
                             setFollowUpQuestion("");
                           }}
                         >
-                          <span>🧠</span>
+                          <Brain size={16} strokeWidth={2.4} />
                           <strong>{suggestion}</strong>
                           <small>Open guided follow-up</small>
                         </button>
@@ -1094,7 +1114,7 @@ Important:
 
                   {activeSuggestion && activeSuggestion !== "Ask a follow-up" && (
                     <div className="mentor-followup-panel mentor-common-followup-panel">
-                      <h4>🧠 {activeSuggestion}</h4>
+                      <h4><Brain size={16} strokeWidth={2.4} style={{ verticalAlign: "middle", marginRight: 4 }} /> {activeSuggestion}</h4>
 
                       {followUpLoading &&
                         !followUpAnswers[activeSuggestion] && (
