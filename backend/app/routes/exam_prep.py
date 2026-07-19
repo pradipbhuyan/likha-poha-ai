@@ -857,6 +857,14 @@ def admin_import_bulk(
     db = svc._get_db()
 
     VALID_EXAM_TYPES = {"jee_main", "neet_ug", "cuet_ug", "sat", "ielts", "toefl_ibt"}
+    # Normalize common ChatGPT aliases → canonical exam_type values
+    EXAM_TYPE_ALIASES = {
+        "toefl":    "toefl_ibt",
+        "toefl_bt": "toefl_ibt",
+        "neet":     "neet_ug",
+        "jee":      "jee_main",
+        "cuet":     "cuet_ug",
+    }
     VALID_DIFFICULTIES = {"easy", "medium", "hard"}
     VALID_OPTIONS_KEYS = {"A", "B", "C", "D"}
     VALID_CORRECT_OPTIONS = {"A", "B", "C", "D"}
@@ -908,6 +916,10 @@ def admin_import_bulk(
             })
             results["skipped_invalid"] += 1
             continue
+
+        # ── 1b. Normalize exam_type aliases before validation ─────────────────
+        if q.get("exam_type") in EXAM_TYPE_ALIASES:
+            q["exam_type"] = EXAM_TYPE_ALIASES[q["exam_type"]]
 
         # ── 2. Field value validation ─────────────────────────────────────────
         if q.get("exam_type") not in VALID_EXAM_TYPES:
