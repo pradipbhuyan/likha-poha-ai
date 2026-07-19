@@ -497,7 +497,12 @@ def get_doubt_suggestions(
     try:
         from app.services.doubt_kb_service import get_lesson_doubt_suggestions  # noqa: PLC0415
         import re as _re  # noqa: PLC0415
-        from app.services.auth_service import admin_client as supabase  # noqa: PLC0415
+        from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+
+        # Grade 11/12 content lives in a second Supabase project — must route
+        # through get_content_db() rather than a hardcoded client, or these
+        # fallback queries silently miss all Grade 11/12 DKB entries.
+        supabase = get_content_db(grade)
 
         clean_subject = (subject or "").strip()
         clean_chapter = (chapter or "").strip()
