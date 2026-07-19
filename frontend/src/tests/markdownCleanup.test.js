@@ -310,4 +310,65 @@ describe("markdownCleanup", () => {
 
     expect(result).toBe("$\\cos^{-1}\\left(\\dfrac{-\\sqrt{3}}{2}\\right)$");
   });
+
+  // ── Regression: \(...\) colliding with normalizePlainAlgebra/normalizeLatexParentheses ──
+  test("converts \\((a + b)^2\\) without leaving stray backslashes", () => {
+    // Regression, found live in a Grade 9 Maths lesson ("Exploring Algebraic
+    // Identities" — cached long before tonight's fixes, so this bug has
+    // always existed for this input shape): normalizePlainAlgebra's and
+    // normalizeLatexParentheses's bare "(...)" regexes matched the INNER
+    // parenthetical of an escaped "\((a + b)^2\)" sequence — the "(" right
+    // after the "\(" escape is preceded by another "(", not a literal
+    // backslash, so a simple one-character lookbehind can't detect the
+    // nesting. That produced "\($a + b$^2\)" (backslashes stranded) instead
+    // of a clean "$(a + b)^2$". Fixed by moving \(...\) → $...$ conversion
+    // (normalizeEscapedBracketMath) to run FIRST, before those two passes
+    // ever see the raw escape — they then correctly skip the already-$-
+    // wrapped span via their existing "outside inline math" guard.
+    //
+    // Uses String.raw to avoid manual backslash-counting mistakes in the
+    // test itself (a real risk here, since this bug is ABOUT backslash
+    // counts) — String.raw\`\(\` is exactly one backslash + one paren.
+    const input = String.raw`Such as \((a + b)^2\), \((a - b)^2\), and \((a + b + c)^2\).`;
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe("Such as $(a + b)^2$, $(a - b)^2$, and $(a + b + c)^2$.");
+    expect(result).not.toMatch(/\\\$/);
+    expect(result).not.toMatch(/\\\(|\\\)/);
+  });
+
+  test("normalizeEscapedBracketMath alone converts \\(...\\) to $...$", () => {
+    const input = String.raw`\(x^2 + 1\)`;
+
+    expect(normalizeTutorMarkdown(input)).toBe("$x^2 + 1$");
+  });
+
+  // ── Regression: \[...\] colliding with normalizePlainAlgebra (same bug
+  // class as the \(...\) case above, found live in the same Grade 9 Maths
+  // "Exploring Algebraic Identities — Worked Examples" lesson) ──
+  test("converts \\[(3x + 4)^2 = ...\\] display math without leaving stray backslashes", () => {
+    // Real cached content: "Combine all parts:\n\[\n(3x + 4)^2 = 9x^2 + 24x + 16\n\]"
+    // rendered as "$3x + 4 $^2 = 9x^2 + 24x + 16$" — normalizePlainAlgebra
+    // matched the bare "(3x + 4)" inside the \[...\] block before the block
+    // wrapper itself was ever converted, since that conversion lived inside
+    // normalizeSquareBracketMath which ran LATE in the pipeline. Fixed by
+    // moving \[...\] → $$...$$ conversion into normalizeEscapedBracketMath,
+    // which runs first alongside the \(...\) fix.
+    const input = String.raw`Combine all parts:
+\[
+(3x + 4)^2 = 9x^2 + 24x + 16
+\]`;
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).toBe("Combine all parts:\n$$(3x + 4)^2 = 9x^2 + 24x + 16$$");
+    expect(result).not.toMatch(/\\\[|\\\]/);
+  });
+
+  test("normalizeEscapedBracketMath alone converts \\[...\\] to $$...$$", () => {
+    const input = String.raw`\[x^2 + 1\]`;
+
+    expect(normalizeTutorMarkdown(input)).toBe("$$x^2 + 1$$");
+  });
 });

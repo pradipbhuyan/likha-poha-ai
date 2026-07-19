@@ -4,11 +4,17 @@ const LATEX_COMMAND_PATTERN =
 const LATEX_FRAGMENT_PATTERN =
   /\\frac\{[^{}]+\}\{[^{}]+\}|\\sqrt\{[^{}]+\}|[A-Za-z0-9{}\s+\-*/=^_]*\\(?:neq|leq|geq|times|div|cdot|pm|approx|equiv|propto)[A-Za-z0-9{}\s+\-*/=^_]*/g;
 
+// (?<!\\) on the first "(" — without it, both patterns match into an escaped
+// "\((expr)^n\)" LaTeX inline-math sequence, treating the "\(" delimiter's own
+// "(" as the first of the required "((" pair. "\((a + b)^2\)" becomes
+// "\$(a + b)^2\$" (stray backslashes) instead of being left for
+// normalizeSquareBracketMath's dedicated \( \) handler, which runs later and
+// correctly includes the backslashes in its own match.
 const PLAIN_ALGEBRA_DOUBLE_PAREN_PATTERN =
-  /\(\(([a-zA-Z][a-zA-Z0-9]*(?:[+\-]\d+)?)\)\^(\d+)\)/g;
+  /(?<!\\)\(\(([a-zA-Z][a-zA-Z0-9]*(?:[+\-]\d+)?)\)\^(\d+)\)/g;
 
 const PLAIN_ALGEBRA_GROUPED_POWER_PATTERN =
-  /\(\(([^()\n]{1,60})\)\^(\d+)([^()\n]{0,120})\)/g;
+  /(?<!\\)\(\(([^()\n]{1,60})\)\^(\d+)([^()\n]{0,120})\)/g;
 
 export function normalizeLeftRightDelimiters(text) {
   /**
@@ -31,6 +37,48 @@ export function normalizeLeftRightDelimiters(text) {
     content
       .replace(/\\left\s*\$/g, "\\left(")
       .replace(/\\right\s*\$/g, "\\right)")
+  );
+}
+
+export function normalizeEscapedBracketMath(text) {
+  /**
+   * Convert \( ... \) and \[ ... \] escaped-bracket math (LaTeX's other
+   * standard delimiters, alongside $...$ / $$...$$) to $...$ / $$...$$.
+   *
+   * remark-math only recognises $ / $$, so \(x\) and \[x\] render as
+   * literal backslash-bracket text otherwise. Seen from models that default
+   * to \( \) / \[ \] style regardless of prompt instructions to use $ (e.g.
+   * Ollama gpt-oss:120b, and claude-sonnet-5 via Venice on worked-example
+   * "Combine all parts: \[ (3x + 4)^2 = 9x^2 + 24x + 16 \]" steps). No
+   * content gate needed — unlike bare ( ) / [ ], the literal "\(" / "\)" /
+   * "\[" / "\]" escape sequence never occurs by accident in ordinary prose,
+   * so a gate only causes false negatives (e.g. a bare single-variable
+   * "\(p\)" has no LaTeX command to match on).
+   *
+   * MUST run early, before normalizeLatexParentheses / normalizePlainAlgebra
+   * / normalizeSquareBracketMath — all match bare "(...)" / "[...]" patterns
+   * and none can reliably tell "this bracket is nested inside an outer
+   * \(...\) / \[...\] escape" from a one-character lookbehind (the bracket
+   * immediately after "\(" / "\[" is preceded by another "(" / "[", not a
+   * literal backslash). Converting the escape to clean $/$$ first means
+   * those later passes see an already-protected math span and skip it via
+   * their own transformOutsideInlineMath guard, instead of matching into
+   * the escape and leaving the backslashes stranded:
+   * "\((a + b)^2\)" → "\($a + b$^2\)" instead of "$(a + b)^2$", and
+   * "\[(3x + 4)^2 = ...\]" → "\[$3x + 4$^2 = ...\]" instead of
+   * "$$(3x + 4)^2 = ...$$".
+   */
+  if (!text) return "";
+  return transformOutsideCodeFences(text, (content) =>
+    content
+      .replace(
+        /\\\(\s*([\s\S]*?)\s*\\\)/g,
+        (_match, inner) => `$${inner.trim()}$`
+      )
+      .replace(
+        /\\\[\s*([\s\S]*?)\s*\\\]/g,
+        (_match, inner) => `$$${inner.trim()}$$`
+      )
   );
 }
 
@@ -244,7 +292,14 @@ export function normalizePlainAlgebra(text) {
 
   return transformOutsideCodeFences(text, (content) =>
     transformOutsideInlineMath(textToNormalizePlainAlgebra(content), (part) =>
-      part.replace(/\(([^()\n]{1,140})\)/g, (match, expression) => {
+      // (?<!\\) — skip when the "(" is itself the delimiter of a "\(" LaTeX
+      // inline-math escape. Without it, "\((a + b)^2\)" has its INNER
+      // "(a + b)" matched and wrapped in $...$, leaving the outer \( \)
+      // backslashes stranded: "\($a + b$^2\)" instead of a clean "$(a+b)^2$"
+      // — normalizeSquareBracketMath's dedicated \( \) handler (which runs
+      // later and includes the backslashes in its own match) is the correct
+      // place to convert the whole thing, not here.
+      part.replace(/(?<!\\)\(([^()\n]{1,140})\)/g, (match, expression) => {
         if (!isPlainMathExpression(expression)) {
           return match;
         }
@@ -330,31 +385,22 @@ export function normalizePlainExponents(text) {
 
 export function normalizeSquareBracketMath(text) {
   /**
-   * Convert LaTeX written with bracket/paren notation to $ / $$ delimiters.
-   *
-   * The LLM sometimes outputs:
+   * Convert LaTeX written with plain (non-escaped) square-bracket notation
+   * to $$ delimiters:
    *   [ \text{Per Capita Income} = \frac{\text{Total Income}}{\text{Population}} ]
-   *   \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
-   *   \( x^2 + 1 \)
    *
-   * All are valid LaTeX but remark-math only recognises $ (inline) and $$
-   * (display). This pass converts them so KaTeX can render them correctly.
+   * remark-math only recognises $ (inline) and $$ (display). This pass
+   * converts the plain-bracket form so KaTeX can render it correctly.
+   *
+   * (The escaped \[...\] / \(...\) forms are handled by
+   * normalizeEscapedBracketMath, which runs much earlier in the pipeline —
+   * see that function's docstring for why they can't share this one's
+   * lookbehind-based approach.)
    */
   if (!text) return "";
 
-  return transformOutsideCodeFences(text, (content) => {
-    // 1. \[ ... \] escaped bracket notation (most standard LaTeX form)
-    let result = content.replace(
-      /\\\[\s*([\s\S]*?)\s*\\\]/g,
-      (_match, inner) => {
-        if (/\\[a-zA-Z]/.test(inner) || /[=^_{}/]/.test(inner)) {
-          return `$$${inner.trim()}$$`;
-        }
-        return _match;
-      }
-    );
-
-    // 2. [ ... ] single square brackets where content contains a LaTeX command
+  return transformOutsideCodeFences(text, (content) =>
+    // [ ... ] single square brackets where content contains a LaTeX command
     // Careful not to match markdown links [text](url) or list items
     //
     // NOT `(?:[^\[\]]*\\[a-zA-Z{][^\[\]]*)+` (repeated group) — that shape is
@@ -368,31 +414,11 @@ export function normalizeSquareBracketMath(text) {
     // commands inside one bracket pair, since the trailing `[^\[\]]*` freely
     // absorbs any further commands up to the closing `]` — verified behaviorally
     // identical to the old pattern on every non-hanging test case.
-    result = result.replace(
+    content.replace(
       /(?<![!])\[\s*([^\[\]]*\\[a-zA-Z{][^\[\]]*)\s*\]/g,
-      (_match, inner) => {
-        // Skip if it looks like a markdown link (has following parenthesis)
-        return `$$${inner.trim()}$$`;
-      }
-    );
-
-    // 3. \( ... \) escaped-parenthesis inline math (LaTeX's other standard
-    // inline delimiter). remark-math only recognises $...$ for inline math,
-    // so \(x\) renders as literal backslash-paren text otherwise. Seen from
-    // models that default to \( \) / \[ \] style regardless of prompt
-    // instructions to use $ (e.g. Ollama gpt-oss:120b), not just square
-    // brackets. No content gate needed — unlike bare [ ], the literal
-    // "\(" / "\)" escape sequence never occurs by accident in ordinary
-    // prose or markdown syntax, so a gate only causes false negatives
-    // (e.g. a bare single-variable "\(p\)" has no LaTeX command or
-    // operator to match on and would otherwise be skipped).
-    result = result.replace(
-      /\\\(\s*([\s\S]*?)\s*\\\)/g,
-      (_match, inner) => `$${inner.trim()}$`
-    );
-
-    return result;
-  });
+      (_match, inner) => `$$${inner.trim()}$$`
+    )
+  );
 }
 
 function normalizeBulletPoints(text) {
@@ -587,19 +613,26 @@ export function normalizeTutorMarkdown(text) {
    *  0. normalizeLeftRightDelimiters — \left$ / \right$ → \left( / \right)
    *     (must run first — an unfixed \left$ reads as a dangling $ to every
    *     later $-counting/pairing pass below)
-   *  1. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
-   *  2. normalizeSpacedDollarMath    — "$ expr $" (spaced) → "$expr$" for remark-math
-   *  3. normalizeInlineDisplayMath   — $$ used inline → $ $; trailing $$ stripped
-   *  4. normalizeOrphanedDollarSigns — odd $ count on a line → strip trailing orphan
-   *  5. normalizeBulletPoints        — • Point → - Point (LKB answers)
-   *  6. normalizeMermaidBlocks       — wrap loose graph TD blocks
-   *  7. normalizeLatexParentheses    — (\frac{}{}) → $...$
-   *  8. normalizePlainAlgebra        — (a+b)^2 → $...$
-   *  9. normalizeSquareBracketMath   — [ \LaTeX ] and \[...\] → $$...$$
-   * 10. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
-   * 11. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
-   * 12. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
-   * 13. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   *  1. normalizeEscapedBracketMath  — \(...\) → $...$, \[...\] → $$...$$
+   *     (must also run early — normalizeLatexParentheses/normalizePlainAlgebra/
+   *     normalizeSquareBracketMath match bare "(...)" / "[...]" and can't
+   *     tell a bracket nested inside an outer \(...\) / \[...\] escape from
+   *     a real one via a one-character lookbehind; converting to $/$$ first
+   *     lets their existing "already inside $" guard skip it instead of
+   *     matching into the escape)
+   *  2. normalizeNestedDollarSignsInDisplay — strip $...$ inside $$...$$ blocks
+   *  3. normalizeSpacedDollarMath    — "$ expr $" (spaced) → "$expr$" for remark-math
+   *  4. normalizeInlineDisplayMath   — $$ used inline → $ $; trailing $$ stripped
+   *  5. normalizeOrphanedDollarSigns — odd $ count on a line → strip trailing orphan
+   *  6. normalizeBulletPoints        — • Point → - Point (LKB answers)
+   *  7. normalizeMermaidBlocks       — wrap loose graph TD blocks
+   *  8. normalizeLatexParentheses    — (\frac{}{}) → $...$
+   *  9. normalizePlainAlgebra        — (a+b)^2 → $...$
+   * 10. normalizeSquareBracketMath   — [ \LaTeX ] → $$...$$
+   * 11. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
+   * 12. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 13. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
+   * 14. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeInlineMathWordSpacing(
@@ -608,7 +641,7 @@ export function normalizeTutorMarkdown(text) {
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
             normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(
-              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(normalizeLeftRightDelimiters(text)))
+              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(normalizeEscapedBracketMath(normalizeLeftRightDelimiters(text))))
             ))
           ))))
         )
