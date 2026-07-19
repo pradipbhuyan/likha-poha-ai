@@ -17,6 +17,15 @@ const SUBJECT_ICONS = {
   Biology:"🌱", "Social Science":"📖", English:"📝", Hindi:"📜",
 };
 
+// Biology entries are all definitions/key concepts, never symbolic formulas;
+// Maths entries are all symbolic formulas; Physics/Chemistry are a genuine mix.
+function formulaLabelFor(subj) {
+  const s = (subj || "").toLowerCase();
+  if (s === "biology") return "Concepts";
+  if (s === "mathematics") return "Formulas";
+  return "Formulas & Concepts";
+}
+
 // ── KaTeX renderer (lazy) ─────────────────────────────────────────────────────
 let katex = null;
 async function loadKatex() {
@@ -37,35 +46,56 @@ async function loadKatex() {
   return katex;
 }
 
+// mhchem adds \ce{...} chemical-equation notation (reaction arrows, states,
+// charges) on top of core KaTeX — loaded only for Chemistry formulas.
+let mhchemLoaded = false;
+async function loadMhchem() {
+  if (!mhchemLoaded) {
+    try {
+      await import("katex/contrib/mhchem");
+      mhchemLoaded = true;
+    } catch { /* \ce{} just won't be available */ }
+  }
+}
+
 // ── Detect whether an expression is a math formula or plain text ─────────────
 // Returns true if the string contains math symbols → render with KaTeX.
 // Returns false if it looks like a plain-text definition/concept → render as text.
 function isMathFormula(expr) {
   if (!expr) return false;
+  // LaTeX commands (e.g. \frac, \text, \ce) are an unambiguous signal.
+  if (/\\[a-zA-Z]/.test(expr)) return true;
+  // A run of several lowercase words reads as a sentence even if it contains
+  // a bare "=" or "-" (e.g. "Rate = rate constant and concentration powers").
+  // Formulas without curated LaTeX fall back to this plain-English expression,
+  // so without this check they'd get piped into KaTeX and squish together.
+  const words = expr.trim().split(/\s+/);
+  const wordish = words.filter(w => /^[a-z]{3,}$/.test(w)).length;
+  if (words.length >= 4 && wordish >= 3) return false;
   // Strong math indicators
   const mathSymbols = /[=+\-*/^÷×∝→←≈≠≤≥∞∑∫√π²³¹₀₁₂₃αβγδθλμωΩ]/;
   if (mathSymbols.test(expr)) return true;
-  // LaTeX commands (e.g. \frac, \int)
-  if (/\\[a-zA-Z]/.test(expr)) return true;
   // Short expressions like "F = ma" or "PV = nRT" are formulas
   if (expr.length < 30 && /[A-Z]/.test(expr)) return true;
   // Long sentences with no math → plain text definition
   return false;
 }
 
-function MathExpr({ tex, display = false }) {
+function MathExpr({ tex, display = false, chem = false }) {
   const ref = useRef(null);
   const isFormula = isMathFormula(tex);
 
   useEffect(() => {
     if (!isFormula || !tex || !ref.current) return;
-    loadKatex().then(k => {
+    (async () => {
+      const k = await loadKatex();
+      if (chem) await loadMhchem();
       if (!k || !ref.current) return;
       try {
         k.render(tex, ref.current, { throwOnError: false, displayMode: display, output: "html" });
       } catch { if (ref.current) ref.current.textContent = tex; }
-    });
-  }, [tex, display, isFormula]);
+    })();
+  }, [tex, display, isFormula, chem]);
 
   if (!isFormula) {
     // Plain text definition — render as readable text, not math
@@ -759,6 +789,8 @@ function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
 function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAskAI, subject }) {
   // Biology is always Key Concepts — never render as math formula
   const isBiology = (subject || "").toLowerCase() === "biology";
+  // Chemistry gets its own accent (teal) and can render \ce{} chemical notation
+  const isChemistry = (subject || "").toLowerCase() === "chemistry";
   const [expanded, setExpanded] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
@@ -774,10 +806,11 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
 
   const diffColor = formula.difficulty === "easy" ? "#4ade80" : formula.difficulty === "hard" ? "#f87171" : "#a78bfa";
   const diffBg   = "rgba(0,0,0,0.15)";
+  const accentColor = formula.locked ? "#94a3b8" : studied ? "#22c55e" : isChemistry ? "#0d9488" : "#6366f1";
 
   return (
     <div data-testid="formula-card"
-      style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: "12px 14px", borderLeft: `3px solid ${formula.locked ? "#94a3b8" : studied ? "#22c55e" : "#6366f1"}`, opacity: formula.locked ? 0.8 : 1 }}>
+      style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: "12px 14px", borderLeft: `3px solid ${accentColor}`, opacity: formula.locked ? 0.8 : 1 }}>
 
       {/* Card header — always visible */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
@@ -808,8 +841,8 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
                 fontSize: isFormula ? ".93rem" : ".85rem",
                 fontWeight: isFormula ? 600 : 500,
                 fontStyle: isFormula ? "normal" : "normal",
-                background: isFormula ? "var(--surface2,#f8fafc)" : "rgba(99,102,241,0.06)",
-                border: isFormula ? "none" : "1px solid rgba(99,102,241,0.15)",
+                background: isFormula ? (isChemistry ? "rgba(13,148,136,0.07)" : "var(--surface2,#f8fafc)") : "rgba(99,102,241,0.06)",
+                border: isFormula ? (isChemistry ? "1px solid rgba(13,148,136,0.18)" : "none") : "1px solid rgba(99,102,241,0.15)",
                 padding: "6px 10px", borderRadius: 6, marginBottom: 6,
                 userSelect: "all", wordBreak: "break-word",
                 overflowWrap: "anywhere", whiteSpace: "normal", overflow: "hidden",
@@ -817,7 +850,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
                 lineHeight: 1.5,
               }}>
               {!isFormula && <span style={{ fontSize: ".65rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", display: "block", marginBottom: 3 }}>📖 Key Concept</span>}
-              <MathExpr tex={exprText} />
+              <MathExpr tex={exprText} chem={isChemistry} />
             </div>
           );
         })()
@@ -1003,7 +1036,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
           <span>{selectedGrade} · CBSE formulas, definitions & key concepts — chapter-wise</span>
           {data && (
             <span style={{ fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".77rem" }}>
-              {hasPremium ? `✓ ${data.total_count} formulas unlocked` : `🔒 ${data.unlocked_count} of ${data.total_count} preview`}
+              {hasPremium ? `✓ ${data.total_count} ${formulaLabelFor(subject).toLowerCase()} unlocked` : `🔒 ${data.unlocked_count} of ${data.total_count} preview`}
             </span>
           )}
           {totalStudied > 0 && (
@@ -1076,7 +1109,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
         {data && (
           <span style={{ fontSize: ".72rem", fontWeight: 700, padding: "4px 9px", borderRadius: 18,
             background: "rgba(99,102,241,.1)", color: "#6366f1", whiteSpace: "nowrap" }}>
-            {data.total_count} formulas
+            {data.total_count} {formulaLabelFor(subject).toLowerCase()}
           </span>
         )}
       </div>
@@ -1090,7 +1123,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
           <div>
             <div style={{ fontWeight: 700, fontSize: ".88rem" }}>Unlock Full Formula & Concept Library</div>
             <div style={{ fontSize: ".75rem", opacity: .9 }}>
-              You have {data.unlocked_count} previews. Upgrade to unlock all {data.total_count} formulas & concepts with examples and memory tips.
+              You have {data.unlocked_count} previews. Upgrade to unlock all {data.total_count} {formulaLabelFor(subject).toLowerCase()} with examples and memory tips.
             </div>
           </div>
           <button data-testid="upgrade-cta" onClick={handleUpgrade}

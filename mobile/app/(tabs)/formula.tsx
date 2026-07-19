@@ -33,6 +33,9 @@ function mathToUnicode(latex: string): string {
     .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)")
     .replace(/\\sqrt\{([^}]+)\}/g, "√($1)")
     .replace(/\\sqrt\s*([a-zA-Z0-9])/g, "√$1")
+    // Escaped space/percent — common in Chemistry expression_latex (e.g.
+    // "mass\ of\ element", "Element\%"); without this they show as stray "\".
+    .replace(/\\ /g, " ").replace(/\\%/g, "%").replace(/\\quad/g, " ")
     .replace(/\^\{2\}/g, "²").replace(/\^2(?![0-9{])/g, "²")
     .replace(/\^\{3\}/g, "³").replace(/\^3(?![0-9{])/g, "³")
     .replace(/\^\{n\}/g, "ⁿ").replace(/\^\{([^}]+)\}/g, "^($1)")
@@ -43,11 +46,15 @@ function mathToUnicode(latex: string): string {
     .replace(/\\times/g, "×").replace(/\\cdot/g, "·")
     .replace(/\\div/g, "÷").replace(/\\pm/g, "±")
     .replace(/\\leq/g, "≤").replace(/\\geq/g, "≥").replace(/\\neq/g, "≠")
-    .replace(/\\approx/g, "≈").replace(/\\infty/g, "∞")
-    .replace(/\\rightarrow/g, "→").replace(/\\leftarrow/g, "←")
+    .replace(/\\approx/g, "≈").replace(/\\infty/g, "∞").replace(/\\equiv/g, "≡")
+    .replace(/\\rightarrow/g, "→").replace(/\\leftarrow/g, "←").replace(/\\to/g, "→")
+    .replace(/\\Rightarrow/g, "⇒").replace(/\\rightleftharpoons/g, "⇌")
+    .replace(/\\uparrow/g, "↑").replace(/\\downarrow/g, "↓")
+    .replace(/\\prime/g, "′").replace(/\\bullet/g, "•").replace(/\\circ/g, "°")
+    .replace(/\\sum/g, "∑").replace(/\\ldots/g, "…").replace(/\\cdots/g, "…")
     .replace(/\\pi/g, "π").replace(/\\alpha/g, "α").replace(/\\beta/g, "β")
     .replace(/\\gamma/g, "γ").replace(/\\delta/g, "δ").replace(/\\theta/g, "θ")
-    .replace(/\\lambda/g, "λ").replace(/\\mu/g, "μ").replace(/\\sigma/g, "σ")
+    .replace(/\\lambda/g, "λ").replace(/\\mu/g, "μ").replace(/\\nu/g, "ν").replace(/\\sigma/g, "σ")
     .replace(/\\Sigma/g, "Σ").replace(/\\Delta/g, "Δ").replace(/\\omega/g, "ω")
     .replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan")
     .replace(/\\log/g, "log").replace(/\\ln/g, "ln").replace(/\\int/g, "∫")
@@ -98,6 +105,15 @@ interface SheetData {
 
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
+// Biology entries are all definitions/key concepts, never symbolic formulas;
+// Maths entries are all symbolic formulas; Physics/Chemistry are a genuine mix.
+function formulaLabelFor(subj: string): string {
+  const s = (subj || "").toLowerCase();
+  if (s === "biology") return "concepts";
+  if (s === "mathematics") return "formulas";
+  return "formulas & concepts";
+}
+
 // ── Grade label row (shared) ──────────────────────────────────────────────────
 function GradeLabelRow({ isGradeLocked, studentGrade }: { isGradeLocked: boolean; studentGrade: string | null }) {
   return (
@@ -113,18 +129,31 @@ function GradeLabelRow({ isGradeLocked, studentGrade }: { isGradeLocked: boolean
 // ── Detect whether expression is a math formula or plain-text concept ────────
 function isMathFormula(expr: string): boolean {
   if (!expr) return false;
-  if (/[=+\-*/^÷×∝→←≈≠≤≥∞∑∫√π²³¹₀₁₂₃αβγδθλμωΩ]/.test(expr)) return true;
+  // LaTeX commands are an unambiguous signal — always math.
   if (/\\[a-zA-Z]/.test(expr)) return true;
+  // A run of several lowercase words reads as a sentence even if it contains
+  // a bare "=" or "-" (e.g. "Rate = rate constant and concentration powers").
+  // Rows without curated expression_latex fall back to this plain-English
+  // expression, so without this check they'd get squished by monospace math.
+  const words = expr.trim().split(/\s+/);
+  const wordish = words.filter(w => /^[a-z]{3,}$/.test(w)).length;
+  if (words.length >= 4 && wordish >= 3) return false;
+  if (/[=+\-*/^÷×∝→←≈≠≤≥∞∑∫√π²³¹₀₁₂₃αβγδθλμωΩ]/.test(expr)) return true;
   if (expr.length < 30 && /[A-Z]/.test(expr)) return true;
   return false;
 }
 
 // ── Formula Card ──────────────────────────────────────────────────────────────
-function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: boolean }) {
+function FormulaCard({ formula, hasPremium, subject }: { formula: Formula; hasPremium: boolean; subject: string }) {
   const [expanded, setExpanded] = useState(false);
+  // Biology is always Key Concepts — never render as math formula
+  const isBiology = (subject || "").toLowerCase() === "biology";
+  // Chemistry gets its own accent so it reads as distinct from Maths/Physics
+  const isChemistry = (subject || "").toLowerCase() === "chemistry";
+  const accentColor = isChemistry ? "#0d9488" : BRAND_COLOR;
   const rawExpr = formula.expression_latex || formula.expression || "";
   const expr = mathToUnicode(rawExpr);
-  const isFormula = isMathFormula(rawExpr);
+  const isFormula = !isBiology && isMathFormula(rawExpr);
 
   const diffColor = formula.difficulty === "easy" ? "#16a34a"
     : formula.difficulty === "hard" ? "#dc2626" : "#7c3aed";
@@ -139,7 +168,7 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
   const hasPremiumContent = !!(formula.variables || formula.example || steps.length > 0 || formula.memory_tip);
 
   return (
-    <View style={[fc.card, formula.locked && { opacity: 0.75 }]}>
+    <View style={[fc.card, { borderLeftColor: accentColor }, formula.locked && { opacity: 0.75 }]}>
       {/* Header */}
       <View style={fc.header}>
         <View style={{ flex: 1 }}>
@@ -164,7 +193,9 @@ function FormulaCard({ formula, hasPremium }: { formula: Formula; hasPremium: bo
 
       {/* Expression — math formula or plain-text concept */}
       {formula.preview_allowed && expr ? (
-        <View style={[fc.exprBox, !isFormula && { backgroundColor: "rgba(99,102,241,0.06)", borderWidth: 1, borderColor: "rgba(99,102,241,0.15)" }]}>
+        <View style={[fc.exprBox,
+          isFormula && isChemistry && { backgroundColor: "rgba(13,148,136,0.07)", borderColor: "rgba(13,148,136,0.18)" },
+          !isFormula && { backgroundColor: "rgba(99,102,241,0.06)", borderWidth: 1, borderColor: "rgba(99,102,241,0.15)" }]}>
           {!isFormula && (
             <Text style={{ fontSize: 9, fontWeight: "800", color: BRAND_COLOR, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 3 }}>📖 Key Concept</Text>
           )}
@@ -445,7 +476,7 @@ export default function FormulaScreen() {
       {!loading && data?.available && !hasPremium && (
         <View style={s.upgradeBanner}>
           <Text style={s.upgradeBannerTitle}>🔒 Unlock Full Formula Library</Text>
-          <Text style={s.upgradeBannerSub}>{data.unlocked_count} of {data.total_count} formulas shown. Upgrade for examples and memory tips.</Text>
+          <Text style={s.upgradeBannerSub}>{data.unlocked_count} of {data.total_count} {formulaLabelFor(subject)} shown. Upgrade for examples and memory tips.</Text>
         </View>
       )}
 
@@ -487,7 +518,7 @@ export default function FormulaScreen() {
                       <Text style={s.topicTitle}>{t.topic_name}</Text>
                     ) : null}
                     {t.formulas.map((f, i) => (
-                      <FormulaCard key={f.id || f.name + i} formula={f} hasPremium={hasPremium} />
+                      <FormulaCard key={f.id || f.name + i} formula={f} hasPremium={hasPremium} subject={subject} />
                     ))}
                   </View>
                 ))}

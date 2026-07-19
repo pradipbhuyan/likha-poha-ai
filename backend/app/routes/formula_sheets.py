@@ -67,6 +67,7 @@ def _build_chapters(rows: list[dict], has_premium: bool) -> list[dict]:
                     "id":          str(row.get("id", "")),
                     "name":        row.get("formula_name", ""),
                     "expression":  row.get("expression", ""),
+                    "expression_latex": row.get("expression_latex") or "",
                     "description": row.get("explanation") or "",
                     "variables":   row.get("variables") or "",
                     "chapter":     ch_name,
@@ -155,7 +156,7 @@ def get_formula_sheets(
         """Select all columns including v2 additions."""
         q = (
             admin_client.table(TABLE)
-            .select("id, formula_name, expression, explanation, variables, example, solution_steps, memory_tip, chapter, topic, section_title, display_order, chapter_order, difficulty, tags, active")
+            .select("id, formula_name, expression, expression_latex, explanation, variables, example, solution_steps, memory_tip, chapter, topic, section_title, display_order, chapter_order, difficulty, tags, active")
             .eq("grade", eff_grade)
             .eq("active", True)
             .order("chapter_order", desc=False)
