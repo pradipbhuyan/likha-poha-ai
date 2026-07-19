@@ -1651,6 +1651,31 @@ function PasteImportSection({ user, onImportSuccess }) {
             Generate questions using your Custom GPT, copy the JSON output, paste below, and import directly into the question bank.
           </div>
         </div>
+        {/* Upload JSON file button */}
+        <label
+          title="Upload a saved .json file instead of pasting"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", padding: "7px 14px", borderRadius: 8, border: "1px solid rgba(99,102,241,.3)", background: "rgba(99,102,241,.06)", fontSize: ".8rem", fontWeight: 600, color: "#6366f1", fontFamily: "inherit", marginTop: 10 }}>
+          📂 Upload JSON File
+          <input
+            type="file"
+            accept=".json,application/json"
+            style={{ display: "none" }}
+            onChange={e => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              const reader = new FileReader();
+              reader.onload = ev => {
+                const text = ev.target?.result || "";
+                setJsonText(text);
+                setError("");
+                setResult(null);
+              };
+              reader.onerror = () => alert("Could not read file.");
+              reader.readAsText(file);
+              e.target.value = "";
+            }}
+          />
+        </label>
       </div>
 
       <textarea
