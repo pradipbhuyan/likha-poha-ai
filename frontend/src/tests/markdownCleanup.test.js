@@ -400,4 +400,30 @@ describe("markdownCleanup", () => {
 
     expect(normalizeTutorMarkdown(input)).toBe("$$x^2 + 1$$");
   });
+
+  test("normalizeLatexParentheses does not nest a new $...$ inside chemistry state symbols already inside a $\\mathrm{...}$ span", () => {
+    // Regression: (s)/(g) state symbols inside an already-open $\mathrm{...}$
+    // span were being rewritten to $s$/$g$ because the surrounding text
+    // already contained a "$...$" pattern (the very span they're inside),
+    // nesting stray $ pairs that threw off remark-math's dollar count for
+    // the rest of the document and made KaTeX render raw source instead of
+    // the equation.
+    const input = String.raw`$\mathrm{C(s) + O_2(g) \rightarrow CO_2(g)}$`;
+
+    expect(normalizeTutorMarkdown(input)).toBe(input);
+  });
+
+  test("strips a stray trailing brace before a math span's closing $ (unbalanced \\mathrm{} chain)", () => {
+    const input = String.raw`$\mathrm{C(s) + O_2(g)} + \mathrm{CO_2(g)} \rightarrow \mathrm{CO_2(g)} + \mathrm{CO(g)} + ½O_2(g)}$`;
+
+    expect(normalizeTutorMarkdown(input)).toBe(
+      String.raw`$\mathrm{C(s) + O_2(g)} + \mathrm{CO_2(g)} \rightarrow \mathrm{CO_2(g)} + \mathrm{CO(g)} + ½O_2(g)$`
+    );
+  });
+
+  test("leaves balanced math braces untouched", () => {
+    const input = String.raw`$\mathrm{H_2O(l)} \rightarrow \mathrm{H_2(g)} + \mathrm{O_2(g)}$`;
+
+    expect(normalizeTutorMarkdown(input)).toBe(input);
+  });
 });

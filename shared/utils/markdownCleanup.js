@@ -260,9 +260,31 @@ export function normalizeLatexParentheses(text) {
       }
     );
 
+    // Ranges already inside a $...$ / $$...$$ math span — the single-letter
+    // paren pass below must never fire inside these, or it nests a new
+    // $...$ pair inside an already-open one. Seen on chemistry state symbols:
+    // "$\mathrm{C(s) + O_2(g) \rightarrow CO_2(g)}$" has its "(s)" and "(g)"
+    // rewritten to "$s$"/"$g$" because the surrounding text already contains
+    // a "$...$" pattern (the very span they're inside), which used to satisfy
+    // the nearby-math heuristic below. The stray inner $ pairs throw off
+    // remark-math's $ count for the rest of the document, so KaTeX fails to
+    // parse the equation (and everything after it) and renders raw source.
+    const mathRanges = [];
+    const mathSpanPattern = /\$\$[\s\S]*?\$\$|\$[^$\n]*\$/g;
+    let spanMatch;
+    while ((spanMatch = mathSpanPattern.exec(withLatexCommands))) {
+      mathRanges.push([spanMatch.index, spanMatch.index + spanMatch[0].length]);
+    }
+    const insideExistingMath = (pos) =>
+      mathRanges.some(([start, end]) => pos >= start && pos < end);
+
     return withLatexCommands.replace(
       /\(([a-zA-Z])\)/g,
       (match, variable, offset) => {
+        if (insideExistingMath(offset)) {
+          return match;
+        }
+
         const nearbyText = withLatexCommands.slice(
           Math.max(0, offset - 100),
           offset + 100
@@ -630,6 +652,43 @@ function normalizeOrphanedDollarSigns(text) {
   );
 }
 
+/**
+ * Strip a stray trailing "}" immediately before a math span's closing
+ * delimiter when it has no matching "{" — an unbalanced-brace typo the LLM
+ * occasionally makes while chaining several \mathrm{...} chemistry terms:
+ *
+ *   $\mathrm{C(s) + O_2(g)} + \mathrm{CO_2(g)} \rightarrow
+ *    \mathrm{CO_2(g)} + \mathrm{CO(g)} + ½O_2(g)}$
+ *
+ * Four "\mathrm{" opens, only three "}" close them before a stray extra "}"
+ * arrives right before the closing $. KaTeX cannot recover from this — the
+ * closing $ arrives with a macro argument still open — so it renders the
+ * whole span as raw error text instead of the equation.
+ *
+ * Only fires when a span's total "{"/"}" counts differ by exactly one AND
+ * the span's last character is that extra "}" — a narrow, unambiguous
+ * signature chosen to avoid touching any span whose brace mismatch might
+ * mean something else.
+ */
+function normalizeOrphanedMathBraces(text) {
+  if (!text || !text.includes("{")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    content.replace(/\$\$([\s\S]*?)\$\$|\$([^$\n]+?)\$/g, (match, display, inline) => {
+      const isDisplay = display !== undefined;
+      const inner = isDisplay ? display : inline;
+      const openCount = (inner.match(/\{/g) || []).length;
+      const closeCount = (inner.match(/\}/g) || []).length;
+
+      if (closeCount === openCount + 1 && inner.endsWith("}")) {
+        const trimmedInner = inner.slice(0, -1);
+        return isDisplay ? `$$${trimmedInner}$$` : `$${trimmedInner}$`;
+      }
+
+      return match;
+    })
+  );
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
@@ -654,13 +713,15 @@ export function normalizeTutorMarkdown(text) {
    *  9. normalizePlainAlgebra        — (a+b)^2 → $...$
    * 10. normalizeSquareBracketMath   — [ \LaTeX ] → $$...$$
    * 11. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
-   * 12. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
-   * 13. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
-   * 14. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   * 12. normalizeOrphanedMathBraces  — stray trailing "}" before closing $ → stripped
+   * 13. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 14. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
+   * 15. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
   return removeUnsupportedQuestionClosers(
     normalizeInlineMathWordSpacing(
     normalizeDollarMath(
+      normalizeOrphanedMathBraces(
       normalizePlainExponents(
         normalizeSquareBracketMath(
           normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
@@ -669,6 +730,7 @@ export function normalizeTutorMarkdown(text) {
             ))
           ))))
         )
+      )
       )
     )
     )
