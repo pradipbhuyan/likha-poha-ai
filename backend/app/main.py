@@ -22,25 +22,31 @@ if _init_sentry():
 else:
     _log.info("Sentry disabled (SENTRY_DSN not set).")
 
-# rate_limit_service and metrics_service hold their state in-process (see their
-# module docstrings) — safe for a single Uvicorn/Gunicorn worker, silently wrong
-# across multiple. WEB_CONCURRENCY is the standard env var Gunicorn/Uvicorn read
-# for worker count; if it's set above 1 we can only warn here, not fix it — this
+# rate_limit_service and metrics_service share state via Redis when REDIS_URL
+# is configured (see app/services/redis_client.py); otherwise they hold state
+# in-process, which is safe for a single Uvicorn/Gunicorn worker and silently
+# wrong across multiple. WEB_CONCURRENCY is the standard env var Gunicorn/
+# Uvicorn read for worker count — if it's set above 1 AND Redis isn't
+# configured, warn loudly, since we can only warn here, not fix it. This
 # check has no visibility into horizontal replica scaling done outside this
-# process (e.g. a Render/Railway dashboard setting), only same-process worker count.
-_web_concurrency = os.getenv("WEB_CONCURRENCY", "1")
-try:
-    if int(_web_concurrency) > 1:
-        _log.warning(
-            "Multiple workers configured — rate_limit_service and metrics_service "
-            "state is per-process and will NOT be shared across workers, silently "
-            "multiplying effective rate limits and fragmenting metrics. See "
-            "docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md §3.1/3.2 for the "
-            "Redis-backed fix.",
-            web_concurrency=_web_concurrency,
-        )
-except ValueError:
-    pass
+# process (e.g. a Render/Railway dashboard setting), only same-process worker
+# count — Redis is what actually covers that case too, this warning can't.
+from app.services.redis_client import is_redis_available as _is_redis_available
+if _is_redis_available():
+    _log.info("Redis connected — rate limiting and metrics state is shared across processes.")
+else:
+    _web_concurrency = os.getenv("WEB_CONCURRENCY", "1")
+    try:
+        if int(_web_concurrency) > 1:
+            _log.warning(
+                "Multiple workers configured with no Redis — rate_limit_service and "
+                "metrics_service state is per-process and will NOT be shared across "
+                "workers, silently multiplying effective rate limits and fragmenting "
+                "metrics. Set REDIS_URL to fix this.",
+                web_concurrency=_web_concurrency,
+            )
+    except ValueError:
+        pass
 
 from app.routes.auth import router as auth_router
 from app.routes.syllabus import router as syllabus_router

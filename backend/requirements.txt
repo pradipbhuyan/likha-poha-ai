@@ -136,3 +136,7 @@ pytest-cov>=5.0.0
 
 # Observability — error tracking (no-ops when SENTRY_DSN is unset)
 sentry-sdk>=2.0.0
+
+# Shared rate-limit/metrics state across processes (falls back to in-memory
+# when REDIS_URL is unset — see app/services/redis_client.py)
+redis>=5.0.0

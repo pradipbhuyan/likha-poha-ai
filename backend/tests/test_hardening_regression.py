@@ -431,6 +431,43 @@ class TestScope4RateLimiting:
         retry = int(exc.value.headers.get("Retry-After", 0))
         assert retry >= 1, "Retry-After must be at least 1 second"
 
+    def test_rate_limiter_falls_back_to_memory_when_redis_broken(self):
+        """
+        A Redis outage must degrade rate limiting to in-memory, never raise
+        or silently allow unlimited requests through. Simulates REDIS_URL
+        being configured but the connection failing mid-request.
+
+        _get_sliding_window_script() caches the compiled Lua script after the
+        first successful Redis call anywhere in the process — if some earlier
+        test already populated that cache against a real Redis connection,
+        patching rl.redis_client alone wouldn't be enough: is_allowed() would
+        keep calling the cached (real, working) script object directly,
+        never touching our broken mock. Reset the cache too so this test
+        actually exercises the broken-connection path regardless of what
+        ran before it.
+        """
+        import app.services.rate_limit_service as rl  # noqa: PLC0415
+        from unittest.mock import MagicMock  # noqa: PLC0415
+
+        broken_client = MagicMock()
+        broken_client.register_script.side_effect = ConnectionError("redis unreachable")
+        broken_client.zremrangebyscore.side_effect = ConnectionError("redis unreachable")
+        broken_client.zrange.side_effect = ConnectionError("redis unreachable")
+
+        original_client = rl.redis_client
+        original_script = rl._sliding_window_script
+        try:
+            rl.redis_client = broken_client
+            rl._sliding_window_script = None  # force a fresh (failing) registration attempt
+            limiter = RateLimiter(max_calls=2, window_seconds=60, enabled=True, name="redis_fallback_test")
+            assert limiter.is_allowed("k") is True
+            assert limiter.is_allowed("k") is True
+            assert limiter.is_allowed("k") is False  # 3rd call still correctly blocked
+            assert limiter.retry_after_seconds("k") >= 1
+        finally:
+            rl.redis_client = original_client
+            rl._sliding_window_script = original_script
+
     def test_payment_endpoints_have_rate_limiters(self):
         """Payment route handlers must have a rate-limit dependency injected."""
         import inspect  # noqa: PLC0415

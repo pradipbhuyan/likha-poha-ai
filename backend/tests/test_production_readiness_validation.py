@@ -9,7 +9,7 @@ Validation tests for all 10 production-readiness review items on commit f05c8f3.
 4.  Expiry job does NOT revoke admin-granted access (no subscription_expires_at)
 5.  Expiry job handles users with active paid subscription correctly
 6.  Admin-only endpoints inaccessible to non-admin roles
-7.  Metrics counters are per-process (documented; in-memory only)
+7.  Metrics counters are shared via Redis when configured, in-memory fallback otherwise (never crashes either way)
 8.  Migration scripts are idempotent (CREATE TABLE/INDEX IF NOT EXISTS; no bare CREATE POLICY)
 9.  No secrets in audit/timeline metadata
 10. All tests continue passing (checked by running the suite)
@@ -314,50 +314,65 @@ class TestItem6AdminOnlyEndpoints:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Item 7: Metrics counters are per-process (in-memory, not global)
+# Item 7: Metrics counters are shared via Redis when configured, in-memory
+# fallback otherwise — either way, metrics must never break the calling flow.
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestItem7MetricsPerProcess:
-    """Metrics must be documented as per-process, not global across workers."""
+    """
+    Metrics must degrade gracefully to per-process/in-memory when Redis is
+    unavailable, and must document that fallback behavior. (Previously this
+    class asserted metrics_service must NEVER import redis at all — that
+    constraint was the thing docs/product-specs/07_ARCHITECTURE_ASSESSMENT.md
+    §3.2 flagged as the problem, so it's been replaced with the actual
+    invariant worth keeping: metrics never crash the request, with or
+    without Redis.)
+    """
 
-    def test_metrics_docstring_mentions_per_process(self):
-        """metrics_service docstring must warn that counters are process-local."""
+    def test_metrics_docstring_mentions_per_process_fallback(self):
+        """metrics_service docstring must document the in-memory fallback behavior."""
         import app.services.metrics_service as ms
         doc = (ms.__doc__ or "").lower()
         src = inspect.getsource(ms)
-        # Check for per-process documentation in either the module docstring or source
         assert (
             "process" in doc
             or "process" in src.lower()
-        ), "metrics_service must document that counters are per-process, not shared across workers"
+        ), "metrics_service must document that in-memory fallback state is per-process"
 
     def test_metrics_not_shared_across_instances(self):
-        """reset_counters affects only the current process — no cross-process sharing."""
+        """reset_counters affects the current backing store (Redis or in-memory)."""
         reset_counters()
         from app.services.metrics_service import increment
         increment("test.item7")
         counters = get_counters()
         assert counters.get("test.item7") == 1
-        # After reset, counter is gone (in-memory, not persisted)
+        # After reset, counter is gone
         reset_counters()
         assert get_counters().get("test.item7") is None
 
-    def test_no_redis_or_external_dependency_in_metrics(self):
-        """metrics_service must not IMPORT redis, celery, or external metric backends."""
+    def test_metrics_never_raises_when_redis_is_broken(self):
+        """
+        increment/get_counters/reset_counters must never raise, even if the
+        module-level redis_client is present but every call to it fails —
+        this is the actual production-readiness guarantee: a Redis outage
+        degrades metrics, it never breaks the request that triggered them.
+        """
         import app.services.metrics_service as ms
-        src = inspect.getsource(ms)
-        # Only check import lines — documentation may mention these as future options
-        import_lines = [
-            line for line in src.splitlines()
-            if line.strip().startswith(("import ", "from "))
-        ]
-        import_src = "\n".join(import_lines)
-        external_deps = ["redis", "celery", "prometheus_client", "opentelemetry", "statsd"]
-        for dep in external_deps:
-            assert dep not in import_src, (
-                f"metrics_service must not import {dep}; "
-                "it should be zero-external-dependency in-memory only"
-            )
+        from unittest.mock import MagicMock
+
+        broken_client = MagicMock()
+        broken_client.incrby.side_effect = ConnectionError("redis unreachable")
+        broken_client.scan.side_effect = ConnectionError("redis unreachable")
+        broken_client.delete.side_effect = ConnectionError("redis unreachable")
+
+        original_client = ms.redis_client
+        try:
+            ms.redis_client = broken_client
+            ms.increment("test.item7_broken_redis")   # must not raise
+            ms.get_counters()                          # must not raise
+            ms.reset_counters()                         # must not raise
+        finally:
+            ms.redis_client = original_client
 
 
 # ─────────────────────────────────────────────────────────────────────────────
