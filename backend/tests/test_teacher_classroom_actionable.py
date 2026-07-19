@@ -1,7 +1,11 @@
 """
-test_teacher_p2.py
+test_teacher_classroom_actionable.py
 ─────────────────────────────────────────────────────────────────────────────
-Regression tests for Teacher Success Platform — Phase 2.
+Regression tests for the Teacher Success Platform's actionable-dashboard
+endpoints (timeline, interventions, tasks, notes, parent contact) — the
+features formerly split into teacher_classroom_p2.py, now part of the
+single teacher_classroom.py module. See test_teacher_classroom_platform.py
+for the base roster/invitations/classrooms coverage.
 
 Covers:
   Timeline:

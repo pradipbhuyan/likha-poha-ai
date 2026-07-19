@@ -1,7 +1,11 @@
 """
-test_parent_dashboard_p2.py
+test_parent_dashboard_analytics.py
 ─────────────────────────────────────────────────────────────────────────────
-Backend regression tests for Parent Experience Phase 2.
+Backend regression tests for the parent-dashboard analytics/insights/
+progress-report/notifications endpoints — features formerly split into
+parent_dashboard_p2.py, now part of the single parent_dashboard.py module.
+See test_parent_dashboard_summary.py for the dashboard-summary/child-detail
+coverage, and test_parent_dashboard.py for the base family/children coverage.
 
 Covers:
   1. Analytics endpoint enforces parent ownership

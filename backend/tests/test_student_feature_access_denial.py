@@ -1,3 +1,11 @@
+"""
+test_student_feature_access_denial.py
+─────────────────────────────────────────────────────────────────────────────
+Regression tests that a student without CBSE/paid access is correctly denied
+lesson generation, doubt-answering, and mock-test features (not admin-panel
+access — despite this file's former name, test_admin_access.py, it has never
+tested any admin route).
+"""
 from fastapi.testclient import TestClient
 
 from app.main import app

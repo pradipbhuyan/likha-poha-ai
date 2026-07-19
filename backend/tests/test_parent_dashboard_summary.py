@@ -1,7 +1,11 @@
 """
-test_parent_dashboard_phase1.py
+test_parent_dashboard_summary.py
 ─────────────────────────────────────────────────────────────────────────────
-Regression tests for Parent Experience Phase 1.
+Regression tests for the parent-dashboard summary/child-detail endpoints and
+their shared display helpers (_plan_display, _build_feature_badges, etc.) —
+features formerly split into parent_dashboard_v2.py, now part of the single
+parent_dashboard.py module. See test_parent_dashboard_analytics.py for the
+analytics/insights/notifications coverage.
 
 Covers:
   1. _plan_display() helper — correct labels per canonical plan key
