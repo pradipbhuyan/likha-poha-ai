@@ -157,6 +157,9 @@ const stepButtonStyle = {
   fontSize: STEP_CONTROL_FONT_SIZE,
   borderRadius: 8,
   lineHeight: 1,
+  // .primary-btn in App.css sets margin-top:18px (for buttons stacked below a
+  // form) — override it here since these buttons sit inline in a flex row.
+  marginTop: 0,
 };
 
 const RAG_VISUAL_ENABLED_CONTEXTS = new Set(["CBSE|Grade 9", "CBSE|Grade 10"]);
