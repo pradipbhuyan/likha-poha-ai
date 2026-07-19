@@ -69,6 +69,35 @@ describe("markdownCleanup", () => {
     );
   });
 
+  // ── Regression: single (not double-wrapped) "(expr)^n" stranding the
+  // exponent outside $...$ (found live in the same Grade 9 "Exploring
+  // Algebraic Identities — Revision and recap" lesson, both in prose and in
+  // a Quick Check question) ──
+  test("converts single-wrapped (a + b)^2 without stranding the exponent outside $...$", () => {
+    // Raw cached content: "including (a + b)^2 = a^2 + 2ab + b^2, (a - b)^2 =
+    // a^2 - 2ab + b^2, and (a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca."
+    // Before this fix, normalizePlainAlgebra's generic single-paren regex
+    // matched only "(a + b)" and wrapped it alone, leaving "^2" as a literal
+    // caret outside the $...$ span: "$a + b$^2" instead of "$(a + b)^2$".
+    const input =
+      "including (a + b)^2 = a^2 + 2ab + b^2, (a - b)^2 = a^2 - 2ab + b^2, and (a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca.";
+
+    const result = normalizePlainAlgebra(input);
+
+    expect(result).toBe(
+      "including $(a + b)^2$ = a^2 + 2ab + b^2, $(a - b)^2$ = a^2 - 2ab + b^2, and $(a + b + c)^2$ = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca."
+    );
+    expect(result).not.toMatch(/\$[^$]*\$\^/);
+  });
+
+  test("converts a Quick Check question phrased with a single-wrapped power", () => {
+    const input = "What is the expanded form of the identity (a + b)^2?";
+
+    expect(normalizeTutorMarkdown(input)).toBe(
+      "What is the expanded form of the identity $(a + b)^2$?"
+    );
+  });
+
   test("does not rewrite Mermaid code fences while cleaning prose", () => {
     const input = [
       "Use (\\frac{p}{q}) here.",

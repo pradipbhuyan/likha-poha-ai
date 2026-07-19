@@ -16,6 +16,16 @@ const PLAIN_ALGEBRA_DOUBLE_PAREN_PATTERN =
 const PLAIN_ALGEBRA_GROUPED_POWER_PATTERN =
   /(?<!\\)\(\(([^()\n]{1,60})\)\^(\d+)([^()\n]{0,120})\)/g;
 
+// Single (not double-wrapped) "(expr)^n" — e.g. "(a + b)^2 = a^2 + 2ab + b^2"
+// straight from the model with no outer wrap and no backslash escaping at
+// all (a distinct case from both patterns above and from the \(...\) escape
+// handled by normalizeEscapedBracketMath). Without this pattern,
+// normalizePlainAlgebra's generic single-paren regex below matches only
+// "(a + b)" and wraps it alone, stranding the "^2" outside the $...$ span:
+// "$a + b$^2" (literal caret-2, not a superscript) instead of "$(a + b)^2$".
+const PLAIN_ALGEBRA_PAREN_POWER_PATTERN =
+  /(?<!\\)\(([^()\n]{1,140})\)\^(\d+)/g;
+
 export function normalizeLeftRightDelimiters(text) {
   /**
    * Fix \left / \right LaTeX sizing commands missing their delimiter.
@@ -292,20 +302,34 @@ export function normalizePlainAlgebra(text) {
 
   return transformOutsideCodeFences(text, (content) =>
     transformOutsideInlineMath(textToNormalizePlainAlgebra(content), (part) =>
-      // (?<!\\) — skip when the "(" is itself the delimiter of a "\(" LaTeX
-      // inline-math escape. Without it, "\((a + b)^2\)" has its INNER
-      // "(a + b)" matched and wrapped in $...$, leaving the outer \( \)
-      // backslashes stranded: "\($a + b$^2\)" instead of a clean "$(a+b)^2$"
-      // — normalizeSquareBracketMath's dedicated \( \) handler (which runs
-      // later and includes the backslashes in its own match) is the correct
-      // place to convert the whole thing, not here.
-      part.replace(/(?<!\\)\(([^()\n]{1,140})\)/g, (match, expression) => {
-        if (!isPlainMathExpression(expression)) {
-          return match;
-        }
+      // Nested transformOutsideInlineMath: PLAIN_ALGEBRA_PAREN_POWER_PATTERN
+      // below introduces its own new $...$ spans within `part`, and the
+      // generic single-paren regex after it must not re-scan into those —
+      // its own (?<!\\) lookbehind only rules out a backslash immediately
+      // before the "(", not "preceded by an already-inserted $", so without
+      // this re-split "$(a + b)^2$" would have its inner "(a + b)" matched
+      // again, producing "$$(a + b)^2$$" (stray extra $$ pair).
+      transformOutsideInlineMath(
+        part.replace(
+          PLAIN_ALGEBRA_PAREN_POWER_PATTERN,
+          (_match, base, exponent) => `$(${base.trim()})^${exponent}$`
+        ),
+        (innerPart) =>
+          // (?<!\\) — skip when the "(" is itself the delimiter of a "\(" LaTeX
+          // inline-math escape. Without it, "\((a + b)^2\)" has its INNER
+          // "(a + b)" matched and wrapped in $...$, leaving the outer \( \)
+          // backslashes stranded: "\($a + b$^2\)" instead of a clean "$(a+b)^2$"
+          // — normalizeEscapedBracketMath (which runs much earlier and
+          // includes the backslashes in its own match) is the correct place
+          // to convert the whole thing, not here.
+          innerPart.replace(/(?<!\\)\(([^()\n]{1,140})\)/g, (match, expression) => {
+            if (!isPlainMathExpression(expression)) {
+              return match;
+            }
 
-        return `$${expression.trim()}$`;
-      })
+            return `$${expression.trim()}$`;
+          })
+      )
     )
   );
 }
