@@ -1208,13 +1208,22 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
     grade_map = GRADE_RESOURCES_MAP.get(grade, {})
     resources = grade_map.get(subject, {}).get(cleaned_chapter, [])
 
-    # Priority 1b: Fuzzy match for chapter name variants (e.g. plural/singular, extra words)
+    # Priority 1b: Fuzzy/prefix match for chapter name variants
     if not resources and grade_map.get(subject):
         import difflib as _dl
         subject_map = grade_map[subject]
-        close = _dl.get_close_matches(cleaned_chapter, subject_map.keys(), n=1, cutoff=0.82)
-        if close:
-            resources = subject_map[close[0]]
+        ch_lower = cleaned_chapter.lower()
+        # Prefix match: 'Semiconductor Electronics' -> 'Semiconductor Electronics: ...'
+        prefix_match = next(
+            (k for k in subject_map if k.lower().startswith(ch_lower) or ch_lower.startswith(k.lower()[:28])),
+            None
+        )
+        if prefix_match:
+            resources = subject_map[prefix_match]
+        else:
+            close = _dl.get_close_matches(cleaned_chapter, subject_map.keys(), n=1, cutoff=0.82)
+            if close:
+                resources = subject_map[close[0]]
 
     # Priority 2: Legacy Grade 9 / shared resources
     if not resources:
