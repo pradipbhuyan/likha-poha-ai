@@ -1870,8 +1870,128 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
     },
 }
 
+# ── Grade 7 resources ─────────────────────────────────────────────────────────
+GRADE_7_RESOURCES: dict[str, dict[str, list]] = {
+    "Science": {
+        # NCERT "Curiosity" (2025-26). Single source per chapter; PW Little Champs 6th, 7th &
+        # 8th and "we & science!" each cover multiple chapters and are used as anchors where
+        # available. Every video verified live via YouTube's oEmbed endpoint.
+        "The Ever-Evolving World of Science": [indian_channel("The Ever-Evolving World of Science Class 7 One Shot || Science", "PW Little Champs 6th, 7th & 8th", "TQUGaqOv1xc")],
+        "Exploring Substances: Acids, Bases and Neutral": [indian_channel("Chapter 2: Exploring Substances: Acidic, Basic, and Neutral | Class 7 Science | NCERT", "EduRev Class 6-10", "6Hem2LvKL0k")],
+        "Electricity: Circuits and Their Components": [indian_channel("Electricity: Circuits and their Components Class 7 One Shot || Science", "PW Little Champs 6th, 7th & 8th", "Jjcs9SV8GbY")],
+        "The World of Metals and Non-metals": [indian_channel("The World of Metals and Non-metals Class 7 One Shot || Science", "PW Little Champs 6th, 7th & 8th", "eniKI5bwb5o")],
+        "Changes Around Us: Physical and Chemical": [indian_channel("Class 7 Science Chapter 6 | Physical And Chemical Changes Full Chapter Explanation & NCERT Solutions", "Magnet Brains", "yR_NqF6IwX4")],
+        "Adolescence: A Stage of Growth and Change": [indian_channel("Adolescence - A Stage of Growth and Change | CBSE Class 7 Science | NCERT Biology Chapter Covered!", "Unacademy Avengerz for Class 6th to 10th", "FL4C03ag2-U")],
+        "Heat Transfer in Nature": [indian_channel("Class 7 Science Chapter 7 | Heat Transfer in Nature NCERT Curiosity | CBSE board | Chapter Explained", "Wisdom of Avyaan", "bU8ZIdFzWlk")],
+        "Measurement of Time and Motion": [indian_channel("Measurement of Time and Motion | Chapter 8 One Shot | Class 7 Science Curiosity", "Concept Corridor", "mRBkudeneUk")],
+        "Life Processes in Animals": [indian_channel("Class 7 Science Chapter 9 | Life Processes in Animals | CBSE NCERT New", "we & science!", "vqVL41aeQBE")],
+        "Life Processes in Plants": [indian_channel("Class 7 Science Chapter 10 | Life Processes in Plants | CBSE NCERT New", "we & science!", "oZIfHgq1Yo0")],
+        "Light: Shadows and Reflections": [indian_channel("Class 7 Science Chapter 11 | Light: Shadows and Reflections | CBSE NCERT New", "we & science!", "BW16T1AqlVI")],
+        "Earth, Moon, and the Sun": [indian_channel("NCERT Chapter 12: Earth Moon and the Sun Part - II", "NCERT OFFICIAL", "vuPW5tqmPeY")],
+    },
+    "Social Science": {
+        # NCERT's new integrated Grade 7 book ("Exploring Society: India and Beyond", 2025-26,
+        # Part 1 + Part 2) — single source per chapter. "Empires and Kingdoms: 6th to 10th
+        # Centuries", "India, a Home to Many", "Infrastructure: Engine of India's Development",
+        # and "Banks and the Magic of Finance" are brand-new Part 2 content with no dedicated
+        # video anywhere yet (confirmed after repeated searches) and are left uncurated. Every
+        # other video verified live via YouTube's oEmbed endpoint.
+        # Part 1
+        "Geographical Diversity of India": [indian_channel("Geographical Diversity Of India | One Shot | Chapter 1 Class 7 New NCERT", "Concept Corridor", "7Q5IETazQmk")],
+        "Understanding the Weather": [indian_channel("Understanding The Weather | Class 7 SST New NCERT Chapter 2 | Full Chapter by Gautam Lakhani", "MOTION 6th 7th & 8th", "YwCfeLFIHhM")],
+        "Climates of India": [indian_channel("Climates of India | Class 7 Social Science Chapter 3 | NCERT Geography Full Explanation", "Concept Corridor", "xVt2o9DD4sw")],
+        "New Beginnings: Cities and States": [indian_channel("New Beginning: Cities and States | Class 7 Social Science Chapter 4 | Exploring Society", "Concept Corridor", "-ShHdjvQjOA")],
+        "The Rise of Empires": [indian_channel("The Rise of Empires Class 7 One Shot || SST || Srishty Ma'am", "PW Little Champs 6th, 7th & 8th", "lFt7sZcdvHA")],
+        "The Age of Reorganisation": [indian_channel("The Age of Reorganisation - Chapter Overview | Ch 6 | Class 7 Social Science (Part 1)", "Magnet Brains", "F7gO4_FltoU")],
+        "The Gupta Era: An Age of Tireless Creativity": [indian_channel("The Gupta Era: An Age of Tireless Creativity Class 7 One Shot || SST || Srishty Ma'am", "PW Class 7", "kP55hVcmDC8")],
+        "How the Land Becomes Sacred": [indian_channel("How the Land Becomes Sacred | Class 7 Social Science Chapter 8 | SST New NCERT | By Gautam Lakhani", "MOTION 6th 7th & 8th", "klJtGr9pSmc")],
+        "From the Rulers to the Ruled: Types": [indian_channel("Class7 S.S.T. Chapter 9 From the Rulers to the Ruled: Types of Governments full Chapter line by line", "Learner Bee", "X2efsqIV4gI")],
+        "The Constitution of India — An Introduction": [indian_channel("The Constitution of India | Class 7 Social Science Chapter 10 | New NCERT | By Gautam Lakhani", "MOTION 6th 7th & 8th", "kJZUO2U5cy0")],
+        "From Barter to Money": [indian_channel("From Barter to Money | Class 7 Social Science Chapter 11 | New NCERT | By Gautam Lakhani", "MOTION 6th 7th & 8th", "B_zcJVsR3AI")],
+        "Understanding Markets": [indian_channel("Class 7 Civics Full Chapter 7 | Markets Around Us", "Magnet Brains", "0twyx2r3-zo")],
+        # Part 2
+        "The Story of Indian Farming": [indian_channel("The Story of Indian Farming | Chapter-1 | Class 7 SST NCERT 2025 | Part 2", "Kaliyaan Tv", "xYbPrSt08ys")],
+        "India and Her Neighbours": [indian_channel("India and Her Neighbours – Class 7 SST NCERT 2025 (Part 2 | Book 2) | Chapter 2", "Kaliyaan Tv", "zDqgLEASKwQ")],
+        "Turning Tides: 11th and 12th Centuries": [indian_channel("Turning Tides: 11th and 12th Centuries Class 7 One Shot || SST Book Part 2 || Srishty Ma'am", "PW Class 7", "3JFWM4gSPCY")],
+        "The State, the Government, and You": [indian_channel("How the State Government Works | Class 7 | Political Science | One Shot", "BYJU'S - Class 6, 7 & 8", "VuQdibItbHg", note="Closest available match — from the previous civics curriculum, same core topic (state government structure) as this book's new chapter.")],
+    },
+    "Maths": {
+        # Ganita Prakash Grade 7 (Part 1 + Part 2) — single source per chapter; PW Class 7
+        # (Priyanshu Sir) covers 5 of 7 Part 2 chapters consistently and is used as the anchor
+        # there. Several long chapters only have page-range/part videos rather than one
+        # full-chapter video — best available used. Every video verified live via YouTube's
+        # oEmbed endpoint.
+        # Part 1
+        "Large Numbers Around Us": [indian_channel("Class 7 Maths Ganita Prakash Chapter 1 Large Numbers Around Us One Shot | Class 7 Maths Full Chapter", "CBSE Worldz", "kGTShilfR1I")],
+        "Arithmetic Expressions": [indian_channel("Arithmetic Expressions | Class 7 Maths One Shot | Ganita Prakash", "Vedantu Class 6, 7 & 8 (Rajiv Sir)", "X1B1rSQyV_g")],
+        "A Peek Beyond the Point": [indian_channel("Ncert Class -7th Maths Ganita Prakash | Chapter -3 A Peek Beyond The Point | Full Chapter | One Shot", "MOS Classes Maths (Shine Luthra)", "Lx6ksaM3p7s")],
+        "Expressions using Letter-Numbers": [indian_channel("Class 7 Maths | Chapter 4 Expressions using Letter-Numbers | Part 1 | Ganita Prakash", "Kaliyaan Tv", "u_CFoVVQKXE")],
+        "Parallel and Intersecting Lines": [indian_channel("Class 7 Maths Chapter 5 Part 1 | Parallel and Intersecting Lines | Ganita Prakash", "Kaliyaan Tv", "gy2mp2LijK4")],
+        "Number Play": [indian_channel("Number Play Part 1 | Class 7 Maths Chapter 6 | Ganita Prakash New NCERT 2025", "MOTION 6th 7th & 8th (Aditi Tripathi Ma'am)", "LRGDTttZPiM")],
+        "A Tale of Three Intersecting Lines": [indian_channel("Class 7 Maths | Chapter 7: A Tale of Three Intersecting Lines | Part 1 | Ganita Prakash", "Kaliyaan Tv", "jv-qFdaW5v4")],
+        "Working with Fractions": [indian_channel("Class 7 Maths Ganita Prakash Solutions | Chapter 8 Working with fractions | Page 173 to 176", "MathsByShweta", "O9wMrurJtc8")],
+        # Part 2
+        "Geometric Twins": [indian_channel("Class 7 Maths | Ganita Prakash Book 2 | Chapter 1 – Geometric Twins | Full Explanation", "Kaliyaan Tv", "ZEfbB2y3B2g")],
+        "Operations with Integers": [indian_channel("Operations With Integers Class 7 One Shot || Maths Ganita Prakash Part 2", "PW Class 7 (Priyanshu Sir)", "lu0d1MxCTlI")],
+        "Finding Common Ground": [indian_channel("Finding Common Ground Class 7 One Shot || Maths Ganita Prakash Part 2", "PW Class 7 (Priyanshu Sir)", "sVX6egyHr7k")],
+        "Another Peek Beyond the Point": [indian_channel("Another Peek Beyond The Point Class 7 Maths Ganita Prakash | Chapter -4 | Page 93 to 95", "MOS Classes Maths (Shine Luthra)", "QP6mfRajlAk")],
+        "Connecting the Dots…": [indian_channel("Connecting The Dots Class 7 One Shot || Maths Ganita Prakash Part 2", "PW Class 7 (Priyanshu Sir)", "nG0QPS1e8H8")],
+        "Constructions and Tilings": [indian_channel("Constructions & Tilings Class 7 One Shot || Maths Ganita Prakash Part 2", "PW Class 7 (Priyanshu Sir)", "e-pg3YPVaKE")],
+        "Finding the Unknown": [indian_channel("Finding the Unknown Class 7 One Shot || Maths Ganita Prakash Part 2", "PW Class 7 (Priyanshu Sir)", "pinXclj3A80")],
+    },
+    "Hindi": {
+        # NCERT "Malhar" (2025-26). The live RAG-uploaded labels have the same kind of
+        # OCR/upload text-extraction artifacts seen in Grade 8/9/10 Hindi (duplicated letters,
+        # dropped matras, spurious spaces) — both the clean and the live-label spelling are
+        # mapped to the same resource so the lookup matches regardless of which variant shows
+        # up. Single source per chapter, every video verified live via YouTube's oEmbed
+        # endpoint.
+        "माँ, कह एक कहानी": [indian_channel("माँ, कह एक कहानी (Maa Keh Ek Kahani) - Explanation | Class 7 Chapter 1 | Malhar Book", "Magnet Brains", "L4hml-14IM4")],
+        "तीन बुद्धिमान": [indian_channel("हिंदी कक्षा 7 पाठ 2 तीन बुद्धिमान सम्पूर्ण व्याख्या मल्हार", "LEARN CBSE (Hindi Medium)", "01qDMSoATK0")],
+        "तीन बुद्धमान": [indian_channel("हिंदी कक्षा 7 पाठ 2 तीन बुद्धिमान सम्पूर्ण व्याख्या मल्हार", "LEARN CBSE (Hindi Medium)", "01qDMSoATK0")],
+        "फूल और काँटा": [indian_channel("Phool Aur Kaanta | Class 7 | Malhar - NCERT | Chapter Explanation | फूल और काँटा | Chapter 3", "Insightful Hindi", "_6ZT2NbYEmE")],
+        "फ ू ल और काँटा": [indian_channel("Phool Aur Kaanta | Class 7 | Malhar - NCERT | Chapter Explanation | फूल और काँटा | Chapter 3", "Insightful Hindi", "_6ZT2NbYEmE")],
+        "पानी रे पानी": [indian_channel("NCERT Class 7 Hindi Malhar | Chapter 4 | Paani re Paani | Chapter Summary", "Wisdom of Avyaan", "NI_59bEuAp0")],
+        "नहीं होना बीमार": [indian_channel("मल्हार कक्षा 7 | पाठ ५ - नहीं होना बीमार - पाठ अध्ययन एवम शब्दार्थ", "Educational Corner", "fH9UXeDIcio")],
+        "गिरधर कविराय की कुंडलियाँ": [indian_channel("Grade 7 Hindi Chapter 6 गिरधर कविराय की कुंडलियाँ Detailed Explanation with Word Meanings", "Learner Bee", "NbIqQ4CmkTo")],
+        "िगरधर किवराय की क ुं डिलया": [indian_channel("Grade 7 Hindi Chapter 6 गिरधर कविराय की कुंडलियाँ Detailed Explanation with Word Meanings", "Learner Bee", "NbIqQ4CmkTo")],
+        "वर्षा-बहार": [indian_channel("Varsha Bahaar (वर्षा-बहार) - Explanation | Chapter 7 Class 7th | Hindi (Malhar Book) | CBSE 2025-26", "Magnet Brains", "yOzn_mSS2_s")],
+        "वषार्-बहार": [indian_channel("Varsha Bahaar (वर्षा-बहार) - Explanation | Chapter 7 Class 7th | Hindi (Malhar Book) | CBSE 2025-26", "Magnet Brains", "yOzn_mSS2_s")],
+        "बिरजू महाराज से साक्षात्कार": [indian_channel("बिरजू महाराज से साक्षात्कार | Class 7 Hindi Malhar Ch 8 Question Answer", "Study With Neha", "TNPo1J2u718")],
+        "िबरजू महाराज से साक्षाार": [indian_channel("बिरजू महाराज से साक्षात्कार | Class 7 Hindi Malhar Ch 8 Question Answer", "Study With Neha", "TNPo1J2u718")],
+        "चिड़िया": [indian_channel("Chidiya, चिड़िया, class 7 Hindi new book chapter 9 complete solution with explanation", "Basic Education R.D", "RbSJfitNZ68")],
+        "धिधड़या": [indian_channel("Chidiya, चिड़िया, class 7 Hindi new book chapter 9 complete solution with explanation", "Basic Education R.D", "RbSJfitNZ68")],
+        "मीरा के पद": [indian_channel("कक्षा 7 हिंदी (मल्हार) पाठ – 10 \"मीरा के पद\" NCERT QUESTION-ANSWERS Detailed Explanation", "Learner Bee", "Kd_4NuYST6E")],
+        "मुीरा का़े पाद": [indian_channel("कक्षा 7 हिंदी (मल्हार) पाठ – 10 \"मीरा के पद\" NCERT QUESTION-ANSWERS Detailed Explanation", "Learner Bee", "Kd_4NuYST6E")],
+    },
+    "English": {
+        # NCERT "Poorvi" (2025-26) — the live dropdown groups by unit ("Unit N: <theme>"), not
+        # by the individual chapters within each unit, so each entry covers the unit's first
+        # chapter/poem as a representative single source. Unit 1-3 live labels are ALL CAPS and
+        # Unit 4's is malformed ("Chapter Travel and Adventure" instead of "Unit 4: Travel and
+        # Adventure") so both variants are mapped to the same resource. Every video verified
+        # live via YouTube's oEmbed endpoint.
+        "Learning Together": [indian_channel("The Day the River Spoke - Explanation | Class 7 English Unit 1 - Learning Together | CBSE 2025-26", "Magnet Brains", "8J1m3piWsjE")],
+        "LEARNING TOGETHER": [indian_channel("The Day the River Spoke - Explanation | Class 7 English Unit 1 - Learning Together | CBSE 2025-26", "Magnet Brains", "8J1m3piWsjE")],
+        "Wit and Humour": [indian_channel("Animals, Birds, and Dr. Dolittle - Explanation | Class 7 English Unit 2 - Wit and Humour | CBSE", "Magnet Brains", "qjdbf4vjHmk")],
+        "WIT AND HUMOUR": [indian_channel("Animals, Birds, and Dr. Dolittle - Explanation | Class 7 English Unit 2 - Wit and Humour | CBSE", "Magnet Brains", "qjdbf4vjHmk")],
+        "Dreams and Discoveries": [indian_channel("My Brother's Great Invention (English Explanation) | Class 7 English Poorvi Unit 3", "CBSE with Sudhir", "-M0jQ_1lO0o")],
+        "DREAMS AND DISCOVERIES": [indian_channel("My Brother's Great Invention (English Explanation) | Class 7 English Poorvi Unit 3", "CBSE with Sudhir", "-M0jQ_1lO0o")],
+        "Travel and Adventure": [indian_channel("Travel (Poem) - Explanation | Chapter 11 | Class 7th English | Unit 4 (Poorvi) | CBSE 2025-26", "Magnet Brains", "w9jCdMkdr4s")],
+        "Chapter Travel and Adventure": [indian_channel("Travel (Poem) - Explanation | Chapter 11 | Class 7th English | Unit 4 (Poorvi) | CBSE 2025-26", "Magnet Brains", "w9jCdMkdr4s")],
+        "Bravehearts": [indian_channel("A Homage to Our Brave Soldiers Part -1 | Class 7 English (Poorvi) Animation | Unit 5 Bravehearts", "Englishpedia", "wmktCNbxnF0")],
+        "Grammar": list(GRAMMAR_RESOURCES),
+        "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
+        "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
+        "Active and Passive Voice": GRAMMAR_TOPIC_RESOURCES.get("Active and Passive Voice", []),
+        "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
+        "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
+    },
+}
+
 # ── Grade-aware resource lookup ───────────────────────
 GRADE_RESOURCES_MAP = {
+    "Grade 7": GRADE_7_RESOURCES,
     "Grade 8": GRADE_8_RESOURCES,
     "Grade 10": GRADE_10_RESOURCES,
     "Grade 11": GRADE_11_RESOURCES,
@@ -1914,15 +2034,15 @@ def _strip_book_source_prefix(chapter):
 
 
 def _strip_chapter_number_prefix(chapter):
-    """Remove a 'Chapter N: ' / 'Unit N: ' / 'अध्याय N: ' prefix from a chapter label.
+    """Remove a 'Chapter N: ' / 'Unit N: ' / 'अध्याय N: ' / 'पाठ N: ' prefix from a chapter label.
 
     RAG-uploaded chapters are numbered in upload order, which curated resource keys
     can't always predict in advance. Stripping the number lets a plain-title key
     (e.g. "Fog", "सूरदास") match regardless of what chapter number the upload landed
     on, and regardless of whether the subject numbers chapters "Chapter", "Unit", or
-    in Hindi.
+    in Hindi ("अध्याय" or "पाठ").
     """
-    return re.sub(r"^\s*(?:chapter|unit|अध्याय)\s*\d+\s*[-:]\s*", "", str(chapter or ""), flags=re.IGNORECASE).strip()
+    return re.sub(r"^\s*(?:chapter|unit|अध्याय|पाठ)\s*\d+\s*[-:]\s*", "", str(chapter or ""), flags=re.IGNORECASE).strip()
 
 
 def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
