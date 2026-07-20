@@ -996,7 +996,7 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         ],
         "Electrochemistry": [
             {"title": "CrashCourse Chemistry — Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=a8LF7JEb0IA"},
-            {"title": "Khan Academy — Introduction to Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lQ6FBA1HM3s"},
+            {"title": "Khan Academy — Introduction to Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=1tvvSUySfls"},
         ],
         "Chemical Kinetics": [
             {"title": "CrashCourse Chemistry — Reaction Rates (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GqtUWyDR1fg"},
