@@ -1128,7 +1128,7 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         ],
         "Matrices": [
             {"title": "3Blue1Brown — Essence of Linear Algebra (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fNk_zzaMoSs"},
-            {"title": "Khan Academy — Introduction to Matrices (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kqWCgIVDRBo"},
+            {"title": "Khan Academy — Introduction to Matrices (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=xyAuNHPsq-g"},
         ],
         "Determinants": [
             {"title": "3Blue1Brown — Determinant of a Matrix (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Ip3X9LOh2iI"},
