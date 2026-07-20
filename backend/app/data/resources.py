@@ -1131,7 +1131,7 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
             {"title": "Khan Academy — Introduction to Matrices (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=xyAuNHPsq-g"},
         ],
         "Determinants": [
-            {"title": "3Blue1Brown — Determinant of a Matrix (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Ip3X9LOh2iI"},
+            {"title": "3Blue1Brown — The Determinant (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Ip3X9LOh2dk"},
             {"title": "Khan Academy — Determinants (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=OI07C1HsOuc"},
         ],
         "Continuity and Differentiability": [
