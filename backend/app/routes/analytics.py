@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from typing import List
 
@@ -9,7 +9,7 @@ from app.services.test_history_service import (
     clear_test_history,
     clear_user_test_history,
 )
-from app.services.auth_service import admin_client as supabase
+from app.services.auth_service import admin_client as supabase, require_student
 
 
 router = APIRouter()
@@ -55,9 +55,17 @@ class SaveWrongAnswersRequest(BaseModel):
 
 
 @router.post("/test-history")
-def save_history(data: SaveTestResultRequest):
-    """Save one submitted mock-test result for analytics and leaderboard views."""
-    saved = save_test_result(data.model_dump())
+def save_history(data: SaveTestResultRequest, student=Depends(require_student)):
+    """
+    Save one submitted mock-test result for analytics and leaderboard views.
+
+    username is always taken from the authenticated session, never from the
+    request body — the client-supplied value is ignored so a stale/empty
+    client-side username (or a spoofed one) can never misfile a result.
+    """
+    payload = data.model_dump()
+    payload["username"] = student["profile"]["username"]
+    saved = save_test_result(payload)
     return {
         "success": True,
         "result": saved

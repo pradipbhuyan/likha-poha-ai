@@ -626,6 +626,8 @@ export default function LessonsScreen() {
   const [lesson, setLesson] = useState("");
   const [generating, setGenerating] = useState(false);
   const [loadingSyllabus, setLoadingSyllabus] = useState(true);
+  const [studentUsername, setStudentUsername] = useState("");
+  const highestStepReached = useRef(0);
   // Feature access (from /api/subscription/features — canonical source of truth)
   const [features, setFeatures] = useState<Record<string, { allowed: boolean; limited: boolean }>>({});
   const [hasFullAccess, setHasFullAccess] = useState(false);
@@ -652,6 +654,7 @@ export default function LessonsScreen() {
       const enrolledGrade = me?.grade ?? "Grade 9";
       setStudentGrade(enrolledGrade);
       setGrade(enrolledGrade);
+      setStudentUsername(me?.username ?? me?.email?.split("@")[0] ?? "student");
       // Store enrolled subjects + stream for Grade 11/12 filtering
       const enrolledSubjects: string[] = me?.cbse_subjects ?? [];
       setStudentCbseSubjects(enrolledSubjects);
@@ -708,12 +711,15 @@ export default function LessonsScreen() {
     setChapter(syllabus?.[g]?.["CBSE"]?.[firstSubject]?.[0] ?? "");
     setLesson("");
     setStepIndex(0);
+    highestStepReached.current = 0;
   }
 
   function handleSubjectChange(s: string) {
     setSubject(s);
     setChapter(syllabus?.[grade]?.["CBSE"]?.[s]?.[0] ?? "");
     setLesson("");
+    setStepIndex(0);
+    highestStepReached.current = 0;
   }
 
   async function generateLesson() {
@@ -731,6 +737,17 @@ export default function LessonsScreen() {
       });
       if (result.success) {
         setLesson(result.lesson ?? "");
+        highestStepReached.current = Math.max(highestStepReached.current, stepIndex);
+        // Non-blocking — a failed save never blocks lesson viewing
+        authFetch("/api/progress/save", {
+          method: "POST",
+          body: JSON.stringify({
+            username: studentUsername, grade, mode: "CBSE", subject, chapter,
+            current_step_index: stepIndex,
+            highest_unlocked_step: highestStepReached.current,
+            completed: stepIndex === steps.length - 1,
+          }),
+        }).catch(() => {});
       } else {
         Alert.alert("Error", result.message ?? "Lesson generation failed.");
       }
@@ -801,7 +818,7 @@ export default function LessonsScreen() {
             <TouchableOpacity
               key={c}
               style={[styles.chip, isActive && styles.chipActive, locked && styles.chipLocked]}
-              onPress={() => { setChapter(c); setLesson(""); }}
+              onPress={() => { setChapter(c); setLesson(""); setStepIndex(0); highestStepReached.current = 0; }}
             >
               <Text style={[styles.chipText, isActive && styles.chipTextActive, locked && styles.chipTextLocked]} numberOfLines={1}>
                 {locked ? "🔒 " : ""}{c.length > 28 ? c.slice(0, 26) + "…" : c}

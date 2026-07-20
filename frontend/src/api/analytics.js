@@ -5,19 +5,10 @@ const API_BASE_URL =
 
 export async function saveTestHistory(payload) {
   /** Save one completed mock-test result for analytics and leaderboard views. */
-  const response = await fetch(`${API_BASE_URL}/api/analytics/test-history`, {
+  return authFetch("/api/analytics/test-history", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(payload),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to save test history");
-  }
-
-  return response.json();
 }
 
 export async function getUserHistory(username) {
