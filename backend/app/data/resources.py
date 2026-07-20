@@ -1946,8 +1946,106 @@ GRADE_7_RESOURCES: dict[str, dict[str, list]] = {
     },
 }
 
+# ── Grade 6 resources ─────────────────────────────────────────────────────────
+GRADE_6_RESOURCES: dict[str, dict[str, list]] = {
+    "Maths": {
+        # Ganita Prakash Grade 6 — live labels use "Chapter N Title" (no colon/dash), handled
+        # by the generalized number-prefix stripper. Single source per chapter; "Ignited Minds"
+        # covers 5 of 10 chapters consistently and is used as the anchor. Every video verified
+        # live via YouTube's oEmbed endpoint.
+        "Patterns in Mathematics": [indian_channel("Patterns in Mathematics | Class 6 Maths Chapter 1 | One-Shot | NCERT Ganita Prakash", "Ignited Minds", "a0zzE0MVraM")],
+        "Lines and Angles": [indian_channel("Class 6 Maths Ganita Prakash Chapter 2 Lines and Angles | Full Chapter Detailed Explanation", "CBSE Worldz", "ThSyXXbJQEE")],
+        "Number Play": [indian_channel("Number Play | Class 6 Maths Chapter 3 | One-Shot | NCERT Ganita Prakash", "Ignited Minds", "GNPF4pCCUfM")],
+        "Data Handling and Presentation": [indian_channel("Ncert Class -6th Maths Ganita Prakash | Chapter-4 Data Handling And Presentation | Full Chapter", "MOS Classes Maths (Shine Luthra)", "MGO753bQKac")],
+        "Prime Time": [indian_channel("Prime Time | Class 6 Maths Chapter 5 | One-Shot | NCERT Ganita Prakash", "Ignited Minds", "c_sAxfNir4k")],
+        "Perimeter and Area": [indian_channel("Perimeter and Area | Class 6 Maths Chapter 6 | One-Shot | NCERT Ganita Prakash", "Ignited Minds", "sAMYyphjh1c")],
+        "Fractions": [indian_channel("Fractions | Class 6 Maths Chapter 7 | One-Shot | NCERT Ganita Prakash", "Ignited Minds", "noK0Ep56YhI")],
+        "Playing with Constructions": [indian_channel("Playing with Constructions | Chapter 8 | Class 6 Maths | Ganita Prakash | NCERT | CBSE", "A TO Z STUDYZ", "unmuO950AqA")],
+        "Symmetry": [indian_channel("Symmetry | Chapter 9 | Class 6 Maths | Ganita Prakash | NCERT | CBSE", "A TO Z STUDYZ", "Ky6Y-hoeinQ")],
+        "The Other Side of Zero": [indian_channel("The Other Side of Zero | Chapter 10 | Class 6 Maths | Ganita Prakash | NCERT | CBSE", "A TO Z STUDYZ", "cE1WXD95WTs")],
+    },
+    "Science": {
+        # NCERT "Curiosity" (2025-26). Single source per chapter; "Ignited Minds" and "Prep
+        # Yourself" each cover multiple chapters and are used as anchors where available. Every
+        # video verified live via YouTube's oEmbed endpoint.
+        "The Wonderful World of Science": [indian_channel("The Wonderful World of Science | Class 6 Science Chapter 1 | One-Shot | NCERT Curiosity", "Ignited Minds", "JK1Unt9QaOs")],
+        "Diversity in the Living World": [indian_channel("Chapter 2: Diversity in the Living World | Class 6 Science | Curiosity", "EduRev Class 6-10", "OIgBF5LdCd0")],
+        "Mindful Eating: A Path to a Healthy Body": [indian_channel("Class 6 Science Curiosity Chapter 3 Mindful Eating A Path to a Healthy Body Full Chapter", "CBSE Worldz", "8BYlxySJAns")],
+        "Exploring Magnets": [indian_channel("Exploring Magnets | NCERT Class 6 Science Chapter 4 | Curiosity | NCERT Science Class 6 New Book", "Prep Yourself", "BrXrtiQqXEs")],
+        "Measurement of Length and Motion": [indian_channel("Measurement of Length and Motion | NCERT Class 6 Science Chapter 5 | Curiosity Chapter 5", "Prep Yourself", "xvM1VvNtrEQ")],
+        "Materials Around Us": [indian_channel("Materials Around Us | Class 6 Science Chapter 6 | One-Shot | NCERT Curiosity", "Ignited Minds", "SRiqh5joLMI")],
+        "Temperature and its Measurement": [indian_channel("Temperature and Its Measurement | Chapter 7 Oneshot | Class 6 Science Curiosity", "Concept Corridor", "IPhbphdF3w4")],
+        "A Journey through States of Water": [indian_channel("A Journey through States of Water, Full Explanation, Chapter 8, Science(Curiosity), Class-6, NCERT", "UniEduVersity", "aFwyDL-7jRg")],
+        "Methods of Separation in Everyday Life": [indian_channel("Chapter 9: Methods of Separation in Everyday Life | Class 6 Science | Curiosity", "EduRev Class 6-10", "3SieoPwKvf8")],
+        "Living Creatures: Exploring their Characteristics": [indian_channel("Class 6 | Science | Chapter 10 Explaination | Living Creatures Exploring their Characteristics NCERT", "Wisdom of Avyaan", "8DR3iwfj4hI")],
+        "Nature’s Treasures": [indian_channel("Nature's Treasures | Class 6 Science Chapter 11 | One-Shot | NCERT Curiosity", "Ignited Minds", "Pwvfi9ITgDA")],
+        "Beyond Earth": [indian_channel("Class 6 | Science Curiosity Chapter-12 | Beyond Earth", "NEW AGE Golden School Books", "E-SXuw7182E")],
+    },
+    "Social Science": {
+        # NCERT's new integrated Grade 6 book ("Exploring Society: India and Beyond", 2025-26).
+        # Live labels stack multiple prefixes (e.g. "Text Book - Part 1 - 1. Locating Places on
+        # the Earth", "History - Part 4 - 4. Timeline and Sources of History") — handled by the
+        # fixed-point prefix-stripping loop in get_learning_resources(), so chapters are keyed
+        # by plain title only. Single source per chapter; "Ignited Minds" covers 11 of 14
+        # chapters consistently. Every video verified live via YouTube's oEmbed endpoint.
+        "Locating Places on the Earth": [indian_channel("Locating Places on the Earth | Class 6 Social Science Chapter 1 | One-Shot | NCERT", "Ignited Minds", "3IkPbEZvEN0")],
+        "Oceans and Continents": [indian_channel("Oceans and Continents | Class 6 Social Science Chapter 2 | One-Shot | NCERT", "Ignited Minds", "uEPmPXlw-1Q")],
+        "Landforms and Life": [indian_channel("Landforms and Life - One Shot Revision | Class 6 Social Science Chapter 3 | CBSE 2025-26", "Magnet Brains", "U4hS9mwKaFw")],
+        "Timeline and Sources of History": [indian_channel("Timeline and Sources of History | Class 6 Social Science Chapter 4 | One-Shot | NCERT", "Ignited Minds", "RB-TnpbHWwI")],
+        "India, That Is Bharat": [indian_channel("India That is Bharat | Class 6 SST Chapter 5 Explanation | Full Chapter in Simple Language", "Fidfusion by Neha", "qiV6Ej5OWH4")],
+        "The Beginnings of Indian Civilisation": [indian_channel("Class 6 The Beginnings of Indian Civilisation - Class 6 exploring society India and beyond chapter 6", "Learning Notebook", "9PaBhIaWcbE")],
+        "India's Cultural Roots": [indian_channel("India's Cultural Roots | Class 6 Social Science Chapter 7 | One-Shot | NCERT", "Ignited Minds", "UuqO1z52o3g")],
+        "Unity in Diversity, or 'Many in the One'": [indian_channel("Unity in Diversity, or 'Many in the One' | Class 6 Social Science Chapter 8 | One-Shot | NCERT", "Ignited Minds", "_u8Eh_Vbt1c")],
+        "Family and Community": [indian_channel("Family and Community | Class 6 Social Science Chapter 9 | One-Shot | NCERT", "Ignited Minds", "eouovVa5vrU")],
+        "Grassroots Democracy — Part 1: Governance": [indian_channel("Grassroots Democracy- Part-1 Governance", "Virtual Classes", "nqBBLpwrapY")],
+        "Grassroots Democracy — Part 2: Local Government in Rural Areas": [indian_channel("Grassroots Democracy - Part 2: Local Government in Rural Areas | Class 6 Social Science Chapter 11", "Ignited Minds", "UBnbvN0OE3Y")],
+        "Grassroots Democracy — Part 3: Local Government in Urban Areas": [indian_channel("Grassroots Democracy - Part 3: Local Government in Urban Areas | Class 6 Social Science Chapter 12", "Ignited Minds", "kwgJTZugFF0")],
+        "The Value of Work": [indian_channel("The Value of Work | Class 6 Social Science Chapter 13 | One-Shot | NCERT", "Ignited Minds", "nGbaX5z_UIQ")],
+        "Economic Activities Around Us": [indian_channel("Economic Activities Around Us | Class 6 Social Science Chapter 14 | One-Shot | NCERT", "Ignited Minds", "PLBqD2ML2qc")],
+    },
+    "English": {
+        # NCERT "Poorvi" (2025-26) — the live dropdown groups by unit ("Unit N: <theme>"), not
+        # by the 3-4 chapters within each unit, so each entry covers the unit's first
+        # chapter/poem as a representative single source. Magnet Brains covers 4 of 5 units
+        # consistently. Every video verified live via YouTube's oEmbed endpoint.
+        "Fables and Folk Tales": [indian_channel("A Bottle of Dew - Explanation | Class 6 English (Poorvi) Unit 1 | CBSE 2025-26", "Magnet Brains", "Y8XbvQbubrk")],
+        "Friendship": [indian_channel("The Unlikely Best Friends - Explanation (Part 1) | Class 6 English (Poorvi) Unit 2 | CBSE 2025-26", "Magnet Brains", "-IbEhZUIRos")],
+        "Nurturing Nature": [indian_channel("Neem Baba - Poem Explanation (Part 1) | Class 6 English (Poorvi) Unit 3 | CBSE 2025-26", "Magnet Brains", "tIvMRsuQdh8")],
+        "Sports and Wellness": [indian_channel("Change of Heart | Class 6 English Unit 4 Poorvi | CBSE NCERT Story Explanation", "Smart English Resources Academy", "XapnwOiBCnc")],
+        "Culture and Tradition": [indian_channel("Hamara Bharat Incredible India! - Explanation (Part 1) | Class 6 English (Poorvi) Unit 5 | CBSE 2025", "Magnet Brains", "uB8MkLc5s-U")],
+        "Grammar": list(GRAMMAR_RESOURCES),
+        "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
+        "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
+        "Active and Passive Voice": GRAMMAR_TOPIC_RESOURCES.get("Active and Passive Voice", []),
+        "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
+        "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
+    },
+    "Hindi": {
+        # NCERT "Malhar" (2025-26). Live RAG-extracted chapter labels are OCR-garbled
+        # (e.g. "समरिया और मबहू नृत्य" for "सत्रिया और बिहू नृत्य", "मैया मैं नमहं
+        # माखन खायो" for "मैया मैं नहिं माखन खायो", "परीक्ा" for "परीक्षा",
+        # "हिंदुस्ान" for "हिंदुस्तान") — keyed by the exact garbled text (after the bare
+        # "N. " prefix strip) rather than the corrected title, matching the approach used
+        # for Grade 7/9/10 Hindi. Every video verified live via YouTube's oEmbed endpoint.
+        "मातृभूमि": [indian_channel("Class 6 | Hindi Malhar Chapter-1 | Maatrbhoomi | मातृभूमि", "NEW AGE Golden School Books", "e86PJyiI8qY")],
+        "गोल": [indian_channel("NCERT Class 6 Hindi Malhar chapter 2 गोल Questions Answers Full Solution", "Wise Brainer", "_el2XHqgpJY")],
+        "पहली बूँद": [indian_channel("पहली बूँद / Class 6 Hindi Chapter 3 / pehli boond / मल्हार / Explanation", "Better Kids Education", "QgPSbsVXDXk")],
+        "हार की जीत": [indian_channel("हार की जीत Haar Ki Jeet (Malhar) - Explanation - Chapter 4, Class 6 Hindi NCERT, CBSE", "Hindi Class 6th", "Lgn4R5s1l6I")],
+        "रहीम के दोहे": [indian_channel("Class 6 | Hindi Malhar Chapter-5 | Rahim Ke Dohe | रहीम के दोहे", "NEW AGE Golden School Books", "nVOuFjq0fBY")],
+        "मेरी माँ": [indian_channel("मेरी माँ Meri Maa (Malhar) - Explanation - Chapter 6, Class 6 Hindi NCERT, CBSE", "Hindi Class 6th", "rQMD7Kwh4Is")],
+        "जलाते चलो": [indian_channel("Class 6 Hindi | Chapter -7|जलाते चलो || सारांश||Explanation |MALHAR", "NAMDEV CLASSES SAGAR", "5rhiyLL5j44")],
+        "समरिया और मबहू नृत्य": [indian_channel("सत्रिया और बिहू नृत्य - Explanation। Class 6 Hindi Malhar Chapter 8। Malhar। Sattriya & Bihu Nritya", "Princewood Institute", "yFS7rKXaHWU")],
+        "मैया मैं नमहं माखन खायो": [indian_channel("मैया मैं नहि माखन खायो ( chapter –9) ll New NCERT Hindi Book मल्हार ll class -6th", "Krishnam arts & Studies", "75OT8JvRkkc")],
+        "परीक्ा": [indian_channel("परीक्षा Pareeksha (Malhar) - Explanation - Chapter 10, Class 6 Hindi NCERT, CBSE", "Hindi Class 6th", "aMI7DOrwl9A")],
+        "चेतक की वीरता": [indian_channel("NCERT Textbook_मल्हार_कक्षा-6_हिन्दी_पाठ -11_चेतक की वीरता Chetak ki Veerta", "NCERT OFFICIAL", "K0SLiSySvXo")],
+        "हिंद महासागर में छोटा-सा हिंदुस्ान": [indian_channel("हिंद महासागर में छोटा-सा हिंदुस्तान - NCERT Solutions | कक्षा 6 हिंदी मल्हार पाठ 12 | CBSE", "Magnet Brains", "t38D08YkknY")],
+        "पेड़ की बात": [indian_channel("पेड़ की बात Ped ki Baat (Malhar) - Explanation - Chapter 13, Class 6 Hindi NCERT, CBSE", "Hindi Class 6th", "6ZQk-X3CgJk")],
+    },
+}
+
 # ── Grade-aware resource lookup ───────────────────────
 GRADE_RESOURCES_MAP = {
+    "Grade 6": GRADE_6_RESOURCES,
     "Grade 7": GRADE_7_RESOURCES,
     "Grade 8": GRADE_8_RESOURCES,
     "Grade 10": GRADE_10_RESOURCES,
@@ -1991,15 +2089,23 @@ def _strip_book_source_prefix(chapter):
 
 
 def _strip_chapter_number_prefix(chapter):
-    """Remove a 'Chapter N: ' / 'Unit N: ' / 'अध्याय N: ' / 'पाठ N: ' prefix from a chapter label.
+    """Remove a 'Chapter N: ' / 'Chapter N ' / 'Unit N: ' / 'अध्याय N: ' / 'पाठ N: ' / a bare
+    'N. ' prefix from a chapter label.
 
     RAG-uploaded chapters are numbered in upload order, which curated resource keys
     can't always predict in advance. Stripping the number lets a plain-title key
     (e.g. "Fog", "सूरदास") match regardless of what chapter number the upload landed
-    on, and regardless of whether the subject numbers chapters "Chapter", "Unit", or
-    in Hindi ("अध्याय" or "पाठ").
+    on, regardless of whether the subject numbers chapters "Chapter", "Unit", or in
+    Hindi ("अध्याय" or "पाठ"), and regardless of whether the separator is a colon/dash
+    or just a space (e.g. "Chapter 3 Number Play"), or the label is just "N. Title".
     """
-    return re.sub(r"^\s*(?:chapter|unit|अध्याय|पाठ)\s*\d+\s*[-:]\s*", "", str(chapter or ""), flags=re.IGNORECASE).strip()
+    cleaned = re.sub(
+        r"^\s*(?:chapter|unit|अध्याय|पाठ)\s*\d+\s*(?:[-:]\s*|\s+)",
+        "",
+        str(chapter or ""),
+        flags=re.IGNORECASE,
+    ).strip()
+    return re.sub(r"^\s*\d+\s*[.)]\s*", "", cleaned).strip()
 
 
 def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
@@ -2017,9 +2123,20 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
     4. Fallback YouTube search
     """
     cleaned_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
-    source_stripped = _strip_book_source_prefix(_strip_part_prefix(cleaned_chapter))
-    number_stripped = _strip_chapter_number_prefix(source_stripped)
-    lookup_candidates = list(dict.fromkeys([cleaned_chapter, source_stripped, number_stripped]))
+
+    # Prefixes can appear in either order (e.g. "Text Book - Part 1 - 1. Title" vs
+    # "Part 1 - Text Book - Chapter 1: Title"), so strip all three repeatedly until
+    # the label stops changing rather than assuming a fixed order.
+    fully_stripped = cleaned_chapter
+    for _ in range(4):
+        _next = _strip_chapter_number_prefix(
+            _strip_book_source_prefix(_strip_part_prefix(fully_stripped))
+        )
+        if _next == fully_stripped:
+            break
+        fully_stripped = _next
+
+    lookup_candidates = list(dict.fromkeys([cleaned_chapter, fully_stripped]))
 
     def lookup(mapping):
         for candidate in lookup_candidates:
