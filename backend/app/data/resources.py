@@ -930,59 +930,59 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
     "Physics": {
         "Electric Charges and Fields": [
             {"title": "CrashCourse Physics — Electric Charge (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6BHbJ_gBOk0"},
-            {"title": "Khan Academy — Electric Charge and Electric Force (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YG4_4n46Scc"},
+            {"title": "Khan Academy — Electric Charge and Electric Force (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WOEvvHbc240"},
         ],
         "Electrostatic Potential and Capacitance": [
             {"title": "CrashCourse Physics — Electric Potential (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=tuSC0ObB-qY"},
-            {"title": "Khan Academy — Electric Potential Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=zqGvUbvVQXg"},
+            {"title": "Khan Academy — Electric Potential Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6BHbJ_gBOk0"},
         ],
         "Current Electricity": [
             {"title": "CrashCourse Physics — Electric Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4i1MUWJoI0U"},
-            {"title": "Khan Academy — Introduction to Electric Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YSX9-vkMhLY"},
+            {"title": "Khan Academy — Introduction to Electric Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=p1woKh2mdVQ"},
         ],
         "Moving Charges and Magnetism": [
             {"title": "CrashCourse Physics — Magnetism (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TFlVWf8JX4A"},
-            {"title": "Khan Academy — Magnetic Force on Moving Charge (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uFqEXHECvO0"},
+            {"title": "Khan Academy — Magnetic Force on Moving Charge (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WOEvvHbc240"},
         ],
         "Magnetism and Matter": [
             {"title": "CrashCourse Physics — Magnetism (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TFlVWf8JX4A"},
-            {"title": "Khan Academy — Magnetic Force on Current Carrying Wire (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qYkqXq9CZNY"},
+            {"title": "Khan Academy — Magnetic Force on Current Carrying Wire (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=p1woKh2mdVQ"},
         ],
         "Electromagnetic Induction": [
             {"title": "CrashCourse Physics — Electromagnetic Induction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=mdulzEfQXDE"},
-            {"title": "Khan Academy — Introduction to Electromagnetic Induction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LqFLmqMFKGM"},
+            {"title": "Khan Academy — Introduction to Electromagnetic Induction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ZrMltpK6iAw"},
         ],
         "Alternating Current": [
             {"title": "CrashCourse Physics — AC Circuits (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ZrMltpK6iAw"},
-            {"title": "Khan Academy — AC Circuits and Alternating Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uoFB4kJsIko"},
+            {"title": "Khan Academy — AC Circuits and Alternating Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HXOok3mfMLM"},
         ],
         "Electromagnetic Waves": [
             {"title": "CrashCourse Physics — Electromagnetic Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HXOok3mfMLM"},
-            {"title": "Khan Academy — Introduction to Electromagnetic Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=FMVD-D65-l8"},
+            {"title": "Khan Academy — Introduction to Electromagnetic Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=s94suB5uLWw"},
         ],
         "Ray Optics and Optical Instruments": [
             {"title": "CrashCourse Physics — Geometric Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=g-wjP1otQWI"},
-            {"title": "Khan Academy — Reflection and Refraction of Light (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DveX84Rszjo"},
+            {"title": "Khan Academy — Reflection and Refraction of Light (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-w-VTw0tQlE"},
         ],
         "Wave Optics": [
             {"title": "CrashCourse Physics — Wave Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=s94suB5uLWw"},
-            {"title": "Khan Academy — Young Double Slit Experiment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Iuv6hY6zsd0"},
+            {"title": "Khan Academy — Young Double Slit Experiment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=g-wjP1otQWI"},
         ],
         "Dual Nature of Radiation and Matter": [
             {"title": "CrashCourse Physics — Quantum Mechanics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7kb1VT0J3DE"},
-            {"title": "Khan Academy — Photoelectric Effect (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=v-1zjsqaAoE"},
+            {"title": "Khan Academy — Photoelectric Effect (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VYxYuaDvdM0"},
         ],
         "Atoms": [
             {"title": "CrashCourse Physics — Nuclear Physics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=K40lNL3KsJ4"},
-            {"title": "Khan Academy — Bohr Model of Hydrogen (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GD1NJ7HFO6s"},
+            {"title": "Khan Academy — Bohr Model of Hydrogen (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Oh4m8Ees-3Q"},
         ],
         "Nuclei": [
             {"title": "CrashCourse Physics — Radioactivity (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lUhJL7o6_cA"},
-            {"title": "Khan Academy — Nuclear Binding Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LLBZ3Ec_Sro"},
+            {"title": "Khan Academy — Nuclear Binding Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VYxYuaDvdM0"},
         ],
         "Semiconductor Electronics: Materials, Devices and Simple Circuits": [
             {"title": "CrashCourse Physics — Quantum Mechanics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qO_W70VegbQ"},
-            {"title": "Khan Academy — Semiconductors Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DvkE48qW6iY"},
+            {"title": "Khan Academy — Semiconductors Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7kb1VT0J3DE"},
         ],
     },
     "Chemistry": {
