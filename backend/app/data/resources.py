@@ -1226,8 +1226,8 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
 
     # Build final list
     if resources:
-        # Grade 11: Indian + International only — no NCERT link injected
-        result = list(resources) if grade == "Grade 11" else add_ncert_link(list(resources))
+        # Grade 11 & 12: CrashCourse + KA only — no NCERT link injected
+        result = list(resources) if grade in ("Grade 11", "Grade 12") else add_ncert_link(list(resources))
     else:
         grade_query = grade.lower().replace("grade", "class")
         query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
@@ -1238,7 +1238,7 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
                 "url": f"https://www.youtube.com/results?search_query={query}",
             },
         ]
-        if grade != "Grade 11":
+        if grade not in ("Grade 11", "Grade 12"):
             result.append(NCERT_RESOURCE)
 
     # Append NCERT Exemplar link for Maths/Science (Grade 8-10)
