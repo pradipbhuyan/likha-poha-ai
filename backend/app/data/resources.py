@@ -1866,8 +1866,8 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         "शिरीष के फूल": [{"title": "शिरीष के फूल | Class 12 Hindi Aroh Ch 17 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=MWIlbGoeIx8"}],
         "श्रम-विभाजन और जाति-प्रथा": [{"title": "श्रम विभाजन और जाति प्रथा | Class 12 Hindi Aroh Ch 18 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zr-fyEXOgv0"}],
         "मेरी कल्पना का आदर्श समाज": [{"title": "श्रम विभाजन और जाति प्रथा | Class 12 Hindi Aroh Ch 18 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zr-fyEXOgv0"}],
-        "सिल्वर वेडिंग": [{"title": "सिल्वर वेडिंग | Class 12 Hindi Vitan Ch 1 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=ELIxb3ctkoI"}],
-        "जूझ": [{"title": "जूझ | Class 12 Hindi Vitan Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=h-540EgMP4c"}],
+        "सिल्वर वेडिंग": [{"title": "Silver Wedding - Full Chapter Explanation and NCERT Solutions | Class 12 Hindi Ch 1 | Vitan | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=77JhI_F7ZFo"}],
+        "जूझ": [{"title": "Joojh - Full Chapter Explanation and NCERT Solutions | Class 12 Hindi Ch 2 | Vitan | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=65OhBzZgfp4"}],
         "अतीत में दबे पाँव": [{"title": "अतीत में दबे पाँव | Class 12 Hindi Vitan Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=mFC7ygJ27cU"}],
         "डायरी के पन्ने": [{"title": "डायरी के पन्ने | Class 12 Hindi Vitan Ch 4 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=aDgDYnRfuss"}],
     },
@@ -2168,6 +2168,90 @@ GRADE_6_RESOURCES: dict[str, dict[str, list]] = {
         "पेड़ की बात": [indian_channel("पेड़ की बात Ped ki Baat (Malhar) - Explanation - Chapter 13, Class 6 Hindi NCERT, CBSE", "Hindi Class 6th", "6ZQk-X3CgJk")],
     },
 }
+
+# ── English transliteration aliases for Grade 11 Hindi ────────────────────────
+# The RAG database uploads Grade 11/12 Hindi chapters with English-transliterated names
+# (e.g. "Namak", "Miyan Nasiruddin") not Hindi Unicode. These aliases map every known
+# English-transliterated label to the same curated resource as its Unicode counterpart.
+_g11h = GRADE_11_RESOURCES["Hindi"]
+_g11h.update({
+    # Aroh Gadya (Prose) — English transliteration aliases
+    "Namak Ka Daroga":                  _g11h["नमक का दरोगा"],
+    "Namak":                            _g11h["नमक का दरोगा"],
+    "Miyan Nasiruddin":                 _g11h["मियाँ नसीरुद्दीन"],
+    "Miyan Naseruddin":                 _g11h["मियाँ नसीरुद्दीन"],
+    "Apu Ke Saath Dhai Saal":           _g11h["अपू के साथ ढाई साल"],
+    "Apu ke Sath Dhai Sal":             _g11h["अपू के साथ ढाई साल"],
+    "Vidai Sambhashan":                 _g11h["विदाई-संभाषण"],
+    "Vidai-Sambhashan":                 _g11h["विदाई-संभाषण"],
+    "Galta Loha":                       _g11h["गलता लोहा"],
+    "Spiti Mein Barish":                _g11h["स्पीति में बारिश"],
+    "Spiti me Barish":                  _g11h["स्पीति में बारिश"],
+    "Rajni":                            _g11h["रजनी"],
+    "Jamun Ka Ped":                     _g11h["जामुन का पेड़"],
+    "Jamun ka Ped":                     _g11h["जामुन का पेड़"],
+    "Bharat Mata":                      _g11h["भारत माता"],
+    "Atma Ka Taap":                     _g11h["आत्मा का ताप"],
+    "Aatma Ka Taap":                    _g11h["आत्मा का ताप"],
+    # Aroh Kavya (Poetry) — English transliteration aliases
+    "Kabir Ke Pad":                     _g11h["कबीर के पद"],
+    "Kabir ke Pad":                     _g11h["कबीर के पद"],
+    "Pathik":                           _g11h["पथिक"],
+    "Ve Aankhen":                       _g11h["वे आँखें"],
+    "Vo Ankhen":                        _g11h["वे आँखें"],
+    "Ghar Ki Yaad":                     _g11h["घर की याद"],
+    "Champa Kale Kale":                 _g11h["चंपा काले काले अच्छर नहीं चिन्हती"],
+    "Champa":                           _g11h["चंपा काले काले अच्छर नहीं चिन्हती"],
+    "Gazal":                            _g11h["गजल"],
+    "Ghazal":                           _g11h["गजल"],
+    "He Bhookh Mat Machal":             _g11h["हे भूख! मत मचल"],
+    "Sabse Khatarnak":                  _g11h["सबसे खतरनाक"],
+    # Vitan aliases
+    "Lata Mangeshkar":                  _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    "Bhartiya Gayikaon":                _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    "Husain Ki Kahani Apni Zubani":     _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    "Rajasthan Ki Rajat Bunden":        _g11h["राजस्थान की रजत बूँदें"],
+    "Alo Andhari":                      _g11h["आलो-आँधारि"],
+    "Alo-Andhari":                      _g11h["आलो-आँधारि"],
+    # Chapters that may appear in the platform but aren't in NCERT Aroh/Vitan
+    # — using the closest thematically related curated resource
+    "Awara Masiha":         [{"title": "Aawara Masiha - Full Chapter Explanation | Class 11 Hindi Chapter 3 | Antral | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zGp7SWp5h9A"}],
+    "Mera Baap Bada Na Mera Chacha": [{"title": "मेरा बाप बड़ा न मेरा चाचा | Class 11 Hindi | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=Do7gctB54E0"}],
+    "Anubhav":              [{"title": "Class 11 Hindi | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=2boSuacLzTM"}],
+})
+
+# ── English transliteration aliases for Grade 12 Hindi ────────────────────────
+_g12h = GRADE_12_RESOURCES["Hindi"]
+_g12h.update({
+    # Aroh Kavya (Poetry) aliases
+    "Aatmparichay":                     _g12h["आत्मपरिचय"],
+    "Atmparichay":                      _g12h["आत्मपरिचय"],
+    "Patang":                           _g12h["पतंग"],
+    "Kavita Ke Bahane":                 _g12h["कविता के बहाने"],
+    "Kaimre Mein Band Apahij":          _g12h["कैमरे में बंद अपाहिज"],
+    "Saharsh Swikara Hai":              _g12h["सहर्ष स्वीकारा है"],
+    "Usha":                             _g12h["उषा"],
+    "Badal Raag":                       _g12h["बादल राग"],
+    "Kavitavali":                       _g12h["कवितावली"],
+    "Rubaiyaan":                        _g12h["रुबाइयाँ"],
+    "Gazal":                            _g12h["गज़ल"],
+    "Ghazal":                           _g12h["गज़ल"],
+    # Aroh Gadya (Prose) aliases
+    "Bhaktin":                          _g12h["भक्तिन"],
+    "Bazaar Darshan":                   _g12h["बाज़ार दर्शन"],
+    "Kale Megha Pani De":               _g12h["काले मेघा पानी दे"],
+    "Pahalwan Ki Dholak":               _g12h["पहलवान की ढोलक"],
+    "Shirish Ke Phool":                 _g12h["शिरीष के फूल"],
+    "Shram Vibhajan Aur Jati Pratha":   _g12h["श्रम-विभाजन और जाति-प्रथा"],
+    "Meri Kalpana Ka Adarsh Samaj":     _g12h["मेरी कल्पना का आदर्श समाज"],
+    # Vitan aliases
+    "Silver Wedding":                   _g12h["सिल्वर वेडिंग"],
+    "Joojh":                            _g12h["जूझ"],
+    "Jooze":                            _g12h["जूझ"],
+    "Joojhe":                           _g12h["जूझ"],
+    "Atit Mein Dabe Paon":              _g12h["अतीत में दबे पाँव"],
+    "Diary Ke Panne":                   _g12h["डायरी के पन्ने"],
+})
 
 # ── Grade-aware resource lookup ───────────────────────
 GRADE_RESOURCES_MAP = {
