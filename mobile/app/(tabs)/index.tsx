@@ -30,6 +30,14 @@ interface DashboardSummary {
   test_history?: Array<{ subject: string; percentage: number; created_at: string }>;
   streak_days?: number;
   completed_chapters?: number;
+  weak_topics?: Array<{ subject: string; chapter: string; score: number }>;
+}
+
+interface NearestExam {
+  subject: string;
+  title: string;
+  exam_date: string;
+  days_until: number;
 }
 
 // Returns "Good morning", "Good afternoon", "Good evening", or "Good night"
@@ -49,6 +57,7 @@ export default function HomeScreen() {
   const [error, setError] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [googleName, setGoogleName] = useState("");  // full_name from Google user_metadata
+  const [nearestExam, setNearestExam] = useState<NearestExam | null>(null);
 
   async function loadDashboard() {
     try {
@@ -63,10 +72,14 @@ export default function HomeScreen() {
       if (gName) setGoogleName(gName);
 
       // Try backend summary; on failure, build a minimal response from Supabase session
-      try {
-        const result = await authFetch("/api/student/dashboard/summary");
-        setData(result);
-      } catch {
+      const [summaryResult, examResult] = await Promise.allSettled([
+        authFetch("/api/student/dashboard/summary"),
+        authFetch("/api/student/exams"),
+      ]);
+
+      if (summaryResult.status === "fulfilled") {
+        setData(summaryResult.value);
+      } else {
         // Backend unreachable — show dashboard from Supabase session data
         const email = session?.user?.email ?? "";
         const username = gName || meta.username || meta.display_name || email.split("@")[0] || "Student";
@@ -84,6 +97,9 @@ export default function HomeScreen() {
           test_history: [],
         });
       }
+
+      // Exam countdown is supplementary — a failed fetch just hides the banner
+      setNearestExam(examResult.status === "fulfilled" ? (examResult.value?.nearest ?? null) : null);
     } catch (err: any) {
       setError(err.message ?? "");
     } finally {
@@ -157,6 +173,7 @@ export default function HomeScreen() {
   // Resolve stats
   const streakDays = student?.study_streak_days ?? (data as any).streak_days ?? 0;
   const lessonsCompleted = student?.lessons_completed ?? (data as any).completed_chapters ?? 0;
+  const topWeakTopic = data.weak_topics?.[0];
 
   return (
     <ScrollView style={s.container} contentContainerStyle={s.content}
@@ -174,12 +191,37 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
+      {/* Next exam countdown */}
+      {nearestExam && (
+        <View style={[s.examBanner, nearestExam.days_until <= 7 && s.examBannerUrgent]}>
+          <Feather name="calendar" size={16} color={nearestExam.days_until <= 7 ? "#dc2626" : BRAND_COLOR} />
+          <Text style={[s.examBannerText, nearestExam.days_until <= 7 && s.examBannerTextUrgent]}>
+            {nearestExam.subject || nearestExam.title} exam in {nearestExam.days_until === 0 ? "today" : `${nearestExam.days_until} day${nearestExam.days_until === 1 ? "" : "s"}`}
+          </Text>
+        </View>
+      )}
+
       {/* Stats */}
       <View style={s.statsRow}>
         <StatCard icon="zap" label="Day streak" value={String(streakDays)} color="#f59e0b" />
         <StatCard icon="check-circle" label="Lessons done" value={String(lessonsCompleted)} color="#16a34a" />
         <StatCard icon="bar-chart-2" label="Tests taken" value={String(testHistory.length)} color={BRAND_COLOR} />
       </View>
+
+      {/* Focus today — top weak topic, if any */}
+      {topWeakTopic && (
+        <TouchableOpacity style={s.focusCard} onPress={() => router.push("/(tabs)/lessons")}>
+          <View style={s.focusIconBox}>
+            <Feather name="target" size={20} color="#dc2626" />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={s.focusLabel}>Focus today</Text>
+            <Text style={s.focusChapter} numberOfLines={1}>{topWeakTopic.chapter}</Text>
+            <Text style={s.focusSubject}>{topWeakTopic.subject}</Text>
+          </View>
+          <Feather name="chevron-right" size={16} color="#9ca3af" />
+        </TouchableOpacity>
+      )}
 
       {recentProgress.length > 0 && (
         <Section icon="book-open" title="Continue Learning">
@@ -278,6 +320,17 @@ const s = StyleSheet.create({
   greeting: { fontSize: 22, fontWeight: "800", color: "#111827", letterSpacing: -0.3 },
   gradeText: { fontSize: 13, color: "#6b7280", marginTop: 3 },
   signOutBtn: { padding: 8, borderRadius: 8, backgroundColor: "#fef2f2" },
+  // Exam countdown banner
+  examBanner: { flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: "rgba(99,102,241,.08)", borderRadius: 10, paddingVertical: 10, paddingHorizontal: 12, marginBottom: 16 },
+  examBannerUrgent: { backgroundColor: "#fef2f2" },
+  examBannerText: { fontSize: 12.5, fontWeight: "700", color: BRAND_COLOR },
+  examBannerTextUrgent: { color: "#dc2626" },
+  // Focus today
+  focusCard: { flexDirection: "row", alignItems: "center", gap: 12, backgroundColor: "#fff", borderRadius: 14, padding: 14, marginBottom: 20, borderWidth: 1, borderColor: "#fecaca" },
+  focusIconBox: { width: 40, height: 40, borderRadius: 10, backgroundColor: "#fef2f2", alignItems: "center", justifyContent: "center" },
+  focusLabel: { fontSize: 10, fontWeight: "700", color: "#dc2626", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 },
+  focusChapter: { fontSize: 14, fontWeight: "700", color: "#111827" },
+  focusSubject: { fontSize: 12, color: "#6b7280", marginTop: 1 },
   // Stats
   statsRow: { flexDirection: "row", gap: 10, marginBottom: 20 },
   statCard: { flex: 1, backgroundColor: "#fff", borderRadius: 14, padding: 14, alignItems: "center", borderWidth: 1, borderColor: "#e5e7eb", gap: 4 },

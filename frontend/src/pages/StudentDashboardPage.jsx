@@ -18,6 +18,8 @@ function greet(){var h=new Date().getHours();return h<12?"Good morning":h<17?"Go
 var SUBJ_COLORS={"Mathematics":"#6366f1","Science":"#22c55e","English":"#f59e0b","Hindi":"#ef4444","Social Science":"#0ea5e9","Maths":"#6366f1"};
 function subjCol(s){return SUBJ_COLORS[s]||"#6366f1";}
 function safePct(v){if(v==null)return null;var n=parseFloat(v);return(isNaN(n)||n<0||n>100)?null:Math.round(n);}
+var ACTION_TO_PAGE={"mock_test":"mockTest","subscription":"subscriptionPlans","lessons":"lessons"};
+function actionToPage(action){return ACTION_TO_PAGE[action]||"lessons";}
 
 function ProgBar({pct=0,color="#6366f1",height=6}){
   return(
@@ -310,7 +312,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
               <div style={{fontSize:".82rem",marginBottom:6}}>{recs[0].body||"Keep up the great work!"}</div>
               <span style={{fontSize:".7rem",fontWeight:700,padding:"2px 8px",borderRadius:10,background:"#6366f118",color:"#6366f1"}}>{recs[0].title}</span>
               <div style={{marginTop:8}}>
-                <button onClick={function(){nav(recs[0].action||"lessons");}} style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,fontSize:".78rem",cursor:"pointer",fontFamily:"inherit"}}>
+                <button onClick={function(){nav(actionToPage(recs[0].action));}} style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,fontSize:".78rem",cursor:"pointer",fontFamily:"inherit"}}>
                   → {recs[0].action==="mock_test"?"Take Mock Test":recs[0].action==="subscription"?"Upgrade Plan":"Continue Lesson"}
                 </button>
               </div>
@@ -453,7 +455,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
             {(act.feature_counts?.doubt||0)>0?"Continue your last chat":"Start asking doubts"}
           </div>
           {isFree&&feat.ask_doubts_limited&&<div style={{fontSize:".7rem",color:"#f59e0b",marginBottom:6}}>Limited (Free Tier)</div>}
-          <SdBtn small outline onClick={function(){nav("askDoubt");}}>Continue Chat →</SdBtn>
+          <SdBtn small outline onClick={function(){nav("doubt");}}>Continue Chat →</SdBtn>
         </SdCard>
         {/* Upcoming Exams — real data */}
         <SdCard testid="upcoming-exams-card">
