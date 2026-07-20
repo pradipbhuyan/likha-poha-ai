@@ -4,134 +4,165 @@ Free learning resources for the Grade 9 CBSE tutor app.
 Use get_learning_resources(subject, chapter) in app.py so every chapter shows
 curated links when available and safe fallback links otherwise.
 """
+import re
 from urllib.parse import quote_plus
 
-NCERT_RESOURCE = {
-    "title": "NCERT Official Textbooks",
-    "type": "website",
-    "url": "https://ncert.nic.in/textbook.php",
-}
 
-FREE_COMMON_RESOURCES = [
-    NCERT_RESOURCE,
-    {
-        "title": "PhET Free Science and Maths Simulations",
-        "type": "website",
-        "url": "https://phet.colorado.edu/",
-    },
+def likhapoha(chapter_label, video_id):
+    """Original LikhaPoha AI video for a chapter — always kept when it exists."""
+    return {
+        "title": f"LikhaPoha AI — {chapter_label}",
+        "type": "youtube",
+        "url": f"https://youtu.be/{video_id}",
+        "role": "likhapoha",
+        "channel": "LikhaPoha AI",
+    }
+
+
+def indian_channel(title, channel, video_id, note=None):
+    """A textbook-aligned (or closest available) Indian YouTube explainer."""
+    resource = {
+        "title": title,
+        "type": "youtube",
+        "url": f"https://www.youtube.com/watch?v={video_id}",
+        "role": "indian_channel",
+        "channel": channel,
+    }
+    if note:
+        resource["note"] = note
+    return resource
+
+
+def international_channel(title, channel, video_id, note=None):
+    """A popular, active English-speaking international explainer for universal Maths/Science concepts."""
+    resource = {
+        "title": title,
+        "type": "youtube",
+        "url": f"https://www.youtube.com/watch?v={video_id}",
+        "role": "international_channel",
+        "channel": channel,
+    }
+    if note:
+        resource["note"] = note
+    return resource
+
+
+# ── Grade 9 Science (NCERT "Exploration" 2026-27 curriculum) — verified chapter-wise resources ──
+# Each chapter: LikhaPoha AI original (kept) + an Indian textbook-aligned channel + an
+# international explainer for the same universal concept. Every video below was verified live
+# via YouTube's oEmbed endpoint (title + channel) before being added — see chat history for the
+# verification pass. Chapters 7, 9, 10, 11, 12, 13 didn't have a new-curriculum video available
+# yet anywhere (the book is ~3 months old as of writing), so the Indian slot uses the closest
+# previous-edition chapter instead and is flagged with `note`.
+GRADE_9_SCIENCE_CHAPTERS = [
+    "Exploration: Entering the World of Secondary Science",
+    "Cell: The Building Block of Life",
+    "Tissues in Action",
+    "Describing Motion Around Us",
+    "Exploring Mixtures and Their Separation",
+    "How Forces Affect Motion",
+    "Work, Energy, and Simple Machines",
+    "Journey Inside the Atom",
+    "Atomic Foundations of Matter",
+    "Sound Waves: Characteristics and Applications",
+    "Reproduction: How Life Continues",
+    "Patterns in Life: Diversity and Classification",
+    "Earth as a System: Energy, Matter, and Life",
 ]
 
-
-def add_ncert_link(resources):
-    """Ensure every resource list includes NCERT in second position."""
-    filtered = [
-        resource
-        for resource in resources
-        if resource.get("url") != NCERT_RESOURCE["url"]
-    ]
-
-    if not filtered:
-        return [NCERT_RESOURCE]
-
-    return [filtered[0], NCERT_RESOURCE, *filtered[1:]]
+GRADE_9_SCIENCE_RESOURCE_LISTS = [
+    [  # 1. Exploration: Entering the World of Secondary Science
+        likhapoha("Exploration: Entering the World of Secondary Science", "egb7zve36RY"),
+        indian_channel("Class 9 Science Chapter 1 | Exploration: Entering the World of Secondary Science | Full Chapter", "Ncert Tutorial (ExamVita)", "G0JQm4WE1P4"),
+        international_channel("The Scientific Method: Crash Course Biology #2", "CrashCourse", "xOLcZMw0hd4"),
+        international_channel("The Times and Troubles of the Scientific Method", "SciShow", "i8wi0QnYN6s"),
+    ],
+    [  # 2. Cell: The Building Block of Life
+        likhapoha("Cell: The Building Block of Life", "kADIaUbwL00"),
+        indian_channel("9th Exploration Chapter 2 - Cell: The Building Block of Life | Full Chapter", "Ncert Tutorial (ExamVita)", "Zv0_C2xhbMQ"),
+        international_channel("Cell Organelles & Structures: Before the Bell Biology", "Amoeba Sisters", "R09zFIGevio"),
+        international_channel("Plant Cells: Crash Course Biology #6", "CrashCourse", "9UvlqAVCoqY"),
+    ],
+    [  # 3. Tissues in Action
+        likhapoha("Tissues in Action", "yJk4ZeSr9Bk"),
+        indian_channel("Chapter 3: Tissues in Action | Science Class 9 Exploration | NCERT Explainer", "EduRev Class 6-10", "GlNmyiBpY8w"),
+        international_channel("Body Tissues (the 4 Types)", "Amoeba Sisters", "5j8j7BhCCEg"),
+        international_channel("Tissues, Part 1: Crash Course Anatomy & Physiology #2", "CrashCourse", "i5tR3csCWYo"),
+    ],
+    [  # 4. Describing Motion Around Us
+        likhapoha("Describing Motion Around Us", "___wVgKghMA"),
+        indian_channel("9th Exploration Chapter 4 - Describing Motion Around Us | Full Chapter", "Ncert Tutorial (ExamVita)", "SsDg0p_UC1k"),
+        international_channel("Motion in a Straight Line: Crash Course Physics #1", "CrashCourse", "ZM8ECpBuQYE"),
+        international_channel("Position/Velocity/Acceleration Part 1: Definitions", "Professor Dave Explains", "4dCrkp8qgLU"),
+    ],
+    [  # 5. Exploring Mixtures and Their Separation
+        likhapoha("Exploring Mixtures and Their Separation", "1FS2LCZXd_A"),
+        indian_channel("9th Exploration Chapter 5 - Exploring Mixtures and Their Separation | Full Chapter", "Ncert Tutorial (ExamVita)", "JwmJZVsRIh8"),
+        international_channel("The Great Picnic Mix Up: Crash Course Kids #19.1", "Crash Course Kids", "jA0PzblYPUM", note="Foundational level (upper-primary), but directly on separating mixtures."),
+        international_channel("Separation of Mixtures Explained: Filtration, Evaporation, Distillation & Chromatography", "Periodic Table Talk", "tWd1biGv_nY"),
+    ],
+    [  # 6. How Forces Affect Motion
+        likhapoha("How Forces Affect Motion", "7Zd3nj4wZAE"),
+        indian_channel("How Force Affects Motion Full Chapter ONE SHOT | Class 9 | 2026-27", "PW Class 9 - NEEV (Physics Wallah)", "eMEzTPOYygM"),
+        international_channel("Newton's Laws: Crash Course Physics #5", "CrashCourse", "kKKM8Y-u7ds"),
+        international_channel("Friction: Crash Course Physics #6", "CrashCourse", "fo_pmp5rtzo"),
+    ],
+    [  # 7. Work, Energy, and Simple Machines
+        likhapoha("Work, Energy, and Simple Machines", "LxluQchwS54"),
+        indian_channel("Work And Energy Class 9 | Complete Chapter in One Shot | NCERT Covered", "Alakh Pandey (Physics Wallah)", "NOu2YoxVyvY", note="Previous NCERT edition's 'Work and Energy' chapter — doesn't cover the new Simple Machines section."),
+        international_channel("Work, Energy, and Power: Crash Course Physics #9", "CrashCourse", "w4QFJb9a8vo"),
+        international_channel("Work and Energy", "Professor Dave Explains", "zVRH9d5PW8g"),
+    ],
+    [  # 8. Journey Inside the Atom
+        likhapoha("Journey Inside the Atom", "9b-4THbqIT0"),
+        indian_channel("Class 9 Science Chapter 8 | Journey Inside The Atom | NCERT Exploration New Book 2026", "Mishti Classroom", "_8gxXTe34tk"),
+        international_channel("The Nucleus: Crash Course Chemistry #1", "CrashCourse", "FSyAehMdpyI"),
+        international_channel("History of Atomic Theory", "Professor Dave Explains", "9B3DDY27ZtE"),
+    ],
+    [  # 9. Atomic Foundations of Matter
+        likhapoha("Atomic Foundations of Matter", "AaEejyJllkk"),
+        indian_channel("Atoms And Molecules Class 9 | Complete Chapter in One Shot | NCERT Covered", "Alakh Pandey (Physics Wallah)", "YjDLkvTAYCU", note="Previous NCERT edition's 'Atoms and Molecules' chapter — covers most of the same bonding/atomic-theory concepts."),
+        international_channel("Atomic Hook-Ups — Types of Chemical Bonds: Crash Course Chemistry #22", "CrashCourse", "QXT4OVM4vXI"),
+        international_channel("The Chemical Bond: Covalent vs. Ionic and Polar vs. Nonpolar", "Professor Dave Explains", "PoQjsnQmxok"),
+    ],
+    [  # 10. Sound Waves: Characteristics and Applications
+        likhapoha("Sound Waves: Characteristics and Applications", "JgfIbwip9UI"),
+        indian_channel("SOUND Class 9 || Complete Chapter in One Shot || NCERT Covered", "Alakh Pandey (Physics Wallah)", "-sWDY2jc9nM", note="Previous NCERT edition's 'Sound' chapter — same core content as the new chapter."),
+        international_channel("Sound: Crash Course Physics #18", "CrashCourse", "qV4lR9EWGlY"),
+        international_channel("How Sound Works - The Physics of Sound Waves", "Mr. McMath", "QBYz82nS_xk"),
+    ],
+    [  # 11. Reproduction: How Life Continues
+        likhapoha("Reproduction: How Life Continues", "pTJ634ebToQ"),
+        indian_channel("How Do Organisms Reproduce Class 10 || Complete Chapter in One Shot || NCERT Covered", "Alakh Pandey (Physics Wallah)", "dCAnbdRAsFo", note="This topic moved down from the old Class 10 syllabus ('How do Organisms Reproduce?') into the new Class 9 book."),
+        international_channel("Asexual and Sexual Reproduction", "Amoeba Sisters", "fcGDUcGjcyk"),
+        international_channel("Sexual & Asexual Reproduction: How Animals Do It: Crash Course Biology #47", "CrashCourse", "ruZqnWHINWE"),
+    ],
+    [  # 12. Patterns in Life: Diversity and Classification
+        likhapoha("Patterns in Life: Diversity and Classification", "VHg5evqi4yU"),
+        indian_channel("Diversity in Living Organisms in One Shot - From Zero to Hero", "Physics Wallah Foundation", "ddfD5kgQOCs", note="Previous NCERT edition's 'Diversity in Living Organisms' chapter — same classification concepts."),
+        international_channel("Classification", "Amoeba Sisters", "DVouQRAKxYo"),
+        international_channel("Taxonomy: Life's Filing System - Crash Course Biology #19", "CrashCourse", "F38BmgPcZ_I"),
+    ],
+    [  # 13. Earth as a System: Energy, Matter, and Life
+        likhapoha("Earth as a System: Energy, Matter, and Life", "RRbu9RttTiY"),
+        indian_channel("Natural Resources in 1 Shot | CBSE Class 9 Biology | Science Chapter 14", "Vedantu CBSE", "0geP36CY1dE", note="This is an all-new chapter with no direct previous-edition equivalent; this video only overlaps partially (water/nitrogen cycle, atmosphere)."),
+        international_channel("What On Earth: Crash Course Kids #10.1", "Crash Course Kids", "YkrAIz_Ha6E", note="Foundational level (upper-primary), but directly covers Earth's spheres interacting as a system."),
+        international_channel("The Earth: Crash Course Astronomy #11", "CrashCourse", "w-9gDALvMF4"),
+    ],
+]
 
 LEARNING_RESOURCES = {
-    "Science": {
-        "Exploration: Entering the World of Secondary Science": [
-            {
-                "title": "LikhapohaAI - Exploration: Entering the World of Secondary Science",
-                "type": "youtube",
-                "url": "https://youtu.be/egb7zve36RY",
-            },
-        ],
-        "Chapter 1: Exploration: Entering the World of Secondary Science": [
-            {
-                "title": "LikhapohaAI - Exploration: Entering the World of Secondary Science",
-                "type": "youtube",
-                "url": "https://youtu.be/egb7zve36RY",
-            },
-        ],
-        "Matter in Our Surroundings": [
+    "Science": {},
+}
+
+for _index, _chapter_name in enumerate(GRADE_9_SCIENCE_CHAPTERS):
+    _resource_list = GRADE_9_SCIENCE_RESOURCE_LISTS[_index]
+    LEARNING_RESOURCES["Science"][_chapter_name] = _resource_list
+    LEARNING_RESOURCES["Science"][f"Chapter {_index + 1}: {_chapter_name}"] = _resource_list
+
+LEARNING_RESOURCES["Science"].update({
+    "Matter in Our Surroundings": [
             {"title": "YouTube Search - Class 9 Matter in Our Surroundings", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+matter+in+our+surroundings+full+chapter"},
-        ],
-        "Is Matter Around Us Pure": [
-            {"title": "LikhaPoha AI - Is Matter Around Us Pure | Class 9 Science Chapter 2", "type": "youtube", "url": "https://youtu.be/kADIaUbwL00"},
-        ],
-        "Atoms and Molecules": [
-            {"title": "LikhaPoha AI - Atoms and Molecules | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
-        ],
-        # RAG-uploaded chapter label variants (chapter name as stored in Supabase rag_documents)
-        "Cell: The Building Block of Life": [
-            {"title": "LikhaPoha AI - Cell: The Building Block of Life | Class 9 Science Chapter 2", "type": "youtube", "url": "https://youtu.be/kADIaUbwL00"},
-        ],
-        "Chapter 2: Cell: The Building Block of Life": [
-            {"title": "LikhaPoha AI - Cell: The Building Block of Life | Class 9 Science Chapter 2", "type": "youtube", "url": "https://youtu.be/kADIaUbwL00"},
-        ],
-        "Tissues in Action": [
-            {"title": "LikhaPoha AI - Tissues in Action | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
-        ],
-        "Chapter 3: Tissues in Action": [
-            {"title": "LikhaPoha AI - Tissues in Action | Class 9 Science Chapter 3", "type": "youtube", "url": "https://youtu.be/yJk4ZeSr9Bk"},
-        ],
-        "Describing Motion Around Us": [
-            {"title": "LikhaPoha AI - Describing Motion Around Us | Class 9 Science Chapter 4", "type": "youtube", "url": "https://youtu.be/___wVgKghMA"},
-        ],
-        "Chapter 4: Describing Motion Around Us": [
-            {"title": "LikhaPoha AI - Describing Motion Around Us | Class 9 Science Chapter 4", "type": "youtube", "url": "https://youtu.be/___wVgKghMA"},
-        ],
-        "Exploring Mixtures and Their Separation": [
-            {"title": "LikhaPoha AI - Exploring Mixtures and Their Separation | Class 9 Science Chapter 5", "type": "youtube", "url": "https://youtu.be/1FS2LCZXd_A"},
-        ],
-        "Chapter 5: Exploring Mixtures and Their Separation": [
-            {"title": "LikhaPoha AI - Exploring Mixtures and Their Separation | Class 9 Science Chapter 5", "type": "youtube", "url": "https://youtu.be/1FS2LCZXd_A"},
-        ],
-        "How Forces Affect Motion": [
-            {"title": "LikhaPoha AI - How Forces Affect Motion | Class 9 Science Chapter 6", "type": "youtube", "url": "https://youtu.be/7Zd3nj4wZAE"},
-        ],
-        "Chapter 6: How Forces Affect Motion": [
-            {"title": "LikhaPoha AI - How Forces Affect Motion | Class 9 Science Chapter 6", "type": "youtube", "url": "https://youtu.be/7Zd3nj4wZAE"},
-        ],
-        "Work, Energy, and Simple Machines": [
-            {"title": "LikhaPoha AI - Work, Energy, and Simple Machines | Class 9 Science Chapter 7", "type": "youtube", "url": "https://youtu.be/LxluQchwS54"},
-        ],
-        "Chapter 7: Work, Energy, and Simple Machines": [
-            {"title": "LikhaPoha AI - Work, Energy, and Simple Machines | Class 9 Science Chapter 7", "type": "youtube", "url": "https://youtu.be/LxluQchwS54"},
-        ],
-        "Journey Inside the Atom": [
-            {"title": "LikhaPoha AI - Journey Inside the Atom | Class 9 Science Chapter 8", "type": "youtube", "url": "https://youtu.be/9b-4THbqIT0"},
-        ],
-        "Chapter 8: Journey Inside the Atom": [
-            {"title": "LikhaPoha AI - Journey Inside the Atom | Class 9 Science Chapter 8", "type": "youtube", "url": "https://youtu.be/9b-4THbqIT0"},
-        ],
-        "Atomic Foundations of Matter": [
-            {"title": "LikhaPoha AI - Atomic Foundations of Matter | Class 9 Science Chapter 9", "type": "youtube", "url": "https://youtu.be/AaEejyJllkk"},
-        ],
-        "Chapter 9: Atomic Foundations of Matter": [
-            {"title": "LikhaPoha AI - Atomic Foundations of Matter | Class 9 Science Chapter 9", "type": "youtube", "url": "https://youtu.be/AaEejyJllkk"},
-        ],
-        "Sound Waves: Characteristics and Applications": [
-            {"title": "LikhaPoha AI - Sound Waves: Characteristics and Applications | Class 9 Science Chapter 10", "type": "youtube", "url": "https://youtu.be/JgfIbwip9UI"},
-        ],
-        "Chapter 10: Sound Waves: Characteristics and Applications": [
-            {"title": "LikhaPoha AI - Sound Waves: Characteristics and Applications | Class 9 Science Chapter 10", "type": "youtube", "url": "https://youtu.be/JgfIbwip9UI"},
-        ],
-        "Reproduction: How Life Continues": [
-            {"title": "LikhaPoha AI - Reproduction: How Life Continues | Class 9 Science Chapter 11", "type": "youtube", "url": "https://youtu.be/pTJ634ebToQ"},
-        ],
-        "Chapter 11: Reproduction: How Life Continues": [
-            {"title": "LikhaPoha AI - Reproduction: How Life Continues | Class 9 Science Chapter 11", "type": "youtube", "url": "https://youtu.be/pTJ634ebToQ"},
-        ],
-        "Patterns in Life: Diversity and Classification": [
-            {"title": "LikhaPoha AI - Patterns in Life: Diversity and Classification | Class 9 Science Chapter 12", "type": "youtube", "url": "https://youtu.be/VHg5evqi4yU"},
-        ],
-        "Chapter 12: Patterns in Life: Diversity and Classification": [
-            {"title": "LikhaPoha AI - Patterns in Life: Diversity and Classification | Class 9 Science Chapter 12", "type": "youtube", "url": "https://youtu.be/VHg5evqi4yU"},
-        ],
-        "Earth as a System: Energy, Matter, and Life": [
-            {"title": "LikhaPoha AI - Earth as a System | Class 9 Science Chapter 13", "type": "youtube", "url": "https://youtu.be/RRbu9RttTiY"},
-        ],
-        "Chapter 13: Earth as a System: Energy, Matter, and Life": [
-            {"title": "LikhaPoha AI - Earth as a System | Class 9 Science Chapter 13", "type": "youtube", "url": "https://youtu.be/RRbu9RttTiY"},
         ],
         "Structure of the Atom": [
             {"title": "PhET - Build an Atom Simulation", "type": "website", "url": "https://phet.colorado.edu/en/simulation/build-an-atom"},
@@ -166,64 +197,89 @@ LEARNING_RESOURCES = {
         "Improvement in Food Resources": [
             {"title": "YouTube Search - Improvement in Food Resources", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+improvement+in+food+resources+full+chapter"},
         ],
-    },
-    "Maths": {
-        # RAG-uploaded chapter labels (Chapter N: Title format from Supabase)
-        "Orienting Yourself: The Use of Coordinates": [
-            {"title": "LikhaPoha AI - Orienting Yourself: The Use of Coordinates | Class 9 Maths Chapter 1", "type": "youtube", "url": "https://youtu.be/n8qXaymOsAs"},
-        ],
-        "Chapter 1: Orienting Yourself: The Use of Coordinates": [
-            {"title": "LikhaPoha AI - Orienting Yourself: The Use of Coordinates | Class 9 Maths Chapter 1", "type": "youtube", "url": "https://youtu.be/n8qXaymOsAs"},
-        ],
-        "Introduction to Linear Polynomials": [
-            {"title": "LikhaPoha AI - Introduction to Linear Polynomials | Class 9 Maths Chapter 2", "type": "youtube", "url": "https://youtu.be/l3_lnTLvNQI"},
-        ],
-        "Chapter 2: Introduction to Linear Polynomials": [
-            {"title": "LikhaPoha AI - Introduction to Linear Polynomials | Class 9 Maths Chapter 2", "type": "youtube", "url": "https://youtu.be/l3_lnTLvNQI"},
-        ],
-        "The World of Numbers": [
-            {"title": "LikhaPoha AI - The World of Numbers | Class 9 Maths Chapter 3", "type": "youtube", "url": "https://youtu.be/_XLwB8P9m_4"},
-        ],
-        "Chapter 3: The World of Numbers": [
-            {"title": "LikhaPoha AI - The World of Numbers | Class 9 Maths Chapter 3", "type": "youtube", "url": "https://youtu.be/_XLwB8P9m_4"},
-        ],
-        "Exploring Algebraic Identities": [
-            {"title": "LikhaPoha AI - Exploring Algebraic Identities | Class 9 Maths Chapter 4", "type": "youtube", "url": "https://youtu.be/H0eyj1U1DCg"},
-        ],
-        "Chapter 4: Exploring Algebraic Identities": [
-            {"title": "LikhaPoha AI - Exploring Algebraic Identities | Class 9 Maths Chapter 4", "type": "youtube", "url": "https://youtu.be/H0eyj1U1DCg"},
-        ],
-        "I'm Up and Down, and Round and Round": [
-            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
-        ],
-        "Chapter 5: I'm Up and Down, and Round and Round": [
-            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
-        ],
-        # Curly apostrophe variant (U+2019) — as stored in Supabase rag_documents
-        "I\u2019m Up and Down, and Round and Round": [
-            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
-        ],
-        "Chapter 5: I\u2019m Up and Down, and Round and Round": [
-            {"title": "LikhaPoha AI - I'm Up and Down, and Round and Round | Class 9 Maths Chapter 5", "type": "youtube", "url": "https://youtu.be/SPtGjVEAXrs"},
-        ],
-        "Measuring Space: Perimeter and Area": [
-            {"title": "LikhaPoha AI - Measuring Space: Perimeter and Area | Class 9 Maths Chapter 6", "type": "youtube", "url": "https://youtu.be/yQk7eNc1pbs"},
-        ],
-        "Chapter 6: Measuring Space: Perimeter and Area": [
-            {"title": "LikhaPoha AI - Measuring Space: Perimeter and Area | Class 9 Maths Chapter 6", "type": "youtube", "url": "https://youtu.be/yQk7eNc1pbs"},
-        ],
-        "The Mathematics of Maybe: Introduction to Probability": [
-            {"title": "LikhaPoha AI - The Mathematics of Maybe: Introduction to Probability | Class 9 Maths Chapter 7", "type": "youtube", "url": "https://youtu.be/N8q2adCIBRU"},
-        ],
-        "Chapter 7: The Mathematics of Maybe: Introduction to Probability": [
-            {"title": "LikhaPoha AI - The Mathematics of Maybe: Introduction to Probability | Class 9 Maths Chapter 7", "type": "youtube", "url": "https://youtu.be/N8q2adCIBRU"},
-        ],
-        "Predicting What Comes Next: Exploring Sequences and Progressions": [
-            {"title": "LikhaPoha AI - Predicting What Comes Next | Class 9 Maths Chapter 8", "type": "youtube", "url": "https://youtu.be/GKMvXRoJKOI"},
-        ],
-        "Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions": [
-            {"title": "LikhaPoha AI - Predicting What Comes Next | Class 9 Maths Chapter 8", "type": "youtube", "url": "https://youtu.be/GKMvXRoJKOI"},
-        ],
+})
+
+# ── Grade 9 Maths (NCERT "Ganita Manjari" 2026-27 curriculum) — verified chapter-wise resources ──
+# Same treatment as Grade 9 Science: LikhaPoha AI original (kept) + an Indian textbook-aligned
+# channel + two international explainers. Chapters 5, 6, 8 had no new-curriculum video available
+# anywhere yet, so the Indian slot uses the closest previous-edition chapter instead (flagged
+# with `note`) — Chapter 8 in particular ("Sequences and Progressions") moved down from the old
+# Class 10 syllabus into the new Class 9 book, so its fallback is a Class 10 video.
+GRADE_9_MATHS_CHAPTERS = [
+    "Orienting Yourself: The Use of Coordinates",
+    "Introduction to Linear Polynomials",
+    "The World of Numbers",
+    "Exploring Algebraic Identities",
+    "I'm Up and Down, and Round and Round",
+    "Measuring Space: Perimeter and Area",
+    "The Mathematics of Maybe: Introduction to Probability",
+    "Predicting What Comes Next: Exploring Sequences and Progressions",
+]
+
+GRADE_9_MATHS_RESOURCE_LISTS = [
+    [  # 1. Orienting Yourself: The Use of Coordinates
+        likhapoha("Orienting Yourself: The Use of Coordinates", "n8qXaymOsAs"),
+        indian_channel("Ganita Manjari New NCERT 2026-27 | Class 9 Maths | Chapter 1 Orienting Yourself: The Use of Coordinates", "Jain Tutor", "8WJSEJBGDFE"),
+        international_channel("Introduction to the coordinate plane | Introduction to algebra | Algebra I", "Khan Academy", "N4nrdf0yYfM"),
+        international_channel("Algebra Basics: Graphing On The Coordinate Plane", "Math Antics", "9Uc62CuQjc4"),
+    ],
+    [  # 2. Introduction to Linear Polynomials
+        likhapoha("Introduction to Linear Polynomials", "l3_lnTLvNQI"),
+        indian_channel("Ganita Manjari Class 9 Chapter 2 One Shot | New NCERT 2026-27 | Introduction to Linear Polynomials", "Jain Tutor", "fAJnfdJCess"),
+        international_channel("Polynomials intro | Mathematics II | High School Math", "Khan Academy", "Vm7H0VTlIco"),
+        international_channel("Introduction to Polynomials", "Professor Dave Explains", "nPPNgin7W7Y"),
+    ],
+    [  # 3. The World of Numbers
+        likhapoha("The World of Numbers", "_XLwB8P9m_4"),
+        indian_channel("The World Of Numbers Class 9 | Chapter 3 | Ganita Manjari | One Shot", "Maths Future", "TYYvfVrcHIA"),
+        international_channel("Introduction to rational and irrational numbers | Algebra I", "Khan Academy", "cLP7INqs3JM"),
+        international_channel("Irrational Numbers - Math Antics Extras", "Math Antics", "wg4YXMe5ccs"),
+    ],
+    [  # 4. Exploring Algebraic Identities
+        likhapoha("Exploring Algebraic Identities", "H0eyj1U1DCg"),
+        indian_channel("Exploring Algebraic Identities Class 9 | Ganita Manjari | One Shot | Chapter 4", "Maths Future", "VB8d1-jMwS0"),
+        international_channel("Introduction to special products of binomials | Algebra I", "Khan Academy", "bFtjG45-Udk"),
+        international_channel("Polynomial special products: perfect square | Algebra 2", "Khan Academy", "hw5DE8HSZk0"),
+    ],
+    [  # 5. I'm Up and Down, and Round and Round (circles)
+        likhapoha("I'm Up and Down, and Round and Round", "SPtGjVEAXrs"),
+        indian_channel("CIRCLES in 1 Shot || FULL Chapter Coverage (Concepts+PYQs) || Class 9th Maths", "Physics Wallah Foundation", "eU3TKYrdAmU", note="Previous NCERT edition's 'Circles' chapter — same circle-theorem concepts as the new chapter."),
+        international_channel("Inscribed angle theorem proof | High School Geometry", "Khan Academy", "MyzGVbCHh5M"),
+        international_channel("Circle Theorems - Part 1 | Geometry & Measures", "FuseSchool", "wT_OSZ-ORtY"),
+    ],
+    [  # 6. Measuring Space: Perimeter and Area
+        likhapoha("Measuring Space: Perimeter and Area", "yQk7eNc1pbs"),
+        indian_channel("Class 9 HERON'S FORMULA in 1 Shot: FULL CHAPTER | Class 9th Maths Chapter 10", "PW Class 9 - NEEV", "TXVDm3VpxbM", note="Previous NCERT edition's 'Heron's Formula' chapter — covers triangle-area concepts that carry into the new chapter's broader perimeter/area scope."),
+        international_channel("Circles: radius, diameter, circumference and Pi | Geometry", "Khan Academy", "jyLRpr2P0MQ"),
+        international_channel("Area of a circle | Perimeter, area, and volume | Geometry", "Khan Academy", "ZyOhRgnFmIY"),
+    ],
+    [  # 7. The Mathematics of Maybe: Introduction to Probability
+        likhapoha("The Mathematics of Maybe: Introduction to Probability", "N8q2adCIBRU"),
+        indian_channel("Probability in 1 Shot | Class 9 | NCERT | Sprint", "Physics Wallah Foundation", "_XT6d6k8J5Q"),
+        international_channel("Probability explained | Independent and dependent events", "Khan Academy", "uzkc-qNVoOk"),
+        international_channel("Math Antics - Basic Probability", "Math Antics", "KzfWUEJjG18"),
+    ],
+    [  # 8. Predicting What Comes Next: Exploring Sequences and Progressions
+        likhapoha("Predicting What Comes Next: Exploring Sequences and Progressions", "GKMvXRoJKOI"),
+        indian_channel("Arithmetic Progressions | Complete NCERT WITH BACK EXERCISE in 1 Video | Class 10th Board", "PW Class 10 - UDAAN", "JYBywt30T8E", note="This topic moved down from the old Class 10 syllabus ('Arithmetic Progressions') into the new Class 9 book."),
+        international_channel("Introduction to geometric sequences | Precalculus", "Khan Academy", "pXo0bG4iAyg"),
+        international_channel("Introduction to arithmetic sequences | Precalculus", "Khan Academy", "_cooC3yG_p0"),
+    ],
+]
+
+LEARNING_RESOURCES["Maths"] = {}
+
+for _index, _chapter_name in enumerate(GRADE_9_MATHS_CHAPTERS):
+    _resource_list = GRADE_9_MATHS_RESOURCE_LISTS[_index]
+    LEARNING_RESOURCES["Maths"][_chapter_name] = _resource_list
+    LEARNING_RESOURCES["Maths"][f"Chapter {_index + 1}: {_chapter_name}"] = _resource_list
+
+# Curly apostrophe variant (U+2019) for Chapter 5 — as stored in Supabase rag_documents
+_curly_chapter_5 = "I" + "’" + "m Up and Down, and Round and Round"
+LEARNING_RESOURCES["Maths"][_curly_chapter_5] = GRADE_9_MATHS_RESOURCE_LISTS[4]
+LEARNING_RESOURCES["Maths"][f"Chapter 5: {_curly_chapter_5}"] = GRADE_9_MATHS_RESOURCE_LISTS[4]
+
+LEARNING_RESOURCES["Maths"].update({
         # Legacy generic Maths chapter keys (kept for backward compatibility)
         "Number Systems": [{"title": "YouTube Search - Number Systems Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+number+systems+full+chapter"}],
         "Polynomials": [{"title": "YouTube Search - Polynomials Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+polynomials+full+chapter"}],
@@ -239,10 +295,218 @@ LEARNING_RESOURCES = {
         "Surface Areas and Volumes": [{"title": "YouTube Search - Surface Areas and Volumes", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+surface+areas+and+volumes+full+chapter"}],
         "Statistics": [{"title": "YouTube Search - Statistics Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+statistics+full+chapter"}],
         "Probability": [{"title": "YouTube Search - Probability Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+maths+probability+full+chapter"}],
-    },
-    "English": {},
-    "Social Science": {},
-    "Hindi": {},
+})
+
+# ── Grade 9 English (NCERT "Kaveri" 2026-27 curriculum) — verified chapter-wise resources ──
+# No LikhaPoha AI content exists for English literature chapters. Per plan: one Indian
+# textbook-aligned channel + one alternate Indian channel per chapter (no international pick —
+# English literature isn't a "universal" subject the way Science/Maths are). Chapters 7 and 8
+# only have one verified channel each; no second channel could be found despite searching.
+GRADE_9_ENGLISH_CHAPTERS = [
+    "How I Taught My Grandmother to Read",
+    "The Pot Maker",
+    "Winds of Change",
+    "Vitamin-M",
+    "The World of Limitless Possibilities",
+    "Twin Melodies",
+    "Carrier of Words",
+    "Follow That Dream",
+]
+
+GRADE_9_ENGLISH_RESOURCE_LISTS = [
+    [  # 1. How I Taught My Grandmother to Read
+        indian_channel("How I Taught My Grandmother to Read - Explanation | Class 9th English (Kaveri) | Ch 1 | CBSE 2026-27", "Magnet Brains", "O6QbNI-DVWM"),
+        indian_channel("How I Taught My Grandmother to Read Class 9 (Animation)", "Sunlike study", "lfZIhtEUHY4"),
+    ],
+    [  # 2. The Pot Maker
+        indian_channel("The Pot Maker - Explanation (Part 1) | Class 9th English (Kaveri) | Chapter 2 | CBSE 2026-27", "Magnet Brains", "NHo6BWmFp4Y"),
+        indian_channel("The Pot Maker Class 9 (Animation) | Full Chapter", "Sunlike study", "5BzoJUp5Ykg"),
+    ],
+    [  # 3. Winds of Change
+        indian_channel("Winds of Change - Explanation | Class 9th English (Kaveri) | Chapter 3 | CBSE 2026-27", "Magnet Brains", "0GCNZvjVlug"),
+        indian_channel("Winds of Change Class 9 | Full Chapter Animation", "Rk ki lines", "XDavgeewJfg"),
+    ],
+    [  # 4. Vitamin-M
+        indian_channel("Vitamin M - Explanation (Part 1) | Class 9 English (Kaveri) | Chapter 4 | CBSE 2026-27", "Magnet Brains", "BRR6qvASoME"),
+        indian_channel("Class 9 English Kaveri Chapter 4 | Vitamin-M | Summary", "NEW AGE Golden School Books", "VHWKbsNKjXE"),
+    ],
+    [  # 5. The World of Limitless Possibilities
+        indian_channel("The World of Limitless Possibilities | Class 9 English Kaveri Chapter 5 Full Explanation", "Teaching Adda", "YJPLc_shc1Y"),
+        indian_channel("World of Limitless Possibilities | Full Explanation in Hindi", "Srija Tomar", "Q_tRsrx9KmU"),
+    ],
+    [  # 6. Twin Melodies
+        indian_channel("Class 9 English Chapter 6 | Twin Melodies Explanation | Kaveri | New NCERT", "NEW AGE Golden School Books", "YLJQiv14pGA"),
+        indian_channel("Twin Melodies (Part 1) | CBSE Class 9 English Kaveri Book | Complete Explanation", "Bodhi Classes", "2SJa7yR7ZUQ"),
+    ],
+    [  # 7. Carrier of Words
+        indian_channel("Carrier of Words | Class 9 English Kaveri Chapter 7 | Q&A, Vocabulary & Grammar", "NCERT Material", "x6t6wz3QVsc"),
+    ],
+    [  # 8. Follow That Dream
+        indian_channel("CBSE Class 9 English | Kaveri | Follow That Dream | Full Explanation and analysis", "Bodhi Classes", "ZmKzmeizFUE"),
+    ],
+]
+
+LEARNING_RESOURCES["English"] = {}
+
+for _index, _chapter_name in enumerate(GRADE_9_ENGLISH_CHAPTERS):
+    _resource_list = GRADE_9_ENGLISH_RESOURCE_LISTS[_index]
+    LEARNING_RESOURCES["English"][_chapter_name] = _resource_list
+    LEARNING_RESOURCES["English"][f"Chapter {_index + 1}: {_chapter_name}"] = _resource_list
+
+# ── Grade 9 Social Science — verified chapter-wise resources ──
+# NCERT replaced these four separate books (History/Geography/Political Science/Economics) with
+# one integrated "Understanding Society: India and Beyond" text for 2026-27, but this codebase's
+# syllabus data was never updated to match (unlike Science/Maths/English) — it's still on the old
+# chapter titles below, which is what the dropdown actually shows students. Curating against the
+# live dropdown rather than the new (unimplemented) curriculum. No LikhaPoha AI content exists for
+# this subject. These are long-established topics, so — unlike the brand-new Science/Maths/English
+# books — coverage was abundant and every chapter got two verified Indian channels, no gaps.
+GRADE_9_SOCIAL_SCIENCE_CHAPTERS = [
+    "The French Revolution",
+    "Socialism in Europe and the Russian Revolution",
+    "Nazism and the Rise of Hitler",
+    "Forest Society and Colonialism",
+    "Pastoralists in the Modern World",
+    "India Size and Location",
+    "Physical Features of India",
+    "Drainage",
+    "Climate",
+    "Natural Vegetation and Wildlife",
+    "Population",
+    "What is Democracy Why Democracy",
+    "Constitutional Design",
+    "Electoral Politics",
+    "Working of Institutions",
+    "Democratic Rights",
+    "The Story of Village Palampur",
+    "People as Resource",
+    "Poverty as a Challenge",
+    "Food Security in India",
+]
+
+GRADE_9_SOCIAL_SCIENCE_RESOURCE_LISTS = [
+    [  # 1. The French Revolution
+        indian_channel("Class 9 History Chapter 1 | The French Revolution Full Chapter", "Magnet Brains", "6SH-3PvZ_No"),
+        indian_channel("THE FRENCH REVOLUTION in One Shot - From Zero to Hero", "Physics Wallah Foundation", "DQfH9Fa3egw"),
+    ],
+    [  # 2. Socialism in Europe and the Russian Revolution
+        indian_channel("Socialism in Europe and the Russian Revolution - One Shot Revision | Class 9 History Chapter 2", "Magnet Brains", "7rAUUzN-v3Q"),
+        indian_channel("SOCIALISM IN EUROPE & RUSSIAN REVOLUTION in 1 Shot || FULL Chapter", "Physics Wallah Foundation", "tLpDFCbGLW4"),
+    ],
+    [  # 3. Nazism and the Rise of Hitler
+        indian_channel("Nazism and the Rise of Hitler | New One Shot | History Class 9", "Digraj Singh Rajput", "rFS0j494QEY"),
+        indian_channel("NAZISM AND THE RISE OF HITLER in 1 Shot || FULL Chapter Coverage", "Physics Wallah Foundation", "Kga4KUerm3o"),
+    ],
+    [  # 4. Forest Society and Colonialism
+        indian_channel("Forest Society and Colonialism - One Shot Revision | Class 9 History Chapter 4", "Magnet Brains", "tMkGv5gOJR0"),
+        indian_channel("FOREST SOCIETY AND COLONIALISM in One Shot - From Zero to Hero", "Physics Wallah Foundation", "I6aHHgjwi-I"),
+    ],
+    [  # 5. Pastoralists in the Modern World
+        indian_channel("Pastoralists in the Modern World - One Shot Revision | Class 9 History Chapter 5", "Magnet Brains", "O6iWekv04yI"),
+        indian_channel("PASTORALISTS IN THE MODERN WORLD in One Shot - From Zero to Hero", "Physics Wallah Foundation", "-nnNhzhV9QI"),
+    ],
+    [  # 6. India Size and Location
+        indian_channel("India Size and Location - One Shot Revision | Class 9 Geography Chapter 1", "Magnet Brains", "VFDfJvGAAD4"),
+        indian_channel("INDIA SIZE AND LOCATION in 1 Shot | FULL Chapter Coverage", "Physics Wallah Foundation", "yJZItDbXTPU"),
+    ],
+    [  # 7. Physical Features of India
+        indian_channel("Physical Features Of India - One Shot Revision | Class 9 Geography Chapter 2", "Magnet Brains", "OT7gNxUIgJA"),
+        indian_channel("Physical Features of India | 10 Minutes Rapid Revision", "Digraj Singh Rajput", "j4LdeQDEYlE"),
+    ],
+    [  # 8. Drainage
+        indian_channel("Drainage - One Shot Revision | Class 9 Geography Chapter 3", "Magnet Brains", "GxMbkmh8nvA"),
+        indian_channel("Drainage ONE SHOT | Full Chapter | Class 9th Geography", "PW Class 9 - NEEV", "9qhUyqjg398"),
+    ],
+    [  # 9. Climate
+        indian_channel("Climate - One Shot Revision | Class 9 Geography Chapter 4", "Magnet Brains", "cwsct4A9VXA"),
+        indian_channel("Climate ONE SHOT | Full Chapter | Class 9th Geography", "PW Class 9 - NEEV", "_O6RdDig7eo"),
+    ],
+    [  # 10. Natural Vegetation and Wildlife
+        indian_channel("Natural Vegetation and Wildlife - One Shot Revision | Class 9 Geography Chapter 5", "Magnet Brains", "trGYJIFXs4Y"),
+        indian_channel("Natural Vegetation and Wildlife ONE SHOT | Full Chapter", "PW Class 9 - NEEV", "Pk6Lcce_r_I"),
+    ],
+    [  # 11. Population
+        indian_channel("Population - One Shot Revision | Class 9 Geography Chapter 6", "Magnet Brains", "sLuD8mCfxnI"),
+        indian_channel("Population | New One Shot Revision Series | Class 9 Geography", "Digraj Singh Rajput", "L26wKCUwo5o"),
+    ],
+    [  # 12. What is Democracy Why Democracy
+        indian_channel("What is Democracy Why Democracy Class 9 One Shot Revision", "Magnet Brains", "vxO8eECuPRM"),
+        indian_channel("WHAT IS DEMOCRACY? WHY DEMOCRACY? in One Shot - From Zero to Hero", "Physics Wallah Foundation", "XfuesaaW3d4"),
+    ],
+    [  # 13. Constitutional Design
+        indian_channel("Constitutional Design - One Shot Revision | Class 9 Civics Chapter 2", "Magnet Brains", "n1-_5KGYttY"),
+        indian_channel("CONSTITUTIONAL DESIGN in 1 Shot: FULL CHAPTER", "PW Class 9 - NEEV", "sXQnYsEdidk"),
+    ],
+    [  # 14. Electoral Politics
+        indian_channel("Electoral Politics - One Shot Revision | Class 9 Civics Chapter 3", "Magnet Brains", "rPODBuDwc4U"),
+        indian_channel("ELECTORAL POLITICS in 1 Shot || FULL Chapter Coverage", "Physics Wallah Foundation", "rJ5CAhW0W5k"),
+    ],
+    [  # 15. Working of Institutions
+        indian_channel("Working of Institutions | New One Shot | Class 9 Civics", "Digraj Singh Rajput", "oMqEsD-Utac"),
+        indian_channel("Working Of Institutions ONE SHOT | Full Chapter | Class 9th Civics", "PW Class 9 - NEEV", "jn91xy8DMVg"),
+    ],
+    [  # 16. Democratic Rights
+        indian_channel("Democratic Rights Class 9 One Shot | One Shot Revision", "Magnet Brains", "NaghelNHosc"),
+        indian_channel("Democratic Rights in One Shot | Full Chapter Explanation", "Vedantu CBSE 9th", "CIAYWOchiEM"),
+    ],
+    [  # 17. The Story of Village Palampur
+        indian_channel("The Story Of Village Palampur - One Shot Revision | Class 9 Economics Chapter 1", "Magnet Brains", "1DQQbM6xFAk"),
+        indian_channel("THE STORY OF VILLAGE PALAMPUR in One Shot - From Zero to Hero", "Physics Wallah Foundation", "7Ah0ssh5DlA"),
+    ],
+    [  # 18. People as Resource
+        indian_channel("People As Resource - One Shot Revision | Class 9 Economics Chapter 2", "Magnet Brains", "aRH0K80lFso"),
+        indian_channel("PEOPLE AS A RESOURCE in One Shot - From Zero to Hero", "Physics Wallah Foundation", "me1uKtn1aX4"),
+    ],
+    [  # 19. Poverty as a Challenge
+        indian_channel("Poverty as a Challenge | New One Shot | Class 9 Economics", "Digraj Singh Rajput", "DaE_Hpe-sEI"),
+        indian_channel("POVERTY AS A CHALLENGE in One Shot - From Zero to Hero", "Physics Wallah Foundation", "GMZD2i6hwuA"),
+    ],
+    [  # 20. Food Security in India
+        indian_channel("Food Security In India | New One Shot | Class 9 Economics", "Digraj Singh Rajput", "2oCsMusryJo"),
+        indian_channel("FOOD SECURITY IN INDIA in One Shot - From Zero to Hero", "Physics Wallah Foundation", "DCHy2cevNd0"),
+    ],
+]
+
+LEARNING_RESOURCES["Social Science"] = {}
+
+for _index, _chapter_name in enumerate(GRADE_9_SOCIAL_SCIENCE_CHAPTERS):
+    LEARNING_RESOURCES["Social Science"][_chapter_name] = GRADE_9_SOCIAL_SCIENCE_RESOURCE_LISTS[_index]
+
+# ── Grade 9 Hindi (NCERT "Ganga" 2026-27 curriculum) — verified chapter-wise resources ──
+# No LikhaPoha AI content exists for this subject. Coverage is patchy since this is also a
+# brand-new (2026-27) book — 11 of 12 chapters have a findable video despite targeted searches.
+# "मैं और मेरा देश" is the sole remaining gap — a newly-ADDED chapter with no previous-edition
+# equivalent to fall back to and no dedicated video found anywhere despite repeated searches —
+# get_learning_resources() falls through to its generic YouTube-search link for it. Only one
+# verified channel per available chapter (not two) given how limited real coverage is for this
+# new book.
+#
+# The live RAG-uploaded chapter labels have OCR/upload text-extraction artifacts for several
+# chapters (e.g. "क््या लिखू" instead of "क्या लिखूँ?", "आलखरी चट्टान तक" instead of
+# "आखिरी चट्टान तक") — both the clean and the garbled spelling are mapped to the same resource
+# so the lookup matches regardless of which variant the dropdown actually shows.
+GRADE_9_HINDI_RESOURCE_MAP = {
+    "दो बैलों की कथा": indian_channel("NCERT Class 9 Hindi NEW Book “Ganga गंगा” Chapter 1 दो बैलों की कथा", "Gyanshakti TV", "tzM1gyQ5edk"),
+    "क्या लिखूँ?": indian_channel("क्या लिखूं? | Class 9 Hindi Chapter 2 'Ganga' Full Explanation", "Hindi Learning By Ashima Mahajan", "StDOUi8yR68"),
+    "क््या लिखू": indian_channel("क्या लिखूं? | Class 9 Hindi Chapter 2 'Ganga' Full Explanation", "Hindi Learning By Ashima Mahajan", "StDOUi8yR68"),
+    "संवादहीन": indian_channel("NCERT Class 9 Hindi New Book Ganga Chapter 3 संवादहीन Question Answer Part 1", "EduMagnet", "cWC92nfxnvk"),
+    "ऐसी भी बातें होती हैं (लता मंगेशकर से साक्षात्कार)": indian_channel("Class 9 Hindi Ganga Chapter 4 एसी भी बातें होती हैं लता मंगेशकर से साक्षात्कार", "EduMagnet", "iyiw6XBvpRM"),
+    "ऐसी भी बातीें होती हैं": indian_channel("Class 9 Hindi Ganga Chapter 4 एसी भी बातें होती हैं लता मंगेशकर से साक्षात्कार", "EduMagnet", "iyiw6XBvpRM"),
+    "आखिरी चट्टान तक": indian_channel("Chapter 5: Aakhri Chattan Tak (आखिरी चट्टान तक) | Class 9 Hindi Ganga | NCERT Explainer", "EduRev Class 6-10", "is69k0WR2DY"),
+    "आलखरी चट्टान तक": indian_channel("Chapter 5: Aakhri Chattan Tak (आखिरी चट्टान तक) | Class 9 Hindi Ganga | NCERT Explainer", "EduRev Class 6-10", "is69k0WR2DY"),
+    "रीढ़ की हड्डी": indian_channel("Class 9 Hindi Chapter 3 Reed ki Haddi NCERT Solutions with Detailed Explanation", "Learner Bee", "Yz6s97b55f8"),
+    "पद": indian_channel("पद - Explanation | Class 9 Hindi Ganga | Chapter 8 | CBSE 2026", "Magnet Brains", "wZkR7-LFqa8"),
+    "राम-लक्ष्मण-परशुराम संवाद": indian_channel("Chapter 9: Ram Lakshman Parshuram Samvad | Class 9 Hindi Ganga | NCERT Explainer", "EduRev Class 6-10", "WRi7vBZOMWg"),
+    "राम-लक्षमण-परशुराम संवाद": indian_channel("Chapter 9: Ram Lakshman Parshuram Samvad | Class 9 Hindi Ganga | NCERT Explainer", "EduRev Class 6-10", "WRi7vBZOMWg"),
+    "भारति, जय, विजय करो!": indian_channel("\"भारति जय, विजय करे!\"-सूर्यकांत त्रिपाठी \"निराला\"-शब्दार्थ व विशेष सहित सप्रसंग व्याख्या", "Study with Anju Madam", "4y49DbIyh7c"),
+    "भारत्त, जय, विजयकरे!": indian_channel("\"भारति जय, विजय करे!\"-सूर्यकांत त्रिपाठी \"निराला\"-शब्दार्थ व विशेष सहित सप्रसंग व्याख्या", "Study with Anju Madam", "4y49DbIyh7c"),
+    "झाँसी की रानी": indian_channel("Jhansi Ki Rani Class 9 Hindi | CBSE Ganga Textbook | Full Explanation", "Bhasha Gyan", "j7ui1CHYK9c"),
+    "घर की याद": indian_channel("Chapter 5 Ghar Ki Yad / पाठ 5 घर की याद", "NCERT OFFICIAL", "xcbQ25SxJm8"),
+}
+
+LEARNING_RESOURCES["Hindi"] = {
+    _chapter_name: [_resource]
+    for _chapter_name, _resource in GRADE_9_HINDI_RESOURCE_MAP.items()
 }
 
 # Add fallback-style resources for chapters where we have not manually curated specific items.
@@ -262,75 +526,10 @@ for _subject, _chapters in GENERIC_SUBJECT_CHAPTERS.items():
     LEARNING_RESOURCES.setdefault(_subject, {})
     for _chapter in _chapters:
         q = quote_plus(f"class 9 {_subject} {_chapter} free explanation")
-        LEARNING_RESOURCES[_subject].setdefault(_chapter, add_ncert_link([
+        LEARNING_RESOURCES[_subject].setdefault(_chapter, [
             {"title": f"YouTube Search - {_chapter}", "type": "website", "url": f"https://www.youtube.com/results?search_query={q}"},
-        ]))
+        ])
 
-
-for _subject in LEARNING_RESOURCES:
-    for _chapter in LEARNING_RESOURCES[_subject]:
-        LEARNING_RESOURCES[_subject][_chapter] = add_ncert_link(
-            LEARNING_RESOURCES[_subject][_chapter]
-        )
-
-
-# ── NCERT Exemplar Problem links (Grade 8, 9, 10) ────────────────────────────
-# These are grade-level resources — shown for any chapter of the subject.
-# Direct PDFs verified from ncert.nic.in/exemplar-problems.php (June 2026)
-
-NCERT_EXEMPLAR_BASE = "https://ncert.nic.in/pdf/publication/exemplarproblem"
-
-EXEMPLAR_GRADE_RESOURCES = {
-    "Grade 8": {
-        "Maths": {
-            "title": "NCERT Exemplar Problems — Class 8 Mathematics",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classVIII/mathematics/heep201.pdf",
-            "description": "13 units of practice problems with solutions (NCERT official)",
-        },
-        "Science": {
-            "title": "NCERT Exemplar Problems — Class 8 Science",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classVIII/science/heep101.pdf",
-            "description": "18 chapters of practice problems with solutions (NCERT official)",
-        },
-    },
-    "Grade 9": {
-        "Maths": {
-            "title": "NCERT Exemplar Problems — Class 9 Mathematics",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classIX/mathematics/ieep201.pdf",
-            "description": "16 units covering all Class 9 Maths topics (NCERT official)",
-        },
-        "Science": {
-            "title": "NCERT Exemplar Problems — Class 9 Science",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classIX/science/ieep101.pdf",
-            "description": "17 chapters of higher-order problems with solutions (NCERT official)",
-        },
-    },
-    "Grade 10": {
-        "Maths": {
-            "title": "NCERT Exemplar Problems — Class 10 Mathematics",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classX/mathematics/jeep201.pdf",
-            "description": "15 units of board-exam level problems with solutions (NCERT official)",
-        },
-        "Science": {
-            "title": "NCERT Exemplar Problems — Class 10 Science",
-            "type": "website",
-            "url": f"{NCERT_EXEMPLAR_BASE}/classX/science/jeep101.pdf",
-            "description": "18 chapters of practice problems including MCQs (NCERT official)",
-        },
-    },
-}
-
-# Full exemplar book page (browse all units)
-EXEMPLAR_PAGE = {
-    "title": "NCERT Exemplar Problems — Browse All",
-    "type": "website",
-    "url": "https://ncert.nic.in/exemplar-problems.php",
-}
 
 # ── English Grammar resources (Grade 8, 9, 10) ────────────────────────────────
 # Free reference sources for CBSE English Grammar topics
@@ -349,15 +548,9 @@ GRAMMAR_RESOURCES = [
         "description": "Interactive grammar lessons: A1 to C1 level, with exercises",
     },
     {
-        "title": "NCERT English Textbook (Honeydew / Beehive / First Flight)",
-        "type": "website",
-        "url": "https://ncert.nic.in/textbook.php",
-        "description": "Official NCERT English textbooks — grammar sections included",
-    },
-    {
         "title": "CBSE Sample Papers — English",
         "type": "website",
-        "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html",
+        "url": "https://www.cbse.gov.in/cbsenew/samplepaper.html",
         "description": "Grammar questions from official CBSE sample papers",
     },
 ]
@@ -365,126 +558,94 @@ GRAMMAR_RESOURCES = [
 # Grammar topic links per CBSE Grade 8-10 syllabus
 GRAMMAR_TOPIC_RESOURCES = {
     "Tenses": [
-        {"title": "BBC — Tenses Overview", "type": "website",
-         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/tenses"},
+        {"title": "BBC Learning English — Intermediate Grammar Guide (Tenses unit)", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/english/intermediate-grammar-guide"},
         {"title": "British Council — Tenses", "type": "website",
          "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/tenses"},
     ],
     "Active and Passive Voice": [
-        {"title": "BBC — Passive Voice", "type": "website",
-         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/active-and-passive-voice"},
+        {"title": "BBC Learning English — Intermediate Grammar Guide (Passive Voice unit)", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/english/intermediate-grammar-guide"},
         {"title": "British Council — Passive Voice", "type": "website",
          "url": "https://learnenglish.britishcouncil.org/grammar/b2-c1-grammar/passive-voice-introduction"},
     ],
     "Reported Speech": [
-        {"title": "BBC — Reported Speech", "type": "website",
-         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/reported-speech"},
+        {"title": "BBC Learning English — Intermediate Grammar Guide (Reported Speech unit)", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/english/intermediate-grammar-guide"},
         {"title": "British Council — Reported Speech", "type": "website",
          "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/reported-speech"},
     ],
     "Modals": [
-        {"title": "BBC — Modal Verbs", "type": "website",
-         "url": "https://www.bbc.co.uk/learningenglish/grammar/b1-b2-grammar/modals"},
+        {"title": "BBC Learning English — Basic Grammar Guide (Modals unit)", "type": "website",
+         "url": "https://www.bbc.co.uk/learningenglish/english/basic-grammar-guide"},
         {"title": "British Council — Modal Verbs", "type": "website",
          "url": "https://learnenglish.britishcouncil.org/grammar/b1-b2-grammar/modal-verbs"},
     ],
     "Grammar": [
         *GRAMMAR_RESOURCES[:2],
         {"title": "CBSE English Grammar — Sample Papers", "type": "website",
-         "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html"},
+         "url": "https://www.cbse.gov.in/cbsenew/samplepaper.html"},
     ],
     "Writing Skills": [
         {"title": "British Council — Writing Skills", "type": "website",
          "url": "https://learnenglish.britishcouncil.org/skills/writing"},
         {"title": "CBSE English Writing — Sample Papers", "type": "website",
-         "url": "https://cbseacademic.nic.in/SampleQuestion_Papers.html"},
+         "url": "https://www.cbse.gov.in/cbsenew/samplepaper.html"},
     ],
 }
 
 # ── Grade 8 resources ─────────────────────────────────────────────────────────
 GRADE_8_RESOURCES: dict[str, dict[str, list]] = {
     "Maths": {
-        # Ganita Prakash Grade 8 chapters (NEW curriculum)
-        "A Square and a Cube": [
-            {"title": "NCERT Ganita Prakash Grade 8 — A Square and a Cube", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp101.pdf"},
-        ],
-        "Power Play": [
-            {"title": "NCERT Ganita Prakash Grade 8 — Power Play", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp102.pdf"},
-        ],
-        "A Story of Numbers": [
-            {"title": "NCERT Ganita Prakash Grade 8 — A Story of Numbers", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp103.pdf"},
-        ],
-        "Quadrilaterals": [
-            {"title": "NCERT Ganita Prakash Grade 8 — Quadrilaterals", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp104.pdf"},
-        ],
-        "Number Play": [
-            {"title": "NCERT Ganita Prakash Grade 8 — Number Play", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp105.pdf"},
-        ],
-        "We Distribute, Yet Things Multiply": [
-            {"title": "NCERT Ganita Prakash Grade 8 — We Distribute Yet Things Multiply", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp106.pdf"},
-        ],
-        "Fractions in Disguise": [
-            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Fractions in Disguise", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp201.pdf"},
-        ],
-        "The Baudhayana-Pythagoras Theorem": [
-            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Baudhayana-Pythagoras Theorem", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp202.pdf"},
-        ],
-        "Proportional Reasoning-2": [
-            {"title": "NCERT Ganita Prakash Grade 8 Part 2 — Proportional Reasoning", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hegp203.pdf"},
-        ],
+        # Ganita Prakash Grade 8 (Part 1 + Part 2) — replaces stale data that used no-video
+        # PDF links, a title-casing mismatch ("a Cube" vs live "A Cube"), and was missing 5 of
+        # 14 live chapters. Single source per chapter, several long chapters only have
+        # page-range/part videos rather than one full-chapter video — best available used.
+        # "Exploring Some Geometric Themes" has no dedicated video anywhere yet (confirmed
+        # after repeated searches) and is left uncurated. Every video verified live via
+        # YouTube's oEmbed endpoint.
+        "A Square and A Cube": [indian_channel("A Square and A Cube | Part 1 | Class 8 Maths | Chapter 1 | Ganita Prakash", "Learn With Mansi Juniors", "1CECPkW44rc")],
+        "Power Play": [indian_channel("Class -8th Maths Ganita Prakash Chapter -2 | Power Play | Full Chapter solution", "MOS Classes Maths (Shine Luthra)", "lGVYkiJz8Xw")],
+        "A Story of Numbers": [indian_channel("A Story Of Numbers | Part 1 | Class 8 Maths | Chapter 3 | Ganita Prakash", "Learn With Mansi Juniors", "eNibgsD0NrI")],
+        "Quadrilaterals": [indian_channel("Quadrilaterals Class 8 Maths | Ganita Prakash Chapter 4 | One-Shot", "Vedantu Class 6, 7 & 8 (Rajiv Sir)", "zIySvWwAjE8")],
+        "Number Play": [indian_channel("Number Play | Part 1 | Class 8 Maths | Chapter 5 | Ganita Prakash", "Learn With Mansi Juniors", "3HdEqfYq5NU")],
+        "We Distribute, Yet Things Multiply": [indian_channel("We Distribute Yet Things Multiply | Class 8 Maths Ch-6 | One Shot", "Vedantu Class 6, 7 & 8 (Rajiv Sir)", "zEqiasdszEk")],
+        "Proportional Reasoning": [indian_channel("Proportional Reasoning One-Shot | Figure It Out | Class 8 Maths | Ganita Prakash", "Vedantu Class 6, 7 & 8", "_x_gVHYIDgo")],
+        "Fractions in Disguise": [indian_channel("Fraction In Disguise Class 8 Maths | Chapter 1 Full Explanation | One Shot", "MOS Classes Maths (Shine Luthra)", "DJmmb6DY67o")],
+        "The Baudhayana-Pythagoras Theorem": [indian_channel("The Baudhayana Pythagoras Theorem Class 8 Maths || Ganit Prakash Part - 2", "PW Class 8", "LOqkR4L0gw8")],
+        "Proportional Reasoning-2": [indian_channel("Proportional Reasoning-2 Class 8 Maths Ganita Prakash | Chapter -3 | Full Chapter Solutions", "MOS Classes Maths (Shine Luthra)", "wqUzoijtTV0")],
+        "Tales by Dots and Lines": [indian_channel("Class 8 maths ganita prakash part 2 | Chapter 5 Tales by dots and lines | Page 122 & 123", "Students Life Juniors", "-R3m-PoY2p0")],
+        "Algebra Play": [indian_channel("Class 8 Maths Ganita Prakash Part 2 | Chapter 6 Algebra Play | Page 135 to 137 Solutions", "MathsByShweta", "H7tZzpWW3vM")],
+        "Area": [indian_channel("Class 8 Maths Ganita Prakash Solutions | Chapter 7 Area | Page 153 to 157 Solutions", "MathsByShweta", "otORrKMN120")],
     },
     "Science": {
-        "Exploring the Investigative World of Science": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 1", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu101.pdf"},
-        ],
-        "The Invisible Living World: Beyond Our Naked Eye": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 2", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu102.pdf"},
-        ],
-        "Health: the Ultimate Treasure": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 3", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu103.pdf"},
-        ],
-        "Electricity: Magnetic and Heating Effects": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 4", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu104.pdf"},
-        ],
-        "Exploring Forces": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 5", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu105.pdf"},
-        ],
-        "Pressure, Winds, Storms, and Cyclones": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 6", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu106.pdf"},
-        ],
-        "Reaching the Age of Adolescence": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 7", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"},
-        ],
-        "Our Changing Earth": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 8", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu108.pdf"},
-        ],
-        "Chemical Reactions and Equations": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 9", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu109.pdf"},
-        ],
-        "Stars and the Solar System": [
-            {"title": "NCERT Curiosity Science Grade 8 — Chapter 10", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/hecu110.pdf"},
-        ],
+        # NCERT "Curiosity" (2025-26) — replaces stale data that used old chapter titles, had
+        # no videos (PDF links only), and was missing about half the live chapters. Single
+        # source per chapter; PW Class 8 covers 10 of 13 chapters consistently and is used as
+        # the anchor channel. Every video verified live via YouTube's oEmbed endpoint.
+        "Exploring the Investigative World of Science": [indian_channel("Exploring The Investigative World Of Science Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "8ddIyWsNY4c")],
+        "The Invisible Living World: Beyond Our Naked Eye": [indian_channel("The Invisible Living World : Beyond Our Naked Eye | Class 8 Science Chapter 2 | One-Shot | NCERT", "Ignited Minds", "ijM0-UXI5kM")],
+        "Interpreting Health: The Ultimate Treasure": [indian_channel("Class 8 Science Chapter 3 - Health : The Ultimate Treasure | Full Chapter | Curiosity", "NCERT TUTORIAL 6,7 and 8", "fyASPC8IV4g")],
+        "Electricity: Magnetic and Heating Effects": [indian_channel("Electricity: Magnetic And Heating Effects Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "es6RKnLLY9E")],
+        "Exploring Forces": [indian_channel("Exploring Forces Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "fIhjFWk5P1Y")],
+        "Pressure, Winds, Storms, and Cyclones": [indian_channel("Class 8 Science | Chapter 6 Explanation | Pressure, Winds, Storms and cyclones | Curiosity | NCERT", "Wisdom of Avyaan", "MkTtdt4SOQ4")],
+        "Particulate Nature of Matter": [indian_channel("Particulate Nature Of Matter Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "ieydo7BS-Zo")],
+        "Nature of Matter: Elements, Compounds, and Mixtures": [indian_channel("Nature of Matter: Elements, Compounds & Mixtures Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "EKmYIm2y5xY")],
+        "The Amazing World of Solutes, Solvents, and Solutions": [indian_channel("The Amazing World Of Solutes, Solvents And Solutions Class 8 | NEW NCERT | Science | Complete Chapter", "PW Class 8", "uyrVoCX1aLA")],
+        "Light: Mirrors and Lenses": [indian_channel("Light: Mirrors and Lenses Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "8Hr1XJ18PsM")],
+        "Keeping Time with the Skies": [indian_channel("Keeping Time with the Skies Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "w8jkxGnbq5Y")],
+        "How Nature Works in Harmony": [indian_channel("How Nature works in Harmony Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "8AeuqbcjuHg")],
+        "Our Home: Earth, a Unique Life Sustaining Planet": [indian_channel("Our Home: Earth, A unique Life-sustaining Planet Class 8 || NEW NCERT || Science || Complete Chapter", "PW Class 8", "NXgkMdHpGy8")],
     },
     "English": {
+        # NCERT "Poorvi" (2025-26) — the live dropdown groups by unit ("Unit N: <theme>"),
+        # not by the 3 chapters within each unit, so each entry covers the unit's first
+        # chapter/poem as a representative single source. Verified via YouTube oEmbed.
+        "Wit and Wisdom": [indian_channel("The Wit that Won Hearts | Class 8 English | Unit 1 Chapter 1 | Poorvi | Explanation", "Kaliyaan Tv", "dazBVjDX-lE")],
+        "Values and Dispositions": [indian_channel("A Tale of Valour - Major Somnath Sharma (English Explanation) | Class 8 English Poorvi Unit 2", "CBSE with Sudhir", "Iu-VLBzIgGo")],
+        "Mystery and Magic": [indian_channel("Class 8 English Poorvi book Unit 3 | Mystery and Magic | The Case of the Fifth Word", "Gagan Ma'am", "XHhnFP1TCM4")],
+        "Environment": [indian_channel("The Cherry Tree - Explanation | Class 8th English (Poorvi) | Unit 4", "Magnet Brains", "CGp9rsxowRE")],
+        "Science and Curiosity": [indian_channel("Feathered Friend - Explanation | Class 8th English (Poorvi) | Unit 5", "Magnet Brains", "zQ2SsVIg4tA")],
         "Grammar": list(GRAMMAR_RESOURCES),
         "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
         "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
@@ -492,95 +653,429 @@ GRADE_8_RESOURCES: dict[str, dict[str, list]] = {
         "Reported Speech": GRAMMAR_TOPIC_RESOURCES.get("Reported Speech", []),
         "Modals": GRAMMAR_TOPIC_RESOURCES.get("Modals", []),
     },
+    "Hindi": {
+        # NCERT "Malhar" (2025-26). The live RAG-uploaded labels have the same kind of
+        # OCR/upload text-extraction artifacts seen in Grade 9/10 Hindi (duplicated letters,
+        # a truncated title) — both the clean and the live-label spelling are mapped to the
+        # same resource so the lookup matches regardless of which variant shows up. Single
+        # source per chapter, every video verified live via YouTube's oEmbed endpoint.
+        "स्वदेश": [indian_channel("स्वदेश कविता | Full Explanation + All Questions Answers | Class 8 Hindi | Malhar", "Hello Adhyapak", "C8dAhgwKRpU")],
+        "दो गौरैया": [indian_channel("कक्षा-8 हिंदी मल्हार अध्याय-2 दो गौरैया की व्याख्या और कठिन शब्दार्थ", "Garg Education Tech", "kkCg4k2KD6E")],
+        "दो गौरैैयाा": [indian_channel("कक्षा-8 हिंदी मल्हार अध्याय-2 दो गौरैया की व्याख्या और कठिन शब्दार्थ", "Garg Education Tech", "kkCg4k2KD6E")],
+        "एक आशीर्वाद": [indian_channel("Ek Aashirvaad (एक आशीर्वाद) - NCERT Solutions | Class 8 | Ch 3 | Hindi Malhar Book | CBSE 2025-26", "Magnet Brains", "n19pnOF-syM")],
+        "हरिद्वार": [indian_channel("Haridwar (हरिद्वार) - Explanation | Class 8 | Chapter 4 Hindi (Malhar Book) | CBSE 2025-26", "Magnet Brains", "silysVZAgjY")],
+        "कबीर के दोहे": [indian_channel("Kabir ke Dohe (कबीर के दोहे) - Explanation | Class 8 | Chapter 5 | Hindi Malhar Book | CBSE 2025-26", "Magnet Brains", "ekpc5E5pFAA")],
+        "एक टोकरी भर मिट्टी": [indian_channel("Ek Tokri Bhar Mitti (एक टोकरी भर मिट्टी) - Explanation | Class 8 | Ch 6 | Hindi Malhar Book | CBSE", "Magnet Brains", "vGBHvKpRevU")],
+        "एक टोकरी भर": [indian_channel("Ek Tokri Bhar Mitti (एक टोकरी भर मिट्टी) - Explanation | Class 8 | Ch 6 | Hindi Malhar Book | CBSE", "Magnet Brains", "vGBHvKpRevU")],
+        "मत बाँधो": [indian_channel("Mat Baandho (मत बाँधो) - Explanation | Class 8 | Chapter 7 | Hindi Malhar Book | CBSE 2025-26", "Magnet Brains", "h86To2dDxBg")],
+        "नए मेहमान": [indian_channel("Naye Mehmaan (नए मेहमान) - Explanation | Class 8 | Chapter 8 | Hindi Malhar Book | CBSE 2025-26", "Magnet Brains", "nN1Q_Ihw_Bo")],
+        "नए मेहेमाान": [indian_channel("Naye Mehmaan (नए मेहमान) - Explanation | Class 8 | Chapter 8 | Hindi Malhar Book | CBSE 2025-26", "Magnet Brains", "nN1Q_Ihw_Bo")],
+        "आदमी का अनुपात": [indian_channel("आदमी का अनुपात - Explanation। Class 8 Hindi Malhar Chapter 9। NCERT Malhar", "Princewood Institute", "w_dLb9ZYLGU")],
+        "तरुण के स्वप्न": [indian_channel("तरुण के स्वप्न - Solutions। Class 8 Hindi Malhar Chapter 10। NCERT Malhar", "Princewood Institute", "jFXIABXh3S4")],
+        "तरुण केे स्वप्न": [indian_channel("तरुण के स्वप्न - Solutions। Class 8 Hindi Malhar Chapter 10। NCERT Malhar", "Princewood Institute", "jFXIABXh3S4")],
+    },
+    "Social Science": {
+        # NCERT's new integrated Grade 8 book ("Exploring Society: India and Beyond", 2025-26) —
+        # single source per chapter, PW Class 8 covers 5 of 7 chapters consistently and is used
+        # as the anchor channel. Every video verified live via YouTube's oEmbed endpoint.
+        "Natural Resources and Their Use": [indian_channel("Class 8 SST Chapter 1 | Natural Resources & Their Use | One Shot Full Chapter | NCERT Explained", "Concept Corridor", "0YABUzd_Vdc")],
+        "Reshaping India’s Political Map": [indian_channel("Reshaping India's Political Map | Class 8 Social Science Chapter 2 | Concepts | NCERT 2025", "Prof.Analysis", "c-4TeKTFqW4")],
+        "The Rise of the Marathas": [indian_channel("The Rise of the Marathas Class 8 || NEW NCERT || SST || Complete Chapter", "PW Class 8", "xpjRTr-G7Mk")],
+        "The Colonial Era in India": [indian_channel("The Colonial Era in India Class 8 || NEW NCERT || SST || Complete Chapter", "PW Class 8", "e4oHWSb12eY")],
+        "Universal Franchise and India’s Electoral System": [indian_channel("Universal Franchise and India's Electoral System Class 8 || NEW NCERT || SST || Complete Chapter", "PW Class 8", "Xj3LXsZPBAQ")],
+        "The Parliamentary System: Legislature and Executive": [indian_channel("The Parliamentary System: Legislature and Executive Class 8 || NEW NCERT || SST || Complete Chapter", "PW Class 8", "R8fE5UFcNYM")],
+        "Factors of Production": [indian_channel("Factors of Production Class 8 || NEW NCERT || SST || Complete Chapter", "PW Class 8", "Kn7SGtDbAeM")],
+    },
 }
 
 # ── Grade 10 resources ────────────────────────────────────────────────────────
+def ncert_pdf(title, filename):
+    """A verified, live NCERT chapter-specific textbook PDF (not the removed generic portal link)."""
+    return {"title": title, "type": "website", "url": f"https://ncert.nic.in/textbook/pdf/{filename}"}
+
+
+# ── Grade 10 Maths — verified chapter-wise resources ──
+# Grade 10 got NO new NCERT book for 2026-27 (confirmed via search) — same rationalised
+# curriculum as recent years, so unlike Grade 9's brand-new books, coverage here is abundant
+# and mature. No LikhaPoha AI content exists for Grade 10. Ritik Mishra (9th & 10th) covers
+# all 14 chapters consistently and is used as one anchor channel throughout. Chapter 9 only has
+# one Indian channel and no international pick — despite searching, no second source was found.
+GRADE_10_MATHS_CHAPTERS = [
+    "Real Numbers", "Polynomials", "Pair of Linear Equations in Two Variables",
+    "Quadratic Equations", "Arithmetic Progressions", "Triangles", "Coordinate Geometry",
+    "Introduction to Trigonometry", "Some Applications of Trigonometry", "Circles",
+    "Areas Related to Circles", "Surface Areas and Volumes", "Statistics", "Probability",
+]
+
+GRADE_10_MATHS_RESOURCE_LISTS = [
+    [  # 1. Real Numbers
+        indian_channel("Real Numbers - One Shot Revision | Class 10 Maths Chapter 1", "Magnet Brains", "dXMYdUcfb6w"),
+        indian_channel("Real Numbers ONE SHOT | Class 10 Maths Chapter 1 | Complete Chapter", "Ritik Mishra - 9th & 10th", "MX1iSpb4tRE"),
+        international_channel("Intro to Euclid's division algorithm | Real numbers | Class 10 (India)", "Khan Academy India", "H1AE2Se8A5E"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Real Numbers", "jemh101.pdf"),
+    ],
+    [  # 2. Polynomials
+        indian_channel("Class 10th Polynomials One Shot | Class 10 Maths Chapter 2", "Mission JEET", "Uill15OhzjE"),
+        indian_channel("Polynomials ONE SHOT | Class 10 Maths Chapter 2 | Complete Chapter", "Ritik Mishra - 9th & 10th", "kiegUjhq8Ao"),
+        international_channel("Zeros of polynomials introduction | Polynomial graphs | Algebra 2", "Khan Academy", "EtzwLlkoAnM"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Polynomials", "jemh102.pdf"),
+    ],
+    [  # 3. Pair of Linear Equations in Two Variables
+        indian_channel("Class 10 Maths Ch 3 | Pair of Linear Equations In Two Variables - One Shot Full Ch Revision", "Magnet Brains", "nrxyhyrURc0"),
+        indian_channel("PAIR OF LINEAR EQUATIONS IN 2 VARIABLES in 1 Shot: FULL CHAPTER", "Physics Wallah Foundation", "Pn8B0kCGArg"),
+        international_channel("Solving linear systems by graphing | Systems of equations", "Khan Academy", "5a6zpfl50go"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Pair of Linear Equations", "jemh103.pdf"),
+    ],
+    [  # 4. Quadratic Equations
+        indian_channel("Quadratic Equations - One Shot | Class 10 Maths Chapter 4", "Magnet Brains", "2OGJVRSLYfA"),
+        indian_channel("Quadratic Equations ONE SHOT | Class 10 Maths Chapter 4", "Ritik Mishra - 9th & 10th", "hayFtYnAB-Q"),
+        international_channel("Solving a quadratic equation by factoring | Algebra II", "Khan Academy", "2ZzuZvz33X0"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Quadratic Equations", "jemh104.pdf"),
+    ],
+    [  # 5. Arithmetic Progressions
+        indian_channel("Class 10th Arithmetic Progressions One Shot | Class 10 Maths Chapter 5", "Mission JEET", "buTk-CqJlIA"),
+        indian_channel("Arithmetic Progression Class 10 in One Shot | Class 10 Maths Chapter 5 AP", "Shobhit Nirwan", "zPKdZKBG4oQ"),
+        international_channel("Arithmetic Progression | Class 10 Maths | Board Exam 2025", "Khan Academy India", "Thb37iY18to"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Arithmetic Progressions", "jemh105.pdf"),
+    ],
+    [  # 6. Triangles
+        indian_channel("Class 10 Maths Chapter 6 in One Shot | Basics of Triangles", "Magnet Brains", "fa_t1gWJxig"),
+        indian_channel("Triangles ONE SHOT | Class 10 Maths Chapter 6", "Ritik Mishra - 9th & 10th", "nxo1ItY3oTo"),
+        international_channel("Triangles | Class 10 Maths | Board Exam 2025", "Khan Academy India", "MWZP5eAxehQ"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Triangles", "jemh106.pdf"),
+    ],
+    [  # 7. Coordinate Geometry
+        indian_channel("Class 10 Coordinate Geometry One Shot | Coordinate Geometry Class 10", "Magnet Brains", "jZzEYiFUZZo"),
+        indian_channel("Coordinate Geometry ONE SHOT | Class 10 Maths Chapter 7", "Ritik Mishra - 9th & 10th", "TXDyGK_GdNM"),
+        international_channel("Coordinate Geometry | Class 10 Math | Board Exam 2025", "Khan Academy India", "JdgN3MLQQhk"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Coordinate Geometry", "jemh107.pdf"),
+    ],
+    [  # 8. Introduction to Trigonometry
+        indian_channel("Introduction to Trigonometry - One Shot Revision (Part 2) | Class 10 Maths Chapter 8", "Magnet Brains", "QzWaAvWFlPc"),
+        indian_channel("Trigonometry ONE SHOT | Class 10 Maths Chapter 8", "Ritik Mishra - 9th & 10th", "wdaBwIv7Jso"),
+        international_channel("Introduction to Trigonometry | Class 10 Math | Board Exam 2025", "Khan Academy India", "sy4eGZsfw8U"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Introduction to Trigonometry", "jemh108.pdf"),
+    ],
+    [  # 9. Some Applications of Trigonometry
+        indian_channel("Some Applications of Trigonometry One Shot | Class 10 Maths Chapter 9", "Ritik Mishra - 9th & 10th", "otABxL0TP6U"),
+    ],
+    [  # 10. Circles
+        indian_channel("Circles - One Shot Revision | Class 10 Maths Chapter 10 | CBSE 2024-25", "Magnet Brains", "es3avCt1Hoc"),
+        indian_channel("Circles One Shot | Class 10 Maths Chapter 10", "Ritik Mishra - 9th & 10th", "dazX40Ct7J0"),
+        international_channel("Circles | Class 10 Maths | Board Exam 2025", "Khan Academy India", "G0YkFjWIcJQ"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Circles", "jemh110.pdf"),
+    ],
+    [  # 11. Areas Related to Circles
+        indian_channel("Areas Related to Circles Class 10th One Shot Revision CBSE 2023 Sprint X", "Vedantu CBSE 10th", "yG-E2eoI87c"),
+        indian_channel("Areas Related to Circles One Shot | Class 10 Maths Chapter 11", "Ritik Mishra - 9th & 10th", "usf6lf_3DnU"),
+        international_channel("Area of a sector given a central angle | Circles | Geometry", "Khan Academy", "u8JFdwmBvvQ"),
+    ],
+    [  # 12. Surface Areas and Volumes
+        indian_channel("Surface Areas and Volumes - One Shot Revision | Class 10 Maths Crash Course Chapter 12", "Magnet Brains", "QBqMMS5_Yp0"),
+        indian_channel("Surface Areas and Volumes One Shot | Class 10 Maths Chapter 12", "Ritik Mishra - 9th & 10th", "9-__HOYREi8"),
+        international_channel("Volume of a cone | Perimeter, area, and volume | Geometry", "Khan Academy", "hC6zx9WAiC4"),
+    ],
+    [  # 13. Statistics
+        indian_channel("Statistics - One Shot Revision | Class 10 Maths Chapter 14 (2022-23)", "Magnet Brains", "8fhZI6d4ty0"),
+        indian_channel("Statistics One Shot | Class 10 Maths Chapter 13 | Complete Chapter", "Ritik Mishra - 9th & 10th", "BPRM1J8QCb8"),
+        international_channel("Finding Mode of grouped data | Statistics | Class 10 | Maths", "Khan Academy India", "FSygiNE1M9o"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Statistics", "jemh113.pdf"),
+    ],
+    [  # 14. Probability
+        indian_channel("Probability Class 10 One Shot | Probability One Shot Class 10", "Magnet Brains", "h7iLCSxl890"),
+        indian_channel("Probability One Shot | Class 10 Maths Chapter 14", "Ritik Mishra - 9th & 10th", "u1A7OvCJgIM"),
+        international_channel("Probability explained | Independent and dependent events", "Khan Academy", "uzkc-qNVoOk"),
+        ncert_pdf("NCERT Mathematics Grade 10 — Probability", "jemh114.pdf"),
+    ],
+]
+
+# ── Grade 10 Science — verified chapter-wise resources ──
+# Same situation as Grade 10 Maths: no new NCERT book for 2026-27, so coverage is abundant.
+# Alakh Pandey (Physics Wallah) covers 12 of 13 chapters consistently and is used as the anchor
+# channel; PW Foundation fills the 13th (Our Environment). No LikhaPoha AI content exists.
+GRADE_10_SCIENCE_CHAPTERS = [
+    "Chemical Reactions and Equations", "Acids, Bases and Salts", "Metals and Non-metals",
+    "Carbon and its Compounds", "Life Processes", "Control and Coordination",
+    "How do Organisms Reproduce?", "Heredity", "Light – Reflection and Refraction",
+    "The Human Eye and the Colourful World", "Electricity",
+    "Magnetic Effects of Electric Current", "Our Environment",
+]
+
+GRADE_10_SCIENCE_RESOURCE_LISTS = [
+    [  # 1. Chemical Reactions and Equations
+        indian_channel("Chemical Reactions & Equations Class 10 | Complete Chapter in ONE SHOT | NCERT Covered", "Alakh Pandey (Physics Wallah)", "s0CttpllLxM"),
+        indian_channel("Chemical Reactions and Equations - One Shot Revision | Class 10 Chemistry Chapter 1", "Magnet Brains", "25334wZluB4"),
+        international_channel("Types of Chemical Reactions: Study Hall Chemistry #2", "Arizona State University + Crash Course", "Pv7JkI8d1Ng"),
+        ncert_pdf("NCERT Science Grade 10 — Chemical Reactions", "jesc101.pdf"),
+    ],
+    [  # 2. Acids, Bases and Salts
+        indian_channel("Acids Bases and Salts Class 10 || Complete CHAPTER IN ONE SHOT || NCERT Covered", "Alakh Pandey (Physics Wallah)", "5bSXK0QttdY"),
+        indian_channel("Acids, Bases, and Salts Reactions - One-Shot Revision | Class 10 Chemistry Chapter 2", "Magnet Brains", "iB7NFPLIwZw"),
+        international_channel("pH and pOH: Crash Course Chemistry #30", "CrashCourse", "LS67vS10O5Y"),
+        ncert_pdf("NCERT Science Grade 10 — Acids, Bases and Salts", "jesc102.pdf"),
+    ],
+    [  # 3. Metals and Non-metals
+        indian_channel("Metals And Non Metals Class 10 || Complete CHAPTER IN ONE SHOT || NCERT Covered", "Alakh Pandey (Physics Wallah)", "YihPV4eSHsQ"),
+        indian_channel("Metals and Nonmetals Class 10 | Metals and Nonmetals One Shot Revision", "Magnet Brains", "U3Z2KiJx6y0"),
+        international_channel("Reactivity Series of Metals | Environmental | Chemistry", "FuseSchool", "TGPPPFczOj0"),
+        ncert_pdf("NCERT Science Grade 10 — Metals and Non-metals", "jesc103.pdf"),
+    ],
+    [  # 4. Carbon and its Compounds
+        indian_channel("Carbon and Its Compounds Class 10 || Complete Chapter in ONE SHOT | NCERT Covered", "Alakh Pandey (Physics Wallah)", "iv4kMn_CrhM"),
+        indian_channel("Carbon & its Compounds - One Shot Revision | Class 10 Chemistry Chapter 4", "Magnet Brains", "diROxxtMTr4"),
+        international_channel("Hydrocarbon Power!: Crash Course Chemistry #40", "CrashCourse", "UloIw7dhnlQ"),
+    ],
+    [  # 5. Life Processes
+        indian_channel("Life Processes class 10 science biology || Complete CHAPTER IN ONE SHOT || NCERT Covered", "Alakh Pandey (Physics Wallah)", "NLv0qeWmBDk"),
+        indian_channel("Life Processes (जैव प्रक्रम) - One Shot Revision | Class 10 Science Chapter 5", "Magnet Brains", "6CAd2gAyYbI"),
+        international_channel("Circulatory & Respiratory Systems - CrashCourse Biology #27", "CrashCourse", "9fxm85Fy4sQ"),
+        ncert_pdf("NCERT Science Grade 10 — Life Processes", "jesc105.pdf"),
+    ],
+    [  # 6. Control and Coordination
+        indian_channel("Control And Coordination Class 10 || Complete Chapter in One Shot || NCERT Covered", "Alakh Pandey (Physics Wallah)", "vKfpJ2QejNA"),
+        indian_channel("Control and Coordination - Quick Revision | Class 10 Science Chapter 6", "Magnet Brains", "ZCYFQF4j3Kg"),
+        international_channel("The Nervous System - CrashCourse Biology #26", "CrashCourse", "x4PPZCLnVkA"),
+        ncert_pdf("NCERT Science Grade 10 — Control and Coordination", "jesc106.pdf"),
+    ],
+    [  # 7. How do Organisms Reproduce?
+        indian_channel("How Do Organisms Reproduce Class 10 || Complete CHAPTER IN ONE SHOT || NCERT Covered", "Alakh Pandey (Physics Wallah)", "dCAnbdRAsFo"),
+        indian_channel("How do Organisms Reproduce Class 10 Complete Chapter Line by Line NCERT Explanation", "CBSE Guidance", "PPPej5Bcszc"),
+        international_channel("The Plants & The Bees: Plant Reproduction - CrashCourse Biology #38", "CrashCourse", "ExaQ8shhkw8"),
+    ],
+    [  # 8. Heredity
+        indian_channel("HEREDITY Class 10 || Complete CHAPTER IN ONE SHOT || NCERT Covered", "Alakh Pandey (Physics Wallah)", "tAJkacN88ic"),
+        indian_channel("Class 10 Biology Chapter 9 | Heredity and Evolution - One Shot Full Chapter Revision", "Magnet Brains", "cBOlcV0EuOk"),
+        international_channel("Heredity: Crash Course Biology #9", "CrashCourse", "CBezq1fFUEA"),
+        ncert_pdf("NCERT Science Grade 10 — Heredity", "jesc108.pdf"),
+    ],
+    [  # 9. Light – Reflection and Refraction
+        indian_channel("LIGHT - Reflection & Refraction Class 10 || Complete Chapter in ONE SHOT", "Alakh Pandey (Physics Wallah)", "kHVAk96r05Y"),
+        indian_channel("Light-Reflection and Refraction - One Shot Revision (Part 1) | Class 10 Physics Chapter 9", "Magnet Brains", "SDnsnppj_wM"),
+        international_channel("Geometric Optics: Crash Course Physics #38", "CrashCourse", "Oh4m8Ees-3Q"),
+        ncert_pdf("NCERT Science Grade 10 — Light Reflection and Refraction", "jesc109.pdf"),
+    ],
+    [  # 10. The Human Eye and the Colourful World
+        indian_channel("Human Eye and the Colourful World Class 10 | Complete CHAPTER One Shot | NCERT Covered", "Alakh Pandey (Physics Wallah)", "G7zDZwrP6O4"),
+        indian_channel("The Human Eye and the Colourful World - One Shot Revision | Class 10 Physics Chapter 11", "Magnet Brains", "6L01ThI0o_s"),
+        international_channel("Vision: Crash Course Anatomy & Physiology #18", "CrashCourse", "o0DYP-u1rNM"),
+    ],
+    [  # 11. Electricity
+        indian_channel("ELECTRICITY in ONE SHOT - Class 10 || Physics Complete Chapter | NCERT Covered", "Alakh Pandey (Physics Wallah)", "S_ihSpnNhXU"),
+        indian_channel("Class 10 Physics Chapter 12 | Electricity - One Shot Revision", "Magnet Brains", "FeEzDrbyMVw"),
+        international_channel("Electric Current: Crash Course Physics #28", "CrashCourse", "HXOok3mfMLM"),
+        ncert_pdf("NCERT Science Grade 10 — Electricity", "jesc111.pdf"),
+    ],
+    [  # 12. Magnetic Effects of Electric Current
+        indian_channel("Magnetic Effects Of Electric Current - Class 10 | Complete Chapter | NCERT Covered", "Alakh Pandey (Physics Wallah)", "Ts15uMyJRsY"),
+        indian_channel("Class 10 Physics Ch 13 | Magnetic Effects of Electric Current - One Shot Revision (Part 1)", "Magnet Brains", "lBPlklnpPWY"),
+        international_channel("Magnetism: Crash Course Physics #32", "CrashCourse", "s94suB5uLWw"),
+    ],
+    [  # 13. Our Environment
+        indian_channel("Our Environment in One Shot: FULL CHAPTER || Warrior 2026", "Physics Wallah Foundation", "RwQ3YXVilBQ"),
+        indian_channel("Class 10 Biology Chapter 15 | Our Environment - One Shot Revision", "Magnet Brains", "3YdCjC2LBU0"),
+        international_channel("Ecosystem Ecology: Links in the Chain - Crash Course Ecology #7", "CrashCourse", "v6ubvEJ3KGM"),
+        ncert_pdf("NCERT Science Grade 10 — Our Environment", "jesc113.pdf"),
+    ],
+]
+
+# ── Grade 10 English (First Flight + Footprints Without Feet) — verified single-source per chapter ──
+# Scale (30 chapters/poems) made a multi-source curation pass impractical within reasonable time,
+# so each entry uses one verified, textbook-aligned Indian explainer instead of the usual two.
+# Every video below was confirmed live via YouTube's oEmbed endpoint before being added.
+GRADE_10_ENGLISH_CHAPTERS = [
+    # First Flight — prose
+    "A Letter to God",
+    "Nelson Mandela: Long Walk to Freedom",
+    "Two Stories about Flying",
+    "From the Diary of Anne Frank",
+    "The Hundred Dresses I",
+    "The Hundred Dresses II",
+    "Glimpses of India",
+    "Mijbil the Otter",
+    "Madam Rides the Bus",
+    "The Sermon at Benares",
+    "The Proposal",
+    # First Flight — poems
+    "Dust of Snow",
+    "Fire and Ice",
+    "A Tiger in the Zoo",
+    "How to Tell Wild Animals",
+    "The Ball Poem",
+    "Amanda",
+    "Animals",
+    "The Trees",
+    "Fog",
+    "The Tale of Custard the Dragon",
+    # Footprints Without Feet
+    "A Triumph of Surgery",
+    "The Thief's Story",
+    "The Midnight Visitor",
+    "A Question of Trust",
+    "Footprints without Feet",
+    "The Making of a Scientist",
+    "The Necklace",
+    "Bholi",
+    "The Book that Saved the Earth",
+]
+
+GRADE_10_ENGLISH_RESOURCE_LISTS = [
+    # First Flight — prose
+    [indian_channel("A Letter to God - Chapter 1 | Class 10 First Flight", "Magnet Brains", "JhqV9jIVVYg")],
+    [indian_channel("Nelson Mandela: Long Walk to Freedom - Chapter 2 | Class 10 First Flight", "Magnet Brains", "IrU9Ip9dpVE")],
+    [indian_channel("Two Stories about Flying - Chapter 3 | Class 10 First Flight", "Magnet Brains", "ZTmmJZZhljE")],
+    [indian_channel("From the Diary of Anne Frank - Chapter 4 | Class 10 First Flight", "Magnet Brains", "9pENOqI6pl4")],
+    [indian_channel("The Hundred Dresses I - Chapter 5 | Class 10 First Flight", "EduMantra- By Motion", "r8IiSdqCHMQ")],
+    [indian_channel("The Hundred Dresses II - Chapter 6 | Class 10 First Flight", "EduMantra- By Motion", "O5TEcAd5QYI")],
+    [indian_channel("Glimpses of India - Chapter 7 | Class 10 First Flight", "Magnet Brains", "UpPVmG0V0G0")],
+    [indian_channel("Mijbil the Otter - Chapter 8 | Class 10 First Flight", "Magnet Brains", "Dvwr3LQU1QA")],
+    [indian_channel("Madam Rides the Bus - Chapter 9 | Class 10 First Flight", "Magnet Brains", "CaLH49_uNlY")],
+    [indian_channel("The Sermon at Benares - Chapter 10 | Class 10 First Flight", "Magnet Brains", "Za595_6Y-_A")],
+    [indian_channel("The Proposal - Chapter 11 | Class 10 First Flight", "Step Up Academy", "fVAPxUo55iY")],
+    # First Flight — poems
+    [indian_channel("Dust of Snow & Fire and Ice: Full Explanation + PYQs | Class 10 English", "Study simplified with Yash", "MZMcHIymc8c")],
+    [indian_channel("Dust of Snow & Fire and Ice: Full Explanation + PYQs | Class 10 English", "Study simplified with Yash", "MZMcHIymc8c")],
+    [indian_channel("A Tiger in the Zoo - NCERT Solutions | Class 10 English (Poem)", "Magnet Brains", "gSBxK-XzALQ")],
+    [indian_channel("How to Tell Wild Animals | Class 10 Poem Explanation | Full Line-by-Line Analysis", "Let's Learn With Lizzy", "LtiisILR3Wo")],
+    [indian_channel("The Ball Poem Class 10 | NCERT First Flight Poem | In-depth Explanation", "Education Made Easier", "jH3SIbDnBZU")],
+    [indian_channel("AMANDA | Amanda Class 10 English | First Flight | Poem | Summary/Explanation", "Dear Sir", "lhJxSZmbaGM")],
+    [indian_channel("Class 10 (First Flight) - Poem: Animals", "Rucchi Kulkarni", "1ulpazRX7Ok")],
+    [indian_channel("Class 10 (First Flight) - Poem: The Trees", "Rucchi Kulkarni", "MVVVBu8Spb8")],
+    [indian_channel("Fog | Carl Sandburg | CBSE class 10 poem | First Flight | Line by line Explanation", "The English Youtuber", "TmXL5qN3owU")],
+    [indian_channel("Class 10 (First Flight) - Poem: The Tale of Custard the Dragon", "Rucchi Kulkarni", "Ispq3ZyuW-g")],
+    # Footprints Without Feet
+    [indian_channel("A Triumph of Surgery Full Chapter Explanation & NCERT Solutions | Class 10", "Magnet Brains", "Dsv4lMSbBEc")],
+    [indian_channel("The Thief's Story Class 10 Full Explanation | Class 10 English", "Magnet Brains", "BkSOSj3MoIg")],
+    [indian_channel("The Midnight Visitor | CBSE Class 10 English | Footprints without Feet | Explanation", "Study with Sudhir", "wKuAybXNytI")],
+    [indian_channel("A Question of Trust Full Explanation | Class 10 English | Footprints Without Feet", "Paridhi Classes", "jXVBV9QK1vI")],
+    [indian_channel("Footprints without Feet | English Explanation | Invisible Man by H.G. Wells", "Ace-Eduacte", "ADXzJknKLFQ")],
+    [indian_channel("Footprints Without Feet Ch 6 The Making of a Scientist NCERT Line by Line Explanation", "Ujjwal Educational Videos", "8KEZR66HlyQ")],
+    [indian_channel("The Necklace Full Chapter Explanation & NCERT Solutions | Class 10 English", "Magnet Brains", "Z-xrWrmud0o")],
+    [indian_channel("Bholi - One Shot Revision | Class 10 English Footprints Without Feet", "Magnet Brains", "dm73N7sBVXA")],
+    [indian_channel("The Book that saved the Earth, Class 10 English Footprints without Feet", "English Academy", "GCf_rfrKotU")],
+]
+
+# ── Grade 10 Social Science — verified chapter-wise resources (Economics + History + Geography + Political Science) ──
+# Single-source (Magnet Brains anchor, matching the Grade 10 English approach), every video
+# verified live via YouTube's oEmbed endpoint before being added.
+GRADE_10_SOCIAL_SCIENCE_CHAPTERS = [
+    # Economics — Understanding Economic Development
+    "Development",
+    "Sectors of the Indian Economy",
+    "Money and Credit",
+    "Globalisation and the Indian Economy",
+    "Consumer Rights",
+    # History — India and the Contemporary World-II
+    "The Rise of Nationalism in Europe",
+    "Nationalism in India",
+    "The Making of a Global World",
+    "The Age of Industrialisation",
+    "Print Culture and the Modern World",
+    # Geography — Contemporary India-II
+    "Resources and Development",
+    "Forest and Wildlife Resources",
+    "Water Resources",
+    "Agriculture",
+    "Minerals and Energy Resources",
+    "Manufacturing Industries",
+    "Lifelines of National Economy",
+    # Political Science — Democratic Politics-II
+    "Power-sharing",
+    "Federalism",
+    "Democracy and Diversity",
+    "Gender, Religion and Caste",
+    "Popular Struggles and Movements",
+    "Political Parties",
+    "Outcomes of Democracy",
+    "Challenges to Democracy",
+]
+
+GRADE_10_SOCIAL_SCIENCE_RESOURCE_LISTS = [
+    # Economics
+    [indian_channel("Development - Full Chapter | Board Exam 2023 | Class 10 Economics Chapter 1 (2022-23)", "Magnet Brains", "jCYwHv_7vyY")],
+    [indian_channel("Class 10 Economics Chapter 2 | Sectors of the Indian Economy Full Chapter 2022-23", "Magnet Brains", "sh_K3At_QDA")],
+    [indian_channel("Money and Credit - Full Chapter Revision | Class 10 Economics Chapter 3 (2022-23)", "Magnet Brains", "H-PC0A_Iq6Q")],
+    [indian_channel("Globalisation and The Indian Economy - Full Chapter | Class 10 Economics Chapter 4 | CBSE 2024-25", "Magnet Brains", "TEirIncA3nY")],
+    [indian_channel("Class 10 | Consumer rights | CBSE Board | Economics", "Home Revise", "XMlmaxJ4PkA")],
+    # History
+    [indian_channel("Rise of Nationalism in Europe Full Chapter Class 10 History | CBSE History Class 10 Ch 1 (2022-23)", "Magnet Brains", "383WJ9NL2d0")],
+    [indian_channel("Full Chapter Nationalism in India | Revision Series | Class 10 History Chapter 2 | 2023-24 NCERT", "Magnet Brains", "n9SK6vX2j8k")],
+    [indian_channel("The Making of a Global World Full Chapter Class 10 History | CBSE History Class 10 Ch 3 (2022-23)", "Magnet Brains", "W1Gx4FjKJTo")],
+    [indian_channel("The Age of Industrialisation - Full Chapter Explanation, NCERT Solutions | Class 10 History Chapter 4", "Magnet Brains", "l5B5yd90sco")],
+    [indian_channel("Print Culture and The Modern World | Full Chapter Explanation | Class 10 | History", "Digraj Sir (Social School by Unacademy)", "oI1Pw9qEYyU")],
+    # Geography
+    [indian_channel("Resources and Development - Full Chapter Explanation | Class 10 Geography Chapter 1 | 2022-23", "Magnet Brains", "7s6_Of6tPBc")],
+    [indian_channel("Forest and Wildlife Resources Full Chapter | CBSE Geography Class 10 Chapter 2 (2022-23)", "Magnet Brains", "W6sJdIoNXVM")],
+    [indian_channel("Water Resources Full Chapter Class 10 Geography | CBSE Geography Class 10 Chapter 3 (2022-23)", "Magnet Brains", "7oH7-Mum21I")],
+    [indian_channel("Class 10th Geography Chapter 4 | Agriculture Full Chapter Explanation (2022-23)", "Magnet Brains", "PeSlhEiM2yU")],
+    [indian_channel("Minerals and Energy Resources Full Chapter | CBSE Geography Class 10 Chapter 5 (2022-23)", "Magnet Brains", "ru4_4RUla3k")],
+    [indian_channel("Manufacturing Industries (Full Chapter) | Class 10 Geography | SST Ch 6 | Revision Series 2023-24", "Magnet Brains", "f4cOLCTH-tY")],
+    [indian_channel("Lifelines of National Economy Full Chapter | CBSE Geography Class 10 Chapter 7 (2022-23)", "Magnet Brains", "BOa2uA4rMlU")],
+    # Political Science
+    [indian_channel("Class 10 Civics Chapter 1 | Power Sharing Full Chapter 2022-23", "Magnet Brains", "Lj6FODNgJ2A")],
+    [indian_channel("Full Chapter Revision Series | Federalism | Class 10 Civics | Chapter 2 | 2023-24 NCERT", "Magnet Brains", "UhS1s4kNwUY")],
+    [indian_channel("Democracy and Diversity Full Chapter Class 10 Civics | CBSE Civics Class 10 Chapter 3 (2022-23)", "Magnet Brains", "O4GfrcwDF24")],
+    [indian_channel("Gender, Religion and Caste Full Chapter Class 10 Civics | CBSE Civics Class 10 Chapter 4 (2022-23)", "Magnet Brains", "KrYsuQpXHj4")],
+    [indian_channel("Popular Struggles and Movements Full Chapter Class 10 Civics | Chapter 5 (2022-23)", "Magnet Brains", "TCnqoebrv_A")],
+    [indian_channel("Political Parties Full Chapter Class 10 Civics | CBSE Civics Class 10 Chapter 6 (2022-23)", "Magnet Brains", "O6g7hGwtXY8")],
+    [indian_channel("Outcomes of Democracy Full Chapter Class 10 Civics | CBSE Civics Class 10 Chapter 7 (2022-23)", "Magnet Brains", "0GS6FRycmWs")],
+    [indian_channel("Challenges to Democracy Full Chapter Class 10 Civics | CBSE Civics Class 10 Chapter 8 (2022-23)", "Magnet Brains", "mim9Z_HxX-Q")],
+]
+
+
+# ── Grade 10 Hindi (Sparsh Bhag-2 / Kshitij Bhag-2, rationalized syllabus) — verified single-source per chapter ──
+# The live dropdown labels these chapters by AUTHOR NAME ("अध्याय N: <author>"), not poem/story
+# title, so each chapter is keyed by the exact author-name string the dropdown shows. Single
+# source per chapter (Magnet Brains anchor where available, otherwise the closest verified
+# dedicated explanation channel), matching the Grade 10 English/Social Science approach. Every
+# video below was confirmed live via YouTube's oEmbed endpoint before being added.
+GRADE_10_HINDI_CHAPTERS = [
+    "सूरदास",
+    "तुलसीदास",
+    "जयशंकर प्रसाद",
+    "सूर्यकांत त्रिपाठी 'निराला'",
+    "नागार्जुन",
+    "मंगलेश डबराल",
+    "स्वयं प्रकाश",
+    "रामवृक्ष बेनीपुरी",
+    "यशपाल",
+    "मन्नू भंडारी",
+    "यतींद्र मिश्र",
+    "भदंत आनंद कौसल्यायन",
+]
+
+GRADE_10_HINDI_RESOURCE_LISTS = [
+    [indian_channel("Surdas Ke Pad: Poem Explanation - Kshitij Part 2 Chapter 1 | Class 10 Hindi", "Magnet Brains", "IwK2efUZGpw")],
+    [indian_channel("Ram Lakshman Parshuram Samvad Explanation (Part 1) - Kshitij Part 2 Ch 2 | Class 10 Hindi", "Magnet Brains", "pquPO5jcA0Y")],
+    [indian_channel("क्षितिज भाग 2 कक्षा 10 हिंदी जयशंकर प्रसाद का आत्मकथ्य का संदर्भ प्रसंग व्याख्या एवं प्रश्न अभ्यास", "Ck education jagat", "e5JSZSqiBNU")],
+    [indian_channel("उत्साह Utsaah Explanation & Questions-Answers भावार्थ, व्याख्या और प्रश्न-उत्तर Class 10 हिंदी CBSE", "Dr Arpana Rawat", "8-_SWSmPci8")],
+    [indian_channel("Yah Danturit Muskan Aur Fasal - Full Chapter | Class 10 Hindi Kshitij Chapter 6", "Magnet Brains Hindi Medium", "YCVhkSyEC1Y")],
+    [indian_channel("संगतकार || मंगलेश डबराल || Class 10th Hindi Ncert Line by Line Explanation", "Connect With Hindi", "g0NBE2teykE")],
+    [indian_channel("Netaji Ka Chashma (नेताजी का चश्मा) | Class 10 Hindi Chapter Full Explanation", "EduRev Class 6-10", "F5lebPHPIew")],
+    [indian_channel("Class 10 Hindi Chapter 8 | रामवृक्ष बेनीपुरी बालगोबिन भगत - परिचय व व्याख्या", "Utkarsh 9th & 10th (Pranita Ma'am)", "0txNHHPo3O4")],
+    [indian_channel("तताँरा वामीरो कथा कक्षा-10 | Tatara Vamiro Katha Class 10 Hindi Animated Video | Full Explanation", "Khush classes", "51sUczOQviE")],
+    [indian_channel("Class 10 Hindi C.10 | एक कहानी यह भी मन्नू भंडारी - परिचय एवं व्याख्या Part-1", "Utkarsh 9th & 10th (Pranita Ma'am)", "d_qiWmuZePg")],
+    [indian_channel("नौबतखाने में इबादत लेखक – यतींद्र मिश्र", "Let's study with ABS Corner", "MsWuXwHA6D0")],
+    [indian_channel("Sanskriti class10 / Animation / संस्कृति line by line explanation / Full", "Unending Education", "gqSVQXnSqEM")],
+]
+
+
+def build_chapter_lookup(chapters, resource_lists):
+    """Map both plain chapter names and 'Chapter N: <name>' RAG-upload labels to the same resources."""
+    lookup = {}
+    for _index, _chapter_name in enumerate(chapters):
+        _resource_list = resource_lists[_index]
+        lookup[_chapter_name] = _resource_list
+        lookup[f"Chapter {_index + 1}: {_chapter_name}"] = _resource_list
+    return lookup
+
+
 GRADE_10_RESOURCES: dict[str, dict[str, list]] = {
-    "Maths": {
-        "Real Numbers": [
-            {"title": "NCERT Mathematics Grade 10 — Real Numbers", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh101.pdf"},
-        ],
-        "Polynomials": [
-            {"title": "NCERT Mathematics Grade 10 — Polynomials", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh102.pdf"},
-        ],
-        "Pair of Linear Equations in Two Variables": [
-            {"title": "NCERT Mathematics Grade 10 — Pair of Linear Equations", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh103.pdf"},
-        ],
-        "Quadratic Equations": [
-            {"title": "NCERT Mathematics Grade 10 — Quadratic Equations", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh104.pdf"},
-        ],
-        "Arithmetic Progressions": [
-            {"title": "NCERT Mathematics Grade 10 — Arithmetic Progressions", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh105.pdf"},
-        ],
-        "Triangles": [
-            {"title": "NCERT Mathematics Grade 10 — Triangles", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh106.pdf"},
-        ],
-        "Coordinate Geometry": [
-            {"title": "NCERT Mathematics Grade 10 — Coordinate Geometry", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh107.pdf"},
-        ],
-        "Introduction to Trigonometry": [
-            {"title": "NCERT Mathematics Grade 10 — Introduction to Trigonometry", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh108.pdf"},
-        ],
-        "Circles": [
-            {"title": "NCERT Mathematics Grade 10 — Circles", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh110.pdf"},
-        ],
-        "Statistics": [
-            {"title": "NCERT Mathematics Grade 10 — Statistics", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh113.pdf"},
-        ],
-        "Probability": [
-            {"title": "NCERT Mathematics Grade 10 — Probability", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jemh114.pdf"},
-        ],
-    },
-    "Science": {
-        "Chemical Reactions and Equations": [
-            {"title": "NCERT Science Grade 10 — Chemical Reactions", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc101.pdf"},
-        ],
-        "Acids, Bases and Salts": [
-            {"title": "NCERT Science Grade 10 — Acids, Bases and Salts", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc102.pdf"},
-        ],
-        "Metals and Non-metals": [
-            {"title": "NCERT Science Grade 10 — Metals and Non-metals", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc103.pdf"},
-        ],
-        "Life Processes": [
-            {"title": "NCERT Science Grade 10 — Life Processes", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc105.pdf"},
-        ],
-        "Control and Coordination": [
-            {"title": "NCERT Science Grade 10 — Control and Coordination", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc106.pdf"},
-        ],
-        "Heredity": [
-            {"title": "NCERT Science Grade 10 — Heredity", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc108.pdf"},
-        ],
-        "Light – Reflection and Refraction": [
-            {"title": "NCERT Science Grade 10 — Light Reflection and Refraction", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc109.pdf"},
-        ],
-        "Electricity": [
-            {"title": "NCERT Science Grade 10 — Electricity", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc111.pdf"},
-        ],
-        "Our Environment": [
-            {"title": "NCERT Science Grade 10 — Our Environment", "type": "website",
-             "url": "https://ncert.nic.in/textbook/pdf/jesc113.pdf"},
-        ],
-    },
+    "Maths": build_chapter_lookup(GRADE_10_MATHS_CHAPTERS, GRADE_10_MATHS_RESOURCE_LISTS),
+    "Science": build_chapter_lookup(GRADE_10_SCIENCE_CHAPTERS, GRADE_10_SCIENCE_RESOURCE_LISTS),
+    "Social Science": build_chapter_lookup(GRADE_10_SOCIAL_SCIENCE_CHAPTERS, GRADE_10_SOCIAL_SCIENCE_RESOURCE_LISTS),
+    "Hindi": build_chapter_lookup(GRADE_10_HINDI_CHAPTERS, GRADE_10_HINDI_RESOURCE_LISTS),
     "English": {
+        **build_chapter_lookup(GRADE_10_ENGLISH_CHAPTERS, GRADE_10_ENGLISH_RESOURCE_LISTS),
         "Grammar": list(GRAMMAR_RESOURCES),
         "Writing Skills": GRAMMAR_TOPIC_RESOURCES.get("Writing Skills", []),
         "Tenses": GRAMMAR_TOPIC_RESOURCES.get("Tenses", []),
@@ -1192,21 +1687,70 @@ LEARNING_RESOURCES["English"].update({
 })
 
 
+def _strip_part_prefix(chapter):
+    """Remove a display-only 'Part N - ' prefix from a chapter label.
+
+    Mirrors app/routes/syllabus.py's strip_part_prefix() — duplicated here (rather than
+    imported) so this pure-data module doesn't pull in that route file's FastAPI/Supabase
+    dependencies just for two regexes.
+    """
+    return re.sub(r"^\s*part\s*\d+\s*[-:]\s*", "", str(chapter or ""), flags=re.IGNORECASE).strip()
+
+
+def _strip_book_source_prefix(chapter):
+    """Remove a display-only book-source prefix (e.g. 'Text Book - ') from a chapter label.
+
+    Mirrors app/routes/syllabus.py's strip_book_source_prefix() — see note above.
+    """
+    return re.sub(
+        r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+        r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+        "",
+        str(chapter or ""),
+        flags=re.IGNORECASE,
+    ).strip()
+
+
+def _strip_chapter_number_prefix(chapter):
+    """Remove a 'Chapter N: ' / 'Unit N: ' / 'अध्याय N: ' prefix from a chapter label.
+
+    RAG-uploaded chapters are numbered in upload order, which curated resource keys
+    can't always predict in advance. Stripping the number lets a plain-title key
+    (e.g. "Fog", "सूरदास") match regardless of what chapter number the upload landed
+    on, and regardless of whether the subject numbers chapters "Chapter", "Unit", or
+    in Hindi.
+    """
+    return re.sub(r"^\s*(?:chapter|unit|अध्याय)\s*\d+\s*[-:]\s*", "", str(chapter or ""), flags=re.IGNORECASE).strip()
+
+
 def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
-    """Return curated resources if present; otherwise return free fallback links.
+    """Return curated resources if present; otherwise return a free fallback link.
+
+    The syllabus dropdown decorates chapter labels with a display-only book-source prefix
+    (e.g. "Text Book - Chapter 1: A Letter to God") whenever a subject has multiple uploaded
+    books. Curated resources are keyed by the plain "Chapter N: Title" label, so lookups try
+    the raw label first, then the prefix-stripped label.
 
     Lookup priority:
     1. Grade-specific resource map (Grade 8, Grade 10)
     2. Legacy LEARNING_RESOURCES (Grade 9 + generic)
     3. Grammar topic resources (English, any grade)
     4. Fallback YouTube search
-    All results include the NCERT Exemplar link for Maths/Science (Grade 8-10).
     """
     cleaned_chapter = "".join(c for c in (chapter or "") if c.isprintable()).strip()
+    source_stripped = _strip_book_source_prefix(_strip_part_prefix(cleaned_chapter))
+    number_stripped = _strip_chapter_number_prefix(source_stripped)
+    lookup_candidates = list(dict.fromkeys([cleaned_chapter, source_stripped, number_stripped]))
+
+    def lookup(mapping):
+        for candidate in lookup_candidates:
+            if candidate in mapping:
+                return mapping[candidate]
+        return []
 
     # Priority 1: Grade-specific resources
     grade_map = GRADE_RESOURCES_MAP.get(grade, {})
-    resources = grade_map.get(subject, {}).get(cleaned_chapter, [])
+    resources = lookup(grade_map.get(subject, {}))
 
     # Priority 1b: Fuzzy/prefix match for chapter name variants
     if not resources and grade_map.get(subject):
@@ -1227,41 +1771,21 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
 
     # Priority 2: Legacy Grade 9 / shared resources
     if not resources:
-        resources = LEARNING_RESOURCES.get(subject, {}).get(cleaned_chapter, [])
+        resources = lookup(LEARNING_RESOURCES.get(subject, {}))
 
     # Priority 3: Grammar topic match for English
     if not resources and subject == "English":
-        resources = GRAMMAR_TOPIC_RESOURCES.get(cleaned_chapter, [])
+        resources = lookup(GRAMMAR_TOPIC_RESOURCES)
 
-    # Build final list
     if resources:
-        # Grade 11 & 12: CrashCourse + KA only — no NCERT link injected
-        result = list(resources) if grade in ("Grade 11", "Grade 12") else add_ncert_link(list(resources))
-    else:
-        grade_query = grade.lower().replace("grade", "class")
-        query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
-        result = [
-            {
-                "title": f"YouTube Search - {subject}: {chapter}",
-                "type": "website",
-                "url": f"https://www.youtube.com/results?search_query={query}",
-            },
-        ]
-        if grade not in ("Grade 11", "Grade 12"):
-            result.append(NCERT_RESOURCE)
+        return list(resources)
 
-    # Append NCERT Exemplar link for Maths/Science (Grade 8-10)
-    if subject in ("Maths", "Science") and grade in EXEMPLAR_GRADE_RESOURCES:
-        exemplar = EXEMPLAR_GRADE_RESOURCES[grade].get(subject)
-        if exemplar:
-            result = [r for r in result if r.get("url") != exemplar["url"]]
-            result.append({
-                "title": exemplar["title"],
-                "type": "website",
-                "url": exemplar["url"],
-            })
-        # Always add the browse-all page
-        if not any(r.get("url") == EXEMPLAR_PAGE["url"] for r in result):
-            result.append(EXEMPLAR_PAGE)
-
-    return result
+    grade_query = grade.lower().replace("grade", "class")
+    query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
+    return [
+        {
+            "title": f"YouTube Search - {subject}: {chapter}",
+            "type": "website",
+            "url": f"https://www.youtube.com/results?search_query={query}",
+        },
+    ]

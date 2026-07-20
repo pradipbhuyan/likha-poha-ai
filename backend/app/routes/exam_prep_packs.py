@@ -50,7 +50,7 @@ def _razorpay_configured() -> bool:
 
 def _get_pack_plan(plan_key: str) -> dict:
     """Load exam prep pack plan from merged defaults+DB settings."""
-    from app.routes.admin_control import list_subscription_plan_settings  # noqa: PLC0415
+    from app.services.subscription_settings_service import list_subscription_plan_settings  # noqa: PLC0415
     payload = list_subscription_plan_settings()
     plan = (payload.get("plans") or {}).get(plan_key)
     if not plan:
@@ -164,7 +164,7 @@ def get_pack_prices():
     Return current pack prices from admin settings.
     No auth required — shown on the preview/landing page.
     """
-    from app.routes.admin_control import list_subscription_plan_settings  # noqa: PLC0415
+    from app.services.subscription_settings_service import list_subscription_plan_settings  # noqa: PLC0415
     payload = list_subscription_plan_settings()
     plans = payload.get("plans") or {}
     result = {}

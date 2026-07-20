@@ -1,21 +1,20 @@
 grade,subject,chapter,step_count,overall_score,completeness_score,formula_quality_score,mcq_quality_score,pedagogy_score,student_flow_score,critical,high,medium,low,audited_at
-Grade 10,English,Workbook - Chapter 1: A Letter to God,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.801482+00:00
-Grade 10,Maths,Chapter 6: Triangles,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.801849+00:00
-Grade 10,Science,Chapter 10: The Human Eye and the Colourful World,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.802601+00:00
-Grade 10,Science,Exemplar: Magnetic Effects of Electric Current,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.804416+00:00
-Grade 5,EVS,Chapter 5: Our Vibrant Country,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.805616+00:00
-Grade 6,Maths,Chapter 10 The Other Side of Zero,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.805761+00:00
-Grade 10,Science,Exemplar: Control and Coordination,1,94,100,90,80,98,100,0,0,0,1,2026-07-19T08:38:14.806730+00:00
-Grade 10,Social Science,Text Book - Chapter 2: Sectors of the Indian Economy,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.807347+00:00
-Grade 6,Hindi,4. हार की जीत,1,94,100,90,80,98,100,0,0,0,1,2026-07-19T08:38:14.807752+00:00
-Grade 10,Maths,Exemplar: Polynomials,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.808174+00:00
-Grade 10,English,Text Book - Chapter 4: From the Diary of Anne Frank,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.809009+00:00
-Grade 10,Hindi,अध्याय 4: सूर्यकांत त्रिपाठी 'निराला',1,94,100,90,80,98,100,0,0,0,1,2026-07-19T08:38:14.809475+00:00
-Grade 6,Hindi,10. परीक्ा,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.809617+00:00
-Grade 10,Science,Chapter 9: Light – Reflection and Refraction,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.809900+00:00
-Grade 10,Maths,Exemplar: Circles,1,94,100,90,80,98,100,0,0,0,1,2026-07-19T08:38:14.810309+00:00
-Grade 10,English,Text Book - Chapter 7: Madam Rides the Bus,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.811315+00:00
-Grade 10,Maths,Exemplar: Probability,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.811866+00:00
-Grade 5,Maths,Chapter 1: We the Travellers — I,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.812013+00:00
-Grade 10,Social Science,Political Science - Chapter 4: Political Parties,1,93,95,90,80,100,100,0,0,1,0,2026-07-19T08:38:14.812590+00:00
-Grade 10,Maths,Chapter 9: Some Applications of Trigonometry,1,94,100,90,80,100,100,0,0,0,0,2026-07-19T08:38:14.812894+00:00
+Grade 10,Social Science,Political Science - Chapter 5: Outcomes of Democracy,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.465642+00:00
+Grade 10,Science,Chapter 11: Electricity,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.467289+00:00
+Grade 10,Maths,Chapter 1: Real Numbers,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.468046+00:00
+Grade 10,Maths,Exemplar: Polynomials,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.468357+00:00
+Grade 6,Maths,Chapter 2 Lines and Angles,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.468720+00:00
+Grade 10,English,Workbook - Chapter 9: The Proposal,1,94,100,90,80,98,100,0,0,0,1,2026-07-20T02:24:28.469438+00:00
+Grade 6,Maths,Chapter 10 The Other Side of Zero,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.469559+00:00
+Grade 10,Science,Chapter 3: Metals and Non-metals,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.469942+00:00
+Grade 10,Maths,Exemplar: Introduction to Trigonometry and Its Applications,1,94,100,90,80,98,100,0,0,0,1,2026-07-20T02:24:28.470496+00:00
+Grade 6,Hindi,11. चेतक की वीरता,1,94,100,90,80,98,100,0,0,0,1,2026-07-20T02:24:28.470926+00:00
+Grade 6,Hindi,1. मातृभूमि,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.471459+00:00
+Grade 10,Hindi,अध्याय 12: भदंत आनंद कौसल्यायन,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.472319+00:00
+Grade 10,Maths,Exemplar: Circles,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.473321+00:00
+Grade 10,Maths,Exemplar: Arithmetic Progressions,2,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.474074+00:00
+Grade 10,English,Supplementary Reader - Chapter 7: The Necklace,1,94,100,90,80,98,100,0,0,0,1,2026-07-20T02:24:28.474551+00:00
+Grade 6,Science,Chapter 1: The Wonderful World of Science,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.475198+00:00
+Grade 10,English,Supplementary Reader - Chapter 1: A Triumph of Surgery,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.475829+00:00
+Grade 10,English,Supplementary Reader - Chapter 2: The Thief's Story,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.476635+00:00
+Grade 10,English,Workbook - Chapter 3: Two Stories About Flying,1,94,100,90,80,100,100,0,0,0,0,2026-07-20T02:24:28.477311+00:00

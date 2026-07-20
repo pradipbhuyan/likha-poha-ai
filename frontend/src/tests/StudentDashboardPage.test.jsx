@@ -95,23 +95,43 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("XP Points");
   });
 
-  test("renders Continue Learning card", async () => {
+  test("renders Up Next card, prioritizing in-progress lesson over recommendations", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
-    expect(await screen.findByTestId("continue-learning-card")).toBeInTheDocument();
-    expect(document.body.textContent).toContain("Continue Learning");
+    expect(await screen.findByTestId("up-next-card")).toBeInTheDocument();
+    expect(document.body.textContent).toContain("Up Next");
+    // last_chapter is present in the mock, so it takes priority over the "Revise: Fractions" recommendation
+    expect(document.body.textContent).toContain("Continue Learning →");
     expect(document.body.textContent).toContain("Motion and Force");
   });
 
-  test("renders Today's Plan card", async () => {
+  test("Up Next card still surfaces today's plan tasks alongside the primary CTA", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
-    expect(await screen.findByTestId("todays-plan-card")).toBeInTheDocument();
+    await screen.findByTestId("up-next-card");
     expect(document.body.textContent).toContain("Today's Plan");
+    expect(document.body.textContent).toContain("Continue Science lesson");
   });
 
-  test("renders AI Learning Coach card", async () => {
-    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
-    expect(await screen.findByTestId("ai-coach-card")).toBeInTheDocument();
-    expect(document.body.textContent).toContain("AI Learning Coach");
+  test("Up Next card falls back to the top recommendation when no lesson is in progress", async () => {
+    const { getStudentDashboardSummary } = await import("../api/analytics");
+    getStudentDashboardSummary.mockResolvedValueOnce({
+      success: true,
+      student: { username: "akshita.teststudent", grade: "Grade 9", study_streak_days: 5, lessons_completed: 12 },
+      subscription: { canonical_plan_key: "FREE_TIER", plan_name: "Free Tier", has_full_access: false },
+      features: { has_full_access: false, exemplar_locked: true, mock_test_limited: true, ask_doubts_limited: true },
+      mock_tests: { available: true, total: 8, average_score: 54, best_score: 80, subject_averages: {}, recent: [], score_trend: [] },
+      progress: { available: true, overall_pct: 18, completed_chapters: 0, in_progress_chapters: 3, subject_progress: {}, last_chapter: null },
+      weak_topics: [],
+      activity: { last_active: null, feature_counts: {}, total_90d: 0 },
+      achievements: [],
+      recommendations: [{ type: "upgrade", title: "Unlock full platform access", body: "Upgrade to access Exemplar problems.", priority: "low", action: "subscription" }],
+      plan: { tasks: [], estimated_minutes: 15 },
+    });
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("up-next-card");
+    expect(document.body.textContent).toContain("Upgrade to access Exemplar problems.");
+    screen.getByText("Upgrade Plan →").click();
+    expect(navFn).toHaveBeenCalledWith("subscriptionPlans");
   });
 
   test("renders Subject Progress card", async () => {

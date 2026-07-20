@@ -36,8 +36,8 @@ from app.routes.teacher_dashboard import (
     _is_synthetic_email,
     CreateStudentRequest,
 )
-import app.routes.admin_control as admin_route
-from app.routes.admin_control import (
+import app.routes.admin_associations as admin_route
+from app.routes.admin_associations import (
     LinkParentChildRequest,
     link_parent_to_child,
     unlink_parent_from_child,

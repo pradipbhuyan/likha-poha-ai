@@ -4,6 +4,8 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 from app.routes import rag
+from app.routes import rag_bulk_book_upload
+from app.services import rag_book_title_inference
 from app.services.auth_service import require_admin
 
 
@@ -56,7 +58,7 @@ def test_parse_bulk_book_metadata_requires_one_record_per_file():
     ])
 
     try:
-        rag.parse_bulk_book_metadata(metadata_json, file_count=2)
+        rag_book_title_inference.parse_bulk_book_metadata(metadata_json, file_count=2)
     except ValueError as exc:
         assert "count must match" in str(exc)
     else:
@@ -83,11 +85,11 @@ def test_bulk_book_upload_preserves_per_file_metadata(monkeypatch):
         }
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
-    monkeypatch.setattr(rag, "upload_textbook_text", fake_upload_textbook_text)
+    monkeypatch.setattr(rag_bulk_book_upload, "upload_textbook_text", fake_upload_textbook_text)
 
     metadata = [
         {
@@ -146,11 +148,11 @@ def test_book_set_upload_indexes_each_file_as_one_book_section(monkeypatch):
         }
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
-    monkeypatch.setattr(rag, "upload_textbook_text", fake_upload_textbook_text)
+    monkeypatch.setattr(rag_bulk_book_upload, "upload_textbook_text", fake_upload_textbook_text)
 
     response = client.post(
         "/api/rag/book-set-upload",
@@ -202,11 +204,11 @@ def test_book_set_upload_fills_missing_section_titles_from_filenames(monkeypatch
         }
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
-    monkeypatch.setattr(rag, "upload_textbook_text", fake_upload_textbook_text)
+    monkeypatch.setattr(rag_bulk_book_upload, "upload_textbook_text", fake_upload_textbook_text)
 
     response = client.post(
         "/api/rag/book-set-upload",
@@ -252,11 +254,11 @@ def test_book_set_upload_preserves_commas_inside_chapter_titles(monkeypatch):
         }
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
-    monkeypatch.setattr(rag, "upload_textbook_text", fake_upload_textbook_text)
+    monkeypatch.setattr(rag_bulk_book_upload, "upload_textbook_text", fake_upload_textbook_text)
 
     response = client.post(
         "/api/rag/book-set-upload",
@@ -298,7 +300,7 @@ def test_analyze_book_set_suggests_titles_before_upload(monkeypatch):
         return "Chapter 1: Plants\nRoots, stems, leaves and flowers"
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
@@ -324,7 +326,7 @@ def test_infer_book_section_title_handles_title_before_chapter_number():
     """
     Many PDFs start with "Title Chapter N ..." instead of "Chapter N: Title".
     """
-    title = rag.infer_book_section_title(
+    title = rag_book_title_inference.infer_book_section_title(
         "iesc104.pdf",
         "Describing Motion Around Us Chapter 4 Everything in nature is in motion.",
         1,
@@ -337,7 +339,7 @@ def test_infer_book_section_title_handles_ncert_flattened_grade_heading():
     """
     NCERT PDFs can flatten the heading into one line with page numbers.
     """
-    title = rag.infer_book_section_title(
+    title = rag_book_title_inference.infer_book_section_title(
         "hecu106.pdf",
         (
             "80 Curiosity — Textbook of Science for Grade 8 Pressure, Winds, "
@@ -354,7 +356,7 @@ def test_infer_book_section_title_ignores_ncert_indesign_footer():
     """
     NCERT chapter PDFs include .indd footer metadata that must not become labels.
     """
-    title = rag.infer_book_section_title(
+    title = rag_book_title_inference.infer_book_section_title(
         "hecu106.pdf",
         """
 80
@@ -376,7 +378,7 @@ Reprint 2026-27
 
 def test_infer_book_section_title_preserves_hindi_chapter_label():
     """Hindi uploads should return Hindi labels, not translated or generic titles."""
-    title = rag.infer_book_section_title(
+    title = rag_book_title_inference.infer_book_section_title(
         "hindi-chapter-1.pdf",
         """
 पाठ 1: दो बैलों की कथा
@@ -391,7 +393,7 @@ def test_infer_book_section_title_preserves_hindi_chapter_label():
 
 def test_infer_book_section_title_detects_hindi_contents_page():
     """Hindi table-of-contents pages should be labeled in Hindi."""
-    title = rag.infer_book_section_title(
+    title = rag_book_title_inference.infer_book_section_title(
         "hindi-toc.pdf",
         """
 विषय सूची
@@ -408,7 +410,7 @@ def test_normalize_suggested_section_title_removes_pdf_export_artifacts():
     """
     AI cleanup should remove .indd timestamps and recover the clean preview title.
     """
-    title = rag.normalize_suggested_section_title(
+    title = rag_book_title_inference.normalize_suggested_section_title(
         "Chapter 6.indd 80Chapter 6.indd 80 6/28/2025 3:59:54 PM",
         "hecu106.pdf",
         (
@@ -446,11 +448,11 @@ def test_analyze_book_set_uses_ai_for_filename_like_labels(monkeypatch):
         })
 
     monkeypatch.setattr(
-        rag,
+        rag_bulk_book_upload,
         "extract_text_from_uploaded_file",
         fake_extract_text_from_uploaded_file,
     )
-    monkeypatch.setattr(rag, "ask_llm", fake_ask_llm)
+    monkeypatch.setattr(rag_book_title_inference, "ask_llm", fake_ask_llm)
 
     response = client.post(
         "/api/rag/analyze-book-set",
@@ -466,7 +468,7 @@ def test_analyze_book_set_uses_ai_for_filename_like_labels(monkeypatch):
     assert data["sections"][0]["suggested_title"] == (
         "Chapter 1: Exploration - Entering the World of Secondary Science"
     )
-    assert captured_model["model"] == rag.GPT5_TEXT_MODEL
+    assert captured_model["model"] == rag_book_title_inference.GPT5_TEXT_MODEL
 
 
 def test_rag_document_preview_returns_stored_chunks(monkeypatch):

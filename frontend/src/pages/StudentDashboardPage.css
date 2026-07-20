@@ -35,10 +35,10 @@
   margin-bottom: var(--sd-gap);
 }
 
-/* Main 3-column row */
+/* Up Next row — single merged card */
 .sd-main-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--sd-gap);
   margin-bottom: var(--sd-gap);
 }
@@ -98,7 +98,6 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .sd-main-row { grid-template-columns: 1fr 1fr; }
   .sd-mid-row  { grid-template-columns: repeat(2, 1fr); }
   .sd-util-row { grid-template-columns: repeat(2, 1fr); }
   .sd-quick-row { grid-template-columns: repeat(2, 1fr); }

@@ -59,6 +59,7 @@ from app.routes.doubt import router as doubt_router
 from app.routes.quiz import router as quiz_router
 from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
+from app.routes.rag_bulk_book_upload import router as rag_bulk_book_upload_router
 from app.routes import images
 from app.routes import usage
 from app.routes import recommendations
@@ -71,6 +72,14 @@ from app.routes.formula_sheets import router as formula_sheets_router
 from app.routes.formula_import import router as formula_import_router
 from app.routes.admin_qa import router as admin_qa_router
 from app.routes.admin_control import router as admin_control_router
+from app.routes.admin_subscription_settings import router as admin_subscription_settings_router
+from app.routes.admin_onboarding import router as admin_onboarding_router
+from app.routes.admin_offer_codes import router as admin_offer_codes_router
+from app.routes.admin_associations import router as admin_associations_router
+from app.routes.admin_ai_settings import router as admin_ai_settings_router
+from app.routes.admin_payment_logs import router as admin_payment_logs_router
+from app.routes.admin_blog_collaborators import router as admin_blog_collaborators_router
+from app.routes.admin_platform_settings import router as admin_platform_settings_router
 from app.routes.offer import router as offer_router
 from app.routes.teacher_dashboard import router as teacher_dashboard_router
 from app.routes.weak_area_alerts import router as weak_area_alerts_router
@@ -212,9 +221,63 @@ app.include_router(
 )
 
 app.include_router(
+    rag_bulk_book_upload_router,
+    prefix="/api/rag",
+    tags=["RAG Bulk Book Upload"]
+)
+
+app.include_router(
     admin_control_router,
     prefix="/api/admin-control",
     tags=["Admin Control"],
+)
+
+app.include_router(
+    admin_subscription_settings_router,
+    prefix="/api/admin-control",
+    tags=["Admin Subscription Settings"],
+)
+
+app.include_router(
+    admin_onboarding_router,
+    prefix="/api/admin-control",
+    tags=["Admin Onboarding"],
+)
+
+app.include_router(
+    admin_offer_codes_router,
+    prefix="/api/admin-control",
+    tags=["Admin Offer Codes"],
+)
+
+app.include_router(
+    admin_associations_router,
+    prefix="/api/admin-control",
+    tags=["Admin Associations"],
+)
+
+app.include_router(
+    admin_ai_settings_router,
+    prefix="/api/admin-control",
+    tags=["Admin AI Settings"],
+)
+
+app.include_router(
+    admin_payment_logs_router,
+    prefix="/api/admin-control",
+    tags=["Admin Payment Logs"],
+)
+
+app.include_router(
+    admin_blog_collaborators_router,
+    prefix="/api/admin-control",
+    tags=["Admin Blog Collaborators"],
+)
+
+app.include_router(
+    admin_platform_settings_router,
+    prefix="/api/admin-control",
+    tags=["Admin Platform Settings"],
 )
 
 app.include_router(
@@ -442,7 +505,7 @@ app.include_router(study_planner_router)
 @app.get("/api/platform-settings/lesson-card")
 def get_lesson_card_settings_public():
     """Return the active lesson card style and theme — public, no auth required."""
-    from app.routes.admin_control import _load_lesson_card_settings  # noqa: PLC0415
+    from app.routes.admin_platform_settings import _load_lesson_card_settings  # noqa: PLC0415
     return {"success": True, **_load_lesson_card_settings()}
 
 

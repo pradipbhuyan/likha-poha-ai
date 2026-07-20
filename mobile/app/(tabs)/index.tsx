@@ -49,6 +49,12 @@ function getTimeGreeting(): string {
   return "Good night";
 }
 
+function streakCopy(days: number): string {
+  if (!days) return "Start today!";
+  if (days < 5) return "Keep it going!";
+  return "Don't lose it — 1 lesson keeps it alive!";
+}
+
 export default function HomeScreen() {
   const router = useRouter();
   const [data, setData] = useState<DashboardSummary | null>(null);
@@ -203,7 +209,7 @@ export default function HomeScreen() {
 
       {/* Stats */}
       <View style={s.statsRow}>
-        <StatCard icon="zap" label="Day streak" value={String(streakDays)} color="#f59e0b" />
+        <StatCard icon="zap" label="Day streak" value={String(streakDays)} color="#f59e0b" sub={streakCopy(streakDays)} />
         <StatCard icon="check-circle" label="Lessons done" value={String(lessonsCompleted)} color="#16a34a" />
         <StatCard icon="bar-chart-2" label="Tests taken" value={String(testHistory.length)} color={BRAND_COLOR} />
       </View>
@@ -265,12 +271,13 @@ export default function HomeScreen() {
   );
 }
 
-function StatCard({ icon, label, value, color }: { icon: React.ComponentProps<typeof Feather>["name"]; label: string; value: string; color: string }) {
+function StatCard({ icon, label, value, color, sub }: { icon: React.ComponentProps<typeof Feather>["name"]; label: string; value: string; color: string; sub?: string }) {
   return (
     <View style={s.statCard}>
       <Feather name={icon} size={20} color={color} />
       <Text style={[s.statValue, { color }]}>{value}</Text>
       <Text style={s.statLabel}>{label}</Text>
+      {sub ? <Text style={s.statSub}>{sub}</Text> : null}
     </View>
   );
 }
@@ -336,6 +343,7 @@ const s = StyleSheet.create({
   statCard: { flex: 1, backgroundColor: "#fff", borderRadius: 14, padding: 14, alignItems: "center", borderWidth: 1, borderColor: "#e5e7eb", gap: 4 },
   statValue: { fontSize: 22, fontWeight: "800", color: "#111827" },
   statLabel: { fontSize: 10, color: "#6b7280", textAlign: "center", fontWeight: "600" },
+  statSub: { fontSize: 9, color: "#9ca3af", textAlign: "center", marginTop: 1 },
   // Section
   section: { marginBottom: 20 },
   sectionHeader: { flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 12 },

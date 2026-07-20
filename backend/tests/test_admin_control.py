@@ -5,6 +5,10 @@ import pytest
 from fastapi import HTTPException
 
 import app.routes.admin_control as admin_control_route
+import app.routes.admin_onboarding as admin_onboarding_route
+import app.routes.admin_associations as admin_associations_route
+import app.routes.admin_subscription_settings as admin_subscription_settings_route
+import app.services.subscription_settings_service as subscription_settings_service
 
 
 class FakeResponse:
@@ -395,20 +399,20 @@ def test_create_parent_creates_family_when_family_id_is_missing(monkeypatch):
     """
     fake_client = FakeAdminClient()
 
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_onboarding_route, "admin_client", fake_client)
     monkeypatch.setattr(
-        admin_control_route,
+        admin_onboarding_route,
         "invite_parent_by_email",
         lambda email, username: make_fake_auth_user("parent-user-123"),
     )
 
-    request = admin_control_route.CreateParentRequest(
+    request = admin_onboarding_route.CreateParentRequest(
         email="parent@example.com",
         username="Parent User",
         # no password → uses invite flow by default
     )
 
-    result = admin_control_route.create_parent(
+    result = admin_onboarding_route.create_parent(
         request,
         admin={"role": "admin"},
     )
@@ -438,21 +442,21 @@ def test_create_parent_uses_existing_family_id(monkeypatch):
     """
     fake_client = FakeAdminClient()
 
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_onboarding_route, "admin_client", fake_client)
     monkeypatch.setattr(
-        admin_control_route,
+        admin_onboarding_route,
         "invite_parent_by_email",
         lambda email, username: make_fake_auth_user("parent-user-456"),
     )
 
-    request = admin_control_route.CreateParentRequest(
+    request = admin_onboarding_route.CreateParentRequest(
         email="parent2@example.com",
         username="Second Parent",
         family_id="existing-family-1",
         # no password → uses invite flow by default
     )
 
-    result = admin_control_route.create_parent(
+    result = admin_onboarding_route.create_parent(
         request,
         admin={"role": "admin"},
     )
@@ -479,14 +483,14 @@ def test_create_child_creates_student_profile(monkeypatch):
     """
     fake_client = FakeAdminClient()
 
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_onboarding_route, "admin_client", fake_client)
     monkeypatch.setattr(
-        admin_control_route,
+        admin_onboarding_route,
         "create_auth_user",
         lambda email, password, email_confirm=True: make_fake_auth_user("child-user-123"),
     )
 
-    request = admin_control_route.CreateChildRequest(
+    request = admin_onboarding_route.CreateChildRequest(
         email="child@example.com",
         password="password123",
         username="Child User",
@@ -494,7 +498,7 @@ def test_create_child_creates_student_profile(monkeypatch):
         family_id="family-1",
     )
 
-    result = admin_control_route.create_child(
+    result = admin_onboarding_route.create_child(
         request,
         admin={"role": "admin"},
     )
@@ -519,14 +523,14 @@ def test_create_teacher_creates_profile_and_teacher_metadata(monkeypatch):
     """
     fake_client = FakeAdminClient()
 
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_onboarding_route, "admin_client", fake_client)
     monkeypatch.setattr(
-        admin_control_route,
+        admin_onboarding_route,
         "create_auth_user",
         lambda email, password, email_confirm=True: make_fake_auth_user("teacher-user-123"),
     )
 
-    request = admin_control_route.CreateTeacherRequest(
+    request = admin_onboarding_route.CreateTeacherRequest(
         email="teacher@example.com",
         password="password123",
         username="Science Teacher",
@@ -536,7 +540,7 @@ def test_create_teacher_creates_profile_and_teacher_metadata(monkeypatch):
         grades=["Grade 9"],
     )
 
-    result = admin_control_route.create_teacher(
+    result = admin_onboarding_route.create_teacher(
         request,
         admin={"role": "admin"},
     )
@@ -565,9 +569,9 @@ def test_assign_teacher_student_upserts_assignment(monkeypatch):
         assign_teacher_student()
     """
     fake_client = FakeAdminClient()
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_associations_route, "admin_client", fake_client)
 
-    request = admin_control_route.AssignTeacherStudentRequest(
+    request = admin_associations_route.AssignTeacherStudentRequest(
         teacher_id="teacher-1",
         student_id="student-1",
         grade="Grade 9",
@@ -575,7 +579,7 @@ def test_assign_teacher_student_upserts_assignment(monkeypatch):
         section="9A",
     )
 
-    result = admin_control_route.assign_teacher_student(
+    result = admin_associations_route.assign_teacher_student(
         request,
         admin={"role": "admin"},
     )
@@ -877,16 +881,22 @@ def test_update_subscription_plans_returns_persisted_discount(monkeypatch):
     Admin subscription save should return the row read back from storage.
 
     Source under test:
-        backend/app/routes/admin_control.py
+        backend/app/routes/admin_subscription_settings.py
         update_subscription_plans()
     """
     fake_client = FakeAdminClient()
 
-    monkeypatch.setattr(admin_control_route, "admin_client", fake_client)
+    monkeypatch.setattr(admin_subscription_settings_route, "admin_client", fake_client)
+    # update_subscription_plans() writes via its own admin_client, then calls
+    # list_subscription_plan_settings() (in subscription_settings_service.py,
+    # a separate module with its own admin_client binding) to read the saved
+    # row back — both must point at the same fake client for the round-trip
+    # to actually observe what was just written.
+    monkeypatch.setattr(subscription_settings_service, "admin_client", fake_client)
 
-    request = admin_control_route.UpdateSubscriptionPlanSettingsRequest(
+    request = admin_subscription_settings_route.UpdateSubscriptionPlanSettingsRequest(
         plans=[
-            admin_control_route.SubscriptionPlanSettings(
+            subscription_settings_service.SubscriptionPlanSettings(
                 key="starter",
                 label="Standard",
                 short_label="Standard",
@@ -905,7 +915,7 @@ def test_update_subscription_plans_returns_persisted_discount(monkeypatch):
         ],
     )
 
-    result = admin_control_route.update_subscription_plans(
+    result = admin_subscription_settings_route.update_subscription_plans(
         request,
         admin={"role": "admin"},
     )

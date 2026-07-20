@@ -734,7 +734,7 @@ def _get_plan(plan_key: str) -> dict:
     not in the defaults (e.g. admin test plans like test_1rupee), falls back
     to a direct Supabase lookup so recently-created plans are found immediately.
     """
-    from app.routes.admin_control import list_subscription_plan_settings, normalize_subscription_plan_row  # noqa: PLC0415
+    from app.services.subscription_settings_service import list_subscription_plan_settings, normalize_subscription_plan_row  # noqa: PLC0415
     payload = list_subscription_plan_settings()
     plan = (payload.get("plans") or {}).get(plan_key)
 
