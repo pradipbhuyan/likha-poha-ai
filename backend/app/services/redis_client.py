@@ -32,7 +32,7 @@ load_dotenv()
 
 _logger = logging.getLogger("likhapoha.redis")
 
-_redis_url = os.getenv("REDIS_URL")
+_redis_url = (os.getenv("REDIS_URL") or "").strip() or None
 
 redis_client = None
 
