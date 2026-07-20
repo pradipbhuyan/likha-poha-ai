@@ -16,4 +16,21 @@ config.resolver.extraNodeModules = {
   '@likhapoha/shared': sharedRoot,
 };
 
+// Custom resolver to handle @likhapoha/shared/* subpath imports.
+// extraNodeModules handles the package root but Metro may not automatically
+// resolve subpaths like @likhapoha/shared/utils/subjectAccess, so we
+// intercept them explicitly here.
+const originalResolveRequest = config.resolver.resolveRequest;
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName.startsWith('@likhapoha/shared/')) {
+    const subpath = moduleName.slice('@likhapoha/shared/'.length);
+    const resolved = path.resolve(sharedRoot, subpath);
+    return { type: 'sourceFile', filePath: resolved + '.js' };
+  }
+  if (originalResolveRequest) {
+    return originalResolveRequest(context, moduleName, platform);
+  }
+  return context.resolveRequest(context, moduleName, platform);
+};
+
 module.exports = config;

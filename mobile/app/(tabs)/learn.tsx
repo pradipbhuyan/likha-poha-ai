@@ -7,7 +7,7 @@
 import { useEffect, useState } from "react";
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  ActivityIndicator, Linking,
+  ActivityIndicator, Linking, Image,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -17,6 +17,11 @@ import { BRAND_COLOR } from "../../constants";
 const GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 
 interface Resource { title: string; url: string; type?: string; }
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return match ? match[1] : null;
+}
 
 function getResourceIcon(r: Resource): React.ComponentProps<typeof Feather>["name"] {
   const t = (r.title || "").toLowerCase();
@@ -89,10 +94,6 @@ export default function LearnScreen() {
       .finally(() => setLoading(false));
   }, [grade, subject, chapter]);
 
-  const subjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {}).filter(g => {
-    const num = parseInt(g.replace("Grade ", ""), 10);
-    return !isNaN(num) && num >= 5;
-  });
   const subjectList = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
   const chapters = syllabus?.[grade]?.["CBSE"]?.[subject] ?? [];
 
@@ -104,8 +105,6 @@ export default function LearnScreen() {
     setResources([]);
   }
 
-  const isExemplarSubject = (subject === "Maths" || subject === "Science") &&
-    ["Grade 8","Grade 9","Grade 10"].includes(grade);
   const isEnglish = subject === "English";
 
   return (
@@ -188,32 +187,30 @@ export default function LearnScreen() {
               <Text style={s.emptySubtitle}>Try another chapter. You can use Lessons or Ask Doubt for AI-guided help.</Text>
             </View>
           ) : (
-            resources.map((r, i) => (
-              <TouchableOpacity key={i} style={s.resourceCard} onPress={() => Linking.openURL(r.url)}>
-                <View style={[s.resourceIconBox, { backgroundColor: "rgba(99,102,241,.08)" }]}>
-                  <Feather name={getResourceIcon(r)} size={20} color={BRAND_COLOR} />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={s.resourceTitle}>{r.title}</Text>
-                  <Text style={s.resourceLabel}>{getResourceLabel(r)}</Text>
-                </View>
-                <Feather name="chevron-right" size={16} color="#9ca3af" />
-              </TouchableOpacity>
-            ))
-          )}
-
-          {/* Exemplar callout */}
-          {isExemplarSubject && !loading && (
-            <View style={s.calloutBox}>
-              <Feather name="activity" size={20} color="#10b981" />
-              <View style={{ flex: 1 }}>
-                <Text style={s.calloutTitle}>NCERT Exemplar — {grade} {subject}</Text>
-                <Text style={s.calloutSub}>Official higher-order thinking practice problems. Free from NCERT.</Text>
-              </View>
-              <TouchableOpacity style={s.calloutBtn} onPress={() => Linking.openURL("https://ncert.nic.in/exemplar-problems.php")}>
-                <Text style={s.calloutBtnText}>Open</Text>
-              </TouchableOpacity>
-            </View>
+            resources.map((r, i) => {
+              const ytId = (r.type === "youtube" || (r.url || "").includes("youtube") || (r.url || "").includes("youtu.be"))
+                ? getYouTubeId(r.url) : null;
+              return (
+                <TouchableOpacity key={i} style={s.resourceCard} onPress={() => Linking.openURL(r.url)}>
+                  {ytId ? (
+                    <Image
+                      source={{ uri: `https://img.youtube.com/vi/${ytId}/mqdefault.jpg` }}
+                      style={s.resourceThumb}
+                      resizeMode="cover"
+                    />
+                  ) : (
+                    <View style={[s.resourceIconBox, { backgroundColor: "rgba(99,102,241,.08)" }]}>
+                      <Feather name={getResourceIcon(r)} size={20} color={BRAND_COLOR} />
+                    </View>
+                  )}
+                  <View style={{ flex: 1 }}>
+                    <Text style={s.resourceTitle}>{r.title}</Text>
+                    <Text style={s.resourceLabel}>{getResourceLabel(r)}</Text>
+                  </View>
+                  <Feather name="chevron-right" size={16} color="#9ca3af" />
+                </TouchableOpacity>
+              );
+            })
           )}
 
           {/* Grammar callout for English */}
@@ -266,6 +263,7 @@ const s = StyleSheet.create({
   emptySubtitle: { fontSize: 13, color: "#6b7280", textAlign: "center", lineHeight: 20, paddingHorizontal: 20 },
   resourceCard: { flexDirection: "row", alignItems: "center", gap: 12, backgroundColor: "#fff", borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: "#e5e7eb" },
   resourceIconBox: { width: 44, height: 44, borderRadius: 12, alignItems: "center", justifyContent: "center", flexShrink: 0 },
+  resourceThumb: { width: 80, height: 52, borderRadius: 8, flexShrink: 0, backgroundColor: "#e5e7eb" },
   resourceTitle: { fontSize: 14, fontWeight: "700", color: "#111827", marginBottom: 3 },
   resourceLabel: { fontSize: 11, fontWeight: "600", color: "#6b7280", textTransform: "uppercase", letterSpacing: 0.4 },
   calloutBox: { flexDirection: "row", alignItems: "center", gap: 12, backgroundColor: "rgba(16,185,129,.06)", borderRadius: 14, padding: 14, marginTop: 10, borderWidth: 1, borderColor: "rgba(16,185,129,.25)" },
