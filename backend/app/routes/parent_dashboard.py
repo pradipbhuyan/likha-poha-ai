@@ -44,7 +44,7 @@ from app.services.feature_authorization_service import (
     Feature,
     FREE_MOCK_TEST_DAILY_LIMIT,
 )
-from app.routes.admin_control import (
+from app.services.subscription_settings_service import (
     list_subscription_contact_settings,
     list_subscription_plan_settings,
 )

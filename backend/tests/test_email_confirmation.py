@@ -13,7 +13,7 @@ import pytest
 from fastapi import HTTPException
 from types import SimpleNamespace
 
-import app.routes.admin_control as admin_control_route
+import app.routes.admin_onboarding as admin_control_route
 import app.routes.parent_dashboard as parent_dashboard_route
 
 

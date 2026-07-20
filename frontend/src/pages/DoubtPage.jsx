@@ -4,7 +4,6 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import {
-  Bot,
   Target,
   BookOpen,
   Book,
@@ -535,7 +534,9 @@ Important:
         flexWrap: "wrap",
         boxShadow: "0 1px 4px rgba(0,0,0,.06)",
       }}>
-        <Bot size={16} strokeWidth={2.4} color="var(--muted, #6b7280)" />
+        <span style={{ fontSize: ".85rem", fontWeight: 600, color: "var(--text, #111827)" }}>
+          Textbook-aware · step-by-step help
+        </span>
         {/* Grade */}
         <select
           value={grade}
@@ -576,9 +577,6 @@ Important:
             {availableChapters.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         )}
-        <span style={{ marginLeft: "auto", fontSize: ".72rem", color: "var(--muted, #6b7280)", fontStyle: "italic" }}>
-          Textbook-aware · step-by-step help
-        </span>
       </div>
 
       <section

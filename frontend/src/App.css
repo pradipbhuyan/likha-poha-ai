@@ -14127,6 +14127,11 @@ body.dark-mode .admin-guide-toggle-grid label {
   to { transform: rotate(360deg); }
 }
 
+/* Generic spin utility for inline loading icons (e.g. Lucide Loader2) */
+.spin {
+  animation: btn-spin 0.9s linear infinite;
+}
+
 /* ============================================================
    GLOBAL TOAST NOTIFICATIONS — fixed bottom-right overlay
    ============================================================ */

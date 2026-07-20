@@ -20,6 +20,7 @@ function subjCol(s){return SUBJ_COLORS[s]||"#6366f1";}
 function safePct(v){if(v==null)return null;var n=parseFloat(v);return(isNaN(n)||n<0||n>100)?null:Math.round(n);}
 var ACTION_TO_PAGE={"mock_test":"mockTest","subscription":"subscriptionPlans","lessons":"lessons"};
 function actionToPage(action){return ACTION_TO_PAGE[action]||"lessons";}
+function streakCopy(days){return !days?"Start today to begin your streak!":days<5?"Keep it going!":"Don't lose your streak — 1 lesson keeps it alive!";}
 
 function ProgBar({pct=0,color="#6366f1",height=6}){
   return(
@@ -258,68 +259,58 @@ export default function StudentDashboardPage({ user, setActivePage }) {
         );})}
       </div>
 
-      {/* ── MAIN ROW: Continue Learning / Today's Plan / AI Coach ── */}
+      {/* ── UP NEXT: merges Continue Learning / Today's Plan / AI Coach into one actionable card ── */}
       <div className="sd-main-row">
-        {/* Continue Learning */}
-        <SdCard testid="continue-learning-card">
-          <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-            <span style={{fontWeight:700,fontSize:".88rem"}}>Continue Learning</span>
-            <button onClick={function(){nav("lessons");}} style={{background:"none",border:"none",color:"#6366f1",fontSize:".73rem",fontWeight:600,cursor:"pointer"}}>View all</button>
+        <SdCard testid="up-next-card">
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
+            <span style={{fontWeight:700,fontSize:".92rem"}}>Up Next</span>
+            {plan.estimated_minutes>0&&<span style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>~{plan.estimated_minutes} min today</span>}
           </div>
-          {prog.last_chapter?(
-            <>
-              <div style={{fontSize:".7rem",color:"var(--text-muted,#94a3b8)"}}>{prog.last_chapter.subject}</div>
-              <div style={{fontWeight:700,fontSize:".9rem",margin:"4px 0 8px"}}>{prog.last_chapter.chapter}</div>
-              <ProgBar pct={prog.last_chapter.progress_pct}/>
-              <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)",marginBottom:10}}>{prog.last_chapter.progress_pct}% Complete</div>
-              <SdBtn onClick={function(){nav("lessons");}}>Continue Learning →</SdBtn>
-            </>
-          ):(
-            <>
-              <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".82rem",marginBottom:12}}>
-                {prog.available?"Start a new lesson to continue here.":"Begin your first AI lesson today!"}
-              </div>
-              <SdBtn onClick={function(){nav("lessons");}}>Start Learning →</SdBtn>
-            </>
-          )}
-        </SdCard>
 
-        {/* Today's Plan */}
-        <SdCard testid="todays-plan-card">
-          <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-            <span style={{fontWeight:700,fontSize:".88rem"}}>Today's Plan</span>
-            {plan.estimated_minutes&&<span style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>~{plan.estimated_minutes}min</span>}
+          <div style={{display:"flex",gap:24,flexWrap:"wrap"}}>
+            {/* Primary CTA: resume in-progress lesson, else top recommendation, else fresh start */}
+            <div style={{flex:"1 1 260px"}}>
+              {prog.last_chapter?(
+                <>
+                  <div style={{fontSize:".7rem",color:"var(--text-muted,#94a3b8)"}}>{prog.last_chapter.subject}</div>
+                  <div style={{fontWeight:700,fontSize:".9rem",margin:"4px 0 8px"}}>{prog.last_chapter.chapter}</div>
+                  <ProgBar pct={prog.last_chapter.progress_pct}/>
+                  <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)",marginBottom:10}}>{prog.last_chapter.progress_pct}% Complete</div>
+                  <SdBtn onClick={function(){nav("lessons");}}>Continue Learning →</SdBtn>
+                </>
+              ):recs.length>0?(
+                <>
+                  <div style={{fontSize:".82rem",marginBottom:6}}>{recs[0].body||"Keep up the great work!"}</div>
+                  <span style={{fontSize:".7rem",fontWeight:700,padding:"2px 8px",borderRadius:10,background:"#6366f118",color:"#6366f1"}}>{recs[0].title}</span>
+                  <div style={{marginTop:10}}>
+                    <SdBtn onClick={function(){nav(actionToPage(recs[0].action));}}>
+                      {recs[0].action==="mock_test"?"Take Mock Test →":recs[0].action==="subscription"?"Upgrade Plan →":"Continue Lesson →"}
+                    </SdBtn>
+                  </div>
+                </>
+              ):(
+                <>
+                  <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".82rem",marginBottom:12}}>
+                    {prog.available?"Start a new lesson to continue here.":"Begin your first AI lesson today!"}
+                  </div>
+                  <SdBtn onClick={function(){nav("lessons");}}>Start Learning →</SdBtn>
+                </>
+              )}
+            </div>
+
+            {/* Secondary: today's task checklist */}
+            {(plan.tasks||[]).length>0&&(
+              <div style={{flex:"1 1 200px"}}>
+                <div style={{fontSize:".68rem",fontWeight:700,color:"var(--text-muted,#94a3b8)",textTransform:"uppercase",letterSpacing:".04em",marginBottom:8}}>Today's Plan</div>
+                {plan.tasks.slice(0,3).map(function(t,i){return(
+                  <div key={i} style={{display:"flex",alignItems:"center",gap:7,marginBottom:7}}>
+                    <span style={{fontSize:".85rem"}}>{t.done?"✅":"⭕"}</span>
+                    <span style={{fontSize:".78rem",color:"var(--text,#1e293b)"}}>{t.task}</span>
+                  </div>
+                );})}
+              </div>
+            )}
           </div>
-          {(plan.tasks||[]).length===0?(
-            <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".82rem"}}>No plan yet.</div>
-          ):(
-            <>
-              {(plan.tasks||[]).map(function(t,i){return(
-                <div key={i} style={{display:"flex",alignItems:"center",gap:7,marginBottom:7}}>
-                  <span style={{fontSize:".9rem"}}>{t.done?"✅":"⭕"}</span>
-                  <span style={{fontSize:".8rem",color:"var(--text,#1e293b)"}}>{t.task}</span>
-                </div>
-              );})}
-            </>
-          )}
-        </SdCard>
-
-        {/* AI Learning Coach */}
-        <SdCard testid="ai-coach-card">
-          <div style={{fontWeight:700,fontSize:".88rem",marginBottom:8}}>AI Learning Coach</div>
-          {recs.length>0?(
-            <>
-              <div style={{fontSize:".82rem",marginBottom:6}}>{recs[0].body||"Keep up the great work!"}</div>
-              <span style={{fontSize:".7rem",fontWeight:700,padding:"2px 8px",borderRadius:10,background:"#6366f118",color:"#6366f1"}}>{recs[0].title}</span>
-              <div style={{marginTop:8}}>
-                <button onClick={function(){nav(actionToPage(recs[0].action));}} style={{background:"none",border:"none",color:"#6366f1",fontWeight:700,fontSize:".78rem",cursor:"pointer",fontFamily:"inherit"}}>
-                  → {recs[0].action==="mock_test"?"Take Mock Test":recs[0].action==="subscription"?"Upgrade Plan":"Continue Lesson"}
-                </button>
-              </div>
-            </>
-          ):(
-            <div style={{fontSize:".82rem",color:"var(--text-muted,#94a3b8)"}}>Keep practicing daily for best results.</div>
-          )}
         </SdCard>
       </div>
 
@@ -431,7 +422,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
               <span style={{fontSize:"1.2rem"}}>{a.icon}</span>
               <div>
                 <div style={{fontSize:".8rem",fontWeight:700}}>{a.title}</div>
-                <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{a.value>0?(a.type==="streak"?"Keep it going!":a.type==="first_test"?"Great start!":"Amazing!"):"Start your journey!"}</div>
+                <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{a.type==="streak"?streakCopy(a.value):a.value>0?(a.type==="first_test"?"Great start!":"Amazing!"):"Start your journey!"}</div>
               </div>
             </div>
           );})}

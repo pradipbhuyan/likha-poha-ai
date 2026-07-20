@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 
 from app.config import settings
-from app.routes.admin_control import list_subscription_contact_settings, list_subscription_plan_settings
+from app.services.subscription_settings_service import list_subscription_contact_settings, list_subscription_plan_settings
 from app.services.auth_service import admin_client, require_parent, require_admin, get_current_user
 from app.services.parent_dashboard_service import get_child_by_id, get_children
 from app.services.rate_limit_service import (

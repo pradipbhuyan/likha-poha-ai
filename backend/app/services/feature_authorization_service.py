@@ -76,7 +76,7 @@ def _get_plan_feature_flag(db_plan_key: str | None, flag_name: str, default: boo
     if not db_plan_key:
         return default
     try:
-        from app.routes.admin_control import list_subscription_plan_settings  # noqa: PLC0415
+        from app.services.subscription_settings_service import list_subscription_plan_settings  # noqa: PLC0415
         settings_payload = list_subscription_plan_settings()
         plan = (settings_payload.get("plans") or {}).get(db_plan_key)
         if plan is None:

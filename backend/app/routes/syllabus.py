@@ -556,38 +556,57 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
         return cached[0]
 
     def _query(db, select_fields, label="primary"):
+        """Return (rows, failed). `failed=True` only on a genuine query error —
+        never on a not-yet-configured client — so callers can tell "really
+        empty" apart from "we couldn't ask" and avoid caching the latter.
+        """
+        if db is None:
+            return [], False
+
         try:
             r = db.table("rag_documents").select(select_fields).execute()
             rows = r.data or []
             _logger.info("rag_documents query [%s]: %d rows returned.", label, len(rows))
-            return rows
+            return rows, False
         except Exception as exc:
             _logger.error("rag_documents query [%s] FAILED with %s: %s", label, type(exc).__name__, exc)
             try:
                 r = db.table("rag_documents").select("grade,subject,chapter").execute()
                 rows = r.data or []
                 _logger.info("rag_documents fallback query [%s]: %d rows returned.", label, len(rows))
-                return rows
+                return rows, False
             except Exception as exc2:
                 _logger.error("rag_documents fallback query [%s] also FAILED: %s", label, exc2)
-                return []
+                return [], True
 
-    primary = _query(supabase, fields, label="primary")
+    primary, primary_failed = _query(supabase, fields, label="primary")
 
     # Grade 11/12 client is None when its env vars are not set (local dev / CI).
     # _query() gracefully returns [] when called with None, so Grade 11/12 content
     # simply won't appear in syllabus dropdowns rather than crashing.
     try:
         from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-        secondary = _query(grade_1112_client, fields, label="grade-1112")
+        secondary, secondary_failed = _query(grade_1112_client, fields, label="grade-1112")
     except Exception as exc:
         _logger.error(
             "_fetch_all_rag_documents: Grade 11/12 import failed unexpectedly: %s", exc
         )
-        secondary = []
+        secondary, secondary_failed = [], True
 
     combined = primary + secondary
     _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
+
+    # A genuine query failure must never be cached as "no documents" — that would
+    # turn one transient Supabase hiccup into 30 minutes of every dropdown across
+    # every grade/subject looking empty. Skip the cache write so the very next
+    # request retries instead of serving a stale, wrong empty result.
+    if primary_failed or secondary_failed:
+        _logger.warning(
+            "_fetch_all_rag_documents: fetch failure detected (primary_failed=%s, secondary_failed=%s) — "
+            "not caching this result, will retry on next request.",
+            primary_failed, secondary_failed,
+        )
+        return combined
 
     # Store in cache with TTL and record which client filled it
     _RAG_CACHE[fields] = (combined, _time.monotonic() + _RAG_CACHE_TTL)

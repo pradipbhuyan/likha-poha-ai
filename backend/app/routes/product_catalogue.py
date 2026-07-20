@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.data.product_catalogue import DEFAULT_PRODUCT_CATALOGUE
-from app.routes.admin_control import require_admin  # reuse existing admin guard
+from app.services.auth_service import require_admin  # reuse existing admin guard
 
 router = APIRouter()
 

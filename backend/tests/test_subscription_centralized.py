@@ -27,7 +27,7 @@ from app.routes.payments import (
     profile_access_from_plan,
     _BILLING_LABEL_TO_DAYS,
 )
-from app.routes.admin_control import normalize_subscription_plan_row
+from app.services.subscription_settings_service import normalize_subscription_plan_row
 from app.data.subscription_plans import DEFAULT_SUBSCRIPTION_PLANS, get_default_subscription_plans
 
 
