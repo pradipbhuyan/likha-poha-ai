@@ -48,11 +48,35 @@ def _check_rate(user_id: str) -> None:
     _rate[user_id] = hits + [now]
 
 
+_LONE_SURROGATE_RE = re.compile("[\ud800-\udfff]")
+
+
+def _strip_surrogates(text):
+    """Drop unpaired UTF-16 surrogates (e.g. an emoji half-cut by a JS .slice()
+    on the frontend). These parse fine out of JSON but crash httpx's UTF-8
+    encoder when we forward the row to Supabase, so scrub them before that."""
+    if not isinstance(text, str):
+        return text
+    return _LONE_SURROGATE_RE.sub("", text)
+
+
+def _strip_surrogates_deep(value):
+    """Recursively strip lone surrogates from strings nested in dicts/lists
+    (used for browser_info, which contains arbitrary DOM-derived text)."""
+    if isinstance(value, str):
+        return _strip_surrogates(value)
+    if isinstance(value, dict):
+        return {k: _strip_surrogates_deep(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_strip_surrogates_deep(v) for v in value]
+    return value
+
+
 def _sanitize(text: str, max_len: int = 2000) -> str:
-    """Strip HTML/script tags and truncate."""
+    """Strip HTML/script tags, lone surrogates, and truncate."""
     if not text:
         return text
-    clean = html.escape(re.sub(r"<[^>]+>", "", text))
+    clean = html.escape(re.sub(r"<[^>]+>", "", _strip_surrogates(text)))
     return clean[:max_len]
 
 
@@ -135,11 +159,11 @@ def _sanitize_browser_info(bi: Optional[dict]) -> Optional[dict]:
         if k == "screenshotDataUrl":
             result[k] = v  # base64 JPEG — stored in full
         elif k in STRING_FIELDS:
-            result[k] = str(v)[:200] if v is not None else None
+            result[k] = _strip_surrogates(str(v)[:200]) if v is not None else None
         elif k in STRUCT_FIELDS:
-            result[k] = v  # dict or list — stored as-is
+            result[k] = _strip_surrogates_deep(v)  # dict or list — stored as-is
         elif k == "stepTextContent":
-            result[k] = str(v)[:600] if v is not None else None
+            result[k] = _strip_surrogates(str(v)[:600]) if v is not None else None
         # ignore unknown keys
     return result
 
@@ -161,8 +185,8 @@ def report_issue(body: IssueReportIn, user=Depends(get_current_user)):
         "title": _sanitize(body.title or "", 200) or None,
         "description": _sanitize(body.description, 2000),
         "route": _sanitize(body.route or "", 500) or None,
-        "grade": body.grade,
-        "subject": body.subject,
+        "grade": _strip_surrogates(body.grade),
+        "subject": _strip_surrogates(body.subject),
         "chapter": _sanitize(body.chapter or "", 200) or None,
         "lesson_id": _sanitize(body.lesson_id or "", 200) or None,
         "lesson_step": _sanitize(body.lesson_step or "", 200) or None,
