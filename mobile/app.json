@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "in.likhapoha.app",
-      "versionCode": 39,
+      "versionCode": 40,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-1024.png",
         "backgroundColor": "#ffffff"
