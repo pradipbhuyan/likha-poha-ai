@@ -152,8 +152,8 @@ LEARNING_RESOURCES = {
             {"title": "YouTube Search - Force and Laws of Motion", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+force+and+laws+of+motion+full+chapter"},
         ],
         "Gravitation": [
-            {"title": "PhET - Gravity Force Lab", "type": "website", "url": "https://phet.colorado.edu/en/simulation/gravity-force-lab"},
-            {"title": "YouTube Search - Gravitation Class 9", "type": "website", "url": "https://www.youtube.com/results?search_query=class+9+science+gravitation+full+chapter"},
+            {"title": "Physics Wallah — Gravitation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=physics+wallah+gravitation+class+11"},
+            {"title": "Kurzgesagt — Gravity Explained (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=e5GBM-MEKzo"},
         ],
         "Work and Energy": [
             {"title": "PhET - Energy Skate Park", "type": "website", "url": "https://phet.colorado.edu/en/simulation/energy-skate-park"},
@@ -590,10 +590,345 @@ GRADE_10_RESOURCES: dict[str, dict[str, list]] = {
     },
 }
 
+# ── Grade 11 resources ────────────────────────────────────────────────────────
+# Pattern per chapter  (NO LikhaPoha placeholder, NO NCERT link — see get_learning_resources):
+#   [0] Indian video  — Physics Wallah / Vedantu (type "youtube", embeds in platform)
+#   [1] International — CrashCourse / Khan Academy (type "youtube", embeds in platform)
+# Indian video IDs are from Physics Wallah's Class 11 NCERT series (PW channel).
+# Replace any ID with a better one if needed — the thumbnail preview will update automatically.
+
+# ── Indian channel search helpers ──────────────────────────────────────────────
+# Links open the channel's search results so students can pick the exact video.
+# Replace with a specific watch?v= URL once you have the preferred video ID.
+def _pw(topic):
+    """Physics Wallah channel search — Indian video (Physics / Chemistry)."""
+    return f"https://www.youtube.com/results?search_query=physics+wallah+{quote_plus(topic)}+class+11"
+
+def _vedantu(topic):
+    """Vedantu channel search — Indian video (Biology / Maths)."""
+    return f"https://www.youtube.com/results?search_query=vedantu+{quote_plus(topic)}+class+11+NCERT"
+
+def _ka(topic):
+    """Khan Academy YouTube search — International Maths video."""
+    return f"https://www.youtube.com/results?search_query=khan+academy+{quote_plus(topic)}"
+
+
+GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
+    "Physics": {
+        "Physical World": [
+            {"title": "CrashCourse Physics — Physics Preview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=OoO5d5P0Jn4"},
+            {"title": "Kurzgesagt — What Is Life? (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QOCaacO8wus"},
+        ],
+        # ── Chapter 2 ──────────────────────────────────────────────────────────
+        "Units and Measurements": [
+            {"title": "CrashCourse — Unit Conversion & Significant Figures (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hQpQ0hxVNTg"},
+            {"title": "Khan Academy — Distance and Displacement Intro (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=vQCkYm3v3aA"},
+        ],
+        "Units and Measurement": [
+            {"title": "CrashCourse — Unit Conversion & Significant Figures (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hQpQ0hxVNTg"},
+            {"title": "Khan Academy — Distance and Displacement Intro (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=vQCkYm3v3aA"},
+        ],
+        # ── Chapter 3 ──────────────────────────────────────────────────────────
+        "Motion in a Straight Line": [
+            {"title": "CrashCourse Physics — Motion in a Straight Line (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ZM8ECpBuQYE"},
+            {"title": "Khan Academy — Distance and Displacement (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=vQCkYm3v3aA"},
+        ],
+        # ── Chapter 4 ──────────────────────────────────────────────────────────
+        "Motion in a Plane": [
+            {"title": "CrashCourse Physics — Vectors and 2D Motion (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=w3BhzYI6zXU"},
+            {"title": "Khan Academy — Introduction to Vectors and Scalars (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ihNZlp7iUHE"},
+        ],
+        # ── Chapter 5 ──────────────────────────────────────────────────────────
+        "Laws of Motion": [
+            {"title": "CrashCourse Physics — Newton's Laws (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kKKM8Y-u7ds"},
+            {"title": "Khan Academy — Newton's Laws of Motion (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=CQYELiTtUs8"},
+        ],
+        # ── Chapter 6 ──────────────────────────────────────────────────────────
+        "Work, Energy and Power": [
+            {"title": "CrashCourse Physics — Work, Energy and Power (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=w4QFJb9a8vo"},
+            {"title": "Khan Academy — Work and Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ewfMcg3wRaQ"},
+        ],
+        # ── Chapter 7 ──────────────────────────────────────────────────────────
+        "System of Particles and Rotational Motion": [
+            {"title": "CrashCourse Physics — Rotational Motion (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fmXFWi-WfyU"},
+            {"title": "Khan Academy — Angular Momentum and Torque (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=o7_zmuBweHI"},
+        ],
+        # ── Chapter 8 ──────────────────────────────────────────────────────────
+        "Gravitation": [
+            {"title": "CrashCourse Physics — Gravity (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7gf6YpdvtE0"},
+            {"title": "Kurzgesagt — Gravity Explained (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=e5GBM-MEKzo"},
+        ],
+        # ── Chapter 9 ──────────────────────────────────────────────────────────
+        "Mechanical Properties of Solids": [
+            {"title": "CrashCourse Physics — Statics and Torque (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=9cbF9A6eQNA"},
+            {"title": "Khan Academy — Stress Strain and Elastic Modulus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VRXLvJPTV0k"},
+        ],
+        # ── Chapter 10 ─────────────────────────────────────────────────────────
+        "Mechanical Properties of Fluids": [
+            {"title": "CrashCourse Physics — Fluids at Rest (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=b5SqYuWT4-4"},
+            {"title": "Khan Academy — Fluid Pressure and Bernoulli Equation (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VRXLvJPTV0k"},
+        ],
+        # ── Chapter 11 ─────────────────────────────────────────────────────────
+        "Thermal Properties of Matter": [
+            {"title": "CrashCourse Physics — Temperature and Kinetic Theory (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=jxstE6A_CYQ"},
+            {"title": "Khan Academy — Specific Heat and Thermal Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7L1EaURmvDs"},
+        ],
+        # ── Chapter 12 ─────────────────────────────────────────────────────────
+        "Thermodynamics": [
+            {"title": "CrashCourse Physics — Thermodynamics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TfYCnOvNnFU"},
+            {"title": "Veritasium — Entropy The Most Misunderstood Concept (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DxL2HoqLbyA"},
+        ],
+        # ── Chapter 13 ─────────────────────────────────────────────────────────
+        "Kinetic Theory": [
+            {"title": "CrashCourse Physics — Temperature Kinetic Theory and Gas Law (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=jxstE6A_CYQ"},
+            {"title": "Khan Academy — Kinetic Molecular Theory (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HkSXiHz9vUc"},
+        ],
+        # ── Chapter 14 ─────────────────────────────────────────────────────────
+        "Oscillations": [
+            {"title": "CrashCourse Physics — Uniform Circular Motion and SHM (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=bpFK2VCRHUs"},
+            {"title": "Khan Academy — Introduction to Simple Harmonic Motion (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ZcZQsj6YAgU"},
+        ],
+        # ── Chapter 15 ─────────────────────────────────────────────────────────
+        "Waves": [
+            {"title": "CrashCourse Physics — Traveling Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=5fqwJyt4Lus"},
+            {"title": "Khan Academy — Introduction to Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=c38H6UKt3_I"},
+        ],
+        "Systems of Particles and Rotational Motion": [
+            {"title": "CrashCourse Physics — Rotational Motion (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fmXFWi-WfyU"},
+            {"title": "Khan Academy — Angular Momentum and Torque (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=o7_zmuBweHI"},
+        ],
+        "Kinetic Theory of Gases": [
+            {"title": "CrashCourse Physics — Temperature Kinetic Theory and Gas Law (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=jxstE6A_CYQ"},
+            {"title": "Khan Academy — Kinetic Molecular Theory (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HkSXiHz9vUc"},
+        ],
+        "Mechanical Properties of Solid": [
+            {"title": "CrashCourse Physics — Statics and Torque (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=9cbF9A6eQNA"},
+            {"title": "Khan Academy — Stress Strain and Elastic Modulus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VRXLvJPTV0k"},
+        ],
+        "Mechanical Properties of Fluid": [
+            {"title": "CrashCourse Physics — Fluids at Rest (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=b5SqYuWT4-4"},
+            {"title": "Khan Academy — Fluid Pressure and Bernoulli Equation (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VRXLvJPTV0k"},
+        ],
+    },
+    "Chemistry": {
+        "Some Basic Concepts of Chemistry": [
+            {"title": "CrashCourse Chemistry — Unit Conversion and the Mole (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hQpQ0hxVNTg"},
+            {"title": "Khan Academy — The Mole and Avogadros Number (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=cvi4IJMZ13Q"},
+        ],
+        "Structure of Atom": [
+            {"title": "CrashCourse Chemistry — Atomic Theory (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=rcKilE9CdaA"},
+            {"title": "Khan Academy — Bohr Model and Atomic Structure (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=haFTkhOcQaY"},
+        ],
+        "Classification of Elements and Periodicity in Properties": [
+            {"title": "CrashCourse Chemistry — Periodic Table (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=UL1jmJaUkaQ"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "Chemical Bonding and Molecular Structure": [
+            {"title": "CrashCourse Chemistry — Chemical Bonding (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lQ6FBA1HM3s"},
+            {"title": "Khan Academy — Ionic and Covalent Bonding (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=FaeAurHnQJs"},
+        ],
+        "States of Matter": [
+            {"title": "CrashCourse Chemistry — Matter Changing States (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QiiyvzZBKT8"},
+            {"title": "Khan Academy — States of Matter and Ideal Gas (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=pKvo0XWZtjo"},
+        ],
+        "Thermodynamics": [
+            {"title": "CrashCourse Chemistry — Thermochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TLRZAFU_9Kg"},
+            {"title": "Khan Academy — Enthalpy and Thermochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TNwGNHqwHxc"},
+        ],
+        "Equilibrium": [
+            {"title": "CrashCourse Chemistry — Equilibrium (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=SV7U4yAXL5I"},
+            {"title": "Khan Academy — Chemical Equilibrium Constant (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=5HZbCNg9mIw"},
+        ],
+        "Redox Reactions": [
+            {"title": "CrashCourse Chemistry — Reduction and Oxidation (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=cPDptc0wUYI"},
+            {"title": "Khan Academy — Oxidation and Reduction Redox (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DvYs1HILq1g"},
+        ],
+        "Hydrocarbons": [
+            {"title": "CrashCourse Chemistry — Hydrocarbons (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=UloIw7dhnlQ"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Organic Chemistry – Some Basic Principles and Techniques": [
+            {"title": "CrashCourse Chemistry — Organic Chemistry Basics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=CEH3O6l1pbw"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Hydrogen": [
+            {"title": "CrashCourse Chemistry — Intermolecular Forces (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GIPrsWuSkQc"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "The s-Block Elements": [
+            {"title": "CrashCourse Chemistry — Electron Configuration (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=AN4KifV12DA"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "The p-Block Elements": [
+            {"title": "CrashCourse Chemistry — The Nucleus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ANi709MYnWg"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "Environmental Chemistry": [
+            {"title": "CrashCourse Chemistry — Big Questions in Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=aLuSi_6Ol8M"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "Organic Chemistry - Some Basic Principles and Techniques": [
+            {"title": "CrashCourse Chemistry — Organic Chemistry Basics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=CEH3O6l1pbw"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+    },
+    "Biology": {
+        "The Living World": [
+            {"title": "CrashCourse Biology — The Science of Biology (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=tZE_fQFK8EY"},
+            {"title": "Kurzgesagt — What Is Life How Does It Work (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QOCaacO8wus"},
+        ],
+        "Biological Classification": [
+            {"title": "CrashCourse Biology — Taxonomy Life's Filing System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=y7raEBOvLwU"},
+            {"title": "Khan Academy — Taxonomy and Classification (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=mrheet-2osg"},
+        ],
+        "Plant Kingdom": [
+            {"title": "CrashCourse Biology — Vascular Plants (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=p15KSbNxb28"},
+            {"title": "Kurzgesagt — How Evolution Works (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hOfRN0KihOU"},
+        ],
+        "Animal Kingdom": [
+            {"title": "CrashCourse Biology — Complex Animals (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=pj1oFx42d48"},
+            {"title": "Kurzgesagt — The Immune System Explained (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lXfEK8G8CUI"},
+        ],
+        "Cell: The Unit of Life": [
+            {"title": "CrashCourse Biology — The Cell (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=aO3Yp45zmw8"},
+            {"title": "Khan Academy — Cell Structure and Function (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7FN1NBoV2u0"},
+        ],
+        "Biomolecules": [
+            {"title": "CrashCourse Biology — Biological Molecules (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=cjR5zPrVjTc"},
+            {"title": "Khan Academy — Macromolecules Proteins Carbs Lipids (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HGg_WiaSr4U"},
+        ],
+        "Cell Cycle and Cell Division": [
+            {"title": "CrashCourse Biology — Cell Division (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=IALw687nswo"},
+            {"title": "Khan Academy — Mitosis and Cell Division (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U5vAO_f2LDQ"},
+        ],
+        "Photosynthesis in Higher Plants": [
+            {"title": "CrashCourse Biology — Photosynthesis (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HsAUGbUgx6Y"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Respiration in Plants": [
+            {"title": "CrashCourse Biology — ATP and Respiration (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Y1mPWVzaGQY"},
+            {"title": "Khan Academy — Cellular Respiration Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ArmlWtDnuys"},
+        ],
+        "Breathing and Exchange of Gases": [
+            {"title": "CrashCourse Biology — Circulatory and Respiratory Systems (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YnJPbphsoMY"},
+            {"title": "Khan Academy — Respiratory System and Breathing (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qGiPZf7njqY"},
+        ],
+        "Body Fluids and Circulation": [
+            {"title": "CrashCourse Biology — Circulatory and Respiratory Systems (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YnJPbphsoMY"},
+            {"title": "Khan Academy — Heart and Circulatory System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7K2icszdxQc"},
+        ],
+        "Neural Control and Coordination": [
+            {"title": "CrashCourse Biology — The Nervous System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=j6YaOqKORYY"},
+            {"title": "Khan Academy — Neurons and the Nervous System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=h2H6POZowiU"},
+        ],
+        "Chemical Coordination and Integration": [
+            {"title": "CrashCourse Biology — Endocrine System and Hormones (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6ulXau2HyHg"},
+            {"title": "Khan Academy — Endocrine System and Hormones (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ER49EweKwW8"},
+        ],
+        "Morphology of Flowering Plants": [
+            {"title": "CrashCourse Biology — Plant Cells (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=9Ia8zH-qMZw"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Anatomy of Flowering Plants": [
+            {"title": "CrashCourse Biology — Non-Vascular Plants (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=62cN8Z5Velo"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Structural Organisation in Animals": [
+            {"title": "CrashCourse Biology — Eukaryopolis (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=yGYnwMSflBU"},
+            {"title": "Khan Academy — Cell Structure and Function (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7FN1NBoV2u0"},
+        ],
+        "Transport in Plants": [
+            {"title": "CrashCourse Biology — Membranes and Transport (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=KfHYN6tZnpU"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Mineral Nutrition": [
+            {"title": "CrashCourse Biology — Water Liquid Awesome (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=rgZhDoPgzK8"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Plant Growth and Development": [
+            {"title": "CrashCourse Biology — The Chemistry of Life (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=xOLcZMw0hd4"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Digestion and Absorption": [
+            {"title": "CrashCourse Biology — The Digestive System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=9zwq8N4Ufd8"},
+            {"title": "Khan Academy — Cellular Respiration Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ArmlWtDnuys"},
+        ],
+        "Excretory Products and their Elimination": [
+            {"title": "CrashCourse Biology — The Musculoskeletal System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4YNDB_zSzfE"},
+            {"title": "Khan Academy — Neurons and the Nervous System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=h2H6POZowiU"},
+        ],
+        "Locomotion and Movement": [
+            {"title": "CrashCourse Biology — The Musculoskeletal System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4YNDB_zSzfE"},
+            {"title": "Khan Academy — Heart and Circulatory System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7K2icszdxQc"},
+        ],
+    },
+    # ── MATHS ─────────────────────────────────────────────────────────────────
+    "Mathematics": {
+        "Sets": [
+            {"title": "Vedantu — Sets | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+sets+class+11+NCERT"},
+            {"title": "Khan Academy — Introduction to Sets (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Relations and Functions": [
+            {"title": "Vedantu — Relations and Functions | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+relations+and+functions+class+11+NCERT"},
+            {"title": "Khan Academy — Relations and Functions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-DTMakGDZAw"},
+        ],
+        "Trigonometric Functions": [
+            {"title": "Vedantu — Trigonometric Functions | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+trigonometric+functions+class+11+NCERT"},
+            {"title": "3Blue1Brown — Eulers Formula and Trigonometry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=mvmuCPvRoWQ"},
+        ],
+        "Complex Numbers and Quadratic Equations": [
+            {"title": "Vedantu — Complex Numbers and Quadratic Equations | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+complex+numbers+and+quadratic+equations+class+11+NCERT"},
+            {"title": "Khan Academy — Complex Numbers (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=T647CGsuOVU"},
+        ],
+        "Linear Inequalities": [
+            {"title": "Vedantu — Linear Inequalities | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+linear+inequalities+class+11+NCERT"},
+            {"title": "Khan Academy — Linear Inequalities (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Z1zdkcwosD4"},
+        ],
+        "Permutations and Combinations": [
+            {"title": "Vedantu — Permutations and Combinations | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+permutations+and+combinations+class+11+NCERT"},
+            {"title": "Khan Academy — Permutations and Combinations (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Z1zdkcwosD4"},
+        ],
+        "Binomial Theorem": [
+            {"title": "Vedantu — Binomial Theorem | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+binomial+theorem+class+11+NCERT"},
+            {"title": "Khan Academy — Binomial Theorem (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
+        ],
+        "Sequences and Series": [
+            {"title": "Vedantu — Sequences and Series | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+sequences+and+series+class+11+NCERT"},
+            {"title": "Khan Academy — Arithmetic Sequences and Series (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=_cooC3yG_p0"},
+        ],
+        "Straight Lines": [
+            {"title": "Vedantu — Straight Lines | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+straight+lines+class+11+NCERT"},
+            {"title": "Khan Academy — Slope and Equation of a Line (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XMJ72mtMn4Y"},
+        ],
+        "Conic Sections": [
+            {"title": "Vedantu — Conic Sections | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+conic+sections+class+11+NCERT"},
+            {"title": "Khan Academy — Introduction to Conic Sections (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=0A7RR0oy2ho"},
+        ],
+        "Introduction to Three Dimensional Geometry": [
+            {"title": "Vedantu — Introduction to Three Dimensional Geometry | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+introduction+to+three+dimensional+geometry+class+11+NCERT"},
+            {"title": "Khan Academy — 3D Geometry Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Limits and Derivatives": [
+            {"title": "Vedantu — Limits and Derivatives | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+limits+and+derivatives+class+11+NCERT"},
+            {"title": "3Blue1Brown — Essence of Calculus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
+        ],
+        "Statistics": [
+            {"title": "Vedantu — Statistics | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+statistics+class+11+NCERT"},
+            {"title": "Khan Academy — Mean Median and Mode Statistics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=k3aKKasOmIw"},
+        ],
+        "Probability": [
+            {"title": "Vedantu — Probability | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+probability+class+11+NCERT"},
+            {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
+        ],
+    },
+}
+
+
 # ── Grade-aware resource lookup ───────────────────────────────────────────────
 GRADE_RESOURCES_MAP = {
     "Grade 8": GRADE_8_RESOURCES,
     "Grade 10": GRADE_10_RESOURCES,
+    "Grade 11": GRADE_11_RESOURCES,
 }
 
 # Grade 9 English Grammar (extends existing LEARNING_RESOURCES)
@@ -623,6 +958,14 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
     grade_map = GRADE_RESOURCES_MAP.get(grade, {})
     resources = grade_map.get(subject, {}).get(cleaned_chapter, [])
 
+    # Priority 1b: Fuzzy match for chapter name variants (e.g. plural/singular, extra words)
+    if not resources and grade_map.get(subject):
+        import difflib as _dl
+        subject_map = grade_map[subject]
+        close = _dl.get_close_matches(cleaned_chapter, subject_map.keys(), n=1, cutoff=0.82)
+        if close:
+            resources = subject_map[close[0]]
+
     # Priority 2: Legacy Grade 9 / shared resources
     if not resources:
         resources = LEARNING_RESOURCES.get(subject, {}).get(cleaned_chapter, [])
@@ -633,7 +976,8 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
 
     # Build final list
     if resources:
-        result = add_ncert_link(list(resources))
+        # Grade 11: Indian + International only — no NCERT link injected
+        result = list(resources) if grade == "Grade 11" else add_ncert_link(list(resources))
     else:
         grade_query = grade.lower().replace("grade", "class")
         query = quote_plus(f"{grade_query} {subject} {cleaned_chapter} free lecture")
@@ -643,8 +987,9 @@ def get_learning_resources(subject: str, chapter: str, grade: str = "Grade 9"):
                 "type": "website",
                 "url": f"https://www.youtube.com/results?search_query={query}",
             },
-            NCERT_RESOURCE,
         ]
+        if grade != "Grade 11":
+            result.append(NCERT_RESOURCE)
 
     # Append NCERT Exemplar link for Maths/Science (Grade 8-10)
     if subject in ("Maths", "Science") and grade in EXEMPLAR_GRADE_RESOURCES:

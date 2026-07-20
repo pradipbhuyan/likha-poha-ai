@@ -10,6 +10,214 @@ import {
 } from "../utils/syllabusDefaults";
 import { filterAllowedSubjects } from "../utils/subjectAccess";
 
+/** Branded card for Indian video search links (Physics Wallah / Vedantu).
+ *  Shows a styled channel thumbnail with topic name and a search-on-YouTube button.
+ */
+function IndianVideoCard({ title, url }) {
+  const isPW = title.toLowerCase().includes("physics wallah");
+  const isVedantu = title.toLowerCase().includes("vedantu");
+
+  const brand = isPW
+    ? { name: "Physics Wallah", short: "PW", bg: "linear-gradient(135deg, #e63946 0%, #c1121f 100%)", accent: "#ff6b6b" }
+    : isVedantu
+    ? { name: "Vedantu", short: "V", bg: "linear-gradient(135deg, #7209b7 0%, #480ca8 100%)", accent: "#b5179e" }
+    : { name: "Indian Video", short: "▶", bg: "linear-gradient(135deg, #333 0%, #555 100%)", accent: "#888" };
+
+  // Extract topic from title: "Physics Wallah — TOPIC | Class 11 (India)"
+  const topicMatch = title.match(/—\s*(.+?)\s*\|/);
+  const topic = topicMatch ? topicMatch[1] : title;
+
+  return (
+    <div style={{ marginTop: "0.75rem" }}>
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        style={{ textDecoration: "none", display: "block" }}
+        aria-label={`Search ${brand.name} videos: ${topic}`}
+      >
+        <div
+          style={{
+            position: "relative",
+            borderRadius: "6px",
+            overflow: "hidden",
+            background: brand.bg,
+            height: "140px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+            cursor: "pointer",
+          }}
+        >
+          {/* Channel badge */}
+          <div
+            style={{
+              position: "absolute",
+              top: 8,
+              left: 10,
+              background: "rgba(0,0,0,0.45)",
+              borderRadius: "4px",
+              padding: "2px 8px",
+              fontSize: "0.7rem",
+              fontWeight: 700,
+              color: "#fff",
+              letterSpacing: "0.04em",
+            }}
+          >
+            {brand.name.toUpperCase()}
+          </div>
+
+          {/* Big play button */}
+          <div
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.22)",
+              border: "2px solid rgba(255,255,255,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+
+          {/* Topic label */}
+          <div
+            style={{
+              color: "#fff",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              textAlign: "center",
+              padding: "0 12px",
+              lineHeight: 1.3,
+              textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+            }}
+          >
+            {topic}
+          </div>
+
+          {/* Bottom bar */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: "rgba(0,0,0,0.5)",
+              padding: "5px 10px",
+              color: "#fff",
+              fontSize: "0.72rem",
+              fontWeight: 600,
+            }}
+          >
+            🔍 Search {brand.name} videos on YouTube
+          </div>
+        </div>
+      </a>
+    </div>
+  );
+}
+
+/** Click-to-play YouTube embed with thumbnail preview.
+ *  Shows the video thumbnail + play overlay; loads the iframe only on click
+ *  so videos play inside the platform instead of opening a new browser window.
+ */
+function VideoEmbedCard({ videoId, title }) {
+  const [playing, setPlaying] = useState(false);
+  if (!videoId) return null;
+
+  if (playing) {
+    return (
+      <div style={{ marginTop: "0.75rem" }}>
+        <iframe
+          width="100%"
+          height="220"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ borderRadius: "6px", border: "none", display: "block" }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      aria-label={`Play: ${title}`}
+      onClick={() => setPlaying(true)}
+      onKeyDown={(e) => e.key === "Enter" && setPlaying(true)}
+      style={{
+        position: "relative",
+        marginTop: "0.75rem",
+        cursor: "pointer",
+        borderRadius: "6px",
+        overflow: "hidden",
+        lineHeight: 0,
+      }}
+    >
+      <img
+        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+        alt={title}
+        style={{ width: "100%", display: "block", borderRadius: "6px" }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(0,0,0,0.22)",
+        }}
+      >
+        <div
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: "50%",
+            background: "rgba(220,38,38,0.92)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.35)",
+          }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "linear-gradient(transparent, rgba(0,0,0,0.62))",
+          padding: "18px 10px 8px",
+          color: "#fff",
+          fontSize: "0.78rem",
+          fontWeight: 600,
+          lineHeight: 1.3,
+          borderBottomLeftRadius: "6px",
+          borderBottomRightRadius: "6px",
+        }}
+      >
+        ▶ Click to play inside the app
+      </div>
+    </div>
+  );
+}
+
 function ResourcesPage({ user }) {
   /** Lets students browse external learning resources for a selected syllabus topic. */
   const [loading, setLoading] = useState(true);
@@ -119,7 +327,15 @@ function ResourcesPage({ user }) {
     Object.keys(syllabusData[grade][mode]),
     mode
   );
-  const chapters = syllabusData[grade][mode][subject] || [];
+  const chapters = (syllabusData[grade][mode][subject] || []).filter(
+    (c) => !c.startsWith("Exemplar:")
+  );
+
+  /** Return the first non-Exemplar chapter for a subject, or the raw first as fallback. */
+  function firstChapter(selectedGrade, selectedMode, subj) {
+    const all = syllabusData[selectedGrade][selectedMode][subj] || [];
+    return all.find((c) => !c.startsWith("Exemplar:")) || all[0] || "";
+  }
 
   function getFirstAccessibleTopic(selectedGrade, selectedMode) {
     /** Find the first subject/chapter the student can access for a grade and mode. */
@@ -131,13 +347,10 @@ function ResourcesPage({ user }) {
     );
     const nextSubject = allowedModeSubjects[0] || "";
     const nextChapter = nextSubject
-      ? syllabusData[selectedGrade][selectedMode][nextSubject][0]
+      ? firstChapter(selectedGrade, selectedMode, nextSubject)
       : "";
 
-    return {
-      subject: nextSubject,
-      chapter: nextChapter,
-    };
+    return { subject: nextSubject, chapter: nextChapter };
   }
 
   function handleGradeChange(value) {
@@ -159,23 +372,31 @@ function ResourcesPage({ user }) {
   function handleModeChange(value) {
     /** Reset subject and chapter to valid defaults for the selected learning mode. */
     const nextTopic = getFirstAccessibleTopic(grade, value);
-
     setMode(value);
     setSubject(nextTopic.subject);
     setChapter(nextTopic.chapter);
   }
 
   function handleSubjectChange(value) {
-    /** Reset the chapter to the first available chapter for the selected subject. */
-    const newChapter = syllabusData[grade][mode][value][0];
-
+    /** Reset the chapter to the first available non-Exemplar chapter for the selected subject. */
+    const newChapter = firstChapter(grade, mode, value);
     setSubject(value);
     setChapter(newChapter);
   }
 
+  function getYoutubeVideoId(url) {
+    /** Extract the YouTube video ID from both watch and short-link URL formats. */
+    if (!url) return null;
+    const watchMatch = url.match(/youtube\.com\/watch\?(?:.*&)?v=([^&]+)/);
+    if (watchMatch) return watchMatch[1];
+    const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+    if (shortMatch) return shortMatch[1];
+    return null;
+  }
+
   function isEmbeddableYoutube(url) {
-    /** Identify standard YouTube watch URLs that can be shown inside the page. */
-    return url.includes("youtube.com/watch");
+    /** Identify YouTube URLs (watch or short-link) that can be embedded inside the page. */
+    return !!(getYoutubeVideoId(url));
   }
 
   function getResourceIcon(resource) {
@@ -205,23 +426,48 @@ function ResourcesPage({ user }) {
   }
 
   const isGrammarSubject = subject === "English";
-  const isExemplarSubject = (subject === "Maths" || subject === "Science") &&
+  const isExemplarSubject =
+    (subject === "Maths" || subject === "Science") &&
     ["Grade 8", "Grade 9", "Grade 10"].includes(grade);
 
   return (
     <div className="resources-page premium-page premium-resources-page">
-      {/* Compact context bar — removes the redundant hero that duplicated the page title */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 0 4px", flexWrap: "wrap" }}>
+      {/* Compact context bar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          padding: "14px 0 4px",
+          flexWrap: "wrap",
+        }}
+      >
         <span style={{ fontSize: "1.1rem" }}>📚</span>
         <div>
-          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>{subject || "All Subjects"}</span>
+          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>
+            {subject || "All Subjects"}
+          </span>
           {chapter && (
-            <span style={{ fontSize: "0.82rem", color: "var(--muted)", marginLeft: 6 }}>
-              · {chapter.slice(0, 60)}{chapter.length > 60 ? "…" : ""}
+            <span
+              style={{
+                fontSize: "0.82rem",
+                color: "var(--muted)",
+                marginLeft: 6,
+              }}
+            >
+              · {chapter.slice(0, 60)}
+              {chapter.length > 60 ? "…" : ""}
             </span>
           )}
         </div>
-        <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--muted)", fontStyle: "italic" }}>
+        <span
+          style={{
+            marginLeft: "auto",
+            fontSize: "0.75rem",
+            color: "var(--muted)",
+            fontStyle: "italic",
+          }}
+        >
           Videos, references and resources for this chapter
         </span>
       </div>
@@ -294,9 +540,7 @@ function ResourcesPage({ user }) {
       <section className="premium-section premium-resource-results">
         <div className="premium-header">
           <h3>🌐 Free Learning Resources</h3>
-          <p>
-            Videos and references matched to your selected subject and chapter.
-          </p>
+          <p>Videos and references matched to your selected subject and chapter.</p>
         </div>
 
         {resourcesLoading && (
@@ -329,15 +573,14 @@ function ResourcesPage({ user }) {
                 </div>
 
                 {resource.type === "youtube" && isEmbeddableYoutube(resource.url) ? (
-                  <div className="premium-video-frame">
-                    <iframe
-                      width="100%"
-                      height="360"
-                      src={resource.url.replace("watch?v=", "embed/")}
-                      title={resource.title}
-                      allowFullScreen
-                    />
-                  </div>
+                  <VideoEmbedCard
+                    videoId={getYoutubeVideoId(resource.url)}
+                    title={resource.title}
+                  />
+                ) : resource.type === "website" &&
+                  (resource.title?.toLowerCase().includes("physics wallah") ||
+                   resource.title?.toLowerCase().includes("vedantu")) ? (
+                  <IndianVideoCard title={resource.title} url={resource.url} />
                 ) : (
                   <a
                     className="premium-resource-link"
@@ -354,7 +597,6 @@ function ResourcesPage({ user }) {
         )}
       </section>
 
-      {/* ── Exemplar Problems callout for Maths/Science Grade 8-10 ── */}
       {isExemplarSubject && !resourcesLoading && (
         <section className="premium-section premium-resource-exemplar-section">
           <div className="premium-header">
@@ -390,7 +632,6 @@ function ResourcesPage({ user }) {
         </section>
       )}
 
-      {/* ── Grammar reference section for English ── */}
       {isGrammarSubject && !resourcesLoading && (
         <section className="premium-section premium-resource-grammar-section">
           <div className="premium-header">
@@ -412,12 +653,7 @@ function ResourcesPage({ user }) {
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
                 Tenses, Voice, Reported Speech, Clauses, Modals — free interactive lessons with examples.
               </p>
-              <a
-                className="premium-resource-link"
-                href="https://www.bbc.co.uk/learningenglish/grammar"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="premium-resource-link" href="https://www.bbc.co.uk/learningenglish/grammar" target="_blank" rel="noreferrer">
                 Open BBC Grammar →
               </a>
             </div>
@@ -433,12 +669,7 @@ function ResourcesPage({ user }) {
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
                 A1 to C1 level grammar lessons with practice exercises. Covers all CBSE grammar topics.
               </p>
-              <a
-                className="premium-resource-link"
-                href="https://learnenglish.britishcouncil.org/grammar"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="premium-resource-link" href="https://learnenglish.britishcouncil.org/grammar" target="_blank" rel="noreferrer">
                 Open British Council Grammar →
               </a>
             </div>
@@ -454,12 +685,7 @@ function ResourcesPage({ user }) {
               <p style={{ fontSize: "0.875rem", color: "var(--text-muted, #666)", margin: "0.5rem 0 1rem" }}>
                 Official CBSE sample papers with grammar and writing sections — best for board exam prep.
               </p>
-              <a
-                className="premium-resource-link"
-                href="https://cbseacademic.nic.in/SampleQuestion_Papers.html"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="premium-resource-link" href="https://cbseacademic.nic.in/SampleQuestion_Papers.html" target="_blank" rel="noreferrer">
                 Open CBSE Sample Papers →
               </a>
             </div>
