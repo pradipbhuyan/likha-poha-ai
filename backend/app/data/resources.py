@@ -1416,6 +1416,105 @@ GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
             {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
         ],
     },
+    # ── ENGLISH ──────────────────────────────────────────────────────────────
+    "English": {
+        # ── Hornbill — Prose ──────────────────────────────────────────────────
+        "The Portrait of a Lady": [
+            {"title": "Magnet Brains — The Portrait of a Lady | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+portrait+of+a+lady"},
+            {"title": "Vedantu — The Portrait of a Lady Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+portrait+of+a+lady+explanation"},
+        ],
+        "We're Not Afraid to Die... if We Can All Be Together": [
+            {"title": "Magnet Brains — We're Not Afraid to Die | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+we%27re+not+afraid+to+die"},
+            {"title": "Vedantu — We're Not Afraid to Die Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+not+afraid+to+die"},
+        ],
+        "Discovering Tut: the Saga Continues": [
+            {"title": "Magnet Brains — Discovering Tut | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+discovering+tut+saga+continues"},
+            {"title": "Vedantu — Discovering Tut Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+discovering+tut"},
+        ],
+        "Landscape of the Soul": [
+            {"title": "Magnet Brains — Landscape of the Soul | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+landscape+of+the+soul"},
+            {"title": "Vedantu — Landscape of the Soul Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+landscape+soul"},
+        ],
+        "The Ailing Planet: the Green Movement's Role": [
+            {"title": "Magnet Brains — The Ailing Planet | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+ailing+planet+green+movement"},
+            {"title": "Vedantu — The Ailing Planet Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+ailing+planet"},
+        ],
+        "The Browning Version": [
+            {"title": "Magnet Brains — The Browning Version | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+browning+version"},
+            {"title": "Vedantu — The Browning Version Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+browning+version"},
+        ],
+        "The Adventure": [
+            {"title": "Magnet Brains — The Adventure | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+hornbill+the+adventure"},
+            {"title": "Vedantu — The Adventure Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+the+adventure"},
+        ],
+        "Silk Road": [
+            {"title": "Magnet Brains — Silk Road | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+silk+road"},
+            {"title": "Vedantu — Silk Road Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+silk+road"},
+        ],
+        # ── Hornbill — Poetry ─────────────────────────────────────────────────
+        "A Photograph": [
+            {"title": "Magnet Brains — A Photograph | Class 11 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+a+photograph+poem"},
+            {"title": "Vedantu — A Photograph Poem Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+hornbill+a+photograph+poem"},
+        ],
+        "The Laburnum Top": [
+            {"title": "Magnet Brains — The Laburnum Top | Class 11 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+laburnum+top+poem"},
+            {"title": "Vedantu — The Laburnum Top Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+laburnum+top+poem"},
+        ],
+        "The Voice of the Rain": [
+            {"title": "Magnet Brains — The Voice of the Rain | Class 11 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+voice+of+the+rain+poem"},
+            {"title": "Vedantu — The Voice of the Rain Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+voice+of+the+rain+poem"},
+        ],
+        "Childhood": [
+            {"title": "Magnet Brains — Childhood | Class 11 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+childhood+poem+hornbill"},
+            {"title": "Vedantu — Childhood Poem Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+childhood+poem+hornbill"},
+        ],
+        "Father to Son": [
+            {"title": "Magnet Brains — Father to Son | Class 11 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+father+to+son+poem"},
+            {"title": "Vedantu — Father to Son Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+father+to+son+poem"},
+        ],
+        # ── Snapshots — Supplementary Reader ─────────────────────────────────
+        "The Summer of the Beautiful White Horse": [
+            {"title": "Magnet Brains — The Summer of the Beautiful White Horse | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+summer+beautiful+white+horse"},
+            {"title": "Vedantu — The Summer of the Beautiful White Horse | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+summer+beautiful+white+horse"},
+        ],
+        "The Address": [
+            {"title": "Magnet Brains — The Address | Class 11 English Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+the+address"},
+            {"title": "Vedantu — The Address Explanation | Class 11 Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+the+address"},
+        ],
+        "Ranga's Marriage": [
+            {"title": "Magnet Brains — Ranga's Marriage | Class 11 English Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+ranga%27s+marriage"},
+            {"title": "Vedantu — Ranga's Marriage Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+ranga+marriage"},
+        ],
+        "Albert Einstein at School": [
+            {"title": "Magnet Brains — Albert Einstein at School | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+albert+einstein+at+school"},
+            {"title": "Vedantu — Albert Einstein at School Explanation | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+albert+einstein+school"},
+        ],
+        "Mother's Day": [
+            {"title": "Magnet Brains — Mother's Day | Class 11 English Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+mother%27s+day"},
+            {"title": "Vedantu — Mother's Day Explanation | Class 11 Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+mother%27s+day"},
+        ],
+        "The Ghat of the Only World": [
+            {"title": "Magnet Brains — The Ghat of the Only World | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+ghat+only+world"},
+            {"title": "Vedantu — The Ghat of the Only World | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+ghat+only+world"},
+        ],
+        "Birth": [
+            {"title": "Magnet Brains — Birth | Class 11 English Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+birth"},
+            {"title": "Vedantu — Birth Explanation | Class 11 English Snapshots (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+birth+a+j+cronin"},
+        ],
+        "The Tale of Melon City": [
+            {"title": "Magnet Brains — The Tale of Melon City | Class 11 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+snapshots+tale+of+melon+city"},
+            {"title": "Vedantu — The Tale of Melon City | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+11+english+snapshots+tale+melon+city"},
+        ],
+        # ── Grammar / Writing Skills ──────────────────────────────────────────
+        "Grammar": [
+            {"title": "BBC Learning English — Grammar Reference (International)", "type": "website", "url": "https://www.bbc.co.uk/learningenglish/grammar"},
+            {"title": "Magnet Brains — Class 11 English Grammar (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+grammar"},
+        ],
+        "Writing Skills": [
+            {"title": "British Council — Writing Skills (International)", "type": "website", "url": "https://learnenglish.britishcouncil.org/skills/writing"},
+            {"title": "Magnet Brains — Class 11 English Writing Skills (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+11+english+writing+skills"},
+        ],
+    },
 }
 
 
@@ -1666,9 +1765,112 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
             {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
         ],
     },
+    # ── ENGLISH ──────────────────────────────────────────────────────────────
+    "English": {
+        # ── Flamingo — Prose ──────────────────────────────────────────────────
+        "The Last Lesson": [
+            {"title": "Magnet Brains — The Last Lesson | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+the+last+lesson"},
+            {"title": "Vedantu — The Last Lesson Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+the+last+lesson"},
+        ],
+        "Lost Spring": [
+            {"title": "Magnet Brains — Lost Spring | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+lost+spring"},
+            {"title": "Vedantu — Lost Spring Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+lost+spring"},
+        ],
+        "Deep Water": [
+            {"title": "Magnet Brains — Deep Water | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+deep+water"},
+            {"title": "Vedantu — Deep Water Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+deep+water"},
+        ],
+        "The Rattrap": [
+            {"title": "Magnet Brains — The Rattrap | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+the+rattrap"},
+            {"title": "Vedantu — The Rattrap Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+rattrap"},
+        ],
+        "Indigo": [
+            {"title": "Magnet Brains — Indigo | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+indigo"},
+            {"title": "Vedantu — Indigo Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+indigo+chapter"},
+        ],
+        "Poets and Pancakes": [
+            {"title": "Magnet Brains — Poets and Pancakes | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+poets+and+pancakes"},
+            {"title": "Vedantu — Poets and Pancakes Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+poets+pancakes"},
+        ],
+        "The Interview": [
+            {"title": "Magnet Brains — The Interview | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+the+interview"},
+            {"title": "Vedantu — The Interview Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+the+interview"},
+        ],
+        "Going Places": [
+            {"title": "Magnet Brains — Going Places | Class 12 English Flamingo (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+flamingo+going+places"},
+            {"title": "Vedantu — Going Places Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+flamingo+going+places"},
+        ],
+        # ── Flamingo — Poetry ─────────────────────────────────────────────────
+        "My Mother at Sixty-six": [
+            {"title": "Magnet Brains — My Mother at Sixty-six | Class 12 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+my+mother+at+sixty+six+poem"},
+            {"title": "Vedantu — My Mother at Sixty-six Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+my+mother+sixty+six+poem"},
+        ],
+        "An Elementary School Classroom in a Slum": [
+            {"title": "Magnet Brains — Elementary School Classroom in a Slum | Class 12 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+elementary+school+classroom+slum"},
+            {"title": "Vedantu — Elementary School Classroom Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+elementary+school+classroom+slum"},
+        ],
+        "Keeping Quiet": [
+            {"title": "Magnet Brains — Keeping Quiet | Class 12 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+keeping+quiet+poem"},
+            {"title": "Vedantu — Keeping Quiet Poem Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+keeping+quiet+poem"},
+        ],
+        "A Thing of Beauty": [
+            {"title": "Magnet Brains — A Thing of Beauty | Class 12 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+a+thing+of+beauty+poem"},
+            {"title": "Vedantu — A Thing of Beauty Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+thing+of+beauty+poem"},
+        ],
+        "A Roadside Stand": [
+            {"title": "Magnet Brains — A Roadside Stand | Class 12 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+a+roadside+stand+poem"},
+            {"title": "Vedantu — A Roadside Stand Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+roadside+stand+poem"},
+        ],
+        "Aunt Jennifer's Tigers": [
+            {"title": "Magnet Brains — Aunt Jennifer's Tigers | Class 12 English Poetry (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+aunt+jennifer%27s+tigers+poem"},
+            {"title": "Vedantu — Aunt Jennifer's Tigers Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+aunt+jennifer+tigers+poem"},
+        ],
+        # ── Vistas — Supplementary Reader ─────────────────────────────────────
+        "The Third Level": [
+            {"title": "Magnet Brains — The Third Level | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+the+third+level"},
+            {"title": "Vedantu — The Third Level Explanation | Class 12 Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+third+level"},
+        ],
+        "The Tiger King": [
+            {"title": "Magnet Brains — The Tiger King | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+the+tiger+king"},
+            {"title": "Vedantu — The Tiger King Explanation | Class 12 Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+tiger+king"},
+        ],
+        "Journey to the End of the Earth": [
+            {"title": "Magnet Brains — Journey to the End of the Earth | Class 12 English (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+journey+end+earth"},
+            {"title": "Vedantu — Journey to the End of the Earth | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+journey+end+earth"},
+        ],
+        "The Enemy": [
+            {"title": "Magnet Brains — The Enemy | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+the+enemy"},
+            {"title": "Vedantu — The Enemy Explanation | Class 12 Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+the+enemy"},
+        ],
+        "Should Wizard Hit Mommy?": [
+            {"title": "Magnet Brains — Should Wizard Hit Mommy | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+should+wizard+hit+mommy"},
+            {"title": "Vedantu — Should Wizard Hit Mommy Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+wizard+hit+mommy"},
+        ],
+        "On the Face of It": [
+            {"title": "Magnet Brains — On the Face of It | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+on+the+face+of+it"},
+            {"title": "Vedantu — On the Face of It Explanation | Class 12 Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+on+the+face+of+it"},
+        ],
+        "Evans Tries an O-Level": [
+            {"title": "Magnet Brains — Evans Tries an O-Level | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+evans+tries+o+level"},
+            {"title": "Vedantu — Evans Tries an O-Level Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+evans+tries+o+level"},
+        ],
+        "Memories of Childhood": [
+            {"title": "Magnet Brains — Memories of Childhood | Class 12 English Vistas (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+vistas+memories+of+childhood"},
+            {"title": "Vedantu — Memories of Childhood Explanation | Class 12 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+class+12+english+vistas+memories+of+childhood"},
+        ],
+        # ── Grammar / Writing Skills ──────────────────────────────────────────
+        "Grammar": [
+            {"title": "BBC Learning English — Grammar Reference (International)", "type": "website", "url": "https://www.bbc.co.uk/learningenglish/grammar"},
+            {"title": "Magnet Brains — Class 12 English Grammar (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+grammar"},
+        ],
+        "Writing Skills": [
+            {"title": "British Council — Writing Skills (International)", "type": "website", "url": "https://learnenglish.britishcouncil.org/skills/writing"},
+            {"title": "Magnet Brains — Class 12 English Writing Skills (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=magnet+brains+class+12+english+writing+skills"},
+        ],
+    },
 }
 
-# ── Grade-aware resource lookup ───────────────────────────────────────────────
+# ── Grade-aware resource lookup ───────────────────────
 GRADE_RESOURCES_MAP = {
     "Grade 8": GRADE_8_RESOURCES,
     "Grade 10": GRADE_10_RESOURCES,
