@@ -865,70 +865,320 @@ GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
     # ── MATHS ─────────────────────────────────────────────────────────────────
     "Mathematics": {
         "Sets": [
-            {"title": "Vedantu — Sets | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+sets+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — What is Statistics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XZo4xyJXCak"},
             {"title": "Khan Academy — Introduction to Sets (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
         ],
         "Relations and Functions": [
-            {"title": "Vedantu — Relations and Functions | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+relations+and+functions+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Data Visualization (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=VHYOuWu9jQI"},
             {"title": "Khan Academy — Relations and Functions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-DTMakGDZAw"},
         ],
         "Trigonometric Functions": [
-            {"title": "Vedantu — Trigonometric Functions | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+trigonometric+functions+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Normal Distribution (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Iu17mY1VfZU"},
             {"title": "3Blue1Brown — Eulers Formula and Trigonometry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=mvmuCPvRoWQ"},
         ],
         "Complex Numbers and Quadratic Equations": [
-            {"title": "Vedantu — Complex Numbers and Quadratic Equations | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+complex+numbers+and+quadratic+equations+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Z-Scores (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6hJGa4Zp62M"},
             {"title": "Khan Academy — Complex Numbers (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=T647CGsuOVU"},
         ],
         "Linear Inequalities": [
-            {"title": "Vedantu — Linear Inequalities | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+linear+inequalities+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Measures of Spread (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LuBD49SFpWs"},
             {"title": "Khan Academy — Linear Inequalities (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Z1zdkcwosD4"},
         ],
         "Permutations and Combinations": [
-            {"title": "Vedantu — Permutations and Combinations | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+permutations+and+combinations+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Counting (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MUCvUgGfzdo"},
             {"title": "Khan Academy — Permutations and Combinations (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Z1zdkcwosD4"},
         ],
         "Binomial Theorem": [
-            {"title": "Vedantu — Binomial Theorem | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+binomial+theorem+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Binomial Distribution (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=wkAjnGmRPVo"},
             {"title": "Khan Academy — Binomial Theorem (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
         ],
         "Sequences and Series": [
-            {"title": "Vedantu — Sequences and Series | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+sequences+and+series+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Visualizing Distributions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=5rUVYWfZOb8"},
             {"title": "Khan Academy — Arithmetic Sequences and Series (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=_cooC3yG_p0"},
         ],
         "Straight Lines": [
-            {"title": "Vedantu — Straight Lines | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+straight+lines+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Correlation and Causation (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=gq3FPpm2yvA"},
             {"title": "Khan Academy — Slope and Equation of a Line (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XMJ72mtMn4Y"},
         ],
         "Conic Sections": [
-            {"title": "Vedantu — Conic Sections | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+conic+sections+class+11+NCERT"},
+            {"title": "CrashCourse Physics — Lenses (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-w-VTw0tQlE"},
             {"title": "Khan Academy — Introduction to Conic Sections (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=0A7RR0oy2ho"},
         ],
         "Introduction to Three Dimensional Geometry": [
-            {"title": "Vedantu — Introduction to Three Dimensional Geometry | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+introduction+to+three+dimensional+geometry+class+11+NCERT"},
+            {"title": "CrashCourse Physics — Geometric Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=g-wjP1otQWI"},
             {"title": "Khan Academy — 3D Geometry Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
         ],
         "Limits and Derivatives": [
-            {"title": "Vedantu — Limits and Derivatives | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+limits+and+derivatives+class+11+NCERT"},
             {"title": "3Blue1Brown — Essence of Calculus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
+            {"title": "Khan Academy — Limits Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
         ],
         "Statistics": [
-            {"title": "Vedantu — Statistics | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+statistics+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Mean Median and Mode (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Mb9BuEkbaHQ"},
             {"title": "Khan Academy — Mean Median and Mode Statistics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=k3aKKasOmIw"},
         ],
         "Probability": [
-            {"title": "Vedantu — Probability | Class 11 (India)", "type": "website", "url": "https://www.youtube.com/results?search_query=vedantu+probability+class+11+NCERT"},
+            {"title": "CrashCourse Statistics — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JnoBjHz2dtw"},
             {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
         ],
     },
 }
 
 
+
+# ── Grade 12 resources ────────────────────────────────────────────────────────────────────────
+GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
+    "Physics": {
+        "Electric Charges and Fields": [
+            {"title": "CrashCourse Physics — Electric Charge (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6BHbJ_gBOk0"},
+            {"title": "Khan Academy — Electric Charge and Electric Force (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YG4_4n46Scc"},
+        ],
+        "Electrostatic Potential and Capacitance": [
+            {"title": "CrashCourse Physics — Electric Potential (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=tuSC0ObB-qY"},
+            {"title": "Khan Academy — Electric Potential Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=zqGvUbvVQXg"},
+        ],
+        "Current Electricity": [
+            {"title": "CrashCourse Physics — Electric Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4i1MUWJoI0U"},
+            {"title": "Khan Academy — Introduction to Electric Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YSX9-vkMhLY"},
+        ],
+        "Moving Charges and Magnetism": [
+            {"title": "CrashCourse Physics — Magnetism (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TFlVWf8JX4A"},
+            {"title": "Khan Academy — Magnetic Force on Moving Charge (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uFqEXHECvO0"},
+        ],
+        "Magnetism and Matter": [
+            {"title": "CrashCourse Physics — Magnetism (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=TFlVWf8JX4A"},
+            {"title": "Khan Academy — Magnetic Force on Current Carrying Wire (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qYkqXq9CZNY"},
+        ],
+        "Electromagnetic Induction": [
+            {"title": "CrashCourse Physics — Electromagnetic Induction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=mdulzEfQXDE"},
+            {"title": "Khan Academy — Introduction to Electromagnetic Induction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LqFLmqMFKGM"},
+        ],
+        "Alternating Current": [
+            {"title": "CrashCourse Physics — AC Circuits (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ZrMltpK6iAw"},
+            {"title": "Khan Academy — AC Circuits and Alternating Current (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uoFB4kJsIko"},
+        ],
+        "Electromagnetic Waves": [
+            {"title": "CrashCourse Physics — Electromagnetic Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HXOok3mfMLM"},
+            {"title": "Khan Academy — Introduction to Electromagnetic Waves (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=FMVD-D65-l8"},
+        ],
+        "Ray Optics and Optical Instruments": [
+            {"title": "CrashCourse Physics — Geometric Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=g-wjP1otQWI"},
+            {"title": "Khan Academy — Reflection and Refraction of Light (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DveX84Rszjo"},
+        ],
+        "Wave Optics": [
+            {"title": "CrashCourse Physics — Wave Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=s94suB5uLWw"},
+            {"title": "Khan Academy — Young Double Slit Experiment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Iuv6hY6zsd0"},
+        ],
+        "Dual Nature of Radiation and Matter": [
+            {"title": "CrashCourse Physics — Quantum Mechanics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7kb1VT0J3DE"},
+            {"title": "Khan Academy — Photoelectric Effect (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=v-1zjsqaAoE"},
+        ],
+        "Atoms": [
+            {"title": "CrashCourse Physics — Nuclear Physics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=K40lNL3KsJ4"},
+            {"title": "Khan Academy — Bohr Model of Hydrogen (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GD1NJ7HFO6s"},
+        ],
+        "Nuclei": [
+            {"title": "CrashCourse Physics — Radioactivity (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lUhJL7o6_cA"},
+            {"title": "Khan Academy — Nuclear Binding Energy (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LLBZ3Ec_Sro"},
+        ],
+        "Semiconductor Electronics: Materials, Devices and Simple Circuits": [
+            {"title": "CrashCourse Physics — Quantum Mechanics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qO_W70VegbQ"},
+            {"title": "Khan Academy — Semiconductors Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DvkE48qW6iY"},
+        ],
+    },
+    "Chemistry": {
+        "The Solid State": [
+            {"title": "CrashCourse Chemistry — Solids (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=LS67vS10O5Y"},
+            {"title": "Khan Academy — Solids Liquids and Gases (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=pKvo0XWZtjo"},
+        ],
+        "Solutions": [
+            {"title": "CrashCourse Chemistry — Solutions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JbqtqCunYzA"},
+            {"title": "Khan Academy — Solutions and Mixtures (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=3ROWXs3jtBU"},
+        ],
+        "Electrochemistry": [
+            {"title": "CrashCourse Chemistry — Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=a8LF7JEb0IA"},
+            {"title": "Khan Academy — Introduction to Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lQ6FBA1HM3s"},
+        ],
+        "Chemical Kinetics": [
+            {"title": "CrashCourse Chemistry — Reaction Rates (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GqtUWyDR1fg"},
+            {"title": "Khan Academy — Introduction to Chemical Kinetics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=5HZbCNg9mIw"},
+        ],
+        "Surface Chemistry": [
+            {"title": "CrashCourse Chemistry — Intermolecular Forces (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=GIPrsWuSkQc"},
+            {"title": "Khan Academy — Intermolecular Forces (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=pKvo0XWZtjo"},
+        ],
+        "General Principles and Processes of Isolation of Elements": [
+            {"title": "CrashCourse Chemistry — Oxidation States (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=cPDptc0wUYI"},
+            {"title": "Khan Academy — Oxidation and Reduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=DvYs1HILq1g"},
+        ],
+        "The p-Block Elements": [
+            {"title": "CrashCourse Chemistry — The Nucleus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ANi709MYnWg"},
+            {"title": "Khan Academy — Periodic Table Trends (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=MyBYZJ3Wo_0"},
+        ],
+        "The d and f Block Elements": [
+            {"title": "CrashCourse Chemistry — Electron Configuration (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=AN4KifV12DA"},
+            {"title": "Khan Academy — Electron Configuration (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=haFTkhOcQaY"},
+        ],
+        "Coordination Compounds": [
+            {"title": "CrashCourse Chemistry — Calorimetry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=8Fdt5WnYn1k"},
+            {"title": "Khan Academy — Chemical Bonding and Molecular Structure (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=FaeAurHnQJs"},
+        ],
+        "Haloalkanes and Haloarenes": [
+            {"title": "CrashCourse Chemistry — Organic Chemistry Basics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=CEH3O6l1pbw"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Alcohols, Phenols and Ethers": [
+            {"title": "CrashCourse Chemistry — Alcohols (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kXFEex-dABU"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Aldehydes, Ketones and Carboxylic Acids": [
+            {"title": "CrashCourse Chemistry — Aldehydes and Ketones (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hlXc_eEtBHA"},
+            {"title": "Khan Academy — Carbonyl Groups (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Amines": [
+            {"title": "CrashCourse Chemistry — Amines (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U7wavimfNFE"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Biomolecules": [
+            {"title": "CrashCourse Chemistry — Biomolecules (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=rHxxLYzJ8Sw"},
+            {"title": "Khan Academy — Macromolecules Proteins Carbs Lipids (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=HGg_WiaSr4U"},
+        ],
+        "Polymers": [
+            {"title": "CrashCourse Chemistry — Big Questions in Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=aLuSi_6Ol8M"},
+            {"title": "Khan Academy — Introduction to Organic Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=nDV5yWfHKko"},
+        ],
+        "Chemistry in Everyday Life": [
+            {"title": "CrashCourse Chemistry — Big Questions in Chemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=aLuSi_6Ol8M"},
+            {"title": "Khan Academy — Acids and Bases (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=5HZbCNg9mIw"},
+        ],
+    },
+    "Biology": {
+        "Reproduction in Organisms": [
+            {"title": "CrashCourse Biology — Meiosis (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=2TSIUt-lHyo"},
+            {"title": "Khan Academy — Meiosis and Sexual Reproduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U5vAO_f2LDQ"},
+        ],
+        "Sexual Reproduction in Flowering Plants": [
+            {"title": "CrashCourse Biology — Meiosis (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=2TSIUt-lHyo"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Human Reproduction": [
+            {"title": "CrashCourse Biology — Reproductive System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kjZAHBMMKoU"},
+            {"title": "Khan Academy — Human Reproductive Biology (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U5vAO_f2LDQ"},
+        ],
+        "Reproductive Health": [
+            {"title": "CrashCourse Biology — Reproductive System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kjZAHBMMKoU"},
+            {"title": "Khan Academy — Mitosis and Cell Division (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U5vAO_f2LDQ"},
+        ],
+        "Principles of Inheritance and Variation": [
+            {"title": "CrashCourse Biology — Variation in Populations (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=i-VeKZeyHZs"},
+            {"title": "Khan Academy — Mitosis and Cell Division (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=U5vAO_f2LDQ"},
+        ],
+        "Molecular Basis of Inheritance": [
+            {"title": "CrashCourse Biology — DNA Structure and Replication (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4joZpdXeS4A"},
+            {"title": "Khan Academy — DNA Structure and Replication (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4joZpdXeS4A"},
+        ],
+        "Evolution": [
+            {"title": "CrashCourse Biology — Natural Selection (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fBOrzQP423A"},
+            {"title": "Kurzgesagt — How Evolution Works (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hOfRN0KihOU"},
+        ],
+        "Human Health and Disease": [
+            {"title": "CrashCourse Biology — The Immune System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=j6YaOqKORYY"},
+            {"title": "Kurzgesagt — The Immune System Explained (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=lXfEK8G8CUI"},
+        ],
+        "Strategies for Enhancement in Food Production": [
+            {"title": "CrashCourse Biology — The Chemistry of Life (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=xOLcZMw0hd4"},
+            {"title": "Khan Academy — Photosynthesis Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Microbes in Human Welfare": [
+            {"title": "CrashCourse Biology — The Science of Biology (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=tZE_fQFK8EY"},
+            {"title": "Khan Academy — Cellular Respiration Overview (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ArmlWtDnuys"},
+        ],
+        "Biotechnology: Principles and Processes": [
+            {"title": "CrashCourse Biology — Transcription and Translation (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4mxJbgdiyIY"},
+            {"title": "Khan Academy — DNA Replication (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4joZpdXeS4A"},
+        ],
+        "Biotechnology and its Applications": [
+            {"title": "CrashCourse Biology — More Transcription (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YM6Ekb5De2o"},
+            {"title": "Khan Academy — DNA Structure and Replication (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=4joZpdXeS4A"},
+        ],
+        "Organisms and Populations": [
+            {"title": "CrashCourse Biology — Population Ecology (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=xSbMX0MFJCY"},
+            {"title": "Khan Academy — Ecology Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-rsYk4eCKnA"},
+        ],
+        "Ecosystem": [
+            {"title": "CrashCourse Biology — Community Ecology (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=o-WFU5ovaTc"},
+            {"title": "Kurzgesagt — What Is Life How Does It Work (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QOCaacO8wus"},
+        ],
+        "Biodiversity and Conservation": [
+            {"title": "CrashCourse Biology — Species and Biodiversity (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=SyHM1gFyP8Y"},
+            {"title": "Kurzgesagt — How Evolution Works (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=hOfRN0KihOU"},
+        ],
+        "Environmental Issues": [
+            {"title": "CrashCourse Biology — Ecology and the Environment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=SyHM1gFyP8Y"},
+            {"title": "Kurzgesagt — Overpopulation and the Environment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QOCaacO8wus"},
+        ],
+    },
+    "Mathematics": {
+        "Relations and Functions": [
+            {"title": "CrashCourse Statistics — Data Visualization (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XZo4xyJXCak"},
+            {"title": "Khan Academy — Relations and Functions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=-DTMakGDZAw"},
+        ],
+        "Inverse Trigonometric Functions": [
+            {"title": "CrashCourse Physics — Wave Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=s94suB5uLWw"},
+            {"title": "Khan Academy — Inverse Trigonometric Functions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=YXWKpgmLgHk"},
+        ],
+        "Matrices": [
+            {"title": "3Blue1Brown — Essence of Linear Algebra (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fNk_zzaMoSs"},
+            {"title": "Khan Academy — Introduction to Matrices (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=kqWCgIVDRBo"},
+        ],
+        "Determinants": [
+            {"title": "3Blue1Brown — Determinant of a Matrix (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Ip3X9LOh2iI"},
+            {"title": "Khan Academy — Determinants (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=OI07C1HsOuc"},
+        ],
+        "Continuity and Differentiability": [
+            {"title": "3Blue1Brown — Essence of Calculus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
+            {"title": "Khan Academy — Continuity and Differentiability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Application of Derivatives": [
+            {"title": "3Blue1Brown — Derivatives Visualized (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=S0_qX4VJhMQ"},
+            {"title": "Khan Academy — Application of Derivatives (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XMJ72mtMn4Y"},
+        ],
+        "Integrals": [
+            {"title": "3Blue1Brown — Integration and the Fundamental Theorem (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=rfG8ce4nNh0"},
+            {"title": "Khan Academy — Introduction to Integrals (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Application of Integrals": [
+            {"title": "3Blue1Brown — Essence of Calculus (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"},
+            {"title": "Khan Academy — Application of Integrals (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Differential Equations": [
+            {"title": "3Blue1Brown — Differential Equations Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=p_di4Zn4wz4"},
+            {"title": "Khan Academy — Introduction to Differential Equations (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Vector Algebra": [
+            {"title": "3Blue1Brown — Vectors What Even Are They (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=fNk_zzaMoSs"},
+            {"title": "Khan Academy — Vector Basics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=ihNZlp7iUHE"},
+        ],
+        "Three Dimensional Geometry": [
+            {"title": "CrashCourse Physics — Geometric Optics (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=g-wjP1otQWI"},
+            {"title": "Khan Academy — 3D Geometry Introduction (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=riXcZT2ICjA"},
+        ],
+        "Linear Programming": [
+            {"title": "CrashCourse Statistics — Linear Regression (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=6G6i8vSa8Zs"},
+            {"title": "Khan Academy — Linear Programming (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=Z1zdkcwosD4"},
+        ],
+        "Probability": [
+            {"title": "CrashCourse Statistics — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JnoBjHz2dtw"},
+            {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
+        ],
+    },
+}
+
 # ── Grade-aware resource lookup ───────────────────────────────────────────────
 GRADE_RESOURCES_MAP = {
     "Grade 8": GRADE_8_RESOURCES,
     "Grade 10": GRADE_10_RESOURCES,
     "Grade 11": GRADE_11_RESOURCES,
+    "Grade 12": GRADE_12_RESOURCES,
 }
 
 # Grade 9 English Grammar (extends existing LEARNING_RESOURCES)
