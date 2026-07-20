@@ -1946,6 +1946,86 @@ GRADE_7_RESOURCES: dict[str, dict[str, list]] = {
     },
 }
 
+# ── Grade 5 resources ─────────────────────────────────────────────────────────
+GRADE_5_RESOURCES: dict[str, dict[str, list]] = {
+    "Maths": {
+        # NCERT "Maths Mela" (2025-26) — 15 official chapters, keyed by plain title
+        # (matches the live "Chapter N: Title" labels after prefix-strip). The live
+        # dropdown also carries 2 bare-titled entries ("The Fish Tale", "Shapes and
+        # Angles") left over from an older/alternate edition upload; both are covered
+        # too so the dropdown never shows an empty resource list. "Basic Education
+        # R.D" covers 8 of the 15 official chapters consistently. Every video verified
+        # live via YouTube's oEmbed endpoint.
+        "We the Travellers — I": [indian_channel("We The Travellers 1|Class 5|Maths|Chapter 1|New NCERT|Maths Mela|Full Chapter Explanation in hindi", "Himani Bharti", "1ei6OsQKV8w")],
+        "Fractions": [indian_channel("Fractions - Explanation (Part 1) | Class 5th Maths Mela | Chapter 2 | CBSE 2025-26", "Magnet Brains", "bO1ZNwWRlYw")],
+        "Angles as Turns": [indian_channel("Angles as Turns , class 5 Maths Mela chapter 3 complete solution with explanation", "Basic Education R.D", "R4J-NMyvR54")],
+        "We the Travellers — II": [indian_channel("We the travellers-II 2, class 5 new book Maths mela chapter 4 complete solution with explanation", "Basic Education R.D", "ecqeE77jNCU")],
+        "Far and Near": [indian_channel("NCERT Class -5th Maths | Maths Mela | Chapter -5 Far And Near | Solutions | New Book 2025", "MOS Classes Maths (Shine Luthra)", "k59AmCWvYuI")],
+        "The Dairy Farm": [indian_channel("The Dairy Farm, class 5 Maths mela new book chapter 6 complete solution with explanation", "Basic Education R.D", "oLWz0tv_sjI")],
+        "Shapes and Patterns": [indian_channel("Shapes and Patterns, class 5 maths mela chapter 7 complete solution with explanation", "Basic Education R.D", "ieGgfggwsDg")],
+        "Weight and Capacity": [indian_channel("Weight and capacity , class 5 maths mela chapter 8 complete solution with explanation", "Basic Education R.D", "R9bRsUdk508")],
+        "Coconut Farm": [indian_channel("Coconut Farm, class 5 Maths mela new book chapter 9 complete solution with explanation", "Basic Education R.D", "e13ZA-qSIY4")],
+        "Symmetrical Designs": [indian_channel("Symmetrical Designs, class 5 maths mela new book chapter 10 complete solution with explanation", "Basic Education R.D", "4QMUUvL6iUc")],
+        "Grandmother's Quilt": [indian_channel("Grandmother's Quilt, class 5 Maths mela new book chapter 11 complete solution with explanation", "Basic Education R.D", "_Ny18au9GRs")],
+        "Racing Seconds": [indian_channel("(PART-1) / Class 5 Maths Mela / Chapter 12 / Racing Seconds/ NCERT/ Complete Solutions/Page 154-159", "MathoMagic", "M6D1UBnq1gw")],
+        "Animal Jumps": [indian_channel("Class 5 || Maths || Chapter -13 || Animal Jumps || New book- Maths Mela", "Kids Shala by Diksha Mudgal", "4_H6js8QULU")],
+        "Maps and Locations": [indian_channel("(FULL CHAPTER) / Class 5 Maths Mela / Chapter 14 Maps and Locations/ NCERT Solution", "MathoMagic", "ThLxNcoeuFE")],
+        "Data Through Pictures": [indian_channel("Class 5 Maths Mela Book Solutions | Chapter 15 Data Through Pictures | Full Chapter Solutions", "MathsByShweta", "gjLEP52C_Ic")],
+        "The Fish Tale": [indian_channel("The Fish Tale Full Chapter Explanation & Exercise | Class 5 Maths Chapter 1", "Magnet Brains", "4StoAwxJ8T4")],
+        "Shapes and Angles": [indian_channel("Class 5 Maths Chapter 2 | Shapes and Angles Full Chapter Explanation & Exercise", "Magnet Brains", "uquTqnkfSnI")],
+    },
+    "EVS": {
+        # NCERT "Our Wondrous World" (2025-26) — Grade 5 has no separate Science/Social
+        # Science subjects; EVS covers both. "LEARN YOU LIKE" (channel "TWAU" naming)
+        # covers 8 of the 10 chapters consistently. Every video verified live via
+        # YouTube's oEmbed endpoint.
+        "Water — The Essence of Life": [indian_channel("Water-The Essence of Life |Class 5 TWAU (EVS)|Chapter 1 Question Answer |Our Wondrous World NCERT", "LEARN YOU LIKE", "kLAJvybSLvQ")],
+        "Journey of a River": [indian_channel("Journey of a River|Class 5 TWAU (EVS)|Chapter 2|Part 1|Explanation and Question Answer |NCERT", "LEARN YOU LIKE", "TLLx8znaxqM")],
+        "The Mystery of Food": [indian_channel("The Mystery of Food|Class 5 EVS (TWAU)|Chapter 3|Question Answer |NCERT", "LEARN YOU LIKE", "A_sLxU2gyZw")],
+        "Our School — A Happy Place": [indian_channel("Our School - A Happy Place|Class 5 EVS (TWAU)|Chapter 4|Explanation And Question Answer |NCERT", "LEARN YOU LIKE", "AA3gwAmyQoY")],
+        "Our Vibrant Country": [indian_channel("Our Vibrant Country |Class 5 TWAU (EVS) |Chapter 5 | Explanation and Question Answer |NCERT", "LEARN YOU LIKE", "r3YtFScB3f0")],
+        "Some Unique Places": [indian_channel("Some Unique Places |Class 5 TWAU (EVS)|Chapter 6|Question Answer |NCERT", "LEARN YOU LIKE", "cxn6cz8W5u0")],
+        "Energy — How Things Work": [indian_channel("Energy How Things Work | Class 5 Our Wondrous World | Part 1", "kv teacher universal", "1k_9p1sKOJ8")],
+        "Clothes — How Things are Made": [indian_channel("Clothes - How Things are Made - Explanation | Class 5 EVS (Our Wondrous World) | Ch 8 | CBSE 2025-26", "Magnet Brains", "XZyiwPOUk4w")],
+        "Rhythms of Nature": [indian_channel("Rhythms of Nature| Class 5 TWAU |Chapter 9 | Explanation and Question Answer | Part 1|NCERT", "LEARN YOU LIKE", "K-HpG8QU8e0")],
+        "Earth — Our Shared Home": [indian_channel("Earth Our Shared Home |Class 5 TWAU |Chapter 10|Explanation & Question Answer |PART 1|NCERT", "LEARN YOU LIKE", "Hc83UtaFCIQ")],
+    },
+    "English": {
+        # NCERT "Santoor" (2025-26). "Himani Bharti" covers 4 of 10 chapters
+        # consistently. Every video verified live via YouTube's oEmbed endpoint.
+        "Papa's Spectacles": [indian_channel("Papa's Spectacles / Class-5 English Chapter-1/ NCERT Santoor Lesson Explanation + Question Answers", "KV TEACHERS GUILD", "shrTQNr9_XE")],
+        "Gone with the Scooter": [indian_channel("Gone with the Scooter / Class-5 English Chapter-2 /NCERT Santoor Lesson Explanation in हिंदी KV Tchr", "KV TEACHERS GUILD", "KBmRa9A7Q5I")],
+        "The Rainbow": [indian_channel("The Rainbow / Class-5 English Chapter-3 / NCERT Santoor Explanation By-KV Teacher", "KV TEACHERS GUILD", "EcOFwtgYj1Q")],
+        "The Wise Parrot": [indian_channel("The Wise Parrot / Class 5 English / New NCERT book Class 5 / Full Lesson Explanation / KV Students", "Catherine CBSE Classes", "udxlBQXK2jg")],
+        "The Frog": [indian_channel("The Frog | Class 5 |English|Santoor|Chapter 5|Poem|Unit 3|New NCERT|Full Poem Explanation in Hindi", "Himani Bharti", "4RK6byNFINU")],
+        "What a Tank!": [indian_channel("What a Tank ! |Class 5 |English| Chapter 6| Santoor|NCERT| FULL CHAPTER EXPLANATION IN HINDI WATER", "Himani Bharti", "yeUsOLuogTY")],
+        "Gilli Danda": [indian_channel("Gilli Danda | Class 5 English|Chapter 7| Poem| Santoor| NCERT| FULL CHAPTER EXPLANATION IN HINDI", "Himani Bharti", "St0wpw2xD3Q")],
+        "The Decision of the Panchayat": [indian_channel("The Decision of the Panchayat| Santoor| Class 5 |Chapter 8| NCERT| FULL CHAPTER EXPLANATION IN HINDI", "Himani Bharti", "kvHUf6WJgUc")],
+        "Vocation": [indian_channel("Vocation | Class 5 English | Santoor Chapter 9 | NCERT | Full Exercise with Question Answer (Part-1)", "Taru Tots", "WOQLG_kS_mY")],
+        "Glass Bangles": [indian_channel("Glass Bangles | class 5 english chapter 10 question answer | Santoor | Unit 5 Work is Worship", "Better Kids Education", "82mNLdDXyiw")],
+    },
+    "Hindi": {
+        # NCERT "Veena" (2025-26). Live RAG-extracted chapter labels are OCR-garbled
+        # for a few chapters (e.g. "कु सी" for "कुर्सी", "कु रता" for "कुरता") — keyed
+        # by the exact garbled text (after the bare "N. " prefix strip), matching the
+        # approach used for Grade 6/7/9/10 Hindi. "Himani Bharti" covers 4 of 12
+        # chapters consistently. Every video verified live via YouTube's oEmbed
+        # endpoint.
+        "किरन": [indian_channel("किरन|कक्षा 5|हिन्दी|पाठ 1|कविता|किरण|वीणा|Kiran|Class 5|Hindi|NCERT|POEM|Full Chapter Explanation", "Himani Bharti", "5OLhbq2ot84")],
+        "न्याय की कु सी": [indian_channel("न्याय की कुर्सी| हिन्दी |पाठ 2|Nyay Ki Kursi|Class 5|Hindi |Veena|NCERT|Full Chapter Explanation", "Himani Bharti", "NUuUJWDCi9M")],
+        "चाँद का कु रता": [indian_channel("चाँद का कुरता||हिन्दी| कक्षा 5|पाठ 3|कविता|Chand ka Kurta|Class 5|Hindi|Veena|Chapter 3|Poem|NCERT", "Himani Bharti", "RRaegl2JH-o")],
+        "साङके न": [indian_channel("साङकेन |कक्षा 5|हिन्दी|पाठ 4 |वीणा |Saanken|Hindi|Class 5|New NCERT|Full Chapter Explanation", "Himani Bharti", "aINMnle--IA")],
+        "सुंदरिया": [indian_channel("Class 5 Hindi Veena Chapter 5 Question Answer Sundariya | EDUMAGNET", "EduMagnet", "WcS4FnjARYc")],
+        "चतुर चित्रकार": [indian_channel("Chatur Chitrakar Class 5 Hindi Chapter 6 | NCERT Veena", "kv teacher universal", "9zLrsQp2Q4g")],
+        "मेरा बचपन": [indian_channel("Mera Bachpan (मेरा बचपन) | Hindi for Class 5 (वीणा) Chapter 7 | Animated Explanation & Notes", "EduRev Class 1 to Class 5", "4TodbTy5zck")],
+        "काजीरंगा राष्ट्ीय उद्ान की यात्": [indian_channel("Class-5/Hindi, Ch-8/ Kaziranga Rashtriya Udyan ki Yatra/ MALAYALAM Explanation/ Word Meanings", "Clover Teaches", "PQ3e3dtf1Ng", note="Malayalam narration; on-screen text covers the chapter content")],
+        "न्याय": [indian_channel("CLASS 5/वीणा/पाठ 9/न्याय/प्रश्न-उत्तर/EXERCISE", "Durgapal Ma'am Ki Class", "4YoCIyVf-nY")],
+        "तीन मछलियाँ": [indian_channel("Teen Machhliyan/तीन मछलियाँ - अभ्यास | Class 5th | Chapter 10 | Hindi (Veena) | CBSE 2025-26", "Magnet Brains", "esS4DpHH21c")],
+        "हमारे ये कलामंदिर": [indian_channel("Class 5 chapter 11 question answer hamare ye kalamandir hindi ncert cbse", "e way Study", "3CaeLdswxnQ")],
+        "गंगा की कहानी": [indian_channel("गंगा की कहानी | The Story of Ganga Class 5th Hindi Veena chapter 12 Question Answer By KV Teacher", "Write with Kanak ma'am", "vHCrer2iNlY")],
+    },
+}
+
 # ── Grade 6 resources ─────────────────────────────────────────────────────────
 GRADE_6_RESOURCES: dict[str, dict[str, list]] = {
     "Maths": {
@@ -2045,6 +2125,7 @@ GRADE_6_RESOURCES: dict[str, dict[str, list]] = {
 
 # ── Grade-aware resource lookup ───────────────────────
 GRADE_RESOURCES_MAP = {
+    "Grade 5": GRADE_5_RESOURCES,
     "Grade 6": GRADE_6_RESOURCES,
     "Grade 7": GRADE_7_RESOURCES,
     "Grade 8": GRADE_8_RESOURCES,
