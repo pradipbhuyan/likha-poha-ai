@@ -992,7 +992,7 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         ],
         "Solutions": [
             {"title": "CrashCourse Chemistry — Solutions (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JbqtqCunYzA"},
-            {"title": "Khan Academy — Solutions and Mixtures (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=3ROWXs3jtBU"},
+            {"title": "Khan Academy — Solutions Suspension and Colloid (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=qFHYnSY1h9I"},
         ],
         "Electrochemistry": [
             {"title": "CrashCourse Chemistry — Electrochemistry (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=a8LF7JEb0IA"},
