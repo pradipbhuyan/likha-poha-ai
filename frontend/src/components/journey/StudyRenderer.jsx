@@ -285,7 +285,7 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             display: "block", padding: "7px 14px", textDecoration: "none",
             color: "var(--text, #374151)", fontWeight: 500, borderLeft: "3px solid transparent",
           }}>
-            Recap
+            Wrap-up
           </a>
         )}
         {doc.exam?.length > 0 && (
@@ -326,7 +326,7 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
               fontSize: "1.12rem", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8,
               paddingBottom: 8, borderBottom: "1px solid var(--border, #e5e7eb)",
             }}>
-              <CheckCircle2 size={17} strokeWidth={2.3} color="#16a34a" aria-hidden="true" /> Recap
+              <CheckCircle2 size={17} strokeWidth={2.3} color="#16a34a" aria-hidden="true" /> Wrap-up
             </h3>
             <div className="lesson-section-body" style={{ fontSize: ".92rem", lineHeight: 1.65 }}>
               <LessonMarkdown>{doc.recap.body_md}</LessonMarkdown>

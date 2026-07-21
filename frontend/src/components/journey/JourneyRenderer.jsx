@@ -31,7 +31,7 @@ const CARD_COLOURS = {
   watchout:     { bg: "rgba(242,169,34,.10)",  border: "rgba(242,169,34,.45)",  accent: "#d97706", label: "Watch out" },
   vocab:        { bg: "rgba(124,92,214,.08)",  border: "rgba(124,92,214,.35)",  accent: "#7c5cd6", label: "New words" },
   students_ask: { bg: "rgba(124,92,214,.08)",  border: "rgba(124,92,214,.35)",  accent: "#7c5cd6", label: "Students also ask" },
-  recap:        { bg: "rgba(14,148,136,.10)",  border: "rgba(14,148,136,.45)",  accent: "#0e9488", label: "Recap" },
+  recap:        { bg: "rgba(14,148,136,.10)",  border: "rgba(14,148,136,.45)",  accent: "#0e9488", label: "Wrap-up" },
 };
 
 const CARD_ICONS = {
@@ -338,7 +338,7 @@ function MilestoneRail({ doc, activeMilestone, xp }) {
           }}>
             <Star size={13} strokeWidth={2.6} aria-hidden="true" />
           </span>
-          <span>Recap</span>
+          <span>Wrap-up</span>
         </a>
       )}
     </nav>

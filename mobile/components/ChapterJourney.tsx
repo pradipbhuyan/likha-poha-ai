@@ -78,7 +78,7 @@ const JOURNEY_CARDS: Record<string, { bg: string; border: string; accent: string
   watchout:     { bg: "rgba(242,169,34,.09)", border: "rgba(242,169,34,.4)",  accent: "#d97706", icon: "alert-triangle", label: "Watch out" },
   vocab:        { bg: "rgba(124,92,214,.07)", border: "rgba(124,92,214,.3)",  accent: "#7c5cd6", icon: "bookmark",       label: "New words" },
   students_ask: { bg: "rgba(124,92,214,.07)", border: "rgba(124,92,214,.3)",  accent: "#7c5cd6", icon: "help-circle",    label: "Students also ask" },
-  recap:        { bg: "rgba(14,148,136,.09)", border: "rgba(14,148,136,.4)",  accent: "#0e9488", icon: "star",           label: "Recap" },
+  recap:        { bg: "rgba(14,148,136,.09)", border: "rgba(14,148,136,.4)",  accent: "#0e9488", icon: "star",           label: "Wrap-up" },
 };
 
 const STUDY_CARDS: typeof JOURNEY_CARDS = {
@@ -89,7 +89,7 @@ const STUDY_CARDS: typeof JOURNEY_CARDS = {
   watchout:     { bg: "rgba(245,158,11,.06)", border: "rgba(245,158,11,.35)", accent: "#b45309", icon: "alert-triangle", label: "Watch out" },
   vocab:        { bg: "#ffffff", border: "#e2e8f0", accent: "#2d4a8a", icon: "bookmark",       label: "Key vocabulary" },
   students_ask: { bg: "#ffffff", border: "#e2e8f0", accent: "#2d4a8a", icon: "help-circle",    label: "Students also ask" },
-  recap:        { bg: "#ffffff", border: "#e2e8f0", accent: "#16a34a", icon: "star",           label: "Recap" },
+  recap:        { bg: "#ffffff", border: "#e2e8f0", accent: "#16a34a", icon: "star",           label: "Wrap-up" },
 };
 
 // ── Card shell ────────────────────────────────────────────────────────────────
@@ -443,7 +443,7 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
         </View>
       ))}
 
-      {/* Recap */}
+      {/* Wrap-up */}
       {doc.recap?.body_md ? (
         <CardShell palette={palette} type="recap">
           {renderBody(doc.recap.body_md, (palette.recap ?? palette.concept).accent)}
