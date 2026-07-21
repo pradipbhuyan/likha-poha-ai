@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BookOpen, Sparkles, RotateCcw, ArrowLeft, ArrowRight } from "lucide-react";
+import { Sparkles, RotateCcw, ArrowLeft, ArrowRight } from "lucide-react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -1746,11 +1746,10 @@ function LessonsPage({ user, setActivePage }) {
       boxShadow: "0 1px 4px rgba(0,0,0,.06)",
     }}>
       {/* Compact selectors */}
-      <BookOpen size={16} strokeWidth={2.4} color="var(--muted, #6b7280)" style={{ marginRight: 2, flexShrink: 0 }} />
       <select
         value={grade}
         onChange={(e) => handleGradeChange(e.target.value)}
-        style={{ ..._selectStyle, maxWidth: 105 }}
+        style={{ ..._selectStyle, flex: 1, minWidth: 0 }}
       >
         {grades.map(g => <option key={g} value={g}>{g}</option>)}
       </select>
@@ -1758,7 +1757,7 @@ function LessonsPage({ user, setActivePage }) {
         value={subject}
         onChange={(e) => handleSubjectChange(e.target.value)}
         disabled={subjects.length === 0}
-        style={{ ..._selectStyle, maxWidth: 115 }}
+        style={{ ..._selectStyle, flex: 1, minWidth: 0 }}
       >
         {subjects.map(s => <option key={s} value={s}>{s}</option>)}
       </select>
@@ -1770,7 +1769,7 @@ function LessonsPage({ user, setActivePage }) {
           setSourceInfo(""); setFollowUpQuestion(""); setFollowUpMessages([]);
           resetPracticeState();
         }}
-        style={{ ..._selectStyle, maxWidth: 220, flex: 1 }}
+        style={{ ..._selectStyle, flex: 2, minWidth: 0 }}
       >
         {chapters.map(c => {
           const locked = c.includes("Exemplar:") && !hasPaidAccessForLessons;
