@@ -13,7 +13,9 @@ import {
   getLessonTextbookVisuals,
   getLessonDoubtSuggestions,
   ensureLessonKbChips,
+  getChapterDoc,
 } from "../api/lesson";
+import ChapterJourneyView from "../components/journey/ChapterJourneyView";
 import { getDoubtHistory } from "../api/doubt";
 import { generateSpeech, getCachedAudioUrl } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
@@ -153,6 +155,19 @@ function getLoadingMessage(stepTitle, subject) {
 // the lesson content takes the full width. Set false to roll back to left sidebar.
 const USE_REFINED_LESSON_EXPERIENCE_LAYOUT = true;
 const USE_TOP_BAR_LAYOUT = true;
+
+// ── Chapter Journey rollout (Phase 2) ─────────────────────────────────────────
+// Grades listed here try the typed-block Chapter Journey experience first:
+// one GET, whole chapter, zero Generate clicks. Grades 5-8 render Journey
+// mode (card feed, XP), Grades 9-12 render Study mode (outline, exam-style).
+// When no chapter doc is available (nothing prewarmed/convertible), the page
+// falls back to the classic per-step flow automatically — so enabling a grade
+// here is safe even before its content is prewarmed. Remove a grade to
+// roll it back to the classic flow.
+const CHAPTER_JOURNEY_PILOT_GRADES = new Set([
+  "Grade 5", "Grade 6", "Grade 7", "Grade 8",
+  "Grade 9", "Grade 10", "Grade 11", "Grade 12",
+]);
 
 // ── Shared sizing for the top bar + step-nav controls ─────────────────────────
 // One scale for every chip/button/select across both rows so nothing reads
@@ -436,6 +451,35 @@ function LessonsPage({ user, setActivePage }) {
   const [stepLessons, setStepLessons] = useState({});
   const [sourceInfo, setSourceInfo] = useState(null);
   const [generating, setGenerating] = useState(false);
+
+  // ── Chapter Journey doc (Phase 2 pilot) ────────────────────────────────────
+  // Non-null when the pilot is active for this grade AND a chapter doc exists.
+  const [chapterDoc, setChapterDoc] = useState(null);
+  const [chapterDocLoading, setChapterDocLoading] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setChapterDoc(null);
+    if (!CHAPTER_JOURNEY_PILOT_GRADES.has(grade) || !subject || !chapter) {
+      return undefined;
+    }
+    setChapterDocLoading(true);
+    getChapterDoc({ grade, mode, subject, chapter, board: mode })
+      .then((result) => {
+        if (cancelled) return;
+        setChapterDoc(result?.available && result?.doc ? result.doc : null);
+      })
+      .catch(() => {
+        // Journey unavailable — classic flow takes over silently
+        if (!cancelled) setChapterDoc(null);
+      })
+      .finally(() => {
+        if (!cancelled) setChapterDocLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [grade, mode, subject, chapter]);
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpMessages, setFollowUpMessages] = useState([]);
@@ -1733,12 +1777,14 @@ function LessonsPage({ user, setActivePage }) {
           return <option key={c} value={c}>{locked ? `🔒 ${c}` : c}</option>;
         })}
       </select>
-      {/* Step progress pill */}
-      <span style={{ ...stepChipStyle(Object.keys(stepLessons).length === lessonSteps.length), whiteSpace: "nowrap" }}>
-        Step {currentStepIndex + 1}/{lessonSteps.length} · {stepTitle}
-      </span>
-      {/* Generate / Refresh */}
-      {!hasSavedLesson && !isExemplarLocked ? (
+      {/* Step progress pill — hidden in Chapter Journey mode (no steps) */}
+      {!chapterDoc && (
+        <span style={{ ...stepChipStyle(Object.keys(stepLessons).length === lessonSteps.length), whiteSpace: "nowrap" }}>
+          Step {currentStepIndex + 1}/{lessonSteps.length} · {stepTitle}
+        </span>
+      )}
+      {/* Generate / Refresh — no Generate button in Chapter Journey mode */}
+      {chapterDoc ? null : !hasSavedLesson && !isExemplarLocked ? (
         <button
           className="primary-btn"
           onClick={handleGenerateLesson}
@@ -1775,6 +1821,21 @@ function LessonsPage({ user, setActivePage }) {
       {/* Top bar replaces sidebar when USE_TOP_BAR_LAYOUT is true */}
       {USE_TOP_BAR_LAYOUT && topBarControls}
 
+      {/* ── Chapter Journey pilot: whole chapter, zero Generate clicks ────── */}
+      {chapterDoc && !isExemplarLocked ? (
+        <ChapterJourneyView
+          doc={chapterDoc}
+          user={user}
+          grade={grade}
+          mode={mode}
+          subject={subject}
+          chapter={chapter}
+        />
+      ) : chapterDocLoading ? (
+        <p style={{ padding: "24px 4px", color: "var(--muted, #6b7280)" }}>
+          Loading chapter…
+        </p>
+      ) : (
       <div
         className="lesson-layout premium-lesson-layout"
         style={USE_TOP_BAR_LAYOUT ? { display: "block" } : undefined}
@@ -3009,6 +3070,7 @@ function LessonsPage({ user, setActivePage }) {
 
         </section>
       </div>
+      )}
     </div>
   );
 }

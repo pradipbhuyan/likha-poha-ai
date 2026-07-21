@@ -645,6 +645,69 @@ def lesson_follow_up(
         )
 
 
+@router.get("/chapter-doc")
+def get_chapter_doc(
+    grade: str,
+    mode: str,
+    subject: str,
+    chapter: str,
+    board: str = "CBSE",
+    user=Depends(get_current_user),
+):
+    """
+    Serve the typed-block Chapter Journey document for a chapter.
+
+    Zero LLM cost: returns the stored doc, or converts one on the fly from
+    existing lesson_cache rows. When neither exists, returns available=false
+    so the frontend falls back to the per-step lesson flow.
+    """
+    validate_required_text(grade, "grade")
+    validate_required_text(mode, "mode")
+    validate_required_text(subject, "subject")
+    validate_required_text(chapter, "chapter")
+
+    profile = get_profile_by_user_id(user.id)
+    request_board = resolve_request_board(mode, board)
+    enforce_profile_grade(profile, grade)
+    enforce_profile_board(profile, request_board)
+    if not is_offer_code_user(user.id):
+        enforce_learning_access(profile, mode, subject)
+
+    # Exemplar chapters stay premium-only (same gate as /generate).
+    _chapter_name = (chapter or "").strip()
+    _is_privileged = (profile or {}).get("role") in ("admin", "teacher") or is_all_access_test_user(profile or {})
+    if not _is_privileged and "exemplar:" in _chapter_name.lower():
+        from app.services.feature_authorization_service import authorize_feature, Feature  # noqa: PLC0415
+        _fauth = authorize_feature(user.id, Feature.EXEMPLAR)
+        if not _fauth["allowed"]:
+            raise HTTPException(
+                status_code=403,
+                detail={
+                    "feature": "EXEMPLAR",
+                    "message": "Exemplar lessons require a paid subscription.",
+                    "upgrade_message": "Upgrade to access Exemplar lessons.",
+                    "required_plan": "Any paid plan",
+                },
+            )
+
+    try:
+        from app.services.chapter_doc_service import get_or_convert_chapter_doc  # noqa: PLC0415
+        doc = get_or_convert_chapter_doc(
+            board=request_board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+        )
+    except Exception as e:
+        _log.error("chapter_doc.serve_failed", grade=grade, subject=subject, error=str(e), exc_info=True)
+        doc = None
+
+    if doc is None:
+        return {"success": True, "available": False, "doc": None}
+    return {"success": True, "available": True, "doc": doc}
+
+
 @router.get("/doubt-suggestions")
 def get_doubt_suggestions(
     grade: str,

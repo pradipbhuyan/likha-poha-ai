@@ -40,6 +40,15 @@ export async function getLessonTextbookVisuals({
   return authFetch(`/api/lesson/textbook-visuals?${params.toString()}`);
 }
 
+export function getChapterDoc({ grade, mode, subject, chapter, board = "CBSE" }) {
+  /** Fetch the typed-block Chapter Journey document for a chapter.
+   *  Returns { success, available, doc }. available=false means no cached
+   *  content could be converted — caller falls back to the per-step flow.
+   *  Zero LLM cost: the backend only reads/converts cached content. */
+  const params = new URLSearchParams({ grade, mode, subject, chapter, board });
+  return authFetch(`/api/lesson/chapter-doc?${params.toString()}`);
+}
+
 export function getLessonDoubtSuggestions({ grade, mode, subject, chapter, board = "CBSE" }) {
   /** Fetch DKB-backed suggestion cards for a saved lesson (progress restore).
    *  Returns the same doubt_suggestions format as generateLesson so chips

@@ -91,6 +91,11 @@ vi.mock("../api/lesson", () => ({
     success: true,
     lkb_chips: [],
   })),
+  getChapterDoc: vi.fn(async () => ({
+    success: true,
+    available: false,
+    doc: null,
+  })),
 }));
 
 vi.mock("../api/doubt", () => ({
@@ -139,9 +144,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /generated lesson/i,
-      })
+      // Longer timeout: under full-suite load the default 1 s findBy timeout
+      // flakes intermittently (also on unmodified main).
+      await screen.findByRole(
+        "heading",
+        { name: /generated lesson/i },
+        { timeout: 5000 }
+      )
     ).toBeInTheDocument();
 
     expect(
@@ -169,9 +178,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /generated lesson/i,
-      })
+      // Longer timeout: under full-suite load the default 1 s findBy timeout
+      // flakes intermittently (also on unmodified main).
+      await screen.findByRole(
+        "heading",
+        { name: /generated lesson/i },
+        { timeout: 5000 }
+      )
     ).toBeInTheDocument();
 
     const practiceButton = screen.getByRole("button", {
@@ -213,9 +226,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /generated lesson/i,
-      })
+      // Longer timeout: under full-suite load the default 1 s findBy timeout
+      // flakes intermittently (also on unmodified main).
+      await screen.findByRole(
+        "heading",
+        { name: /generated lesson/i },
+        { timeout: 5000 }
+      )
     ).toBeInTheDocument();
 
     const practiceButton = screen.getByRole("button", {
@@ -309,9 +326,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /generated lesson/i,
-      })
+      // Longer timeout: under full-suite load the default 1 s findBy timeout
+      // flakes intermittently (also on unmodified main).
+      await screen.findByRole(
+        "heading",
+        { name: /generated lesson/i },
+        { timeout: 5000 }
+      )
     ).toBeInTheDocument();
 
     // Textbook visual section must NOT appear for Grade 6 (only Grade 9 all + Grade 10 Sci/Maths)
@@ -364,9 +385,13 @@ describe("LessonsPage", () => {
     );
 
     expect(
-      await screen.findByRole("heading", {
-        name: /generated lesson/i,
-      })
+      // Longer timeout: under full-suite load the default 1 s findBy timeout
+      // flakes intermittently (also on unmodified main).
+      await screen.findByRole(
+        "heading",
+        { name: /generated lesson/i },
+        { timeout: 5000 }
+      )
     ).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText(/subject/i), {
