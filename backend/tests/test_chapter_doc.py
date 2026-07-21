@@ -172,6 +172,67 @@ class TestExampleAndVocabParsing:
         assert vocab.words[0].term == "spectacles"
 
 
+class TestVisualExtraction:
+    FLOW_JSON = '{"type":"flow","title":"Papa\'s Search Steps","items":["Check pockets","Look under chair","Notice the spectacles"],"note":"Order of search"}'
+
+    def test_fenced_visual_becomes_block(self):
+        content = f"Some text.\n\n```visual-json\n{self.FLOW_JSON}\n```\n\nMore text."
+        cleaned, visuals = cds.extract_visuals(content)
+        assert "visual-json" not in cleaned
+        assert "{" not in cleaned
+        assert len(visuals) == 1
+        assert visuals[0].visual["type"] == "flow"
+        assert "Some text." in cleaned and "More text." in cleaned
+
+    def test_unfenced_visual_json_extracted(self):
+        # Fence markers lost (e.g. prompts that strip markdown symbols)
+        content = f"Intro line.\nvisual-json\n{self.FLOW_JSON}\nAfter."
+        cleaned, visuals = cds.extract_visuals(content)
+        assert len(visuals) == 1
+        assert "visual-json" not in cleaned
+        assert '{"type"' not in cleaned
+
+    def test_unfenced_same_line_visual_json_extracted(self):
+        # Fence markers AND the newline lost — label and JSON share one line
+        # (seen in production: "visual-json {\"type\":\"flow\",...}").
+        content = f"Intro line.\nvisual-json {self.FLOW_JSON}\nAfter."
+        cleaned, visuals = cds.extract_visuals(content)
+        assert len(visuals) == 1
+        assert visuals[0].visual["type"] == "flow"
+        assert "visual-json" not in cleaned
+        assert '{"type"' not in cleaned
+        assert "Intro line." in cleaned and "After." in cleaned
+
+    def test_invalid_visual_dropped_not_shown(self):
+        content = "Text.\n```visual-json\nnot valid json {{{\n```\nEnd."
+        cleaned, visuals = cds.extract_visuals(content)
+        assert visuals == []
+        assert "not valid json" not in cleaned
+        assert "visual-json" not in cleaned
+
+    def test_wrong_type_visual_dropped(self):
+        content = '```visual-json\n{"type":"mermaid","items":["a","b"]}\n```'
+        cleaned, visuals = cds.extract_visuals(content)
+        assert visuals == []
+        assert cleaned == ""
+
+    def test_visual_only_section_yields_visual_block(self, monkeypatch):
+        md = (
+            "## Simple explanation\nSolids keep shape.\n\n"
+            f"## Visual Aid (Optional)\n```visual-json\n{self.FLOW_JSON}\n```\n"
+        )
+        sections = cds.parse_sections(md)
+        blocks, _ = cds._sections_to_blocks(sections, is_first_step=False)
+        types = [b.type for b in blocks]
+        assert "visual" in types
+        # No empty concept card left behind for the visual-only section
+        assert not any(
+            b.type == "concept" and not b.body_md.strip() for b in blocks if b.type == "concept"
+        )
+        # And no raw JSON anywhere in any body
+        assert not any("visual-json" in getattr(b, "body_md", "") for b in blocks)
+
+
 class TestQuestionDedupe:
     def test_near_duplicates_detected(self):
         assert cds.is_duplicate_question(
@@ -232,6 +293,38 @@ class TestConvertChapter:
         doc = cds.convert_chapter("CBSE", "Grade 9", "Science", "Ch 1")
         titles = [m.title for m in doc.milestones]
         assert "Exam-style problems" in titles
+
+    def test_same_chip_never_repeats_across_milestones(self, monkeypatch):
+        # Short chapters share the same top LKB chips across steps — the card
+        # must appear ONCE in the whole chapter, not once per milestone.
+        steps = {
+            "Concept introduction": CANONICAL_STEP_MD,
+            "Core explanation": CANONICAL_STEP_MD,
+            "Worked examples": CANONICAL_STEP_MD,
+        }
+        chips = [
+            {"question": "What is Papa searching for?", "answer": "His spectacles."},
+            {"question": "Where does Papa look for his spectacles?", "answer": "Pockets, chair, window."},
+        ]
+        self._patch(monkeypatch, steps, chips)
+        doc = cds.convert_chapter("CBSE", "Grade 6", "English", "Papa's Spectacles")
+        ask_questions = [
+            b.question for m in doc.milestones for b in m.blocks if b.type == "students_ask"
+        ]
+        assert len(ask_questions) == len(set(ask_questions))
+        assert len(ask_questions) == 2  # once each, not once per milestone
+
+    def test_next_step_glue_sections_dropped(self, monkeypatch):
+        md = CANONICAL_STEP_MD + "\n## Next Step\nIn the next step, we will explore the theme.\n"
+        steps = {"Concept introduction": md}
+        self._patch(monkeypatch, steps)
+        doc = cds.convert_chapter("CBSE", "Grade 6", "English", "Poem")
+        all_text = " ".join(
+            getattr(b, "body_md", "") + getattr(b, "title", "")
+            for m in doc.milestones for b in m.blocks
+        )
+        assert "In the next step" not in all_text
+        assert "Next Step" not in all_text
 
     def test_lkb_chips_attached_and_deduped(self, monkeypatch):
         steps = {"Concept introduction": CANONICAL_STEP_MD}

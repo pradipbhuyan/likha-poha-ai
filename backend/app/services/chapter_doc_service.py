@@ -32,6 +32,7 @@ from app.models.lesson_blocks import (
     QuickCheckBlock,
     RecapBlock,
     StudentsAskBlock,
+    VisualBlock,
     VocabBlock,
     WatchoutBlock,
 )
@@ -243,6 +244,45 @@ def parse_example(content: str) -> ExampleBlock | None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Visual extraction — visual-json fences become typed VisualBlocks
+# ─────────────────────────────────────────────────────────────────────────────
+# Raw JSON must never reach a student. Fences (and unfenced "visual-json"
+# stragglers from prompts that stripped backticks) are pulled out of section
+# content; parseable+valid ones become VisualBlocks, everything else is
+# silently dropped from the text.
+
+import json as _json
+
+_FENCED_VISUAL_RE = re.compile(r"```+\s*visual-json\s*\n?([\s\S]*?)```+", re.IGNORECASE)
+# "visual-json" (fence markers lost) followed by a JSON object — either on the
+# next line, or trailing on the same line (some model outputs drop the
+# newline entirely, e.g. 'visual-json {"type": ...}').
+_LOOSE_VISUAL_RE = re.compile(
+    r"(?:^|\n)[ \t]*visual-json[ \t]*(?:\n[ \t]*)?(\{.*?\})[ \t]*(?=\n|$)",
+    re.IGNORECASE,
+)
+
+
+def extract_visuals(content: str) -> tuple[str, list[VisualBlock]]:
+    """Strip visual-json payloads from content; return (clean_text, blocks)."""
+    visuals: list[VisualBlock] = []
+
+    def _try_parse(payload: str):
+        try:
+            data = _json.loads(payload.strip())
+            visuals.append(VisualBlock(visual=data))
+        except Exception:
+            pass  # unparseable/invalid — drop from text, never show raw
+        return ""
+
+    cleaned = _FENCED_VISUAL_RE.sub(lambda m: _try_parse(m.group(1)), content or "")
+    cleaned = _LOOSE_VISUAL_RE.sub(lambda m: "\n" + _try_parse(m.group(1)), cleaned)
+    # Drop leftover bare "visual-json" label lines with no payload
+    cleaned = re.sub(r"(?:^|\n)[ \t]*visual-json[ \t]*(?=\n|$)", "\n", cleaned, flags=re.IGNORECASE)
+    return cleaned.strip(), visuals
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Question-text dedupe (LKB chips vs in-lesson quickchecks)
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -276,60 +316,54 @@ def _sections_to_blocks(sections: list[dict], is_first_step: bool) -> tuple[list
     blocks: list = []
     recap_candidate: RecapBlock | None = None
 
-    for i, section in enumerate(sections):
-        kind = classify_section(section["title"])
-        content = section["content"]
-
+    def _build(kind: str, title: str, content: str, first_section: bool) -> list:
+        nonlocal recap_candidate
         if kind == "intro":
-            if is_first_step and i == 0:
+            if is_first_step and first_section:
                 # First paragraph becomes the hook; the rest stays a concept.
                 paras = [p for p in content.split("\n\n") if p.strip()]
+                out = []
                 if paras:
-                    blocks.append(HookBlock(text=paras[0].strip()))
+                    out.append(HookBlock(text=paras[0].strip()))
                 rest = "\n\n".join(paras[1:]).strip()
                 if rest:
-                    blocks.append(ConceptBlock(title=section["title"], body_md=rest))
-            else:
-                # Later-step intros restate context — keep as concept only if
-                # they carry real content beyond a sentence.
-                if len(content) > 240:
-                    blocks.append(ConceptBlock(title=section["title"], body_md=content))
-            continue
-
+                    out.append(ConceptBlock(title=title, body_md=rest))
+                return out
+            # Later-step intros restate context — keep as concept only if
+            # they carry real content beyond a sentence.
+            if len(content) > 240:
+                return [ConceptBlock(title=title, body_md=content)]
+            return []
         if kind == "summary":
             recap_candidate = RecapBlock(body_md=content)
-            continue
-
+            return []
         if kind == "warning":
-            blocks.append(WatchoutBlock(body_md=content))
-            continue
-
+            return [WatchoutBlock(body_md=content)]
         if kind == "check":
             mcq = parse_mcq(content)
-            if mcq:
-                blocks.append(mcq)
-            else:
-                # Unparseable check → keep the content visible as a concept
-                blocks.append(ConceptBlock(title=section["title"], body_md=content))
-            continue
-
+            # Unparseable check → keep the content visible as a concept
+            return [mcq] if mcq else [ConceptBlock(title=title, body_md=content)]
         if kind == "example":
             example = parse_example(content)
-            if example:
-                blocks.append(example)
-            else:
-                blocks.append(ConceptBlock(title=section["title"], body_md=content))
-            continue
-
+            return [example] if example else [ConceptBlock(title=title, body_md=content)]
         if kind == "vocab":
             vocab = parse_vocab(content)
-            if vocab:
-                blocks.append(vocab)
-            else:
-                blocks.append(ConceptBlock(title=section["title"], body_md=content))
-            continue
+            return [vocab] if vocab else [ConceptBlock(title=title, body_md=content)]
+        return [ConceptBlock(title=title, body_md=content)]
 
-        blocks.append(ConceptBlock(title=section["title"], body_md=content))
+    for i, section in enumerate(sections):
+        # Step-navigation glue ("Next Step:", "What's Next") makes no sense in
+        # a single-scroll chapter — drop it entirely.
+        if re.match(r"^\s*(next step|what'?s next|next lesson)\b", section["title"], re.IGNORECASE):
+            continue
+        kind = classify_section(section["title"])
+        # Visual-json payloads become typed VisualBlocks — raw JSON never
+        # stays in body_md. A section that was ONLY a visual (e.g. a
+        # "Visual Aid (Optional)" heading) yields just the visual block.
+        content, visual_blocks = extract_visuals(section["content"])
+        if content:
+            blocks.extend(_build(kind, section["title"], content, first_section=i == 0))
+        blocks.extend(visual_blocks)
 
     return blocks, recap_candidate
 
@@ -387,6 +421,10 @@ def convert_chapter(
     milestones: list[Milestone] = []
     final_recap: RecapBlock | None = None
     quickcheck_questions: list[str] = []
+    # Chapter-wide list of already-attached chip questions — the same LKB
+    # question must never appear as a card twice in one chapter (short poem
+    # chapters share top chips across steps; fewer cards is fine, repeats are not).
+    attached_ask_questions: list[str] = []
 
     steps = get_lesson_steps(grade)
     for index, step_title in enumerate(steps):
@@ -412,7 +450,8 @@ def convert_chapter(
             b.question for b in blocks if isinstance(b, QuickCheckBlock)
         )
 
-        # ── LKB chips: attach top 2, deduped against in-lesson quickchecks ──
+        # ── LKB chips: attach top 2, deduped against in-lesson quickchecks
+        # AND against every chip already attached anywhere in this chapter ──
         for chip in _fetch_lkb_chips(grade, subject, chapter, lkb_step_title):
             question = (chip.get("question") or "").strip()
             answer = (chip.get("answer") or "").strip()
@@ -420,6 +459,9 @@ def convert_chapter(
                 continue
             if any(is_duplicate_question(question, qq) for qq in quickcheck_questions):
                 continue
+            if any(is_duplicate_question(question, aq) for aq in attached_ask_questions):
+                continue
+            attached_ask_questions.append(question)
             blocks.append(StudentsAskBlock(question=question, answer_md=answer))
 
         if blocks:
