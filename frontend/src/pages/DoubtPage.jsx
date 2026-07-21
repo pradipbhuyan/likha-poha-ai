@@ -534,33 +534,20 @@ Important:
         flexWrap: "wrap",
         boxShadow: "0 1px 4px rgba(0,0,0,.06)",
       }}>
-        <span style={{ fontSize: ".85rem", fontWeight: 600, color: "var(--text, #111827)" }}>
-          Textbook-aware · step-by-step help
-        </span>
         {/* Grade */}
         <select
           value={grade}
           onChange={(e) => handleGradeChange(e.target.value)}
-          style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", maxWidth: 105 }}
+          style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 1, minWidth: 0 }}
         >
           {grades.map(g => <option key={g} value={g}>{g}</option>)}
         </select>
-        {/* Mode */}
-        {allowedModes.length > 0 && (
-          <select
-            value={mode}
-            onChange={(e) => handleModeChange(e.target.value)}
-            style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", maxWidth: 90 }}
-          >
-            {allowedModes.map(m => <option key={m} value={m}>{m}</option>)}
-          </select>
-        )}
         {/* Subject */}
         {allowedSubjects.length > 0 && (
           <select
             value={subject}
             onChange={(e) => handleSubjectChange(e.target.value)}
-            style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", maxWidth: 120 }}
+            style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 1, minWidth: 0 }}
           >
             <option value="">Open subject</option>
             {allowedSubjects.map(s => <option key={s} value={s}>{s}</option>)}
@@ -571,7 +558,7 @@ Important:
           <select
             value={chapter}
             onChange={(e) => handleChapterChange(e.target.value)}
-            style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", maxWidth: 220, flex: 1 }}
+            style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 2, minWidth: 0 }}
           >
             <option value="">Open chapter</option>
             {availableChapters.map(c => <option key={c} value={c}>{c}</option>)}
@@ -709,7 +696,7 @@ Important:
             </div>
 
             <textarea
-              rows="6"
+              rows="3"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Example: Explain Newton's laws of force with real-life examples."

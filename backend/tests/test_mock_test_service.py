@@ -81,3 +81,56 @@ def test_bank_shortfall_message_chapter_too_small():
     assert "12" in message
     assert "50-question" in message
     assert "12 or fewer" in message
+
+
+def test_cbse_mock_test_with_multiple_chapters_uses_multi_chapter_sampler(monkeypatch):
+    """Mid Term / Annual Exam papers pass `chapters` (plural) and must route
+    to the multi-chapter sampler instead of the single-chapter path."""
+    _forbid_llm(monkeypatch)
+    calls = {}
+
+    def fake_multi(**kwargs):
+        calls.update(kwargs)
+        return [_bank_question(i) for i in range(1, 21)]
+
+    monkeypatch.setattr(
+        mock_test_service, "get_questions_from_bank_multi_chapter", fake_multi
+    )
+
+    questions = mock_test_service.generate_cbse_mock_test(
+        grade="Grade 9",
+        subject="Science",
+        chapter=None,
+        chapters=["Matter in Our Surroundings", "Is Matter Around Us Pure"],
+        exam_type="Mid Term",
+        num_questions=20,
+        difficulty="Medium",
+    )
+
+    assert len(questions) == 20
+    assert calls["chapters"] == ["Matter in Our Surroundings", "Is Matter Around Us Pure"]
+
+
+def test_cbse_mock_test_multi_chapter_reports_combined_shortfall(monkeypatch):
+    """When the multi-chapter sampler can't fill the request, the caller
+    should see a shortfall message covering the combined selection."""
+    _forbid_llm(monkeypatch)
+    monkeypatch.setattr(
+        mock_test_service, "get_questions_from_bank_multi_chapter", lambda **kwargs: []
+    )
+    monkeypatch.setattr(
+        mock_test_service, "get_bank_capacity_with_fallback", lambda *a, **k: 3
+    )
+
+    with pytest.raises(ValueError) as error:
+        mock_test_service.generate_cbse_mock_test(
+            grade="Grade 9",
+            subject="Science",
+            chapter=None,
+            chapters=["Chapter A", "Chapter B"],
+            exam_type="Annual Exam",
+            num_questions=40,
+            difficulty="Medium",
+        )
+
+    assert "Chapter A, Chapter B" in str(error.value)

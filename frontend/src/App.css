@@ -6224,12 +6224,65 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
   .premium-mock-form-grid {
     margin-top: 6px;
   }
-  
+
+  .premium-mock-form-grid label,
+  .premium-test-options label {
+    font-size: 0.85rem;
+  }
+
+  .premium-mock-form-grid select,
+  .premium-mock-form-grid input {
+    font-size: 0.85rem;
+  }
+
+  .premium-mock-form-grid label small {
+    font-size: 0.72rem;
+  }
+
   .premium-test-options {
     padding: 18px;
     border-radius: 20px;
     background: #f8fbff;
     border: 1px solid #dbeafe;
+  }
+
+  .premium-mock-chapter-picker {
+    margin-top: 6px;
+  }
+
+  .premium-mock-chapter-picker label {
+    font-size: 0.85rem;
+  }
+
+  .mock-chapter-multiselect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    background: white;
+  }
+
+  .mock-chapter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f8fafc;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .mock-chapter-checkbox input {
+    width: auto;
+    margin-top: 0;
   }
   
   .premium-mock-generate-btn {
@@ -6451,9 +6504,16 @@ body.dark-mode .premium-lesson-output .lesson-output-header p:not(.eyebrow) {
   body.dark-mode .premium-test-options,
   body.dark-mode .premium-mock-progress,
   body.dark-mode .premium-test-sticky-header,
-  body.dark-mode .premium-question-card {
+  body.dark-mode .premium-question-card,
+  body.dark-mode .mock-chapter-multiselect {
     background: #111827 !important;
     border-color: #334155 !important;
+  }
+
+  body.dark-mode .mock-chapter-checkbox {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: var(--text) !important;
   }
   
   body.dark-mode .premium-mock-hero-card span {

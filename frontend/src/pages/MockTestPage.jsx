@@ -1,5 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import {
+  FlaskConical,
+  ListChecks,
+  PenLine,
+  ClipboardList,
+  Lock,
+  CheckCircle2,
+  Clock,
+  Trophy,
+  Award,
+  TrendingUp,
+  RotateCcw,
+  Ban,
+  BarChart2,
+  Rocket,
+  Sparkles,
+  AlertTriangle,
+  XCircle,
+  Check,
+  X,
+  BookOpen,
+  Lightbulb,
+} from "lucide-react";
 import { getSyllabus } from "../api/syllabus";
 import { generateMockTest } from "../api/mockTest";
 import { saveTestHistory, saveWrongAnswers } from "../api/analytics";
@@ -37,6 +60,12 @@ const PHASE_RESULT = "result";
 const FORMAT_MCQ     = "mcq";
 const FORMAT_WRITTEN = "written";
 const FORMAT_MIXED   = "mixed";
+const MOCK_TYPE       = "CBSE Exam Mock Test";
+const DEFAULT_QUESTION_COUNT_BY_EXAM_TYPE = {
+  "Class Test": 5,
+  "Mid Term": 20,
+  "Annual Exam": 40,
+};
 
 function MockTestPage({ user, setActivePage }) {
   const [syllabusData,    setSyllabusData]    = useState(null);
@@ -44,7 +73,7 @@ function MockTestPage({ user, setActivePage }) {
   const [mode,            setMode]            = useState("CBSE");
   const [subject,         setSubject]         = useState("");
   const [chapter,         setChapter]         = useState("");
-  const [mockType,        setMockType]        = useState("CBSE Exam Mock Test");
+  const [selectedChapters, setSelectedChapters] = useState([]);
   const [examType,        setExamType]        = useState("Class Test");
   const [difficulty,      setDifficulty]      = useState("Medium");
   const [questionCount,   setQuestionCount]   = useState(5);
@@ -107,10 +136,11 @@ function MockTestPage({ user, setActivePage }) {
 
   // ── Derived ──────────────────────────────────────────────────────────────────
   const grades = getVisibleGrades(syllabusData, user);
-  const modes  = Object.keys(syllabusData[grade]);
   function getAllowed(all, sm) { return filterAllowedSubjects(user, all, sm); }
   const subjects     = getAllowed(Object.keys(syllabusData[grade][mode]), mode);
-  const chapters     = subject ? syllabusData[grade][mode][subject] || [] : [];
+  const availableChapters = subject ? syllabusData[grade][mode][subject] || [] : [];
+  const isMultiChapterExam = examType !== "Class Test";
+  const chapterLabel = isMultiChapterExam ? selectedChapters.join(", ") : chapter;
   const requestBoard = mode;
 
   const isMCQ     = q => !q.question_type || q.question_type === "mcq";
@@ -124,10 +154,10 @@ function MockTestPage({ user, setActivePage }) {
   function formatTime(s) { return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; }
 
   function perf(pct) {
-    if (pct >= 90) return { title: "🌟 Mastery Achieved",    msg: "Outstanding! You have mastered this chapter." };
-    if (pct >= 75) return { title: "👏 Strong Foundation",   msg: "Very good! Concepts are strong and improving." };
-    if (pct >= 60) return { title: "👍 Good Progress",       msg: "Improving well. More practice will boost you further." };
-    return           { title: "💪 Revision Needed",          msg: "Keep practicing — revising core concepts will help." };
+    if (pct >= 90) return { Icon: Trophy,    title: "Mastery Achieved",  msg: "Outstanding! You have mastered this chapter." };
+    if (pct >= 75) return { Icon: Award,     title: "Strong Foundation", msg: "Very good! Concepts are strong and improving." };
+    if (pct >= 60) return { Icon: TrendingUp, title: "Good Progress",    msg: "Improving well. More practice will boost you further." };
+    return           { Icon: RotateCcw,      title: "Revision Needed",  msg: "Keep practicing — revising core concepts will help." };
   }
 
   function rec(pct) {
@@ -146,6 +176,7 @@ function MockTestPage({ user, setActivePage }) {
   function resetSelections(ng, nm) {
     const a = getAllowed(Object.keys(syllabusData[ng][nm] || {}), nm);
     setSubject(a[0] || ""); setChapter(a[0] ? syllabusData[ng][nm][a[0]][0] : "");
+    setSelectedChapters([]);
   }
 
   function handleGradeChange(v) {
@@ -154,13 +185,19 @@ function MockTestPage({ user, setActivePage }) {
     setGrade(v); setMode(nm); resetSelections(v, nm); setError(""); clearTest();
   }
 
-  function handleModeChange(v) {
-    const a = getAllowed(Object.keys(syllabusData[grade][v]), v);
-    if (!a.length) { setMode(v); setSubject(""); setChapter(""); setError(`No access to ${v} tests`); clearTest(); return; }
-    setError(""); setMode(v); setSubject(a[0]); setChapter(syllabusData[grade][v][a[0]]?.[0] || ""); clearTest();
+  function handleSubjectChange(v) {
+    setSubject(v); setChapter(syllabusData[grade][mode][v][0]); setSelectedChapters([]); clearTest();
   }
 
-  function handleSubjectChange(v) { setSubject(v); setChapter(syllabusData[grade][mode][v][0]); clearTest(); }
+  function handleExamTypeChange(v) {
+    setExamType(v);
+    setQuestionCount(DEFAULT_QUESTION_COUNT_BY_EXAM_TYPE[v] ?? questionCount);
+    setSelectedChapters(v === "Class Test" ? [] : (chapter ? [chapter] : []));
+  }
+
+  function toggleSelectedChapter(c) {
+    setSelectedChapters(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]);
+  }
 
   function handleAnswerChange(qId, optKey) { setAnswers(p => ({ ...p, [qId]: optKey })); }
 
@@ -171,7 +208,7 @@ function MockTestPage({ user, setActivePage }) {
     setWrittenEvals(p => ({ ...p, [q.id]: null }));
     try {
       const r = await evaluateStudentAnswer({
-        grade, mode, subject, chapter, step_title: examType, username: user?.username,
+        grade, mode, subject, chapter: chapterLabel, step_title: examType, username: user?.username,
         question: q.question, student_answer: ans,
         ideal_context: q.explanation || q.model_answer || "",
         question_type: "short_answer", expected_keywords: q.expected_keywords || [],
@@ -187,20 +224,26 @@ function MockTestPage({ user, setActivePage }) {
   async function handleGenerateMockTest() {
     if (dailyLimitReached) return;
     if (questionFormat !== FORMAT_MCQ && !isPaid && user?.role !== "admin" && !isAllAccessTestUser(user)) {
-      setError("✍️ Written and Mixed modes require a paid subscription. MCQ is free for all.");
+      setError("Written and Mixed modes require a paid subscription. MCQ is free for all.");
       return;
     }
     if (isSchoolBoardMode(mode) && user?.role !== "admin" && !isAllAccessTestUser(user) &&
         !isFreeUser && !user.accessCbse && !user.offerAccess) {
       setError(`No access to ${mode} mock tests.`); return;
     }
+    if (isMultiChapterExam && selectedChapters.length === 0) {
+      setError("Please select at least one chapter for this exam type.");
+      return;
+    }
     setLoading(true); setError(""); setResults(null);
     setAnswers({}); setWrittenAnswers({}); setWrittenEvals({}); setWrittenLoading({});
 
     try {
       const res = await generateMockTest({
-        grade, mode, board: requestBoard, subject, chapter,
-        mock_type: mockType, difficulty, question_count: Number(questionCount),
+        grade, mode, board: requestBoard, subject,
+        chapter: isMultiChapterExam ? "" : chapter,
+        chapters: isMultiChapterExam ? selectedChapters : [],
+        mock_type: MOCK_TYPE, difficulty, question_count: Number(questionCount),
         exam_type: examType, excluded_ids: excludedIds, question_format: questionFormat,
       });
       if (!res.success) { setError(res.message || "Could not generate mock test"); return; }
@@ -246,7 +289,7 @@ function MockTestPage({ user, setActivePage }) {
     const timeTakenSeconds = testStartedAt ? Math.round((Date.now() - testStartedAt) / 1000) : null;
 
     const payload = {
-      username: user?.username, grade, mode, subject, chapter, mockType, examType,
+      username: user?.username, grade, mode, subject, chapter: chapterLabel, mockType: MOCK_TYPE, examType,
       difficulty, rawScore, finalScore, maxScore, wrongCount, penalty, percentage,
       timeTakenSeconds, submittedAt: new Date().toISOString(), review,
     };
@@ -262,7 +305,7 @@ function MockTestPage({ user, setActivePage }) {
     const wrongItems = review.filter(r => !r.isCorrect && isMCQ(r))
       .map(r => ({ question_id: r.id, question: r.question, selected: r.selected || null,
         correct: r.correct, options: r.options || null, explanation: r.explanation || "", section: r.section || "", marks: r.marks }));
-    if (wrongItems.length) saveWrongAnswers({ username: user?.username, grade, mode, subject, chapter, wrongAnswers: wrongItems }).catch(() => {});
+    if (wrongItems.length) saveWrongAnswers({ username: user?.username, grade, mode, subject, chapter: chapterLabel, wrongAnswers: wrongItems }).catch(() => {});
 
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
   }
@@ -288,26 +331,27 @@ function MockTestPage({ user, setActivePage }) {
         <>
           <section className="premium-section premium-mock-hero">
             {/* Tagline — shown above format cards */}
-            <p style={{ fontSize: "1rem", color: "var(--muted)", margin: "0 0 20px", lineHeight: 1.5 }}>
-              🧪 Generate exam-style practice tests, track answers, review mistakes, and build confidence
+            <p style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "1rem", color: "var(--muted)", margin: "0 0 16px", lineHeight: 1.5 }}>
+              <FlaskConical size={18} strokeWidth={2.2} /> Generate exam-style practice tests, track answers, review mistakes, and build confidence
             </p>
 
             {/* Exam format selector — 3 equal cards across full width (responsive via CSS class) */}
             <div className="mock-format-grid">
               {[
-                { fmt: FORMAT_MCQ,     icon: "🅰️", label: "MCQ Practice",     sub: "Multiple choice — Free for all",        free: true  },
-                { fmt: FORMAT_WRITTEN, icon: "✍️", label: "Written Practice",  sub: "Short & long answers — AI step-marking", free: false },
-                { fmt: FORMAT_MIXED,   icon: "📋", label: "Mixed (CBSE style)", sub: "MCQ + Written like real CBSE paper",     free: false },
-              ].map(({ fmt, icon, label, sub, free }) => {
+                { fmt: FORMAT_MCQ,     Icon: ListChecks,    label: "MCQ Practice",      sub: "Multiple choice — Free for all",         free: true  },
+                { fmt: FORMAT_WRITTEN, Icon: PenLine,       label: "Written Practice",   sub: "Short & long answers — AI step-marking", free: false },
+                { fmt: FORMAT_MIXED,   Icon: ClipboardList, label: "Mixed (CBSE style)", sub: "MCQ + Written like real CBSE paper",     free: false },
+              ].map(({ fmt, Icon, label, sub, free }) => {
                 const locked = !free && !isPaid && user?.role !== "admin" && !isAllAccessTestUser(user);
                 const selected = questionFormat === fmt;
                 return (
                   <button
                     key={fmt}
                     type="button"
-                    onClick={() => { if (!locked) { setQuestionFormat(fmt); setError(""); } else { setError("✍️ Written and Mixed modes require a paid subscription."); } }}
+                    onClick={() => { if (!locked) { setQuestionFormat(fmt); setError(""); } else { setError("Written and Mixed modes require a paid subscription."); } }}
                     style={{
-                      padding: "22px 20px", borderRadius: 14, cursor: "pointer",
+                      display: "flex", alignItems: "flex-start", gap: 10,
+                      padding: "12px 14px", borderRadius: 12, cursor: "pointer",
                       border: selected ? "2px solid #6366f1" : "1.5px solid var(--border, #e5e7eb)",
                       background: selected ? "rgba(99,102,241,0.08)" : "var(--surface, #ffffff)",
                       textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.72 : 1,
@@ -315,11 +359,25 @@ function MockTestPage({ user, setActivePage }) {
                       boxShadow: selected ? "0 0 0 3px rgba(99,102,241,0.15)" : "0 1px 4px rgba(0,0,0,0.06)",
                     }}
                   >
-                    <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>{icon}{locked ? " 🔒" : ""}</div>
-                    <div style={{ fontWeight: 700, fontSize: "1rem", color: selected ? "#4f46e5" : "var(--text, #1e293b)" }}>{label}</div>
-                    <div style={{ fontSize: "0.8rem", color: "var(--muted, #64748b)", marginTop: 4, lineHeight: 1.4 }}>{sub}</div>
-                    {!free && !locked && <div style={{ fontSize: "0.76rem", color: "#16a34a", marginTop: 6, fontWeight: 600 }}>✓ Premium unlocked</div>}
-                    {locked && <div style={{ fontSize: "0.76rem", color: "#9333ea", marginTop: 6, fontWeight: 600 }}>Upgrade to unlock →</div>}
+                    <Icon
+                      size={20}
+                      strokeWidth={2.2}
+                      color={selected ? "#4f46e5" : "var(--muted, #64748b)"}
+                      style={{ flexShrink: 0, marginTop: 2 }}
+                    />
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 700, fontSize: "0.9rem", color: selected ? "#4f46e5" : "var(--text, #1e293b)" }}>
+                        {label}
+                        {locked && <Lock size={12} strokeWidth={2.4} />}
+                      </div>
+                      <div style={{ fontSize: "0.74rem", color: "var(--muted, #64748b)", marginTop: 2, lineHeight: 1.35 }}>{sub}</div>
+                      {!free && !locked && (
+                        <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.72rem", color: "#16a34a", marginTop: 4, fontWeight: 600 }}>
+                          <CheckCircle2 size={12} strokeWidth={2.4} /> Premium unlocked
+                        </div>
+                      )}
+                      {locked && <div style={{ fontSize: "0.72rem", color: "#9333ea", marginTop: 4, fontWeight: 600 }}>Upgrade to unlock →</div>}
+                    </div>
                   </button>
                 );
               })}
@@ -338,34 +396,25 @@ function MockTestPage({ user, setActivePage }) {
                   {grades.map(g => <option key={g}>{g}</option>)}
                 </select>
               </label>
-              <label>Mode
-                <select value={mode} onChange={e => handleModeChange(e.target.value)}>
-                  {modes.map(m => <option key={m}>{m}</option>)}
-                </select>
-              </label>
               <label>Subject
                 <select value={subject} onChange={e => handleSubjectChange(e.target.value)} disabled={!subjects.length}>
                   {!subjects.length ? <option value="">No access</option> : subjects.map(s => <option key={s}>{s}</option>)}
                 </select>
               </label>
-              <label>Chapter / Section
-                <select value={chapter} onChange={e => setChapter(e.target.value)}>
-                  {chapters.map(c => <option key={c}>{c}</option>)}
-                </select>
-              </label>
-              <label>Test Type
-                <select value={mockType} onChange={e => setMockType(e.target.value)}>
-                  <option>CBSE Exam Mock Test</option>
-                  <option>CBSE Chapter Test</option>
-                </select>
-              </label>
               <label>Exam Type
-                <select value={examType} onChange={e => setExamType(e.target.value)}>
+                <select value={examType} onChange={e => handleExamTypeChange(e.target.value)}>
                   <option>Class Test</option>
                   <option>Mid Term</option>
                   <option>Annual Exam</option>
                 </select>
               </label>
+              {!isMultiChapterExam && (
+                <label>Chapter / Section
+                  <select value={chapter} onChange={e => setChapter(e.target.value)}>
+                    {availableChapters.map(c => <option key={c}>{c}</option>)}
+                  </select>
+                </label>
+              )}
               <label>Difficulty
                 <select value={difficulty} onChange={e => setDifficulty(e.target.value)}>
                   <option>Easy</option><option>Medium</option><option>Hard</option>
@@ -387,6 +436,31 @@ function MockTestPage({ user, setActivePage }) {
               </label>
             </div>
 
+            {isMultiChapterExam && (
+              <div className="premium-mock-chapter-picker">
+                <label style={{ display: "block", marginBottom: 8 }}>
+                  Chapters <small style={{ color: "var(--muted)" }}>(select one or more — questions are spread across all of them)</small>
+                </label>
+                <div className="mock-chapter-multiselect">
+                  {availableChapters.map(c => (
+                    <label key={c} className="mock-chapter-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={selectedChapters.includes(c)}
+                        onChange={() => toggleSelectedChapter(c)}
+                      />
+                      {c}
+                    </label>
+                  ))}
+                </div>
+                {selectedChapters.length > 0 && (
+                  <div style={{ marginTop: 6, fontSize: "0.72rem", color: "var(--muted)" }}>
+                    {selectedChapters.length} chapter{selectedChapters.length > 1 ? "s" : ""} selected
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="checkbox-row premium-test-options">
               <label><input type="checkbox" checked={timerEnabled} onChange={e => setTimerEnabled(e.target.checked)} /> Enable Timer</label>
               <label><input type="checkbox" checked={negativeMarking} onChange={e => setNegativeMarking(e.target.checked)} /> Enable Negative Marking</label>
@@ -397,15 +471,16 @@ function MockTestPage({ user, setActivePage }) {
                 background: dailyLimitReached ? "rgba(239,68,68,.08)" : "rgba(99,102,241,.07)",
                 border: `1px solid ${dailyLimitReached ? "rgba(239,68,68,.3)" : "rgba(167,139,250,.25)"}`,
                 display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-                <span style={{ fontSize: ".82rem", color: dailyLimitReached ? "#f87171" : "#a78bfa", fontWeight: 600 }}>
-                  {dailyLimitReached ? `🚫 Daily limit reached (${FREE_DAILY_MOCK_LIMIT}/${FREE_DAILY_MOCK_LIMIT} today)`
-                    : `📊 ${todayMockCount}/${FREE_DAILY_MOCK_LIMIT} free mock tests used today`}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: ".82rem", color: dailyLimitReached ? "#f87171" : "#a78bfa", fontWeight: 600 }}>
+                  {dailyLimitReached
+                    ? <><Ban size={14} strokeWidth={2.4} /> Daily limit reached ({FREE_DAILY_MOCK_LIMIT}/{FREE_DAILY_MOCK_LIMIT} today)</>
+                    : <><BarChart2 size={14} strokeWidth={2.4} /> {todayMockCount}/{FREE_DAILY_MOCK_LIMIT} free mock tests used today</>}
                 </span>
                 {dailyLimitReached && (
                   <div style={{ display: "flex", gap: 8 }}>
                     <button type="button" onClick={() => setActivePage?.("subscriptionPlans")}
-                      style={{ padding: "4px 12px", borderRadius: 7, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
-                      🚀 Upgrade for unlimited
+                      style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 12px", borderRadius: 7, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
+                      <Rocket size={13} strokeWidth={2.4} /> Upgrade for unlimited
                     </button>
                   </div>
                 )}
@@ -413,8 +488,11 @@ function MockTestPage({ user, setActivePage }) {
             )}
 
             <button className="primary-btn premium-mock-generate-btn"
-              onClick={handleGenerateMockTest} disabled={loading || dailyLimitReached}>
-              {dailyLimitReached ? "🚫 Daily Limit Reached" : loading ? "Generating..." : "✨ Generate Mock Test"}
+              onClick={handleGenerateMockTest} disabled={loading || dailyLimitReached}
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              {dailyLimitReached
+                ? <><Ban size={16} strokeWidth={2.4} /> Daily Limit Reached</>
+                : loading ? "Generating..." : <><Sparkles size={16} strokeWidth={2.4} /> Generate Mock Test</>}
             </button>
             {error && <div className="error-box">{error}</div>}
           </section>
@@ -432,7 +510,7 @@ function MockTestPage({ user, setActivePage }) {
             justifyContent: "space-between", flexWrap: "wrap", gap: 10,
           }}>
             <div>
-              <strong style={{ fontSize: "0.9rem" }}>{subject} — {chapter.slice(0, 50)}</strong>
+              <strong style={{ fontSize: "0.9rem" }}>{subject} — {chapterLabel.slice(0, 50)}</strong>
               <span style={{ marginLeft: 12, fontSize: "0.8rem", color: "var(--muted)" }}>
                 {answeredCount}/{questions.length} answered • {progressPercent}%
               </span>
@@ -454,7 +532,9 @@ function MockTestPage({ user, setActivePage }) {
           </div>
 
           {timerEnabled && secondsLeft === 0 && (
-            <div className="error-box" style={{ margin: "12px 0" }}>⏰ Time is over. Please submit your test.</div>
+            <div className="error-box" style={{ margin: "12px 0", display: "flex", alignItems: "center", gap: 8 }}>
+              <Clock size={16} strokeWidth={2.4} /> Time is over. Please submit your test.
+            </div>
           )}
 
           {/* Question Navigator */}
@@ -508,8 +588,9 @@ function MockTestPage({ user, setActivePage }) {
                 {isMCQ(q) && (!q.options || Object.keys(q.options).length === 0) && (
                   <div style={{ marginTop: 10, padding: "10px 14px", borderRadius: 8,
                     background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.2)",
-                    fontSize: "0.85rem", color: "var(--muted, #6b7280)" }}>
-                    ⚠ Answer options unavailable for this question.
+                    fontSize: "0.85rem", color: "var(--muted, #6b7280)",
+                    display: "flex", alignItems: "center", gap: 8 }}>
+                    <AlertTriangle size={15} strokeWidth={2.4} /> Answer options unavailable for this question.
                   </div>
                 )}
 
@@ -525,14 +606,14 @@ function MockTestPage({ user, setActivePage }) {
                       onChange={e => setWrittenAnswers(p => ({ ...p, [q.id]: e.target.value }))}
                       style={{ width: "100%", borderRadius: 8, border: "1px solid #d1d5db", padding: "10px 12px", fontFamily: "inherit", fontSize: "0.9rem", resize: "vertical" }}
                     />
-                    <button type="button" className="secondary-btn" style={{ marginTop: 6, fontSize: "0.82rem" }}
+                    <button type="button" className="secondary-btn" style={{ marginTop: 6, fontSize: "0.82rem", display: "inline-flex", alignItems: "center", gap: 6 }}
                       disabled={!(writtenAnswers[q.id] || "").trim() || writtenLoading[q.id]}
                       onClick={() => handleEvaluateWritten(q)}>
-                      {writtenLoading[q.id] ? "Evaluating..." : "✨ Get AI Feedback"}
+                      {writtenLoading[q.id] ? "Evaluating..." : <><Sparkles size={14} strokeWidth={2.4} /> Get AI Feedback</>}
                     </button>
                     {writtenEvals[q.id] && (
                       <div style={{ marginTop: 8, padding: "12px 16px", borderRadius: 8, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "block", marginBottom: 8 }}>✨ AI Feedback</strong>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}><Sparkles size={13} strokeWidth={2.4} /> AI Feedback</strong>
                         <div style={{ fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.7 }}
                           className="markdown-content">
                           <ReactMarkdown>{writtenEvals[q.id]?.evaluation || "Evaluation received."}</ReactMarkdown>
@@ -550,8 +631,9 @@ function MockTestPage({ user, setActivePage }) {
             ))}
           </div>
 
-          <button className="primary-btn premium-submit-test-btn" onClick={handleSubmitTest}>
-            ✅ Submit Test
+          <button className="primary-btn premium-submit-test-btn" onClick={handleSubmitTest}
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <CheckCircle2 size={16} strokeWidth={2.4} /> Submit Test
           </button>
         </div>
       )}
@@ -562,7 +644,10 @@ function MockTestPage({ user, setActivePage }) {
           <div className="premium-results-hero">
             <div>
               <p className="eyebrow">Results</p>
-              <h2>{perf(results.percentage).title}</h2>
+              <h2 style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {(() => { const { Icon } = perf(results.percentage); return <Icon size={20} strokeWidth={2.2} />; })()}
+                {perf(results.percentage).title}
+              </h2>
               <p>{perf(results.percentage).msg}</p>
             </div>
             <div className="premium-score-orb">
@@ -578,7 +663,7 @@ function MockTestPage({ user, setActivePage }) {
             <div className="premium-card premium-glow-card glow-purple"><strong>Penalty</strong><p>-{results.penalty}</p></div>
             {results.timeTakenSeconds != null && (
               <div className="premium-card" style={{ borderTop: "3px solid #0891b2" }}>
-                <strong style={{ color: "var(--muted)" }}>⏱️ Time Taken</strong>
+                <strong style={{ color: "var(--muted)", display: "flex", alignItems: "center", gap: 6 }}><Clock size={14} strokeWidth={2.4} /> Time Taken</strong>
                 <p style={{ color: "#0891b2" }}>
                   {results.timeTakenSeconds >= 60
                     ? `${Math.floor(results.timeTakenSeconds / 60)}m ${results.timeTakenSeconds % 60}s`
@@ -593,26 +678,30 @@ function MockTestPage({ user, setActivePage }) {
           {results.wrongCount > 0 && (
             <div style={{ background: "rgba(239,120,50,0.1)", border: "1px solid rgba(239,120,50,0.35)",
               borderRadius: 12, padding: "16px 20px", marginBottom: 24, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-              <span style={{ fontSize: "1.5rem" }}>🔁</span>
+              <RotateCcw size={24} strokeWidth={2.2} color="#fb923c" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 200 }}>
                 <strong style={{ color: "#fb923c" }}>{results.wrongCount} question{results.wrongCount > 1 ? "s" : ""} need revision</strong>
                 <p style={{ margin: "4px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)" }}>
-                  Study the explanations below, then take a fresh retest on <strong style={{ color: "#fb923c" }}>{chapter}</strong>.
+                  Study the explanations below, then take a fresh retest on <strong style={{ color: "#fb923c" }}>{chapterLabel}</strong>.
                 </p>
               </div>
-              <button className="primary-btn" style={{ background: "#ea580c", border: "none" }}
+              <button className="primary-btn" style={{ background: "#ea580c", border: "none", display: "inline-flex", alignItems: "center", gap: 6 }}
                 onClick={() => { clearTest(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
-                🔁 Take Retest
+                <RotateCcw size={14} strokeWidth={2.4} /> Take Retest
               </button>
             </div>
           )}
 
-          <div className="premium-header"><h3>📘 Answer Review</h3></div>
+          <div className="premium-header"><h3 style={{ display: "flex", alignItems: "center", gap: 8 }}><BookOpen size={18} strokeWidth={2.4} /> Answer Review</h3></div>
 
           <div className="premium-review-list">
             {results.review.map((r, idx) => (
               <div key={r.id} className={r.isCorrect ? "review-card correct premium-review-card" : "review-card wrong premium-review-card"}>
-                <h4>Q{idx + 1}. {r.isCorrect ? "✅ Correct" : "❌ Incorrect"}</h4>
+                <h4 style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  Q{idx + 1}. {r.isCorrect
+                    ? <><CheckCircle2 size={15} strokeWidth={2.4} color="#16a34a" /> Correct</>
+                    : <><XCircle size={15} strokeWidth={2.4} color="#ef4444" /> Incorrect</>}
+                </h4>
                 <p><MathText text={r.question} /></p>
 
                 {/* MCQ review */}
@@ -626,8 +715,8 @@ function MockTestPage({ user, setActivePage }) {
                       return (
                         <div key={key} style={{ padding: "6px 10px", borderRadius: 6, background: bg, border, color, fontSize: "0.88rem" }}>
                           <strong>{key}.</strong> <MathText text={val} />
-                          {isCor && <span style={{ marginLeft: 8, fontWeight: 700 }}>✓ Correct</span>}
-                          {isSel && !isCor && <span style={{ marginLeft: 8, fontWeight: 700 }}>✗ Your answer</span>}
+                          {isCor && <span style={{ marginLeft: 8, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}><Check size={13} strokeWidth={2.8} /> Correct</span>}
+                          {isSel && !isCor && <span style={{ marginLeft: 8, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}><X size={13} strokeWidth={2.8} /> Your answer</span>}
                         </div>
                       );
                     })}
@@ -635,7 +724,7 @@ function MockTestPage({ user, setActivePage }) {
                 )}
                 {r.question_type === "mcq" && !r.isCorrect && r.explanation && (
                   <div style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 8, padding: "12px 14px", marginTop: 8 }}>
-                    <strong style={{ color: "#818cf8", fontSize: "0.85rem", display: "block", marginBottom: 4 }}>📖 Explanation</strong>
+                    <strong style={{ color: "#818cf8", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}><Lightbulb size={14} strokeWidth={2.4} /> Explanation</strong>
                     <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.6, color: "var(--text, #e5e7eb)" }}><MathText text={r.explanation} /></p>
                   </div>
                 )}
@@ -649,7 +738,7 @@ function MockTestPage({ user, setActivePage }) {
                     </div>
                     {r.evaluation && (
                       <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 8, padding: "12px 16px", marginBottom: 8 }}>
-                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "block", marginBottom: 8 }}>✨ AI Feedback:</strong>
+                        <strong style={{ fontSize: "0.8rem", color: "#4ade80", display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}><Sparkles size={13} strokeWidth={2.4} /> AI Feedback:</strong>
                         <div style={{ fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.7 }}
                           className="markdown-content">
                           <ReactMarkdown>{r.evaluation}</ReactMarkdown>
@@ -669,9 +758,9 @@ function MockTestPage({ user, setActivePage }) {
             ))}
           </div>
 
-          <button className="secondary-btn" style={{ marginTop: 20 }}
+          <button className="secondary-btn" style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 6 }}
             onClick={() => { clearTest(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
-            🔄 Take Another Test
+            <RotateCcw size={14} strokeWidth={2.4} /> Take Another Test
           </button>
         </section>
       )}

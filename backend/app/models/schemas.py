@@ -46,6 +46,9 @@ class MockTestRequest(BaseModel):
     board: str = "CBSE"
     subject: str
     chapter: str | None = None
+    # Multiple chapters to sample from in one paper (Mid Term / Annual Exam).
+    # When non-empty, this takes priority over the single `chapter` field.
+    chapters: list[str] = []
     mock_type: str
     difficulty: str
     question_count: int = 10

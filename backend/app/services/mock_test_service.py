@@ -5,6 +5,7 @@ from app.services.openai_service import ask_llm
 from app.services.question_bank_service import (
     get_questions_from_bank,
     get_bank_capacity,
+    get_questions_from_bank_multi_chapter,
 )
 
 # Display-source prefixes added by the syllabus review UI when multiple books
@@ -183,6 +184,7 @@ def generate_cbse_mock_test(
     cache_only: bool = False,
     excluded_ids: list[str] | None = None,
     question_format: str = "mcq",
+    chapters: list[str] | None = None,
 ):
     """
     Serve a CBSE mock test.
@@ -199,13 +201,44 @@ def generate_cbse_mock_test(
 
     cache_only is kept for caller compatibility; bank-only is now the
     behavior for every user.
+
+    chapters: multiple chapters to draw questions from in one paper (Mid
+    Term / Annual Exam). When non-empty, takes priority over the single
+    `chapter` argument, which is used for Class Test papers.
     """
+    selected_chapters = [c for c in (chapters or []) if c]
+
     # ── Written / Mixed format: always generate fresh via LLM (no bank) ────
     if question_format in ("written", "mixed"):
+        chapter_label = ", ".join(selected_chapters) if selected_chapters else chapter
         return _generate_written_questions(
-            grade=grade, board=board, subject=subject, chapter=chapter,
+            grade=grade, board=board, subject=subject, chapter=chapter_label,
             exam_type=exam_type, num_questions=num_questions,
             difficulty=difficulty, question_format=question_format,
+        )
+
+    if selected_chapters:
+        bank_questions = get_questions_from_bank_multi_chapter(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapters=selected_chapters,
+            difficulty=difficulty,
+            num_questions=num_questions,
+            exam_type=exam_type,
+            excluded_ids=excluded_ids,
+        )
+        if bank_questions:
+            return bank_questions
+
+        available = sum(
+            get_bank_capacity_with_fallback(board, grade, subject, c, difficulty)
+            for c in selected_chapters
+        )
+        raise ValueError(
+            bank_shortfall_message(
+                available, num_questions, ", ".join(selected_chapters)
+            )
         )
 
     # Uses fallback that strips display prefixes (e.g. "Text Book - ")

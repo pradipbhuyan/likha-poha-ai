@@ -57,7 +57,7 @@ def call_with_optional_board(func, board: str, **kwargs):
 
     except TypeError:
         # Last-resort fallback: try without board and with only positional-safe kwargs
-        OPTIONAL_KWARGS = {"board", "cache_only", "excluded_ids", "question_format"}
+        OPTIONAL_KWARGS = {"board", "cache_only", "excluded_ids", "question_format", "chapters"}
         safe_kwargs = {k: v for k, v in kwargs.items() if k not in OPTIONAL_KWARGS}
         return func(**safe_kwargs)
 
@@ -232,6 +232,7 @@ def generate_mock_test(
             board=request_board,
             subject=data.subject,
             chapter=data.chapter,
+            chapters=list(data.chapters or []),
             exam_type=data.exam_type or "Class Test",
             num_questions=question_count,
             difficulty=data.difficulty,

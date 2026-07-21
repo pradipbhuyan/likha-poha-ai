@@ -161,6 +161,105 @@ def get_questions_from_bank(
         return []  # Table may not exist yet — fall back to LLM
 
 
+def _distribute_across_chapters(
+    num_questions: int,
+    capacities: dict[str, int],
+) -> dict[str, int] | None:
+    """
+    Spread num_questions across chapters as evenly as possible, capped by
+    each chapter's own bank capacity.
+
+    Returns None if the combined capacity across all chapters can't fill
+    num_questions, so the caller can report a capacity shortfall instead of
+    silently serving a shorter test.
+    """
+    if sum(capacities.values()) < num_questions:
+        return None
+
+    counts = {chapter: 0 for chapter in capacities}
+    remaining = num_questions
+    active = [chapter for chapter, cap in capacities.items() if cap > 0]
+
+    while remaining > 0 and active:
+        share = max(1, remaining // len(active))
+        for chapter in list(active):
+            if remaining <= 0:
+                break
+            take = min(share, capacities[chapter] - counts[chapter], remaining)
+            if take <= 0:
+                active.remove(chapter)
+                continue
+            counts[chapter] += take
+            remaining -= take
+            if counts[chapter] >= capacities[chapter]:
+                active.remove(chapter)
+
+    return counts if remaining == 0 else None
+
+
+def get_questions_from_bank_multi_chapter(
+    board: str,
+    grade: str,
+    subject: str,
+    chapters: list[str],
+    difficulty: str,
+    num_questions: int,
+    exam_type: str = "General",
+    excluded_ids: list[str] | None = None,
+) -> list[dict]:
+    """
+    Sample bank questions spread across multiple chapters in one paper.
+
+    Used for Mid Term / Annual Exam papers, which cover several chapters at
+    once instead of a single chapter's Class Test. Each chapter is sampled
+    independently and without replacement (via get_questions_from_bank), and
+    every chapter is queried exactly once per call — so no question can ever
+    repeat within the generated test, whichever chapter it came from.
+
+    Returns [] when the combined capacity across the given chapters can't
+    fill num_questions, so the caller can report the shortfall to the user.
+    """
+    unique_chapters = list(dict.fromkeys(c for c in chapters if c))
+    if not unique_chapters:
+        return []
+
+    capacities = {
+        chapter: get_bank_capacity(board, grade, subject, chapter, difficulty)
+        for chapter in unique_chapters
+    }
+
+    counts = _distribute_across_chapters(num_questions, capacities)
+    if counts is None:
+        return []
+
+    sampled: list[dict] = []
+    for chapter, count in counts.items():
+        if count <= 0:
+            continue
+        chapter_questions = get_questions_from_bank(
+            board=board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            difficulty=difficulty,
+            num_questions=count,
+            exam_type=exam_type,
+            excluded_ids=excluded_ids,
+        )
+        if len(chapter_questions) < count:
+            return []  # bank shrank between the capacity check and sampling
+        sampled.extend(chapter_questions)
+
+    random.shuffle(sampled)
+
+    # Renumber 1..n across the merged set (each chapter's own sampling call
+    # already renumbered 1..count on its own, so ids collide after merging).
+    for index, q in enumerate(sampled, start=1):
+        q["id"] = index
+
+    return sampled
+
+
 def add_questions_to_bank(
     questions: list[dict],
     board: str,
