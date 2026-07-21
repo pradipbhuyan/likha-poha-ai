@@ -21,6 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
+import ChapterJourney, { ChapterDocData } from "../../components/ChapterJourney";
 
 // ── Dynamic loading messages — mirrors web LessonsPage.jsx getLoadingMessage ──
 const LOADING_MESSAGES: Record<number, Record<string, string>> = {
@@ -625,6 +626,10 @@ export default function LessonsScreen() {
   const [stepIndex, setStepIndex] = useState(0);
   const [lesson, setLesson] = useState("");
   const [generating, setGenerating] = useState(false);
+  // Chapter Journey doc — non-null when the whole chapter is available as a
+  // typed-block document (zero Generate clicks). Null → classic per-step flow.
+  const [chapterDoc, setChapterDoc] = useState<ChapterDocData | null>(null);
+  const [chapterDocLoading, setChapterDocLoading] = useState(false);
   const [loadingSyllabus, setLoadingSyllabus] = useState(true);
   const [studentUsername, setStudentUsername] = useState("");
   const highestStepReached = useRef(0);
@@ -685,6 +690,23 @@ export default function LessonsScreen() {
       setLoadingSyllabus(false);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Chapter Journey: try the typed-block doc first; fall back silently ─────
+  useEffect(() => {
+    let cancelled = false;
+    setChapterDoc(null);
+    if (!grade || !subject || !chapter || isExemplarLocked) return undefined;
+    setChapterDocLoading(true);
+    const params = new URLSearchParams({ grade, mode: "CBSE", subject, chapter, board: "CBSE" });
+    authFetch(`/api/lesson/chapter-doc?${params.toString()}`)
+      .then((result: any) => {
+        if (cancelled) return;
+        setChapterDoc(result?.available && result?.doc ? result.doc : null);
+      })
+      .catch(() => { if (!cancelled) setChapterDoc(null); })
+      .finally(() => { if (!cancelled) setChapterDocLoading(false); });
+    return () => { cancelled = true; };
+  }, [grade, subject, chapter, isExemplarLocked]);
 
   // Filter subjects for Grade 11/12 by enrolled cbse_subjects or stream
   const allSyllabusSubjects = Object.keys(syllabus?.[grade]?.["CBSE"] ?? {});
@@ -828,7 +850,9 @@ export default function LessonsScreen() {
         })}
       </ScrollView>
 
-      {/* ── Step navigation ── */}
+      {/* ── Step navigation — hidden in Chapter Journey mode (no steps) ── */}
+      {!chapterDoc && (
+      <>
       <View style={styles.stepBar}>
         <TouchableOpacity
           style={[styles.stepNavBtn, stepIndex === 0 && styles.stepNavBtnDisabled]}
@@ -860,6 +884,8 @@ export default function LessonsScreen() {
           </TouchableOpacity>
         ))}
       </View>
+      </>
+      )}
 
       {/* ── Exemplar upgrade banner (free tier) ── */}
       {isExemplarLocked && (
@@ -872,7 +898,25 @@ export default function LessonsScreen() {
         </View>
       )}
 
-      {/* ── Generate button (disabled for locked Exemplar) ── */}
+      {/* ── Chapter Journey: whole chapter, zero Generate clicks ── */}
+      {chapterDocLoading && !chapterDoc && (
+        <View style={{ marginTop: 28, alignItems: "center" }}>
+          <ActivityIndicator color={BRAND_COLOR} size="large" />
+          <Text style={{ marginTop: 10, fontSize: 13, color: "#6b7280" }}>Loading chapter…</Text>
+        </View>
+      )}
+      {chapterDoc && (
+        <ChapterJourney
+          doc={chapterDoc}
+          grade={grade}
+          renderMarkdown={(content, accent) => (
+            <MathAwareMarkdown content={content} accent={accent} />
+          )}
+        />
+      )}
+
+      {/* ── Generate button (classic flow only; disabled for locked Exemplar) ── */}
+      {!chapterDoc && !chapterDocLoading && (
       <TouchableOpacity
         style={[styles.generateBtn, (generating || isExemplarLocked) && styles.generateBtnDisabled]}
         onPress={isExemplarLocked ? undefined : generateLesson}
@@ -882,6 +926,7 @@ export default function LessonsScreen() {
           ? <ActivityIndicator color="#fff" />
           : <Text style={styles.generateBtnText}>{isExemplarLocked ? "🔒 Upgrade to Unlock" : "✨ Generate Lesson"}</Text>}
       </TouchableOpacity>
+      )}
 
       {/* ── Lesson generating: Likha Poha AI GIF + dynamic message ── */}
       {generating && (
@@ -920,7 +965,7 @@ export default function LessonsScreen() {
         </View>
       )}
 
-      {!generating && sections.length > 0 && (
+      {!chapterDoc && !generating && sections.length > 0 && (
         <View style={{ marginTop: 20 }}>
           {/* Lesson header */}
           <View style={styles.lessonHeader}>
@@ -961,7 +1006,7 @@ export default function LessonsScreen() {
         </View>
       )}
 
-      {!generating && !lesson && (
+      {!chapterDoc && !chapterDocLoading && !generating && !lesson && (
         <View style={styles.emptyState}>
           <View style={styles.emptyIconBox}>
             <Feather name="book-open" size={40} color={BRAND_COLOR} />
