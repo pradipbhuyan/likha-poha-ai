@@ -454,7 +454,8 @@ useEffect(() => {
 
           <p>
             Personalized CBSE preparation with AI-powered lessons, quizzes,
-            analytics, narration, and doubt solving. Class 5–10.
+            analytics, narration, and doubt solving. Grade 5–12, plus JEE,
+            NEET, CUET, SAT, IELTS & TOEFL prep.
           </p>
 
           <div className="ait-feature-list">

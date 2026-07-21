@@ -48,6 +48,12 @@ DEFAULT_SUBSCRIPTION_PLANS = {
     # ── Premium Nano — ₹99 / 8 days, full access ─────────────────────────────
     # DB key is "free" for legacy reasons (subscription_plan = "free" in profiles).
     # Distinguished from free_tier by: access_cbse=True + subscription_expires_at set.
+    # Discontinued from public sale — is_public=False hides it from the landing
+    # page / SubscriptionPlansPage and blocks new purchases in payments.py
+    # (get_public_plan). Existing Nano subscribers are unaffected: the
+    # subscription resolver identifies them independently of this config
+    # (subscription_resolver_service.py's Legacy Nano branch is hardcoded and
+    # does not read is_public), so their access continues unchanged.
     "free": {
         # Centralized feature flags — overridden by subscription_plan_settings DB
         "duration_days": 8,
@@ -66,7 +72,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
         "recommended": False,
         "discount_percent": 0,
         "discount_label": "",
-        "is_public": True,
+        "is_public": False,
         "display_order": 2,
         "access_cbse": True,
         "daily_token_limit": 100000,

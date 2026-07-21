@@ -8,13 +8,18 @@
  * Data: GET /api/student/formula-sheets?grade=&subject=
  */
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Ruler, Microscope, Atom, FlaskConical, Sprout, BookOpen, PenLine, ScrollText,
+  BookMarked, Lock, CheckCircle2, Check, X, Sparkles, ListChecks, Lightbulb,
+  Variable, Target, Pencil, AlertTriangle, Link2, Rocket, ClipboardList,
+} from "lucide-react";
 import { authFetch } from "../api/authClient";
 import { hasPaidAccess } from "../utils/resolveSubscription";
 
 const ALL_GRADES = ["Grade 5","Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12"];
 const SUBJECT_ICONS = {
-  Mathematics:"📐", Science:"🔬", Physics:"⚛️", Chemistry:"🧪",
-  Biology:"🌱", "Social Science":"📖", English:"📝", Hindi:"📜",
+  Mathematics: Ruler, Science: Microscope, Physics: Atom, Chemistry: FlaskConical,
+  Biology: Sprout, "Social Science": BookOpen, English: PenLine, Hindi: ScrollText,
 };
 
 // Biology entries are all definitions/key concepts, never symbolic formulas;
@@ -128,8 +133,8 @@ function CopyBtn({ text }) {
   return (
     <button onClick={() => { navigator.clipboard.writeText(text).catch(() => {}); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
       title="Copy formula"
-      style={{ background: "none", border: "1px solid var(--border,#e5e7eb)", borderRadius: 6, padding: "2px 8px", cursor: "pointer", fontSize: ".68rem", color: copied ? "#22c55e" : "#6366f1", fontFamily: "inherit", fontWeight: 600 }}>
-      {copied ? "✓" : "Copy"}
+      style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "none", border: "1px solid var(--border,#e5e7eb)", borderRadius: 6, padding: "2px 8px", cursor: "pointer", fontSize: ".68rem", color: copied ? "#22c55e" : "#6366f1", fontFamily: "inherit", fontWeight: 600 }}>
+      {copied ? <Check size={12} strokeWidth={2.8} /> : "Copy"}
     </button>
   );
 }
@@ -137,7 +142,7 @@ function CopyBtn({ text }) {
 function UpgradePrompt({ msg = "Unlock this content with Premium." }) {
   return (
     <div data-testid="upgrade-lock-prompt" style={{ background: "var(--surface2,#f8fafc)", border: "1px dashed #cbd5e1", borderRadius: 7, padding: "7px 11px", display: "flex", gap: 7, alignItems: "center", marginTop: 6 }}>
-      <span>🔒</span>
+      <Lock size={14} strokeWidth={2.4} />
       <span style={{ fontSize: ".74rem", color: "var(--text-muted,#64748b)", fontStyle: "italic" }}>{msg}</span>
     </div>
   );
@@ -232,18 +237,18 @@ function MCQPractice({ formula }) {
       <button
         data-testid="practice-btn"
         onClick={() => setOpen(o => !o)}
-        style={{ padding: "6px 14px", borderRadius: 7, border: "none",
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 7, border: "none",
           background: "#6366f1", color: "#fff", fontSize: ".76rem",
           fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-        {open ? "▲ Close Practice" : "📝 Practice ›"}
+        <ListChecks size={13} strokeWidth={2.4} /> {open ? "Close Practice" : "Practice ›"}
       </button>
 
       {open && (
         <div data-testid="mcq-practice-panel"
           style={{ marginTop: 12, background: "var(--surface2,#f8fafc)",
             border: "1px solid var(--border,#e5e7eb)", borderRadius: 10, padding: 14 }}>
-          <div style={{ fontWeight: 700, fontSize: ".82rem", marginBottom: 10, color: "#6366f1" }}>
-            📝 Practice Questions — {formula.name}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 700, fontSize: ".82rem", marginBottom: 10, color: "#6366f1" }}>
+            <ListChecks size={14} strokeWidth={2.4} /> Practice Questions — {formula.name}
           </div>
 
           {mcqs.map((q, qi) => (
@@ -272,8 +277,8 @@ function MCQPractice({ formula }) {
                       {["A","B","C","D"][oi]}
                     </span>
                     <span>{opt}</span>
-                    {submitted && correct && <span style={{ marginLeft: "auto", color: "#22c55e", fontSize: ".75rem" }}>✓ Correct</span>}
-                    {submitted && sel && !correct && <span style={{ marginLeft: "auto", color: "#ef4444", fontSize: ".75rem" }}>✗ Wrong</span>}
+                    {submitted && correct && <span style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4, color: "#22c55e", fontSize: ".75rem" }}><Check size={12} strokeWidth={2.8} /> Correct</span>}
+                    {submitted && sel && !correct && <span style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4, color: "#ef4444", fontSize: ".75rem" }}><X size={12} strokeWidth={2.8} /> Wrong</span>}
                   </div>
                 );
               })}
@@ -284,7 +289,7 @@ function MCQPractice({ formula }) {
                   style={{ marginTop: 8, padding: "8px 10px", background: "#f0fdf4",
                     borderRadius: 7, border: "1px solid #bbf7d0", fontSize: ".75rem",
                     lineHeight: 1.5 }}>
-                  <span style={{ fontWeight: 700, color: "#16a34a" }}>💡 Explanation: </span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 700, color: "#16a34a" }}><Lightbulb size={12} strokeWidth={2.4} /> Explanation: </span>
                   {q.explain}
                 </div>
               )}
@@ -612,6 +617,7 @@ function PremiumExpandedContent({ formula }) {
 
   const sectionStyle = { marginBottom: 14 };
   const headingStyle = {
+    display: "flex", alignItems: "center", gap: 6,
     fontSize: ".72rem", fontWeight: 800, textTransform: "uppercase",
     letterSpacing: ".06em", marginBottom: 6,
   };
@@ -628,14 +634,14 @@ function PremiumExpandedContent({ formula }) {
 
       {/* 1 — Formula explanation */}
       <div style={sectionStyle}>
-        <div style={{ ...headingStyle, color: "#6366f1" }}>📖 What this formula means</div>
+        <div style={{ ...headingStyle, color: "#6366f1" }}><BookOpen size={13} strokeWidth={2.4} /> What this formula means</div>
         <p className="formula-body-text" style={{ ...bodyStyle, margin: 0 }}>{explanation}</p>
       </div>
 
       {/* 2 — Variables / symbols */}
       {variables.length > 0 && (
         <div style={sectionStyle}>
-          <div style={{ ...headingStyle, color: "#0891b2" }}>🔤 Variables & Symbols</div>
+          <div style={{ ...headingStyle, color: "#0891b2" }}><Variable size={13} strokeWidth={2.4} /> Variables & Symbols</div>
           <div style={{
             background: "var(--surface2,#f8fafc)", borderRadius: 8,
             padding: "8px 12px", border: "1px solid var(--border,#e5e7eb)",
@@ -656,13 +662,13 @@ function PremiumExpandedContent({ formula }) {
 
       {/* 3 — When to use */}
       <div style={sectionStyle}>
-        <div style={{ ...headingStyle, color: "#16a34a" }}>🎯 When to use</div>
+        <div style={{ ...headingStyle, color: "#16a34a" }}><Target size={13} strokeWidth={2.4} /> When to use</div>
         <p className="formula-body-text" style={{ ...bodyStyle, margin: 0 }}>{whenToUse}</p>
       </div>
 
       {/* 4 — Step-by-step example */}
       <div style={sectionStyle}>
-        <div style={{ ...headingStyle, color: "#d97706" }}>✏️ Step-by-step solved example</div>
+        <div style={{ ...headingStyle, color: "#d97706" }}><Pencil size={13} strokeWidth={2.4} /> Step-by-step solved example</div>
         <div className="formula-step-box" style={{
           background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 8, padding: "10px 12px",
         }}>
@@ -682,13 +688,13 @@ function PremiumExpandedContent({ formula }) {
 
       {/* 5 — Common mistakes */}
       <div style={sectionStyle}>
-        <div style={{ ...headingStyle, color: "#dc2626" }}>⚠️ Common mistakes</div>
+        <div style={{ ...headingStyle, color: "#dc2626" }}><AlertTriangle size={13} strokeWidth={2.4} /> Common mistakes</div>
         <div className="formula-mistakes-box" style={{
           background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: 8, padding: "8px 12px",
         }}>
           {commonMistakes.map((m, i) => (
             <div key={i} style={{ ...itemStyle, marginBottom: i < commonMistakes.length - 1 ? 5 : 0 }}>
-              <span style={{ color: "#dc2626", flexShrink: 0, marginTop: 2 }}>✗</span>
+              <X size={13} strokeWidth={2.6} style={{ color: "#dc2626", flexShrink: 0, marginTop: 2 }} />
               <span style={{ fontSize: ".79rem" }}>{m}</span>
             </div>
           ))}
@@ -701,14 +707,14 @@ function PremiumExpandedContent({ formula }) {
         background: "#fefce8", borderRadius: 8,
         border: "1px solid #fde68a", padding: "8px 12px",
       }}>
-        <div style={{ ...headingStyle, color: "#d97706", marginBottom: 4 }}>💡 Quick memory tip</div>
+        <div style={{ ...headingStyle, color: "#d97706", marginBottom: 4 }}><Lightbulb size={13} strokeWidth={2.4} /> Quick memory tip</div>
         <p style={{ ...bodyStyle, margin: 0, fontSize: ".79rem", fontStyle: "italic" }}>{memoryTip}</p>
       </div>
 
       {/* 7 — Related formulas */}
       {relatedFormulas.length > 0 && (
         <div style={sectionStyle}>
-          <div style={{ ...headingStyle, color: "#7c3aed" }}>🔗 Related formulas</div>
+          <div style={{ ...headingStyle, color: "#7c3aed" }}><Link2 size={13} strokeWidth={2.4} /> Related formulas</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {relatedFormulas.map((r, i) => (
               <span key={i} style={{
@@ -747,7 +753,7 @@ function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
         </button>
 
         {/* Icon */}
-        <div style={{ fontSize: "2.4rem", marginBottom: 8 }}>🔐</div>
+        <div style={{ marginBottom: 8, color: "#6366f1" }}><Lock size={40} strokeWidth={1.8} /></div>
 
         {/* Title + context */}
         {formula && (
@@ -768,10 +774,10 @@ function FormulaUpgradeModal({ formula, onClose, onUpgrade }) {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <button onClick={onUpgrade}
-            style={{ padding: "11px 20px", borderRadius: 9, border: "none",
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "11px 20px", borderRadius: 9, border: "none",
               background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff",
               fontWeight: 700, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
-            🚀 See Plans & Upgrade
+            <Rocket size={15} strokeWidth={2.4} /> See Plans & Upgrade
           </button>
           <button onClick={onClose}
             style={{ padding: "8px 16px", borderRadius: 9, border: "1px solid var(--border,#e5e7eb)",
@@ -815,9 +821,9 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
       {/* Card header — always visible */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontWeight: 700, fontSize: ".82rem", marginBottom: 3 }}>
-            {formula.locked && <span style={{ color: "#94a3b8" }}>🔒 </span>}
-            {studied && <span style={{ color: "#22c55e", fontSize: ".7rem", marginRight: 4 }}>✓</span>}
+          <div style={{ display: "flex", alignItems: "center", gap: 4, fontWeight: 700, fontSize: ".82rem", marginBottom: 3 }}>
+            {formula.locked && <Lock size={12} strokeWidth={2.4} style={{ color: "#94a3b8" }} />}
+            {studied && <CheckCircle2 size={12} strokeWidth={2.6} style={{ color: "#22c55e" }} />}
             {formula.name}
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 3, marginBottom: 4 }}>
@@ -849,7 +855,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
                 color: isFormula ? "inherit" : "#374151",
                 lineHeight: 1.5,
               }}>
-              {!isFormula && <span style={{ fontSize: ".65rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", display: "block", marginBottom: 3 }}>📖 Key Concept</span>}
+              {!isFormula && <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: ".65rem", fontWeight: 700, color: "#6366f1", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 3 }}><BookOpen size={11} strokeWidth={2.6} /> Key Concept</span>}
               <MathExpr tex={exprText} chem={isChemistry} />
             </div>
           );
@@ -871,28 +877,28 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
           <button
             data-testid={canExpand ? "expand-btn" : "expand-locked-btn"}
             onClick={handleExpand}
-            style={{ background: "none", border: "none", color: canExpand ? "#6366f1" : "#94a3b8", fontSize: ".72rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
-            {expanded ? "▲ Collapse" : (canExpand ? "▼ Show details" : "🔒 Upgrade to expand")}
+            style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "none", border: "none", color: canExpand ? "#6366f1" : "#94a3b8", fontSize: ".72rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
+            {expanded ? "▲ Collapse" : canExpand ? "▼ Show details" : <><Lock size={11} strokeWidth={2.6} /> Upgrade to expand</>}
           </button>
           {/* Studied toggle — visible for all preview formulas */}
           <button
             data-testid="studied-toggle"
             onClick={() => onStudied && onStudied(formula.id || formula.name)}
-            style={{ fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
+            style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
               border: `1px solid ${studied ? "#22c55e" : "var(--border,#e5e7eb)"}`,
               background: studied ? "#dcfce7" : "none", cursor: "pointer",
               color: studied ? "#16a34a" : "var(--text-muted,#64748b)", fontFamily: "inherit", fontWeight: 600 }}>
-            {studied ? "✓ Studied" : "Mark studied"}
+            {studied ? <><CheckCircle2 size={11} strokeWidth={2.6} /> Studied</> : "Mark studied"}
           </button>
           {/* Ask AI — navigate to doubt page with formula name as context */}
           <button
             data-testid="ask-ai-btn"
             onClick={() => onAskAI && onAskAI(formula.name)}
-            style={{ fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
+            style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".68rem", padding: "2px 8px", borderRadius: 6,
               border: "1px solid rgba(124,58,237,.35)",
               background: "rgba(124,58,237,.05)", cursor: "pointer",
               color: "#7c3aed", fontFamily: "inherit", fontWeight: 600 }}>
-            ✦ Ask AI
+            <Sparkles size={11} strokeWidth={2.6} /> Ask AI
           </button>
         </div>
       )}
@@ -1029,27 +1035,27 @@ export default function FormulaSheetPage({ user, setActivePage }) {
   return (
     <div data-testid="formula-sheet-page" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 0 60px" }}>
 
-      {/* Header */}
-      <div style={{ marginBottom: 12 }}>
-        <h2 style={{ fontWeight: 800, fontSize: "1.15rem", margin: "0 0 3px" }}>📐 Formulas & Concepts</h2>
-        <div style={{ fontSize: ".85rem", color: "var(--text-muted,#64748b)", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <span>{selectedGrade} · CBSE formulas, definitions & key concepts — chapter-wise</span>
-          {data && (
-            <span style={{ fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".77rem" }}>
-              {hasPremium ? `✓ ${data.total_count} ${formulaLabelFor(subject).toLowerCase()} unlocked` : `🔒 ${data.unlocked_count} of ${data.total_count} preview`}
-            </span>
-          )}
-          {totalStudied > 0 && (
-            <span style={{ fontSize: ".72rem", fontWeight: 600, color: "#16a34a", background: "#dcfce7", padding: "1px 7px", borderRadius: 10 }}>
-              ✓ {totalStudied} studied
-            </span>
-          )}
-        </div>
+      {/* Header — page title/subtitle are already shown by the app topbar, so this
+          line only adds page-specific info: grade+subject scope and unlock status. */}
+      <div style={{ marginBottom: 14, fontSize: ".82rem", color: "var(--text-muted,#64748b)", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <span>{selectedGrade} · CBSE {formulaLabelFor(subject).toLowerCase()} — chapter-wise</span>
+        {data && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 600, color: hasPremium ? "#22c55e" : "#f59e0b", fontSize: ".72rem" }}>
+            {hasPremium
+              ? <><CheckCircle2 size={12} strokeWidth={2.6} /> {data.total_count} {formulaLabelFor(subject).toLowerCase()} unlocked</>
+              : <><Lock size={12} strokeWidth={2.6} /> {data.unlocked_count} of {data.total_count} preview</>}
+          </span>
+        )}
+        {totalStudied > 0 && (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".72rem", fontWeight: 600, color: "#16a34a", background: "#dcfce7", padding: "1px 7px", borderRadius: 10 }}>
+            <CheckCircle2 size={11} strokeWidth={2.6} /> {totalStudied} studied
+          </span>
+        )}
       </div>
 
       {/* Grade selector — paid: all grades; free: locked to enrolled */}
       <div data-testid="grade-selector-row" style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
-        <span style={{ fontSize: ".65rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--text-muted,#94a3b8)" }}>Grade:</span>
+        <span style={{ fontSize: ".68rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--text-muted,#94a3b8)" }}>Grade:</span>
         {ALL_GRADES.map(g => {
           const isLocked = !isPaid && g !== enrolledGrade;
           return (
@@ -1058,14 +1064,14 @@ export default function FormulaSheetPage({ user, setActivePage }) {
               data-testid={"grade-btn-" + g.toLowerCase().replace(" ", "-")}
               onClick={() => !isLocked && setSelectedGrade(g)}
               title={isLocked ? "Upgrade to browse other grades" : g}
-              style={{ padding: "4px 11px", borderRadius: 20, border: "none",
-                background: selectedGrade === g ? "#6366f1" : isLocked ? "var(--surface2,#f1f5f9)" : "var(--surface2,#f1f5f9)",
+              style={{ display: "inline-flex", alignItems: "center", gap: 3, padding: "4px 11px", borderRadius: 20, border: "none",
+                background: selectedGrade === g ? "#6366f1" : "var(--surface2,#f1f5f9)",
                 color: selectedGrade === g ? "#fff" : isLocked ? "#94a3b8" : "var(--text,#374151)",
-                fontWeight: selectedGrade === g ? 700 : 500, fontSize: ".77rem",
+                fontWeight: selectedGrade === g ? 700 : 500, fontSize: ".78rem",
                 cursor: isLocked ? "default" : "pointer", fontFamily: "inherit",
                 opacity: isLocked ? 0.55 : 1 }}>
               {g.replace("Grade ", "")}
-              {isLocked && <span style={{ marginLeft: 2, fontSize: ".6rem" }}>🔒</span>}
+              {isLocked && <Lock size={10} strokeWidth={2.6} />}
             </button>
           );
         })}
@@ -1075,16 +1081,19 @@ export default function FormulaSheetPage({ user, setActivePage }) {
       <div style={{ display: "flex", gap: 7, marginBottom: 10, flexWrap: "wrap" }}>
         {(data?.subjects || (["Grade 11","Grade 12"].includes(selectedGrade)
           ? ["Biology","Chemistry","Mathematics","Physics"]
-          : ["Mathematics","Science","Physics","Chemistry"])).map(s => (
-          <button key={s} data-testid={"fs-subject-"+s.toLowerCase().replace(/ /g,"-")}
-            onClick={() => setSubject(s)}
-            style={{ padding: "5px 14px", borderRadius: 20, border: "none",
-              background: subject===s ? "#6366f1" : "var(--surface2,#f1f5f9)",
-              color: subject===s ? "#fff" : "var(--text,#374151)",
-              fontWeight: 600, fontSize: ".81rem", cursor: "pointer", fontFamily: "inherit" }}>
-            {SUBJECT_ICONS[s] || "📚"} {s}
-          </button>
-        ))}
+          : ["Mathematics","Science","Physics","Chemistry"])).map(s => {
+          const SubjectIcon = SUBJECT_ICONS[s] || BookMarked;
+          return (
+            <button key={s} data-testid={"fs-subject-"+s.toLowerCase().replace(/ /g,"-")}
+              onClick={() => setSubject(s)}
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 14px", borderRadius: 20, border: "none",
+                background: subject===s ? "#6366f1" : "var(--surface2,#f1f5f9)",
+                color: subject===s ? "#fff" : "var(--text,#374151)",
+                fontWeight: 600, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
+              <SubjectIcon size={13} strokeWidth={2.4} /> {s}
+            </button>
+          );
+        })}
       </div>
 
       {/* Search + filters row */}
@@ -1092,26 +1101,20 @@ export default function FormulaSheetPage({ user, setActivePage }) {
         <input data-testid="formula-search" placeholder="Search formulas, chapters..." value={search}
           onChange={e => { setSearch(e.target.value); setActiveChapter(null); }}
           style={{ flex: 1, minWidth: 160, padding: "7px 12px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)",
-            fontFamily: "inherit", fontSize: ".84rem" }}/>
+            fontFamily: "inherit", fontSize: ".82rem" }}/>
         <select data-testid="difficulty-filter" value={diffFilter} onChange={e => setDiffFilter(e.target.value)}
-          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".8rem" }}>
+          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".82rem" }}>
           <option value="">All Difficulties</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
         <select data-testid="sort-select" value={sortBy} onChange={e => setSortBy(e.target.value)}
-          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".8rem" }}>
+          style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".82rem" }}>
           <option value="default">Sort: Default</option>
           <option value="az">A → Z</option>
           <option value="diff">Difficulty ↑</option>
         </select>
-        {data && (
-          <span style={{ fontSize: ".72rem", fontWeight: 700, padding: "4px 9px", borderRadius: 18,
-            background: "rgba(99,102,241,.1)", color: "#6366f1", whiteSpace: "nowrap" }}>
-            {data.total_count} {formulaLabelFor(subject).toLowerCase()}
-          </span>
-        )}
       </div>
 
       {/* Upgrade banner for free users */}
@@ -1149,7 +1152,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
       {!loading && !err && data && !data.available && (
         <div data-testid="formula-sheet-unavailable"
           style={{ background: "var(--panel,#fff)", border: "1px solid var(--border,#e5e7eb)", borderRadius: 12, padding: 32, textAlign: "center" }}>
-          <div style={{ fontSize: "2rem", marginBottom: 8 }}>📋</div>
+          <div style={{ marginBottom: 8, color: "var(--text-muted,#94a3b8)" }}><ClipboardList size={32} strokeWidth={1.8} /></div>
           <div style={{ fontWeight: 700, fontSize: ".95rem", marginBottom: 6 }}>{data.message}</div>
           <div style={{ fontSize: ".82rem", color: "var(--text-muted,#64748b)" }}>Formula content is being added. Check back soon.</div>
         </div>
@@ -1162,7 +1165,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
           {/* Chapter sidebar */}
           {!search && !diffFilter && (
             <div data-testid="chapter-sidebar" style={{ width: 190, flexShrink: 0, minWidth: 140 }}>
-              <div style={{ fontWeight: 700, fontSize: ".7rem", color: "var(--text-muted,#94a3b8)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 8 }}>Chapters</div>
+              <div style={{ fontWeight: 700, fontSize: ".68rem", color: "var(--text-muted,#94a3b8)", textTransform: "uppercase", letterSpacing: ".05em", marginBottom: 8 }}>Chapters</div>
               {data.chapters.map(ch => (
                 <button key={ch.chapter_id} data-testid={"chapter-btn-"+ch.chapter_id}
                   onClick={() => setActiveChapter(ch.chapter_id)}
@@ -1174,7 +1177,7 @@ export default function FormulaSheetPage({ user, setActivePage }) {
                     background: activeChapter===ch.chapter_id ? "#6366f1" : "var(--surface2,#f1f5f9)",
                     color: activeChapter===ch.chapter_id ? "#fff" : "var(--text,#374151)" }}>
                   {ch.chapter_name}
-                  {ch.locked && <span style={{ marginLeft: 4, fontSize: ".62rem", opacity: .7 }}>🔒</span>}
+                  {ch.locked && <Lock size={9} strokeWidth={2.6} style={{ marginLeft: 4, opacity: .7, verticalAlign: "middle" }} />}
                   <span style={{ float: "right", fontSize: ".62rem", opacity: .55 }}>{ch.unlocked_count}/{ch.total_formulas}</span>
                 </button>
               ))}

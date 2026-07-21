@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logoImg from "../assets/AITutorLogo1.png";
-import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Star, Heart } from "lucide-react";
+import { BookOpen, MessageCircle, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Star, Heart, Calculator, Languages, Headphones } from "lucide-react";
 import "./LandingPage.css";
 
 export default function LandingPage({ onShowLogin, onShowSignup }) {
@@ -23,10 +23,10 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       .catch(() => {});
   }, []);
   const faqs = [
-    { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, and CUET UG." },
-    { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center provides JEE Main, NEET UG, and CUET UG preparation with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, AI explanations, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It is included in the Premium plan at no extra cost." },
+    { q: "Which classes and boards are supported?", a: "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT." },
+    { q: "What is the Exam Prep Center for Grade 11 & 12?", a: "The Exam Prep Center covers six exams: JEE Main, NEET UG, and CUET UG with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It also covers SAT, IELTS, and TOEFL iBT for students planning to study abroad, with exam-authentic practice for each format. It is included in the Premium plan at no extra cost." },
     { q: "Does the AI use real textbooks or make things up?", a: "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
-    { q: "How many practice questions are available?", a: "LikhaPoha AI has 90,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including JEE Main, NEET UG, and CUET UG question banks for Grade 11 & 12." },
+    { q: "How many practice questions are available?", a: "LikhaPoha AI has 90,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT for Grade 11 & 12." },
     { q: "Is there a mobile app?", a: "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
     { q: "Can I manage multiple children on the Parent Dashboard?", a: "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
     { q: "What does the Parent Dashboard show?", a: "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children and manage subscription plans." },
@@ -46,13 +46,16 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
   const missionCards = [
     { icon: <BookOpen size={20} strokeWidth={2}/>, t: "Strictly NCERT-grounded", d: "No hallucinations — only textbook facts" },
     { icon: <ShieldCheck size={20} strokeWidth={2}/>, t: "Safe for children", d: "Academic guardrail blocks off-topic content" },
-    { icon: <Globe size={20} strokeWidth={2}/>, t: "Free to start", d: "Core platform is free. Try premium features from ₹99 for 8 days." },
-    { icon: <GraduationCap size={20} strokeWidth={2}/>, t: "All grades covered", d: "Grade 5 through 12 + JEE, NEET, CUET" },
+    { icon: <Globe size={20} strokeWidth={2}/>, t: "Free to start", d: "Core platform is free. Upgrade to Premium anytime for full access." },
+    { icon: <GraduationCap size={20} strokeWidth={2}/>, t: "All grades covered", d: "Grade 5 through 12 + JEE, NEET, CUET, SAT, IELTS, TOEFL" },
   ];
   const examPrepCards = [
     { icon: <Monitor size={24} strokeWidth={2}/>, color: "#6366f1", title: "JEE Main Simulator", desc: "NTA-style interface — one question at a time, floating countdown timer, question palette, Mark & Next, basic calculator. Physics, Chemistry, Mathematics." },
     { icon: <FlaskConical size={24} strokeWidth={2}/>, color: "#10b981", title: "NEET UG Prep", desc: "Physics, Chemistry, Biology with NCERT-exact terminology. Subject-wise topic priority cards showing weightage and key subtopics." },
     { icon: <Landmark size={24} strokeWidth={2}/>, color: "#f59e0b", title: "CUET UG Prep", desc: "All streams — Science, Commerce, Humanities. English, General Test, and domain subjects with curated practice questions." },
+    { icon: <Calculator size={24} strokeWidth={2}/>, color: "#3b82f6", title: "Digital SAT Prep", desc: "Adaptive-format practice for Reading & Writing and Math. Accepted by 1,900+ US universities. No negative marking." },
+    { icon: <Languages size={24} strokeWidth={2}/>, color: "#8b5cf6", title: "IELTS Academic Prep", desc: "Listening, Reading, Writing & Speaking practice with band-score guidance for university admissions worldwide." },
+    { icon: <Headphones size={24} strokeWidth={2}/>, color: "#06b6d4", title: "TOEFL iBT Prep", desc: "Authentic academic passages and lecture-style listening practice for US and global university admissions." },
   ];
   return (
     <div className="lp">
@@ -64,7 +67,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         </div>
       </nav>
       <div className="lp-hero">
-        <div className="lp-badge">&#127470;&#127475; Built for India &middot; Grade 5&ndash;12 &middot; CBSE &middot; JEE &middot; NEET &middot; CUET</div>
+        <div className="lp-badge">&#127470;&#127475; Built for India &middot; Grade 5&ndash;12 &middot; CBSE &middot; JEE &middot; NEET &middot; CUET &middot; SAT &middot; IELTS &middot; TOEFL</div>
         <h1>Every Child Deserves a<br /><span className="lp-gr">Personal AI Tutor</span></h1>
         <p>NCERT-grounded lessons, instant doubt solving, Grade 11&ndash;12 competitive exam prep, and real-time parent insights &mdash; Grade 5 to Grade 12, anytime, anywhere.</p>
         <div className="lp-hcta">
@@ -175,8 +178,8 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       </div></div>
       {/* Exam Prep Center — Grade 11 & 12 */}
       <div className="lp-sw" style={{background:"linear-gradient(135deg,rgba(99,102,241,.06),rgba(139,92,246,.04))"}}>
-        <div className="lp-sh"><div className="lp-ey" style={{color:"#8b5cf6"}}>Grade 11 & 12 &mdash; New!</div><h2 style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Target size={22} strokeWidth={2}/> Exam Prep Center &mdash; JEE, NEET & CUET</h2><p>Curated question bank + NTA-style simulators for Grade 11 & 12 students aiming for top colleges.</p></div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,maxWidth:900,margin:"0 auto 8px"}}>
+        <div className="lp-sh"><div className="lp-ey" style={{color:"#8b5cf6"}}>Grade 11 & 12 &mdash; New!</div><h2 style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Target size={22} strokeWidth={2}/> Exam Prep Center</h2><p>JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT — curated question banks and exam-authentic simulators for Indian competitive exams and global study-abroad tests, all in one place.</p></div>
+        <div className="lp-examgrid" style={{maxWidth:900,margin:"0 auto 8px"}}>
           {examPrepCards.map(f=>(
             <div key={f.title} style={{background:"#1e293b",border:"1px solid "+f.color+"44",borderRadius:12,padding:"18px 16px"}}>
               <div style={{marginBottom:10,color:f.color}}>{f.icon}</div>
@@ -190,7 +193,6 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
       <div className="lp-sw" id="pricing">
         <div className="lp-sh"><div className="lp-ey">Simple Pricing</div><h2>Choose Your Plan</h2><p>Start free &middot; No hidden charges</p></div>
         <div className="lp-pg">
-          <div className="lp-prc"><div className="lp-prname">Premium Nano</div><div className="lp-pramount">&#8377;99<span>/8 days</span></div><div className="lp-prdesc">Experience the complete learning platform before committing to a monthly plan.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Exemplar Research & Lessons</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("free")}>Start 8-Day Access</button></div>
           <div className="lp-prc pop"><div className="lp-popb" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5}}><Star size={13} strokeWidth={2} fill="currentColor"/> Most Popular</div><div className="lp-prname">Premium</div><div className="lp-pramount">&#8377;299<span>/month</span></div><div className="lp-prdesc">Best for serious CBSE exam prep — unlimited AI lessons, doubts, and mock tests every month.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Parent dashboard + alerts</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Priority support</div><button className="lp-bpro lp-bpfill" onClick={() => handleCta("starter")}>Choose Premium</button></div>
           <div className="lp-prc"><div className="lp-prname">Family Premium</div><div className="lp-pramount">&#8377;499<span>/month</span></div><div className="lp-prdesc">Full platform access for two children — everything in Premium, shared family plan.</div><div className="lp-prf">All CBSE subjects &middot; All grades</div><div className="lp-prf">Unlimited doubt solving</div><div className="lp-prf">Full question bank access</div><div className="lp-prf">Unlimited mock tests</div><div className="lp-prf">Up to 2 children</div><div className="lp-prf">Parent dashboard + analytics</div><div className="lp-prf">Exemplar Research & Lessons</div><div className="lp-prf">Multi-parent access</div><button className="lp-bpro lp-bpout" onClick={() => handleCta("family_premium")}>Get Family Premium</button></div>
         </div>
@@ -253,7 +255,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
 
       <footer className="lp-footer">
         <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>
-        <p>AI-Powered Tutor for CBSE &middot; Grade 5&ndash;12 &middot; JEE &middot; NEET &middot; CUET</p>
+        <p>AI-Powered Tutor for CBSE &middot; Grade 5&ndash;12 &middot; JEE &middot; NEET &middot; CUET &middot; SAT &middot; IELTS &middot; TOEFL</p>
         <div style={{marginTop:"16px"}}>
           <a href="#">Home</a>
           <a href="#features">Features</a>

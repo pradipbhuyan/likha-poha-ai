@@ -660,9 +660,13 @@ class TestSubscriptionParity:
         # Frontend overrides this with isPublic=false to hide the "Buy" button
         assert free_tier["price"] == 0
 
-    def test_nano_is_purchasable(self):
-        """Nano plan must be publicly available for purchase."""
-        assert DEFAULT_SUBSCRIPTION_PLANS["free"].get("is_public") is True
+    def test_nano_is_discontinued(self):
+        """Nano plan is discontinued from public sale — hidden and unpurchasable.
+
+        Existing Nano subscribers keep their access: subscription_resolver_service's
+        legacy-Nano branch identifies them independently of is_public.
+        """
+        assert DEFAULT_SUBSCRIPTION_PLANS["free"].get("is_public") is False
 
     def test_starter_is_purchasable(self):
         """Premium plan must be publicly available."""
