@@ -584,6 +584,75 @@ def estimate_cost(
     return round(input_cost + output_cost, 6)
 
 
+def ask_openai_direct(
+    system_prompt: str,
+    user_prompt: str,
+    username: str = "unknown",
+    feature: str = "prewarm",
+    model: str = DEFAULT_TEXT_MODEL,
+) -> str:
+    """
+    Call OpenAI directly, bypassing the admin-configured global `provider`
+    switch (ask_llm() routes ALL calls through whichever provider is active
+    platform-wide — NVIDIA, Venice, etc — regardless of the `model` argument).
+
+    For admin/prewarm tooling that must run on a SPECIFIC OpenAI model
+    (e.g. gpt-4.1-nano) without depending on — or temporarily changing —
+    the live provider setting that student-facing traffic is currently using.
+
+    Never call this from a student-facing request path; use ask_llm() there
+    so admin provider/fallback/kill-switch controls keep working.
+    """
+    from fastapi import HTTPException  # noqa: PLC0415
+
+    current = get_effective_settings()
+    if not current.get("api_enabled", True):
+        raise HTTPException(
+            status_code=503,
+            detail="AI API is currently disabled. The admin can re-enable it from the Admin Control page.",
+        )
+
+    client = get_openai_client()
+    t_start = time.perf_counter()
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.4,
+    )
+    duration_ms = round((time.perf_counter() - t_start) * 1000)
+
+    usage = getattr(response, "usage", None)
+    prompt_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
+    completion_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
+    estimated_cost = estimate_cost(prompt_tokens, completion_tokens, model=model)
+
+    _log.info(
+        "llm.call_success",
+        provider="openai_direct",
+        model=model,
+        feature=feature,
+        username=username,
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=prompt_tokens + completion_tokens,
+        estimated_cost_usd=estimated_cost,
+        duration_ms=duration_ms,
+    )
+    log_ai_usage(
+        username=username,
+        feature=feature,
+        model=model,
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=prompt_tokens + completion_tokens,
+        estimated_cost=estimated_cost,
+    )
+    return response.choices[0].message.content
+
+
 # ---------------------------------------------------------------------------
 # Fallback provider helper
 # ---------------------------------------------------------------------------

@@ -8,7 +8,7 @@ Grade 10,English,Supplementary Reader - Chapter 6: The Making of a Scientist,CBS
 Grade 10,English,Supplementary Reader - Chapter 7: The Necklace,CBSE,CBSE,6,6,6,0,stored
 Grade 10,English,Supplementary Reader - Chapter 8: Bholi,CBSE,CBSE,6,6,6,0,stored
 Grade 10,English,Supplementary Reader - Chapter 9: The Book That Saved the Earth,CBSE,CBSE,6,6,6,0,stored
-Grade 10,English,Text Book - Chapter 1: A Letter to God,CBSE,CBSE,6,6,0,0,already_stored
+Grade 10,English,Text Book - Chapter 1: A Letter to God,CBSE,CBSE,6,6,6,0,stored
 Grade 10,English,Text Book - Chapter 2: Nelson Mandela: Long Walk to Freedom,CBSE,CBSE,6,6,6,0,stored
 Grade 10,English,Text Book - Chapter 3: Two Stories about Flying,CBSE,CBSE,6,6,6,0,stored
 Grade 10,English,Text Book - Chapter 4: From the Diary of Anne Frank,CBSE,CBSE,6,6,6,0,stored
@@ -43,7 +43,7 @@ Grade 10,Maths,Chapter 11: Areas Related to Circles,CBSE,CBSE,6,6,6,0,stored
 Grade 10,Maths,Chapter 12: Surface Areas and Volumes,CBSE,CBSE,6,6,6,0,stored
 Grade 10,Maths,Chapter 13: Statistics,CBSE,CBSE,6,6,6,1,stored
 Grade 10,Maths,Chapter 14: Probability,CBSE,CBSE,6,6,6,0,stored
-Grade 10,Maths,Chapter 1: Real Numbers,CBSE,CBSE,6,6,0,0,already_stored
+Grade 10,Maths,Chapter 1: Real Numbers,CBSE,CBSE,6,6,6,0,stored
 Grade 10,Maths,Chapter 2: Polynomials,CBSE,CBSE,6,6,6,0,stored
 Grade 10,Maths,Chapter 3: Pair of Linear Equations in Two Variables,CBSE,CBSE,6,6,6,0,stored
 Grade 10,Maths,Chapter 4: Quadratic Equations,CBSE,CBSE,6,6,6,1,stored
@@ -289,7 +289,7 @@ Grade 11,Physics,Physical World,CBSE,CBSE,5,6,5,0,stored
 Grade 11,Physics,Systems of Particles and Rotational Motion,CBSE,CBSE,5,6,5,0,stored
 Grade 11,Physics,Thermal Properties of Matter,CBSE,CBSE,5,6,5,0,stored
 Grade 11,Physics,Thermodynamics,CBSE,CBSE,5,6,5,0,stored
-Grade 11,Physics,Units and Measurements,CBSE,CBSE,6,6,0,0,already_stored
+Grade 11,Physics,Units and Measurements,CBSE,CBSE,6,6,6,0,stored
 Grade 11,Physics,"Work, Energy and Power",CBSE,CBSE,5,6,5,0,stored
 Grade 11,Political Science,Citizenship,CBSE,CBSE,5,6,5,0,stored
 Grade 11,Political Science,Constitution: Why and How?,CBSE,CBSE,5,6,5,0,stored
@@ -497,7 +497,7 @@ Grade 5,EVS,Chapter 6: Some Unique Places,CBSE,CBSE,3,3,3,0,stored
 Grade 5,EVS,Chapter 7: Energy — How Things Work,CBSE,CBSE,3,3,3,0,stored
 Grade 5,EVS,Chapter 8: Clothes — How Things are Made,CBSE,CBSE,3,3,3,0,stored
 Grade 5,EVS,Chapter 9: Rhythms of Nature,CBSE,CBSE,3,3,3,0,stored
-Grade 5,English,1. Papa's Spectacles,CBSE,CBSE,6,3,0,0,already_stored
+Grade 5,English,1. Papa's Spectacles,CBSE,CBSE,6,3,3,0,stored
 Grade 5,English,10. Glass Bangles,CBSE,CBSE,3,3,3,0,stored
 Grade 5,English,2. Gone with the Scooter,CBSE,CBSE,3,3,3,0,stored
 Grade 5,English,3. The Rainbow,CBSE,CBSE,3,3,3,0,stored
@@ -536,12 +536,12 @@ Grade 5,Maths,Chapter 8: Weight and Capacity,CBSE,CBSE,3,3,3,0,stored
 Grade 5,Maths,Chapter 9: Coconut Farm,CBSE,CBSE,3,3,3,0,stored
 Grade 5,Maths,Shapes and Angles,CBSE,CBSE,3,3,3,0,stored
 Grade 5,Maths,The Fish Tale,CBSE,CBSE,3,3,3,0,stored
-Grade 6,English,Unit 1: Fables and Folk Tales,CBSE,CBSE,4,4,0,0,already_stored
+Grade 6,English,Unit 1: Fables and Folk Tales,CBSE,CBSE,4,4,4,0,stored
 Grade 6,English,Unit 2: Friendship,CBSE,CBSE,4,4,4,0,stored
 Grade 6,English,Unit 3: Nurturing Nature,CBSE,CBSE,4,4,4,0,stored
 Grade 6,English,Unit 4: Sports and Wellness,CBSE,CBSE,4,4,4,0,stored
 Grade 6,English,Unit 5: Culture and Tradition,CBSE,CBSE,4,4,4,0,stored
-Grade 6,Hindi,1. मातृभूमि,CBSE,CBSE,4,4,0,0,already_stored
+Grade 6,Hindi,1. मातृभूमि,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Hindi,10. परीक्ा,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Hindi,11. चेतक की वीरता,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Hindi,12. हिंद महासागर में छोटा-सा हिंदुस्ान,CBSE,CBSE,4,4,4,0,stored
@@ -557,7 +557,7 @@ Grade 6,Hindi,9. मैया मैं नमहं माखन खायो,C
 Grade 6,Maths,Chapter 1 Patterns in Mathematics,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Maths,Chapter 10 The Other Side of Zero,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Maths,Chapter 2 Lines and Angles,CBSE,CBSE,4,4,4,0,stored
-Grade 6,Maths,Chapter 3 Number Play,CBSE,CBSE,4,4,0,0,already_stored
+Grade 6,Maths,Chapter 3 Number Play,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Maths,Chapter 4 Data Handling and Presentation,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Maths,Chapter 5 Prime Time,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Maths,Chapter 6 Perimeter and Area,CBSE,CBSE,4,4,4,0,stored
@@ -567,7 +567,7 @@ Grade 6,Maths,Chapter 9 Symmetry,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 10: Living Creatures: Exploring their Characteristics,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 11: Nature’s Treasures,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 12: Beyond Earth,CBSE,CBSE,4,4,4,0,stored
-Grade 6,Science,Chapter 1: The Wonderful World of Science,CBSE,CBSE,4,4,0,0,already_stored
+Grade 6,Science,Chapter 1: The Wonderful World of Science,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 2: Diversity in the Living World,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 3: Mindful Eating: A Path to a Healthy Body,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 4: Exploring Magnets,CBSE,CBSE,4,4,4,0,stored
@@ -577,7 +577,7 @@ Grade 6,Science,Chapter 7: Temperature and its Measurement,CBSE,CBSE,4,4,4,0,sto
 Grade 6,Science,Chapter 8: A Journey through States of Water,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Science,Chapter 9: Methods of Separation in Everyday Life,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Social Science,History - Part 4 - 4. Timeline and Sources of History,CBSE,CBSE,4,4,4,0,stored
-Grade 6,Social Science,Text Book - Part 1 - 1. Locating Places on the Earth,CBSE,CBSE,4,4,0,0,already_stored
+Grade 6,Social Science,Text Book - Part 1 - 1. Locating Places on the Earth,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Social Science,Text Book - Part 10 - 10. Grassroots Democracy — Part 1: Governance,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Social Science,Text Book - Part 11 - 11. Grassroots Democracy — Part 2: Local Government in Rural Areas,CBSE,CBSE,4,4,4,0,stored
 Grade 6,Social Science,Text Book - Part 12 - 12. Grassroots Democracy — Part 3: Local Government in Urban Areas,CBSE,CBSE,4,4,4,0,stored

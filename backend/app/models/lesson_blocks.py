@@ -92,6 +92,54 @@ class RecapBlock(BaseModel):
     body_md: str
 
 
+_VISUAL_TYPES = {"flow", "steps", "cycle", "compare"}
+
+
+class VisualBlock(BaseModel):
+    """Validated structured visual (flow/steps/cycle/compare).
+    Extracted from visual-json fences at conversion time — raw JSON must
+    NEVER reach a renderer as text."""
+    type: Literal["visual"] = "visual"
+    visual: dict
+
+    @field_validator("visual")
+    @classmethod
+    def _valid_visual(cls, v):
+        vtype = v.get("type")
+        if vtype not in _VISUAL_TYPES:
+            raise ValueError(f"visual.type must be one of {_VISUAL_TYPES}")
+        if vtype == "compare":
+            columns, rows = v.get("columns"), v.get("rows")
+            if not (isinstance(columns, list) and len(columns) == 2):
+                raise ValueError("compare visual needs exactly 2 columns")
+            if not (isinstance(rows, list) and 1 <= len(rows) <= 6):
+                raise ValueError("compare visual needs 1-6 rows")
+        else:
+            items = v.get("items")
+            if not (isinstance(items, list) and 2 <= len(items) <= 6
+                    and all(isinstance(i, str) and i.strip() for i in items)):
+                raise ValueError("visual needs 2-6 non-empty string items")
+        return v
+
+
+class ExamQABlock(BaseModel):
+    """Board-style question with model answer — Grades 9-12 Study mode only.
+    Rendered after the recap as a "Board questions" section; the model answer
+    is gated behind an attempt-first reveal."""
+    type: Literal["exam_qa"] = "exam_qa"
+    marks: int = 3
+    year: str = ""          # e.g. "CBSE 2023" when sourced from a PYQ; "" for generated
+    question: str
+    model_answer_md: str
+
+    @field_validator("marks")
+    @classmethod
+    def _marks_range(cls, v):
+        if not (1 <= v <= 10):
+            raise ValueError("marks must be between 1 and 10")
+        return v
+
+
 Block = Annotated[
     Union[
         HookBlock,
@@ -102,6 +150,7 @@ Block = Annotated[
         VocabBlock,
         StudentsAskBlock,
         RecapBlock,
+        VisualBlock,
     ],
     Field(discriminator="type"),
 ]
@@ -124,6 +173,9 @@ class ChapterDoc(BaseModel):
     source: Literal["converted", "prewarm_v2"] = "converted"
     milestones: list[Milestone]
     recap: RecapBlock | None = None
+    # Board-style questions (Grades 9-12) — rendered as a final section by the
+    # Study renderer; Journey (5-8) ignores this list.
+    exam: list[ExamQABlock] = []
 
     @field_validator("milestones")
     @classmethod

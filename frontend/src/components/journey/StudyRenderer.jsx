@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { AlertTriangle, BookOpen, CheckCircle2, GraduationCap, HelpCircle } from "lucide-react";
+import { AlertTriangle, Award, BookOpen, CheckCircle2, GraduationCap, HelpCircle } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
+import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
  * StudyRenderer — Grades 9-12.
@@ -106,6 +107,57 @@ function StudyExample({ block }) {
   );
 }
 
+function ExamQAItem({ item }) {
+  const [revealed, setRevealed] = useState(false);
+  return (
+    <div style={{
+      background: "var(--panel, #fff)", border: "1px solid var(--border, #d6ddeb)",
+      borderRadius: 10, padding: "14px 16px", marginBottom: 12,
+    }}>
+      <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 6 }}>
+        <span style={{
+          background: "var(--accent-soft, #eef3ff)", color: "var(--accent, #2d4a8a)",
+          fontSize: ".68rem", fontWeight: 800, borderRadius: 5, padding: "2px 8px",
+        }}>
+          {item.marks} mark{item.marks === 1 ? "" : "s"}
+        </span>
+        {item.year && (
+          <span style={{
+            background: "var(--border, #f1f5f9)", color: "var(--muted, #64748b)",
+            fontSize: ".68rem", fontWeight: 700, borderRadius: 5, padding: "2px 8px",
+          }}>
+            {item.year}
+          </span>
+        )}
+      </div>
+      <div style={{ fontSize: ".92rem", fontWeight: 600, lineHeight: 1.55 }}>
+        <LessonMarkdown unwrapParagraph>{item.question}</LessonMarkdown>
+      </div>
+      {revealed ? (
+        <div className="lesson-section-body" style={{
+          borderTop: "1px dashed var(--border, #d6ddeb)", marginTop: 10, paddingTop: 10,
+          fontSize: ".9rem", lineHeight: 1.6,
+        }}>
+          <LessonMarkdown>{item.model_answer_md}</LessonMarkdown>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setRevealed(true)}
+          style={{
+            marginTop: 10, font: "inherit", fontSize: ".8rem", fontWeight: 700,
+            color: "var(--accent, #2d4a8a)", background: "none",
+            border: "1px solid var(--border, #c3cfe6)", borderRadius: 7,
+            padding: "5px 12px", cursor: "pointer",
+          }}
+        >
+          Show model answer
+        </button>
+      )}
+    </div>
+  );
+}
+
 function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
   switch (block.type) {
     case "hook":
@@ -165,6 +217,12 @@ function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
               </li>
             ))}
           </ul>
+        </div>
+      );
+    case "visual":
+      return (
+        <div style={{ margin: "12px 0" }}>
+          <StructuredVisualBlock raw={JSON.stringify(block.visual)} />
         </div>
       );
     case "students_ask":
@@ -230,6 +288,14 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             Recap
           </a>
         )}
+        {doc.exam?.length > 0 && (
+          <a href="#study-exam" style={{
+            display: "block", padding: "7px 14px", textDecoration: "none",
+            color: "var(--text, #374151)", fontWeight: 500, borderLeft: "3px solid transparent",
+          }}>
+            Board questions ({doc.exam.length})
+          </a>
+        )}
       </nav>
 
       {/* Document */}
@@ -265,6 +331,21 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             <div className="lesson-section-body" style={{ fontSize: ".92rem", lineHeight: 1.65 }}>
               <LessonMarkdown>{doc.recap.body_md}</LessonMarkdown>
             </div>
+          </section>
+        )}
+
+        {doc.exam?.length > 0 && (
+          <section id="study-exam" style={{ scrollMarginTop: 90, marginTop: 28 }}>
+            <h3 style={{
+              fontSize: "1.12rem", margin: "0 0 10px", display: "flex", alignItems: "center", gap: 8,
+              paddingBottom: 8, borderBottom: "1px solid var(--border, #e5e7eb)",
+            }}>
+              <Award size={17} strokeWidth={2.3} color="var(--accent, #2d4a8a)" aria-hidden="true" />
+              Board questions
+            </h3>
+            {doc.exam.map((item, index) => (
+              <ExamQAItem key={index} item={item} />
+            ))}
           </section>
         )}
       </div>

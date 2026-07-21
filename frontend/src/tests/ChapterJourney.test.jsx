@@ -51,6 +51,15 @@ const SAMPLE_DOC = {
     },
   ],
   recap: { type: "recap", body_md: "Matter has three states." },
+  exam: [
+    {
+      type: "exam_qa",
+      marks: 3,
+      year: "CBSE 2023",
+      question: "Define matter with two examples.",
+      model_answer_md: "Matter occupies space and has mass. Examples: air, water.",
+    },
+  ],
 };
 
 const USER = { username: "test_user" };
@@ -106,6 +115,33 @@ describe("StudyRenderer (Grades 9-12)", () => {
     expect(screen.queryByText(/60 km\/h/i)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /show the solution/i }));
     expect(screen.getByText(/60 km\/h/i)).toBeInTheDocument();
+  });
+});
+
+describe("StudyRenderer board questions", () => {
+  test("renders exam_qa with marks tag and gated model answer; Journey ignores it", () => {
+    const { unmount } = render(
+      <StudyRenderer
+        doc={SAMPLE_DOC}
+        quizAnswers={{}}
+        onQuickCheckAnswer={() => {}}
+        activeMilestone={0}
+        onNavigate={() => {}}
+      />
+    );
+    // Appears twice: outline link + section heading
+    expect(screen.getAllByText(/board questions/i)).toHaveLength(2);
+    expect(screen.getByText("3 marks")).toBeInTheDocument();
+    expect(screen.getByText("CBSE 2023")).toBeInTheDocument();
+    expect(screen.queryByText(/occupies space and has mass/i)).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /show model answer/i }));
+    expect(screen.getByText(/occupies space and has mass/i)).toBeInTheDocument();
+    unmount();
+
+    render(
+      <JourneyRenderer doc={SAMPLE_DOC} xp={0} quizAnswers={{}} onQuickCheckAnswer={() => {}} />
+    );
+    expect(screen.queryByText(/board questions/i)).not.toBeInTheDocument();
   });
 });
 

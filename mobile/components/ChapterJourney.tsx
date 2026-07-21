@@ -19,8 +19,18 @@ import { Feather } from "@expo/vector-icons";
 
 // ── Block / doc types (mirror backend app/models/lesson_blocks.py) ───────────
 export interface KeyTerm { term: string; meaning: string; }
+export interface VisualSpec {
+  type: "flow" | "steps" | "cycle" | "compare";
+  title?: string;
+  items?: string[];
+  columns?: string[];
+  rows?: string[][];
+  note?: string;
+}
 export interface ChapterBlock {
-  type: "hook" | "concept" | "example" | "quickcheck" | "watchout" | "vocab" | "students_ask" | "recap";
+  type: "hook" | "concept" | "example" | "quickcheck" | "watchout" | "vocab" | "students_ask" | "recap" | "visual";
+  // visual
+  visual?: VisualSpec;
   // hook
   text?: string;
   // concept
@@ -40,12 +50,19 @@ export interface ChapterBlock {
   answer_md?: string;
 }
 export interface ChapterMilestone { title: string; blocks: ChapterBlock[]; }
+export interface ExamQAItem {
+  marks: number;
+  year?: string;
+  question: string;
+  model_answer_md: string;
+}
 export interface ChapterDocData {
   grade: string;
   subject: string;
   chapter: string;
   milestones: ChapterMilestone[];
   recap?: { body_md: string } | null;
+  exam?: ExamQAItem[];
 }
 
 type RenderMarkdown = (content: string, accent: string) => ReactNode;
@@ -186,6 +203,106 @@ function ExampleBlockView({ block, accent, junior, renderMarkdown }: {
   );
 }
 
+// ── Structured visual (flow/steps/cycle/compare) — native rendering ──────────
+function VisualCard({ visual, accent }: { visual: VisualSpec; accent: string }) {
+  if (visual.type === "compare" && visual.columns && visual.rows) {
+    return (
+      <View style={[cjStyles.visualBox, { borderColor: accent + "55" }]}>
+        {visual.title ? <Text style={[cjStyles.visualTitle, { color: accent }]}>{visual.title}</Text> : null}
+        <View style={cjStyles.visualCompareHeader}>
+          {visual.columns.map((column, i) => (
+            <Text key={i} style={[cjStyles.visualCompareCol, { color: accent }]}>{column}</Text>
+          ))}
+        </View>
+        {visual.rows.map((row, ri) => (
+          <View key={ri} style={cjStyles.visualCompareRow}>
+            {(row ?? []).slice(0, 2).map((cell, ci) => (
+              <Text key={ci} style={cjStyles.visualCompareCell}>{cell}</Text>
+            ))}
+          </View>
+        ))}
+        {visual.note ? <Text style={cjStyles.visualNote}>{visual.note}</Text> : null}
+      </View>
+    );
+  }
+  const items = visual.items ?? [];
+  if (items.length === 0) return null;
+  return (
+    <View style={[cjStyles.visualBox, { borderColor: accent + "55" }]}>
+      {visual.title ? <Text style={[cjStyles.visualTitle, { color: accent }]}>{visual.title}</Text> : null}
+      {items.map((item, i) => (
+        <View key={i} style={cjStyles.visualStepRow}>
+          <View style={[cjStyles.visualStepDot, { backgroundColor: accent }]}>
+            <Text style={cjStyles.visualStepDotText}>{i + 1}</Text>
+          </View>
+          <Text style={cjStyles.visualStepText}>{item}</Text>
+          {i < items.length - 1 || visual.type === "cycle" ? (
+            <Feather
+              name={visual.type === "cycle" && i === items.length - 1 ? "rotate-ccw" : "arrow-down"}
+              size={13}
+              color="#9ca3af"
+              style={{ marginLeft: 6 }}
+            />
+          ) : null}
+        </View>
+      ))}
+      {visual.note ? <Text style={cjStyles.visualNote}>{visual.note}</Text> : null}
+    </View>
+  );
+}
+
+// ── Safety net: never render raw visual-json inside markdown ─────────────────
+// Old stored docs (or any stray content) may still carry visual-json payloads
+// in body_md. Extract parseable ones and render them natively; drop the rest.
+const FENCED_VISUAL_RE = /```+\s*visual-json\s*\n?([\s\S]*?)```+/gi;
+const LOOSE_VISUAL_RE = /(?:^|\n)[ \t]*visual-json[ \t]*\n[ \t]*(\{.*?\})[ \t]*(?=\n|$)/gi;
+
+function extractVisualsFromMarkdown(content: string): { text: string; visuals: VisualSpec[] } {
+  const visuals: VisualSpec[] = [];
+  const capture = (_match: string, payload: string) => {
+    try {
+      const parsed = JSON.parse(payload.trim());
+      if (parsed && ["flow", "steps", "cycle", "compare"].includes(parsed.type)) {
+        visuals.push(parsed);
+      }
+    } catch {
+      // Unparseable — drop from text, never show raw JSON
+    }
+    return "";
+  };
+  let text = (content ?? "").replace(FENCED_VISUAL_RE, capture);
+  text = text.replace(LOOSE_VISUAL_RE, (m, payload) => "\n" + capture(m, payload));
+  text = text.replace(/(?:^|\n)[ \t]*visual-json[ \t]*(?=\n|$)/gi, "\n");
+  return { text: text.trim(), visuals };
+}
+
+// ── Board question (Grades 9-12) — attempt-first model answer ────────────────
+function ExamQACard({ item, renderMarkdown }: { item: ExamQAItem; renderMarkdown: RenderMarkdown }) {
+  const [revealed, setRevealed] = useState(false);
+  return (
+    <View style={cjStyles.examCard}>
+      <View style={cjStyles.examBadgeRow}>
+        <View style={cjStyles.examMarksBadge}>
+          <Text style={cjStyles.examMarksText}>{item.marks} mark{item.marks === 1 ? "" : "s"}</Text>
+        </View>
+        {item.year ? (
+          <View style={cjStyles.examYearBadge}>
+            <Text style={cjStyles.examYearText}>{item.year}</Text>
+          </View>
+        ) : null}
+      </View>
+      <Text style={cjStyles.question}>{item.question}</Text>
+      {revealed ? (
+        <View style={cjStyles.examAnswer}>{renderMarkdown(item.model_answer_md, "#2d4a8a")}</View>
+      ) : (
+        <TouchableOpacity style={[cjStyles.revealBtn, { borderColor: "#2d4a8a" }]} onPress={() => setRevealed(true)}>
+          <Text style={[cjStyles.revealBtnText, { color: "#2d4a8a" }]}>Show model answer</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function ChapterJourney({ doc, grade, renderMarkdown }: {
   doc: ChapterDocData; grade: string; renderMarkdown: RenderMarkdown;
@@ -194,6 +311,20 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
   const palette = junior ? JOURNEY_CARDS : STUDY_CARDS;
   const [xp, setXp] = useState(0);
   const [checksDone, setChecksDone] = useState(0);
+
+  // Wrap the injected markdown renderer with the visual-json safety net:
+  // parseable visuals render natively, raw JSON never reaches the screen.
+  function renderBody(content: string, accent: string) {
+    const { text, visuals } = extractVisualsFromMarkdown(content);
+    return (
+      <View>
+        {text ? renderMarkdown(text, accent) : null}
+        {visuals.map((visual, i) => (
+          <VisualCard key={i} visual={visual} accent={accent} />
+        ))}
+      </View>
+    );
+  }
 
   const totalChecks = useMemo(
     () => doc.milestones.reduce((n, m) => n + m.blocks.filter(b => b.type === "quickcheck").length, 0),
@@ -217,13 +348,13 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
       case "concept":
         return (
           <CardShell key={key} palette={palette} type="concept" title={block.title}>
-            {renderMarkdown(block.body_md ?? "", accent)}
+            {renderBody(block.body_md ?? "", accent)}
           </CardShell>
         );
       case "example":
         return (
           <CardShell key={key} palette={palette} type="example">
-            <ExampleBlockView block={block} accent={accent} junior={junior} renderMarkdown={renderMarkdown} />
+            <ExampleBlockView block={block} accent={accent} junior={junior} renderMarkdown={renderBody} />
           </CardShell>
         );
       case "quickcheck":
@@ -240,7 +371,7 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
       case "watchout":
         return (
           <CardShell key={key} palette={palette} type="watchout">
-            {renderMarkdown(block.body_md ?? "", accent)}
+            {renderBody(block.body_md ?? "", accent)}
           </CardShell>
         );
       case "vocab":
@@ -254,10 +385,14 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
             ))}
           </CardShell>
         );
+      case "visual":
+        return block.visual ? (
+          <VisualCard key={key} visual={block.visual} accent={(palette.concept ?? JOURNEY_CARDS.concept).accent} />
+        ) : null;
       case "students_ask":
         return (
           <CardShell key={key} palette={palette} type="students_ask">
-            <StudentsAsk block={block} accent={accent} renderMarkdown={renderMarkdown} />
+            <StudentsAsk block={block} accent={accent} renderMarkdown={renderBody} />
           </CardShell>
         );
       default:
@@ -311,9 +446,24 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
       {/* Recap */}
       {doc.recap?.body_md ? (
         <CardShell palette={palette} type="recap">
-          {renderMarkdown(doc.recap.body_md, (palette.recap ?? palette.concept).accent)}
+          {renderBody(doc.recap.body_md, (palette.recap ?? palette.concept).accent)}
         </CardShell>
       ) : null}
+
+      {/* Board questions — Grades 9-12 only */}
+      {!junior && (doc.exam ?? []).length > 0 && (
+        <View>
+          <View style={cjStyles.milestoneRow}>
+            <View style={[cjStyles.milestoneDot, { backgroundColor: "#2d4a8a" }]}>
+              <Feather name="award" size={13} color="#fff" />
+            </View>
+            <Text style={cjStyles.milestoneTitle}>Board questions</Text>
+          </View>
+          {(doc.exam ?? []).map((item, index) => (
+            <ExamQACard key={index} item={item} renderMarkdown={renderBody} />
+          ))}
+        </View>
+      )}
 
       {/* Finish card */}
       <View style={[cjStyles.finishCard, { backgroundColor: junior ? "#0e9488" : "#2d4a8a" }]}>
@@ -361,6 +511,24 @@ const cjStyles = StyleSheet.create({
   milestoneDot: { width: 26, height: 26, borderRadius: 13, alignItems: "center", justifyContent: "center" },
   milestoneDotText: { color: "#fff", fontSize: 12, fontWeight: "800" },
   milestoneTitle: { fontSize: 16, fontWeight: "800", color: "#111827", flex: 1 },
+  visualBox: { backgroundColor: "#fff", borderWidth: 1.5, borderRadius: 12, padding: 14, marginTop: 8, marginBottom: 10 },
+  visualTitle: { fontSize: 13, fontWeight: "800", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.4 },
+  visualStepRow: { flexDirection: "row", alignItems: "center", marginBottom: 8 },
+  visualStepDot: { width: 22, height: 22, borderRadius: 11, alignItems: "center", justifyContent: "center", marginRight: 10, flexShrink: 0 },
+  visualStepDotText: { color: "#fff", fontSize: 11, fontWeight: "800" },
+  visualStepText: { fontSize: 14, color: "#1f2937", lineHeight: 20, flexShrink: 1 },
+  visualCompareHeader: { flexDirection: "row", gap: 10, marginBottom: 6 },
+  visualCompareCol: { flex: 1, fontSize: 13, fontWeight: "800" },
+  visualCompareRow: { flexDirection: "row", gap: 10, paddingVertical: 5, borderTopWidth: 1, borderTopColor: "#f1f5f9" },
+  visualCompareCell: { flex: 1, fontSize: 13, color: "#374151", lineHeight: 19 },
+  visualNote: { fontSize: 12, color: "#6b7280", fontStyle: "italic", marginTop: 6 },
+  examCard: { backgroundColor: "#fff", borderWidth: 1, borderColor: "#e2e8f0", borderRadius: 12, padding: 14, marginBottom: 10 },
+  examBadgeRow: { flexDirection: "row", gap: 8, marginBottom: 8 },
+  examMarksBadge: { backgroundColor: "rgba(45,74,138,.1)", borderRadius: 5, paddingHorizontal: 8, paddingVertical: 2 },
+  examMarksText: { fontSize: 11, fontWeight: "800", color: "#2d4a8a" },
+  examYearBadge: { backgroundColor: "#f1f5f9", borderRadius: 5, paddingHorizontal: 8, paddingVertical: 2 },
+  examYearText: { fontSize: 11, fontWeight: "700", color: "#64748b" },
+  examAnswer: { borderTopWidth: 1, borderTopColor: "#e2e8f0", marginTop: 10, paddingTop: 10 },
   finishCard: { borderRadius: 16, padding: 20, alignItems: "center", marginTop: 6, marginBottom: 10 },
   finishTitle: { color: "#fff", fontSize: 16, fontWeight: "800", marginTop: 8, textAlign: "center" },
   finishText: { color: "rgba(255,255,255,.9)", fontSize: 13, textAlign: "center", marginTop: 4, lineHeight: 19 },

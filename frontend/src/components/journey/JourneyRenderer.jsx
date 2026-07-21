@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
+import StructuredVisualBlock from "../StructuredVisualBlock";
 
 /**
  * JourneyRenderer — Grades 5-8.
@@ -250,6 +251,12 @@ function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
       );
     case "students_ask":
       return <StudentsAskCard block={block} />;
+    case "visual":
+      return (
+        <div style={{ marginBottom: 14 }}>
+          <StructuredVisualBlock raw={JSON.stringify(block.visual)} />
+        </div>
+      );
     default:
       return null;
   }
