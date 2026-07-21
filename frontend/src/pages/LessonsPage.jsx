@@ -17,7 +17,6 @@ import {
 } from "../api/lesson";
 import ChapterJourneyView from "../components/journey/ChapterJourneyView";
 import { getDoubtHistory } from "../api/doubt";
-import { generateSpeech, getCachedAudioUrl } from "../api/tts";
 import { getChapterProgress, saveChapterProgress } from "../api/progress";
 import LessonSections from "../components/LessonSections";
 import { saveWeakAreaAlert } from "../api/weakAreaAlerts";
@@ -48,18 +47,6 @@ const TEACHER_PERSONAS = {
   "Storytelling Teacher":
     "Explain concepts using stories, analogies, and real-life examples.",
 };
-
-// Default voice and speed — not exposed in UI, used for narration.
-const DEFAULT_VOICE = "en-IN-NeerjaNeural";
-const HINDI_VOICE   = "hi-IN-SwaraNeural";   // Microsoft Hindi neural voice
-const DEFAULT_SPEECH_RATE = "+0%";
-
-function getVoiceForSubject(subjectName) {
-  /** Pick the right TTS voice based on the subject language. */
-  const s = (subjectName || "").toLowerCase();
-  if (s === "hindi" || s.includes("hindi")) return HINDI_VOICE;
-  return DEFAULT_VOICE;
-}
 
 // ── Dynamic loading messages: subject × step ──────────────────────────────────
 const LOADING_MESSAGES = {
@@ -504,9 +491,6 @@ function LessonsPage({ user, setActivePage }) {
   // handleGenerateLesson(true) to serve the prewarmed lesson without a button click.
   const autoGenerateRef = useRef(false);
 
-  const [audioUrl, setAudioUrl] = useState("");
-  const [ttsLoading, setTtsLoading] = useState(false);
-
   const [practiceModeActive, setPracticeModeActive] = useState(false);
   const [practiceFocusWarnings, setPracticeFocusWarnings] = useState(0);
   const [gifFading, setGifFading] = useState(false);
@@ -673,7 +657,6 @@ function LessonsPage({ user, setActivePage }) {
           savedStepLessons[String(savedStepIndex)] || progress.last_lesson || ""
         );
 
-        setAudioUrl("");
         setSourceInfo(null);
         setFollowUpQuestion("");
         setFollowUpMessages([]);
@@ -885,7 +868,6 @@ function LessonsPage({ user, setActivePage }) {
     /** Clear generated lesson artifacts when the selected topic changes. */
     autoGenerateRef.current = false; // cancel any pending auto-generation
     setLesson("");
-    setAudioUrl("");
     resetTextbookVisualBrowser();
     setSourceInfo(null);
     setFollowUpQuestion("");
@@ -1124,7 +1106,6 @@ function LessonsPage({ user, setActivePage }) {
     setGenerating(true);
     setGifFading(false);
     setLesson("");
-    setAudioUrl("");
     setSourceInfo(null);
     setError("");
     setFollowUpQuestion("");
@@ -1366,45 +1347,6 @@ function LessonsPage({ user, setActivePage }) {
             : item.source_type,
       },
     ]);
-  }
-
-  async function handleReadAloud() {
-    /**
-     * Play lesson audio.
-     * Fast path: check for pre-warmed audio in Supabase Storage (instant, $0).
-     * Fallback: generate via Edge TTS (~15-20s for a full lesson step).
-     */
-    if (!lesson) return;
-
-    setTtsLoading(true);
-    setAudioUrl("");
-
-    try {
-      // ── Fast path: pre-warmed audio cache ────────────────────────────────
-      const cached = await getCachedAudioUrl({
-        grade,
-        subject,
-        chapter,
-        stepTitle,
-      });
-      if (cached?.cached && cached.url) {
-        setAudioUrl(cached.url);
-        return;
-      }
-
-      // ── Fallback: generate via Edge TTS ──────────────────────────────────
-      const url = await generateSpeech({
-        text: lesson,
-        voice: getVoiceForSubject(subject),
-        rate: DEFAULT_SPEECH_RATE,
-      });
-
-      setAudioUrl(url);
-    } catch {
-      setError("Could not generate audio.");
-    } finally {
-      setTtsLoading(false);
-    }
   }
 
   const hasSavedLesson = Boolean(stepLessons[String(currentStepIndex)]);
@@ -1765,7 +1707,7 @@ function LessonsPage({ user, setActivePage }) {
         value={chapter}
         onChange={(e) => {
           setChapter(e.target.value);
-          setLesson(""); setAudioUrl(""); resetTextbookVisualBrowser();
+          setLesson(""); resetTextbookVisualBrowser();
           setSourceInfo(""); setFollowUpQuestion(""); setFollowUpMessages([]);
           resetPracticeState();
         }}
@@ -1797,7 +1739,7 @@ function LessonsPage({ user, setActivePage }) {
           onClick={async () => {
             const upd = { ...stepLessons };
             delete upd[String(currentStepIndex)];
-            setStepLessons(upd); setLesson(""); setAudioUrl("");
+            setStepLessons(upd); setLesson("");
             try { await saveChapterProgress({ username: user.username, grade, mode, board: requestBoard, subject, chapter, current_step_index: currentStepIndex, highest_unlocked_step: highestUnlockedStep, completed: false, last_lesson: "", step_lessons: upd }); } catch (e) { /* non-critical */ }
           }}
           style={{
@@ -1924,7 +1866,6 @@ function LessonsPage({ user, setActivePage }) {
                   onChange={(e) => {
                     setChapter(e.target.value);
                     setLesson("");
-                    setAudioUrl("");
                     resetTextbookVisualBrowser();
                     setSourceInfo(null);
                     setFollowUpQuestion("");
@@ -1954,7 +1895,6 @@ function LessonsPage({ user, setActivePage }) {
                       const newIndex = Number(e.target.value);
                       setCurrentStepIndex(newIndex);
                       setLesson(stepLessons[String(newIndex)] || "");
-                      setAudioUrl("");
                       resetTextbookVisualBrowser();
                       setFollowUpQuestion("");
                       setFollowUpMessages([]);
@@ -2042,7 +1982,6 @@ function LessonsPage({ user, setActivePage }) {
                   delete updatedStepLessons[String(currentStepIndex)];
                   setStepLessons(updatedStepLessons);
                   setLesson("");
-                  setAudioUrl("");
                   // Persist the removal so the DB progress doesn't restore old content
                   try {
                     await saveChapterProgress({
@@ -2082,7 +2021,6 @@ function LessonsPage({ user, setActivePage }) {
                     const newIndex = currentStepIndex - 1;
                     setCurrentStepIndex(newIndex);
                     setLesson(stepLessons[String(newIndex)] || "");
-                    setAudioUrl("");
                     resetTextbookVisualBrowser();
                     setCompleted(false);
                     resetPracticeState();
@@ -2128,7 +2066,6 @@ function LessonsPage({ user, setActivePage }) {
                       setHighestUnlockedStep(newHighestUnlockedStep);
                       setCurrentStepIndex(newIndex);
                       setLesson(stepLessons[String(newIndex)] || "");
-                      setAudioUrl("");
                       resetTextbookVisualBrowser();
                       resetPracticeState();
                       await saveChapterProgress({
@@ -2156,7 +2093,6 @@ function LessonsPage({ user, setActivePage }) {
                     setHighestUnlockedStep(0);
                     setLesson("");
                     setStepLessons({});
-                    setAudioUrl("");
                     resetTextbookVisualBrowser();
                     setCompleted(false);
                     resetPracticeState();
@@ -2218,7 +2154,6 @@ function LessonsPage({ user, setActivePage }) {
                     if (!savedLesson) autoGenerateRef.current = true;
                     setCurrentStepIndex(newIndex);
                     setLesson(savedLesson);
-                    setAudioUrl("");
                     resetTextbookVisualBrowser();
                     setCompleted(false);
                     resetPracticeState();
@@ -2257,7 +2192,6 @@ function LessonsPage({ user, setActivePage }) {
                     setHighestUnlockedStep(newHighest);
                     setCurrentStepIndex(newIndex);
                     setLesson(savedLesson);
-                    setAudioUrl("");
                     resetTextbookVisualBrowser();
                     resetPracticeState();
                     await saveChapterProgress({
@@ -2374,24 +2308,6 @@ function LessonsPage({ user, setActivePage }) {
                     cardStyle={cardStyle}
                     cardTheme={cardTheme}
                   />
-                </div>
-
-
-
-                <div className="lesson-audio-section premium-card">
-                  <button
-                    className="primary-btn lesson-audio-btn"
-                    onClick={handleReadAloud}
-                    disabled={ttsLoading}
-                  >
-                    {ttsLoading ? "Generating Audio..." : "🔊 Listen to Lesson"}
-                  </button>
-
-                  {audioUrl && (
-                    <div className="lesson-audio-player">
-                      <audio controls src={audioUrl} />
-                    </div>
-                  )}
                 </div>
 
                 {!shouldSkipPracticeRequirement() && (
@@ -2969,7 +2885,6 @@ function LessonsPage({ user, setActivePage }) {
                       if (!savedLesson) autoGenerateRef.current = true;
                       setCurrentStepIndex(newIndex);
                       setLesson(savedLesson);
-                      setAudioUrl("");
                       resetTextbookVisualBrowser();
                       setCompleted(false);
                       resetPracticeState();
@@ -2996,7 +2911,6 @@ function LessonsPage({ user, setActivePage }) {
                       setHighestUnlockedStep(newHighest);
                       setCurrentStepIndex(newIndex);
                       setLesson(savedLesson);
-                      setAudioUrl("");
                       resetTextbookVisualBrowser();
                       resetPracticeState();
                       await saveChapterProgress({

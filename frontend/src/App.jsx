@@ -124,7 +124,7 @@ const PAGE_META = {
   lessons: {
     title: "Lessons",
     subtitle:
-      "Generate step-wise AI lessons with narration, progress, and RAG sources.",
+      "Generate step-wise AI lessons with progress and RAG sources.",
     icon: "📖",
   },
   doubt: {
