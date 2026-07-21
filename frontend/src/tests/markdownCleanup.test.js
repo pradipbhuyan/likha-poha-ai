@@ -1,10 +1,12 @@
 import { describe, expect, test } from "vitest";
 
 import {
+  normalizeAdjacentSingleDollarSpans,
   normalizeDollarMath,
   normalizeLatexParentheses,
   normalizeLeftRightDelimiters,
   normalizePlainAlgebra,
+  normalizePlainExponents,
   normalizeSquareBracketMath,
   normalizeTutorMarkdown,
   removeUnsupportedQuestionClosers,
@@ -186,6 +188,61 @@ describe("markdownCleanup", () => {
       ].join("\n")
     );
     expect(result).not.toMatch(/\$\$\$/);
+  });
+
+  // -------------------------------------------------------------------------
+  // Regression: Grade 11 Physics "Units and Measurements" lesson — a DIFFERENT
+  // source of the same 8467c3f3 symptom. The LLM output had ZERO dollar signs
+  // at all ("x = x0 + v0t + (1/2)at^2"); normalizePlainAlgebra wraps the
+  // parenthesised fraction "(1/2)" into "$1/2$", and normalizePlainExponents
+  // then wraps the immediately-following "at^2" into "$at^2$" with nothing
+  // between the two insertions — "$1/2$$at^2$". remark-math requires an
+  // EXACT-length "$" run to close a span (like code-span fencing), so the
+  // "$$" in the middle doesn't close either span; it keeps hunting for a lone
+  // "$" and swallows both spans' content into one malformed expression that
+  // KaTeX fails to parse and renders as raw text — literal "$$" included.
+  // Fix: normalizeAdjacentSingleDollarSpans (final pipeline step) inserts a
+  // space between any two single-$ spans that collided with zero characters
+  // between them, regardless of which earlier step caused the collision.
+  // -------------------------------------------------------------------------
+  test("separates two single-$ spans that collide via a parenthesised-fraction exponent (Grade 11 Physics defect)", () => {
+    const input = "x = x0 + v0t + (1/2)at^2\nv^2 = v0^2 + 2ax";
+
+    const result = normalizeTutorMarkdown(input);
+
+    expect(result).not.toMatch(/\$\$/);
+    expect(result).toContain("$at^2$");
+    expect(result).toContain("$v^2$");
+    expect(result).toContain("$v0^2$");
+  });
+
+  test("normalizeAdjacentSingleDollarSpans inserts a space between colliding spans", () => {
+    expect(normalizeAdjacentSingleDollarSpans("$1/2$$at^2$")).toBe(
+      "$1/2$ $at^2$"
+    );
+  });
+
+  test("normalizeAdjacentSingleDollarSpans leaves genuine display math untouched", () => {
+    expect(normalizeAdjacentSingleDollarSpans("$$x^2$$")).toBe("$$x^2$$");
+    expect(
+      normalizeAdjacentSingleDollarSpans("$$eq1$$$$eq2$$")
+    ).toBe("$$eq1$$$$eq2$$");
+  });
+
+  test("normalizeAdjacentSingleDollarSpans leaves well-separated single spans untouched", () => {
+    expect(normalizeAdjacentSingleDollarSpans("$v^2$ = $v0^2$ + 2ax")).toBe(
+      "$v^2$ = $v0^2$ + 2ax"
+    );
+  });
+
+  test("normalizePlainExponents still wraps an exponent preceded by a space", () => {
+    // Regression guard: the ")" added to normalizePlainExponents' exclusion
+    // lookbehind must exclude ONLY "/", "}", and ")" — not whitespace. A
+    // stray space in that character class would silently stop wrapping the
+    // overwhelmingly common case of "value 10^7" (space before the base).
+    expect(normalizePlainExponents("the value is 10^7 and n^2")).toBe(
+      "the value is $10^7$ and $n^2$"
+    );
   });
 
   test("normalizeSquareBracketMath does not catastrophically backtrack on interval-style brackets", () => {

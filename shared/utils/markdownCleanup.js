@@ -412,12 +412,14 @@ export function normalizePlainExponents(text) {
   return transformOutsideCodeFences(text, (content) =>
     transformOutsideInlineMath(content, (part) =>
       part.replace(
-        // Negative lookbehind (?<![/}]) prevents matching digit-starting bases that
-        // appear after / (fraction denominators: "1/2at^2") or } (LaTeX braces:
-        // "\frac{1}{2}at^2").  Without it, normalizePlainExponents converts "2at^2"
-        // → "$2at^2$", which sits adjacent to a neighbouring "$...$" block and
-        // creates a "$$" junction that remark-math reads as a display-math delimiter.
-        /(?<![/}])\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
+        // Negative lookbehind (?<![/}\)]) prevents matching bases that immediately
+        // follow / (fraction denominators: "1/2at^2"), } (LaTeX braces:
+        // "\frac{1}{2}at^2"), or ) (parenthesised fractions: "(1/2)at^2" — common
+        // physics phrasing for kinematic equations). Without it, normalizePlainExponents
+        // converts "at^2" → "$at^2$" right after a separately-wrapped "(1/2)" → "$1/2$"
+        // span, and the two adjacent closing/opening $ signs form a "$$" junction that
+        // remark-math reads as a display-math delimiter, breaking the whole expression.
+        /(?<![/})])\b([A-Za-z0-9]+)\^(\{[^{}]+\}|\d+)/g,
         (_match, base, exp) => {
           // Wrap multi-digit exponents in {} so KaTeX renders all digits
           // e.g. 10^11 → $10^{11}$ not $10^1$1
@@ -689,6 +691,43 @@ function normalizeOrphanedMathBraces(text) {
   );
 }
 
+/**
+ * Insert a space between two well-formed single-$ math spans that ended up
+ * touching with zero characters between them — "$1/2$$at^2$" — a shape
+ * several EARLIER steps can independently produce (e.g. normalizePlainAlgebra
+ * wrapping a parenthesised fraction like "(1/2)" right before
+ * normalizePlainExponents wraps the very next token, "at^2", with nothing
+ * separating the two insertions). The closing "$" of the first span and the
+ * opening "$" of the second read as one "$$" run to remark-math, which
+ * requires an EXACT-length run to close a span (like code-span fencing) — so
+ * it skips the "$$" entirely and keeps hunting for a lone "$", swallowing
+ * both spans' content into one malformed expression that KaTeX then fails to
+ * parse and falls back to showing as raw text, "$$" and all.
+ *
+ * This is the same visual defect as 8467c3f3 (see test file), but from a
+ * DIFFERENT source: 8467c3f3 was the LLM emitting adjacent "$$eq$$" display
+ * blocks directly; this is the pipeline's OWN later steps colliding two
+ * spans it inserted itself into originally plain (no "$" at all) text.
+ * Deliberately runs LAST, after every other $-inserting step, so it catches
+ * a collision regardless of which earlier step caused it.
+ *
+ * Must NOT touch genuine "$$...$$" display math: the regex requires a
+ * non-"$" character immediately after the first "$" (so it can't start
+ * inside a "$$" open) and requires two SEPARATE content groups, so a lone
+ * "$$X$$" block or two already-adjacent "$$A$$$$B$$" display blocks (the
+ * 8467c3f3 shape, handled earlier by normalizeInlineDisplayMath) both fail
+ * to match here.
+ */
+export function normalizeAdjacentSingleDollarSpans(text) {
+  if (!text || !text.includes("$$")) return text;
+  return transformOutsideCodeFences(text, (content) =>
+    content.replace(
+      /\$([^$\n]+?)\$\$([^$\n]+?)\$/g,
+      (_match, first, second) => `$${first}$ $${second}$`
+    )
+  );
+}
+
 export function normalizeTutorMarkdown(text) {
   /** Normalize common model markdown mistakes before ReactMarkdown renders it.
    *
@@ -713,26 +752,30 @@ export function normalizeTutorMarkdown(text) {
    *  9. normalizePlainAlgebra        — (a+b)^2 → $...$
    * 10. normalizeSquareBracketMath   — [ \LaTeX ] → $$...$$
    * 11. normalizePlainExponents      — 10^7 → $10^{7}$ (outside existing math)
-   * 12. normalizeOrphanedMathBraces  — stray trailing "}" before closing $ → stripped
-   * 13. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
-   * 14. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
-   * 15. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
+   * 12. normalizeAdjacentSingleDollarSpans — "$A$$B$" (steps 8/9/11 colliding
+   *     into each other with nothing between) → "$A$ $B$"
+   * 13. normalizeOrphanedMathBraces  — stray trailing "}" before closing $ → stripped
+   * 14. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 15. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
+   * 16. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
-  return removeUnsupportedQuestionClosers(
-    normalizeInlineMathWordSpacing(
-    normalizeDollarMath(
-      normalizeOrphanedMathBraces(
-      normalizePlainExponents(
-        normalizeSquareBracketMath(
-          normalizePlainAlgebra(normalizeLatexParentheses(normalizeMermaidBlocks(normalizeBulletPoints(
-            normalizeOrphanedDollarSigns(normalizeInlineDisplayMath(
-              normalizeSpacedDollarMath(normalizeNestedDollarSignsInDisplay(normalizeEscapedBracketMath(normalizeLeftRightDelimiters(text))))
-            ))
-          ))))
-        )
-      )
-      )
-    )
-    )
-  );
+  let result = text;
+  result = normalizeLeftRightDelimiters(result);
+  result = normalizeEscapedBracketMath(result);
+  result = normalizeNestedDollarSignsInDisplay(result);
+  result = normalizeSpacedDollarMath(result);
+  result = normalizeInlineDisplayMath(result);
+  result = normalizeOrphanedDollarSigns(result);
+  result = normalizeBulletPoints(result);
+  result = normalizeMermaidBlocks(result);
+  result = normalizeLatexParentheses(result);
+  result = normalizePlainAlgebra(result);
+  result = normalizeSquareBracketMath(result);
+  result = normalizePlainExponents(result);
+  result = normalizeAdjacentSingleDollarSpans(result);
+  result = normalizeOrphanedMathBraces(result);
+  result = normalizeDollarMath(result);
+  result = normalizeInlineMathWordSpacing(result);
+  result = removeUnsupportedQuestionClosers(result);
+  return result;
 }
