@@ -13,13 +13,7 @@ export async function saveTestHistory(payload) {
 
 export async function getUserHistory(username) {
   /** Load one student's historical mock-test results. */
-  const response = await fetch(`${API_BASE_URL}/api/analytics/test-history/${username}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to load user history");
-  }
-
-  return response.json();
+  return authFetch(`/api/analytics/test-history/${username}`);
 }
 
 export async function getLeaderboard() {
@@ -35,41 +29,21 @@ export async function getLeaderboard() {
 
 export async function clearUserHistory(username) {
   /** Delete one student's test-history records. */
-  const response = await fetch(`${API_BASE_URL}/api/analytics/test-history/user/${username}`, {
+  return authFetch(`/api/analytics/test-history/user/${username}`, {
     method: "DELETE",
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to clear user history");
-  }
-
-  return response.json();
 }
 
 export async function clearAllHistory() {
   /** Delete all stored test-history records. */
-  const response = await fetch(`${API_BASE_URL}/api/analytics/test-history`, {
+  return authFetch("/api/analytics/test-history", {
     method: "DELETE",
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to clear all history");
-  }
-
-  return response.json();
 }
 
 export async function getAnalytics(username) {
   /** Load test-history data for the analytics page. */
-  const response = await fetch(
-    `${API_BASE_URL}/api/analytics/test-history/${username}`
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to load analytics");
-  }
-
-  return response.json();
+  return authFetch(`/api/analytics/test-history/${username}`);
 }
 
 export async function saveWrongAnswers({ username, grade, mode, subject, chapter, wrongAnswers }) {
@@ -78,9 +52,8 @@ export async function saveWrongAnswers({ username, grade, mode, subject, chapter
    * wrongAnswers: array of { question_id, question, selected, correct, options, explanation, section, marks }
    */
   try {
-    const response = await fetch(`${API_BASE_URL}/api/analytics/wrong-answers`, {
+    return await authFetch("/api/analytics/wrong-answers", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username,
         grade,
@@ -90,8 +63,6 @@ export async function saveWrongAnswers({ username, grade, mode, subject, chapter
         wrong_answers: wrongAnswers,
       }),
     });
-    if (!response.ok) return { success: false };
-    return response.json();
   } catch {
     return { success: false };
   }
@@ -107,11 +78,7 @@ export async function getWrongAnswersForChapter(username, { subject, chapter } =
     if (subject) params.set("subject", subject);
     if (chapter) params.set("chapter", chapter);
     const qs = params.toString() ? `?${params.toString()}` : "";
-    const response = await fetch(
-      `${API_BASE_URL}/api/analytics/wrong-answers/${encodeURIComponent(username)}${qs}`
-    );
-    if (!response.ok) return { success: false, wrong_answers: [] };
-    return response.json();
+    return await authFetch(`/api/analytics/wrong-answers/${encodeURIComponent(username)}${qs}`);
   } catch {
     return { success: false, wrong_answers: [] };
   }
@@ -124,11 +91,7 @@ export async function getWeakChapters(username) {
    * Returns: { success, weak_chapters: [{ grade, mode, subject, chapter, wrong_count }] }
    */
   try {
-    const response = await fetch(
-      `${API_BASE_URL}/api/analytics/weak-chapters/${encodeURIComponent(username)}`
-    );
-    if (!response.ok) return { success: false, weak_chapters: [] };
-    return response.json();
+    return await authFetch(`/api/analytics/weak-chapters/${encodeURIComponent(username)}`);
   } catch {
     return { success: false, weak_chapters: [] };
   }

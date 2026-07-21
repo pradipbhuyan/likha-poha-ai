@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import List
 
@@ -9,10 +9,42 @@ from app.services.test_history_service import (
     clear_test_history,
     clear_user_test_history,
 )
-from app.services.auth_service import admin_client as supabase, require_student
+from app.services.auth_service import (
+    admin_client as supabase,
+    require_student,
+    require_admin,
+    get_current_user,
+    get_user_profile,
+)
 
 
 router = APIRouter()
+
+
+def require_self_or_admin_or_teacher(username: str, user=Depends(get_current_user)):
+    """
+    Allow a student to view their own history, or an admin/teacher to view
+    any student's history (teachers currently aren't scoped to their own
+    roster here — see TeacherStudentAnalyticsPage.jsx).
+    """
+    profile = get_user_profile(user.id)
+    role = profile.get("role") if profile else None
+
+    if not profile or (profile.get("username") != username and role not in ("admin", "teacher")):
+        raise HTTPException(status_code=403, detail="Not authorized to view this student's history")
+
+    return {"auth_user": user, "profile": profile}
+
+
+def require_self_or_admin(username: str, user=Depends(get_current_user)):
+    """Allow a student to clear their own history, or an admin to clear anyone's."""
+    profile = get_user_profile(user.id)
+    role = profile.get("role") if profile else None
+
+    if not profile or (profile.get("username") != username and role != "admin"):
+        raise HTTPException(status_code=403, detail="Not authorized to modify this student's history")
+
+    return {"auth_user": user, "profile": profile}
 
 
 class SaveTestResultRequest(BaseModel):
@@ -73,7 +105,7 @@ def save_history(data: SaveTestResultRequest, student=Depends(require_student)):
 
 
 @router.get("/test-history/{username}")
-def user_history(username: str):
+def user_history(username: str, _viewer=Depends(require_self_or_admin_or_teacher)):
     """Return saved test-history records for one student."""
     return {
         "success": True,
@@ -91,7 +123,7 @@ def leaderboard():
 
 
 @router.delete("/test-history/user/{username}")
-def clear_user_history(username: str):
+def clear_user_history(username: str, _viewer=Depends(require_self_or_admin)):
     """Delete test-history records for one student username."""
     clear_user_test_history(username)
     return {
@@ -101,7 +133,7 @@ def clear_user_history(username: str):
 
 
 @router.delete("/test-history")
-def clear_all_history():
+def clear_all_history(_admin=Depends(require_admin)):
     """Delete all locally stored test-history records."""
     clear_test_history()
     return {
@@ -111,18 +143,23 @@ def clear_all_history():
 
 
 @router.post("/wrong-answers")
-def save_wrong_answers(data: SaveWrongAnswersRequest):
+def save_wrong_answers(data: SaveWrongAnswersRequest, student=Depends(require_student)):
     """
     Persist per-question wrong answers from a submitted mock test.
     Each wrong answer row records subject, chapter, the question, and the
     correct answer + explanation so students can study them before a retest.
+
+    username is always taken from the authenticated session, matching
+    save_history — the client-supplied value is ignored.
     """
     if not data.wrong_answers:
         return {"success": True, "saved": 0}
 
+    username = student["profile"]["username"]
+
     rows = [
         {
-            "username": data.username,
+            "username": username,
             "grade": data.grade,
             "mode": data.mode,
             "subject": data.subject,
@@ -153,6 +190,7 @@ def get_wrong_answers_for_chapter(
     subject: str | None = None,
     chapter: str | None = None,
     limit: int = 50,
+    _viewer=Depends(require_self_or_admin),
 ):
     """
     Return the stored wrong-answer rows for one student, optionally filtered by
@@ -179,7 +217,7 @@ def get_wrong_answers_for_chapter(
 
 
 @router.get("/weak-chapters/{username}")
-def get_weak_chapters(username: str, limit: int = 10):
+def get_weak_chapters(username: str, limit: int = 10, _viewer=Depends(require_self_or_admin)):
     """
     Return the chapters where the student has the most cumulative wrong answers,
     ordered by error count descending. Used by the Dashboard retest reminder widget.
