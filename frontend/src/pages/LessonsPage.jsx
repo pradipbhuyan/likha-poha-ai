@@ -111,7 +111,24 @@ const LOADING_MESSAGES = {
   },
 };
 
-function getLoadingMessage(stepIndex, subject) {
+// Map step titles to LOADING_MESSAGES pools so grades with 3-4 steps get the
+// right message (indexing by step position showed "worked examples" copy for
+// Grade 5's "Recap" step).
+const STEP_MESSAGE_POOL = {
+  "introduction": 0,
+  "what we learn": 0,
+  "concept introduction": 0,
+  "core explanation": 1,
+  "let's practice": 2,
+  "worked examples": 2,
+  "exam-style problems": 3,
+  "quick review": 4,
+  "recap": 4,
+  "revision and recap": 4,
+  "exam preparation": 5,
+};
+
+function getLoadingMessage(stepTitle, subject) {
   /** Return a subject-aware, step-specific loading message shown during generation. */
   const s = (subject || "").toLowerCase();
   const isMaths   = s.includes("math");
@@ -120,7 +137,8 @@ function getLoadingMessage(stepIndex, subject) {
   const isSocial  = s.includes("social");
   const isEnglish = s === "english" || s.includes("english");
 
-  const pool = LOADING_MESSAGES[stepIndex] ?? LOADING_MESSAGES[4];
+  const poolIndex = STEP_MESSAGE_POOL[(stepTitle || "").trim().toLowerCase()];
+  const pool = LOADING_MESSAGES[poolIndex] ?? LOADING_MESSAGES[4];
 
   if (isMaths)   return pool.maths;
   if (isScience) return pool.science;
@@ -366,6 +384,10 @@ function LessonsPage({ user, setActivePage }) {
   const [practiceQuestions, setPracticeQuestions] = useState([]);
   const [practiceQuestionsLoading, setPracticeQuestionsLoading] =
     useState(false);
+  // Pre-warmed practice questions delivered with the lesson (zero LLM cost).
+  // When present, "Generate Practice Questions" serves these instead of
+  // calling the evaluation LLM.
+  const [prewarmedPracticeQuestions, setPrewarmedPracticeQuestions] = useState([]);
 
   const lessonSteps = (() => {
     /** Return grade-appropriate lesson steps matching the backend prewarm step definitions. */
@@ -1040,6 +1062,7 @@ function LessonsPage({ user, setActivePage }) {
     setAllowContinueAnyway(false);
     setPracticeModeActive(false);
     setPracticeFocusWarnings(0);
+    setPrewarmedPracticeQuestions([]);
   }
 
   async function handleGenerateLesson(skipGifDelay = false, forceRefresh = false) {
@@ -1086,14 +1109,19 @@ function LessonsPage({ user, setActivePage }) {
         return;
       }
 
-      // Wait until 6 s total so the fade-out (1 s) has time to finish
+      // Cache hits (~500 ms) show immediately — the GIF wait only applies to
+      // genuine LLM generations, where it masks real latency.
+      const minGifMs = result.from_cache ? 0 : MIN_GIF_MS;
       const elapsed = Date.now() - gifStart;
-      if (elapsed < MIN_GIF_MS) {
-        await new Promise((resolve) => setTimeout(resolve, MIN_GIF_MS - elapsed));
+      if (elapsed < minGifMs) {
+        await new Promise((resolve) => setTimeout(resolve, minGifMs - elapsed));
       }
       clearTimeout(fadeTimer);
 
       setLesson(result.lesson);
+      setPrewarmedPracticeQuestions(
+        Array.isArray(result.practice_questions) ? result.practice_questions : []
+      );
       if ((result.textbook_visuals || []).length > 0) {
         setSelectedTextbookVisual(result.textbook_visuals[0]);
       }
@@ -1201,13 +1229,13 @@ function LessonsPage({ user, setActivePage }) {
     setFollowUpMessages((prev) => [...prev, { role: "user", content: questionToAsk }]);
     setFollowUpQuestion("");
 
-    // ── Cache hit: serve from LKB/DKB cache with a brief thinking delay ──────
-    // The 2s pause makes the response feel considered rather than instantaneous,
-    // without any actual LLM cost — the answer is already pre-warmed in cache.
+    // ── Cache hit: serve from LKB/DKB cache instantly ────────────────────────
+    // Pre-warmed answers are a feature — show them at cache speed. A tiny
+    // pause lets the user's message render before the answer appears.
     const cacheKey = `${grade}|${subject}|${chapter}|${stepTitle}|${questionToAsk.trim().toLowerCase()}`;
     if (followUpCache.current[cacheKey]) {
       setFollowUpLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 250));
       setFollowUpLoading(false);
       setFollowUpMessages((prev) => {
         const updated = [...prev, followUpCache.current[cacheKey]];
@@ -1351,6 +1379,18 @@ function LessonsPage({ user, setActivePage }) {
     setPracticeLoadingMap({});
     setPracticePassed(false);
     setPracticeFocusWarnings(0);
+
+    // ── Pre-warmed questions came with the lesson: serve them, zero LLM ─────
+    const usablePrewarmed = prewarmedPracticeQuestions
+      .map((item) => normalizePracticeQuestion(item, subject))
+      .filter((q) => q.question && (q.type !== "mcq" || q.options.length >= 2))
+      .slice(0, 2);
+    if (usablePrewarmed.length > 0) {
+      setPracticeQuestions(usablePrewarmed);
+      setPracticeModeActive(true);
+      setPracticeQuestionsLoading(false);
+      return;
+    }
 
     try {
       const fallbackQuestions = buildPracticeFallbackQuestions(subject);
@@ -2190,7 +2230,7 @@ function LessonsPage({ user, setActivePage }) {
                 className="lesson-loading-gif"
               />
               <p className="lesson-loading-label">
-                {getLoadingMessage(currentStepIndex, subject)}
+                {getLoadingMessage(stepTitle, subject)}
               </p>
             </div>
           )}
@@ -2207,11 +2247,11 @@ function LessonsPage({ user, setActivePage }) {
                 <h3 style={{ margin: "0 0 16px", fontSize: "1rem", color: "#0369a1" }}>📖 How to use Lessons — 5 simple steps</h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {[
-                    { n: "1", icon: "⬅️", text: "Select your Grade, Subject, and Chapter from the left panel" },
-                    { n: "2", icon: "✨", text: 'Click "Generate Lesson" — each chapter has 5 steps, always start from Step 1' },
+                    { n: "1", icon: "⬆️", text: "Pick your Grade, Subject, and Chapter from the bar above" },
+                    { n: "2", icon: "✨", text: `Click "Generate" to load Step 1 — this chapter has ${lessonSteps.length} steps` },
                     { n: "3", icon: "📚", text: "Read the lesson carefully. Use 🔊 Listen to hear it aloud" },
-                    { n: "4", icon: "🎲", text: 'Click "Generate 2 Practice Questions", answer them to test your understanding' },
-                    { n: "5", icon: "✅", text: 'Click "Mark Step Complete" to unlock the next step and move forward' },
+                    { n: "4", icon: "🎲", text: "Try the practice questions to check your understanding" },
+                    { n: "5", icon: "➡️", text: 'Click "Next" — the following step loads automatically' },
                   ].map(({ n, icon, text }) => (
                     <div key={n} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                       <span style={{
@@ -2227,14 +2267,14 @@ function LessonsPage({ user, setActivePage }) {
                   ))}
                 </div>
                 <p style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: 12, marginBottom: 0 }}>
-                  💡 Complete all 5 steps of a chapter to unlock the full chapter. Then try a Mock Test!
+                  💡 Complete all {lessonSteps.length} steps of a chapter, then try a Mock Test!
                 </p>
               </div>
 
               <div className="premium-grid premium-grid-3">
                 <div className="premium-card premium-glow-card glow-blue">
-                  <h3>📘 5-Step Learning</h3>
-                  <p>Each chapter has 5 steps: Intro → Core → Examples → Exam Problems → Revision.</p>
+                  <h3>📘 {lessonSteps.length}-Step Learning</h3>
+                  <p>This chapter's path: {lessonSteps.join(" → ")}.</p>
                 </div>
 
                 <div className="premium-card premium-glow-card glow-purple">

@@ -777,6 +777,44 @@ grade: str,
             )
             cached = get_cached_lesson(stripped_empty_key, grade=grade)
 
+    # Fallback 2b (LEGACY STEP TITLE): early prewarm runs stored the 4th step
+    # as "Practice questions" before the clients renamed it to "Exam-style
+    # problems".  Those rows are valid, already-paid-for content — serve them
+    # instead of regenerating at live-LLM cost, and backfill the current key
+    # so future lookups are direct hash hits.
+    _LEGACY_STEP_TITLES = {"exam-style problems": "Practice questions"}
+    _legacy_step = _LEGACY_STEP_TITLES.get((step_title or "").strip().lower())
+    if not cached and not force_refresh and _legacy_step:
+        _chapter_variants = [chapter]
+        if stripped_chapter and stripped_chapter != chapter:
+            _chapter_variants.append(stripped_chapter)
+        for _chap in _chapter_variants:
+            legacy_key = make_lesson_cache_key(
+                board=board,
+                grade=grade,
+                subject=subject,
+                chapter=_chap,
+                mode=mode,
+                step_title=_legacy_step,
+                teacher_persona="",  # prewarm always stored empty persona
+            )
+            cached = get_cached_lesson(legacy_key, grade=grade)
+            if cached:
+                store_lesson_cache(
+                    cache_key=cache_key,
+                    lesson_content=cached["lesson_content"],
+                    source_type=cached.get("source_type", "CACHE"),
+                    board=board,
+                    grade=grade,
+                    subject=subject,
+                    chapter=chapter,
+                    mode=mode,
+                    step_title=step_title,
+                    teacher_persona=teacher_persona or "",
+                    practice_questions=cached.get("practice_questions") or [],
+                )
+                break
+
     # Fallback 3 (TEXT SEARCH): the cache key is a hash so prefix mismatches
     # between prewarm time and request time produce different hashes even for
     # the same chapter.  As a last resort, query the lesson_cache table by the

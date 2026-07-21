@@ -35,7 +35,7 @@ LESSON_STEPS = [
     "Concept introduction",
     "Core explanation",
     "Worked examples",
-    "Practice questions",
+    "Exam-style problems",
     "Revision and recap",
 ]
 

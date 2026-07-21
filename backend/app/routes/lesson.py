@@ -374,11 +374,15 @@ def generate_lesson(
             source_type = result.get("source_type", "LLM")
             sources = result.get("sources", [])
             textbook_visuals = result.get("textbook_visuals", [])
+            practice_questions = result.get("practice_questions") or []
+            from_cache = bool(result.get("from_cache", False))
         else:
             lesson = result
             source_type = "LLM"
             sources = []
             textbook_visuals = []
+            practice_questions = []
+            from_cache = False
 
         # Fetch DKB-backed question cards for this chapter.
         # Only questions with pre-cached answers are included so every card
@@ -403,6 +407,8 @@ def generate_lesson(
             "sources": sources,
             "textbook_visuals": textbook_visuals,
             "doubt_suggestions": doubt_suggestions,
+            "practice_questions": practice_questions,
+            "from_cache": from_cache,
             "message": "Lesson generated successfully",
         }
 
