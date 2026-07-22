@@ -21,6 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { authFetch } from "../../lib/authFetch";
 import { BRAND_COLOR } from "../../constants";
 import { STREAM_SUBJECTS } from "@likhapoha/shared/utils/subjectAccess";
+import { normalizeTutorMarkdown } from "@likhapoha/shared/utils/markdownCleanup";
 import ChapterJourney, { ChapterDocData } from "../../components/ChapterJourney";
 
 // ── Dynamic loading messages — mirrors web LessonsPage.jsx getLoadingMessage ──
@@ -289,9 +290,14 @@ function mathToUnicode(latex: string): string {
 //  2. Renders each display block as a styled formula card (📐)
 //  3. Converts $...$$ inline math → Unicode text in markdown passages
 function MathAwareMarkdown({ content, accent }: { content: string; accent: string }) {
+  // Run the same shared cleanup pass the web LessonMarkdown uses first —
+  // model output often writes display math as "[ \frac{a}{b} ]" (plain
+  // square brackets) rather than "$$...$$". Without this, that content
+  // never matches DISPLAY_MATH_RE below and renders as raw LaTeX text.
+  const normalized: string = normalizeTutorMarkdown(content);
   // Split on $$...$$ (multiline)
   const DISPLAY_MATH_RE = /(\$\$[\s\S]+?\$\$)/g;
-  const parts = content.split(DISPLAY_MATH_RE);
+  const parts = normalized.split(DISPLAY_MATH_RE);
 
   return (
     <View>
