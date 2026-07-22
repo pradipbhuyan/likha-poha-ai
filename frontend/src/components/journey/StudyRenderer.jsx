@@ -50,7 +50,7 @@ function StudyQuickCheck({ block, blockKey, savedAnswer, onAnswer }) {
                 setPicked(index);
                 onAnswer?.(blockKey, index, index === block.answer_index);
               }}
-              style={{ marginTop: 3 }}
+              style={{ width: "auto", flexShrink: 0, marginTop: 3 }}
             />
             <LessonMarkdown unwrapParagraph>{option}</LessonMarkdown>
           </label>
