@@ -98,7 +98,9 @@ CREATE TRIGGER trg_board_sample_paper_questions_updated_at
 COMMENT ON TABLE board_sample_papers IS
     'Official CBSE sample question papers, one row per (board, year, grade, subject).
      PDFs are downloaded from cbseacademic.nic.in and re-hosted in Supabase Storage.
-     status: active | missing_ms | missing_qp | archived.';
+     status: pending_answers (extracted but not yet fully answered — hidden
+     from student listings) | active (fully answered, visible to students) |
+     missing_ms | missing_qp | archived.';
 
 COMMENT ON TABLE board_sample_paper_questions IS
     'Individual questions parsed from a board_sample_papers question-paper PDF.

@@ -109,6 +109,56 @@ def get_paper_questions(grade: str, paper_id: str) -> list[dict]:
         .execute()
     )
     rows = result.data or []
-    # question_number is stored as text so it sorts correctly numerically, not lexically.
-    rows.sort(key=lambda r: int(r["question_number"]) if str(r["question_number"]).isdigit() else 0)
+    # question_number is stored as text so it sorts correctly numerically, not
+    # lexically. English papers use a compound "N.ROMAN" form (e.g. "3.VII")
+    # for nested passage sub-parts — sort by the top-level number first, then
+    # by the roman-numeral sub-part's value.
+    rows.sort(key=lambda r: _question_number_sort_key(r["question_number"]))
     return rows
+
+
+_ROMAN_VALUES = {"I": 1, "V": 5, "X": 10}
+
+# Devanagari consonants in traditional varnamala order — Hindi papers label
+# nested passage sub-parts "(क)", "(ख)", "(ग)"... the same way English labels
+# them with roman numerals.
+_DEVANAGARI_ORDER = "कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसह"
+_DEVANAGARI_VALUES = {ch: i + 1 for i, ch in enumerate(_DEVANAGARI_ORDER)}
+
+
+def _roman_to_int(roman: str) -> int:
+    total = 0
+    for i, ch in enumerate(roman):
+        value = _ROMAN_VALUES.get(ch, 0)
+        if i + 1 < len(roman) and value < _ROMAN_VALUES.get(roman[i + 1], 0):
+            total -= value
+        else:
+            total += value
+    return total
+
+
+def _subpart_to_int(part: str) -> int:
+    """A nested sub-part label is either a roman numeral (English papers) or
+    a Devanagari letter (Hindi papers) — try roman first (only I/V/X
+    characters), fall back to the Devanagari lookup."""
+    if part and all(ch in _ROMAN_VALUES for ch in part):
+        return _roman_to_int(part)
+    if part in _DEVANAGARI_VALUES:
+        return _DEVANAGARI_VALUES[part]
+    return 0
+
+
+def _question_number_sort_key(question_number) -> tuple:
+    """Handles plain integers ("12"), nested sub-parts — roman for English
+    ("3.VII"), Devanagari letters for Hindi ("1.क") — and literature extract
+    OR-choices with their own sub-parts ("6.A.III"), sorted as (top-level,
+    extract letter or '', sub-part value)."""
+    text = str(question_number)
+    if text.isdigit():
+        return (int(text), "", 0)
+    parts = text.split(".")
+    if len(parts) == 2 and parts[0].isdigit():
+        return (int(parts[0]), "", _subpart_to_int(parts[1]))
+    if len(parts) == 3 and parts[0].isdigit():
+        return (int(parts[0]), parts[1], _subpart_to_int(parts[2]))
+    return (0, "", 0)

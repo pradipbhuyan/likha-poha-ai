@@ -1,0 +1,266 @@
+#!/usr/bin/env python3
+"""
+LLM-assisted structural extraction for CBSE Hindi sample papers.
+
+Same rationale as extract_cbse_english_llm.py: Hindi papers nest the same
+way English does — each passage/poem is a top-level numbered question
+containing multiple sub-parts, except Hindi labels its sub-parts with
+Devanagari letters "(क)", "(ख)", "(ग)"... (traditional varnamala order)
+instead of roman numerals, and each sub-part sometimes has its own 4-way
+MCQ options labelled "(i)/(ii)/(iii)/(iv)". Regex parsing would need a
+third numbering-family plus Devanagari-aware section detection for
+comparatively little payoff — an LLM reading the Hindi text semantically
+handles this far more reliably.
+
+question_number convention (mirrors the English script):
+  - Nested sub-question: "{top_level}.{DEVANAGARI_LETTER}" e.g. "1.क", "2.घ"
+  - A question with no sub-parts: plain "{top_level}"
+
+IMPORTANT: question_text/options must stay in Hindi (Devanagari script) —
+do not translate. The paper is being served to Hindi-medium/Hindi-subject
+students; translating would make it useless for its purpose.
+
+Usage:
+    cd backend
+    .venv/bin/python3 scripts/extract_cbse_hindi_llm.py \\
+        --pdf /path/to/HindiCourseA-SQP.pdf \\
+        --grade "Grade 10" --subject "Hindi" \\
+        --academic-year "2025-26" --source-subject-code HindiCourseA \\
+        --output questions_extracted.json --dry-run
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import pypdf
+
+from app.services.grade_db_router import get_content_db
+from app.services.openai_service import get_effective_settings, force_refresh_settings
+from openai import OpenAI
+
+BOARD = "CBSE"
+
+SYSTEM_PROMPT = """You extract the structured question list from an official CBSE Hindi (Course A) sample question paper's raw text (extracted from a PDF, so spacing/line-breaks may be imperfect, and Devanagari conjuncts occasionally render with stray joiner characters — normalize obvious OCR/extraction noise but keep the actual Hindi wording unchanged).
+
+Return ONLY a JSON array, no markdown fences, no commentary. Each element:
+{
+  "question_number": "...",
+  "section": "क"|"ख"|"ग"|"घ",
+  "question_type": "mcq"|"short_answer"|"long_answer"|"case_study",
+  "marks": <integer>,
+  "question_text": "... (in Hindi/Devanagari — do NOT translate to English)",
+  "options": ["... (in Hindi)", ...],
+  "diagram_dependent": true|false
+}
+
+question_number rules (CRITICAL — this paper nests, it is not one flat list):
+- Each unseen passage (अपठित बोध) / poem (काव्यांश) / grammar block / literature
+  extract is a top-level numbered question (1, 2, 3, ...) containing multiple
+  sub-parts labelled with Devanagari letters in this exact order: क, ख, ग, घ, ङ,
+  च, छ, ज, झ, ञ (traditional varnamala order) — these labels RESTART at क for
+  each new top-level question, just like the paper's own printed "(क)", "(ख)"
+  markers. Every sub-part becomes its OWN array element with
+  question_number = "{top_level}.{DEVANAGARI_LETTER}", e.g. "1.क", "1.ख", "2.घ".
+- Do not confuse these per-passage sub-part letters with the paper's SECTION
+  names (also क/ख/ग/घ, printed once per section as "खण्ड – क" etc — that's a
+  different, higher-level grouping, goes in the "section" field, not the
+  question_number).
+- Do not skip, renumber, or merge sub-parts. Preserve the exact Devanagari
+  letters printed for each sub-part.
+
+question_text rules:
+- For the FIRST sub-part of each top-level question, prepend the full
+  passage/poem text (गद्यांश/काव्यांश) before the sub-part's own question, since
+  a student answering only that row needs the passage to be self-contained.
+  Subsequent sub-parts of the same top-level question do NOT need the
+  passage repeated — just their own question text.
+
+question_type / options rules:
+- "mcq": if the sub-part offers labelled choices — typically printed as
+  "(i)/(ii)/(iii)/(iv)" — put the choice texts in "options" (exactly as
+  printed in Hindi, no "(i)"-style prefix in the option text itself).
+  Some MCQ sub-parts present an assertion+reason pair labelled with capital
+  roman numerals (I)/(II)/(III)/(IV) INSIDE the question stem itself (e.g. a
+  कथन/कारण — statement/reason — question) followed by 4 lettered
+  interpretive choices — keep the (I)/(II)/(III)/(IV) statement labels as
+  part of question_text (they are content, not the option list) and put
+  only the 4 final interpretive choices in "options".
+- "short_answer": everything else (direct-answer, explain-in-your-own-words) —
+  options should be an empty array.
+- marks: use the number printed next to that specific sub-part (usually 1,
+  sometimes 2). If truly not printed for a sub-part, use 1.
+
+diagram_dependent: true only if the sub-part explicitly requires seeing an
+image/figure that isn't reproducible as plain text (rare in this paper).
+
+Do not invent content, and do not translate. If a sub-part's text is
+genuinely unclear from the raw extraction, still include it with your
+best-effort question_text rather than dropping it."""
+
+
+def extract_pages(pdf_path: Path) -> list[str]:
+    reader = pypdf.PdfReader(str(pdf_path))
+    return [page.extract_text() or "" for page in reader.pages]
+
+
+def strip_page_furniture(text: str) -> str:
+    # Hindi papers repeat this exact reprint-notice boilerplate on most pages.
+    text = re.sub(r"Page\s+\d+\s+of\s+\d+", "", text)
+    text = re.sub(
+        r"\*कृपया ध् यान दें.*?2025-26।?", "", text, flags=re.DOTALL
+    )
+    return text
+
+
+def extract_questions_via_llm(full_text: str) -> list[dict]:
+    # See extract_cbse_english_llm.py for the head-to-head test this is
+    # based on: Venice's e2ee-gpt-oss-20b-p timed out; Ollama Cloud's
+    # gpt-oss:20b "succeeded" but returned an empty/degenerate response
+    # (~200 completion tokens, should be thousands) — plausibly worse at
+    # handling the long Devanagari-heavy prompt; Venice's
+    # gemini-3-5-flash-lite completed reliably with a correct response.
+    force_refresh_settings()
+    venice_key = get_effective_settings().get("venice_api_key")
+    client = OpenAI(api_key=venice_key, base_url="https://api.venice.ai/api/v1", timeout=300.0, max_retries=0)
+
+    user_prompt = (
+        f"Here is the raw extracted text of a CBSE Class X Hindi (Course A) "
+        f"sample question paper (2025-26). Extract the structured question "
+        f"list per the schema and rules above.\n\n{full_text}"
+    )
+    resp = client.chat.completions.create(
+        model="gemini-3-5-flash-lite",
+        messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user_prompt}],
+        max_tokens=24000,
+    )
+    raw = resp.choices[0].message.content or ""
+    if raw.startswith("```"):
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+    start, end = raw.find("["), raw.rfind("]")
+    if start == -1 or end == -1:
+        raise ValueError(f"No JSON array found in LLM response (len={len(raw)}): {raw[:300]!r}")
+    return json.loads(raw[start:end + 1])
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="LLM-assisted extraction for CBSE Hindi sample papers")
+    parser.add_argument("--pdf", help="Source PDF (mutually exclusive with --from-json)")
+    parser.add_argument("--from-json", help="Load already-extracted/corrected questions JSON instead of calling the LLM")
+    parser.add_argument("--grade", required=True)
+    parser.add_argument("--subject", required=True)
+    parser.add_argument("--subject-variant", default="")
+    parser.add_argument("--academic-year", required=True)
+    parser.add_argument("--source-subject-code", required=True)
+    parser.add_argument("--question-paper-url", default="")
+    parser.add_argument("--marking-scheme-url", default="")
+    parser.add_argument("--source-page-url", default="")
+    parser.add_argument("--create-paper", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--output", default="questions_extracted.json")
+    args = parser.parse_args()
+
+    if args.from_json:
+        questions = json.loads(Path(args.from_json).read_text(encoding="utf-8"))
+        pdf_name = Path(args.from_json).name
+    elif args.pdf:
+        pdf_path = Path(args.pdf)
+        pages = extract_pages(pdf_path)
+        full_text = strip_page_furniture("\n".join(pages))
+        print(f"Extracted {len(full_text)} chars from {len(pages)} pages, calling LLM...")
+        questions = extract_questions_via_llm(full_text)
+        pdf_name = pdf_path.name
+    else:
+        print("Pass either --pdf or --from-json")
+        sys.exit(1)
+
+    by_type: dict[str, int] = {}
+    for q in questions:
+        by_type[q.get("question_type", "?")] = by_type.get(q.get("question_type", "?"), 0) + 1
+
+    print(f"Extracted {len(questions)} question rows from {pdf_name}")
+    print(f"  By type: {by_type}")
+
+    Path(args.output).write_text(json.dumps(questions, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"  Wrote {args.output}")
+
+    if args.dry_run:
+        print("[dry-run] skipping DB writes")
+        return
+
+    db = get_content_db(args.grade)
+
+    if args.create_paper:
+        # If this paper already exists and is "active" (fully answered), a
+        # re-run (e.g. to patch one question) must not downgrade its status
+        # back to pending_answers and hide it from students again.
+        already_active = (
+            db.table("board_sample_papers")
+            .select("status")
+            .eq("board", BOARD).eq("academic_year", args.academic_year)
+            .eq("grade", args.grade).eq("source_subject_code", args.source_subject_code)
+            .execute()
+        )
+        preserve_status = (
+            already_active.data[0]["status"]
+            if already_active.data and already_active.data[0]["status"] == "active"
+            else "pending_answers"
+        )
+        result = (
+            db.table("board_sample_papers")
+            .upsert({
+                "board": BOARD,
+                "academic_year": args.academic_year,
+                "grade": args.grade,
+                "subject": args.subject,
+                "subject_variant": args.subject_variant,
+                "source_subject_code": args.source_subject_code,
+                "question_paper_url": args.question_paper_url,
+                "marking_scheme_url": args.marking_scheme_url,
+                "source_page_url": args.source_page_url,
+                # Not "active" yet — the paper's questions have no answers,
+                # unless this is a re-run on an already-answered paper.
+                "status": preserve_status,
+            }, on_conflict="board,academic_year,grade,source_subject_code")
+            .execute()
+        )
+        paper_id = result.data[0]["id"]
+        print(f"  Paper row: {paper_id}")
+    else:
+        existing = (
+            db.table("board_sample_papers")
+            .select("id")
+            .eq("board", BOARD).eq("academic_year", args.academic_year)
+            .eq("grade", args.grade).eq("source_subject_code", args.source_subject_code)
+            .execute()
+        )
+        if not existing.data:
+            print("  [error] no existing paper row found — pass --create-paper")
+            sys.exit(1)
+        paper_id = existing.data[0]["id"]
+
+    stored = 0
+    for q in questions:
+        db.table("board_sample_paper_questions").upsert({
+            "paper_id": paper_id,
+            "question_number": str(q["question_number"]),
+            "section": q.get("section", "क"),
+            "question_type": q.get("question_type", "short_answer"),
+            "marks": q.get("marks", 1),
+            "question_text": q.get("question_text", ""),
+            "options": q.get("options", []),
+            "diagram_dependent": q.get("diagram_dependent", False),
+            "status": "extracted",
+        }, on_conflict="paper_id,question_number").execute()
+        stored += 1
+    print(f"  Upserted {stored} question rows (status=extracted, no answers yet)")
+
+
+if __name__ == "__main__":
+    main()
