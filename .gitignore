@@ -58,3 +58,6 @@ backend/student_progress.json
 backend/test_history.json
 backend/backups/
 backend/app/data/*.db
+
+# graphify-axet
+.graphify/

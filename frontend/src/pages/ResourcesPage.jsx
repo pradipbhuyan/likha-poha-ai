@@ -34,11 +34,14 @@ const ROLE_META = {
 function IndianVideoCard({ title, url }) {
   const isPW = title.toLowerCase().includes("physics wallah");
   const isVedantu = title.toLowerCase().includes("vedantu");
+  const isMagnetBrains = title.toLowerCase().includes("magnet brains");
 
   const brand = isPW
     ? { name: "Physics Wallah", short: "PW", bg: "linear-gradient(135deg, #e63946 0%, #c1121f 100%)", accent: "#ff6b6b" }
     : isVedantu
     ? { name: "Vedantu", short: "V", bg: "linear-gradient(135deg, #7209b7 0%, #480ca8 100%)", accent: "#b5179e" }
+    : isMagnetBrains
+    ? { name: "Magnet Brains", short: "MB", bg: "linear-gradient(135deg, #0077b6 0%, #023e8a 100%)", accent: "#48cae4" }
     : { name: "Indian Video", short: "▶", bg: "linear-gradient(135deg, #333 0%, #555 100%)", accent: "#888" };
 
   // Extract topic from title: "Physics Wallah — TOPIC | Class 11 (India)"
@@ -506,7 +509,8 @@ function ResourcesPage({ user }) {
                     />
                   ) : resource.type === "website" &&
                     (resource.title?.toLowerCase().includes("physics wallah") ||
-                     resource.title?.toLowerCase().includes("vedantu")) ? (
+                     resource.title?.toLowerCase().includes("vedantu") ||
+                     resource.title?.toLowerCase().includes("magnet brains")) ? (
                     <IndianVideoCard title={resource.title} url={resource.url} />
                   ) : (
                     <a
