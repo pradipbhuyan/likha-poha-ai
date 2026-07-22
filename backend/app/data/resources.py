@@ -1357,6 +1357,382 @@ GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
             {"title": "Khan Academy — Heart and Circulatory System (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=7K2icszdxQc"},
         ],
     },
+    # ── SOCIOLOGY (Grade 11) ─────────────────────────────────────────────────
+    # NCERT "Introducing Sociology" (5 chapters) + "Understanding Society" (4 chapters)
+    # Anchor: Magnet Brains + CrashCourse Sociology international
+    "Sociology": {
+        # ── Introducing Sociology ─────────────────────────────────────────────
+        "Society and Sociology": [
+            indian_channel("Sociology and Society Full Chapter | Class 11 Sociology Chapter 1", "Magnet Brains", "RwNb59ReYtQ"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "Terms, Concepts and their Use in Sociology": [
+            indian_channel("Terms, Concepts and Their Use in Sociology Full Chapter | Class 11 Sociology Chapter 2", "Magnet Brains", "vCCM4pRYNWM"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "Understanding Social Institutions": [
+            indian_channel("Understanding Social Institutions Full Chapter | Class 11 Sociology Chapter 3", "Magnet Brains", "5z2ZxWNtD2w"),
+            international_channel("Religion: Crash Course Sociology #39", "CrashCourse", "pIgb-3e8CWA"),
+        ],
+        "Culture and Socialisation": [
+            indian_channel("Culture And Socialisation Full Chapter | Class 11 Sociology Chapter 4", "Magnet Brains", "h9VhBWAo7V4"),
+            international_channel("Socialization: Crash Course Sociology #14", "CrashCourse", "K-RvJQxqVQc"),
+        ],
+        "Doing Sociology: Research Methods": [
+            indian_channel("Doing Sociology: Research Methods | Class 11 Sociology Chapter 5", "Renaissance 2.0", "7_x_tgSS0LI"),
+            international_channel("Sociology Research Methods: Crash Course Sociology #4", "CrashCourse", "QwhK-iEyXYA"),
+        ],
+        # ── Understanding Society ─────────────────────────────────────────────
+        "Social Structure, Stratification and Social Processes in Society": [
+            indian_channel("Social Structure, Stratification & Social Processes - Full Chapter | Class 11 Sociology", "Magnet Brains", "uKaY_vCWwlw"),
+            international_channel("Social Stratification: Crash Course Sociology #21", "CrashCourse", "SlkIKCMt-Fs"),
+        ],
+        "Social Change and Social Order in Rural and Urban Society": [
+            indian_channel("Social Change & Social Order in Rural & Urban Society | Class 11 Sociology Chapter 2", "Magnet Brains", "9F99dL0WceA"),
+            international_channel("Global Stratification & Poverty: Crash Course Sociology #27", "CrashCourse", "6rts_PWIVTU"),
+        ],
+        "Environment and Society": [
+            indian_channel("Environment and Society Full Chapter | Class 11 Sociology Chapter 3", "Magnet Brains", "nMs9EJBGjKo"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        # Alternate chapter name variants as may appear in RAG
+        "Sociology and Society": [
+            indian_channel("Sociology and Society Full Chapter | Class 11 Sociology Chapter 1", "Magnet Brains", "RwNb59ReYtQ"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+    },
+    # ── POLITICAL SCIENCE (Grade 11) ─────────────────────────────────────────
+    # NCERT "Indian Constitution at Work" (8 chapters) + "Political Theory" (10 chapters)
+    # Anchor: Magnet Brains + CrashCourse Government / World History international
+    "Political Science": {
+        # ── Indian Constitution at Work ───────────────────────────────────────
+        "Constitution: Why and How?": [
+            indian_channel("Constitution: Why and How? Full Chapter | Class 11 Political Science", "Magnet Brains", "ILhp2pbhdRU"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Rights in the Indian Constitution": [
+            indian_channel("Rights in the Indian Constitution Full Chapter | Class 11 Political Science", "Magnet Brains", "Hr81Ptccfs0"),
+            international_channel("Separation of Powers and Checks and Balances: Crash Course Government #3", "CrashCourse", "0bf3CwYCxXw"),
+        ],
+        "Election and Representation": [
+            indian_channel("Election and Representation Full Chapter | Class 11 Political Science", "Magnet Brains", "Znk_Xuv_ea8"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Executive": [
+            indian_channel("Executive - Full Chapter Explanation | Class 11 Political Science Chapter 4", "Magnet Brains", "PClmaHe3fQM"),
+            international_channel("Separation of Powers and Checks and Balances: Crash Course Government #3", "CrashCourse", "0bf3CwYCxXw"),
+        ],
+        "Legislature": [
+            indian_channel("Legislature Full Chapter | Class 11 Political Science Chapter 5", "Magnet Brains", "pinP2EkVK8I"),
+            international_channel("Separation of Powers and Checks and Balances: Crash Course Government #3", "CrashCourse", "0bf3CwYCxXw"),
+        ],
+        "Judiciary": [
+            indian_channel("Judiciary - Full Chapter Explanation | Class 11 Political Science Chapter 6", "Magnet Brains", "EjjMqbxxMaU"),
+            international_channel("Separation of Powers and Checks and Balances: Crash Course Government #3", "CrashCourse", "0bf3CwYCxXw"),
+        ],
+        "Federalism": [
+            indian_channel("Federalism - Full Chapter Explanation | Class 11 Political Science Chapter 7", "Magnet Brains", "s5t7kaQ-O8c"),
+            international_channel("The Constitution, the Articles, and Federalism: Crash Course US History #8", "CrashCourse", "bO7FQsCcbD8"),
+        ],
+        "Local Governments": [
+            indian_channel("Local Governments Full Chapter | Class 11 Political Science Chapter 8", "Magnet Brains", "eIv3iABMR3k"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        # ── Political Theory ──────────────────────────────────────────────────
+        "Political Theory: An Introduction": [
+            indian_channel("Political Theory: An Introduction Full Chapter | Class 11 Political Science", "Magnet Brains", "xH_JTvDfWGE"),
+            international_channel("Introduction: Crash Course U.S. Government and Politics", "CrashCourse", "lrk4oY7UxpQ"),
+        ],
+        "Freedom": [
+            indian_channel("Freedom Full Chapter | Class 11 Political Science Chapter 2", "Magnet Brains", "Kh4k-TrN5_o"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Equality": [
+            indian_channel("Equality Full Chapter Explanation | Class 11 Political Science Chapter 3", "Magnet Brains", "RW23L1lRW1s"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Social Justice": [
+            indian_channel("Social Justice - Full Chapter | Class 11 Political Science Chapter 4", "Magnet Brains", "S58UOZOeOJA"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Rights": [
+            indian_channel("Rights Full Chapter | Class 11 Political Science Chapter 5", "Magnet Brains", "0i_EmxudlJ8"),
+            international_channel("Separation of Powers and Checks and Balances: Crash Course Government #3", "CrashCourse", "0bf3CwYCxXw"),
+        ],
+        "Citizenship": [
+            indian_channel("Citizenship - Full Chapter | Class 11 Political Science Chapter 6", "Magnet Brains", "SGw12MwZShI"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Nationalism": [
+            indian_channel("Nationalism - Full Chapter | Class 11 Political Science Chapter 7", "Magnet Brains", "FzuZbeRIyas"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Secularism": [
+            indian_channel("Secularism - Full Chapter | Class 11 Political Science Chapter 8", "Magnet Brains", "rvwaBQplFXY"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Peace": [
+            indian_channel("Peace - Introduction | Class 11 Political Science", "Magnet Brains", "Xy-yn1Zgblg"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Development": [
+            indian_channel("Development - Introduction | Class 11 Political Science", "Magnet Brains", "SxhdjICaKoQ"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+    },
+    # ── GEOGRAPHY (Grade 11) ─────────────────────────────────────────────────
+    # NCERT "Fundamentals of Physical Geography" + "India — Physical Environment"
+    # (16 chapters from the live dropdown)
+    # Anchor: Magnet Brains + CrashCourse Geography international
+    "Geography": {
+        # ── Fundamentals of Physical Geography ───────────────────────────────
+        "Geography as a Discipline": [
+            indian_channel("Geography as a Discipline - Full Chapter | Class 11 Geography Chapter 1", "Magnet Brains", "onALse1uVQU"),
+            international_channel("What is Geography? Crash Course Geography #1", "CrashCourse", "93LLwiMjDko"),
+        ],
+        "The Origin and Evolution of the Earth": [
+            indian_channel("The Origin and Evolution of the Earth Full Chapter | Class 11 Geography Chapter 2", "Magnet Brains", "BfnFcc06HNc"),
+            international_channel("The Plate Tectonics Revolution: Crash Course Geography #19", "CrashCourse", "7CPv0NSIG2M"),
+        ],
+        "Interior of the Earth": [
+            indian_channel("Interior of the Earth Full Chapter | Class 11 Geography Chapter 3", "Magnet Brains", "mobM4I6__l4"),
+            international_channel("The Plate Tectonics Revolution: Crash Course Geography #19", "CrashCourse", "7CPv0NSIG2M"),
+        ],
+        "Distribution of Oceans and Continents": [
+            indian_channel("Distribution of Ocean and Continents Full Chapter | Class 11 Geography", "Magnet Brains", "mgi34R2xdHU"),
+            international_channel("How Do Oceans Circulate? Crash Course Geography #9", "CrashCourse", "xa6SdvFA3w0"),
+        ],
+        "Minerals and Rocks": [
+            indian_channel("Minerals and Rocks Full Chapter | Class 11 Geography Chapter 5", "Magnet Brains", "oypgBMLqsR8"),
+            international_channel("What Are Rocks and How Do They Form? Crash Course Geography #18", "CrashCourse", "7Bxw4kkeHJ8"),
+        ],
+        "Geomorphic Processes": [
+            indian_channel("Geomorphic Processes Full Chapter | Class 11 Geography Chapter 6", "Magnet Brains", "ynBSEG5rYww"),
+            international_channel("What is Weathering? Crash Course Geography #22", "CrashCourse", "pmF41T52nJs"),
+        ],
+        # ── India — Physical Environment ──────────────────────────────────────
+        "India — Location": [
+            indian_channel("India Location Full Chapter | Class 11 Geography", "Magnet Brains", "LtfjhEpgork"),
+            international_channel("What is Geography? Crash Course Geography #1", "CrashCourse", "93LLwiMjDko"),
+        ],
+        "Structure and Physiography": [
+            indian_channel("Structure and Physiography Full Chapter | Class 11 Geography NCERT", "Magnet Brains", "na_zb2yUMTI"),
+            international_channel("The Plate Tectonics Revolution: Crash Course Geography #19", "CrashCourse", "7CPv0NSIG2M"),
+        ],
+        "Drainage System": [
+            indian_channel("Drainage System Full Chapter | Class 11 Geography NCERT", "Magnet Brains", "VV2HLHclp2Y"),
+            international_channel("How Do Oceans Circulate? Crash Course Geography #9", "CrashCourse", "xa6SdvFA3w0"),
+        ],
+        "Climate": [
+            indian_channel("Climate Full Chapter Explanation | Class 11 Geography Chapter 4", "Magnet Brains", "Mi6w2gDsc7I"),
+            international_channel("How do we Classify Climates? Crash Course Geography #13", "CrashCourse", "xiGhLGFkJjo"),
+        ],
+        "Natural Vegetation": [
+            indian_channel("Natural Vegetation - Full Chapter Explanation | Class 11 Geography Chapter 5", "Magnet Brains", "Ru5RR_TJbtc"),
+            international_channel("How do we Classify Climates? Crash Course Geography #13", "CrashCourse", "xiGhLGFkJjo"),
+        ],
+        "Soils": [
+            indian_channel("Soils - Full Chapter Explanation | Class 11 Geography Chapter 6", "Magnet Brains", "qGvlXFkphRM"),
+            international_channel("What is Weathering? Crash Course Geography #22", "CrashCourse", "pmF41T52nJs"),
+        ],
+        "Natural Hazards and Disasters": [
+            indian_channel("Natural Hazards and Disasters Full Chapter | Class 11 Geography", "Magnet Brains", "-Pu7OXMrza4"),
+            international_channel("What is Geography? Crash Course Geography #1", "CrashCourse", "93LLwiMjDko"),
+        ],
+        "Population": [
+            indian_channel("Population: Distribution, Density, Growth and Composition - Full Chapter | Class 12 Geography Ch 1", "Magnet Brains", "zNnAbPw0SqQ", note="Grade 12 Magnet Brains population chapter covers the same core content as this Grade 11 India population chapter."),
+            international_channel("How Populations Grow and Change: Crash Course Geography #33", "CrashCourse", "JpAiBg0hrfQ"),
+        ],
+        "Migration": [
+            indian_channel("Migration: Types, Causes and Consequences - Full Chapter | Class 12 Geography Chapter 2", "Magnet Brains", "B3jyzYdusj0", note="Grade 12 Magnet Brains migration chapter covers the same concepts as the Grade 11 India migration chapter."),
+            international_channel("Where and Why Do People Move? Crash Course Geography #32", "CrashCourse", "5Z55k7CqZ0c"),
+        ],
+        "Human Settlements": [
+            indian_channel("Human Settlements Full Chapter Explanation | Class 12 Geography Chapter 4", "Magnet Brains", "pfQpfP0KebA", note="Grade 12 Magnet Brains human settlements chapter covers the same core concepts."),
+            international_channel("What is Human Geography? Crash Course Geography #28", "CrashCourse", "4y2nndDs8m4"),
+        ],
+    },
+    # ── HISTORY (Grade 11) ────────────────────────────────────────────────────
+    # NCERT "Themes in World History" Parts 1 & 2 (11 chapters from the live dropdown)
+    # Anchor: Magnet Brains (covers all chapters) + CrashCourse World History international
+    "History": {
+        "From the Beginning of Time": [
+            indian_channel("From the Beginning of Time - Full Chapter | Class 11 History Chapter 1", "Magnet Brains", "cGa0ioS9oJ8"),
+            international_channel("Human Evolution: Crash Course Big History #6", "CrashCourse", "UPggkvB9_dc"),
+        ],
+        "Writing and City Life": [
+            indian_channel("Writing and City Life - Full Chapter | Class 11 History Chapter 2", "Magnet Brains", "bB36YpwYpek"),
+            international_channel("Mesopotamia: Crash Course World History #3", "CrashCourse", "sohXPx_XZ6Y"),
+        ],
+        "An Empire Across Three Continents": [
+            indian_channel("An Empire Across Three Continents - Full Chapter | Class 11 History Chapter 3", "Magnet Brains", "UOPSrTpDg5g"),
+            international_channel("The Roman Empire. Or Republic. Or...Which Was It?: Crash Course World History #10", "CrashCourse", "oPf27gAup9U"),
+        ],
+        "The Central Islamic Lands": [
+            indian_channel("The Central Islamic Lands - Full Chapter | Class 11 History Chapter 4", "Magnet Brains", "VBMsNul1R4U"),
+            international_channel("Islam, the Quran, and the Five Pillars: Crash Course World History #13", "CrashCourse", "TpcbfxtdoI8"),
+        ],
+        "Nomadic Empires": [
+            indian_channel("Nomadic Empires - Complete Chapter Revision | Class 11 History Chapter 5", "Magnet Brains", "Opyv3U6ITh8"),
+            international_channel("Wait For It...The Mongols!: Crash Course World History #17", "CrashCourse", "szxPar0BcMo"),
+        ],
+        "The Three Orders": [
+            indian_channel("The Three Orders - Full Chapter | Class 11 History Chapter 6", "Magnet Brains", "gBgn1wt1bnw"),
+            international_channel("The Dark Ages...How Dark Were They, Really?: Crash Course World History #14", "CrashCourse", "QV7CanyzhZg"),
+        ],
+        "Changing Cultural Traditions": [
+            indian_channel("Changing Cultural Traditions - Full Chapter | Class 11 History Chapter 7", "Magnet Brains", "I67C6CydWC0"),
+            international_channel("Luther and the Protestant Reformation: Crash Course World History #218", "CrashCourse", "1o8oIELbNxE"),
+        ],
+        "Confrontation of Cultures": [
+            indian_channel("Confrontation of Cultures - Full Chapter | Class 11 History Chapter 8", "Magnet Brains", "3n0-FkihpBM"),
+            international_channel("The Age of Exploration: Crash Course European History #4", "CrashCourse", "wOclF9eP5uM"),
+        ],
+        "The Industrial Revolution": [
+            indian_channel("The Industrial Revolution - Full Chapter | Class 11 History Chapter 9", "Magnet Brains", "oImKuajXE4k"),
+            international_channel("Coal, Steam, and The Industrial Revolution: Crash Course World History #32", "CrashCourse", "zhL5DCizj5c"),
+        ],
+        "Displacing Indigenous Peoples": [
+            indian_channel("Displacing Indigenous Peoples - Full Chapter | Class 11 History Chapter 10", "Magnet Brains", "gvTglrp9Ctg"),
+            international_channel("Imperialism: Crash Course World History #35", "CrashCourse", "alJaltUmrGo"),
+        ],
+        "Paths to Modernisation": [
+            indian_channel("Paths to Modernisation - Full Chapter | Class 11 History Chapter 11", "Magnet Brains", "l_WPBu_ud_I"),
+            international_channel("Samurai, Daimyo, Matthew Perry, and Nationalism: Crash Course World History #34", "CrashCourse", "Nosq94oCl_M"),
+        ],
+    },
+    # ── ACCOUNTANCY ──────────────────────────────────────────────────────────
+    # Grade 11 Accountancy — NCERT Parts 1 & 2 (9 chapters from the live dropdown)
+    # Anchor channel: Magnet Brains (covers all chapters consistently)
+    # International: CrashCourse Entrepreneurship / Khan Academy Finance
+    "Accountancy": {
+        "Introduction to Accounting": [
+            indian_channel("Introduction to Accounting Full Chapter Explanation | Class 11 Accounts Chapter 1", "Magnet Brains", "IYTl9-T6K9k"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Theory Base of Accounting": [
+            indian_channel("Theory Base of Accounting Full Chapter & NCERT Solutions | Class 11 Accounts Chapter 3", "Magnet Brains", "0wZ6n3Jjqds"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Recording of Transactions – I": [
+            indian_channel("Journal Complete Concept & Illustrations | Class 11 Accounts Chapter 8 (Recording of Transactions)", "Magnet Brains", "DLJHsdjmcvo"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Recording of Transactions – II": [
+            indian_channel("Ledgers - Introduction | Class 11 Accounts (Recording of Transactions II)", "Magnet Brains", "qULpF6ukFEk"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Bank Reconciliation Statement": [
+            indian_channel("Bank Reconciliation Statement Full Concept | Class 11 Accounts", "Magnet Brains", "pAFcpFyttEM"),
+            international_channel("Basic cash flow statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Mioqyv_IW3E"),
+        ],
+        "Trial Balance and Rectification of Errors": [
+            indian_channel("Rectification of Errors Full Chapter Explanation | Class 11 Accounts Ch 17", "Magnet Brains", "6sc3yuTkRps"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Depreciation, Provisions and Reserves": [
+            indian_channel("Depreciation - Full Chapter Explanation and NCERT Solutions | Class 11 Accounts Chapter 14", "Magnet Brains", "SnVdCaVUvwY"),
+            international_channel("Depreciation | Stocks and bonds | Finance & Capital Markets | Khan Academy", "Khan Academy", "a5sFUXkxyGc"),
+        ],
+        "Bill of Exchange": [
+            indian_channel("Bills of Exchange - Full Chapter Explanation and Illustrations | Class 11 Accounts Chapter 16", "Magnet Brains", "NW8D15d6dyE"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Financial Statements – I": [
+            indian_channel("Financial Statements of Sole Proprietorship Full Chapter Explanation | Class 11 Accounts Chapter 18", "Magnet Brains", "PuXuNySEpX0"),
+            international_channel("Introduction to the income statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Z7C4cz2HkeY"),
+        ],
+        # Alternate spellings that may appear in RAG uploads
+        "Recording of Transactions - I": [
+            indian_channel("Journal Complete Concept & Illustrations | Class 11 Accounts Chapter 8 (Recording of Transactions)", "Magnet Brains", "DLJHsdjmcvo"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Recording of Transactions - II": [
+            indian_channel("Ledgers - Introduction | Class 11 Accounts (Recording of Transactions II)", "Magnet Brains", "qULpF6ukFEk"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Financial Statements - I": [
+            indian_channel("Financial Statements of Sole Proprietorship Full Chapter Explanation | Class 11 Accounts Chapter 18", "Magnet Brains", "PuXuNySEpX0"),
+            international_channel("Introduction to the income statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Z7C4cz2HkeY"),
+        ],
+        "Depreciation, Provisions and Reserves (Depreciation)": [
+            indian_channel("Depreciation - Full Chapter Explanation and NCERT Solutions | Class 11 Accounts Chapter 14", "Magnet Brains", "SnVdCaVUvwY"),
+            international_channel("Depreciation | Stocks and bonds | Finance & Capital Markets | Khan Academy", "Khan Academy", "a5sFUXkxyGc"),
+        ],
+    },
+    # ── ECONOMICS ────────────────────────────────────────────────────────────
+    # Grade 11 Economics covers two NCERT books:
+    #   1. Indian Economic Development (chapters 1–8)
+    #   2. Statistics for Economics (chapters 1–8, mapped as "Introduction to Statistics" etc.)
+    # Pattern: Indian anchor (Magnet Brains / PW OnlyIAS Prarambh) + international (CrashCourse / Khan Academy)
+    "Economics": {
+        # ── Indian Economic Development ──────────────────────────────────────
+        "Indian Economy on the Eve of Independence": [
+            indian_channel("Indian Economy on the Eve of Independence Full Chapter | Class 11 Economics Chapter 1", "PW OnlyIAS Prarambh", "yjxxWMbxfJg"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        "Indian Economy 1950–1990": [
+            indian_channel("Indian Economy 1950-1990 Full Chapter | Class 11 Economics Chapter 2", "PW OnlyIAS Prarambh", "okVN2fnA05E"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        "Liberalisation, Privatisation and Globalisation": [
+            indian_channel("Liberalisation, Privatisation and Globalisation Full Chapter | Class 11 Economics", "PW OnlyIAS Prarambh", "c2smj6ngsZg"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        "Poverty": [
+            indian_channel("Poverty, Inequality & Unemployment Full Chapter | Indian Economy - Chapter 3", "UPSC Wallah", "eAOPE1DMgtE"),
+            international_channel("Income and Wealth Inequality: Crash Course Economics #17", "CrashCourse", "0xMCWr0O3Hs"),
+        ],
+        "Human Capital Formation in India": [
+            indian_channel("Human Capital Formation In India Full Chapter | Class 11 Economics Chapter 4", "PW OnlyIAS Prarambh", "-rzhf452lSE"),
+            international_channel("Labor Markets and Minimum Wage: Crash Course Economics #28", "CrashCourse", "mWwXmH-n5Bo"),
+        ],
+        "Rural Development": [
+            indian_channel("Rural Development Full Chapter | Class 11 Economics Chapter 5", "PW OnlyIAS Prarambh", "ONcdFw63z6U"),
+            international_channel("Agribusiness, GMOs, and their Role in Development: Crash Course Geography #41", "CrashCourse", "VJEpCjD14hw"),
+        ],
+        "Employment: Growth, Informalisation and Other Issues": [
+            indian_channel("Employment: Growth, Informalisation and other Issues | Class 11 Economics Chapter 6", "PW OnlyIAS Prarambh", "fDZHOpdd1Nw"),
+            international_channel("Labor Markets and Minimum Wage: Crash Course Economics #28", "CrashCourse", "mWwXmH-n5Bo"),
+        ],
+        "Infrastructure": [
+            indian_channel("Infrastructure | Complete chapter | Indian Economic Development Class 11", "Rajat Arora", "pKKTm3d6usY"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        # ── Statistics for Economics ─────────────────────────────────────────
+        "Introduction to Statistics": [
+            indian_channel("Statistics Introduction: Meaning, Scope and Importance | Class 11 Economics Chapter 1 One Shot", "Next Toppers - 11th Commerce", "UWEB8DclIk0"),
+            international_channel("What Is Statistics: Crash Course Statistics #1", "CrashCourse", "sxQaBpKfDRk"),
+        ],
+        "Collection of Data": [
+            indian_channel("Collection of Data Full Chapter Explanation | Class 11 Economics Statistics", "Magnet Brains", "RmjYXWTmTMs"),
+            international_channel("Techniques for random sampling and avoiding bias | AP Statistics | Khan Academy", "Khan Academy", "PdXDLNNXPik"),
+        ],
+        "Organisation of Data": [
+            indian_channel("Organisation of Data Full Chapter Explanation | Class 11 Economics Statistics", "Magnet Brains", "e59TFNFIyYQ"),
+            international_channel("Ways to represent data | Data and statistics | Khan Academy", "Khan Academy", "0ZKtsUkrgFQ"),
+        ],
+        "Presentation of Data": [
+            indian_channel("Presentation of Data Full Chapter Explanation | Class 11 Economics Statistics", "Magnet Brains", "KbR6MflR7R8"),
+            international_channel("What Is Statistics: Crash Course Statistics #1", "CrashCourse", "sxQaBpKfDRk"),
+        ],
+        "Measures of Central Tendency": [
+            indian_channel("Measures of Central Tendency Full Chapter | Class 11 Economics Statistics Chapter 5", "Magnet Brains", "34Yfd40xbZU"),
+            international_channel("Mean, Median, and Mode: Crash Course Statistics #3", "CrashCourse", "kn83BA7cRNM"),
+        ],
+        "Measures of Dispersion": [
+            indian_channel("Measures of Dispersion 30-Minute Revision | Class 11 Economics Statistics Chapter 6", "Magnet Brains", "xtgNi2E0s1A"),
+            international_channel("Measures of Spread: Crash Course Statistics #4", "CrashCourse", "R4yfNi_8Kqw"),
+        ],
+        "Correlation": [
+            indian_channel("Correlation Full Chapter Explanation | Class 11 Economics Statistics Chapter 7", "Magnet Brains", "G7Ewtq3sjCA"),
+            international_channel("Correlation coefficient intuition | Mathematics I | Khan Academy", "Khan Academy", "-Y-M9aD_ccQ"),
+        ],
+        "Index Numbers": [
+            indian_channel("Index Numbers Full Chapter Explanation | Class 11 Economics Statistics Chapter 8", "Magnet Brains", "P3xPWjW6ZBQ"),
+            international_channel("CPI index | Inflation | Finance & Capital Markets | Khan Academy", "Khan Academy", "pRIELoITIHI"),
+        ],
+    },
     # ── MATHS ─────────────────────────────────────────────────────────────────
     "Mathematics": {
         "Sets": [
@@ -1414,6 +1790,66 @@ GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
         "Probability": [
             {"title": "CrashCourse Statistics — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JnoBjHz2dtw"},
             {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
+        ],
+    },
+    # ── BUSINESS STUDIES (Grade 11) ──────────────────────────────────────────
+    # NCERT "Business Studies Part I & II" (Class 11)
+    # Anchor: Magnet Brains (real video IDs) + CrashCourse Economics international
+    "Business Studies": {
+        # ── Part I: Foundation of Business ───────────────────────────────────
+        "Business, Trade and Commerce": [
+            indian_channel("Nature and Purpose of Business - Class 11 Business Studies Chapter 1", "Magnet Brains", "lB88UORThZY"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        "Forms of Business Organisation": [
+            indian_channel("Forms of Business Organization Full Chapter | Class 11 Business Studies Chapter 2 (2022-23)", "Magnet Brains", "ViwqqpB-6To"),
+            international_channel("Corporations and Governments: Crash Course Economics #4", "CrashCourse", "e0CuljFqyBM"),
+        ],
+        "Private, Public and Global Enterprises": [
+            indian_channel("Public, Private and Global Enterprises Full Chapter | Class 11 Business Studies Ch 3 (2022-23)", "Magnet Brains", "ZXBJQcVN2CI"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        "Business Services": [
+            indian_channel("Business Services - Full Chapter | Class 11 Business Studies Chapter 4 (2022-23)", "Magnet Brains", "TBvKbYhsRgI"),
+            international_channel("Money and Finance: Crash Course Economics #11", "CrashCourse", "Dugn51K_6WA"),
+        ],
+        "Emerging Modes of Business": [
+            indian_channel("Emerging Modes of Business Full Chapter | Class 11 Business Studies Ch 5 (2022-23)", "Magnet Brains", "vLyAUxDCoPo"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        "Social Responsibilities of Business and Business Ethics": [
+            indian_channel("Social Responsibility of Business & Business Ethics | Class 11 Business Studies Chapter 6", "Magnet Brains", "gYe7KZXXX6k"),
+            international_channel("Income and Wealth Inequality: Crash Course Economics #17", "CrashCourse", "0xMCWr0O3Hs"),
+        ],
+        # ── Part II: Finance and Trade ────────────────────────────────────────
+        "Formation of a Company": [
+            indian_channel("Formation of a Company Full Chapter | Class 11 Business Studies Chapter 7", "Magnet Brains", "qvblFIFHqxQ"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        "Sources of Business Finance": [
+            indian_channel("Sources of Business Finance Full Chapter | Class 11 Business Studies Chapter 8", "Magnet Brains", "Zt6WkA2fc_0"),
+            international_channel("Money and Finance: Crash Course Economics #11", "CrashCourse", "Dugn51K_6WA"),
+        ],
+        "Small Business": [
+            indian_channel("Small Business Full Chapter | Class 11 Business Studies Chapter 9", "Magnet Brains", "QP1fhtWVG-Y"),
+            international_channel("Labor Markets and Minimum Wage: Crash Course Economics #28", "CrashCourse", "mWwXmH-n5Bo"),
+        ],
+        "Internal Trade": [
+            indian_channel("Internal Trade Full Chapter | Class 11 Business Studies Chapter 10 (2022-23)", "Magnet Brains", "Uru5ysAPOEM"),
+            international_channel("Imports, Exports, and Exchange Rates: Crash Course Economics #15", "CrashCourse", "geoe-6NBy10"),
+        ],
+        "International Business": [
+            indian_channel("International Business Full Chapter | Class 11 Business Studies Chapter 11", "Magnet Brains", "9wnyfLvGlMk"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        # Alternate chapter name variants as uploaded in RAG
+        "International Business - I": [
+            indian_channel("International Business Full Chapter | Class 11 Business Studies Chapter 11", "Magnet Brains", "9wnyfLvGlMk"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        "International Business - II": [
+            indian_channel("International Business Full Chapter | Class 11 Business Studies Chapter 11", "Magnet Brains", "9wnyfLvGlMk"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
         ],
     },
     # ── ENGLISH ──────────────────────────────────────────────────────────────
@@ -1495,27 +1931,42 @@ GRADE_11_RESOURCES: dict[str, dict[str, list]] = {
         ],
     },
     "Hindi": {
-        "नमक का दरोगा": [{"title": "नमक का दरोगा | Class 11 Hindi Aroh Ch 1 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=TL0_M2qWB9g"}],
-        "मियाँ नसीरुद्दीन": [{"title": "मियाँ नसीरुद्दीन | Class 11 Hindi Aroh Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=U9GNH0LN_I0"}],
-        "अपू के साथ ढाई साल": [{"title": "अपू के साथ ढाई साल | Class 11 Hindi Aroh Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=xE1x0FXsTC0"}],
-        "विदाई-संभाषण": [{"title": "विदाई संभाषण | Class 11 Hindi Aroh Ch 4 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=91pjJf5GuDQ"}],
-        "गलता लोहा": [{"title": "गलता लोहा | Class 11 Hindi Aroh Ch 5 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=KQfrb-ULT7g"}],
-        "स्पीति में बारिश": [{"title": "स्पीति में बारिश | Class 11 Hindi Aroh Ch 6 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=s5m-GfBYcHc"}],
-        "रजनी": [{"title": "रजनी | Class 11 Hindi Aroh Ch 7 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=_k9TN15OZGc"}],
-        "जामुन का पेड़": [{"title": "जामुन का पेड़ | Class 11 Hindi Aroh Ch 8 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=JrSzOUTEPNs"}],
-        "भारत माता": [{"title": "भारत माता | Class 11 Hindi Aroh Ch 9 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=tP-p7HDB8yA"}],
-        "आत्मा का ताप": [{"title": "आत्मा का ताप | Class 11 Hindi Aroh Ch 10 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=OU_IY9enHC8"}],
-        "कबीर के पद": [{"title": "कबीर के पद | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=8nuezsYi2Cg"}],
-        "पथिक": [{"title": "पथिक | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=sZWQOAA2p2Q"}],
-        "वे आँखें": [{"title": "वे आँखें | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=gELNQeUIjpE"}],
-        "घर की याद": [{"title": "घर की याद | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=11xmCStzwBs"}],
-        "चंपा काले काले अच्छर नहीं चिन्हती": [{"title": "चंपा काले काले | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=KoAL0yqnzHI"}],
-        "गजल": [{"title": "गजल (Dushyant Kumar) | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=6FlI3DIDsg0"}],
-        "हे भूख! मत मचल": [{"title": "हे भूख मत मचल | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=imbaL8TwgMk"}],
-        "सबसे खतरनाक": [{"title": "सबसे खतरनाक | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=fqtB-8eXC8I"}],
-        "भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर": [{"title": "लता मंगेशकर | Class 11 Hindi Vitan Ch 1 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=XIexKf7h8DQ"}],
-        "राजस्थान की रजत बूँदें": [{"title": "राजस्थान की रजत बूँदें | Class 11 Hindi Vitan Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=2boSuacLzTM"}],
-        "आलो-आँधारि": [{"title": "आलो आँधारि | Class 11 Hindi Vitan Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=Do7gctB54E0"}],
+        # ── Aroh Gadya (Prose) ─────────────────────────────────────────────
+        "नमक का दरोगा": [{"title": "नमक का दरोगा | Class 11 Hindi Aroh Ch 1 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=TL0_M2qWB9g", "channel": "Magnet Brains"}],
+        "मियाँ नसीरुद्दीन": [{"title": "मियाँ नसीरुद्दीन | Class 11 Hindi Aroh Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=U9GNH0LN_I0", "channel": "Magnet Brains"}],
+        "अपू के साथ ढाई साल": [{"title": "अपू के साथ ढाई साल | Class 11 Hindi Aroh Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=xE1x0FXsTC0", "channel": "Magnet Brains"}],
+        "विदाई-संभाषण": [{"title": "विदाई संभाषण | Class 11 Hindi Aroh Ch 4 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=91pjJf5GuDQ", "channel": "Magnet Brains"}],
+        "गलता लोहा": [{"title": "गलता लोहा | Class 11 Hindi Aroh Ch 5 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=KQfrb-ULT7g", "channel": "Magnet Brains"}],
+        "स्पीति में बारिश": [{"title": "स्पीति में बारिश | Class 11 Hindi Aroh Ch 6 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=s5m-GfBYcHc", "channel": "Magnet Brains"}],
+        "रजनी": [{"title": "रजनी | Class 11 Hindi Aroh Ch 7 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=_k9TN15OZGc", "channel": "Magnet Brains"}],
+        "जामुन का पेड़": [{"title": "जामुन का पेड़ | Class 11 Hindi Aroh Ch 8 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=JrSzOUTEPNs", "channel": "Magnet Brains"}],
+        "भारत माता": [{"title": "भारत माता | Class 11 Hindi Aroh Ch 9 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=tP-p7HDB8yA", "channel": "Magnet Brains"}],
+        "आत्मा का ताप": [{"title": "आत्मा का ताप | Class 11 Hindi Aroh Ch 10 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=OU_IY9enHC8", "channel": "Magnet Brains"}],
+        # ── Aroh Kavya (Poetry) ────────────────────────────────────────────
+        "कबीर के पद": [{"title": "कबीर के पद | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=8nuezsYi2Cg", "channel": "Magnet Brains"}],
+        "मीरा के पद": [{"title": "मीरा के पद | Class 11 Hindi Aroh Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=MTpjqhmHrHA", "channel": "Magnet Brains"}],
+        "पथिक": [{"title": "पथिक | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=sZWQOAA2p2Q", "channel": "Magnet Brains"}],
+        "वे आँखें": [{"title": "वे आँखें | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=gELNQeUIjpE", "channel": "Magnet Brains"}],
+        "घर की याद": [{"title": "घर की याद | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=11xmCStzwBs", "channel": "Magnet Brains"}],
+        "चंपा काले काले अच्छर नहीं चिन्हती": [{"title": "चंपा काले काले | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=KoAL0yqnzHI", "channel": "Magnet Brains"}],
+        "गजल": [{"title": "गजल (Dushyant Kumar) | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=6FlI3DIDsg0", "channel": "Magnet Brains"}],
+        "हे भूख! मत मचल": [{"title": "हे भूख मत मचल | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=imbaL8TwgMk", "channel": "Magnet Brains"}],
+        "सबसे खतरनाक": [{"title": "सबसे खतरनाक | Class 11 Hindi Aroh Kavya | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=fqtB-8eXC8I", "channel": "Magnet Brains"}],
+        "आओ मिलकर बचाएँ": [{"title": "आओ मिलकर बचाएँ | Class 11 Hindi Aroh Ch 20 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=NKDcc5QUtlM", "channel": "Magnet Brains"}],
+        # ── Vitan (Supplementary Reader) ──────────────────────────────────
+        "भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर": [{"title": "लता मंगेशकर | Class 11 Hindi Vitan Ch 1 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=XIexKf7h8DQ", "channel": "Magnet Brains"}],
+        "राजस्थान की रजत बूँदें": [{"title": "राजस्थान की रजत बूँदें | Class 11 Hindi Vitan Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=2boSuacLzTM", "channel": "Magnet Brains"}],
+        "आलो-आँधारि": [{"title": "आलो आँधारि | Class 11 Hindi Vitan Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=Do7gctB54E0", "channel": "Magnet Brains"}],
+        # ── Antral (Extended Reading / Supplementary) ──────────────────────
+        # Video IDs verified live via YouTube oEmbed / direct browser check July 2026.
+        # "हुसैन की कहानी अपनी ज़बानी" (Antral Ch 2) and "आवारा मसीहा" (Antral Ch 3)
+        # verified via browser July 2026. "मेरा बाप बड़ा न मेरा चाचा" and "अनुभव"
+        # have no dedicated Magnet Brains videos; YouTube search URL used as fallback.
+        "हुसैन की कहानी अपनी ज़बानी": [{"title": "हुसैन की कहानी अपनी ज़बानी | Class 11 Hindi Antral Ch 2 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=Nxg2kjxJHWU", "channel": "Magnet Brains"}],
+        "आवारा मसीहा": [{"title": "आवारा मसीहा | Class 11 Hindi Antral Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zGp7SWp5h9A", "channel": "Magnet Brains"}],
+        "अंधेर नगरी": [{"title": "अंधेर नगरी | Class 11 Hindi Antral Ch 1 | Explanation", "type": "website", "url": "https://www.youtube.com/results?search_query=andher+nagari+class+11+hindi+antral+explanation"}],
+        "मेरा बाप बड़ा न मेरा चाचा": [{"title": "मेरा बाप बड़ा न मेरा चाचा | Class 11 Hindi", "type": "website", "url": "https://www.youtube.com/results?search_query=mera+baap+bada+na+mera+chacha+class+11+hindi+explanation"}],
+        "अनुभव": [{"title": "अनुभव | Class 11 Hindi", "type": "website", "url": "https://www.youtube.com/results?search_query=anubhav+class+11+hindi+explanation"}],
     },
 }
 
@@ -1713,6 +2164,297 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
             {"title": "Kurzgesagt — Overpopulation and the Environment (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=QOCaacO8wus"},
         ],
     },
+    # ── SOCIOLOGY (Grade 12) ─────────────────────────────────────────────────
+    # NCERT "Indian Society" (6 chapters) + "Social Change and Development in India" (8 chapters)
+    # Anchor: Magnet Brains + CrashCourse Sociology international
+    "Sociology": {
+        # ── Indian Society ────────────────────────────────────────────────────
+        "Introducing Indian Society": [
+            indian_channel("Introducing Indian Society Full Chapter | Class 12 Sociology Chapter 1 2022-23", "Magnet Brains", "E4RruCYZ20Y"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "The Demographic Structure of the Indian Society": [
+            indian_channel("Demographic Structure Indian Society Full Chapter | Class 12 Sociology Chapter 2 2022-23", "Magnet Brains", "8hKFZENckQo"),
+            international_channel("Social Stratification: Crash Course Sociology #21", "CrashCourse", "SlkIKCMt-Fs"),
+        ],
+        "Social Institutions: Continuity and Change": [
+            indian_channel("Social Institutions: Continuity and Change Full Chapter | Class 12 Sociology Chapter 3", "Magnet Brains", "1vhdRpgzo1Q"),
+            international_channel("Religion: Crash Course Sociology #39", "CrashCourse", "pIgb-3e8CWA"),
+        ],
+        "The Market as a Social Institution": [
+            indian_channel("The Market as a Social Institution Full Chapter | Class 12 Sociology Chapter 4", "Magnet Brains", "_0-iJpEslOw"),
+            international_channel("Global Stratification & Poverty: Crash Course Sociology #27", "CrashCourse", "6rts_PWIVTU"),
+        ],
+        "Patterns of Social Inequality and Exclusion": [
+            indian_channel("Patterns of Social Inequality and Exclusion | Class 12 Sociology Chapter 5 2025-26", "Magnet Brains", "ZiE4zvOGXiA"),
+            international_channel("Social Stratification: Crash Course Sociology #21", "CrashCourse", "SlkIKCMt-Fs"),
+        ],
+        "The Challenges of Cultural Diversity": [
+            indian_channel("The Challenges of Cultural Diversity Full Chapter | Class 12 Sociology Chapter 6 2022-23", "Magnet Brains", "MCv_CRvclPs"),
+            international_channel("Cultures, Subcultures, and Countercultures: Crash Course Sociology #11", "CrashCourse", "RV50AV7-Iwc"),
+        ],
+        # ── Social Change and Development in India ────────────────────────────
+        "Structural Change": [
+            indian_channel("Structural Change Full Chapter | Class 12 Sociology Chapter 1 2022-23", "Magnet Brains", "ZOcPUJUE878"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "Cultural Change": [
+            indian_channel("Cultural Change Full Chapter | Class 12 Sociology Chapter 2 2022-23", "Magnet Brains", "wI-sOcprV84"),
+            international_channel("Cultures, Subcultures, and Countercultures: Crash Course Sociology #11", "CrashCourse", "RV50AV7-Iwc"),
+        ],
+        "The Story of Indian Democracy": [
+            indian_channel("The Story of Indian Democracy Full Chapter | Class 12 Sociology Chapter 3 2022-23", "Magnet Brains", "f95U7rCyagg"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "Change and Development in Rural Society": [
+            indian_channel("Change & Development in Rural Society Full Chapter | Class 12 Sociology Chapter 4 2022-23", "Magnet Brains", "Hc7VC0R7wGw"),
+            international_channel("Global Stratification & Poverty: Crash Course Sociology #27", "CrashCourse", "6rts_PWIVTU"),
+        ],
+        "Change and Development in Industrial Society": [
+            indian_channel("Change & Development in Industrial Society - One Shot Revision | Class 12 Sociology 2025-26", "Magnet Brains", "LCN8bTNmOtQ"),
+            international_channel("Global Stratification & Poverty: Crash Course Sociology #27", "CrashCourse", "6rts_PWIVTU"),
+        ],
+        "Globalisation and Social Change": [
+            indian_channel("Globalisation and Social Change Full Chapter | Class 12 Sociology Chapter 6 2022-23", "Magnet Brains", "o3Hsr7mqJhY"),
+            international_channel("Theories of Global Stratification: Crash Course Sociology #28", "CrashCourse", "b350ljkYWrU"),
+        ],
+        "Mass Media and Communications": [
+            indian_channel("Mass Media and Communications Full Chapter | Class 12 Sociology Chapter 7 2022-23", "Magnet Brains", "JV5DwxDwjKw"),
+            international_channel("What Is Sociology?: Crash Course Sociology #1", "CrashCourse", "YnCJU6PaCio"),
+        ],
+        "Social Movements": [
+            indian_channel("Social Movements Full Chapter | Class 12 Sociology Chapter 8 2022-23", "Magnet Brains", "ZvajDwWZo34"),
+            international_channel("Social Stratification: Crash Course Sociology #21", "CrashCourse", "SlkIKCMt-Fs"),
+        ],
+    },
+    # ── POLITICAL SCIENCE (Grade 12) ─────────────────────────────────────────
+    # NCERT "Contemporary World Politics" (8 chapters) + "Politics in India since Independence" (8 chapters)
+    # Anchor: Magnet Brains + CrashCourse Government / World History international
+    "Political Science": {
+        # ── Contemporary World Politics ───────────────────────────────────────
+        "The Cold War Era": [
+            indian_channel("The Cold War Era Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "_nepupPG_AE"),
+            international_channel("USA vs USSR Fight! The Cold War: Crash Course World History #39", "CrashCourse", "y9HjvHZfCUI"),
+        ],
+        "The End of Bipolarity": [
+            indian_channel("The End of Bipolarity Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "GXp7Dgp09Eg"),
+            international_channel("USA vs USSR Fight! The Cold War: Crash Course World History #39", "CrashCourse", "y9HjvHZfCUI"),
+        ],
+        "US Hegemony in World Politics": [
+            indian_channel("US Hegemony in World Politics Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "XcYN39FCjCM"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Alternative Centres of Power": [
+            indian_channel("Alternative Centres of Power Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "RqMaQ8b9unE"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Contemporary South Asia": [
+            indian_channel("Contemporary South Asia Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "1keMmSxI08M"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "International Organisations": [
+            indian_channel("International Organisations Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "tsZv1l2NaQc"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Security in the Contemporary World": [
+            indian_channel("Security in The Contemporary World Full Chapter | Class 12 Political Science", "Social School by Unacademy", "eq33vYnwIJg"),
+            international_channel("USA vs USSR Fight! The Cold War: Crash Course World History #39", "CrashCourse", "y9HjvHZfCUI"),
+        ],
+        "Environment and Natural Resources": [
+            indian_channel("Environment and Natural Resources Full Chapter | Class 12 Political Science", "Social School by Unacademy", "aAmrlJy7anc"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        # ── Politics in India since Independence ──────────────────────────────
+        "Challenges of Nation Building": [
+            indian_channel("Challenges of Nation Building Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "wfDKm-hjwfg"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Era of One-Party Dominance": [
+            indian_channel("Era of One Party Dominance Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "7wYcTTIfP-I"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Politics of Planned Development": [
+            indian_channel("Politics of Planned Development Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "KLV1FNo7JFE"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "India's External Relations": [
+            indian_channel("India's External Relations Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "AoFNwTB88gU"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Challenges to and Restoration of the Congress System": [
+            indian_channel("Challenges to & Restoration of the Congress System | Class 12 Political Science 2022-23", "Magnet Brains", "8Ss8g23mt4k"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "The Crisis of Democratic Order": [
+            indian_channel("The Crisis of Democratic Order Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "ycwntjHDmIA"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Rise of Popular Movements": [
+            indian_channel("Rise of Popular Movements Introduction | Class 12 Political Science 2025-26", "Magnet Brains", "_k3Rw3y2Cuc"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        "Regional Aspirations and Recent Developments in Indian Politics": [
+            indian_channel("Recent Developments in Indian Politics Full Chapter | Class 12 Political Science 2022-23", "Magnet Brains", "4KTadTxGdnY"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+        # Alternate short names used in RAG uploads
+        "Challenges to and Restoration of the Congress System ": [
+            indian_channel("Challenges to & Restoration of the Congress System | Class 12 Political Science 2022-23", "Magnet Brains", "8Ss8g23mt4k"),
+            international_channel("Where Did Democracy Come From, and Does It Still Work?", "CrashCourse", "qz2-X1LrOPg"),
+        ],
+    },
+    # ── GEOGRAPHY (Grade 12) ─────────────────────────────────────────────────
+    # NCERT "Fundamentals of Human Geography" (8 chapters from the live dropdown)
+    # Anchor: Magnet Brains + CrashCourse Geography international
+    "Geography": {
+        "Human Geography: Nature and Scope": [
+            indian_channel("Human Geography: Nature And Scope Full Chapter | Class 12 Geography Chapter 1", "Magnet Brains", "lsp7oXb7b7w"),
+            international_channel("What is Human Geography? Crash Course Geography #28", "CrashCourse", "4y2nndDs8m4"),
+        ],
+        "The World Population: Distribution, Density and Growth": [
+            indian_channel("The World Population Distribution Density Growth Full Chapter | Class 12 Geography 2022-23", "Magnet Brains", "g-ZEvtECcEE"),
+            international_channel("How Populations Grow and Change: Crash Course Geography #33", "CrashCourse", "JpAiBg0hrfQ"),
+        ],
+        "Population Composition": [
+            indian_channel("Population Composition - Full Chapter | Class 12 Geography Chapter 3 (2022-23)", "Magnet Brains", "sDEv55GGgiw"),
+            international_channel("How Populations Grow and Change: Crash Course Geography #33", "CrashCourse", "JpAiBg0hrfQ"),
+        ],
+        "Human Development": [
+            indian_channel("Human Development Full Chapter | Class 12 Geography Chapter 4 (2022-23)", "Magnet Brains", "ocUpOsN2SwI"),
+            international_channel("What is Human Geography? Crash Course Geography #28", "CrashCourse", "4y2nndDs8m4"),
+        ],
+        "Primary Activities": [
+            indian_channel("Primary Activities - Full Chapter Explanation | Class 12 Geography Chapter 5", "Magnet Brains", "M-_Z5Xl9HTM"),
+            international_channel("The Agricultural Revolution: Crash Course World History #1", "CrashCourse", "Yocja_N5s1I"),
+        ],
+        "Secondary Activities": [
+            indian_channel("Secondary Activities Geography | Class 12 Geography Full Chapter (2022-23)", "Magnet Brains", "mg-o7WNXZ6w"),
+            international_channel("The Industrial Revolution: Crash Course European History #24", "CrashCourse", "zjK7PWmRRyg"),
+        ],
+        "Tertiary and Quaternary Activities": [
+            indian_channel("Tertiary & Quaternary Activities - Full Chapter | Class 12 Geography Chapter 7 (2022-23)", "Magnet Brains", "B6BG4vgqoPE"),
+            international_channel("What is Human Geography? Crash Course Geography #28", "CrashCourse", "4y2nndDs8m4"),
+        ],
+        "Transport and Communication": [
+            indian_channel("Transport and Communication Full Chapter Explanation | Class 12 Geography Chapter 10 (2022-23)", "Magnet Brains", "055o9W83heg"),
+            international_channel("What is Human Geography? Crash Course Geography #28", "CrashCourse", "4y2nndDs8m4"),
+        ],
+    },
+    # ── HISTORY (Grade 12) ────────────────────────────────────────────────────
+    # NCERT "Themes in Indian History" Parts 1, 2 & 3 (visible chapters from dropdown)
+    # Anchor: Magnet Brains (covers all chapters) + CrashCourse World History international
+    "History": {
+        # ── Themes in Indian History Part 1 ──────────────────────────────────
+        "Bricks, Beads and Bones: The Harappan Civilisation": [
+            indian_channel("Bricks, Beads & Bones: The Harappan Civilisation - One Shot Revision | Class 12 History Ch 1 2025-26", "Magnet Brains", "SdcNRoQoRI4"),
+            international_channel("Buddha and Ashoka: Crash Course World History #6", "CrashCourse", "8Nn5uqE3C9w"),
+        ],
+        "Kings, Farmers and Towns: Early States and Economies": [
+            indian_channel("Kings, Farmers & Towns: Early States & Economies - One Shot Revision | Class 12 History Ch2 2025-26", "Magnet Brains", "VTQZJC0Ogjg"),
+            international_channel("Buddha and Ashoka: Crash Course World History #6", "CrashCourse", "8Nn5uqE3C9w"),
+        ],
+        "Kinship, Caste and Class: Early Societies": [
+            indian_channel("Kinship, Caste and Class: Early Societies - One Shot Revision | Class 12 History Chapter 3 (2025-26)", "Magnet Brains", "44GxcmR1hHU"),
+            international_channel("Indus Valley Civilisation: Crash Course World History", "CrashCourse", "sohXPx_XZ6Y", note="Closest CrashCourse episode for early Indian societies."),
+        ],
+        "Thinkers, Beliefs and Buildings: Cultural Developments": [
+            indian_channel("Thinkers, Beliefs and Buildings: Cultural Developments | Class 12 History Chapter 4 (2025-26)", "Magnet Brains", "f2E-624FmC0"),
+            international_channel("Buddha and Ashoka: Crash Course World History #6", "CrashCourse", "8Nn5uqE3C9w"),
+        ],
+        "Through the Eyes of Travellers: Perceptions of Society": [
+            indian_channel("Through the Eyes of Travellers: Perceptions of Society | Class 12 History Ch 5 2025-26", "Magnet Brains", "uGCBZjSPezI"),
+            international_channel("Wait For It...The Mongols!: Crash Course World History #17", "CrashCourse", "szxPar0BcMo"),
+        ],
+        "Bhakti-Sufi Traditions: Changes in Religious Beliefs": [
+            indian_channel("Bhakti-Sufi Traditions: Full Chapter Explanation | Class 12 History Chapter 6 (2022-23)", "Magnet Brains", "or2D50ffJmU"),
+            international_channel("Islam, the Quran, and the Five Pillars: Crash Course World History #13", "CrashCourse", "TpcbfxtdoI8"),
+        ],
+        "An Imperial Capital: Vijayanagara": [
+            indian_channel("An Imperial Capital: Vijayanagara - One Shot Revision | Class 12 History Chapter 7 (2025-26)", "Magnet Brains", "Mr9ul97AYn8"),
+            international_channel("The Mughal Empire and Historical Reputation: Crash Course World History #217", "CrashCourse", "nbuM0aJjVgE"),
+        ],
+        # ── Themes in Indian History Part 2 ──────────────────────────────────
+        "Peasants, Zamindars and the State: Agrarian Society and the Mughal Empire": [
+            indian_channel("Peasants, Zamindars and The State - One Shot Revision | Class 12 History Chapter 8 (2025-26)", "Magnet Brains", "cn_ti4-dm_I"),
+            international_channel("The Mughal Empire and Historical Reputation: Crash Course World History #217", "CrashCourse", "nbuM0aJjVgE"),
+        ],
+        "Kings and Chronicles: The Mughal Courts": [
+            indian_channel("Kings & Chronicles: The Mughal Courts - Introduction | Class 12 History Ch 9 (2025-26)", "Magnet Brains", "kf7Oh7_ZuOE"),
+            international_channel("The Mughal Empire and Historical Reputation: Crash Course World History #217", "CrashCourse", "nbuM0aJjVgE"),
+        ],
+        "Colonialism and the Countryside: Exploring Official Archives": [
+            indian_channel("Colonialism and The Countryside - Full Chapter Explanation | Class 12 History Chapter 10", "Magnet Brains", "7zW5Lkluz1c"),
+            international_channel("Imperialism: Crash Course World History #35", "CrashCourse", "alJaltUmrGo"),
+        ],
+        "Rebels and the Raj: The Revolt of 1857 and its Representations": [
+            indian_channel("Rebels and the Raj - One Shot Revision | Class 12 History Chapter 11 (2025-26)", "Magnet Brains", "BsEcoRaVFE8"),
+            international_channel("Imperialism: Crash Course World History #35", "CrashCourse", "alJaltUmrGo"),
+        ],
+        "Colonial Cities: Urbanisation, Planning and Architecture": [
+            indian_channel("Colonial Cities - Full Chapter Explanation | Class 12 History Chapter 12 (2022-23)", "Magnet Brains", "AbD2OXledpk"),
+            international_channel("Imperialism: Crash Course World History #35", "CrashCourse", "alJaltUmrGo"),
+        ],
+        # ── Themes in Indian History Part 3 ──────────────────────────────────
+        "Mahatma Gandhi and the Nationalist Movement: Civil Disobedience and Beyond": [
+            indian_channel("Mahatma Gandhi & the Nationalist Movement - One Shot Revision | Class 12 History Chapter 13", "Magnet Brains", "P6XhI4x9cv8"),
+            international_channel("Nonviolence and Peace Movements: Crash Course World History 228", "CrashCourse", "eP-mv5IjFzY"),
+        ],
+        "Understanding Partition: Politics, Memories, Experiences": [
+            indian_channel("Understanding Partition - One Shot Revision | Class 12 History Chapter 14 (2025-26)", "Magnet Brains", "KeQcz6L8XOo"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        "Framing the Constitution: The Beginning of a New Era": [
+            indian_channel("Framing The Constitution - One Shot Revision | Class 12 History Chapter 15 (2025-26)", "Magnet Brains", "KXwQwKJaNrs"),
+            international_channel("Decolonization and Nationalism Triumphant: Crash Course World History #40", "CrashCourse", "T_sGTspaF4Y"),
+        ],
+        # Alternate short names that may appear from RAG uploads
+        "Bricks, Beads and Bones": [
+            indian_channel("Bricks, Beads & Bones: The Harappan Civilisation - One Shot Revision | Class 12 History Ch 1 2025-26", "Magnet Brains", "SdcNRoQoRI4"),
+            international_channel("Buddha and Ashoka: Crash Course World History #6", "CrashCourse", "8Nn5uqE3C9w"),
+        ],
+    },
+    # ── Grade 12 ECONOMICS ───────────────────────────────────────────────────
+    # NCERT "Introductory Macroeconomics" (6 chapters) — same Magnet Brains anchor used
+    # throughout the Grade 12 Social Science and Economics sections of this file.
+    "Economics": {
+        "Introduction to Macroeconomics": [
+            indian_channel("Introduction: Full Chapter Explanation | Class 12 Macroeconomics Chapter 1", "Magnet Brains", "QOAvSN-Dzs0"),
+            international_channel("Macroeconomics: Crash Course Economics #5", "CrashCourse", "d8uTB5XorBw"),
+        ],
+        "National Income Accounting": [
+            indian_channel("National Income Accounting - Full Chapter Explanation | Class 12 Macroeconomics Chapter 2", "Magnet Brains", "t9UJ3cjej_w"),
+            international_channel("GDP: Crash Course Economics #5", "CrashCourse", "d8uTB5XorBw"),
+        ],
+        "Money and Banking": [
+            indian_channel("Money and Banking - Full Chapter Explanation | Class 12 Macroeconomics Chapter 3", "Magnet Brains", "J9TI8Iz9e5Q"),
+            international_channel("Money and Finance: Crash Course Economics #11", "CrashCourse", "Dugn51K_6WA"),
+        ],
+        "Determination of Income and Employment": [
+            indian_channel("Determination of Income and Employment - Full Chapter | Class 12 Macroeconomics Chapter 4", "Magnet Brains", "jYBIx-OoNKw"),
+            international_channel("Fiscal Policy and Stimulus: Crash Course Economics #8", "CrashCourse", "otmgFQHbaDo"),
+        ],
+        "Government Budget and the Economy": [
+            indian_channel("Government Budget and the Economy - Full Chapter | Class 12 Macroeconomics Chapter 5", "Magnet Brains", "iLDwPbyYR3s"),
+            international_channel("Deficits & Debts: Crash Course Economics #9", "CrashCourse", "3sUCSGVYzI0"),
+        ],
+        "Open Economy Macroeconomics": [
+            indian_channel("Open Economy Macroeconomics - Full Chapter Explanation | Class 12 Macroeconomics Chapter 6", "Magnet Brains", "Pn_r4xkmth8"),
+            international_channel("Imports, Exports, and Exchange Rates: Crash Course Economics #15", "CrashCourse", "geoe-6NBy10"),
+        ],
+        # Alternate chapter names as stored by some RAG uploads (Sandeep Garg edition naming)
+        "National Income and Related Aggregates": [
+            indian_channel("National Income Accounting - Full Chapter Explanation | Class 12 Macroeconomics Chapter 2", "Magnet Brains", "t9UJ3cjej_w"),
+            international_channel("GDP: Crash Course Economics #5", "CrashCourse", "d8uTB5XorBw"),
+        ],
+        "Income Determination": [
+            indian_channel("Determination of Income and Employment - Full Chapter | Class 12 Macroeconomics Chapter 4", "Magnet Brains", "jYBIx-OoNKw"),
+            international_channel("Fiscal Policy and Stimulus: Crash Course Economics #8", "CrashCourse", "otmgFQHbaDo"),
+        ],
+        "Introduction to Macro Economics": [
+            indian_channel("Introduction: Full Chapter Explanation | Class 12 Macroeconomics Chapter 1", "Magnet Brains", "QOAvSN-Dzs0"),
+            international_channel("Macroeconomics: Crash Course Economics #5", "CrashCourse", "d8uTB5XorBw"),
+        ],
+    },
     "Mathematics": {
         "Relations and Functions": [
             {"title": "CrashCourse Statistics — Data Visualization (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=XZo4xyJXCak"},
@@ -1765,6 +2507,133 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         "Probability": [
             {"title": "CrashCourse Statistics — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=JnoBjHz2dtw"},
             {"title": "Khan Academy — Basic Probability (International)", "type": "youtube", "url": "https://www.youtube.com/watch?v=uzkc-qNVoOk"},
+        ],
+    },
+    # ── ACCOUNTANCY (Grade 12) ────────────────────────────────────────────────
+    # Grade 12 Accountancy — NCERT Parts 1 & 2 (10 chapters from the live dropdown)
+    # Anchor channel: Magnet Brains (covers all chapters consistently)
+    # International: CrashCourse Entrepreneurship / Khan Academy Finance
+    "Accountancy": {
+        "Accounting for Not-for-Profit Organisations": [
+            indian_channel("Financial Statements of Not-for-Profit Organizations | Class 12 Accounts Chapter 1", "Magnet Brains", "OCoSQIC8aCs"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Accounting for Partnership: Basic Concepts": [
+            indian_channel("Accounting for Partnership Firms Full Concepts | Class 12 Accounts Chapter 2", "Magnet Brains", "TWioNFOvyvM"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Reconstitution of a Partnership Firm – Admission of a Partner": [
+            indian_channel("Admission of a Partner - Quick Revision | Class 12 Accountancy Chapter 4", "Magnet Brains", "CwbsWbcbAb4"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Reconstitution of a Partnership Firm – Retirement/Death of a Partner": [
+            indian_channel("Retirement of a Partner - Concept | Class 12 Accounts Chapter 6", "Magnet Brains", "0_g6-718J0Y"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Dissolution of Partnership Firm": [
+            indian_channel("Dissolution of a Partnership Firm - Concept | Class 12 Accounts Chapter 8", "Magnet Brains", "5e2V_o85wXE"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Accounting for Share Capital": [
+            indian_channel("Accounting For Share Capital - Concept | Class 12 Accounts Chapter 9", "Magnet Brains", "bZSdkGuu0vE"),
+            international_channel("Deficits & Debts: Crash Course Economics #9", "CrashCourse", "3sUCSGVYzI0"),
+        ],
+        "Issue and Redemption of Debentures": [
+            indian_channel("Issue of Debentures - Concepts | Class 12 Accounts Chapter 10", "Magnet Brains", "aJgD4ZwGNro"),
+            international_channel("Money and Finance: Crash Course Economics #11", "CrashCourse", "Dugn51K_6WA"),
+        ],
+        "Financial Statements of a Company": [
+            indian_channel("Financial Statements of a Company - Statement of P&L and Concept | Class 12 Accounts", "Magnet Brains", "FjW40LZnpOU"),
+            international_channel("Introduction to the income statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Z7C4cz2HkeY"),
+        ],
+        "Analysis of Financial Statements": [
+            indian_channel("Financial Statements Analysis - Concept | Class 12 Accounts Chapter 2", "Magnet Brains", "2-iFrsiWjy4"),
+            international_channel("Introduction to the income statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Z7C4cz2HkeY"),
+        ],
+        "Accounting Ratios": [
+            indian_channel("Accounting Ratios - Concept | Class 12 Accounts", "Magnet Brains", "L8t9eSx4v7c"),
+            international_channel("Understanding Financial Statements and Accounting: Crash Course Entrepreneurship #15", "CrashCourse", "_HK5gpg39pY"),
+        ],
+        "Cash Flow Statement": [
+            indian_channel("Cash Flow Statement Full Chapter Concepts & Illustrations | Class 12 Accounts Chapter 6", "Magnet Brains", "Fb_5dy5trvw"),
+            international_channel("Basic cash flow statement | Finance & Capital Markets | Khan Academy", "Khan Academy", "Mioqyv_IW3E"),
+        ],
+        # Alternate chapter name spellings
+        "Reconstitution of a Partnership Firm - Admission of a Partner": [
+            indian_channel("Admission of a Partner - Quick Revision | Class 12 Accountancy Chapter 4", "Magnet Brains", "CwbsWbcbAb4"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Reconstitution of a Partnership Firm - Retirement/Death of a Partner": [
+            indian_channel("Retirement of a Partner - Concept | Class 12 Accounts Chapter 6", "Magnet Brains", "0_g6-718J0Y"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Reconstitution of Partnership Firm – Admission of a Partner": [
+            indian_channel("Admission of a Partner - Quick Revision | Class 12 Accountancy Chapter 4", "Magnet Brains", "CwbsWbcbAb4"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+        "Reconstitution of Partnership Firm – Retirement/Death of a Partner": [
+            indian_channel("Retirement of a Partner - Concept | Class 12 Accounts Chapter 6", "Magnet Brains", "0_g6-718J0Y"),
+            international_channel("Introduction to Balance Sheets | Finance & Capital Markets | Khan Academy", "Khan Academy", "mxsYHiDVNlk"),
+        ],
+    },
+    # ── BUSINESS STUDIES (Grade 12) ──────────────────────────────────────────
+    # NCERT "Business Studies Part I & II" (Class 12)
+    # Anchor: Magnet Brains (real video IDs) + CrashCourse Economics international
+    "Business Studies": {
+        # ── Part I: Principles and Functions of Management ────────────────────
+        "Nature and Significance of Management": [
+            indian_channel("Nature and Significance of Management Full Chapter | Class 12 Business Studies Chapter 1", "Magnet Brains", "X60cAG08TWM"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        "Principles of Management": [
+            indian_channel("Principles of Management Full Chapter | Class 12 Business Studies Chapter 2 (2022-23)", "Magnet Brains", "KxORVTWF2j8"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        "Business Environment": [
+            indian_channel("Business Environment Full Chapter | Class 12 Business Studies Chapter 3 (2022-23)", "Magnet Brains", "1EPpKzjYQag"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        "Planning": [
+            indian_channel("Planning Full Chapter | Class 12 Business Studies Chapter 4 (2022-23)", "Magnet Brains", "TEm_CBD2Iks"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        "Organising": [
+            indian_channel("Organising Full Chapter | Class 12 Business Studies Chapter 5 (2022-23)", "Magnet Brains", "Efh-wQrMLR0"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        "Staffing": [
+            indian_channel("Staffing Full Chapter | Class 12 Business Studies Chapter 6 (2022-23)", "Magnet Brains", "B01UaFTcDYo"),
+            international_channel("Labor Markets and Minimum Wage: Crash Course Economics #28", "CrashCourse", "mWwXmH-n5Bo"),
+        ],
+        "Directing": [
+            indian_channel("Directing Full Chapter | Class 12 Business Studies Chapter 7 (2022-23)", "Magnet Brains", "QhWoknu83rU"),
+            international_channel("Productivity and Growth: Crash Course Economics #6", "CrashCourse", "UHiUYj5EA0w"),
+        ],
+        "Controlling": [
+            indian_channel("Controlling Full Chapter | Class 12 Business Studies Chapter 8 (2022-23)", "Magnet Brains", "zaHZ4DchmYs"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
+        ],
+        # ── Part II: Business Finance and Marketing ───────────────────────────
+        "Financial Management": [
+            indian_channel("Financial Management Full Chapter | Class 12 Business Studies Chapter 9 (2022-23)", "Magnet Brains", "11wzuJwcBZY"),
+            international_channel("Money and Finance: Crash Course Economics #11", "CrashCourse", "Dugn51K_6WA"),
+        ],
+        "Financial Markets": [
+            indian_channel("Financial Markets Full Chapter | Class 12 Business Studies Chapter 10 (2022-23)", "Magnet Brains", "BfgEm17KEKM"),
+            international_channel("Deficits & Debts: Crash Course Economics #9", "CrashCourse", "3sUCSGVYzI0"),
+        ],
+        "Marketing Management": [
+            indian_channel("Marketing Full Chapter | Class 12 Business Studies Chapter 11 (2022-23)", "Magnet Brains", "43-JgLeOwlU"),
+            international_channel("Globalization and Trade and Poverty: Crash Course Economics #16", "CrashCourse", "9MpVjxxpExM"),
+        ],
+        "Consumer Protection": [
+            indian_channel("Consumer Protection Full Chapter | Class 12 Business Studies Chapter 12 (2022-23)", "Magnet Brains", "URIiQnpTLb4"),
+            international_channel("Income and Wealth Inequality: Crash Course Economics #17", "CrashCourse", "0xMCWr0O3Hs"),
+        ],
+        # Alternate name variants as uploaded in RAG
+        "Organising (Organisation)": [
+            indian_channel("Organising Full Chapter | Class 12 Business Studies Chapter 5 (2022-23)", "Magnet Brains", "Efh-wQrMLR0"),
+            international_channel("Economic Systems and Macroeconomics: Crash Course Economics #3", "CrashCourse", "B43YEW2FvDs"),
         ],
     },
     # ── ENGLISH ──────────────────────────────────────────────────────────────
@@ -1859,6 +2728,8 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         "कवितावली": [{"title": "कवितावली | Class 12 Hindi Aroh Ch 8 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=gcsjtvfcLrM"}],
         "रुबाइयाँ": [{"title": "रुबाइयाँ और गजल | Class 12 Hindi Aroh Ch 9 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=D8BREPWfQec"}],
         "गज़ल": [{"title": "रुबाइयाँ और गजल | Class 12 Hindi Aroh Ch 9 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=D8BREPWfQec"}],
+        "छोटा मेरा खेत": [{"title": "छोटा मेरा खेत, बगुलों के पंख | Class 12 Hindi Aroh Ch 10 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=IA1zc8Ozig8"}],
+        "बगुलों के पंख": [{"title": "छोटा मेरा खेत, बगुलों के पंख | Class 12 Hindi Aroh Ch 10 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=IA1zc8Ozig8"}],
         "भक्तिन": [{"title": "भक्तिन | Class 12 Hindi Aroh Ch 11 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=lfMr0crAczk"}],
         "बाज़ार दर्शन": [{"title": "बाज़ार दर्शन | Class 12 Hindi Aroh Ch 12 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=x4u2V8oJOU8"}],
         "काले मेघा पानी दे": [{"title": "काले मेघा पानी दे | Class 12 Hindi Aroh Ch 13 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=IAmIGVFu4vA"}],
@@ -1866,7 +2737,7 @@ GRADE_12_RESOURCES: dict[str, dict[str, list]] = {
         "शिरीष के फूल": [{"title": "शिरीष के फूल | Class 12 Hindi Aroh Ch 17 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=MWIlbGoeIx8"}],
         "श्रम-विभाजन और जाति-प्रथा": [{"title": "श्रम विभाजन और जाति प्रथा | Class 12 Hindi Aroh Ch 18 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zr-fyEXOgv0"}],
         "मेरी कल्पना का आदर्श समाज": [{"title": "श्रम विभाजन और जाति प्रथा | Class 12 Hindi Aroh Ch 18 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zr-fyEXOgv0"}],
-        "सिल्वर वेडिंग": [{"title": "Silver Wedding - Full Chapter Explanation and NCERT Solutions | Class 12 Hindi Ch 1 | Vitan | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=77JhI_F7ZFo"}],
+        "सिल्वर वेडिंग": [{"title": "Silver Wedding - Summary | Class 12 Hindi Vitan Chapter 1 (2022-23) | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=ELlxb3ctkoI"}],
         "जूझ": [{"title": "Joojh - Full Chapter Explanation and NCERT Solutions | Class 12 Hindi Ch 2 | Vitan | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=65OhBzZgfp4"}],
         "अतीत में दबे पाँव": [{"title": "अतीत में दबे पाँव | Class 12 Hindi Vitan Ch 3 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=mFC7ygJ27cU"}],
         "डायरी के पन्ने": [{"title": "डायरी के पन्ने | Class 12 Hindi Vitan Ch 4 | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=aDgDYnRfuss"}],
@@ -2209,15 +3080,42 @@ _g11h.update({
     # Vitan aliases
     "Lata Mangeshkar":                  _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
     "Bhartiya Gayikaon":                _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
-    "Husain Ki Kahani Apni Zubani":     _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    "Bharatiya Gayikaon Mein Bejod Lata Mangeshkar": _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    "Bharatiya Gayikaon Mein Bejod":    _g11h["भारतीय गायिकाओं में बेजोड़ : लता मंगेशकर"],
+    # Vitan → correct aliases
     "Rajasthan Ki Rajat Bunden":        _g11h["राजस्थान की रजत बूँदें"],
     "Alo Andhari":                      _g11h["आलो-आँधारि"],
     "Alo-Andhari":                      _g11h["आलो-आँधारि"],
-    # Chapters that may appear in the platform but aren't in NCERT Aroh/Vitan
-    # — using the closest thematically related curated resource
-    "Awara Masiha":         [{"title": "Aawara Masiha - Full Chapter Explanation | Class 11 Hindi Chapter 3 | Antral | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=zGp7SWp5h9A"}],
-    "Mera Baap Bada Na Mera Chacha": [{"title": "मेरा बाप बड़ा न मेरा चाचा | Class 11 Hindi | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=Do7gctB54E0"}],
-    "Anubhav":              [{"title": "Class 11 Hindi | Magnet Brains", "type": "youtube", "url": "https://www.youtube.com/watch?v=2boSuacLzTM"}],
+    # Aroh Kavya additional poem aliases (individual pad titles as uploaded in RAG)
+    # Kabir's specific pad "हम तो एक एक करि जाना" → covered by कबीर के पद
+    "Hum To Ek Ek Kari Jaana":          _g11h["कबीर के पद"],
+    "Hum Tau Ek Ek Kari Jaana":         _g11h["कबीर के पद"],
+    "Hum To Ek Kari Jaana":             _g11h["कबीर के पद"],
+    "Santan Dekat Jag Baurana":         _g11h["कबीर के पद"],
+    # Meera's pad "मेरे तो गिरधर गोपाल" → Meera Ke Pad video (MTpjqhmHrHA, verified July 2026)
+    "Mere To Girdhar Gopal":            _g11h["मीरा के पद"],
+    "Meera Ke Pad":                     _g11h["मीरा के पद"],
+    "Mira Ke Pad":                      _g11h["मीरा के पद"],
+    # "आओ मिलकर बचाएँ" (Aroh Ch 20, Nirmala Putul) → verified Magnet Brains video NKDcc5QUtlM
+    "Aao Milkar Bachayen":              _g11h["आओ मिलकर बचाएँ"],
+    "Aao Milkar Bachaye":               _g11h["आओ मिलकर बचाएँ"],
+    "Aao Milkar Bachaayen":             _g11h["आओ मिलकर बचाएँ"],
+    # Antral chapter aliases — point to verified Unicode key entries added above
+    # "Husain Ki Kahani Apni Zubani" previously mapped to the Lata Mangeshkar video
+    # (XIexKf7h8DQ) by mistake; fixed to use dedicated Antral Ch 2 video (Nxg2kjxJHWU)
+    "Husain Ki Kahani Apni Zubani":     _g11h["हुसैन की कहानी अपनी ज़बानी"],
+    "Husain Ki Kahani":                 _g11h["हुसैन की कहानी अपनी ज़बानी"],
+    # "Awara Masiha" now references the verified Antral Ch 3 entry (zGp7SWp5h9A)
+    "Awara Masiha":                     _g11h["आवारा मसीहा"],
+    "Aawara Masiha":                    _g11h["आवारा मसीहा"],
+    # "Mera Baap Bada Na Mera Chacha" previously used Do7gctB54E0 (आलो-आँधारि video!) — fixed
+    "Mera Baap Bada Na Mera Chacha":    _g11h["मेरा बाप बड़ा न मेरा चाचा"],
+    # "Anubhav" previously used 2boSuacLzTM (राजस्थान की रजत बूँदें video!) — fixed
+    "Anubhav":                          _g11h["अनुभव"],
+    # Andher Nagari alias for Antral Ch 1
+    "Andher Nagari":                    _g11h["अंधेर नगरी"],
+    "Andher Nagri":                     _g11h["अंधेर नगरी"],
+    "Andher Nagari Chopat Raja":        _g11h["अंधेर नगरी"],
 })
 
 # ── English transliteration aliases for Grade 12 Hindi ────────────────────────
@@ -2226,6 +3124,9 @@ _g12h.update({
     # Aroh Kavya (Poetry) aliases
     "Aatmparichay":                     _g12h["आत्मपरिचय"],
     "Atmparichay":                      _g12h["आत्मपरिचय"],
+    "Atmaparichay Ek Geet":             _g12h["आत्मपरिचय"],
+    "Aatmaparichay Ek Geet":            _g12h["आत्मपरिचय"],
+    "Ek Geet":                          _g12h["आत्मपरिचय"],
     "Patang":                           _g12h["पतंग"],
     "Kavita Ke Bahane":                 _g12h["कविता के बहाने"],
     "Kaimre Mein Band Apahij":          _g12h["कैमरे में बंद अपाहिज"],
@@ -2251,6 +3152,10 @@ _g12h.update({
     "Joojhe":                           _g12h["जूझ"],
     "Atit Mein Dabe Paon":              _g12h["अतीत में दबे पाँव"],
     "Diary Ke Panne":                   _g12h["डायरी के पन्ने"],
+    # Aroh Kavya Ch 10 — Chhota Mera Khet / Bagulon Ke Pankh (Umashanakar Joshi)
+    "Chhota Mera Khet":                 _g12h["छोटा मेरा खेत"],
+    "Chhota Mera Khet Bagulon Ke Pankh": _g12h["छोटा मेरा खेत"],
+    "Bagulon Ke Pankh":                 _g12h["बगुलों के पंख"],
 })
 
 # ── Grade-aware resource lookup ───────────────────────
