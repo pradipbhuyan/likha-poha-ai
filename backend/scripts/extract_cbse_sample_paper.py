@@ -91,7 +91,16 @@ QUESTION_START_RE_STRICT = re.compile(r"(?m)^\s*(\d{1,2})\s?[AB]?\.\s*")
 # exclusive..." — SocialScience 2024-25) starts with a curly opening quote,
 # not a letter or "(" — the real Q21 silently never matched at all without
 # this, desyncing the sequential counter for every question after it.
-_QUOTE_OR_LETTER = "A-Za-z(\"'“”‘’"
+# The delta/triangle symbol too: MathsStandard 2022-23's Q6 opens
+# "6 ∆ABC~∆PQR..." (geometry question naming a triangle) where the PDF text
+# layer renders the triangle glyph as U+2206 (INCREMENT), not a letter —
+# without it in the lookahead, Q6 silently never matched, desyncing the
+# sequential counter and truncating the whole paper to 5 parsed questions.
+# U+0394 (GREEK CAPITAL LETTER DELTA) added defensively alongside it since
+# CBSE's own typesetting is inconsistent about which delta codepoint gets
+# used where (see NFKD-normalization comment on strip_page_furniture for a
+# similar font-variance issue with option markers).
+_QUOTE_OR_LETTER = "A-Za-z(\"'“”‘’∆Δ"
 QUESTION_START_RE_BARE = re.compile(r"(?m)^\s*(\d{1,2})\.?\s+(?=[" + _QUOTE_OR_LETTER + r"])")
 # Some papers mix BOTH conventions across their own sections (SocialScience
 # 2023-24/2024-25: Sections A-C use dot style "1." "21." but Section D's
@@ -245,12 +254,33 @@ def parse_section_marks(full_text: str) -> dict[str, int]:
     captured value above that is always this aggregate-total false match,
     not a real per-question figure — skip it and let that section fall back
     to the (correct, for a paper shaped like this) per-block trailing-marks
-    detection instead."""
-    return {
-        m.group(1).upper(): int(m.group(2))
-        for m in SECTION_MARKS_RE.finditer(full_text)
-        if int(m.group(2)) <= 5
-    }
+    detection instead.
+
+    First match per section letter wins, not last: General Instructions
+    sometimes mentions a section letter again in passing well after its own
+    real intro line (MathsStandard 2022-23 instruction #7: "...has been
+    provided in the 2marks questions of Section E" — a passing reference,
+    not Section E's own declaration). The generous 250-char lookahead window
+    from THAT mention can reach past unrelated intervening text into a
+    LATER section's own real "of/carrying <N> marks each" line (here,
+    Section A's header "Section A consists of 20 questions of 1 mark each")
+    and misattribute its value to E instead. A naive dict comprehension
+    (last match wins) let that bogus later match silently overwrite the
+    correct earlier one (E's real "(04 marks each)" declaration), assigning
+    every Section E question 1 mark instead of 4 and miscategorizing all 3
+    case-study questions as plain 1-mark MCQs. The paper's own genuine
+    section-intro line is always the FIRST place a section letter's marks
+    value appears, so keeping only the first match per letter is safe (and
+    was already implicitly correct for every section in every paper tested —
+    later repeated matches, e.g. from the "SECTION E" header text itself
+    lower in the paper, always restate the same value anyway)."""
+    result: dict[str, int] = {}
+    for m in SECTION_MARKS_RE.finditer(full_text):
+        letter = m.group(1).upper()
+        value = int(m.group(2))
+        if value <= 5 and letter not in result:
+            result[letter] = value
+    return result
 
 
 def infer_type_and_marks(marks: int, has_options: bool, block_text: str = "") -> str:
@@ -447,11 +477,31 @@ def extract_assertion_reason_options(full_text: str, question_start_re: "re.Patt
     assuming one fixed wording — falls back to the Maths wording only if
     nothing is found (should not happen for a paper that actually has A-R
     questions and doesn't print its options per-question — see
-    extract_ar_options_from_block for that case)."""
-    m = ASSERTION_REASON_PREAMBLE_RE.search(full_text)
-    if not m:
+    extract_ar_options_from_block for that case).
+
+    Must iterate ALL matches and pick the one actually near the word
+    "Assertion", not just the first match in the paper: the trigger phrase
+    ("select/choose the correct option") is generic enough that an ordinary
+    non-AR MCQ can say it about its own unrelated choices (Science 2024-25
+    Q2: "Match column I with column II and select the correct option using
+    the given codes" — a column-matching question, appearing well before the
+    real AR preamble that precedes Q17-20 later in the same paper). Taking
+    the first match unconditionally silently grabbed Q2's own column-match
+    options (still exactly 4 of them, so nothing about the count looked
+    wrong) and assigned them to every Assertion-Reason question in the paper
+    instead of the real "Both A and R are true..." interpretive choices —
+    not caught until GPT-5 itself flagged the answers as
+    NEEDS_MANUAL_REVIEW. Same "Assertion nearby" guard the per-question
+    preamble-stripping loop in parse_questions already uses, applied here
+    too since this function has its own separate, unguarded search."""
+    preamble_match = None
+    for candidate in ASSERTION_REASON_PREAMBLE_RE.finditer(full_text):
+        if re.search(r"\bAssertion\b", full_text[max(0, candidate.start() - 200):candidate.end()], re.IGNORECASE):
+            preamble_match = candidate
+            break
+    if not preamble_match:
         return list(ASSERTION_REASON_OPTIONS)
-    options = _scan_ar_option_lines(full_text[m.end():], question_start_re)
+    options = _scan_ar_option_lines(full_text[preamble_match.end():], question_start_re)
     return options[:4] if len(options) >= 4 else list(ASSERTION_REASON_OPTIONS)
 
 
