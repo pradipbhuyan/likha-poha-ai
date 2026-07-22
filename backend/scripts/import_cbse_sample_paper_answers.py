@@ -77,12 +77,14 @@ def validate(questions: list[dict]) -> list[str]:
             elif answer_text and answer_text not in options:
                 problems.append(f"{label}: answer_text does not exactly match any option")
 
-    missing = sorted(set(range(1, 39)) - seen_numbers)
+    # Expected range is derived from the data itself (1..max seen), not
+    # hardcoded — different papers have different question counts (Maths
+    # Standard has 38, Science has 39, etc).
+    expected_max = max(seen_numbers) if seen_numbers else 0
+    expected = set(range(1, expected_max + 1))
+    missing = sorted(expected - seen_numbers)
     if missing:
         problems.append(f"Missing question_number(s): {missing}")
-    extra = sorted(seen_numbers - set(range(1, 39)))
-    if extra:
-        problems.append(f"Unexpected question_number(s) outside 1-38: {extra}")
 
     return problems
 
