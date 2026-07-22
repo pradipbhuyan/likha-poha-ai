@@ -62,8 +62,15 @@ GRADE_11_BOOKS = [
     ("Mathematics",      "kemh1",  "Mathematics Part 1",                       10),
     ("Mathematics",      "kemh2",  "Mathematics Part 2",                       10),
     ("Biology",          "kebo1",  "Biology",                                  22),
-    ("English",          "keeh1",  "English Hornbill (Core Reader)",            8),
-    ("English",          "kesp1",  "English Snapshots (Supplementary)",         8),
+    # "keeh1" was wrong (never a valid NCERT code — always 404s). The real code
+    # is "kehb1"; this typo caused the ingest script to zip Snapshots PDFs
+    # (which happened to be sitting in the same local folder) against
+    # Hornbill's chapter-title list, mislabeling all 5 Grade 11 English
+    # chapters. Current rationalized edition: Hornbill has 6 prose chapters
+    # (kehb101-106) and no separate poetry section; Snapshots has 5 stories
+    # (kesp101-105), not 8.
+    ("English",          "kehb1",  "English Hornbill (Core Reader)",            6),
+    ("English",          "kesp1",  "English Snapshots (Supplementary)",         5),
     ("Hindi",            "khar1",  "Hindi Aroh",                               16),
     ("Hindi",            "khvt1",  "Hindi Vitan (Supplementary)",               3),
     ("Economics",        "keec1",  "Indian Economic Development",              10),
@@ -91,8 +98,13 @@ GRADE_12_BOOKS = [
     ("Mathematics",      "lemh1",  "Mathematics Part 1",                       10),
     ("Mathematics",      "lemh2",  "Mathematics Part 2",                       10),
     ("Biology",          "lebo1",  "Biology",                                  16),
-    ("English",          "lefl1",  "English Flamingo (Core Reader)",            8),
-    ("English",          "levs1",  "English Vistas (Supplementary)",            8),
+    # Flamingo's 5 poems are files 11-15 (not 09-10, which 404 — that gap is
+    # expected, not an error). "levs1" was wrong (always 404s); the real
+    # Vistas code is "levt1", and the current rationalized edition has only
+    # 6 stories (kevt101-106), not 8 — "Should Wizard Hit Mommy" and "Evans
+    # Tries an O-level" were dropped from the syllabus.
+    ("English",          "lefl1",  "English Flamingo (Core Reader + Poetry)",   15),
+    ("English",          "levt1",  "English Vistas (Supplementary)",            6),
     ("Hindi",            "lhar1",  "Hindi Aroh",                               15),
     ("Hindi",            "lhvt1",  "Hindi Vitan (Supplementary)",               3),
     ("Economics",        "leec1",  "Indian Economy (Development Exp.)",        10),
