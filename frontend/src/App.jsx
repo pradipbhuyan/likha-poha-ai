@@ -48,6 +48,7 @@ import {
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
 import MockTestPage from "./pages/MockTestPage";
+import BoardPapersPage from "./pages/BoardPapersPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
@@ -136,6 +137,11 @@ const PAGE_META = {
     title: "Mock Test",
     subtitle: "Take timed tests with scoring, review, and difficulty guidance.",
     icon: "🧪",
+  },
+  boardPapers: {
+    title: "Board Sample Papers",
+    subtitle: "Official CBSE sample papers by year, with official answers for every question.",
+    icon: "📄",
   },
   resources: {
     title: "Learn More",
@@ -1631,6 +1637,8 @@ function App() {
         return <DoubtPage user={user} setActivePage={handlePageChange} />;
       case "mockTest":
         return <MockTestPage user={user} setActivePage={handlePageChange} />;
+      case "boardPapers":
+        return <BoardPapersPage user={user} setActivePage={handlePageChange} />;
       case "resources":
         return <ResourcesPage user={user} />;
       case "analytics":

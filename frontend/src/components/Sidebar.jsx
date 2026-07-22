@@ -29,6 +29,7 @@ import {
   Layers,
   Bug,
   MessageSquare,
+  FileText,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -335,6 +336,14 @@ function Sidebar({
       roles: ["admin", "student"],
       gradeFilter: ["Grade 11", "Grade 12"],
       testUsers: ["akshita.teststudent"],
+    },
+    {
+      key: "boardPapers",
+      label: "Board Sample Papers",
+      icon: FileText,
+      roles: ["student", "admin"],
+      gradeFilter: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
+      hideForAdmin: true,
     },
     {
       key: "analytics",

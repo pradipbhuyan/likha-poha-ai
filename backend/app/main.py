@@ -53,6 +53,7 @@ from app.routes.syllabus import router as syllabus_router
 from app.routes.lesson import router as lesson_router
 from app.routes.tts import router as tts_router
 from app.routes.mock_test import router as mock_test_router
+from app.routes.board_papers import router as board_papers_router
 from app.routes.analytics import router as analytics_router
 from app.routes.progress import router as progress_router
 from app.routes.doubt import router as doubt_router
@@ -182,6 +183,12 @@ app.include_router(
     mock_test_router,
     prefix="/api/mock-test",
     tags=["Mock Test"]
+)
+
+app.include_router(
+    board_papers_router,
+    prefix="/api/board-papers",
+    tags=["Board Sample Papers"]
 )
 
 app.include_router(
