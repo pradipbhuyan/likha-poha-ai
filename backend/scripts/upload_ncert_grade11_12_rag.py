@@ -93,7 +93,7 @@ GRADE_11_BOOK_CODES = [
     "kemh1", "kemh2",   # Mathematics Part 1 & 2 (combined book → kemh1ps)
     "kebo1",            # Biology
     "keeh1", "kesp1",   # English Hornbill + Snapshots
-    "khah1", "khvt1",   # Hindi Aroh + Vitan
+    "khar1", "khvt1",   # Hindi Aroh + Vitan
     "keec1", "kest1",   # Economics
     "kebs1", "kebs2",   # Business Studies
     "keac1", "keac2",   # Accountancy
@@ -109,7 +109,7 @@ GRADE_12_BOOK_CODES = [
     "lemh1", "lemh2",   # Mathematics
     "lebo1",            # Biology
     "lefl1", "levs1",   # English Flamingo + Vistas
-    "lhah1", "lhvt1",   # Hindi
+    "lhar1", "lhvt1",   # Hindi
     "leec1", "lema1",   # Economics
     "lebs1", "lebs2",   # Business Studies
     "leac1", "leac2",   # Accountancy
@@ -126,7 +126,7 @@ BOOK_TO_FOLDER = {
     "kemh1": "Mathematics", "kemh2": "Mathematics",
     "kebo1": "Biology",
     "keeh1": "English", "kesp1": "English",
-    "khah1": "Hindi", "khvt1": "Hindi",
+    "khar1": "Hindi", "khvt1": "Hindi",
     "keec1": "Economics", "kest1": "Economics",
     "kebs1": "Business_Studies", "kebs2": "Business_Studies",
     "keac1": "Accountancy", "keac2": "Accountancy",
@@ -138,7 +138,7 @@ BOOK_TO_FOLDER = {
     "lemh1": "Mathematics", "lemh2": "Mathematics",
     "lebo1": "Biology",
     "lefl1": "English", "levs1": "English",
-    "lhah1": "Hindi", "lhvt1": "Hindi",
+    "lhar1": "Hindi", "lhvt1": "Hindi",
     "leec1": "Economics", "lema1": "Economics",
     "lebs1": "Business_Studies", "lebs2": "Business_Studies",
     "leac1": "Accountancy", "leac2": "Accountancy",
@@ -231,32 +231,36 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         7: "Birth",
         8: "The Tale of Melon City",
     },
-    "khah1": {
-        1: "हम तौ एक एक करि जाना — कबीर",
-        2: "मेरे तो गिरधर गोपाल — मीरा",
-        3: "पथिक — रामनरेश त्रिपाठी",
-        4: "वे आँखें — सुमित्रानंदन पंत",
-        5: "घर की याद — भवानीप्रसाद मिश्र",
-        6: "चंपा काले-काले अच्छर नहीं चीन्हती — त्रिलोचन",
-        7: "गज़ल — दुष्यंत कुमार",
-        8: "हे भूख! मत मचल — अक्कमहादेवी",
-        9: "सबसे खतरनाक — पाश",
-        10: "आओ, मिलकर बचाएँ — निर्मला पुतुल",
-        11: "नमक का दारोगा",
-        12: "मियाँ नसीरुद्दीन",
-        13: "अपू के साथ ढाई साल",
-        14: "विदाई-संभाषण",
-        15: "गलता लोहा",
-        16: "स्पीति में बारिश",
-        17: "रजनी",
-        18: "जामुन का पेड़",
-        19: "भारत माता",
-        20: "आत्मा का ताप",
+    # Verified against the live NCERT ps.pdf TOC (2026 reprint, revised
+    # curriculum) on 2026-07-21 — the previous 20-entry list here was from
+    # the pre-revision syllabus and no longer matches what NCERT serves.
+    # File order: 01-08 = गद्य खंड (prose), 09-16 = काव्य खंड (poetry).
+    "khar1": {
+        1: "नमक का दारोगा — प्रेमचंद",
+        2: "मियाँ नसीरुद्दीन — कृष्णा सोबती",
+        3: "अपू के साथ ढाई साल — सत्यजित राय",
+        4: "विदाई-संभाषण — बालमुकुंद गुप्त",
+        5: "गलता लोहा — शेखर जोशी",
+        6: "रजनी — मन्नू भंडारी",
+        7: "जामुन का पेड़ — कृश्नचंदर",
+        8: "भारत माता — जवाहरलाल नेहरू",
+        9: "हम तौ एक एक करि जांनां — कबीर",
+        10: "मेरे तो गिरधर गोपाल — मीरा",
+        11: "घर की याद — भवानी प्रसाद मिश्र",
+        12: "चंपा काले काले अच्छर नहीं चीन्हती — त्रिलोचन",
+        13: "गज़ल — दुष्यंत कुमार",
+        14: "हे भूख! मत मचल — अक्कमहादेवी",
+        15: "सबसे खतरनाक — अवतार सिंह पाश",
+        16: "आओ, मिलकर बचाएँ — निर्मला पुतुल",
     },
+    # khvt1 only has 3 genuine Hindi-literature chapters. NCERT also serves
+    # khvt104/05 under the same book code, but that content is an unrelated
+    # "भारतीय कलाएँ" (Fine Arts) unit, not part of the Vitan reader — do not
+    # add it here.
     "khvt1": {
-        1: "भारतीय गायिकाओं में बेजोड़: लता मंगेशकर",
-        2: "राजस्थान की रजत बूँदें",
-        3: "आलो-आँधारि",
+        1: "भारतीय गायिकाओं में बेजोड़: लता मंगेशकर — कुमार गंधर्व",
+        2: "राजस्थान की रजत बूँदें — अनुपम मिश्र",
+        3: "आलो-आँधारि — बेबी हालदार",
     },
     "keec1": {
         1: "Indian Economy on the Eve of Independence",
@@ -459,31 +463,33 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
         7: "Evans Tries an O-Level",
         8: "Memories of Childhood",
     },
-    "lhah1": {
-        1: "आत्म-परिचय / एक गीत — हरिवंशराय बच्चन",
+    # Verified against the live NCERT ps.pdf TOC (2026 reprint, revised
+    # curriculum) on 2026-07-21 — the previous 18-entry list here was from
+    # the pre-revision syllabus and no longer matches what NCERT serves.
+    # File order: 01-09 = काव्य खंड (poetry), 10-15 = गद्य खंड (prose).
+    "lhar1": {
+        1: "आत्मपरिचय / एक गीत — हरिवंश राय बच्चन",
         2: "पतंग — आलोक धन्वा",
         3: "कविता के बहाने / बात सीधी थी पर — कुँवर नारायण",
         4: "कैमरे में बंद अपाहिज — रघुवीर सहाय",
-        5: "सहर्ष स्वीकारा है — गजानन माधव मुक्तिबोध",
-        6: "उषा — शमशेर बहादुर सिंह",
-        7: "बादल राग — सूर्यकान्त त्रिपाठी निराला",
-        8: "कवितावली / लक्ष्मण-मूर्छा और राम का विलाप — तुलसीदास",
-        9: "रुबाइयाँ / गज़ल — फिराक गोरखपुरी",
-        10: "छोटा मेरा खेत / बगुलों के पंख — उमाशंकर जोशी",
-        11: "भक्तिन",
-        12: "बाजार दर्शन",
-        13: "काले मेघा पानी दे",
-        14: "पहलवान की ढोलक",
-        15: "चार्ली चैप्लिन यानी हम सब",
-        16: "नमक",
-        17: "शिरीष के फूल",
-        18: "श्रम-विभाजन और जाति-प्रथा / मेरी कल्पना का आदर्श समाज",
+        5: "उषा — शमशेर बहादुर सिंह",
+        6: "बादल राग — सूर्यकांत त्रिपाठी 'निराला'",
+        7: "कवितावली (उत्तर कांड से) / लक्ष्मण-मूर्च्छा और राम का विलाप — तुलसीदास",
+        8: "रुबाइयाँ — फ़िराक गोरखपुरी",
+        9: "छोटा मेरा खेत / बगुलों के पंख — उमाशंकर जोशी",
+        10: "भक्तिन — महादेवी वर्मा",
+        11: "बाज़ार दर्शन — जैनेन्द्र कुमार",
+        12: "काले मेघा पानी दे — धर्मवीर भारती",
+        13: "पहलवान की ढोलक — फणीश्वर नाथ रेणु",
+        14: "शिरीष के फूल — हजारी प्रसाद द्विवेदी",
+        15: "श्रम विभाजन और जाति-प्रथा / मेरी कल्पना का आदर्श समाज — बाबा साहेब भीमराव आंबेडकर",
     },
+    # The pre-revision "डायरी के पन्ने" 4th chapter is no longer in NCERT's
+    # ps.pdf TOC for the current curriculum — Vitan Bhag-2 is 3 chapters.
     "lhvt1": {
-        1: "सिल्वर वेडिंग",
-        2: "जूझ",
-        3: "अतीत में दबे पाँव",
-        4: "डायरी के पन्ने",
+        1: "सिल्वर वेडिंग — मनोहर श्याम जोशी",
+        2: "जूझ — आनंद यादव",
+        3: "अतीत में दबे पाँव — ओम थानवी",
     },
     "leec1": {
         1: "Introduction",

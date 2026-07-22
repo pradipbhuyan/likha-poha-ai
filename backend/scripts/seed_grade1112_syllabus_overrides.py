@@ -38,7 +38,7 @@ BOOK_TO_GRADE = {
     "kemh1": "Grade 11", "kemh2": "Grade 11",
     "kebo1": "Grade 11",
     "keeh1": "Grade 11", "kesp1": "Grade 11",
-    "khah1": "Grade 11", "khvt1": "Grade 11",
+    "khar1": "Grade 11", "khvt1": "Grade 11",
     "keec1": "Grade 11", "kest1": "Grade 11",
     "kebs1": "Grade 11", "kebs2": "Grade 11",
     "keac1": "Grade 11", "keac2": "Grade 11",
@@ -50,7 +50,7 @@ BOOK_TO_GRADE = {
     "lemh1": "Grade 12", "lemh2": "Grade 12",
     "lebo1": "Grade 12",
     "lefl1": "Grade 12", "levs1": "Grade 12",
-    "lhah1": "Grade 12", "lhvt1": "Grade 12",
+    "lhar1": "Grade 12", "lhvt1": "Grade 12",
     "leec1": "Grade 12", "lema1": "Grade 12",
     "lebs1": "Grade 12", "lebs2": "Grade 12",
     "leac1": "Grade 12", "leac2": "Grade 12",
@@ -69,8 +69,8 @@ BOOK_TO_SUBJECT = {
     "kebo1": "Biology",   "lebo1": "Biology",
     "keeh1": "English",   "kesp1": "English",
     "lefl1": "English",   "levs1": "English",
-    "khah1": "Hindi",     "khvt1": "Hindi",
-    "lhah1": "Hindi",     "lhvt1": "Hindi",
+    "khar1": "Hindi",     "khvt1": "Hindi",
+    "lhar1": "Hindi",     "lhvt1": "Hindi",
     "keec1": "Economics", "kest1": "Economics",
     "leec1": "Economics", "lema1": "Economics",
     "kebs1": "Business Studies", "kebs2": "Business Studies",
@@ -134,11 +134,19 @@ CHAPTER_OVERRIDES: dict[str, dict[int, str]] = {
     # Grade 12 Mathematics
     "lemh1": {1:"Relations and Functions",2:"Inverse Trigonometric Functions",3:"Matrices",4:"Determinants",5:"Continuity and Differentiability",6:"Application of Derivatives"},
     "lemh2": {1:"Integrals",2:"Application of Integrals",3:"Differential Equations",4:"Vector Algebra",5:"Three Dimensional Geometry",6:"Linear Programming",7:"Probability"},
-    # Grade 11 Hindi
-    "khah1": {1:"हम तौ एक एक करि जाना — कबीर",2:"मेरे तो गिरधर गोपाल — मीरा",3:"पथिक — रामनरेश त्रिपाठी",4:"वे आँखें — सुमित्रानंदन पंत",5:"घर की याद — भवानीप्रसाद मिश्र",6:"नमक का दारोगा",7:"मियाँ नसीरुद्दीन",8:"अपू के साथ ढाई साल"},
-    "khvt1": {1:"भारतीय गायिकाओं में बेजोड़: लता मंगेशकर",2:"राजस्थान की रजत बूँदें",3:"आलो-आँधारि"},
-    "lhah1": {1:"आत्म-परिचय / एक गीत — हरिवंशराय बच्चन",2:"पतंग — आलोक धन्वा",3:"कविता के बहाने / बात सीधी थी पर — कुँवर नारायण",4:"भक्तिन",5:"बाजार दर्शन",6:"काले मेघा पानी दे"},
-    "lhvt1": {1:"सिल्वर वेडिंग",2:"जूझ",3:"अतीत में दबे पाँव",4:"डायरी के पन्ने"},
+    # Grade 11 Hindi — verified against the live NCERT ps.pdf TOC (2026
+    # reprint, revised curriculum) on 2026-07-21. File order for khar1:
+    # 01-08 = गद्य खंड (prose), 09-16 = काव्य खंड (poetry). khvt1 only has
+    # 3 genuine literature chapters (khvt104/05 on NCERT's site is an
+    # unrelated "भारतीय कलाएँ" Fine Arts unit under the same book code —
+    # not part of Vitan, do not add it here).
+    "khar1": {1:"नमक का दारोगा — प्रेमचंद",2:"मियाँ नसीरुद्दीन — कृष्णा सोबती",3:"अपू के साथ ढाई साल — सत्यजित राय",4:"विदाई-संभाषण — बालमुकुंद गुप्त",5:"गलता लोहा — शेखर जोशी",6:"रजनी — मन्नू भंडारी",7:"जामुन का पेड़ — कृश्नचंदर",8:"भारत माता — जवाहरलाल नेहरू",9:"हम तौ एक एक करि जांनां — कबीर",10:"मेरे तो गिरधर गोपाल — मीरा",11:"घर की याद — भवानी प्रसाद मिश्र",12:"चंपा काले काले अच्छर नहीं चीन्हती — त्रिलोचन",13:"गज़ल — दुष्यंत कुमार",14:"हे भूख! मत मचल — अक्कमहादेवी",15:"सबसे खतरनाक — अवतार सिंह पाश",16:"आओ, मिलकर बचाएँ — निर्मला पुतुल"},
+    "khvt1": {1:"भारतीय गायिकाओं में बेजोड़: लता मंगेशकर — कुमार गंधर्व",2:"राजस्थान की रजत बूँदें — अनुपम मिश्र",3:"आलो-आँधारि — बेबी हालदार"},
+    # Grade 12 Hindi. File order for lhar1: 01-09 = काव्य खंड, 10-15 = गद्य खंड.
+    # The pre-revision "डायरी के पन्ने" 4th Vitan chapter is no longer in
+    # NCERT's current TOC — Vitan Bhag-2 is 3 chapters.
+    "lhar1": {1:"आत्मपरिचय / एक गीत — हरिवंश राय बच्चन",2:"पतंग — आलोक धन्वा",3:"कविता के बहाने / बात सीधी थी पर — कुँवर नारायण",4:"कैमरे में बंद अपाहिज — रघुवीर सहाय",5:"उषा — शमशेर बहादुर सिंह",6:"बादल राग — सूर्यकांत त्रिपाठी 'निराला'",7:"कवितावली (उत्तर कांड से) / लक्ष्मण-मूर्च्छा और राम का विलाप — तुलसीदास",8:"रुबाइयाँ — फ़िराक गोरखपुरी",9:"छोटा मेरा खेत / बगुलों के पंख — उमाशंकर जोशी",10:"भक्तिन — महादेवी वर्मा",11:"बाज़ार दर्शन — जैनेन्द्र कुमार",12:"काले मेघा पानी दे — धर्मवीर भारती",13:"पहलवान की ढोलक — फणीश्वर नाथ रेणु",14:"शिरीष के फूल — हजारी प्रसाद द्विवेदी",15:"श्रम विभाजन और जाति-प्रथा / मेरी कल्पना का आदर्श समाज — बाबा साहेब भीमराव आंबेडकर"},
+    "lhvt1": {1:"सिल्वर वेडिंग — मनोहर श्याम जोशी",2:"जूझ — आनंद यादव",3:"अतीत में दबे पाँव — ओम थानवी"},
 }
 
 # ── Build chapter lists per grade/subject ─────────────────────────────────────
@@ -148,10 +156,10 @@ def build_chapter_lists() -> dict[tuple[str,str], list[str]]:
     # Books in canonical order per subject
     BOOK_ORDER = [
         "keph1","keph2","kech1","kech2","kemh1","kemh2","kebo1",
-        "keeh1","kesp1","khah1","khvt1","keec1","kest1","kebs1","kebs2",
+        "keeh1","kesp1","khar1","khvt1","keec1","kest1","kebs1","kebs2",
         "keac1","keac2","kehe1","kehe2","kegy1","kegy2","keps1","keps2",
         "leph1","leph2","lech1","lech2","lemh1","lemh2","lebo1",
-        "lefl1","levs1","lhah1","lhvt1","leec1","lema1","lebs1","lebs2",
+        "lefl1","levs1","lhar1","lhvt1","leec1","lema1","lebs1","lebs2",
         "leac1","leac2","lehe1","lehe2","legy1","legz1","leps1","leps2",
     ]
     result: dict[tuple[str,str], list[str]] = {}
