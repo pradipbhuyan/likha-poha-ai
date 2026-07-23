@@ -283,13 +283,7 @@ def search_textbook_content(
 
 
 def list_rag_documents(grade: str | None = None):
-    """
-    Return uploaded RAG document metadata in newest-first order.
-
-    When grade is None, returns documents from BOTH the primary and Grade 11/12
-    databases so the admin panel shows all uploaded content at once.
-    When grade is 'Grade 11' or 'Grade 12', returns only from that database.
-    """
+    """Return uploaded RAG document metadata in newest-first order."""
     def _fetch(db):
         try:
             r = (
@@ -309,23 +303,7 @@ def list_rag_documents(grade: str | None = None):
             )
         return r.data or []
 
-    if grade is not None:
-        return _fetch(get_content_db(grade))
-
-    # No grade filter — merge both databases for the admin overview
-    from app.services.auth_service import admin_client
-    primary_docs = _fetch(admin_client)
-
-    # Grade 11/12 DB may be unavailable during key rotation — import safely
-    grade_1112_docs: list = []
-    try:
-        from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-        grade_1112_docs = _fetch(grade_1112_client)
-    except (SystemExit, Exception):
-        pass  # Grade 11/12 temporarily unavailable — show primary docs only
-
-    # Combine and sort by created_at descending
-    all_docs = primary_docs + grade_1112_docs
+    all_docs = _fetch(get_content_db(grade))
     all_docs.sort(key=lambda d: d.get("created_at", ""), reverse=True)
     return all_docs
 

@@ -332,7 +332,7 @@ def get_archived_lesson_count(grade: str) -> int:
 
 
 def get_cache_stats() -> dict:
-    """Return summary statistics for the admin cache health panel (both DBs)."""
+    """Return summary statistics for the admin cache health panel."""
     def _fetch(db):
         try:
             r = db.table("lesson_cache").select("status, access_count, grade, subject").execute()
@@ -340,8 +340,7 @@ def get_cache_stats() -> dict:
         except Exception:
             return []
 
-    from app.services.supabase_grade_1112_client import grade_1112_client
-    rows = _fetch(_primary_client) + _fetch(grade_1112_client)
+    rows = _fetch(_primary_client)
     active = [r for r in rows if r.get("status") == "active"]
     stale  = [r for r in rows if r.get("status") == "stale"]
     return {

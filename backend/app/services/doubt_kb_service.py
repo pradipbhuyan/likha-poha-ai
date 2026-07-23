@@ -355,14 +355,12 @@ def get_lesson_doubt_suggestions(
 
 def get_doubt_kb_stats() -> dict:
     """
-    Return aggregate DKB stats for the admin analytics console (both DBs).
+    Return aggregate DKB stats for the admin analytics console.
 
     Shows total entries, prewarmed vs auto-generated, hit rate, and estimated
     token savings.  Estimated savings assume each DB hit saves one LLM call
     at ~1500 tokens × $0.0001/1K = ~$0.00015 per hit.
     """
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-
     def _stats_for_db(db):
         try:
             prewarmed_res = db.table("doubt_kb") \
@@ -381,12 +379,7 @@ def get_doubt_kb_stats() -> dict:
             return 0, 0, 0, []
 
     try:
-        p1, l1, h1, g1 = _stats_for_db(_primary_client)
-        p2, l2, h2, g2 = _stats_for_db(grade_1112_client)
-        prewarmed = p1 + p2
-        llm_generated = l1 + l2
-        total_hits = h1 + h2
-        grade_data = g1 + g2
+        prewarmed, llm_generated, total_hits, grade_data = _stats_for_db(_primary_client)
 
         saved_per_hit = (1500 / 1000) * 0.0001 + (800 / 1000) * 0.0004
         estimated_savings = round(total_hits * saved_per_hit, 4)
