@@ -462,7 +462,27 @@ def _scan_ar_option_lines(text: str, question_start_re: "re.Pattern", limit: int
             if len(options) == 4:
                 break
         elif current is not None:
-            current = f"{current} {line.strip()}".strip()
+            stripped = line.strip()
+            # A bare 1-2 digit line right after the 4th (last) option's own
+            # content is that QUESTION's trailing marks value, not part of
+            # the option text — same shape/fix as _join_wrapped_option's
+            # analogous guard for ordinary MCQ options (SocialScience
+            # 2022-23/2023-24/2025-26 all print the shared A-R preamble
+            # immediately followed by the marks line for whichever question
+            # sits right after it, e.g. "D. A is false but R is true \n1" —
+            # this function had no equivalent guard, so that "1" silently
+            # glued onto the end of the last option's text as " 1"). Only
+            # trip once real content is already collected, exactly like the
+            # sibling guard, so a genuinely numeric-only option text
+            # (unlikely here, but keep the same conservative condition)
+            # isn't truncated on its very first line.
+            if current and re.fullmatch(r"\d{1,2}", stripped):
+                options.append(current.strip())
+                current = None
+                if len(options) == 4:
+                    break
+                continue
+            current = f"{current} {stripped}".strip()
     if current is not None and len(options) < 4:
         options.append(current.strip())
     return [o for o in options if o]
