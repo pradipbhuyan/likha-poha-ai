@@ -114,6 +114,65 @@ QUESTION_START_RE_BARE = re.compile(r"(?m)^\s*(\d{1,2})\.?\s+(?=[" + _QUOTE_OR_L
 QUESTION_START_RE_UNIFIED = re.compile(
     r"(?m)^\s*(\d{1,2})\s?[AB]?(?:\.\s*|\s+(?=[" + _QUOTE_OR_LETTER + r"]))"
 )
+# Class XII papers (first seen: Physics 2025-26) introduce a THIRD internal-
+# choice numbering style, distinct from both the "5A."/"6 A." fused-letter
+# style and the "21.(A)" separated-parenthesized-letter style: an OR-choice
+# question's two alternatives are numbered "20(I)" / "20(II)" — a Roman
+# numeral in parens, fused directly onto the digit with no period and no
+# space ("20(I)", not "20 (I)" or "20.(I)"). Only I/II/III/IV/V/VI are ever
+# seen as CBSE's own OR-choice labels (never higher), but 1-4 chars from
+# [IVX] is accepted generously rather than hardcoding an enum. An optional
+# trailing period before the closing paren ("(II.)") is tolerated — seen on
+# some of this same paper's *internal* sub-part labels (not question starts,
+# since those lack the leading digit this regex requires) but kept here too
+# in case a future paper fuses one onto an actual question number the same
+# way.
+# Physics 2025-26 mixes ALL THREE styles in the SAME document — most
+# questions use plain "22." period-numbering, but some plain (non-choice)
+# questions are BARE ("29        When an external voltage...", no period),
+# and the OR-choice pairs use the fused-Roman style above. A regex with only
+# the Roman branch bolted onto STRICT's two branches (period / AB-letter-dot)
+# fixed the Roman desync but still had no bare-numbering branch, so it
+# recovered Q20-28 only to desync again at Q29 (bare) and lose the rest of
+# the paper a second time. The roman branch must be layered onto the full
+# UNIFIED pattern (period OR bare+letter-lookahead), not onto STRICT alone,
+# to cover a paper that genuinely mixes all three conventions.
+QUESTION_START_RE_UNIFIED_ROMAN = re.compile(
+    r"(?m)^\s*(\d{1,2})\s?[AB]?(?:\.\s*|\([IVX]{1,4}\.?\)\s*|\s+(?=[" + _QUOTE_OR_LETTER + r"]))"
+)
+# CBSE Class XII Chemistry 2025-26 uses BARE-style numbering (no period)
+# throughout, like Grade 10 Science — but unlike any Grade 10 paper seen so
+# far, at least one question's own text starts with a NUMBER, not a letter
+# ("5       70 gm solute is dissolved in 700 gm solvent..."). BARE's
+# lookahead only accepts a letter/quote/paren/delta right after the
+# whitespace specifically to avoid mistaking a Maths stacked-fraction's bare
+# denominator digit (e.g. "4" alone on its own line) for a new question
+# start — but that guard also blocks this genuinely-numeric-led question
+# text from matching AT ALL, which (same failure mode as the Roman-numeral
+# case above) permanently desyncs the sequential counter from that question
+# onward: Chemistry 2025-26 lost everything from Q5 onward (33 questions
+# truncated to 4) before this branch was added.
+# Widening the lookahead to "any non-whitespace" (\S) reopens exactly the
+# false-positive risk BARE's comment warns about — a bare fraction
+# denominator digit, or (seen in this same Chemistry paper) a reproduced
+# table's own leading row-index digits ("0 off off low...", "1 dim off
+# low..." for a conductivity-meter case-study question), would now also
+# match the pattern. That's safe here specifically because the sequential
+# check in parse_questions (and in this file's own scoring function) is the
+# actual correctness guard, not the lookahead's character class: a spurious
+# mid-block digit match is only ever accepted if it happens to equal
+# whatever question number is expected NEXT, and by the time the parser
+# reaches a table like that, the expected counter is already well past the
+# table's own small row-index values. The fused-Roman branch is folded in
+# here too (same reasoning as QUESTION_START_RE_UNIFIED_ROMAN above) so this
+# single maximally-permissive pattern is the safety net for any future
+# paper that combines several of these quirks at once. Verified against all
+# Grade 10 regression papers (see regression_capture.py in this session's
+# scratch dir) before trusting this — zero count/content changes on any of
+# them.
+QUESTION_START_RE_LOOSE = re.compile(
+    r"(?m)^\s*(\d{1,2})\s?[AB]?(?:\.\s*|\([IVX]{1,4}\.?\)\s*|\s+(?=\S))"
+)
 # Matching-columns questions (e.g. Social Science History) print their own
 # answer key as numbered lines like "1.A-4, B-1, C-2, D-3" — each line is
 # textually indistinguishable from a real "question 1" start under
@@ -149,8 +208,83 @@ OPTION_LINE_RE_DOT = re.compile(r"(?m)^\s*[A-D]\.\s+", re.IGNORECASE)
 # half and leaving the stray "(" stuck onto the wrong option.
 OPTION_LINE_RE_CLOSE = re.compile(r"(?<!\()(?<!\(\s)[A-D]\s?\)(?!:)", re.IGNORECASE)
 TRAILING_MARKS_RE = re.compile(r"(?m)^\s*(\d{1,2})\s*$")
+# Economics 2025-26 numbers an OR-choice's second alternative as the digit
+# alone on its own line, followed by "(A)"/"(B)" alone on the NEXT line
+# ("29\n(B)" split across lines — unlike Grade 10's fused "5A."/"6 A." style,
+# which never breaks the digit and letter onto separate lines). That repeated
+# digit is textually indistinguishable from a genuine trailing marks value
+# once TRAILING_MARKS_RE scans the block, and since it usually appears
+# BEFORE the block's real marks value(s), taking the first match blindly
+# picked up "29" as Q29's own marks instead of its real "3". Scoped
+# narrowly to "immediately followed by a lone (A)/(B) line" rather than
+# excluding by raw value-equals-question-number: a broader value-based
+# filter also wrongly excludes the extremely common, unrelated case of a
+# low question number whose real marks value happens to equal it (e.g. a
+# genuine 1-mark Q1 — caught during regression testing against
+# cbse_batch2/SocialScience-SQP.pdf, where Q1 IS worth 1 mark).
+_OR_CHOICE_LABEL_LINE_RE = re.compile(r"(?m)^[ \t]*\d{1,2}[ \t]*\n(?=[ \t]*\(?[AB]\)?[ \t]*\n)")
 # \b for the same "cross-sectional area" reason as SECTION_RE above.
 PAPER_START_RE = re.compile(r"\(?\bSection\b\s*[–-]?\s*A\b\)?", re.IGNORECASE)
+
+# Commerce papers (first seen: Economics 2025-26) print each diagram-based
+# MCQ/question INLINE, immediately followed by its own text-only alternate
+# for blind/low-vision candidates ("Note: The following question is for the
+# Visually Impaired Candidates only, in lieu of Q.<N>"), rather than
+# collecting all such alternates in one block elsewhere in the document (the
+# shape the per-question "search near this flagged question" workflow step
+# expects). Left unhandled, the regex parser's per-question block spans BOTH
+# the original diagram-referencing content AND the alternate — e.g. an MCQ's
+# option-marker regex then matches all 8 A-D options (4 original + 4
+# alternate) as one inflated options list, and the block's own diagram/figure
+# wording makes diagram_dependent wrongly stick even though the alternate
+# text is fully self-contained. Every VI-alternate is, by construction, a
+# complete substitute for its original question — so splice it in
+# unconditionally rather than only for questions some later step flags.
+_VI_NOTE_RE = re.compile(
+    r"Note:\s*The following question is for the Visually Impaired Candidates\s+only,?\s*"
+    r"in lieu of Q\.?\s*(\d+)[^\n]*\n?",
+    re.IGNORECASE,
+)
+
+
+def substitute_vi_alternates(full_text: str) -> str:
+    """Replace each original question N's own content (from its question-start
+    marker up to its "Note: ... in lieu of Q.N" line) with just the
+    alternate text that follows the note (up to the next question's start),
+    so the normal parser sees only clean, single-version, text-only content
+    for that question number.
+
+    Uses QUESTION_START_RE_LOOSE (the most permissive of all the
+    question-start patterns in this file, a strict superset of every other
+    style) purely to locate splice boundaries — this runs before
+    choose_question_regex picks the paper-specific regex/offset for the real
+    parse, and only needs an approximate anchor on "where does question N's
+    own text begin/end", not the exact per-paper numbering convention.
+    Processes notes in reverse text order so each splice's start/end offsets
+    (computed against the original, unmodified text) stay valid as earlier
+    splices in the string are applied."""
+    notes = list(_VI_NOTE_RE.finditer(full_text))
+    if not notes:
+        return full_text
+    starts = list(QUESTION_START_RE_LOOSE.finditer(full_text))
+    result = full_text
+    for note in reversed(notes):
+        q_num_str = note.group(1)
+        orig_start = None
+        for sm in starts:
+            if sm.end() > note.start():
+                break
+            if sm.group(1) == q_num_str:
+                orig_start = sm.end()
+        if orig_start is None:
+            continue
+        alt_end = len(full_text)
+        for sm in starts:
+            if sm.start() >= note.end():
+                alt_end = sm.start()
+                break
+        result = result[:orig_start] + full_text[note.end():alt_end] + result[alt_end:]
+    return result
 
 
 def extract_pages(pdf_path: Path) -> list[str]:
@@ -161,8 +295,24 @@ def extract_pages(pdf_path: Path) -> list[str]:
 def strip_page_furniture(text: str) -> str:
     """Remove page-number footers/headers and the repeated assessment-scheme note."""
     text = re.sub(r"Page\s+\d+\s+of\s+\d+", "", text)
+    # The "*" prefix is NOT universal — Economics 2025-26 (and likely other
+    # Commerce papers) print this disclaimer with no leading asterisk at
+    # all, so the asterisk-mandatory version of this regex silently matched
+    # nothing in that document, leaving every single page-break's full
+    # disclaimer sentence (and the bare page-number digit immediately
+    # before it) sitting untouched mid-question. Tried also stripping that
+    # leading page-number digit generically here, but regression-testing
+    # against the Grade 10/12 baselines showed it does real damage on other
+    # papers (EnglishL-SQP.pdf lost a whole question, Biology-SQP.pdf's
+    # case_study/mcq split shifted) — the same "bare 1-3 digit line" shape
+    # is apparently NOT always safely page-number-only elsewhere. Keeping
+    # only the asterisk-optional fix (safe, zero regressions) and leaving
+    # the leading-digit stripping out; any resulting marks noise from a
+    # page break lands on a specific question, which gets corrected by hand
+    # during the per-paper flagged-question review instead.
     text = re.sub(
-        r"\*Please note that the assessment scheme.*?2025-26", "", text, flags=re.DOTALL
+        r"\*?\s*Please note that the assessment scheme.*?2025-26", "", text,
+        flags=re.DOTALL | re.IGNORECASE,
     )
     # Option markers that sit right next to a math expression (e.g. the "A)"
     # opening an option list whose text starts with a stacked fraction) are
@@ -233,10 +383,55 @@ ASSERTION_REASON_OPTIONS = [
 # blanket-marks declaration seen across every paper's phrasing so far
 # ("carrying 2 marks each", "of 4 marks each", "(04 marks each)") includes
 # "each"; this one-off aside about a single question's sub-parts doesn't.
+# Class XII Physics 2025-26's General Instructions state ALL FIVE sections'
+# marks in one prose sentence ("...Section B contains five questions of two
+# marks each, Section C contains seven questions of three marks each, Section
+# D contains two case study-based questions of four marks each and Section E
+# contains three long answer questions of five marks each") — and spells
+# every value out as a WORD ("two", "three", "four", "five"), never a digit,
+# for every section except A ("of 1 mark each", which happens to already be
+# numeric). \d+ alone never matches B-E's declarations at all, so
+# parse_section_marks found nothing for them and every question in those
+# sections fell back to the far less reliable per-block trailing-digit
+# scan — which silently corrupted Section C's last question (picked up a
+# stray "5" and became a bogus 5-mark long_answer instead of 3-mark
+# short_answer) and left Section D/E almost entirely wrong (case-study
+# questions read as 1-mark MCQs, long-answer questions read as 1-2 marks).
+# _NUMBER_WORDS covers one-ten, comfortably above any per-question mark
+# value CBSE actually uses (max 5) with headroom for a paper phrasing a
+# larger number nearby that this regex's structure would reject anyway (the
+# "marks each" tail still has to directly follow).
 SECTION_MARKS_RE = re.compile(
-    r"\bSection\b[\s-]*([A-F])\b[\s\S]{0,250}?(?:carrying|of|\()\s*(\d+)\s*marks?\s*each\b",
+    r"\bSection\b[\s-]*([A-F])\b[\s\S]{0,250}?(?:carrying|of|\()\s*"
+    r"(\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s*marks?\s*each\b",
     re.IGNORECASE,
 )
+_NUMBER_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+}
+# Commerce/Humanities papers (first seen: Economics 2025-26) don't use
+# Section A-E as mark tiers at all — Section A/B name SUBJECT AREAS (e.g.
+# "Section A – Macro Economics", "Section B – Indian Economic Development"),
+# and marks-per-question-type are declared separately in the General
+# Instructions as a flat roman-numeral list ("II. This paper contains 20
+# Multiple Choice Type Questions of 1 mark each. III. ... 4 Short Answer ...
+# of 3 marks each. ..."). Instruction bullet I lists the section names right
+# next to bullet II's "of 1 mark each" MCQ-count sentence — well within
+# SECTION_MARKS_RE's 250-char lookahead — so naively that reads as if
+# Section A's (and Section B's) own per-question marks were 1, wrongly
+# forcing every question in both sections (including the paper's 3/4/6-mark
+# short/long-answer questions) down to marks=1. Every genuine per-section
+# marks declaration seen so far (Maths/Science/SocialScience) states the
+# value in the SAME sentence as the section reference itself, never crossing
+# into a separate, independently-numbered instruction bullet — so reject a
+# match if a general-instructions bullet marker ("II.", "III.", ...) sits
+# between the section-letter mention and the "marks each" phrase found; that
+# crossing means the phrase belongs to an unrelated, later instruction about
+# overall question-type counts, not this section's own declaration. Falls
+# through to the (correct, for a paper shaped like this) per-block
+# trailing-marks detection instead.
+_INSTRUCTION_BULLET_RE = re.compile(r"(?m)^\s*[IVX]{1,4}\.\s")
 
 
 def parse_section_marks(full_text: str) -> dict[str, int]:
@@ -277,9 +472,13 @@ def parse_section_marks(full_text: str) -> dict[str, int]:
     result: dict[str, int] = {}
     for m in SECTION_MARKS_RE.finditer(full_text):
         letter = m.group(1).upper()
-        value = int(m.group(2))
-        if value <= 5 and letter not in result:
-            result[letter] = value
+        raw = m.group(2).lower()
+        value = _NUMBER_WORDS.get(raw) if raw in _NUMBER_WORDS else int(raw)
+        if value > 5 or letter in result:
+            continue
+        if _INSTRUCTION_BULLET_RE.search(full_text[m.end(1):m.end()]):
+            continue
+        result[letter] = value
     return result
 
 
@@ -306,6 +505,15 @@ def infer_type_and_marks(marks: int, has_options: bool, block_text: str = "") ->
         return "long_answer"
     if marks == 4:
         return "case_study"
+    # Commerce papers (first seen: Economics 2025-26) declare a "Long Answer
+    # Type" tier worth 6 marks each, not 5 — unlike Science/Maths, which
+    # never go above 5. A 6-mark question fell through every explicit branch
+    # above to the default "short_answer", badly under-representing what's
+    # actually the paper's longest, highest-value question type. No CBSE
+    # convention seen anywhere uses 6 marks for anything OTHER than a long
+    # answer, so this is safe to add unconditionally.
+    if marks == 6:
+        return "long_answer"
     return "short_answer"
 
 
@@ -418,7 +626,10 @@ def choose_question_regex(full_text: str) -> tuple["re.Pattern", int]:
     sequential run the way the actual paper start does."""
     candidates = [m.start() for m in PAPER_START_RE.finditer(full_text)] or [0]
     best_regex, best_start, best_score = QUESTION_START_RE_STRICT, candidates[0], -1
-    for question_re in (QUESTION_START_RE_STRICT, QUESTION_START_RE_BARE, QUESTION_START_RE_UNIFIED):
+    for question_re in (
+        QUESTION_START_RE_STRICT, QUESTION_START_RE_BARE, QUESTION_START_RE_UNIFIED,
+        QUESTION_START_RE_UNIFIED_ROMAN, QUESTION_START_RE_LOOSE,
+    ):
         for cand in candidates:
             score = _score_regex_from(full_text, question_re, cand)
             if score > best_score:
@@ -669,7 +880,10 @@ def parse_questions(full_text: str) -> list[dict]:
         if current_section in section_marks:
             marks = section_marks[current_section]
         else:
-            marks_matches = TRAILING_MARKS_RE.findall(block)
+            # Strip repeated OR-choice number labels (see
+            # _OR_CHOICE_LABEL_LINE_RE) before scanning for the real trailing
+            # marks value — see comment on that regex.
+            marks_matches = TRAILING_MARKS_RE.findall(_OR_CHOICE_LABEL_LINE_RE.sub("", block))
             marks = int(marks_matches[0]) if marks_matches else 1
 
         # Only 1-mark questions actually carry 4-way MCQ/assertion-reason
@@ -741,6 +955,7 @@ def main() -> None:
         pdf_path = Path(args.pdf)
         pages = extract_pages(pdf_path)
         full_text = strip_page_furniture("\n".join(pages))
+        full_text = substitute_vi_alternates(full_text)
         questions = parse_questions(full_text)
         pdf_name = pdf_path.name
     else:

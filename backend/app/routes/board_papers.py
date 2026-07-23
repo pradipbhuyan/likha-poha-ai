@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 
 from app.services.auth_service import get_current_user, admin_client
 from app.services.subject_access_service import has_cbse_subject_access
@@ -134,3 +135,54 @@ def get_paper_questions(paper_id: str, grade: str, user=Depends(get_current_user
 
     questions = board_papers_service.get_paper_questions(grade, paper_id)
     return {"success": True, "paper": paper, "questions": questions}
+
+
+class SubmitAttemptRequest(BaseModel):
+    grade: str
+    started_at: str
+    time_taken_seconds: int | None = None
+    mcq_score: float = 0
+    mcq_max_score: float = 0
+    subjective_self_marked_correct: float = 0
+    subjective_max_score: float = 0
+    answers: dict = {}
+
+
+@router.post("/{paper_id}/attempts")
+def submit_attempt(paper_id: str, req: SubmitAttemptRequest, user=Depends(get_current_user)):
+    """Persist one Timed Test attempt. Scoring (MCQ auto-graded, subjective
+    self-marked) is computed client-side and only persisted here — matching
+    self-study mode's existing trust level, no server-side re-validation and
+    no LLM call. Same access-tier gating as /{paper_id}/questions applies:
+    a user can't record an attempt for a paper they aren't allowed to see."""
+    profile = _get_profile(user.id)
+    paper = board_papers_service.get_paper(req.grade, paper_id)
+    if not paper:
+        raise HTTPException(status_code=404, detail="Paper not found")
+
+    _enforce_grade(profile, req.grade)
+    _enforce_custom_subject_list(profile, paper.get("subject"))
+
+    if not board_papers_service.is_full_access(profile, user.id):
+        free_year = board_papers_service.free_tier_year(req.grade)
+        free_subject = board_papers_service.free_tier_subject(req.grade, free_year) if free_year else None
+        if paper.get("academic_year") != free_year or paper.get("subject") != free_subject:
+            raise HTTPException(status_code=403, detail=FREE_TIER_MESSAGE)
+
+    username = profile.get("username")
+    if not username:
+        raise HTTPException(status_code=400, detail="No username on this account")
+
+    attempt = board_papers_service.save_attempt(username, paper, req.model_dump())
+    return {"success": True, "attempt": attempt}
+
+
+@router.get("/{paper_id}/attempts")
+def get_attempts(paper_id: str, user=Depends(get_current_user)):
+    """Return the current user's past Timed Test attempts for this paper."""
+    profile = _get_profile(user.id)
+    username = profile.get("username")
+    if not username:
+        return {"success": True, "attempts": []}
+    attempts = board_papers_service.list_attempts(username, paper_id)
+    return {"success": True, "attempts": attempts}
