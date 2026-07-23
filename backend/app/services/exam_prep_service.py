@@ -1311,16 +1311,9 @@ EXAM_DATES = {
 # ── Supabase helper ────────────────────────────────────────────────────────────
 
 def _get_db():
-    """Return Supabase 2 client (grade_1112_client) — all exam prep tables live there."""
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-    if grade_1112_client is None:
-        from fastapi import HTTPException  # noqa: PLC0415
-        raise HTTPException(
-            503,
-            "Exam Prep database (Supabase 2) is not configured. "
-            "Set SUPABASE_GRADE_1112_URL and SUPABASE_GRADE_1112_SERVICE_KEY in your environment.",
-        )
-    return grade_1112_client
+    """Return the primary Supabase client — all exam prep tables live there."""
+    from app.services.auth_service import admin_client  # noqa: PLC0415
+    return admin_client
 
 
 # ── Dashboard ──────────────────────────────────────────────────────────────────

@@ -87,10 +87,8 @@ EXAM_CHAPTERS = {
 
 
 def _get_db():
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-    if grade_1112_client is None:
-        raise HTTPException(503, "Study Planner database not configured.")
-    return grade_1112_client
+    from app.services.auth_service import admin_client  # noqa: PLC0415
+    return admin_client
 
 
 def _weeks_remaining(exam_type: str) -> int:
