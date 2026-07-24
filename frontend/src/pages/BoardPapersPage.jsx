@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  BookOpen,
   ChevronDown,
   ChevronRight,
   CheckCircle2,
@@ -10,6 +11,7 @@ import {
   Lock,
   Sparkles,
   Clock,
+  Target,
   Trophy,
   RotateCcw,
   TrendingUp,
@@ -19,6 +21,7 @@ import {
   X,
   AlertTriangle,
   Save,
+  Timer,
 } from "lucide-react";
 
 import {
@@ -796,26 +799,34 @@ export default function BoardPapersPage({ user }) {
       }}>
         {[
           {
-            icon: "📚",
+            Icon: BookOpen,
+            color: "#7c3aed",
+            bg: "rgba(124,58,237,0.10)",
             title: "Decade of Papers",
             desc: "200+ official CBSE papers from 2015–2025, every subject, every year.",
           },
           {
-            icon: "⏱️",
+            Icon: Timer,
+            color: "#0891b2",
+            bg: "rgba(8,145,178,0.10)",
             title: "Simulate Real Exams",
             desc: "Timed mock tests that mirror the actual board exam format, question by question.",
           },
           {
-            icon: "✅",
+            Icon: CheckCircle2,
+            color: "#16a34a",
+            bg: "rgba(22,163,74,0.10)",
             title: "Every Mark Explained",
             desc: "Official answers with the full marking scheme for every single question.",
           },
           {
-            icon: "🎯",
+            Icon: Target,
+            color: "#dc2626",
+            bg: "rgba(220,38,38,0.10)",
             title: "Board-Ready Practice",
             desc: "The only practice that matches exactly what CBSE actually asks in the exam.",
           },
-        ].map(({ icon, title, desc }) => (
+        ].map(({ Icon, color, bg, title, desc }) => (
           <div
             key={title}
             style={{
@@ -825,10 +836,15 @@ export default function BoardPapersPage({ user }) {
               padding: "18px 16px",
               display: "flex",
               flexDirection: "column",
-              gap: 8,
+              gap: 10,
             }}
           >
-            <span style={{ fontSize: "1.5rem" }}>{icon}</span>
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 40, height: 40, borderRadius: 10, background: bg,
+            }}>
+              <Icon size={20} color={color} strokeWidth={2.2} />
+            </span>
             <strong style={{ fontSize: ".95rem", lineHeight: 1.3 }}>{title}</strong>
             <p style={{ margin: 0, fontSize: ".82rem", color: "var(--muted, #64748b)", lineHeight: 1.55 }}>{desc}</p>
           </div>
