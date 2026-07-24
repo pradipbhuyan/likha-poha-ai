@@ -22,6 +22,8 @@ import {
   AlertTriangle,
   Save,
   Timer,
+  Info,
+  Image,
 } from "lucide-react";
 
 import {
@@ -72,6 +74,7 @@ function MathText({ text }) {
 
 function QuestionCard({
   question,
+  pdfUrl,
   // Timed Test mode passes controlled state down from the parent (it needs
   // every answer to compute the final score) and suppresses reveal/
   // correctness until the parent phase is RESULT. Self-study mode omits
@@ -117,9 +120,32 @@ function QuestionCard({
           Section {question.section} · {question.marks} mark{question.marks === 1 ? "" : "s"}
         </span>
         {question.diagram_dependent && (
-          <span style={{ fontSize: ".72rem", color: "var(--muted, #64748b)" }}>
-            (refers to a figure in the original paper)
-          </span>
+          pdfUrl ? (
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 4,
+                fontSize: ".7rem", fontWeight: 700, color: "#15803d",
+                background: "rgba(22,163,74,0.1)", border: "1px solid rgba(22,163,74,0.25)",
+                borderRadius: 999, padding: "2px 8px", textDecoration: "none", cursor: "pointer",
+              }}
+            >
+              <Image size={11} color="#16a34a" />
+              Needs PDF
+            </a>
+          ) : (
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 4,
+              fontSize: ".7rem", fontWeight: 700, color: "#15803d",
+              background: "rgba(22,163,74,0.1)", border: "1px solid rgba(22,163,74,0.25)",
+              borderRadius: 999, padding: "2px 8px",
+            }}>
+              <Image size={11} color="#16a34a" />
+              Needs PDF
+            </span>
+          )
         )}
       </div>
 
@@ -511,6 +537,7 @@ function TimedTestAttempt({ paper, questions, grade, onExit }) {
           <QuestionCard
             key={q.id}
             question={q}
+            pdfUrl={paper.question_paper_url}
             mode="timed"
             showAnswers={false}
             selected={answers[q.question_number] ?? null}
@@ -611,6 +638,7 @@ function TimedTestAttempt({ paper, questions, grade, onExit }) {
         <QuestionCard
           key={q.id}
           question={q}
+          pdfUrl={paper.question_paper_url}
           mode="timed"
           showAnswers
           selected={answers[q.question_number] ?? null}
@@ -697,8 +725,22 @@ function PaperAttempt({ paper, questions, grade, onBack }) {
         exam simulation with a {TIMED_TEST_DURATION_MINUTES}-minute countdown.
       </p>
 
+      <div style={{
+        display: "flex", alignItems: "flex-start", gap: 8,
+        background: "var(--panel-soft, #f8f9fc)", border: "1px solid var(--border, #e5e7eb)",
+        borderRadius: 8, padding: "10px 14px", marginBottom: 16,
+      }}>
+        <Info size={13} color="var(--muted, #64748b)" style={{ marginTop: 2, flexShrink: 0 }} />
+        <p style={{ margin: 0, fontSize: ".78rem", color: "var(--muted, #64748b)", lineHeight: 1.6 }}>
+          Official CBSE question papers and marking schemes, sourced from cbseacademic.nic.in.
+          Answers verified against the marking scheme. Questions with{" "}
+          <Image size={12} color="#16a34a" style={{ display: "inline", verticalAlign: "-1px" }} />{" "}
+          require the official PDF for complete context — use the PDF link above to verify.
+        </p>
+      </div>
+
       {questions.map((q) => (
-        <QuestionCard key={q.id} question={q} />
+        <QuestionCard key={q.id} question={q} pdfUrl={paper.question_paper_url} />
       ))}
 
       <p style={{ fontSize: ".78rem", color: "var(--muted, #64748b)", textAlign: "center", marginTop: 20 }}>
