@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlertTriangle, Award, BookOpen, CheckCircle2, GraduationCap, HelpCircle } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
@@ -245,15 +245,45 @@ function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
   }
 }
 
+function useIsWide() {
+  const query = "(min-width: 1024px)";
+  const [matches, setMatches] = useState(
+    () => typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const mql = window.matchMedia(query);
+    const onChange = (e) => setMatches(e.matches);
+    setMatches(mql.matches);
+    mql.addEventListener?.("change", onChange);
+    return () => mql.removeEventListener?.("change", onChange);
+  }, []);
+  return matches;
+}
+
 function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, onNavigate }) {
+  const isWide = useIsWide();
+
   return (
-    <div style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
-      {/* Sticky outline */}
+    <div style={{
+      display: "flex",
+      flexDirection: isWide ? "row" : "column",
+      gap: isWide ? 24 : 0,
+      alignItems: "flex-start",
+    }}>
+      {/* Sticky outline — shown as a collapsible dropdown on mobile, sticky sidebar on desktop */}
       <nav className="study-outline" style={{
-        position: "sticky", top: 84, width: 210, flexShrink: 0,
+        position: isWide ? "sticky" : "static",
+        top: isWide ? 84 : "auto",
+        width: isWide ? 210 : "100%",
+        flexShrink: 0,
         background: "var(--panel, #fff)", border: "1px solid var(--border, #e5e7eb)",
         borderRadius: 12, padding: "12px 0", fontSize: ".82rem",
-        maxHeight: "70vh", overflowY: "auto",
+        maxHeight: isWide ? "70vh" : "none",
+        overflowY: isWide ? "auto" : "visible",
+        marginBottom: isWide ? 0 : 16,
       }}>
         <div style={{
           padding: "0 14px 8px", fontSize: ".66rem", fontWeight: 800,
