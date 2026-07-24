@@ -24,7 +24,12 @@ Usage in any service:
     db.table("rag_documents").select("*").execute()
 """
 
-_GRADE_1112 = {"grade 11", "grade 12"}
+# Grade 11/12 content has been migrated to the primary Supabase project.
+# The secondary project (grade_1112_client) is kept for backward compatibility
+# during the transition but all NEW Grade 11/12 board_sample_papers writes
+# and reads now go to primary. Update this set to re-enable secondary routing
+# if needed during rollback.
+_GRADE_1112 = {"grade 11"}   # Grade 12 removed — now served by primary DB
 
 
 def get_content_db(grade: str | None = None):

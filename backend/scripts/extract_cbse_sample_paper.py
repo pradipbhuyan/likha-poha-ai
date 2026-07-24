@@ -26,6 +26,19 @@ Usage:
         --grade "Grade 10" --subject "Mathematics" --subject-variant "Maths Standard" \\
         --academic-year "2025-26" --source-subject-code MathsStandard \\
         --create-paper
+
+Extended to handle older paper formats (2020-21, 2021-22):
+  - 2021-22 Term 1: section-local numbering (each section starts at 1),
+    lowercase (a)(b)(c)(d) options, "Any N questions are to be attempted".
+    Triggered by TERM1_ANY_N_RE -> _parse_questions_term1_sections().
+  - Mixed BARE/STRICT format (2021-22 T2 SocSci, 2020-21 SocSci):
+    QUESTION_START_RE_COMBINED tries both "N. text" and "N text".
+  - 2021-22 T2 Science lowercase sub-question starts ("3 a. Trace..."):
+    BARE lookahead widened to [A-Za-z(delta].
+  - 2020-21 table-format: q=1 embedded in "No. Questions Marks 1 List...":
+    strip_page_furniture injects newline before the first question number.
+  - SECTION_MARKS_RE handles "comprises of" / "has N questions of M marks each"
+    in addition to "consists of".
 """
 from __future__ import annotations
 
@@ -54,16 +67,46 @@ SECTION_RE = re.compile(r"\(?Section\s*[–-]?\s*([A-E])\)?", re.IGNORECASE)
 # "bare number" pattern false-matches as a question number. Per-paper
 # selection (choose_question_regex, scored by resulting sequential-run
 # length) picks whichever actually fits this paper.
-QUESTION_START_RE_STRICT = re.compile(r"(?m)^\s*(\d{1,2})\.\s*")
-QUESTION_START_RE_BARE = re.compile(r"(?m)^\s*(\d{1,2})\s+(?=[A-Z(])")
-# Two option styles seen across subjects: parenthesized "(A) ... (B) ..."
-# (Maths) and letter-dot "A. ... B. ..." (Science). A paper uses one style
-# consistently throughout — detect_option_style() below picks it once per
-# paper rather than trying to match both simultaneously.
+# STRICT also handles "Q1." format used in some Grade 12 Physics/Maths papers:
+# "Q1. A uniform electric field..." — the Q prefix is optional.
+QUESTION_START_RE_STRICT = re.compile(r"(?m)^\s*Q?(\d{1,2})\.\s*")
+# Widened from (?=[A-Z(]) to allow:
+#   - Lowercase: "3 a. Trace the path..." (2021-22 T2 Science sub-question labels)
+#   - Greek Δ: "6 ΔABC~ΔPQR..." (Maths geometry questions)
+#   - Quoted text: '7.\n\n"Tribal peasants...' (2021-22 T2 SocSci question 7 starts with ")
+# NOTE: uses non-raw f-string to embed actual Δ (U+0394) so the character class
+# correctly matches the Devanagari-adjacent glyph that pypdf emits for ∆ in PDFs.
+# A standalone denominator digit is always followed immediately by a newline only,
+# never by a letter or quote — so the widened lookahead does not affect it.
+# \u201c = LEFT DOUBLE QUOTATION MARK " (U+201C) — pypdf curly quote in question text
+# \u2018 = LEFT SINGLE QUOTATION MARK ' (U+2018) — curly single quote
+# \u2206 = INCREMENT SIGN ∆ (U+2206) — geometric delta in Maths PDFs
+# \u0394 = Greek capital Δ (U+0394)
+QUESTION_START_RE_BARE = re.compile(
+    "(?m)^\\s*(\\d{1,2})\\s+(?=[A-Za-z(\u0394\u2206\u201c\u2018\"'])"
+)
+# Combined: handles papers mixing STRICT ("6.  Why do most...") and BARE
+# ("1 How did...") within the same paper (2021-22 T2 SocSci, 2020-21 SocSci).
+QUESTION_START_RE_COMBINED = re.compile(
+    "(?m)^\\s*Q?(\\d{1,2})(?:\\.\\s*|\\s+)(?=[A-Za-z(\u0394\u2206\u201c\u2018\"'])"
+)
 OPTION_LINE_RE_PAREN = re.compile(r"\((?:A|B|C|D)\)(?!:)")
+# Term 1 (2021-22) papers use lowercase (a)(b)(c)(d) option markers.
+OPTION_LINE_RE_PAREN_LOWER = re.compile(r"\((?:a|b|c|d)\)(?!:)")
 OPTION_LINE_RE_DOT = re.compile(r"(?m)^\s*[A-D]\.\s+")
 TRAILING_MARKS_RE = re.compile(r"(?m)^\s*(\d{1,2})\s*$")
 PAPER_START_RE = re.compile(r"\(?Section\s*[–-]?\s*A\)?", re.IGNORECASE)
+# Term 1 (2021-22) papers have this unique marker per section.
+# Matches both "Any 16 questions are to be attempted" (Maths) and
+# "Attempt any 20 questions" (Science) phrasings.
+TERM1_ANY_N_RE = re.compile(
+    r"Any\s+\d+\s+questions?\s+are\s+to\s+be\s+attempted"
+    r"|[Aa]ttempt\s+any\s+\d+\s+questions?",
+    re.IGNORECASE,
+)
+TERM1_SECTION_SPLIT_RE = re.compile(
+    r"(?m)^[ \t]*SECTION\s*[–-]?\s*([A-E])\b", re.IGNORECASE
+)
 
 
 def extract_pages(pdf_path: Path) -> list[str]:
@@ -72,29 +115,42 @@ def extract_pages(pdf_path: Path) -> list[str]:
 
 
 def strip_page_furniture(text: str) -> str:
-    """Remove page-number footers/headers and the repeated assessment-scheme note."""
+    """Remove page-number footers/headers and the repeated assessment-scheme note.
+
+    Also normalises two older-paper table-format quirks so that question 1
+    is detectable at line-start by the BARE/COMBINED regex:
+
+    1. "No. Questions Marks 1 List any two..." (2020-21 Science) becomes
+       "No. Questions Marks\n1 List any two..."
+    2. "Q No  Marks\n1 Find the value..." is already fine but "Q No  Marks 1 Find..."
+       (same-line variant) gets a newline injected the same way.
+    """
+    # Remove null bytes that pypdf occasionally emits from malformed PDFs —
+    # Supabase/Postgres rejects \u0000 in text columns.
+    text = text.replace("\x00", "")
     text = re.sub(r"Page\s+\d+\s+of\s+\d+", "", text)
     text = re.sub(
         r"\*Please note that the assessment scheme.*?2025-26", "", text, flags=re.DOTALL
     )
+    # Table-format header: inject newline before the first question number.
+    text = re.sub(
+        r"(No\.?\s+Questions?\s+Marks?)\s+(\d{1,2}\s)",
+        r"\1\n\2",
+        text,
+    )
+    text = re.sub(
+        r"(Q\s+No\s+Marks?)\s+(\d{1,2}\s)",
+        r"\1\n\2",
+        text,
+    )
     return text
 
 
-# A proximity window is fragile — "Assertion (A): <statement, sometimes long>
-# Reason (R): ..." varies too much in length across subjects/questions.
-# "Assertion" and "Reason" both appearing anywhere in a 1-mark question block
-# is already a highly specific signal on its own (no real Maths/Science/etc
-# question about anything else would contain both words) — check presence,
-# not distance.
 ASSERTION_REASON_RE = re.compile(r"\bAssertion\b", re.IGNORECASE)
 _REASON_WORD_RE = re.compile(r"\bReason\b", re.IGNORECASE)
-# CBSE prints this interpretive key once (between the last plain MCQ and the
-# first Assertion-Reason question) rather than repeating it under each A-R
-# question. It's fixed, standard wording across every CBSE paper — hardcode
-# it and assign it directly to every assertion_reason question, rather than
-# trying to parse it out of whichever question's text it happens to trail.
 ASSERTION_REASON_PREAMBLE_RE = re.compile(
-    r"(?:select|choose|selecting)(?:ing)?\s+the\s+(?:correct|appropriate)\s+option", re.IGNORECASE
+    r"(?:select|choose|selecting)(?:ing)?\s+the\s+(?:correct|appropriate)\s+option",
+    re.IGNORECASE,
 )
 ASSERTION_REASON_OPTIONS = [
     "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
@@ -102,37 +158,26 @@ ASSERTION_REASON_OPTIONS = [
     "Assertion (A) is true but reason (R) is false",
     "Assertion (A) is false but reason (R) is true",
 ]
+# Extended to handle wording variants found in older papers:
+#   "Section A comprises of 6 questions of 2 marks each" (2021-22 T2 Maths)
+#   "Section -A has 7 questions of 2 marks each" (2021-22 T2 Science)
 SECTION_MARKS_RE = re.compile(
-    r"Section\s+([A-E])\s+consists\s+of\s+\d+.*?of\s+(\d+)\s+marks?\s+each",
+    r"Section\s*[–-]?\s*([A-E])\s+"
+    r"(?:consists\s+of|comprises\s+of?|has)\s+\d+\s+questions?\s+(?:of|carrying)\s+"
+    r"(\d+)\s+marks?\s+each",
     re.IGNORECASE,
 )
 
 
 def parse_section_marks(full_text: str) -> dict[str, int]:
-    """Read authoritative per-section marks from the paper's own section-intro
-    lines ('Section B consists of 5 questions of 2 marks each') — far more
-    reliable than inferring marks from scattered trailing numbers per
-    question, which get scrambled by PDF layout quirks on multi-part
-    (case-study) questions."""
+    """Read authoritative per-section marks from the paper's own section-intro lines."""
     return {m.group(1).upper(): int(m.group(2)) for m in SECTION_MARKS_RE.finditer(full_text)}
 
 
 def infer_type_and_marks(marks: int, has_options: bool, block_text: str = "") -> str:
-    """Question type follows the mark value, not the section letter — CBSE's
-    mark distribution (1=MCQ/AR, 2/3=short answer, 4=case study, 5=long
-    answer) is consistent across subjects, but what a "section" *means*
-    isn't: Maths uses Section A-E as literal type tiers, while Science labels
-    sections by subject area (Biology/Chemistry/Physics) with the same
-    mark-tier structure repeating inside each one."""
     if marks == 1:
         if ASSERTION_REASON_RE.search(block_text) and _REASON_WORD_RE.search(block_text):
             return "assertion_reason"
-        # Not AR-shaped text, so it's an mcq even when has_options is False
-        # (e.g. table-formatted options like a matching-columns question
-        # that the regex-based option detector couldn't parse cleanly) —
-        # defaulting those to "assertion_reason" would confidently attach
-        # the *wrong* (unrelated) AR options rather than surfacing an empty
-        # options list for the answer-validation step to catch.
         return "mcq"
     if marks in (2, 3):
         return "short_answer"
@@ -144,27 +189,18 @@ def infer_type_and_marks(marks: int, has_options: bool, block_text: str = "") ->
 
 
 def detect_option_style(full_text: str) -> str:
-    """A paper uses one option style consistently: parenthesized "(A) ... (B)
-    ..." (Maths) or letter-dot "A. ... B. ..." (Science). Pick whichever has
-    more matches paper-wide rather than trying to match both per-question."""
-    paren_count = len(OPTION_LINE_RE_PAREN.findall(full_text))
+    """Pick option style: paren uppercase (A)(B)(C)(D), paren lowercase (a)(b)(c)(d), or dot A./B."""
+    paren_upper = len(OPTION_LINE_RE_PAREN.findall(full_text))
+    paren_lower = len(OPTION_LINE_RE_PAREN_LOWER.findall(full_text))
     dot_count = len(OPTION_LINE_RE_DOT.findall(full_text))
-    return "paren" if paren_count >= dot_count else "dot"
+    if paren_lower > paren_upper and paren_lower > dot_count:
+        return "paren_lower"
+    if paren_upper >= dot_count:
+        return "paren"
+    return "dot"
 
 
 def _join_wrapped_option(part: str) -> str:
-    """An option's text between two markers can legitimately wrap across 2+
-    lines ("As sunlight passes through the atmosphere, shorter wavelengths,
-    such \\nas blue are scattered more..."). Join those lines with a space,
-    but stop at a blank line or a bare marks-value line (e.g. "1" on its own
-    line after the last option) — those aren't part of the option text.
-
-    A bare 1-2 digit line is ambiguous on its own: some Maths options *are*
-    literally a single digit ("1", "2", "3", "0" as numeric-answer MCQ
-    choices), which is indistinguishable in isolation from a trailing marks
-    value. Only treat it as the marks-value terminator once at least one
-    real content line has already been collected — a genuine option is
-    never empty before its own first line."""
     joined: list[str] = []
     for line in part.split("\n"):
         stripped = line.strip()
@@ -177,24 +213,15 @@ def _join_wrapped_option(part: str) -> str:
 
 
 def parse_options(block: str, style: str) -> list[str]:
-    """Pull the four option strings out of a question block, in whichever
-    style this paper uses.
-
-    NOTE: options built from stacked-fraction layouts (numerator/denominator
-    on separate lines with no "/" character, no consistent whitespace
-    pattern to key off) are NOT reliably reconstructable from the text layer
-    alone — tried a line-joining heuristic for *that specific case* and it
-    made option counts *worse* on several questions (verified against the
-    pilot paper). That's different from an option's prose simply wrapping
-    across lines (handled by _join_wrapped_option above, which joins on
-    whitespace rather than trying to reconstruct a fraction with no
-    delimiter). Any question flagged with corrupted/wrong-count options
-    should be fixed via vision extraction (render the page, read the
-    options visually) rather than more text-layer regex tuning — see
-    extract_cbse_options_vision.py.
-    """
-    marker_re = r"(?m)(^\s*[A-D]\.\s+)" if style == "dot" else r"(\([A-D]\)(?!:))"
-    label_re = r"\s*[A-D]\.\s+" if style == "dot" else r"\([A-D]\)"
+    if style == "dot":
+        marker_re = r"(?m)(^\s*[A-D]\.\s+)"
+        label_re = r"\s*[A-D]\.\s+"
+    elif style == "paren_lower":
+        marker_re = r"(\((?:a|b|c|d)\)(?!:))"
+        label_re = r"\([a-d]\)"
+    else:
+        marker_re = r"(\([A-D]\)(?!:))"
+        label_re = r"\([A-D]\)"
     parts = re.split(marker_re, block)
     options: list[str] = []
     current_label = None
@@ -208,9 +235,7 @@ def parse_options(block: str, style: str) -> list[str]:
 
 
 def _score_regex_from(full_text: str, question_re: "re.Pattern", start_offset: int) -> int:
-    """Length of the longest strictly-sequential 1,2,3,... run of question
-    numbers this regex finds from a given offset — the shared scoring
-    function both paper-start selection and question-regex selection use."""
+    """Length of the longest strictly-sequential 1,2,3,... run starting from 1."""
     starts = list(question_re.finditer(full_text[start_offset:]))
     expected = 1
     score = 0
@@ -222,20 +247,20 @@ def _score_regex_from(full_text: str, question_re: "re.Pattern", start_offset: i
 
 
 def choose_question_regex(full_text: str) -> tuple["re.Pattern", int]:
-    """Pick both the question-numbering regex (STRICT vs BARE) and the
-    offset where real numbered questions begin, for this specific paper.
+    """Pick the question-numbering regex (STRICT / BARE / COMBINED) and the
+    offset where real numbered questions begin.
 
-    General Instructions sections often mention "Section A" incidentally
-    (e.g. "... contains sections: Section A-History (20 marks) and Section
-    B-...") — naively trimming at the first match anchors on the wrong spot.
-    For each candidate "Section A" position and each regex style, score by
-    how long a sequential run of question numbers follows; keep whichever
-    (regex, offset) pair scores highest overall. An incidental mid-sentence
-    mention, or the wrong numbering style, won't sustain a real long
-    sequential run the way the actual paper start does."""
+    Tries STRICT and BARE first (as before). If neither scores more than 5,
+    also tries COMBINED — which handles papers that mix period and bare
+    numbering styles across sections (2021-22 T2 SocSci, 2020-21 SocSci).
+    """
     candidates = [m.start() for m in PAPER_START_RE.finditer(full_text)] or [0]
     best_regex, best_start, best_score = QUESTION_START_RE_STRICT, candidates[0], -1
-    for question_re in (QUESTION_START_RE_STRICT, QUESTION_START_RE_BARE):
+    # Try all three regex styles. COMBINED is tried last and only wins if it
+    # strictly beats both STRICT and BARE — preserving backward-compatibility
+    # with papers that work well with a single style while letting mixed-format
+    # papers (2021-22 T1 Science, T2 SocSci, 2020-21 SocSci) use COMBINED.
+    for question_re in (QUESTION_START_RE_STRICT, QUESTION_START_RE_BARE, QUESTION_START_RE_COMBINED):
         for cand in candidates:
             score = _score_regex_from(full_text, question_re, cand)
             if score > best_score:
@@ -243,36 +268,17 @@ def choose_question_regex(full_text: str) -> tuple["re.Pattern", int]:
     return best_regex, best_start
 
 
-_AR_OPTION_LINE_RE = re.compile(r"^\s*(?:\([A-D]\)|[A-D]\.)\s*")
+_AR_OPTION_LINE_RE = re.compile(r"^\s*(?:\([A-Da-d]\)|[A-D]\.)\s*")
 
 
 def extract_assertion_reason_options(full_text: str, question_start_re: "re.Pattern") -> list[str]:
-    """The 4 interpretive Assertion-Reason choices are printed once per paper
-    (not per question), with wording that varies by subject ("select the
-    correct option" for Maths, "selecting the appropriate option given
-    below" for Science, etc). Extract the actual 4 option strings from
-    wherever that preamble appears in this paper rather than assuming one
-    fixed wording — falls back to the Maths wording only if nothing is found
-    (should not happen for a paper that actually has A-R questions).
-
-    Line-anchored on purpose, unlike parse_options(): each option's own
-    prose re-mentions "assertion (A)" / "reason (R)" inline (e.g. "Both
-    assertion (A) and reason (R) are true..."), which parse_options()'s
-    anywhere-in-text marker matching mistakes for additional option
-    boundaries. The real markers only ever start a line here, so split on
-    line-start markers and fold wrapped continuation lines into the option
-    that precedes them."""
     m = ASSERTION_REASON_PREAMBLE_RE.search(full_text)
     if not m:
         return list(ASSERTION_REASON_OPTIONS)
-
     options: list[str] = []
     current = None
     for line in full_text[m.end():m.end() + 800].split("\n"):
         marker = _AR_OPTION_LINE_RE.match(line)
-        # Some papers (Maths) put a blank line after the 4th option before
-        # the next question; others (Science) run straight into "8 Assertion
-        # (A): ..." with no separator at all — either ends the wrap.
         next_question = question_start_re.match(line)
         if marker:
             if current is not None:
@@ -290,61 +296,205 @@ def extract_assertion_reason_options(full_text: str, question_start_re: "re.Patt
             current = f"{current} {line.strip()}".strip()
     if current is not None and len(options) < 4:
         options.append(current.strip())
-
     options = [o for o in options if o]
     return options[:4] if len(options) >= 4 else list(ASSERTION_REASON_OPTIONS)
 
 
-def parse_questions(full_text: str) -> list[dict]:
-    # Skip the General Instructions block — its numbered list items ("1. This
-    # question paper contains...") match the same "N. " pattern as real
-    # questions, and may even mention "Section A" incidentally. Start parsing
-    # from whichever (regex style, offset) combination actually leads into a
-    # real sequential run of questions in this specific paper.
-    question_start_re, start_offset = choose_question_regex(full_text)
-    full_text = full_text[start_offset:]
+def _build_question_row(
+    q_num: int,
+    block: str,
+    current_section: str,
+    section_marks: dict,
+    option_style: str,
+    ar_options: list,
+    section_offset: int = 0,
+) -> dict:
+    """Assemble one question dict from its parsed block."""
+    if current_section in section_marks:
+        marks = section_marks[current_section]
+    else:
+        marks_matches = TRAILING_MARKS_RE.findall(block)
+        marks = int(marks_matches[0]) if marks_matches else 1
 
+    if option_style == "paren_lower":
+        option_marker_re = OPTION_LINE_RE_PAREN_LOWER
+    elif option_style == "dot":
+        option_marker_re = OPTION_LINE_RE_DOT
+    else:
+        option_marker_re = OPTION_LINE_RE_PAREN
+
+    has_options = marks == 1 and bool(option_marker_re.search(block))
+    options = parse_options(block, option_style) if has_options else []
+
+    text = block
+    if has_options:
+        if option_style == "dot":
+            split_re = r"(?m)^\s*[A-D]\.\s+"
+        elif option_style == "paren_lower":
+            split_re = r"\([a-d]\)(?!:)"
+        else:
+            split_re = r"\([A-D]\)(?!:)"
+        text = re.split(split_re, text, maxsplit=1)[0]
+    text = TRAILING_MARKS_RE.sub("", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    q_type = infer_type_and_marks(marks, has_options, block)
+    if q_type == "assertion_reason":
+        options = list(ar_options)
+    diagram_dependent = bool(
+        re.search(r"figure|diagram|picture|graph shown|shown below|shown above", block, re.I)
+    )
+    return {
+        "question_number": q_num + section_offset,
+        "section": current_section,
+        "question_type": q_type,
+        "marks": marks,
+        "question_text": text,
+        "options": options,
+        "diagram_dependent": diagram_dependent,
+    }
+
+
+def _parse_section_text(
+    section_text: str, section_letter: str, section_offset: int
+) -> list[dict]:
+    """Extract questions from a single section's text for Term 1 papers.
+
+    Term 1 papers number questions locally within each section (Section A:
+    1-20, Section B: 1-20, Section C: 1-10).  section_offset is added to
+    each local question_number so the combined output is globally unique:
+    Section A offset=0, Section B offset=20, Section C offset=40.
+    """
+    question_start_re, start_offset = choose_question_regex(section_text)
+    section_text = section_text[start_offset:]
+    option_style = detect_option_style(section_text)
+    ar_options = extract_assertion_reason_options(section_text, question_start_re)
+    section_marks = parse_section_marks(section_text)
+    if section_letter not in section_marks:
+        section_marks[section_letter] = 1
+    questions: list[dict] = []
+    expected_next = 1
+    starts = list(question_start_re.finditer(section_text))
+    for i, m in enumerate(starts):
+        q_num = int(m.group(1))
+        if q_num != expected_next:
+            continue
+        expected_next += 1
+        block_start = m.end()
+        block_end = starts[i + 1].start() if i + 1 < len(starts) else len(section_text)
+        for j in range(i + 1, len(starts)):
+            if int(starts[j].group(1)) == expected_next:
+                block_end = starts[j].start()
+                break
+        block = section_text[block_start:block_end]
+        questions.append(
+            _build_question_row(q_num, block, section_letter, section_marks, option_style, ar_options, section_offset)
+        )
+    return questions
+
+
+# Term 1 Science papers number questions globally (Section B: Sl. No.25-48).
+# Term 1 Maths papers number locally (each section starts at 1).
+_TERM1_GLOBAL_NUM_RE = re.compile(
+    r"Sl\.?\s*No\.?\s*\d+\s+to\s+\d+|Serial\s+No\.?\s*\d+", re.IGNORECASE
+)
+
+
+def _parse_questions_term1_sections(full_text: str) -> list[dict]:
+    """Handle Term 1 (2021-22) papers with section-local question numbering.
+
+    Splits the paper text at SECTION A / B / C boundaries, extracts each
+    section independently with _parse_section_text(), and renumbers
+    questions globally: Section A keeps local numbers, Section B += count_A,
+    Section C += count_A + count_B.
+
+    Falls back to regular parse_questions() if the paper uses global
+    question numbering across sections (e.g. T1 Science: Sl. No.25 to 48
+    in Section B).  In that case section-split extraction is the wrong
+    approach — the whole-paper sequential scan handles it correctly.
+
+    Deduplication: CBSE Term 1 papers often repeat the section heading once
+    in the intro and once as the actual header — keep only the first
+    occurrence of each section letter.
+    """
+    # If sections carry globally-sequential numbers, skip section-split logic.
+    if _TERM1_GLOBAL_NUM_RE.search(full_text):
+        # Fall through to the regular whole-paper scanner below. Strip the
+        # TERM1_ANY_N_RE guard to prevent infinite recursion.
+        return _parse_questions_global(full_text)
+
+    boundaries = list(TERM1_SECTION_SPLIT_RE.finditer(full_text))
+    if not boundaries:
+        return _parse_questions_global(full_text)  # fallback
+
+    # Deduplicate: for each letter, use only its first boundary position;
+    # slice ends at the first boundary of the next different letter.
+    seen_letters: list[str] = []
+    first_pos: dict[str, int] = {}
+    for bnd in boundaries:
+        letter = bnd.group(1).upper()
+        if letter not in first_pos:
+            first_pos[letter] = bnd.start()
+            seen_letters.append(letter)
+
+    sections: list[tuple[str, str]] = []
+    for i, letter in enumerate(seen_letters):
+        start = first_pos[letter]
+        # End at first boundary of the next different letter
+        end = len(full_text)
+        for future_letter in seen_letters[i + 1:]:
+            if future_letter != letter:
+                end = first_pos[future_letter]
+                break
+        sections.append((letter, full_text[start:end]))
+
+    all_questions: list[dict] = []
+    running_offset = 0
+    for letter, sec_text in sections:
+        qs = _parse_section_text(sec_text, letter, running_offset)
+        if qs:
+            running_offset += max(q["question_number"] - running_offset for q in qs)
+        all_questions.extend(qs)
+    return all_questions
+
+
+def _parse_questions_global(full_text: str) -> list[dict]:
+    """Core whole-paper sequential question scanner (no Term1 routing)."""
+    question_start_re, start_offset = choose_question_regex(full_text)
+    return _parse_questions_from(full_text, question_start_re, start_offset)
+
+
+def _parse_questions_from(full_text: str, question_start_re, start_offset: int) -> list[dict]:
+    """Sequential question scanner from a fixed offset with a given regex."""
+    full_text = full_text[start_offset:]
     option_style = detect_option_style(full_text)
     ar_options = extract_assertion_reason_options(full_text, question_start_re)
     section_marks = parse_section_marks(full_text)
     current_section = "A"
     questions: list[dict] = []
     expected_next = 1
-
     starts = list(question_start_re.finditer(full_text))
     for i, m in enumerate(starts):
         q_num = int(m.group(1))
-        # Real questions are strictly sequential (1, 2, 3, ... in order).
-        # Numbered sub-lists embedded inside a question's own text (e.g. a
-        # probability question listing "1. ... 2. ..." as conditions) match
-        # the same regex but break the sequence — skip those.
         if q_num != expected_next:
-            continue
+            # Tolerate a single missing question number (e.g. Q20 absent from
+            # extracted text because pypdf couldn't read a custom-font or
+            # image-embedded number). Only advance by 1 at a time so that
+            # larger gaps and genuine false positives are still rejected.
+            if q_num == expected_next + 1:
+                expected_next += 1  # silently skip the one missing question
+            else:
+                continue
+            if q_num != expected_next:
+                continue
         expected_next += 1
-
         block_start = m.end()
         block_end = starts[i + 1].start() if i + 1 < len(starts) else len(full_text)
-        # Re-scan forward from here for the *next accepted* start, in case the
-        # very next regex match is itself a skipped embedded number — using
-        # starts[i+1] blindly would truncate this question's text early.
         for j in range(i + 1, len(starts)):
             if int(starts[j].group(1)) == expected_next:
                 block_end = starts[j].start()
                 break
         block = full_text[block_start:block_end]
-        # Strip the shared Assertion-Reason interpretive key if it trails
-        # this question's own content (see ASSERTION_REASON_PREAMBLE_RE) —
-        # it belongs to the *next* question(s), not this one.
-        # "Select/choose the correct option" is generic MCQ instruction
-        # phrasing that also shows up in ordinary (non-AR) questions — e.g.
-        # a question's own stem can start "Choose the correct option ...
-        # which explains the reason for us to perceive the day sky as
-        # blue." That's the *first* match in the block, so checking only
-        # the first candidate (rather than iterating) would wrongly give up
-        # instead of finding the real preamble later in the same block —
-        # only treat a candidate as the shared AR preamble if "Assertion"
-        # actually appears nearby (the genuine preamble always names it:
-        # "...statements – Assertion (A) and Reason (R)...").
         preamble_match = None
         for candidate in ASSERTION_REASON_PREAMBLE_RE.finditer(block):
             if re.search(r"\bAssertion\b", block[max(0, candidate.start() - 200):candidate.end()], re.IGNORECASE):
@@ -352,71 +502,26 @@ def parse_questions(full_text: str) -> list[dict]:
                 break
         if preamble_match:
             cut_at = preamble_match.start()
-            # The shared AR preamble often opens with its own lead-in
-            # sentence ("...consist of two statements – Assertion (A) and
-            # Reason (R)...") before the "select the correct option" phrase
-            # this regex matches on. Left untruncated, that lead-in's own
-            # "Assertion"/"Reason" words leak into the *preceding* (non-AR)
-            # question's block and falsely trigger AR-type detection there.
-            # Search only a nearby window, not the whole block — a question
-            # further back may use "reason" as an ordinary English word
-            # (e.g. "...explains the reason for us to perceive..."), which
-            # isn't the preamble and shouldn't seed an earlier cut point.
             window_start = max(0, cut_at - 200)
             lead_in = re.search(r"\bAssertion\b|\bReason\b", block[window_start:cut_at], re.IGNORECASE)
             if lead_in:
                 cut_at = window_start + lead_in.start()
             block = block[:cut_at]
-
-        # Section markers can appear inside the gap before this question.
         preceding = full_text[starts[i - 1].end() if i > 0 else 0 : m.start()]
         sec_match = SECTION_RE.search(preceding)
         if sec_match:
             current_section = sec_match.group(1).upper()
-
-        if current_section in section_marks:
-            marks = section_marks[current_section]
-        else:
-            marks_matches = TRAILING_MARKS_RE.findall(block)
-            marks = int(marks_matches[0]) if marks_matches else 1
-
-        # Only 1-mark questions actually carry 4-way MCQ/assertion-reason
-        # options. At higher mark values, a bare "(A)"/"(B)" or "A."/"B."
-        # marker means either an internal OR-choice between two alternative
-        # versions of the SAME question (e.g. "32.(A) ... OR (B) ...") or a
-        # multi-part case-study subquestion — neither is a real option list,
-        # and splitting on it there emptied question_text entirely while
-        # stuffing the real question into `options`.
-        option_marker_re = OPTION_LINE_RE_DOT if option_style == "dot" else OPTION_LINE_RE_PAREN
-        has_options = marks == 1 and bool(option_marker_re.search(block))
-        options = parse_options(block, option_style) if has_options else []
-
-        # Question text = block with option lines and trailing bare numbers removed.
-        text = block
-        if has_options:
-            split_re = r"(?m)^\s*[A-D]\.\s+" if option_style == "dot" else r"\([A-D]\)(?!:)"
-            text = re.split(split_re, text, maxsplit=1)[0]
-        text = TRAILING_MARKS_RE.sub("", text)
-        text = re.sub(r"\s+", " ", text).strip()
-
-        q_type = infer_type_and_marks(marks, has_options, block)
-        if q_type == "assertion_reason":
-            options = list(ar_options)
-        diagram_dependent = bool(
-            re.search(r"figure|diagram|picture|graph shown|shown below|shown above", block, re.I)
+        questions.append(
+            _build_question_row(q_num, block, current_section, section_marks, option_style, ar_options)
         )
-
-        questions.append({
-            "question_number": q_num,
-            "section": current_section,
-            "question_type": q_type,
-            "marks": marks,
-            "question_text": text,
-            "options": options,
-            "diagram_dependent": diagram_dependent,
-        })
-
     return questions
+
+
+def parse_questions(full_text: str) -> list[dict]:
+    # Term 1 (2021-22) papers have section-local numbering — detect and handle separately.
+    if TERM1_ANY_N_RE.search(full_text):
+        return _parse_questions_term1_sections(full_text)
+    return _parse_questions_global(full_text)
 
 
 def main() -> None:
@@ -484,6 +589,7 @@ def main() -> None:
                 "question_paper_url": args.question_paper_url,
                 "marking_scheme_url": args.marking_scheme_url,
                 "source_page_url": args.source_page_url,
+                "status": "pending_answers",
             }, on_conflict="board,academic_year,grade,source_subject_code")
             .execute()
         )
