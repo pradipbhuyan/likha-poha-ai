@@ -140,7 +140,7 @@ const PAGE_META = {
   },
   boardPapers: {
     title: "Board Papers",
-    subtitle: "Official CBSE sample papers by year, with official answers for every question.",
+    subtitle: "Official CBSE board papers by year, with official answers for every question.",
     icon: "📄",
   },
   resources: {
