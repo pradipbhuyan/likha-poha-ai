@@ -339,7 +339,7 @@ function Sidebar({
     },
     {
       key: "boardPapers",
-      label: "Board Sample Papers",
+      label: "Board Papers",
       icon: FileText,
       roles: ["student", "admin"],
       gradeFilter: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
