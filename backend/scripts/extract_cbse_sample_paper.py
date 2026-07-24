@@ -300,7 +300,7 @@ def _score_regex_from(full_text: str, question_re: "re.Pattern", start_offset: i
     expected = 1
     score = 0
     for m in starts:
-        if _MATCHING_KEY_RE.match(window[m.end():m.end() + 40]):
+        if _MATCHING_KEY_RE.match(full_text[start_offset + m.end():start_offset + m.end() + 40]):
             continue
         if int(m.group(1)) == expected:
             score += 1
@@ -331,6 +331,7 @@ def choose_question_regex(full_text: str) -> tuple["re.Pattern", int]:
 
 
 _AR_OPTION_LINE_RE = re.compile(r"^\s*(?:\([A-Da-d]\)|[A-D]\.)\s*")
+_MATCHING_KEY_RE = re.compile(r"^\s*[\(\[a-dA-D]\s{0,2}[\)\]]")  # skip matching-table row numbers
 
 
 def extract_assertion_reason_options(full_text: str, question_start_re: "re.Pattern") -> list[str]:
@@ -339,7 +340,7 @@ def extract_assertion_reason_options(full_text: str, question_start_re: "re.Patt
         return list(ASSERTION_REASON_OPTIONS)
     options: list[str] = []
     current = None
-    for line in text[:limit].split("\n"):
+    for line in full_text[m.start(): m.start() + 2000].split(chr(10)):
         marker = _AR_OPTION_LINE_RE.match(line)
         next_question = question_start_re.match(line)
         if marker:
@@ -630,7 +631,6 @@ def main() -> None:
         pdf_path = Path(args.pdf)
         pages = extract_pages(pdf_path)
         full_text = strip_page_furniture("\n".join(pages))
-        full_text = substitute_vi_alternates(full_text)
         questions = parse_questions(full_text)
         pdf_name = pdf_path.name
     else:
