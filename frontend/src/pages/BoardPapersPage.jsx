@@ -786,6 +786,55 @@ export default function BoardPapersPage({ user }) {
 
   return (
     <div style={{ padding: "24px 32px" }}>
+
+      {/* ── Feature strip ─────────────────────────────────────────────── */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: 14,
+        marginBottom: 28,
+      }}>
+        {[
+          {
+            icon: "📚",
+            title: "Decade of Papers",
+            desc: "200+ official CBSE papers from 2015–2025, every subject, every year.",
+          },
+          {
+            icon: "⏱️",
+            title: "Simulate Real Exams",
+            desc: "Timed mock tests that mirror the actual board exam format, question by question.",
+          },
+          {
+            icon: "✅",
+            title: "Every Mark Explained",
+            desc: "Official answers with the full marking scheme for every single question.",
+          },
+          {
+            icon: "🎯",
+            title: "Board-Ready Practice",
+            desc: "The only practice that matches exactly what CBSE actually asks in the exam.",
+          },
+        ].map(({ icon, title, desc }) => (
+          <div
+            key={title}
+            style={{
+              background: "var(--panel, #fff)",
+              border: "1px solid var(--border, #e5e7eb)",
+              borderRadius: 14,
+              padding: "18px 16px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+            }}
+          >
+            <span style={{ fontSize: "1.5rem" }}>{icon}</span>
+            <strong style={{ fontSize: ".95rem", lineHeight: 1.3 }}>{title}</strong>
+            <p style={{ margin: 0, fontSize: ".82rem", color: "var(--muted, #64748b)", lineHeight: 1.55 }}>{desc}</p>
+          </div>
+        ))}
+      </div>
+
       {canSwitchGrade && (
         <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
           {["Grade 10", "Grade 12"].map((g) => (
