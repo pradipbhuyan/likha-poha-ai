@@ -46,6 +46,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -56,7 +57,15 @@ from app.services.grade_db_router import get_content_db
 
 BOARD = "CBSE"
 
-SECTION_RE = re.compile(r"\(?Section\s*[–-]?\s*([A-E])\)?", re.IGNORECASE)
+# A-F, not just A-E: SocialScience 2023-24/2024-25 add a 6th section (F —
+# the map-based question) beyond the usual A-E tier structure.
+# \b on both ends: without a word boundary right after "Section" and right
+# after the captured letter, this matched inside ordinary prose words like
+# "cross-sectional area" (Science 2024-25, Q33's own stem) — "section" +
+# "al" reads as "Section" + captured letter "A", wrongly resetting
+# current_section to A mid-paper and corrupting every question's marks/type
+# after it until the next real section header.
+SECTION_RE = re.compile(r"\(?\bSection\b\s*[–-]?\s*([A-F])\b\)?", re.IGNORECASE)
 # Two question-numbering styles seen across subjects. STRICT requires a
 # period ("21." — Maths, sometimes with no space after it before an option
 # marker like "21.(A)"). BARE has no period at all ("1 Select..." —
@@ -129,8 +138,24 @@ def strip_page_furniture(text: str) -> str:
     # Supabase/Postgres rejects \u0000 in text columns.
     text = text.replace("\x00", "")
     text = re.sub(r"Page\s+\d+\s+of\s+\d+", "", text)
+    # The "*" prefix is NOT universal — Economics 2025-26 (and likely other
+    # Commerce papers) print this disclaimer with no leading asterisk at
+    # all, so the asterisk-mandatory version of this regex silently matched
+    # nothing in that document, leaving every single page-break's full
+    # disclaimer sentence (and the bare page-number digit immediately
+    # before it) sitting untouched mid-question. Tried also stripping that
+    # leading page-number digit generically here, but regression-testing
+    # against the Grade 10/12 baselines showed it does real damage on other
+    # papers (EnglishL-SQP.pdf lost a whole question, Biology-SQP.pdf's
+    # case_study/mcq split shifted) — the same "bare 1-3 digit line" shape
+    # is apparently NOT always safely page-number-only elsewhere. Keeping
+    # only the asterisk-optional fix (safe, zero regressions) and leaving
+    # the leading-digit stripping out; any resulting marks noise from a
+    # page break lands on a specific question, which gets corrected by hand
+    # during the per-paper flagged-question review instead.
     text = re.sub(
-        r"\*Please note that the assessment scheme.*?2025-26", "", text, flags=re.DOTALL
+        r"\*?\s*Please note that the assessment scheme.*?2025-26", "", text,
+        flags=re.DOTALL | re.IGNORECASE,
     )
     # Table-format header: inject newline before the first question number.
     text = re.sub(
@@ -167,6 +192,32 @@ SECTION_MARKS_RE = re.compile(
     r"(\d+)\s+marks?\s+each",
     re.IGNORECASE,
 )
+_NUMBER_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+}
+# Commerce/Humanities papers (first seen: Economics 2025-26) don't use
+# Section A-E as mark tiers at all — Section A/B name SUBJECT AREAS (e.g.
+# "Section A – Macro Economics", "Section B – Indian Economic Development"),
+# and marks-per-question-type are declared separately in the General
+# Instructions as a flat roman-numeral list ("II. This paper contains 20
+# Multiple Choice Type Questions of 1 mark each. III. ... 4 Short Answer ...
+# of 3 marks each. ..."). Instruction bullet I lists the section names right
+# next to bullet II's "of 1 mark each" MCQ-count sentence — well within
+# SECTION_MARKS_RE's 250-char lookahead — so naively that reads as if
+# Section A's (and Section B's) own per-question marks were 1, wrongly
+# forcing every question in both sections (including the paper's 3/4/6-mark
+# short/long-answer questions) down to marks=1. Every genuine per-section
+# marks declaration seen so far (Maths/Science/SocialScience) states the
+# value in the SAME sentence as the section reference itself, never crossing
+# into a separate, independently-numbered instruction bullet — so reject a
+# match if a general-instructions bullet marker ("II.", "III.", ...) sits
+# between the section-letter mention and the "marks each" phrase found; that
+# crossing means the phrase belongs to an unrelated, later instruction about
+# overall question-type counts, not this section's own declaration. Falls
+# through to the (correct, for a paper shaped like this) per-block
+# trailing-marks detection instead.
+_INSTRUCTION_BULLET_RE = re.compile(r"(?m)^\s*[IVX]{1,4}\.\s")
 
 
 def parse_section_marks(full_text: str) -> dict[str, int]:
@@ -185,6 +236,15 @@ def infer_type_and_marks(marks: int, has_options: bool, block_text: str = "") ->
         return "long_answer"
     if marks == 4:
         return "case_study"
+    # Commerce papers (first seen: Economics 2025-26) declare a "Long Answer
+    # Type" tier worth 6 marks each, not 5 — unlike Science/Maths, which
+    # never go above 5. A 6-mark question fell through every explicit branch
+    # above to the default "short_answer", badly under-representing what's
+    # actually the paper's longest, highest-value question type. No CBSE
+    # convention seen anywhere uses 6 marks for anything OTHER than a long
+    # answer, so this is safe to add unconditionally.
+    if marks == 6:
+        return "long_answer"
     return "short_answer"
 
 
@@ -226,7 +286,7 @@ def parse_options(block: str, style: str) -> list[str]:
     options: list[str] = []
     current_label = None
     for part in parts:
-        if re.fullmatch(label_re, part):
+        if re.fullmatch(label_re, part, flags=re.IGNORECASE):
             current_label = part
         elif current_label:
             options.append(_join_wrapped_option(part))
@@ -240,6 +300,8 @@ def _score_regex_from(full_text: str, question_re: "re.Pattern", start_offset: i
     expected = 1
     score = 0
     for m in starts:
+        if _MATCHING_KEY_RE.match(window[m.end():m.end() + 40]):
+            continue
         if int(m.group(1)) == expected:
             score += 1
             expected += 1
@@ -277,7 +339,7 @@ def extract_assertion_reason_options(full_text: str, question_start_re: "re.Patt
         return list(ASSERTION_REASON_OPTIONS)
     options: list[str] = []
     current = None
-    for line in full_text[m.end():m.end() + 800].split("\n"):
+    for line in text[:limit].split("\n"):
         marker = _AR_OPTION_LINE_RE.match(line)
         next_question = question_start_re.match(line)
         if marker:
@@ -293,7 +355,27 @@ def extract_assertion_reason_options(full_text: str, question_start_re: "re.Patt
             if len(options) == 4:
                 break
         elif current is not None:
-            current = f"{current} {line.strip()}".strip()
+            stripped = line.strip()
+            # A bare 1-2 digit line right after the 4th (last) option's own
+            # content is that QUESTION's trailing marks value, not part of
+            # the option text — same shape/fix as _join_wrapped_option's
+            # analogous guard for ordinary MCQ options (SocialScience
+            # 2022-23/2023-24/2025-26 all print the shared A-R preamble
+            # immediately followed by the marks line for whichever question
+            # sits right after it, e.g. "D. A is false but R is true \n1" —
+            # this function had no equivalent guard, so that "1" silently
+            # glued onto the end of the last option's text as " 1"). Only
+            # trip once real content is already collected, exactly like the
+            # sibling guard, so a genuinely numeric-only option text
+            # (unlikely here, but keep the same conservative condition)
+            # isn't truncated on its very first line.
+            if current and re.fullmatch(r"\d{1,2}", stripped):
+                options.append(current.strip())
+                current = None
+                if len(options) == 4:
+                    break
+                continue
+            current = f"{current} {stripped}".strip()
     if current is not None and len(options) < 4:
         options.append(current.strip())
     options = [o for o in options if o]
@@ -548,6 +630,7 @@ def main() -> None:
         pdf_path = Path(args.pdf)
         pages = extract_pages(pdf_path)
         full_text = strip_page_furniture("\n".join(pages))
+        full_text = substitute_vi_alternates(full_text)
         questions = parse_questions(full_text)
         pdf_name = pdf_path.name
     else:
@@ -577,6 +660,21 @@ def main() -> None:
 
     paper_id = None
     if args.create_paper:
+        # If this paper already exists and is "active" (fully answered),
+        # a re-run (e.g. to patch one question) must not downgrade its
+        # status back to pending_answers and hide it from students again.
+        already_active = (
+            db.table("board_sample_papers")
+            .select("status")
+            .eq("board", BOARD).eq("academic_year", args.academic_year)
+            .eq("grade", args.grade).eq("source_subject_code", args.source_subject_code)
+            .execute()
+        )
+        preserve_status = (
+            already_active.data[0]["status"]
+            if already_active.data and already_active.data[0]["status"] == "active"
+            else "pending_answers"
+        )
         result = (
             db.table("board_sample_papers")
             .upsert({

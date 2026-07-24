@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -9,6 +9,16 @@ import {
   Award,
   Lock,
   Sparkles,
+  Clock,
+  Trophy,
+  RotateCcw,
+  TrendingUp,
+  PlayCircle,
+  History,
+  Check,
+  X,
+  AlertTriangle,
+  Save,
 } from "lucide-react";
 
 import {
@@ -16,9 +26,31 @@ import {
   listBoardPaperSubjects,
   listBoardPapers,
   getBoardPaperQuestions,
+  submitBoardPaperAttempt,
+  listBoardPaperAttempts,
 } from "../api/boardPapers";
 import { getUserGrade } from "../utils/syllabusDefaults";
 import { isAllAccessTestUser } from "../utils/testAccounts";
+
+const TIMED_TEST_DURATION_MINUTES = 180; // every CBSE sample paper processed so far is "TIME: 3 hours"
+
+const TT_PHASE_INTRO  = "intro";
+const TT_PHASE_EXAM   = "exam";
+const TT_PHASE_RESULT = "result";
+
+function isMcqQuestion(question) {
+  return question.question_type === "mcq" || question.question_type === "assertion_reason";
+}
+
+function formatTime(totalSeconds) {
+  const s = Math.max(0, totalSeconds);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  const mm = String(m).padStart(2, "0");
+  const ss = String(sec).padStart(2, "0");
+  return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+}
 
 function examGradeFor(rawGrade) {
   // Board Sample Papers only has content for Grade 10 and Grade 12 (CBSE
@@ -35,11 +67,38 @@ function MathText({ text }) {
   return <span style={{ whiteSpace: "pre-wrap" }}>{String(text || "")}</span>;
 }
 
-function QuestionCard({ question }) {
-  const [selected, setSelected] = useState(null);
-  const [revealed, setRevealed] = useState(false);
-  const isMcq = question.question_type === "mcq" || question.question_type === "assertion_reason";
-  const answered = isMcq ? selected !== null : revealed;
+function QuestionCard({
+  question,
+  // Timed Test mode passes controlled state down from the parent (it needs
+  // every answer to compute the final score) and suppresses reveal/
+  // correctness until the parent phase is RESULT. Self-study mode omits
+  // all of these props and keeps its original uncontrolled behavior.
+  mode = "study",
+  selected: controlledSelected,
+  onSelectOption,
+  revealed: controlledRevealed,
+  onReveal,
+  showAnswers = true,
+  selfMarked,
+  onSelfMark,
+}) {
+  const isTimed = mode === "timed";
+  const [internalSelected, setInternalSelected] = useState(null);
+  const [internalRevealed, setInternalRevealed] = useState(false);
+  const selected = isTimed ? controlledSelected : internalSelected;
+  const revealed = isTimed ? controlledRevealed : internalRevealed;
+  const isMcq = isMcqQuestion(question);
+  const hasAnswer = isMcq ? selected !== null && selected !== undefined : revealed;
+  // In timed EXAM phase (showAnswers=false) answers stay hidden even once
+  // picked — only the RESULT phase (showAnswers=true) reveals correctness.
+  const answered = showAnswers && hasAnswer;
+
+  function selectOption(i) {
+    if (isTimed) onSelectOption?.(i); else setInternalSelected(i);
+  }
+  function reveal() {
+    if (isTimed) onReveal?.(); else setInternalRevealed(true);
+  }
 
   return (
     <div style={{
@@ -75,16 +134,19 @@ function QuestionCard({ question }) {
               bg = "rgba(34,197,94,0.12)"; border = "1.5px solid #16a34a"; color = "#15803d";
             } else if (answered && isSelected) {
               bg = "rgba(239,68,68,0.1)"; border = "1.5px solid #ef4444"; color = "#b3261e";
+            } else if (!showAnswers && isSelected) {
+              // Timed exam phase — answer is hidden, just show it's picked.
+              bg = "rgba(124,58,237,0.1)"; border = "1.5px solid var(--accent, #7c3aed)"; color = "var(--accent, #7c3aed)";
             }
             return (
               <button
                 key={i}
                 type="button"
                 disabled={answered}
-                onClick={() => setSelected(i)}
+                onClick={() => selectOption(i)}
                 style={{
                   textAlign: "left", padding: "8px 12px", borderRadius: 8, background: bg, border, color,
-                  fontSize: ".88rem", cursor: answered ? "default" : "pointer", fontWeight: answered && (isCorrect || isSelected) ? 700 : 500,
+                  fontSize: ".88rem", cursor: answered ? "default" : "pointer", fontWeight: (answered && (isCorrect || isSelected)) || (!showAnswers && isSelected) ? 700 : 500,
                 }}
               >
                 <strong>{String.fromCharCode(65 + i)}.</strong> <MathText text={option} />
@@ -96,10 +158,10 @@ function QuestionCard({ question }) {
         </div>
       )}
 
-      {!isMcq && !revealed && (
+      {!isMcq && showAnswers && !revealed && (
         <button
           type="button"
-          onClick={() => setRevealed(true)}
+          onClick={reveal}
           style={{
             display: "inline-flex", alignItems: "center", gap: 6, background: "var(--accent, #7c3aed)",
             color: "#fff", border: "none", borderRadius: 8, padding: "8px 14px", fontSize: ".85rem",
@@ -108,6 +170,12 @@ function QuestionCard({ question }) {
         >
           <Eye size={14} /> Show official answer
         </button>
+      )}
+
+      {!isMcq && !showAnswers && (
+        <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", fontStyle: "italic", margin: "4px 0 0" }}>
+          Attempt this on paper — the official answer unlocks once you submit the test.
+        </p>
       )}
 
       {answered && question.answer_explanation && (
@@ -127,11 +195,442 @@ function QuestionCard({ question }) {
           </div>
         </div>
       )}
+
+      {/* Timed Test RESULT phase — subjective self-assessment, kept clearly
+          separate from the objective MCQ score since this figure is
+          student-reported, not verified. */}
+      {isTimed && !isMcq && answered && (
+        <div style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <span style={{ fontSize: ".8rem", fontWeight: 700, color: "var(--text, #29324a)" }}>Mark yourself:</span>
+          <button
+            type="button"
+            onClick={() => onSelfMark?.(true)}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999,
+              fontSize: ".8rem", fontWeight: 700, cursor: "pointer",
+              border: selfMarked === true ? "1.5px solid #16a34a" : "1px solid var(--border, #d6ddeb)",
+              background: selfMarked === true ? "rgba(34,197,94,0.15)" : "transparent",
+              color: selfMarked === true ? "#15803d" : "var(--text, #29324a)",
+            }}
+          >
+            <Check size={13} /> Correct
+          </button>
+          <button
+            type="button"
+            onClick={() => onSelfMark?.(false)}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999,
+              fontSize: ".8rem", fontWeight: 700, cursor: "pointer",
+              border: selfMarked === false ? "1.5px solid #ef4444" : "1px solid var(--border, #d6ddeb)",
+              background: selfMarked === false ? "rgba(239,68,68,0.12)" : "transparent",
+              color: selfMarked === false ? "#b3261e" : "var(--text, #29324a)",
+            }}
+          >
+            <X size={13} /> Incorrect
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-function PaperAttempt({ paper, questions, onBack }) {
+function PastAttempts({ paper, onBack }) {
+  const [attempts, setAttempts] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    listBoardPaperAttempts(paper.id)
+      .then((result) => !cancelled && setAttempts(result?.attempts || []))
+      .catch((err) => !cancelled && setError(err.message || "Could not load past attempts"));
+    return () => { cancelled = true; };
+  }, [paper.id]);
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={onBack}
+        style={{ background: "none", border: "none", color: "var(--accent, #7c3aed)", fontSize: ".85rem", fontWeight: 600, cursor: "pointer", padding: 0, marginBottom: 14 }}
+      >
+        ← Back to paper
+      </button>
+
+      <h3 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 14px" }}>
+        <History size={18} /> Past Timed Test attempts
+      </h3>
+
+      {error && <p style={{ color: "#b3261e" }}>{error}</p>}
+      {attempts === null && !error && <p style={{ color: "var(--muted, #64748b)" }}>Loading…</p>}
+      {attempts && attempts.length === 0 && (
+        <p style={{ color: "var(--muted, #64748b)" }}>No Timed Test attempts yet for this paper.</p>
+      )}
+
+      {attempts && attempts.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {attempts.map((a) => {
+            const mcqPct = a.mcq_max_score > 0 ? Math.round((a.mcq_score / a.mcq_max_score) * 100) : null;
+            const subjPct = a.subjective_max_score > 0 ? Math.round((a.subjective_self_marked_correct / a.subjective_max_score) * 100) : null;
+            const when = a.submitted_at ? new Date(a.submitted_at).toLocaleString() : "";
+            const mins = a.time_taken_seconds != null ? Math.round(a.time_taken_seconds / 60) : null;
+            return (
+              <div key={a.id} style={{
+                background: "var(--panel, #fff)", border: "1px solid var(--border, #d6ddeb)",
+                borderRadius: 10, padding: "12px 16px", display: "flex", alignItems: "center",
+                justifyContent: "space-between", flexWrap: "wrap", gap: 10,
+              }}>
+                <div>
+                  <div style={{ fontSize: ".85rem", fontWeight: 700 }}>{when}</div>
+                  {mins != null && (
+                    <div style={{ fontSize: ".78rem", color: "var(--muted, #64748b)", display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
+                      <Clock size={12} /> {mins} min
+                    </div>
+                  )}
+                </div>
+                <div style={{ display: "flex", gap: 16 }}>
+                  {mcqPct != null && (
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: ".72rem", color: "var(--muted, #64748b)" }}>MCQ (auto-graded)</div>
+                      <div style={{ fontSize: ".9rem", fontWeight: 700, color: "var(--accent, #7c3aed)" }}>
+                        {a.mcq_score} / {a.mcq_max_score} ({mcqPct}%)
+                      </div>
+                    </div>
+                  )}
+                  {subjPct != null && (
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: ".72rem", color: "var(--muted, #64748b)" }}>Subjective (self-marked)</div>
+                      <div style={{ fontSize: ".9rem", fontWeight: 700 }}>
+                        {a.subjective_self_marked_correct} / {a.subjective_max_score} ({subjPct}%)
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TimedTestIntro({ paper, questions, onStart }) {
+  const totalMarks = questions.reduce((sum, q) => sum + Number(q.marks || 1), 0);
+  const mcqCount = questions.filter(isMcqQuestion).length;
+  const subjCount = questions.length - mcqCount;
+
+  return (
+    <div style={{
+      background: "var(--panel, #fff)", border: "1px solid var(--border, #d6ddeb)",
+      borderRadius: 12, padding: "24px 28px", textAlign: "center",
+    }}>
+      <Clock size={28} color="var(--accent, #7c3aed)" style={{ marginBottom: 8 }} />
+      <h3 style={{ margin: "0 0 6px" }}>Timed Test — {paper.subject}{paper.subject_variant ? ` (${paper.subject_variant})` : ""}</h3>
+      <p style={{ color: "var(--muted, #64748b)", fontSize: ".88rem", margin: "0 0 18px" }}>
+        Attempt the full paper under exam conditions. Answers stay hidden until you submit.
+      </p>
+
+      <div style={{ display: "flex", justifyContent: "center", gap: 24, marginBottom: 20, flexWrap: "wrap" }}>
+        <div>
+          <div style={{ fontSize: "1.3rem", fontWeight: 800 }}>{questions.length}</div>
+          <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)" }}>Questions ({mcqCount} MCQ, {subjCount} subjective)</div>
+        </div>
+        <div>
+          <div style={{ fontSize: "1.3rem", fontWeight: 800 }}>{totalMarks}</div>
+          <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)" }}>Total marks</div>
+        </div>
+        <div>
+          <div style={{ fontSize: "1.3rem", fontWeight: 800 }}>{TIMED_TEST_DURATION_MINUTES} min</div>
+          <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)" }}>Duration (3 hours, same as the real exam)</div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onClick={onStart}
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent, #7c3aed)",
+          color: "#fff", border: "none", borderRadius: 8, padding: "10px 22px", fontSize: ".92rem",
+          fontWeight: 700, cursor: "pointer",
+        }}
+      >
+        <PlayCircle size={16} /> Start Timed Test
+      </button>
+    </div>
+  );
+}
+
+function TimedTestAttempt({ paper, questions, grade, onExit }) {
+  const [phase, setPhase] = useState(TT_PHASE_INTRO);
+  const [answers, setAnswers] = useState({}); // question_number -> option index
+  const [revealedSubjective, setRevealedSubjective] = useState({}); // question_number -> bool
+  const [selfMarks, setSelfMarks] = useState({}); // question_number -> bool
+  const [secondsLeft, setSecondsLeft] = useState(TIMED_TEST_DURATION_MINUTES * 60);
+  const [startedAt, setStartedAt] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const autoSubmittedRef = useRef(false);
+
+  // ── Timer — mirrors MockTestPage's countdown pattern ───────────────────
+  useEffect(() => {
+    if (phase !== TT_PHASE_EXAM || secondsLeft <= 0) return;
+    const t = setInterval(() => setSecondsLeft((p) => Math.max(0, p - 1)), 1000);
+    return () => clearInterval(t);
+  }, [phase, secondsLeft]);
+
+  useEffect(() => {
+    if (phase === TT_PHASE_EXAM && secondsLeft === 0 && !autoSubmittedRef.current) {
+      autoSubmittedRef.current = true;
+      submitExam();
+    }
+  }, [phase, secondsLeft]);
+
+  function startExam() {
+    setStartedAt(new Date());
+    setSecondsLeft(TIMED_TEST_DURATION_MINUTES * 60);
+    setPhase(TT_PHASE_EXAM);
+  }
+
+  function submitExam() {
+    setPhase(TT_PHASE_RESULT);
+  }
+
+  const mcqQuestions = questions.filter(isMcqQuestion);
+  const subjQuestions = questions.filter((q) => !isMcqQuestion(q));
+  const mcqMaxScore = mcqQuestions.reduce((sum, q) => sum + Number(q.marks || 1), 0);
+  const subjectiveMaxScore = subjQuestions.reduce((sum, q) => sum + Number(q.marks || 1), 0);
+
+  const mcqScore = mcqQuestions.reduce((sum, q) => {
+    const sel = answers[q.question_number];
+    if (sel == null) return sum;
+    return q.options?.[sel] === q.answer_text ? sum + Number(q.marks || 1) : sum;
+  }, 0);
+
+  const subjectiveScore = subjQuestions.reduce((sum, q) => {
+    return selfMarks[q.question_number] === true ? sum + Number(q.marks || 1) : sum;
+  }, 0);
+
+  const selfMarkedCount = subjQuestions.filter((q) => selfMarks[q.question_number] != null).length;
+  const timeTakenSeconds = startedAt ? Math.max(0, Math.round((Date.now() - startedAt.getTime()) / 1000)) : null;
+
+  async function handleSaveAttempt() {
+    setSaving(true);
+    setSaveError("");
+    try {
+      const answerPayload = {};
+      questions.forEach((q) => {
+        if (isMcqQuestion(q)) {
+          if (answers[q.question_number] != null) {
+            answerPayload[q.question_number] = { selected: q.options?.[answers[q.question_number]] };
+          }
+        } else if (selfMarks[q.question_number] != null) {
+          answerPayload[q.question_number] = { self_marked_correct: selfMarks[q.question_number] };
+        }
+      });
+      await submitBoardPaperAttempt(paper.id, {
+        grade,
+        started_at: (startedAt || new Date()).toISOString(),
+        time_taken_seconds: timeTakenSeconds,
+        mcq_score: mcqScore,
+        mcq_max_score: mcqMaxScore,
+        subjective_self_marked_correct: subjectiveScore,
+        subjective_max_score: subjectiveMaxScore,
+        answers: answerPayload,
+      });
+      setSaved(true);
+    } catch (err) {
+      setSaveError(err.message || "Could not save this attempt. Your score above is still accurate.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (phase === TT_PHASE_INTRO) {
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={onExit}
+          style={{ background: "none", border: "none", color: "var(--accent, #7c3aed)", fontSize: ".85rem", fontWeight: 600, cursor: "pointer", padding: 0, marginBottom: 14 }}
+        >
+          ← Back to paper
+        </button>
+        <TimedTestIntro paper={paper} questions={questions} onStart={startExam} />
+      </div>
+    );
+  }
+
+  if (phase === TT_PHASE_EXAM) {
+    return (
+      <div>
+        <div style={{
+          position: "sticky", top: 0, zIndex: 100, background: "var(--bg, #fff)",
+          borderBottom: "1px solid var(--border, #d6ddeb)", padding: "10px 4px",
+          display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10,
+          marginBottom: 14,
+        }}>
+          <strong style={{ fontSize: ".9rem" }}>
+            {paper.subject}{paper.subject_variant ? ` — ${paper.subject_variant}` : ""} · Timed Test
+          </strong>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 700, fontSize: "1rem",
+              padding: "4px 14px", borderRadius: 8,
+              background: secondsLeft < 300 ? "rgba(239,68,68,0.12)" : "rgba(124,58,237,0.1)",
+              color: secondsLeft < 300 ? "#dc2626" : "var(--accent, #7c3aed)",
+            }}>
+              <Clock size={15} /> {formatTime(secondsLeft)}
+            </div>
+            <button
+              type="button"
+              onClick={submitExam}
+              style={{
+                background: "var(--accent, #7c3aed)", color: "#fff", border: "none", borderRadius: 8,
+                padding: "7px 18px", fontSize: ".85rem", fontWeight: 700, cursor: "pointer",
+              }}
+            >
+              Submit Test
+            </button>
+          </div>
+        </div>
+
+        {secondsLeft === 0 && (
+          <div style={{
+            display: "flex", alignItems: "center", gap: 8, background: "rgba(239,68,68,0.1)",
+            border: "1px solid #ef4444", borderRadius: 8, padding: "8px 14px", marginBottom: 12, fontSize: ".85rem", color: "#b3261e",
+          }}>
+            <AlertTriangle size={15} /> Time is over — submitting your test…
+          </div>
+        )}
+
+        {questions.map((q) => (
+          <QuestionCard
+            key={q.id}
+            question={q}
+            mode="timed"
+            showAnswers={false}
+            selected={answers[q.question_number] ?? null}
+            onSelectOption={(i) => setAnswers((prev) => ({ ...prev, [q.question_number]: i }))}
+          />
+        ))}
+
+        <button
+          type="button"
+          onClick={submitExam}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent, #7c3aed)",
+            color: "#fff", border: "none", borderRadius: 8, padding: "10px 22px", fontSize: ".9rem",
+            fontWeight: 700, cursor: "pointer", marginTop: 8,
+          }}
+        >
+          <CheckCircle2 size={16} /> Submit Test
+        </button>
+      </div>
+    );
+  }
+
+  // PHASE: RESULT
+  const mcqPct = mcqMaxScore > 0 ? Math.round((mcqScore / mcqMaxScore) * 100) : null;
+
+  return (
+    <div>
+      <div style={{
+        background: "var(--panel, #fff)", border: "1px solid var(--border, #d6ddeb)",
+        borderRadius: 12, padding: "20px 24px", marginBottom: 18,
+      }}>
+        <h3 style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 0 4px" }}>
+          <Trophy size={18} color="var(--accent, #7c3aed)" /> Test submitted
+        </h3>
+        <p style={{ color: "var(--muted, #64748b)", fontSize: ".85rem", margin: "0 0 16px" }}>
+          MCQs are auto-graded. Subjective questions need your own honest self-assessment below —
+          the two scores are kept separate since only one of them is objectively verified.
+        </p>
+
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          <div style={{ background: "rgba(124,58,237,0.08)", borderRadius: 10, padding: "12px 18px", flex: "1 1 200px" }}>
+            <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)", display: "flex", alignItems: "center", gap: 4 }}>
+              <CheckCircle2 size={13} /> MCQ score (auto-graded)
+            </div>
+            <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--accent, #7c3aed)" }}>
+              {mcqScore} / {mcqMaxScore}{mcqPct != null && ` (${mcqPct}%)`}
+            </div>
+          </div>
+          {subjQuestions.length > 0 && (
+            <div style={{ background: "rgba(22,163,74,0.08)", borderRadius: 10, padding: "12px 18px", flex: "1 1 200px" }}>
+              <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)", display: "flex", alignItems: "center", gap: 4 }}>
+                <TrendingUp size={13} /> Subjective score (self-marked, {selfMarkedCount}/{subjQuestions.length} reviewed)
+              </div>
+              <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#16a34a" }}>
+                {subjectiveScore} / {subjectiveMaxScore}
+              </div>
+            </div>
+          )}
+          {timeTakenSeconds != null && (
+            <div style={{ background: "rgba(8,145,178,0.08)", borderRadius: 10, padding: "12px 18px", flex: "1 1 160px" }}>
+              <div style={{ fontSize: ".76rem", color: "var(--muted, #64748b)", display: "flex", alignItems: "center", gap: 4 }}>
+                <Clock size={13} /> Time taken
+              </div>
+              <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#0891b2" }}>
+                {Math.floor(timeTakenSeconds / 60)}m {timeTakenSeconds % 60}s
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 18, flexWrap: "wrap" }}>
+          <button
+            type="button"
+            onClick={handleSaveAttempt}
+            disabled={saving || saved}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: saved ? "#16a34a" : "var(--accent, #7c3aed)", color: "#fff", border: "none",
+              borderRadius: 8, padding: "9px 20px", fontSize: ".88rem", fontWeight: 700,
+              cursor: saving || saved ? "default" : "pointer", opacity: saving ? 0.7 : 1,
+            }}
+          >
+            {saved ? <><CheckCircle2 size={15} /> Attempt saved</> : <><Save size={15} /> {saving ? "Saving…" : "Save this attempt"}</>}
+          </button>
+          <button
+            type="button"
+            onClick={onExit}
+            style={{ background: "none", border: "1px solid var(--border, #d6ddeb)", borderRadius: 8, padding: "9px 18px", fontSize: ".85rem", fontWeight: 600, cursor: "pointer", color: "var(--text, #29324a)" }}
+          >
+            <RotateCcw size={13} style={{ marginRight: 6, verticalAlign: "-2px" }} /> Back to paper
+          </button>
+          {saveError && <span style={{ color: "#b3261e", fontSize: ".8rem" }}>{saveError}</span>}
+        </div>
+      </div>
+
+      <h4 style={{ margin: "0 0 10px" }}>Review</h4>
+      {questions.map((q) => (
+        <QuestionCard
+          key={q.id}
+          question={q}
+          mode="timed"
+          showAnswers
+          selected={answers[q.question_number] ?? null}
+          revealed={!!revealedSubjective[q.question_number]}
+          onReveal={() => setRevealedSubjective((prev) => ({ ...prev, [q.question_number]: true }))}
+          selfMarked={selfMarks[q.question_number] ?? null}
+          onSelfMark={(val) => setSelfMarks((prev) => ({ ...prev, [q.question_number]: val }))}
+        />
+      ))}
+    </div>
+  );
+}
+
+function PaperAttempt({ paper, questions, grade, onBack }) {
+  const [subView, setSubView] = useState("study"); // "study" | "timed" | "history"
+
+  if (subView === "timed") {
+    return <TimedTestAttempt paper={paper} questions={questions} grade={grade} onExit={() => setSubView("study")} />;
+  }
+  if (subView === "history") {
+    return <PastAttempts paper={paper} onBack={() => setSubView("study")} />;
+  }
+
   return (
     <div>
       <button
@@ -164,6 +663,36 @@ function PaperAttempt({ paper, questions, onBack }) {
           )}
         </div>
       </div>
+
+      <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
+        <button
+          type="button"
+          onClick={() => setSubView("timed")}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent, #7c3aed)",
+            color: "#fff", border: "none", borderRadius: 8, padding: "9px 18px", fontSize: ".85rem",
+            fontWeight: 700, cursor: "pointer",
+          }}
+        >
+          <PlayCircle size={15} /> Start Timed Test
+        </button>
+        <button
+          type="button"
+          onClick={() => setSubView("history")}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8, background: "transparent",
+            border: "1px solid var(--border, #d6ddeb)", borderRadius: 8, padding: "9px 18px", fontSize: ".85rem",
+            fontWeight: 700, cursor: "pointer", color: "var(--text, #29324a)",
+          }}
+        >
+          <History size={15} /> Past Attempts
+        </button>
+      </div>
+
+      <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: "0 0 14px" }}>
+        Self-study mode — answer at your own pace below, or switch to a Timed Test for a real
+        exam simulation with a {TIMED_TEST_DURATION_MINUTES}-minute countdown.
+      </p>
 
       {questions.map((q) => (
         <QuestionCard key={q.id} question={q} />
@@ -248,6 +777,7 @@ export default function BoardPapersPage({ user }) {
         <PaperAttempt
           paper={activePaper}
           questions={activeQuestions}
+          grade={grade}
           onBack={() => { setActivePaper(null); setActiveQuestions(null); }}
         />
       </div>

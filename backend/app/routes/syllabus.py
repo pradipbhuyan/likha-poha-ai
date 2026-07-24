@@ -533,15 +533,10 @@ def _invalidate_rag_cache() -> None:
 
 
 def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
-    """Fetch rag_documents from BOTH Supabase projects and return combined list.
+    """Fetch rag_documents from the primary Supabase project.
 
-    Results are cached in-process for 30 minutes to avoid re-fetching 860 rows
-    on every page load (the primary cause of Supabase egress overage).
-
-    Falls back to primary DB only when SUPABASE_GRADE_1112_URL /
-    SUPABASE_GRADE_1112_SERVICE_KEY are not configured (e.g. local dev without
-    Grade 11/12 credentials). The server continues running normally — Grade 11/12
-    chapters simply will not appear in the syllabus dropdown.
+    Results are cached in-process for 30 minutes to avoid re-fetching on every
+    page load (the primary cause of Supabase egress overage).
     """
     global _RAG_CACHE_CLIENT_REF
     # Invalidate cache when supabase client is replaced (e.g. test monkeypatching).
@@ -579,32 +574,17 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
                 _logger.error("rag_documents fallback query [%s] also FAILED: %s", label, exc2)
                 return [], True
 
-    primary, primary_failed = _query(supabase, fields, label="primary")
-
-    # Grade 11/12 client is None when its env vars are not set (local dev / CI).
-    # _query() gracefully returns [] when called with None, so Grade 11/12 content
-    # simply won't appear in syllabus dropdowns rather than crashing.
-    try:
-        from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-        secondary, secondary_failed = _query(grade_1112_client, fields, label="grade-1112")
-    except Exception as exc:
-        _logger.error(
-            "_fetch_all_rag_documents: Grade 11/12 import failed unexpectedly: %s", exc
-        )
-        secondary, secondary_failed = [], True
-
-    combined = primary + secondary
-    _logger.info("_fetch_all_rag_documents total: primary=%d, secondary=%d", len(primary), len(secondary))
+    combined, failed = _query(supabase, fields, label="primary")
+    _logger.info("_fetch_all_rag_documents total: %d rows", len(combined))
 
     # A genuine query failure must never be cached as "no documents" — that would
     # turn one transient Supabase hiccup into 30 minutes of every dropdown across
     # every grade/subject looking empty. Skip the cache write so the very next
     # request retries instead of serving a stale, wrong empty result.
-    if primary_failed or secondary_failed:
+    if failed:
         _logger.warning(
-            "_fetch_all_rag_documents: fetch failure detected (primary_failed=%s, secondary_failed=%s) — "
-            "not caching this result, will retry on next request.",
-            primary_failed, secondary_failed,
+            "_fetch_all_rag_documents: fetch failure detected — not caching this result, "
+            "will retry on next request."
         )
         return combined
 
@@ -615,7 +595,7 @@ def _fetch_all_rag_documents(fields="grade,subject,chapter,board"):
 
 
 def fetch_rag_chapter_counts():
-    """Count live RAG documents by grade/mode/subject/chapter label (both DBs)."""
+    """Count live RAG documents by grade/mode/subject/chapter label."""
     all_docs = _fetch_all_rag_documents()
     if not all_docs:
         return {}

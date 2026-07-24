@@ -393,10 +393,8 @@ EXAM_CHAPTER_PATTERNS = {
 
 
 def _get_supabase_grade1112():
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-    if grade_1112_client is None:
-        raise HTTPException(503, "Exam prep content database not configured")
-    return grade_1112_client
+    from app.services.auth_service import admin_client  # noqa: PLC0415
+    return admin_client
 
 
 @router.get("/papers")

@@ -26,3 +26,17 @@ export async function getBoardPaperQuestions(paperId, grade) {
   const qs = new URLSearchParams({ grade }).toString();
   return authFetch(`/api/board-papers/${paperId}/questions?${qs}`);
 }
+
+export async function submitBoardPaperAttempt(paperId, attempt) {
+  /** Persist one Timed Test attempt. Scoring is computed client-side (MCQ
+   * auto-graded, subjective self-marked) — this just records the result. */
+  return authFetch(`/api/board-papers/${paperId}/attempts`, {
+    method: "POST",
+    body: JSON.stringify(attempt),
+  });
+}
+
+export async function listBoardPaperAttempts(paperId) {
+  /** This user's past Timed Test attempts for one paper, most recent first. */
+  return authFetch(`/api/board-papers/${paperId}/attempts`);
+}

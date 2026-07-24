@@ -373,9 +373,7 @@ def invalidate_bank_for_chapter(
 
 
 def get_bank_stats() -> dict:
-    """Return summary statistics for the admin question bank panel (both DBs)."""
-    from app.services.supabase_grade_1112_client import grade_1112_client  # noqa: PLC0415
-
+    """Return summary statistics for the admin question bank panel."""
     def _fetch(db):
         try:
             r = db.table("question_bank").select("status, grade, subject, difficulty").execute()
@@ -383,7 +381,7 @@ def get_bank_stats() -> dict:
         except Exception:
             return []
 
-    rows = _fetch(_primary_client) + _fetch(grade_1112_client)
+    rows = _fetch(_primary_client)
     active = [r for r in rows if r.get("status") == "active"]
     needs_review = [r for r in rows if r.get("status") == "needs_review"]
     return {

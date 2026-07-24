@@ -12,6 +12,7 @@ akshita.teststudent see everything. Enforced here (not just hidden in the
 UI) so a free-tier user can't bypass the gate by calling the API directly
 with a different year/subject.
 """
+from app.services.auth_service import admin_client
 from app.services.grade_db_router import get_content_db
 from app.services.offer_access_service import is_free_tier_user
 from app.services.test_account_service import is_all_access_test_user
@@ -109,6 +110,102 @@ def get_paper_questions(grade: str, paper_id: str) -> list[dict]:
         .execute()
     )
     rows = result.data or []
-    # question_number is stored as text so it sorts correctly numerically, not lexically.
-    rows.sort(key=lambda r: int(r["question_number"]) if str(r["question_number"]).isdigit() else 0)
+    # question_number is stored as text so it sorts correctly numerically, not
+    # lexically. English papers use a compound "N.ROMAN" form (e.g. "3.VII")
+    # for nested passage sub-parts — sort by the top-level number first, then
+    # by the roman-numeral sub-part's value.
+    rows.sort(key=lambda r: _question_number_sort_key(r["question_number"]))
     return rows
+
+
+_ROMAN_VALUES = {"I": 1, "V": 5, "X": 10}
+
+# Devanagari consonants in traditional varnamala order — Hindi papers label
+# nested passage sub-parts "(क)", "(ख)", "(ग)"... the same way English labels
+# them with roman numerals.
+_DEVANAGARI_ORDER = "कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसह"
+_DEVANAGARI_VALUES = {ch: i + 1 for i, ch in enumerate(_DEVANAGARI_ORDER)}
+
+
+def _roman_to_int(roman: str) -> int:
+    total = 0
+    for i, ch in enumerate(roman):
+        value = _ROMAN_VALUES.get(ch, 0)
+        if i + 1 < len(roman) and value < _ROMAN_VALUES.get(roman[i + 1], 0):
+            total -= value
+        else:
+            total += value
+    return total
+
+
+def _subpart_to_int(part: str) -> int:
+    """A nested sub-part label is either a roman numeral (English papers) or
+    a Devanagari letter (Hindi papers) — try roman first (only I/V/X
+    characters), fall back to the Devanagari lookup."""
+    if part and all(ch in _ROMAN_VALUES for ch in part):
+        return _roman_to_int(part)
+    if part in _DEVANAGARI_VALUES:
+        return _DEVANAGARI_VALUES[part]
+    return 0
+
+
+def _question_number_sort_key(question_number) -> tuple:
+    """Handles plain integers ("12"), nested sub-parts — roman for English
+    ("3.VII"), Devanagari letters for Hindi ("1.क") — and literature extract
+    OR-choices with their own sub-parts ("6.A.III"), sorted as (top-level,
+    extract letter or '', sub-part value)."""
+    text = str(question_number)
+    if text.isdigit():
+        return (int(text), "", 0)
+    parts = text.split(".")
+    if len(parts) == 2 and parts[0].isdigit():
+        return (int(parts[0]), "", _subpart_to_int(parts[1]))
+    if len(parts) == 3 and parts[0].isdigit():
+        return (int(parts[0]), parts[1], _subpart_to_int(parts[2]))
+    return (0, "", 0)
+
+
+# ── Timed Test attempts ─────────────────────────────────────────────────────
+# Unlike papers/questions above (grade-routed via get_content_db), attempt
+# history is user-owned data and is centralized on the PRIMARY Supabase
+# project only, same convention as test_history_service.py — a student's
+# attempt history must not be split across two Supabase projects even though
+# the paper itself may live on the Grade 11/12 project. Always use
+# admin_client (primary project, service role) here, never get_content_db.
+
+def save_attempt(username: str, paper: dict, payload: dict) -> dict:
+    """Persist one Timed Test attempt. Scoring in `payload` was computed
+    client-side (MCQ auto-graded, subjective self-marked) — this just
+    denormalizes paper metadata and stores the result, no validation."""
+    row = {
+        "username": username,
+        "paper_id": paper.get("id"),
+        "grade": payload.get("grade") or paper.get("grade"),
+        "board": paper.get("board") or BOARD,
+        "academic_year": paper.get("academic_year"),
+        "subject": paper.get("subject"),
+        "subject_variant": paper.get("subject_variant") or "",
+        "started_at": payload.get("started_at"),
+        "time_taken_seconds": payload.get("time_taken_seconds"),
+        "mcq_score": payload.get("mcq_score") or 0,
+        "mcq_max_score": payload.get("mcq_max_score") or 0,
+        "subjective_self_marked_correct": payload.get("subjective_self_marked_correct") or 0,
+        "subjective_max_score": payload.get("subjective_max_score") or 0,
+        "answers": payload.get("answers") or {},
+    }
+    response = admin_client.table("board_paper_attempts").insert(row).execute()
+    return response.data[0] if response.data else row
+
+
+def list_attempts(username: str, paper_id: str) -> list[dict]:
+    """Return this user's past Timed Test attempts for one paper, most
+    recent first."""
+    response = (
+        admin_client.table("board_paper_attempts")
+        .select("*")
+        .eq("username", username)
+        .eq("paper_id", paper_id)
+        .order("submitted_at", desc=True)
+        .execute()
+    )
+    return response.data or []
