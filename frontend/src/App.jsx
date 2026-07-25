@@ -61,7 +61,7 @@ import AdminIssuesPage from "./pages/AdminIssuesPage";
 import ReportIssueModal from "./components/ReportIssueModal";
 import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark } from "lucide-react";
+import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
@@ -371,6 +371,8 @@ function App() {
   const [activePage, setActivePage] = useState("dashboard");
   const [reportBugOpen, setReportBugOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const accountMenuRef = useRef(null);
   // Detect Supabase recovery/invite hash fragments on first load
   const _initialHash = window.location.hash;
   const _isRecovery = Boolean(_initialHash && (
@@ -873,6 +875,25 @@ function App() {
     document.body.classList.toggle("dark-mode", darkMode);
     localStorage.setItem("tutor_dark_mode", darkMode);
   }, [darkMode]);
+
+  // Account menu: close on outside click or Escape.
+  useEffect(() => {
+    if (!accountMenuOpen) return undefined;
+    function handleClick(e) {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(e.target)) {
+        setAccountMenuOpen(false);
+      }
+    }
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setAccountMenuOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [accountMenuOpen]);
 
   // ── oauthError screen — shown when Google OAuth fails ──────────────────
   // Must be placed AFTER all useEffect/hook calls to comply with React's
@@ -1739,7 +1760,6 @@ function App() {
             ☰
           </button>
           <div>
-            <p className="eyebrow">Your Personal Tutor - AI Powered</p>
             <h1>
               {(() => {
                 const PageIcon = PAGE_ICONS[activePage];
@@ -1770,7 +1790,43 @@ function App() {
               {darkMode ? "☀️ Light" : "🌙 Dark"}
             </button>
 
-            <div className="profile-pill">{user.username}</div>
+            <div className="account-menu-wrap" ref={accountMenuRef}>
+              <button
+                className="profile-pill account-menu-trigger"
+                onClick={() => setAccountMenuOpen((prev) => !prev)}
+                aria-haspopup="menu"
+                aria-expanded={accountMenuOpen}
+              >
+                <span className="account-menu-username">{user.username}</span>
+                <ChevronDown size={14} strokeWidth={2.6} />
+              </button>
+
+              {accountMenuOpen && (
+                <div className="account-menu" role="menu">
+                  {["student", "parent", "teacher"].includes(user.role) && (
+                    <button
+                      role="menuitem"
+                      onClick={() => { setAccountMenuOpen(false); handlePageChange("subscriptionPlans"); }}
+                    >
+                      <CreditCard size={15} strokeWidth={2.4} /> Subscription
+                    </button>
+                  )}
+                  <button
+                    role="menuitem"
+                    onClick={() => { setAccountMenuOpen(false); handlePageChange("changePassword"); }}
+                  >
+                    <KeyRound size={15} strokeWidth={2.4} /> Change Password
+                  </button>
+                  <button
+                    role="menuitem"
+                    className="account-menu-logout"
+                    onClick={() => { setAccountMenuOpen(false); handleLogout(); }}
+                  >
+                    <LogOut size={15} strokeWidth={2.4} /> Logout
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Likha Poha AI Guide — inline in header, no longer floating */}
             {["student", "parent"].includes(user.role) && (
