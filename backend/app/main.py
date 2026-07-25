@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.services.logger_service import get_logger, PlatformError  # noqa: F401 — PlatformError re-exported
 from app.middleware.tracing import TracingMiddleware
+from app.middleware.error_handling import UnhandledExceptionMiddleware
 
 _log = get_logger("main")
 
@@ -137,11 +138,23 @@ app = FastAPI(
 )
 
 # ── Middleware stack ──────────────────────────────────────────────────────────
-# Starlette applies middleware in REVERSE registration order on responses.
-# CORSMiddleware must be registered FIRST so it runs LAST on the response path,
-# guaranteeing CORS headers are present even on 4xx/5xx error responses.
-# If TracingMiddleware is registered first it wraps CORSMiddleware and
-# error responses produced inside route handlers never get CORS headers.
+# app.add_middleware() prepends, so the LAST middleware registered here ends up
+# OUTERMOST and the FIRST registered ends up closest to the router. Registration
+# order (outer → inner on the request path, i.e. reverse of this list on the
+# response path): TracingMiddleware, CORSMiddleware, UnhandledExceptionMiddleware.
+#
+# UnhandledExceptionMiddleware must be registered BEFORE CORSMiddleware so it
+# sits INSIDE it (closer to the router). Starlette's own ServerErrorMiddleware
+# — which builds the fallback 500 for any exception that isn't an HTTPException
+# — is unconditionally the outermost layer, outside every app.add_middleware()
+# call including CORSMiddleware. Left unhandled, an exception raised in a route
+# skips CORSMiddleware entirely and its 500 response carries no CORS headers,
+# which the browser reports as "blocked by CORS policy" / "Failed to fetch"
+# even though the real cause is unrelated to CORS. Catching it one layer in
+# (here) turns it into a normal JSONResponse that still passes back out
+# through CORSMiddleware, so it gets the headers it needs.
+app.add_middleware(UnhandledExceptionMiddleware)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list(set(allowed_origins)),
