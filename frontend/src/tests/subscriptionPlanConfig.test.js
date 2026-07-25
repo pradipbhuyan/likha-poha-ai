@@ -1,14 +1,14 @@
 /**
  * subscriptionPlanConfig.test.js
  * ────────────────────────────────────────────────────────────────────────────
- * Regression tests for the canonical 4-tier subscription plan configuration.
+ * Regression tests for the canonical subscription plan configuration.
  *
  * Business rules that must NEVER be violated:
  *   1. Free Tier is NOT shown as Premium — limited access only.
- *   2. Nano has FULL access — never shown as limited.
+ *   2. Nano (key='free') is discontinued (isPublic=false) but preserved for legacy access.
  *   3. Premium is monthly billing (₹299/month).
  *   4. Family Premium is monthly billing (₹499/month), 2 child profiles.
- *   5. Compare table always has exactly 4 columns: Free | Nano | Premium | Family.
+ *   5. Compare table has exactly 3 columns: Free | Premium | Family (Nano removed from public).
  *   6. All comparison objects contain the same canonical keys.
  *   7. Expired plans fall back to Free Tier regardless of plan type.
  *   8. Exactly one plan card shows "Current" badge per child.
@@ -72,7 +72,7 @@ describe("Plan catalog integrity", () => {
     expect(plan.accessLevel).toBe(ACCESS_LEVEL.LIMITED);
   });
 
-  test("Nano plan (key='free') exists, is purchasable, and has FULL access", () => {
+  test("Nano plan (key='free') exists, is discontinued (isPublic=false), and has FULL access", () => {
     const plan = SUBSCRIPTION_PLANS.free;
     expect(plan).toBeDefined();
     expect(plan.key).toBe("free");
@@ -80,8 +80,8 @@ describe("Plan catalog integrity", () => {
     expect(plan.shortLabel).toBe("Premium Nano");
     expect(plan.price).toBe(99);
     expect(plan.billingLabel).toBe("8 days");
-    expect(plan.isPublic).toBe(true);
-    expect(plan.accessLevel).toBe(ACCESS_LEVEL.FULL);
+    expect(plan.isPublic).toBe(false);  // discontinued — no longer sold
+    expect(plan.accessLevel).toBe(ACCESS_LEVEL.FULL);  // existing users keep full access
     expect(plan.access_cbse).toBe(true);
   });
 
@@ -131,12 +131,11 @@ describe("Plan catalog integrity", () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe("Comparison table structure", () => {
-  test("COMPARISON_PLAN_ORDER has exactly 4 columns in correct order", () => {
-    expect(COMPARISON_PLAN_ORDER).toHaveLength(4);
+  test("COMPARISON_PLAN_ORDER has exactly 3 columns in correct order (Nano removed)", () => {
+    expect(COMPARISON_PLAN_ORDER).toHaveLength(3);
     expect(COMPARISON_PLAN_ORDER[0]).toBe("free_tier");
-    expect(COMPARISON_PLAN_ORDER[1]).toBe("free");      // Nano
-    expect(COMPARISON_PLAN_ORDER[2]).toBe("starter");   // Premium
-    expect(COMPARISON_PLAN_ORDER[3]).toBe("family_premium");
+    expect(COMPARISON_PLAN_ORDER[1]).toBe("starter");       // Premium
+    expect(COMPARISON_PLAN_ORDER[2]).toBe("family_premium");
   });
 
   test("COMPARISON_TABLE_ROWS contains all required feature rows", () => {

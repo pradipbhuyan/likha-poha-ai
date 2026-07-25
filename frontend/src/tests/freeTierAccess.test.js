@@ -137,11 +137,11 @@ describe("Free Tier access is limited", () => {
   });
 
   test("comparison table has Free Tier column alongside paid plans", () => {
-    // Verify the 4-column structure: Free | Nano | Premium | Family
+    // 3-column structure: Free | Premium | Family (Nano removed — discontinued)
     expect(COMPARISON_PLAN_ORDER).toEqual(
-      expect.arrayContaining(["free_tier", "free", "starter", "family_premium"])
+      expect.arrayContaining(["free_tier", "starter", "family_premium"])
     );
-    expect(COMPARISON_PLAN_ORDER).toHaveLength(4);
+    expect(COMPARISON_PLAN_ORDER).toHaveLength(3);
   });
 });
 
