@@ -121,7 +121,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "Unlimited AI lessons, doubts & mock tests",
             "Exemplar Research & Lessons",
             "Formula & Concepts library",
-            "Exam Prep Center (JEE, NEET, CUET, SAT, IELTS, TOEFL)",
+
             "10 Years of Board Papers with answers",
             "Learn More curated video library",
             "Parent dashboard + alerts",
@@ -200,7 +200,7 @@ DEFAULT_SUBSCRIPTION_PLANS = {
             "Up to 2 children with separate progress",
             "Exemplar Research & Lessons",
             "Formula & Concepts library",
-            "Exam Prep Center (JEE, NEET, CUET, SAT, IELTS, TOEFL)",
+
             "10 Years of Board Papers with answers",
             "Learn More curated video library",
             "Family learning management",
