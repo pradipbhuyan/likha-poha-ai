@@ -7,6 +7,12 @@ Classification: **P0** blocks task completion / serious confusion · **P1** high
 "Implemented" column. Everything else is documented here for future approval, per the task's
 instruction to implement only P0 + low-risk P1.
 
+**Process note (post-review):** the product owner approved the sidebar restructuring but asked for
+the Lessons change (P0-1) to be reverted — Lessons was not something they wanted touched in this
+pass, regardless of the bug's severity. It has been fully reverted; see P0-1 below. Going forward,
+changes beyond the sidebar/navigation work explicitly asked for should be proposed and confirmed
+before implementation, not shipped directly — this plan doc is the right place to propose them.
+
 ---
 
 ## P0
@@ -40,7 +46,11 @@ instruction to implement only P0 + low-risk P1.
   navigation-focused scope of this task — flagged as a **P1 test-coverage gap** below.
 - **Rollback:** Revert `frontend/src/pages/LessonsPage.jsx`; the old hidden button path still exists
   untouched, so reverting fully restores prior (broken) behavior with a single file revert.
-- **Implemented:** ✅ Yes.
+- **Implemented:** ⏪ Reverted. This was implemented, then reverted at the product owner's explicit
+  request — Lessons changes were out of scope for what they wanted from this pass, independent of
+  the fix's technical merit. `LessonsPage.jsx` is back to byte-for-byte its pre-audit state. The
+  underlying bug (chapter completion unreachable) **remains open** — do not re-attempt a fix without
+  explicit sign-off first, per the process change below.
 
 ### P0-2 — Sidebar mixes daily tools, revision tools, progress, and account/support with no structure
 

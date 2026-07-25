@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, RotateCcw, ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sparkles, RotateCcw, ArrowLeft, ArrowRight } from "lucide-react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -1091,25 +1091,6 @@ function LessonsPage({ user, setActivePage }) {
     setPrewarmedPracticeQuestions([]);
   }
 
-  async function finishChapter() {
-    /** Mark the chapter completed on the final step. Reuses the same
-     *  saveChapterProgress contract as the legacy "Mark Step Complete"
-     *  action — no gating or persistence logic changes. */
-    setCompleted(true);
-    await saveChapterProgress({
-      username: user.username,
-      grade,
-      mode,
-      subject,
-      chapter,
-      current_step_index: currentStepIndex,
-      highest_unlocked_step: highestUnlockedStep,
-      completed: true,
-      last_lesson: lesson,
-      step_lessons: stepLessons,
-    });
-  }
-
   async function handleGenerateLesson(skipGifDelay = false, forceRefresh = false) {
     /** Generate one lesson step, save it to progress, and store RAG source metadata.
      *  Normal: GIF plays for 5 s, fades out over 1 s, lesson appears at 6 s.
@@ -2192,54 +2173,43 @@ function LessonsPage({ user, setActivePage }) {
                 >
                   <ArrowLeft size={16} strokeWidth={2.4} /> Previous
                 </button>
-                {currentStepIndex >= lessonSteps.length - 1 ? (
-                  completed ? (
-                    <span style={stepChipStyle(true)}>
-                      🎉 Chapter completed
-                    </span>
-                  ) : (
-                    <button
-                      className="primary-btn"
-                      style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
-                      onClick={finishChapter}
-                    >
-                      <CheckCircle2 size={16} strokeWidth={2.4} /> Finish Chapter
-                    </button>
-                  )
-                ) : (
-                  <button
-                    className="secondary-btn"
-                    title={`Go to Step ${currentStepIndex + 2}: ${lessonSteps[currentStepIndex + 1] || ""}`}
-                    style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
-                    onClick={async () => {
-                      const newIndex = currentStepIndex + 1;
-                      if (newIndex >= lessonSteps.length) return;
-                      // All steps freely navigable — no unlock gate
-                      const newHighest = Math.max(highestUnlockedStep, newIndex);
-                      const savedLesson = stepLessons[String(newIndex)] || "";
-                      if (!savedLesson) autoGenerateRef.current = true;
-                      setHighestUnlockedStep(newHighest);
-                      setCurrentStepIndex(newIndex);
-                      setLesson(savedLesson);
-                      resetTextbookVisualBrowser();
-                      resetPracticeState();
-                      await saveChapterProgress({
-                        username: user.username,
-                        grade,
-                        mode,
-                        subject,
-                        chapter,
-                        current_step_index: newIndex,
-                        highest_unlocked_step: newHighest,
-                        completed: false,
-                        last_lesson: "",
-                        step_lessons: stepLessons,
-                      });
-                    }}
-                  >
-                    Next <ArrowRight size={16} strokeWidth={2.4} />
-                  </button>
-                )}
+                <button
+                  className="secondary-btn"
+                  disabled={currentStepIndex >= lessonSteps.length - 1}
+                  title={
+                    currentStepIndex >= lessonSteps.length - 1
+                      ? "You are on the last step"
+                      : `Go to Step ${currentStepIndex + 2}: ${lessonSteps[currentStepIndex + 1] || ""}`
+                  }
+                  style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
+                  onClick={async () => {
+                    const newIndex = currentStepIndex + 1;
+                    if (newIndex >= lessonSteps.length) return;
+                    // All steps freely navigable — no unlock gate
+                    const newHighest = Math.max(highestUnlockedStep, newIndex);
+                    const savedLesson = stepLessons[String(newIndex)] || "";
+                    if (!savedLesson) autoGenerateRef.current = true;
+                    setHighestUnlockedStep(newHighest);
+                    setCurrentStepIndex(newIndex);
+                    setLesson(savedLesson);
+                    resetTextbookVisualBrowser();
+                    resetPracticeState();
+                    await saveChapterProgress({
+                      username: user.username,
+                      grade,
+                      mode,
+                      subject,
+                      chapter,
+                      current_step_index: newIndex,
+                      highest_unlocked_step: newHighest,
+                      completed: false,
+                      last_lesson: "",
+                      step_lessons: stepLessons,
+                    });
+                  }}
+                >
+                  Next <ArrowRight size={16} strokeWidth={2.4} />
+                </button>
               </div>
             </div>
           )}
@@ -2928,46 +2898,31 @@ function LessonsPage({ user, setActivePage }) {
                   >
                     <ArrowLeft size={16} strokeWidth={2.4} /> Previous
                   </button>
-                  {currentStepIndex >= lessonSteps.length - 1 ? (
-                    completed ? (
-                      <span style={stepChipStyle(true)}>
-                        🎉 Chapter completed
-                      </span>
-                    ) : (
-                      <button
-                        className="primary-btn"
-                        style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
-                        onClick={finishChapter}
-                      >
-                        <CheckCircle2 size={16} strokeWidth={2.4} /> Finish Chapter
-                      </button>
-                    )
-                  ) : (
-                    <button
-                      className="secondary-btn"
-                      style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
-                      onClick={async () => {
-                        const newIndex = currentStepIndex + 1;
-                        if (newIndex >= lessonSteps.length) return;
-                        const newHighest = Math.max(highestUnlockedStep, newIndex);
-                        const savedLesson = stepLessons[String(newIndex)] || "";
-                        if (!savedLesson) autoGenerateRef.current = true;
-                        setHighestUnlockedStep(newHighest);
-                        setCurrentStepIndex(newIndex);
-                        setLesson(savedLesson);
-                        resetTextbookVisualBrowser();
-                        resetPracticeState();
-                        await saveChapterProgress({
-                          username: user.username, grade, mode, subject, chapter,
-                          current_step_index: newIndex,
-                          highest_unlocked_step: newHighest,
-                          completed: false, last_lesson: "", step_lessons: stepLessons,
-                        });
-                      }}
-                    >
-                      Next <ArrowRight size={16} strokeWidth={2.4} />
-                    </button>
-                  )}
+                  <button
+                    className="secondary-btn"
+                    disabled={currentStepIndex >= lessonSteps.length - 1}
+                    style={{ ...stepButtonStyle, display: "inline-flex", alignItems: "center", gap: 6 }}
+                    onClick={async () => {
+                      const newIndex = currentStepIndex + 1;
+                      if (newIndex >= lessonSteps.length) return;
+                      const newHighest = Math.max(highestUnlockedStep, newIndex);
+                      const savedLesson = stepLessons[String(newIndex)] || "";
+                      if (!savedLesson) autoGenerateRef.current = true;
+                      setHighestUnlockedStep(newHighest);
+                      setCurrentStepIndex(newIndex);
+                      setLesson(savedLesson);
+                      resetTextbookVisualBrowser();
+                      resetPracticeState();
+                      await saveChapterProgress({
+                        username: user.username, grade, mode, subject, chapter,
+                        current_step_index: newIndex,
+                        highest_unlocked_step: newHighest,
+                        completed: false, last_lesson: "", step_lessons: stepLessons,
+                      });
+                    }}
+                  >
+                    Next <ArrowRight size={16} strokeWidth={2.4} />
+                  </button>
                 </div>
               </div>
 
