@@ -44,6 +44,7 @@ function HeaderLogo() {
 export default function TabsLayout() {
   const [canReportIssues, setCanReportIssues] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [userGrade, setUserGrade] = useState<string | undefined>(undefined);
   const segments = useSegments();
 
   // Current screen = last segment (e.g. "lessons", "doubt", "formula")
@@ -52,6 +53,7 @@ export default function TabsLayout() {
   useEffect(() => {
     authFetch("/api/auth/me").then((me: any) => {
       setCanReportIssues(!!me?.can_report_issues);
+      setUserGrade(me?.grade || undefined);
     }).catch(() => {});
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -189,6 +191,7 @@ export default function TabsLayout() {
           visible={reportOpen}
           onClose={() => setReportOpen(false)}
           currentScreen={currentScreen}
+          grade={userGrade}
         />
       </>
     )}

@@ -81,11 +81,20 @@ def _sanitize(text: str, max_len: int = 2000) -> str:
 
 
 VALID_ISSUE_TYPES = {
-    "content_issue", "wrong_explanation", "missing_section",
-    "wrong_formula", "wrong_answer", "broken_page", "login_issue", "other",
+    # Content & learning
+    "content_issue", "wrong_explanation", "missing_section", "wrong_formula",
+    "wrong_answer", "translation_language", "audio_video_issue",
+    # Technical
+    "broken_page", "app_crash", "slow_performance", "sync_progress",
+    "notification_issue", "download_issue",
+    # Account & billing
+    "login_issue", "payment_billing",
+    # Other
+    "accessibility_issue", "feature_request", "other",
 }
 VALID_SEVERITIES = {"low", "medium", "high", "critical"}
 VALID_STATUSES = {"open", "triaged", "in_progress", "fixed", "wont_fix", "duplicate"}
+VALID_REPRODUCIBILITY = {"always", "sometimes", "rarely", "once"}
 
 
 # ── Pydantic models ────────────────────────────────────────────────────────────
@@ -95,12 +104,18 @@ class IssueReportIn(BaseModel):
     severity: str = "medium"
     title: Optional[str] = None
     description: str
+    steps_to_reproduce: Optional[str] = None
+    expected_behavior: Optional[str] = None
+    actual_behavior: Optional[str] = None
+    reproducibility: Optional[str] = None
     route: Optional[str] = None
     grade: Optional[str] = None
     subject: Optional[str] = None
     chapter: Optional[str] = None
     lesson_id: Optional[str] = None
     lesson_step: Optional[str] = None
+    app_version: Optional[str] = None
+    device_info: Optional[str] = None
     browser_info: Optional[dict] = None
 
     @field_validator("issue_type")
@@ -115,6 +130,13 @@ class IssueReportIn(BaseModel):
     def validate_severity(cls, v):
         if v not in VALID_SEVERITIES:
             raise ValueError(f"Invalid severity. Must be one of: {sorted(VALID_SEVERITIES)}")
+        return v
+
+    @field_validator("reproducibility")
+    @classmethod
+    def validate_reproducibility(cls, v):
+        if v and v not in VALID_REPRODUCIBILITY:
+            raise ValueError(f"Invalid reproducibility. Must be one of: {sorted(VALID_REPRODUCIBILITY)}")
         return v
 
     @field_validator("description")
@@ -150,6 +172,10 @@ def _sanitize_browser_info(bi: Optional[dict]) -> Optional[dict]:
         "viewportWidth", "viewportHeight", "devicePixelRatio", "scrollY", "scrollX",
         "online", "pageLoadMs", "timezone", "computedFont", "url",
         "lessonStepIndex", "totalSteps", "screenshotCaptured",
+        # Mobile-specific fields (were previously silently dropped here even
+        # though the mobile app has always sent them — this lost app version,
+        # build number, OS version and current screen on every mobile report)
+        "appVersion", "buildNumber", "osVersion", "currentScreen", "source",
     }
     STRUCT_FIELDS = {"elementAtCenter", "recentJsErrors", "recentApiErrors"}
     # screenshotDataUrl is stored separately — keep as string, no truncation limit here
@@ -180,16 +206,23 @@ def report_issue(body: IssueReportIn, user=Depends(get_current_user)):
     row = {
         "reporter_user_id": user.id,
         "reporter_role": role,
+        "reporter_email": _sanitize((profile or {}).get("email") or "", 200) or None,
         "issue_type": body.issue_type,
         "severity": body.severity,
         "title": _sanitize(body.title or "", 200) or None,
         "description": _sanitize(body.description, 2000),
+        "steps_to_reproduce": _sanitize(body.steps_to_reproduce or "", 1500) or None,
+        "expected_behavior": _sanitize(body.expected_behavior or "", 1000) or None,
+        "actual_behavior": _sanitize(body.actual_behavior or "", 1000) or None,
+        "reproducibility": body.reproducibility or None,
         "route": _sanitize(body.route or "", 500) or None,
         "grade": _strip_surrogates(body.grade),
         "subject": _strip_surrogates(body.subject),
         "chapter": _sanitize(body.chapter or "", 200) or None,
         "lesson_id": _sanitize(body.lesson_id or "", 200) or None,
         "lesson_step": _sanitize(body.lesson_step or "", 200) or None,
+        "app_version": _sanitize(body.app_version or "", 100) or None,
+        "device_info": _sanitize(body.device_info or "", 300) or None,
         "status": "open",
         "browser_info": _sanitize_browser_info(body.browser_info),
     }
@@ -281,7 +314,10 @@ def issues_summary(_admin=Depends(require_admin)):
         open_count = sum(1 for r in rows if r["status"] == "open")
         critical_count = sum(1 for r in rows if r["severity"] == "critical" and r["status"] not in ("fixed", "wont_fix"))
         high_count = sum(1 for r in rows if r["severity"] == "high" and r["status"] not in ("fixed", "wont_fix"))
-        content_count = sum(1 for r in rows if r["issue_type"] in ("content_issue", "wrong_explanation", "missing_section", "wrong_formula", "wrong_answer"))
+        content_count = sum(1 for r in rows if r["issue_type"] in (
+            "content_issue", "wrong_explanation", "missing_section", "wrong_formula",
+            "wrong_answer", "translation_language", "audio_video_issue",
+        ))
         fixed_this_week = sum(1 for r in rows
                               if r["status"] == "fixed" and r.get("resolved_at")
                               and datetime.fromisoformat(r["resolved_at"].replace("Z", "+00:00")) >= week_ago)

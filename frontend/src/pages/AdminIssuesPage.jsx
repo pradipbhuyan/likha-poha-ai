@@ -7,9 +7,24 @@ import { authFetch } from "../api/authClient";
 
 const SC={"open":"#6366f1","triaged":"#f59e0b","in_progress":"#0ea5e9","fixed":"#22c55e","wont_fix":"#94a3b8","duplicate":"#cbd5e1"};
 const VC={"critical":"#ef4444","high":"#f97316","medium":"#f59e0b","low":"#94a3b8"};
-const ITL={"content_issue":"Content Issue","wrong_explanation":"Wrong Explanation","missing_section":"Missing Section","wrong_formula":"Wrong Formula","wrong_answer":"Wrong Answer/MCQ","broken_page":"Broken Page","login_issue":"Login/Access","other":"Other"};
+const ITL={
+  content_issue:"Wrong/Inaccurate Content",wrong_explanation:"Wrong Explanation",missing_section:"Missing Section",
+  wrong_formula:"Wrong Formula",wrong_answer:"Wrong Answer/MCQ",translation_language:"Wrong Language/Translation",
+  audio_video_issue:"Audio/Video Issue",
+  broken_page:"Broken Page/Button",app_crash:"App Crash/Froze",slow_performance:"Slow/Lagging",
+  sync_progress:"Progress Not Saving",notification_issue:"Notification Problem",download_issue:"Download/Offline Issue",
+  login_issue:"Login/Access",payment_billing:"Payment/Subscription",
+  accessibility_issue:"Accessibility",feature_request:"Feature Request",other:"Other",
+};
+const ITYPE_GROUPS=[
+  {label:"Content & Learning",items:["content_issue","wrong_explanation","missing_section","wrong_formula","wrong_answer","translation_language","audio_video_issue"]},
+  {label:"Technical",items:["broken_page","app_crash","slow_performance","sync_progress","notification_issue","download_issue"]},
+  {label:"Account & Billing",items:["login_issue","payment_billing"]},
+  {label:"Other",items:["accessibility_issue","feature_request","other"]},
+];
+const REPRO_LABELS={always:"Every time",sometimes:"Sometimes",rarely:"Rarely",once:"Just once"};
 const CLOSED=new Set(["fixed","wont_fix"]);
-const CTYPE=new Set(["content_issue","wrong_explanation","missing_section","wrong_formula","wrong_answer"]);
+const CTYPE=new Set(["content_issue","wrong_explanation","missing_section","wrong_formula","wrong_answer","translation_language","audio_video_issue"]);
 const STATS=["open","triaged","in_progress","fixed","wont_fix","duplicate"];
 
 function Badge({label,color}){
@@ -47,6 +62,12 @@ function mkPrompt(iss){
   p.push("## SECTION 2 — What the User Sees (Exact Description)","","```");
   p.push(iss.description||"(no description)");
   p.push("```","");
+  if(iss.steps_to_reproduce){p.push("**Steps to reproduce:**","```");p.push(iss.steps_to_reproduce);p.push("```","");}
+  if(iss.expected_behavior||iss.actual_behavior){
+    p.push("| | |","|---|---|");
+    p.push("| **Expected** | "+(iss.expected_behavior||"?")+" |");
+    p.push("| **Actual** | "+(iss.actual_behavior||"?")+" |","");
+  }
   p.push("### Context","","| Field | Value |","|---|---|");
   p.push("| **Route** | `"+(iss.route||"?")+"` |");
   p.push("| **Grade** | `"+(iss.grade||"?")+"` |");
@@ -54,6 +75,10 @@ function mkPrompt(iss){
   p.push("| **Chapter** | `"+(iss.chapter||"?")+"` |");
   p.push("| **Step / Section** | `"+(iss.lesson_step||"?")+"` |");
   p.push("| **User role** | `"+(iss.reporter_role||"student")+"` |");
+  p.push("| **Reporter email** | `"+(iss.reporter_email||"?")+"` |");
+  p.push("| **Reproducibility** | `"+(REPRO_LABELS[iss.reproducibility]||"?")+"` |");
+  p.push("| **App version** | `"+(iss.app_version||"?")+"` |");
+  p.push("| **Device** | `"+(iss.device_info||bi.platform||"?")+"` |");
   p.push("| **Platform** | `"+(bi.platform||"?")+"` |");
   p.push("| **Viewport** | `"+(bi.viewportWidth||"?")+"×"+(bi.viewportHeight||"?")+"` |");
   if(bi.recentJsErrors&&bi.recentJsErrors.length>0){
@@ -194,7 +219,7 @@ function IssueDrawer({issue,onClose,onUpdate,onCloseIssue}){
   if(!issue)return null;
   const isClosed=CLOSED.has(issue.status);
   const isContent=CTYPE.has(issue.issue_type)&&issue.grade&&issue.subject&&issue.chapter;
-  const ctxRows=[["Role",issue.reporter_role],["Grade",issue.grade],["Subject",issue.subject],["Chapter",issue.chapter],["Step",issue.lesson_step],["Route",issue.route],["Viewport",issue.browser_info?.viewportWidth?issue.browser_info.viewportWidth+"x"+issue.browser_info.viewportHeight:null],["DPR",issue.browser_info?.devicePixelRatio?String(issue.browser_info.devicePixelRatio):null],["Platform",issue.browser_info?.platform||null],["JS Errs",issue.browser_info?.recentJsErrors?.length>0?issue.browser_info.recentJsErrors.length+" logged":null],["Reported",issue.created_at?new Date(issue.created_at).toLocaleString():null]].filter(r=>r[1]);
+  const ctxRows=[["Role",issue.reporter_role],["Email",issue.reporter_email],["Grade",issue.grade],["Subject",issue.subject],["Chapter",issue.chapter],["Step",issue.lesson_step],["Route",issue.route],["Reproducibility",REPRO_LABELS[issue.reproducibility]],["App Version",issue.app_version],["Device",issue.device_info],["Viewport",issue.browser_info?.viewportWidth?issue.browser_info.viewportWidth+"x"+issue.browser_info.viewportHeight:null],["DPR",issue.browser_info?.devicePixelRatio?String(issue.browser_info.devicePixelRatio):null],["Platform",issue.browser_info?.platform||null],["JS Errs",issue.browser_info?.recentJsErrors?.length>0?issue.browser_info.recentJsErrors.length+" logged":null],["Reported",issue.created_at?new Date(issue.created_at).toLocaleString():null]].filter(r=>r[1]);
   const commitMsg=(issue.status==="fixed"?"fix":"wip")+"("+(issue.defect_number||"DEF")+"): "+(issue.title||issue.description||"").slice(0,60);
   const lbl={fontSize:".78rem",fontWeight:600,display:"block",marginBottom:4};
   const inp={width:"100%",padding:"8px 10px",borderRadius:7,border:"1px solid var(--border,#e5e7eb)",fontFamily:"inherit",fontSize:".82rem",boxSizing:"border-box"};
@@ -220,6 +245,13 @@ function IssueDrawer({issue,onClose,onUpdate,onCloseIssue}){
       </div>
       {issue.title&&<p style={{fontWeight:700,margin:"0 0 8px",fontSize:".9rem"}}>{issue.title}</p>}
       <div style={{background:"var(--surface2,#f8fafc)",borderRadius:8,padding:"10px 12px",marginBottom:14}}><div style={{fontSize:".72rem",fontWeight:600,color:"#64748b",marginBottom:4}}>DESCRIPTION</div><p style={{margin:0,fontSize:".83rem",lineHeight:1.6}}>{issue.description}</p></div>
+      {issue.steps_to_reproduce&&(<div style={{background:"var(--surface2,#f8fafc)",borderRadius:8,padding:"10px 12px",marginBottom:14}}><div style={{fontSize:".72rem",fontWeight:600,color:"#64748b",marginBottom:4}}>STEPS TO REPRODUCE</div><p style={{margin:0,fontSize:".83rem",lineHeight:1.6,whiteSpace:"pre-wrap"}}>{issue.steps_to_reproduce}</p></div>)}
+      {(issue.expected_behavior||issue.actual_behavior)&&(
+        <div style={{display:"flex",gap:8,marginBottom:14,flexWrap:"wrap"}}>
+          {issue.expected_behavior&&<div style={{flex:"1 1 150px",background:"rgba(34,197,94,.06)",border:"1px solid rgba(34,197,94,.2)",borderRadius:8,padding:"10px 12px"}}><div style={{fontSize:".7rem",fontWeight:700,color:"#16a34a",marginBottom:4}}>EXPECTED</div><p style={{margin:0,fontSize:".8rem",lineHeight:1.5}}>{issue.expected_behavior}</p></div>}
+          {issue.actual_behavior&&<div style={{flex:"1 1 150px",background:"rgba(239,68,68,.06)",border:"1px solid rgba(239,68,68,.2)",borderRadius:8,padding:"10px 12px"}}><div style={{fontSize:".7rem",fontWeight:700,color:"#dc2626",marginBottom:4}}>ACTUAL</div><p style={{margin:0,fontSize:".8rem",lineHeight:1.5}}>{issue.actual_behavior}</p></div>}
+        </div>
+      )}
       {issue.browser_info?.screenshotDataUrl&&(<div style={{marginBottom:14}}><div style={{fontSize:".72rem",fontWeight:700,color:"#64748b",marginBottom:6}}>SCREENSHOT</div><img src={issue.browser_info.screenshotDataUrl} alt="screenshot" data-testid="issue-screenshot" style={{width:"100%",borderRadius:8,maxHeight:280,objectFit:"contain",background:"#000"}}/></div>)}
       <div style={{background:"var(--surface2,#f8fafc)",borderRadius:8,padding:"10px 12px",marginBottom:14,fontSize:".78rem"}}><div style={{fontWeight:600,color:"#64748b",marginBottom:6}}>CONTEXT</div>{ctxRows.map(([k,v])=><div key={k} style={{display:"flex",gap:6,marginBottom:3}}><span style={{fontWeight:600,minWidth:70}}>{k}:</span><span style={{color:"#374151"}}>{v}</span></div>)}</div>
       <div style={{marginBottom:12}}><label style={lbl}>Status</label><select value={status} onChange={e=>setStatus(e.target.value)} data-testid="issue-status-select" style={{...inp,padding:"8px"}}>{STATS.map(s=><option key={s} value={s}>{s.replace(/_/g," ")}</option>)}</select></div>
@@ -294,12 +326,20 @@ export default function AdminIssuesPage({user:_user}){
 
       {/* Filters row */}
       <div data-testid="issue-filters" style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:12,alignItems:"center"}}>
-        {[{key:"status",opts:["","open","triaged","in_progress","fixed","wont_fix","duplicate"],lbl:"Status"},{key:"severity",opts:["","critical","high","medium","low"],lbl:"Severity"},{key:"issue_type",opts:["","content_issue","wrong_explanation","missing_section","wrong_formula","wrong_answer","broken_page","login_issue","other"],lbl:"Type"}].map(({key,opts,lbl})=>(
+        {[{key:"status",opts:["","open","triaged","in_progress","fixed","wont_fix","duplicate"],lbl:"Status"},{key:"severity",opts:["","critical","high","medium","low"],lbl:"Severity"}].map(({key,opts,lbl})=>(
           <select key={key} value={filters[key]} style={sel} data-testid={"filter-"+key} onChange={e=>setFilters(p=>({...p,[key]:e.target.value}))}>
             <option value="">{lbl}</option>
             {opts.filter(Boolean).map(o=><option key={o} value={o}>{ITL[o]||o.replace(/_/g," ")}</option>)}
           </select>
         ))}
+        <select value={filters.issue_type} style={sel} data-testid="filter-issue_type" onChange={e=>setFilters(p=>({...p,issue_type:e.target.value}))}>
+          <option value="">Type</option>
+          {ITYPE_GROUPS.map(g=>(
+            <optgroup key={g.label} label={g.label}>
+              {g.items.map(o=><option key={o} value={o}>{ITL[o]||o.replace(/_/g," ")}</option>)}
+            </optgroup>
+          ))}
+        </select>
         <input placeholder="Grade" value={filters.grade} style={{...sel,width:130}} data-testid="filter-grade" onChange={e=>setFilters(p=>({...p,grade:e.target.value}))}/>
         <input placeholder="Subject" value={filters.subject} style={{...sel,width:110}} data-testid="filter-subject" onChange={e=>setFilters(p=>({...p,subject:e.target.value}))}/>
         <button onClick={()=>setFilters({status:"",severity:"",issue_type:"",grade:"",subject:""})} style={{...sel,cursor:"pointer",color:"#6366f1",fontWeight:600}}>Clear</button>
