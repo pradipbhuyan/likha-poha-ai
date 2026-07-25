@@ -562,20 +562,6 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
   return (
     <div className="premium-page" style={{ maxWidth: 1100 }}>
 
-      {/* ── Header ── */}
-      <div style={{ marginBottom: 24 }}>
-        <p style={{ fontSize: ".72rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#6366f1", marginBottom: 6 }}>
-          NCERT Exemplar · Research Station
-        </p>
-        <h2 style={{ fontSize: "1.8rem", fontWeight: 900, marginBottom: 6 }}>
-          🔬 Science & Maths Deep Dive
-        </h2>
-        <p style={{ color: "var(--muted)", fontSize: ".9rem", maxWidth: 620 }}>
-          Explore difficult and tricky CBSE topics from NCERT Exemplar books.
-          Click any card to get an instant AI explanation — formula, example, and exam tips included.
-        </p>
-      </div>
-
       {/* ── Controls row ── */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 20 }}>
 
