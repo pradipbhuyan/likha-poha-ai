@@ -1663,7 +1663,7 @@ function App() {
       case "resources":
         return <ResourcesPage user={user} />;
       case "analytics":
-        return <AnalyticsPage user={user} />;
+        return <AnalyticsPage user={user} setActivePage={handlePageChange} />;
       case "leaderboard":
         return <LeaderboardPage user={user} />;
       case "ragUpload":

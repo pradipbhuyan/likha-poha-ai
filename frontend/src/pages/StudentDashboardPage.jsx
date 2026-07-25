@@ -291,7 +291,15 @@ export default function StudentDashboardPage({ user, setActivePage }) {
               ):(
                 <>
                   <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".82rem",marginBottom:12}}>
-                    {prog.available?"Start a new lesson to continue here.":"Begin your first AI lesson today!"}
+                    {prog.available
+                      ? "Start a new lesson to continue here."
+                      : isNewStudent
+                        ? "Begin your first AI lesson today!"
+                        // Lesson-progress lookup isn't available right now, but
+                        // mock-test history (isNewStudent) shows this student
+                        // isn't new — don't falsely tell them to "start their
+                        // first" lesson.
+                        : "Continue your learning journey — start a new lesson."}
                   </div>
                   <SdBtn onClick={function(){nav("lessons");}}>Start Learning →</SdBtn>
                 </>
@@ -413,19 +421,35 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           <div style={{display:"flex",justifyContent:"space-between",marginBottom:10}}>
             <span style={{fontWeight:700,fontSize:".88rem"}}>Achievements</span>
           </div>
-          {(ach.length>0?ach:[
-            {type:"streak",title:"Day Streak",icon:"🔥",value:s.study_streak_days||0},
-            {type:"lessons",title:"Lessons Completed",icon:"📖",value:s.lessons_completed||0},
-            {type:"first_test",title:"First Mock Test",icon:"🏆",value:mt.total||0},
-          ]).map(function(a,i){return(
-            <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"6px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
-              <span style={{fontSize:"1.2rem"}}>{a.icon}</span>
-              <div>
-                <div style={{fontSize:".8rem",fontWeight:700}}>{a.title}</div>
-                <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{a.type==="streak"?streakCopy(a.value):a.value>0?(a.type==="first_test"?"Great start!":"Amazing!"):"Start your journey!"}</div>
+          {(function(){
+            // Real backend achievements take priority. Otherwise, only show a
+            // fallback stat as an "achievement" if it actually has something to
+            // show — a badge reading 0 with "Start your journey!" looks like
+            // fake/broken gamification, not an honest empty state.
+            var shown = ach.length>0?ach:[
+              {type:"streak",title:"Day Streak",icon:"🔥",value:s.study_streak_days||0},
+              {type:"lessons",title:"Lessons Completed",icon:"📖",value:s.lessons_completed||0},
+              {type:"first_test",title:"First Mock Test",icon:"🏆",value:mt.total||0},
+            ].filter(function(a){return a.value>0;});
+
+            if(shown.length===0){
+              return(
+                <div style={{color:"var(--text-muted,#94a3b8)",fontSize:".8rem",padding:"6px 0"}}>
+                  Complete a lesson or mock test to unlock your first achievement.
+                </div>
+              );
+            }
+
+            return shown.map(function(a,i){return(
+              <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"6px 0",borderBottom:"1px solid var(--border,#f1f5f9)"}}>
+                <span style={{fontSize:"1.2rem"}}>{a.icon}</span>
+                <div>
+                  <div style={{fontSize:".8rem",fontWeight:700}}>{a.title}</div>
+                  <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{a.type==="streak"?streakCopy(a.value):a.type==="first_test"?"Great start!":"Amazing!"}</div>
+                </div>
               </div>
-            </div>
-          );})}
+            );});
+          })()}
         </SdCard>
       </div>
 

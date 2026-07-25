@@ -16,6 +16,7 @@ import {
   getUserHistory,
   clearUserHistory,
   clearAllHistory,
+  getWeakChapters,
 } from "../api/analytics";
 
 /** Consistent color palette for subjects across charts */
@@ -72,11 +73,12 @@ function buildSubjectPerformance(history) {
   }));
 }
 
-function AnalyticsPage({ user }) {
+function AnalyticsPage({ user, setActivePage }) {
   /** Shows a student's test history trends and provides admin cleanup actions. */
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const [weakChapters, setWeakChapters] = useState([]);
 
   async function loadHistory() {
     setLoading(true);
@@ -91,6 +93,14 @@ function AnalyticsPage({ user }) {
   }
 
   useEffect(() => { loadHistory(); }, [user.username]);
+
+  useEffect(() => {
+    // Same weak-chapters source the Dashboard already uses — one definition
+    // of "weak" across the app, not a new Analytics-only calculation.
+    getWeakChapters(user.username)
+      .then((data) => setWeakChapters(data?.weak_chapters || []))
+      .catch(() => setWeakChapters([]));
+  }, [user.username]);
 
   async function handleClearMyHistory() {
     if (!confirm("Clear your test history?")) return;
@@ -129,12 +139,17 @@ function AnalyticsPage({ user }) {
   const { trendData, subjects } = buildSubjectTrend(history);
   const subjectPerformance = buildSubjectPerformance(history);
 
-  const insightText =
+  // Honest framing: this is a rule-based summary of real numbers already on
+  // this page (average score, test count) — not an AI-personalized insight.
+  const insightTip =
     averageScore >= 85
-      ? "Excellent consistency. You are ready for harder questions and Hard-level practice."
+      ? "Excellent consistency — you're ready for harder questions and Hard-level practice."
       : averageScore >= 65
-      ? "Good progress. Focus on weaker subjects and review mistakes after every mock test."
-      : "Revision needed. Start with concept review, then attempt short quizzes before mock tests.";
+      ? "Good progress — focus on weaker subjects and review mistakes after every mock test."
+      : "Revision needed — start with concept review, then attempt short quizzes before mock tests.";
+  const insightText = totalTests > 0
+    ? `Average ${averageScore}% across ${totalTests} test${totalTests > 1 ? "s" : ""}. ${insightTip}`
+    : insightTip;
 
   const tooltipStyle = {
     contentStyle: {
@@ -151,15 +166,17 @@ function AnalyticsPage({ user }) {
     <div className="analytics-page premium-page premium-analytics-page">
       {message && <div className="info-box">{message}</div>}
 
-      {/* AI Insight — compact banner, no redundant page title */}
+      {/* Score Summary — compact banner, no redundant page title.
+          Renamed from "AI Insight": this is a rule-based summary of the
+          real numbers on this page, not an AI-personalized insight. */}
       <div style={{
         display: "flex", alignItems: "flex-start", gap: 12, padding: "12px 16px",
         margin: "8px 0 4px", borderRadius: 12,
         background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)",
       }}>
-        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>🧠</span>
+        <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>📊</span>
         <div>
-          <strong style={{ fontSize: "0.85rem", color: "#818cf8" }}>AI Insight</strong>
+          <strong style={{ fontSize: "0.85rem", color: "#818cf8" }}>Score Summary</strong>
           <p style={{ margin: "2px 0 0", fontSize: "0.85rem", color: "var(--text, #e5e7eb)", lineHeight: 1.5 }}>{insightText}</p>
         </div>
       </div>
@@ -208,6 +225,49 @@ function AnalyticsPage({ user }) {
               <strong>Latest Score</strong>
               <p>{latestScore}%</p>
             </div>
+          </section>
+
+          {/* ── Weak chapters — act on it, don't just look at it ── */}
+          <section className="premium-section premium-weak-chapters-section">
+            <div className="premium-header">
+              <h3>🎯 Weak Chapters</h3>
+              <p>Chapters with the most wrong answers — same list the Dashboard uses.</p>
+            </div>
+            {weakChapters.length === 0 ? (
+              <div style={{ color: "var(--text-muted, #94a3b8)", fontSize: "0.85rem" }}>
+                No weak chapters yet — keep practising!
+              </div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {weakChapters.slice(0, 5).map((w, i) => (
+                  <div
+                    key={`${w.subject}-${w.chapter}-${i}`}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      gap: 12, padding: "10px 14px", borderRadius: 10,
+                      background: "var(--panel-soft, rgba(148,163,184,.08))",
+                      border: "1px solid var(--border, rgba(148,163,184,.18))",
+                    }}
+                  >
+                    <div style={{ minWidth: 0 }}>
+                      <strong style={{ fontSize: "0.85rem" }}>{w.subject}</strong>
+                      <span style={{ color: "var(--text-muted, #94a3b8)", fontSize: "0.82rem" }}> — {w.chapter}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setActivePage && setActivePage("mockTest")}
+                      style={{
+                        flexShrink: 0, background: "#4f46e5", color: "#fff", border: "none",
+                        borderRadius: 8, padding: "6px 12px", fontSize: "0.78rem", fontWeight: 700,
+                        cursor: "pointer", fontFamily: "inherit",
+                      }}
+                    >
+                      Practice →
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* ── Charts row ── */}
