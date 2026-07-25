@@ -69,7 +69,7 @@ class _FakeDB:
 from app.routes.issues import (
     IssueReportIn, IssueUpdateIn,
     _sanitize, _sanitize_browser_info, _check_rate,
-    VALID_ISSUE_TYPES, VALID_SEVERITIES, VALID_STATUSES,
+    VALID_ISSUE_TYPES, VALID_SEVERITIES, VALID_STATUSES, VALID_REPRODUCIBILITY,
 )
 
 
@@ -104,6 +104,20 @@ class TestSanitization:
 
     def test_sanitize_browser_info_none(self):
         assert _sanitize_browser_info(None) is None
+
+    def test_sanitize_browser_info_keeps_mobile_fields(self):
+        """Regression test: mobile's appVersion/buildNumber/osVersion/currentScreen/
+        source were previously stripped by the allow-list even though the mobile
+        app has always sent them — losing environment data on every mobile report."""
+        bi = _sanitize_browser_info({
+            "appVersion": "1.2.0", "buildNumber": "42", "osVersion": "17.2",
+            "currentScreen": "lessons", "source": "mobile_app",
+        })
+        assert bi["appVersion"] == "1.2.0"
+        assert bi["buildNumber"] == "42"
+        assert bi["osVersion"] == "17.2"
+        assert bi["currentScreen"] == "lessons"
+        assert bi["source"] == "mobile_app"
 
 
 # ── Unit: validation ───────────────────────────────────────────────────────────
@@ -147,6 +161,44 @@ class TestIssueValidation:
         for s in VALID_SEVERITIES:
             m = IssueReportIn(issue_type="other", severity=s, description="x" * 20)
             assert m.severity == s
+
+    def test_valid_reproducibility(self):
+        m = IssueReportIn(issue_type="other", description="x" * 20, reproducibility="always")
+        assert m.reproducibility == "always"
+
+    def test_invalid_reproducibility_raises(self):
+        with pytest.raises(Exception):
+            IssueReportIn(issue_type="other", description="x" * 20, reproducibility="constantly")
+
+    def test_reproducibility_optional(self):
+        m = IssueReportIn(issue_type="other", description="x" * 20)
+        assert m.reproducibility is None
+
+    def test_all_valid_reproducibility_accepted(self):
+        for r in VALID_REPRODUCIBILITY:
+            m = IssueReportIn(issue_type="other", description="x" * 20, reproducibility=r)
+            assert m.reproducibility == r
+
+    def test_structured_repro_fields_accepted(self):
+        m = IssueReportIn(
+            issue_type="broken_page", description="x" * 20,
+            steps_to_reproduce="1. Open app\n2. Tap button",
+            expected_behavior="Button should open the menu",
+            actual_behavior="Nothing happens",
+            app_version="1.2.0", device_info="Chrome 120 on macOS",
+        )
+        assert m.steps_to_reproduce.startswith("1. Open app")
+        assert m.expected_behavior == "Button should open the menu"
+        assert m.actual_behavior == "Nothing happens"
+        assert m.app_version == "1.2.0"
+        assert m.device_info == "Chrome 120 on macOS"
+
+    def test_new_issue_types_accepted(self):
+        for t in ("app_crash", "slow_performance", "sync_progress", "notification_issue",
+                  "download_issue", "payment_billing", "accessibility_issue",
+                  "feature_request", "translation_language", "audio_video_issue"):
+            m = IssueReportIn(issue_type=t, description="x" * 20)
+            assert m.issue_type == t
 
 
 # ── Unit: update validation ────────────────────────────────────────────────────

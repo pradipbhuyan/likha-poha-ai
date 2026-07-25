@@ -1,7 +1,8 @@
 /**
  * ReportIssueModal.jsx — Student/User Issue Reporting
  * Opens as a modal overlay. Submits to POST /api/issues/report.
- * Auto-captures context: page, grade, subject, chapter, lesson step.
+ * Auto-captures context: page, grade, subject, chapter, lesson step,
+ * app version, and a human-readable device/browser string.
  *
  * Props:
  *   open        {boolean}
@@ -11,6 +12,7 @@
  */
 import { useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+import { version as APP_VERSION } from "../../package.json";
 
 // ── Screenshot compression (Canvas → JPEG base64, max 400KB) ─────────────────
 async function compressScreenshot(file) {
@@ -40,15 +42,67 @@ async function compressScreenshot(file) {
   });
 }
 
-const ISSUE_TYPES = [
-  { value: "content_issue",      label: "Content issue" },
-  { value: "wrong_explanation",  label: "Wrong explanation" },
-  { value: "missing_section",    label: "Missing lesson section" },
-  { value: "wrong_formula",      label: "Wrong formula" },
-  { value: "wrong_answer",       label: "Wrong answer / MCQ" },
-  { value: "broken_page",        label: "Broken page / button" },
-  { value: "login_issue",        label: "Login / access issue" },
-  { value: "other",              label: "Other" },
+// ── Best-effort human-readable "Chrome 120 on Windows" string from the UA ────
+function describeDevice() {
+  try {
+    const ua = navigator.userAgent || "";
+    let browser = "Unknown browser";
+    const bMatch = ua.match(/(Edg|Chrome|Firefox|Safari|OPR)\/([\d.]+)/);
+    if (bMatch) {
+      const names = { Edg: "Edge", OPR: "Opera" };
+      browser = `${names[bMatch[1]] || bMatch[1]} ${bMatch[2].split(".")[0]}`;
+    }
+    let os = "Unknown OS";
+    if (/Windows/.test(ua)) os = "Windows";
+    else if (/Mac OS X/.test(ua)) os = "macOS";
+    else if (/Android/.test(ua)) os = "Android";
+    else if (/iPhone|iPad|iOS/.test(ua)) os = "iOS";
+    else if (/Linux/.test(ua)) os = "Linux";
+    return `${browser} on ${os}`;
+  } catch { return null; }
+}
+
+// Grouped so the dropdown gives reporters many precise, friendly options
+// instead of forcing everything into a vague "Other".
+const ISSUE_TYPE_GROUPS = [
+  {
+    label: "📚 Content & Learning",
+    items: [
+      { value: "content_issue",       label: "Wrong or inaccurate content" },
+      { value: "wrong_explanation",   label: "Confusing or wrong explanation" },
+      { value: "missing_section",     label: "Missing lesson section" },
+      { value: "wrong_formula",       label: "Wrong formula or calculation" },
+      { value: "wrong_answer",        label: "Wrong answer / MCQ option" },
+      { value: "translation_language",label: "Wrong language / translation" },
+      { value: "audio_video_issue",   label: "Audio / video not working" },
+    ],
+  },
+  {
+    label: "⚙️ Technical",
+    items: [
+      { value: "broken_page",         label: "Broken page / button" },
+      { value: "app_crash",           label: "App crashed or froze" },
+      { value: "slow_performance",    label: "Slow / lagging" },
+      { value: "sync_progress",       label: "Progress not saving" },
+      { value: "notification_issue",  label: "Notification problem" },
+      { value: "download_issue",      label: "Download / offline issue" },
+    ],
+  },
+  {
+    label: "🔐 Account & Billing",
+    items: [
+      { value: "login_issue",         label: "Login / access issue" },
+      { value: "payment_billing",     label: "Payment / subscription issue" },
+    ],
+  },
+  {
+    label: "💡 Other",
+    items: [
+      { value: "accessibility_issue", label: "Accessibility problem" },
+      { value: "feature_request",     label: "Feature request / suggestion" },
+      { value: "other",               label: "Something else" },
+    ],
+  },
 ];
 
 const SEVERITIES = [
@@ -58,14 +112,29 @@ const SEVERITIES = [
   { value: "critical", label: "Critical", color: "#ef4444" },
 ];
 
+const REPRODUCIBILITY = [
+  { value: "always",    label: "Every time" },
+  { value: "sometimes", label: "Sometimes" },
+  { value: "rarely",    label: "Rarely" },
+  { value: "once",      label: "Just once" },
+];
+
+const EMPTY_FORM = {
+  issue_type: "content_issue",
+  severity: "medium",
+  title: "",
+  description: "",
+  steps_to_reproduce: "",
+  expected_behavior: "",
+  actual_behavior: "",
+  reproducibility: "",
+};
+
 export default function ReportIssueModal({ open, onClose, context = {}, user }) {
-  const [form, setForm] = useState({
-    issue_type: "content_issue",
-    severity: "medium",
-    description: "",
-  });
+  const [form, setForm] = useState(EMPTY_FORM);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [defectNumber, setDefectNumber] = useState(null);
   const [error, setError] = useState(null);
   const [screenshotPreview, setScreenshotPreview] = useState(null);
   const [screenshotProcessing, setScreenshotProcessing] = useState(false);
@@ -73,10 +142,14 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
   const fileInputRef = useRef(null);
 
   function reset() {
-    setForm({ issue_type: "content_issue", severity: "medium", description: "" });
-    setSuccess(false); setError(null);
+    setForm(EMPTY_FORM);
+    setSuccess(false); setError(null); setDefectNumber(null);
     setScreenshotPreview(null); setScreenshotDataUrl(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function update(field, value) {
+    setForm(p => ({ ...p, [field]: value }));
   }
 
   async function handleFileChange(e) {
@@ -115,13 +188,20 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
       const payload = {
         issue_type: form.issue_type,
         severity: form.severity,
+        title: form.title.trim().slice(0, 200) || undefined,
         description: form.description.trim().slice(0, 2000),
+        steps_to_reproduce: form.steps_to_reproduce.trim().slice(0, 1500) || undefined,
+        expected_behavior: form.expected_behavior.trim().slice(0, 1000) || undefined,
+        actual_behavior: form.actual_behavior.trim().slice(0, 1000) || undefined,
+        reproducibility: form.reproducibility || undefined,
         route: context.route || pageCtx.page || window.location.pathname,
         grade: context.grade || pageCtx.grade || user?.grade || null,
         subject: context.subject || pageCtx.subject || null,
         chapter: context.chapter || pageCtx.chapter || null,
         lesson_id: context.lessonId || pageCtx.lessonId || null,
         lesson_step: context.lessonStep || pageCtx.lessonStep || null,
+        app_version: APP_VERSION || null,
+        device_info: describeDevice(),
         browser_info: (() => {
           const pageCtx2 = (typeof window !== "undefined" && window.__LIKHAPOHA_CONTEXT__) || {};
           let computedFont = null;
@@ -168,13 +248,14 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
         })(),
       };
 
-      await authFetch("/api/issues/report", {
+      const res = await authFetch("/api/issues/report", {
         method: "POST",
         body: JSON.stringify(payload),
       });
 
+      setDefectNumber(res?.defect_number || null);
       setSuccess(true);
-      setForm({ issue_type: "content_issue", severity: "medium", description: "" });
+      setForm(EMPTY_FORM);
     } catch (err) {
       setError(err.message || "Failed to submit issue. Please try again.");
     } finally {
@@ -190,10 +271,11 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
   };
   const box = {
     background: "var(--panel,#fff)", borderRadius: 14, padding: "24px 28px",
-    width: "100%", maxWidth: 480, boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+    width: "100%", maxWidth: 520, boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
     maxHeight: "90vh", overflowY: "auto",
   };
   const label = { display: "block", fontSize: ".8rem", fontWeight: 600, marginBottom: 5, color: "var(--text,#374151)" };
+  const hint = { fontSize: ".72rem", color: "#94a3b8", marginTop: 3, marginBottom: 0 };
   const input = {
     width: "100%", padding: "9px 12px", borderRadius: 8,
     border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".85rem",
@@ -216,8 +298,19 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
           <div data-testid="report-issue-success">
             <div style={{ fontSize: "2rem", textAlign: "center", marginBottom: 10 }}>✅</div>
             <p style={{ textAlign: "center", fontWeight: 700, marginBottom: 8 }}>Thank you for reporting!</p>
+            {defectNumber && (
+              <div style={{ textAlign: "center", marginBottom: 10 }}>
+                <span data-testid="report-issue-defect-number" style={{
+                  display: "inline-block", fontFamily: "monospace", fontWeight: 800,
+                  fontSize: ".9rem", color: "#6366f1", background: "rgba(99,102,241,.08)",
+                  borderRadius: 8, padding: "5px 12px",
+                }}>{defectNumber}</span>
+              </div>
+            )}
             <p style={{ textAlign: "center", fontSize: ".85rem", color: "#64748b" }}>
-              Our team will review and fix this issue. Your feedback helps improve the platform.
+              {defectNumber
+                ? <>Save this reference ID — our team will review and fix it. Your feedback helps improve the platform.</>
+                : <>Our team will review and fix this issue. Your feedback helps improve the platform.</>}
             </p>
             <button onClick={handleClose} data-testid="report-issue-close-success"
               style={{ width: "100%", marginTop: 16, padding: "10px", borderRadius: 8, border: "none",
@@ -247,21 +340,25 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
 
             {/* Issue type */}
             <div style={{ marginBottom: 14 }}>
-              <label style={label}>Issue Type</label>
+              <label style={label}>What kind of issue is it?</label>
               <select style={input} value={form.issue_type}
-                onChange={e => setForm(p => ({ ...p, issue_type: e.target.value }))}
+                onChange={e => update("issue_type", e.target.value)}
                 data-testid="issue-type-select">
-                {ISSUE_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                {ISSUE_TYPE_GROUPS.map(g => (
+                  <optgroup key={g.label} label={g.label}>
+                    {g.items.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+                  </optgroup>
+                ))}
               </select>
             </div>
 
             {/* Severity */}
             <div style={{ marginBottom: 14 }}>
-              <label style={label}>Severity</label>
+              <label style={label}>How bad is it?</label>
               <div style={{ display: "flex", gap: 6 }}>
                 {SEVERITIES.map(s => (
                   <button key={s.value} type="button"
-                    onClick={() => setForm(p => ({ ...p, severity: s.value }))}
+                    onClick={() => update("severity", s.value)}
                     data-testid={`severity-${s.value}`}
                     style={{
                       flex: 1, padding: "6px 4px", borderRadius: 7, fontFamily: "inherit",
@@ -271,6 +368,27 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
                       color: form.severity === s.value ? s.color : "var(--text-muted,#64748b)",
                     }}>
                     {s.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* How often does it happen */}
+            <div style={{ marginBottom: 14 }}>
+              <label style={label}>How often does this happen? <span style={{ fontWeight: 400, color: "#94a3b8" }}>(optional)</span></label>
+              <div style={{ display: "flex", gap: 6 }}>
+                {REPRODUCIBILITY.map(r => (
+                  <button key={r.value} type="button"
+                    onClick={() => update("reproducibility", form.reproducibility === r.value ? "" : r.value)}
+                    data-testid={`reproducibility-${r.value}`}
+                    style={{
+                      flex: 1, padding: "6px 4px", borderRadius: 7, fontFamily: "inherit",
+                      fontSize: ".72rem", fontWeight: 600, cursor: "pointer",
+                      border: "2px solid " + (form.reproducibility === r.value ? "#6366f1" : "var(--border,#e5e7eb)"),
+                      background: form.reproducibility === r.value ? "#6366f115" : "transparent",
+                      color: form.reproducibility === r.value ? "#6366f1" : "var(--text-muted,#64748b)",
+                    }}>
+                    {r.label}
                   </button>
                 ))}
               </div>
@@ -287,6 +405,8 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
                     "Viewport " + window.innerWidth + "x" + window.innerHeight,
                     "DPR " + window.devicePixelRatio,
                     window.innerWidth < 768 ? "Mobile" : "Desktop",
+                    describeDevice(),
+                    "v" + APP_VERSION,
                     jsErrCnt > 0 ? (jsErrCnt + " JS error(s)") : null,
                     screenshotDataUrl ? "Screenshot attached" : null,
                   ].filter(Boolean).join("  ·  ")}
@@ -296,7 +416,7 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
 
             {/* Screenshot attachment */}
             <div style={{ marginBottom: 14 }}>
-              <label style={label}>Screenshot (optional)</label>
+              <label style={label}>Screenshot <span style={{ fontWeight: 400, color: "#94a3b8" }}>(optional, but a picture saves everyone time)</span></label>
               <input ref={fileInputRef} type="file" accept="image/*" data-testid="screenshot-input"
                 onChange={handleFileChange} style={{ display: "none" }} />
               {!screenshotPreview ? (
@@ -326,21 +446,78 @@ export default function ReportIssueModal({ open, onClose, context = {}, user }) 
               )}
             </div>
 
+            {/* Title (optional short summary) */}
+            <div style={{ marginBottom: 14 }}>
+              <label style={label}>Short summary <span style={{ fontWeight: 400, color: "#94a3b8" }}>(optional)</span></label>
+              <input type="text" data-testid="issue-title"
+                value={form.title} onChange={e => update("title", e.target.value)}
+                placeholder="e.g. Submit button does nothing on Mock Test"
+                maxLength={120} style={input} />
+            </div>
+
             {/* Description */}
-            <div style={{ marginBottom: 16 }}>
-              <label style={label}>Description *</label>
+            <div style={{ marginBottom: 14 }}>
+              <label style={label}>What happened? *</label>
               <textarea
                 data-testid="issue-description"
                 value={form.description}
-                onChange={e => setForm(p => ({ ...p, description: e.target.value }))}
-                placeholder="Describe what you found, what you expected, and any steps to reproduce..."
-                rows={4}
-                style={{ ...input, resize: "vertical", minHeight: 100 }}
+                onChange={e => update("description", e.target.value)}
+                placeholder="Describe what you found..."
+                rows={3}
+                style={{ ...input, resize: "vertical", minHeight: 76 }}
                 maxLength={2000}
               />
               <div style={{ fontSize: ".72rem", color: "#94a3b8", textAlign: "right" }}>
                 {form.description.length}/2000
               </div>
+            </div>
+
+            {/* Help us fix it faster — structured repro info, all optional but encouraged */}
+            <div style={{ background: "var(--surface2,#f8fafc)", borderRadius: 10, padding: "12px 14px", marginBottom: 16 }}>
+              <div style={{ fontSize: ".78rem", fontWeight: 700, color: "#6366f1", marginBottom: 8 }}>
+                🔍 Help us fix it faster <span style={{ fontWeight: 400, color: "#94a3b8" }}>(optional, but this is what lets us close your report without asking follow-up questions)</span>
+              </div>
+
+              <div style={{ marginBottom: 10 }}>
+                <label style={label}>Steps to reproduce</label>
+                <textarea
+                  data-testid="issue-steps"
+                  value={form.steps_to_reproduce}
+                  onChange={e => update("steps_to_reproduce", e.target.value)}
+                  placeholder={"1. Go to...\n2. Tap/click...\n3. See the problem"}
+                  rows={2}
+                  style={{ ...input, resize: "vertical", minHeight: 54 }}
+                  maxLength={1500}
+                />
+              </div>
+
+              <div style={{ display: "flex", gap: 10, marginBottom: 2, flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 200px" }}>
+                  <label style={label}>What did you expect?</label>
+                  <textarea
+                    data-testid="issue-expected"
+                    value={form.expected_behavior}
+                    onChange={e => update("expected_behavior", e.target.value)}
+                    placeholder="e.g. The quiz should submit"
+                    rows={2}
+                    style={{ ...input, resize: "vertical", minHeight: 54 }}
+                    maxLength={1000}
+                  />
+                </div>
+                <div style={{ flex: "1 1 200px" }}>
+                  <label style={label}>What actually happened?</label>
+                  <textarea
+                    data-testid="issue-actual"
+                    value={form.actual_behavior}
+                    onChange={e => update("actual_behavior", e.target.value)}
+                    placeholder="e.g. Nothing happens when I tap Submit"
+                    rows={2}
+                    style={{ ...input, resize: "vertical", minHeight: 54 }}
+                    maxLength={1000}
+                  />
+                </div>
+              </div>
+              <p style={hint}>The more detail here, the faster we can confirm the fix and close your report.</p>
             </div>
 
             {error && (
