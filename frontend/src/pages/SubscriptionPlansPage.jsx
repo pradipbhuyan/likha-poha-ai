@@ -400,6 +400,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
       <section className="subscription-plan-grid">
         {planOrder.map((planKey) => {
           const plan = plans[planKey];
+          if (!plan) return null;
           const displayPrice = getPlanDisplayPrice(plan);
           const hasDiscount = Number(plan.discountPercent || 0) > 0;
           const isSelected = selectedPlanKey === plan.key;

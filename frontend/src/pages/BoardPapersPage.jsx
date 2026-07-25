@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
   BookOpen,
-  ChevronDown,
-  ChevronRight,
   CheckCircle2,
   XCircle,
   Eye,
