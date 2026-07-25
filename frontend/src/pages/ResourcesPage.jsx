@@ -519,7 +519,7 @@ function ResourcesPage({ user }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Open Resource →
+                      Open Resource →<span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   )}
                 </div>
@@ -552,7 +552,7 @@ function ResourcesPage({ user }) {
                 Tenses, Voice, Reported Speech, Clauses, Modals — free interactive lessons with examples.
               </p>
               <a className="premium-resource-link" href="https://www.bbc.co.uk/learningenglish/grammar" target="_blank" rel="noreferrer">
-                Open BBC Grammar →
+                Open BBC Grammar →<span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
 
@@ -568,7 +568,7 @@ function ResourcesPage({ user }) {
                 A1 to C1 level grammar lessons with practice exercises. Covers all CBSE grammar topics.
               </p>
               <a className="premium-resource-link" href="https://learnenglish.britishcouncil.org/grammar" target="_blank" rel="noreferrer">
-                Open British Council Grammar →
+                Open British Council Grammar →<span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
 
@@ -584,7 +584,7 @@ function ResourcesPage({ user }) {
                 Official CBSE sample papers with grammar and writing sections — best for board exam prep.
               </p>
               <a className="premium-resource-link" href="https://cbseacademic.nic.in/SampleQuestion_Papers.html" target="_blank" rel="noreferrer">
-                Open CBSE Sample Papers →
+                Open CBSE Sample Papers →<span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
           </div>

@@ -34,6 +34,7 @@ function WalkthroughPage() {
             <button
               key={key}
               onClick={() => setLang(key)}
+              aria-pressed={lang === key}
               style={{
                 padding: "8px 22px",
                 borderRadius: 24,

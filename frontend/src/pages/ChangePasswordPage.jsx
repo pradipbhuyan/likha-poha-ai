@@ -9,6 +9,7 @@ function ChangePasswordPage({ user }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [showPasswords, setShowPasswords] = useState(false);
 
   async function handleChangePassword(e) {
     /** Reauthenticate and then update the Supabase Auth password. */
@@ -84,36 +85,51 @@ function ChangePasswordPage({ user }) {
         <form onSubmit={handleChangePassword} className="form-grid">
           <label>
             Current Password
-            <input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
+            <div className="change-password-field">
+              <input
+                type={showPasswords ? "text" : "password"}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+              />
+            </div>
           </label>
 
           <label>
             New Password
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              autoComplete="new-password"
-              required
-            />
+            <div className="change-password-field">
+              <input
+                type={showPasswords ? "text" : "password"}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                autoComplete="new-password"
+                required
+              />
+            </div>
           </label>
 
           <label>
             Confirm New Password
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              autoComplete="new-password"
-              required
-            />
+            <div className="change-password-field">
+              <input
+                type={showPasswords ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                autoComplete="new-password"
+                required
+              />
+            </div>
           </label>
+
+          <button
+            type="button"
+            className="change-password-toggle"
+            style={{ justifySelf: "start" }}
+            onClick={() => setShowPasswords((prev) => !prev)}
+          >
+            {showPasswords ? "🙈 Hide passwords" : "👁 Show passwords"}
+          </button>
 
           <button className="primary-btn" type="submit" disabled={loading}>
             {loading ? "Changing..." : "Change Password"}

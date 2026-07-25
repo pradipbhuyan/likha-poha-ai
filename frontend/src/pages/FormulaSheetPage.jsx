@@ -97,7 +97,9 @@ function MathExpr({ tex, display = false, chem = false }) {
       if (chem) await loadMhchem();
       if (!k || !ref.current) return;
       try {
-        k.render(tex, ref.current, { throwOnError: false, displayMode: display, output: "html" });
+        // output: "htmlAndMathml" (KaTeX default) keeps a MathML annotation
+        // alongside the HTML rendering so screen readers can announce formulas.
+        k.render(tex, ref.current, { throwOnError: false, displayMode: display });
       } catch { if (ref.current) ref.current.textContent = tex; }
     })();
   }, [tex, display, isFormula, chem]);
@@ -1098,18 +1100,18 @@ export default function FormulaSheetPage({ user, setActivePage }) {
 
       {/* Search + filters row */}
       <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap", alignItems: "center" }}>
-        <input data-testid="formula-search" placeholder="Search formulas, chapters..." value={search}
+        <input data-testid="formula-search" aria-label="Search formulas and chapters" placeholder="Search formulas, chapters..." value={search}
           onChange={e => { setSearch(e.target.value); setActiveChapter(null); }}
           style={{ flex: 1, minWidth: 160, padding: "7px 12px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)",
             fontFamily: "inherit", fontSize: ".82rem" }}/>
-        <select data-testid="difficulty-filter" value={diffFilter} onChange={e => setDiffFilter(e.target.value)}
+        <select data-testid="difficulty-filter" aria-label="Filter by difficulty" value={diffFilter} onChange={e => setDiffFilter(e.target.value)}
           style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".82rem" }}>
           <option value="">All Difficulties</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
-        <select data-testid="sort-select" value={sortBy} onChange={e => setSortBy(e.target.value)}
+        <select data-testid="sort-select" aria-label="Sort formulas" value={sortBy} onChange={e => setSortBy(e.target.value)}
           style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid var(--border,#e5e7eb)", fontFamily: "inherit", fontSize: ".82rem" }}>
           <option value="default">Sort: Default</option>
           <option value="az">A → Z</option>
