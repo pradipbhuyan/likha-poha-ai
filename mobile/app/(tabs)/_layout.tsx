@@ -151,11 +151,19 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="boardpapers"
+        options={{
+          title: "Board Papers",
+          tabBarLabel: "Papers",
+          tabBarIcon: ({ focused }) => <TabIcon name="clipboard" focused={focused} />,
+        }}
+      />
+      <Tabs.Screen
         name="exemplar"
         options={{
           title: "Exemplar",
-          tabBarLabel: "Exemplar",
-          tabBarIcon: ({ focused }) => <TabIcon name="layers" focused={focused} />,
+          tabBarButton: () => null,
+          tabBarItemStyle: { display: "none" },
         }}
       />
     </Tabs>
