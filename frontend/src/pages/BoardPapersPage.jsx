@@ -790,19 +790,20 @@ export default function BoardPapersPage({ user }) {
     return () => { cancelled = true; };
   }, [grade]);
 
+  // Load subjects + papers for every visible year (timeline shows all at once)
   useEffect(() => {
-    if (!expandedYear || subjectsByYear[expandedYear]) return;
-    listBoardPaperSubjects(grade, expandedYear)
-      .then((result) => {
-        setSubjectsByYear((prev) => ({ ...prev, [expandedYear]: result?.subjects || [] }));
-      })
-      .catch((err) => setError(err.message || "Could not load subjects"));
-    listBoardPapers({ grade, academicYear: expandedYear })
-      .then((result) => {
-        setPapersByYear((prev) => ({ ...prev, [expandedYear]: result?.papers || [] }));
-      })
-      .catch((err) => setError(err.message || "Could not load papers"));
-  }, [expandedYear, grade, subjectsByYear]);
+    if (!years.length) return;
+    years.forEach(({ year }) => {
+      if (subjectsByYear[year]) return;
+      listBoardPaperSubjects(grade, year)
+        .then((result) => setSubjectsByYear((prev) => ({ ...prev, [year]: result?.subjects || [] })))
+        .catch(() => {/* silently skip failed years */});
+      listBoardPapers({ grade, academicYear: year })
+        .then((result) => setPapersByYear((prev) => ({ ...prev, [year]: result?.papers || [] })))
+        .catch(() => {/* silently skip */});
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [years, grade]);
 
   function openPaper(paper) {
     setLoadingPaper(true);
@@ -933,73 +934,122 @@ export default function BoardPapersPage({ user }) {
         </div>
       )}
 
-      {years.map(({ year, locked: yearLocked }) => {
-        const isOpen = expandedYear === year;
-        const subjects = subjectsByYear[year] || [];
-        const papers = papersByYear[year] || [];
-        const paperBySubject = Object.fromEntries(papers.map((p) => [p.subject, p]));
-        return (
-          <div key={year} style={{ border: "1px solid var(--border, #d6ddeb)", borderRadius: 10, marginBottom: 10, overflow: "hidden", opacity: yearLocked ? 0.6 : 1 }}>
-            <button
-              type="button"
-              onClick={() => setExpandedYear(isOpen ? null : year)}
-              style={{
-                width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "var(--panel, #fff)", border: "none", padding: "12px 16px", cursor: "pointer",
-                fontSize: ".95rem", fontWeight: 700, color: "var(--text, #29324a)",
-              }}
-            >
-              <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      {/* ── Timeline ── */}
+      <div style={{ position: "relative" }}>
+        {years.map(({ year, locked: yearLocked }, idx) => {
+          const isLast = idx === years.length - 1;
+          const subjects = subjectsByYear[year] || [];
+          const papers = papersByYear[year] || [];
+          const paperBySubject = Object.fromEntries(papers.map((p) => [p.subject, p]));
+          const needsLoad = expandedYear !== year && !subjectsByYear[year];
+          // Eagerly load on render
+          if (!subjectsByYear[year] && !needsLoad) {/* already triggered */}
+          return (
+            <div key={year} style={{ display: "flex", gap: 0, opacity: yearLocked ? 0.55 : 1 }}>
+              {/* Left year label */}
+              <div style={{
+                width: 72, flexShrink: 0, textAlign: "right", paddingRight: 14,
+                paddingTop: 4, fontSize: ".78rem", fontWeight: 800,
+                color: "var(--accent, #7c3aed)", letterSpacing: ".02em",
+              }}>
                 {year}
-                {yearLocked && <Lock size={13} color="var(--muted, #64748b)" />}
-              </span>
-              {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-            </button>
-            {isOpen && (
-              <div style={{ padding: "0 16px 14px" }}>
-                {subjects.length === 0 && <p style={{ fontSize: ".85rem", color: "var(--muted, #64748b)" }}>Loading subjects…</p>}
-                {subjects.map(({ subject, locked: subjectLocked }) => {
-                  const paper = paperBySubject[subject];
-                  const label = paper?.subject_variant ? `${subject} — ${paper.subject_variant}` : subject;
-                  if (subjectLocked || !paper) {
+              </div>
+
+              {/* Spine */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 18, flexShrink: 0 }}>
+                <div style={{
+                  width: 12, height: 12, borderRadius: "50%", flexShrink: 0, marginTop: 3,
+                  background: yearLocked ? "var(--muted, #94a3b8)" : "#22c55e",
+                  border: "2px solid var(--bg, #fff)",
+                  boxShadow: yearLocked ? "none" : "0 0 0 3px rgba(34,197,94,0.18)",
+                }} />
+                {!isLast && (
+                  <div style={{ width: 2, flex: 1, minHeight: 24, background: "var(--border, #e5e7eb)", marginTop: 4 }} />
+                )}
+              </div>
+
+              {/* Content */}
+              <div style={{ flex: 1, paddingLeft: 14, paddingBottom: isLast ? 0 : 24 }}>
+                {/* Year header row */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+                  <span style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text, #29324a)" }}>{year}</span>
+                  {yearLocked && (
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".7rem",
+                      fontWeight: 700, color: "var(--muted, #64748b)",
+                      background: "var(--panel-soft, #f8f9fc)", border: "1px solid var(--border, #e5e7eb)",
+                      borderRadius: 999, padding: "2px 8px",
+                    }}>
+                      <Lock size={10} /> Locked
+                    </span>
+                  )}
+                  {subjects.length > 0 && !yearLocked && (
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".7rem",
+                      fontWeight: 700, color: "#15803d",
+                      background: "rgba(22,163,74,0.10)", border: "1px solid rgba(22,163,74,0.25)",
+                      borderRadius: 999, padding: "2px 9px",
+                    }}>
+                      ✓ {subjects.length} paper{subjects.length !== 1 ? "s" : ""}
+                    </span>
+                  )}
+                </div>
+
+                {/* Subject pills */}
+                {subjects.length === 0 && (
+                  <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: 0 }}>Loading…</p>
+                )}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {subjects.map(({ subject, locked: subjectLocked }) => {
+                    const paper = paperBySubject[subject];
+                    const label = paper?.subject_variant ? `${subject} — ${paper.subject_variant}` : subject;
+                    if (subjectLocked || !paper) {
+                      return (
+                        <span
+                          key={subject}
+                          title="Upgrade to unlock"
+                          style={{
+                            display: "inline-flex", alignItems: "center", gap: 4,
+                            fontSize: ".78rem", fontWeight: 600, padding: "4px 11px", borderRadius: 999,
+                            border: "1px dashed var(--border, #e5e7eb)",
+                            color: "var(--muted, #94a3b8)", cursor: "default",
+                          }}
+                        >
+                          <Lock size={9} /> {label}
+                        </span>
+                      );
+                    }
                     return (
-                      <div
+                      <button
                         key={subject}
+                        type="button"
+                        onClick={() => openPaper(paper)}
                         style={{
-                          display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%",
-                          background: "var(--panel-soft, #f8f9fc)", border: "1px dashed var(--border, #e5e7eb)",
-                          borderRadius: 8, padding: "10px 12px", marginTop: 8, fontSize: ".88rem",
-                          fontWeight: 600, color: "var(--muted, #64748b)",
+                          display: "inline-flex", alignItems: "center", gap: 0,
+                          fontSize: ".78rem", fontWeight: 700, padding: "4px 11px", borderRadius: 999,
+                          border: "1px solid rgba(22,163,74,0.35)",
+                          background: "rgba(22,163,74,0.08)", color: "#15803d",
+                          cursor: "pointer", transition: "all .15s",
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.background = "rgba(22,163,74,0.18)";
+                          e.currentTarget.style.borderColor = "#16a34a";
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.background = "rgba(22,163,94,0.08)";
+                          e.currentTarget.style.borderColor = "rgba(22,163,74,0.35)";
                         }}
                       >
-                        <span>{label}</span>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: ".76rem" }}>
-                          <Lock size={12} /> Upgrade to unlock
-                        </span>
-                      </div>
+                        {label}
+                      </button>
                     );
-                  }
-                  return (
-                    <button
-                      key={subject}
-                      type="button"
-                      onClick={() => openPaper(paper)}
-                      style={{
-                        display: "block", width: "100%", textAlign: "left", background: "var(--panel-soft, #f8f9fc)",
-                        border: "1px solid var(--border, #e5e7eb)", borderRadius: 8, padding: "10px 12px",
-                        marginTop: 8, cursor: "pointer", fontSize: ".88rem", fontWeight: 600,
-                        color: "var(--text, #29324a)",
-                      }}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
+                  })}
+                </div>
               </div>
-            )}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
