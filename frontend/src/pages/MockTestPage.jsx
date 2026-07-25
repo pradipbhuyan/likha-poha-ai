@@ -353,7 +353,7 @@ function MockTestPage({ user, setActivePage }) {
                       display: "flex", alignItems: "flex-start", gap: 10,
                       padding: "12px 14px", borderRadius: 12, cursor: "pointer",
                       border: selected ? "2px solid #6366f1" : "1.5px solid var(--border, #e5e7eb)",
-                      background: selected ? "rgba(99,102,241,0.08)" : "var(--surface, #ffffff)",
+                      background: selected ? "rgba(99,102,241,0.08)" : "var(--panel, #ffffff)",
                       textAlign: "left", fontFamily: "inherit", opacity: locked ? 0.72 : 1,
                       transition: "all 0.15s",
                       boxShadow: selected ? "0 0 0 3px rgba(99,102,241,0.15)" : "0 1px 4px rgba(0,0,0,0.06)",
@@ -429,7 +429,7 @@ function MockTestPage({ user, setActivePage }) {
                   onChange={e => setDurationMinutes(Math.min(180, Math.max(5, Number(e.target.value))))} />
               </label>
               <label>Negative Marks
-                <select value={negativeMarks} onChange={e => setNegativeMarks(Number(e.target.value))}>
+                <select value={negativeMarks} disabled={!negativeMarking} onChange={e => setNegativeMarks(Number(e.target.value))}>
                   <option value="0">0</option><option value="0.25">0.25</option>
                   <option value="0.5">0.5</option><option value="1">1</option>
                 </select>
