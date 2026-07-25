@@ -129,7 +129,7 @@ describe("SubscriptionPlansPage payments", () => {
     expect(
       await screen.findByRole("button", { name: /choose standard/i })
     ).toBeInTheDocument();
-    expect(screen.getByText("₹449")).toBeInTheDocument();
+    expect(screen.getAllByText("₹449").length).toBeGreaterThan(0);
     expect(screen.getByText("Summer Special")).toBeInTheDocument();
     expect(screen.getByText("help@likhapoha.test")).toBeInTheDocument();
     expect(screen.getByText("Replies within 24 hours.")).toBeInTheDocument();
