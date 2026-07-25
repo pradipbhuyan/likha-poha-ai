@@ -1636,6 +1636,33 @@ export default function ExamPrepPage({ user, setActivePage }) {
   // CUET: stores the subjects the student selected in CUETTestSetup
   const [cuetSelectedSubjects, setCuetSelectedSubjects] = useState([]);
 
+  // Study-sequence phase tracker — a lightweight local breadcrumb (not backend
+  // progress) so "Read NCERT" / "Note Key Concepts" / "Full Test Simulation"
+  // can show as visited once the student has opened that phase's destination
+  // for this exam. Practice uses real dashboard data already loaded below.
+  // simHistory is intentionally not used here — it's only fetched once the
+  // student opens the Cutoff Oracle tab, so it's empty by default on this
+  // tab and would misreport Phase 5 as never done.
+  const [visitedNcert, setVisitedNcert] = useState(false);
+  const [visitedReference, setVisitedReference] = useState(false);
+  const [visitedSimTest, setVisitedSimTest] = useState(false);
+
+  useEffect(() => {
+    try {
+      setVisitedNcert(localStorage.getItem(`examPrepVisited:${selectedExam}:ncert`) === "true");
+      setVisitedReference(localStorage.getItem(`examPrepVisited:${selectedExam}:reference`) === "true");
+      setVisitedSimTest(localStorage.getItem(`examPrepVisited:${selectedExam}:simtest`) === "true");
+    } catch {
+      setVisitedNcert(false);
+      setVisitedReference(false);
+      setVisitedSimTest(false);
+    }
+  }, [selectedExam]);
+
+  function markPhaseVisited(key) {
+    try { localStorage.setItem(`examPrepVisited:${selectedExam}:${key}`, "true"); } catch { /* non-critical */ }
+  }
+
   // Sim test history for Cutoff Oracle
   const [simHistory, setSimHistory] = useState([]);
   const [simHistoryLoading, setSimHistoryLoading] = useState(false);
@@ -2556,13 +2583,21 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             phase: "Phase 1", icon: "📘", label: "Read NCERT",
                             desc: "Cover all theory, definitions, and solved examples from your textbook",
                             color: "#6366f1", actionLabel: "Open Lessons →",
-                            onClick: () => setActivePage && setActivePage("lessons"),
+                            done: visitedNcert,
+                            onClick: () => {
+                              markPhaseVisited("ncert");
+                              setVisitedNcert(true);
+                              setActivePage && setActivePage("lessons");
+                            },
                           },
                           {
                             phase: "Phase 2", icon: "📝", label: "Note Key Concepts",
                             desc: "Formulas, constants, mnemonics and exam traps — your personalised revision notebook",
                             color: "#8b5cf6", actionLabel: "Open Quick Reference →",
+                            done: visitedReference,
                             onClick: () => {
+                              markPhaseVisited("reference");
+                              setVisitedReference(true);
                               const examRef = QUICK_REFERENCE[selectedExam];
                               if (examRef) setRefSubject(examRef.subjects?.[0] || "");
                               setActiveMode("reference");
@@ -2572,6 +2607,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             phase: "Phase 3", icon: "⚡", label: "Practice Questions",
                             desc: "Use the Practice tab — work chapter-wise from easy to hard",
                             color: "#10b981", actionLabel: "Go to Practice →",
+                            done: (dashboard?.questions_attempted ?? 0) > 0,
                             onClick: () => { setSelectedSubject(subj.name); setActiveMode("practice"); handleSelectSubject(subj.name); },
                           },
                           {
@@ -2581,6 +2617,7 @@ export default function ExamPrepPage({ user, setActivePage }) {
                               : "Your weak topics will appear here as you practise — review incorrect answers and re-read those NCERT sections.",
                             color: "#f59e0b",
                             actionLabel: weakTopics.length > 0 ? `Revise ${weakTopics.length} topic${weakTopics.length > 1 ? "s" : ""} →` : null,
+                            done: false, // no persisted "revision complete" signal — only ever current/upcoming
                             onClick: weakTopics.length > 0
                               ? () => {
                                   setSelectedSubject(subj.name);
@@ -2599,37 +2636,87 @@ export default function ExamPrepPage({ user, setActivePage }) {
                             phase: "Phase 5", icon: "📊", label: "Full Test Simulation",
                             desc: "Take the Simulated Test to gauge readiness under timed conditions",
                             color: "#ef4444", actionLabel: "Start Simulation →",
-                            onClick: () => setActiveMode("test"),
+                            done: visitedSimTest,
+                            onClick: () => {
+                              markPhaseVisited("simtest");
+                              setVisitedSimTest(true);
+                              setActiveMode("test");
+                            },
                           },
                         ];
 
+                        // Sequential status: a phase with its own "done" signal is
+                        // done; otherwise the first not-yet-done phase is "current"
+                        // and everything after it is "upcoming". No exam-prep
+                        // calculation is read from or written to here.
+                        let currentAssigned = false;
+                        phases.forEach(p => {
+                          if (p.done) {
+                            p.status = "done";
+                          } else if (!currentAssigned) {
+                            p.status = "current";
+                            currentAssigned = true;
+                          } else {
+                            p.status = "upcoming";
+                          }
+                        });
+
+                        const statusChip = {
+                          done: { label: "✓ Done", bg: "rgba(16,185,129,.15)", fg: "#059669" },
+                          upcoming: { label: "Upcoming", bg: "var(--panel-soft, rgba(148,163,184,.12))", fg: "var(--muted,#64748b)" },
+                        };
+
                         return (
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
-                            {phases.map(p => (
-                              <div key={p.phase}
-                                onClick={p.onClick || undefined}
-                                style={{ background: `${p.color}08`, border: `1px solid ${p.color}25`, borderRadius: 10, padding: "12px 14px", cursor: p.onClick ? "pointer" : "default", transition: "all .12s" }}
-                                onMouseEnter={p.onClick ? e => { e.currentTarget.style.background = `${p.color}14`; e.currentTarget.style.borderColor = `${p.color}50`; } : undefined}
-                                onMouseLeave={p.onClick ? e => { e.currentTarget.style.background = `${p.color}08`; e.currentTarget.style.borderColor = `${p.color}25`; } : undefined}
-                              >
-                                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                                  <span style={{ fontSize: "1.1rem" }}>{p.icon}</span>
-                                  <div>
-                                    <div style={{ fontSize: ".6rem", fontWeight: 700, color: p.color, textTransform: "uppercase", letterSpacing: ".05em" }}>{p.phase}</div>
-                                    <div style={{ fontSize: ".78rem", fontWeight: 700 }}>{p.label}</div>
+                            {phases.map(p => {
+                              const isCurrent = p.status === "current";
+                              const isDone = p.status === "done";
+                              const isUpcoming = p.status === "upcoming";
+                              const chip = isDone
+                                ? statusChip.done
+                                : isCurrent
+                                  ? { label: "● Current", bg: `${p.color}22`, fg: p.color }
+                                  : statusChip.upcoming;
+
+                              return (
+                                <div key={p.phase}
+                                  onClick={p.onClick || undefined}
+                                  style={{
+                                    background: isCurrent ? `${p.color}14` : `${p.color}08`,
+                                    border: isCurrent ? `2px solid ${p.color}` : isUpcoming ? `1px dashed ${p.color}30` : `1px solid ${p.color}25`,
+                                    borderRadius: 10,
+                                    padding: "12px 14px",
+                                    cursor: p.onClick ? "pointer" : "default",
+                                    opacity: isDone || isUpcoming ? 0.82 : 1,
+                                    transition: "all .12s",
+                                  }}
+                                  onMouseEnter={p.onClick ? e => { e.currentTarget.style.background = `${p.color}14`; e.currentTarget.style.borderColor = `${p.color}50`; } : undefined}
+                                  onMouseLeave={p.onClick ? e => { e.currentTarget.style.background = isCurrent ? `${p.color}14` : `${p.color}08`; e.currentTarget.style.borderColor = isCurrent ? p.color : `${p.color}25`; } : undefined}
+                                >
+                                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
+                                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                                      <span style={{ fontSize: "1.1rem" }}>{p.icon}</span>
+                                      <div>
+                                        <div style={{ fontSize: ".6rem", fontWeight: 700, color: p.color, textTransform: "uppercase", letterSpacing: ".05em" }}>{p.phase}</div>
+                                        <div style={{ fontSize: ".78rem", fontWeight: 700 }}>{p.label}</div>
+                                      </div>
+                                    </div>
+                                    <span style={{ fontSize: ".6rem", fontWeight: 700, padding: "2px 7px", borderRadius: 20, whiteSpace: "nowrap", background: chip.bg, color: chip.fg }}>
+                                      {chip.label}
+                                    </span>
                                   </div>
+                                  <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", lineHeight: 1.5, marginBottom: p.actionLabel ? 8 : 0 }}>{p.desc}</div>
+                                  {p.actionLabel && (
+                                    <div style={{ fontSize: ".65rem", color: p.color, fontWeight: 700, marginTop: 4 }}>{p.actionLabel}</div>
+                                  )}
+                                  {p.phase === "Phase 4" && weakTopics.length === 0 && (
+                                    <div style={{ fontSize: ".6rem", color: "var(--muted,#475569)", marginTop: 6, fontStyle: "italic" }}>
+                                      🕐 Builds as you study
+                                    </div>
+                                  )}
                                 </div>
-                                <div style={{ fontSize: ".68rem", color: "var(--muted,#64748b)", lineHeight: 1.5, marginBottom: p.actionLabel ? 8 : 0 }}>{p.desc}</div>
-                                {p.actionLabel && (
-                                  <div style={{ fontSize: ".65rem", color: p.color, fontWeight: 700, marginTop: 4 }}>{p.actionLabel}</div>
-                                )}
-                                {p.phase === "Phase 4" && weakTopics.length === 0 && (
-                                  <div style={{ fontSize: ".6rem", color: "var(--muted,#475569)", marginTop: 6, fontStyle: "italic" }}>
-                                    🕐 Builds as you study
-                                  </div>
-                                )}
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         );
                       })()}
