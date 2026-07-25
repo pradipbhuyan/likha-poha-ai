@@ -86,9 +86,9 @@ export const SUBSCRIPTION_PLANS = {
   },
 
   // ── PREMIUM NANO ──────────────────────────────────────────────────────────
-  // Paid plan: ₹99 / 8 days. Full platform access, time-limited.
-  // DB key is "free" for legacy reasons (subscription_plan = "free" in profiles).
-  // Distinguished from free_tier by: access_cbse=true + subscription_expires_at set.
+  // Legacy plan — no longer sold. DB key "free" is kept so existing users
+  // who have subscription_plan = "free" still get correct access resolution.
+  // isPublic: false hides it from all plan cards and comparison tables.
   free: {
     key: "free",
     label: "Premium Nano",
@@ -101,7 +101,7 @@ export const SUBSCRIPTION_PLANS = {
     recommended: false,
     discountPercent: 0,
     discountLabel: "",
-    isPublic: true,
+    isPublic: false,
     displayOrder: 1,
     accessLevel: ACCESS_LEVEL.FULL,
     access_cbse: true,
@@ -158,9 +158,11 @@ export const SUBSCRIPTION_PLANS = {
     daily_token_limit: 100000,
     monthly_token_limit: 3000000,
     included: [
-      "Everything in Premium Nano",
+      "All CBSE subjects · All grades",
+      "Unlimited AI lessons, doubts & mock tests",
       "Continuous monthly access",
-      "Unlimited learning within fair usage policy",
+      "Exemplar Research & Lessons",
+      "Parent dashboard + alerts",
       "Priority support",
     ],
     notIncluded: [],
@@ -427,14 +429,12 @@ export const SUBSCRIPTION_PLANS = {
  */
 export const COMPARISON_PLAN_ORDER = [
   "free_tier",
-  "free",
   "starter",
   "family_premium",
 ];
 
 /** Public plan cards shown in the subscription page (purchasable plans only). */
 export const SUBSCRIPTION_PLAN_ORDER = [
-  "free",
   "starter",
   "standard_6month",
   "standard_annual",
@@ -443,7 +443,6 @@ export const SUBSCRIPTION_PLAN_ORDER = [
 ];
 
 export const PARENT_PLAN_ORDER = [
-  "free",
   "starter",
   "standard_6month",
   "standard_annual",

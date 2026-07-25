@@ -613,7 +613,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
         ? { has_offer_access: false, valid_until: null, days_remaining: 0, expiring_soon: false, expired_on: user.offerExpiredOn }
         : null
   );
-  const [selectedPlanKey, setSelectedPlanKey] = useState("premium");
+  const [selectedPlanKey, setSelectedPlanKey] = useState("starter");
   const [plans, setPlans] = useState(SUBSCRIPTION_PLANS);
   const [contact, setContact] = useState(DEFAULT_SUBSCRIPTION_CONTACT);
   const [planOrder, setPlanOrder] = useState(
