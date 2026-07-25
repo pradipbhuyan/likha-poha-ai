@@ -572,7 +572,7 @@ Important:
       >
         <aside className="premium-section premium-doubt-context" style={{ display: "none" }}>
           <div className="premium-header">
-            <p className="eyebrow">Mentor Context</p>
+            <p className="eyebrow">AI Tutor Context</p>
             <h3><Target size={18} strokeWidth={2.4} /> Choose Learning Level</h3>
             <p>
               Ask Doubt is open-topic, but access is restricted by your enabled
@@ -692,7 +692,7 @@ Important:
                 <p>Ask any concept, homework, or textbook doubt.</p>
               </div>
 
-              <span className="composer-badge">Open Mentor</span>
+              <span className="composer-badge">AI Tutor</span>
             </div>
 
             <textarea
@@ -804,9 +804,9 @@ Important:
             <section className="premium-section premium-doubt-empty">
               <div className="premium-header">
                 <p className="eyebrow">Ready to help</p>
-                <h3>Ask any doubt in open mentor mode</h3>
+                <h3>Ask any doubt, anytime</h3>
                 <p>
-                  Your AI mentor can simplify concepts, solve problems, explain
+                  Your AI Tutor can simplify concepts, solve problems, explain
                   diagrams, and connect your question to textbook content when
                   available.
                 </p>

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   BarChart3,
   BookOpen,
@@ -69,6 +69,21 @@ function Sidebar({
   const fileRef = useRef(null);
   const cameraRef = useRef(null);
 
+  // Mobile nav drawer: block page scroll behind it and let Escape close it.
+  useEffect(() => {
+    if (!mobileNavOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setMobileNavOpen(false);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileNavOpen, setMobileNavOpen]);
+
   async function saveAvatar(newAvatar) {
     setAvatar(newAvatar);
     setShowAvatarPicker(false);
@@ -92,6 +107,7 @@ function Sidebar({
       icon: Home,
       roles: ["student", "admin"],
       hideForAdmin: true,
+      group: "Home",
     },
         {
       key: "adminIssues",
@@ -292,6 +308,7 @@ function Sidebar({
       icon: BookOpen,
       roles: ["student", "admin"],
       hideForAdmin: true,
+      group: "Learn",
     },
     {
       key: "doubt",
@@ -299,6 +316,7 @@ function Sidebar({
       icon: HelpCircle,
       roles: ["student", "admin"],
       hideForAdmin: true,
+      group: "Learn",
     },
     {
       key: "mockTest",
@@ -306,28 +324,7 @@ function Sidebar({
       icon: ClipboardList,
       roles: ["student", "admin"],
       hideForAdmin: true,
-    },
-    {
-      key: "formulaSheet",
-      label: "Formulas & Concepts",
-      icon: Calculator,
-      roles: ["student"],
-      hideForAdmin: true,
-    },
-    {
-      key: "exemplarResearch",
-      label: "Exemplar Research",
-      icon: Sparkles,
-      roles: ["student", "teacher"],
-      gradeFilter: ["Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"],
-      hideForAdmin: true,
-    },
-    {
-      key: "resources",
-      label: "Learn More",
-      icon: Video,
-      roles: ["student", "admin"],
-      hideForAdmin: true,
+      group: "Practise & Prepare",
     },
     {
       key: "examPrep",
@@ -336,6 +333,7 @@ function Sidebar({
       roles: ["admin", "student"],
       gradeFilter: ["Grade 11", "Grade 12"],
       testUsers: ["akshita.teststudent"],
+      group: "Practise & Prepare",
     },
     {
       key: "boardPapers",
@@ -344,6 +342,32 @@ function Sidebar({
       roles: ["student", "admin"],
       gradeFilter: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       hideForAdmin: true,
+      group: "Practise & Prepare",
+    },
+    {
+      key: "formulaSheet",
+      label: "Formulas & Concepts",
+      icon: Calculator,
+      roles: ["student"],
+      hideForAdmin: true,
+      group: "Revision Tools",
+    },
+    {
+      key: "exemplarResearch",
+      label: "Exemplar Research",
+      icon: Sparkles,
+      roles: ["student", "teacher"],
+      gradeFilter: ["Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"],
+      hideForAdmin: true,
+      group: "Revision Tools",
+    },
+    {
+      key: "resources",
+      label: "Learn More",
+      icon: Video,
+      roles: ["student", "admin"],
+      hideForAdmin: true,
+      group: "Revision Tools",
     },
     {
       key: "analytics",
@@ -351,12 +375,14 @@ function Sidebar({
       icon: BarChart3,
       roles: ["student", "admin"],
       hideForAdmin: true,
+      group: "Progress",
     },
     {
       key: "leaderboard",
       label: "Leaderboard",
       icon: Trophy,
       roles: ["student", "admin"],
+      group: "Progress",
     },
     {
       key: "parentDashboard",
@@ -370,18 +396,21 @@ function Sidebar({
       label: "Platform Walkthrough",
       icon: Video,
       roles: ["student", "parent", "teacher", "sales"],
+      group: "Help & Account",
     },
     {
       key: "subscriptionPlans",
       label: "Subscription",
       icon: CreditCard,
       roles: ["student", "parent", "teacher"],
+      group: "Help & Account",
     },
     {
       key: "changePassword",
       label: "Change Password",
       icon: KeyRound,
       roles: ["student", "parent", "teacher", "admin", "sales"],
+      group: "Help & Account",
     },
   ];
 
@@ -399,6 +428,14 @@ function Sidebar({
   });
 
   return (
+    <>
+    {mobileNavOpen && (
+      <div
+        className="mobile-nav-backdrop"
+        aria-hidden="true"
+        onClick={() => setMobileNavOpen(false)}
+      />
+    )}
     <aside
       className={
         mobileNavOpen
@@ -408,6 +445,7 @@ function Sidebar({
     >
       <button
         className="mobile-close-btn"
+        aria-label="Close navigation menu"
         onClick={() => setMobileNavOpen(false)}
       >
         ✕
@@ -441,7 +479,7 @@ function Sidebar({
           )}
         </div>
 
-        <div>
+        <div className="user-card-info">
           <strong>{user?.username}</strong>
           <span>{user?.role}</span>
         </div>
@@ -544,24 +582,41 @@ function Sidebar({
         </div>
       )}
 
-      <nav className="sidebar-nav">
-        {visiblePages.map((page) => {
-          const Icon = page.icon;
+      <nav className="sidebar-nav" aria-label="Main navigation">
+        {(() => {
+          // Group labels are a student-only affordance — other roles (admin,
+          // teacher, sales, parent) keep the flat list they already rely on.
+          const showGroups = user?.role === "student";
+          let lastGroup = null;
 
-          return (
-            <button
-              key={page.key}
-              className={activePage === page.key ? "active" : ""}
-              onClick={() => setActivePage(page.key)}
-            >
-              <span className="nav-icon">
-                <Icon size={19} strokeWidth={2.4} />
-              </span>
+          return visiblePages.map((page) => {
+            const Icon = page.icon;
+            const showGroupLabel = showGroups && page.group && page.group !== lastGroup;
+            lastGroup = page.group;
 
-              <span>{page.label}</span>
-            </button>
-          );
-        })}
+            return (
+              <div key={page.key} className="sidebar-nav-item">
+                {showGroupLabel && (
+                  <p className="sidebar-group-label">{page.group}</p>
+                )}
+                <button
+                  className={activePage === page.key ? "active" : ""}
+                  aria-current={activePage === page.key ? "page" : undefined}
+                  onClick={() => {
+                    setActivePage(page.key);
+                    setMobileNavOpen(false);
+                  }}
+                >
+                  <span className="nav-icon">
+                    <Icon size={19} strokeWidth={2.4} />
+                  </span>
+
+                  <span>{page.label}</span>
+                </button>
+              </div>
+            );
+          });
+        })()}
       </nav>
 
       <div className="sidebar-footer">
@@ -571,6 +626,7 @@ function Sidebar({
         </button>
       </div>
     </aside>
+    </>
   );
 }
 

@@ -1733,6 +1733,7 @@ function App() {
         <header className="topbar">
           <button
             className="mobile-menu-btn"
+            aria-label="Open navigation menu"
             onClick={() => setMobileNavOpen(true)}
           >
             ☰

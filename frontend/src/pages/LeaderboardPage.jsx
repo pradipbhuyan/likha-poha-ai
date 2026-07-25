@@ -17,7 +17,7 @@ function getRankName(index) {
   return "Learner";
 }
 
-function LeaderboardPage() {
+function LeaderboardPage({ user }) {
   /** Shows ranked student mock-test performance with podium and full ranking views. */
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -77,7 +77,7 @@ function LeaderboardPage() {
             {topThree.map((item, index) => (
               <div
                 key={item.username}
-                className={`podium-card premium-podium-card rank-${index + 1}`}
+                className={`podium-card premium-podium-card rank-${index + 1}${item.username === user?.username ? " premium-podium-card-you" : ""}`}
               >
                 <div className="podium-medal">{getMedal(index)}</div>
 
@@ -87,7 +87,7 @@ function LeaderboardPage() {
 
                 <p className="premium-rank-name">{getRankName(index)}</p>
 
-                <h3>{item.username}</h3>
+                <h3>{item.username}{item.username === user?.username && " (You)"}</h3>
 
                 <p className="leader-score">{item.average_score}%</p>
                 <span>Average Score</span>
@@ -103,12 +103,18 @@ function LeaderboardPage() {
           <section className="premium-section leaderboard-list premium-leaderboard-list">
             <div className="premium-header">
               <h3>🏁 Full Rankings</h3>
-              <p>Ranked by average score across completed mock tests.</p>
+              <p>
+                Ranked by average score across completed mock tests — the number
+                of tests taken isn't weighted, so compare it alongside the score.
+              </p>
             </div>
 
             <div className="premium-leaderboard-rows">
               {leaderboard.map((item, index) => (
-                <div key={item.username} className="leaderboard-row premium-leaderboard-row">
+                <div
+                  key={item.username}
+                  className={`leaderboard-row premium-leaderboard-row${item.username === user?.username ? " premium-leaderboard-row-you" : ""}`}
+                >
                   <div className="leader-rank">{getMedal(index)}</div>
 
                   <div className="leader-avatar small premium-leader-avatar small">
@@ -116,7 +122,7 @@ function LeaderboardPage() {
                   </div>
 
                   <div className="leader-main">
-                    <strong>{item.username}</strong>
+                    <strong>{item.username}{item.username === user?.username && " (You)"}</strong>
                     <span>{item.tests} tests taken</span>
                   </div>
 

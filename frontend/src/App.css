@@ -24,6 +24,19 @@
   box-sizing: border-box;
 }
 
+/* Visually hides text while keeping it available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -675,9 +688,17 @@ textarea:focus {
   font-weight: 900;
 }
 
+.user-card-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .user-card strong {
   display: block;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-card span {
@@ -729,6 +750,31 @@ textarea:focus {
 
 .sidebar-nav button.active .nav-icon {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-group-label {
+  margin: 10px 14px 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.75);
+  pointer-events: none;
+}
+
+.sidebar-nav-item:first-child .sidebar-group-label {
+  margin-top: 0;
+}
+
+.sidebar-nav button:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
 }
 
 .sidebar-footer {
@@ -2566,6 +2612,12 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   background: #ffffff;
 }
 
+.premium-podium-card-you,
+.premium-leaderboard-row-you {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
+}
+
 .leader-rank {
   font-size: 24px;
   font-weight: 900;
@@ -2662,6 +2714,18 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   .topbar {
     align-items: flex-start;
   }
+
+  .mobile-nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    z-index: 998;
+  }
+}
+
+.mobile-nav-backdrop {
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -4363,7 +4427,7 @@ body.dark-mode .login-logo {
 }
 
 .change-password-card {
-  max-width: 760px;
+  max-width: 460px;
 }
 
 .change-password-card .form-grid {
@@ -4374,6 +4438,31 @@ body.dark-mode .login-logo {
 .change-password-card .primary-btn {
   width: fit-content;
   min-width: 220px;
+}
+
+.change-password-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.change-password-field input {
+  flex: 1;
+}
+
+.change-password-toggle {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+.change-password-toggle:hover {
+  color: var(--text);
 }
 
 .ait-signin-btn {
