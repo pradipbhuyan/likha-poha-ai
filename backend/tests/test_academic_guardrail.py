@@ -48,6 +48,15 @@ BLOCKED_QUESTIONS = [
     "who is BJp president",
     "who won world cup",
     "current president of usa",
+    # Sports team leadership — bug ac003dfb-b926-4b52-818b-84ef5626b71a
+    "who is the captain of the Indian cricket team",
+    "who is captain of Indian cricket team",
+    "who is the current captain of the Indian cricket team",
+    "who is the vice captain of the Indian cricket team",
+    "who is the coach of the Indian cricket team",
+    "who is the captain of India",
+    "india's cricket captain",
+    "current cricket captain",
 ]
 
 # ── Questions that SHOULD pass through (academic / CBSE curriculum) ───────────

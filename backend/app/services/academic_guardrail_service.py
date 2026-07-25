@@ -9,6 +9,7 @@ Covers:
   • Election results and political parties
   • Current affairs / breaking news / "today's" queries
   • Live sports scores, match results, tournament winners
+  • Current sports team roles (captain, vice-captain, coach)
   • Stock market / share prices / crypto
   • Celebrity / entertainment gossip
   • Any question explicitly asking for "current", "latest", or "today"
@@ -96,6 +97,32 @@ _CURRENT_OFFICE_PHRASES: list[tuple[re.Pattern, str]] = [
         r"(\s+in\s+\w+)?\s*(right\s+now|today|currently|now)?)\b",
         re.I,
     ), "celebrity ranking"),
+
+    # "who is the captain/coach of the Indian cricket team" — sports roles
+    # change constantly and are not CBSE curriculum content.
+    (re.compile(
+        r"\bwho\s+is\s+(the\s+)?(current\s+)?"
+        r"(captain|vice[-\s]?captain|coach|head\s+coach|wicket[-\s]?keeper)"
+        r"\s+of\s+(the\s+)?"
+        r"((indian?|india[''']?s?|national)\s*(cricket|football|hockey|kabaddi)?"
+        r"|(cricket|football|hockey|kabaddi))\s*team\b",
+        re.I,
+    ), "sports team leadership"),
+
+    # "who is the captain of India" (no trailing "team")
+    (re.compile(
+        r"\bwho\s+is\s+(the\s+)?(current\s+)?(captain|vice[-\s]?captain)\s+"
+        r"of\s+(indian?|india)\b",
+        re.I,
+    ), "sports team leadership"),
+
+    # "India's cricket captain / current cricket captain"
+    (re.compile(
+        r"\b((indian?|india[''']?s?)\s+(cricket|football|hockey|kabaddi)\s+"
+        r"(captain|vice[-\s]?captain|coach)|"
+        r"(current|present)\s+(cricket|football|hockey|kabaddi)\s+captain)\b",
+        re.I,
+    ), "sports team leadership"),
 ]
 
 # Standalone high-confidence non-academic terms (exact phrase match)
