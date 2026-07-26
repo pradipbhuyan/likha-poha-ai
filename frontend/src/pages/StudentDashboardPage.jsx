@@ -132,7 +132,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
 
       setData({
         success:true,
-        student:{username:profile.username||user.username,grade:profile.grade||user.grade||"Grade 9",study_streak_days:profile.study_streak_days||0,lessons_completed:profile.lessons_completed||0},
+        student:{username:profile.username||user.username,grade:profile.grade||user.grade||"Grade 9",study_streak_days:profile.study_streak_days||0,lessons_completed:profile.lessons_completed||0,xp_points:profile.xp_points||0,student_level:profile.student_level||1,rank_title:profile.rank_title||"Beginner"},
         subscription:{canonical_plan_key:user.accessCbse?"PREMIUM":"FREE_TIER",has_full_access:!!user.accessCbse},
         features:{has_full_access:!!user.accessCbse,exemplar_locked:!user.accessCbse,mock_test_limited:!user.accessCbse},
         mock_tests:{available:hist.length>0,total:hist.length,average_score:avg,best_score:scores.length?Math.max(...scores):null,subject_averages:subjAvgs,recent:hist.slice(0,5).map(r=>({subject:r.subject,chapter:r.chapter||"",score:safePct(r.percentage),date:(r.created_at||"").substring(0,10)})),score_trend:[]},
@@ -279,9 +279,10 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {icon:"🎯",val:(plan.estimated_minutes||0)>0?(plan.estimated_minutes+" min"):"—",label:"Today's Goal",sub:"Estimated study time",col:"#22c55e"},
           {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"In progress",col:"#6366f1"},
           {icon:"📅",val:exams.length>0?(exams[0].days_until+"d"):"—",label:"Next Exam",sub:exams.length>0?(exams[0].subject||exams[0].title||"Scheduled"):"Not scheduled",col:exams.length>0&&exams[0].days_until<=7?"#ef4444":"#94a3b8"},
-          // XP Points removed — it was an arbitrary client-side formula with no
-          // backend concept behind it (tests*50 + chapters*100). Hidden until
-          // there's a real XP system to show, per product decision.
+          // Real XP from student_profiles.xp_points (server-side, earned via
+          // logStudentActivity on lessons/quizzes/mock tests) — replaces the
+          // old arbitrary client-side formula that was hidden entirely.
+          {icon:"⭐",val:s.xp_points||0,label:`Level ${s.student_level||1} XP`,sub:s.rank_title||"Beginner",col:"#f59e0b"},
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:"1.5rem",flexShrink:0}}>{it.icon}</span>

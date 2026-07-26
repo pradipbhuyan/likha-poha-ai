@@ -9,7 +9,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 vi.mock("../api/analytics", () => ({
   getStudentDashboardSummary: vi.fn(async () => ({
     success: true,
-    student: { username: "akshita.teststudent", grade: "Grade 9", study_streak_days: 5, lessons_completed: 12 },
+    student: { username: "akshita.teststudent", grade: "Grade 9", study_streak_days: 5, lessons_completed: 12, xp_points: 325, student_level: 4, rank_title: "Active Learner" },
     subscription: { canonical_plan_key: "FREE_TIER", plan_name: "Free Tier", has_full_access: false },
     features: { has_full_access: false, exemplar_locked: true, mock_test_limited: true, ask_doubts_limited: true },
     mock_tests: {
@@ -99,10 +99,13 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("Next Exam");
   });
 
-  test("does not render an XP Points tile — no backend concept of XP exists yet", async () => {
+  test("renders real XP from student.xp_points/student_level/rank_title, not a fabricated formula", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("student-quick-stats")).toBeInTheDocument();
-    expect(document.body.textContent).not.toContain("XP Points");
+    const bt = document.body.textContent;
+    expect(bt).toContain("325"); // real xp_points from the mocked summary
+    expect(bt).toContain("Level 4 XP");
+    expect(bt).toContain("Active Learner");
   });
 
   test("renders Up Next card, prioritizing in-progress lesson over recommendations", async () => {

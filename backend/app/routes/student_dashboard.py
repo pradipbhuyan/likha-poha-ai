@@ -29,6 +29,7 @@ from fastapi import APIRouter, Depends
 from app.services.auth_service import require_student, admin_client
 from app.services.subscription_resolver_service import resolve_user_subscription
 from app.services.feature_authorization_service import get_feature_summary, Feature
+from app.services.profile_service import get_student_profile
 from app.routes.parent_dashboard import _safe_query, _normalize_score_pct
 
 router = APIRouter()
@@ -48,6 +49,13 @@ def get_student_dashboard_summary(student=Depends(require_student)):
     profile = student["profile"]
     uid = profile["id"]
     username = profile.get("username", "")
+
+    # Gamified profile (streak, lessons_completed, XP, level, rank) lives in
+    # student_profiles, a different table from the auth `profiles` row above
+    # — profile.get("study_streak_days"/"lessons_completed") was always
+    # falling back to its default here since those columns were never
+    # selected from that table.
+    gamified_profile = get_student_profile(username) or {}
 
     # ── Subscription / Feature access ────────────────────────────────────────
     sub = resolve_user_subscription(uid)
@@ -157,8 +165,11 @@ def get_student_dashboard_summary(student=Depends(require_student)):
 
     # ── Achievements (computed) ───────────────────────────────────────────────
     achievements = []
-    study_streak = profile.get("study_streak_days", 0) or 0
-    lessons_completed = profile.get("lessons_completed", 0) or len(completed_ch)
+    study_streak = gamified_profile.get("study_streak_days", 0) or 0
+    lessons_completed = gamified_profile.get("lessons_completed", 0) or len(completed_ch)
+    xp_points = gamified_profile.get("xp_points", 0) or 0
+    student_level = gamified_profile.get("student_level", 1) or 1
+    rank_title = gamified_profile.get("rank_title") or "Beginner"
 
     if study_streak > 0:
         achievements.append({"type":"streak","title":f"{study_streak} Day Streak","icon":"🔥","value":study_streak})
@@ -207,6 +218,9 @@ def get_student_dashboard_summary(student=Depends(require_student)):
             "avatar": profile.get("avatar", ""),
             "study_streak_days": study_streak,
             "lessons_completed": lessons_completed,
+            "xp_points": xp_points,
+            "student_level": student_level,
+            "rank_title": rank_title,
         },
         "subscription": {
             "canonical_plan_key": cpk,

@@ -30,7 +30,7 @@
 /* Quick stats row */
 .sd-quick-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sd-gap);
   margin-bottom: var(--sd-gap);
 }
