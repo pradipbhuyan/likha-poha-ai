@@ -253,10 +253,17 @@ describe("markdownCleanup", () => {
     // — the $$ before the period is a doubled closing delimiter typo.
     // remark-math parsed the formula correctly but left "\text{m/s}$$."
     // as visible literal text with dollar signs.
-    const input = "The formula: $v = d/t$ \\text{m/s}$$.";
-    const result = normalizeTutorMarkdown(input);
-    expect(result).not.toMatch(/\$\$\./);
-    expect(result).not.toMatch(/\$\$[.,;:!?]/);
+    // The line starts with $ (inline math), so the old [^\s$] guard excluded it —
+    // fixed by using (?!\$\$) which only excludes lines starting with $$ (display blocks).
+    const inputs = [
+      "$v = d/t$ \\text{m/s}$$.",                    // line starts with $  ← was excluded by old guard
+      "The formula $v = d/t$ \\text{m/s}$$.",        // line starts with prose
+      "$v_{\\text{avg}} = \\frac{d}{t}$$.",          // dollar-sign formula with trailing $$
+    ];
+    for (const input of inputs) {
+      const result = normalizeTutorMarkdown(input);
+      expect(result).not.toMatch(/\$\$[.,;:!?]/);
+    }
   });
 
   test("full pipeline resolves three adjacent spans from kinematics expansion (local regression)", () => {

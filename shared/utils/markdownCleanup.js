@@ -620,22 +620,18 @@ function normalizeInlineDisplayMath(text) {
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
       return _m;
     })
-    // Step 3: trailing $$ at end of line with non-$ non-whitespace content before.
-    //   "at^2$$"  →  "at^2"   (dangling closing $$ with nothing after)
-    //   "x = ...$$ "  →  "x = ..."
-    //   Lines starting with $ ($$eq$$ display blocks) are intentionally excluded
-    //   so that valid single-line display math like $$v = v_0 + at$$ is preserved.
-    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd())
-    // Step 3b: $$ immediately before sentence punctuation at end of line.
-    //   "$formula$ \text{m/s}$$."  →  "$formula$ \text{m/s}."
-    // The LLM sometimes doubles the closing $ delimiter accidentally (writes $$
-    // instead of $ or nothing). This is distinct from a legitimate $$eq$$ display
-    // block — those are always on a line where $$ appears first, which Step 3b
-    // catches only when there is non-$ content BEFORE the stray $$. Lines that
-    // start with $ (like $$eq$$.) are excluded by [^\s$] so display blocks
-    // immediately followed by punctuation (which render fine) are left alone.
-    .replace(/^(\s*[^\s$][^\n]*?)\$\$([.,;:!?]\s*)$/gm, (_m, before, punct) =>
-      before.trimEnd() + punct.trim());
+    // Step 3: trailing $$ (plain or before sentence punctuation) at end of line.
+    //   "at^2$$"              →  "at^2"
+    //   "x = ...$$ "          →  "x = ..."
+    //   "$formula$ text$$."   →  "$formula$ text."
+    //
+    // Guard: lines that START with $$ are display-math blocks ($$eq$$) and must
+    // not be touched. The old guard [^\s$] also excluded lines starting with a
+    // single $ (inline math followed by a stray $$), so it missed the common
+    // pattern "$v = d/t$ \text{m/s}$$." — the fix uses (?!\$\$) so only lines
+    // that open with an actual display-math delimiter ($$) are excluded.
+    .replace(/^(\s*(?!\$\$)[^\n]*?)\$\$([.,;:!?]?\s*)$/gm, (_m, before, punct) =>
+      before.trimEnd() + (punct.trim() || ""));
 }
 
 /**
