@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AlertTriangle, Award, BookOpen, CheckCircle2, GraduationCap, HelpCircle } from "lucide-react";
+import { AlertTriangle, Award, BookOpen, CheckCircle2, GraduationCap, HelpCircle, Trophy } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
 import StructuredVisualBlock from "../StructuredVisualBlock";
@@ -378,6 +378,22 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             ))}
           </section>
         )}
+
+        {/* Finish card — id observed by ChapterJourneyView to save real
+            completion once this card scrolls into view (no click required). */}
+        <div id="study-finish-card" style={{
+          background: "linear-gradient(150deg, #0e9488, #16a34a)",
+          borderRadius: 16, padding: "22px 20px", textAlign: "center",
+          color: "#fff", marginTop: 28,
+        }}>
+          <Trophy size={30} strokeWidth={2.2} aria-hidden="true" />
+          <div style={{ fontWeight: 800, fontSize: "1.05rem", marginTop: 6 }}>
+            Chapter complete — great work!
+          </div>
+          <div style={{ fontSize: ".85rem", opacity: .9, marginTop: 4 }}>
+            Try a mock test or pick your next chapter to keep the streak going.
+          </div>
+        </div>
       </div>
     </div>
   );

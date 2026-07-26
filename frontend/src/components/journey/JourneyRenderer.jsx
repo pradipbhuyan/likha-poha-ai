@@ -400,8 +400,9 @@ function JourneyRenderer({ doc, xp, onQuickCheckAnswer, quizAnswers, activeMiles
         </div>
       )}
 
-      {/* Finish card */}
-      <div style={{
+      {/* Finish card — id observed by ChapterJourneyView to save real completion
+          once this card scrolls into view (no click required). */}
+      <div id="journey-finish-card" style={{
         background: "linear-gradient(150deg, #0e9488, #16a34a)",
         borderRadius: 16, padding: "22px 20px", textAlign: "center",
         color: "#fff", marginTop: 6,

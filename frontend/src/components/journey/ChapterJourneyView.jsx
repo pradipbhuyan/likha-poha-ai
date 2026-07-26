@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircle, Send } from "lucide-react";
 
 import { askLessonFollowUp } from "../../api/lesson";
+import { saveChapterProgress } from "../../api/progress";
 import JourneyRenderer from "./JourneyRenderer";
 import StudyRenderer from "./StudyRenderer";
 import LessonMarkdown from "./LessonMarkdown";
@@ -67,6 +68,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
   const storageKey = progressKey({ grade, subject, chapter });
   const [progress, setProgress] = useState(() => loadProgress(storageKey));
   const [activeMilestone, setActiveMilestone] = useState(0);
+  const hasSavedCompletionRef = useRef(false);
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
   const [followUpMessages, setFollowUpMessages] = useState([]);
@@ -84,6 +86,7 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
     setActiveMilestone(0);
     setFollowUpMessages([]);
     setFollowUpQuestion("");
+    hasSavedCompletionRef.current = false;
   }, [storageKey]);
 
   // Scroll-spy: highlight the milestone currently in view (Study outline)
@@ -108,6 +111,47 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [doc, isJunior]);
+
+  // Real completion: this view has no step-by-step gating — the student
+  // reads one continuous scroll. Reaching the finish card at the bottom
+  // (same card already shown to every student) is the honest signal that
+  // they've been through the whole chapter, so that's what saves progress.
+  // No click required, no visual change to the card itself.
+  useEffect(() => {
+    const cardId = isJunior ? "journey-finish-card" : "study-finish-card";
+    const card = document.getElementById(cardId);
+    if (!card || typeof IntersectionObserver === "undefined") return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasSavedCompletionRef.current) {
+            hasSavedCompletionRef.current = true;
+            const lastIndex = Math.max(0, doc.milestones.length - 1);
+            saveChapterProgress({
+              username: user.username,
+              grade,
+              mode,
+              subject,
+              chapter,
+              current_step_index: lastIndex,
+              highest_unlocked_step: lastIndex,
+              completed: true,
+              last_lesson: "",
+              step_lessons: {},
+            }).catch(() => {
+              // Non-critical — the student already sees the finish card;
+              // allow a retry on next scroll-into-view if this failed.
+              hasSavedCompletionRef.current = false;
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [doc, isJunior, user.username, grade, mode, subject, chapter]);
 
   function handleQuickCheckAnswer(blockKey, answerIndex, isCorrect) {
     setProgress((prev) => {

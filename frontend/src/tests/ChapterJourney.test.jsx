@@ -1,5 +1,5 @@
-import { describe, expect, test, vi } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import ChapterJourneyView from "../components/journey/ChapterJourneyView";
 import JourneyRenderer from "../components/journey/JourneyRenderer";
@@ -12,6 +12,29 @@ vi.mock("../api/lesson", () => ({
     source_type: "MOCK",
   })),
 }));
+
+vi.mock("../api/progress", () => ({
+  saveChapterProgress: vi.fn(async () => ({ success: true })),
+}));
+
+// Minimal IntersectionObserver stub — jsdom doesn't implement it. Each
+// instance records the element it was asked to observe so a test can find
+// "its" observer and manually fire the intersecting callback.
+class MockIntersectionObserver {
+  constructor(callback) {
+    this.callback = callback;
+    MockIntersectionObserver.instances.push(this);
+  }
+  observe(el) { this.target = el; }
+  disconnect() {}
+}
+MockIntersectionObserver.instances = [];
+
+function fireIntersection(elementId, isIntersecting = true) {
+  const observer = MockIntersectionObserver.instances.find((o) => o.target?.id === elementId);
+  if (!observer) throw new Error(`No observer found for #${elementId}`);
+  observer.callback([{ isIntersecting, target: observer.target }]);
+}
 
 const SAMPLE_DOC = {
   board: "CBSE",
@@ -226,5 +249,121 @@ describe("ChapterJourneyView", () => {
         step_title: "Concept introduction",
       })
     );
+  });
+});
+
+describe("ChapterJourneyView — real completion save", () => {
+  beforeEach(async () => {
+    MockIntersectionObserver.instances = [];
+    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
+    const { saveChapterProgress } = await import("../api/progress");
+    saveChapterProgress.mockClear();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  test("saves completed:true once the Journey finish card scrolls into view", async () => {
+    const { saveChapterProgress } = await import("../api/progress");
+    render(
+      <ChapterJourneyView
+        doc={SAMPLE_DOC}
+        user={USER}
+        grade="Grade 6"
+        mode="CBSE"
+        subject="Science"
+        chapter="Chapter 3: Matter Around Us"
+      />
+    );
+
+    expect(saveChapterProgress).not.toHaveBeenCalled();
+
+    fireIntersection("journey-finish-card");
+
+    await waitFor(() => {
+      expect(saveChapterProgress).toHaveBeenCalledWith(
+        expect.objectContaining({
+          username: "test_user",
+          grade: "Grade 6",
+          subject: "Science",
+          chapter: "Chapter 3: Matter Around Us",
+          completed: true,
+        })
+      );
+    });
+  });
+
+  test("does not save again if the finish card intersects a second time", async () => {
+    const { saveChapterProgress } = await import("../api/progress");
+    render(
+      <ChapterJourneyView
+        doc={SAMPLE_DOC}
+        user={USER}
+        grade="Grade 6"
+        mode="CBSE"
+        subject="Science"
+        chapter="Chapter 3: Matter Around Us"
+      />
+    );
+
+    fireIntersection("journey-finish-card");
+    await waitFor(() => expect(saveChapterProgress).toHaveBeenCalledTimes(1));
+
+    fireIntersection("journey-finish-card");
+    fireIntersection("journey-finish-card");
+    expect(saveChapterProgress).toHaveBeenCalledTimes(1);
+  });
+
+  test("does not save when the finish card is observed but not yet intersecting", async () => {
+    const { saveChapterProgress } = await import("../api/progress");
+    render(
+      <ChapterJourneyView
+        doc={SAMPLE_DOC}
+        user={USER}
+        grade="Grade 6"
+        mode="CBSE"
+        subject="Science"
+        chapter="Chapter 3: Matter Around Us"
+      />
+    );
+
+    fireIntersection("journey-finish-card", false);
+    expect(saveChapterProgress).not.toHaveBeenCalled();
+  });
+
+  test("saves completed:true once the Study finish card scrolls into view", async () => {
+    const { saveChapterProgress } = await import("../api/progress");
+    render(
+      <ChapterJourneyView
+        doc={{ ...SAMPLE_DOC, grade: "Grade 10" }}
+        user={USER}
+        grade="Grade 10"
+        mode="CBSE"
+        subject="Science"
+        chapter="Chapter 3: Matter Around Us"
+      />
+    );
+
+    fireIntersection("study-finish-card");
+
+    await waitFor(() => {
+      expect(saveChapterProgress).toHaveBeenCalledWith(
+        expect.objectContaining({ grade: "Grade 10", completed: true })
+      );
+    });
+  });
+
+  test("Study renderer shows the same finish card as Journey", () => {
+    render(
+      <StudyRenderer
+        doc={SAMPLE_DOC}
+        quizAnswers={{}}
+        onQuickCheckAnswer={() => {}}
+        activeMilestone={0}
+        onNavigate={() => {}}
+      />
+    );
+    expect(screen.getByText(/chapter complete — great work/i)).toBeInTheDocument();
   });
 });
