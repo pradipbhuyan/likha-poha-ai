@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </div>
 
         <Section title="1. Who We Are">
-          Likha Poha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Grades 5–12, operated by Pradip Bhuyan and accessible at <strong>www.likhapoha.in</strong>. A companion mobile app is also available for Android and iOS.
+          Likha Poha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Grades 5–12, accessible at <strong>www.likhapoha.in</strong>. A companion mobile app is also available for Android and iOS.
           <br /><br />
           This Privacy Policy explains what personal data we collect, why we collect it, how we use it, and your rights regarding that data. By using our platform you agree to the practices described here.
         </Section>

@@ -67,7 +67,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
           By accessing or using Likha Poha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong> or our mobile app, you agree to be bound by these Terms of Service ("Terms") and our{" "}
           <a href="/privacy-policy" style={{ color: "#93c5fd" }}>Privacy Policy</a>. If you do not agree to these Terms, please do not use the Platform.
           <br /><br />
-          These Terms constitute a legally binding agreement between you (the user) and Likha Poha AI, operated by Pradip Bhuyan, India.
+          These Terms constitute a legally binding agreement between you (the user) and Likha Poha AI, India.
         </Section>
 
         <Section title="2. Description of Service">
