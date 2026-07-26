@@ -517,4 +517,28 @@ describe("LessonsPage", () => {
     ).toBeInTheDocument();
     expect(await screen.findByText(/platform/i)).toBeInTheDocument();
   });
+
+  test("top-bar Grade/Subject/Chapter selects each have exactly one accessible name (P1-11)", async () => {
+    // Regression test for P1-11: a dead, fully-labelled duplicate of this
+    // form used to sit in the DOM behind display:none. Confirms both that
+    // the live selects are named, and that removing the dead markup left
+    // no duplicate to collide with getByLabelText.
+    render(
+      <LessonsPage
+        user={{
+          role: "student",
+          username: "science_student",
+          grade: "Grade 9",
+          accessCbse: true,
+        }}
+      />
+    );
+
+    expect(await screen.findByLabelText(/^grade$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^subject$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^chapter$/i)).toBeInTheDocument();
+
+    // The old dead duplicate form is gone entirely, not just re-hidden.
+    expect(document.querySelector(".lesson-control-panel")).not.toBeInTheDocument();
+  });
 });

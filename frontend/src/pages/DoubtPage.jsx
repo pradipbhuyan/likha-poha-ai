@@ -4,7 +4,6 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import {
-  Target,
   BookOpen,
   Book,
   MessageCircle,
@@ -145,7 +144,6 @@ function DoubtPage({ user, setActivePage }) {
   if (error && !answer) return <p className="error">{error}</p>;
 
   const grades = getVisibleGrades(syllabusData, user);
-  const modes = Object.keys(syllabusData[grade]);
 
   function hasModeAccess(selectedMode) {
     /** Check whether the signed-in user may use CBSE.
@@ -163,7 +161,6 @@ function DoubtPage({ user, setActivePage }) {
     return false;
   }
 
-  const allowedModes = modes.filter((m) => hasModeAccess(m));
   const allModeSubjects = mode ? Object.keys(syllabusData[grade][mode] || {}) : [];
   const allowedSubjects = filterAllowedSubjects(user, allModeSubjects, mode);
   const availableChapters = subject
@@ -237,25 +234,6 @@ function DoubtPage({ user, setActivePage }) {
         user,
         Object.keys(syllabusData[value][firstAllowedMode] || {}),
         firstAllowedMode
-      )[0] || ""
-    );
-    setChapter("");
-    clearAnswerState();
-  }
-
-  function handleModeChange(value) {
-    /** Change mode only when the user has access to it. */
-    if (!hasModeAccess(value)) {
-      setError(`You do not have access to ${value}.`);
-      return;
-    }
-
-    setMode(value);
-    setSubject(
-      filterAllowedSubjects(
-        user,
-        Object.keys(syllabusData[grade][value] || {}),
-        value
       )[0] || ""
     );
     setChapter("");
@@ -536,6 +514,7 @@ Important:
       }}>
         {/* Grade */}
         <select
+          aria-label="Grade"
           value={grade}
           onChange={(e) => handleGradeChange(e.target.value)}
           style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 1, minWidth: 0 }}
@@ -545,6 +524,7 @@ Important:
         {/* Subject */}
         {allowedSubjects.length > 0 && (
           <select
+            aria-label="Subject"
             value={subject}
             onChange={(e) => handleSubjectChange(e.target.value)}
             style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 1, minWidth: 0 }}
@@ -556,6 +536,7 @@ Important:
         {/* Chapter */}
         {subject && availableChapters.length > 0 && (
           <select
+            aria-label="Chapter"
             value={chapter}
             onChange={(e) => handleChapterChange(e.target.value)}
             style={{ fontSize: ".78rem", padding: "5px 10px", borderRadius: 8, border: "1px solid var(--border, #d1d5db)", background: "var(--panel, #ffffff)", color: "var(--text, #111827)", cursor: "pointer", fontFamily: "inherit", flex: 2, minWidth: 0 }}
@@ -570,119 +551,6 @@ Important:
         className="premium-doubt-layout premium-doubt-open-layout"
         style={{ display: "block" }}
       >
-        <aside className="premium-section premium-doubt-context" style={{ display: "none" }}>
-          <div className="premium-header">
-            <p className="eyebrow">AI Tutor Context</p>
-            <h3><Target size={18} strokeWidth={2.4} /> Choose Learning Level</h3>
-            <p>
-              Ask Doubt is open-topic, but access is restricted by your enabled
-              learning modes.
-            </p>
-          </div>
-
-          <div className="form-grid">
-            <label>
-              Grade
-              <select
-                value={grade}
-                onChange={(e) => handleGradeChange(e.target.value)}
-              >
-                {grades.map((g) => (
-                  <option key={g} value={g}>
-                    {g}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              Mode
-              <select
-                value={mode}
-                onChange={(e) => handleModeChange(e.target.value)}
-                disabled={allowedModes.length === 0}
-              >
-                {allowedModes.length === 0 ? (
-                  <option value="">No access available</option>
-                ) : (
-                  allowedModes.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))
-                )}
-              </select>
-            </label>
-
-            {mode && (
-              <label>
-                Subject
-                <select
-                  value={subject}
-                  onChange={(e) => handleSubjectChange(e.target.value)}
-                  disabled={allowedSubjects.length === 0}
-                >
-                  {allowedSubjects.length === 0 ? (
-                    <option value="">No subject access</option>
-                  ) : (
-                    <option value="">Open subject</option>
-                  )}
-
-                  {allowedSubjects.length === 0 ? null : (
-                    allowedSubjects.map((subjectName) => (
-                      <option key={subjectName} value={subjectName}>
-                        {subjectName}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </label>
-            )}
-
-            {/* Grade 9 Social Science — NCERT book not yet released */}
-            {grade === "Grade 9" && subject?.toLowerCase().includes("social") && (
-              <div style={{
-                background: "rgba(245,158,11,.1)",
-                border: "1px solid rgba(245,158,11,.35)",
-                borderRadius: "10px",
-                padding: "12px 16px",
-                fontSize: ".88rem",
-                color: "var(--text)",
-                lineHeight: 1.55,
-              }}>
-                <BookOpen size={16} strokeWidth={2.4} style={{ verticalAlign: "middle", marginRight: 6 }} />
-                <strong>Social Science — Grade 9 content coming soon</strong>
-                <br />
-                NCERT has not yet released the updated Class 9 Social Science textbook. Content will be added as soon as the official book is published.
-              </div>
-            )}
-
-            {subject && (
-              <label>
-                Chapter
-                <select
-                  value={chapter}
-                  onChange={(e) => handleChapterChange(e.target.value)}
-                >
-                  <option value="">Open chapter</option>
-                  {availableChapters.map((chapterName) => (
-                    <option key={chapterName} value={chapterName}>
-                      {chapterName}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            )}
-          </div>
-
-          <div className="premium-open-mentor-note">
-            <strong>How this works</strong>
-            <p>
-              Subject and chapter are optional. Add them when you know the source topic, or leave them open for a broader textbook search.
-            </p>
-          </div>
-        </aside>
-
         <main className="premium-doubt-main">
           <section className="premium-section premium-doubt-composer">
             <div className="composer-header">

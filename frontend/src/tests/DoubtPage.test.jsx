@@ -50,8 +50,9 @@ describe("DoubtPage", () => {
   test("sends a CBSE doubt with the selected mode and subject", async () => {
     render(<DoubtPage user={studentUser} />);
 
-    expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/mode/i)).toHaveValue("CBSE");
+    // Mode is auto-selected from grade access (no manual Mode selector in
+    // the live top bar) — confirmed via the Grade select's accessible name.
+    expect(await screen.findByLabelText(/^grade$/i)).toBeInTheDocument();
 
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "What is matter?" },
@@ -100,5 +101,19 @@ describe("DoubtPage", () => {
     fireEvent.click(savedDoubt);
 
     expect(await screen.findByText("Saved answer from history.")).toBeInTheDocument();
+  });
+
+  test("top-bar Grade/Subject selects each have exactly one accessible name (P1-11)", async () => {
+    // Regression test for P1-11: a dead, fully-labelled duplicate of this
+    // form used to sit in the DOM behind display:none. Confirms both that
+    // the live selects are named, and that removing the dead markup left
+    // no duplicate to collide with getByLabelText.
+    render(<DoubtPage user={studentUser} />);
+
+    expect(await screen.findByLabelText(/^grade$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^subject$/i)).toBeInTheDocument();
+
+    // The old dead duplicate form is gone entirely, not just re-hidden.
+    expect(document.querySelector(".premium-doubt-context")).not.toBeInTheDocument();
   });
 });

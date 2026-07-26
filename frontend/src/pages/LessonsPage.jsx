@@ -412,7 +412,7 @@ function LessonsPage({ user, setActivePage }) {
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [highestUnlockedStep, setHighestUnlockedStep] = useState(0);
-  const [completed, setCompleted] = useState(false);
+  const [, setCompleted] = useState(false);
 
   const stepTitle = lessonSteps[currentStepIndex];
 
@@ -842,7 +842,6 @@ function LessonsPage({ user, setActivePage }) {
   }
 
   const grades = getVisibleGrades(syllabusData, user);
-  const modes = Object.keys(syllabusData[grade]);
 
   function getAllowedSubjects(allSubjects, selectedMode) {
     /** Filter subjects by the student's subscription access for CBSE mode.
@@ -898,30 +897,6 @@ function LessonsPage({ user, setActivePage }) {
     setSubject(newSubject);
     setChapter(newChapter);
     setError(newSubject ? "" : `You do not have access to ${newMode} lessons.`);
-    resetLessonState();
-  }
-
-  function handleModeChange(value) {
-    /** Switch learning mode while enforcing subject-level access. */
-    const allModeSubjects = Object.keys(syllabusData[grade][value]);
-    const allowedModeSubjects = getAllowedSubjects(allModeSubjects, value);
-
-    if (allowedModeSubjects.length === 0) {
-      setMode(value);
-      setSubject("");
-      setChapter("");
-      setError(`You do not have access to ${value} lessons.`);
-      resetLessonState();
-      return;
-    }
-
-    const newSubject = allowedModeSubjects[0];
-    const newChapter = syllabusData[grade][value][newSubject][0];
-
-    setError("");
-    setMode(value);
-    setSubject(newSubject);
-    setChapter(newChapter);
     resetLessonState();
   }
 
@@ -1708,6 +1683,7 @@ function LessonsPage({ user, setActivePage }) {
     }}>
       {/* Compact selectors */}
       <select
+        aria-label="Grade"
         value={grade}
         onChange={(e) => handleGradeChange(e.target.value)}
         style={{ ..._selectStyle, flex: 1, minWidth: 0 }}
@@ -1715,6 +1691,7 @@ function LessonsPage({ user, setActivePage }) {
         {grades.map(g => <option key={g} value={g}>{g}</option>)}
       </select>
       <select
+        aria-label="Subject"
         value={subject}
         onChange={(e) => handleSubjectChange(e.target.value)}
         disabled={subjects.length === 0}
@@ -1723,6 +1700,7 @@ function LessonsPage({ user, setActivePage }) {
         {subjects.map(s => <option key={s} value={s}>{s}</option>)}
       </select>
       <select
+        aria-label="Chapter"
         value={chapter}
         onChange={(e) => {
           setChapter(e.target.value);
@@ -1800,342 +1778,6 @@ function LessonsPage({ user, setActivePage }) {
         className="lesson-layout premium-lesson-layout"
         style={USE_TOP_BAR_LAYOUT ? { display: "block" } : undefined}
       >
-        {/* Sidebar hidden in top-bar mode */}
-        <aside
-          className="lesson-control-panel"
-          style={USE_TOP_BAR_LAYOUT ? { display: "none" } : undefined}
-        >
-          <div className="premium-section premium-lesson-controls">
-            <div className="premium-header">
-              <p className="eyebrow">Learning Path</p>
-              <h3>📚 Select Lesson Setup</h3>
-              <p>Choose grade, subject, step, persona, and narration style.</p>
-            </div>
-
-            <div className="form-grid">
-              <label>
-                Grade
-                <select
-                  value={grade}
-                  onChange={(e) => handleGradeChange(e.target.value)}
-                >
-                  {grades.map((g) => (
-                    <option key={g} value={g}>
-                      {g}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Mode
-                <select
-                  value={mode}
-                  onChange={(e) => handleModeChange(e.target.value)}
-                >
-                  {modes.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                Subject
-                <select
-                  value={subject}
-                  onChange={(e) => handleSubjectChange(e.target.value)}
-                  disabled={subjects.length === 0}
-                >
-                  {subjects.length === 0 ? (
-                    <option value="">No access available</option>
-                  ) : (
-                    subjects.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </label>
-
-              {/* Grade 9 Social Science — NCERT book not yet released */}
-              {grade === "Grade 9" && subject?.toLowerCase().includes("social") && (
-                <div style={{
-                  background: "rgba(245,158,11,.1)",
-                  border: "1px solid rgba(245,158,11,.35)",
-                  borderRadius: "10px",
-                  padding: "12px 16px",
-                  fontSize: ".88rem",
-                  color: "var(--text)",
-                  lineHeight: 1.55,
-                  gridColumn: "1 / -1",
-                }}>
-                  📚 <strong>Social Science — Grade 9 content coming soon</strong>
-                  <br />
-                  NCERT has not yet released the updated Class 9 Social Science textbook. Lessons and content for this subject will be added as soon as the official book is published.
-                </div>
-              )}
-
-              <label>
-                Chapter / Section
-                <select
-                  value={chapter}
-                  onChange={(e) => {
-                    setChapter(e.target.value);
-                    setLesson("");
-                    resetTextbookVisualBrowser();
-                    setSourceInfo(null);
-                    setFollowUpQuestion("");
-                    setFollowUpMessages([]);
-                    resetPracticeState();
-                  }}
-                >
-                  {chapters.map((c) => {
-                    const isLockedOption = c.includes("Exemplar:") && !hasPaidAccessForLessons;
-                    return (
-                      <option key={c} value={c}>
-                        {isLockedOption ? `🔒 ${c}` : c}
-                      </option>
-                    );
-                  })}
-                </select>
-              </label>
-
-              {/* Lesson Step dropdown hidden when refined layout is active.
-                  Step state (currentStepIndex, highestUnlockedStep) is preserved. */}
-              {!USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
-                <label>
-                  Lesson Step
-                  <select
-                    value={currentStepIndex}
-                    onChange={(e) => {
-                      const newIndex = Number(e.target.value);
-                      setCurrentStepIndex(newIndex);
-                      setLesson(stepLessons[String(newIndex)] || "");
-                      resetTextbookVisualBrowser();
-                      setFollowUpQuestion("");
-                      setFollowUpMessages([]);
-                      resetPracticeState();
-                    }}
-                  >
-                    {lessonSteps.map((step, index) => (
-                      <option
-                        key={step}
-                        value={index}
-                        disabled={index > highestUnlockedStep}
-                      >
-                        {index > highestUnlockedStep ? "🔒 " : ""}
-                        Step {index + 1}: {step}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-
-            </div>
-
-            <div className="progress-box premium-progress-box">
-              <p>
-                Step {currentStepIndex + 1} of {lessonSteps.length}:{" "}
-                <strong>{stepTitle}</strong>
-              </p>
-
-              <progress value={currentStepIndex + 1} max={lessonSteps.length} />
-
-              {completed && (
-                <p className="success-text">🎉 This chapter is completed.</p>
-              )}
-            </div>
-
-            {/* Exemplar locked notice for free/promo students */}
-            {isExemplarLocked && (
-              <div style={{ padding: "12px 14px", borderRadius: 10, background: "rgba(99,102,241,.1)", border: "1px solid rgba(167,139,250,.3)", marginBottom: 8 }}>
-                <div style={{ fontSize: ".8rem", fontWeight: 700, color: "#a78bfa", marginBottom: 4 }}>🔐 Exemplar Lesson — Paid Only</div>
-                <div style={{ fontSize: ".74rem", color: "var(--muted)", lineHeight: 1.5, marginBottom: 8 }}>Lessons for NCERT Exemplar chapters are available to paid subscribers.</div>
-                <button
-                  type="button"
-                  onClick={() => setActivePage?.("subscriptionPlans")}
-                  style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", fontWeight: 700, fontSize: ".78rem", cursor: "pointer", fontFamily: "inherit" }}>
-                  🚀 Upgrade to Unlock
-                </button>
-              </div>
-            )}
-
-            <button
-              className="primary-btn premium-generate-btn"
-              onClick={handleGenerateLesson}
-              disabled={generating || hasSavedLesson || isExemplarLocked}
-            >
-              {isExemplarLocked
-                ? "🔒 Upgrade to Generate Lesson"
-                : hasSavedLesson
-                ? "Lesson Already Generated"
-                : generating
-                ? "Generating..."
-                : "✨ Generate Lesson"}
-            </button>
-
-            {/* Allow re-fetch if admin has updated the pre-warmed lesson */}
-            {hasSavedLesson && !isExemplarLocked && !generating && (
-              <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "#888",
-                  fontSize: "0.75rem",
-                  cursor: "pointer",
-                  marginTop: "0.3rem",
-                  textDecoration: "underline",
-                  padding: "0",
-                }}
-                onClick={async () => {
-                  // Clear this step from BOTH local state AND the DB progress
-                  // so that loadProgress() on the next page load doesn't restore
-                  // the stale lesson from the saved step_lessons record.
-                  // Then immediately force-refresh from the LLM (bypassing the
-                  // Supabase lesson_cache) so the student gets regenerated content
-                  // and doesn't get the same stale cache entry back.
-                  const updatedStepLessons = { ...stepLessons };
-                  delete updatedStepLessons[String(currentStepIndex)];
-                  setStepLessons(updatedStepLessons);
-                  setLesson("");
-                  // Persist the removal so the DB progress doesn't restore old content
-                  try {
-                    await saveChapterProgress({
-                      username: user.username,
-                      grade,
-                      mode,
-                      board: requestBoard,
-                      subject,
-                      chapter,
-                      current_step_index: currentStepIndex,
-                      highest_unlocked_step: highestUnlockedStep,
-                      completed: false,
-                      last_lesson: "",
-                      step_lessons: updatedStepLessons,
-                    });
-                  } catch {
-                    // Non-critical — local state is already cleared
-                  }
-                  // Force-regenerate from LLM — bypass the Supabase cache entirely
-                  // so the student always receives fresh content, not the stale
-                  // cache entry that caused the reported issue.
-                  handleGenerateLesson(true, true);
-                }}
-              >
-                🔄 Refresh lesson
-              </button>
-            )}
-
-            {/* Mark Step Complete and Restart Chapter hidden in refined layout.
-                Their state logic (highestUnlockedStep, completed) is preserved. */}
-            {!USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
-              <div className="button-row premium-lesson-button-row">
-                <button
-                  className="secondary-btn"
-                  disabled={currentStepIndex === 0}
-                  onClick={async () => {
-                    const newIndex = currentStepIndex - 1;
-                    setCurrentStepIndex(newIndex);
-                    setLesson(stepLessons[String(newIndex)] || "");
-                    resetTextbookVisualBrowser();
-                    setCompleted(false);
-                    resetPracticeState();
-                    await saveChapterProgress({
-                      username: user.username,
-                      grade,
-                      mode,
-                      subject,
-                      chapter,
-                      current_step_index: newIndex,
-                      highest_unlocked_step: highestUnlockedStep,
-                      completed: false,
-                      last_lesson: "",
-                      step_lessons: stepLessons,
-                    });
-                  }}
-                >
-                  ⬅ Previous Step
-                </button>
-
-                <button
-                  className="secondary-btn"
-                  title="You can complete this step. Practice feedback is for revision, not pass/fail."
-                  onClick={async () => {
-                    const isLastStep = currentStepIndex >= lessonSteps.length - 1;
-                    if (isLastStep) {
-                      setCompleted(true);
-                      await saveChapterProgress({
-                        username: user.username,
-                        grade,
-                        mode,
-                        subject,
-                        chapter,
-                        current_step_index: currentStepIndex,
-                        highest_unlocked_step: highestUnlockedStep,
-                        completed: true,
-                        last_lesson: lesson,
-                        step_lessons: stepLessons,
-                      });
-                    } else {
-                      const newIndex = currentStepIndex + 1;
-                      const newHighestUnlockedStep = Math.max(highestUnlockedStep, newIndex);
-                      setHighestUnlockedStep(newHighestUnlockedStep);
-                      setCurrentStepIndex(newIndex);
-                      setLesson(stepLessons[String(newIndex)] || "");
-                      resetTextbookVisualBrowser();
-                      resetPracticeState();
-                      await saveChapterProgress({
-                        username: user.username,
-                        grade,
-                        mode,
-                        subject,
-                        chapter,
-                        current_step_index: newIndex,
-                        highest_unlocked_step: newHighestUnlockedStep,
-                        completed: false,
-                        last_lesson: "",
-                        step_lessons: stepLessons,
-                      });
-                    }
-                  }}
-                >
-                  ✅ Mark Step Complete
-                </button>
-
-                <button
-                  className="secondary-btn"
-                  onClick={async () => {
-                    setCurrentStepIndex(0);
-                    setHighestUnlockedStep(0);
-                    setLesson("");
-                    setStepLessons({});
-                    resetTextbookVisualBrowser();
-                    setCompleted(false);
-                    resetPracticeState();
-                    await saveChapterProgress({
-                      username: user.username,
-                      grade,
-                      mode,
-                      subject,
-                      chapter,
-                      current_step_index: 0,
-                      highest_unlocked_step: 0,
-                      completed: false,
-                      last_lesson: "",
-                      step_lessons: {},
-                    });
-                  }}
-                >
-                  🔄 Restart Chapter
-                </button>
-              </div>
-            )}
-          </div>
-        </aside>
-
         <section className="lesson-content-panel premium-lesson-content">
           {/* ── Refined layout: Previous / Next navigation at top of right pane ── */}
           {USE_REFINED_LESSON_EXPERIENCE_LAYOUT && (
