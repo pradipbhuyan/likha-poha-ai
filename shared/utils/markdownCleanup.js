@@ -612,11 +612,22 @@ function normalizeInlineDisplayMath(text) {
     // NOTE: replacement must be a function — in a string replacement "$$" → "$"
     // (JS special pattern), so "$$\n$$" would produce "$\n$" which is wrong.
     .replace(/\$\$([ \t]*)\$\$/g, () => "$$\n$$")
-    // Step 1: closed inline $$...$$ on same line with text before the first $$
-    .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
+    // Step 1: closed inline $$...$$ on same line with prose text before the first $$.
+    // Guard: line must NOT start with $ — lines starting with $ open a display block
+    // ($$eq$$) and the lazy (.+?) would wrongly consume "$$eq$$" as the "before"
+    // text, treating $$eq$$ as context for the next $$ pair on the line.
+    .replace(/^([^$][^\n]*?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
-    // Step 2: unclosed inline $$ on same line with text before it AND content after $$
-    .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
+    // Step 1b: line starts with a closed $$...$$ display block followed by prose
+    // with a trailing stray $$ (optionally before sentence punctuation).
+    //   "$$eq$$ prose text$$."  →  "$$eq$$ prose text."
+    //   "$$eq$$ \text{m/s}$$."  →  "$$eq$$ \text{m/s}."
+    .replace(/^(\$\$[^\n]*?\$\$[^\n]*?)\$\$([.,;:!?]?\s*)$/gm, (_m, before, punct) =>
+      before.trimEnd() + (punct.trim() || ""))
+    // Step 2: unclosed inline $$ on same line with text before it AND content after $$.
+    // Guard: line must NOT start with $ (same reason as Step 1 — the lazy .+? would
+    // wrongly consume a $$eq$$ display block as the "before" text).
+    .replace(/^([^$][^\n]*?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
       return _m;
     })

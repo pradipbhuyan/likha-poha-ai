@@ -256,9 +256,11 @@ describe("markdownCleanup", () => {
     // The line starts with $ (inline math), so the old [^\s$] guard excluded it —
     // fixed by using (?!\$\$) which only excludes lines starting with $$ (display blocks).
     const inputs = [
-      "$v = d/t$ \\text{m/s}$$.",                    // line starts with $  ← was excluded by old guard
-      "The formula $v = d/t$ \\text{m/s}$$.",        // line starts with prose
-      "$v_{\\text{avg}} = \\frac{d}{t}$$.",          // dollar-sign formula with trailing $$
+      "$v = d/t$ \\text{m/s}$$.",                              // line starts with $
+      "The formula $v = d/t$ \\text{m/s}$$.",                  // line starts with prose
+      "$v_{\\text{avg}} = \\frac{d}{t}$$.",                    // inline math + trailing $$
+      "$$v_{\\text{avg}} = \\frac{d}{t}$$ \\text{m/s}$$.",    // display block + stray $$
+      "$$v_{\\text{avg}} = \\frac{d}{t}$$\\text{m/s}$$.",     // display block + stray $$ (no space)
     ];
     for (const input of inputs) {
       const result = normalizeTutorMarkdown(input);
