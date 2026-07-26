@@ -483,4 +483,33 @@ describe("markdownCleanup", () => {
 
     expect(normalizeTutorMarkdown(input)).toBe(input);
   });
+
+  // ── Regression: defect f1f8bf60 — "Formula has dollar signs" ─────────────
+  // Grade 11 Physics, Units and Measurements, Exam preparation section.
+  // normalizeDollarMath (step 14) converts $2.5\times10^{-4}$ → "$ 2.5\times10^{-4} $"
+  // to avoid remark-math's currency misdetection heuristic. But
+  // normalizeSpacedDollarMath (which strips those "$ ... $" spaces so
+  // remark-math CAN parse them) only ran at step 3 — BEFORE step 14 — so
+  // the spaces were never removed. remark-math requires the content of an
+  // inline $...$ span to NOT start or end with whitespace; the spaced
+  // output was treated as literal text and rendered with visible $ signs.
+  // Fix: add a second normalizeSpacedDollarMath call immediately after
+  // normalizeDollarMath in the pipeline so its spacing is always cleaned up.
+  test("full pipeline renders numeric LaTeX formulas without visible dollar signs (defect f1f8bf60)", () => {
+    // Typical Grade 11 Physics exam-prep content: scientific notation and
+    // measurement-related formulas with numeric coefficients.
+    const inputs = [
+      "The value is $2.5 \\times 10^{-4}$ m.",
+      "Least count = $0.5 \\times 10^{-3}$ cm.",
+      "Relative error = $\\frac{\\Delta a}{a} = 0.02 \\times 10^{-2}$.",
+    ];
+
+    for (const input of inputs) {
+      const result = normalizeTutorMarkdown(input);
+      // No spaced dollar signs — remark-math will parse the spans correctly
+      expect(result).not.toMatch(/\$ [^$]+ \$/);
+      // The math content is still wrapped in $...$
+      expect(result).toMatch(/\$[^$]+\$/);
+    }
+  });
 });

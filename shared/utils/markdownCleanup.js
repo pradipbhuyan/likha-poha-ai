@@ -755,7 +755,11 @@ export function normalizeTutorMarkdown(text) {
    * 12. normalizeAdjacentSingleDollarSpans — "$A$$B$" (steps 8/9/11 colliding
    *     into each other with nothing between) → "$A$ $B$"
    * 13. normalizeOrphanedMathBraces  — stray trailing "}" before closing $ → stripped
-   * 14. normalizeDollarMath          — fix $10...$ currency-lookalike spacing
+   * 14. normalizeDollarMath          — fix $10...$ currency-lookalike: adds "$ ... $"
+   * 14b. normalizeSpacedDollarMath   — (second call) strips the "$ ... $" spaces
+   *      normalizeDollarMath introduced so remark-math can parse them as math.
+   *      Must run AGAIN after step 14 — the first call (step 3) ran before
+   *      normalizeDollarMath existed and cannot clean up what step 14 adds.
    * 15. normalizeInlineMathWordSpacing — "$a$and$b$" → "$a$ and $b$"
    * 16. removeUnsupportedQuestionClosers — rewrite "Would you like..." prompts
    */
@@ -775,6 +779,7 @@ export function normalizeTutorMarkdown(text) {
   result = normalizeAdjacentSingleDollarSpans(result);
   result = normalizeOrphanedMathBraces(result);
   result = normalizeDollarMath(result);
+  result = normalizeSpacedDollarMath(result);  // must run AFTER normalizeDollarMath: step 14 adds "$ ... $" spacing that step 3 never saw
   result = normalizeInlineMathWordSpacing(result);
   result = removeUnsupportedQuestionClosers(result);
   return result;
