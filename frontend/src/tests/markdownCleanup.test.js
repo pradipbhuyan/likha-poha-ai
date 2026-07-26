@@ -235,6 +235,50 @@ describe("markdownCleanup", () => {
     );
   });
 
+  // ── Regression: three adjacent single-$ spans (e.g. kinematics expansion) ──
+  test("normalizeAdjacentSingleDollarSpans resolves THREE adjacent spans, not just two", () => {
+    // A single-pass /g replace only fixes the LEFTMOST collision:
+    //   "$A$$B$$C$" → "$A$ $B$$C$"  (first fixed, second remains)
+    // The iterative loop must run until fully stable:
+    //   Pass 1: "$A$$B$$C$" → "$A$ $B$$C$"
+    //   Pass 2: "$A$ $B$$C$" → "$A$ $B$ $C$"
+    expect(normalizeAdjacentSingleDollarSpans("$1/2$$2 m/s^2$$(5 s)^2$")).toBe(
+      "$1/2$ $2 m/s^2$ $(5 s)^2$"
+    );
+  });
+
+  // ── Regression: stray $$ before sentence punctuation ────────────────────
+  test("full pipeline strips stray $$ immediately before end-of-line punctuation (exam prep regression)", () => {
+    // LLM generated "$v_{\text{avg}} = \frac{d}{t}$ \text{m/s}$$."
+    // — the $$ before the period is a doubled closing delimiter typo.
+    // remark-math parsed the formula correctly but left "\text{m/s}$$."
+    // as visible literal text with dollar signs.
+    // The line starts with $ (inline math), so the old [^\s$] guard excluded it —
+    // fixed by using (?!\$\$) which only excludes lines starting with $$ (display blocks).
+    const inputs = [
+      "$v = d/t$ \\text{m/s}$$.",                              // line starts with $
+      "The formula $v = d/t$ \\text{m/s}$$.",                  // line starts with prose
+      "$v_{\\text{avg}} = \\frac{d}{t}$$.",                    // inline math + trailing $$
+      "$$v_{\\text{avg}} = \\frac{d}{t}$$ \\text{m/s}$$.",    // display block + stray $$
+      "$$v_{\\text{avg}} = \\frac{d}{t}$$\\text{m/s}$$.",     // display block + stray $$ (no space)
+    ];
+    for (const input of inputs) {
+      const result = normalizeTutorMarkdown(input);
+      expect(result).not.toMatch(/\$\$[.,;:!?]/);
+    }
+  });
+
+  test("full pipeline resolves three adjacent spans from kinematics expansion (local regression)", () => {
+    // Real cached content: "x = 0 + (1/2)(2 m/s^2)(5 s)^2 x = 100 m + 25 m"
+    // normalizePlainAlgebra wraps each parenthetical: $1/2$$2 m/s^2$$(5 s)^2$
+    // The old single-pass normalizeAdjacentSingleDollarSpans left the second
+    // $$ unresolved, rendering as "2 m/s^2$$(5 s)^2" with visible dollar signs.
+    const input = "x = 0 + (1/2)(2 m/s^2)(5 s)^2 x = 100 m + 25 m";
+    const result = normalizeTutorMarkdown(input);
+    expect(result).not.toMatch(/\$\$/);
+    expect(result).not.toMatch(/\$ [^$]+ \$/);
+  });
+
   test("normalizePlainExponents still wraps an exponent preceded by a space", () => {
     // Regression guard: the ")" added to normalizePlainExponents' exclusion
     // lookbehind must exclude ONLY "/", "}", and ")" — not whitespace. A

@@ -612,20 +612,37 @@ function normalizeInlineDisplayMath(text) {
     // NOTE: replacement must be a function — in a string replacement "$$" → "$"
     // (JS special pattern), so "$$\n$$" would produce "$\n$" which is wrong.
     .replace(/\$\$([ \t]*)\$\$/g, () => "$$\n$$")
-    // Step 1: closed inline $$...$$ on same line with text before the first $$
-    .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
+    // Step 1: closed inline $$...$$ on same line with prose text before the first $$.
+    // Guard: line must NOT start with $ — lines starting with $ open a display block
+    // ($$eq$$) and the lazy (.+?) would wrongly consume "$$eq$$" as the "before"
+    // text, treating $$eq$$ as context for the next $$ pair on the line.
+    .replace(/^([^$][^\n]*?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, before, content, after) =>
       `${before}$${content.trim()}$${after}`)
-    // Step 2: unclosed inline $$ on same line with text before it AND content after $$
-    .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
+    // Step 1b: line starts with a closed $$...$$ display block followed by prose
+    // with a trailing stray $$ (optionally before sentence punctuation).
+    //   "$$eq$$ prose text$$."  →  "$$eq$$ prose text."
+    //   "$$eq$$ \text{m/s}$$."  →  "$$eq$$ \text{m/s}."
+    .replace(/^(\$\$[^\n]*?\$\$[^\n]*?)\$\$([.,;:!?]?\s*)$/gm, (_m, before, punct) =>
+      before.trimEnd() + (punct.trim() || ""))
+    // Step 2: unclosed inline $$ on same line with text before it AND content after $$.
+    // Guard: line must NOT start with $ (same reason as Step 1 — the lazy .+? would
+    // wrongly consume a $$eq$$ display block as the "before" text).
+    .replace(/^([^$][^\n]*?)\$\$([^\n$][^\n]*)$/gm, (_m, before, content) => {
       if (/\S/.test(before)) return `${before}$${content.trim()}$`;
       return _m;
     })
-    // Step 3: trailing $$ at end of line with non-$ non-whitespace content before.
-    //   "at^2$$"  →  "at^2"   (dangling closing $$ with nothing after)
-    //   "x = ...$$ "  →  "x = ..."
-    //   Lines starting with $ ($$eq$$ display blocks) are intentionally excluded
-    //   so that valid single-line display math like $$v = v_0 + at$$ is preserved.
-    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
+    // Step 3: trailing $$ (plain or before sentence punctuation) at end of line.
+    //   "at^2$$"              →  "at^2"
+    //   "x = ...$$ "          →  "x = ..."
+    //   "$formula$ text$$."   →  "$formula$ text."
+    //
+    // Guard: lines that START with $$ are display-math blocks ($$eq$$) and must
+    // not be touched. The old guard [^\s$] also excluded lines starting with a
+    // single $ (inline math followed by a stray $$), so it missed the common
+    // pattern "$v = d/t$ \text{m/s}$$." — the fix uses (?!\$\$) so only lines
+    // that open with an actual display-math delimiter ($$) are excluded.
+    .replace(/^(\s*(?!\$\$)[^\n]*?)\$\$([.,;:!?]?\s*)$/gm, (_m, before, punct) =>
+      before.trimEnd() + (punct.trim() || ""));
 }
 
 /**
@@ -719,13 +736,28 @@ function normalizeOrphanedMathBraces(text) {
  * to match here.
  */
 export function normalizeAdjacentSingleDollarSpans(text) {
+  /**
+   * Single-pass `.replace(/g/)` only resolves the LEFTMOST collision in a run
+   * of N adjacent spans — e.g. "$A$$B$$C$" becomes "$A$ $B$$C$" (one fixed,
+   * one remains) because the regex engine moves past the consumed match before
+   * it can see the now-adjacent second "$$". Iterating until the text
+   * stabilises catches any length of adjacent-span runs (2, 3, …) in at most
+   * N-1 iterations, which is bounded by the number of math spans on a line —
+   * small in practice and each pass is O(n) in the string length.
+   */
   if (!text || !text.includes("$$")) return text;
-  return transformOutsideCodeFences(text, (content) =>
-    content.replace(
-      /\$([^$\n]+?)\$\$([^$\n]+?)\$/g,
-      (_match, first, second) => `$${first}$ $${second}$`
-    )
-  );
+  return transformOutsideCodeFences(text, (content) => {
+    let prev;
+    let result = content;
+    do {
+      prev = result;
+      result = result.replace(
+        /\$([^$\n]+?)\$\$([^$\n]+?)\$/g,
+        (_match, first, second) => `$${first}$ $${second}$`
+      );
+    } while (result !== prev && result.includes("$$"));
+    return result;
+  });
 }
 
 export function normalizeTutorMarkdown(text) {

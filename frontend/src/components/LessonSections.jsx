@@ -10,12 +10,18 @@ import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 /** Fix $$ used inline (mid-sentence) by downgrading to $ $ inline math.
  *  Applied right before ReactMarkdown renders section content.
  *  Handles both closed ($$expr$$) and unclosed ($$expr) inline display math.
+ *
+ *  Guard: patterns use [^$] (not .+?) so lines starting with $ are excluded.
+ *  Without this, a closed $$eq$$ display block at the start of a line can be
+ *  consumed as the "before" text, corrupting the block's closing delimiter.
+ *  Mirrors the fix applied to normalizeInlineDisplayMath Steps 1+2 in
+ *  shared/utils/markdownCleanup.js.
  */
 function fixInlineDisplayMath(text) {
   if (!text || !text.includes("$$")) return text;
   return text
-    .replace(/^(.+?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, b, c, a) => `${b}$${c.trim()}$${a}`)
-    .replace(/^(.+?)\$\$([^\n$][^\n]*)$/gm, (_m, b, c) =>
+    .replace(/^([^$][^\n]*?)\$\$([^\n$]+?)\$\$(.*)$/gm, (_m, b, c, a) => `${b}$${c.trim()}$${a}`)
+    .replace(/^([^$][^\n]*?)\$\$([^\n$][^\n]*)$/gm, (_m, b, c) =>
       /\S/.test(b) ? `${b}$${c.trim()}$` : _m);
 }
 
