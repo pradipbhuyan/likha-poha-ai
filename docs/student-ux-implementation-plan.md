@@ -83,14 +83,7 @@ instruction to implement only P0 + low-risk P1.
 | P1-8 | Mobile hamburger/close buttons had no accessible name | `frontend/src/App.jsx`, `frontend/src/components/Sidebar.jsx` | Low | ✅ |
 | P1-9 | Username in the sidebar user-card had no truncation and could overflow with a long value | `frontend/src/components/Sidebar.jsx`, `frontend/src/App.css` | Low | ✅ |
 | P1-10 | Orphaned, never-imported CSS file (`components/student/StudentDashboard.css`) risked a future editor styling the wrong file | deleted | Low | ✅ |
-
----
-
-## P1 — recommended, not implemented (needs more than a low-risk diff)
-
-| # | Problem | Why it's not low-risk | Recommendation |
-|---|---|---|---|
-| P1-11 | Lessons/Ask Doubt Grade/Subject/Chapter `<select>`s have no accessible name, but a fully-labelled *dead* copy of the same form already exists in the DOM (`display:none`, kept only for its state variables) | Adding `aria-label` to the live select creates a duplicate accessible name (confirmed: broke `LessonsPage.test.jsx`'s `getByLabelText(/subject/i)`). Fixing it properly means removing or `aria-hidden`-ing the dead markup first — a larger diff touching more of the page than a navigation-focused pass should. | Remove the dead `lesson-control-panel`/`premium-doubt-context` markup (confirmed unreachable since `USE_TOP_BAR_LAYOUT`/`USE_REFINED_LESSON_EXPERIENCE_LAYOUT` are hard-coded `true`), *then* add `aria-label`s to the live selects. Needs its own test-verification pass. |
+| P1-11 | Lessons/Ask Doubt Grade/Subject/Chapter `<select>`s had no accessible name, but a fully-labelled *dead* copy of the same form already existed in the DOM (`display:none`, kept only for its state variables) — fixed by removing the dead `lesson-control-panel`/`premium-doubt-context` markup (confirmed unreachable since `USE_TOP_BAR_LAYOUT`/`USE_REFINED_LESSON_EXPERIENCE_LAYOUT` are hard-coded `true`), then adding `aria-label`s to the live selects — avoids the duplicate-accessible-name regression a naive `aria-label`-only fix hit previously. Also removed the now-dead `handleModeChange`/`modes`/`allowedModes` helpers and unused `Target` icon import. | `frontend/src/pages/LessonsPage.jsx`, `frontend/src/pages/DoubtPage.jsx` | Low | ✅ |
 | P1-12 | Dashboard "Continue Learning" resume state can never appear in the API-fallback path (`progress.available` hard-coded `false`) | Touches data-fetching logic on the highest-traffic page; needs verification against the real progress API contract, which is explicitly protected ("do not change student progress calculations"). | Fetch last-lesson progress from the existing lessons/progress API in the fallback path instead of hard-coding unavailable. |
 | P1-13 | Dashboard XP Points is an arbitrary client-side formula with no backend concept of XP; Achievements falls back to fake-looking zero-value rows | Needs a product decision (build real backend XP/achievements, or relabel expectations) — not a pure UI fix. | Product review needed before any code change. |
 | P1-14 | Mock Test mode cards use an undefined `--surface` CSS variable, so they don't follow the dark/light theme | Touches a component with locked-state logic (paywall messaging) that should be re-verified visually in both themes before shipping. | Swap to `var(--panel)`; verify locked-state contrast in dark mode. |
@@ -116,12 +109,23 @@ instruction to implement only P0 + low-risk P1.
 - Formulas & Concepts chapter list is not sticky; scrolls away on long chapters.
 - Exemplar Research's difficulty filter is skewed (~61% "Hard"), reducing its usefulness.
 
-## P3 — optional visual refinement (documented only)
+## P3 — optional visual refinement
 
-- Analytics x-axis uses "Test 1, Test 2…" instead of real submission dates.
-- Board Papers loading state is bare unstyled text rather than a skeleton.
-- Learn More doesn't surface video duration before playback (may be a data-availability gap).
-- Change Password has no live password-strength indicator (only a static hint + post-submit error).
+- Analytics x-axis uses "Test 1, Test 2…" instead of real submission dates. (documented only)
+- **✅ Done** — Board Papers loading state was bare unstyled text; replaced with a timeline skeleton
+  (year label, spine, subject pills) for initial load, plus per-year subject-pill skeletons while
+  that year's papers are still fetching. Also fixed a latent bug where a year with genuinely zero
+  papers showed "Loading…" forever, since nothing distinguished "not yet fetched" from "fetched,
+  empty." Files: `frontend/src/pages/BoardPapersPage.jsx`, `frontend/src/App.css`.
+- **⬜ Skipped** — Learn More video duration before playback. Resources are hand-curated links
+  (title, url, channel only); there's no `duration` field in the data model and no YouTube Data API
+  key configured. Doing this for real means standing up a new backend integration (API key, quota/
+  cost, an infra decision) — bigger than a UX fix, and declined rather than implemented this pass.
+- **✅ Done** — Change Password had no live password-strength indicator; added one under the New
+  Password field. Scoring is deterministic and transparent (length, character variety); a password
+  under the form's own 8-character minimum is always labelled "Too short," never given a misleading
+  strength score for other traits it happens to have. Files: `frontend/src/pages/ChangePasswordPage.jsx`,
+  `frontend/src/App.css`.
 
 ---
 
