@@ -625,7 +625,17 @@ function normalizeInlineDisplayMath(text) {
     //   "x = ...$$ "  →  "x = ..."
     //   Lines starting with $ ($$eq$$ display blocks) are intentionally excluded
     //   so that valid single-line display math like $$v = v_0 + at$$ is preserved.
-    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd());
+    .replace(/^(\s*[^\s$][^\n]*?)\$\$\s*$/gm, (_m, before) => before.trimEnd())
+    // Step 3b: $$ immediately before sentence punctuation at end of line.
+    //   "$formula$ \text{m/s}$$."  →  "$formula$ \text{m/s}."
+    // The LLM sometimes doubles the closing $ delimiter accidentally (writes $$
+    // instead of $ or nothing). This is distinct from a legitimate $$eq$$ display
+    // block — those are always on a line where $$ appears first, which Step 3b
+    // catches only when there is non-$ content BEFORE the stray $$. Lines that
+    // start with $ (like $$eq$$.) are excluded by [^\s$] so display blocks
+    // immediately followed by punctuation (which render fine) are left alone.
+    .replace(/^(\s*[^\s$][^\n]*?)\$\$([.,;:!?]\s*)$/gm, (_m, before, punct) =>
+      before.trimEnd() + punct.trim());
 }
 
 /**

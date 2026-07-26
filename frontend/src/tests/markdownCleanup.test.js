@@ -247,6 +247,18 @@ describe("markdownCleanup", () => {
     );
   });
 
+  // ── Regression: stray $$ before sentence punctuation ────────────────────
+  test("full pipeline strips stray $$ immediately before end-of-line punctuation (exam prep regression)", () => {
+    // LLM generated "$v_{\text{avg}} = \frac{d}{t}$ \text{m/s}$$."
+    // — the $$ before the period is a doubled closing delimiter typo.
+    // remark-math parsed the formula correctly but left "\text{m/s}$$."
+    // as visible literal text with dollar signs.
+    const input = "The formula: $v = d/t$ \\text{m/s}$$.";
+    const result = normalizeTutorMarkdown(input);
+    expect(result).not.toMatch(/\$\$\./);
+    expect(result).not.toMatch(/\$\$[.,;:!?]/);
+  });
+
   test("full pipeline resolves three adjacent spans from kinematics expansion (local regression)", () => {
     // Real cached content: "x = 0 + (1/2)(2 m/s^2)(5 s)^2 x = 100 m + 25 m"
     // normalizePlainAlgebra wraps each parenthetical: $1/2$$2 m/s^2$$(5 s)^2$
