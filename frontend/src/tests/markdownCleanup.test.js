@@ -235,6 +235,29 @@ describe("markdownCleanup", () => {
     );
   });
 
+  // ── Regression: three adjacent single-$ spans (e.g. kinematics expansion) ──
+  test("normalizeAdjacentSingleDollarSpans resolves THREE adjacent spans, not just two", () => {
+    // A single-pass /g replace only fixes the LEFTMOST collision:
+    //   "$A$$B$$C$" → "$A$ $B$$C$"  (first fixed, second remains)
+    // The iterative loop must run until fully stable:
+    //   Pass 1: "$A$$B$$C$" → "$A$ $B$$C$"
+    //   Pass 2: "$A$ $B$$C$" → "$A$ $B$ $C$"
+    expect(normalizeAdjacentSingleDollarSpans("$1/2$$2 m/s^2$$(5 s)^2$")).toBe(
+      "$1/2$ $2 m/s^2$ $(5 s)^2$"
+    );
+  });
+
+  test("full pipeline resolves three adjacent spans from kinematics expansion (local regression)", () => {
+    // Real cached content: "x = 0 + (1/2)(2 m/s^2)(5 s)^2 x = 100 m + 25 m"
+    // normalizePlainAlgebra wraps each parenthetical: $1/2$$2 m/s^2$$(5 s)^2$
+    // The old single-pass normalizeAdjacentSingleDollarSpans left the second
+    // $$ unresolved, rendering as "2 m/s^2$$(5 s)^2" with visible dollar signs.
+    const input = "x = 0 + (1/2)(2 m/s^2)(5 s)^2 x = 100 m + 25 m";
+    const result = normalizeTutorMarkdown(input);
+    expect(result).not.toMatch(/\$\$/);
+    expect(result).not.toMatch(/\$ [^$]+ \$/);
+  });
+
   test("normalizePlainExponents still wraps an exponent preceded by a space", () => {
     // Regression guard: the ")" added to normalizePlainExponents' exclusion
     // lookbehind must exclude ONLY "/", "}", and ")" — not whitespace. A

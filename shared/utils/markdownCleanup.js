@@ -719,13 +719,28 @@ function normalizeOrphanedMathBraces(text) {
  * to match here.
  */
 export function normalizeAdjacentSingleDollarSpans(text) {
+  /**
+   * Single-pass `.replace(/g/)` only resolves the LEFTMOST collision in a run
+   * of N adjacent spans — e.g. "$A$$B$$C$" becomes "$A$ $B$$C$" (one fixed,
+   * one remains) because the regex engine moves past the consumed match before
+   * it can see the now-adjacent second "$$". Iterating until the text
+   * stabilises catches any length of adjacent-span runs (2, 3, …) in at most
+   * N-1 iterations, which is bounded by the number of math spans on a line —
+   * small in practice and each pass is O(n) in the string length.
+   */
   if (!text || !text.includes("$$")) return text;
-  return transformOutsideCodeFences(text, (content) =>
-    content.replace(
-      /\$([^$\n]+?)\$\$([^$\n]+?)\$/g,
-      (_match, first, second) => `$${first}$ $${second}$`
-    )
-  );
+  return transformOutsideCodeFences(text, (content) => {
+    let prev;
+    let result = content;
+    do {
+      prev = result;
+      result = result.replace(
+        /\$([^$\n]+?)\$\$([^$\n]+?)\$/g,
+        (_match, first, second) => `$${first}$ $${second}$`
+      );
+    } while (result !== prev && result.includes("$$"));
+    return result;
+  });
 }
 
 export function normalizeTutorMarkdown(text) {
