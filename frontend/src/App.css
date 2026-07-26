@@ -4465,6 +4465,32 @@ body.dark-mode .login-logo {
   color: var(--text);
 }
 
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.password-strength-track {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.password-strength-seg {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.password-strength-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .ait-signin-btn {
   height: 68px;
   border: none;

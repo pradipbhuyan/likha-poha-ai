@@ -78,4 +78,41 @@ describe("ChangePasswordPage", () => {
     expect(await screen.findByText(/passwords do not match/i)).toBeInTheDocument();
     expect(supabase.auth.updateUser).not.toHaveBeenCalled();
   });
+
+  test("does not show a strength indicator until the new password field has input", () => {
+    render(<ChangePasswordPage user={user} />);
+    expect(screen.queryByText(/weak|fair|good|strong|too short/i)).not.toBeInTheDocument();
+  });
+
+  test("flags a short password as too short, not a fabricated strength level", () => {
+    render(<ChangePasswordPage user={user} />);
+    fireEvent.change(screen.getByLabelText(/^new password$/i), {
+      target: { value: "Ab1$" },
+    });
+    expect(screen.getByText(/too short/i)).toBeInTheDocument();
+  });
+
+  test("rates a varied password as strong", () => {
+    render(<ChangePasswordPage user={user} />);
+    fireEvent.change(screen.getByLabelText(/^new password$/i), {
+      target: { value: "Passw0rd!" },
+    });
+    expect(screen.getByText(/^strong$/i)).toBeInTheDocument();
+  });
+
+  test("rates a long password with every character class as very strong", () => {
+    render(<ChangePasswordPage user={user} />);
+    fireEvent.change(screen.getByLabelText(/^new password$/i), {
+      target: { value: "Correct-Horse-9-Battery!" },
+    });
+    expect(screen.getByText(/^very strong$/i)).toBeInTheDocument();
+  });
+
+  test("rates an 8-character all-lowercase password as weak", () => {
+    render(<ChangePasswordPage user={user} />);
+    fireEvent.change(screen.getByLabelText(/^new password$/i), {
+      target: { value: "abcdefgh" },
+    });
+    expect(screen.getByText(/^weak$/i)).toBeInTheDocument();
+  });
 });

@@ -749,6 +749,61 @@ function PaperAttempt({ paper, questions, grade, onBack }) {
   );
 }
 
+// ── Skeleton loaders ─────────────────────────────────────────────────────────
+// Mirror the real timeline's shape (year label + spine + subject pills) so
+// the page doesn't jump when real content replaces the placeholder.
+function SkelBlock({ width, height = 12, radius = 6, style }) {
+  return (
+    <div
+      style={{
+        width, height, borderRadius: radius,
+        background: "var(--border, #e5e7eb)",
+        flexShrink: 0,
+        ...style,
+      }}
+    />
+  );
+}
+
+function TimelineSkeleton() {
+  return (
+    <div aria-hidden="true" style={{ position: "relative" }}>
+      {[0, 1, 2].map((idx) => {
+        const isLast = idx === 2;
+        return (
+          <div key={idx} style={{ display: "flex", gap: 0 }}>
+            <div style={{ width: 72, flexShrink: 0, textAlign: "right", paddingRight: 14, paddingTop: 4 }}>
+              <SkelBlock width={44} height={12} style={{ marginLeft: "auto" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 18, flexShrink: 0 }}>
+              <SkelBlock width={12} height={12} radius={999} style={{ marginTop: 3 }} />
+              {!isLast && <div style={{ width: 2, flex: 1, minHeight: 24, background: "var(--border, #e5e7eb)", marginTop: 4 }} />}
+            </div>
+            <div style={{ flex: 1, paddingLeft: 14, paddingBottom: isLast ? 0 : 24 }}>
+              <SkelBlock width={90} height={16} style={{ marginBottom: 10 }} />
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                <SkelBlock width={92} height={26} radius={999} />
+                <SkelBlock width={78} height={26} radius={999} />
+                <SkelBlock width={104} height={26} radius={999} />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function SubjectPillsSkeleton() {
+  return (
+    <div aria-hidden="true" style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+      <SkelBlock width={92} height={26} radius={999} />
+      <SkelBlock width={78} height={26} radius={999} />
+      <SkelBlock width={104} height={26} radius={999} />
+    </div>
+  );
+}
+
 export default function BoardPapersPage({ user }) {
   const canSwitchGrade = user?.role === "admin" || isAllAccessTestUser(user);
   const [grade, setGrade] = useState(() => examGradeFor(getUserGrade(user, "Grade 10")));
@@ -914,7 +969,7 @@ export default function BoardPapersPage({ user }) {
 
       {loadingPaper && <p>Loading paper…</p>}
       {error && <p style={{ color: "#b3261e" }}>{error}</p>}
-      {loading && <p>Loading…</p>}
+      {loading && <TimelineSkeleton />}
 
       {!loading && years.length === 0 && (
         <p style={{ color: "var(--muted, #64748b)" }}>No sample papers available for {grade} yet.</p>
@@ -937,6 +992,7 @@ export default function BoardPapersPage({ user }) {
         {years.map(({ year, locked: yearLocked }, idx) => {
           const isLast = idx === years.length - 1;
           const subjects = subjectsByYear[year] || [];
+          const subjectsLoaded = !!subjectsByYear[year];
           const papers = papersByYear[year] || [];
           const paperBySubject = Object.fromEntries(papers.map((p) => [p.subject, p]));
           const needsLoad = expandedYear !== year && !subjectsByYear[year];
@@ -994,8 +1050,9 @@ export default function BoardPapersPage({ user }) {
                 </div>
 
                 {/* Subject pills */}
-                {subjects.length === 0 && (
-                  <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: 0 }}>Loading…</p>
+                {!subjectsLoaded && <SubjectPillsSkeleton />}
+                {subjectsLoaded && subjects.length === 0 && (
+                  <p style={{ fontSize: ".8rem", color: "var(--muted, #64748b)", margin: 0 }}>No papers found for {year}.</p>
                 )}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {subjects.map(({ subject, locked: subjectLocked }) => {

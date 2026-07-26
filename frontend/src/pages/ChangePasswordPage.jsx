@@ -1,6 +1,30 @@
 import { useState } from "react";
 import { supabase } from "../api/supabaseClient";
 
+const STRENGTH_LEVELS = [
+  null,
+  { label: "Weak", color: "#dc2626" },
+  { label: "Fair", color: "#f59e0b" },
+  { label: "Good", color: "#0ea5e9" },
+  { label: "Strong", color: "#16a34a" },
+  { label: "Very strong", color: "#16a34a" },
+];
+
+function getPasswordStrength(pw) {
+  /** Deterministic, transparent scoring — same rules the form itself enforces
+   *  (8-char minimum), plus real length/variety signals. Never a guess. */
+  if (!pw) return null;
+  if (pw.length < 8) {
+    return { score: 0, label: "Too short — needs 8+ characters", color: "#dc2626" };
+  }
+  let score = 1; // meets the 8-character minimum
+  if (pw.length >= 12) score++;
+  if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
+  if (/\d/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  return { score, ...STRENGTH_LEVELS[score] };
+}
+
 function ChangePasswordPage({ user }) {
   /** Allows any signed-in user to change their password after re-entering the current one. */
   const [currentPassword, setCurrentPassword] = useState("");
@@ -107,6 +131,25 @@ function ChangePasswordPage({ user }) {
                 required
               />
             </div>
+            {newPassword && (() => {
+              const strength = getPasswordStrength(newPassword);
+              return (
+                <div className="password-strength" aria-live="polite">
+                  <div className="password-strength-track">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <span
+                        key={i}
+                        className="password-strength-seg"
+                        style={{ background: i <= strength.score ? strength.color : "var(--border, #e5e7eb)" }}
+                      />
+                    ))}
+                  </div>
+                  <span className="password-strength-label" style={{ color: strength.color }}>
+                    {strength.label}
+                  </span>
+                </div>
+              );
+            })()}
           </label>
 
           <label>
