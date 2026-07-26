@@ -17,6 +17,10 @@ vi.mock("../api/progress", () => ({
   saveChapterProgress: vi.fn(async () => ({ success: true })),
 }));
 
+vi.mock("../api/profile", () => ({
+  logStudentActivity: vi.fn(async () => ({ success: true })),
+}));
+
 // Minimal IntersectionObserver stub — jsdom doesn't implement it. Each
 // instance records the element it was asked to observe so a test can find
 // "its" observer and manually fire the intersecting callback.
@@ -257,7 +261,9 @@ describe("ChapterJourneyView — real completion save", () => {
     MockIntersectionObserver.instances = [];
     vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
     const { saveChapterProgress } = await import("../api/progress");
+    const { logStudentActivity } = await import("../api/profile");
     saveChapterProgress.mockClear();
+    logStudentActivity.mockClear();
   });
 
   afterEach(() => {
@@ -291,6 +297,31 @@ describe("ChapterJourneyView — real completion save", () => {
           completed: true,
         })
       );
+    });
+  });
+
+  test("logs a lesson_completed activity so streak/XP/lessons_completed can update", async () => {
+    const { logStudentActivity } = await import("../api/profile");
+    render(
+      <ChapterJourneyView
+        doc={SAMPLE_DOC}
+        user={USER}
+        grade="Grade 6"
+        mode="CBSE"
+        subject="Science"
+        chapter="Chapter 3: Matter Around Us"
+      />
+    );
+
+    expect(logStudentActivity).not.toHaveBeenCalled();
+
+    fireIntersection("journey-finish-card");
+
+    await waitFor(() => {
+      expect(logStudentActivity).toHaveBeenCalledWith({
+        username: "test_user",
+        activity_type: "lesson_completed",
+      });
     });
   });
 

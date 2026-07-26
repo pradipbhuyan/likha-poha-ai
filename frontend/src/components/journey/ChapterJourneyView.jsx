@@ -3,6 +3,7 @@ import { MessageCircle, Send } from "lucide-react";
 
 import { askLessonFollowUp } from "../../api/lesson";
 import { saveChapterProgress } from "../../api/progress";
+import { logStudentActivity } from "../../api/profile";
 import JourneyRenderer from "./JourneyRenderer";
 import StudyRenderer from "./StudyRenderer";
 import LessonMarkdown from "./LessonMarkdown";
@@ -144,6 +145,15 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
               // allow a retry on next scroll-into-view if this failed.
               hasSavedCompletionRef.current = false;
             });
+            // Same gamified-profile activity log Mock Test and Quiz already
+            // use — this is what actually drives the real study streak,
+            // lessons_completed count, and XP in student_profiles. Lesson
+            // completion never called this before, so the streak could only
+            // move from taking a mock test or quiz, never from studying.
+            logStudentActivity({
+              username: user.username,
+              activity_type: "lesson_completed",
+            }).catch(() => { /* non-critical */ });
           }
         });
       },

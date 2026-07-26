@@ -11,7 +11,19 @@ import { getAnalytics } from "../api/analytics";
 import { getStudentProfile } from "../api/profile";
 import { getRecommendations } from "../api/recommendations";
 import { getWeakChapters } from "../api/analytics";
+import { getUserProgress } from "../api/progress";
 import "./StudentDashboardPage.css";
+
+// Step counts per grade band — mirrors LessonsPage.jsx's lessonSteps lookup.
+// Only used to show a real progress % for legacy step-flow chapters (the
+// only ones that ever save an *incomplete* progress row today).
+var GRADE_STEP_COUNTS = {
+  "grade 1":3,"grade 2":3,"grade 3":3,
+  "grade 4":3,"grade 5":3,
+  "grade 6":4,"grade 7":4,"grade 8":4,
+  "grade 10":6,"grade 11":6,"grade 12":6,
+};
+function stepCountForGrade(g){return GRADE_STEP_COUNTS[(g||"").toLowerCase()]||5;}
 
 // ── Design tokens / helpers ───────────────────────────────────────────────────
 function greet(){var h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening";}
@@ -79,11 +91,12 @@ export default function StudentDashboardPage({ user, setActivePage }) {
         return;
       }
       // Fallback: assemble from existing APIs
-      const [analytics, profileRes, recRes, weakRes] = await Promise.allSettled([
+      const [analytics, profileRes, recRes, weakRes, userProgRes] = await Promise.allSettled([
         getAnalytics(user.username),
         getStudentProfile(user.username),
         getRecommendations(user.username),
         getWeakChapters(user.username),
+        getUserProgress(user.username),
       ]);
       var hist = analytics.value?.history || analytics.value?.test_history || [];
       var profile = profileRes.value?.profile || {};
@@ -95,13 +108,35 @@ export default function StudentDashboardPage({ user, setActivePage }) {
       hist.forEach(function(r){var s=r.subject||"Unknown";var p=safePct(r.percentage);if(p!=null){if(!subjMap[s])subjMap[s]=[];subjMap[s].push(p);}});
       var subjAvgs={};
       Object.entries(subjMap).forEach(function([s,v]){subjAvgs[s]=Math.round(v.reduce((a,b)=>a+b,0)/v.length);});
+
+      // Real resume state: getUserProgress returns every saved chapter for
+      // this student, most-recently-updated first. The most recent row that
+      // isn't completed is a genuine "in progress" chapter to resume — no
+      // guessing. A progress % is only shown when step_lessons has entries,
+      // which is the legacy step-by-step flow's signature (the current
+      // Journey/Study lesson view only ever saves a row once the chapter is
+      // finished, so it never appears here as "in progress").
+      var progressRows = Array.isArray(userProgRes.value?.progress) ? userProgRes.value.progress : [];
+      var inProgressRow = progressRows.find(function(r){return !r.completed;});
+      var lastChapter = null;
+      if (inProgressRow) {
+        var hasStepLessons = Object.keys(inProgressRow.step_lessons || {}).length > 0;
+        lastChapter = {
+          subject: inProgressRow.subject,
+          chapter: inProgressRow.chapter,
+          progress_pct: hasStepLessons
+            ? Math.min(100, Math.round(((inProgressRow.current_step_index||0)+1) / stepCountForGrade(inProgressRow.grade) * 100))
+            : null,
+        };
+      }
+
       setData({
         success:true,
         student:{username:profile.username||user.username,grade:profile.grade||user.grade||"Grade 9",study_streak_days:profile.study_streak_days||0,lessons_completed:profile.lessons_completed||0},
         subscription:{canonical_plan_key:user.accessCbse?"PREMIUM":"FREE_TIER",has_full_access:!!user.accessCbse},
         features:{has_full_access:!!user.accessCbse,exemplar_locked:!user.accessCbse,mock_test_limited:!user.accessCbse},
         mock_tests:{available:hist.length>0,total:hist.length,average_score:avg,best_score:scores.length?Math.max(...scores):null,subject_averages:subjAvgs,recent:hist.slice(0,5).map(r=>({subject:r.subject,chapter:r.chapter||"",score:safePct(r.percentage),date:(r.created_at||"").substring(0,10)})),score_trend:[]},
-        progress:{available:false,overall_pct:0,completed_chapters:0,in_progress_chapters:0,subject_progress:{},last_chapter:null},
+        progress:{available:!!lastChapter,overall_pct:0,completed_chapters:0,in_progress_chapters:0,subject_progress:{},last_chapter:lastChapter},
         weak_topics:weakTopics,
         activity:{last_active:null,feature_counts:{doubt:0},total_90d:0},
         achievements:[],
@@ -163,8 +198,6 @@ export default function StudentDashboardPage({ user, setActivePage }) {
   var isFree=sub.canonical_plan_key==="FREE_TIER"||!sub.has_full_access;
   // New student = no mock tests AND no lesson progress yet
   var isNewStudent = !mt.available && !prog.available && (mt.total||0) === 0;
-  // XP: use total mock tests (with fallback to recent length) + completed chapters
-  var xpPoints = ((mt.total||(mt.recent||[]).length)||0)*50 + (prog.completed_chapters||s.lessons_completed||0)*100;
 
   // 50 daily motivation quotes — one unique quote per day of year (day % 50)
   var QUOTES=[
@@ -246,7 +279,9 @@ export default function StudentDashboardPage({ user, setActivePage }) {
           {icon:"🎯",val:(plan.estimated_minutes||0)>0?(plan.estimated_minutes+" min"):"—",label:"Today's Goal",sub:"Estimated study time",col:"#22c55e"},
           {icon:"📖",val:prog.in_progress_chapters||0,label:"Lessons Left",sub:"In progress",col:"#6366f1"},
           {icon:"📅",val:exams.length>0?(exams[0].days_until+"d"):"—",label:"Next Exam",sub:exams.length>0?(exams[0].subject||exams[0].title||"Scheduled"):"Not scheduled",col:exams.length>0&&exams[0].days_until<=7?"#ef4444":"#94a3b8"},
-          {icon:"⭐",val:xpPoints,label:"XP Points",sub:xpPoints>0?"Keep it up!":"Keep learning!",col:"#f59e0b"},
+          // XP Points removed — it was an arbitrary client-side formula with no
+          // backend concept behind it (tests*50 + chapters*100). Hidden until
+          // there's a real XP system to show, per product decision.
         ].map(function(it){return(
           <SdCard key={it.label} style={{display:"flex",alignItems:"center",gap:10}}>
             <span style={{fontSize:"1.5rem",flexShrink:0}}>{it.icon}</span>
@@ -274,8 +309,12 @@ export default function StudentDashboardPage({ user, setActivePage }) {
                 <>
                   <div style={{fontSize:".7rem",color:"var(--text-muted,#94a3b8)"}}>{prog.last_chapter.subject}</div>
                   <div style={{fontWeight:700,fontSize:".9rem",margin:"4px 0 8px"}}>{prog.last_chapter.chapter}</div>
-                  <ProgBar pct={prog.last_chapter.progress_pct}/>
-                  <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)",marginBottom:10}}>{prog.last_chapter.progress_pct}% Complete</div>
+                  {prog.last_chapter.progress_pct!=null && (
+                    <>
+                      <ProgBar pct={prog.last_chapter.progress_pct}/>
+                      <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)",marginBottom:10}}>{prog.last_chapter.progress_pct}% Complete</div>
+                    </>
+                  )}
                   <SdBtn onClick={function(){nav("lessons");}}>Continue Learning →</SdBtn>
                 </>
               ):recs.length>0?(

@@ -62,6 +62,10 @@ vi.mock("../api/recommendations", () => ({
   getRecommendations: vi.fn(async () => ({ recommendations: [] })),
 }));
 
+vi.mock("../api/progress", () => ({
+  getUserProgress: vi.fn(async () => ({ success: true, progress: [] })),
+}));
+
 vi.mock("../api/supabaseClient", () => ({
   supabase: {
     auth: { getSession: vi.fn(async () => ({ data: { session: null }, error: null })) },
@@ -92,7 +96,13 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(await screen.findByTestId("student-quick-stats")).toBeInTheDocument();
     expect(document.body.textContent).toContain("Today's Goal");
     expect(document.body.textContent).toContain("Lessons Left");
-    expect(document.body.textContent).toContain("XP Points");
+    expect(document.body.textContent).toContain("Next Exam");
+  });
+
+  test("does not render an XP Points tile — no backend concept of XP exists yet", async () => {
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    expect(await screen.findByTestId("student-quick-stats")).toBeInTheDocument();
+    expect(document.body.textContent).not.toContain("XP Points");
   });
 
   test("renders Up Next card, prioritizing in-progress lesson over recommendations", async () => {
@@ -303,5 +313,79 @@ describe("StudentDashboardPage — redesigned", () => {
     const bt = document.body.textContent;
     expect(bt).toContain("Begin your first");
     expect(bt).not.toBe("");
+  });
+});
+
+describe("StudentDashboardPage — fallback path resume state", () => {
+  beforeEach(() => { vi.clearAllMocks(); });
+
+  test("shows a real in-progress chapter (with %) from getUserProgress when the summary endpoint is unavailable", async () => {
+    const { getStudentDashboardSummary, getAnalytics } = await import("../api/analytics");
+    const { getUserProgress } = await import("../api/progress");
+    getStudentDashboardSummary.mockResolvedValueOnce({ success: false });
+    getAnalytics.mockResolvedValueOnce({ history: [{ subject: "Maths", percentage: 70, created_at: "2026-06-20" }] });
+    getUserProgress.mockResolvedValueOnce({
+      success: true,
+      progress: [
+        {
+          username: "akshita.teststudent", grade: "Grade 9", subject: "Science", chapter: "Motion and Force",
+          current_step_index: 2, completed: false,
+          step_lessons: { "0": "...", "1": "...", "2": "..." },
+        },
+      ],
+    });
+
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("up-next-card");
+
+    const bt = document.body.textContent;
+    expect(bt).toContain("Motion and Force");
+    expect(bt).toContain("Continue Learning →");
+    expect(bt).toContain("60% Complete"); // (2+1)/5 steps for Grade 9
+  });
+
+  test("shows subject/chapter with no fabricated % for a Journey/Study-style row (no step_lessons)", async () => {
+    const { getStudentDashboardSummary, getAnalytics } = await import("../api/analytics");
+    const { getUserProgress } = await import("../api/progress");
+    getStudentDashboardSummary.mockResolvedValueOnce({ success: false });
+    getAnalytics.mockResolvedValueOnce({ history: [] });
+    getUserProgress.mockResolvedValueOnce({
+      success: true,
+      progress: [
+        {
+          username: "akshita.teststudent", grade: "Grade 6", subject: "English", chapter: "Values and Dispositions",
+          current_step_index: 3, completed: false,
+          step_lessons: {},
+        },
+      ],
+    });
+
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("up-next-card");
+
+    const bt = document.body.textContent;
+    expect(bt).toContain("Values and Dispositions");
+    expect(bt).toContain("Continue Learning →");
+    expect(bt).not.toContain("% Complete");
+  });
+
+  test("does not claim a resume state when every saved chapter is already completed", async () => {
+    const { getStudentDashboardSummary, getAnalytics } = await import("../api/analytics");
+    const { getUserProgress } = await import("../api/progress");
+    getStudentDashboardSummary.mockResolvedValueOnce({ success: false });
+    getAnalytics.mockResolvedValueOnce({ history: [{ subject: "Maths", percentage: 70, created_at: "2026-06-20" }] });
+    getUserProgress.mockResolvedValueOnce({
+      success: true,
+      progress: [
+        { username: "akshita.teststudent", grade: "Grade 9", subject: "Science", chapter: "Motion", current_step_index: 4, completed: true, step_lessons: { "4": "..." } },
+      ],
+    });
+
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
+    await screen.findByTestId("up-next-card");
+
+    // No completed chapter is offered as "Continue Learning" — falls through
+    // to the recommendation/new-student branches instead.
+    expect(document.body.textContent).not.toContain("Continue Learning →");
   });
 });
