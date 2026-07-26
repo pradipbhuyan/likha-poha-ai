@@ -5,9 +5,9 @@
 # the first request after that can take 50+ seconds to wake it back up. This
 # pings the health endpoint every 10 minutes to keep it warm.
 #
-# Temporary measure — remove once the Render service is on a paid plan
-# (paid instances don't spin down) or once Railway is fully decommissioned
-# and this stops mattering some other way.
+# Retry logic handles cold-start 502s: the instance may return 502 for the
+# first 30–90 seconds while uvicorn is warming up, so we retry up to 5 times
+# with a 30-second wait between attempts before declaring failure.
 ##############################################################################
 name: Render Keepalive
 
@@ -21,13 +21,34 @@ jobs:
     name: "Ping Render backend"
     runs-on: ubuntu-latest
     steps:
-      - name: "GET /api/health"
+      - name: "GET /api/health (with retries)"
         run: |
-          HTTP=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 \
-            "https://api.likhapoha.in/api/health")
-          echo "HTTP $HTTP"
-          if [ "$HTTP" != "200" ]; then
-            echo "❌ Render backend did not return 200 (got $HTTP)"
-            exit 1
-          fi
-          echo "✅ Render backend is awake"
+          MAX_ATTEMPTS=5
+          WAIT_SECONDS=30
+          ATTEMPT=0
+
+          until [ $ATTEMPT -ge $MAX_ATTEMPTS ]; do
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "Attempt $ATTEMPT of $MAX_ATTEMPTS..."
+
+            HTTP=$(curl -s -o /tmp/render_body.txt -w "%{http_code}" --max-time 90 \
+              "https://api.likhapoha.in/api/health")
+            echo "HTTP $HTTP"
+
+            if [ "$HTTP" = "200" ]; then
+              echo "✅ Render backend is awake (attempt $ATTEMPT)"
+              exit 0
+            fi
+
+            echo "⚠️  Got HTTP $HTTP — response body:"
+            cat /tmp/render_body.txt | head -5
+            echo ""
+
+            if [ $ATTEMPT -lt $MAX_ATTEMPTS ]; then
+              echo "Waiting ${WAIT_SECONDS}s before next attempt..."
+              sleep $WAIT_SECONDS
+            fi
+          done
+
+          echo "❌ Render backend did not return 200 after $MAX_ATTEMPTS attempts"
+          exit 1
