@@ -30,9 +30,13 @@ Every new user can sign up with email/password or Google Auth without an offer c
 
 Paid plans unlock full platform access:
 
-- Nano: ₹99, 8 days, full platform access
-- Premium: ₹299, 30 days, full platform access, one child profile
-- Family Premium: ₹499, 30 days, full platform access, two child profiles
+- **Premium**: ₹299/month, full platform access, one child profile
+- **Family Premium**: ₹499/month, full platform access, two child profiles
+- **Premium 6-Month**: ₹1,495 / 6 months (offer-code / admin only)
+- **Premium Annual**: ₹2,999 / year (offer-code / admin only)
+- **Family Annual**: ₹4,999 / year (offer-code / admin only)
+
+> **Note:** The legacy "Premium Nano" plan (₹99/8 days) has been retired and is no longer sold (`isPublic: false`). Existing users on this plan retain their access until expiry. Do not create new Nano subscriptions through the UI.
 
 Free Tier has restricted access. It must never accidentally receive full premium capability.
 
@@ -79,18 +83,39 @@ The Student Dashboard should encourage progress and motivation through continue-
 
 The Admin Console should be a mobile-friendly operations and support workspace. It includes structured tabs, quick actions, global search, favorites, recent activity, notification center, operations dashboard, analytics, support tools, bulk tools, and access management.
 
+## Legal Pages Maintenance
+
+The following legal pages must be kept in sync with the actual product state. **Update them whenever the product changes:**
+
+| Page | File | Update when… |
+|------|------|--------------|
+| Refund Policy | `frontend/src/pages/RefundPolicyPage.jsx` | Plans, prices, or refund window change |
+| Privacy Policy | `frontend/src/pages/PrivacyPolicyPage.jsx` | New data collected, new AI providers, new integrations |
+| Terms of Service | `frontend/src/pages/TermsOfServicePage.jsx` | New features, grade range, plans, or operator details change |
+
+**Checklist for each policy update:**
+- [ ] Update the "Last updated: Month YYYY" date at the top
+- [ ] Update the grade range if it changes from Grades 5–12
+- [ ] Update the feature list in Terms of Service Section 2
+- [ ] Update subscription plan names/prices in Refund Policy and Terms of Service
+- [ ] Update the third-party service list in Privacy Policy if new AI providers or infrastructure is added
+- [ ] Check that the contact email is still accurate (fetched dynamically from `/api/payments/contact` but the fallback is `likhapohaai@gmail.com`)
+
+Each policy JSX file contains a `── Maintenance reminder ──` comment block at the top of the component to guide future edits.
+
 ## Business Rules
 
 1. Offer codes are not required for new signup.
 2. New users start in Free Tier.
 3. Free Tier has restricted access.
-4. Nano, Premium, and Family Premium have full platform access while active.
+4. Premium, Family Premium, and extended plans have full platform access while active.
 5. Premium and Family Premium are valid for exactly 30 days.
-6. Nano is valid for exactly 8 days.
+6. Extended 6-month and annual plans use their configured `duration_days`.
 7. Expired paid plans fall back to Free Tier or valid offer-code access.
 8. Paid active plans override free/offer access.
 9. Failed or pending payments must not unlock premium access.
 10. Admin ₹1 payment tests must remain admin-only and must use intended plan, not charged amount.
+11. The retired Nano plan (key: "free") must not appear in public plan cards or the comparison table (`isPublic: false`). Existing holders retain access until expiry.
 11. Teacher Free plan allows up to 10 students.
 12. Teacher paid plans allow up to 30 students.
 13. Teacher credential email is paid-only.
@@ -116,3 +141,4 @@ A feature is complete only when:
 - Tests cover success, failure, and access denial.
 - Expired/legacy/subscription edge cases are covered where relevant.
 - Documentation is updated if business rules change.
+- **Legal pages (Refund Policy, Privacy Policy, Terms of Service) are reviewed and updated if the feature changes plans, grades, data collection, or features described therein.**

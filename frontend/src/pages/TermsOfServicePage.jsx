@@ -20,6 +20,17 @@ function Section({ title, children }) {
 /**
  * Terms of Service page — accessible at /terms-of-service.
  * No login required.
+ *
+ * ── Maintenance reminder ──────────────────────────────────────────────────
+ * Update this page whenever:
+ *   • Subscription plan names, prices, or durations change
+ *   • The grades/audience served changes (currently Grades 5–12)
+ *   • New features or product areas are launched (add to Section 2)
+ *   • Acceptable use rules change (Section 5)
+ *   • The governing jurisdiction, operator name, or contact changes
+ *   • A mobile app is launched or removed
+ * See also: RefundPolicyPage.jsx, PrivacyPolicyPage.jsx
+ * ─────────────────────────────────────────────────────────────────────────
  */
 export default function TermsOfServicePage({ onBackToHome }) {
   const [contactEmail, setContactEmail] = useState(FALLBACK_EMAIL);
@@ -49,24 +60,29 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <div style={{ marginBottom: 40 }}>
           <p style={{ fontSize: ".75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".1em", color: "#93c5fd", marginBottom: 10 }}>Legal</p>
           <h1 style={{ fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16 }}>Terms of Service</h1>
-          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>Last updated: June 2026 &nbsp;·&nbsp; Effective immediately</p>
+          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>Last updated: July 2026 &nbsp;·&nbsp; Effective immediately</p>
         </div>
 
         <Section title="1. Acceptance of Terms">
-          By accessing or using Likha Poha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong>, you agree to be bound by these Terms of Service ("Terms") and our{" "}
+          By accessing or using Likha Poha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong> or our mobile app, you agree to be bound by these Terms of Service ("Terms") and our{" "}
           <a href="/privacy-policy" style={{ color: "#93c5fd" }}>Privacy Policy</a>. If you do not agree to these Terms, please do not use the Platform.
           <br /><br />
           These Terms constitute a legally binding agreement between you (the user) and Likha Poha AI, operated by Pradip Bhuyan, India.
         </Section>
 
         <Section title="2. Description of Service">
-          Likha Poha AI provides AI-powered educational tools for CBSE students in Classes 5–10, including:
+          Likha Poha AI provides AI-powered educational tools for CBSE students in Grades 5–12, including:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>AI-generated step-by-step lessons aligned to NCERT curriculum</li>
+            <li style={{ marginBottom: 6 }}>AI-generated step-by-step lessons aligned to the NCERT curriculum</li>
             <li style={{ marginBottom: 6 }}>Ask Doubt — conversational AI answers to student questions</li>
             <li style={{ marginBottom: 6 }}>Mock Test Studio — customisable CBSE practice tests with 70,000+ questions</li>
-            <li style={{ marginBottom: 6 }}>Formula Explorer — chapter-wise formula sheets with worked examples</li>
-            <li>AI Tutor — personalised learning guidance</li>
+            <li style={{ marginBottom: 6 }}>Exemplar Research & Lessons — NCERT Exemplar-level deep-dive for Science and Maths</li>
+            <li style={{ marginBottom: 6 }}>Formula & Concepts library — chapter-wise formula sheets with worked examples</li>
+            <li style={{ marginBottom: 6 }}>Board Papers — 10 years of past CBSE board exam papers with full AI-generated answers</li>
+            <li style={{ marginBottom: 6 }}>Learn More — curated video resources per chapter</li>
+            <li style={{ marginBottom: 6 }}>Exam Prep Centre — preparation resources for JEE, NEET, CUET, SAT, IELTS, and TOEFL</li>
+            <li style={{ marginBottom: 6 }}>Parent Dashboard — progress monitoring, alerts, and family account management</li>
+            <li>Mobile app — companion Android and iOS app for on-the-go learning</li>
           </ul>
           We reserve the right to modify, suspend, or discontinue any feature of the Platform at any time with reasonable notice.
         </Section>
@@ -74,7 +90,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="3. Eligibility and Accounts">
           <strong>3.1 Eligibility</strong>
           <ul style={{ paddingLeft: 24, marginTop: 8, marginBottom: 16 }}>
-            <li style={{ marginBottom: 6 }}>The Platform is designed for students in Classes 5–10 (approximately ages 10–16).</li>
+            <li style={{ marginBottom: 6 }}>The Platform is designed for students in Grades 5–12 (approximately ages 10–18).</li>
             <li style={{ marginBottom: 6 }}>Users under 18 must have parental consent. Parents/guardians are responsible for their child's use of the Platform.</li>
             <li>You must provide accurate and complete information when creating an account.</li>
           </ul>
@@ -94,7 +110,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
         <Section title="4. Subscriptions and Payments">
           <strong>4.1 Plans</strong>
           <br />
-          Likha Poha AI offers both free and paid subscription plans. Paid plans are billed monthly. Plan features and pricing are described on the{" "}
+          Likha Poha AI offers a free tier and the following paid plans: <strong>Premium</strong> (₹299/month, single student) and <strong>Family Premium</strong> (₹499/month, up to 2 students). Extended 6-month and annual plans are available through special offer codes. The Free Tier provides limited access at no cost. Full plan details are on the{" "}
           <a href="/#pricing" style={{ color: "#93c5fd" }}>Pricing page</a>.
 
           <br /><br />
@@ -130,7 +146,7 @@ export default function TermsOfServicePage({ onBackToHome }) {
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 6 }}>AI-generated lessons, answers, and explanations may occasionally contain errors, inaccuracies, or outdated information.</li>
             <li style={{ marginBottom: 6 }}>Content should be used as a <strong>supplementary learning aid</strong>, not as a substitute for verified textbooks, teachers, or official NCERT materials.</li>
-            <li style={{ marginBottom: 6 }}>For competitive exams or high-stakes assessments, always verify answers with authoritative sources.</li>
+            <li style={{ marginBottom: 6 }}>For competitive exams (JEE, NEET, CUET, SAT, IELTS, TOEFL) or high-stakes assessments, always verify answers with authoritative sources.</li>
             <li>We continuously improve content quality through human review and AI model upgrades.</li>
           </ul>
         </Section>

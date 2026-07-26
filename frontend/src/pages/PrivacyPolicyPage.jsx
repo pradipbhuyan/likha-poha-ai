@@ -20,6 +20,17 @@ function Section({ title, children }) {
 /**
  * Privacy Policy page — accessible at /privacy-policy.
  * No login required.
+ *
+ * ── Maintenance reminder ──────────────────────────────────────────────────
+ * Update this page whenever:
+ *   • The grades/audience served changes (currently Grades 5–12)
+ *   • New AI providers, third-party services, or integrations are added
+ *   • Data retention periods change
+ *   • New data types are collected (e.g. voice, device ID)
+ *   • Google OAuth scopes change
+ *   • A mobile app is launched (add app-specific data collection)
+ * See also: RefundPolicyPage.jsx, TermsOfServicePage.jsx
+ * ─────────────────────────────────────────────────────────────────────────
  */
 export default function PrivacyPolicyPage({ onBackToHome }) {
   const [contactEmail, setContactEmail] = useState(FALLBACK_EMAIL);
@@ -49,11 +60,11 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         <div style={{ marginBottom: 40 }}>
           <p style={{ fontSize: ".75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".1em", color: "#93c5fd", marginBottom: 10 }}>Legal</p>
           <h1 style={{ fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16 }}>Privacy Policy</h1>
-          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>Last updated: June 2026 &nbsp;·&nbsp; Effective immediately</p>
+          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>Last updated: July 2026 &nbsp;·&nbsp; Effective immediately</p>
         </div>
 
         <Section title="1. Who We Are">
-          Likha Poha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Classes 5–10, operated by Pradip Bhuyan and accessible at <strong>www.likhapoha.in</strong>.
+          Likha Poha AI ("we", "us", or "our") is an AI-powered educational platform for CBSE students in Grades 5–12, operated by Pradip Bhuyan and accessible at <strong>www.likhapoha.in</strong>. A companion mobile app is also available for Android and iOS.
           <br /><br />
           This Privacy Policy explains what personal data we collect, why we collect it, how we use it, and your rights regarding that data. By using our platform you agree to the practices described here.
         </Section>
@@ -89,6 +100,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
             <li>IP address and browser user-agent (for security logging)</li>
             <li>Request timestamps and response times</li>
             <li>Error logs (anonymised where possible)</li>
+            <li>On the mobile app: device type, OS version, and app version (no precise location or contacts accessed)</li>
           </ul>
         </Section>
 
@@ -150,6 +162,8 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
           <ul style={{ paddingLeft: 24, marginTop: 4 }}>
             <li><strong>Supabase</strong> — database and authentication (data stored in secure cloud infrastructure)</li>
             <li><strong>Razorpay</strong> — payment processing (PCI-DSS compliant)</li>
+            <li><strong>Render</strong> — backend hosting (api.likhapoha.in)</li>
+            <li><strong>Vercel</strong> — frontend hosting (www.likhapoha.in)</li>
           </ul>
         </Section>
 
@@ -163,7 +177,7 @@ export default function PrivacyPolicyPage({ onBackToHome }) {
         </Section>
 
         <Section title="7. Children's Privacy">
-          Likha Poha AI is designed for students in Classes 5–10 (approximately ages 10–16). We take children's privacy seriously:
+          Likha Poha AI is designed for students in Grades 5–12 (approximately ages 10–18). We take children's privacy seriously:
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
             <li style={{ marginBottom: 8 }}>Student accounts are created by parents or guardians via the Family Account system, or directly by school administrators.</li>
             <li style={{ marginBottom: 8 }}>We do not show advertisements to students.</li>
