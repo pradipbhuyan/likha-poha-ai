@@ -14,7 +14,7 @@
  * MathAwareMarkdown (LaTeX → Unicode) in lessons.tsx is reused untouched.
  */
 import { ReactNode, useMemo, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 // ── Block / doc types (mirror backend app/models/lesson_blocks.py) ───────────
@@ -28,7 +28,7 @@ export interface VisualSpec {
   note?: string;
 }
 export interface ChapterBlock {
-  type: "hook" | "concept" | "example" | "quickcheck" | "watchout" | "vocab" | "students_ask" | "recap" | "visual";
+  type: "hook" | "concept" | "example" | "quickcheck" | "watchout" | "vocab" | "students_ask" | "recap" | "visual" | "textbook_image";
   // visual
   visual?: VisualSpec;
   // hook
@@ -48,6 +48,10 @@ export interface ChapterBlock {
   words?: KeyTerm[];
   // students_ask
   answer_md?: string;
+  // textbook_image — real, admin-approved NCERT page image (never AI-generated)
+  asset_url?: string;
+  caption?: string;
+  page_number?: number | null;
 }
 export interface ChapterMilestone { title: string; blocks: ChapterBlock[]; }
 export interface ExamQAItem {
@@ -276,6 +280,29 @@ function extractVisualsFromMarkdown(content: string): { text: string; visuals: V
   return { text: text.trim(), visuals };
 }
 
+// ── Textbook image — real, admin-approved NCERT page (never AI-generated) ────
+function TextbookImageCard({ block }: { block: ChapterBlock }) {
+  if (!block.asset_url) return null;
+  return (
+    <View style={cjStyles.textbookImageCard}>
+      <Image
+        source={{ uri: block.asset_url }}
+        style={cjStyles.textbookImage}
+        resizeMode="contain"
+      />
+      {block.caption ? (
+        <View style={cjStyles.textbookImageCaptionRow}>
+          <Feather name="book-open" size={12} color="#6b7280" />
+          <Text style={cjStyles.textbookImageCaption}>
+            {block.caption}
+            {block.page_number ? ` (NCERT page ${block.page_number})` : ""}
+          </Text>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
 // ── Board question (Grades 9-12) — attempt-first model answer ────────────────
 function ExamQACard({ item, renderMarkdown }: { item: ExamQAItem; renderMarkdown: RenderMarkdown }) {
   const [revealed, setRevealed] = useState(false);
@@ -389,6 +416,8 @@ export default function ChapterJourney({ doc, grade, renderMarkdown }: {
         return block.visual ? (
           <VisualCard key={key} visual={block.visual} accent={(palette.concept ?? JOURNEY_CARDS.concept).accent} />
         ) : null;
+      case "textbook_image":
+        return <TextbookImageCard key={key} block={block} />;
       case "students_ask":
         return (
           <CardShell key={key} palette={palette} type="students_ask">
@@ -529,6 +558,10 @@ const cjStyles = StyleSheet.create({
   examYearBadge: { backgroundColor: "#f1f5f9", borderRadius: 5, paddingHorizontal: 8, paddingVertical: 2 },
   examYearText: { fontSize: 11, fontWeight: "700", color: "#64748b" },
   examAnswer: { borderTopWidth: 1, borderTopColor: "#e2e8f0", marginTop: 10, paddingTop: 10 },
+  textbookImageCard: { borderRadius: 14, borderWidth: 1, borderColor: "#e5e7eb", backgroundColor: "#fff", overflow: "hidden", marginBottom: 12 },
+  textbookImage: { width: "100%", height: 220, backgroundColor: "#f3f4f6" },
+  textbookImageCaptionRow: { flexDirection: "row", alignItems: "center", gap: 6, padding: 12 },
+  textbookImageCaption: { fontSize: 12, color: "#6b7280", flex: 1, lineHeight: 17 },
   finishCard: { borderRadius: 16, padding: 20, alignItems: "center", marginTop: 6, marginBottom: 10 },
   finishTitle: { color: "#fff", fontSize: 16, fontWeight: "800", marginTop: 8, textAlign: "center" },
   finishText: { color: "rgba(255,255,255,.9)", fontSize: 13, textAlign: "center", marginTop: 4, lineHeight: 19 },
