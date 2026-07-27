@@ -1,0 +1,123 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Elections",
+  "central_question": "How do elections convert citizens’ choices into legitimate and accountable government while remaining free, fair, inclusive, and transparent?",
+  "in_scope_units": [
+    "Why Elections Matter: the importance of periodic elections, voting, accountability, representation, equality, legitimacy, and the distinction between direct and indirect elections.",
+    "Inside India’s Election Machinery: the coordinated role of constitutional provisions, parliamentary laws, the Election Commission of India, political parties, civil society, media, and voters.",
+    "The Electoral System: how First-Past-The-Post, the majority system, proportional representation, and the single transferable vote convert votes into seats.",
+    "The Laws: the roles of the Representation of the People Acts of 1950 and 1951, the Presidential and Vice-Presidential Elections Act, 1952, and the identification of electoral offences and corrupt practices.",
+    "Delimitation Commission: fixing constituency boundaries and seat numbers so that the ratio of seats to population is as close to equal as possible.",
+    "Election Commission of India: its constitutional status, election administration, electoral rolls, Special Intensive Revision, election schedules, party registration, symbol allocation, and measures for free, fair, and inclusive elections.",
+    "Digital and Inclusive Electoral Services: ETPBS, the Voter Helpline App, Saksham, cVIGIL, Suvidha, ERONET, Sugam, Braille-enabled EVMs, and home voting for specified voters.",
+    "Political Parties: their role in organising public opinion, campaigning, presenting manifestos, offering choices, forming government, acting as opposition, and enabling accountability.",
+    "Defection, Party Recognition, and Alliances: the Anti-Defection Law, criteria for national and state party recognition, registered unrecognised parties, and the development of political alliances.",
+    "Challenges to Free and Fair Elections: misinformation, fake news, intimidation, accessibility concerns, electoral misconduct, and safeguards such as the Model Code of Conduct, EVMs, VVPAT, laws, and voter-awareness campaigns."
+  ],
+  "banned_topics": [
+    "A general history of democracy or a full explanation of democratic principles not directly connected with elections.",
+    "Detailed law-making procedures and the complete functioning of Parliament or State Legislatures beyond their electoral connection.",
+    "The complete structure of Union, State, and local governments beyond the representatives and offices discussed in this chapter.",
+    "Current election results, current party counts, current alliance compositions, or voter-registration document lists that are not supplied in the chapter text.",
+    "Political opinions or evaluations of particular parties, candidates, manifestos, or election outcomes beyond the neutral descriptions in the source chapter."
+  ],
+  "must_include_keywords": [
+    "periodic elections",
+    "direct elections",
+    "indirect elections",
+    "right to vote",
+    "accountability",
+    "representation",
+    "legitimacy",
+    "equality",
+    "psephology",
+    "Election Commission of India",
+    "First-Past-The-Post",
+    "majority system",
+    "proportional representation",
+    "single transferable vote",
+    "quota",
+    "Lok Sabha",
+    "Rajya Sabha",
+    "Vidhan Sabha",
+    "Vidhan Parishad",
+    "Representation of the People Act, 1950",
+    "Representation of the People Act, 1951",
+    "Delimitation Commission",
+    "Article 82",
+    "Articles 324 to 329",
+    "electoral roll",
+    "Special Intensive Revision",
+    "ETPBS",
+    "National Voters’ Day",
+    "Model Code of Conduct",
+    "EVM",
+    "VVPAT",
+    "Saksham App",
+    "cVIGIL App",
+    "political parties",
+    "manifesto",
+    "multi-party system",
+    "defection",
+    "Anti-Defection Law",
+    "national party",
+    "state party",
+    "Registered Unrecognised Political Parties",
+    "misinformation",
+    "fake news",
+    "intimidation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All important public offices in India are filled through direct elections.",
+      "correction": "Lok Sabha, Vidhan Sabha, and local-body representatives are chosen through direct elections, while the President, Vice President, and Rajya Sabha members are chosen through indirect elections."
+    },
+    {
+      "claim": "A candidate must always receive more than 50 per cent of the votes to win under First-Past-The-Post.",
+      "correction": "Under FPTP, the candidate with the most votes wins even when the share is below 50 per cent; the more-than-50-per-cent requirement belongs to the majority system shown in the chapter."
+    },
+    {
+      "claim": "Proportional representation and FPTP allocate seats in the same way.",
+      "correction": "FPTP awards the constituency to the candidate with the most votes, whereas proportional representation allocates seats in proportion to votes received; the chapter also explains preference transfer through the single transferable vote."
+    },
+    {
+      "claim": "The Representation of the People Act, 1950 and the Representation of the People Act, 1951 perform the same function.",
+      "correction": "RPA 1950 mainly covers seat allocation, delimitation, and electoral rolls, while RPA 1951 covers the conduct of elections, nominations, campaigns, voting procedures, disputes, offences, and corrupt practices."
+    },
+    {
+      "claim": "Constituency boundaries never change.",
+      "correction": "Delimitation can change constituency boundaries and the number of seats to keep the ratio of seats to population as close to equal as possible."
+    },
+    {
+      "claim": "Possessing a voter card alone is enough to vote even when a person’s name is not on the electoral roll.",
+      "correction": "The chapter states that only those whose names appear on the electoral roll are allowed to vote."
+    },
+    {
+      "claim": "The Election Commission of India only announces election dates.",
+      "correction": "The ECI supervises, directs, and controls the election process, prepares and revises electoral rolls, decides schedules, registers parties, allocates symbols, promotes inclusion, regulates the process, counts votes, declares results, and helps resolve disputes."
+    },
+    {
+      "claim": "Holding an election automatically makes it free and fair.",
+      "correction": "The process must also be inclusive, impartial, transparent, accessible, accurately counted, and trustworthy; otherwise its democratic value is reduced."
+    },
+    {
+      "claim": "Home voting mentioned in the chapter is available to every voter.",
+      "correction": "The chapter states that home voting was extended nationwide in the 2024 General Elections to senior citizens above 85 years and persons with disabilities having a benchmark disability of 40 per cent."
+    },
+    {
+      "claim": "Defection simply means that any citizen changes political preference.",
+      "correction": "In this chapter, defection refers to an elected member abandoning or switching from the party under whose banner the member was elected, or acting against party instructions in specified legislative matters."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and activities Q3 to explain why elections are called the soul of democracy.",
+    "Use the numerical comparison in Fig. 7.3 to distinguish FPTP, the majority system, and proportional representation using the given imaginary-country results.",
+    "Use NCERT Questions and activities Q6 to explain the purpose, objectives, and necessity of Special Intensive Revision of electoral rolls.",
+    "Use NCERT Questions and activities Q4 with Fig. 7.12 to compare national-party and state-party recognition criteria.",
+    "Conclude with NCERT Questions and activities Q10 and Fig. 7.13 to identify challenges to free and fair elections and the safeguards named in the chapter."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled ‘Questions and activities’ and contains Questions 1–14 on pages 179–182 of the supplied chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
