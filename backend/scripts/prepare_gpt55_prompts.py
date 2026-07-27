@@ -48,6 +48,15 @@ BOOK_SOURCES = {
         "num_chapters": 13,
         "subject_class": "science_or_maths",
     },
+    # Grade 9 Maths lives in "RAG DB/Maths/" with book code "iemh1",
+    # chapters iemh101.pdf .. iemh108.pdf (8 chapters), matching CBSE_9["Maths"]
+    # order in backend/app/data/syllabus.py exactly.
+    ("Grade 9", "Maths"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Maths",
+        "book_code": "iemh1",
+        "num_chapters": 8,
+        "subject_class": "science_or_maths",
+    },
 }
 
 PROMPT_TEMPLATE = """\
