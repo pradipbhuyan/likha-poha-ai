@@ -1,0 +1,134 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Measuring Space: Perimeter and Area",
+  "central_question": "How can we measure the distance around plane shapes and the space they enclose, especially when circles, arcs, triangles, and cyclic quadrilaterals are involved?",
+  "in_scope_units": [
+    "Chapter opening: the staggered starts in a 4 × 100 m relay and the need to compare curved path lengths.",
+    "6.1 Perimeter of a Shape: perimeter as total boundary length and formulas for squares, equilateral triangles, and rectangles.",
+    "6.2 Perimeter of a Circle—The C/D Ratio: circumference, diameter, experimental estimation of C/D, and the historical development of π.",
+    "6.3 π Is Irrational: rational and irrational numbers, decimal behaviour, and practical approximations such as 22/7 and 355/113.",
+    "6.4 Length of an Arc of a Circle: circumference formulas, semicircle and quarter-circle arcs, the general arc-length formula, and the 400 m athletics-track stagger.",
+    "6.5 Problems, Puzzles, and Paradoxes on Perimeter: overlapping-circle boundaries and equal-length semicircular paths.",
+    "Exercise Set 6.1: circumference, arc length, sector perimeter, composite curved boundaries, wheel revolutions, petals, and perimeter ratios.",
+    "6.6 Area of a Rectangle: square units and the area formulas for squares and rectangles.",
+    "6.7 Area of a Parallelogram: transformation into a rectangle, base × perpendicular height, and the thin-parallelogram case.",
+    "6.8 Area of a Triangle: the half-base-times-height formula, rearrangement into a parallelogram, medians and equal areas, and area-preserving dissections.",
+    "6.8.1 Heron’s Formula: area from three side lengths, semi-perimeter, standard examples, and related circumcircle and incircle area formulas.",
+    "Brahmagupta’s Formula for the Area of a Cyclic 4-gon: why four side lengths alone are insufficient for a general 4-gon and how cyclicity supplies the needed condition.",
+    "Special Cases and Generalisation in Mathematics: deriving special formulas from general ones and viewing Heron’s formula as a special case of Brahmagupta’s formula.",
+    "6.9 Squaring a Rectangle: Baudhāyana’s construction of a square equal in area to a given rectangle and its algebraic justification.",
+    "Exercise Set 6.2: triangle, trapezium, rhombus, parallelogram, median, and equal-area problems.",
+    "6.10 Area of a Circle: historical approximations, Archimedes’ formula A = πr², and the circle-slicing rearrangement into a parallelogram-like figure.",
+    "6.10.1 Area of Sector of a Circle: sector and segment definitions, semicircle and quadrant areas, and the general sector-area formula.",
+    "Exercise Set 6.3: sectors, quadrants, clock hands, wipers, segments, and areas of polygons inscribed in circles.",
+    "End-of-Chapter Exercises 1–27: mixed applications, proofs, composite figures, similarity scaling, dissections, and circle-area puzzles.",
+    "Chapter Summary: the principal formulas and conclusions for perimeter, π, arc length, triangle area, Heron’s formula, circle area, sector area, and Brahmagupta’s formula."
+  ],
+  "banned_topics": [
+    "Surface areas and volumes of three-dimensional solids such as cones, cylinders, and spheres.",
+    "Tangent, secant, and power-of-a-point theorems for circles.",
+    "Coordinate-geometry distance and area formulas.",
+    "Trigonometric area formulas such as 1/2 ab sin C.",
+    "A formal proof that π is irrational or advanced calculus beyond the historical infinite-series discussion in the chapter.",
+    "Detailed quadrilateral classification theorems that belong to the separate chapter on quadrilaterals."
+  ],
+  "must_include_keywords": [
+    "perimeter",
+    "circumference",
+    "C/D ratio",
+    "diameter",
+    "radius",
+    "π",
+    "irrational number",
+    "22/7 approximation",
+    "355/113 approximation",
+    "Archimedes",
+    "Zu Chongzhi",
+    "Āryabhaṭa",
+    "Mādhava",
+    "arc length",
+    "central angle",
+    "stagger",
+    "semicircle",
+    "quarter circle",
+    "square unit",
+    "rectangle",
+    "parallelogram",
+    "base",
+    "perpendicular height",
+    "triangle area",
+    "median",
+    "equal area",
+    "semi-perimeter",
+    "Heron’s formula",
+    "circumcircle",
+    "incircle",
+    "cyclic 4-gon",
+    "Brahmagupta’s formula",
+    "special case",
+    "generalisation",
+    "squaring a rectangle",
+    "Baudhāyana",
+    "area of a circle",
+    "sector",
+    "segment",
+    "rotational symmetry"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "π is exactly equal to 22/7.",
+      "correction": "π is irrational; 22/7 is a useful approximation, so π ≈ 22/7 but π ≠ 22/7."
+    },
+    {
+      "claim": "Perimeter and area use the same kind of unit.",
+      "correction": "Perimeter and arc length use linear units, while area uses square units such as cm² or m²."
+    },
+    {
+      "claim": "The arc-length formula and sector-area formula are interchangeable.",
+      "correction": "Arc length is 2πr × θ/360, while sector area is πr² × θ/360."
+    },
+    {
+      "claim": "The perimeter of a sector is only the curved arc.",
+      "correction": "The perimeter of a sector includes the arc and the two radii."
+    },
+    {
+      "claim": "The area of a parallelogram is the product of any two adjacent side lengths.",
+      "correction": "The area is base × perpendicular height; side lengths alone do not determine the area because the included angle can change."
+    },
+    {
+      "claim": "In A = 1/2 bh, any sloping side may be used as the height.",
+      "correction": "The height must be perpendicular to the chosen base or its extension."
+    },
+    {
+      "claim": "Heron’s formula can be used without first finding the semi-perimeter.",
+      "correction": "First compute s = (a + b + c)/2, then use √[s(s−a)(s−b)(s−c)]."
+    },
+    {
+      "claim": "The four side lengths determine the area of every quadrilateral.",
+      "correction": "A general 4-gon can have different areas with the same four side lengths; Brahmagupta’s side-length formula requires the 4-gon to be cyclic."
+    },
+    {
+      "claim": "A sector and a segment are the same region.",
+      "correction": "A sector is bounded by an arc and two radii; a segment is bounded by an arc and its chord."
+    },
+    {
+      "claim": "Equal area means two shapes must be congruent.",
+      "correction": "Different-looking, non-congruent shapes can have equal area, as shown by the median of a triangle and by area-preserving rearrangements."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the named Home Measurement in Section 6.2: wrap thin thread 20 times around a cotton reel and estimate L/(20D) as the C/D ratio.",
+    "Use the worked 400 m athletics-track calculation in Section 6.4 to connect circumference with lane staggers.",
+    "Use Example 1 in Section 6.5 to find the exposed perimeter of two equal circles that pass through each other’s centres.",
+    "Use Example 2 in Section 6.5 to prove that one large semicircular path and three smaller semicircular paths have equal length.",
+    "Use Example 5 in Section 6.8.1 to calculate the area of a 3–4–5 triangle by Heron’s formula and by 1/2 × base × height.",
+    "Use Example 6 under Brahmagupta’s formula to verify that the formula reduces to area = ab for a rectangle.",
+    "Use Fig. 6.30 in Section 6.9 to explain Baudhāyana’s construction for squaring a rectangle.",
+    "Use Exercise Set 6.3, Question 1 to apply the sector-area formula to radius 7 cm and angle 60°.",
+    "Finish with End-of-Chapter Exercise 6, finding the area of a 7–24–25 triangle in two different ways."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains Exercise Sets 6.1, 6.2, and 6.3, followed by an End-of-Chapter Exercises section numbered 1–27.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
