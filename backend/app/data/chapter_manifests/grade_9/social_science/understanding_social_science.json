@@ -1,0 +1,108 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Understanding Social Science",
+  "central_question": "How does Social Science help us understand the interconnected ways in which people, places, institutions, economies, cultures, and the environment shape society across the past, present, and future?",
+  "in_scope_units": [
+    "Meaning and purpose of Social Science as the systematic study of human society and interconnected social life",
+    "Social Science in everyday life through systems of governance, production, cooperation, infrastructure, education, and the environment",
+    "Understanding society through time and traditions, including continuity, change, Indian knowledge traditions, and evidence-based inquiry",
+    "Social Science as a group of related disciplines and the need for multiple perspectives",
+    "Geography: location, distribution, human-environment relationships, spatial and temporal perspectives, and geographical tools",
+    "History: study of the human past, historiography, empirical evidence, and literary, archaeological, epigraphic, and numismatic sources",
+    "Political Science: governance, power, institutions, public participation, Indian political thought, and Panchayati Raj",
+    "Economics: limited resources, production, exchange, distribution, decision-making, development, equity, and sustainable growth",
+    "Why Social Science matters for understanding diversity, systems, citizenship, shared challenges, and links among past, present, and future",
+    "The future of Social Science in responding to technology, migration, climate change, sustainability, social harmony, and equitable resource use",
+    "The Grades 9-10 learning journey across Geography, History, Political Science, and Economics"
+  ],
+  "banned_topics": [
+    "Detailed teaching of specific landforms, climate systems, oceans, biomes, or biosphere reserves beyond the chapter's overview of Geography",
+    "Detailed narration of the Greco-Roman world, Reformation, Renaissance, Enlightenment, Industrial Revolution, colonialism, or anti-colonial movements",
+    "Detailed constitutional provisions, election procedures, public-policy mechanisms, or national-security case studies",
+    "Detailed GDP calculation, market-price theory, financial accounting, entrepreneurship methods, international-trade models, or Union Budget analysis",
+    "Full treatment of Sociology, Anthropology, Psychology, or Philosophy as separate disciplines"
+  ],
+  "must_include_keywords": [
+    "Social Science",
+    "systematic study of human society",
+    "interconnectedness",
+    "everyday life",
+    "governance",
+    "economic production",
+    "social cooperation",
+    "natural environment",
+    "observation",
+    "evidence",
+    "logical reasoning",
+    "continuity and change",
+    "Pañchamahābhūtas",
+    "vasudhaiva kuṭumbakam",
+    "Arthaśhāstra",
+    "Kauṭilya",
+    "interviews and surveys",
+    "Geography",
+    "spatial perspective",
+    "temporal perspective",
+    "maps",
+    "globes",
+    "atlases",
+    "Geographical Information System",
+    "History",
+    "empirical evidence",
+    "itihāsa-purāṇa tradition",
+    "literary sources",
+    "archaeological sources",
+    "epigraphic sources",
+    "numismatic sources",
+    "Political Science",
+    "power",
+    "Panchayati Raj",
+    "dharma",
+    "rājadharma",
+    "Economics",
+    "limited resources",
+    "equity",
+    "sustainable growth"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Social Science is mainly the memorisation of dates, maps, and definitions.",
+      "correction": "The chapter presents Social Science as the systematic study of human society through observation, questioning, evidence, logical reasoning, comparison, and the recognition of connections."
+    },
+    {
+      "claim": "Geography studies only physical features such as mountains and rivers.",
+      "correction": "Geography studies both the physical features of the Earth and human communities, including the relationships between people and their surroundings."
+    },
+    {
+      "claim": "History is based only on written documents.",
+      "correction": "History uses many sources, including literary, archaeological, epigraphic, numismatic, oral, genealogical, and revenue sources, supported where appropriate by scientific methods."
+    },
+    {
+      "claim": "Political power exists only in formal government institutions.",
+      "correction": "The chapter explains that power also operates through social relationships, customs, ideas of legitimacy, and local institutions such as Panchayati Raj."
+    },
+    {
+      "claim": "Economics is only about money, numbers, and markets.",
+      "correction": "Economics also concerns the use of limited resources, production and distribution, decision-making, well-being, equity, justice, and sustainable growth."
+    },
+    {
+      "claim": "The four core disciplines can be studied as completely separate subjects.",
+      "correction": "The chapter uses the drought example to show that environment, income, government action, migration, society, and culture must often be studied together."
+    },
+    {
+      "claim": "Indian knowledge traditions are presented as replacements for modern evidence-based methods.",
+      "correction": "The chapter presents them as part of a long tradition of inquiry, while explaining that modern Social Science uses observation, interviews, surveys, documents, comparison, and evidence from multiple sources."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the chapter's 'LET'S ANALYSE' locality-change activity: compare the earlier situation, the change, its causes, and its effects on people's lives.",
+    "Use the chapter's drought example under 'Social Science as a Study of Disciplines' to show how Geography, Economics, Political Science, society, and culture connect.",
+    "Use the chapter's 'LET'S EXPLORE' School Bhuvan activity to show how Geography uses mapping and geospatial tools to study a village or city.",
+    "Use Figures 1.2-1.9 to classify the Sāmaveda and Tirukkuṟal manuscripts, terracotta figurine, sculpture, inscriptions, and coins as literary, archaeological, epigraphic, or numismatic sources.",
+    "Use the chapter's Panchayati Raj example and Economics discussion of consumers, producers, and governments to compare how Political Science and Economics examine public decisions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter does not contain a separate end-of-chapter exercise section; its learning tasks are the in-text 'LET'S ANALYSE' and 'LET'S EXPLORE' activities and the questions embedded in the chapter discussion.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
