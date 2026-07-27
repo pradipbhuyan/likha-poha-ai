@@ -1,0 +1,128 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "State and Society up to 1000 CE",
+  "central_question": "How did political institutions, social structures, ethical ideas, knowledge traditions, and economic networks develop and remain connected across the Indian subcontinent up to about 1000 CE?",
+  "in_scope_units": [
+    "Understanding early Indian state and society through the distinction between society, regulated mainly by customs and practices, and the State, organised through rules, laws, rights, duties, and institutions.",
+    "The beginnings of literary evidence in the Vedic corpus, including the four Vedas, their four textual parts, and the use of Vedic texts as historical sources.",
+    "Political institutions in the Vedic period, including jana-based organisation, the rājā as clan chief, and the sabhā, samiti, and vidhata assemblies.",
+    "Archaeological and agricultural changes in the Ganga region, including iron implements, PGW, NBPW, expanding settlements, and increased crop production.",
+    "The transition from kin-based janas to territorial janapadas and mahājanapadas, the rise of Magadha, monarchical and republican states, and early southern polities described in Sangam and Aśhokan sources.",
+    "Duties and ideals of kingship, including justice, protection, welfare, the political ideal of Jambudvīpa, Prithivi, aśhvamedha, and chakravarti kśhetra.",
+    "The council of ministers and Kauṭilya's Saptāṁga theory of the seven integrated constituents of the state.",
+    "Imperial and regional administration through provinces, divisions, districts, villages, officers, local consultation, village assemblies, variyams, land grants, and the Uttaramerur Kudavolai system.",
+    "Ethics as the foundation of law and public life, especially samatva, ṛita, dharma, dhamma, moral governance, and ethical qualifications for office.",
+    "Social structures and everyday life, including varṇa, jāti, occupational flexibility, social mobility, family organisation, gotra, āśhramas, puruṣhārthas, and rites of passage.",
+    "The role of women in learning, ritual, work, governance, patronage, literature, agriculture, crafts, and cultural life across Vedic, Gupta–Vākāṭaka, Sangam, and Chola contexts.",
+    "Religious life from Vedic nature-linked worship and yajñas to renunciatory traditions and the emergence of Bhakti through the Āḻvārs and Nāyanmārs.",
+    "The quest for knowledge through gurukula education, the guru-śhiṣhya relationship, practical and moral learning, centres of higher learning, and literary heritage.",
+    "The economy based on agriculture, land revenue, irrigation, trade routes, ports, coins, guilds, textile production, banking, credit, patronage, and public works.",
+    "End-of-chapter synthesis through source-based, map-based, analytical, and presentation activities in Questions and activities 1–14."
+  ],
+  "banned_topics": [
+    "A detailed history of the Sindhu–Sarasvatī civilisation or other Bronze Age civilisations, which belongs to the previous chapter.",
+    "A detailed account of India's foreign trade and cultural exchanges with other regions, which the source assigns to the later chapter 'India and the World – 1'.",
+    "A full history of the Bhakti movement after the 6th century, which the source says will be studied in Part 2 of the Grade 9 textbook.",
+    "Detailed political history after 1000 CE, including the later expansion of imperial Cholas beyond the brief continuity reference in this chapter.",
+    "Modern Indian constitutional administration beyond the limited comparison questions explicitly raised in the chapter."
+  ],
+  "must_include_keywords": [
+    "society",
+    "State",
+    "Ṛigveda",
+    "Sapta–Sindhu",
+    "jana",
+    "kula",
+    "rājā",
+    "sabhā",
+    "samiti",
+    "vidhata",
+    "PGW",
+    "NBPW",
+    "janapada",
+    "mahājanapada",
+    "Magadha",
+    "gaṇa",
+    "saṁgha",
+    "Sangam literature",
+    "Tamilakam",
+    "Arthaśhāstra",
+    "chakravarti samrāṭ",
+    "Jambudvīpa",
+    "Saptāṁga",
+    "mantri–pariṣhad",
+    "bhukti",
+    "maṇḍalam",
+    "variyam",
+    "Kudavolai",
+    "dharma",
+    "dhamma",
+    "samatva",
+    "ṛita",
+    "varṇa",
+    "jāti",
+    "social mobility",
+    "gotra",
+    "āśhrama",
+    "puruṣhārtha",
+    "role of women",
+    "Bhakti",
+    "gurukula",
+    "Dakṣhiṇāpatha",
+    "Uttarāpatha",
+    "śhreṇī"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Early Vedic society was organised mainly as a large territorial empire.",
+      "correction": "Early Vedic society was organised mainly into kin-based janas or clans; territorial janapadas developed later, approximately between 1000 BCE and 600 BCE."
+    },
+    {
+      "claim": "The rājā in the Vedic period was an absolute emperor who ruled without consultation.",
+      "correction": "The rājā functioned primarily as a clan chief, while sabhā, samiti, and vidhata participated in judicial, policy, political, and community discussions."
+    },
+    {
+      "claim": "Janapada and jana mean the same type of political unit.",
+      "correction": "A jana was a kin-based people or clan, while a janapada was a territorial entity associated with the land where a jana established itself."
+    },
+    {
+      "claim": "All early Indian states were monarchies.",
+      "correction": "The political landscape included monarchical states called rājyas and republican states called gaṇas or saṁghas."
+    },
+    {
+      "claim": "The early Tamil Cholas, Cheras, and Pandyas were the same as the later imperial dynasties.",
+      "correction": "The source explicitly warns that the early Tamil kingdoms described in Sangam literature should not be confused with the later imperial Chola, Chera, and Pandya kingdoms."
+    },
+    {
+      "claim": "The king ruled alone and ministers had only ceremonial roles.",
+      "correction": "The king governed through a multi-layered administrative system; the mantri–pariṣhad advised him and could, in exceptional circumstances, take decisions independently in the public interest."
+    },
+    {
+      "claim": "Dharma in this chapter simply means religion.",
+      "correction": "Here dharma refers to duty, obligation, righteousness, moral conduct, and that which upholds beings and social order."
+    },
+    {
+      "claim": "Varṇa and jāti were identical and fixed from the earliest Vedic period.",
+      "correction": "Varṇa referred to four broad functional categories, while jātis were numerous social groups that grew over time; the chapter also presents evidence of early occupational flexibility and social mobility."
+    },
+    {
+      "claim": "Women had no intellectual, economic, or political role in early India.",
+      "correction": "The chapter records women sages, participants in learning and rituals, workers in agriculture and crafts, poetesses, donors, royal patrons, and Prabhāvatī Gupta as a regent who issued grants in her own name."
+    },
+    {
+      "claim": "Guilds were only craft associations.",
+      "correction": "Guilds regulated quality and prices, enforced discipline through guild courts, and also functioned as banks, financiers, trustees, and recipients of interest-bearing endowments."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and activities Q6 to compare the rājā and Vedic assemblies and explain how sabhā and samiti could limit concentrated power.",
+    "Next use NCERT Questions and activities Q1 and Q2 to trace the transition from jana to janapada, mahājanapada, and empire, and then explain administrative offices and territorial divisions.",
+    "Use the source-analysis task under 'Let's Explore' on Ṛigveda 9.112.3 and NCERT Questions and activities Q7 to distinguish varṇa from jāti and identify evidence of occupational flexibility.",
+    "Use NCERT Questions and activities Q8 and Q5 to connect moral education, family life, social roles, and the varied contributions of women.",
+    "Conclude with NCERT Questions and activities Q12 on the Nāśhik cave inscription to explain guilds as financial institutions, identify the donor and donees, and interpret the use of deposited capital and interest."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1–14, including analytical, source-based, map-based, and presentation tasks.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

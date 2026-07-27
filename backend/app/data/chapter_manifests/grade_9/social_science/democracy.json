@@ -1,0 +1,142 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Democracy",
+  "central_question": "How did democratic ideas develop in India, what constitutional principles and forms make democracy work, and how do institutions and responsible citizens sustain it despite continuing challenges?",
+  "in_scope_units": [
+    "Meaning of democracy, India as the world's largest participatory democracy, and the role of the Constitution in protecting rights and enabling participation at national, state, and local levels.",
+    "Tracing democratic traditions from early times through the Vedic Sabha, Samiti, and Vidhata, early gaṇas and saṁghas, the Aikyamatya Sūktam, Bauddha Saṁghas, the freedom struggle, and the Constituent Assembly.",
+    "The Constitution as a flexible and responsive document, including the Constituent Assembly Debates, liberty, equality, justice, fraternity, and lawful amendment under Article 368.",
+    "Principles of democracy: popular sovereignty, Universal Adult Franchise, secret ballot, free and fair elections, the Rule of Law, equality before law, equal protection of law, procedure established by law, and Fundamental Rights.",
+    "Separation of powers, checks and balances, the roles of the legislature, executive, and judiciary, judicial review, Public Interest Litigation, accountability, transparency, Question Hour, and the Right to Information Act, 2005.",
+    "The multi-party system, the role of government and opposition, the Representation of the People Act, 1951, protection of vulnerable groups under Article 46, and the institutions and values supporting legislative, electoral, judicial, participatory, accountability, decentralised, and federal processes.",
+    "The role of newspapers, news channels, and social media as a voice of the people and the reason media is called the fourth pillar of democracy.",
+    "Types of democracy, including direct and representative democracy and the parliamentary and presidential forms, illustrated through Fig. 6.4, the Youth for Democracy teams in Fig. 6.5, and the country comparison table.",
+    "Democracy in practice in India: the scale and inclusiveness of elections, registered voters, representation, scheduled languages, election symbols, polling stations, political parties, periodic elections, and participatory democracy beyond voting.",
+    "India's three-tier structure of Union, State, and Local governments, Panchayati Raj, Municipalities, Autonomous District Councils, the PESA Act of 1996, and the Gram Sabha as a decision-making body in Scheduled Areas.",
+    "Grassroots case studies of Jethipura Gram Panchayat in Gujarat and South Manubankul Gram Panchayat in Tripura, including Gram Sabhas, Mahila Sabhas, quorum, inclusion, welfare, self-help groups, and women-friendly local governance.",
+    "Women and democratic participation: Universal Adult Franchise in 1950, continuing barriers to representation, and reservation for women in Panchayats and Municipalities under Articles 243(d) and 243(t).",
+    "Civil society and community institutions, including cooperatives, trade unions, community organisations, campaigns, PIL, and the democratic process through which the RTI Act, 2005 was debated and enacted.",
+    "Challenges to democratic practice in India, including illiteracy, misinformation, fake news, inequality, poverty, regionalism, gender inequality, social discrimination, weak implementation, and the Emergency of 1975-77.",
+    "Democracy and young citizens: media literacy, authentic information, civic responsibility, respect for rights and laws, leadership, community participation, NSS, NCC, Bharat Scouts and Guides, and the Think, Discuss, Act activity.",
+    "End-of-chapter application through Questions and activities 1-12, covering democratic values, civic responsibility, popular sovereignty, Rule of Law, participation beyond voting, social media, institutions, the Constitution, and present challenges."
+  ],
+  "banned_topics": [
+    "A detailed explanation of election procedures, constituencies, campaigning, voting, counting, and election outcomes, which the source assigns to the next chapter on Elections.",
+    "A full political history of Vedic assemblies, gaṇas, saṁghas, kingdoms, and empires, which belongs mainly to the preceding chapter and is recalled here only to trace democratic traditions.",
+    "Current political conditions or rankings of India's neighbouring countries, because the chapter presents this as a student research activity and provides no factual answers within the source text.",
+    "Current political-party manifestos, leaders, election results, or party-by-party ideology, which are not taught in this chapter.",
+    "Constitutional provisions, court cases, or amendments not mentioned in the chapter, except where the source itself names them.",
+    "A general history of women's suffrage worldwide beyond the limited Britain, United States of America, and India comparison given in the chapter."
+  ],
+  "must_include_keywords": [
+    "democracy",
+    "Constitution of India",
+    "Sabhā",
+    "Samiti",
+    "Vidhata",
+    "gaṇas",
+    "saṁghas",
+    "Aikyamatya Sūktam",
+    "Bauddha Saṁghas",
+    "Constituent Assembly",
+    "Article 368",
+    "popular sovereignty",
+    "Universal Adult Franchise",
+    "secret ballot",
+    "Rule of Law",
+    "equality before law",
+    "equal protection of law",
+    "Fundamental Rights",
+    "separation of powers",
+    "checks and balances",
+    "legislature",
+    "executive",
+    "judiciary",
+    "Public Interest Litigation",
+    "accountability",
+    "transparency",
+    "Right to Information Act, 2005",
+    "multi-party system",
+    "Article 46",
+    "media",
+    "direct democracy",
+    "representative democracy",
+    "parliamentary democracy",
+    "presidential democracy",
+    "federalism",
+    "participatory democracy",
+    "Gram Sabha",
+    "PESA Act, 1996",
+    "women's reservation",
+    "civil society",
+    "Emergency 1975-77",
+    "misinformation",
+    "civic responsibility"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Democracy means only holding elections and counting votes.",
+      "correction": "The chapter defines democracy as a continuous system of self-governance involving institutions, rules, rights, duties, participation, accountability, and everyday civic practices; elections are essential but not sufficient."
+    },
+    {
+      "claim": "Democratic ideas appeared in India only after the Constitution came into force in 1950.",
+      "correction": "The chapter traces collective decision-making to early institutions such as Sabhā, Samiti, Vidhata, gaṇas, saṁghas, and Bauddha Saṁghas, while explaining that modern Indian democracy was later shaped by the freedom struggle, global democratic values, and the Constitution."
+    },
+    {
+      "claim": "The Constitution of India was adopted and brought into force on the same date.",
+      "correction": "The Constitution was adopted on 26 November 1949 and came into force on 26 January 1950."
+    },
+    {
+      "claim": "Popular sovereignty means that elected rulers are the final source of authority.",
+      "correction": "Popular sovereignty means that the ultimate source of power lies with the people and that the state derives its authority from them."
+    },
+    {
+      "claim": "Universal Adult Franchise applies only to educated citizens or property owners.",
+      "correction": "The chapter states that every citizen aged 18 years and above has the right to vote through a secret ballot."
+    },
+    {
+      "claim": "Rule of Law allows powerful people to receive special treatment.",
+      "correction": "Rule of Law establishes that no one is above the law, requires equality before law and equal protection of law, and resolves disputes through procedures established by law."
+    },
+    {
+      "claim": "The legislature, executive, and judiciary perform the same function.",
+      "correction": "The legislature makes laws, the executive implements them, and the judiciary interprets them; their separation prevents concentration of power and creates checks and balances."
+    },
+    {
+      "claim": "Fundamental Rights can be protected only through political protest.",
+      "correction": "The chapter states that Fundamental Rights are enforceable in courts, and citizens can seek constitutional remedies under Articles 32 and 226."
+    },
+    {
+      "claim": "In a parliamentary democracy, citizens directly elect the executive separately from the legislature.",
+      "correction": "According to Fig. 6.4, people elect the legislature, members of the executive are also part of the legislature, and the executive is accountable to the legislature."
+    },
+    {
+      "claim": "India is a direct democracy like Switzerland.",
+      "correction": "The chapter identifies India as a representative parliamentary democracy, while Switzerland is given as an example of direct democracy."
+    },
+    {
+      "claim": "Indian women obtained voting rights only after a prolonged nationwide suffrage struggle after independence.",
+      "correction": "When the Constitution came into force in 1950, Universal Adult Franchise was extended to men and women alike without discrimination, though equal political participation still faces social barriers."
+    },
+    {
+      "claim": "The Emergency of 1975-77 proved that elections and constitutional safeguards had permanently failed.",
+      "correction": "The chapter presents the Emergency as a period of severe strain in which rights and freedoms were restricted, but the 1977 election also demonstrated the resilience of Indian democracy and the power of citizens' ballots."
+    },
+    {
+      "claim": "Social media always strengthens democracy because it allows free expression.",
+      "correction": "Social media can strengthen expression and public discussion, but irresponsible use, fake news, and misinformation can confuse people, influence opinion, and create conflict."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and activities Q3 to identify popular sovereignty through citizens voting to choose their representatives.",
+    "Use NCERT Questions and activities Q4 and Q5 to distinguish lawful review from the violation that occurs when powerful individuals are treated above the law.",
+    "Apply Fig. 6.5 and its Let's Explore task by comparing Teams A-D for participation, power-sharing, representation, and checks and balances.",
+    "Use the Let's Explore task following the Jethipura and South Manubankul case studies to locate participation, fairness, limits on concentrated power, and peaceful decision-making in grassroots institutions.",
+    "Use NCERT Questions and activities Q6 to explain why voting alone is not enough, drawing on Gram Sabhas, RTI, civil society, rights, accountability, and civic responsibility.",
+    "Finish with NCERT Questions and activities Q7 and Q12 to analyse responsible media use, misinformation, inequality, and other challenges to Indian democracy."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Questions and activities', numbered 1-12, on pages 158-159.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
