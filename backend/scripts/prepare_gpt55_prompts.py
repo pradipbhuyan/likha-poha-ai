@@ -70,6 +70,33 @@ BOOK_SOURCES = {
         "num_chapters": 9,
         "subject_class": "humanities_or_language",
     },
+    # Grade 9 English lives in "RAG DB/English/" with book code "iebe1",
+    # chapters iebe101.pdf .. iebe108.pdf (8 chapters), matching the first
+    # 8 entries of CBSE_9["English"] in backend/app/data/syllabus.py
+    # exactly (Kaveri — NCF-SE 2023, first edition January 2026). The
+    # trailing "Grammar"/"Writing Skills"/"Reading Comprehension" syllabus
+    # entries have no dedicated chapter PDF, so num_chapters=8 stops the
+    # loop before them. subject_class = "humanities_or_language" enforces
+    # strict PDF-only grounding — every fact/quote must trace back to the
+    # actual prose/poem text, no invented literary analysis.
+    ("Grade 9", "English"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "English",
+        "book_code": "iebe1",
+        "num_chapters": 8,
+        "subject_class": "humanities_or_language",
+    },
+    # Grade 9 Hindi lives in "RAG DB/Hindi/" with book code "ihga1",
+    # chapters ihga101.pdf .. ihga112.pdf (12 chapters), matching
+    # CBSE_9["Hindi"] order in backend/app/data/syllabus.py exactly
+    # (गंगा / Ganga — NCF-SE 2023). subject_class =
+    # "humanities_or_language" enforces strict PDF-only grounding — every
+    # fact/quote must trace back to the actual prose/poem text.
+    ("Grade 9", "Hindi"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Hindi",
+        "book_code": "ihga1",
+        "num_chapters": 12,
+        "subject_class": "humanities_or_language",
+    },
 }
 
 PROMPT_TEMPLATE = """\
