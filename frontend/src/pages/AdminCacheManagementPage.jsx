@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { Zap, Brain, BookOpen, Calculator, GraduationCap, FileJson } from "lucide-react";
+import "./AdminConsole.css";
 import {
   getCacheStatus,
   startLessonPrewarm,
@@ -117,6 +119,17 @@ function AdminCacheManagementPage({ user }) {
   const [chapterQBankRunning, setChapterQBankRunning] = useState(false);
   const [chapterMessage, setChapterMessage] = useState("");
   const [chapterError, setChapterError] = useState("");
+
+  // ── Tab definitions ─────────────────────────────────────────────────────
+  const CACHE_TABS = [
+    { key: "grades",       label: "Prewarm by Grade",     Icon: Zap },
+    { key: "doubtkb",      label: "Doubt KB Stats",       Icon: Brain },
+    { key: "chapters",     label: "Chapter Prewarm",      Icon: BookOpen },
+    { key: "costs",        label: "Cost Estimates",       Icon: Calculator },
+    { key: "exambank",     label: "Exam Prep Bank",       Icon: GraduationCap },
+    { key: "formulasheet", label: "Formula Sheet Import", Icon: FileJson },
+  ];
+  const [activeTab, setActiveTab] = useState("grades");
 
   async function loadStatus() {
     /** Fetch latest cache/bank status for all grades. */
@@ -410,6 +423,33 @@ function AdminCacheManagementPage({ user }) {
 
   return (
     <div className="premium-page">
+      <nav className="admin-tab-nav" role="tablist" aria-label="Cache & Question Bank Management" data-testid="cache-tab-nav">
+        {CACHE_TABS.map((t) => (
+          <button key={t.key} role="tab"
+            aria-selected={activeTab === t.key}
+            aria-controls={`cache-tab-panel-${t.key}`}
+            id={`cache-tab-btn-${t.key}`}
+            className={`admin-tab-btn${activeTab === t.key ? " active" : ""}`}
+            onClick={() => setActiveTab(t.key)}
+            data-testid={`cache-tab-${t.key}`}>
+            <span className="admin-tab-icon" aria-hidden="true"><t.Icon size={15} strokeWidth={2} /></span>
+            <span className="admin-tab-label">{t.label}</span>
+          </button>
+        ))}
+      </nav>
+
+      {/* ── Global message/error/running banners (always visible) ───────── */}
+      {anyRunning && (
+        <div className="info-box" style={{ margin: "12px 16px 0" }}>
+          ⏳ A background job is running. This page auto-refreshes every 15 seconds.
+        </div>
+      )}
+      {message && <div className="info-box" style={{ margin: "12px 16px 0" }}>{message}</div>}
+      {error && <div className="error-box" style={{ margin: "12px 16px 0" }}>{error}</div>}
+
+      {/* ── Prewarm by Grade Tab ──────────────────────────────────────────── */}
+      {activeTab === "grades" && (
+      <div id="cache-tab-panel-grades" role="tabpanel" aria-labelledby="cache-tab-btn-grades" data-testid="cache-tab-panel-grades">
       <section className="premium-section">
         <div className="premium-header">
           <p className="eyebrow">Phase 2 — Content Pre-Generation</p>
@@ -420,15 +460,6 @@ function AdminCacheManagementPage({ user }) {
             test before moving to the next grade.
           </p>
         </div>
-
-        {anyRunning && (
-          <div className="info-box">
-            ⏳ A background job is running. This page auto-refreshes every 15 seconds.
-          </div>
-        )}
-
-        {message && <div className="info-box">{message}</div>}
-        {error && <div className="error-box">{error}</div>}
 
         <div className="info-box" style={{ fontSize: "0.85rem", marginBottom: 24 }}>
           <strong>How it works:</strong> Click <em>Generate Lessons</em> to start background
@@ -731,8 +762,12 @@ function AdminCacheManagementPage({ user }) {
           );
         })}
       </section>
+      </div>
+      )}
 
-      {/* Doubt KB stats panel */}
+      {/* ── Doubt KB Stats Tab ────────────────────────────────────────────── */}
+      {activeTab === "doubtkb" && (
+      <div id="cache-tab-panel-doubtkb" role="tabpanel" aria-labelledby="cache-tab-btn-doubtkb" data-testid="cache-tab-panel-doubtkb">
       {dkbStats && dkbStats.total_entries > 0 && (
         <section className="premium-section">
           <div className="premium-header">
@@ -767,7 +802,12 @@ function AdminCacheManagementPage({ user }) {
           </div>
         </section>
       )}
+      </div>
+      )}
 
+      {/* ── Chapter Prewarm Tab ───────────────────────────────────────────── */}
+      {activeTab === "chapters" && (
+      <div id="cache-tab-panel-chapters" role="tabpanel" aria-labelledby="cache-tab-btn-chapters" data-testid="cache-tab-panel-chapters">
       {/* Chapter-by-chapter prewarm panel */}
       <section className="premium-section">
         <div className="premium-header">
@@ -865,7 +905,12 @@ function AdminCacheManagementPage({ user }) {
 
       {/* ── Clear Chapter Cache ─────────────────────────────────────────── */}
       <ClearChapterCacheSection user={user} chapterList={chapterList} chapterListLoading={chapterListLoading} />
+      </div>
+      )}
 
+      {/* ── Cost Estimates Tab ────────────────────────────────────────────── */}
+      {activeTab === "costs" && (
+      <div id="cache-tab-panel-costs" role="tabpanel" aria-labelledby="cache-tab-btn-costs" data-testid="cache-tab-panel-costs">
       <section className="premium-section">
         <div className="premium-header">
           <h3>📋 Pre-Generation Cost Estimates</h3>
@@ -934,12 +979,22 @@ function AdminCacheManagementPage({ user }) {
           richer lesson content or HOTS-quality questions in the pre-generated cache.
         </div>
       </section>
+      </div>
+      )}
 
-      {/* ── Exam Prep Question Bank ── */}
+      {/* ── Exam Prep Bank Tab ────────────────────────────────────────────── */}
+      {activeTab === "exambank" && (
+      <div id="cache-tab-panel-exambank" role="tabpanel" aria-labelledby="cache-tab-btn-exambank" data-testid="cache-tab-panel-exambank">
       <ExamPrepQBSection user={user} />
+      </div>
+      )}
 
-      {/* ── Formula Sheet JSON Import ── */}
+      {/* ── Formula Sheet Import Tab ──────────────────────────────────────── */}
+      {activeTab === "formulasheet" && (
+      <div id="cache-tab-panel-formulasheet" role="tabpanel" aria-labelledby="cache-tab-btn-formulasheet" data-testid="cache-tab-panel-formulasheet">
       <FormulaSheetImportSection user={user} />
+      </div>
+      )}
     </div>
   );
 }
