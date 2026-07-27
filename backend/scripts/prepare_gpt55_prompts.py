@@ -91,11 +91,51 @@ BOOK_SOURCES = {
     # (गंगा / Ganga — NCF-SE 2023). subject_class =
     # "humanities_or_language" enforces strict PDF-only grounding — every
     # fact/quote must trace back to the actual prose/poem text.
+    # content_language="hi" makes the 7 lesson section headings (## What
+    # you will learn, etc.) render in Hindi instead of English — see
+    # HEADING_SETS below. Fixes user report: "why Hindi chapters are
+    # written in English?" — the lesson BODY text was already correctly
+    # grounded in Hindi (from the Hindi PDF), but the structural headings
+    # were hardcoded English in the prompt template regardless of subject.
     ("Grade 9", "Hindi"): {
         "pdf_dir": REPO_ROOT / "RAG DB" / "Hindi",
         "book_code": "ihga1",
         "num_chapters": 12,
         "subject_class": "humanities_or_language",
+        "content_language": "hi",
+    },
+}
+
+# Section headings for the 7 fixed sections every lesson step must use.
+# English is the default for every subject except Hindi. The inline
+# structural markers used INSIDE these sections — "Question:", "Solution:",
+# "Step N:", "Final answer:", "Answer:", "Explanation:" — are deliberately
+# NOT translated even for Hindi chapters: the frontend
+# (frontend/src/components/LessonSections.jsx: getQuestionPrompt,
+# parseMcqQuestion) extracts interactive question/answer/explanation boxes
+# by matching these exact English words via regex. Translating them would
+# silently break the "Want to try this question?" box and Grade 5's
+# quick-check flip card for every Hindi lesson. Mixing "Question: <Hindi
+# question text>" is intentional and matches how many bilingual CBSE
+# resources present content.
+HEADING_SETS = {
+    "en": {
+        "what_you_will_learn": "What you will learn",
+        "simple_explanation": "Simple explanation",
+        "step_by_step_breakdown": "Step-by-step breakdown",
+        "worked_example": "Worked example",
+        "common_mistake": "Common mistake",
+        "quick_check_question": "Quick check question",
+        "summary": "Summary",
+    },
+    "hi": {
+        "what_you_will_learn": "आप क्या सीखेंगे",
+        "simple_explanation": "सरल व्याख्या",
+        "step_by_step_breakdown": "चरण-दर-चरण विवरण",
+        "worked_example": "हल किया गया उदाहरण",
+        "common_mistake": "सामान्य भूल",
+        "quick_check_question": "शीघ्र जाँच प्रश्न",
+        "summary": "सारांश",
     },
 }
 
@@ -141,7 +181,8 @@ BINDING RULES (do not violate any of these):
    complete, correct, specific Answer and Explanation — never leave a
    question unanswered.
 6. LANGUAGE LEVEL: Write for the given GRADE level — simple, clear,
-   age-appropriate English, but scientifically/factually precise.
+   age-appropriate {content_language_name}, but scientifically/factually
+   precise. {content_language_note}
 
 -----------------------------------------------------------------------------
 USER TASK
@@ -195,22 +236,23 @@ markdown fences, no commentary before or after) with exactly this shape:
 }}
 
 FORMAT for each value inside "lessons" (this must be a single markdown
-string, using exactly these 7 headings in this order):
+string, using exactly these 7 headings, in this order, WORD-FOR-WORD as
+given — do not translate or reword them):
 
 # <Step Title>: <Chapter Name>
 
-## What you will learn
+## {h_what_you_will_learn}
 <2-4 sentences>
 
-## Simple explanation
+## {h_simple_explanation}
 <a short, plain-language paragraph introducing the core idea(s) for this step>
 
-## Step-by-step breakdown
+## {h_step_by_step_breakdown}
 - **<sub-topic>**: <explanation, grounded in CHAPTER_PDF_TEXT>
 - **<sub-topic>**: <explanation, grounded in CHAPTER_PDF_TEXT>
   (as many bullet points as needed to cover this step's share of the chapter)
 
-## Worked example
+## {h_worked_example}
 Question: <a question that cites a real NCERT activity/example/exercise number>
 
 Solution:
@@ -218,19 +260,26 @@ Solution:
 - Step 2: ...
 - Final answer: ...
 
-## Common mistake
+## {h_common_mistake}
 <one specific, plausible misconception and its correction>
 
-## Quick check question
+## {h_quick_check_question}
 Question: <a specific question>
 Answer: <the correct, complete answer>
 Explanation: <why this is correct>
 
-## Summary
+## {h_summary}
 - <bullet 1>
 - <bullet 2>
 - <bullet 3>
 (3-6 bullets recapping this step's key points)
+
+IMPORTANT: keep the literal English words "Question:", "Solution:",
+"Step 1:"/"Step 2:"/etc., "Final answer:", "Answer:", and "Explanation:"
+exactly as shown above even when {content_language_name} is not
+English — only the surrounding sentence content should be written in
+{content_language_name}. The platform's UI extracts interactive
+question/answer boxes by matching these exact English marker words.
 
 IMPORTANT: split the chapter content across the 5 steps so that, combined,
 they cover the WHOLE of CHAPTER_PDF_TEXT roughly proportionally to how
@@ -278,6 +327,19 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
     book_code = source_cfg["book_code"]
     num_chapters = source_cfg["num_chapters"]
     subject_class = source_cfg["subject_class"]
+    content_language = source_cfg.get("content_language", "en")
+    headings = HEADING_SETS.get(content_language, HEADING_SETS["en"])
+    if content_language == "hi":
+        content_language_name = "Hindi (हिंदी)"
+        content_language_note = (
+            "Every heading, sentence, question, answer, and explanation in "
+            "the lesson body must be written in Hindi (Devanagari script), "
+            "matching the language of CHAPTER_PDF_TEXT — do not write any "
+            "part of the lesson body in English."
+        )
+    else:
+        content_language_name = "English"
+        content_language_note = ""
 
     if not pdf_dir.exists():
         print(f"ERROR: PDF source directory not found: {pdf_dir}")
@@ -329,6 +391,15 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             chapter=chapter_name,
             subject_class=subject_class,
             chapter_pdf_text=pdf_text,
+            content_language_name=content_language_name,
+            content_language_note=content_language_note,
+            h_what_you_will_learn=headings["what_you_will_learn"],
+            h_simple_explanation=headings["simple_explanation"],
+            h_step_by_step_breakdown=headings["step_by_step_breakdown"],
+            h_worked_example=headings["worked_example"],
+            h_common_mistake=headings["common_mistake"],
+            h_quick_check_question=headings["quick_check_question"],
+            h_summary=headings["summary"],
         )
 
         prompt_out_path = output_dir / f"{safe_prefix}_PROMPT.txt"

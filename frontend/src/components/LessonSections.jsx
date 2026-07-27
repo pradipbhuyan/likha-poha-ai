@@ -47,6 +47,7 @@ const CARD_TYPES = {
 
 function getSectionType(title) {
   const t = (title || "").toLowerCase();
+  // English patterns
   if (t.includes("what you will learn") || t.includes("introduction") || t.includes("overview") || t.includes("context") || t.includes("what we learn"))
     return "intro";
   if (t.includes("simple explanation") || t.includes("core explanation") || t.includes("concept") || t.includes("explanation") || t.includes("breakdown"))
@@ -58,6 +59,23 @@ function getSectionType(title) {
   if (t.includes("quick check") || t.includes("check question") || t.includes("practice") || t.includes("self check") || t.includes("question"))
     return "check";
   if (t.includes("summary") || t.includes("recap") || t.includes("revision") || t.includes("review") || t.includes("key points"))
+    return "summary";
+  // Hindi patterns — see scripts/prepare_gpt55_prompts.py HEADING_SETS["hi"]
+  // (आप क्या सीखेंगे, सरल व्याख्या, चरण-दर-चरण विवरण, हल किया गया उदाहरण,
+  // सामान्य भूल, शीघ्र जाँच प्रश्न, सारांश). Without this, every Hindi
+  // lesson section fell through to the generic "default" grey styling
+  // instead of getting the correct colour-coded icon.
+  if (title.includes("आप क्या सीखेंगे") || title.includes("परिचय"))
+    return "intro";
+  if (title.includes("सरल व्याख्या") || title.includes("मुख्य व्याख्या") || title.includes("विवरण"))
+    return "concept";
+  if (title.includes("हल किया गया उदाहरण") || title.includes("उदाहरण"))
+    return "example";
+  if (title.includes("सामान्य भूल") || title.includes("भूल") || title.includes("चेतावनी"))
+    return "warning";
+  if (title.includes("जाँच प्रश्न") || title.includes("अभ्यास प्रश्न") || title.includes("प्रश्न"))
+    return "check";
+  if (title.includes("सारांश") || title.includes("पुनरावलोकन"))
     return "summary";
   return "default";
 }

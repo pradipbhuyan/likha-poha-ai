@@ -49,7 +49,12 @@ REQUIRED_LESSON_STEPS = [
     "Exam-style problems", "Revision and recap",
 ]
 
-REQUIRED_LESSON_HEADINGS = [
+# Two accepted heading sets — English (default) and Hindi (used for Hindi
+# chapters, see scripts/prepare_gpt55_prompts.py HEADING_SETS["hi"]). A
+# lesson step's headings are validated against whichever set it actually
+# matches best, so Hindi chapters authored with Hindi headings aren't
+# incorrectly flagged as missing all 7 English headings.
+REQUIRED_LESSON_HEADINGS_EN = [
     "## What you will learn",
     "## Simple explanation",
     "## Step-by-step breakdown",
@@ -57,6 +62,16 @@ REQUIRED_LESSON_HEADINGS = [
     "## Common mistake",
     "## Quick check question",
     "## Summary",
+]
+
+REQUIRED_LESSON_HEADINGS_HI = [
+    "## आप क्या सीखेंगे",
+    "## सरल व्याख्या",
+    "## चरण-दर-चरण विवरण",
+    "## हल किया गया उदाहरण",
+    "## सामान्य भूल",
+    "## शीघ्र जाँच प्रश्न",
+    "## सारांश",
 ]
 
 BOARD = "CBSE"
@@ -99,7 +114,13 @@ def load_and_validate(input_path: Path) -> dict:
     for step, content in lessons.items():
         if not isinstance(content, str) or len(content.strip()) < 200:
             raise ValueError(f"Lesson step '{step}' content is missing or suspiciously short.")
-        missing_headings = [h for h in REQUIRED_LESSON_HEADINGS if h not in content]
+        # Validate against whichever heading set (English or Hindi) this
+        # content actually matches best — a Hindi chapter authored with
+        # Hindi headings should not be flagged as missing all 7 English
+        # headings, and vice versa.
+        missing_en = [h for h in REQUIRED_LESSON_HEADINGS_EN if h not in content]
+        missing_hi = [h for h in REQUIRED_LESSON_HEADINGS_HI if h not in content]
+        missing_headings = missing_en if len(missing_en) <= len(missing_hi) else missing_hi
         if missing_headings:
             print(f"  [warn] Step '{step}' is missing expected headings: {missing_headings}")
 
