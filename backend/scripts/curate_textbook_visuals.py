@@ -58,7 +58,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.services.auth_service import admin_client  # noqa: E402
 
-# NCERT figure caption pattern — two conventions verified across
+# NCERT figure caption pattern — three conventions verified across
 # different textbook series:
 #   - Exploration series (Science): COLON right after the figure number:
 #       "Fig. 2.13: Endoplasmic reticulum and Golgi apparatus..."
@@ -68,20 +68,30 @@ from app.services.auth_service import admin_client  # noqa: E402
 #     sentence):
 #       "Fig. 2.10. Waterfall"
 #       "Fig. 2.3. World map showing major plates and their direction of movement"
-# Both are genuine, deterministic NCERT captions — only an in-text
+#   - Same series, multi-panel infographic figures: NO punctuation at
+#     all — the figure number sits alone on its own line, followed
+#     immediately by the panel/box label on the next line:
+#       "Fig. 6.5\nTeam A\nAll students gather in one place..."
+#     (confirmed on the Democracy chapter, iest106.pdf page 11 — this
+#     figure was referenced extensively in GPT-5.5's generated lesson
+#     text ("Fig. 6.5 Team A/B/C/D") but was never attached as an image
+#     because this caption style silently failed to match either of the
+#     colon/period patterns above.)
+# All three are genuine, deterministic NCERT captions — only an in-text
 # reference (pointing to a figure discussed elsewhere) differs, using a
-# closing parenthesis instead of a colon/period right after the number:
+# closing parenthesis directly after the number instead of a colon,
+# period, or newline:
 #       "...different parts of a microscope (Fig. 2.2) in your school..."
-# Requiring a colon OR a period immediately after "Fig. N.N" (not a
-# closing paren) is what keeps this deterministic and excludes in-text
-# references like "(Fig. 2.9)" from being mistaken for captions.
+# Requiring a colon, period, OR newline immediately after "Fig. N.N"
+# (never a closing paren) is what keeps this deterministic and excludes
+# in-text references like "(Fig. 2.9)" from being mistaken for captions.
 _FIG_CAPTION_RE = re.compile(
-    r"Fig(?:ure)?\.[\s\xa0]*(\d+\.\d+)\s*[:.]\s*([^\n]{2,140})",
+    r"Fig(?:ure)?\.[\s\xa0]*(\d+\.\d+)(?:\s*[:.]\s*|\s*\n\s*)([^\n]{2,140})",
     re.IGNORECASE,
 )
 
 
-def extract_figure_captions(nearby_text: str) -> list[tuple[str, str]]:
+def extract_figure_captions(nearby_text: str, expected_chapter: str | None = None) -> list[tuple[str, str]]:
     """
     Return [(fig_number, caption_text), ...] for every genuine NCERT
     figure caption found in this page's extracted text.
@@ -98,6 +108,14 @@ def extract_figure_captions(nearby_text: str) -> list[tuple[str, str]]:
     are still genuine, printed NCERT captions (e.g. "Fig. 2.10. Waterfall",
     "Fig. 2.11. Meander", "Fig. 2.12. Delta") — requiring 3+ words would
     incorrectly reject these real captions.
+
+    expected_chapter, if given (e.g. "9" for iest109.pdf), rejects any
+    match whose figure-number chapter prefix does NOT equal it — this
+    catches "Image Credits" appendix leakage where a WHOLE-BOOK credits
+    page lists "Fig. 4.1: Seal from Mohenjodaro...; p.93, Corpus of..."
+    inside chapter 9's page range: a caption citing "Fig. 4.1" cannot be
+    a genuine figure in chapter 9, so this is a strong, deterministic
+    signal of credits-page bleed rather than a real pedagogical caption.
     """
     results = []
     for match in _FIG_CAPTION_RE.finditer(nearby_text or ""):
@@ -108,6 +126,32 @@ def extract_figure_captions(nearby_text: str) -> list[tuple[str, str]]:
         if not re.search(r"[A-Za-z]", caption_text):
             continue
         if len(caption_text.split()) < 1:
+            continue
+        # Reject figures whose chapter-number prefix doesn't match this
+        # PDF's own chapter — the clearest signal of credits-page bleed.
+        if expected_chapter and fig_number.split(".")[0] != expected_chapter:
+            continue
+        # Reject "Image Credits" appendix entries — the book's end-of-volume
+        # credits page lists "Fig. N.N. <source/attribution>" for EVERY
+        # figure across the WHOLE book (not just this chapter), and this
+        # section can get swept into a chapter's backfilled page range when
+        # it immediately follows the last chapter's content. These are
+        # never genuine pedagogical captions — confirmed on iest109.pdf's
+        # trailing pages, e.g. "Fig. 5.1. https://commons.wikimedia.org/...",
+        # "Fig. 2.32. Public domain", "Fig. 4.25. Wikimedia Commons: ...",
+        # "Fig. 4.1. Seal from Mohenjodaro M375A; p.93..., Corpus of...".
+        if re.search(
+            r"https?://|www\.|courtesy\s*:|public domain|wikimedia|"
+            r"shutterstock|getty\s*images|istock|©|copyright|"
+            r"\bp\.\s*\d+\b|corpus of",
+            caption_text, re.IGNORECASE,
+        ):
+            continue
+        # Reject comma-separated lists of OTHER figure numbers — a genuine
+        # caption describes what the figure shows in prose; a credits-page
+        # line instead just enumerates sibling figure numbers sharing one
+        # attribution, e.g. "Fig. 2.9. (b), 2.10, 2.11, 2.12, 2.14, 2.15...".
+        if len(re.findall(r"\b\d+\.\d+\b", caption_text)) >= 2:
             continue
         results.append((fig_number, caption_text))
     return results
@@ -184,7 +228,7 @@ def _figure_crop_rect(page, fig_number: str) -> "fitz.Rect | None":
     # vertical range to include whichever caption block sits just below
     # the image, and any label text sitting just above it too.
     caption_pattern = re.compile(
-        rf"Fig(?:ure)?\.[\s\xa0]*{re.escape(fig_number)}\s*[:.]", re.IGNORECASE,
+        rf"Fig(?:ure)?\.[\s\xa0]*{re.escape(fig_number)}\s*[:.\n]", re.IGNORECASE,
     )
     top = union.y0
     bottom = union.y1
@@ -259,11 +303,29 @@ def crop_and_reupload_figure(
         pdf_document.close()
 
 
+# NCERT book-code filenames end in a 2-digit chapter number, e.g.
+# "iest106" (book code "iest1" + chapter "06"). Stripping the trailing
+# 2 digits and converting to int removes the leading zero so it matches
+# the "6" in a "Fig. 6.5" match's chapter-number group. This is only a
+# best-effort signal for the credits-page cross-check in
+# extract_figure_captions() — filenames that don't end in exactly 2
+# digits are simply skipped (falls back to the other credits filters).
+_CHAPTER_NUM_RE = re.compile(r"(\d{2})$")
+
+
+def _guess_chapter_number(pdf_path: str) -> str | None:
+    """Best-effort chapter number from a book-code filename like iest106.pdf."""
+    stem = Path(pdf_path).stem
+    match = _CHAPTER_NUM_RE.search(stem)
+    return str(int(match.group(1))) if match else None
+
+
 def curate_document(document_id: str, pdf_path: str, dry_run: bool, force: bool) -> None:
     print(f"\n  Curating visuals for document_id={document_id}")
     print(f"  Source PDF: {pdf_path}")
     print(f"  Mode: {'DRY RUN' if dry_run else 'LIVE WRITE'}\n")
 
+    expected_chapter = _guess_chapter_number(pdf_path)
     page_texts = load_full_page_texts(pdf_path)
 
     result = (
@@ -290,7 +352,7 @@ def curate_document(document_id: str, pdf_path: str, dry_run: bool, force: bool)
         full_text = page_texts.get(page_number, "") or row.get("nearby_text") or ""
         current_status = row.get("status")
 
-        captions = extract_figure_captions(full_text)
+        captions = extract_figure_captions(full_text, expected_chapter=expected_chapter)
 
         if not captions:
             # No genuine NCERT figure on this page — never auto-approve.
