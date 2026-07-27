@@ -1,0 +1,129 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Early Humans and Beginning of Civilisation",
+  "central_question": "How did human biological and cultural evolution, new technologies, agriculture, writing, and river-based organisation transform early communities into interconnected civilisations?",
+  "in_scope_units": [
+    "The period before writing and the difference between reconstructing prehistory from material remains and history from both material and written records",
+    "Early writing systems, including the undeciphered Harappan script, Mesopotamian cuneiform, Egyptian hieroglyphic writing, and the later use of Brahmi in India",
+    "The importance of studying early human history through biological evolution, cultural evolution, environmental change, and technological adaptation",
+    "The evolution and migration of early humans from Africa, including Homo habilis, Homo erectus, Homo neanderthalensis, and Homo sapiens",
+    "Archaeological evidence such as artefacts, tools, bones, fossils, cave art, and experimental reconstruction",
+    "The division of early human history into Palaeolithic, Mesolithic, Neolithic, Chalcolithic, Bronze Age, and Iron Age stages",
+    "Palaeolithic hunter-gatherers, their sites, stone tools, hunting methods, symbolic communication, ornaments, and dispersal",
+    "Mesolithic environmental change, microlithic technology, fishing, population growth, rock shelters, and Bhimbetka cave art",
+    "The Neolithic Revolution: domestication, cultivation, husbandry, pottery, food processing, sedentism, and the first village settlements",
+    "Regional Neolithic development in the Indian subcontinent, especially Mehrgarh, Sanganakallu, crops, livestock, houses, granaries, ornaments, and early copper use",
+    "The rise of the Early Harappan and Sindhu-Sarasvati civilisation through copper technology, agricultural productivity, pottery, crafts, seals, script, standard weights, trade, and water management",
+    "Bronze Age river-valley civilisations outside India and the shared importance of fertile plains, agriculture, craft production, trade, administration, and writing",
+    "Mesopotamian civilisation, including the Fertile Crescent, city-states, Sumerians, ziggurats, cuneiform, Akkadians, Assyrians, Babylonians, Hammurabi, and trade with Meluhha, Dilmun, and Magan",
+    "Egyptian civilisation, including papyrus records, the Rosetta Stone, the Nile, the calendar, Kemet, irrigation, government, pharaohs, pyramids, mummification, social hierarchy, occupations, festivals, and daily life",
+    "Chinese civilisation, including the Huang He and Yangtze valleys, Shang, Zhou, Qin and Han dynasties, oracle bones, logographic writing, jade and bronze crafts, the Great Wall, silk trade, hierarchy, currency, and public examinations",
+    "Comparison of the independent development, common features, environmental opportunities and challenges, and limited or direct contacts among early civilisations"
+  ],
+  "banned_topics": [
+    "Detailed political history of later Indian kingdoms and empires",
+    "A full history of Brahmi and later Indian scripts beyond the brief references in this chapter",
+    "A detailed repetition of all Mature Harappan urban features already taught in earlier grades, except where needed to explain the civilisation's early development",
+    "A full history of Buddhism, later India-China religious contacts, or the Silk Route beyond the brief recall points in the chapter",
+    "Detailed Greek and Roman history beyond their limited role as later observers or comparisons mentioned in the chapter"
+  ],
+  "must_include_keywords": [
+    "archaeology",
+    "artefacts",
+    "fossils",
+    "Harappan script",
+    "Sindhu lipi",
+    "cuneiform",
+    "hieroglyphic script",
+    "biological evolution",
+    "cultural evolution",
+    "Homo habilis",
+    "Homo erectus",
+    "Homo sapiens",
+    "Old World",
+    "Palaeolithic",
+    "Mesolithic",
+    "microliths",
+    "Bhimbetka",
+    "Neolithic Revolution",
+    "domestication",
+    "sedentism",
+    "Mehrgarh",
+    "Chalcolithic",
+    "Sindhu-Sarasvati civilisation",
+    "Early Harappan",
+    "Kalibangan",
+    "standard weights",
+    "Mesopotamia",
+    "Fertile Crescent",
+    "city-state",
+    "ziggurat",
+    "Sumerians",
+    "Akkadians",
+    "Meluhha",
+    "Code of Hammurabi",
+    "papyrus",
+    "Rosetta Stone",
+    "Nile",
+    "pharaoh",
+    "mummification",
+    "Huang He",
+    "oracle bones",
+    "logographic script",
+    "jade",
+    "Great Wall of China"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Harappan script has been deciphered and can be read like cuneiform or Egyptian writing.",
+      "correction": "The Harappan script, also called Sindhu lipi, has not yet been deciphered, whereas cuneiform and Egyptian writing have been deciphered."
+    },
+    {
+      "claim": "People before writing had no way to communicate ideas symbolically.",
+      "correction": "Before writing, humans used symbolic communication such as cave and rock-shelter paintings, body pigments, and engravings on bones and shells."
+    },
+    {
+      "claim": "Homo sapiens was the first hominin to leave Africa.",
+      "correction": "The chapter identifies Homo erectus as the first hominin to exit Africa, while a later major movement was associated with early Homo sapiens."
+    },
+    {
+      "claim": "All early human ancestors lived one after another without overlapping.",
+      "correction": "Different kinds of human ancestors co-existed in the Old World, and the chapter presents an evolutionary sequence while noting this coexistence."
+    },
+    {
+      "claim": "The Neolithic Revolution happened suddenly and at the same time everywhere.",
+      "correction": "The shift to food production was gradual and occurred at different times in different regions, although its effects on settlement, production, and society were revolutionary."
+    },
+    {
+      "claim": "The Mesolithic period was simply a smaller version of the Palaeolithic period.",
+      "correction": "The Mesolithic period was shaped by a warmer climate, expanded forests and grasslands, microlithic tools, fishing and aquatic food gathering, increased population, and frequent use of caves and rock shelters."
+    },
+    {
+      "claim": "The Harappans were only farmers.",
+      "correction": "The Harappans practised agriculture as well as pottery, copper work, shell work, bead production, trade, standardised weighing, and advanced water management."
+    },
+    {
+      "claim": "All four early river-valley civilisations had strong direct trade with one another.",
+      "correction": "The chapter gives strong evidence of contact between Mesopotamia and the Sindhu-Sarasvati civilisation, but notes little tangible evidence of direct Harappan contact with Egypt or China."
+    },
+    {
+      "claim": "Egyptian pyramids were ordinary houses for the living.",
+      "correction": "Pyramids developed from mastabas placed over burial chambers and were connected with Egyptian beliefs about the afterlife and the preservation of the body through mummification."
+    },
+    {
+      "claim": "Chinese civilisation began only with the Qin dynasty.",
+      "correction": "Chinese Neolithic cultures date to around 7000 BCE, Bronze Age urban growth began around 1600 BCE, and the Shang and Zhou dynasties preceded the Iron Age Qin and Han dynasties."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and activities, Q5, to show how deciphered writing can add names, events, dates, social life, beliefs, and economic records to archaeological evidence.",
+    "Use NCERT Questions and activities, Q6, to compare Palaeolithic, Mesolithic, and Neolithic tools, settlements, art, and subsistence.",
+    "Use NCERT Questions and activities, Q12, with the chapter maps to locate the Sindhu-Sarasvati, Mesopotamian, Egyptian, and Chinese river valleys and mark the documented Harappan-Mesopotamian trade connection through Dilmun and Magan.",
+    "Use NCERT Questions and activities, Q11, to compare social hierarchy and daily life in Egypt with Mesopotamia or China using only evidence given in the chapter.",
+    "Conclude with NCERT Questions and activities, Q7, to explain how Bronze Age civilisations developed independently while sharing river-based agriculture, urban centres, crafts, trade, writing, administration, and social organisation."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1-13, including two map or presentation activities in Questions 12 and 13.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

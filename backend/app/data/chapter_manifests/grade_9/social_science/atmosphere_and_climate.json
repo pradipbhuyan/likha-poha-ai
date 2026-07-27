@@ -1,0 +1,123 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Atmosphere and Climate",
+  "central_question": "How does the atmosphere support life, shape weather and India's monsoon climate, and connect human activity with climate change and disaster risk?",
+  "in_scope_units": [
+    "The atmosphere as Earth's gravity-held blanket of air and its role in supporting life, filtering harmful solar radiation, regulating temperature, and influencing weather and climate.",
+    "Composition of the atmosphere, including nitrogen, oxygen, argon, carbon dioxide, other gases, water vapour, dust particles, and variation with altitude.",
+    "Structure of the atmosphere and the characteristics of the troposphere, stratosphere, mesosphere, thermosphere, ionosphere, and exosphere.",
+    "Weather and climate, including their different time scales and the main elements that influence atmospheric conditions.",
+    "Temperature and insolation, humidity, precipitation, atmospheric pressure, and wind as elements of weather and climate.",
+    "Wind speed effects and local winds, especially sea breeze and land breeze and their role in moderating coastal climate.",
+    "Seasons in India as classified by the Indian Meteorological Department and the six seasons of the traditional Indian calendar.",
+    "The monsoon as a seasonal reversal of winds, including the mechanism, timing, direction, and effects of the south-west and north-east monsoons.",
+    "The importance of monsoon rainfall for agriculture, water supply, transport, festivals, employment, the economy, and the risk of floods and droughts.",
+    "Climate change, greenhouse gases, human causes, consequences, collective responses, and reduction of carbon footprints.",
+    "The 'My Carbon Footprint' self-assessment covering transport, electricity, water use, waste, plastics, scoring, and a personal climate-action pledge.",
+    "Punjab Floods 2025 as a case study of natural and human-made causes, effects on people, farming, animals, infrastructure, health, and the need for preparedness.",
+    "Interpretation of the chapter's temperature and rainfall data for ten Indian stations and the use of climate graphs to compare regional climatic conditions."
+  ],
+  "banned_topics": [
+    "Detailed plate tectonics, earthquakes, volcanoes, weathering, erosion, and landform formation, which belong to the preceding chapter on shaping the Earth's surface.",
+    "Detailed ocean-current systems and their global circulation, which are not taught in this chapter.",
+    "Chemical mechanisms of ozone depletion and international ozone treaties, which are not provided in the source chapter.",
+    "Advanced global climate classification systems or detailed atmospheric circulation cells, which are outside the chapter's scope.",
+    "Specific flood-management guidelines not stated in the source; the chapter asks students to research NDMA guidelines but does not provide them."
+  ],
+  "must_include_keywords": [
+    "atmosphere",
+    "gravity",
+    "nitrogen 78%",
+    "oxygen 21%",
+    "argon 0.93%",
+    "carbon dioxide 0.04%",
+    "water vapour",
+    "dust particles",
+    "troposphere",
+    "stratosphere",
+    "ozone",
+    "mesosphere",
+    "thermosphere",
+    "ionosphere",
+    "exosphere",
+    "weather",
+    "climate",
+    "insolation",
+    "humidity",
+    "precipitation",
+    "atmospheric pressure",
+    "wind",
+    "sea breeze",
+    "land breeze",
+    "tropical monsoon climate",
+    "winter",
+    "summer or pre-monsoon",
+    "advancing monsoon",
+    "retreating monsoon",
+    "south-west monsoon",
+    "north-east monsoon",
+    "unequal heating of land and sea",
+    "high pressure",
+    "low pressure",
+    "climate change",
+    "greenhouse gases",
+    "carbon footprint",
+    "Punjab Floods 2025",
+    "Table 3.3",
+    "temperature and rainfall graph"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weather and climate mean the same thing.",
+      "correction": "Weather is the hour-to-hour and day-to-day condition of the atmosphere, while climate is the average of weather conditions and variations over a large area for an extended period, usually thirty years or more."
+    },
+    {
+      "claim": "The atmosphere contains only nitrogen and oxygen.",
+      "correction": "Nitrogen and oxygen are the most abundant gases, but the atmosphere also contains argon, carbon dioxide, other gases, water vapour, and tiny dust particles."
+    },
+    {
+      "claim": "Temperature decreases with altitude in every atmospheric layer.",
+      "correction": "The chapter states that temperature decreases with altitude only in the troposphere and mesosphere; in the thermosphere it rises rapidly with altitude."
+    },
+    {
+      "claim": "Most weather occurs in the stratosphere.",
+      "correction": "Nearly all weather phenomena, including rainfall, fog, and hail, occur in the troposphere, which also contains most water vapour and clouds."
+    },
+    {
+      "claim": "Aeroplanes mainly fly in the troposphere because it has many clouds.",
+      "correction": "The stratosphere is ideal for flying aeroplanes because it is free of clouds and other weather disturbances."
+    },
+    {
+      "claim": "Wind moves from low-pressure areas to high-pressure areas.",
+      "correction": "Air moves from high-pressure areas to low-pressure areas, and this movement of air is called wind."
+    },
+    {
+      "claim": "A sea breeze blows from land to sea during the day.",
+      "correction": "A sea breeze blows from sea to land during the day when the land becomes warmer and develops lower pressure; a land breeze blows from land to sea at night."
+    },
+    {
+      "claim": "Both the south-west and north-east monsoons blow from sea to land across all of India.",
+      "correction": "The south-west monsoon generally blows from sea to land from June to September, while the north-east monsoon generally blows from land to sea from October to February, although it picks up moisture over the Bay of Bengal and brings rain to parts of India's eastern coast."
+    },
+    {
+      "claim": "Climate change is simply a day of unusual weather.",
+      "correction": "Climate change refers to long-term changes in weather patterns such as temperature, rainfall, and wind, caused mainly by human activities described in the chapter."
+    },
+    {
+      "claim": "The Punjab Floods 2025 were caused only by heavy rain.",
+      "correction": "The chapter identifies both natural causes, such as very heavy monsoon rains and swollen rivers, and human-made causes, including weak embankments, construction close to rivers, silt accumulation, and late or unclear warnings."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and activities Q1 by constructing the atmosphere-composition answer from Fig. 3.2 and its stated percentages.",
+    "Use NCERT Questions and activities Q2 and Q5 to organise and apply the five atmospheric layers shown in Fig. 3.3.",
+    "Use NCERT Questions and activities Q4 and Q6(a) to explain balanced atmospheric pressure and distinguish the troposphere from the stratosphere.",
+    "Use NCERT Questions and activities Q3 and Q6(b) to compare India's seasons and the south-west and north-east monsoons.",
+    "Use NCERT Questions and activities Q7.1 and Q7.2(c) with Table 3.3 to order stations by latitude and identify the two hottest stations in February and June.",
+    "Use the chapter's 'My Carbon Footprint' activity and the Punjab Floods 2025 classroom discussion to connect personal action, climate change, flood causes, effects, and preparedness."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Q1-Q8, with the data-analysis task Q7 divided into Q7.1-Q7.5 and based on Table 3.3 and Fig. 3.14.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
