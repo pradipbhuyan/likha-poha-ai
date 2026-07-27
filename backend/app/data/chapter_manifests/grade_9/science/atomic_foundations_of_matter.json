@@ -1,0 +1,137 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Atomic Foundations of Matter",
+  "central_question": "How do atoms obey fixed laws of mass, combine through chemical bonds, and form compounds with predictable formulae, properties, and masses?",
+  "in_scope_units": [
+    "Activity 9.1 and Activity 9.2: investigating whether mass changes during physical and chemical changes, including the difference between open and closed experimental set-ups",
+    "9.1 Law of Conservation of Mass: mass of reactants equals mass of products in a chemical reaction, supported by Activity 9.3 and numerical verification",
+    "9.2 Law of Constant Proportions: elements in a compound are always present in a fixed ratio by mass, irrespective of source",
+    "9.3 Dalton’s Atomic Theory: postulates that connect conservation of mass and definite proportions with the rearrangement and combination of atoms",
+    "9.4 How Atoms Combine: molecules, stable electronic configurations, and chemical bonds formed by sharing or transfer of valence electrons",
+    "9.4.1 Bonding by sharing of electrons—Covalent Bond: molecules of elements and compounds, single and double bonds, and naming covalent compounds",
+    "9.4.2 Bonding by electron transfer—Ionic Bond: formation of cations and anions, electrostatic attraction, ionic crystals, and naming ionic compounds",
+    "9.5 Writing Chemical Formulae: using symbols, valencies or ionic charges, subscripts, simplification, and brackets for polyatomic ions",
+    "9.5.1 Writing chemical formulae of covalent compounds: applying valencies to obtain formulae such as HCl, H₂S and CCl₄",
+    "9.5.2 Writing chemical formulae of ionic compounds: balancing ionic charges to obtain neutral formula units such as CaCl₂, Al₂O₃, Mg(OH)₂ and Al₂(SO₄)₃",
+    "9.6 Properties of Ionic and Covalent Compounds: solubility, electrical conductivity in solid, aqueous and molten states, and melting and boiling points",
+    "9.7 Molecular Mass of Covalent Compounds: adding atomic masses according to the molecular formula",
+    "9.8 Formula Unit Mass of Ionic Compounds: adding atomic masses in the simplest whole-number ratio of ions"
+  ],
+  "banned_topics": [
+    "Detailed discovery and internal structure of the atom, including Rutherford scattering, Bohr shells and isotopes, except where prior electronic configuration knowledge is briefly recalled",
+    "Periodic-table classification, groups, periods and periodic trends",
+    "Detailed quantum-mechanical bonding, orbital overlap, hybridisation and molecular geometry",
+    "The mole concept, Avogadro constant, molar mass and mole-based stoichiometry",
+    "Balancing complex chemical equations or reaction types beyond the chapter’s stated word equations and conservation-of-mass calculations",
+    "Detailed acids, bases and salts chemistry beyond the named substances and ions used as chapter examples"
+  ],
+  "must_include_keywords": [
+    "physical change",
+    "chemical change",
+    "closed system",
+    "Law of Conservation of Mass",
+    "Antoine Lavoisier",
+    "reactants",
+    "products",
+    "white precipitate",
+    "Law of Constant Proportions",
+    "Joseph Proust",
+    "fixed ratio by mass",
+    "Dalton’s Atomic Theory",
+    "postulate",
+    "atom",
+    "molecule",
+    "valence electrons",
+    "octet",
+    "chemical bond",
+    "covalent bond",
+    "shared pair of electrons",
+    "single bond",
+    "double bond",
+    "hydrogen molecule",
+    "oxygen molecule",
+    "hydrogen chloride",
+    "water molecule",
+    "covalent compound naming prefixes",
+    "electron transfer",
+    "cation",
+    "anion",
+    "ion",
+    "ionic bond",
+    "electrostatic attraction",
+    "crystal lattice",
+    "polyatomic ion",
+    "criss-cross method",
+    "electrical conductivity",
+    "molecular mass",
+    "formula unit mass"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A lower mass reading in an open reaction proves that mass has been destroyed.",
+      "correction": "In Activity 9.2 experimental set-up 1, carbon dioxide escapes from the apparatus; when the gas is retained by the balloon in the closed set-up, the initial and final masses match."
+    },
+    {
+      "claim": "The Law of Conservation of Mass applies only when no visible change occurs.",
+      "correction": "The law applies to chemical reactions as well as physical changes; new substances may form, but the total mass of a complete closed system remains constant."
+    },
+    {
+      "claim": "Water from different sources can contain hydrogen and oxygen in any mass ratio.",
+      "correction": "Purified water always contains hydrogen and oxygen in the fixed mass ratio 1:8, illustrating the Law of Constant Proportions."
+    },
+    {
+      "claim": "Dalton stated that atoms combine in simple whole-number ratios by mass.",
+      "correction": "Dalton’s postulate states that atoms combine in simple whole-number ratios by number; fixed mass ratios arise because each kind of atom has a characteristic mass."
+    },
+    {
+      "claim": "Every element exists naturally as a molecule containing two or more atoms.",
+      "correction": "Some elements form molecules, such as H₂, Cl₂ and O₂, while stable elements such as helium can exist as individual atoms."
+    },
+    {
+      "claim": "A covalent bond forms when one atom completely gives an electron to another atom.",
+      "correction": "A covalent bond is formed by sharing electron pairs; complete electron transfer produces ions and an ionic bond."
+    },
+    {
+      "claim": "A sodium ion is negative because sodium loses an electron.",
+      "correction": "After losing one electron, sodium has 11 protons but 10 electrons, so it becomes the positive cation Na⁺."
+    },
+    {
+      "claim": "The formula of an ionic compound may carry the charges of its ions, such as Na⁺Cl⁻.",
+      "correction": "Charges are used to work out the ratio but are not written in the final compound formula; sodium chloride is written NaCl."
+    },
+    {
+      "claim": "Criss-crossed subscripts should never be simplified.",
+      "correction": "An ionic formula must show the simplest whole-number ratio, so Mg₂O₂ is simplified to MgO and Ca₂(CO₃)₂ to CaCO₃."
+    },
+    {
+      "claim": "Brackets are unnecessary around repeated polyatomic ions.",
+      "correction": "Brackets are required when more than one polyatomic ion is present; magnesium hydroxide is Mg(OH)₂, not MgOH₂."
+    },
+    {
+      "claim": "Solid sodium chloride conducts electricity because it contains charged ions.",
+      "correction": "Its ions are fixed in the solid lattice and cannot move; conduction occurs when the ions become mobile in aqueous solution or the molten state."
+    },
+    {
+      "claim": "All substances that dissolve in water conduct electricity.",
+      "correction": "Sugar dissolves but does not produce ions, so its solution does not conduct electricity, unlike aqueous sodium chloride or copper sulfate."
+    },
+    {
+      "claim": "Ionic compounds have molecular mass because each crystal is one giant molecule.",
+      "correction": "Ionic compounds are described by formula units in the simplest ion ratio, so their mass is called formula unit mass rather than molecular mass."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 9.1 to compare the mass of water plus salt before and after dissolving and establish that a physical change does not alter total mass.",
+    "Use Activity 9.2 experimental set-ups 1 and 2 to contrast an open system with a closed system and explain the apparent mass loss when carbon dioxide escapes.",
+    "Use Example 9.1 to verify the Law of Conservation of Mass by separately totaling reactant and product masses.",
+    "Use Example 9.3 to apply the Law of Constant Proportions to the 23:35.5 mass ratio of sodium and chlorine in sodium chloride.",
+    "Use Figs. 9.6–9.10 and Pause and Ponder Q10 to progress from H₂ and O₂ to HCl, H₂O, CO₂, H₂S and NH₃ through electron sharing.",
+    "Use Figs. 9.11–9.13 and Pause and Ponder Q13–15 to build cations, anions and ionic compounds by electron transfer.",
+    "Use the worked formula examples in Sections 9.5.1 and 9.5.2, followed by Pause and Ponder Q16–18, to practise names, charge balance and brackets for polyatomic ions.",
+    "Finish with Activity 9.4, Examples 9.4–9.7 and Pause and Ponder Q21–24 to compare properties and calculate molecular mass and formula unit mass."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled ‘Revise, Reflect, Refine’ and contains Questions 1–15 on pages 181–183.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
