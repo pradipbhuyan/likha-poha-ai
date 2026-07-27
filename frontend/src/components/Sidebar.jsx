@@ -110,52 +110,172 @@ function Sidebar({
       group: "Home",
     },
         {
-      key: "adminIssues",
-      label: "Product Bugs",
-      icon: Bug,
-      roles: ["admin"],
-    },
-    {
-      key: "adminChat",
-      label: "Platform Chat",
-      icon: MessageSquare,
-      roles: ["admin"],
-    },
-    {
-      key: "adminQACenter",
-      label: "Platform QA Center",
-      icon: Layers,
-      roles: ["admin"],
-    },
-    {
-      key: "learningSimulation",
-      label: "Learning Simulation",
-      icon: Activity,
-      roles: ["admin"],
-    },
-    {
       key: "adminControl",
       label: "Admin Control",
       icon: Settings,
       roles: ["admin"],
+      group: "Overview",
+    },
+    {
+      key: "adminIssues",
+      label: "Product Bugs",
+      icon: Bug,
+      roles: ["admin"],
+      group: "Overview",
     },
     {
       key: "cacheManagement",
       label: "Cache & Question Bank",
       icon: Database,
       roles: ["admin"],
+      group: "Content Pipeline",
     },
     {
       key: "ragUpload",
       label: "RAG Upload",
       icon: UploadCloud,
       roles: ["admin"],
+      group: "Content Pipeline",
     },
     {
       key: "syllabusReview",
       label: "Syllabus Review",
       icon: ListChecks,
       roles: ["admin"],
+      group: "Content Pipeline",
+    },
+    {
+      key: "lessonRepair",
+      label: "Lesson Repair",
+      icon: Layers,
+      roles: ["admin"],
+      group: "Content Pipeline",
+    },
+    {
+      key: "lessonExperience",
+      label: "Lesson Experience",
+      icon: Sparkles,
+      roles: ["admin"],
+      group: "Content Pipeline",
+    },
+    {
+      key: "lessonCardStyle",
+      label: "Lesson Card Style",
+      icon: Layers,
+      roles: ["admin"],
+      group: "Content Pipeline",
+    },
+    {
+      key: "unansweredReview",
+      label: "AI Learning Review",
+      icon: BrainCircuit,
+      roles: ["admin"],
+      group: "Content Pipeline",
+    },
+    {
+      key: "adminQACenter",
+      label: "Platform QA Center",
+      icon: Layers,
+      roles: ["admin"],
+      group: "Quality & Testing",
+    },
+    {
+      key: "learningSimulation",
+      label: "Learning Simulation",
+      icon: Activity,
+      roles: ["admin"],
+      group: "Quality & Testing",
+    },
+    {
+      key: "performanceTests",
+      label: "Performance Tests",
+      icon: Activity,
+      roles: ["admin"],
+      group: "Quality & Testing",
+    },
+    {
+      key: "aiStudio",
+      label: "AI Studio",
+      icon: Sparkles,
+      roles: ["admin"],
+      group: "AI Configuration",
+    },
+    {
+      key: "guideThemes",
+      label: "Likha Poha AI Guide",
+      icon: Sparkles,
+      roles: ["admin"],
+      group: "AI Configuration",
+    },
+    {
+      key: "subscriptionSettings",
+      label: "Subscription Settings",
+      icon: Tags,
+      roles: ["admin"],
+      group: "Commercial",
+    },
+    {
+      key: "pricingCalculator",
+      label: "Pricing Calculator",
+      icon: Calculator,
+      roles: ["admin"],
+      group: "Commercial",
+    },
+    {
+      key: "productCatalogue",
+      label: "Product Catalogue",
+      icon: Package,
+      roles: ["admin"],
+      group: "Commercial",
+    },
+    {
+      key: "paymentLogs",
+      label: "Payment Logs",
+      icon: CreditCard,
+      roles: ["admin"],
+      group: "Commercial",
+    },
+    {
+      key: "usage",
+      label: "AI Usage",
+      icon: DollarSign,
+      roles: ["admin"],
+      group: "Commercial",
+    },
+    {
+      key: "salesLeads",
+      label: isAdmin ? "Lead Claims" : "My Lead Claims",
+      icon: Users,
+      roles: ["admin", "sales"],
+      group: "Sales",
+    },
+    {
+      key: "salesIncentives",
+      label: "Sales Incentives",
+      icon: Handshake,
+      roles: ["admin"],  // admin-only: old attribution system
+      group: "Sales",
+    },
+    {
+      key: "salesDemo",
+      label: "Product Demo",
+      icon: MonitorPlay,
+      roles: ["admin", "sales"],
+      group: "Sales",
+    },
+    {
+      key: "salesCollaterals",
+      label: "Sales Collaterals",
+      icon: Megaphone,
+      roles: ["admin", "sales"],
+      group: "Sales",
+    },
+    {
+      key: "adminChat",
+      label: "Platform Chat",
+      icon: MessageSquare,
+      roles: ["admin"],
+      group: "Communication",
     },
     {
       key: "teacherDashboard",
@@ -205,102 +325,6 @@ function Sidebar({
       icon: BarChart3,
       roles: ["teacher"],
       hideForAdmin: true,
-    },
-    {
-      key: "subscriptionSettings",
-      label: "Subscription Settings",
-      icon: Tags,
-      roles: ["admin"],
-    },
-    {
-      key: "pricingCalculator",
-      label: "Pricing Calculator",
-      icon: Calculator,
-      roles: ["admin"],
-    },
-    {
-      key: "paymentLogs",
-      label: "Payment Logs",
-      icon: CreditCard,
-      roles: ["admin"],
-    },
-    {
-      key: "performanceTests",
-      label: "Performance Tests",
-      icon: Activity,
-      roles: ["admin"],
-    },
-    {
-      key: "guideThemes",
-      label: "Likha Poha AI Guide",
-      icon: Sparkles,
-      roles: ["admin"],
-    },
-    {
-      key: "lessonCardStyle",
-      label: "Lesson Card Style",
-      icon: Layers,
-      roles: ["admin"],
-    },
-    {
-      key: "productCatalogue",
-      label: "Product Catalogue",
-      icon: Package,
-      roles: ["admin"],
-    },
-    {
-      key: "unansweredReview",
-      label: "AI Learning Review",
-      icon: BrainCircuit,
-      roles: ["admin"],
-    },
-    {
-      key: "lessonExperience",
-      label: "Lesson Experience",
-      icon: Sparkles,
-      roles: ["admin"],
-    },
-    {
-      key: "lessonRepair",
-      label: "Lesson Repair",
-      icon: Layers,
-      roles: ["admin"],
-    },
-    {
-      key: "aiStudio",
-      label: "AI Studio",
-      icon: Sparkles,
-      roles: ["admin"],
-    },
-    {
-      key: "salesLeads",
-      label: isAdmin ? "Lead Claims" : "My Lead Claims",
-      icon: Users,
-      roles: ["admin", "sales"],
-    },
-    {
-      key: "salesIncentives",
-      label: "Sales Incentives",
-      icon: Handshake,
-      roles: ["admin"],  // admin-only: old attribution system
-    },
-    {
-      key: "salesDemo",
-      label: "Product Demo",
-      icon: MonitorPlay,
-      roles: ["admin", "sales"],
-    },
-    {
-      key: "salesCollaterals",
-      label: "Sales Collaterals",
-      icon: Megaphone,
-      roles: ["admin", "sales"],
-    },
-    {
-      key: "usage",
-      label: "AI Usage",
-      icon: DollarSign,
-      roles: ["admin"],
     },
     {
       key: "lessons",
@@ -586,9 +610,10 @@ function Sidebar({
 
       <nav className="sidebar-nav" aria-label="Main navigation">
         {(() => {
-          // Group labels are a student-only affordance — other roles (admin,
-          // teacher, sales, parent) keep the flat list they already rely on.
-          const showGroups = user?.role === "student";
+          // Group labels help both students and admin, who each have long
+          // enough lists to benefit — teacher, sales, and parent still keep
+          // the flat list they already rely on.
+          const showGroups = user?.role === "student" || isAdmin;
           let lastGroup = null;
 
           return visiblePages.map((page) => {

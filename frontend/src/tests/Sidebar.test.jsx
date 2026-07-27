@@ -155,11 +155,26 @@ describe("Sidebar information architecture (student)", () => {
     expect(dashboard).not.toHaveAttribute("aria-current");
   });
 
-  test("does not group navigation for non-student roles", () => {
+  test("does not group navigation for teacher, sales, or parent roles", () => {
+    for (const role of ["teacher", "sales", "parent"]) {
+      const { unmount } = renderSidebar({ role, username: `Test ${role}` });
+      expect(screen.queryByText("Help & Account", { exact: true })).not.toBeInTheDocument();
+      unmount();
+    }
+  });
+
+  test("groups navigation for admin, using admin-specific sections", () => {
     renderSidebar({ role: "admin", username: "Pradip Admin" });
 
+    // Admin's own sections (added alongside the sidebar consolidation).
+    expect(screen.getByText("Overview", { exact: true })).toBeInTheDocument();
+    expect(screen.getByText("Content Pipeline", { exact: true })).toBeInTheDocument();
+    expect(screen.getByText("Quality & Testing", { exact: true })).toBeInTheDocument();
+    expect(screen.getByText("Sales", { exact: true })).toBeInTheDocument();
+
+    // "Learn" only groups pages that are hidden for admin (Lessons, Ask Doubt),
+    // so it should never render, even though groups are now on for this role.
     expect(screen.queryByText("Learn", { exact: true })).not.toBeInTheDocument();
-    expect(screen.queryByText("Progress", { exact: true })).not.toBeInTheDocument();
   });
 
   test("long usernames render without breaking the sidebar layout", () => {
