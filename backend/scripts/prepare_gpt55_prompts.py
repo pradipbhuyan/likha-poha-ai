@@ -57,6 +57,19 @@ BOOK_SOURCES = {
         "num_chapters": 8,
         "subject_class": "science_or_maths",
     },
+    # Grade 9 Social Science lives in "RAG DB/Social Science/" with book
+    # code "iest1", chapters iest101.pdf .. iest109.pdf (9 chapters),
+    # matching CBSE_9["Social Science"] order in backend/app/data/syllabus.py
+    # exactly (Understanding Society: India and Beyond — NCF-SE 2023,
+    # first edition June 2026: Geography, History, Political Science,
+    # Economics). subject_class = "humanities_or_language" enforces
+    # strict PDF-only grounding — no external facts, no invented examples.
+    ("Grade 9", "Social Science"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Social Science",
+        "book_code": "iest1",
+        "num_chapters": 9,
+        "subject_class": "humanities_or_language",
+    },
 }
 
 PROMPT_TEMPLATE = """\
