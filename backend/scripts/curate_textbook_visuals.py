@@ -58,22 +58,25 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.services.auth_service import admin_client  # noqa: E402
 
-# NCERT Exploration-series figure caption pattern, verified against the
-# actual Cell chapter PDF text.
-#
-# CRITICAL DISTINCTION (this is what makes the detector deterministic and
-# not "randomly" approve pages, per user feedback):
-#   - A REAL CAPTION always uses a COLON right after the figure number:
+# NCERT figure caption pattern — two conventions verified across
+# different textbook series:
+#   - Exploration series (Science): COLON right after the figure number:
 #       "Fig. 2.13: Endoplasmic reticulum and Golgi apparatus..."
-#   - An IN-TEXT REFERENCE (pointing to a figure discussed elsewhere,
-#     often the SAME page's own caption, or a figure the prose merely
-#     mentions) uses a closing parenthesis instead, with NO colon:
+#   - Understanding Society series (Social Science, 2026 edition): PERIOD
+#     right after the figure number, often with a very short 1-3 word
+#     caption (labels like a place/landform name rather than a full
+#     sentence):
+#       "Fig. 2.10. Waterfall"
+#       "Fig. 2.3. World map showing major plates and their direction of movement"
+# Both are genuine, deterministic NCERT captions — only an in-text
+# reference (pointing to a figure discussed elsewhere) differs, using a
+# closing parenthesis instead of a colon/period right after the number:
 #       "...different parts of a microscope (Fig. 2.2) in your school..."
-# The colon is therefore REQUIRED (not optional) — this single change
-# eliminates the false-positive captions like "Fig. 2.2) in your school
-# laboratory and" that a looser pattern would incorrectly extract.
+# Requiring a colon OR a period immediately after "Fig. N.N" (not a
+# closing paren) is what keeps this deterministic and excludes in-text
+# references like "(Fig. 2.9)" from being mistaken for captions.
 _FIG_CAPTION_RE = re.compile(
-    r"Fig(?:ure)?\.[\s\xa0]*(\d+\.\d+)\s*:\s*([^\n]{3,140})",
+    r"Fig(?:ure)?\.[\s\xa0]*(\d+\.\d+)\s*[:.]\s*([^\n]{2,140})",
     re.IGNORECASE,
 )
 
@@ -83,17 +86,28 @@ def extract_figure_captions(nearby_text: str) -> list[tuple[str, str]]:
     Return [(fig_number, caption_text), ...] for every genuine NCERT
     figure caption found in this page's extracted text.
 
-    Requires the colon-separated "Fig. N.N: <description>" form (see
-    module docstring) AND at least 3 real words of description — this
-    excludes both bare in-text references like "(Fig. 2.2)" and
-    caption-less figure labels like "Fig. 2.20" followed by an unrelated
-    lettered exercise list.
+    Requires the colon- or period-separated "Fig. N.N: <description>" /
+    "Fig. N.N. <description>" form (see module docstring) AND at least
+    1 real word of description — this excludes both bare in-text
+    references like "(Fig. 2.2)" and caption-less figure labels like
+    "Fig. 2.20" followed immediately by an unrelated lettered exercise
+    list with no real words after it.
+
+    The minimum word count is intentionally low (1, not 3) because the
+    Understanding Society series often uses single-word captions that
+    are still genuine, printed NCERT captions (e.g. "Fig. 2.10. Waterfall",
+    "Fig. 2.11. Meander", "Fig. 2.12. Delta") — requiring 3+ words would
+    incorrectly reject these real captions.
     """
     results = []
     for match in _FIG_CAPTION_RE.finditer(nearby_text or ""):
         fig_number = match.group(1)
         caption_text = match.group(2).strip()
-        if len(caption_text.split()) < 3:
+        # A genuine caption has at least one real word (letters), not just
+        # trailing punctuation, page numbers, or whitespace.
+        if not re.search(r"[A-Za-z]", caption_text):
+            continue
+        if len(caption_text.split()) < 1:
             continue
         results.append((fig_number, caption_text))
     return results
@@ -170,7 +184,7 @@ def _figure_crop_rect(page, fig_number: str) -> "fitz.Rect | None":
     # vertical range to include whichever caption block sits just below
     # the image, and any label text sitting just above it too.
     caption_pattern = re.compile(
-        rf"Fig(?:ure)?\.[\s\xa0]*{re.escape(fig_number)}\s*:", re.IGNORECASE,
+        rf"Fig(?:ure)?\.[\s\xa0]*{re.escape(fig_number)}\s*[:.]", re.IGNORECASE,
     )
     top = union.y0
     bottom = union.y1

@@ -1,0 +1,117 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Shaping of the Earth's Surface",
+  "central_question": "How do forces inside and outside the Earth create, reshape, and sometimes make hazardous the landforms on which people and other living beings depend?",
+  "in_scope_units": [
+    "The dynamic Earth and the meaning of landforms, including the chapter's five big questions about surface change, plate movement, landform formation, human connections, and disasters.",
+    "Plate Tectonics: the Earth's crust, mantle, core, lithosphere, asthenosphere, tectonic plates, convection currents, plate boundaries, major plates, earthquakes, volcanoes, and the Ring of Fire.",
+    "Process of Weathering and Erosion: physical, chemical, and biological weathering; water, wind, glacial, and coastal erosion; effects on soil, occupations, livelihoods, and conservation practices.",
+    "Agents of Gradation: running water, glaciers, wind, waves, and groundwater as agents that erode, transport, and deposit materials.",
+    "Running Water: upper, middle, and lower river courses and the formation and human importance of waterfalls, meanders, oxbow lakes, floodplains, deltas, levees, and alluvial fans.",
+    "Waves and Currents: beaches and coastal erosion landforms, including cliffs, wave-cut or shore platforms, caves, arches, stacks, bays, and sand bars.",
+    "Glaciers: U-shaped valleys, cirques, aretes, hanging valleys, fjords, and depositional moraines, together with their links to freshwater, agriculture, tourism, harbours, and fishing.",
+    "Wind: yardangs, ventifacts, deflation hollows, desert pavements, oases, and major dune forms created by wind erosion and deposition.",
+    "Underground Water: Karst topography, caves, stalactites, stalagmites, pillars, sinkholes or dolines, and underground rivers formed in limestone or other soluble rocks.",
+    "Landforms and Disasters: causes and human links of landslides, avalanches, Glacial Lake Outburst Floods (GLOFs), and dust storms.",
+    "Chapter synthesis and Questions and activities: internal and external forces, human dependence on landforms, disaster preparedness, and activities numbered 1 to 15."
+  ],
+  "banned_topics": [
+    "A detailed study of ocean waves and currents, which the chapter explicitly says will be covered in Part 2 of the textbook.",
+    "Rock and mineral classification beyond the chapter's limited references to hard rock, soft rock, limestone, and soluble rocks.",
+    "Detailed atmospheric circulation, climate classification, or weather forecasting, which belong to other geography chapters.",
+    "Unverified current disaster statistics, recent examples, prone-area lists, or mitigation measures not supplied in the chapter text.",
+    "Exact earthquake prediction methods, because the chapter discusses prone regions and preparedness but does not provide a method for predicting the exact time and place of an earthquake."
+  ],
+  "must_include_keywords": [
+    "landform",
+    "plate tectonics",
+    "W.J. Morgan",
+    "crust",
+    "mantle",
+    "core",
+    "lithosphere",
+    "asthenosphere",
+    "tectonic plates",
+    "convection currents",
+    "convergent boundary",
+    "divergent boundary",
+    "transform boundary",
+    "Himalaya",
+    "Mid-Atlantic Ridge",
+    "San Andreas Fault",
+    "Ring of Fire",
+    "weathering",
+    "physical weathering",
+    "chemical weathering",
+    "biological weathering",
+    "erosion",
+    "deposition",
+    "agents of gradation",
+    "running water",
+    "waterfall",
+    "meander",
+    "delta",
+    "waves and currents",
+    "beach",
+    "sea arch",
+    "sea stack",
+    "glacier",
+    "U-shaped valley",
+    "moraine",
+    "yardang",
+    "dunes",
+    "Karst topography",
+    "stalactite",
+    "stalagmite",
+    "landslide",
+    "avalanche",
+    "GLOF",
+    "dust storm"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Weathering and erosion mean the same thing.",
+      "correction": "Weathering breaks rocks into smaller pieces without moving the broken material, whereas erosion wears away and carries soil, rocks, and other material from one place to another."
+    },
+    {
+      "claim": "The Earth's crust is one unbroken shell.",
+      "correction": "The lithosphere, made of the crust and upper mantle, is broken into large and small tectonic plates that move slowly over the semi-molten asthenosphere."
+    },
+    {
+      "claim": "All plate boundaries create new crust.",
+      "correction": "Divergent boundaries form new crust, convergent boundaries involve collision and may form mountains or lead to subduction, and transform boundaries slide past each other without creating or destroying crust."
+    },
+    {
+      "claim": "Earthquakes and volcanoes are randomly distributed across the Earth.",
+      "correction": "Most earthquakes and volcanoes occur along plate boundaries, with a major concentration around the Pacific Ocean in the Ring of Fire."
+    },
+    {
+      "claim": "A delta is an erosional landform found in the upper course of a river.",
+      "correction": "A delta is a depositional landform at the mouth of a river, where sediments accumulate as the river enters a sea, ocean, or lake."
+    },
+    {
+      "claim": "Stalactites rise from the cave floor and stalagmites hang from the ceiling.",
+      "correction": "Stalactites hang from cave ceilings, while stalagmites rise from cave floors."
+    },
+    {
+      "claim": "Moraines are valleys carved only by glacial erosion.",
+      "correction": "Moraines are depositional landforms made of rocks, soil, and debris called till that are left behind when a glacier melts."
+    },
+    {
+      "claim": "Landform disasters are caused only by natural forces.",
+      "correction": "The chapter explains that human activities such as deforestation, mining, road construction, unplanned construction, overgrazing, and poor farming practices can increase the risk of landslides or dust storms."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT LET'S MAP based on Fig. 2.3: select two tectonic plates and identify whether they carry continents, oceans, or both.",
+    "Next use NCERT LET'S EXPLORE based on Figs. 2.3 and 2.4: compare the plate map with the earthquake and volcano map and identify their concentration near plate boundaries.",
+    "Then solve NCERT Questions and activities Q6: explain the connection between deforestation and erosion using the chapter's account of exposed soil and loss of fertile topsoil.",
+    "Proceed to NCERT Questions and activities Q5: draw and label a meander and a delta using the labels shown in Figs. 2.11 and 2.12.",
+    "Use NCERT Questions and activities Q9: prepare a model of underground-water landforms using the cave, stalactite, stalagmite, pillar, sinkhole, and underground-river features in Figs. 2.24 to 2.26.",
+    "Conclude with NCERT Questions and activities Q8: identify a disaster relevant to a region and organise a mitigation-plan discussion using the chapter's sections on landslides, avalanches, GLOFs, and dust storms."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1 to 15 on pages 37-38 of the chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
