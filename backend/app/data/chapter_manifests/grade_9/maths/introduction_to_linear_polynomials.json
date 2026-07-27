@@ -1,0 +1,121 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Introduction to Linear Polynomials",
+  "central_question": "How can linear polynomials represent, evaluate, compare, and graph quantities that change by a constant amount?",
+  "in_scope_units": [
+    "2.1 Introduction — algebraic expressions, terms, variables, coefficients, constants, one-variable polynomials, degree, and classification as constant, linear, quadratic, or cubic.",
+    "2.2 Linear Polynomials — degree-one polynomials, constant successive differences, evaluation by substitution, linear equations, and the input-output view of a polynomial.",
+    "2.3 Exploring Linear Patterns — recognising constant-difference sequences and forming an nth-term linear expression from tile, spending, fare, area, volume, and reading situations.",
+    "2.4 Linear Growth and Linear Decay — modelling fixed increases and fixed decreases over equal intervals using linear expressions and tables of values.",
+    "2.5 Linear Relationships — expressing the relation between two variables as y = ax + b and determining a and b from two observed input-output pairs.",
+    "2.6 Visualising Linear Relationships — plotting y = ax + b as a straight line, testing whether points satisfy an equation, and interpreting slope, y-intercept, growth, decay, and parallel lines.",
+    "End-of-Chapter Exercises and Chapter Summary — integrated practice on polynomial degree and evaluation, linear equations and patterns, graphing, slope, intercepts, parallel lines, and applied modelling."
+  ],
+  "banned_topics": [
+    "Polynomial division, the Remainder Theorem, and the Factor Theorem",
+    "Factorisation methods and solving general quadratic or cubic equations",
+    "Formal arithmetic-progression formulas beyond the chapter's introductory constant-difference patterns",
+    "Advanced function theory such as domain, range, composition, and inverse functions",
+    "Advanced coordinate-geometry forms of a line such as point-slope, two-point, and normal forms",
+    "General methods for solving systems of several linear equations beyond finding a and b from the two relationships used in this chapter"
+  ],
+  "must_include_keywords": [
+    "algebraic expression",
+    "term",
+    "variable",
+    "coefficient",
+    "constant term",
+    "one-variable polynomial",
+    "univariate polynomial",
+    "degree",
+    "constant polynomial",
+    "linear polynomial",
+    "quadratic polynomial",
+    "cubic polynomial",
+    "substitution",
+    "evaluation",
+    "linear equation",
+    "input-output process",
+    "function",
+    "linear pattern",
+    "constant difference",
+    "nth term",
+    "2n - 1",
+    "linear growth",
+    "linear decay",
+    "equal intervals",
+    "y = ax + b",
+    "linear relationship",
+    "straight line",
+    "coordinate plane",
+    "slope",
+    "positive slope",
+    "negative slope",
+    "y-intercept",
+    "origin",
+    "parallel lines",
+    "point satisfies an equation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The degree of a polynomial is the number of terms in it.",
+      "correction": "The degree is the highest power of the variable with a non-zero coefficient; for example, 5y³ + y² + 2y - 1 has degree 3 even though it has four terms."
+    },
+    {
+      "claim": "Every algebraic expression with variables is a one-variable polynomial.",
+      "correction": "A one-variable or univariate polynomial uses only one variable and its non-negative whole-number powers; expressions such as 4x + 5y + 3 use two variables and are outside the chapter's one-variable focus."
+    },
+    {
+      "claim": "A constant such as -9 has no degree.",
+      "correction": "A non-zero constant is a constant polynomial of degree 0 because it can be written using x⁰."
+    },
+    {
+      "claim": "The coefficient of a missing term is undefined.",
+      "correction": "A missing term has coefficient 0; for example, the coefficient of z in 4z³ + 5z² - 11 is 0."
+    },
+    {
+      "claim": "A linear polynomial and a linear equation are the same thing.",
+      "correction": "An expression such as 2x + 10 is a linear polynomial; equating it to a constant, as in 2x + 10 = 64, gives a linear equation."
+    },
+    {
+      "claim": "Any sequence that generally rises or falls is a linear pattern.",
+      "correction": "A linear pattern changes by a constant amount over equal steps, so consecutive differences must be constant."
+    },
+    {
+      "claim": "The auto-rikshaw rule 15n - 5 applies to every distance including distances below 2 km.",
+      "correction": "In Example 8, the fare rule 15n - 5 is stated for n ≥ 2 because the initial 2 km have a fixed fare of ₹25."
+    },
+    {
+      "claim": "In y = ax + b, b is the x-intercept.",
+      "correction": "The value b is the y-intercept, and the line cuts the y-axis at (0, b)."
+    },
+    {
+      "claim": "Every line of the form y = ax + b passes through the origin.",
+      "correction": "A line passes through the origin only when b = 0, giving the special form y = ax."
+    },
+    {
+      "claim": "Lines are parallel whenever their y-intercepts are equal.",
+      "correction": "In the chapter, lines with equal slopes a and different y-intercepts b are parallel."
+    },
+    {
+      "claim": "A negative slope means the graph is not linear.",
+      "correction": "A straight line may have a negative slope; in this chapter, negative slope represents linear decay."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 1 to identify the terms 4x, 5y, and 3, the variables x and y, the coefficients 4 and 5, and the constant 3.",
+    "Use NCERT Example 3 to move from a two-variable expression to the one-variable polynomial 10x - x² and discuss its degree.",
+    "Use NCERT Exercise Set 2.1, Questions 1, 3, 4, and 5 to practise degree, coefficients of present and missing terms, and constant terms.",
+    "Use NCERT Examples 4 and 5 to introduce linear polynomials through square perimeter and chess-club charges, highlighting constant successive differences.",
+    "Use NCERT Example 6 and Exercise Set 2.2 to connect a linear polynomial with a linear equation and evaluation by substitution.",
+    "Use NCERT Fig. 2.4 and the rule 2n - 1 to derive an nth term from the square-tile pattern.",
+    "Use NCERT Examples 7 and 8 to model linear decrease in pocket money and a distance-based auto-rikshaw fare.",
+    "Use NCERT Examples 9 and 10 to compare linear growth C(d) = 100 + 60d with linear decay h(t) = 3 - 0.5t.",
+    "Use NCERT Example 11 and Exercise Set 2.5 to determine a and b in y = ax + b from two observed values.",
+    "Use NCERT Examples 12-16 and Exercise Set 2.6 to progress from plotting points to interpreting slope, y-intercept, positive and negative slope, and parallel lines."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The section titled 'End-of-Chapter Exercises' contains Questions 1-14, including starred higher-order problems on graphs, linear models, polynomial rules, and parallel lines.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

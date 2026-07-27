@@ -1,0 +1,104 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Orienting Yourself: The Use of Coordinates",
+  "central_question": "How can two ordered numbers and perpendicular axes be used to locate points precisely and calculate geometric distances and relationships in a two-dimensional plane?",
+  "in_scope_units": [
+    "1.1 Introduction — meaning, historical development and practical importance of coordinate systems in grids, navigation and the connection between algebra and geometry.",
+    "1.2 Settling In — Reiaan's tactile room plan, scale drawing and the need to represent positions on a two-dimensional grid.",
+    "1.3 The 2-D Cartesian Coordinate System — x-axis, y-axis, origin, positive and negative directions, coordinates of points on the axes and ordered-pair notation.",
+    "Exercise Set 1.1 — reading coordinates and measuring the widths and positions of doors in Reiaan's room plan.",
+    "Quadrants within Section 1.3 — Cartesian plane, four quadrants, sign conventions, interpretation of x- and y-coordinates and the importance of coordinate order.",
+    "Exercise Set 1.2 — plotting room features, completing rectangles, finding dimensions and extending the coordinate floor plan.",
+    "1.4 Distance Between Two Points in the 2-D Plane — axis-parallel distances, derivation and use of the distance formula through the Baudhāyana–Pythagoras Theorem, including negative coordinates and reflections.",
+    "End-of-Chapter Exercises and Chapter Summary — applications involving collinearity, midpoint and trisection patterns, circles centred at the origin, city grids, computer screens and verification of a square."
+  ],
+  "banned_topics": [
+    "Three-dimensional coordinate geometry and coordinates of points in space",
+    "Slope, equation of a straight line and slope-intercept form",
+    "Formal equations of circles and conic sections",
+    "Coordinate formula for the area of a triangle",
+    "Trigonometric coordinate methods beyond the historical references in the introduction"
+  ],
+  "must_include_keywords": [
+    "coordinate system",
+    "grid-based thinking",
+    "Sindhu-Sarasvatī Civilisation",
+    "Baudhāyana–Pythagoras Theorem",
+    "Ujjayinī meridian",
+    "Brahmagupta",
+    "René Descartes",
+    "two-dimensional space",
+    "Cartesian plane",
+    "coordinate plane",
+    "xy-plane",
+    "x-axis",
+    "y-axis",
+    "origin",
+    "ordered pair",
+    "x-coordinate",
+    "y-coordinate",
+    "positive direction",
+    "negative direction",
+    "Quadrant I",
+    "Quadrant II",
+    "Quadrant III",
+    "Quadrant IV",
+    "scale 1 cm : 1 foot",
+    "horizontal distance",
+    "vertical distance",
+    "distance formula",
+    "reflection in the y-axis",
+    "midpoint",
+    "trisection",
+    "circle centred at the origin",
+    "street intersection",
+    "computer screen coordinates"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The coordinates (x, y) may be read in either order.",
+      "correction": "Coordinates are ordered: x is written first and gives the horizontal position, while y is written second and gives the vertical position; (x, y) = (y, x) only when x = y."
+    },
+    {
+      "claim": "A point on the y-axis can have any x-coordinate.",
+      "correction": "Every point on the y-axis has x-coordinate 0 and therefore has the form (0, y)."
+    },
+    {
+      "claim": "The origin belongs to all four quadrants.",
+      "correction": "The origin is the intersection of the axes at (0, 0) and does not lie in any quadrant."
+    },
+    {
+      "claim": "The signs of coordinates are determined by distance alone, so both coordinates should always be positive.",
+      "correction": "The signs show direction from the origin: right and up are positive, while left and down are negative."
+    },
+    {
+      "claim": "The distance between two general points is found by directly adding the horizontal and vertical coordinate differences.",
+      "correction": "The horizontal and vertical shifts are perpendicular, so the distance is √((x₂ – x₁)² + (y₂ – y₁)²)."
+    },
+    {
+      "claim": "Negative coordinate differences make the distance negative.",
+      "correction": "Distance is never negative; the coordinate differences are squared in the distance formula."
+    },
+    {
+      "claim": "Reflection in the y-axis changes both coordinates.",
+      "correction": "Reflection in the y-axis changes (x, y) to (–x, y), so only the sign of the x-coordinate changes and lengths are preserved."
+    },
+    {
+      "claim": "A two-dimensional floor plan can determine the height of a table or window.",
+      "correction": "The plan records only two dimensions on the floor; height requires a third coordinate or another view."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Section 1.2 and Fig. 1.1: explain why a two-dimensional floor plan can locate floor positions but cannot completely represent window height.",
+    "Use Exercise Set 1.1 with Fig. 1.3: read D₁ = (8, 0), calculate the 3.5 ft room-door width and compare it with the 2.5 ft bathroom-door width.",
+    "Use Fig. 1.4 and its Think and Reflect questions: classify Q (–5, 3) and S (3, –5), and generalise coordinates of points on the axes.",
+    "Use Exercise Set 1.2 Question 1: complete the rectangular table at (8, 7) and calculate its 3 ft by 2 ft floor dimensions.",
+    "Use Figs. 1.6–1.8: derive AD = 5 units from A (3, 4) and D (7, 1), then state the general distance formula.",
+    "Use Fig. 1.9: reflect triangle ADM in the y-axis and verify that the corresponding side lengths remain 5, √29 and √40 units.",
+    "Finish with End-of-Chapter Exercise 12 and Exercise 15: apply distance from the origin to a circle and apply coordinate distances to circles on a computer screen."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's End-of-Chapter Exercises contain Questions 1–16, followed by a Chapter Summary; Questions 6–13 are marked as extended problems with an asterisk.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
