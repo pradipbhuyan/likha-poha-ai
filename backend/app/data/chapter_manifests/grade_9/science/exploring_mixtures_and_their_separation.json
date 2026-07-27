@@ -1,0 +1,131 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Exploring Mixtures and their Separation",
+  "central_question": "How can mixtures be classified and their components separated by using differences in properties such as particle size, solubility, density, boiling point and movement through a medium?",
+  "in_scope_units": [
+    "5.1 How Can We Classify Mixtures? — homogeneous and heterogeneous mixtures, supported by observations of salt water, chalk water and milk water in Activity 5.1",
+    "5.2 Solutions — solute, solvent and the homogeneous nature of a solution",
+    "5.2.1 Concentration of a solution — the importance of the correct proportion of solute and solvent",
+    "5.2.2 How do we express concentration? — mass by mass, mass by volume and volume by volume percentages",
+    "5.2.3 Solubility of substances — solubility, saturated solutions, temperature dependence and solubility curves",
+    "5.3 Methods of Separation of Homogeneous Mixtures — choosing methods by using differences in solubility, boiling point and movement through paper",
+    "5.3.1 Crystallization — obtaining or purifying a solid from a saturated solution",
+    "5.3.2 Distillation — recovering a liquid or separating miscible liquids with sufficiently different boiling points",
+    "5.3.3 Paper Chromatography — separating components that move at different rates with a solvent on paper",
+    "5.4 How Can We Separate the Components of Heterogeneous Mixtures? — selecting methods according to density, state, particle size and other physical properties",
+    "5.4.1 Separation of two immiscible liquids — using a separating funnel and density difference",
+    "5.4.2 Sublimation — separating a sublimable solid from a non-sublimable solid and understanding deposition",
+    "5.4.3 Suspensions — visible particles, settling, filtration, centrifugation and coagulation",
+    "5.4.4 Colloids — particle size, non-settling behaviour and comparison with solutions and suspensions",
+    "5.5 Tyndall Effect — scattering of light by colloids and suspensions, dispersed phase, dispersion medium and emulsions"
+  ],
+  "banned_topics": [
+    "Molarity, molality, normality and mole-fraction calculations",
+    "Advanced chromatography calculations such as Rf values",
+    "Detailed chemical bonding or atomic structure of mixture components",
+    "Balancing chemical equations or teaching reaction mechanisms",
+    "Detailed industrial design of petroleum refineries beyond the chapter's brief introduction to fractional distillation",
+    "Medical diagnosis procedures beyond the chapter's discussion of centrifugation, paperfuge and blood components"
+  ],
+  "must_include_keywords": [
+    "homogeneous mixture",
+    "heterogeneous mixture",
+    "solution",
+    "solute",
+    "solvent",
+    "concentration",
+    "mass by mass percentage",
+    "mass by volume percentage",
+    "volume by volume percentage",
+    "solubility",
+    "saturated solution",
+    "solubility curve",
+    "crystallization",
+    "crystal",
+    "distillation",
+    "boiling point",
+    "condenser",
+    "distillate",
+    "paper chromatography",
+    "miscible liquids",
+    "immiscible liquids",
+    "separating funnel",
+    "density",
+    "sublimation",
+    "deposition",
+    "suspension",
+    "centrifugation",
+    "coagulation",
+    "coagulant",
+    "colloid",
+    "particle size",
+    "Tyndall effect",
+    "dispersed phase",
+    "dispersion medium",
+    "emulsion",
+    "filtration",
+    "sedimentation",
+    "decantation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Every mixture that looks uniform is a true solution.",
+      "correction": "A colloid such as milk may appear uniform, but it is not a true solution; its particles are larger than solution particles and scatter light."
+    },
+    {
+      "claim": "The mass of the solvent alone is used as the denominator in mass by mass percentage.",
+      "correction": "Mass by mass percentage is mass of solute divided by total mass of solution, multiplied by 100."
+    },
+    {
+      "claim": "A 5% m/v solution means 5 g of solute in 100 mL of solvent.",
+      "correction": "It means 5 g of solute in 100 mL of the final solution."
+    },
+    {
+      "claim": "Solubility is independent of temperature.",
+      "correction": "The solubility of solid solutes in liquid solvents generally increases with temperature, while the solubility of gases in liquids generally decreases as temperature rises."
+    },
+    {
+      "claim": "Evaporation, crystallization and distillation are the same process.",
+      "correction": "Evaporation removes a solvent to obtain a solute, crystallization forms purer crystals from a saturated solution, and distillation vaporises and condenses a liquid so that the liquid can be recovered."
+    },
+    {
+      "claim": "Distillation can separate any two miscible liquids.",
+      "correction": "The chapter uses ordinary distillation when the boiling points differ by at least about 25 °C; liquids with smaller differences require fractional distillation."
+    },
+    {
+      "claim": "The solvent level in paper chromatography should cover the sample spot.",
+      "correction": "The solvent level must begin below the sample spot so that the rising solvent carries the components up the paper."
+    },
+    {
+      "claim": "A separating funnel is used for miscible liquids.",
+      "correction": "A separating funnel is used for immiscible liquids that form layers, and separation depends on their density difference."
+    },
+    {
+      "claim": "Sublimation and evaporation both describe a liquid changing into vapour.",
+      "correction": "In sublimation, a solid changes directly into vapour without passing through the liquid state; evaporation begins from a liquid."
+    },
+    {
+      "claim": "Colloidal particles settle on standing just like suspension particles.",
+      "correction": "Colloidal particles remain dispersed and do not settle over time, whereas suspension particles can settle."
+    },
+    {
+      "claim": "Solutions show the Tyndall effect because their particles are large.",
+      "correction": "Transparent solutions do not show the Tyndall effect; colloids and suspensions scatter light because their particles are larger."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 5.1 to compare salt water, chalk powder in water and milk in water by visibility, settling, filtration and light scattering.",
+    "Use NCERT Examples 5.1, 5.2 and 5.3 in sequence to practise % m/m, % m/v and % v/v concentration.",
+    "Use NCERT Activity 5.2 and Fig. 5.6 to read a solubility curve and predict the effect of cooling a saturated solution.",
+    "Use NCERT Activity 5.3 to explain the complete crystallization procedure and why slow cooling gives larger, well-shaped crystals.",
+    "Use the acetone-water case in NCERT Section 5.3.2 and Revise, Reflect, Refine Q12 to connect boiling-point difference with distillation.",
+    "Use NCERT Activity 5.5 to explain why the solvent level must remain below the ink spot in paper chromatography.",
+    "Use NCERT Activities 5.6 and 5.7 to contrast separation by density in a separating funnel with separation by sublimation.",
+    "Use NCERT Activities 5.8 and 5.9 together with Revise, Reflect, Refine Q2, Q3, Q6 and Q10 to compare suspensions, colloids, centrifugation, coagulation and the Tyndall effect.",
+    "Finish with NCERT Revise, Reflect, Refine Q13 and Q14 for data-based solubility and concentration calculations, and Q15 for identification of a distillation set-up."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1–15, followed by 'The Journey Beyond' activities. Source prompt and chapter: fileciteturn5file0 fileciteturn5file1",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

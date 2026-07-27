@@ -652,6 +652,7 @@ def get_chapter_doc(
     subject: str,
     chapter: str,
     board: str = "CBSE",
+    refresh: bool = False,
     user=Depends(get_current_user),
 ):
     """
@@ -660,6 +661,13 @@ def get_chapter_doc(
     Zero LLM cost: returns the stored doc, or converts one on the fly from
     existing lesson_cache rows. When neither exists, returns available=false
     so the frontend falls back to the per-step lesson flow.
+
+    refresh=true (used by the frontend "Refresh lesson" button) skips the
+    stored lesson_chapter_doc row entirely and reconverts fresh from the
+    current lesson_cache content — this is the reliable, always-works
+    alternative to a browser hard-refresh, since the stale content lives
+    in a server-side cache table, not the browser. See
+    docs/LESSON_CONTENT_QUALITY_REVIEW_PLAN.md §4o.
     """
     validate_required_text(grade, "grade")
     validate_required_text(mode, "mode")
@@ -698,6 +706,7 @@ def get_chapter_doc(
             subject=subject,
             chapter=chapter,
             mode=mode,
+            force_refresh=refresh,
         )
     except Exception as e:
         _log.error("chapter_doc.serve_failed", grade=grade, subject=subject, error=str(e), exc_info=True)

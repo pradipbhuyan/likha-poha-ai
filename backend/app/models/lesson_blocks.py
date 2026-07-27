@@ -92,6 +92,18 @@ class RecapBlock(BaseModel):
     body_md: str
 
 
+class TextbookImageBlock(BaseModel):
+    """An approved NCERT textbook page image attached to a milestone.
+
+    Sourced from rag_visual_assets (status="active") and matched to the
+    milestone whose content best overlaps the image's caption/nearby_text.
+    Never AI-generated — always a real, admin-approved textbook page."""
+    type: Literal["textbook_image"] = "textbook_image"
+    asset_url: str
+    caption: str = ""
+    page_number: int | None = None
+
+
 _VISUAL_TYPES = {"flow", "steps", "cycle", "compare"}
 
 
@@ -151,6 +163,7 @@ Block = Annotated[
         StudentsAskBlock,
         RecapBlock,
         VisualBlock,
+        TextbookImageBlock,
     ],
     Field(discriminator="type"),
 ]

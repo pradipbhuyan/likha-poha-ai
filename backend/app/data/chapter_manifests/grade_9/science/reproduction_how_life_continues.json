@@ -1,0 +1,122 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Reproduction: How Life Continues",
+  "central_question": "How do organisms produce new individuals, preserve chromosome number, create variation, and support the continuation of life through asexual and sexual reproduction?",
+  "in_scope_units": [
+    "Asexual reproduction in plants and other organisms, including vegetative propagation, budding, spore formation, mitosis, and clones.",
+    "Agricultural uses of vegetative propagation through cutting, grafting, layering, and tissue culture.",
+    "Sexual reproduction, meiosis, gamete formation, chromosome-number reduction, and the origin and importance of variation.",
+    "Sexual reproduction in flowering plants, including flower parts, pollination, pollination strategies, fertilisation, fruit formation, seed formation, dispersal, and germination.",
+    "Sexual reproduction and reproductive strategies in animals, including external and internal fertilisation, egg number, survival, larval stages, and parental care.",
+    "Human reproductive maturity and the structures and functions of the male and female reproductive systems.",
+    "Human gametogenesis, ovulation, fertilisation, implantation, menstruation, biological sex determination, pregnancy, childbirth, breastfeeding, and maternal health.",
+    "Sexual maturity, emotional responsibility, sexually transmitted infections, contraception, abortion, and the legal prohibition of prenatal sex determination in India."
+  ],
+  "banned_topics": [
+    "Detailed sexual reproduction in non-flowering plants such as pines, which the source says is studied in the next chapter.",
+    "Detailed Mendelian inheritance, DNA replication, gene expression, or molecular genetics beyond the chromosome and variation ideas stated in this chapter.",
+    "Detailed endocrine regulation of puberty or the menstrual cycle beyond the hormone-related statements provided in this chapter.",
+    "Detailed medical diagnosis or treatment advice for infertility, pregnancy complications, sexually transmitted infections, or abortion beyond the textbook-level information given here."
+  ],
+  "must_include_keywords": [
+    "reproduction",
+    "asexual reproduction",
+    "sexual reproduction",
+    "vegetative propagation",
+    "cutting",
+    "grafting",
+    "layering",
+    "tissue culture",
+    "budding",
+    "yeast",
+    "hydra",
+    "spore formation",
+    "mitosis",
+    "clone",
+    "meiosis",
+    "chromosome",
+    "diploid",
+    "haploid",
+    "gamete",
+    "variation",
+    "stamen",
+    "anther",
+    "pollen grain",
+    "pistil",
+    "stigma",
+    "style",
+    "ovary",
+    "ovule",
+    "self-pollination",
+    "cross-pollination",
+    "pollinator",
+    "fertilisation",
+    "zygote",
+    "embryo",
+    "external fertilisation",
+    "internal fertilisation",
+    "testes",
+    "ovaries",
+    "ovulation",
+    "implantation",
+    "menstruation",
+    "pregnancy",
+    "contraception",
+    "sexually transmitted infections"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Asexual reproduction always produces completely unrelated offspring.",
+      "correction": "Asexual reproduction involves one parent and, because it is based on mitosis in the examples studied, produces genetically identical offspring called clones."
+    },
+    {
+      "claim": "Bread mould appears spontaneously from non-living bread.",
+      "correction": "The mould develops from fungal spores already present in the air; warmth, moisture, and nutrients allow the spores to germinate and reproduce."
+    },
+    {
+      "claim": "Meiosis doubles the chromosome number in gametes.",
+      "correction": "Meiosis reduces the chromosome number from diploid to haploid so that fertilisation restores the species-specific chromosome number."
+    },
+    {
+      "claim": "Pollination and fertilisation are the same process.",
+      "correction": "Pollination is the transfer of pollen from anther to stigma, whereas fertilisation is the fusion of the male gamete with the egg cell in the ovule."
+    },
+    {
+      "claim": "After fertilisation in a flower, the ovary becomes the seed and the ovule becomes the fruit.",
+      "correction": "After fertilisation, the ovary develops into the fruit and the ovules develop into seeds."
+    },
+    {
+      "claim": "External fertilisation gives better protection and therefore animals produce fewer eggs.",
+      "correction": "In external fertilisation, eggs and gametes are less protected, so animals such as fish and frogs generally produce many more eggs, while survival is low."
+    },
+    {
+      "claim": "A human sperm or egg has 46 chromosomes.",
+      "correction": "Human body cells have 46 chromosomes, but sperm and eggs are haploid and have 23 chromosomes each; the zygote has 46."
+    },
+    {
+      "claim": "Ovulation always occurs exactly on day 14 in every menstrual cycle.",
+      "correction": "Day 14 is an approximate point in a typical 28-day cycle; cycles commonly vary from 21 to 35 days and timing can vary between people and cycles."
+    },
+    {
+      "claim": "Oral contraceptive pills protect against sexually transmitted infections.",
+      "correction": "Oral pills help prevent pregnancy by altering egg release, but condoms are the method described in the chapter that also reduces transmission of sexually transmitted infections."
+    },
+    {
+      "claim": "The mother determines whether a baby is biologically XX or XY.",
+      "correction": "The mother always contributes an X chromosome, while the father contributes either X or Y; therefore, the sperm determines whether the combination is XX or XY."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 11.1 to compare cutting, grafting, and layering as agricultural methods of vegetative propagation.",
+    "Use NCERT Activities 11.2 and 11.3 to connect budding in yeast and hydra with spore formation in bread mould and the role of mitosis in producing clones.",
+    "Use NCERT Activity 11.4 to model meiosis and show why three chromosome pairs can form eight combinations of characters.",
+    "Use NCERT Activities 11.5 and 11.6 to identify flower parts and infer that pollen transfer from anther to stigma is necessary for fruit formation.",
+    "Use NCERT Activity 11.7 and Table 11.3 to compare wind and insect pollination by pollen-to-seed ratio and reproductive efficiency.",
+    "Use NCERT Table 11.4 and Pause and Ponder Questions 4-5 to compare external and internal fertilisation and survival strategies in animals.",
+    "Use NCERT Pause and Ponder Questions 6-10 and Revise, Reflect, Refine Questions 1-13 for human reproduction, menstrual-cycle reasoning, contraception, and integrated application."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1-13, followed by 'The Journey Beyond' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

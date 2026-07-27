@@ -1,0 +1,114 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Describing Motion Around Us",
+  "central_question": "How can we describe, compare and predict the motion of objects using position, distance, displacement, speed, velocity, acceleration, graphs, equations and circular motion?",
+  "in_scope_units": [
+    "4.1 Motion in a Straight Line — recognising linear motion and describing an object's changing position with time.",
+    "4.1.1 Describing position — using a reference point, origin, distance and direction to state position and distinguish rest from motion.",
+    "4.1.2 Distance travelled and displacement — comparing total path length with net change in position, including direction and magnitude.",
+    "4.1.3 Average speed and average velocity — calculating rates from distance or displacement and distinguishing uniform from non-uniform motion.",
+    "4.1.4 Average acceleration — calculating the rate of change of velocity and interpreting positive, negative and zero acceleration.",
+    "4.2 Graphical Representation of Motion — using line graphs to display and compare changes in position and velocity with time.",
+    "4.2.1 Plotting graph — selecting axes and scales and plotting position-time data accurately.",
+    "4.2.2 Position-time graphs — interpreting straight, curved and horizontal graphs and using slope to determine velocity.",
+    "4.2.3 Velocity-time graphs — interpreting constant, increasing and decreasing velocity and using slope and area to determine acceleration and displacement.",
+    "4.3 Kinematic Equations for Motion in a Straight Line with Constant Acceleration — relating displacement, time, initial velocity, final velocity and acceleration.",
+    "4.4 Motion in a Plane — identifying motion in two dimensions.",
+    "4.4.1 Uniform circular motion — comparing distance and displacement in circular motion and explaining acceleration due to continuously changing velocity direction."
+  ],
+  "banned_topics": [
+    "Newton's laws of motion and force-based explanations of why motion changes",
+    "Detailed projectile-motion equations and component resolution",
+    "Centripetal force and the formula for centripetal acceleration",
+    "Calculus-based derivations of instantaneous velocity or instantaneous acceleration",
+    "Detailed gravitation theory beyond the chapter's use of g = 9.8 m s⁻²",
+    "Three-dimensional vector mechanics"
+  ],
+  "must_include_keywords": [
+    "reference point",
+    "origin",
+    "position",
+    "instant of time",
+    "time interval",
+    "motion",
+    "rest",
+    "linear motion",
+    "distance travelled",
+    "displacement",
+    "magnitude",
+    "positive direction",
+    "negative direction",
+    "average speed",
+    "average velocity",
+    "uniform motion",
+    "non-uniform motion",
+    "rate of change",
+    "average acceleration",
+    "initial velocity",
+    "final velocity",
+    "constant acceleration",
+    "position-time graph",
+    "velocity-time graph",
+    "slope",
+    "area under the graph",
+    "kinematic equations",
+    "v = u + at",
+    "s = ut + ½at²",
+    "v² = u² + 2as",
+    "braking distance",
+    "motion in a plane",
+    "circular motion",
+    "uniform circular motion",
+    "revolution",
+    "tangent",
+    "changing direction of velocity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Distance travelled and displacement are always equal.",
+      "correction": "They are equal only when an object moves in one direction without turning back; displacement is the net change in position and its magnitude is always less than or equal to the distance travelled."
+    },
+    {
+      "claim": "Average speed and average velocity are calculated in the same way.",
+      "correction": "Average speed equals total distance divided by time, whereas average velocity equals displacement divided by time and also requires a direction."
+    },
+    {
+      "claim": "An object moving very fast must have a large acceleration.",
+      "correction": "Acceleration depends on how quickly velocity changes; an object moving with a high but constant velocity has zero acceleration."
+    },
+    {
+      "claim": "A negative acceleration always means an object is moving in the negative direction.",
+      "correction": "The sign of acceleration indicates its direction relative to the chosen positive direction; when velocity is positive and decreasing, acceleration is negative and opposite to the motion."
+    },
+    {
+      "claim": "A graph of motion is a map of the route followed by the object.",
+      "correction": "A motion graph shows how one physical quantity changes with another, such as position with time; it does not show the shape of the route."
+    },
+    {
+      "claim": "The area under a velocity-time graph gives acceleration.",
+      "correction": "The slope of a velocity-time graph gives acceleration, while the area between the graph and the time axis gives displacement."
+    },
+    {
+      "claim": "The kinematic equations can be used for every kind of motion.",
+      "correction": "The equations v = u + at, s = ut + ½at² and v² = u² + 2as are valid here only for straight-line motion with constant acceleration."
+    },
+    {
+      "claim": "Uniform circular motion has zero acceleration because its speed is constant.",
+      "correction": "Uniform circular motion is accelerated because the direction of velocity changes continuously even though speed remains constant."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 4.1 and Fig. 4.5 to compare distance travelled and displacement for a ball moving vertically up and back.",
+    "Use NCERT Example 4.2 to contrast average speed and average velocity for a swimmer completing a return trip.",
+    "Use NCERT Example 4.3 to calculate positive and negative average acceleration for a bus speeding up and braking.",
+    "Use NCERT Activity 4.4 and Fig. 4.14 to calculate velocity from the slope of a position-time graph.",
+    "Use NCERT Fig. 4.18 and its worked areas to obtain displacement from a velocity-time graph.",
+    "Use NCERT Example 4.8 to apply v² = u² + 2as to braking distance at two initial velocities.",
+    "Use NCERT Activity 4.5 and Fig. 4.24 to connect uniform circular motion with continuously changing velocity direction.",
+    "Finish with NCERT Revise, Reflect, Refine Q10 and Q16 to integrate stopping distance, reaction time and circular motion."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Revise, Reflect, Refine', Questions 1-16, followed by extension tasks in 'The Journey Beyond'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

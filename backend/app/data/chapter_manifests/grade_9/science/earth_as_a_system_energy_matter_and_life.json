@@ -1,0 +1,133 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Earth as a System: Energy, Matter, and Life",
+  "central_question": "How do energy and matter move through the Earth’s interacting spheres, and how can changes in one part of the system affect climate, ecosystems, and human life?",
+  "in_scope_units": [
+    "Earth as an interconnected system of the geosphere, hydrosphere, cryosphere, atmosphere, and biosphere, including how disturbances move across spheres.",
+    "13.1 Uneven Heating of the Earth: electromagnetic radiation, ultraviolet-visible-infrared energy, insolation, the solar constant, and the warming of the Earth.",
+    "13.1.1 Interaction of solar radiation on the Earth’s surface: absorption, reflection, albedo, re-radiation, and the urban heat island effect.",
+    "13.1.2 Latitude and Earth’s shape: unequal angles of sunlight, temperature differences from equator to poles, and the role of Earth’s tilt.",
+    "13.1.3 Role of the atmosphere: atmospheric composition and layers, weather in the troposphere, ozone in the stratosphere, and the greenhouse effect.",
+    "13.2 Uneven Heating Causes Wind and Ocean Currents: pressure differences and movement of air and water.",
+    "13.2.1 Local winds: formation and effects of valley breezes and mountain breezes.",
+    "13.2.2 Planetary winds: equatorial, subtropical, sub-polar, and polar pressure belts and deflection caused by Earth’s rotation.",
+    "13.2.3 Ocean currents: effects of winds, temperature, salinity, Earth’s rotation, continents, gyres, and heat transport by currents such as the North Atlantic Drift.",
+    "13.3 Biogeochemical Cycles: exchange and recycling of matter between biotic and abiotic components.",
+    "13.3.1 Water cycle: evaporation, transpiration, condensation, precipitation, runoff, infiltration, groundwater, and climate-change effects.",
+    "13.3.2 Carbon cycle: fast and slow carbon pathways, ocean exchange, fossil fuels, the Keeling curve, and excess atmospheric carbon dioxide.",
+    "13.3.3 Nitrogen cycle: fixation, nitrification, assimilation, ammonification, denitrification, and the roles of named bacteria.",
+    "13.3.4 Oxygen cycle: oxygen use in respiration and combustion and restoration through photosynthesis.",
+    "13.4 Human Impact on Earth’s Processes: fossil-fuel use, deforestation, ocean acidification, eutrophication, smog, ground-level ozone, conservation, renewable energy, and sustainable living."
+  ],
+  "banned_topics": [
+    "Detailed sound-wave equations, frequency calculations, and mechanical-wave numericals from the separate sound chapter.",
+    "Detailed atomic structure, electronic configuration, ions, and chemical bonding from the atoms and molecules chapters.",
+    "Detailed cellular pathways or balanced chemical equations of photosynthesis and respiration beyond their roles in Earth-system cycles.",
+    "Detailed genetics, reproduction, or inheritance mechanisms that belong to later life-science chapters.",
+    "Detailed plate tectonics, rock classification, and mineralogy beyond the chapter’s basic use of the term geosphere."
+  ],
+  "must_include_keywords": [
+    "geosphere",
+    "hydrosphere",
+    "cryosphere",
+    "atmosphere",
+    "biosphere",
+    "solar radiation",
+    "electromagnetic spectrum",
+    "ultraviolet",
+    "visible light",
+    "infrared radiation",
+    "insolation",
+    "solar constant",
+    "albedo",
+    "re-radiation",
+    "urban heat island effect",
+    "latitude",
+    "troposphere",
+    "stratosphere",
+    "ozone layer",
+    "greenhouse gases",
+    "valley breeze",
+    "mountain breeze",
+    "planetary winds",
+    "pressure belts",
+    "ocean currents",
+    "salinity",
+    "gyres",
+    "North Atlantic Drift",
+    "biogeochemical cycle",
+    "water cycle",
+    "carbon cycle",
+    "nitrogen fixation",
+    "nitrification",
+    "ammonification",
+    "denitrification",
+    "oxygen cycle",
+    "eutrophication",
+    "deforestation",
+    "renewable energy",
+    "Mission LiFE"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The solar constant is the same as the maximum insolation measured at the Earth’s surface.",
+      "correction": "The solar constant is about 1.4 kW m⁻² at the top of the atmosphere, whereas maximum surface insolation under clear skies is lower, about 1 kW m⁻², because the atmosphere absorbs, scatters, and reflects some energy."
+    },
+    {
+      "claim": "Greenhouse gases directly absorb all incoming sunlight and thereby warm the Earth.",
+      "correction": "The Earth’s surface absorbs solar radiation and re-radiates heat mainly in the infrared region; greenhouse gases absorb part of this outgoing heat and reduce its escape to space."
+    },
+    {
+      "claim": "A surface with high albedo becomes warmer because it receives more sunlight.",
+      "correction": "A high-albedo surface reflects a larger fraction of incoming solar radiation and generally remains cooler; low-albedo surfaces absorb more and warm faster."
+    },
+    {
+      "claim": "Most weather occurs in the stratosphere because it contains the ozone layer.",
+      "correction": "Nearly all weather occurs in the troposphere, which is heated from the Earth’s surface; the stratosphere contains the ozone layer and has temperature increasing with height."
+    },
+    {
+      "claim": "Ozone is either always beneficial or always harmful.",
+      "correction": "Stratospheric ozone protects life by absorbing harmful UV radiation, while ground-level ozone formed in smog is harmful to health."
+    },
+    {
+      "claim": "Wind moves from low-pressure regions to high-pressure regions.",
+      "correction": "Wind is the movement of air from a region of high pressure toward a region of low pressure."
+    },
+    {
+      "claim": "A mountain breeze blows uphill during the day.",
+      "correction": "During the day, warmer air rises along slopes and cooler valley air moves uphill as a valley breeze; after sunset, cooler dense air flows downhill as a mountain breeze."
+    },
+    {
+      "claim": "Ocean currents are caused only by winds.",
+      "correction": "Winds help drive surface currents, but temperature, salinity, Earth’s rotation, and the distribution of continents also influence ocean-current paths."
+    },
+    {
+      "claim": "Plants directly use atmospheric nitrogen gas for making proteins.",
+      "correction": "Atmospheric N₂ is relatively non-reactive and must first be converted into usable compounds through nitrogen fixation and later steps of the nitrogen cycle."
+    },
+    {
+      "claim": "Carbon dioxide is entirely harmful and should be absent from the atmosphere.",
+      "correction": "Some carbon dioxide is necessary for photosynthesis and for keeping the Earth warm enough for life, but excess CO₂ intensifies the greenhouse effect and disrupts climate."
+    },
+    {
+      "claim": "Biogeochemical cycles create new elements for organisms.",
+      "correction": "Biogeochemical cycles recycle and transfer existing matter, such as water, carbon, nitrogen, and oxygen, between biotic and abiotic components."
+    },
+    {
+      "claim": "Deforestation affects only the biosphere.",
+      "correction": "Deforestation reduces photosynthesis and transpiration, alters albedo, can decrease local rainfall, increases soil erosion, changes carbon and oxygen cycling, and destroys habitats across several Earth spheres."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 13.1 to identify the five Earth spheres and trace how reduced snowfall can lower lake water and grass growth.",
+    "Use NCERT Example 13.1 to calculate the solar energy received by a 1 m² area in one hour at an insolation of 1 kW m⁻².",
+    "Use NCERT Activity 13.2 and Table 13.1 to compare reflection by snow, ice, and crushed rock and connect albedo with surface temperature.",
+    "Use NCERT Revise, Reflect, Refine Q5 to explain valley and mountain breezes and compare a grass-covered mountain with a barren rocky mountain.",
+    "Use NCERT Revise, Reflect, Refine Q7 to sequence nitrogen fixation, nitrification, assimilation, ammonification, and denitrification.",
+    "Finish with NCERT Revise, Reflect, Refine Q13 and Q15 to connect warming and disturbances across the cryosphere, hydrosphere, biosphere, atmosphere, and geosphere."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled ‘Revise, Reflect, Refine’ and contains Questions 1–15, followed by ‘The Journey Beyond’ and ‘The Quest Continues’.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

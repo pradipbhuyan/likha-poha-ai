@@ -1,0 +1,138 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Sound Waves: Characteristics and Applications",
+  "central_question": "How is sound produced, propagated, described, perceived, reflected, and used in everyday life and technology?",
+  "in_scope_units": [
+    "10.1 Production of Sound — vibrations, sources of sound, vibrating strings, membranes, air columns, vocal cords, and animal sound production",
+    "10.1.1 Tuning fork — structure of a tuning fork and experimental evidence that vibrating prongs produce sound",
+    "10.2 Propagation of Sound — travel of sound through solids, liquids, and gases",
+    "10.2.1 Sound needs a medium to propagate — vacuum bell jar evidence and communication in outer space",
+    "10.3 Sound Waves — compressions, rarefactions, particle oscillation, longitudinal waves, and mechanical waves",
+    "10.4 Energy of Sound Waves — transfer of energy through a medium and energy conversion in microphones and speakers",
+    "10.5 Graphical Representation of a Sound Wave — density-distance graphs, average density, crests, and troughs",
+    "10.6 Characteristics of a Sound Wave — measurable quantities used to describe sound",
+    "10.6.1 Wavelength, frequency and time period — definitions, SI units, and the relation ν = 1/T",
+    "10.6.2 Amplitude and intensity of sound waves — energy carried by waves and reduction of intensity with distance",
+    "10.6.3 Speed of Sound — relation v = λν, dependence on medium, temperature, and humidity, and numerical applications",
+    "10.6.4 Human perception of sound — pitch, loudness, audible range, infrasonic and ultrasonic frequencies, tone, musical note, timbre, and octave",
+    "10.7 Reflection of Sound — laws of reflection applied to sound",
+    "10.7.1 Echo — conditions for hearing an echo and echo-distance calculations",
+    "10.7.2 Reverberation — multiple reflections and control of reverberation in halls",
+    "10.8 Ultrasonic and Infrasonic Waves, and their Applications — uses in science, medicine, industry, natural-event detection, echolocation, and sonar",
+    "10.8.1 Echolocation — locating objects through reflected sound in bats, other animals, and sonar systems"
+  ],
+  "banned_topics": [
+    "Detailed electromagnetic-wave theory or optical calculations beyond the brief comparison of light and sound",
+    "Detailed anatomy and physiology of the human ear beyond the eardrum, tiny bones, cochlea, and hearing description given in this chapter",
+    "Detailed electronic circuit design for microphones, speakers, amplifiers, sonar, or hearing aids",
+    "Advanced wave interference, diffraction, resonance, standing waves, and Doppler effect",
+    "Advanced musical scales or music theory beyond frequency, tone, note, fundamental, overtones, timbre, and octave described in the chapter"
+  ],
+  "must_include_keywords": [
+    "vibration",
+    "source of sound",
+    "vocal cords",
+    "larynx",
+    "tuning fork",
+    "medium",
+    "vacuum",
+    "compression",
+    "rarefaction",
+    "sound wave",
+    "longitudinal wave",
+    "mechanical wave",
+    "energy transfer",
+    "microphone",
+    "speaker",
+    "density",
+    "crest",
+    "trough",
+    "wavelength",
+    "frequency",
+    "hertz",
+    "time period",
+    "amplitude",
+    "intensity",
+    "speed of sound",
+    "v = λν",
+    "pitch",
+    "loudness",
+    "audible range",
+    "infrasonic waves",
+    "ultrasonic waves",
+    "decibel",
+    "noise pollution",
+    "tone",
+    "timbre",
+    "reflection of sound",
+    "echo",
+    "reverberation",
+    "echolocation",
+    "sonar"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Sound can travel through empty space because we can see explosions in space.",
+      "correction": "Sound is a mechanical wave and needs a material medium; in the near vacuum of outer space, sound cannot propagate directly."
+    },
+    {
+      "claim": "Air particles travel all the way from the source to the listener.",
+      "correction": "The particles of the medium only vibrate about their mean positions; the density disturbance and energy propagate through the medium."
+    },
+    {
+      "claim": "Compression means low density and rarefaction means high density.",
+      "correction": "A compression is a region of higher-than-average density, while a rarefaction is a region of lower-than-average density."
+    },
+    {
+      "claim": "Sound waves in air are transverse waves.",
+      "correction": "Sound waves in air are longitudinal waves because particles vibrate parallel to the direction of wave propagation."
+    },
+    {
+      "claim": "Frequency and time period increase together.",
+      "correction": "Frequency and time period are inversely related: ν = 1/T."
+    },
+    {
+      "claim": "A larger amplitude necessarily means a higher pitch.",
+      "correction": "Amplitude is mainly perceived as loudness, while frequency is mainly perceived as pitch."
+    },
+    {
+      "claim": "The speed of sound in a medium increases when the source frequency increases.",
+      "correction": "In ordinary media such as air, speed depends mainly on the medium and conditions; when frequency changes, wavelength changes so that v = λν remains satisfied."
+    },
+    {
+      "claim": "An echo distance is calculated using d = vt without considering the return journey.",
+      "correction": "For an echo, sound travels to the reflecting surface and back, so the one-way distance is d = vt/2."
+    },
+    {
+      "claim": "Echo and reverberation are identical.",
+      "correction": "An echo is heard as a separate reflected sound when the time gap is at least 0.1 s, while reverberation is persistence caused by closely spaced multiple reflections."
+    },
+    {
+      "claim": "Humans can hear every sound frequency.",
+      "correction": "The approximate human audible range is 20 Hz to 20 kHz; lower frequencies are infrasonic and higher frequencies are ultrasonic."
+    },
+    {
+      "claim": "Loudness and intensity are exactly the same physical quantity.",
+      "correction": "Intensity is measurable sound energy per unit area per unit time, while loudness is the listener's subjective perception."
+    },
+    {
+      "claim": "SONAR distance uses the full echo time as one-way travel time.",
+      "correction": "The recorded time is for the outward and return journey, so the one-way time is half the measured time."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Activity 10.1 to connect vibration of a rubber band with production of sound.",
+    "Use NCERT Activity 10.2 and the tuning-fork-and-water observation to confirm that the sound source is vibrating.",
+    "Use NCERT Activities 10.3 and 10.4 and the vacuum bell jar in Section 10.2.1 to establish that sound travels through solids, liquids, and gases but not vacuum.",
+    "Use NCERT Activity 10.5 to model compressions, rarefactions, particle oscillation, and longitudinal propagation with a slinky.",
+    "Use NCERT Example 10.1 to calculate frequency and time period from 10 oscillations in 2 seconds.",
+    "Use NCERT Examples 10.2 to 10.4 to connect wavelength, frequency, speed, lightning delay, and graph reading.",
+    "Use NCERT Example 10.5 to calculate distance from an echo using the round-trip factor of two.",
+    "Use NCERT Example 10.6 to calculate distance using a sonar echo in seawater.",
+    "Finish with selected Revise, Reflect, Refine Questions 3, 4, 8, 9, 10, 11, 12, 13, 14, and 15 for mixed conceptual and numerical practice."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1–15, followed by 'The Journey Beyond' activities.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

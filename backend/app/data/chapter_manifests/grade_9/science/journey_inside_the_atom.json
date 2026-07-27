@@ -1,0 +1,139 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Journey Inside the Atom",
+  "central_question": "How did scientific evidence reveal what atoms contain, how their particles are arranged, and how atomic structure determines an element's identity, mass, stability, and combining capacity?",
+  "in_scope_units": [
+    "8.1 Rediscovering the Roots of Atomic Theory: early ideas of parmanu and atomos, followed by Dalton's experimental atomic theory.",
+    "8.2 A Short Historical Journey Through Atomic Models: how new evidence caused atomic models to change.",
+    "8.2.1 Thomson's Model of an Atom: cathode rays, discovery of electrons, and the plum pudding model.",
+    "8.2.2 Testing Thomson's Model: the gold foil or alpha-particle scattering experiment and its observations.",
+    "Rutherford's Model of an Atom: the dense positive nucleus, mostly empty space, and orbiting electrons.",
+    "Limitations of Rutherford's Model: why the planetary model could not explain atomic stability.",
+    "Discovery of the Proton: positive charge in the nucleus and electrical neutrality of atoms.",
+    "8.2.3 Bohr's Model of the Atom: fixed energy levels or shells and stationary states.",
+    "8.3 What Components Contribute to the Mass of an Atom?: why most atomic mass lies in the nucleus.",
+    "8.3.1 Discovery of the Neutron: Chadwick's neutral particle and the three subatomic particles.",
+    "8.4 Symbols of Elements: Dalton's pictorial symbols, Berzelius's alphabetic symbols, and IUPAC writing rules.",
+    "8.5 Atomic Number: proton number, the symbol Z, and the identity of an element.",
+    "8.6 Mass Number: nucleons, the symbol A, atomic notation, and neutron calculations.",
+    "8.7 Distribution of Electrons in Energy Levels: Bohr-Bury rules and shell capacities.",
+    "8.7.1 Building Up Atoms: electronic configurations of the first eighteen elements.",
+    "8.8 Combining Capacity of an Atom: valence shell, valence electrons, octet stability, and valency.",
+    "8.9.1 Isotopes: atoms of the same element with different neutron counts, their properties, and uses.",
+    "Average Atomic Mass: abundance-weighted calculation using naturally occurring isotopes.",
+    "8.9.2 Isobars: atoms of different elements with the same mass number but different atomic numbers.",
+    "Development Beyond Bohr's Model: the chapter's brief indication that modern atomic theory uses electron clouds and remains an evolving field."
+  ],
+  "banned_topics": [
+    "Detailed periodic-table classification into groups, periods, metals, non-metals, and trends",
+    "Detailed ionic and covalent bond formation, Lewis structures, and chemical formula writing",
+    "Quantum numbers, orbitals, subshells, probability wavefunctions, and mathematical quantum mechanics",
+    "Radioactive decay laws, half-life calculations, nuclear equations, and detailed nuclear fission or fusion mechanisms",
+    "Stoichiometry, mole concept, and molar-mass calculations"
+  ],
+  "must_include_keywords": [
+    "Acharya Kanada",
+    "parmanu",
+    "Leucippus",
+    "Democritus",
+    "atomos",
+    "John Dalton",
+    "atomic theory",
+    "radioactivity",
+    "J. J. Thomson",
+    "cathode rays",
+    "electron",
+    "plum pudding model",
+    "gold foil experiment",
+    "alpha particles",
+    "scattering",
+    "Ernest Rutherford",
+    "nucleus",
+    "empty space",
+    "planetary model",
+    "proton",
+    "electrical neutrality",
+    "Niels Bohr",
+    "stationary states",
+    "energy levels",
+    "K shell",
+    "L shell",
+    "James Chadwick",
+    "neutron",
+    "chemical symbols",
+    "IUPAC",
+    "atomic number",
+    "mass number",
+    "nucleons",
+    "2n^2 rule",
+    "electronic configuration",
+    "valence electrons",
+    "octet",
+    "valency",
+    "isotopes",
+    "weighted average atomic mass",
+    "isobars"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Dalton's atom is still considered completely indivisible.",
+      "correction": "Dalton described atoms as indivisible, but the later discovery of electrons, protons, and neutrons showed that atoms contain subatomic particles."
+    },
+    {
+      "claim": "Thomson placed electrons around a central nucleus.",
+      "correction": "Thomson proposed a positively charged sphere with electrons embedded throughout it; his model had no central nucleus."
+    },
+    {
+      "claim": "Most alpha particles bounced back in Rutherford's experiment.",
+      "correction": "Most alpha particles passed through the foil undeflected, some were deflected, and only a few bounced back."
+    },
+    {
+      "claim": "The gold foil experiment directly discovered neutrons.",
+      "correction": "The experiment supported the existence of a small, dense, positively charged nucleus; James Chadwick discovered the neutron later, in 1932."
+    },
+    {
+      "claim": "Rutherford's model fully explained why atoms are stable.",
+      "correction": "Rutherford's model could not explain why accelerating electrons would not lose energy and spiral into the nucleus."
+    },
+    {
+      "claim": "In Bohr's model, electrons can occupy any position between shells.",
+      "correction": "Bohr proposed that electrons occupy only allowed stationary shells or energy levels and not the spaces between them."
+    },
+    {
+      "claim": "Atomic number equals the number of neutrons.",
+      "correction": "Atomic number Z equals the number of protons; in a neutral atom it also equals the number of electrons."
+    },
+    {
+      "claim": "Mass number includes the mass contribution of electrons.",
+      "correction": "Mass number A is the total number of protons and neutrons, called nucleons; electron mass is ignored in this calculation."
+    },
+    {
+      "claim": "The third shell must always contain 18 electrons before the next shell can begin.",
+      "correction": "The chapter gives 2n^2 as a shell-capacity rule, but for the first eighteen elements it uses the Bohr-Bury filling shown in Table 8.4, with configurations up to 2, 8, 8."
+    },
+    {
+      "claim": "Isotopes are different elements because their masses differ.",
+      "correction": "Isotopes have the same atomic number and are therefore the same element, but they have different mass numbers because their neutron counts differ."
+    },
+    {
+      "claim": "An average atomic mass such as 35.5 u means every chlorine atom has a fractional mass of 35.5 u.",
+      "correction": "35.5 u is the weighted average for a natural sample containing chlorine isotopes in their natural abundances, not the mass of one individual chlorine atom."
+    },
+    {
+      "claim": "Isobars have the same atomic number.",
+      "correction": "Isobars are atoms of different elements with the same mass number but different atomic numbers."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Pause and Ponder Q3 to connect cathode-ray evidence with the conclusion that electrons occur in all atoms.",
+    "Use NCERT Revise, Reflect, Refine Q1 to interpret the observations and conclusions of Rutherford's gold foil experiment.",
+    "Use NCERT Pause and Ponder Q10 to calculate electrons, protons, and neutrons from atomic number 26 and mass number 56.",
+    "Use NCERT Pause and Ponder Q15 to practise electronic configurations for atomic numbers 12, 16, and 18.",
+    "Use NCERT Revise, Reflect, Refine Q14 as an integrated atomic-number, mass-number, element-identification, configuration, valency, and isotope problem.",
+    "Finish with NCERT Pause and Ponder Q18 to calculate the weighted average atomic mass of bromine from isotopic abundances."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1-15 on pages 158-160 of the supplied chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -257,6 +257,30 @@ function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           <StructuredVisualBlock raw={JSON.stringify(block.visual)} />
         </div>
       );
+    case "textbook_image":
+      return (
+        <figure style={{
+          marginBottom: 14, border: "1.5px solid var(--border, #e5e7eb)",
+          borderRadius: 16, overflow: "hidden", background: "var(--panel, #fff)",
+        }}>
+          <img
+            src={block.asset_url}
+            alt={block.caption || "Textbook page"}
+            style={{ width: "100%", display: "block" }}
+            loading="lazy"
+          />
+          {block.caption && (
+            <figcaption style={{
+              padding: "10px 14px", fontSize: ".8rem", color: "var(--muted, #6b7280)",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              <BookOpen size={13} strokeWidth={2.3} aria-hidden="true" />
+              {block.caption}
+              {block.page_number ? ` (NCERT page ${block.page_number})` : ""}
+            </figcaption>
+          )}
+        </figure>
+      );
     default:
       return null;
   }

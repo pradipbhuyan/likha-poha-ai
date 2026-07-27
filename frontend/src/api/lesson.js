@@ -40,12 +40,22 @@ export async function getLessonTextbookVisuals({
   return authFetch(`/api/lesson/textbook-visuals?${params.toString()}`);
 }
 
-export function getChapterDoc({ grade, mode, subject, chapter, board = "CBSE" }) {
+export function getChapterDoc({ grade, mode, subject, chapter, board = "CBSE", refresh = false }) {
   /** Fetch the typed-block Chapter Journey document for a chapter.
    *  Returns { success, available, doc }. available=false means no cached
    *  content could be converted — caller falls back to the per-step flow.
-   *  Zero LLM cost: the backend only reads/converts cached content. */
+   *  Zero LLM cost: the backend only reads/converts cached content.
+   *
+   *  Pass refresh=true (used by the "Refresh lesson" button) to force the
+   *  backend to discard any stored/stale converted document and rebuild it
+   *  fresh from the current lesson_cache content — this is the reliable
+   *  fix for "I updated the content but the lesson still shows old text"
+   *  because that staleness lives in a server-side cache table, which a
+   *  browser hard-refresh cannot clear. */
   const params = new URLSearchParams({ grade, mode, subject, chapter, board });
+  if (refresh) {
+    params.set("refresh", "true");
+  }
   return authFetch(`/api/lesson/chapter-doc?${params.toString()}`);
 }
 
