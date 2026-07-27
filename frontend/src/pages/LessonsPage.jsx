@@ -1788,11 +1788,25 @@ function LessonsPage({ user, setActivePage }) {
       className="lesson-workspace premium-page premium-lessons-page"
       style={USE_TOP_BAR_LAYOUT ? { display: "block" } : undefined}
     >
-      {/* Top bar replaces sidebar when USE_TOP_BAR_LAYOUT is true */}
-      {USE_TOP_BAR_LAYOUT && topBarControls}
+      {/* Top bar replaces sidebar when USE_TOP_BAR_LAYOUT is true — hidden
+          while a chapter is loading so the switch between chapters shows
+          only the Likha Poha AI loading animation, not a half-relevant
+          control bar sitting above a blank/loading area. */}
+      {USE_TOP_BAR_LAYOUT && !chapterDocLoading && topBarControls}
 
       {/* ── Chapter Journey pilot: whole chapter, zero Generate clicks ────── */}
-      {chapterDoc && !isExemplarLocked ? (
+      {chapterDocLoading ? (
+        <div className="lesson-generating-overlay">
+          <img
+            src="/likhapohaai.gif"
+            alt="Likha Poha AI is loading your chapter…"
+            className="lesson-loading-gif"
+          />
+          <p className="lesson-loading-label">
+            Loading your chapter…
+          </p>
+        </div>
+      ) : chapterDoc && !isExemplarLocked ? (
         <>
           {/* Refresh lesson — reliably clears the server-side chapter-doc
               cache and rebuilds from the latest lesson_cache content. Use
@@ -1832,10 +1846,6 @@ function LessonsPage({ user, setActivePage }) {
             chapter={chapter}
           />
         </>
-      ) : chapterDocLoading ? (
-        <p style={{ padding: "24px 4px", color: "var(--muted, #6b7280)" }}>
-          Loading chapter…
-        </p>
       ) : (
       <div
         className="lesson-layout premium-lesson-layout"
