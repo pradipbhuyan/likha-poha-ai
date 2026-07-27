@@ -1,0 +1,114 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "Building Blocks in Economics: The Problem of Choice",
+  "central_question": "How do individuals, enterprises, and governments make choices when resources are limited but human wants are unlimited?",
+  "in_scope_units": [
+    "Everyday economic choices, the distinction between needs and wants, and the meaning of a market.",
+    "Choices and Limited Resources: scarcity, alternative uses of resources, opportunity cost, and the barley-wheat Production Possibility Curve.",
+    "What Economics Deals With: efficient allocation of resources, interaction among economic entities, and the role of data and analysis.",
+    "Economic Survey: its purpose, preparation by the Ministry of Finance, presentation before the Union Budget, and use in understanding economic performance.",
+    "Key Questions in Economics: how scarcity leads to choices about what to produce, how to produce, and for whom to produce.",
+    "What to Produce and for Whom: crop trade-offs, consumer groups, purchasing power, product design, and distribution of goods and services.",
+    "How to Produce: factors of production and the choice between labour-intensive and capital-intensive methods.",
+    "Economic Systems and How Choices Are Made: how ownership and decision-making shape the production, consumption, and distribution of resources.",
+    "Planned Economy: government control, public ownership, permits, targets, and limits on competition and innovation.",
+    "Market Economy: demand and supply, private ownership, competition, innovation, and the government's limited but important role.",
+    "Mixed Economy: coexistence of government and private enterprise, regulation, public goods, welfare, competition, and innovation.",
+    "Evolution of India's economic system from a more state-led approach after Independence to a more market-oriented mixed economy after the 1991 reforms."
+  ],
+  "banned_topics": [
+    "Detailed demand-and-supply curve construction or equilibrium calculations.",
+    "National income accounting, GDP calculation, and per-capita income formulas.",
+    "Detailed causes and measurement of inflation, unemployment, poverty, or business cycles.",
+    "Banking operations, money creation, monetary policy, and stock-market trading.",
+    "A detailed history of India's 1991 reforms beyond the brief chapter-level description.",
+    "Advanced welfare economics, elasticity, marginal analysis, or mathematical optimisation."
+  ],
+  "must_include_keywords": [
+    "needs",
+    "wants",
+    "unlimited wants",
+    "limited resources",
+    "scarcity",
+    "choice",
+    "resources",
+    "alternative uses",
+    "opportunity cost",
+    "trade-off",
+    "Production Possibility Curve",
+    "PPC",
+    "barley",
+    "wheat",
+    "efficient use of resources",
+    "economics",
+    "oikonomia",
+    "economic entities",
+    "consumers",
+    "producers",
+    "government",
+    "financial institutions",
+    "data",
+    "surveys",
+    "Economic Survey of India",
+    "what to produce",
+    "how to produce",
+    "for whom to produce",
+    "land",
+    "labour",
+    "capital",
+    "technology",
+    "labour-intensive",
+    "capital-intensive",
+    "planned economy",
+    "market economy",
+    "mixed economy",
+    "demand and supply",
+    "private ownership",
+    "public goods"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Economics is only about money, banks, and business profits.",
+      "correction": "The chapter defines economics as the study of how choices are made to optimise limited resources to satisfy needs and wants, including choices by individuals, enterprises, governments, and other economic entities."
+    },
+    {
+      "claim": "A want and a need mean the same thing.",
+      "correction": "Needs are essentials such as food, water, and shelter, while wants include items such as gadgets, vacations, and luxury goods; wants are unlimited and keep changing."
+    },
+    {
+      "claim": "Opportunity cost is the money paid for an item.",
+      "correction": "Opportunity cost is the value of the alternative that is given up when one option is chosen."
+    },
+    {
+      "claim": "Any point on a PPC shows wasteful production.",
+      "correction": "The chapter states that all points on the PPC show maximum output produced through efficient use of available resources while avoiding wastage."
+    },
+    {
+      "claim": "The three key economic questions are only about how much profit firms should earn.",
+      "correction": "The three questions are what to produce, how to produce, and for whom to produce."
+    },
+    {
+      "claim": "Labour-intensive production uses more machinery and fewer workers.",
+      "correction": "Labour-intensive production uses more workers and less machinery, whereas capital-intensive production uses more machines and technology and fewer workers."
+    },
+    {
+      "claim": "A market economy has no role for government at all.",
+      "correction": "The chapter says that government intervention is limited in a market economy, but the government still ensures safety and law and order and provides public goods and physical infrastructure."
+    },
+    {
+      "claim": "India is described as a purely planned or purely market economy.",
+      "correction": "India is described as a mixed economy, especially post-1991, combining private enterprise and market forces with an important role for government."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Questions and Activities Q6: identify opportunity cost in the choice between buying a notebook for ₹100 and saving for a tennis racket.",
+    "Use the textbook barley-wheat table and Fig. 8.3 to trace combinations A to E and explain the PPC, trade-off, and efficient use of resources.",
+    "Use the crop example under 'What to Produce and for Whom?' to compare sugarcane and paddy with millets and pulses and identify the stated opportunity cost.",
+    "Use the garment-manufacturer example under 'How to Produce?' to compare labour-intensive and capital-intensive methods.",
+    "Use NCERT Questions and Activities Q4 and Q5 to compare planned, market, and mixed economies and explain why pure systems rarely exist."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1-10 on pages 193-194.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
