@@ -1,0 +1,130 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Work, Energy, and Simple Machines",
+  "central_question": "How can work and energy be used to analyse motion, and how do power and simple machines help us perform tasks more effectively?",
+  "in_scope_units": [
+    "Work Done by a Constant Force: defining scientific work as force multiplied by displacement in the direction of the force and expressing it in joules.",
+    "When Work Done Is Equal to Zero: recognising zero work when force is zero, displacement is zero, or force is perpendicular to displacement.",
+    "Positive and Negative Work Done: deciding the sign of work from the relative directions of force and displacement.",
+    "The Work-Energy Theorem: relating work done on an object or system to the change in its energy.",
+    "Forms of Energy: identifying mechanical, thermal, light, sound, electrical, nuclear and chemical energy and their transformations.",
+    "Mechanical Energy: understanding energy due to the motion or position of an object.",
+    "Kinetic Energy: deriving and using K = 1/2 mv^2 and connecting positive or negative work with changes in speed.",
+    "Potential Energy: understanding stored energy due to deformation or the relative positions of interacting objects.",
+    "Gravitational Potential Energy: investigating height-dependent energy and using U = mgh near the Earth's surface.",
+    "Conservation of Mechanical Energy: following the interchange of kinetic and potential energy in free fall, a pendulum and a slide.",
+    "Power: defining power as the rate of doing work and using P = W/t with the watt as its SI unit.",
+    "Simple Machines: understanding effort, load and mechanical advantage and why machines change force or direction without reducing ideal total work.",
+    "Pulley: comparing fixed and movable pulley arrangements and their mechanical advantage.",
+    "Inclined Plane: relating reduced effort to increased distance and using mechanical advantage = L/h when friction is ignored.",
+    "Lever: identifying fulcrum, effort, load, effort arm and load arm and applying the balancing principle.",
+    "Classes of Levers: classifying levers according to the relative positions of effort, fulcrum and load.",
+    "Bridging Science and Society and The Journey Beyond: connecting energy conversion to a gharat or panchakki and exploring elastic energy, simple-machine models and simulations."
+  ],
+  "banned_topics": [
+    "Detailed calculation of work for an arbitrary angle using W = Fs cos theta, which is reserved for higher grades.",
+    "Detailed gravitational potential energy far from the Earth's surface or orbital-energy formulas.",
+    "Formal torque, rotational dynamics and angular-momentum calculations beyond the lever balance relation used in this chapter.",
+    "Machine efficiency, velocity ratio and frictional-loss formulas not introduced in the chapter.",
+    "Detailed thermodynamics, electrical-circuit theory, nuclear physics or cosmology beyond the brief energy-form examples in the source chapter.",
+    "Treating perpetual-motion machines as physically possible devices."
+  ],
+  "must_include_keywords": [
+    "work",
+    "constant force",
+    "displacement",
+    "joule",
+    "force-displacement graph",
+    "zero work",
+    "positive work",
+    "negative work",
+    "energy",
+    "work-energy theorem",
+    "energy transformation",
+    "mechanical energy",
+    "kinetic energy",
+    "K = 1/2 mv^2",
+    "potential energy",
+    "deformation",
+    "relative positions",
+    "gravitational potential energy",
+    "U = mgh",
+    "conservation of mechanical energy",
+    "friction",
+    "air resistance",
+    "power",
+    "P = W/t",
+    "watt",
+    "simple machine",
+    "effort",
+    "load",
+    "mechanical advantage",
+    "pulley",
+    "fixed pulley",
+    "movable pulley",
+    "inclined plane",
+    "lever",
+    "fulcrum",
+    "effort arm",
+    "load arm",
+    "classes of levers",
+    "gharat",
+    "panchakki"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Applying a force always means that scientific work is done.",
+      "correction": "Work is done on an object only when the force produces displacement in the direction of the force; pushing a rigid wall produces zero work on the wall because its displacement is zero."
+    },
+    {
+      "claim": "A person carrying a box horizontally does positive work on the box because an upward force is being applied.",
+      "correction": "The upward force is perpendicular to the horizontal displacement, so the work done by that upward force on the box is zero."
+    },
+    {
+      "claim": "Negative work means that no work is done.",
+      "correction": "Negative work is real work done by a force opposite to displacement and it reduces the object's energy, as when a goalkeeper stops a ball."
+    },
+    {
+      "claim": "Kinetic energy is directly proportional to velocity.",
+      "correction": "Kinetic energy is proportional to the square of velocity, K = 1/2 mv^2; doubling velocity makes kinetic energy four times as large."
+    },
+    {
+      "claim": "A motionless stretched rubber band has no energy.",
+      "correction": "Although its kinetic energy is zero, the stretched band stores potential energy because of its deformation."
+    },
+    {
+      "claim": "Mechanical energy is conserved in every real motion without qualification.",
+      "correction": "Mechanical energy remains constant when no other external forces act; friction and air resistance transfer mechanical energy to other forms and cause real pendulums and machines to slow down."
+    },
+    {
+      "claim": "Power and work are the same physical quantity.",
+      "correction": "Work measures energy transferred, while power measures how quickly work is done: P = W/t."
+    },
+    {
+      "claim": "A fixed pulley reduces the magnitude of the effort needed.",
+      "correction": "An ideal fixed pulley only changes the direction of the effort; its load and effort are equal and its mechanical advantage is 1."
+    },
+    {
+      "claim": "An inclined plane reduces the total ideal work required to reach a given height.",
+      "correction": "It reduces the force by increasing the distance over which the force acts; ignoring friction, the total work remains equal to the gain in potential energy."
+    },
+    {
+      "claim": "A machine creates energy when it multiplies force.",
+      "correction": "Machines do not create energy; ignoring friction, the work put in equals the useful work done on the load."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 7.2 to calculate negative work by the goalkeeper and establish the sign convention.",
+    "Use NCERT Example 7.3 to connect collisions, positive and negative work, and energy transfer in a carrom shot.",
+    "Move to NCERT Example 7.5 to calculate kinetic energy and practise converting km h^-1 to m s^-1.",
+    "Use NCERT Activity 7.1 and Example 7.7 to connect greater height with greater gravitational potential energy and apply U = mgh.",
+    "Use NCERT Activity 7.2 and Example 7.8 to show conservation of mechanical energy in a pendulum and on a frictionless slide.",
+    "Use NCERT Example 7.10 to distinguish work from power through the time taken to lift a load.",
+    "Use NCERT Activity 7.3 and Example 7.12 to develop the force-distance trade-off and mechanical advantage of an inclined plane.",
+    "Finish with NCERT Activity 7.5 and Example 7.13 to apply the lever balance relation to a beam balance and seesaw."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section 'Revise, Reflect, Refine' contains Questions 1-15, followed by the practical extension tasks in 'The Journey Beyond'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,116 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "How Forces Affect Motion",
+  "central_question": "How do the magnitude, direction and balance of forces determine whether an object remains at rest, moves with constant velocity, accelerates or interacts with other objects?",
+  "in_scope_units": [
+    "The concept of force: effects of force, magnitude, direction, SI unit newton and measurement using a spring balance.",
+    "Balanced and unbalanced forces: combining forces in the same or opposite directions and finding the net force.",
+    "The force of friction: its direction, dependence on surfaces, measurement and role in slowing or enabling motion.",
+    "Newton's first law of motion: zero net force, constant velocity and inertia.",
+    "Newton's second law of motion: relation among net force, mass and acceleration, including F = ma and gravitational force F = mg.",
+    "Applications of the second law: catching a ball, airbags, impact forces, force-time ideas and graph-based calculations.",
+    "Newton's third law of motion: equal and opposite forces on different objects in contact and non-contact interactions.",
+    "Applications of the third law: walking, rowing, recoil, balloons, rockets and spacecraft manoeuvres.",
+    "Forces acting on a system of objects: internal and external forces and acceleration of connected masses treated as one system."
+  ],
+  "banned_topics": [
+    "Detailed vector resolution and calculation of forces acting at arbitrary angles.",
+    "Torque, moments of force and full rotational dynamics.",
+    "Detailed coefficients of static, sliding and rolling friction beyond the chapter's qualitative treatment.",
+    "A full derivation of momentum conservation or variable-mass rocket equations.",
+    "Relativistic mechanics, quantum mechanics and advanced modifications of Newton's laws.",
+    "Standalone teaching of kinematic equations and graph interpretation beyond their use in this chapter's force problems."
+  ],
+  "must_include_keywords": [
+    "force",
+    "magnitude",
+    "direction",
+    "newton",
+    "spring balance",
+    "balanced forces",
+    "unbalanced forces",
+    "net force",
+    "friction",
+    "normal force",
+    "gravitational force",
+    "buoyant force",
+    "inertia",
+    "Newton's first law",
+    "constant velocity",
+    "acceleration",
+    "Newton's second law",
+    "F = ma",
+    "F = mg",
+    "acceleration due to gravity",
+    "g = 9.8 m s^-2",
+    "momentum",
+    "airbag",
+    "Newton's third law",
+    "equal and opposite forces",
+    "action-reaction pair",
+    "walking",
+    "canoe",
+    "rocket",
+    "recoil",
+    "contact force",
+    "non-contact force",
+    "system of objects",
+    "internal forces",
+    "external forces",
+    "tension"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A moving object must always have a force acting in the direction of its motion.",
+      "correction": "An object can move with constant velocity when the net force is zero; a net force is required only to change its velocity."
+    },
+    {
+      "claim": "Balanced forces mean that no forces are acting on the object.",
+      "correction": "Balanced forces may be present, but their vector sum is zero, so they do not produce acceleration."
+    },
+    {
+      "claim": "Friction always opposes the applied force.",
+      "correction": "Friction opposes relative motion or the tendency of relative motion between surfaces; while walking, friction from the ground acts forward and helps the person move."
+    },
+    {
+      "claim": "If two forces are equal and opposite, they always cancel each other.",
+      "correction": "They cancel only when they act on the same object. Newton's third-law pair acts on two different objects and therefore does not cancel."
+    },
+    {
+      "claim": "Equal and opposite third-law forces produce equal accelerations.",
+      "correction": "The forces are equal, but accelerations can differ because acceleration also depends on mass through a = F/m."
+    },
+    {
+      "claim": "Constant velocity means only constant speed.",
+      "correction": "Constant velocity means both the magnitude and the direction of velocity remain unchanged."
+    },
+    {
+      "claim": "The SI unit of force is written as Newton with symbol n.",
+      "correction": "The unit name is written newton with a small n, while its symbol is N."
+    },
+    {
+      "claim": "In F = ma, any one force may be used for F.",
+      "correction": "F represents the net force on the object, not an individual force unless it is the only unbalanced force."
+    },
+    {
+      "claim": "A heavier falling object has a larger acceleration due to gravity near Earth's surface.",
+      "correction": "The acceleration due to Earth's gravity, g, is nearly the same for all objects near the surface and does not depend on their mass."
+    },
+    {
+      "claim": "Internal forces must always be included when finding the acceleration of a whole connected system.",
+      "correction": "When connected objects are treated as one system, internal forces such as tension cancel within the system; only external forces determine the system's acceleration."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 6.1 to add or subtract collinear forces and identify the direction of the net force.",
+    "Use NCERT Activities 6.1 and 6.2 to connect surface type, friction, stopping distance and spring-balance readings.",
+    "Use NCERT Examples 6.2 and 6.3 to apply Newton's first law to constant velocity and motion graphs.",
+    "Use NCERT Examples 6.4, 6.5 and 6.6 to progress from F = mg to friction-limited motion and velocity-time graph calculations using F = ma.",
+    "Use NCERT Activities 6.5, 6.6 and 6.7 followed by Examples 6.7 and 6.8 to distinguish third-law force pairs from their different accelerations.",
+    "Finish with NCERT Exercise Questions 4, 11, 14 and 15 from Revise, Reflect, Refine to integrate net force, graphs, friction and systems of objects."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Revise, Reflect, Refine' and contains Questions 1-16 on pages 112-114 of the supplied chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
