@@ -117,16 +117,20 @@ def load_full_page_texts(pdf_path: str) -> dict[int, str]:
 
 def _figure_crop_rect(page, fig_number: str) -> "fitz.Rect | None":
     """
-    Compute a tight crop rectangle around the actual embedded figure
-    image(s) on this page, extended downward to include its caption line.
+    Compute a crop rectangle spanning the FULL PAGE WIDTH but trimmed
+    vertically to the region containing the actual figure image(s) and
+    their caption.
 
-    Fixes the "full PDF page screenshot" problem — previously every
-    approved textbook image was the ENTIRE page (all body text, other
-    paragraphs, exercise lists, etc., baked into the pixels), which made
-    every image look visually noisy and "out of place" regardless of how
-    correctly it was matched to a lesson milestone. This crops to just
-    the diagram + its caption, matching how a real textbook figure would
-    be presented.
+    Design change (per user feedback): the earlier version cropped
+    tightly on all four sides to the embedded image's bounding box. That
+    risked clipping parts of the diagram or its caption whenever the
+    image bounding box PyMuPDF reports does not perfectly match what is
+    visually printed (labels, arrows, or multi-part figures can extend
+    slightly beyond the raw image rect). The user asked for horizontal
+    cropping to be removed entirely — keep the full page width exactly
+    as printed — and only trim vertically (removing unrelated content
+    above/below the figure), with generous padding so nothing is ever
+    cut off.
 
     Returns None if the page has no embedded raster images (some NCERT
     figures are vector line-art, not embedded images — those pages keep
@@ -163,11 +167,13 @@ def _figure_crop_rect(page, fig_number: str) -> "fitz.Rect | None":
     # Extend downward to capture the caption line — NCERT captions are
     # printed as a text block directly below the figure. Search text
     # blocks for this exact figure's "Fig. N.N:" caption and extend the
-    # crop to include whichever caption block sits just below the image.
+    # vertical range to include whichever caption block sits just below
+    # the image, and any label text sitting just above it too.
     caption_pattern = re.compile(
         rf"Fig(?:ure)?\.[\s\xa0]*{re.escape(fig_number)}\s*:", re.IGNORECASE,
     )
-    caption_bottom = union.y1
+    top = union.y0
+    bottom = union.y1
     for block in page.get_text("dict").get("blocks", []):
         if block.get("type") != 0:  # not a text block
             continue
@@ -182,16 +188,18 @@ def _figure_crop_rect(page, fig_number: str) -> "fitz.Rect | None":
             # the image (avoids grabbing an unrelated caption far down
             # the page for a different figure with a similar number).
             if union.y1 - 20 <= block_rect.y0 <= union.y1 + 140:
-                caption_bottom = max(caption_bottom, block_rect.y1)
+                bottom = max(bottom, block_rect.y1)
 
-    crop = fitz.Rect(union.x0, union.y0, union.x1, caption_bottom)
-    # Small uniform padding so the diagram isn't flush against the image edge.
-    pad = 10
-    crop = fitz.Rect(
-        max(0, crop.x0 - pad), max(0, crop.y0 - pad),
-        min(page.rect.width, crop.x1 + pad), min(page.rect.height, crop.y1 + pad),
-    )
-    return crop
+    # Generous vertical padding on both sides — this is intentionally
+    # larger than the previous tight crop to guarantee no part of the
+    # diagram, its labels, or its caption is ever clipped. Horizontal
+    # bounds are NOT touched: the crop always spans the full page width.
+    pad_top = 24
+    pad_bottom = 30
+    top = max(0, top - pad_top)
+    bottom = min(page.rect.height, bottom + pad_bottom)
+
+    return fitz.Rect(0, top, page.rect.width, bottom)
 
 
 def crop_and_reupload_figure(
