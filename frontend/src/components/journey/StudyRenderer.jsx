@@ -225,6 +225,31 @@ function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           <StructuredVisualBlock raw={JSON.stringify(block.visual)} />
         </div>
       );
+    case "textbook_image":
+      return (
+        <figure style={{
+          margin: "14px 0", border: "1px solid var(--border, #d6ddeb)",
+          borderRadius: 10, overflow: "hidden", background: "var(--panel, #fff)",
+        }}>
+          <img
+            src={block.asset_url}
+            alt={block.caption || "Textbook page"}
+            style={{ width: "100%", display: "block" }}
+            loading="lazy"
+          />
+          {block.caption && (
+            <figcaption style={{
+              padding: "8px 12px", fontSize: ".78rem", color: "var(--muted, #64748b)",
+              borderTop: "1px solid var(--border, #eef1f6)", display: "flex",
+              alignItems: "center", gap: 6,
+            }}>
+              <BookOpen size={13} strokeWidth={2.3} aria-hidden="true" />
+              {block.caption}
+              {block.page_number ? ` (NCERT page ${block.page_number})` : ""}
+            </figcaption>
+          )}
+        </figure>
+      );
     case "students_ask":
       return (
         <details style={{
@@ -331,10 +356,33 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
       {/* Document */}
       <div style={{ flex: 1, minWidth: 0 }}>
         {doc.milestones.map((milestone, mi) => (
-          <section key={mi} id={`study-milestone-${mi}`} style={{ scrollMarginTop: 90, marginBottom: 28 }}>
+          <section key={mi} id={`study-milestone-${mi}`} style={{
+            scrollMarginTop: 90,
+            marginBottom: 32,
+            marginTop: mi > 0 ? 40 : 0,
+          }}>
+            {/* Strong section divider so a reader can immediately tell they've
+                moved into a new topic area — previously a thin border-bottom
+                blended into the surrounding content, making cross-milestone
+                scrolling (e.g. plant tissue content flowing into joints/
+                musculoskeletal content) read as one unbroken stream. */}
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10,
+              marginBottom: 14,
+            }}>
+              <span style={{
+                fontSize: ".68rem", fontWeight: 800, letterSpacing: ".08em",
+                textTransform: "uppercase", color: "#fff",
+                background: "var(--accent, #2d4a8a)", borderRadius: 999,
+                padding: "3px 10px", whiteSpace: "nowrap", flexShrink: 0,
+              }}>
+                Section {mi + 1} of {doc.milestones.length}
+              </span>
+              <div style={{ flex: 1, height: 2, background: "var(--border, #e5e7eb)" }} />
+            </div>
             <h3 style={{
-              fontSize: "1.12rem", margin: "0 0 4px",
-              paddingBottom: 8, borderBottom: "1px solid var(--border, #e5e7eb)",
+              fontSize: "1.28rem", fontWeight: 800, margin: "0 0 16px",
+              paddingBottom: 12, borderBottom: "3px solid var(--accent, #2d4a8a)",
             }}>
               {milestone.title}
             </h3>

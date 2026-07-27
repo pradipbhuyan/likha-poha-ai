@@ -607,3 +607,146 @@ def download_sections_report(
         content=fp.read_text(encoding="utf-8"), media_type=ct[format],
         headers={"Content-Disposition": f"attachment; filename=lesson_sections_report.{format}"},
     )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Chapter Boundary & Accuracy Audit (Tier A — tool #7)
+# ══════════════════════════════════════════════════════════════════════════════
+# See docs/LESSON_CONTENT_QUALITY_REVIEW_PLAN.md for full design context.
+# Deterministic, zero-LLM audit that loads per-chapter manifests from
+# backend/app/data/chapter_manifests/ and scans lesson_cache for
+# contamination (banned_topics), coverage gaps (must_include_keywords),
+# and known scientific/pedagogical pitfalls.
+
+CHAPTER_BOUNDARY_REPORT_DIR = Path("reports/chapter_boundary")
+_CHAPTER_BOUNDARY_JOBS: dict = {}  # in-memory job registry
+
+
+def _run_chapter_boundary_background(
+    job_id: str, grade: str | None, subject: str | None, chapter: str | None,
+    admin_id: str,
+) -> None:
+    """Run the Tier A chapter boundary audit in a background thread."""
+    _CHAPTER_BOUNDARY_JOBS[job_id]["status"] = "running"
+    try:
+        from scripts.audit_chapter_boundary import run_audit
+        CHAPTER_BOUNDARY_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+        result = run_audit(
+            grade_filter=grade, subject_filter=subject, chapter_filter=chapter,
+        )
+        _CHAPTER_BOUNDARY_JOBS[job_id].update({
+            "status": "completed",
+            "manifests_used": result.get("manifests_used", 0),
+            "lessons_audited": result.get("lessons_audited", 0),
+            "total_critical_findings": result.get("total_critical_findings", 0),
+            "total_high_findings": result.get("total_high_findings", 0),
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as e:
+        err = str(e)[:500].replace("\n", " ")
+        _log.error("Chapter boundary audit job %s failed: %s", job_id, err)
+        _CHAPTER_BOUNDARY_JOBS[job_id].update({
+            "status": "failed",
+            "error_message": err,
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+        })
+
+
+@router.get("/chapter-boundary/latest")
+def get_latest_chapter_boundary_report(admin=Depends(require_admin)):
+    """Return latest chapter boundary/accuracy audit report summary."""
+    fp = CHAPTER_BOUNDARY_REPORT_DIR / "chapter_boundary_report.json"
+    if not fp.exists():
+        return {"success": True, "available": False,
+                "message": "No chapter boundary audit has been run yet."}
+    try:
+        data = json.loads(fp.read_text(encoding="utf-8"))
+        results = data.get("results", [])
+        # Group by chapter for a dashboard-friendly summary
+        by_chapter: dict = {}
+        for r in results:
+            key = f"{r.get('grade')} / {r.get('subject')} / {r.get('chapter')}"
+            entry = by_chapter.setdefault(key, {
+                "grade": r.get("grade"), "subject": r.get("subject"),
+                "chapter": r.get("chapter"), "critical": 0, "high": 0,
+                "findings": [],
+            })
+            entry["critical"] += r.get("critical_count", 0)
+            entry["high"] += r.get("high_count", 0)
+            for f in r.get("findings", []):
+                entry["findings"].append({
+                    "step_title": r.get("step_title"),
+                    "severity": f.get("severity"), "category": f.get("category"),
+                    "message": f.get("message"),
+                })
+        chapters_ranked = sorted(
+            by_chapter.values(), key=lambda c: (-c["critical"], -c["high"])
+        )
+        return {
+            "success": True, "available": True,
+            "audited_at": data.get("audited_at"),
+            "manifests_used": data.get("manifests_used", 0),
+            "lessons_audited": data.get("lessons_audited", 0),
+            "total_critical_findings": data.get("total_critical_findings", 0),
+            "total_high_findings": data.get("total_high_findings", 0),
+            "chapters_ranked": chapters_ranked[:100],
+        }
+    except Exception as e:
+        return {"success": False, "available": False, "error": str(e)[:200]}
+
+
+@router.get("/chapter-boundary/history")
+def get_chapter_boundary_history(limit: int = Query(20, le=100), admin=Depends(require_admin)):
+    runs = sorted(_CHAPTER_BOUNDARY_JOBS.values(), key=lambda j: j.get("created_at", ""), reverse=True)[:limit]
+    return {"success": True, "runs": runs}
+
+
+@router.post("/chapter-boundary/run")
+def run_chapter_boundary_audit_job(
+    grade: str | None = None,
+    subject: str | None = None,
+    chapter: str | None = None,
+    background_tasks: BackgroundTasks = None,
+    admin=Depends(require_admin),
+):
+    """Start a Tier A chapter boundary audit job. Zero-LLM, deterministic, free."""
+    admin_id = admin.get("id") or admin.get("profile", {}).get("id") or ""
+    job_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    _CHAPTER_BOUNDARY_JOBS[job_id] = {
+        "id": job_id, "status": "queued",
+        "grade": grade, "subject": subject, "chapter": chapter,
+        "created_at": now, "created_by_admin_id": admin_id,
+    }
+    t = threading.Thread(
+        target=_run_chapter_boundary_background,
+        args=(job_id, grade, subject, chapter, admin_id),
+        daemon=True,
+    )
+    t.start()
+    scope_desc = chapter or subject or grade or "all manifests"
+    return {"success": True, "job_id": job_id,
+            "message": f"Chapter boundary audit started ({scope_desc})."}
+
+
+@router.get("/chapter-boundary/status/{job_id}")
+def get_chapter_boundary_job_status(job_id: str, admin=Depends(require_admin)):
+    if job_id not in _CHAPTER_BOUNDARY_JOBS:
+        raise HTTPException(status_code=404, detail="Job not found.")
+    job = dict(_CHAPTER_BOUNDARY_JOBS[job_id])
+    job.pop("created_by_admin_id", None)
+    return {"success": True, "job": job}
+
+
+@router.get("/chapter-boundary/report")
+def download_chapter_boundary_report(
+    format: str = Query("json", pattern="^(json)$"),
+    admin=Depends(require_admin),
+):
+    fp = CHAPTER_BOUNDARY_REPORT_DIR / "chapter_boundary_report.json"
+    if not fp.exists():
+        raise HTTPException(status_code=404, detail="Report not found. Run an audit first.")
+    return PlainTextResponse(
+        content=fp.read_text(encoding="utf-8"), media_type="application/json",
+        headers={"Content-Disposition": "attachment; filename=chapter_boundary_report.json"},
+    )

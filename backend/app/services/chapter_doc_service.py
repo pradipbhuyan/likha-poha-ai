@@ -32,6 +32,7 @@ from app.models.lesson_blocks import (
     QuickCheckBlock,
     RecapBlock,
     StudentsAskBlock,
+    TextbookImageBlock,
     VisualBlock,
     VocabBlock,
     WatchoutBlock,
@@ -402,6 +403,110 @@ def _fetch_lkb_chips(grade, subject, chapter, step_title, limit=2) -> list[dict]
         return []
 
 
+def _fetch_approved_visuals(board, grade, subject, chapter) -> list[dict]:
+    """Return admin-approved (status="active") textbook page images for this
+    chapter, ordered by page number. Never AI-generated — always real
+    NCERT textbook pages extracted via rag_visual_service.backfill.
+
+    Tries an exact chapter-string match first, then falls back to a
+    suffix match (ilike '%<chapter>') — this handles the recurring
+    "Chapter N: <title>" vs bare "<title>" naming mismatch between
+    rag_visual_assets.chapter (usually prefixed) and lesson_cache.chapter
+    (often unprefixed for GPT-5.5-authored chapters), documented in
+    §4i/§4m of docs/LESSON_CONTENT_QUALITY_REVIEW_PLAN.md.
+    """
+    try:
+        from app.services.rag_visual_service import list_active_visual_assets_for_context  # noqa: PLC0415
+        exact = list_active_visual_assets_for_context(
+            board=board, grade=grade, subject=subject, chapter=chapter, limit=25,
+        )
+        if exact:
+            return exact
+    except Exception:
+        pass
+
+    # Fallback: suffix-match on chapter string (handles "Chapter N: " prefix
+    # mismatches) using the same live DB the exact lookup would have used.
+    try:
+        from app.services.grade_db_router import get_content_db  # noqa: PLC0415
+        db = get_content_db(grade)
+        result = (
+            db.table("rag_visual_assets")
+            .select(
+                "id,document_id,board,grade,subject,chapter,title,page_number,"
+                "asset_url,caption,nearby_text,status"
+            )
+            .eq("status", "active")
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .ilike("chapter", f"%{chapter}")
+            .order("page_number")
+            .limit(25)
+            .execute()
+        )
+        return result.data or []
+    except Exception:
+        return []
+
+
+_IMAGE_MATCH_STOPWORDS = {
+    "the", "and", "for", "from", "this", "that", "with", "about", "chapter",
+    "page", "figure", "fig", "of", "in", "on", "to", "a", "an", "is", "are",
+}
+
+
+def _match_visuals_to_milestone(
+    visuals: list[dict],
+    milestone_title: str,
+    milestone_text: str,
+    used_ids: set[str],
+    max_per_milestone: int = 2,
+) -> list[TextbookImageBlock]:
+    """Score unused approved visuals by caption/nearby-text keyword overlap
+    with this milestone's title+content, attach the best matches, and mark
+    them used so the same image never appears in two milestones."""
+    if not visuals:
+        return []
+
+    haystack_terms = {
+        t for t in re.findall(r"[a-z0-9]+", f"{milestone_title} {milestone_text}".lower())
+        if len(t) > 2 and t not in _IMAGE_MATCH_STOPWORDS
+    }
+    if not haystack_terms:
+        return []
+
+    scored = []
+    for visual in visuals:
+        vid = visual.get("id")
+        if not vid or vid in used_ids:
+            continue
+        visual_terms = {
+            t for t in re.findall(
+                r"[a-z0-9]+",
+                f"{visual.get('caption', '')} {visual.get('nearby_text', '')}".lower(),
+            )
+            if len(t) > 2 and t not in _IMAGE_MATCH_STOPWORDS
+        }
+        score = len(haystack_terms & visual_terms)
+        if score > 0:
+            scored.append((score, visual))
+
+    scored.sort(key=lambda item: (-item[0], item[1].get("page_number") or 0))
+
+    blocks: list[TextbookImageBlock] = []
+    for score, visual in scored[:max_per_milestone]:
+        try:
+            blocks.append(TextbookImageBlock(
+                asset_url=visual["asset_url"],
+                caption=visual.get("caption") or "",
+                page_number=visual.get("page_number"),
+            ))
+            used_ids.add(visual["id"])
+        except Exception:
+            continue
+    return blocks
+
+
 def convert_chapter(
     board: str,
     grade: str,
@@ -425,6 +530,12 @@ def convert_chapter(
     # question must never appear as a card twice in one chapter (short poem
     # chapters share top chips across steps; fewer cards is fine, repeats are not).
     attached_ask_questions: list[str] = []
+
+    # Admin-approved NCERT textbook page images for this chapter (never
+    # AI-generated). Fetched once per chapter, matched per-milestone below,
+    # and tracked in used_visual_ids so no page appears in two milestones.
+    approved_visuals = _fetch_approved_visuals(board, grade, subject, chapter)
+    used_visual_ids: set[str] = set()
 
     steps = get_lesson_steps(grade)
     for index, step_title in enumerate(steps):
@@ -463,6 +574,18 @@ def convert_chapter(
                 continue
             attached_ask_questions.append(question)
             blocks.append(StudentsAskBlock(question=question, answer_md=answer))
+
+        # ── Textbook images: attach best-matching approved page(s) for this
+        # milestone's topic, placed right after the concept/example content ──
+        if approved_visuals:
+            milestone_text = " ".join(
+                getattr(b, "body_md", "") or getattr(b, "text", "") or ""
+                for b in blocks
+            )
+            image_blocks = _match_visuals_to_milestone(
+                approved_visuals, step_title, milestone_text, used_visual_ids,
+            )
+            blocks.extend(image_blocks)
 
         if blocks:
             milestones.append(Milestone(title=step_title, blocks=blocks))
@@ -556,14 +679,53 @@ def store_chapter_doc(doc: ChapterDoc) -> bool:
         return False
 
 
-def get_or_convert_chapter_doc(board, grade, subject, chapter, mode="CBSE") -> dict | None:
+def invalidate_stored_chapter_doc(grade, subject, chapter, mode="CBSE") -> int:
+    """Delete any stored lesson_chapter_doc row(s) for this exact chapter.
+
+    Used by the student-facing "Refresh lesson" button (and by the
+    ingestion scripts) so a stale converted document is never served
+    indefinitely — see docs/LESSON_CONTENT_QUALITY_REVIEW_PLAN.md §4i/§4o
+    for why this reconversion step is otherwise easy to silently miss.
+    Returns the number of rows deleted (0 if none existed).
+    """
+    db = get_content_db(grade)
+    try:
+        result = (
+            db.table("lesson_chapter_doc")
+            .delete()
+            .eq("grade", grade)
+            .eq("subject", subject)
+            .eq("chapter", chapter)
+            .eq("mode", mode)
+            .execute()
+        )
+        return len(result.data or [])
+    except Exception as exc:
+        _log.warning(
+            "chapter_doc.invalidate_failed",
+            grade=grade, chapter=chapter[:60], error=str(exc),
+        )
+        return 0
+
+
+def get_or_convert_chapter_doc(
+    board, grade, subject, chapter, mode="CBSE", force_refresh: bool = False,
+) -> dict | None:
     """
     Serving entry point: stored doc if present, else convert-and-store from
     lesson_cache. Never calls the LLM; returns None when nothing is cached.
+
+    force_refresh=True skips the stored doc and always reconverts fresh
+    from the current lesson_cache content, overwriting whatever was
+    stored before — this is what the "Refresh lesson" button uses so a
+    student can self-serve a fix without needing an admin script run.
     """
-    stored = get_stored_chapter_doc(board, grade, subject, chapter, mode)
-    if stored:
-        return stored
+    if force_refresh:
+        invalidate_stored_chapter_doc(grade, subject, chapter, mode)
+    else:
+        stored = get_stored_chapter_doc(board, grade, subject, chapter, mode)
+        if stored:
+            return stored
 
     doc = convert_chapter(board, grade, subject, chapter, mode)
     if doc is None:

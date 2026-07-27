@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Sparkles, RotateCcw, ArrowLeft, ArrowRight } from "lucide-react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -443,6 +443,10 @@ function LessonsPage({ user, setActivePage }) {
   // Non-null when the pilot is active for this grade AND a chapter doc exists.
   const [chapterDoc, setChapterDoc] = useState(null);
   const [chapterDocLoading, setChapterDocLoading] = useState(false);
+  // True only while a manual "Refresh lesson" click is in flight — kept
+  // separate from chapterDocLoading so the button can show its own
+  // "Refreshing..." state without hiding the currently-visible lesson.
+  const [chapterDocRefreshing, setChapterDocRefreshing] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -466,6 +470,31 @@ function LessonsPage({ user, setActivePage }) {
     return () => {
       cancelled = true;
     };
+  }, [grade, mode, subject, chapter]);
+
+  // Manually re-fetch the Chapter Journey doc with refresh=true, forcing the
+  // backend to discard any stored/stale converted document and rebuild it
+  // fresh from the current lesson_cache content. This is the reliable fix
+  // for "I updated the content but the lesson still shows old text" — that
+  // staleness lives in a server-side cache table (lesson_chapter_doc),
+  // which a browser hard-refresh cannot touch. See
+  // docs/LESSON_CONTENT_QUALITY_REVIEW_PLAN.md §4o.
+  const handleRefreshLesson = useCallback(() => {
+    if (!CHAPTER_JOURNEY_PILOT_GRADES.has(grade) || !subject || !chapter) {
+      return;
+    }
+    setChapterDocRefreshing(true);
+    getChapterDoc({ grade, mode, subject, chapter, board: mode, refresh: true })
+      .then((result) => {
+        setChapterDoc(result?.available && result?.doc ? result.doc : null);
+      })
+      .catch(() => {
+        // Keep whatever was showing before — a failed refresh should not
+        // blank out a lesson that was already displaying correctly.
+      })
+      .finally(() => {
+        setChapterDocRefreshing(false);
+      });
   }, [grade, mode, subject, chapter]);
 
   const [followUpQuestion, setFollowUpQuestion] = useState("");
@@ -1764,14 +1793,45 @@ function LessonsPage({ user, setActivePage }) {
 
       {/* ── Chapter Journey pilot: whole chapter, zero Generate clicks ────── */}
       {chapterDoc && !isExemplarLocked ? (
-        <ChapterJourneyView
-          doc={chapterDoc}
-          user={user}
-          grade={grade}
-          mode={mode}
-          subject={subject}
-          chapter={chapter}
-        />
+        <>
+          {/* Refresh lesson — reliably clears the server-side chapter-doc
+              cache and rebuilds from the latest lesson_cache content. Use
+              this instead of a browser hard-refresh, which cannot touch
+              this server-side cache table. See §4o of the plan doc. */}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+            <button
+              type="button"
+              onClick={handleRefreshLesson}
+              disabled={chapterDocRefreshing}
+              title="Reload this chapter's content from the latest source — fixes 'I updated the lesson but it still shows old text'"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "6px 14px",
+                fontSize: "0.8rem",
+                fontWeight: 600,
+                borderRadius: 8,
+                border: "1px solid var(--border, #d1d5db)",
+                background: "var(--panel, #ffffff)",
+                color: "var(--text, #374151)",
+                cursor: chapterDocRefreshing ? "default" : "pointer",
+                opacity: chapterDocRefreshing ? 0.6 : 1,
+              }}
+            >
+              <RotateCcw size={14} strokeWidth={2.4} />
+              {chapterDocRefreshing ? "Refreshing…" : "Refresh lesson"}
+            </button>
+          </div>
+          <ChapterJourneyView
+            doc={chapterDoc}
+            user={user}
+            grade={grade}
+            mode={mode}
+            subject={subject}
+            chapter={chapter}
+          />
+        </>
       ) : chapterDocLoading ? (
         <p style={{ padding: "24px 4px", color: "var(--muted, #6b7280)" }}>
           Loading chapter…

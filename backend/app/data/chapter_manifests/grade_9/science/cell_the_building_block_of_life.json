@@ -1,0 +1,137 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Cell: The Building Block of Life",
+  "central_question": "How do cells, as the basic structural and functional units of life, organise their boundaries, internal parts, growth, division, and continuity?",
+  "in_scope_units": [
+    "Cells as the basic level of life, including unicellular and multicellular organisation into tissues, organs, and organ systems",
+    "2.1 How to Study Cells: limits of unaided vision, resolution, magnification, light microscopes, electron microscopes, and estimating cell size",
+    "2.2 Structure of a Cell: the cell boundary and exchange with the surroundings",
+    "2.2.1 Cell membrane: selective permeability, diffusion, osmosis, solution concentration, and the fluid-mosaic model",
+    "2.2.2 Cell wall: rigidity, permeability, cellulose, support, and differences between plant and animal cells",
+    "2.3 The Cell Interior: plasma membrane, cytoplasm, nucleus, organelles, and comparison of bacterial, plant, and animal cells",
+    "Prokaryotic and eukaryotic cells: nucleoid, membrane-bound nucleus, membrane-bound organelles, and typical size ranges",
+    "2.3.1 Need for organelles: coordinated division of work inside eukaryotic cells",
+    "Nucleus, chromosomes, chromatin, DNA, genes, nucleolus, and the nucleoid of prokaryotic cells",
+    "Ribosomes, rough and smooth endoplasmic reticulum, Golgi apparatus, and lysosomes",
+    "Mitochondria, cellular respiration, ATP, cristae, and energy supply",
+    "Plastids: chloroplasts, chromoplasts, leucoplasts, chlorophyll, food synthesis, colour, and storage",
+    "Vacuoles: cell sap, storage, internal pressure, support, and wilting",
+    "2.4 How Normal Cells Grow and Divide: onion root-tip observations, cell growth, and the cell cycle",
+    "2.4.1 Cell division: mitosis, meiosis, growth, repair, reproduction, chromosome number, variation, and errors in division",
+    "Cell culture and the controlled growth of cells outside the body",
+    "2.5 Cell Theory: contributions of Schleiden, Schwann, and Virchow and the three classical statements",
+    "2.5.1 Cell lifespan and growth control: contact inhibition, uncontrolled division, tumours, and programmed cell death"
+  ],
+  "banned_topics": [
+    "Detailed names and events of the individual stages of mitosis or meiosis, which the chapter states will be studied in higher grades",
+    "Detailed human reproductive anatomy, gamete formation, and fertilisation beyond the brief links made to Chapter 11",
+    "Detailed biochemical pathways of photosynthesis or cellular respiration beyond the organelle-level roles stated in this chapter",
+    "Taxonomic classification of bacteria, fungi, viruses, viroids, or prions beyond the brief cell-structure comparison given here",
+    "Cancer diagnosis, treatment, staging, or genetics beyond the chapter's explanation of uncontrolled cell division and tumours"
+  ],
+  "must_include_keywords": [
+    "cell",
+    "unicellular",
+    "multicellular",
+    "tissue",
+    "organ system",
+    "limit of resolution",
+    "magnification",
+    "light microscope",
+    "electron microscope",
+    "Robert Hooke",
+    "micrometre",
+    "cell membrane",
+    "selectively permeable",
+    "diffusion",
+    "osmosis",
+    "isotonic",
+    "hypotonic",
+    "hypertonic",
+    "fluid-mosaic model",
+    "lipid bilayer",
+    "cell wall",
+    "cellulose",
+    "cytoplasm",
+    "prokaryotic cell",
+    "eukaryotic cell",
+    "nucleoid",
+    "nucleus",
+    "chromatin",
+    "chromosome",
+    "DNA",
+    "gene",
+    "ribosome",
+    "rough endoplasmic reticulum",
+    "smooth endoplasmic reticulum",
+    "Golgi apparatus",
+    "lysosome",
+    "mitochondrion",
+    "ATP",
+    "chloroplast",
+    "chromoplast",
+    "leucoplast",
+    "vacuole",
+    "mitosis",
+    "meiosis",
+    "cell theory",
+    "contact inhibition",
+    "programmed cell death"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Magnification and resolution mean the same thing.",
+      "correction": "Magnification makes an object appear larger, whereas resolution is the measure of clarity and the ability to distinguish closely spaced details."
+    },
+    {
+      "claim": "Osmosis is the movement of any solute from high concentration to low concentration.",
+      "correction": "Osmosis is the diffusion of water across a selectively permeable membrane; diffusion is the net movement of particles from higher to lower concentration and can occur without a membrane."
+    },
+    {
+      "claim": "The cell wall is selectively permeable like the cell membrane.",
+      "correction": "The cell membrane is selectively permeable, while the rigid cell wall is permeable to water and some dissolved minerals."
+    },
+    {
+      "claim": "Animal cells shrink in concentrated sugar solution because they have a cell wall.",
+      "correction": "Animal cells lack a cell wall, so water loss by osmosis causes the whole cell to shrink; in plant cells the rigid wall keeps the outer shape while the inner content shrinks."
+    },
+    {
+      "claim": "All cells have a well-defined nucleus.",
+      "correction": "Prokaryotic cells lack a membrane-bound nucleus; their genetic material lies in a nucleoid. Eukaryotic cells have a well-defined nucleus."
+    },
+    {
+      "claim": "Ribosomes are membrane-bound organelles.",
+      "correction": "Ribosomes are tiny sites of protein synthesis found free in the cytoplasm or attached to rough endoplasmic reticulum; the chapter does not describe them as membrane-bound."
+    },
+    {
+      "claim": "SER carries ribosomes and makes proteins.",
+      "correction": "RER has ribosomes and is mainly involved in protein synthesis and secretion; SER lacks ribosomes and is involved in synthesis and storage of fats and hormones."
+    },
+    {
+      "claim": "All plastids are green and perform photosynthesis.",
+      "correction": "Chloroplasts contain chlorophyll and perform photosynthesis, chromoplasts contain other coloured pigments, and leucoplasts are colourless food-storage plastids."
+    },
+    {
+      "claim": "Mitosis and meiosis produce the same number and type of daughter cells.",
+      "correction": "Mitosis produces two genetically identical daughter cells with the same chromosome number, while meiosis is a two-step division that produces four gametes with half the chromosome number."
+    },
+    {
+      "claim": "Cells divide forever without control.",
+      "correction": "Normal cells divide in a controlled way and have a definite life span; loss of growth control can lead to uncontrolled division and tumours."
+    }
+  ],
+  "recommended_example_progression": [
+    "NCERT Activity 2.1: convert a 5 mm field of view to 5000 µm and estimate an onion cell size when 25 cells span the diameter",
+    "NCERT Activity 2.2: compare potato pieces placed in plain water and 20 per cent salt or sugar solution to explain osmosis",
+    "NCERT Activity 2.3: compare onion or Rhoeo leaf cells with cheek cells before and after adding 20 per cent sugar solution",
+    "NCERT Activity 2.4: identify structures in bacterial, plant, and animal cell diagrams and classify them as prokaryotic or eukaryotic",
+    "NCERT Revise, Reflect, Refine Q14: trace proteins and lipids from their synthesis in ER through the Golgi apparatus to the cell membrane",
+    "NCERT Activity 2.5: interpret structural differences among onion root-tip cells as stages of continuous cell division",
+    "NCERT Revise, Reflect, Refine Q15: predict the consequence if gametes were formed by mitosis instead of meiosis",
+    "NCERT Revise, Reflect, Refine Q1, Q6, and Q7: compare key structures and functions and identify organelles that contain DNA"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter exercise section is titled 'Revise, Reflect, Refine' and contains Questions 1 to 16.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

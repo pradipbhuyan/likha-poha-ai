@@ -1,0 +1,121 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Exploration: Entering the World of Secondary Science",
+  "central_question": "How do scientists use careful observation, models, measurement, mathematics, evidence, prediction, estimation, and connected ideas to understand and evaluate the natural world?",
+  "in_scope_units": [
+    "Entering secondary science: moving from curiosity and observation to deeper, purposeful exploration of how scientific knowledge is built.",
+    "Scientific models: simplifying complex systems by choosing relevant details, making assumptions, and recognising the limits of a model.",
+    "The precise language of science: scientific terms, measurable quantities, symbols, equations, defined units, and international standards.",
+    "Laws, theories, and principles: their distinct roles in describing patterns, explaining them, and guiding reasoning in particular situations.",
+    "Scientific prediction and testability: using evidence, measurements, past patterns, and models to form and check reasoned expectations.",
+    "Science as a self-correcting process: revising assumptions, models, measurements, and explanations when observations do not match predictions.",
+    "Estimation and reasonableness: identifying important quantities, making approximate calculations, and checking whether an answer is sensible.",
+    "Connections across disciplines: combining physics, chemistry, biology, earth science, mathematics, technology, arts, and social sciences to study real problems.",
+    "Science as a human activity: curiosity, creativity, collaboration, careful questioning, communication, learning from mistakes, and critical evaluation of information."
+  ],
+  "banned_topics": [
+    "Detailed derivation and numerical application of the laws of motion, which belong to later physics chapters.",
+    "Detailed atomic structure, chemical bonding, or periodic classification, because atomic models are used here only as examples of scientific modelling.",
+    "Detailed cell structure and organelle functions, because cell diagrams are mentioned only as examples of biological models.",
+    "Detailed meteorology or weather-forecast equations, because weather is used only to illustrate prediction and model limits.",
+    "Detailed nutrition planning, respiration physiology, or mask-manufacturing procedures, because rice, breathing, and masks are used only as contexts for estimation or interdisciplinary thinking."
+  ],
+  "must_include_keywords": [
+    "curiosity",
+    "careful observation",
+    "magnifying glass",
+    "compass",
+    "measurement",
+    "scientific model",
+    "simplification",
+    "assumption",
+    "relevant details",
+    "model limits",
+    "Meghnad Saha",
+    "scientific language",
+    "quantity",
+    "symbol",
+    "unit",
+    "SI units",
+    "mathematics",
+    "equation",
+    "celeritas",
+    "law",
+    "theory",
+    "principle",
+    "evidence",
+    "prediction",
+    "testable question",
+    "past patterns",
+    "humidity",
+    "wind speed and direction",
+    "self-correction",
+    "rough estimate",
+    "reasonableness",
+    "physics",
+    "chemistry",
+    "biology",
+    "earth science",
+    "interdisciplinary",
+    "creativity",
+    "collaboration",
+    "critical evaluation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A scientific model should include every detail of the real system.",
+      "correction": "A scientific model deliberately keeps the details relevant to a particular question and may ignore smaller effects to remain simple and useful."
+    },
+    {
+      "claim": "Ignoring details in a model is always a mistake.",
+      "correction": "Ignoring selected details can be purposeful; the chapter explains that air resistance, ball spin, or individual cells may be left out when they are not needed for the question being studied."
+    },
+    {
+      "claim": "Scientific words such as force, work, cell, and reaction have exactly the same meanings as in everyday speech.",
+      "correction": "Scientific terms have precise meanings so observations and ideas can be communicated clearly and unambiguously."
+    },
+    {
+      "claim": "An equation is only a tool for calculating a numerical answer.",
+      "correction": "An equation is also a compact statement showing how quantities are related and should be used after understanding the situation and identifying the relevant quantities."
+    },
+    {
+      "claim": "Scientific symbols are always convenient abbreviations of English words.",
+      "correction": "Symbols may come from history and international agreement; for example, the speed of light is denoted by c from the Latin word celeritas."
+    },
+    {
+      "claim": "A scientific theory is an untested guess.",
+      "correction": "A scientific theory is an explanation supported by evidence, careful testing, and critical examination, although it remains open to improvement."
+    },
+    {
+      "claim": "A scientific prediction is the same as guesswork.",
+      "correction": "A scientific prediction is a reasoned expectation based on evidence, past patterns, established laws, theories, or models."
+    },
+    {
+      "claim": "If a prediction fails, science has failed.",
+      "correction": "A mismatch between prediction and observation leads scientists to re-examine assumptions, models, measurements, or explanations; this self-correction is a strength of science."
+    },
+    {
+      "claim": "The most exact numerical answer is always the best scientific answer.",
+      "correction": "An approximate estimate is often enough to test whether a result is reasonable or impossible, while some situations do require exact values."
+    },
+    {
+      "claim": "Physics, chemistry, biology, and earth science are separate in nature.",
+      "correction": "These branches organise knowledge, but real systems and problems often require ideas from several disciplines together."
+    },
+    {
+      "claim": "Science is a fixed collection of facts and equations.",
+      "correction": "Science is a human activity shaped by curiosity, creativity, collaboration, questioning, testing, communication, and learning from mistakes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Example 1.1, 'A cricket shot', to distinguish relevant details from details that a simple model can ignore.",
+    "Continue with NCERT Activity 1.1, 'Let us model', to build a model for bicycle travel time from school to home.",
+    "Use NCERT Example 1.2, 'How do we check predictions?', to turn a claim about rain into questions about measurable evidence and past patterns.",
+    "Use NCERT Example 1.3, estimating litres of air breathed in one day, to practise approximation, unit-aware multiplication, and a reasonableness check.",
+    "Conclude with NCERT Pause and Ponder 3, connecting at least two branches of science to a real-life object or problem."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "This introductory chapter has no separate end-of-chapter exercise section; its practice tasks are NCERT Example 1.1 to Example 1.3, Activity 1.1, and Pause and Ponder questions 1 to 3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

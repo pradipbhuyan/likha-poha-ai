@@ -1,0 +1,74 @@
+{
+  "grade": "Grade 11",
+  "subject": "Chemistry",
+  "chapter": "Structure of Atom",
+  "manifest_version": "1.0",
+  "manifest_status": "pilot",
+  "source": {
+    "book_code": "kech1",
+    "book_title": "NCERT Chemistry Part 1 (Grade 11)",
+    "source_pdf_files": ["kech102.pdf"],
+    "source_pdf_local_path": "~/Desktop/cbse_ncert_pdfs/Grade_11/Chemistry/kech102.pdf",
+    "ncert_unit_label": "Unit 2 - Structure of Atom",
+    "extraction_method": "Full text extracted directly from kech102.pdf and read word-by-word to build this manifest.",
+    "extraction_date": "2026-07-27"
+  },
+  "augmentation_policy": {
+    "subject_class": "science_or_maths",
+    "rule": "Chemistry is universal - pedagogy MAY be augmented from credible external sources, but any added FACT must be cited in external_augmentations.",
+    "external_augmentations": []
+  },
+  "central_question": "How did scientists develop the modern model of the atom, and how are electrons arranged inside it?",
+  "in_scope_units": [
+    "2.1 Discovery of sub-atomic particles: cathode ray experiments, Thomson e/m ratio, Millikan oil-drop charge, discovery of proton and neutron (Chadwick)",
+    "2.2 Atomic models: Thomson plum-pudding model; Rutherford alpha-scattering experiment and nuclear model; atomic number and mass number; isobars and isotopes; drawbacks of Rutherford model",
+    "2.3 Developments leading to Bohr model: electromagnetic radiation, c=v*lambda, Planck's quantum theory, photoelectric effect, atomic/line spectra, Rydberg equation",
+    "2.4 Bohr's model for hydrogen atom: postulates, orbit radius and energy formulas, explanation of hydrogen line spectrum, hydrogen-like species, limitations of Bohr model",
+    "2.5 Towards quantum mechanical model: de Broglie dual nature of matter, Heisenberg uncertainty principle",
+    "2.6 Quantum mechanical model of atom: Schrodinger equation (conceptual), quantum numbers (n, l, m_l, m_s), shapes of s/p/d orbitals, nodes, energies of orbitals, Aufbau principle (n+l rule), Pauli exclusion principle, Hund's rule, electronic configuration, stability of half-filled/fully-filled subshells"
+  ],
+  "banned_topics": [
+    "Density calculation from mass and volume (belongs to Some Basic Concepts of Chemistry)",
+    "Gas-volume / molar volume at STP calculations (belongs to Some Basic Concepts of Chemistry / States of Matter)",
+    "Percentage composition calculations (belongs to Some Basic Concepts of Chemistry)",
+    "Analytical balances / lab equipment for mass measurement (not in this NCERT chapter)",
+    "Mass vs weight lab discussion (not in this NCERT chapter)",
+    "Reactions at high temperature as a general topic (not in this NCERT chapter)",
+    "Second law of thermodynamics (belongs to Thermodynamics chapter)",
+    "Detailed periodic classification history - Dobereiner, Newlands, Mendeleev (belongs to Classification of Elements and Periodicity chapter)",
+    "s-block/p-block/d-block/f-block classification of the periodic table (belongs to Classification of Elements and Periodicity chapter)"
+  ],
+  "must_include_keywords": [
+    "cathode ray", "Thomson", "Millikan", "Chadwick", "Rutherford", "nucleus",
+    "isotope", "isobar", "electromagnetic radiation", "Planck", "photoelectric effect",
+    "Rydberg", "Bohr", "energy level", "de Broglie", "Heisenberg",
+    "orbital", "quantum number", "Aufbau", "Pauli", "Hund", "electronic configuration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Helium is a p-block element because it is placed in Group 18",
+      "correction": "Helium's electronic configuration is 1s^2, so by subshell it is s-block. It is placed in Group 18 with noble gases because its valence shell is complete and its chemical behaviour resembles theirs, not because of its block. (This distinction belongs to the Classification of Elements chapter, but the underlying configuration fact, 1s^2, is core Structure-of-Atom content.)"
+    },
+    {
+      "claim": "Electrons orbit the nucleus in fixed circular paths (stated as a final, modern fact)",
+      "correction": "This is only accurate as a description of the Bohr model. The modern quantum-mechanical model (NCERT section 2.6) describes electrons via orbitals, three-dimensional regions of high probability, not fixed circular orbits. NCERT explicitly distinguishes 'orbit' (Bohr, has no real meaning, cannot be demonstrated experimentally) from 'orbital' (quantum mechanical, wave function based) in its 'Orbit and orbital and its importance' box."
+    },
+    {
+      "claim": "A sample of nitrogen gas at STP weighs X mL, calculate percentage of nitrogen",
+      "correction": "This kind of question is dimensionally incorrect (mL measures volume, not weight) and belongs to mole-concept/gaseous-state calculations, not Structure of Atom. It must not appear in this chapter at all."
+    }
+  ],
+  "recommended_example_progression": [
+    "L1: Identify particles from given proton/neutron/electron counts (e.g. NCERT Problem 2.1 - Br-80: Z=35, A=80, neutrons=45)",
+    "L2: Determine element/ion identity and charge from proton/electron counts (e.g. NCERT Problem 2.2 - 16p/16n/18e is S^2-)",
+    "L3: Isotopes comparison (e.g. Cl-35 vs Cl-37, or protium/deuterium/tritium)",
+    "L4: Frequency/wavelength/wavenumber calculations using c = v*lambda (NCERT Problems 2.3-2.5)",
+    "L5: Photon energy and photoelectric effect calculations using E=hv and Einstein's equation (NCERT Problems 2.6-2.9)",
+    "L6: Bohr model energy/radius calculations for hydrogen and hydrogen-like species (NCERT Problems 2.10-2.11)",
+    "L7: de Broglie wavelength and Heisenberg uncertainty calculations (NCERT Problems 2.12-2.16)",
+    "L8: Quantum numbers validity and orbital counting (NCERT Problems 2.17-2.18)",
+    "L9: Electronic configuration writing, including exceptions like Cr and Cu (3d5 4s1, 3d10 4s1)"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "kech102.pdf exercises 2.1 to 2.67 cover this chapter's full numerical and conceptual range and should be the primary source for practice/exam-style questions - not externally invented numbers.",
+  "pilot_notes": "This manifest was authored by extracting and reading the full text of kech102.pdf word-by-word (per project condition: no AI creativity, faithful to source PDF). It is the Phase 0 pilot deliverable for the Lesson Content Quality Review Plan. Next steps: (1) build Tier A deterministic audit script that loads this manifest and scans the cached lesson_cache content for banned_topics/must_include_keywords/known_pitfalls matches, (2) manually author or constrain-regenerate corrected lesson content for this chapter using recommended_example_progression as structure."
+}

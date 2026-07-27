@@ -1,0 +1,132 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Tissues in Action",
+  "central_question": "How do the specialised structures of plant and animal tissues enable growth, transport, protection, coordination, support and movement through division of labour?",
+  "in_scope_units": [
+    "Cells, tissues, organs, organ systems and division of labour in multicellular organisms",
+    "Why plant and animal tissues differ in relation to movement, support, nutrition and growth",
+    "Meristematic tissues for plant growth: apical, lateral and intercalary meristems",
+    "Differentiation and the formation of permanent plant tissues",
+    "Protective, supporting and conducting plant tissues: epidermis, parenchyma, collenchyma, sclerenchyma, xylem and phloem",
+    "Dermal, ground and vascular tissue systems in plants",
+    "Animal epithelial tissue and the relation between its structure, location and function",
+    "Animal connective tissues: blood, bone, cartilage, tendons and ligaments",
+    "Muscular tissues: skeletal, smooth and cardiac muscles",
+    "Nervous tissue and the structure and function of a neuron",
+    "The musculoskeletal system and coordinated action of muscles, bones, tendons, ligaments and joints",
+    "Types of joints: ball-and-socket, hinge, pivot and fixed joints",
+    "The skeletal system: skull, vertebral column, rib cage, posture and bone-muscle health",
+    "Plant-cell totipotency, F. C. Steward's carrot-cell experiment, tissue culture and crown gall as applications of tissue science"
+  ],
+  "banned_topics": [
+    "Detailed structure and function of cell organelles, which belongs mainly to the preceding cell chapter",
+    "Detailed stages of mitosis and meiosis or chromosome behaviour",
+    "Complete mechanisms of photosynthesis, respiration, digestion or circulation",
+    "Detailed genetics, gene transfer techniques or molecular biotechnology beyond the chapter's brief applications",
+    "Clinical diagnosis and treatment of cancers, fractures, ligament injuries or blood disorders"
+  ],
+  "must_include_keywords": [
+    "tissue",
+    "division of labour",
+    "hierarchy of organisation",
+    "plant tissues",
+    "animal tissues",
+    "meristematic tissue",
+    "apical meristem",
+    "lateral meristem",
+    "intercalary meristem",
+    "differentiation",
+    "permanent tissue",
+    "epidermis",
+    "cuticle",
+    "stomata",
+    "transpiration",
+    "parenchyma",
+    "collenchyma",
+    "sclerenchyma",
+    "xylem",
+    "phloem",
+    "dermal tissue system",
+    "ground tissue system",
+    "vascular tissue system",
+    "epithelial tissue",
+    "connective tissue",
+    "blood",
+    "RBCs",
+    "WBCs",
+    "platelets",
+    "bone",
+    "cartilage",
+    "tendon",
+    "ligament",
+    "skeletal muscle",
+    "smooth muscle",
+    "cardiac muscle",
+    "nervous tissue",
+    "neuron",
+    "musculoskeletal system",
+    "ball-and-socket joint",
+    "hinge joint",
+    "pivot joint",
+    "fixed joint",
+    "vertebral column",
+    "rib cage",
+    "totipotency",
+    "F. C. Steward",
+    "Agrobacterium tumefaciens"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All meristematic tissue occurs only at root and shoot tips.",
+      "correction": "Apical meristems occur at root and shoot tips, lateral meristems occur along the circumference of stems, and intercalary meristems occur near nodes or at the base of internodes in plants such as grasses."
+    },
+    {
+      "claim": "Xylem transports food and phloem transports water.",
+      "correction": "Xylem transports water and minerals from roots, whereas phloem transports food from leaves to other parts of the plant."
+    },
+    {
+      "claim": "All permanent tissues are made of dead cells.",
+      "correction": "Permanent tissues may contain living or dead cells; parenchyma and collenchyma are living, while most sclerenchyma cells are dead."
+    },
+    {
+      "claim": "Parenchyma performs only storage.",
+      "correction": "Parenchyma mainly stores food, but it may also perform photosynthesis in green parts and form air spaces that help aquatic plants float."
+    },
+    {
+      "claim": "Tendons connect bone to bone and ligaments connect muscle to bone.",
+      "correction": "Tendons connect muscle to bone, while ligaments connect bone to bone and limit excessive movement."
+    },
+    {
+      "claim": "All muscle movements are under conscious control.",
+      "correction": "Skeletal muscle usually produces voluntary movement, whereas smooth and cardiac muscles produce involuntary movement."
+    },
+    {
+      "claim": "All epithelial tissues have many layers.",
+      "correction": "Epithelial structure varies with function; rapid exchange occurs through a single layer of thin, flat cells, while protective surfaces may have many layers."
+    },
+    {
+      "claim": "Joints move bones by themselves.",
+      "correction": "Joints permit movement, but muscles contract and pull on bones through tendons to produce movement."
+    },
+    {
+      "claim": "A scientific tissue must always contain only one kind of cell.",
+      "correction": "Simple tissues contain one main cell type, while complex tissues such as xylem and phloem contain several cell types working together."
+    },
+    {
+      "claim": "Every mature plant cell permanently loses the ability to divide.",
+      "correction": "Some mature plant cells can dedifferentiate, divide and redifferentiate under suitable conditions, showing totipotency."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 3.1 and Fig. 3.2 to infer that apical meristem at root tips causes increase in length.",
+    "Use Pause and Ponder 1 and Revise, Reflect, Refine Q9 and Q12 to compare collenchyma, sclerenchyma and parenchyma through flexibility and strength.",
+    "Use Activity 3.2 and Activity 3.3 to connect daily observations with blood, bone, cartilage, tendon and ligament functions.",
+    "Use Activity 3.5 and Revise, Reflect, Refine Q4-Q6 to relate body movements to muscles and joint types.",
+    "Use Revise, Reflect, Refine Q7 and Table 3.7 to connect annual rings, stem diameter and lateral meristem.",
+    "Conclude with the Think as a Scientist investigation and Table 3.6 on F. C. Steward's carrot-cell culture and totipotency."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's end-of-chapter practice appears under 'Revise, Reflect, Refine' as Questions 1-15, followed by 'The Journey Beyond' and 'The Quest Continues'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
