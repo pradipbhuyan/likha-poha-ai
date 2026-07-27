@@ -35,7 +35,7 @@ export default function BlogPostPage({ slug, onShowLogin, onShowSignup, onBack }
           </button>
           <button onClick={() => onShowSignup?.("free")}
             style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "7px 16px", borderRadius: 8, fontSize: ".85rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-            Try Today
+            Try for Free
           </button>
         </div>
       </nav>
@@ -89,10 +89,10 @@ export default function BlogPostPage({ slug, onShowLogin, onShowSignup, onBack }
         {/* CTA */}
         <div style={{ marginTop: 48, background: "linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.1))", border: "1px solid rgba(99,102,241,.25)", borderRadius: 16, padding: "28px 24px", textAlign: "center" }}>
           <h3 style={{ margin: "0 0 8px", color: "#f1f5f9" }}>Start Learning with Likha Poha AI</h3>
-          <p style={{ color: "#94a3b8", marginBottom: 18, fontSize: ".9rem" }}>AI-powered CBSE tutoring for Class 5–10 · ₹299/month</p>
+          <p style={{ color: "#94a3b8", marginBottom: 18, fontSize: ".9rem" }}>AI-powered CBSE tutoring for Grade 5–12 · ₹299/month</p>
           <button onClick={() => onShowSignup?.("free")}
             style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "12px 28px", borderRadius: 10, fontSize: ".95rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-            🚀 Try Today — Free Trial
+            🚀 Try for Free
           </button>
         </div>
       </article>

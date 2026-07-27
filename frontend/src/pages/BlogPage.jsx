@@ -29,7 +29,7 @@ export default function BlogPage({ onShowLogin, onShowSignup, onViewPost }) {
           </button>
           <button onClick={() => onShowSignup?.("free")}
             style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "7px 16px", borderRadius: 8, fontSize: ".85rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-            Try Today
+            Try for Free
           </button>
         </div>
       </nav>
@@ -104,10 +104,10 @@ export default function BlogPage({ onShowLogin, onShowSignup, onViewPost }) {
       {/* Footer CTA */}
       <div style={{ background: "linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.1))", borderTop: "1px solid rgba(99,102,241,.2)", padding: "40px 24px", textAlign: "center" }}>
         <h3 style={{ margin: "0 0 10px", fontSize: "1.4rem" }}>Ready to start learning smarter?</h3>
-        <p style={{ color: "#94a3b8", marginBottom: 20 }}>AI-powered CBSE tutoring for Class 5–10</p>
+        <p style={{ color: "#94a3b8", marginBottom: 20 }}>AI-powered CBSE tutoring for Grade 5–12</p>
         <button onClick={() => onShowSignup?.("free")}
           style={{ background: "linear-gradient(135deg,#2563eb,#7c3aed)", border: "none", color: "#fff", padding: "13px 32px", borderRadius: 11, fontSize: "1rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
-          🚀 Try Likha Poha AI Free
+          🚀 Try for Free
         </button>
       </div>
     </div>

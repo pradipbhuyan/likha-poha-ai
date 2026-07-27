@@ -105,9 +105,9 @@ describe("SignupPage — single-step card-based", () => {
     expect(screen.queryByTestId("signup-terms")).not.toBeInTheDocument();
   });
 
-  test("submit button says 'Start for Free'", () => {
+  test("submit button says 'Try for Free'", () => {
     render(<SignupPage onLogin={onLogin} onBack={onBack} />);
-    expect(screen.getByTestId("signup-submit")).toHaveTextContent("Start for Free");
+    expect(screen.getByTestId("signup-submit")).toHaveTextContent("Try for Free");
   });
 
   test("validation: missing name shows error", async () => {

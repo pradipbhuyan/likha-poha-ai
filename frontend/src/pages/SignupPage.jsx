@@ -32,8 +32,17 @@ const STREAM_OPTIONS = [
 
 const GRADE_11_12 = new Set(["Grade 11", "Grade 12"]);
 
-export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
+// Paid plans a visitor can arrive here having already picked on the pricing
+// section. Keys match shared/config/subscriptionPlans.js. "free" is the
+// default and shows no banner — nothing was actually chosen.
+const SELECTED_PLAN_LABELS = {
+  starter: { label: "Premium", price: "₹299/month" },
+  family_premium: { label: "Family Premium", price: "₹499/month" },
+};
+
+export default function SignupPage({ onLogin, onBack, onBackToLogin, initialPlan }) {
   const handleBack = onBackToLogin || onBack;
+  const selectedPlan = SELECTED_PLAN_LABELS[initialPlan] || null;
   const [role, setRole]         = useState("parent");
   const [grade, setGrade]       = useState("Grade 9");
   const [stream, setStream]     = useState("");
@@ -122,7 +131,11 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
         if (pd) { profile = pd; break; }
         await new Promise(r => setTimeout(r, 500));
       }
-      const targetPage = role === "parent" ? "parentDashboard" : "dashboard";
+      // A visitor who picked a paid plan on the pricing section lands on
+      // Subscription to finish that choice, instead of the free dashboard.
+      const targetPage = selectedPlan
+        ? "subscriptionPlans"
+        : role === "parent" ? "parentDashboard" : "dashboard";
       const userData = {
         id: authData.user.id,
         email: email.trim(),
@@ -207,7 +220,8 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
           <h1>Learn smarter with AI.</h1>
           <p>
             Personalized CBSE preparation with AI-powered lessons, quizzes,
-            analytics, narration, and doubt solving. Class 5–10.
+            analytics, narration, and doubt solving. Grade 5–12, plus JEE,
+            NEET, CUET, SAT, IELTS &amp; TOEFL prep.
           </p>
           <div className="ait-feature-list">
             {["Personalized Lessons", "Smart Doubt Solving", "Practice & Tests", "Progress Analytics"].map(f => (
@@ -224,9 +238,23 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
         <div className="ait-login-right signup-right-panel">
           <div className="ait-form-card" data-testid="signup-form-card">
 
+            {selectedPlan && (
+              <div
+                data-testid="signup-selected-plan"
+                style={{
+                  display: "inline-block", background: "linear-gradient(135deg,#4f46e5,#7c3aed)",
+                  color: "#fff", fontWeight: 700, fontSize: ".8rem", padding: "8px 14px",
+                  borderRadius: 10, marginBottom: 16,
+                }}
+              >
+                ✓ Selected plan: {selectedPlan.label} — {selectedPlan.price}
+              </div>
+            )}
             <h2 style={{ marginBottom: 4 }}>Create your account</h2>
             <p style={{ marginBottom: 20, color: "var(--text-muted,#64748b)", fontSize: ".88rem" }}>
-              Choose your role and get started. Free forever.
+              {selectedPlan
+                ? `Create your free account first — you'll complete ${selectedPlan.label} right after.`
+                : "Choose your role and get started. Free forever."}
             </p>
 
             {/* Role cards */}
@@ -389,7 +417,7 @@ export default function SignupPage({ onLogin, onBack, onBackToLogin }) {
                 className="ait-btn-primary"
                 style={{ width: "100%", padding: "11px", borderRadius: 9, fontWeight: 700, fontSize: "1rem", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, background: "#6366f1", color: "#fff", border: "none" }}
               >
-                {loading ? "Creating account…" : "Start for Free"}
+                {loading ? "Creating account…" : "Try for Free"}
               </button>
 
               {/* Google Sign-Up divider */}
