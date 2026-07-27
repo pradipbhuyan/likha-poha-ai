@@ -488,7 +488,7 @@ function StudentSubscriptionView({ user, plans, planOrder, contact, loading, onS
             <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 14 }}>
               <div className="premium-card premium-glow-card glow-blue">
                 <h3>📚 All Lessons</h3>
-                <p>5-step AI lessons for every CBSE chapter, Class 5–10. Audio, visuals, and practice included.</p>
+                <p>5-step AI lessons for every CBSE chapter, Grade 5–12. Audio, visuals, and practice included.</p>
               </div>
               <div className="premium-card premium-glow-card glow-purple">
                 <h3>❓ Unlimited Ask Doubts</h3>
@@ -864,7 +864,7 @@ function SubscriptionPlansPage({ user, onSubscriptionComplete }) {
       { icon: "📊", label: "Student Analytics Dashboard", free: "✅ Available", paid: "✅ Available" },
       { icon: "🧪", label: "Question Bank (for test papers)", free: "✅ Available", paid: "✅ Full bank" },
       { icon: "❓", label: "Ask Doubt (AI-assisted)", free: "Limited tokens", paid: "Unlimited" },
-      { icon: "🎒", label: "All CBSE Class 5–10", free: "✅ Available", paid: "✅ Available" },
+      { icon: "🎒", label: "All CBSE Grade 5–12", free: "✅ Available", paid: "✅ Available" },
     ];
 
     return (
