@@ -1,0 +1,114 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "The Mathematics of Maybe: Introduction to Probability",
+  "central_question": "How can we measure and reason about uncertainty objectively using probability, data, sample spaces, events, and tree diagrams?",
+  "in_scope_units": [
+    "7.1 What is Probability? — probability as a measure of likelihood, uncertainty, chance, random events, and subjective estimates.",
+    "7.1.1 What is Randomness? — random experiments, trials, known possible outcomes, and unpredictability of a single result.",
+    "7.1.2 The Probability Scale — locating events from 0 to 1 as impossible, less likely, even chance, more likely, or certain.",
+    "7.2 Measuring Probability Objectively — using evidence from experience and theoretical reasoning to estimate probability.",
+    "7.2.1 Experimental Probability: Performing Observations or Experiments — outcomes, trials, relative frequency, and probability from observed results.",
+    "7.2.2 Theoretical Probability — favourable outcomes divided by all equally likely possible outcomes in a fair situation.",
+    "7.2.3 Analysing Statistical Data Using Probability — using samples to estimate population behaviour, sample size, representation, and sampling.",
+    "Law of Large Numbers, Gambler’s Fallacy, and Fair and Unbiased Trials — long-run behaviour, independence, and why past random results do not alter the next fair trial.",
+    "7.3 Elements of Probability: Sample Spaces and Events — representing all possible outcomes and selecting subsets that describe events.",
+    "7.3.1 Sample Space — notation S, complete non-repeating outcome lists, sample size, and n(S).",
+    "7.3.2 Events — single outcomes or groups of outcomes treated as subsets of a sample space.",
+    "7.4 Tree Diagrams — visualising multi-step experiments, listing complete outcomes, and calculating event probabilities.",
+    "Exercise Sets 7.1–7.4 and End-of-Chapter Exercises 1–16 — qualitative rankings, experimental and theoretical calculations, sampling, sample spaces, events, and tree-diagram applications."
+  ],
+  "banned_topics": [
+    "Formal permutations and combinations methods",
+    "Conditional probability notation and Bayes’ theorem",
+    "Probability distributions, expected value, variance, and standard deviation",
+    "Binomial, normal, or other named probability distributions",
+    "Advanced statistical inference, confidence intervals, and hypothesis testing"
+  ],
+  "must_include_keywords": [
+    "probability",
+    "likelihood",
+    "uncertainty",
+    "chance",
+    "random event",
+    "subjective probability",
+    "randomness",
+    "random experiment",
+    "trial",
+    "outcome",
+    "probability scale",
+    "impossible event",
+    "certain event",
+    "equally likely",
+    "experimental probability",
+    "relative frequency",
+    "theoretical probability",
+    "favourable outcomes",
+    "possible outcomes",
+    "statistical probability",
+    "sample",
+    "population",
+    "sampling",
+    "representative sample",
+    "Law of Large Numbers",
+    "Gambler’s Fallacy",
+    "independent event",
+    "fair coin",
+    "unbiased",
+    "sample space",
+    "sample size",
+    "n(S)",
+    "event",
+    "subset",
+    "tree diagram",
+    "multi-step experiment",
+    "with replacement",
+    "without replacement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Probability tells us exactly what will happen on the next trial.",
+      "correction": "Probability measures likelihood and describes long-run expectations; it does not determine the exact result of a single random trial."
+    },
+    {
+      "claim": "Any situation with two possible outcomes gives each outcome probability 1/2.",
+      "correction": "The value 1/2 is justified only when the two outcomes are equally likely, as with a fair, unbiased coin."
+    },
+    {
+      "claim": "Experimental probability must always equal theoretical probability.",
+      "correction": "Experimental probability may differ from theoretical probability, especially for a small number of trials; it tends to get closer as the number of trials increases."
+    },
+    {
+      "claim": "After several heads in a row, tails becomes more likely on the next fair coin toss.",
+      "correction": "This is Gambler’s Fallacy; each fair coin toss is independent, so the probability of tails remains 1/2."
+    },
+    {
+      "claim": "A sample space may omit unlikely outcomes or list the same outcome more than once.",
+      "correction": "A sample space must contain every possible outcome exactly once and must match the level of detail required by the problem."
+    },
+    {
+      "claim": "HH, HT, TH, and TT can be reduced to only HH, one mixed result, and TT when two coins are tossed.",
+      "correction": "When the two coins or two toss positions are distinguished, HT and TH are separate outcomes, so the sample space is {HH, HT, TH, TT}."
+    },
+    {
+      "claim": "An event and an outcome always mean the same thing.",
+      "correction": "An outcome is one possible result, while an event may contain one outcome or a group of outcomes and is a subset of the sample space."
+    },
+    {
+      "claim": "A small or biased sample always gives a dependable estimate for the full population.",
+      "correction": "A larger and more representative sample generally gives a more reliable estimate of the population than a small or unrepresentative sample."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Exercise Set 7.1 Q1 to place everyday events on the probability scale from impossible to certain.",
+    "Use Example 2 to calculate experimental probability and relative frequency from 8 occurrences in 50 die rolls.",
+    "Use Examples 3 and 4 to calculate theoretical probability for a fair die and for selecting the letter B from PROBABILITY.",
+    "Use Example 5 to connect statistical probability, a sample of 50 students, a population of 1500 students, and the estimate of 600 mango preferences.",
+    "Use Example 6 to confront Gambler’s Fallacy and reinforce independence of repeated fair die rolls.",
+    "Use the sample-space examples in Section 7.3 and End-of-Chapter Exercise 4(i) to distinguish outcomes, events, and favourable outcomes.",
+    "Finish with Example 7 and Exercise Set 7.4 to build tree diagrams for multi-step experiments and calculate probabilities from complete paths."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Use the section titled “End-of-Chapter Exercises”, Questions 1–16, after Exercise Set 7.4; it covers definitions, relative frequency, equally likely outcomes, sample spaces, tree diagrams, replacement, and mixed probability applications.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
