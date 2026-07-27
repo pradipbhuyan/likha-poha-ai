@@ -1,0 +1,102 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Exploring Algebraic Identities",
+  "central_question": "How can algebraic identities be visualised, proved, and used to expand, factorise, simplify, and solve mathematical expressions efficiently?",
+  "in_scope_units": [
+    "4.1 Introduction — recognising numerical patterns and using algebra to explain why they always hold.",
+    "4.2 Visualising Identities — distinguishing identities from equations and deriving (a + b)² = a² + 2ab + b² through area models and distributivity.",
+    "4.3 Factorisation of Algebraic Expressions Using Identities — recognising perfect-square forms, taking common factors, deriving (a − b)², and using identities for quick calculations.",
+    "4.4 More Identities — developing (a + b + c)², revisiting a² − b² = (a + b)(a − b), and applying identities to numerical squares and algebraic factorisation.",
+    "4.5 Factorisation Using Algebra Tiles — representing products and quadratic factorisation through rectangular arrangements of x²-tiles, x-tiles, and unit tiles.",
+    "4.6 Factorisation Without Using Algebra Tiles — splitting the middle term by finding numbers with the required sum and product, including positive and negative cases.",
+    "4.7 Finding New Identities — deriving cube identities, sum and difference of cubes, and x³ + y³ + z³ − 3xyz through distributivity and geometric models.",
+    "4.8 Simplifying Rational Expressions — factorising numerator and denominator, cancelling only non-zero common factors, and applying factorisation to geometric and real-life problems."
+  ],
+  "banned_topics": [
+    "General solution of quadratic equations by the quadratic formula",
+    "Graphs of quadratic polynomials and parabolas",
+    "Remainder theorem and factor theorem as separate polynomial theorems",
+    "Polynomial division algorithms",
+    "Advanced binomial theorem for arbitrary powers",
+    "Complex-number algebra"
+  ],
+  "must_include_keywords": [
+    "algebraic identity",
+    "equation",
+    "distributive property",
+    "geometrical model",
+    "area model",
+    "algebra tiles",
+    "perfect-square trinomial",
+    "common factor",
+    "factorisation",
+    "splitting the middle term",
+    "sum and product of factors",
+    "(a + b)²",
+    "(a − b)²",
+    "(a + b + c)²",
+    "difference of squares",
+    "(x + a)(x + b)",
+    "(ax + b)(cx + d)",
+    "(a + b)³",
+    "(a − b)³",
+    "sum of cubes",
+    "difference of cubes",
+    "x³ + y³ + z³ − 3xyz",
+    "cube model",
+    "rational expression",
+    "numerator",
+    "denominator",
+    "non-zero restriction",
+    "consecutive square numbers",
+    "Śhrīdharāchārya",
+    "quick numerical calculation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An identity is just any equation containing variables.",
+      "correction": "An algebraic identity is an equation that is true for all allowed values of its variables; an ordinary equation may be true only for particular values."
+    },
+    {
+      "claim": "(a + b)² = a² + b².",
+      "correction": "The correct identity is (a + b)² = a² + 2ab + b²; the middle term 2ab comes from the two rectangles in the area model."
+    },
+    {
+      "claim": "(a − b)² = a² − b².",
+      "correction": "The correct identity is (a − b)² = a² − 2ab + b², while a² − b² factorises as (a + b)(a − b)."
+    },
+    {
+      "claim": "Any two factors of the constant term can be used when factorising x² + bx + c.",
+      "correction": "The chosen numbers must have product c and sum b; both conditions must be satisfied at the same time."
+    },
+    {
+      "claim": "In a perfect-square trinomial, matching the first and last square terms is enough.",
+      "correction": "The middle term must also equal +2ab or −2ab, depending on whether the factor is (a + b)² or (a − b)²."
+    },
+    {
+      "claim": "A common term may be cancelled directly from a sum in a rational expression.",
+      "correction": "Only common factors of the entire numerator and denominator may be cancelled, and the cancelled factor must be non-zero."
+    },
+    {
+      "claim": "The signs in (a − b)³ are all negative after the first term.",
+      "correction": "The signs alternate: (a − b)³ = a³ − 3a²b + 3ab² − b³."
+    },
+    {
+      "claim": "The identity x³ + y³ + z³ − 3xyz can always be simplified to zero.",
+      "correction": "It equals (x + y + z)(x² + y² + z² − xy − xz − yz), so it is zero only when one of these factors is zero."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Textbook Example 1: test three consecutive square numbers and then prove algebraically why the result is always 2.",
+    "Use Textbook Examples 2–4 and Exercise Set 4.1 Q1(i): verify and apply (a + b)² with negative numbers, rational numbers, algebraic terms, and 43².",
+    "Continue with Textbook Examples 5–8 and Exercise Set 4.2 Q1(i): recognise perfect-square trinomials, take a common factor, derive (a − b)², and evaluate 29².",
+    "Use Textbook Example 9 and Exercise Set 4.3 Q3(i): expand a three-term square and connect the algebra to the geometric model in Fig. 4.4.",
+    "Use Textbook Examples 10–12 and Exercise Set 4.4 Q1(i): factor quadratics by matching the sum and product needed for the split middle term.",
+    "Use Textbook Examples 13–15: recognise cube identities and apply x³ + y³ + z³ − 3xyz to a structured numerical problem.",
+    "Finish with Textbook Examples 16–18 and Exercise Set 4.5 Q1(vi): simplify rational expressions under denominator restrictions and apply factorisation to dimensions and area."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an 'End-of-Chapter Exercises' section containing Questions 1–13, followed by the chapter summary and the complete list of identities studied.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

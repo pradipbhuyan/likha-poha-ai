@@ -1,0 +1,134 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "The World of Numbers",
+  "central_question": "How did the idea of number expand from simple counting to the complete real number line, and how can we recognise, represent, and operate on each kind of number?",
+  "in_scope_units": [
+    "3.1 The Dawn of Mathematics: the human need to count through one-to-one correspondence and natural numbers",
+    "3.1.1 A History Written in Bone: tally marks, the Lebombo Bone, and the Ishango bone",
+    "3.1.2 The Indian Context: trade, astronomy, place value, and powers of 10",
+    "3.2 The Revolution of Śhūnya: the emergence of zero as a number",
+    "3.2.1 From Philosophy to Mathematics: the idea of Śhūnyatā and its mathematical influence",
+    "3.2.2 The Bakhśhālī Manuscript and Brahmagupta’s rules for zero",
+    "3.3 Integers: positive numbers, negative numbers, zero, fortunes, and debts",
+    "3.3.1 The Arithmetic of Integers: signed-number operations using Brahmagupta’s rules",
+    "3.4 Filling the Spaces: fractions, rational numbers, equivalent forms, arithmetic laws, closure, commutativity, and distributivity",
+    "3.4.1 Representation of Rational Numbers on the Number Line: locating fractions, absolute value, and distance",
+    "3.4.2 The Density of Rational Numbers: finding infinitely many rationals between two rationals",
+    "3.5 Irrational Numbers: numbers that cannot be expressed as a ratio of integers",
+    "3.5.1 The Proof of Irrationality of √2 using proof by contradiction",
+    "3.5.2 Construction of Length √n: locating irrational lengths on the number line",
+    "3.5.3 The Story of Pi and Mādhava’s Infinite Series",
+    "3.6 Real Numbers: combining rational and irrational numbers on a continuous number line",
+    "3.6.1 Rational Decimals: terminating and repeating expansions, prediction from denominator factors, and conversion to p/q",
+    "3.6.2 The Magic of Cyclic Numbers: the repeating block 142857 from 1/7",
+    "3.6.3 Irrational Decimals: non-terminating, non-repeating expansions",
+    "3.7 Conclusion: the nested development of natural numbers, integers, rational numbers, irrational numbers, and real numbers"
+  ],
+  "banned_topics": [
+    "Detailed arithmetic with imaginary or complex numbers beyond the chapter’s brief note that √−1 is not a real number",
+    "The complex plane, modulus and argument of complex numbers",
+    "Formal convergence tests or advanced analysis of infinite series",
+    "Advanced number theory beyond the prime-number and divisibility ideas directly used in the chapter",
+    "Surds and radical algebra beyond proving irrationality and constructing lengths of the form √n"
+  ],
+  "must_include_keywords": [
+    "one-to-one correspondence",
+    "Natural Numbers",
+    "Lebombo Bone",
+    "Ishango bone",
+    "prime numbers",
+    "powers of 10",
+    "place value",
+    "Śhūnya",
+    "Śhūnyatā",
+    "Bakhśhālī Manuscript",
+    "Brahmagupta",
+    "zero",
+    "Integers",
+    "negative numbers",
+    "Dhana",
+    "Ṛiṇa",
+    "Rational Numbers",
+    "p/q",
+    "q ≠ 0",
+    "equivalent rational numbers",
+    "co-prime",
+    "closure",
+    "commutative law",
+    "distributive law",
+    "number line",
+    "absolute value",
+    "distance |a − b|",
+    "density of rational numbers",
+    "average (a + b)/2",
+    "Irrational Numbers",
+    "proof by contradiction",
+    "√2",
+    "Baudhāyana–Pythagoras Theorem",
+    "π",
+    "Mādhava’s infinite series",
+    "Real Numbers",
+    "terminating decimal",
+    "repeating decimal",
+    "prime factors 2 and 5",
+    "cyclic number 142857",
+    "non-terminating non-repeating decimal"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Natural numbers include every number shown on the number line, including zero and negative numbers.",
+      "correction": "In this chapter, natural numbers are the counting numbers {1, 2, 3, …}; zero and negative numbers are included only when the system is extended to integers."
+    },
+    {
+      "claim": "Zero is only a placeholder and cannot be used in arithmetic.",
+      "correction": "The chapter treats zero as a number: a − a = 0, a + 0 = a, a − 0 = a, and a × 0 = 0."
+    },
+    {
+      "claim": "A rational number may have denominator zero.",
+      "correction": "A rational number has the form p/q where p and q are integers and q ≠ 0; division by zero is not allowed."
+    },
+    {
+      "claim": "Every rational number has one unique fractional representation.",
+      "correction": "Equivalent fractions such as −1/3, −2/6, and −10/30 represent the same rational number; the lowest form uses co-prime numerator and denominator."
+    },
+    {
+      "claim": "Rational numbers are closed under division without any restriction.",
+      "correction": "Rational numbers are closed under division only when the divisor is non-zero."
+    },
+    {
+      "claim": "There are no rational numbers between two consecutive rational numbers.",
+      "correction": "Rational numbers are dense; between any two rational numbers a and b, their average (a + b)/2 is another rational number, and the process can be repeated indefinitely."
+    },
+    {
+      "claim": "A non-terminating decimal must be irrational.",
+      "correction": "A rational decimal may be non-terminating if it repeats; irrational decimals are non-terminating and non-repeating."
+    },
+    {
+      "claim": "Any denominator gives a terminating decimal after reducing the fraction.",
+      "correction": "For p/q in lowest terms, the decimal terminates precisely when the prime factors of q are only 2, only 5, or both 2 and 5."
+    },
+    {
+      "claim": "0.999… is slightly less than 1.",
+      "correction": "The chapter shows algebraically that 0.999… is exactly equal to 1."
+    },
+    {
+      "claim": "√2 is rational because it has a decimal approximation.",
+      "correction": "A decimal approximation does not make a number rational; the contradiction proof shows √2 cannot equal p/q in lowest terms."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Exercise Set 3.1 Q2 on the Ishango sequence 11, 13, 17, 19 to connect tally records with prime numbers.",
+    "Use Exercise Set 3.2 Q1 to model a temperature drop with integers and signed subtraction.",
+    "Use Exercise Set 3.3 Q2(i) to practise addition of rational numbers with unlike denominators.",
+    "Use Example 1 and Figure 3.8 to connect absolute value with distance on the number line.",
+    "Use Exercise Set 3.4 Q2 to find rational numbers between −1/2 and 1/4 and reinforce density.",
+    "Follow the chapter’s proof in Section 3.5.1 to establish the irrationality of √2 by contradiction.",
+    "Use Figure 3.11 to construct and locate √2 on the number line.",
+    "Use Example 5 and Example 7 to convert pure and general repeating decimals into p/q form.",
+    "Finish with Exercise Set 3.5 Q1 and End-of-Chapter Exercise 11 to classify terminating and repeating decimals from denominator factors."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with an ‘End-of-Chapter Exercises’ section containing Questions 1–16, covering decimal expansions, irrationality proofs, p/q conversion, number-line representation, density, rational-number equations, and the square-root spiral.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
