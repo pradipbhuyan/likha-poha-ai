@@ -59,6 +59,10 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
   ];
   return (
     <div className="lp">
+      {/* Non-sticky anchor target for the footer "Home" link — putting id="home"
+          directly on the sticky nav breaks native anchor-scroll, since a
+          stuck element's getBoundingClientRect().top is already 0. */}
+      <div id="home" style={{ position: "absolute" }} aria-hidden="true" />
       <nav className="lp-nav">
         <div className="lp-logo"><img src={logoImg} alt="LikhaPoha AI" /><span>LikhaPoha AI</span></div>
         <div className="lp-nav-r">
@@ -257,7 +261,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
         <p style={{fontSize:"1rem",fontWeight:700,marginBottom:"12px"}}>LikhaPoha AI</p>
         <p>AI-Powered Tutor for CBSE &middot; Grade 5&ndash;12 &middot; JEE &middot; NEET &middot; CUET &middot; SAT &middot; IELTS &middot; TOEFL</p>
         <div style={{marginTop:"16px"}}>
-          <a href="#">Home</a>
+          <a href="#home">Home</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="/blog">Blog</a>
@@ -266,7 +270,7 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <a href="/privacy-policy">Privacy Policy</a>
           <a href="/terms-of-service">Terms of Service</a>
         </div>
-        <p style={{marginTop:"20px"}}>&copy; 2026 LikhaPoha AI &middot; Made with <Heart size={13} color="#ef4444" fill="#ef4444" style={{display:"inline",verticalAlign:"middle"}}/> in India</p>
+        <p style={{marginTop:"20px"}}>&copy; {new Date().getFullYear()} LikhaPoha AI &middot; Made with <Heart size={13} color="#ef4444" fill="#ef4444" style={{display:"inline",verticalAlign:"middle"}}/> in India</p>
       </footer>
     </div>
   );

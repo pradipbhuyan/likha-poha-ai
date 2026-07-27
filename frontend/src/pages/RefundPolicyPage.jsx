@@ -122,7 +122,7 @@ export default function RefundPolicyPage({ onBackToHome }) {
         </Section>
 
         <div style={{marginTop:60,paddingTop:24,borderTop:"1px solid #334155",textAlign:"center",color:"#64748b",fontSize:".85rem"}}>
-          &copy; 2026 Likha Poha AI &middot; Made with ❤ in India
+          &copy; {new Date().getFullYear()} Likha Poha AI &middot; Made with ❤ in India
         </div>
       </div>
     </div>
