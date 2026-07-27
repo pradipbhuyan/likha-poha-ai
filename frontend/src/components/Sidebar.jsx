@@ -396,6 +396,7 @@ function Sidebar({
       label: "Platform Walkthrough",
       icon: Video,
       roles: ["student", "parent", "teacher", "sales"],
+      hideForAdmin: true,
       group: "Help & Account",
     },
     {
@@ -403,6 +404,7 @@ function Sidebar({
       label: "Subscription",
       icon: CreditCard,
       roles: ["student", "parent", "teacher"],
+      hideForAdmin: true,
       group: "Help & Account",
     },
     {

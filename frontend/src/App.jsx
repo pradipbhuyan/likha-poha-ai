@@ -59,7 +59,6 @@ import FormulaSheetPage from "./pages/FormulaSheetPage";
 import AdminQACenterPage from "./pages/AdminQACenterPage";
 import AdminIssuesPage from "./pages/AdminIssuesPage";
 import ReportIssueModal from "./components/ReportIssueModal";
-import FeatureAuthAuditPage from "./pages/FeatureAuthAuditPage";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Users, GraduationCap, AlertTriangle, Atom, Microscope, FlaskConical, Briefcase, Landmark, ChevronDown, CreditCard, KeyRound, LogOut } from "lucide-react";
 import { PAGE_ICONS } from "./utils/pageIcons";
@@ -88,7 +87,6 @@ import AdminLessonCardPage from "./pages/AdminLessonCardPage";
 import AdminCacheManagementPage from "./pages/AdminCacheManagementPage";
 import AdminProductCataloguePage from "./pages/AdminProductCataloguePage";
 import AdminPaymentsPage from "./pages/AdminPaymentsPage";
-import AdminOperationsPage from "./pages/AdminOperationsPage";
 import LandingPage from "./pages/LandingPage";
 import ChatWidget from "./components/ChatWidget";
 import PlatformChat from "./components/PlatformChat";
@@ -147,11 +145,6 @@ const PAGE_META = {
     title: "Learn More",
     subtitle: "Explore free videos and learning resources for each chapter.",
     icon: "🎥",
-  },
-  featureAuthAudit: {
-    title: "Feature Authorization Audit",
-    subtitle: "Verify feature access across all plans, roles and scenarios. Catches Free Tier premium leakage.",
-    icon: "🔐",
   },
   adminIssues: {
     title: "Product Bugs",
@@ -1650,8 +1643,6 @@ function App() {
         return <AdminQACenterPage user={user} setActivePage={handlePageChange} />;
       case "adminIssues":
         return <AdminIssuesPage user={user} setActivePage={handlePageChange} />;
-      case "featureAuthAudit":
-        return <FeatureAuthAuditPage user={user} />;
       case "lessons":
         return <LessonsPage user={user} setActivePage={handlePageChange} />;
       case "doubt":
@@ -1716,8 +1707,6 @@ function App() {
         return <ChangePasswordPage user={user} />;
       case "paymentLogs":
         return <AdminPaymentsPage user={user} />;
-      case "adminOperations":
-        return <AdminOperationsPage user={user} />;
       case "unansweredReview":
         return <AdminUnansweredQuestionsPage user={user} />;
       case "lessonRepair":
