@@ -1,0 +1,117 @@
+{
+  "grade": "Grade 9",
+  "subject": "Social Science",
+  "chapter": "The Price Puzzle: What Drives the Market",
+  "central_question": "How do demand, supply, changing market conditions, and government intervention together determine the prices and availability of goods and services?",
+  "in_scope_units": [
+    "Chapter opening and big questions: everyday price changes and the role of demand and supply in markets",
+    "Demand: willingness and ability to buy, purchasing power, the Law of Demand, individual demand, demand schedules, and demand curves",
+    "Market demand: aggregation of individual demand and comparison of individual and market demand curves",
+    "Other determinants of demand: substitute and complementary goods, income, tastes, population, diminishing marginal utility, seasonality, and future price expectations",
+    "Supply: willingness and ability to offer goods, the Law of Supply, individual supply, supply schedules, and supply curves",
+    "Market supply: aggregation of individual sellers' supplies and comparison of individual and market supply curves",
+    "Other determinants of supply: related-goods prices, number of sellers, technology, input conditions, weather, disasters, and future expectations",
+    "Market equilibrium: interaction of demand and supply, shortage, surplus, equilibrium price, and equilibrium quantity",
+    "Real-world equilibrium and dynamic markets: changing equilibrium, the COVID-19 mask example, hotel tariffs, and sustainability of future supply",
+    "Role of government in the economy: fairness, equity, regulation of unfair practices, price ceilings, price floors, monopolies, and market regulators",
+    "Provision of public goods: roads, parks, streetlighting, defence, sanitation, drainage, and the neighbourhood park example",
+    "Limitations of government intervention: price distortions, reduced producer incentives, compliance burdens, and discouraged innovation and entrepreneurship",
+    "Chapter consolidation and Questions and activities 1-12: application, classification, field observation, and graph-based analysis"
+  ],
+  "banned_topics": [
+    "Detailed national income, GDP, and economic growth accounting",
+    "Advanced price elasticity calculations and elasticity formulas",
+    "Full theory of perfect competition, oligopoly, and monopolistic competition beyond the chapter's brief discussion of monopoly",
+    "Production Possibility Curves and opportunity cost from the preceding chapter",
+    "Political and physical maps and image-credit pages appended after the chapter"
+  ],
+  "must_include_keywords": [
+    "demand",
+    "purchasing power",
+    "Law of Demand",
+    "individual demand",
+    "market demand",
+    "demand schedule",
+    "demand curve",
+    "substitute goods",
+    "complementary goods",
+    "income",
+    "taste and preference",
+    "population composition",
+    "diminishing marginal utility",
+    "seasonality",
+    "future price expectations",
+    "supply",
+    "Law of Supply",
+    "individual supply",
+    "market supply",
+    "supply schedule",
+    "supply curve",
+    "number of sellers",
+    "technology",
+    "input costs",
+    "market equilibrium",
+    "equilibrium price",
+    "equilibrium quantity",
+    "excess demand",
+    "shortage",
+    "excess supply",
+    "surplus",
+    "dynamic markets",
+    "price ceiling",
+    "price floor",
+    "monopoly",
+    "public goods",
+    "hoarding",
+    "black marketing",
+    "compliance burdens",
+    "innovation and entrepreneurship"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Demand means any desire to own a product.",
+      "correction": "Demand requires both willingness and the ability or purchasing power to buy a product at a particular price."
+    },
+    {
+      "claim": "The Law of Demand says price and quantity demanded move in the same direction.",
+      "correction": "The Law of Demand describes an inverse relationship: when price rises, quantity demanded falls, and when price falls, quantity demanded rises, other factors being constant."
+    },
+    {
+      "claim": "Market demand is the demand of the largest buyer.",
+      "correction": "Market demand is the sum of the individual demands of all potential buyers at each price."
+    },
+    {
+      "claim": "Substitute goods are used together.",
+      "correction": "Substitute goods replace each other, while complementary goods are generally used together."
+    },
+    {
+      "claim": "Supply always falls when price rises.",
+      "correction": "The Law of Supply states that quantity supplied generally rises when price rises and falls when price falls."
+    },
+    {
+      "claim": "Market equilibrium means demand and supply never change again.",
+      "correction": "Equilibrium is the point where quantity demanded equals quantity supplied, but real markets keep adjusting as conditions change."
+    },
+    {
+      "claim": "A price ceiling below equilibrium creates a surplus.",
+      "correction": "A price ceiling below the market-driven price is likely to create excess demand or shortage."
+    },
+    {
+      "claim": "Government intervention has no possible disadvantages.",
+      "correction": "Excessive intervention can distort prices, reduce producer incentives, create compliance burdens, and discourage innovation and entrepreneurship."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the NCERT Srivalli mango demand example in Fig. 9.2 to show the inverse price-quantity relationship.",
+    "Use NCERT Table 9.1 to add Srivalli, Alex, and Israt and derive market demand.",
+    "Use NCERT Fig. 9.4 and Table 9.2 to move from individual supply to market supply.",
+    "Use NCERT Table 9.3 and Fig. 9.7 to identify excess demand, equilibrium at ₹100 and 12 kg, and excess supply.",
+    "Apply NCERT Questions and activities Q3 to show how drip irrigation changes costs, willingness to supply, and market supply.",
+    "Apply NCERT Questions and activities Q5 to explain why a maximum vaccine price below the market price can create shortage.",
+    "Use NCERT Questions and activities Q11 and Fig. 9.8 to interpret equilibrium, surplus, and shortage on a graph.",
+    "Finish with NCERT Questions and activities Q12 to calculate equilibrium and compare outcomes at ₹20 and ₹40."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The end-of-chapter section is titled 'Questions and activities' and contains Questions 1-12 on pages 210-213.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
