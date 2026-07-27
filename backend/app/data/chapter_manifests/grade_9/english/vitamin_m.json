@@ -1,0 +1,110 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Vitamin-M",
+  "central_question": "How can a family care for an older person without taking away dignity and independence, and what do memory, affection, and family bonds reveal about who truly needs \"Vitamin-M\"?",
+  "in_scope_units": [
+    "Reflect and Respond: caring for the elderly, prior vocabulary, and family traditions passed down by older relatives",
+    "Reading for Meaning I: Grandpa's move to Ravi's home, Vidya's worries, Grandpa's wish for independence, and Ravi's dilemma",
+    "Check Your Understanding after Reading for Meaning I: reasons, attitudes, evidence, and prediction",
+    "Reading for Meaning II: Ravi secretly follows Grandpa through the park, tea stall, barber shop, bus stop, and bus",
+    "Check Your Understanding after Reading for Meaning II: sequencing Grandpa's day out and inferring Ravi's feelings",
+    "Reading for Meaning III: Ravi finds Grandpa safe, the birthday-gift reversal, the detective-book clue, and the title's irony",
+    "Check Your Understanding after Reading for Meaning III: affection, generosity, and Grandpa's possible awareness of Ravi's actions",
+    "Critical Reflection: extract-based comprehension, character traits, evidence, age-based bias, and the question of who needs Vitamin-M",
+    "Vocabulary and Structures in Context: movement and sound words, synonyms and antonyms, emotions, prepositions, interrogatives, direct speech, and reported speech",
+    "Listen and Respond: listening for exact words in a podcast on meditation",
+    "Speaking Activity: question intonation and a structured presentation about caring for an older person",
+    "Writing Task: a four-paragraph school-magazine article titled \"Our Inspiring Elderly\"",
+    "Learning Beyond the Text: identifying Grandpa's walking stick, creating a family-photo slideshow, and reading the supplementary story \"The Lost Child\""
+  ],
+  "banned_topics": [
+    "The poem \"I Cannot Remember My Mother\" and its sensory imagery, symbolism, refrain, diary-writing task, and related exercises, because it begins the next lesson after \"Vitamin-M\"",
+    "The poem \"I Remember, I Remember\", because it belongs to the later lesson on childhood memories rather than to \"Vitamin-M\""
+  ],
+  "must_include_keywords": [
+    "caring for the elderly",
+    "Ravi",
+    "Grandpa",
+    "Vidya",
+    "Vitamin-M",
+    "memory",
+    "dignity",
+    "independence",
+    "age-based bias",
+    "city bustle",
+    "small brick house",
+    "mango tree",
+    "chess",
+    "Tamil newspaper",
+    "bright-yellow cap",
+    "mahogany walking stick",
+    "brass eagle's-head handle",
+    "children's park",
+    "paper-cone of peanuts",
+    "tea stall",
+    "barber shop",
+    "bus",
+    "detective",
+    "birthday gifts",
+    "irony",
+    "movement words",
+    "sound words",
+    "prepositions",
+    "interrogative sentences",
+    "direct speech",
+    "reported speech",
+    "intonation",
+    "meditation podcast",
+    "Our Inspiring Elderly",
+    "The Lost Child",
+    "roundabout",
+    "parents"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Vitamin-M is a real medicine prescribed to Grandpa.",
+      "correction": "Vitamin-M is an imaginary memory vitamin suggested by Ravi's mother; the title becomes ironic when Grandpa remembers his birthday while she forgets it."
+    },
+    {
+      "claim": "Grandpa is helpless and unable to remember anything.",
+      "correction": "Grandpa has had memory-related difficulties, but he remembers many chess games, remembers his birthday custom, reaches home safely, and may even realise that Ravi followed him."
+    },
+    {
+      "claim": "Vidya stops Grandpa from going out only because she wants to control him.",
+      "correction": "Vidya is anxious because Grandpa previously took a double dose of medicine, got lost during a walk, and lay outside all night after falling in his garden."
+    },
+    {
+      "claim": "Ravi openly disobeys his mother and does not care about Grandpa's safety.",
+      "correction": "Ravi lets Grandpa leave because he does not want to hurt his dignity, but follows him secretly at a safe distance to protect him."
+    },
+    {
+      "claim": "Ravi proves to be a completely successful detective.",
+      "correction": "Ravi follows Grandpa with determination, but he is repeatedly embarrassed, mistakes a stranger for Grandpa, and loses track of him."
+    },
+    {
+      "claim": "Grandpa forgets that Ravi's birthday was three months earlier.",
+      "correction": "Grandpa knows it is his own birthday and follows his custom of giving a gift to every \"child\" in the house; Vidya is the one who has forgotten the date."
+    },
+    {
+      "claim": "Grandpa's walking stick has an ordinary curved handle.",
+      "correction": "The story describes a shiny-black mahogany walking stick with a brass handle carved in the shape of an eagle's head."
+    },
+    {
+      "claim": "In \"The Lost Child\", the child continues to ask for sweets, balloons, flowers, music, and the roundabout after he is separated from his parents.",
+      "correction": "After becoming lost, the child rejects every attraction and repeatedly asks only for his mother and father."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Reflect and Respond I: complete the \"Caring for the Elderly\" organiser using only problems, reasons, and forms of care suggested by the chapter's situations.",
+    "Use NCERT Check Your Understanding I–IV after Reading for Meaning I (p. 102) to connect Grandpa's dislike of city life, Vidya's concern, Ravi's attitude, and Ravi's promise.",
+    "Sequence the comic chase through NCERT Check Your Understanding I, the Grandpa's-day-out flow chart (p. 106).",
+    "Practise inference through NCERT Check Your Understanding I–III after Reading for Meaning III (p. 109), especially the detective-book gift and Grandpa's twinkling eye.",
+    "Move to exam-style evidence with NCERT Critical Reflection I, Extracts 1 and 2, and Critical Reflection II, Questions 1–8 (pp. 109–111).",
+    "Apply language skills through NCERT Vocabulary and Structures in Context V–VII (pp. 114–116): prepositions, interrogatives, and reported speech.",
+    "Finish with communication tasks from NCERT Speaking Activity II, Writing Task I, and Learning Beyond the Text III, \"The Lost Child\" (pp. 118–125)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "There is no single separately numbered end-of-chapter exercise; the chapter's assessment and extension tasks run from the three \"Check Your Understanding\" sets through \"Critical Reflection\", \"Vocabulary and Structures in Context\", \"Listen and Respond\", \"Speaking Activity\", \"Writing Task\", and \"Learning Beyond the Text\" on textbook pages 102–125.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

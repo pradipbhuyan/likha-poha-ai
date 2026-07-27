@@ -1,0 +1,120 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Follow That Dream",
+  "central_question": "How can a person pursue changing dreams with realistic planning, sustained effort, support, courage, and belief in oneself?",
+  "in_scope_units": [
+    "Reflect and Respond: personal dreams, sources of inspiration, qualities needed for fulfilment, and the role of parents and community",
+    "Reading for Meaning: Irene Chua's letter to Ming about passion, commitment, sacrifice, support networks, obstacles, and dreams that change over time",
+    "Check Your Understanding: true-or-false comprehension of the mother's advice about dedication, costs, difficulty, support, and wishful thinking",
+    "Critical Reflection on the letter: extract-based interpretation, tone, analogy, inference, intrinsic motivation, and extended responses",
+    "Vocabulary and Structures in Context: compound words ending in -scape, expressions from the letter, the first conditional with an imperative, functions of could, and grammatical forms in experiential learning",
+    "Listen and Respond: an announcement about vocational courses and exact-word listening practice",
+    "Speaking Activity: a four-role discussion among a dreamer, parent, mentor or teacher, and friend or sibling",
+    "Writing Task: a formal email enquiring about a summer design workshop",
+    "Learning Beyond the Text: creating a vision board and examining parental inspiration through Jijabai and Queen Madalasa",
+    "Believe in Yourself – Reflect and Respond: emotions before a challenge, taking the first step, self-belief, and the meaning of status quo",
+    "Reading for Appreciation: Robert Langley's poem about challenge, fear, comfort, change, the first step, and self-belief",
+    "Check Your Understanding of the poem: stanza-wise central ideas, rhyme scheme, tone, speaker, direct address, imagery, symbolism, metaphor, and antithesis",
+    "Critical Reflection on the poem: extract-based questions and evaluation of self-belief in real-world struggles",
+    "Vocabulary in Context: Latin expressions used in English and rhetorical questions",
+    "Listen and Respond: a conversation about nervousness, preparation, self-doubt, confidence, and growth",
+    "Speaking Activity: proverbs applied through explanation, real-life situations, and role play",
+    "Writing Task: a persuasive morning-assembly speech on turning challenges into opportunities",
+    "Learning Beyond the Text: examples of Dr. B. R. Ambedkar, Lal Bahadur Shastri, and Dr. APJ Abdul Kalam, followed by Dorothy Hewitt's poem 'Always Believe in Yourself'"
+  ],
+  "banned_topics": [
+    "Postal services, Gramin Dak Sewaks, Khetaram, philately, and the poem 'Words', which belong to the chapter 'Carrier of Words'",
+    "Scientific or psychological theories about sleep, dreams, or dream interpretation that are not discussed in the chapter",
+    "Detailed biographies or achievements of historical personalities beyond the facts supplied in the chapter",
+    "Specific vocational-course schedules or answers from the listening transcript on page 275, because that transcript is not included in the supplied chapter text"
+  ],
+  "must_include_keywords": [
+    "Irene Chua",
+    "Ming",
+    "My Daughter, My Friend",
+    "passion",
+    "conviction",
+    "imperative",
+    "effort",
+    "financial investment",
+    "sacrifice",
+    "plunge",
+    "uphill",
+    "buoyed up",
+    "stamina",
+    "prospect of success",
+    "support network",
+    "wishful thinking",
+    "wet blanket",
+    "dreamscape",
+    "maze of hurdles",
+    "first conditional",
+    "imperative clause",
+    "could",
+    "experiential learning",
+    "formal email",
+    "vision board",
+    "Jijabai",
+    "Queen Madalasa",
+    "Believe in Yourself",
+    "Robert Langley",
+    "status quo",
+    "self-belief",
+    "rhyme scheme ABCB",
+    "direct address",
+    "imagery",
+    "symbolism",
+    "metaphor",
+    "antithesis",
+    "rhetorical question",
+    "Dr. B. R. Ambedkar",
+    "Lal Bahadur Shastri",
+    "Dr. APJ Abdul Kalam",
+    "Always Believe in Yourself"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The mother tells Ming to follow a dream immediately without considering its demands.",
+      "correction": "She encourages Ming to follow the dream, but first to count the years of effort, financial investment, sacrifice, and obstacles involved."
+    },
+    {
+      "claim": "The letter says that talent alone produces world-class achievement.",
+      "correction": "The letter stresses singular and intensive pursuit for at least ten years, together with effort, sacrifice, commitment, stamina, and support."
+    },
+    {
+      "claim": "A support network prevents a person from becoming independent and therefore acts as a hurdle.",
+      "correction": "The Academy Awards example shows that a winner is often supported by a group of people who stand by the person."
+    },
+    {
+      "claim": "If a dream changes with age or circumstances, the later dream is less valuable.",
+      "correction": "The mother states that later hopes and aspirations are no less than the original dream of younger days."
+    },
+    {
+      "claim": "The expression 'wishful thinking' means a carefully planned and realistic goal.",
+      "correction": "In the chapter, it means a hopeful wish that does not move into committed action and may be unlikely to become true."
+    },
+    {
+      "claim": "The poem says that remaining comfortable and preserving the status quo leads to growth.",
+      "correction": "The poem says that comfort makes the status quo easy to maintain, but that this is not how people grow."
+    },
+    {
+      "claim": "The line 'The first step is the hardest' refers only to a literal physical step.",
+      "correction": "It is a metaphor for the difficulty of beginning a challenge or making a change."
+    },
+    {
+      "claim": "The chapter presents self-belief as the only factor needed to overcome every real-world obstacle.",
+      "correction": "The poem highlights self-belief, while the letter also stresses planning, effort, sacrifice, support, stamina, and realistic assessment of circumstances."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Check Your Understanding I (Follow That Dream), statements 1–7, to separate accurate ideas about dedication, cost, support, obstacles, and wishful thinking from inaccurate ones.",
+    "Move to NCERT Critical Reflection I.1 and I.2 (Follow That Dream) to practise analogy, inference, tone, intrinsic motivation, and the idea that dreams evolve.",
+    "Apply language through NCERT Vocabulary and Structures in Context I–V: -scape compounds, expressions, first conditional with an imperative, and the functions of 'could'.",
+    "Analyse NCERT Check Your Understanding I–VIII (Believe in Yourself) for stanza ideas, ABCB rhyme scheme, tone, speaker, imagery, symbolism, metaphor, and antithesis.",
+    "Finish with NCERT Critical Reflection I–II and the Writing Task 'Turning Challenges into Opportunities' to connect textual evidence, self-belief, realistic struggle, and persuasive communication."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter's assessed and applied exercises run through the named sections Check Your Understanding, Critical Reflection, Vocabulary and Structures/Vocabulary in Context, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text across pages 234–258 of the supplied text.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

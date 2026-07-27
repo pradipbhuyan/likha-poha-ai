@@ -1,0 +1,138 @@
+{
+  "grade": "Grade 9",
+  "subject": "English",
+  "chapter": "Carrier of Words",
+  "central_question": "How do carriers of messages and carefully chosen words connect people, sustain communities, and communicate feelings with meaning?",
+  "in_scope_units": [
+    "Reflect and Respond for Carrier of Words: recognising postal workers, considering the difficulties and effects of their work, and using desert-related vocabulary in context",
+    "Reading for Meaning I: Khetaram's work as the Gramin Dak Sewak of Somarad Branch Post Office, his route through the Thar, and the physical hardships of delivering mail",
+    "Reading for Meaning I–wider postal role: GDS territories, the post-independence mandate of India Post, rural post-office accounts, and public trust in the postal system",
+    "Check Your Understanding after Reading for Meaning I: completing Khetaram's identity information and discussing his motivation and feelings",
+    "Reading for Meaning II: GDS service conditions, Khetaram's assured income, famine and bajra, money orders, village trust, letter reading and reply writing, BSF support, and the delivery of good and bad news",
+    "Check Your Understanding and Critical Reflection for the prose: explaining Khetaram's actions, the value of GDS, the purpose of India Post, and the author's tribute",
+    "Vocabulary and Structures in Context for the prose: contextual phrases, alliteration, metaphor, descriptive vocabulary, present perfect tense, and active and passive voice",
+    "Listen and Respond for the prose: listening for details about a letter-writing event without inventing answers not supplied in the chapter text",
+    "Speaking Activity for the prose: comparing the utility, cost, privacy, writing space, and enclosure possibilities of a postcard, inland letter, envelope, and money order form",
+    "Writing Task for the prose: understanding and drafting a condolence message",
+    "Learning Beyond the Text for the prose: Daakroom, philately, postage-stamp categories, and the concise nature of telegrams",
+    "Words–Reflect and Respond and Reading for Appreciation: examining verbal and non-verbal communication and reading Charles Swain's poem on sincere and empty words",
+    "Check Your Understanding and poetic appreciation for Words: summary completion, rhyme scheme, simile, metaphor, repetition, exclamation, hyperbole, rhythm, metre, and stressed syllables",
+    "Critical Reflection and Vocabulary in Context for Words: interpreting the heart as a pilgrim, meaningful speech, loneliness, figurative phrases, and word maps",
+    "Listen and Respond and Speaking Activity for Words: considering body language and explaining a selected quotation about words, thought, silence, or perseverance",
+    "Writing Task and Learning Beyond the Text for Words: planning a five-paragraph quotation essay, playing a non-verbal game, noting Charles-Michel de l'Épée, and reading Weigh Your Words"
+  ],
+  "banned_topics": [
+    "A detailed history of postal services outside the facts stated in this chapter",
+    "Technical explanations of mobile networks, BSNL infrastructure, or telecommunications engineering",
+    "Invented biographical details about Khetaram, Panna Devi, Bhawar Singh, or other named people",
+    "Answers to the listening exercises on pages 215–216 and 227 unless the prescribed transcripts are supplied",
+    "A complete general history of sign language beyond the chapter's note on Charles-Michel de l'Épée",
+    "Postal rates, modern courier-company comparisons, or current India Post statistics not present in the chapter",
+    "Poems about communication that are not included in the chapter"
+  ],
+  "must_include_keywords": [
+    "Khetaram",
+    "Gramin Dak Sewak",
+    "Somarad Branch Post Office",
+    "Thar desert",
+    "dhaanis",
+    "Indo-Pakistan border",
+    "Barmer–Chohtan road",
+    "mailbag",
+    "mojri",
+    "sandstorms",
+    "India Post",
+    "mailing ambit",
+    "rural depositors",
+    "money orders",
+    "bajra",
+    "famine",
+    "Mulk Raj Anand",
+    "Story of the Indian Post Office",
+    "BSF",
+    "Ashubh Samachar",
+    "torn corner",
+    "Gramin Sanchar Sewak",
+    "social fabric",
+    "present perfect tense",
+    "active voice",
+    "passive voice",
+    "alliteration",
+    "metaphor",
+    "condolence message",
+    "Daakroom",
+    "philately",
+    "telegram",
+    "Words",
+    "Charles Swain",
+    "summer birds",
+    "heart as a pilgrim",
+    "hosts of words",
+    "hyperbole",
+    "rhythm and metre",
+    "non-verbal communication"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Khetaram delivers mail by bicycle through the desert.",
+      "correction": "The Barmer–Chohtan road crumbles into sand so soft that even bicycles cannot ply; Khetaram reaches the remote dhaanis on foot."
+    },
+    {
+      "claim": "Khetaram works only near the town of Barmer.",
+      "correction": "He serves far-flung hamlets near the Indo-Pakistan border, beyond the last railhead, phone connection, and usable road described in the text."
+    },
+    {
+      "claim": "The rule allows Khetaram to carry any weight of mail if delivery is urgent.",
+      "correction": "The text states that regulations stipulate that his load cannot exceed 28 kilos."
+    },
+    {
+      "claim": "A temperature of 49.9 degrees Celsius automatically creates a state holiday.",
+      "correction": "The text says a recorded temperature of 50 degrees Celsius would mean a state holiday; 49.9 degrees Celsius does not reach that recorded threshold."
+    },
+    {
+      "claim": "The British postal system and post-independence India Post had the same purpose.",
+      "correction": "The British system relayed company dak between administrative centres, whereas India Post after independence aimed to bring the entire population within the mailing ambit."
+    },
+    {
+      "claim": "The villagers trust Khetaram only to hand over sealed letters.",
+      "correction": "They also ask him to read letters aloud and draft replies, showing personal trust in him."
+    },
+    {
+      "claim": "Khetaram carries a death notice into the family's house and leaves it there.",
+      "correction": "He stands outside, reads the torn-corner letter twice, and then tears it to bits because he believes bad news must be destroyed."
+    },
+    {
+      "claim": "Philately means collecting stamps and requires owning a stamp collection.",
+      "correction": "The chapter defines philately as the study of postage stamps and postal history and states that a philatelist need not own stamps."
+    },
+    {
+      "claim": "The present perfect tense is formed with has or have plus the simple past form.",
+      "correction": "The chapter gives the structure as has/have plus the past participle, or third form, of the verb."
+    },
+    {
+      "claim": "Charles Swain's poem says that all words are useless.",
+      "correction": "The poem contrasts empty or excessive words with a few sincere words, which can impart deeper joy and cheer a lonely home."
+    },
+    {
+      "claim": "The comparison of words to summer birds means that words always remain in the listener's memory.",
+      "correction": "The comparison suggests that empty words may depart and leave only empty air."
+    },
+    {
+      "claim": "Non-verbal communication has no place in a chapter about words.",
+      "correction": "The chapter directly explores body language, gestures, emojis, and Dumb Charades as ways of communicating without spoken words."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with NCERT Reflect and Respond III for Carrier of Words by placing \"signals\", \"dunes\", \"hamlets\", \"defying\", \"slumped\", and \"devoid\" in the desert passage.",
+    "Move to NCERT Check Your Understanding after Reading for Meaning I, Question I, by completing Khetaram's identity-card information from the prose.",
+    "Use NCERT Critical Reflection for the prose, Extract 2, Questions (i)–(v), to interpret the torn corner, the twice-read death notice, and Khetaram's philosophy about bad news.",
+    "Practise grammar with NCERT Vocabulary and Structures in Context IV and V by completing the present-perfect stamp paragraph and changing Khetaram's advice into passive constructions.",
+    "Apply functional writing through the NCERT Writing Task on page 218 by drafting a condolence message using the model on page 217.",
+    "Begin the poem study with NCERT Check Your Understanding for Words, Question I, by completing the summary using exact words from the poem.",
+    "Advance to NCERT Let Us Appreciate the Poem, Questions II–IV, to identify poetic devices, hyperbole, rhyme, rhythm, metre, and stressed syllables.",
+    "Conclude with NCERT Critical Reflection for Words, Question II, and the quotation-essay Writing Task on pages 228–229, linking sincere language with responsible communication."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter has no single numbered end-of-chapter block; exercises are distributed across Reflect and Respond, Check Your Understanding, Critical Reflection, Vocabulary and Structures in Context, Listen and Respond, Speaking Activity, Writing Task, and Learning Beyond the Text on pages 203–230.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
