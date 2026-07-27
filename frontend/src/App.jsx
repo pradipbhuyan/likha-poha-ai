@@ -65,6 +65,7 @@ import { PAGE_ICONS } from "./utils/pageIcons";
 import UsagePage from "./pages/UsagePage";
 import ParentDashboardPage from "./pages/ParentDashboardPage";
 import AdminControlPage from "./pages/AdminControlPage";
+import AdminOperationsPage from "./pages/AdminOperationsPage";
 import SubscriptionPlansPage from "./pages/SubscriptionPlansPage";
 import AdminSubscriptionSettingsPage from "./pages/AdminSubscriptionSettingsPage";
 import AdminPricingCalculatorPage from "./pages/AdminPricingCalculatorPage";
@@ -1639,6 +1640,8 @@ function App() {
         return <FormulaSheetPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
         return <AdminControlPage user={user} />;
+      case "adminOperations":
+        return <AdminOperationsPage user={user} />;
       case "adminQACenter":
         return <AdminQACenterPage user={user} setActivePage={handlePageChange} />;
       case "adminIssues":
