@@ -7,7 +7,7 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const INITIAL_MESSAGE = {
   role: "bot",
-  text: "Hi! 👋 I'm Likha Poha AI's assistant. Ask me anything about our CBSE tutoring platform — grades, subjects, pricing, or how to get started!",
+  text: "Hi! 👋 I'm Likha Poha AI's assistant. Ask me anything about our CBSE tutoring platform — grades, subjects, pricing, Exam Prep Center, or how to get started!",
 };
 
 // All FAQ topics from the landing page — preloaded as clickable chips
@@ -15,12 +15,15 @@ const QUICK_CHIPS = [
   "Which classes are supported?",
   "How much does it cost?",
   "How do lessons work?",
-  "Is there a free trial?",
+  "What is the Exam Prep Center?",
+  "Do you have offer codes?",
   "Is the AI safe for children?",
   "What subjects are available?",
   "How many practice questions are available?",
   "What does the Parent Dashboard show?",
   "How do I add a child?",
+  "What are Board Papers?",
+  "What is the Study Planner?",
   "Is there a mobile app?",
   "Does the AI use real NCERT textbooks?",
   "How do I reset my password?",

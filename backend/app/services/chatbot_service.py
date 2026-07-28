@@ -31,9 +31,10 @@ PLATFORM_FAQ: list[dict] = [
             "child is actually learning.\n\n"
             "The platform was built on a simple idea — *what if a student had a patient "
             "AI teacher available any time, one that actually uses their NCERT textbook?*\n\n"
-            "Today, LikhaPoha AI supports Class 5 to Class 10 CBSE students across all "
-            "core subjects with step-wise AI lessons, instant doubt answering, 70,000+ "
-            "practice questions, mock tests, and a real-time parent dashboard.\n\n"
+            "Today, LikhaPoha AI supports **Class 5 to Class 12 CBSE** students — including "
+            "a Grade 11–12 Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and "
+            "TOEFL iBT — with step-wise AI lessons, instant doubt answering, 90,000+ practice "
+            "questions, mock tests, and a real-time parent dashboard.\n\n"
             "It is an independent, affordable AI learning companion built for Indian families."
         ),
         "suggestions": ["Which grades are supported?", "How much does it cost?", "How do lessons work?"],
@@ -44,11 +45,12 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["what is likhapoha", "what is this", "about this platform",
                      "tell me about", "what does this do", "what is likhap"],
         "answer": (
-            "**LikhaPoha AI** is an AI-powered CBSE tutor for Class 5–10 students in India.\n\n"
+            "**LikhaPoha AI** is an AI-powered CBSE tutor for Class 5–12 students in India.\n\n"
             "It gives your child:\n"
             "- 📚 Step-wise AI lessons grounded in NCERT textbooks\n"
             "- 🤖 Instant doubt solving from the actual textbook\n"
-            "- 📝 70,000+ CBSE practice questions and mock tests\n"
+            "- 📝 90,000+ CBSE practice questions and mock tests\n"
+            "- 🎯 A Grade 11–12 Exam Prep Center for JEE, NEET, CUET, SAT, IELTS & TOEFL iBT\n"
             "- 👨‍👩‍👧 Parent dashboard with real-time progress tracking\n\n"
             "Everything works on any phone browser — no app download needed."
         ),
@@ -59,14 +61,18 @@ PLATFORM_FAQ: list[dict] = [
     {
         "keywords": ["which grade", "which class", "what grade", "what class",
                      "class 5", "class 6", "class 7", "class 8", "class 9", "class 10",
+                     "class 11", "class 12", "grade 11", "grade 12",
                      "supported grade",
-                     "which standard", "std 9", "std 10", "grades supported",
+                     "which standard", "std 9", "std 10", "std 11", "std 12", "grades supported",
                      "classes supported", "does it support"],
         "answer": (
-            "LikhaPoha AI supports **Class 5 to Class 10** for CBSE.\n\n"
+            "LikhaPoha AI supports **Class 5 to Class 12** for CBSE.\n\n"
             "**Class 5–10:** Science, Maths, English, Social Science, Hindi\n\n"
+            "**Class 11–12:** Choose a stream — Science (PCM), Science (PCB/PCMB), "
+            "Commerce, or Arts/Humanities — plus a dedicated **Exam Prep Center** for "
+            "JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT.\n\n"
         ),
-        "suggestions": ["What subjects are available?", "How do lessons work?", "How much does it cost?"],
+        "suggestions": ["What subjects are available?", "What is the Exam Prep Center?", "How much does it cost?"],
     },
 
     # ── Subjects ──────────────────────────────────────────────────────────────
@@ -74,13 +80,103 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["which subject", "what subject", "subjects available",
                      "maths", "science", "english", "hindi", "social science",
                      "physics", "chemistry", "biology", "economics", "history",
-                     "geography", "political science", "accountancy", "business"],
+                     "geography", "political science", "accountancy", "business",
+                     "stream", "pcm", "pcb", "commerce", "humanities"],
         "answer": (
             "**Class 5–10 subjects:**\n"
             "Science · Mathematics · English · Social Science · Hindi\n\n"
-            "no generic internet answers."
+            "**Class 11–12 subjects** (pick a stream at signup):\n"
+            "- **Science (PCM):** Physics, Chemistry, Mathematics, English, Hindi\n"
+            "- **Science (PCB / PCMB):** Physics, Chemistry, Biology (+ Maths for PCMB), English, Hindi\n"
+            "- **Commerce:** Mathematics, Business Studies, Accountancy, Economics, English, Hindi\n"
+            "- **Arts / Humanities:** History, Geography, Political Science, Sociology, English, Hindi\n\n"
+            "Every lesson and answer is grounded in the actual NCERT textbook — no generic internet answers."
         ),
-        "suggestions": ["Which grades are supported?", "How do lessons work?", "What is RAG?"],
+        "suggestions": ["Which grades are supported?", "How do lessons work?", "What is the Exam Prep Center?"],
+    },
+
+    # ── Exam Prep Center (Grade 11-12) ────────────────────────────────────────
+    {
+        "keywords": ["exam prep center", "exam prep", "jee", "neet", "cuet",
+                     "sat", "ielts", "toefl", "competitive exam", "entrance exam",
+                     "jee main", "neet ug", "cuet ug"],
+        "answer": (
+            "The **Exam Prep Center** (Grade 11 & 12) covers six exams:\n\n"
+            "- 📐 **JEE Main** — NTA-style simulator, Physics/Chemistry/Maths question bank\n"
+            "- 🔬 **NEET UG** — Physics/Chemistry/Biology with NCERT-exact terminology\n"
+            "- 🏛️ **CUET UG** — All streams: Science, Commerce, Humanities\n"
+            "- 🎓 **Digital SAT** — Reading & Writing, Math (adaptive-format practice)\n"
+            "- 🌐 **IELTS Academic** — Listening, Reading, Writing & Speaking with band-score guidance\n"
+            "- 📡 **TOEFL iBT** — Authentic academic passages and lecture-style listening\n\n"
+            "Each exam has subject-wise topic-priority cards, a curated MCQ question bank, "
+            "and **simulated full-length tests** with a floating countdown timer and question "
+            "palette — just like the real exam interface.\n\n"
+            "It's **included in the Premium plan at no extra cost** for Grade 11–12 students. "
+            "JEE, NEET, and CUET can also be bought as standalone prep packs (₹399–₹499) if "
+            "you're not on Premium."
+        ),
+        "suggestions": ["How much does it cost?", "What is the Study Planner?", "Which grades are supported?"],
+    },
+
+    # ── Board Papers ──────────────────────────────────────────────────────────
+    {
+        "keywords": ["board paper", "previous year paper", "past paper", "pyq",
+                     "sample paper", "10 years"],
+        "answer": (
+            "**Board Papers** gives students **10 years of real CBSE board question papers** "
+            "with answers, by grade and subject.\n\n"
+            "- Read papers question-by-question or attempt them as a **timed 3-hour test**\n"
+            "- Get instant scoring plus AI explanations for every answer\n"
+            "- Track your attempt history across years to see improvement\n\n"
+            "Included in the Premium and Family Premium plans."
+        ),
+        "suggestions": ["How do mock tests work?", "What is the Study Planner?", "How much does it cost?"],
+    },
+
+    # ── Study Planner ──────────────────────────────────────────────────────────
+    {
+        "keywords": ["study planner", "study plan", "exam countdown", "revision schedule",
+                     "study schedule", "daily plan", "day plan"],
+        "answer": (
+            "The **AI Study Planner** builds a day-by-day revision schedule leading up to "
+            "an exam date (CBSE boards, JEE, NEET, CUET, SAT, IELTS, or TOEFL).\n\n"
+            "- Live countdown to your exam date with today's recommended task\n"
+            "- AI-generated week-by-week plan (revision, practice, formula review, mock tests)\n"
+            "- Daily checklist so you can mark tasks done or skipped and stay on track\n\n"
+            "Great for students who know their exam date and want a structured lead-up plan."
+        ),
+        "suggestions": ["What is the Exam Prep Center?", "How do mock tests work?", "How much does it cost?"],
+    },
+
+    # ── Exemplar / Formula library ─────────────────────────────────────────────
+    {
+        "keywords": ["exemplar", "formula sheet", "formula library", "concepts library",
+                     "cheat sheet", "quick revision sheet"],
+        "answer": (
+            "**Exemplar Research & Lessons** — AI-taught lessons based on NCERT Exemplar "
+            "problems (the tougher, HOTS-style questions), for extra depth beyond the regular "
+            "textbook.\n\n"
+            "**Formula & Concepts library** — a searchable, syllabus-aligned sheet of every "
+            "formula (Maths, Physics, Chemistry) or key concept (Biology) for your grade, with "
+            "worked examples and quick tips.\n\n"
+            "Free Tier users get a preview; full access (with worked examples) is part of "
+            "Premium and Family Premium."
+        ),
+        "suggestions": ["How much does it cost?", "How do lessons work?", "What is the Exam Prep Center?"],
+    },
+
+    # ── Gamification ─────────────────────────────────────────────────────────
+    {
+        "keywords": ["badge", "leaderboard", "streak", "xp", "level", "rank",
+                     "gamification", "achievement", "points"],
+        "answer": (
+            "LikhaPoha AI's **gamified dashboard** keeps students motivated:\n\n"
+            "- 🏆 **XP, levels, and achievement badges** for completing lessons and tests\n"
+            "- 🔥 **Daily streaks** for consistent study habits\n"
+            "- 📊 **Class leaderboard** to see how you rank against classmates\n\n"
+            "It turns everyday revision into something students actually want to keep up with."
+        ),
+        "suggestions": ["How do lessons work?", "What does the Parent Dashboard show?", "How much does it cost?"],
     },
 
     # ── How lessons work ──────────────────────────────────────────────────────
@@ -124,9 +220,10 @@ PLATFORM_FAQ: list[dict] = [
     # ── Mock tests ────────────────────────────────────────────────────────────
     {
         "keywords": ["mock test", "practice test", "question bank", "practice question",
-                     "test", "exam prep", "mcq", "how many questions", "70000"],
+                     "test", "mcq", "how many questions", "90000", "70000"],
         "answer": (
-            "LikhaPoha AI has **70,000+ CBSE practice questions** across all grades and subjects.\n\n"
+            "LikhaPoha AI has **90,000+ practice questions** across Grade 5–12 CBSE subjects — "
+            "plus dedicated question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT.\n\n"
             "**Mock Test Studio lets students:**\n"
             "- Choose subject, chapter, difficulty (Easy / Medium / Hard)\n"
             "- Set number of questions and time limit\n"
@@ -156,7 +253,7 @@ PLATFORM_FAQ: list[dict] = [
 
     # ── Add child ─────────────────────────────────────────────────────────────
     {
-        "keywords": ["add child", "create child", "second child", "child account",
+        "keywords": ["add child", "add a child", "create child", "second child", "child account",
                      "add student", "how many children", "two children", "multiple children",
                      "create student", "student account", "child login"],
         "answer": (
@@ -174,7 +271,7 @@ PLATFORM_FAQ: list[dict] = [
             "- **Student Name** (required) — this becomes their username\n"
             "- **Student Email** (optional) — leave blank if your child has no email address; "
             "they can log in with username + password instead\n"
-            "- **Child's Class** (required) — select Grade 5 to Grade 12\n"
+            "- **Child's Class** (required) — select Grade 5 to Grade 10\n"
             "- **Password** (required) — set a password you will share with your child\n\n"
             "**Step 6 — Click Create Student**\n"
             "A confirmation screen will appear with:\n"
@@ -198,14 +295,20 @@ PLATFORM_FAQ: list[dict] = [
             "**LikhaPoha AI Plans:**\n\n"
             "| Plan | Price | Best for |\n"
             "|------|-------|----------|\n"
-            "| Premium Nano | ₹99 / 8 days | Try the full platform before committing |\n"
-            "| Premium | ₹299 / month | One student, monthly access |\n"
-            "| Family Premium | ₹499 / month | Up to 2 children |\n\n"
-            "All paid plans include all CBSE subjects, all grades, AI lessons, "
-            "doubt solving, mock tests, and parent dashboard.\n\n"
-            "💡 Have an offer code? Use it during signup to get free trial access."
+            "| Free Tier | ₹0 forever | Try the platform — 3 subjects, 5 doubts/day, basic mock tests |\n"
+            "| Premium | ₹299 / month | One student, full unlimited access |\n"
+            "| Family Premium | ₹499 / month | Up to 2 children, full unlimited access |\n"
+            "| Premium — 6 Months | ₹1,495 | Save ₹299 vs monthly (1 month free) |\n"
+            "| Premium — Annual | ₹2,999 | Save ₹589 vs monthly (2 months free) |\n"
+            "| Family Premium — Annual | ₹4,999 | Save ₹989 vs monthly (2 months free) |\n\n"
+            "Premium and Family Premium include all CBSE subjects/grades, unlimited AI lessons, "
+            "doubts and mock tests, Exemplar Research, the Formula & Concepts library, 10 years "
+            "of Board Papers, and — for Grade 11–12 — the full Exam Prep Center.\n\n"
+            "**Grade 11–12 Exam Prep Packs** (if you're not on Premium): JEE Main / NEET UG ₹499, "
+            "CUET UG ₹399 — sold separately per exam.\n\n"
+            "💡 Have an offer code? Sign up free, then redeem it from the Subscription page."
         ),
-        "suggestions": ["How do I sign up?", "What does the Family plan include?", "Is there a free trial?"],
+        "suggestions": ["How do I sign up?", "What does the Family plan include?", "Do you have offer codes?"],
     },
 
     # ── Free trial / offer code ───────────────────────────────────────────────
@@ -213,16 +316,18 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["free trial", "offer code", "trial", "free access", "coupon",
                      "discount", "promo", "invite code"],
         "answer": (
-            "Yes! LikhaPoha AI offers **free trial access via offer codes**.\n\n"
-            "**How to use an offer code:**\n"
-            "1. Go to **likhapoha.in → Sign Up**\n"
-            "2. Click **'I Have an Offer Code'**\n"
-            "3. Enter your 8-character code\n"
-            "4. Set your password and get instant access\n\n"
-            "Offer codes are shared by teachers, school coordinators, and influencers.\n\n"
-            "If you don't have a code, you can start with the **₹99 / 8-day trial plan**."
+            "Every new account starts on the **Free Tier** instantly — no payment or code "
+            "needed at signup. It gives you 3 subjects, 5 doubt questions/day, and basic "
+            "mock tests (5/day) to try the platform.\n\n"
+            "**Have an offer code?** Use it to unlock full Premium access for the code's "
+            "validity period:\n"
+            "1. Sign up or log in (starts you on Free Tier)\n"
+            "2. Go to **Subscription Plans** in the sidebar\n"
+            "3. Click **'Have an Offer Code?'**\n"
+            "4. Enter your 8-character code for instant access\n\n"
+            "Offer codes are shared by teachers, school coordinators, and influencers."
         ),
-        "suggestions": ["How much does it cost?", "How do I sign up?", "What is included in the trial?"],
+        "suggestions": ["How much does it cost?", "How do I sign up?", "What's included in the Free Tier?"],
     },
 
     # ── Sign up / Registration ────────────────────────────────────────────────
@@ -230,16 +335,16 @@ PLATFORM_FAQ: list[dict] = [
         "keywords": ["sign up", "register", "create account", "how to join",
                      "get started", "signup", "enrollment", "how to start"],
         "answer": (
-            "**Getting started takes 2 minutes:**\n\n"
+            "**Getting started takes 2 minutes — free, no payment required:**\n\n"
             "1. Go to **likhapoha.in**\n"
-            "2. Click **Try Today** or **Sign Up**\n"
+            "2. Click **Try for Free** or **Sign Up**\n"
             "3. Choose your role: Student, Parent, or Teacher\n"
-            "4. Enter your name, email, and grade\n"
-            "5. Choose a plan (or use an offer code for free access)\n"
-            "6. Set your password and start learning!\n\n"
+            "4. Enter your name, email, and grade (Grade 11–12 students also pick a stream)\n"
+            "5. Set your password — you're instantly on the Free Tier\n"
+            "6. Upgrade to Premium anytime, or redeem an offer code, from the Subscription page\n\n"
             "No app download needed — works perfectly on any phone browser."
         ),
-        "suggestions": ["How much does it cost?", "Do you have a free trial?", "Which grades are supported?"],
+        "suggestions": ["How much does it cost?", "Do you have offer codes?", "Which grades are supported?"],
     },
 
     # ── Safety / Guardrail ────────────────────────────────────────────────────
@@ -290,7 +395,7 @@ PLATFORM_FAQ: list[dict] = [
             "- The AI reads your child's actual textbook chapter before explaining\n"
             "- Answers match what's in the NCERT book — not generic internet content\n"
             "- Practice questions follow the CBSE exam pattern\n\n"
-            "NCERT PDFs for all classes (5–10) are uploaded and indexed in our system."
+            "NCERT PDFs for all classes (5–12) are uploaded and indexed in our system."
         ),
         "suggestions": ["How do lessons work?", "Which grades are supported?", "How much does it cost?"],
     },
@@ -329,13 +434,15 @@ PLATFORM_FAQ: list[dict] = [
     # ── Teacher dashboard ─────────────────────────────────────────────────────
     {
         "keywords": ["teacher", "teacher dashboard", "teacher account",
-                     "assign student", "school teacher", "teacher features", "teacher tools"],
+                     "assign student", "school teacher", "teacher features", "teacher tools",
+                     "lesson plan creator", "teacher lesson plan"],
         "answer": (
-            "**Teachers** get a full AI-powered workspace on LikhaPoha AI with 6 key features:\n\n"
+            "**Teachers** get a full AI-powered workspace on LikhaPoha AI with 7 key features:\n\n"
             "📋 **Teacher Dashboard** — View assigned students, class progress, subject performance, and add teacher notes for any student.\n\n"
             "📖 **Lessons** — Browse AI step-wise lessons for any grade (5–10) and subject. Useful for lesson planning and checking content before teaching.\n\n"
             "❓ **Ask Doubt** — Use the AI doubt solver for any chapter — great for checking explanations you'll give in class.\n\n"
             "📝 **Create Test Paper** — Generate CBSE-aligned MCQ and subjective test papers for any grade/subject/chapter in seconds. Download the question paper + answer key.\n\n"
+            "🗓️ **Lesson Plan Creator** — Generate a printable, duration-based lesson plan (30–90 min) for any grade (5–10)/subject/chapter. Free tier: 2 plans/day; paid: unlimited.\n\n"
             "📊 **Student Analytics** — See each student's score trend, subject performance (best/average/latest), and recent test activity. Sort by weakest students first.\n\n"
             "🎥 **Learn More** — Access NCERT reference videos, Exemplar problems, and Grammar resources for every subject.\n\n"
             "**For schools:** Contact us at likhapohaai@gmail.com for bulk accounts and a free demo."
