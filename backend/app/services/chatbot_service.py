@@ -110,10 +110,7 @@ PLATFORM_FAQ: list[dict] = [
             "- 📡 **TOEFL iBT** — Authentic academic passages and lecture-style listening\n\n"
             "Each exam has subject-wise topic-priority cards, a curated MCQ question bank, "
             "and **simulated full-length tests** with a floating countdown timer and question "
-            "palette — just like the real exam interface.\n\n"
-            "It's **included in the Premium plan at no extra cost** for Grade 11–12 students. "
-            "JEE, NEET, and CUET can also be bought as standalone prep packs (₹399–₹499) if "
-            "you're not on Premium."
+            "palette — just like the real exam interface."
         ),
         "suggestions": ["How much does it cost?", "What is the Study Planner?", "Which grades are supported?"],
     },
@@ -304,8 +301,6 @@ PLATFORM_FAQ: list[dict] = [
             "Premium and Family Premium include all CBSE subjects/grades, unlimited AI lessons, "
             "doubts and mock tests, Exemplar Research, the Formula & Concepts library, 10 years "
             "of Board Papers, and — for Grade 11–12 — the full Exam Prep Center.\n\n"
-            "**Grade 11–12 Exam Prep Packs** (if you're not on Premium): JEE Main / NEET UG ₹499, "
-            "CUET UG ₹399 — sold separately per exam.\n\n"
             "💡 Have an offer code? Sign up free, then redeem it from the Subscription page."
         ),
         "suggestions": ["How do I sign up?", "What does the Family plan include?", "Do you have offer codes?"],
