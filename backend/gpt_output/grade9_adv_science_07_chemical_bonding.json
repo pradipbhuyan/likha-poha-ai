@@ -1,0 +1,169 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Chemical Bonding",
+    "central_question": "How do valence electrons explain simple covalent structures, exceptions to the octet rule, and the characteristic properties of metals?",
+    "in_scope_units": [
+      "7.1 Octet Rule",
+      "7.1.1 Lewis Approach and Lewis symbols",
+      "Lewis representation of hydrogen fluoride",
+      "7.1.2 Exceptions of Octet Rule",
+      "Incomplete octets with lithium, beryllium, boron, and BF3",
+      "Expanded octets with SF6",
+      "Odd-electron molecules with NO",
+      "Quick Check on octet rule and its exceptions",
+      "7.2 Metallic Bonding",
+      "7.2.1 Electron Sea Model",
+      "Metallic bonding as attraction between positive ions and delocalised electrons",
+      "Electron sea model and electrical conductivity",
+      "Thermal conductivity",
+      "Malleability and ductility",
+      "Check Your Understanding and assertion-reason questions on metallic bonding"
+    ],
+    "banned_topics": [
+      "Hydrogen spectra, Rutherford model, and Bohr model questions carried over from the preceding chapter",
+      "Detailed ionic-bond lattice-energy calculations",
+      "VSEPR molecular shapes and bond angles",
+      "Hybridisation and molecular orbital theory",
+      "Detailed band theory of solids"
+    ],
+    "must_include_keywords": [
+      "octet rule",
+      "guiding principle",
+      "valence shell",
+      "valence electrons",
+      "gain electrons",
+      "lose electrons",
+      "share electrons",
+      "duplet",
+      "Lewis symbol",
+      "Lewis structure",
+      "bonding pair",
+      "non-bonding electrons",
+      "lone pair",
+      "hydrogen fluoride",
+      "fluorine",
+      "incomplete octet",
+      "boron trifluoride",
+      "BF3",
+      "expanded octet",
+      "sulfur hexafluoride",
+      "SF6",
+      "odd-electron molecule",
+      "nitric oxide",
+      "NO",
+      "unpaired electron",
+      "metallic bonding",
+      "electron sea model",
+      "positive metal ions",
+      "delocalised electrons",
+      "mobile electrons",
+      "non-directional bond",
+      "electrical conductivity",
+      "electric current",
+      "thermal conductivity",
+      "malleability",
+      "ductility",
+      "copper wiring"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "The octet rule is an absolute law that every stable molecule must obey.",
+        "correction": "The chapter explicitly describes it as a useful guiding principle with stable exceptions such as BF3, SF6, and NO."
+      },
+      {
+        "claim": "Hydrogen must have eight electrons around it to be stable.",
+        "correction": "Hydrogen follows a duplet arrangement and attains two electrons like helium."
+      },
+      {
+        "claim": "Every dot in a Lewis structure represents a bonding electron.",
+        "correction": "Only the shared pair between bonded atoms is a bonding pair; the remaining dots are non-bonding electrons or lone pairs."
+      },
+      {
+        "claim": "Boron in BF3 is unstable because it has only six electrons around it.",
+        "correction": "BF3 is a stable incomplete-octet exception in which boron forms three bonds and has six electrons around the central atom."
+      },
+      {
+        "claim": "SF6 follows the ordinary octet rule because sulfur has eight electrons.",
+        "correction": "Sulfur is surrounded by twelve bonding electrons in SF6, so it is an expanded-octet exception."
+      },
+      {
+        "claim": "NO can give every atom a complete octet despite having eleven valence electrons.",
+        "correction": "An odd total number of electrons means at least one electron remains unpaired and at least one atom has an incomplete octet."
+      },
+      {
+        "claim": "Metallic bonding occurs because valence electrons are completely transferred to individual metal ions.",
+        "correction": "In the electron sea model, outer electrons are delocalised and shared collectively throughout the metal."
+      },
+      {
+        "claim": "Metallic bonds are localised between fixed pairs of atoms like covalent bonds.",
+        "correction": "Metallic bonding is non-directional because mobile electrons attract many positive ions collectively."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the fluorine Lewis symbol and the hydrogen fluoride example in Section 7.1.1 to distinguish bonding and non-bonding electrons.",
+      "Use Quick Check 7 to draw BF3 and explain boron’s six-electron incomplete octet.",
+      "Use Quick Check 8 to analyse why SF6 is an expanded-octet exception.",
+      "Use Quick Check 6 to explain why NO is an odd-electron exception.",
+      "Use Fig. 7.1 to identify fixed positive metal ions and a mobile sea of electrons.",
+      "Use Fig. 7.2 and Check Your Understanding Q6 to explain electrical conduction.",
+      "Use Check Your Understanding Q8, Q9, Q13, and assertion-reason Q21 to connect non-directional metallic bonding with malleability and ductility."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter contains a 'Quick Check' after octet-rule exceptions and a 'Check Your Understanding' section with conceptual and assertion-reason questions on metallic bonding."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Chemical Bonding\n\n## What you will learn\nYou will learn the octet rule, hydrogen’s duplet, and the Lewis-dot method for representing valence electrons. You will use the hydrogen fluoride example to distinguish bonding electrons from non-bonding electrons.\n\n## Simple explanation\nAtoms often form bonds by gaining, losing, or sharing valence electrons so that their outer shell becomes more stable. The octet rule describes many simple molecules, but it is a guide rather than an unbreakable law.\n\n## Step-by-step breakdown\n- **Octet rule**: Atoms other than hydrogen often form bonds until eight electrons surround them in the valence shell.\n- **Ways to reach a stable arrangement**: Atoms may gain, lose, or share electrons.\n- **Guiding principle**: The chapter stresses that the octet rule is useful but is not a universal law.\n- **Hydrogen’s duplet**: Hydrogen becomes stable with two electrons, corresponding to helium’s first-shell configuration.\n- **Lewis symbol**: Valence electrons are shown as dots placed around an element’s symbol.\n- **Fluorine example**: Fluorine has atomic number 9, electronic configuration 2,7, and therefore seven valence-electron dots.\n- **Bonding in HF**: Hydrogen and fluorine share one electron pair.\n- **Bonding pair**: The pair of dots or line between H and F represents the shared electrons forming the bond.\n- **Non-bonding electrons**: The remaining dots on fluorine are lone pairs and do not form the H–F bond.\n- **Different shell targets**: Fluorine completes an octet, while hydrogen completes a duplet.\n\n## Worked example\nQuestion: Based on the hydrogen fluoride example in Section 7.1.1, explain what the line in H–F represents and why hydrogen is stable with only two electrons.\n\nSolution:\n- Step 1: The line represents one shared pair of bonding electrons between hydrogen and fluorine.\n- Step 2: The shared pair gives hydrogen two electrons around it and helps fluorine complete eight valence electrons.\n- Final answer: H–F contains one covalent bonding pair; hydrogen satisfies a duplet and fluorine satisfies an octet.\n\n## Common mistake\nDo not count fluorine’s lone pairs as separate bonds. They are non-bonding electron pairs located on fluorine.\n\n## Quick check question\nQuestion: Quick Check 5 asks, “What is meant by a duplet configuration?”\nAnswer: It is a stable outer-shell arrangement of two electrons, as achieved by hydrogen in molecules such as HF.\nExplanation: Hydrogen has only the first electron shell, which is complete with two electrons.\n\n## Summary\n- The octet rule describes many simple bonds.\n- It is a guiding principle, not a universal law.\n- Hydrogen follows a duplet rather than an octet.\n- Lewis dots represent valence electrons.\n- A shared pair forms a bond.\n- Lone pairs remain non-bonding.",
+    "Core explanation": "# Core Explanation: Advanced - Chemical Bonding\n\n## What you will learn\nYou will examine three major exceptions to the octet rule: incomplete octets, expanded octets, and odd-electron molecules. You will use BF3, SF6, and NO as the chapter’s examples.\n\n## Simple explanation\nStable molecules do not always place exactly eight electrons around every atom. Some central atoms have fewer than eight, some have more than eight, and some molecules contain an odd number of total valence electrons.\n\n## Step-by-step breakdown\n- **Incomplete octet**: Some atoms with fewer than four valence electrons form fewer than four bonds and remain surrounded by fewer than eight electrons.\n- **Lithium, beryllium, and boron**: With one, two, and three valence electrons, they commonly form one, two, and three bonds in the chapter’s simple description.\n- **BF3 structure**: Boron forms three B–F bonds and has six electrons around it.\n- **Stable exception**: BF3 is stable even though boron does not complete an octet.\n- **Expanded octet**: A central atom may be surrounded by more than eight valence electrons.\n- **SF6 structure**: Sulfur forms six S–F bonds and is surrounded by twelve bonding electrons.\n- **Odd-electron molecule**: A molecule with an odd total number of valence electrons cannot pair all electrons.\n- **NO electron count**: Nitrogen contributes five and oxygen contributes six, giving eleven valence electrons.\n- **Unpaired electron**: NO must contain one unpaired electron, and at least one atom has an incomplete octet.\n- **Lesson about the rule**: These examples show why the octet rule is a pattern rather than an absolute law.\n\n## Worked example\nQuestion: Quick Check 3 asks for one example each of an incomplete octet, expanded octet, and odd-electron molecule.\n\nSolution:\n- Step 1: Identify the chapter’s three exception categories.\n- Step 2: Match each category with its stated example.\n- Final answer: BF3 has an incomplete octet, SF6 has an expanded octet, and NO is an odd-electron molecule.\n\n## Common mistake\nDo not assume that an incomplete octet automatically makes a molecule impossible. The chapter explicitly presents BF3 as a stable molecule with six electrons around boron.\n\n## Quick check question\nQuestion: Quick Check 6 asks why NO is considered an exception to the octet rule.\nAnswer: NO has eleven valence electrons, so one electron remains unpaired and at least one atom cannot have a complete octet.\nExplanation: An odd total number of electrons cannot be arranged entirely into electron pairs.\n\n## Summary\n- BF3 is an incomplete-octet molecule.\n- Boron has six electrons around it in BF3.\n- SF6 has an expanded octet with twelve electrons around sulfur.\n- NO has eleven valence electrons.\n- Odd-electron molecules contain an unpaired electron.\n- The octet rule has important exceptions.",
+    "Worked examples": "# Worked Examples: Advanced - Chemical Bonding\n\n## What you will learn\nYou will construct and interpret Lewis structures for HF, BF3, SF6, and NO. You will use electron counting to decide whether each structure follows or violates the ordinary octet rule.\n\n## Simple explanation\nLewis structures turn valence-electron counting into a visible diagram. Bonds are shown by shared pairs or lines, while unshared dots represent lone pairs or an unpaired electron.\n\n## Step-by-step breakdown\n- **Step for a Lewis symbol**: Determine the number of valence electrons and place that many dots around the element symbol.\n- **HF electron sharing**: One H–F shared pair forms a single bond; hydrogen has a duplet and fluorine has an octet.\n- **BF3 bonds**: Three fluorine atoms share one pair each with boron, forming three B–F bonds.\n- **BF3 central count**: Three bonding pairs place six electrons around boron.\n- **SF6 bonds**: Six fluorine atoms form six bonds with sulfur.\n- **SF6 central count**: Six bonding pairs place twelve electrons around sulfur, an expanded octet.\n- **NO count**: N and O together provide eleven valence electrons.\n- **NO representation**: The structure includes two bonds in the chapter’s diagram and one unpaired electron.\n- **Bond lines**: One line represents one shared pair; two lines represent two shared pairs.\n- **Electron-count check**: Compare the number around each atom with a duplet for H or an octet for many other atoms, while remembering the listed exceptions.\n\n## Worked example\nQuestion: Quick Check 7 asks: Draw the Lewis structure of BF3 and explain why boron does not complete its octet.\n\nSolution:\n- Step 1: Boron supplies three valence electrons and forms one shared pair with each of three fluorine atoms.\n- Step 2: The three B–F bonds place three shared pairs, or six electrons, around boron.\n- Final answer: BF3 has boron at the centre with three single B–F bonds; boron has only six electrons and is an incomplete-octet exception.\n\n## Common mistake\nAdding a lone pair to boron merely to force an octet would change the electron count and would not represent the BF3 structure shown in the chapter.\n\n## Quick check question\nQuestion: Quick Check 8 gives the assertion “SF6 violates the octet rule” and the reason “Sulphur can accommodate more than eight electrons.” Which option is correct?\nAnswer: Option A: both assertion and reason are correct, and the reason correctly explains the assertion.\nExplanation: Six S–F bonds surround sulfur with twelve electrons, producing an expanded octet.\n\n## Summary\n- Lewis structures show valence electrons and shared pairs.\n- HF satisfies a duplet for H and octet for F.\n- BF3 has three bonds and an incomplete octet at boron.\n- SF6 has six bonds and an expanded octet at sulfur.\n- NO has an odd electron count and an unpaired electron.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Chemical Bonding\n\n## What you will learn\nYou will understand the electron sea model and use it to explain metallic bonding and electrical conductivity. You will compare metallic bonding with bonding that is localised between particular atoms.\n\n## Simple explanation\nIn a metal, some outer electrons are not tied to one atom. They move throughout a regular arrangement of positive metal ions, and the attraction between the ions and these mobile electrons holds the metal together.\n\n## Step-by-step breakdown\n- **Outer electrons in metals**: A metal atom has a few outer electrons that are not held very tightly by its nucleus.\n- **Delocalisation**: When many metal atoms form a solid, these electrons become mobile throughout the entire metal.\n- **Positive-ion structure**: Metal atoms can be pictured as positive ions arranged in a regular fixed pattern.\n- **Sea of electrons**: Delocalised electrons move around and between the positive ions.\n- **Metallic bonding**: It is the electrostatic attraction between positive metal ions and the mobile sea of electrons.\n- **Collective sharing**: The electrons are shared by all metal atoms rather than being assigned to one bond between two atoms.\n- **Non-directional nature**: The attraction can continue even when ion layers shift position.\n- **Electrical conductivity**: Under an electric field, mobile electrons acquire a directed drift that constitutes electric current.\n- **Fig. 7.2 reasoning**: The diagram shows electron movement through the fixed positive-ion framework.\n- **Comparison with covalent bonding**: Covalent electrons are shared between specific atoms, while metallic electrons are delocalised throughout the structure.\n\n## Worked example\nQuestion: Check Your Understanding Q6 asks how the electron sea model explains electrical conductivity in metals.\n\nSolution:\n- Step 1: Identify the charge carriers: delocalised electrons are free to move through the metal.\n- Step 2: When an electric field is applied, these electrons move in a preferred direction.\n- Final answer: Metals conduct electricity because their mobile delocalised electrons carry charge through the solid.\n\n## Common mistake\nThe positive metal ions do not flow through the wire during ordinary electrical conduction. The mobile charge carriers in the electron sea model are the delocalised electrons.\n\n## Quick check question\nQuestion: Assertion-reason Q19 states that metals conduct electricity because they contain free electrons that move under an electric field. Which option is correct?\nAnswer: Option A: both the assertion and reason are correct, and the reason correctly explains the assertion.\nExplanation: Directed movement of delocalised electrons produces electric current.\n\n## Summary\n- Metals contain fixed positive ions and mobile electrons.\n- Metallic bonding is the attraction between them.\n- Metallic electrons are delocalised.\n- The bond is collective and non-directional.\n- Mobile electrons explain electrical conductivity.\n- Metallic and covalent bonding differ in electron localisation.",
+    "Revision and recap": "# Revision and Recap: Advanced - Chemical Bonding\n\n## What you will learn\nYou will connect the electron sea model with thermal conductivity, malleability, and ductility. You will also revise the differences between ordinary octet structures, octet exceptions, and metallic bonding.\n\n## Simple explanation\nThe same mobile electrons that hold a metal together also allow charge and energy to move. Because metallic bonding is non-directional, layers of ions can shift without the entire structure breaking.\n\n## Step-by-step breakdown\n- **Thermal conductivity**: Electrons in a heated region gain energy and transfer it to other parts of the metal.\n- **Ion vibration**: Metal ions also vibrate more when heated and help transfer thermal energy.\n- **Malleability**: Metals can be beaten into sheets because layers of positive ions can slide while mobile electrons continue attracting them.\n- **Ductility**: Metals can be drawn into wires because the non-directional bonding survives as ion layers move.\n- **No complete electron loss**: The chapter stresses that metallic electrons are not simply lost as in ionic bonding; they remain collectively shared.\n- **Copper wiring**: Copper is suitable for wires because it is ductile and contains mobile electrons that conduct current.\n- **If electrons were immobile**: Electrical conductivity would be most directly affected because charge could not move through the metal.\n- **Octet review**: HF illustrates shared electrons with a duplet and octet.\n- **Exception review**: BF3, SF6, and NO illustrate incomplete, expanded, and odd-electron cases.\n- **Bonding comparison**: Lewis structures describe localised shared pairs, whereas metallic bonding involves a mobile electron sea shared through the whole solid.\n\n## Worked example\nQuestion: Check Your Understanding Q13 asks why metals do not break when hammered but instead change shape.\n\nSolution:\n- Step 1: Hammering shifts layers of positive metal ions.\n- Step 2: Delocalised electrons are not fixed between particular pairs of ions, so they continue to attract the shifted ions.\n- Final answer: Metals change shape rather than shattering because non-directional metallic bonding remains effective as ion layers slide.\n\n## Common mistake\nMalleability is not caused by weak bonding. Metals remain bonded while layers shift because the mobile electron sea continually adjusts around the ions.\n\n## Quick check question\nQuestion: Assertion-reason Q20 states: “Metallic bonds are non-directional” and “Electrons in metals are localised between two atoms.” Which option is correct?\nAnswer: Option C: the assertion is correct, but the reason is wrong.\nExplanation: Metallic electrons are delocalised throughout the metal, not localised between two atoms.\n\n## Summary\n- Mobile electrons and vibrating ions transfer heat.\n- Non-directional bonding allows ion layers to slide.\n- Malleability means forming sheets.\n- Ductility means drawing wires.\n- Metallic electrons are collectively shared.\n- The octet rule is useful but has clear exceptions."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Lewis structures are useful bookkeeping models for valence electrons, but they do not by themselves show the exact three-dimensional shape of a molecule.",
+      "Odd-electron species such as NO are often called radicals and can be especially reactive because of their unpaired electron.",
+      "The simple electron sea model explains many metallic properties, while more advanced solid-state physics uses energy bands to describe electrons in metals.",
+      "Alloys remain metallic but can have different hardness, strength, and conductivity because atoms of different sizes disturb the regular ion arrangement.",
+      "Metallic conductivity usually changes with temperature because electron motion is affected by increased vibration of the ion lattice."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Lewis symbol of fluorine",
+        "search_description": "Lewis dot symbol fluorine seven valence electrons educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The symbol F surrounded by seven valence-electron dots."
+      },
+      {
+        "topic": "Hydrogen fluoride Lewis structure",
+        "search_description": "hydrogen fluoride HF Lewis structure bonding pair lone pairs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An H–F single bond with three lone pairs on fluorine."
+      },
+      {
+        "topic": "Octet-rule exceptions",
+        "search_description": "BF3 SF6 NO Lewis structures incomplete expanded odd electron comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Lewis structures of BF3, SF6, and NO labelled as incomplete, expanded, and odd-electron exceptions."
+      },
+      {
+        "topic": "Electron sea model",
+        "search_description": "metallic bonding electron sea model positive ions delocalized electrons diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A regular array of positive metal ions surrounded by mobile delocalised electrons."
+      },
+      {
+        "topic": "Metal electrical conduction",
+        "search_description": "electron drift in metal electric field conduction diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Mobile electrons drifting through a metal-ion lattice when an electric field is applied."
+      },
+      {
+        "topic": "Malleability of metals",
+        "search_description": "metal ion layers sliding malleability metallic bond diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Layers of positive metal ions sliding while delocalised electrons continue holding the structure together."
+      }
+    ]
+  }
+}

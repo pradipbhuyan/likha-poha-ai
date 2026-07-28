@@ -1,0 +1,225 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Sets",
+  "central_question": "How can collections be described precisely, related through subsets and operations, and counted using set notation and Venn diagrams?",
+  "in_scope_units": [
+    "1.1 Introduction",
+    "1.2 Set and the definition of a well-defined collection",
+    "1.3 Representation of a Set: roster form and set-builder form",
+    "Membership notation using ∈ and ∉",
+    "Georg Cantor and the development of set theory",
+    "1.4 Finite and Infinite Sets",
+    "Order and repetition of elements in a set",
+    "1.5 Empty or Null Set",
+    "1.6 Equality of Sets",
+    "Exercise 1.1",
+    "1.7 Subset and proper subset",
+    "1.8 Cardinality of a Set",
+    "1.9 Power Set",
+    "1.10 Universal Set",
+    "Exercise 1.2",
+    "1.11 Venn Diagram",
+    "1.12 Set Operations",
+    "1.12.1 Union of Two Sets",
+    "1.12.2 Intersection of Two Sets",
+    "1.12.3 Disjoint Sets",
+    "1.12.4 Difference of Sets",
+    "1.13 Complement of a Set and De Morgan's Laws",
+    "1.14 Application of Sets",
+    "1.14.1 Cardinal relations for two finite sets",
+    "1.14.2 Cardinal relation for three finite sets"
+  ],
+  "banned_topics": [
+    "Logarithms and exponential equations from the next chapter",
+    "Probability formulas not developed in this chapter",
+    "Relations, functions, Cartesian products, and mappings",
+    "Advanced axiomatic set theory, transfinite cardinals, and formal paradoxes"
+  ],
+  "must_include_keywords": [
+    "well-defined collection",
+    "element",
+    "member",
+    "roster form",
+    "set-builder form",
+    "belongs to",
+    "does not belong to",
+    "finite set",
+    "infinite set",
+    "empty set",
+    "null set",
+    "equality of sets",
+    "distinct elements",
+    "subset",
+    "proper subset",
+    "cardinality",
+    "power set",
+    "universal set",
+    "Venn diagram",
+    "union",
+    "intersection",
+    "disjoint sets",
+    "difference of sets",
+    "complement",
+    "De Morgan's laws",
+    "inclusion-exclusion principle",
+    "n(A ∪ B)",
+    "n(A ∩ B)",
+    "only in A",
+    "neither in A nor B",
+    "exactly one set",
+    "three-set formula"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A collection such as 'the three best students' is automatically a set.",
+      "correction": "A set must be well-defined, so membership must be decidable without personal opinion; the word 'best' is subjective unless a precise rule is supplied."
+    },
+    {
+      "claim": "Changing the order of elements changes the set.",
+      "correction": "Order does not matter in a set, so {1, 2, 3}, {1, 3, 2}, and {3, 2, 1} are equal."
+    },
+    {
+      "claim": "Repeated entries increase the number of elements in a set.",
+      "correction": "A set contains distinct elements only; the letters of BANANA form {B, A, N}, whose cardinality is 3."
+    },
+    {
+      "claim": "The empty set ∅ and the set {∅} are the same.",
+      "correction": "∅ has no elements, whereas {∅} has one element, namely the empty set."
+    },
+    {
+      "claim": "The symbols ∈ and ⊆ mean the same thing.",
+      "correction": "x ∈ A means x is an element of A, while X ⊆ A means every element of set X belongs to A."
+    },
+    {
+      "claim": "A set is never a subset of itself.",
+      "correction": "Every set is a subset of itself; a proper subset must be a subset that is not equal to the original set."
+    },
+    {
+      "claim": "An empty set is not a subset of a non-empty set.",
+      "correction": "The empty set is a subset of every set because it contains no element that can violate the subset condition."
+    },
+    {
+      "claim": "If n(A) = n, then the power set contains n² elements.",
+      "correction": "A set with n elements has 2^n subsets, so n[P(A)] = 2^n."
+    },
+    {
+      "claim": "A − B and B − A are always equal.",
+      "correction": "Set difference is directional: A − B contains elements in A but not in B, while B − A contains elements in B but not in A."
+    },
+    {
+      "claim": "The complement A′ can be found without knowing the universal set.",
+      "correction": "A′ is defined relative to a universal set U and equals U − A."
+    },
+    {
+      "claim": "n(A ∪ B) always equals n(A) + n(B).",
+      "correction": "Elements in A ∩ B are counted twice in n(A) + n(B), so n(A ∪ B) = n(A) + n(B) − n(A ∩ B)."
+    },
+    {
+      "claim": "For three sets, subtracting all pairwise intersections is the final step.",
+      "correction": "The triple intersection is then added back once: n(A ∪ B ∪ C) = n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(C∩A)+n(A∩B∩C)."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Example 1 to write whole numbers and an arithmetic progression in roster form.",
+    "Use Examples 5-8 and Exercise 1.1 to compare roster form, set-builder form, finite and infinite sets, membership, and empty sets.",
+    "Use Example 9 to distinguish subset, equality, proper subset, and the role of the empty set.",
+    "Use Examples 10-11 and Exercise 1.2 to build power sets and verify that n[P(A)] = 2^n.",
+    "Use Examples 12-18 to practise union, intersection, disjointness, difference, complement, and De Morgan's law.",
+    "Use Example 20 to solve a two-set problem involving badminton, table tennis, and students in neither set.",
+    "Use Example 21 to calculate both the intersection and the number in exactly one of two sets.",
+    "Use Example 22 to reason about maximum and minimum overlap.",
+    "Use Example 23 to organise a three-set Venn diagram from pairwise and triple-intersection data."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter includes Exercise 1.1 and Exercise 1.2, followed by worked application Examples 20-23; these sections provide the chapter's structured practice questions.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Database searches use set ideas: an OR condition behaves like union, an AND condition behaves like intersection, and a NOT condition behaves like complement.",
+      "Computer graphics and geographic information systems use set operations to combine, overlap, or subtract regions on maps and digital shapes.",
+      "In probability, events are sets of outcomes, so union, intersection, complement, and disjointness become the language of chance.",
+      "The inclusion-exclusion principle extends to four or more sets, although the alternating pattern of additions and subtractions becomes longer.",
+      "Georg Cantor's work showed that infinite sets can have different sizes, an idea studied later in higher mathematics."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Roster and set-builder notation",
+        "search_description": "set roster form and set builder form educational comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The same set shown once by listing its elements and once by describing their common property.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Checking_the_roster_%2854000141633%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Checking_the_roster_%2854000141633%29.jpg/960px-Checking_the_roster_%2854000141633%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Checking_the_roster_(54000141633).jpg",
+        "license": "Public domain",
+        "attribution": "BLMUtah"
+      },
+      {
+        "topic": "Subset relationship",
+        "search_description": "subset proper subset universal set Venn diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A smaller circle entirely inside a larger circle within the universal rectangle.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Example_of_A_is_a_proper_subset_of_B.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Example_of_A_is_a_proper_subset_of_B.svg/960px-Example_of_A_is_a_proper_subset_of_B.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Example_of_A_is_a_proper_subset_of_B.svg",
+        "license": "CC0",
+        "attribution": "Stephan Kulla (User:Stephan Kulla)"
+      },
+      {
+        "topic": "Power set tree",
+        "search_description": "power set of three element set subset lattice diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "All eight subsets of a three-element set arranged by subset size.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Img0289SCE_500kV_lines_close.JPG",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Img0289SCE_500kV_lines_close.JPG/960px-Img0289SCE_500kV_lines_close.JPG",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Img0289SCE_500kV_lines_close.JPG",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Cheers. Trance addict - Armin van Buuren - Oceanlab"
+      },
+      {
+        "topic": "Basic set operations",
+        "search_description": "Venn diagrams union intersection difference complement four panels",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Four Venn diagrams shading union, intersection, difference, and complement.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Venn_Diagram_with_Labeled_Regions.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Venn_Diagram_with_Labeled_Regions.png/960px-Venn_Diagram_with_Labeled_Regions.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Venn_Diagram_with_Labeled_Regions.png",
+        "license": "CC0",
+        "attribution": "Addemf"
+      },
+      {
+        "topic": "De Morgan's laws",
+        "search_description": "De Morgan laws sets Venn diagram complement union intersection",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Paired Venn diagrams showing that the complement of a union equals the intersection of complements and vice versa.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/De_Morgan%27s_law_with_set_subtraction_operation.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/De_Morgan%27s_law_with_set_subtraction_operation.png/960px-De_Morgan%27s_law_with_set_subtraction_operation.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:De_Morgan's_law_with_set_subtraction_operation.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Goodphy"
+      },
+      {
+        "topic": "Two-set survey problem",
+        "search_description": "two set Venn diagram only both neither labelled counts",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A two-circle Venn diagram with regions labelled only A, both, only B, and neither.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/6_set_Venn_diagram_with_limited_overlap.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/6_set_Venn_diagram_with_limited_overlap.svg/960px-6_set_Venn_diagram_with_limited_overlap.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:6_set_Venn_diagram_with_limited_overlap.svg",
+        "license": "Public domain",
+        "attribution": "Amousey"
+      },
+      {
+        "topic": "Three-set inclusion-exclusion",
+        "search_description": "three set Venn diagram inclusion exclusion labelled regions",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Three overlapping circles showing pairwise-only regions, the triple intersection, and the outside region.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Venn_diagram_of_subsets_of_three_sets.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Venn_diagram_of_subsets_of_three_sets.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Venn_diagram_of_subsets_of_three_sets.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Sommacal alfonso"
+      }
+    ]
+  }
+}

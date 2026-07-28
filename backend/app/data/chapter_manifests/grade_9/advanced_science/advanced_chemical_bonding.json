@@ -1,0 +1,192 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Chemical Bonding",
+  "central_question": "How do valence electrons explain simple covalent structures, exceptions to the octet rule, and the characteristic properties of metals?",
+  "in_scope_units": [
+    "7.1 Octet Rule",
+    "7.1.1 Lewis Approach and Lewis symbols",
+    "Lewis representation of hydrogen fluoride",
+    "7.1.2 Exceptions of Octet Rule",
+    "Incomplete octets with lithium, beryllium, boron, and BF3",
+    "Expanded octets with SF6",
+    "Odd-electron molecules with NO",
+    "Quick Check on octet rule and its exceptions",
+    "7.2 Metallic Bonding",
+    "7.2.1 Electron Sea Model",
+    "Metallic bonding as attraction between positive ions and delocalised electrons",
+    "Electron sea model and electrical conductivity",
+    "Thermal conductivity",
+    "Malleability and ductility",
+    "Check Your Understanding and assertion-reason questions on metallic bonding"
+  ],
+  "banned_topics": [
+    "Hydrogen spectra, Rutherford model, and Bohr model questions carried over from the preceding chapter",
+    "Detailed ionic-bond lattice-energy calculations",
+    "VSEPR molecular shapes and bond angles",
+    "Hybridisation and molecular orbital theory",
+    "Detailed band theory of solids"
+  ],
+  "must_include_keywords": [
+    "octet rule",
+    "guiding principle",
+    "valence shell",
+    "valence electrons",
+    "gain electrons",
+    "lose electrons",
+    "share electrons",
+    "duplet",
+    "Lewis symbol",
+    "Lewis structure",
+    "bonding pair",
+    "non-bonding electrons",
+    "lone pair",
+    "hydrogen fluoride",
+    "fluorine",
+    "incomplete octet",
+    "boron trifluoride",
+    "BF3",
+    "expanded octet",
+    "sulfur hexafluoride",
+    "SF6",
+    "odd-electron molecule",
+    "nitric oxide",
+    "NO",
+    "unpaired electron",
+    "metallic bonding",
+    "electron sea model",
+    "positive metal ions",
+    "delocalised electrons",
+    "mobile electrons",
+    "non-directional bond",
+    "electrical conductivity",
+    "electric current",
+    "thermal conductivity",
+    "malleability",
+    "ductility",
+    "copper wiring"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The octet rule is an absolute law that every stable molecule must obey.",
+      "correction": "The chapter explicitly describes it as a useful guiding principle with stable exceptions such as BF3, SF6, and NO."
+    },
+    {
+      "claim": "Hydrogen must have eight electrons around it to be stable.",
+      "correction": "Hydrogen follows a duplet arrangement and attains two electrons like helium."
+    },
+    {
+      "claim": "Every dot in a Lewis structure represents a bonding electron.",
+      "correction": "Only the shared pair between bonded atoms is a bonding pair; the remaining dots are non-bonding electrons or lone pairs."
+    },
+    {
+      "claim": "Boron in BF3 is unstable because it has only six electrons around it.",
+      "correction": "BF3 is a stable incomplete-octet exception in which boron forms three bonds and has six electrons around the central atom."
+    },
+    {
+      "claim": "SF6 follows the ordinary octet rule because sulfur has eight electrons.",
+      "correction": "Sulfur is surrounded by twelve bonding electrons in SF6, so it is an expanded-octet exception."
+    },
+    {
+      "claim": "NO can give every atom a complete octet despite having eleven valence electrons.",
+      "correction": "An odd total number of electrons means at least one electron remains unpaired and at least one atom has an incomplete octet."
+    },
+    {
+      "claim": "Metallic bonding occurs because valence electrons are completely transferred to individual metal ions.",
+      "correction": "In the electron sea model, outer electrons are delocalised and shared collectively throughout the metal."
+    },
+    {
+      "claim": "Metallic bonds are localised between fixed pairs of atoms like covalent bonds.",
+      "correction": "Metallic bonding is non-directional because mobile electrons attract many positive ions collectively."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the fluorine Lewis symbol and the hydrogen fluoride example in Section 7.1.1 to distinguish bonding and non-bonding electrons.",
+    "Use Quick Check 7 to draw BF3 and explain boron’s six-electron incomplete octet.",
+    "Use Quick Check 8 to analyse why SF6 is an expanded-octet exception.",
+    "Use Quick Check 6 to explain why NO is an odd-electron exception.",
+    "Use Fig. 7.1 to identify fixed positive metal ions and a mobile sea of electrons.",
+    "Use Fig. 7.2 and Check Your Understanding Q6 to explain electrical conduction.",
+    "Use Check Your Understanding Q8, Q9, Q13, and assertion-reason Q21 to connect non-directional metallic bonding with malleability and ductility."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter contains a 'Quick Check' after octet-rule exceptions and a 'Check Your Understanding' section with conceptual and assertion-reason questions on metallic bonding.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Lewis structures are useful bookkeeping models for valence electrons, but they do not by themselves show the exact three-dimensional shape of a molecule.",
+      "Odd-electron species such as NO are often called radicals and can be especially reactive because of their unpaired electron.",
+      "The simple electron sea model explains many metallic properties, while more advanced solid-state physics uses energy bands to describe electrons in metals.",
+      "Alloys remain metallic but can have different hardness, strength, and conductivity because atoms of different sizes disturb the regular ion arrangement.",
+      "Metallic conductivity usually changes with temperature because electron motion is affected by increased vibration of the ion lattice."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Lewis symbol of fluorine",
+        "search_description": "Lewis dot symbol fluorine seven valence electrons educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The symbol F surrounded by seven valence-electron dots.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Estructura_de_Lewis_ion_nitrato.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Estructura_de_Lewis_ion_nitrato.svg/960px-Estructura_de_Lewis_ion_nitrato.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Estructura_de_Lewis_ion_nitrato.svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Jerónimo Cueto"
+      },
+      {
+        "topic": "Hydrogen fluoride Lewis structure",
+        "search_description": "hydrogen fluoride HF Lewis structure bonding pair lone pairs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An H–F single bond with three lone pairs on fluorine.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Auswirkung_H-Br%C3%BCcke_als_Diagramm_auf_H-Verbindungen_mit_Lewis-Formeln.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Auswirkung_H-Br%C3%BCcke_als_Diagramm_auf_H-Verbindungen_mit_Lewis-Formeln.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Auswirkung_H-Brücke_als_Diagramm_auf_H-Verbindungen_mit_Lewis-Formeln.png",
+        "license": "CC0",
+        "attribution": "BirgitLachner"
+      },
+      {
+        "topic": "Octet-rule exceptions",
+        "search_description": "BF3 SF6 NO Lewis structures incomplete expanded odd electron comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Lewis structures of BF3, SF6, and NO labelled as incomplete, expanded, and odd-electron exceptions.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Sulfur-dioxide-ve-B-2D.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sulfur-dioxide-ve-B-2D.png/960px-Sulfur-dioxide-ve-B-2D.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Sulfur-dioxide-ve-B-2D.png",
+        "license": "Public domain",
+        "attribution": "Ben Mills"
+      },
+      {
+        "topic": "Electron sea model",
+        "search_description": "metallic bonding electron sea model positive ions delocalized electrons diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A regular array of positive metal ions surrounded by mobile delocalised electrons.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Metallic_bonding.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Metallic_bonding.svg/960px-Metallic_bonding.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Metallic_bonding.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Muskid"
+      },
+      {
+        "topic": "Metal electrical conduction",
+        "search_description": "electron drift in metal electric field conduction diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Mobile electrons drifting through a metal-ion lattice when an electric field is applied.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Conduction_E_vs_DOS.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Conduction_E_vs_DOS.png/960px-Conduction_E_vs_DOS.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Conduction_E_vs_DOS.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Tem5psu"
+      },
+      {
+        "topic": "Malleability of metals",
+        "search_description": "metal ion layers sliding malleability metallic bond diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Layers of positive metal ions sliding while delocalised electrons continue holding the structure together.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Pewter_Ring.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Pewter_Ring.jpg/960px-Pewter_Ring.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Pewter_Ring.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Texas Lane"
+      }
+    ]
+  }
+}

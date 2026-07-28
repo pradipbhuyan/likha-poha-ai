@@ -1,0 +1,196 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Measurement: Foundation of Science",
+  "central_question": "How do standard units, measurement systems, and correct unit conversions make physical measurements meaningful, comparable, and scientifically reliable?",
+  "in_scope_units": [
+    "1.1 Introduction: the meaning and necessity of measurement",
+    "Activity 1.1: measuring a classroom floor with sticks of different lengths and relating numerical value to unit size",
+    "Activity 1.2: estimating and then measuring a blackboard to identify inaccuracy or error",
+    "1.2 Different Systems of Units: CGS, FPS, and MKS",
+    "1.3 Need for a Common System of Units and Activity 1.3 comparing centimetres with inches",
+    "1.4 International System of Units (SI), its seven base units, symbols, and advantages",
+    "1.5 Conversion of Units between different systems, including speed and force conversions",
+    "Quick Check and Check Your Understanding questions 1-17"
+  ],
+  "banned_topics": [
+    "Detailed theory of measurement instruments such as vernier calipers and screw gauges",
+    "Significant figures, precision rules, and propagation of uncertainty beyond the estimation activity",
+    "Dimensional formulae and dimensional equations as a full topic",
+    "Vector and scalar quantities",
+    "Detailed mechanics of force, motion, or gravitation beyond the stated newton-to-dyne conversion"
+  ],
+  "must_include_keywords": [
+    "measurement",
+    "physical quantity",
+    "known standard quantity",
+    "numerical value",
+    "unit",
+    "Q = n₁u₁ = n₂u₂",
+    "inverse relationship",
+    "estimation",
+    "inaccuracy",
+    "error",
+    "CGS",
+    "FPS",
+    "MKS",
+    "SI",
+    "centimetre",
+    "gram",
+    "second",
+    "foot",
+    "pound",
+    "metre",
+    "kilogram",
+    "kelvin",
+    "ampere",
+    "candela",
+    "mole",
+    "international trade",
+    "scientific data",
+    "decimal system",
+    "unit conversion",
+    "magnitude",
+    "kilometre per hour",
+    "metre per second",
+    "newton",
+    "dyne",
+    "Activity 1.1",
+    "Activity 1.2",
+    "Activity 1.3"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The numerical value alone is the measurement.",
+      "correction": "A measurement requires both a numerical value and a unit; its magnitude is expressed as numerical value × unit."
+    },
+    {
+      "claim": "Changing the unit changes the actual physical quantity.",
+      "correction": "The numerical value and unit may change, but the physical quantity remains unchanged, as represented by Q = n₁u₁ = n₂u₂."
+    },
+    {
+      "claim": "A larger unit produces a larger numerical value.",
+      "correction": "For the same length, a larger unit produces a smaller numerical value, as demonstrated by the longer sticks in Activity 1.1."
+    },
+    {
+      "claim": "The numerical area in Activity 1.1 changes in exactly the same ratio as the stick length.",
+      "correction": "Length readings vary inversely with stick length, while area is counted in square stick-units, so its numerical value varies with the square of the chosen length unit."
+    },
+    {
+      "claim": "The gram is the SI base unit of mass.",
+      "correction": "The SI base unit of mass is the kilogram, symbol kg; gram is the mass unit used in the CGS system."
+    },
+    {
+      "claim": "Degree Celsius is the SI base unit of temperature.",
+      "correction": "The SI base unit of thermodynamic temperature is the kelvin, symbol K, although degree Celsius is commonly used for body temperature."
+    },
+    {
+      "claim": "The SI symbol of candela is Cd.",
+      "correction": "The internationally accepted SI symbol for candela is lowercase cd."
+    },
+    {
+      "claim": "Unit conversion can be done by changing only the unit label.",
+      "correction": "The numerical value must be multiplied by the correct conversion factor so that the magnitude remains unchanged."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 1.1 and explain why sticks in the ratio 1:2:3 give different numerical readings for the same classroom.",
+    "Use Activity 1.2 to compare an estimated blackboard length with its metre-scale measurement and interpret the difference as inaccuracy.",
+    "Use Activity 1.3 to measure one book in centimetres and inches, showing that two number-unit pairs can represent the same length.",
+    "Work through the stated example converting 9 km/h into m/s by replacing kilometres and hours with metres and seconds.",
+    "Work through the stated example converting 1 N into g cm/s² and hence into dyne.",
+    "Finish with Check Your Understanding questions 9-11 and 17 to connect unit size, common standards, and practical conversion."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a four-question Quick Check followed by Check Your Understanding questions 1-17, including Activity 1.1-based questions 9-11 and the kilogram-to-pound application in question 17.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Real measurements are usually reported with an uncertainty because instruments have limited scale divisions and repeated readings may vary slightly. The uncertainty tells readers how closely the value is known.",
+      "Calibration compares an instrument with a trusted reference standard. A chain of calibrations linking a laboratory instrument to national or international standards is called measurement traceability.",
+      "SI prefixes such as milli-, centi-, kilo-, micro-, and nano- allow very small and very large quantities to be written compactly while retaining the same base unit.",
+      "Dimensional checking is a useful error-detection method: an equation for length must produce a length unit, and terms that are added or equated must have compatible dimensions.",
+      "Precise time measurement is important in navigation and communication systems because position and synchronisation depend on comparing accurately timed signals.",
+      "Automatic unit conversion in software is helpful, but the user must still identify the correct physical quantity and unit; software cannot safely repair a wrongly labelled measurement without additional information."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Different-sized measuring units",
+        "search_description": "classroom length measured with short and long rods comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The same classroom wall measured with a short rod and a longer rod, producing different numerical counts.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Stanley_Kubrick_-_boy_in_classroom_cph.3d02344.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Stanley_Kubrick_-_boy_in_classroom_cph.3d02344.jpg/960px-Stanley_Kubrick_-_boy_in_classroom_cph.3d02344.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Stanley_Kubrick_-_boy_in_classroom_cph.3d02344.jpg",
+        "license": "Public domain",
+        "attribution": "Stanley Kubrick"
+      },
+      {
+        "topic": "Centimetre and inch scales",
+        "search_description": "metric imperial ruler centimetres inches close-up free license",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A ruler showing centimetre markings on one edge and inch markings on the other.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/School_Rulers.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/School_Rulers.jpg/960px-School_Rulers.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:School_Rulers.jpg",
+        "license": "CC0",
+        "attribution": "Estabiano"
+      },
+      {
+        "topic": "SI base units",
+        "search_description": "International System of Units seven SI base units infographic",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An infographic listing metre, kilogram, second, kelvin, ampere, candela, and mole with their symbols.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/SI_Logo_with_defining_constants.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/SI_Logo_with_defining_constants.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:SI_Logo_with_defining_constants.png",
+        "license": "CC BY-SA 3.0 igo",
+        "attribution": "Bureau international des poids et mesures, International Bureau of Weights and Measures (BIPM)"
+      },
+      {
+        "topic": "Mass calibration",
+        "search_description": "laboratory calibration weights balance scale metrology",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A laboratory balance being checked with certified reference masses.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/GRAS_Type_45CA_Hearing_Protector_Test_Fixture_Microphone_Calibration_-_NIOSH_Acoustics_Laboratory.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/GRAS_Type_45CA_Hearing_Protector_Test_Fixture_Microphone_Calibration_-_NIOSH_Acoustics_Laboratory.jpg/960px-GRAS_Type_45CA_Hearing_Protector_Test_Fixture_Microphone_Calibration_-_NIOSH_Acoustics_Laboratory.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:GRAS_Type_45CA_Hearing_Protector_Test_Fixture_Microphone_Calibration_-_NIOSH_Acoustics_Laboratory.jpg",
+        "license": "Public domain",
+        "attribution": "Chuck Kardous"
+      },
+      {
+        "topic": "Estimation versus measurement",
+        "search_description": "student measuring blackboard with metre ruler classroom",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A student measuring the length of a classroom blackboard using a metre scale.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Students_measuring_the_Afon_Hen_-_geograph.org.uk_-_123852.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Students_measuring_the_Afon_Hen_-_geograph.org.uk_-_123852.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Students_measuring_the_Afon_Hen_-_geograph.org.uk_-_123852.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Nigel Chadwick"
+      },
+      {
+        "topic": "Unit conversion factors",
+        "search_description": "metric unit conversion ladder kilometre metre centimetre educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A metric conversion diagram connecting kilometres, metres, centimetres, and smaller units by powers of ten.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Conversion_Factors.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Conversion_Factors.png/960px-Conversion_Factors.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Conversion_Factors.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Emeka Udenze"
+      },
+      {
+        "topic": "Precision time measurement",
+        "search_description": "atomic clock laboratory public domain photograph",
+        "suggested_source": "NIST public image gallery",
+        "alt_text": "A precision atomic-clock apparatus used to maintain highly accurate time standards.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Atomic_Clock-Louis_Essen.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Atomic_Clock-Louis_Essen.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Atomic_Clock-Louis_Essen.jpg",
+        "license": "Public domain",
+        "attribution": "National Physical Laboratory"
+      }
+    ]
+  }
+}

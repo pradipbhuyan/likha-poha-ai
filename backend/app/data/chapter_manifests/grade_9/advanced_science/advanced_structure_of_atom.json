@@ -1,0 +1,195 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Structure of Atom",
+  "central_question": "How did experiments on subatomic particles and atomic spectra lead from early atomic models to Bohr’s explanation of stable atoms and the hydrogen line spectrum?",
+  "in_scope_units": [
+    "6.1 Discovery of Subatomic Particles",
+    "6.1.1 Discovery of Electron through cathode-ray discharge experiments",
+    "6.1.2 Discovery of Protons through canal rays",
+    "6.1.3 Discovery of Neutrons through Chadwick’s experiment",
+    "Quick Check on electron, proton, and neutron discoveries",
+    "6.2 Spectrum: continuous spectrum and line spectrum",
+    "6.3 Line Spectrum of Hydrogen and the hydrogen spectral series",
+    "Rydberg equation and Rydberg constant",
+    "6.4 Limitations of Rutherford Model of Atom",
+    "6.5 Bohr’s Model",
+    "6.5.1 Achievement of Bohr Model",
+    "6.5.2 Limitations of Bohr’s Model",
+    "6.6 Check Your Understanding"
+  ],
+  "banned_topics": [
+    "Elastic potential energy and work-energy calculations from the preceding Work and Energy chapter",
+    "Chemical bonding, octet rule, and metallic bonding from the following chapter",
+    "Detailed quantum-mechanical orbitals and probability clouds",
+    "Nuclear reactions, radioactivity, and nuclear energy"
+  ],
+  "must_include_keywords": [
+    "subatomic particles",
+    "electron",
+    "proton",
+    "neutron",
+    "J. J. Thomson",
+    "cathode rays",
+    "cathode",
+    "anode",
+    "discharge tube",
+    "low pressure gas",
+    "electric field",
+    "magnetic field",
+    "negative charge",
+    "Eugen Goldstein",
+    "canal rays",
+    "perforated cathode",
+    "positive ions",
+    "hydrogen ion",
+    "Rutherford",
+    "James Chadwick",
+    "beryllium",
+    "alpha particles",
+    "neutral radiation",
+    "protium",
+    "deuterium",
+    "tritium",
+    "continuous spectrum",
+    "line spectrum",
+    "sodium vapour lamp",
+    "hydrogen spectrum",
+    "Lyman series",
+    "Balmer series",
+    "Paschen series",
+    "Brackett series",
+    "Pfund series",
+    "Rydberg equation",
+    "Rydberg constant",
+    "Bohr model",
+    "fixed energy levels",
+    "electron transition",
+    "atomic stability",
+    "Zeeman effect",
+    "Stark effect"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Cathode rays are a form of light and therefore have no charge.",
+      "correction": "Thomson observed cathode rays bending toward a positively charged plate, showing that they consist of negatively charged particles called electrons."
+    },
+    {
+      "claim": "Cathode rays depend on which gas or electrode material is used.",
+      "correction": "Their properties remained unchanged with different gases and electrode materials, showing that electrons are present in all atoms."
+    },
+    {
+      "claim": "Canal rays are always streams of protons.",
+      "correction": "Canal rays are positive ions of the gas in the tube, so their properties depend on the gas; hydrogen gives the lightest positive particle, H+, associated with the proton."
+    },
+    {
+      "claim": "The discovery of the proton completely explained atomic mass.",
+      "correction": "Measured atomic masses, such as helium’s mass, were greater than the mass expected from protons and electrons alone, motivating the discovery of the neutron."
+    },
+    {
+      "claim": "A continuous spectrum and a line spectrum are the same because both contain colours.",
+      "correction": "A continuous spectrum contains an unbroken spread of colours, whereas a line spectrum contains only distinct wavelengths characteristic of the emitting element."
+    },
+    {
+      "claim": "In the hydrogen-series table, the fixed level listed as 1 for Lyman is the initial level for emission.",
+      "correction": "For emission lines, the fixed lower level is the final level: Lyman ends at n=1, Balmer at n=2, Paschen at n=3, Brackett at n=4, and Pfund at n=5."
+    },
+    {
+      "claim": "Rutherford’s model explains why atoms are stable and why hydrogen gives discrete lines.",
+      "correction": "The chapter states that Rutherford’s model could explain neither atomic stability nor the observed line spectrum of hydrogen."
+    },
+    {
+      "claim": "Bohr’s model explains every atom and every spectral detail.",
+      "correction": "It explains hydrogen fairly well but not multi-electron spectra, fine structure, or splitting in magnetic and electric fields."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Fig. 6.1 and Fig. 6.2 with Quick Check 1 and 5 to infer the direction of cathode rays and their negative charge.",
+    "Use Quick Check 2 and 6 to reason from unchanged cathode-ray behaviour in different gases to the universal presence of electrons.",
+    "Use Quick Check 8 to distinguish gas-dependent canal rays from universal cathode rays.",
+    "Use Quick Check 9 and the helium example to justify why a neutral massive particle was needed.",
+    "Use Fig. 6.3 and Fig. 6.4 to compare continuous and line spectra.",
+    "Use the hydrogen-series table in Section 6.3 to classify Lyman, Balmer, Paschen, Brackett, and Pfund series by their lower energy level.",
+    "Use 6.6 Check Your Understanding questions 1, 2, 4, and 6 to connect fixed energy levels with line spectra and atomic stability."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter closes with '6.6 Check Your Understanding' and continues with additional questions on spectra and atomic models at the beginning of the next uploaded page.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Modern atomic theory describes electrons using quantum states and probability distributions rather than fixed circular paths, but Bohr’s energy-level idea remains useful for introducing spectra.",
+      "Astronomers identify elements in stars by comparing their observed spectral lines with laboratory spectra of known elements.",
+      "Neon signs and other gas-discharge lamps glow because excited atoms emit characteristic wavelengths when electrons return to lower energy states.",
+      "Mass spectrometry separates charged particles according to their response to electric and magnetic fields and is widely used to study isotopes.",
+      "The neutron’s lack of electric charge allows it to enter nuclei more easily than charged particles, which is important in nuclear research, although nuclear reactions are beyond this chapter."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Cathode-ray tube",
+        "search_description": "J J Thomson cathode ray tube electric field deflection educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A low-pressure discharge tube showing cathode rays moving toward the anode and bending toward a positive plate.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/J._J._Thomson_with_his_cathode-ray_tube.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/J._J._Thomson_with_his_cathode-ray_tube.jpg/960px-J._J._Thomson_with_his_cathode-ray_tube.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:J._J._Thomson_with_his_cathode-ray_tube.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "https://pixel17.com"
+      },
+      {
+        "topic": "Canal rays",
+        "search_description": "Goldstein canal rays perforated cathode discharge tube diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A discharge tube with a perforated cathode and positive rays passing through its holes.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Anode_ray_tube_Schematic.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Anode_ray_tube_Schematic.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Anode_ray_tube_Schematic.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "JonRichfield"
+      },
+      {
+        "topic": "Chadwick neutron experiment",
+        "search_description": "Chadwick beryllium alpha particle neutron discovery experiment diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Alpha particles striking beryllium and producing neutral radiation.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Chadwick_Neutron_Discovery.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Chadwick_Neutron_Discovery.png/960px-Chadwick_Neutron_Discovery.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Chadwick_Neutron_Discovery.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Bdushaw"
+      },
+      {
+        "topic": "Continuous and line spectra",
+        "search_description": "continuous spectrum versus emission line spectrum comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An unbroken rainbow spectrum beside separate bright emission lines on a dark background.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Super-Earth_Exoplanet_TOI-561_b_%28NIRSpec_Emission_Spectrum%29_-_54986601201.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Super-Earth_Exoplanet_TOI-561_b_%28NIRSpec_Emission_Spectrum%29_-_54986601201.jpg/960px-Super-Earth_Exoplanet_TOI-561_b_%28NIRSpec_Emission_Spectrum%29_-_54986601201.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Super-Earth_Exoplanet_TOI-561_b_(NIRSpec_Emission_Spectrum)_-_54986601201.jpg",
+        "license": "CC BY 4.0",
+        "attribution": "James Webb Space Telescope"
+      },
+      {
+        "topic": "Hydrogen spectral series",
+        "search_description": "hydrogen Lyman Balmer Paschen Brackett Pfund energy level transitions diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Hydrogen energy levels with arrows showing transitions for the five named spectral series.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Hydrogen_spectrum.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Hydrogen_spectrum.svg/960px-Hydrogen_spectrum.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Hydrogen_spectrum.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "OrangeDog"
+      },
+      {
+        "topic": "Bohr energy transitions",
+        "search_description": "Bohr atom electron transition photon emission absorption diagram",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An electron moving between allowed energy levels while a photon is emitted or absorbed.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Energy_levels_of_sodium_atom.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Energy_levels_of_sodium_atom.svg/960px-Energy_levels_of_sodium_atom.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Energy_levels_of_sodium_atom.svg",
+        "license": "CC0",
+        "attribution": "Tristanevanslee"
+      }
+    ]
+  }
+}

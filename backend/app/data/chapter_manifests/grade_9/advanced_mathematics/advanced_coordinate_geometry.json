@@ -1,0 +1,183 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Coordinate Geometry",
+  "central_question": "How can coordinates, transformations, slope, intercepts, and equations of lines describe positions and straight-line relationships on a plane?",
+  "in_scope_units": [
+    "4.1 Introduction: The Language of Graphs",
+    "4.2 The Cartesian System",
+    "4.3 Let Us Explore Four Quadrants",
+    "4.4 Moving Points: The Magic of Reflections",
+    "4.5 Coordinates as Perpendicular Distances",
+    "4.6 The Concept of Slope (Gradient)",
+    "4.7 Properties of Slope",
+    "4.8 Intercept",
+    "4.8.1 The y-intercept",
+    "4.8.2 The x-intercept",
+    "4.9 Different Forms of the Equation of a Line",
+    "4.9.1 General Form: Ax + By + C = 0",
+    "4.9.2 Slope-Intercept Form: y = mx + c",
+    "4.9.3 Intercept Form: x/a + y/b = 1"
+  ],
+  "banned_topics": [
+    "Relations, functions, and graph transformations from Chapter 3",
+    "Distance formula between two arbitrary points",
+    "Section formula and midpoint formula",
+    "Equation of a circle or other conic sections",
+    "Trigonometric proofs beyond the stated relation m = tan θ"
+  ],
+  "must_include_keywords": [
+    "coordinate geometry",
+    "analytical geometry",
+    "Cartesian plane",
+    "René Descartes",
+    "x-axis",
+    "y-axis",
+    "origin",
+    "ordered pair",
+    "abscissa",
+    "ordinate",
+    "quadrant I",
+    "quadrant II",
+    "quadrant III",
+    "quadrant IV",
+    "reflection across the y-axis",
+    "reflection across the x-axis",
+    "reflection across the origin",
+    "translation",
+    "perpendicular distance",
+    "absolute value",
+    "slope",
+    "gradient",
+    "rise over run",
+    "Delta",
+    "angle of inclination",
+    "positive slope",
+    "negative slope",
+    "zero slope",
+    "undefined slope",
+    "parallel lines",
+    "perpendicular lines",
+    "x-intercept",
+    "y-intercept",
+    "general form",
+    "slope-intercept form",
+    "intercept form"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The x-coordinate gives the distance of a point from the x-axis.",
+      "correction": "The absolute value of the x-coordinate gives distance from the y-axis; the absolute value of the y-coordinate gives distance from the x-axis."
+    },
+    {
+      "claim": "Reflecting across the y-axis changes the sign of y.",
+      "correction": "Reflection across the y-axis changes the sign of x and keeps y unchanged."
+    },
+    {
+      "claim": "A vertical line has slope 0.",
+      "correction": "A horizontal line has slope 0; a vertical line has undefined slope because Δx = 0."
+    },
+    {
+      "claim": "Perpendicular non-vertical lines have equal slopes.",
+      "correction": "Parallel non-vertical lines have equal slopes; perpendicular non-vertical lines satisfy m₁m₂ = −1."
+    },
+    {
+      "claim": "At the y-intercept, y must be 0.",
+      "correction": "At the y-intercept, x = 0; at the x-intercept, y = 0."
+    },
+    {
+      "claim": "In Ax + By + C = 0, the slope is −B/A.",
+      "correction": "Rearranging gives y = (−A/B)x − C/B, so the slope is −A/B."
+    }
+  ],
+  "recommended_example_progression": [
+    "Locate quadrants and apply two reflections using Example 1.",
+    "Convert perpendicular distances and quadrant signs into coordinates using Example 2.",
+    "Combine reflection and translation using Example 3.",
+    "Find both intercepts by substitution using Example 4.",
+    "Interpret signs of coefficients in the general equation using Example 5.",
+    "Find a fixed point common to a family of lines using Example 6.",
+    "Build slope-intercept equations using Examples 7 and 8, then convert general form using Example 9.",
+    "Use equal and opposite intercepts in the intercept form with Example 10."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter organises practice as EXERCISE 4.1, EXERCISE 4.2, EXERCISE 4.3, EXERCISE 4.4, and EXERCISE 4.5.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Digital maps and navigation systems represent locations using coordinate systems; local map coordinates apply the same principle of fixing positions relative to reference axes.",
+      "Computer graphics use matrices and coordinate transformations to reflect, translate, rotate, and scale shapes; this chapter introduces the reflection and translation ideas behind those operations.",
+      "In engineering drawings, slope describes grade or incline, while intercepts help locate where a straight feature crosses reference lines.",
+      "Linear models are widely used as first approximations when one quantity changes at a nearly constant rate with another.",
+      "The story of Descartes and the fly is commonly told as an illustration of coordinate thinking, but historians treat the literal story as uncertain."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Cartesian plane and quadrants",
+        "search_description": "Cartesian coordinate plane four quadrants signs educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A Cartesian plane labelled with the four quadrants and the sign pattern of coordinates.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Cartesian-coordinate-system.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Cartesian-coordinate-system.svg/960px-Cartesian-coordinate-system.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Cartesian-coordinate-system.svg",
+        "license": "Public domain",
+        "attribution": "K. Bolino"
+      },
+      {
+        "topic": "Point reflections",
+        "search_description": "reflection of point across x axis y axis and origin coordinate geometry",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A point and its reflections across both coordinate axes and the origin.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/PointReflection.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/PointReflection.png/960px-PointReflection.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:PointReflection.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "NicholasSweeten"
+      },
+      {
+        "topic": "Slope types",
+        "search_description": "positive negative zero undefined slope lines diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Four graphs illustrating positive, negative, zero, and undefined slopes.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Slope_Type_Escalator_at_Edion_Central_Roop_Higashi-Osaka.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Slope_Type_Escalator_at_Edion_Central_Roop_Higashi-Osaka.jpg/960px-Slope_Type_Escalator_at_Edion_Central_Roop_Higashi-Osaka.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Slope_Type_Escalator_at_Edion_Central_Roop_Higashi-Osaka.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Mr.ちゅらさん"
+      },
+      {
+        "topic": "Rise over run",
+        "search_description": "slope rise over run right triangle coordinate graph",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A line with a right triangle marking vertical rise and horizontal run.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rome_-_its_rise_and_fall%3B_a_text-book_for_high_schools_and_colleges_%281900%29_%2814598153449%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rome_-_its_rise_and_fall%3B_a_text-book_for_high_schools_and_colleges_%281900%29_%2814598153449%29.jpg/960px-Rome_-_its_rise_and_fall%3B_a_text-book_for_high_schools_and_colleges_%281900%29_%2814598153449%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Rome_-_its_rise_and_fall;_a_text-book_for_high_schools_and_colleges_(1900)_(14598153449).jpg",
+        "license": "No restrictions",
+        "attribution": "Internet Archive Book Images"
+      },
+      {
+        "topic": "Parallel and perpendicular slopes",
+        "search_description": "parallel perpendicular lines slopes m1 m2 educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Coordinate graphs comparing parallel lines with equal slopes and perpendicular lines with negative reciprocal slopes.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Slopes_of_Parallel_and_Perpendicular_Lines.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Slopes_of_Parallel_and_Perpendicular_Lines.svg/960px-Slopes_of_Parallel_and_Perpendicular_Lines.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Slopes_of_Parallel_and_Perpendicular_Lines.svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "BloomyFractal"
+      },
+      {
+        "topic": "Forms of a line",
+        "search_description": "general slope intercept and intercept form straight line comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A straight line labelled with slope, x-intercept, and y-intercept alongside common equation forms.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lego_Factory_Adventure_Ride_Queue_Timeline.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lego_Factory_Adventure_Ride_Queue_Timeline.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Lego_Factory_Adventure_Ride_Queue_Timeline.jpg",
+        "license": "Public domain",
+        "attribution": "Theme Parks and Entertainment"
+      }
+    ]
+  }
+}

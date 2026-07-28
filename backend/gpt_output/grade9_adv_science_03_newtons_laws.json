@@ -1,0 +1,178 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Newton's Laws of Motion",
+    "central_question": "How do reference frames, gravitational effects, circular motion, air resistance, changing gravity, and torque extend the application of Newtonian mechanics to accelerating and rotating situations?",
+    "in_scope_units": [
+      "3.1 Limitations of Newton's Laws in Accelerating Frames",
+      "Activity 3.1 observations in an accelerating bus and turning vehicle",
+      "Pseudo force definition, direction, formula, and frame dependence",
+      "Quick Check on inertial frames and pseudo-force calculation",
+      "3.2 Gravitation and orbital motion",
+      "Centripetal force, tangential inertia, and Activity 3.2 with a ring or bob",
+      "Effect of cross-sectional area and air resistance on equal-mass falling objects",
+      "Falling in air compared with falling in a vacuum",
+      "Variation of acceleration due to gravity with altitude",
+      "Worked example for g at 800 km above Earth",
+      "Variation of acceleration due to gravity with depth using the uniform-density model and shell theorem",
+      "Worked example for depth at which g becomes one-tenth of surface value",
+      "Quick Check on variation of g",
+      "3.3 Turning Forces: moment of force or torque",
+      "Activity 3.3 using a door, hinge, handle, and lever arm",
+      "Torque formula, angle dependence, SI unit, and Check Your Understanding questions 1-7"
+    ],
+    "banned_topics": [
+      "Detailed projectile motion and equations of uniformly accelerated motion from the previous chapter",
+      "Fluid pressure and buoyancy",
+      "Work-energy theorem and rotational kinetic energy",
+      "General relativity or spacetime curvature",
+      "Detailed planetary data not supplied in the chapter"
+    ],
+    "must_include_keywords": [
+      "Newton's First Law",
+      "inertia",
+      "inertial frame",
+      "non-inertial frame",
+      "accelerating frame",
+      "pseudo force",
+      "fictitious force",
+      "F_pseudo = -m a_frame",
+      "Activity 3.1",
+      "gravitation",
+      "orbital motion",
+      "centripetal force",
+      "tangential velocity",
+      "Activity 3.2",
+      "air resistance",
+      "air drag",
+      "cross-sectional area",
+      "vacuum",
+      "F = mg",
+      "acceleration due to gravity",
+      "altitude",
+      "depth",
+      "Earth's radius",
+      "uniform density",
+      "shell theorem",
+      "g_h = g[R/(R+h)]²",
+      "g_d = g(1-d/R)",
+      "Earth's centre",
+      "Activity 3.3",
+      "moment of force",
+      "torque",
+      "pivot",
+      "lever arm",
+      "τ = Fd sin θ",
+      "newton-metre",
+      "perpendicular force",
+      "door handle",
+      "spanner"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A real backward force pushes a passenger when a bus accelerates forward.",
+        "correction": "From the road's inertial frame, no backward force exists; the passenger's body tends to remain at rest due to inertia. A backward pseudo force is introduced only in the accelerating bus frame."
+      },
+      {
+        "claim": "Pseudo force is a real interaction force with a Newton's third-law reaction partner.",
+        "correction": "The chapter states that pseudo force has no physical source and no reaction pair; it appears only when describing motion from an accelerating frame."
+      },
+      {
+        "claim": "Centrifugal force is a real outward force acting on an orbiting body in an inertial frame.",
+        "correction": "In an inertial frame, gravity or tension supplies the inward centripetal force, while inertia gives the tendency to continue tangentially. A centrifugal force is used only as a pseudo force in a rotating non-inertial frame."
+      },
+      {
+        "claim": "Objects of equal mass but different shapes always fall together in air.",
+        "correction": "In air, the larger cross-sectional area usually produces greater drag, so the smaller-area object can fall faster; in a vacuum, both fall together."
+      },
+      {
+        "claim": "Gravity becomes zero as soon as an astronaut is above Earth's surface.",
+        "correction": "Gravity decreases with altitude but does not become zero merely because an astronaut is in orbit; apparent weightlessness is associated with continuous free fall."
+      },
+      {
+        "claim": "The altitude formula uses h alone as the distance from Earth's centre.",
+        "correction": "The correct distance from Earth's centre is R+h, so g_h = GM/(R+h)² = g[R/(R+h)]². The printed intermediate denominator '(h)²' is inconsistent with the chapter's own stated distance and numerical example."
+      },
+      {
+        "claim": "At depth d, g_d = g(d/R).",
+        "correction": "Under the chapter's uniform-density model, g_d = g(R-d)/R = g(1-d/R), which gives g at the surface when d=0 and zero at the centre when d=R."
+      },
+      {
+        "claim": "Torque depends only on the applied force.",
+        "correction": "Torque depends on force, distance from the pivot, and angle: τ = Fd sin θ."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 3.1 to compare the road observer and bus observer and explain why pseudo force is frame-dependent.",
+      "Use Quick Check 3 in Section 3.1 to calculate pseudo force for a 60 kg person in a lift accelerating at 4.5 m/s².",
+      "Use Activity 3.2 to connect tension, tangential tendency, and circular motion.",
+      "Use the equal-mass falling-object cases to compare air and vacuum.",
+      "Use the chapter example with R = 6400 km, h = 800 km, and g = 9.8 m/s² to calculate g at altitude.",
+      "Use the depth example to derive d = 9R/10 when g_d = g/10.",
+      "Use Activity 3.3 and Check Your Understanding Q7 to calculate torque at 90°, 60°, and 30°."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter includes Quick Check sets in Sections 3.1 and 3.2 and ends with 'Check Your Understanding', questions 1-7, under Section 3.3 Turning Forces."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Newton's Laws of Motion\n\n## What you will learn\nYou will learn why Newton's laws work directly in inertial frames but require a pseudo force description in accelerating frames. Activity 3.1 will be used to compare what a road observer and a bus passenger observe.\n\n## Simple explanation\nWhen a bus accelerates, a standing passenger seems to move backward. From the road, the explanation is inertia; from inside the accelerating bus, an apparent backward pseudo force is introduced so that Newton's laws can be used in that non-inertial frame.\n\n## Step-by-step breakdown\n- **Newton's First Law**: A body remains at rest or in uniform straight-line motion unless acted on by an external force.\n- **Inertial frame**: Newton's laws apply without modification in a non-accelerating frame.\n- **Non-inertial frame**: An accelerating frame can make objects appear to move without a visible real force.\n- **Activity 3.1 road observer**: The road observer sees the bus accelerate forward while the passenger's body tends to remain in its original state because of inertia.\n- **Activity 3.1 bus observer**: The observer inside the accelerating bus sees the passenger move backward relative to the bus.\n- **Pseudo force**: It is an apparent force introduced only in an accelerating frame; it does not arise from a physical interaction.\n- **Direction**: The pseudo force acts opposite to the acceleration of the frame.\n- **Formula**: F_pseudo = -m a_frame.\n- **No reaction pair**: The chapter states that pseudo force has no physical source and no Newton's third-law reaction partner.\n\n## Worked example\nQuestion: Quick Check 3 in Section 3.1: A lift accelerates upward at 4.5 m/s². Calculate the pseudo force experienced by a 60 kg person inside the lift.\n\nSolution:\n- Step 1: The lift frame accelerates upward, so the pseudo force in that frame acts downward.\n- Step 2: Magnitude = m a_frame = 60 × 4.5 = 270 N.\n- Final answer: The pseudo force is 270 N downward, or F_pseudo = -270 N if upward is taken as positive.\n\n## Common mistake\nDo not interpret the backward feeling in Activity 3.1 as evidence of a real backward interaction force. In the road frame, inertia is sufficient; pseudo force is used only in the accelerating frame.\n\n## Quick check question\nQuestion: Quick Check 4 in Section 3.1 asks why pseudo force disappears in an inertial frame. What is the reason?\nAnswer: An inertial frame has no frame acceleration, so a_frame = 0 and F_pseudo = -m a_frame = 0.\nExplanation: Pseudo force is introduced only to account for the acceleration of a non-inertial frame.\n\n## Summary\n- Newton's laws apply directly in inertial frames.\n- Accelerating frames are non-inertial.\n- Pseudo force is apparent, not an interaction force.\n- It acts opposite to frame acceleration.\n- Its formula is F_pseudo = -m a_frame.",
+    "Core explanation": "# Core Explanation: Advanced - Newton's Laws of Motion\n\n## What you will learn\nYou will understand how inward force and tangential motion combine to produce orbital or circular motion. You will also compare the fall of equal-mass objects in air and in a vacuum.\n\n## Simple explanation\nA body moving in a circle continually changes direction. An inward centripetal force causes this change, while inertia gives the body a tendency to continue along the tangent. Air resistance adds another important force when objects fall through air.\n\n## Step-by-step breakdown\n- **Earth-Sun attraction**: The Sun and Earth attract each other gravitationally with equal and opposite forces.\n- **Different accelerations**: Because the Sun has much greater mass, Earth's acceleration is much larger than the Sun's, so Earth appears to revolve around the Sun.\n- **Centripetal role of gravity**: The Sun's gravitational pull provides the inward force that bends Earth's path into an orbit.\n- **Tangential tendency**: Earth's inertia tends to carry it along a straight tangent, while gravity continuously changes the direction of motion.\n- **Activity 3.2**: A ring or bob tied to a thread moves in a horizontal circle when the thread supplies inward tension.\n- **Reduced speed observation**: As speed is reduced, the circular motion can fail and the thread may become slack, so the bob moves inward or falls.\n- **Frame clarification**: In an inertial frame, the real force is inward centripetal force; an outward centrifugal force is a pseudo-force description used in a rotating frame.\n- **Equal mass in air**: Both objects have equal weight mg, but air drag differs with cross-sectional area, shape, speed, and air density.\n- **Cross-sectional area**: The larger-area object experiences more air resistance and therefore a smaller net downward force.\n- **Vacuum case**: Without air resistance, equal-mass objects fall with the same acceleration regardless of shape or size.\n\n## Worked example\nQuestion: Based on Activity 3.2, what happens when the speed of the ring or bob is gradually reduced, and why?\n\nSolution:\n- Step 1: At suitable speed, thread tension supplies the inward centripetal force while inertia gives a tangential tendency.\n- Step 2: When speed is reduced sufficiently, the motion can no longer maintain the same circular path and the thread may become slack.\n- Final answer: The bob stops following the original circle and begins to move inward or fall because the required balance for circular motion is disturbed.\n\n## Common mistake\nIt is misleading to say that tangential speed itself 'provides a centrifugal force' in an inertial frame. Tangential speed gives an inertial tendency; tension or gravity provides the real inward centripetal force.\n\n## Quick check question\nQuestion: In the chapter's equal-mass falling-object comparison, which object reaches the ground first in air: the one with larger or smaller cross-sectional area?\nAnswer: The object with the smaller cross-sectional area reaches the ground first.\nExplanation: It experiences less air resistance, so its net downward force is greater. In a vacuum, both reach together.\n\n## Summary\n- Gravity can provide centripetal force for orbital motion.\n- Inertia gives a tangential straight-line tendency.\n- Activity 3.2 models circular motion with tension.\n- Air drag opposes falling motion.\n- Cross-sectional area affects falling time in air but not in a vacuum.",
+    "Worked examples": "# Worked Examples: Advanced - Newton's Laws of Motion\n\n## What you will learn\nYou will calculate how acceleration due to gravity changes with height and depth. You will also identify and correct the consistent formulas implied by the chapter's diagrams, definitions, and worked values.\n\n## Simple explanation\nGravity depends on distance from Earth's centre. Above the surface, distance increases and g decreases according to an inverse-square relation. Inside a uniform-density Earth, only the enclosed mass contributes, so g decreases linearly to zero at the centre.\n\n## Step-by-step breakdown\n- **At Earth's surface**: g = GM/R².\n- **At height h**: The distance from Earth's centre is R+h, so g_h = GM/(R+h)².\n- **Altitude ratio**: g_h/g = R²/(R+h)², therefore g_h = g[R/(R+h)]².\n- **Printed-formula caution**: The chapter's stated distance R+h and its 800 km example require the denominator (R+h)², not h².\n- **Altitude trend**: g_h is less than g and decreases as h increases.\n- **Inside Earth assumption**: The depth derivation assumes uniform density.\n- **Shell theorem use**: The outer spherical shell contributes zero net gravitational field at an interior point.\n- **Enclosed radius**: At depth d, the distance from the centre is R-d.\n- **Depth formula**: g_d/g = (R-d)/R, so g_d = g(1-d/R).\n- **Depth trend**: g is maximum at the surface and decreases to zero at the centre.\n- **Weightlessness note**: The chapter states that gravity at orbital height is not zero; apparent weightlessness does not mean gravity has vanished.\n\n## Worked example\nQuestion: Use the chapter's altitude example: calculate g at a height of 800 km above Earth when R = 6400 km and g = 9.8 m/s².\n\nSolution:\n- Step 1: Use g_h = g[R/(R+h)]² with R+h = 6400+800 = 7200 km.\n- Step 2: g_h = 9.8(6400/7200)² = 9.8(64/72)².\n- Final answer: g_h ≈ 7.74 m/s², matching the chapter's worked result.\n\n## Common mistake\nDo not use g_h = GM/h² for height above the surface. The gravitational distance is measured from Earth's centre, so it is R+h.\n\n## Quick check question\nQuestion: Quick Check 4 in Section 3.2 asks: at what depth will g become half its surface value?\nAnswer: d = R/2.\nExplanation: Using g_d = g(1-d/R), set g_d = g/2. Then 1-d/R = 1/2, so d/R = 1/2.\n\n## Summary\n- Above Earth, g_h = g[R/(R+h)]².\n- Gravity decreases with altitude but does not immediately become zero.\n- Inside a uniform Earth, g_d = g(1-d/R).\n- Gravity is maximum at the surface.\n- Gravity becomes zero at Earth's centre.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Newton's Laws of Motion\n\n## What you will learn\nYou will understand torque as the turning effect of force and solve problems involving force, lever arm, and angle. Activity 3.3 and the final exercise questions will guide the reasoning.\n\n## Simple explanation\nA force turns an object most effectively when it acts far from the pivot and perpendicular to the lever arm. This is why a door handle is far from the hinge and why a long spanner makes a tight bolt easier to turn.\n\n## Step-by-step breakdown\n- **Moment of force**: The turning effect of a force is called moment of force or torque.\n- **Pivot**: The fixed point about which rotation occurs, such as a door hinge.\n- **Lever arm**: The distance d from the pivot to the point where force is applied.\n- **Torque formula**: τ = Fd sin θ.\n- **Angle θ**: It is the angle between the force and the line from pivot to point of application.\n- **Maximum torque**: At θ = 90°, sin θ = 1 and torque is maximum.\n- **Zero torque**: At θ = 0° or 180°, the line of action passes toward or away from the pivot and sin θ = 0.\n- **SI unit**: newton-metre (N m).\n- **Activity 3.3 door handle**: Pushing near the handle gives a larger d than pushing near the hinge.\n- **Long spanner**: Increasing d increases torque without increasing force.\n- **Balanced torques**: Equal and opposite torques about a pivot can produce zero net rotation.\n\n## Worked example\nQuestion: Check Your Understanding Q7: A force of 20 N is applied to a door at 0.8 m from the hinge. Calculate torque at 90°, 60°, and 30°.\n\nSolution:\n- Step 1: Use τ = Fd sin θ = 20 × 0.8 × sin θ = 16 sin θ N m.\n- Step 2: At 90°, τ = 16 N m.\n- Step 3: At 60°, τ = 16(√3/2) ≈ 13.9 N m; at 30°, τ = 16(1/2) = 8 N m.\n- Final answer: 16 N m at 90°, about 13.9 N m at 60°, and 8 N m at 30°.\n\n## Common mistake\nDo not treat the full distance from the pivot as effective unless the angle is considered. Torque is Fd sin θ, not simply Fd in every situation.\n\n## Quick check question\nQuestion: Check Your Understanding Q3 compares equal perpendicular forces applied 20 cm and 80 cm from a gate hinge. Who produces greater torque?\nAnswer: The student pushing at 80 cm produces four times the torque.\nExplanation: For equal force at 90°, torque is proportional to distance; 80/20 = 4.\n\n## Summary\n- Torque is the turning effect of force.\n- τ = Fd sin θ.\n- Larger lever arm gives larger torque.\n- Perpendicular force gives maximum torque.\n- Parallel or radial force gives zero torque.\n- The SI unit is newton-metre.",
+    "Revision and recap": "# Revision and Recap: Advanced - Newton's Laws of Motion\n\n## What you will learn\nYou will integrate the chapter's ideas by deciding which frame, force model, gravitational relation, or torque relation applies. You will also practise identifying misleading explanations.\n\n## Simple explanation\nNewtonian reasoning depends on choosing the correct frame and identifying real interactions. The same care is needed when analysing circular motion, falling objects, changing gravity, and rotational effects.\n\n## Step-by-step breakdown\n- **Frame test**: If the frame accelerates, pseudo force may be introduced; if it is inertial, use only real forces.\n- **Direction test for pseudo force**: It is opposite to frame acceleration and has magnitude m a_frame.\n- **Circular-motion test**: Identify the real inward centripetal force and the object's tangential tendency.\n- **Falling-object test**: In air, include drag; in a vacuum, only gravity acts.\n- **Altitude test**: Use distance R+h from Earth's centre.\n- **Depth test**: Under uniform density, use g_d = g(1-d/R).\n- **Torque test**: Identify pivot, force, distance, and angle before calculating.\n- **Zero-turning condition**: A force can be non-zero yet produce zero torque if its line of action passes through the pivot.\n- **Balanced rod in Check Your Understanding Q5**: Equal downward forces at equal distances on opposite sides produce equal and opposite torques, so the net torque is zero.\n- **Scientific language**: 'Apparent force', 'real interaction force', 'centripetal force', and 'inertia' must not be used interchangeably.\n\n## Worked example\nQuestion: Check Your Understanding Q5: Two 10 N downward forces act 0.5 m from the centre on opposite sides of a centrally pivoted rod. Will the rod rotate?\n\nSolution:\n- Step 1: Each force produces torque magnitude τ = Fd = 10 × 0.5 = 5 N m.\n- Step 2: The left and right forces turn the rod in opposite rotational directions.\n- Final answer: The rod will not have angular acceleration from these forces because the equal and opposite torques give zero net torque.\n\n## Common mistake\nZero net torque does not mean no forces act. It means the clockwise and anticlockwise turning effects balance about the chosen pivot.\n\n## Quick check question\nQuestion: The depth example asks where g becomes one-tenth of its surface value. What depth does the corrected uniform-density relation give?\nAnswer: d = 9R/10.\nExplanation: Set g_d = g(1-d/R) = g/10, giving 1-d/R = 1/10 and therefore d/R = 9/10.\n\n## Summary\n- Pseudo force is frame-dependent and apparent.\n- Centripetal force is inward; inertia is tangential.\n- Drag explains different falling times in air.\n- g decreases above and below Earth's surface.\n- Torque depends on force, distance, and angle.\n- Equal opposite torques can give zero net rotation."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Rotating weather systems are often analysed in Earth's rotating frame, where apparent Coriolis effects are introduced because that frame is non-inertial.",
+      "Orbiting astronauts feel weightless because the spacecraft and astronauts are falling together around Earth, not because Earth's gravity has disappeared.",
+      "Vacuum-drop demonstrations show that objects with very different shapes can fall together when air drag is removed.",
+      "Engineers use torque specifications when tightening bolts so that joints are secure without damaging components.",
+      "Spacecraft orbital changes are achieved by changing velocity; even a carefully directed small velocity change can alter the size or shape of an orbit.",
+      "The uniform-density Earth model gives a simple linear depth relation for g, while the real Earth has layers of different density, so precise values require a more detailed model."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Passenger in accelerating bus",
+        "search_description": "accelerating bus passenger inertia inertial non inertial frame diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A passenger leaning backward as a bus accelerates forward, shown from road and bus reference frames."
+      },
+      {
+        "topic": "Circular motion with string",
+        "search_description": "centripetal force ball on string tangential velocity diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A bob moving in a circle with inward tension and a tangent showing its inertial direction."
+      },
+      {
+        "topic": "Orbit and tangential velocity",
+        "search_description": "Earth orbit Sun gravitational centripetal force tangential velocity diagram",
+        "suggested_source": "NASA public image gallery",
+        "alt_text": "Earth following a curved orbit around the Sun with inward gravity and tangential velocity arrows."
+      },
+      {
+        "topic": "Air resistance comparison",
+        "search_description": "falling objects same mass different cross sectional area air resistance diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two equal-mass objects with different areas falling through air with different drag forces."
+      },
+      {
+        "topic": "Gravity with altitude and depth",
+        "search_description": "acceleration due to gravity variation altitude depth Earth graph",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A graph showing maximum gravitational acceleration at Earth's surface and decreasing values above and toward the centre."
+      },
+      {
+        "topic": "Door torque",
+        "search_description": "door hinge handle torque force angle lever arm diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A door with hinge pivot, handle lever arm, and perpendicular applied force producing torque."
+      },
+      {
+        "topic": "Torque simulation",
+        "search_description": "torque balance lever arm interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive balance showing how force and distance from a pivot affect rotational equilibrium."
+      }
+    ]
+  }
+}

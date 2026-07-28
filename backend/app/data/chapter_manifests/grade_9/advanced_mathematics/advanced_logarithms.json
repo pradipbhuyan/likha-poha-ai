@@ -1,0 +1,232 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Logarithms",
+  "central_question": "How do logarithms express unknown exponents, simplify multiplicative calculations, model logarithmic scales, and solve equations while respecting their domain?",
+  "in_scope_units": [
+    "2.1 Introduction to Logarithms",
+    "Opening Puzzle: The Sound of Numbers",
+    "Historical context: John Napier, Henry Briggs, and logarithm tables",
+    "2.2 Understanding Logarithms as the Inverse of Exponents",
+    "2.2.1 Understanding Logarithms through powers of 10",
+    "Definition and domain conditions of a logarithm",
+    "Conversion between exponential and logarithmic forms",
+    "Exercise 2.1",
+    "2.3 Logarithm Properties",
+    "Product Rule",
+    "Quotient Rule",
+    "Power Rule",
+    "Change of Base Formula",
+    "Logarithm of 1 and logarithm of a number to the same base",
+    "Combining logarithmic expressions",
+    "2.4 Logarithm to base 10",
+    "Common logarithms and natural logarithms",
+    "Exercise 2.2",
+    "2.5 Logarithms Across Subjects",
+    "pH scale, musical octaves, population growth, and earthquake magnitude",
+    "Example 9 and Exercise 2.3",
+    "2.6 Solving Logarithmic Equations: The Search for x",
+    "Domain checking and rejection of extraneous roots",
+    "Examples 10-12"
+  ],
+  "banned_topics": [
+    "Set operations, Venn diagrams, and Exercise 1.3 carried over from the previous chapter",
+    "Advanced calculus of logarithmic and exponential functions",
+    "Complex logarithms and logarithms of negative or complex numbers",
+    "Detailed seismology, acoustics, chemistry, or population modelling beyond the logarithmic relationships stated in the chapter"
+  ],
+  "must_include_keywords": [
+    "logarithm",
+    "exponent",
+    "base",
+    "argument",
+    "inverse of exponentiation",
+    "exponential form",
+    "logarithmic form",
+    "powers of 10",
+    "domain",
+    "positive argument",
+    "base greater than zero",
+    "base not equal to 1",
+    "product rule",
+    "quotient rule",
+    "power rule",
+    "change of base",
+    "logarithm of 1",
+    "same base",
+    "single logarithm",
+    "common logarithm",
+    "base 10",
+    "natural logarithm",
+    "ln",
+    "John Napier",
+    "Henry Briggs",
+    "pH scale",
+    "decibel scale",
+    "Richter scale",
+    "octave",
+    "exponential growth",
+    "logarithmic equation",
+    "extraneous root",
+    "solution verification"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "log_b a means b divided by a.",
+      "correction": "log_b a is the exponent x for which b^x = a."
+    },
+    {
+      "claim": "A logarithm can have any real base.",
+      "correction": "For real logarithms, the base must satisfy b > 0 and b ≠ 1."
+    },
+    {
+      "claim": "The argument of a real logarithm may be zero or negative.",
+      "correction": "The argument must be strictly positive; log_b 0 and log_b of a negative number are not defined in the real number system."
+    },
+    {
+      "claim": "log_a(M + N) = log_a M + log_a N.",
+      "correction": "The product rule applies to multiplication, not addition: log_a(MN) = log_a M + log_a N."
+    },
+    {
+      "claim": "log_a(M − N) = log_a M − log_a N.",
+      "correction": "The quotient rule applies to division: log_a(M/N) = log_a M − log_a N; there is no corresponding subtraction rule."
+    },
+    {
+      "claim": "log_a(M^k) = (log_a M)^k.",
+      "correction": "The exponent comes down as a multiplier: log_a(M^k) = k log_a M."
+    },
+    {
+      "claim": "log_a 1 = 1 because the argument is 1.",
+      "correction": "log_a 1 = 0 because a^0 = 1."
+    },
+    {
+      "claim": "log_a a = 0.",
+      "correction": "log_a a = 1 because a^1 = a."
+    },
+    {
+      "claim": "When no base is written, log always means natural logarithm.",
+      "correction": "In this chapter, log x without a written base denotes the common logarithm log_10 x, while ln x denotes log_e x."
+    },
+    {
+      "claim": "Every algebraic root obtained while solving a logarithmic equation is valid.",
+      "correction": "Each candidate must be checked in the original equation; any value making a logarithmic argument zero or negative is an extraneous root."
+    },
+    {
+      "claim": "A difference of 3 on a base-10 logarithmic scale represents a factor of 3.",
+      "correction": "A difference of 3 corresponds to a ratio of 10^3 = 1000 in the underlying quantity described by that scale."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the Opening Puzzle and Examples 1-2 to connect powers with logarithms and convert between the two forms.",
+    "Use Exercise 2.1 to practise positive, zero, negative, and fractional exponents in logarithmic notation.",
+    "Use Example 3 to combine sums and differences of logarithms into one logarithm.",
+    "Use Examples 4-5 to evaluate exact logarithms by rewriting arguments as powers of the base.",
+    "Use Examples 6-8 and Exercise 2.2 to work with common logarithms, symbolic values, and constants rewritten as logarithms.",
+    "Use Example 9 and Exercise 2.3 Question 5 to interpret base-10 differences on earthquake, pH, and brightness scales.",
+    "Use Example 10 to solve a one-logarithm linear equation and check its domain.",
+    "Use Example 11 to combine logarithms, solve a quadratic, and reject an extraneous root.",
+    "Use Example 12 to show that a negative value of x can still be valid when the logarithmic argument remains positive."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter provides Exercise 2.1, Exercise 2.2, and Exercise 2.3, followed by solved logarithmic-equation Examples 10-12.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Computer algorithms are often analysed using logarithms because repeatedly halving a problem leads to a number of steps proportional to log_2 of the input size.",
+      "Astronomers use logarithmic magnitude scales to compare objects whose brightnesses span extremely large ratios.",
+      "Information theory measures information in bits using base-2 logarithms because each binary choice has two possible outcomes.",
+      "The natural logarithm appears whenever a continuously growing or decaying quantity is modelled mathematically, including idealised population, cooling, and radioactive-decay models.",
+      "A logarithmic graph can reveal multiplicative patterns that are difficult to see on an ordinary linear axis."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Exponent and logarithm inverse relationship",
+        "search_description": "exponential form logarithmic form inverse relationship educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A diagram matching b raised to x equals a with logarithm of a to base b equals x.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Logarithm_plots.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Logarithm_plots.png/960px-Logarithm_plots.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Logarithm_plots.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Richard F. Lyon"
+      },
+      {
+        "topic": "Powers of ten table",
+        "search_description": "powers of ten and common logarithms positive negative exponent table",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Powers from ten to the negative fourth through ten to the fourth paired with their base-10 logarithms.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Powers_of_2_e_and_10.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Powers_of_2_e_and_10.png/960px-Powers_of_2_e_and_10.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Powers_of_2_e_and_10.png",
+        "license": "CC0",
+        "attribution": "Ldecola"
+      },
+      {
+        "topic": "Logarithm laws",
+        "search_description": "product quotient power rules logarithms educational poster",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A formula chart for the product, quotient, power, and change-of-base rules.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Natural_Logarithm_of_2.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Natural_Logarithm_of_2.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Natural_Logarithm_of_2.png",
+        "license": "CC0",
+        "attribution": "MuCephei14"
+      },
+      {
+        "topic": "Logarithmic function graph",
+        "search_description": "graph y equals log base 2 x and exponential inverse reflection",
+        "suggested_source": "GeoGebra Materials or Wikimedia Commons",
+        "alt_text": "Exponential and logarithmic curves reflected across the line y equals x.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Y_equals_x_plus_2.PNG",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Y_equals_x_plus_2.PNG",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Y_equals_x_plus_2.PNG",
+        "license": "Public domain",
+        "attribution": "H Padleckas at English Wikibooks"
+      },
+      {
+        "topic": "pH logarithmic scale",
+        "search_description": "pH scale hydrogen ion concentration powers of ten diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A pH scale showing each unit as a tenfold change in hydrogen-ion concentration.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Magnetic_field_strength_of_the_Moon_%28logarithmic_scale%29.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Magnetic_field_strength_of_the_Moon_%28logarithmic_scale%29.png/960px-Magnetic_field_strength_of_the_Moon_%28logarithmic_scale%29.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Magnetic_field_strength_of_the_Moon_(logarithmic_scale).png",
+        "license": "CC BY 4.0",
+        "attribution": "Mark A. Wieczorek"
+      },
+      {
+        "topic": "Musical octaves and frequency",
+        "search_description": "musical octave frequency doubling powers of two diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Successive musical octaves labelled with frequencies that double at each step.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/C_Octaves_-_Reflexions_13.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/C_Octaves_-_Reflexions_13.jpg/960px-C_Octaves_-_Reflexions_13.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:C_Octaves_-_Reflexions_13.jpg",
+        "license": "CC BY 4.0",
+        "attribution": "Querar"
+      },
+      {
+        "topic": "Earthquake logarithmic scale",
+        "search_description": "earthquake magnitude scale powers of ten amplitude educational diagram",
+        "suggested_source": "USGS public image gallery or Wikimedia Commons",
+        "alt_text": "A diagram showing that equal magnitude steps correspond to multiplicative changes in measured ground-motion amplitude.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/2009_L%27Aquila_earthquake_%28magnitude%29.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/2009_L%27Aquila_earthquake_%28magnitude%29.svg/960px-2009_L%27Aquila_earthquake_%28magnitude%29.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:2009_L'Aquila_earthquake_(magnitude).svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Phoenix7777"
+      },
+      {
+        "topic": "Domain of logarithmic equations",
+        "search_description": "logarithmic equation domain positive argument extraneous root flowchart",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A flowchart showing domain restriction, algebraic solution, substitution, and rejection of invalid roots.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Alometric_Equation_-_way_of_expressions.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Alometric_Equation_-_way_of_expressions.png/960px-Alometric_Equation_-_way_of_expressions.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Alometric_Equation_-_way_of_expressions.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Fry72 Karel Frydrýšek"
+      }
+    ]
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Mixtures and their Separation",
+    "central_question": "How can differences in movement through phases and differences in boiling points be used to separate and purify the components of mixtures?",
+    "in_scope_units": [
+      "8.1 Chromatography: history, meaning, principle, and applications",
+      "Column chromatography: adsorption, stationary phase, mobile phase, apparatus, and procedure",
+      "Applications of column chromatography to dyes and plant pigments",
+      "8.2.1 Fractional Distillation: principle, apparatus, fractionating column, and procedure",
+      "8.2.2 Difference between fractional distillation and simple distillation",
+      "8.2.3 Fractional distillation of crude oil and collection of useful fractions",
+      "Questions 1-15 on chromatography and fractional distillation"
+    ],
+    "banned_topics": [
+      "Microscope construction and microscopy, which belong to the following chapter",
+      "Detailed paper chromatography calculations such as Rf values, which are not included in this chapter",
+      "Chemical reactions of petroleum fractions",
+      "Destructive distillation or cracking of hydrocarbons",
+      "Membrane separation and centrifugation"
+    ],
+    "must_include_keywords": [
+      "chromatography",
+      "Mikhail Tswett",
+      "1906",
+      "plant pigments",
+      "chroma",
+      "graphein",
+      "stationary phase",
+      "mobile phase",
+      "different rates of movement",
+      "column chromatography",
+      "adsorption",
+      "partition",
+      "adsorbent",
+      "silica gel",
+      "alumina",
+      "glass wool",
+      "stopcock",
+      "eluent",
+      "fractions",
+      "blue and red dyes",
+      "fractional distillation",
+      "miscible liquids",
+      "boiling point",
+      "more volatile liquid",
+      "fractionating column",
+      "condenser",
+      "repeated condensation",
+      "repeated vaporization",
+      "simple distillation",
+      "less than 25°C",
+      "ethanol",
+      "water",
+      "crude oil",
+      "petroleum gas",
+      "petrol",
+      "kerosene",
+      "diesel",
+      "fuel oil",
+      "lubricating oil"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Chromatography separates substances because they have different boiling points.",
+        "correction": "Chromatography separates components because they move at different rates through a stationary phase under the influence of a mobile phase, often because their adsorption or partition tendencies differ."
+      },
+      {
+        "claim": "The solvent packed inside a chromatography column is the stationary phase.",
+        "correction": "Silica gel or alumina packed in the column is the stationary phase; the flowing solvent or eluent is the mobile phase."
+      },
+      {
+        "claim": "The component that comes out of a column first is the one most strongly adsorbed on the stationary phase.",
+        "correction": "A component that comes out first interacts less strongly with the stationary phase and is carried more readily by the mobile phase."
+      },
+      {
+        "claim": "A fractionating column works only by cooling the vapour once.",
+        "correction": "Its large surface area permits repeated condensation and vaporization, progressively enriching the rising vapour in the lower-boiling component."
+      },
+      {
+        "claim": "Simple distillation is preferred when two miscible liquids have very close boiling points.",
+        "correction": "The chapter uses fractional distillation when boiling points differ by less than 25°C; simple distillation is suitable when the difference is at least about 25°C."
+      },
+      {
+        "claim": "Every fraction in a crude-oil column condenses at the same height.",
+        "correction": "The column is hotter near the bottom and cooler near the top, so fractions condense at different heights according to their boiling ranges."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Questions 1-3 to establish the meaning of chromatography and distinguish stationary and mobile phases.",
+      "Use Questions 4-6 and Fig. 8.1 to identify silica gel or alumina, the eluent, and the reason components move at different rates.",
+      "Use Question 10 to infer that a compound emerging first interacts less strongly with the stationary phase.",
+      "Use Questions 7-9 with Fig. 8.2 to explain fractional distillation and the role of the fractionating column.",
+      "Use Question 11 with ethanol at 78°C and water at 100°C to select fractional distillation.",
+      "Use Questions 12-14 to explain repeated condensation and vaporization and to contrast simple with fractional distillation.",
+      "Use the crude-oil application in Section 8.2.3 to connect boiling ranges with fractions collected at different heights."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends with a section titled 'Questions', containing conceptual, application, and assertion-reason items on chromatography and fractional distillation."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Mixtures and their Separation\n\n## What you will learn\nYou will learn what chromatography is, why it was developed, and how its stationary and mobile phases work together. You will connect the history of the method with its use in separating, purifying, and testing substances.\n\n## Simple explanation\nA mixture can be separated when its components behave differently. In chromatography, a moving phase carries the mixture across a stationary phase, but different components travel at different rates.\n\n## Step-by-step breakdown\n- **Historical origin**: Mikhail Tswett developed chromatography in 1906 while separating coloured constituents of plant pigments.\n- **Meaning of the name**: The word comes from the Greek *chroma*, meaning colour, and *graphein*, meaning to write.\n- **Purpose**: Chromatography can separate a mixture into components, purify compounds, and help test purity.\n- **Stationary phase**: This phase remains fixed and provides a surface with which mixture components interact.\n- **Mobile phase**: This phase moves through or over the stationary phase and carries the components with it.\n- **Separation principle**: Components move at different rates because they interact differently with the two phases.\n- **Applications**: The chapter notes uses in chemistry, biology, and medicine for identifying and separating substances.\n\n## Worked example\nQuestion: Questions 1 and 3 ask: What is chromatography, and what are its two main phases?\n\nSolution:\n- Step 1: Identify the purpose: chromatography separates mixture components because they move at different rates.\n- Step 2: Name the two interacting phases: one remains fixed and the other moves.\n- Final answer: Chromatography is a separation technique based on different rates of movement through a stationary phase under a mobile phase. Its two main phases are the stationary phase and the mobile phase.\n\n## Common mistake\nDo not explain chromatography using boiling-point differences. Boiling point is the basis of distillation, while chromatography depends on different movement and interactions between stationary and mobile phases.\n\n## Quick check question\nQuestion: Question 2 asks who developed chromatography and in which year.\nAnswer: The Russian botanist Mikhail Tswett developed chromatography in 1906.\nExplanation: He used the method while studying and separating plant pigments.\n\n## Summary\n- Chromatography was developed by Mikhail Tswett in 1906.\n- It separates, purifies, and helps test substances.\n- A stationary phase remains fixed.\n- A mobile phase carries components forward.\n- Different movement rates produce separation.",
+    "Core explanation": "# Core Explanation: Advanced - Mixtures and their Separation\n\n## What you will learn\nYou will examine the construction and working of a column chromatography setup. You will reason from adsorption strength to the order in which components leave the column.\n\n## Simple explanation\nIn column chromatography, a mixture is placed above a solid adsorbent. A liquid solvent flows downward, and components separate into bands because each one is held by the solid to a different degree.\n\n## Step-by-step breakdown\n- **Column**: A long glass tube with a stopcock near the bottom controls the outflow.\n- **Support plug**: Cotton or glass wool is placed at the bottom to retain the solid packing.\n- **Stationary phase**: Silica gel or alumina fills the column and acts as the adsorbent.\n- **Sample placement**: The mixture is added at the top of the packed solid and covered with a small amount of glass wool.\n- **Eluent**: A suitable liquid solvent is poured from above; this moving liquid is the mobile phase.\n- **Adsorption difference**: Components adsorbed more strongly spend more time on the stationary phase and move more slowly.\n- **Faster component**: A component that interacts less strongly with the stationary phase travels faster and emerges earlier.\n- **Fraction collection**: Liquid leaving the column is collected in separate fractions so the components can be recovered individually.\n- **Fig. 8.1 observation**: The coloured bands separate progressively as the solvent moves through the column.\n- **Applications**: The chapter lists separation of blue and red dyes and purification of plant pigments.\n\n## Worked example\nQuestion: Question 10 states that compound A comes out before compound B in column chromatography. What can be inferred about A?\n\nSolution:\n- Step 1: A component that is strongly adsorbed remains on the stationary phase for longer.\n- Step 2: Since A leaves first, it must be retained less strongly and carried more readily by the mobile phase.\n- Final answer: A interacts less strongly with the stationary phase than B and therefore moves faster through the column.\n\n## Common mistake\nThe first component to emerge is not necessarily the one with the highest boiling point. Column chromatography is governed by interactions with stationary and mobile phases, not by boiling point.\n\n## Quick check question\nQuestion: Questions 4 and 5 ask for two common adsorbents and the meaning of an eluent.\nAnswer: Silica gel and alumina are common adsorbents. The eluent is the liquid solvent that flows through the column as the mobile phase.\nExplanation: The adsorbent remains fixed, while the eluent carries the mixture components down the column.\n\n## Summary\n- Silica gel or alumina forms the stationary phase.\n- The solvent is the mobile phase or eluent.\n- Different adsorption strengths produce different movement rates.\n- Weakly retained components emerge first.\n- Separate fractions are collected at the outlet.",
+    "Worked examples": "# Worked Examples: Advanced - Mixtures and their Separation\n\n## What you will learn\nYou will learn why fractional distillation is used for miscible liquids with close boiling points. You will follow the repeated condensation and vaporization occurring in the fractionating column.\n\n## Simple explanation\nHeating a liquid mixture produces vapour richer in the more volatile, lower-boiling component. A fractionating column repeats this enrichment many times before the vapour reaches the condenser.\n\n## Step-by-step breakdown\n- **Suitable mixture**: Fractional distillation separates miscible liquids whose boiling points differ by less than 25°C.\n- **Distillation flask**: The liquid mixture is heated in the flask.\n- **More volatile component**: The lower-boiling liquid forms vapour more readily and rises first.\n- **Fractionating column**: It is fitted between the flask and condenser and contains surfaces or obstructions.\n- **Condensation inside the column**: Some rising vapour cools and condenses on these surfaces.\n- **Revaporization**: Condensed liquid is reheated by ascending vapours and vaporizes again.\n- **Progressive enrichment**: Repetition makes the upward vapour richer in the lower-boiling component.\n- **Condenser and receiver**: Vapour leaving the column is condensed and collected as a liquid fraction.\n- **Temperature control**: Different components can be collected one after another in order of increasing boiling point.\n\n## Worked example\nQuestion: Question 11 gives ethanol with boiling point 78°C and water with boiling point 100°C. Which separation method should be used and why?\n\nSolution:\n- Step 1: Calculate the boiling-point difference: 100°C - 78°C = 22°C.\n- Step 2: The difference is less than 25°C, so repeated enrichment is required.\n- Final answer: Use fractional distillation because ethanol and water are miscible liquids with boiling points differing by only 22°C.\n\n## Common mistake\nDo not say that the fractionating column merely stores vapour. Its surfaces enable repeated condensation and vaporization, which is the reason separation improves.\n\n## Quick check question\nQuestion: Question 9 asks for the role of the fractionating column.\nAnswer: It provides a large surface for repeated condensation and vaporization, enriching the rising vapour in the lower-boiling component.\nExplanation: Each cycle improves the separation before the vapour enters the condenser.\n\n## Summary\n- Fractional distillation is used for close-boiling miscible liquids.\n- The lower-boiling component is more volatile.\n- The fractionating column provides many condensation surfaces.\n- Repeated vaporization enriches the rising vapour.\n- The condenser converts separated vapour back to liquid.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Mixtures and their Separation\n\n## What you will learn\nYou will compare simple and fractional distillation and explain why close-boiling liquids need a fractionating column. You will also analyse the scientific reason for the temperature gradient in the column.\n\n## Simple explanation\nOne vaporization-condensation step may not separate similar liquids well. Fractional distillation adds many small separation steps inside one column.\n\n## Step-by-step breakdown\n- **Simple distillation**: The chapter uses it when the boiling points of miscible liquids differ by at least about 25°C.\n- **Fractional distillation**: It is used when the difference is less than about 25°C.\n- **Key apparatus difference**: Fractional distillation includes a fractionating column between the flask and condenser.\n- **Why simple distillation may fail**: Close-boiling liquids can vaporize together, so the collected distillate may still contain both.\n- **Repeated equilibrium steps**: Condensation and revaporization repeatedly favour the lower-boiling component in the upward vapour.\n- **Temperature gradient**: The bottom is near the heated flask and is hotter; the top is farther from the heat source and is cooler.\n- **Collection order**: Lower-boiling components reach the top and condense first under controlled temperature.\n\n## Worked example\nQuestion: Questions 12 and 14 ask why repeated condensation and vaporization improve separation and why simple distillation is unsuitable for close boiling points.\n\nSolution:\n- Step 1: In one distillation step, vapours of two close-boiling liquids may contain both components.\n- Step 2: In the fractionating column, repeated condensation and vaporization progressively enrich the vapour in the more volatile component.\n- Final answer: Fractional distillation gives better separation because the column performs many repeated separation steps, whereas simple distillation provides only one main vaporization-condensation step.\n\n## Common mistake\nA lower temperature at the top does not mean the top actively refrigerates the vapour. The gradient arises because the heat source is at the bottom and rising vapours lose heat as they move upward.\n\n## Quick check question\nQuestion: Question 13 asks why temperature decreases from the bottom to the top of a fractionating column.\nAnswer: The bottom is closest to the heated flask, while rising vapours cool as they move upward, so the upper region is cooler.\nExplanation: This gradient allows substances with different boiling ranges to condense at different heights.\n\n## Summary\n- Simple and fractional distillation serve different boiling-point ranges.\n- The fractionating column is the central difference.\n- Close-boiling liquids need repeated separation steps.\n- The column is hotter below and cooler above.\n- Temperature control determines the order of collection.",
+    "Revision and recap": "# Revision and Recap: Advanced - Mixtures and their Separation\n\n## What you will learn\nYou will connect both chapter methods to their controlling properties and apply fractional distillation to crude oil. You will revise how to select the correct separation method from evidence about a mixture.\n\n## Simple explanation\nChromatography separates by different interactions and movement rates, while fractional distillation separates by volatility and boiling point. Choosing the right method begins by identifying which property differs between the components.\n\n## Step-by-step breakdown\n- **Chromatography decision**: Choose it when components interact differently with a stationary phase and move differently in a mobile phase.\n- **Column outcome**: Components emerge in fractions according to how strongly they are retained.\n- **Distillation decision**: Choose fractional distillation for miscible liquids with close boiling points.\n- **Crude oil**: It is a complex mixture of hydrocarbons with a range of boiling points.\n- **Refinery column**: Crude oil is heated, vapours rise, cool, and condense at different heights.\n- **Upper fractions**: Lower-boiling fractions such as petroleum gases and petrol are collected higher in the column.\n- **Middle and lower fractions**: Kerosene, diesel, fuel oils, lubricating oil, and heavy oils condense progressively lower as boiling range increases.\n- **Method comparison**: Chromatography does not require boiling, whereas fractional distillation depends on repeated phase changes.\n- **Purity check**: Chromatography can help assess purity because a pure substance produces one component under a suitable system, while a mixture separates into more than one.\n\n## Worked example\nQuestion: Section 8.2.3 describes the fractional distillation of crude oil. Why are different fractions collected at different heights?\n\nSolution:\n- Step 1: Crude oil contains hydrocarbons with different boiling ranges.\n- Step 2: The column is hot at the bottom and cooler toward the top, so each fraction condenses where the temperature falls below its boiling range.\n- Final answer: Fractions condense and are collected at different heights because their boiling ranges differ and the column has a vertical temperature gradient.\n\n## Common mistake\nDo not arrange crude-oil fractions randomly. Lower-boiling fractions rise higher before condensing, while higher-boiling heavy fractions condense lower in the column.\n\n## Quick check question\nQuestion: Question 15 states that chromatography separation is due to boiling-point differences, while its reason says components move at different speeds. Evaluate the statements.\nAnswer: The assertion is false, but the reason is true.\nExplanation: Chromatographic separation depends on different movement rates caused by different phase interactions, not on boiling-point differences.\n\n## Summary\n- Chromatography separates by movement and phase interaction.\n- Fractional distillation separates by boiling point and volatility.\n- Crude oil yields useful fractions at different column heights.\n- Lower-boiling fractions condense higher in the column.\n- Method selection depends on the physical property that differs."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Chromatography can be coupled with detectors that help identify very small amounts of separated substances in environmental, food, and medical samples.",
+      "In thin-layer chromatography, a thin adsorbent coating replaces the packed column, but separation still depends on different interactions with stationary and mobile phases.",
+      "Industrial distillation columns use trays or packing to create repeated contact between rising vapour and descending liquid, following the same principle as the laboratory fractionating column.",
+      "Crude-oil fractions are mixtures grouped by boiling range rather than single pure compounds.",
+      "Vacuum distillation lowers boiling temperatures and is useful for high-boiling substances that might decompose at their normal boiling points."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Mikhail Tswett chromatography",
+        "search_description": "Mikhail Tswett early plant pigment chromatography historical apparatus",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A historical portrait or apparatus associated with Mikhail Tswett's separation of plant pigments."
+      },
+      {
+        "topic": "Column chromatography stages",
+        "search_description": "column chromatography coloured bands silica gel eluent fractions diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A chromatography column showing a sample separating into coloured bands as solvent flows downward."
+      },
+      {
+        "topic": "Fractional distillation apparatus",
+        "search_description": "laboratory fractional distillation flask fractionating column condenser labelled diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled laboratory apparatus with heated flask, packed fractionating column, condenser, and receiver."
+      },
+      {
+        "topic": "Vapour-liquid cycles",
+        "search_description": "fractionating column repeated condensation vaporization educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Rising vapour and descending liquid undergoing repeated condensation and vaporization in a column."
+      },
+      {
+        "topic": "Crude oil fractionation",
+        "search_description": "crude oil fractional distillation column LPG petrol kerosene diesel diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A refinery fractionating column labelled with petroleum gases, petrol, kerosene, diesel, and heavy fractions."
+      }
+    ]
+  }
+}

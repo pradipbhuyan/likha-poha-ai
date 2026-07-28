@@ -1,0 +1,240 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Engineering Life: Miracles in Biotechnology",
+  "central_question": "How can living organisms, their cells, and their genes be used responsibly to make useful foods, medicines, crops, industrial products, and environmental solutions?",
+  "in_scope_units": [
+    "10.1 Introduction to Biotechnology",
+    "Blue, Green, and Red Biotechnology",
+    "Activity 10.1: Observe Fermentation at Home",
+    "10.2 Traditional vs Modern Biotechnology",
+    "Activity 10.2: Traditional Biotechnology around you and preparation of probiotic kanji",
+    "10.3 Microbes as Tools in Biotechnology",
+    "Activity 10.3: Fermentation at home using sugar and yeast",
+    "10.4 Applications of Biotechnology in Daily Life",
+    "10.4.1 Crop production and agriculture",
+    "10.4.1.1 Pest-resistant crops using Bt",
+    "10.4.1.2 Improving nutritional quality through Golden Rice",
+    "10.4.2 Medicine and Health Care: production of human insulin using bacteria",
+    "10.4.3 Food processing",
+    "10.4.4 Bio-Enzymes in household cleaning",
+    "10.4.5 Environmental protection through bioremediation and biofuels",
+    "10.5 Bioreactors: Powering Large-Scale Biotechnology Applications",
+    "10.5.1 Parts of a fermenter",
+    "10.5.2 Fermentation Process",
+    "10.5.3 Growth of Microorganisms in a Fermenter",
+    "Continuous culture and maintenance of a productive steady state",
+    "Activity 5.4 as labelled in the source: Growth Simulation",
+    "10.6 Ethical Issues in Biotechnology",
+    "10.6.1 Safety: ecological imbalance, gene flow, non-target effects, and resistant pests",
+    "10.6.2 Equity: patents, biopiracy, and access to biotechnology",
+    "Think and Discuss: beneficence, non-maleficence, autonomy, and justice",
+    "Check Your Understanding"
+  ],
+  "banned_topics": [
+    "Detailed atomic structure, chemical bonding, or microscopy from other chapters",
+    "Advanced molecular genetics beyond the gene-transfer steps given in this chapter",
+    "Detailed CRISPR gene-editing mechanisms",
+    "Human cloning, designer babies, and gene therapy mechanisms beyond their brief appearance in the ethics figure",
+    "Laboratory procedures for engineering harmful microorganisms",
+    "Detailed medical treatment advice for diabetes or vitamin deficiency"
+  ],
+  "must_include_keywords": [
+    "biotechnology",
+    "microorganisms",
+    "fermentation",
+    "traditional biotechnology",
+    "modern biotechnology",
+    "genetic engineering",
+    "recombinant DNA",
+    "Blue Biotechnology",
+    "Green Biotechnology",
+    "Red Biotechnology",
+    "curd",
+    "kanji",
+    "yeast",
+    "bacteria",
+    "fungi",
+    "gene",
+    "DNA",
+    "Bt cotton",
+    "Bacillus thuringiensis",
+    "transgenic plant",
+    "Golden Rice",
+    "beta-carotene",
+    "human insulin",
+    "restriction enzyme",
+    "plasmid",
+    "sticky ends",
+    "DNA ligase",
+    "transformation",
+    "E. coli",
+    "bio-enzyme",
+    "bioremediation",
+    "biofuel",
+    "fermenter",
+    "bioreactor",
+    "inoculum",
+    "stirrer",
+    "sparger",
+    "cooling jacket",
+    "pH sensor",
+    "sterilization"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Traditional biotechnology and modern biotechnology both require deliberate gene transfer.",
+      "correction": "Traditional biotechnology relies mainly on natural microbial processes such as curd formation and bread making, whereas modern biotechnology can deliberately modify genetic material and transfer selected genes."
+    },
+    {
+      "claim": "All bacteria always double every 20 minutes.",
+      "correction": "The chapter uses 20 minutes to show that bacteria can multiply rapidly; actual doubling time depends on the species and growth conditions."
+    },
+    {
+      "claim": "Golden Rice already contains ready-made vitamin A.",
+      "correction": "Golden Rice is engineered to produce beta-carotene, which is a precursor that the human body can convert into vitamin A."
+    },
+    {
+      "claim": "A bacterial plasmid is DNA located outside the bacterial cell.",
+      "correction": "A plasmid is small extra-chromosomal DNA located inside a bacterial cell; it is separate from the main bacterial chromosome."
+    },
+    {
+      "claim": "Restriction enzymes join the insulin gene to the plasmid.",
+      "correction": "Restriction enzymes cut DNA at selected sites, while DNA ligase joins the insulin gene and the opened plasmid."
+    },
+    {
+      "claim": "Once bacteria receive an insulin gene, the material is immediately ready for injection.",
+      "correction": "Engineered bacteria produce the insulin protein, but the product must still be extracted and purified before medical use."
+    },
+    {
+      "claim": "Bioremediation microbes destroy heavy metals in the same way that they break down oil.",
+      "correction": "Microbes can degrade many organic pollutants such as hydrocarbons and pesticides, but elements such as heavy metals cannot be destroyed; biological processes may transform, immobilize, concentrate, or help remove them."
+    },
+    {
+      "claim": "During the stationary phase, microbial growth completely stops.",
+      "correction": "New cells may still form, but approximately an equal number die because nutrients decrease and wastes accumulate."
+    },
+    {
+      "claim": "A fermenter is simply a large open container for microbial growth.",
+      "correction": "A fermenter is a controlled and sterilized vessel with systems for mixing, aeration, temperature control, pH monitoring, nutrient supply, and product recovery."
+    },
+    {
+      "claim": "Every genetically modified crop is automatically beneficial and risk-free.",
+      "correction": "The chapter presents benefits such as pest resistance and improved nutrition, but also requires consideration of gene flow, non-target effects, resistance, fairness, and biosafety."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Activity 10.1 to connect warm milk, starter curd, microbial action, and curd formation.",
+    "Use Activity 10.2 to compare traditional fermentation in household foods and kanji with deliberate gene modification in modern biotechnology.",
+    "Use Activity 10.3 to interpret froth and odour as evidence that yeast is breaking down sugar and producing carbon dioxide and ethanol.",
+    "Use Section 10.4.1.1 and Check Your Understanding Q9 to evaluate both the pest-control benefit and ecological concerns of Bt crops.",
+    "Use Section 10.4.1.2 to trace the problem-process-result sequence for Golden Rice and beta-carotene production.",
+    "Use Check Your Understanding Q8 to explain the ordered steps of producing insulin with restriction enzymes, a plasmid, DNA ligase, transformation, and a fermenter.",
+    "Use the fermenter diagram and Check Your Understanding Q5 to connect the stirrer, sparger, cooling jacket, and pH sensors with controlled microbial growth.",
+    "Use Activity 5.4, as labelled in the source, and Check Your Understanding Q6 to identify lag, log, stationary, and decline phases from numerical growth data.",
+    "End with Check Your Understanding Q9 and the Think and Discuss section to balance benefits with safety, autonomy, justice, and fairness."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with a 'Check Your Understanding' section containing descriptive, data-based, multiple-choice, and assertion-reason questions on biotechnology, fermenters, microbial growth, applications, and ethics.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Precision fermentation uses carefully selected or engineered microorganisms to produce specific proteins, enzymes, flavours, or other molecules under controlled conditions.",
+      "Wastewater-treatment plants use communities of microorganisms in aerated tanks to break down organic waste before water is released or treated further.",
+      "Biosensors can combine a biological component, such as an enzyme, with an electronic detector to measure substances such as glucose or environmental pollutants.",
+      "Microbial enzymes are used in many industries because they can often work under moderate conditions, reducing the need for high temperatures or harsh chemicals.",
+      "Modern crop biotechnology is usually combined with field testing, regulatory review, refuge strategies, and monitoring to reduce ecological and resistance risks.",
+      "Synthetic biology extends genetic engineering by designing biological systems from standardized genetic parts, but its applications require careful biosafety and ethical review."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Traditional and modern biotechnology",
+        "search_description": "traditional fermentation and modern genetic engineering comparison educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Curd, bread, and fermented food shown beside a laboratory gene-transfer process.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Burton_Union_fermentation_system%2C_Coors_Visitor_Centre_-_geograph.org.uk_-_476438.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Burton_Union_fermentation_system%2C_Coors_Visitor_Centre_-_geograph.org.uk_-_476438.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Burton_Union_fermentation_system,_Coors_Visitor_Centre_-_geograph.org.uk_-_476438.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Chris Allen"
+      },
+      {
+        "topic": "Yeast fermentation",
+        "search_description": "yeast sugar fermentation carbon dioxide bubbles ethanol classroom experiment",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A warm sugar-and-yeast mixture producing bubbles and froth.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Yeast_fermentation.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Yeast_fermentation.jpg/960px-Yeast_fermentation.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Yeast_fermentation.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "JOY EL Science Club"
+      },
+      {
+        "topic": "Bt crop mechanism",
+        "search_description": "Bacillus thuringiensis Bt crop insect larva mechanism educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A Bt crop producing a protective protein that affects a susceptible feeding insect larva.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/1963._Clam_digger_working_near_Bacillus_thuringiensis_%28Bt%29_heliport._Western_hemlock_looper_control_project._Willapa_Bay%2C_Washington._%2835251305266%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/1963._Clam_digger_working_near_Bacillus_thuringiensis_%28Bt%29_heliport._Western_hemlock_looper_control_project._Willapa_Bay%2C_Washington._%2835251305266%29.jpg/960px-1963._Clam_digger_working_near_Bacillus_thuringiensis_%28Bt%29_heliport._Western_hemlock_looper_control_project._Willapa_Bay%2C_Washington._%2835251305266%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:1963._Clam_digger_working_near_Bacillus_thuringiensis_(Bt)_heliport._Western_hemlock_looper_control_project._Willapa_Bay,_Washington._(35251305266).jpg",
+        "license": "Public domain",
+        "attribution": "R6, State &amp; Private Forestry, Forest Health Protection"
+      },
+      {
+        "topic": "Golden Rice",
+        "search_description": "Golden Rice beta carotene normal rice comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Ordinary white rice grains compared with golden-yellow beta-carotene-enriched rice.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Golden_Rice.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Golden_Rice.jpg/960px-Golden_Rice.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Golden_Rice.jpg",
+        "license": "CC BY 2.0",
+        "attribution": "International Rice Research Institute (IRRI)"
+      },
+      {
+        "topic": "Recombinant insulin production",
+        "search_description": "recombinant human insulin production plasmid restriction enzyme ligase bacteria diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The insulin gene being inserted into a plasmid and transferred into bacteria for protein production.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/1RH2_Recombinant_Human_Interferon-Alpha_2b-02.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/1RH2_Recombinant_Human_Interferon-Alpha_2b-02.png/960px-1RH2_Recombinant_Human_Interferon-Alpha_2b-02.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:1RH2_Recombinant_Human_Interferon-Alpha_2b-02.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Nevit Dilmen"
+      },
+      {
+        "topic": "Fermenter parts",
+        "search_description": "stirred tank bioreactor impeller sparger cooling jacket pH sensor labelled diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled fermenter showing the impeller, air sparger, cooling jacket, sensors, inlets, and product outlet.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/The_boys%27_and_girls%27_Herodotus%3B_being_parts_of_the_history_of_Herodotus_%281884%29_%2814594516750%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/The_boys%27_and_girls%27_Herodotus%3B_being_parts_of_the_history_of_Herodotus_%281884%29_%2814594516750%29.jpg/960px-The_boys%27_and_girls%27_Herodotus%3B_being_parts_of_the_history_of_Herodotus_%281884%29_%2814594516750%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:The_boys'_and_girls'_Herodotus;_being_parts_of_the_history_of_Herodotus_(1884)_(14594516750).jpg",
+        "license": "No restrictions",
+        "attribution": "Herodotus;\n\nWhite, John S. (John Stuart), 1847-1922, ed"
+      },
+      {
+        "topic": "Microbial growth curve",
+        "search_description": "microbial growth curve lag log stationary death phases labelled",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A graph of microbial population over time labelled with lag, log, stationary, and decline phases.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/BD_Bactec_for_rapid_detction_of_microbial_growth.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/BD_Bactec_for_rapid_detction_of_microbial_growth.jpg/960px-BD_Bactec_for_rapid_detction_of_microbial_growth.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:BD_Bactec_for_rapid_detction_of_microbial_growth.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Ajay Kumar Chaurasiya"
+      },
+      {
+        "topic": "Bioremediation",
+        "search_description": "microbial bioremediation oil contaminated soil water educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Microorganisms helping remove or transform pollutants in contaminated soil or water.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Soil_bioremediation_system.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Soil_bioremediation_system.jpg/960px-Soil_bioremediation_system.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Soil_bioremediation_system.jpg",
+        "license": "CC BY 4.0",
+        "attribution": "Vicente Neto"
+      }
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Mixtures and their Separation",
+  "central_question": "How can differences in movement through phases and differences in boiling points be used to separate and purify the components of mixtures?",
+  "in_scope_units": [
+    "8.1 Chromatography: history, meaning, principle, and applications",
+    "Column chromatography: adsorption, stationary phase, mobile phase, apparatus, and procedure",
+    "Applications of column chromatography to dyes and plant pigments",
+    "8.2.1 Fractional Distillation: principle, apparatus, fractionating column, and procedure",
+    "8.2.2 Difference between fractional distillation and simple distillation",
+    "8.2.3 Fractional distillation of crude oil and collection of useful fractions",
+    "Questions 1-15 on chromatography and fractional distillation"
+  ],
+  "banned_topics": [
+    "Microscope construction and microscopy, which belong to the following chapter",
+    "Detailed paper chromatography calculations such as Rf values, which are not included in this chapter",
+    "Chemical reactions of petroleum fractions",
+    "Destructive distillation or cracking of hydrocarbons",
+    "Membrane separation and centrifugation"
+  ],
+  "must_include_keywords": [
+    "chromatography",
+    "Mikhail Tswett",
+    "1906",
+    "plant pigments",
+    "chroma",
+    "graphein",
+    "stationary phase",
+    "mobile phase",
+    "different rates of movement",
+    "column chromatography",
+    "adsorption",
+    "partition",
+    "adsorbent",
+    "silica gel",
+    "alumina",
+    "glass wool",
+    "stopcock",
+    "eluent",
+    "fractions",
+    "blue and red dyes",
+    "fractional distillation",
+    "miscible liquids",
+    "boiling point",
+    "more volatile liquid",
+    "fractionating column",
+    "condenser",
+    "repeated condensation",
+    "repeated vaporization",
+    "simple distillation",
+    "less than 25°C",
+    "ethanol",
+    "water",
+    "crude oil",
+    "petroleum gas",
+    "petrol",
+    "kerosene",
+    "diesel",
+    "fuel oil",
+    "lubricating oil"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Chromatography separates substances because they have different boiling points.",
+      "correction": "Chromatography separates components because they move at different rates through a stationary phase under the influence of a mobile phase, often because their adsorption or partition tendencies differ."
+    },
+    {
+      "claim": "The solvent packed inside a chromatography column is the stationary phase.",
+      "correction": "Silica gel or alumina packed in the column is the stationary phase; the flowing solvent or eluent is the mobile phase."
+    },
+    {
+      "claim": "The component that comes out of a column first is the one most strongly adsorbed on the stationary phase.",
+      "correction": "A component that comes out first interacts less strongly with the stationary phase and is carried more readily by the mobile phase."
+    },
+    {
+      "claim": "A fractionating column works only by cooling the vapour once.",
+      "correction": "Its large surface area permits repeated condensation and vaporization, progressively enriching the rising vapour in the lower-boiling component."
+    },
+    {
+      "claim": "Simple distillation is preferred when two miscible liquids have very close boiling points.",
+      "correction": "The chapter uses fractional distillation when boiling points differ by less than 25°C; simple distillation is suitable when the difference is at least about 25°C."
+    },
+    {
+      "claim": "Every fraction in a crude-oil column condenses at the same height.",
+      "correction": "The column is hotter near the bottom and cooler near the top, so fractions condense at different heights according to their boiling ranges."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Questions 1-3 to establish the meaning of chromatography and distinguish stationary and mobile phases.",
+    "Use Questions 4-6 and Fig. 8.1 to identify silica gel or alumina, the eluent, and the reason components move at different rates.",
+    "Use Question 10 to infer that a compound emerging first interacts less strongly with the stationary phase.",
+    "Use Questions 7-9 with Fig. 8.2 to explain fractional distillation and the role of the fractionating column.",
+    "Use Question 11 with ethanol at 78°C and water at 100°C to select fractional distillation.",
+    "Use Questions 12-14 to explain repeated condensation and vaporization and to contrast simple with fractional distillation.",
+    "Use the crude-oil application in Section 8.2.3 to connect boiling ranges with fractions collected at different heights."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends with a section titled 'Questions', containing conceptual, application, and assertion-reason items on chromatography and fractional distillation.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Chromatography can be coupled with detectors that help identify very small amounts of separated substances in environmental, food, and medical samples.",
+      "In thin-layer chromatography, a thin adsorbent coating replaces the packed column, but separation still depends on different interactions with stationary and mobile phases.",
+      "Industrial distillation columns use trays or packing to create repeated contact between rising vapour and descending liquid, following the same principle as the laboratory fractionating column.",
+      "Crude-oil fractions are mixtures grouped by boiling range rather than single pure compounds.",
+      "Vacuum distillation lowers boiling temperatures and is useful for high-boiling substances that might decompose at their normal boiling points."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Mikhail Tswett chromatography",
+        "search_description": "Mikhail Tswett early plant pigment chromatography historical apparatus",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A historical portrait or apparatus associated with Mikhail Tswett's separation of plant pigments.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/W_tych_murach_w_latach_1901_1908_dr_michai%C5%82_s_cwiet_tswett_odkry%C5%82_chromatografi%C4%99.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/W_tych_murach_w_latach_1901_1908_dr_michai%C5%82_s_cwiet_tswett_odkry%C5%82_chromatografi%C4%99.jpg/960px-W_tych_murach_w_latach_1901_1908_dr_michai%C5%82_s_cwiet_tswett_odkry%C5%82_chromatografi%C4%99.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:W_tych_murach_w_latach_1901_1908_dr_michaił_s_cwiet_tswett_odkrył_chromatografię.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Panek"
+      },
+      {
+        "topic": "Column chromatography stages",
+        "search_description": "column chromatography coloured bands silica gel eluent fractions diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A chromatography column showing a sample separating into coloured bands as solvent flows downward.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Chromatography_column.PNG",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Chromatography_column.PNG",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Chromatography_column.PNG",
+        "license": "Public domain",
+        "attribution": "Klaas1978"
+      },
+      {
+        "topic": "Fractional distillation apparatus",
+        "search_description": "laboratory fractional distillation flask fractionating column condenser labelled diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled laboratory apparatus with heated flask, packed fractionating column, condenser, and receiver.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Fractional_distillation_lab_apparatus-ru.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fractional_distillation_lab_apparatus-ru.svg/960px-Fractional_distillation_lab_apparatus-ru.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Fractional_distillation_lab_apparatus-ru.svg",
+        "license": "CC0",
+        "attribution": "Д.Ильин: translation, optimization"
+      },
+      {
+        "topic": "Vapour-liquid cycles",
+        "search_description": "fractionating column repeated condensation vaporization educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Rising vapour and descending liquid undergoing repeated condensation and vaporization in a column.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Ultramar1_%28cropped_a_lot%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ultramar1_%28cropped_a_lot%29.jpg/960px-Ultramar1_%28cropped_a_lot%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Ultramar1_(cropped_a_lot).jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Cephas"
+      },
+      {
+        "topic": "Crude oil fractionation",
+        "search_description": "crude oil fractional distillation column LPG petrol kerosene diesel diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A refinery fractionating column labelled with petroleum gases, petrol, kerosene, diesel, and heavy fractions.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Crude_Oil_Distillation-ta.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Crude_Oil_Distillation-ta.svg/960px-Crude_Oil_Distillation-ta.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Crude_Oil_Distillation-ta.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Crude_Oil_Distillation-fr.svg: Image originale:Psarianos, Theresa knott ; image vectorielle:Rogilbert\nderivative work: Utain ()\nTranslated into Tamil by Balajijagadesh (talk · contribs)"
+      }
+    ]
+  }
+}

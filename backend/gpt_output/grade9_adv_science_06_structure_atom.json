@@ -1,0 +1,172 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Structure of Atom",
+    "central_question": "How did experiments on subatomic particles and atomic spectra lead from early atomic models to Bohr’s explanation of stable atoms and the hydrogen line spectrum?",
+    "in_scope_units": [
+      "6.1 Discovery of Subatomic Particles",
+      "6.1.1 Discovery of Electron through cathode-ray discharge experiments",
+      "6.1.2 Discovery of Protons through canal rays",
+      "6.1.3 Discovery of Neutrons through Chadwick’s experiment",
+      "Quick Check on electron, proton, and neutron discoveries",
+      "6.2 Spectrum: continuous spectrum and line spectrum",
+      "6.3 Line Spectrum of Hydrogen and the hydrogen spectral series",
+      "Rydberg equation and Rydberg constant",
+      "6.4 Limitations of Rutherford Model of Atom",
+      "6.5 Bohr’s Model",
+      "6.5.1 Achievement of Bohr Model",
+      "6.5.2 Limitations of Bohr’s Model",
+      "6.6 Check Your Understanding"
+    ],
+    "banned_topics": [
+      "Elastic potential energy and work-energy calculations from the preceding Work and Energy chapter",
+      "Chemical bonding, octet rule, and metallic bonding from the following chapter",
+      "Detailed quantum-mechanical orbitals and probability clouds",
+      "Nuclear reactions, radioactivity, and nuclear energy"
+    ],
+    "must_include_keywords": [
+      "subatomic particles",
+      "electron",
+      "proton",
+      "neutron",
+      "J. J. Thomson",
+      "cathode rays",
+      "cathode",
+      "anode",
+      "discharge tube",
+      "low pressure gas",
+      "electric field",
+      "magnetic field",
+      "negative charge",
+      "Eugen Goldstein",
+      "canal rays",
+      "perforated cathode",
+      "positive ions",
+      "hydrogen ion",
+      "Rutherford",
+      "James Chadwick",
+      "beryllium",
+      "alpha particles",
+      "neutral radiation",
+      "protium",
+      "deuterium",
+      "tritium",
+      "continuous spectrum",
+      "line spectrum",
+      "sodium vapour lamp",
+      "hydrogen spectrum",
+      "Lyman series",
+      "Balmer series",
+      "Paschen series",
+      "Brackett series",
+      "Pfund series",
+      "Rydberg equation",
+      "Rydberg constant",
+      "Bohr model",
+      "fixed energy levels",
+      "electron transition",
+      "atomic stability",
+      "Zeeman effect",
+      "Stark effect"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Cathode rays are a form of light and therefore have no charge.",
+        "correction": "Thomson observed cathode rays bending toward a positively charged plate, showing that they consist of negatively charged particles called electrons."
+      },
+      {
+        "claim": "Cathode rays depend on which gas or electrode material is used.",
+        "correction": "Their properties remained unchanged with different gases and electrode materials, showing that electrons are present in all atoms."
+      },
+      {
+        "claim": "Canal rays are always streams of protons.",
+        "correction": "Canal rays are positive ions of the gas in the tube, so their properties depend on the gas; hydrogen gives the lightest positive particle, H+, associated with the proton."
+      },
+      {
+        "claim": "The discovery of the proton completely explained atomic mass.",
+        "correction": "Measured atomic masses, such as helium’s mass, were greater than the mass expected from protons and electrons alone, motivating the discovery of the neutron."
+      },
+      {
+        "claim": "A continuous spectrum and a line spectrum are the same because both contain colours.",
+        "correction": "A continuous spectrum contains an unbroken spread of colours, whereas a line spectrum contains only distinct wavelengths characteristic of the emitting element."
+      },
+      {
+        "claim": "In the hydrogen-series table, the fixed level listed as 1 for Lyman is the initial level for emission.",
+        "correction": "For emission lines, the fixed lower level is the final level: Lyman ends at n=1, Balmer at n=2, Paschen at n=3, Brackett at n=4, and Pfund at n=5."
+      },
+      {
+        "claim": "Rutherford’s model explains why atoms are stable and why hydrogen gives discrete lines.",
+        "correction": "The chapter states that Rutherford’s model could explain neither atomic stability nor the observed line spectrum of hydrogen."
+      },
+      {
+        "claim": "Bohr’s model explains every atom and every spectral detail.",
+        "correction": "It explains hydrogen fairly well but not multi-electron spectra, fine structure, or splitting in magnetic and electric fields."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Fig. 6.1 and Fig. 6.2 with Quick Check 1 and 5 to infer the direction of cathode rays and their negative charge.",
+      "Use Quick Check 2 and 6 to reason from unchanged cathode-ray behaviour in different gases to the universal presence of electrons.",
+      "Use Quick Check 8 to distinguish gas-dependent canal rays from universal cathode rays.",
+      "Use Quick Check 9 and the helium example to justify why a neutral massive particle was needed.",
+      "Use Fig. 6.3 and Fig. 6.4 to compare continuous and line spectra.",
+      "Use the hydrogen-series table in Section 6.3 to classify Lyman, Balmer, Paschen, Brackett, and Pfund series by their lower energy level.",
+      "Use 6.6 Check Your Understanding questions 1, 2, 4, and 6 to connect fixed energy levels with line spectra and atomic stability."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter closes with '6.6 Check Your Understanding' and continues with additional questions on spectra and atomic models at the beginning of the next uploaded page."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Structure of Atom\n\n## What you will learn\nYou will learn why Dalton’s indivisible-atom idea had to be revised and how cathode-ray experiments led to the discovery of the electron. You will connect each experimental observation with the conclusion drawn by J. J. Thomson.\n\n## Simple explanation\nAtoms were once believed to be indivisible. Electrical discharge experiments showed that smaller charged particles could come from atoms, proving that atoms have an internal structure.\n\n## Step-by-step breakdown\n- **Dalton’s earlier idea**: In 1803, Dalton proposed that atoms were the smallest indivisible particles of matter.\n- **Evidence against indivisibility**: Electrification of glass or ebonite and discharge through gases suggested that atoms contain smaller particles.\n- **Cathode-ray discharge tube**: Thomson used a long glass tube containing gas at low pressure with two metal electrodes connected to opposite terminals of a high-voltage source.\n- **Direction of travel**: As shown in Fig. 6.1, the rays move from the negatively charged cathode toward the positively charged anode.\n- **Detection by fluorescence**: The rays are not directly visible, but they produce a bright spot when they strike a suitable coated screen.\n- **Straight-line motion**: The bright spot behind the hole in the anode shows that the rays travel in straight lines when no external field acts.\n- **Deflection in a field**: Fig. 6.2 shows the beam bending toward the positive plate, which demonstrates that the particles carry negative charge.\n- **Universal nature of electrons**: The same cathode-ray properties were observed for different gases and electrode materials, so electrons must occur in all atoms.\n- **Scientific conclusion**: Thomson identified cathode rays as streams of tiny negatively charged particles, later called electrons.\n\n## Worked example\nQuestion: Quick Check 5 asks: In a cathode-ray experiment, the rays bend toward a positively charged plate. What can be concluded about the rays?\n\nSolution:\n- Step 1: Unlike charges attract, so a particle attracted toward a positive plate must carry negative charge.\n- Step 2: The observed deflection is therefore evidence that cathode rays contain negatively charged particles.\n- Final answer: Cathode rays consist of negatively charged particles called electrons.\n\n## Common mistake\nA bright spot on the screen does not mean the cathode rays themselves are visible light. The spot is produced when the invisible particle beam strikes a fluorescent material.\n\n## Quick check question\nQuestion: Quick Check 6 states that changing the gas from hydrogen to neon does not change cathode-ray behaviour. What does this show?\nAnswer: It shows that electrons are common constituents of all atoms and are not unique to one gas.\nExplanation: If the beam properties remain unchanged when the gas changes, the particles producing the beam must be a universal part of matter.\n\n## Summary\n- Experiments showed that atoms are divisible.\n- Cathode rays move from cathode to anode.\n- They travel in straight lines without external fields.\n- Their deflection toward a positive plate proves they are negatively charged.\n- Their gas-independent behaviour shows that electrons occur in all atoms.",
+    "Core explanation": "# Core Explanation: Advanced - Structure of Atom\n\n## What you will learn\nYou will learn how positive canal rays and neutral neutrons were discovered. You will also compare electron, proton, and neutron evidence and explain why each discovery was necessary.\n\n## Simple explanation\nOnce the electron was known, scientists needed to account for the atom’s positive charge and unexpectedly large mass. Canal-ray experiments revealed positive ions, while Chadwick’s experiment revealed neutral particles with mass close to that of a proton.\n\n## Step-by-step breakdown\n- **Need for positive charge**: Since ordinary atoms are electrically neutral, the negative charge of electrons must be balanced by positive charge.\n- **Goldstein’s experiment**: In 1886, Eugen Goldstein used a discharge tube with a perforated cathode.\n- **Canal rays**: A glow appeared behind the cathode because positive rays passed through the holes or canals.\n- **Charge of canal rays**: Their deflection toward a negative plate showed that they contain positively charged particles.\n- **Gas dependence**: Canal rays are positive ions of the gas in the tube, so their mass and other properties depend on the gas.\n- **Hydrogen and the proton**: Hydrogen produced the lightest positive ion, H+, later associated with the proton; Rutherford established the proton as a fundamental particle in 1919.\n- **Unexplained atomic mass**: Helium has two protons but a mass about four times that of hydrogen, so protons and electrons alone could not explain its mass.\n- **Chadwick’s experiment**: In 1932, James Chadwick bombarded beryllium with alpha particles and observed powerful neutral radiation.\n- **Neutron properties**: The emitted particles had no charge and mass nearly equal to that of the proton.\n- **Hydrogen isotopes**: Protium has no neutron, while deuterium and tritium contain neutrons.\n- **Atomic composition**: Atoms contain electrons with negative charge, protons with positive charge, and neutrons with no charge.\n\n## Worked example\nQuestion: Quick Check 9 asks why neutral particles had to be proposed even after electrons and protons were discovered. Explain using helium.\n\nSolution:\n- Step 1: Helium contains two protons, but its measured mass is about four times the mass of hydrogen.\n- Step 2: Electrons contribute very little mass, so two protons and electrons cannot account for the observed mass.\n- Final answer: Scientists proposed a neutral massive particle; two neutrons together with two protons explain helium’s approximate mass.\n\n## Common mistake\nCanal rays should not be identified automatically as protons. They are positive ions of the gas used; only hydrogen gives the lightest positive ion associated with a proton.\n\n## Quick check question\nQuestion: Quick Check 10 states that Chadwick’s emitted particles were not deflected by electric or magnetic fields. What does this indicate?\nAnswer: It indicates that the particles have no electric charge.\nExplanation: Charged particles are deflected by electric or magnetic fields, whereas neutral particles are not deflected in that way.\n\n## Summary\n- Canal rays are positively charged gas ions.\n- Their properties depend on the gas in the discharge tube.\n- Hydrogen gives the lightest positive ion.\n- Atomic-mass evidence required a neutral particle.\n- Chadwick discovered the neutron using beryllium and alpha particles.\n- Electrons, protons, and neutrons together explain basic atomic structure.",
+    "Worked examples": "# Worked Examples: Advanced - Structure of Atom\n\n## What you will learn\nYou will distinguish continuous and line spectra and interpret the hydrogen spectral series. You will understand why an element’s line spectrum acts like an identifying pattern.\n\n## Simple explanation\nA prism can separate light into its component wavelengths. White light produces an unbroken band, while excited atoms emit only particular wavelengths, giving separate lines.\n\n## Step-by-step breakdown\n- **Continuous spectrum**: Fig. 6.3 shows an unbroken spread of colours from violet to red when white light passes through a prism.\n- **Line spectrum**: A vapour lamp produces only a few bright lines rather than every colour.\n- **Sodium example**: Fig. 6.4 shows intense yellow lines from sodium vapour.\n- **Elemental fingerprint**: Each element has a characteristic line spectrum, allowing elements in stars to be identified from their light.\n- **Hydrogen spectrum**: Radiation from a hydrogen discharge tube produces a set of discrete spectral lines.\n- **Lyman series**: Transitions end at the lower level n=1.\n- **Balmer series**: Transitions end at n=2.\n- **Paschen series**: Transitions end at n=3.\n- **Brackett series**: Transitions end at n=4.\n- **Pfund series**: Transitions end at n=5.\n- **Rydberg relation**: The spectral-line energies can be represented by a mathematical relation involving integer energy levels and the Rydberg constant.\n- **Meaning of discrete lines**: Only certain energy changes are possible, so only certain radiations are emitted.\n\n## Worked example\nQuestion: Section 6.3 lists a hydrogen line produced by a transition from a higher level to n=2. To which named series does it belong?\n\nSolution:\n- Step 1: Identify the fixed lower or final level of the transition.\n- Step 2: The hydrogen series ending at n=2 is the Balmer series.\n- Final answer: It belongs to the Balmer series.\n\n## Common mistake\nThe fixed number in a hydrogen series is the lower or final energy level for emission. Treating n=1 in the Lyman row as the starting level reverses the physical direction of the electron transition.\n\n## Quick check question\nQuestion: 6.6 Check Your Understanding Q3 says an unknown gas has a line spectrum identical to hydrogen. What can be concluded?\nAnswer: The emitting gas is hydrogen, or contains hydrogen producing the observed spectrum.\nExplanation: A line spectrum is characteristic of an element, so matching hydrogen’s spectral pattern identifies hydrogen.\n\n## Summary\n- White light gives a continuous spectrum.\n- Excited atoms give characteristic line spectra.\n- Sodium produces prominent yellow lines.\n- Hydrogen lines are grouped into named series.\n- The lower energy level determines the series name.\n- Spectra can identify elements in distant stars.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Structure of Atom\n\n## What you will learn\nYou will analyse why Rutherford’s model failed and how Bohr’s assumptions addressed atomic stability and the hydrogen line spectrum. You will reason from energy levels to emitted or absorbed radiation.\n\n## Simple explanation\nRutherford placed electrons around a small positive nucleus, but his model allowed continuously radiating electrons and continuous energies. Bohr proposed that only certain stable orbits and energy levels are allowed.\n\n## Step-by-step breakdown\n- **Rutherford’s nuclear idea**: Electrons revolve around a small, positively charged nucleus.\n- **Stability problem**: In the Rutherford model, a moving electron would continuously lose energy and eventually fail to remain in a stable orbit.\n- **Spectrum problem**: If electron energies were continuous, the emitted radiation should also form a continuous spectrum.\n- **Observed evidence**: Hydrogen instead produces sharp discrete lines.\n- **Bohr’s first postulate**: Electrons can move in certain allowed circular orbits without radiating energy.\n- **Fixed energy**: An electron has a definite energy while it remains in one allowed orbit.\n- **Bohr’s second postulate**: Radiation is emitted or absorbed only when an electron jumps between allowed orbits.\n- **Emission**: A jump from higher to lower energy releases radiation equal to the energy difference.\n- **Absorption**: A jump from lower to higher energy requires absorption of the corresponding energy.\n- **Line-spectrum explanation**: Since only certain energy levels exist, only certain energy differences and spectral lines are possible.\n- **Stability explanation**: Electrons in allowed stationary orbits do not continuously radiate energy.\n\n## Worked example\nQuestion: 6.6 Check Your Understanding Q2 asks why Rutherford’s model predicts a continuous spectrum rather than a line spectrum.\n\nSolution:\n- Step 1: Rutherford’s model does not restrict electrons to fixed energy levels.\n- Step 2: If electrons can have a continuous range of energies, they can lose continuously varying amounts of energy.\n- Final answer: The model predicts a continuous range of emitted radiation, whereas the observed hydrogen spectrum contains discrete lines.\n\n## Common mistake\nBohr did not claim that electrons can radiate while remaining in the same allowed orbit. Radiation occurs only during a transition between allowed energy levels.\n\n## Quick check question\nQuestion: 6.6 Check Your Understanding Q1 asks what sharp hydrogen spectral lines reveal about electron energy.\nAnswer: They show that electrons in atoms can occupy only discrete, fixed energy levels.\nExplanation: Each line corresponds to one allowed energy difference between two levels.\n\n## Summary\n- Rutherford’s model could not explain stability.\n- It also predicted continuous rather than discrete radiation.\n- Bohr introduced allowed stationary energy levels.\n- Electrons emit or absorb radiation only during transitions.\n- Fixed energy differences explain hydrogen’s line spectrum.",
+    "Revision and recap": "# Revision and Recap: Advanced - Structure of Atom\n\n## What you will learn\nYou will revise the evidence for subatomic particles, the meaning of spectra, and the strengths and limitations of atomic models. You will practise separating what Bohr’s model explains from what it cannot explain.\n\n## Simple explanation\nAtomic theory developed because each new experiment exposed a weakness in the previous model. A good model must fit both particle evidence and spectral observations, but no simple model explains every detail.\n\n## Step-by-step breakdown\n- **Electron evidence**: Cathode rays are negatively charged and independent of the gas or electrode.\n- **Positive-particle evidence**: Canal rays are positively charged gas ions and vary with the gas used.\n- **Neutron evidence**: Neutral, massive particles explain atomic mass not accounted for by protons and electrons.\n- **Continuous versus line spectra**: Continuous spectra have no gaps; line spectra contain selected wavelengths.\n- **Hydrogen series**: Lyman, Balmer, Paschen, Brackett, and Pfund correspond to transitions ending at successively higher fixed levels.\n- **Rutherford limitation**: It could not explain stable electrons or hydrogen’s line spectrum.\n- **Bohr achievement**: Fixed allowed levels explain atomic stability and hydrogen’s main spectral lines.\n- **Fine structure limitation**: Bohr’s model cannot explain closely spaced details in the hydrogen spectrum.\n- **Multi-electron limitation**: It does not explain spectra of atoms more complex than hydrogen.\n- **Field-splitting limitation**: It cannot explain Zeeman splitting in a magnetic field or Stark splitting in an electric field.\n- **Model-building lesson**: Scientific models are useful within the range of evidence they explain and are revised when new evidence appears.\n\n## Worked example\nQuestion: 6.6 Check Your Understanding Q5 says, “Bohr’s model solved all problems of atomic structure.” Comment.\n\nSolution:\n- Step 1: State its achievement: it explains atomic stability and the main hydrogen line spectrum using fixed energy levels.\n- Step 2: State its limitations: it fails for multi-electron spectra, fine structure, Zeeman effect, and Stark effect.\n- Final answer: The statement is incorrect. Bohr’s model was a major improvement but did not solve all problems of atomic structure.\n\n## Common mistake\nA model’s success for hydrogen does not prove that it is complete. The chapter explicitly lists observations that Bohr’s model cannot explain.\n\n## Quick check question\nQuestion: 6.6 Check Your Understanding Q6 asks how fixed energy levels explain atomic stability. What is the answer?\nAnswer: An electron in an allowed orbit has fixed energy and does not radiate continuously, so it does not spiral into the nucleus.\nExplanation: Energy is exchanged only when the electron changes from one allowed level to another.\n\n## Summary\n- Experiments established electrons, protons, and neutrons.\n- Spectra provide evidence for discrete atomic energies.\n- Rutherford introduced the nucleus but could not explain stability.\n- Bohr explained hydrogen using fixed energy levels.\n- Bohr’s model remains limited for fine structure and multi-electron atoms.\n- Atomic models improve as new evidence appears."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Modern atomic theory describes electrons using quantum states and probability distributions rather than fixed circular paths, but Bohr’s energy-level idea remains useful for introducing spectra.",
+      "Astronomers identify elements in stars by comparing their observed spectral lines with laboratory spectra of known elements.",
+      "Neon signs and other gas-discharge lamps glow because excited atoms emit characteristic wavelengths when electrons return to lower energy states.",
+      "Mass spectrometry separates charged particles according to their response to electric and magnetic fields and is widely used to study isotopes.",
+      "The neutron’s lack of electric charge allows it to enter nuclei more easily than charged particles, which is important in nuclear research, although nuclear reactions are beyond this chapter."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Cathode-ray tube",
+        "search_description": "J J Thomson cathode ray tube electric field deflection educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A low-pressure discharge tube showing cathode rays moving toward the anode and bending toward a positive plate."
+      },
+      {
+        "topic": "Canal rays",
+        "search_description": "Goldstein canal rays perforated cathode discharge tube diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A discharge tube with a perforated cathode and positive rays passing through its holes."
+      },
+      {
+        "topic": "Chadwick neutron experiment",
+        "search_description": "Chadwick beryllium alpha particle neutron discovery experiment diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Alpha particles striking beryllium and producing neutral radiation."
+      },
+      {
+        "topic": "Continuous and line spectra",
+        "search_description": "continuous spectrum versus emission line spectrum comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An unbroken rainbow spectrum beside separate bright emission lines on a dark background."
+      },
+      {
+        "topic": "Hydrogen spectral series",
+        "search_description": "hydrogen Lyman Balmer Paschen Brackett Pfund energy level transitions diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Hydrogen energy levels with arrows showing transitions for the five named spectral series."
+      },
+      {
+        "topic": "Bohr energy transitions",
+        "search_description": "Bohr atom electron transition photon emission absorption diagram",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An electron moving between allowed energy levels while a photon is emitted or absorbed."
+      }
+    ]
+  }
+}

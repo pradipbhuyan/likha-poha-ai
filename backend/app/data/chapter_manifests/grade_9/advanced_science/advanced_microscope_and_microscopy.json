@@ -1,0 +1,224 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Microscope and Microscopy",
+  "central_question": "How do different microscopes form useful images of tiny specimens, and how do magnification, resolution, contrast, preparation, and instrument choice determine what can be observed?",
+  "in_scope_units": [
+    "9.1 What is a Microscope? and the resolution limit of the human eye",
+    "Robert Hooke, cork cells, Antony van Leeuwenhoek, and Activity 9.1",
+    "9.2 Historical journey of microscopes and Activity 9.2 timeline",
+    "9.3 How Does a Microscope Work? Magnification, resolution, and contrast",
+    "9.3.1 Simple, compound, phase-contrast, and fluorescence light microscopes",
+    "9.3.2 Parts of a Compound Microscope and Activity 9.3",
+    "9.3.3 Working and ray diagram of a compound light microscope",
+    "9.4 Microscopy Skills",
+    "9.4.1 Temporary mounts and Activity 9.4 comparing monocot and dicot leaf peels",
+    "9.4.2 Permanent slides and Activity 9.5",
+    "9.4.3 Total magnification, actual size, and field-of-view calculations",
+    "9.5 Types of Microscopes",
+    "9.5.1 Magnification versus resolution and units used in microscopy",
+    "9.5.2 Light compound microscope",
+    "9.5.3 Electron microscopes",
+    "9.5.3.1 Transmission Electron Microscope",
+    "9.5.3.2 Scanning Electron Microscope",
+    "9.5.3.3 Comparison of light microscope, TEM, and SEM",
+    "9.6 New developments and limitations",
+    "9.7 Uses of microscopes",
+    "Snapshots and Check Your Understanding questions 1-15"
+  ],
+  "banned_topics": [
+    "Chromatography and fractional distillation questions carried over from the preceding chapter",
+    "Detailed cell organelle functions beyond their use as microscopy examples",
+    "Advanced derivation of Abbe's diffraction equation",
+    "Clinical diagnosis or treatment advice",
+    "Atomic-force and scanning-tunnelling microscopy, which are not covered in the source chapter"
+  ],
+  "must_include_keywords": [
+    "microscope",
+    "human eye",
+    "near point",
+    "0.1 mm",
+    "resolution",
+    "resolving power",
+    "magnification",
+    "contrast",
+    "Robert Hooke",
+    "Micrographia",
+    "cork cells",
+    "Antony van Leeuwenhoek",
+    "animalcules",
+    "Hans and Zacharias Janssen",
+    "Ernst Abbe",
+    "Ernst Ruska",
+    "Frits Zernike",
+    "simple microscope",
+    "compound microscope",
+    "phase-contrast microscopy",
+    "fluorescence microscopy",
+    "objective lens",
+    "eyepiece",
+    "condenser",
+    "stage",
+    "diaphragm",
+    "coarse adjustment",
+    "fine adjustment",
+    "refraction",
+    "temporary mount",
+    "permanent mount",
+    "fixation",
+    "staining",
+    "dehydration",
+    "Canada balsam",
+    "DPX",
+    "M = m_o × m_e",
+    "field of view",
+    "light microscope",
+    "electron beam",
+    "TEM",
+    "SEM",
+    "vacuum",
+    "digital microscope",
+    "super-resolution microscopy"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Magnification and resolution mean the same thing.",
+      "correction": "Magnification tells how many times larger the image appears; resolution tells the smallest separation at which two points can still be distinguished. A larger blurred image does not contain more resolved detail."
+    },
+    {
+      "claim": "Adding stronger lenses to a school microscope will allow it to reveal arbitrarily small objects.",
+      "correction": "A light microscope is limited to about 0.2 µm resolution by diffraction, so additional magnification beyond useful resolution produces empty magnification."
+    },
+    {
+      "claim": "The objective and eyepiece magnifications should be added.",
+      "correction": "Total magnification is their product: M = m_o × m_e."
+    },
+    {
+      "claim": "The final image in a compound microscope is upright relative to the original specimen.",
+      "correction": "The objective forms a real inverted intermediate image, and the eyepiece magnifies it into a virtual image that remains inverted relative to the original specimen."
+    },
+    {
+      "claim": "A coarse adjustment knob should be used for focusing under high power.",
+      "correction": "Coarse adjustment is for rough focusing at low power; fine adjustment is used for sharp focus at high power to reduce the risk of the objective striking the slide."
+    },
+    {
+      "claim": "A temporary mount can be preserved for years if it is covered carefully.",
+      "correction": "Water dries, cells shrink, and stain may crystallise; long-term storage requires fixation, staining, dehydration, and sealing in a mounting medium such as Canada balsam or DPX."
+    },
+    {
+      "claim": "TEM is best for 3D-like surface views and SEM is best for internal ultrastructure.",
+      "correction": "TEM transmits electrons through ultrathin sections to show internal details in 2D; SEM scans the surface to produce 3D-like surface images."
+    },
+    {
+      "claim": "Electron microscopes can routinely observe living cells.",
+      "correction": "TEM and SEM require vacuum and extensive preparation; these conditions kill cells, so living specimens are observed with suitable light microscopes."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the two-dot observation in Section 9.1 to explain the human-eye resolution limit of about 0.1 mm at 25 cm.",
+    "Use Activity 9.2 to build a timeline including Janssen, Hooke, Leeuwenhoek, Abbe, Ruska, and Zernike.",
+    "Use Activity 9.3 and Fig. 9.4 to identify the parts of a compound microscope and connect each part with its role.",
+    "Use Activities 9.4 and 9.5 to compare temporary and permanent mounts without inventing observations not recorded by the student.",
+    "Use Section 9.4.3 examples to calculate 400X total magnification, 0.05 mm actual cell size, 150X magnification, and 0.2 mm cell size from field of view.",
+    "Use Check Your Understanding Q1 and Q6 for total magnification, cell-size estimation, and inverse field-of-view calculation.",
+    "Use Check Your Understanding Q2, Q8, and Q10 to select phase-contrast, TEM, or SEM according to whether the specimen is living, internal, or a surface.",
+    "Use Check Your Understanding Q3 and Q13 to distinguish magnification from resolution and explain empty magnification."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'Check Your Understanding', questions 1-15, covering calculations, instrument selection, slide preparation, resolution, applications, and microscopy care.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Confocal microscopy uses focused illumination and optical sectioning to build clearer images from different depths in a fluorescent specimen.",
+      "Super-resolution light microscopy uses specialised methods to localise fluorescent signals more precisely than an ordinary light microscope can resolve.",
+      "Cryo-electron microscopy rapidly freezes specimens so biological structures can be studied in a near-native state without the usual heavy staining, although the specimens are not alive during imaging.",
+      "Digital image analysis can measure cell size, count objects, and compare brightness, but accurate conclusions still depend on calibration and good specimen preparation.",
+      "Microscope images may contain artefacts caused by preparation, staining, focus, or detector processing, so scientists compare controls and repeat observations."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Hooke cork cells",
+        "search_description": "Robert Hooke Micrographia cork cells original drawing public domain",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Robert Hooke's historical drawing of honeycomb-like cork compartments.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Cork_Micrographia_Hooke.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Cork_Micrographia_Hooke.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Cork_Micrographia_Hooke.png",
+        "license": "Public domain",
+        "attribution": "Robert Hooke"
+      },
+      {
+        "topic": "Microscopy timeline",
+        "search_description": "history of microscope Janssen Hooke Leeuwenhoek Ruska timeline",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A timeline showing major microscope developments from early compound lenses to electron microscopy.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Natural_History_Museum_Main_Hall%2C_London%2C_UK_-_Diliff.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Natural_History_Museum_Main_Hall%2C_London%2C_UK_-_Diliff.jpg/960px-Natural_History_Museum_Main_Hall%2C_London%2C_UK_-_Diliff.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Natural_History_Museum_Main_Hall,_London,_UK_-_Diliff.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Diliff"
+      },
+      {
+        "topic": "Compound microscope parts",
+        "search_description": "compound light microscope labelled eyepiece objective condenser stage diaphragm focus knobs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled compound microscope showing its optical, focusing, and support parts.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Two_microsopes_labeled.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Two_microsopes_labeled.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Two_microsopes_labeled.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "RWhitwam"
+      },
+      {
+        "topic": "Compound microscope ray diagram",
+        "search_description": "compound microscope ray diagram objective intermediate image eyepiece final virtual image",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A ray diagram showing the objective forming an inverted intermediate image and the eyepiece magnifying it.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Compound_microscope_geometric_optics.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Compound_microscope_geometric_optics.svg/960px-Compound_microscope_geometric_optics.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Compound_microscope_geometric_optics.svg",
+        "license": "CC BY 4.0",
+        "attribution": "Xingyzt"
+      },
+      {
+        "topic": "Temporary and permanent slides",
+        "search_description": "temporary mount permanent microscope slide preparation fixation staining dehydration diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A comparison of a fresh temporary wet mount and a fixed stained permanent slide.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Kunsthalle.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Kunsthalle.jpg/960px-Kunsthalle.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Kunsthalle.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "-:) Herr Schalk im Nacken keep smiling 15:48, 1. Sep. 2007 (CEST)"
+      },
+      {
+        "topic": "TEM versus SEM",
+        "search_description": "TEM versus SEM internal structure surface image comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A comparison showing electrons transmitted through an ultrathin TEM sample and scanning an SEM surface."
+      },
+      {
+        "topic": "Phase contrast living cells",
+        "search_description": "phase contrast microscopy living cells image open license",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Transparent living cells made visible with enhanced phase contrast.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Actinophrys_sol_%28phase_contrast_microscopy%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Actinophrys_sol_%28phase_contrast_microscopy%29.jpg/960px-Actinophrys_sol_%28phase_contrast_microscopy%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Actinophrys_sol_(phase_contrast_microscopy).jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Djpmapfer"
+      },
+      {
+        "topic": "Fluorescence microscopy",
+        "search_description": "fluorescence microscopy labelled cells dark background open license",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Fluorescently labelled cellular structures glowing against a dark background.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/LSM_fluorescence_image_of_HeLa_immortalized_cells_showing_fluorescent_staining_of_cellular_compartments._Nuclei_are_labeled_in_blue%2C_the_cytoplasm_in_orange%2C_and_vesicular_transport%E2%80%93associated_proteins_in_red.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/LSM_fluorescence_image_of_HeLa_immortalized_cells_showing_fluorescent_staining_of_cellular_compartments._Nuclei_are_labeled_in_blue%2C_the_cytoplasm_in_orange%2C_and_vesicular_transport%E2%80%93associated_proteins_in_red.jpg/960px-thumbnail.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:LSM_fluorescence_image_of_HeLa_immortalized_cells_showing_fluorescent_staining_of_cellular_compartments._Nuclei_are_labeled_in_blue,_the_cytoplasm_in_orange,_and_vesicular_transport–associated_proteins_in_red.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "WillredDallto"
+      }
+    ]
+  }
+}

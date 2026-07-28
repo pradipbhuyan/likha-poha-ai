@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AlertTriangle, Award, BookOpen, CheckCircle2, GraduationCap, HelpCircle, Trophy } from "lucide-react";
+import { AlertTriangle, Award, BookOpen, CheckCircle2, Compass, GraduationCap, HelpCircle, ImageIcon, Trophy } from "lucide-react";
 
 import LessonMarkdown from "./LessonMarkdown";
 import StructuredVisualBlock from "../StructuredVisualBlock";
@@ -155,6 +155,87 @@ function ExamQAItem({ item }) {
         </button>
       )}
     </div>
+  );
+}
+
+function ExploreMoreSection({ block }) {
+  return (
+    <section id="study-explore-more" style={{ scrollMarginTop: 90, marginTop: 28 }}>
+      <h3 style={{
+        fontSize: "1.12rem", margin: "0 0 10px", display: "flex", alignItems: "center", gap: 8,
+        paddingBottom: 8, borderBottom: "1px solid var(--border, #e5e7eb)",
+      }}>
+        <Compass size={17} strokeWidth={2.3} color="var(--accent, #2d4a8a)" aria-hidden="true" />
+        Explore more (beyond the textbook)
+      </h3>
+
+      {block.beyond_the_textbook?.length > 0 && (
+        <ul style={{ margin: "0 0 16px", paddingLeft: 20, display: "flex", flexDirection: "column", gap: 8 }}>
+          {block.beyond_the_textbook.map((note, i) => (
+            <li key={i} style={{ fontSize: ".9rem", lineHeight: 1.6 }}>
+              <LessonMarkdown unwrapParagraph>{note}</LessonMarkdown>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {block.suggested_web_images?.length > 0 && (
+        <div>
+          <div style={{
+            fontSize: ".72rem", fontWeight: 800, textTransform: "uppercase",
+            letterSpacing: ".08em", color: "var(--muted, #64748b)", marginBottom: 8,
+            display: "flex", alignItems: "center", gap: 6,
+          }}>
+            <ImageIcon size={13} strokeWidth={2.4} aria-hidden="true" />
+            Pictures worth looking up
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {block.suggested_web_images.map((img, i) => (
+              <div key={i} style={{
+                background: "var(--panel, #fff)", border: "1px solid var(--border, #d6ddeb)",
+                borderRadius: 10, overflow: "hidden", fontSize: ".84rem", lineHeight: 1.5,
+              }}>
+                {img.resolved_image_url ? (
+                  <>
+                    <img
+                      src={img.thumb_url || img.resolved_image_url}
+                      alt={img.alt_text || img.topic || "Reference image"}
+                      style={{ width: "100%", display: "block", maxHeight: 240, objectFit: "cover" }}
+                      loading="lazy"
+                    />
+                    <div style={{ padding: "8px 12px" }}>
+                      {img.topic && <strong style={{ display: "block", marginBottom: 2 }}>{img.topic}</strong>}
+                      <span style={{ color: "var(--muted, #64748b)", fontSize: ".76rem" }}>
+                        {img.license ? `${img.license}` : "Wikimedia Commons"}
+                        {img.attribution ? ` — ${img.attribution}` : ""}
+                        {img.source_page_url && (
+                          <>
+                            {" · "}
+                            <a href={img.source_page_url} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent, #2d4a8a)" }}>
+                              Source
+                            </a>
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ padding: "8px 12px" }}>
+                    {img.topic && <strong style={{ display: "block", marginBottom: 2 }}>{img.topic}</strong>}
+                    {img.search_description && (
+                      <span style={{ color: "var(--muted, #64748b)" }}>
+                        Search: "{img.search_description}"
+                        {img.suggested_source ? ` (try ${img.suggested_source})` : ""}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -351,6 +432,14 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             Board questions ({doc.exam.length})
           </a>
         )}
+        {doc.explore_more && (
+          <a href="#study-explore-more" style={{
+            display: "block", padding: "7px 14px", textDecoration: "none",
+            color: "var(--text, #374151)", fontWeight: 500, borderLeft: "3px solid transparent",
+          }}>
+            Explore more
+          </a>
+        )}
       </nav>
 
       {/* Document */}
@@ -426,6 +515,8 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
             ))}
           </section>
         )}
+
+        {doc.explore_more && <ExploreMoreSection block={doc.explore_more} />}
 
         {/* Finish card — id observed by ChapterJourneyView to save real
             completion once this card scrolls into view (no click required). */}

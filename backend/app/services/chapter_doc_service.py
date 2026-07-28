@@ -26,12 +26,14 @@ from app.models.lesson_blocks import (
     ChapterDoc,
     ConceptBlock,
     ExampleBlock,
+    ExploreMoreBlock,
     HookBlock,
     KeyTerm,
     Milestone,
     QuickCheckBlock,
     RecapBlock,
     StudentsAskBlock,
+    SuggestedImage,
     TextbookImageBlock,
     VisualBlock,
     VocabBlock,
@@ -516,6 +518,53 @@ def _match_visuals_to_milestone(
     return blocks
 
 
+import json as _json_module
+import re as _re_module
+from pathlib import Path as _Path
+
+
+def _slugify_for_manifest(text: str) -> str:
+    text = _re_module.sub(r"[^\w\s-]", "", (text or "").lower())
+    text = _re_module.sub(r"[\s_-]+", "_", text).strip("_")
+    return text or "unnamed"
+
+
+_MANIFEST_ROOT = _Path(__file__).resolve().parents[1] / "data" / "chapter_manifests"
+
+
+def _load_explore_more(grade: str, subject: str, chapter: str) -> ExploreMoreBlock | None:
+    """Load the optional "supplementary_enrichment" object from this
+    chapter's manifest file on disk (see scripts/ingest_gpt55_chapter_output.py),
+    and convert it into an ExploreMoreBlock. Returns None if no manifest
+    exists or it has no enrichment data — this is an optional, additive
+    section and its absence never blocks chapter rendering."""
+    try:
+        manifest_path = (
+            _MANIFEST_ROOT
+            / _slugify_for_manifest(grade)
+            / _slugify_for_manifest(subject)
+            / f"{_slugify_for_manifest(chapter)}.json"
+        )
+        if not manifest_path.exists():
+            return None
+        manifest = _json_module.loads(manifest_path.read_text(encoding="utf-8"))
+        enrichment = manifest.get("supplementary_enrichment")
+        if not enrichment:
+            return None
+        notes = enrichment.get("beyond_the_textbook") or []
+        images_raw = enrichment.get("suggested_web_images") or []
+        images = [SuggestedImage(**img) for img in images_raw if isinstance(img, dict)]
+        if not notes and not images:
+            return None
+        return ExploreMoreBlock(beyond_the_textbook=notes, suggested_web_images=images)
+    except Exception as exc:
+        _log.warning(
+            "chapter_doc.explore_more_load_failed",
+            grade=grade, subject=subject, chapter=chapter[:60], error=str(exc),
+        )
+        return None
+
+
 def convert_chapter(
     board: str,
     grade: str,
@@ -602,6 +651,8 @@ def convert_chapter(
     if not milestones:
         return None
 
+    explore_more = _load_explore_more(grade, subject, chapter)
+
     try:
         return ChapterDoc(
             board=board,
@@ -612,6 +663,7 @@ def convert_chapter(
             source="converted",
             milestones=milestones,
             recap=final_recap,
+            explore_more=explore_more,
         )
     except ValidationError as exc:
         _log.warning(

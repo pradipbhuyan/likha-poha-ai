@@ -1,0 +1,191 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Exploring some more Progressions",
+  "central_question": "How can geometric progressions and successive differences be used to find terms, finite sums, infinite sums, and patterns?",
+  "in_scope_units": [
+    "6.1 Introduction",
+    "Geometric progression in the form a, ar, ar^2, ar^3, ...",
+    "The nth term t_n = ar^(n - 1)",
+    "6.2 Sum of the first n terms of a Geometric Progression",
+    "Derivation of S_n = a(1 - r^n)/(1 - r), r not equal to 1",
+    "Finite GP applications and special digit series",
+    "6.3 Infinite Geometric Progression",
+    "Condition |r| < 1 and S_infinity = a/(1 - r)",
+    "Historical note on early geometric series and Madhava",
+    "EXERCISE 6.1",
+    "6.4 Method of Differences and Combinatorics",
+    "Square numbers and triangular numbers",
+    "6.4.1 Alternative Shorter Method for t_n"
+  ],
+  "banned_topics": [
+    "The preceding Combinatorics chapter, including factorials, permutations, combinations, password counting, and Exercise 5.4",
+    "Arithmetic progression topics except where the AP sum is directly used to add first differences",
+    "Calculus-based limit proofs",
+    "Fibonacci and other unrelated recurrence sequences",
+    "Complex-number geometric series",
+    "A complete finite-difference polynomial formula beyond the partial method given in the supplied text"
+  ],
+  "must_include_keywords": [
+    "progression",
+    "sequence",
+    "geometric progression",
+    "GP",
+    "first term",
+    "common ratio",
+    "a",
+    "r",
+    "nth term",
+    "t_n = ar^(n - 1)",
+    "finite sum",
+    "S_n",
+    "S_n = a(1 - r^n)/(1 - r)",
+    "r not equal to 1",
+    "infinite geometric progression",
+    "convergence",
+    "|r| < 1",
+    "r^n approaches zero",
+    "S_infinity = a/(1 - r)",
+    "alternating GP",
+    "square model",
+    "repeated-digit series",
+    "sum of squares",
+    "sum of cubes",
+    "rebounding ball",
+    "successive differences",
+    "first differences",
+    "second differences",
+    "arithmetic progression",
+    "square numbers",
+    "triangular numbers",
+    "method of differences",
+    "Madhava"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The finite GP sum formula S_n = a(1 - r^n)/(1 - r) works when r = 1.",
+      "correction": "The displayed formula requires r not equal to 1; when r = 1, every term equals a and the finite sum is na."
+    },
+    {
+      "claim": "An infinite GP has a sum whenever r < 1.",
+      "correction": "A real infinite GP has the stated sum only when |r| < 1, meaning -1 < r < 1."
+    },
+    {
+      "claim": "For every negative r with |r| < 1, the numbers r, r^2, r^3, ... decrease in ordinary numerical order.",
+      "correction": "For negative r the signs alternate, so the correct convergence statement is that |r|^n approaches zero and therefore r^n approaches zero."
+    },
+    {
+      "claim": "The nth term t_n and the sum S_n are the same quantity.",
+      "correction": "t_n = ar^(n - 1) is one term, while S_n adds the first n terms."
+    },
+    {
+      "claim": "In a rebound problem, every movement is counted twice.",
+      "correction": "The initial fall is counted once; each later rebound height contributes both an upward and a downward journey."
+    },
+    {
+      "claim": "If second differences are constant, the original sequence is an AP.",
+      "correction": "Constant first differences indicate an AP; constant second differences indicate that the first-difference sequence is an AP, as in Example 7."
+    }
+  ],
+  "recommended_example_progression": [
+    "Recall the first term, common ratio, and nth term using the sequences in Section 6.1.",
+    "Derive the finite-sum formula and apply it to the nested-square cardboard model in Section 6.2.",
+    "Use Example 1 for a negative common ratio and Example 2 for a decimal common ratio.",
+    "Transform a repeated-digit series with Example 3 before moving to infinite sums.",
+    "Establish the condition |r| < 1 through the insect journey and then calculate Example 4.",
+    "Use Example 5 for an inequality condition and Example 6 for sums of squares and cubes.",
+    "Apply an infinite GP to Exercise 6.1, Question 13, the rebounding-ball distance problem.",
+    "Finish with Example 7 and the difference table in Section 6.4.1."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied extract contains EXERCISE 6.1 with thirteen questions on finite and infinite geometric progressions; the subsequent method-of-differences section provides Example 7 but no later exercise section appears in the supplied pages.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Geometric decay models repeated proportional loss, such as a signal or quantity that keeps a fixed fraction of its previous value.",
+      "Self-similar geometric designs often produce geometric progressions in lengths, areas, or perimeters because each stage is a fixed-scale copy of the previous stage.",
+      "Infinite geometric series provide exact totals for repeating processes even though the process has infinitely many stages, provided the ratio has magnitude below 1.",
+      "Finite-difference tables are used in numerical mathematics and computer algorithms to detect polynomial patterns from equally spaced data.",
+      "The bouncing-ball model is an idealised mathematical model; real rebounds also lose energy through sound, heat, deformation, and air resistance."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Finite geometric series",
+        "search_description": "geometric series nested squares midpoint construction diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Nested squares formed by repeatedly joining side midpoints, with each new area half the preceding area.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Geometric_progression_sum_visual_proof.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Geometric_progression_sum_visual_proof.svg/960px-Geometric_progression_sum_visual_proof.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Geometric_progression_sum_visual_proof.svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Cmglee"
+      },
+      {
+        "topic": "Infinite geometric series",
+        "search_description": "infinite geometric series area visual one half one quarter convergence",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A region repeatedly divided into smaller fractional areas whose total approaches a finite value.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/GeometricSquares.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/GeometricSquares.svg/960px-GeometricSquares.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:GeometricSquares.svg",
+        "license": "Public domain",
+        "attribution": "en:User:Jim.belk (original); Pbroks13 (talk) (redraw)"
+      },
+      {
+        "topic": "Bouncing ball GP",
+        "search_description": "bouncing ball decreasing heights geometric progression diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A ball following successively lower arcs, with rebound heights forming a geometric progression.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Bouncing_ball_strobe_edit.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Bouncing_ball_strobe_edit.jpg/960px-Bouncing_ball_strobe_edit.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Bouncing_ball_strobe_edit.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "MichaelMaggs Edit by Richard Bartz"
+      },
+      {
+        "topic": "Madhava and infinite series",
+        "search_description": "Madhava of Sangamagrama Kerala school mathematics portrait manuscript",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A historical portrait, memorial, or manuscript associated with Madhava and the Kerala School of mathematics.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Madhava_Correction_Terms_1_and_2.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Madhava_Correction_Terms_1_and_2.jpg/960px-Madhava_Correction_Terms_1_and_2.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Madhava_Correction_Terms_1_and_2.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Krishnachandranvn"
+      },
+      {
+        "topic": "Successive differences",
+        "search_description": "finite difference table quadratic sequence educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A table showing a sequence, its first differences, and constant second differences.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/GCD_through_successive_subtractions.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/GCD_through_successive_subtractions.svg/960px-GCD_through_successive_subtractions.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:GCD_through_successive_subtractions.svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Arthur Baelde"
+      },
+      {
+        "topic": "Triangular numbers",
+        "search_description": "triangular numbers dot pattern 1 3 6 10 15",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Dot arrangements forming the first five triangular numbers.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Medieval_copper_alloy_triangular_buckle_%28FindID_748384%29.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Medieval_copper_alloy_triangular_buckle_%28FindID_748384%29.jpg/960px-Medieval_copper_alloy_triangular_buckle_%28FindID_748384%29.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Medieval_copper_alloy_triangular_buckle_(FindID_748384).jpg",
+        "license": "CC BY 2.0",
+        "attribution": "Kent County Council, Margaret Erwin, 2015-10-29 13:15:27"
+      },
+      {
+        "topic": "Square numbers",
+        "search_description": "square numbers dot arrays 1 4 9 16 25",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Square dot arrays representing 1, 4, 9, 16, and 25.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/The_sum_of_the_first_n_odd_integers_is_n%C2%B2._1%2B3%2B5%2B...%2B%282n-1%29%3Dn%C2%B2..gif",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/The_sum_of_the_first_n_odd_integers_is_n%C2%B2._1%2B3%2B5%2B...%2B%282n-1%29%3Dn%C2%B2..gif",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:The_sum_of_the_first_n_odd_integers_is_n²._1+3+5+...+(2n-1)=n²..gif",
+        "license": "CC BY-SA 4.0",
+        "attribution": "V.pantaloni"
+      }
+    ]
+  }
+}
