@@ -48,6 +48,31 @@ BOOK_SOURCES = {
         "num_chapters": 13,
         "subject_class": "science_or_maths",
     },
+    # Grade 10 Maths lives in "RAG DB/Grade_10/Maths/" with book code
+    # "jemh1", chapters jemh101.pdf .. jemh114.pdf (14 chapters) — this is
+    # the NCERT Grade 10 Maths book, already RAG-uploaded (rag_documents
+    # ids 260-273 confirmed as "Chapter 1: Real Numbers" .. "Chapter 14:
+    # Probability"). Grade 10's syllabus.py currently only has a
+    # placeholder ("Uploaded Book Content") entry, so get_chapter_list()
+    # falls back to CHAPTER_NAME_OVERRIDES below instead of syllabus.py
+    # for this grade/subject.
+    ("Grade 10", "Maths"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Grade_10" / "Maths",
+        "book_code": "jemh1",
+        "num_chapters": 14,
+        "subject_class": "science_or_maths",
+    },
+    # Grade 10 Science lives in "RAG DB/Grade_10/Science/" with book code
+    # "jesc1", chapters jesc101.pdf .. jesc113.pdf (13 chapters) — matches
+    # rag_documents ids 274-286 ("Chapter 1: Chemical Reactions and
+    # Equations" .. "Chapter 13: Our Environment"). Same syllabus.py
+    # placeholder situation as Maths above — see CHAPTER_NAME_OVERRIDES.
+    ("Grade 10", "Science"): {
+        "pdf_dir": REPO_ROOT / "RAG DB" / "Grade_10" / "Science",
+        "book_code": "jesc1",
+        "num_chapters": 13,
+        "subject_class": "science_or_maths",
+    },
     # Grade 9 Maths lives in "RAG DB/Maths/" with book code "iemh1",
     # chapters iemh101.pdf .. iemh108.pdf (8 chapters), matching CBSE_9["Maths"]
     # order in backend/app/data/syllabus.py exactly.
@@ -106,6 +131,148 @@ BOOK_SOURCES = {
     },
 }
 
+# Grade 10's syllabus.py only has a single placeholder entry
+# ("Uploaded Book Content") per subject rather than a real chapter list,
+# so get_chapter_list() cannot read the ordered names from there for this
+# grade. These overrides give the exact, correctly-ordered chapter names
+# (matching the NCERT book's own chapter numbering) for any (grade,
+# subject) pair not yet backed by real syllabus.py data. Verified
+# directly against the already-uploaded rag_documents.chapter values.
+CHAPTER_NAME_OVERRIDES: dict[tuple[str, str], list[str]] = {
+    ("Grade 10", "Maths"): [
+        "Real Numbers", "Polynomials",
+        "Pair of Linear Equations in Two Variables", "Quadratic Equations",
+        "Arithmetic Progressions", "Triangles", "Coordinate Geometry",
+        "Introduction to Trigonometry", "Some Applications of Trigonometry",
+        "Circles", "Areas Related to Circles", "Surface Areas and Volumes",
+        "Statistics", "Probability",
+    ],
+    ("Grade 10", "Science"): [
+        "Chemical Reactions and Equations", "Acids, Bases and Salts",
+        "Metals and Non-metals", "Carbon and Its Compounds",
+        "Life Processes", "Control and Coordination",
+        "How do Organisms Reproduce?", "Heredity",
+        "Light – Reflection and Refraction",
+        "The Human Eye and the Colourful World", "Electricity",
+        "Magnetic Effects of Electric Current", "Our Environment",
+    ],
+}
+
+# ── Subject-specific prompt guidance (the actual "teach differently per
+# subject" logic, not just the binary science_or_maths/humanities_or_
+# language split) ─────────────────────────────────────────────────────
+# The SUBJECT_CLASS split (science_or_maths vs humanities_or_language)
+# only controls whether numeric worked examples are allowed at all. Within
+# each class, different subjects still need materially different guidance
+# — e.g. Maths worked examples should show full step-by-step algebraic/
+# arithmetic work, while Science worked examples should tie back to a
+# real experiment/observation, not just a formula plug-in. Similarly,
+# English needs literary-device/grammar-specific guidance that doesn't
+# apply to Hindi's different literary tradition, and Social Science needs
+# guidance that varies further by whether the chapter is History,
+# Geography, Political Science, or Economics. This dict adds ONE extra,
+# subject-specific paragraph inserted into the prompt (SUBJECT_GUIDANCE
+# placeholder) on top of the shared BINDING RULES — replacing the old
+# one-size-fits-all template entirely for this section.
+SUBJECT_GUIDANCE: dict[str, str] = {
+    "Science": (
+        "SUBJECT-SPECIFIC GUIDANCE FOR SCIENCE: Ground every explanation in "
+        "a real NCERT experiment, activity, or observation wherever the "
+        "chapter has one — cite it explicitly (e.g. \"as shown in Activity "
+        "1.2\"). Worked examples should walk through the SCIENTIFIC "
+        "REASONING (observation -> hypothesis/principle -> "
+        "prediction/explanation), not just formula substitution. Where a "
+        "chapter includes a numeric formula (e.g. lens formula, Ohm's "
+        "law), the worked example may use realistic textbook-style "
+        "numbers, but the emphasis must stay on WHY the relationship holds "
+        "physically, not just arithmetic. Flag and correct common "
+        "conceptual misconceptions specific to this branch of science "
+        "(e.g. confusing mass with weight, confusing speed with velocity, "
+        "confusing a physical/chemical change) in the Common Mistake "
+        "section wherever the chapter content invites that confusion."
+    ),
+    "Maths": (
+        "SUBJECT-SPECIFIC GUIDANCE FOR MATHS: Worked examples MUST show "
+        "COMPLETE, correct step-by-step algebraic/arithmetic/geometric "
+        "working — every intermediate step, not just the final answer — "
+        "exactly as a student would need to show it in a CBSE board exam "
+        "answer. Prefer problems adapted from (or directly citing) the "
+        "chapter's own NCERT exercise numbers/examples over invented "
+        "numbers, but unlike humanities subjects, inventing a NEW numeric "
+        "problem that tests the same concept using the same method as an "
+        "NCERT example IS acceptable for Maths specifically, as long as "
+        "the mathematical method/formula itself is correct and standard "
+        "for this chapter (do not invent a new theorem or formula that "
+        "does not exist). In the Common Mistake section, flag a genuine, "
+        "well-known student error for this specific topic (e.g. sign "
+        "errors in the quadratic formula, forgetting to check for "
+        "extraneous roots, mixing up which axis is x vs y)."
+    ),
+    "Social Science": (
+        "SUBJECT-SPECIFIC GUIDANCE FOR SOCIAL SCIENCE: This subject spans "
+        "History, Geography, Political Science, and Economics — identify "
+        "which of these this specific chapter belongs to from "
+        "CHAPTER_PDF_TEXT and tailor accordingly: History chapters should "
+        "emphasise chronology, cause-and-effect between events, and "
+        "primary-source-style evidence (dates, named figures, named "
+        "events) exactly as stated in the text; Geography chapters should "
+        "emphasise spatial/physical relationships and named "
+        "regions/features exactly as stated in the text; Political "
+        "Science chapters should emphasise named institutions, "
+        "processes, and constitutional provisions exactly as stated in "
+        "the text; Economics chapters MAY use real data/tables/numbers "
+        "directly from CHAPTER_PDF_TEXT (e.g. actual demand-supply "
+        "schedules, actual GDP figures) as this is inherently "
+        "quantitative — but only numbers that actually appear in the "
+        "source text, never invented ones. Across all four, avoid "
+        "importing outside political/historical opinions not present in "
+        "the NCERT text — present only what the text states or directly "
+        "implies."
+    ),
+    "English": (
+        "SUBJECT-SPECIFIC GUIDANCE FOR ENGLISH: Ground every literary "
+        "claim in a specific quote or close paraphrase from "
+        "CHAPTER_PDF_TEXT, cited with enough context to be traceable (a "
+        "named character/moment, not just \"the text says\"). For prose "
+        "chapters, cover characterisation, theme, narrative "
+        "technique/point of view, and vocabulary/idiom explanation drawn "
+        "directly from the text. For poems, cover imagery, sound devices "
+        "(rhyme/rhythm/alliteration if actually present), tone, and the "
+        "central idea, again grounded in the actual lines. For grammar/"
+        "language-skill chapters bundled into this subject (if the "
+        "chapter is about grammar/writing rather than literature), "
+        "worked examples should show a complete, correctly-labelled "
+        "grammar exercise (e.g. tense transformation, active/passive "
+        "voice) using example sentences, which — unlike literature "
+        "content — MAY be freshly composed for clarity as long as the "
+        "grammar rule itself is standard English grammar, not invented."
+    ),
+    "Hindi": (
+        "SUBJECT-SPECIFIC GUIDANCE FOR HINDI (हिंदी विषय-विशेष निर्देश): "
+        "हर साहित्यिक दावे को CHAPTER_PDF_TEXT के किसी विशिष्ट उद्धरण या "
+        "प्रसंग से जोड़ें — कोई सामान्य कथन न दें। गद्य (कहानी/निबंध) के "
+        "लिए चरित्र-चित्रण, विषयवस्तु, और भाषा-शैली को मूल पाठ से ही "
+        "स्पष्ट करें। कविता के लिए बिम्ब, अलंकार (यदि वास्तव में मौजूद "
+        "हो), और केंद्रीय भाव को मूल पंक्तियों से जोड़ें। व्याकरण से "
+        "संबंधित किसी भी अंश के लिए मानक हिंदी व्याकरण नियम का ही उपयोग "
+        "करें, कोई नया नियम न बनाएं।"
+    ),
+}
+
+
+def _get_subject_guidance(subject: str) -> str:
+    """Return the subject-specific guidance paragraph, or a generic
+    fallback if this exact subject name isn't in SUBJECT_GUIDANCE yet."""
+    if subject in SUBJECT_GUIDANCE:
+        return SUBJECT_GUIDANCE[subject]
+    return (
+        f"SUBJECT-SPECIFIC GUIDANCE: No custom guidance is configured yet "
+        f"for '{subject}' — follow the shared BINDING RULES above and use "
+        f"your best judgement as a subject-matter expert teacher for "
+        f"'{subject}' specifically."
+    )
+
+
 # Section headings for the 7 fixed sections every lesson step must use.
 # English is the default for every subject except Hindi. The inline
 # structural markers used INSIDE these sections — "Question:", "Solution:",
@@ -149,6 +316,8 @@ tutoring platform. You must act like a strict, subject-matter-accurate
 teacher who never invents facts, numbers, or examples that are not
 present in — or a direct, standard consequence of — the provided source
 text.
+
+{subject_guidance}
 
 BINDING RULES (do not violate any of these):
 
@@ -325,7 +494,16 @@ def extract_pdf_text(pdf_path: Path) -> str:
 
 
 def get_chapter_list(grade: str, subject: str) -> list[str]:
-    """Load the ordered chapter list for a grade/subject from syllabus.py."""
+    """Load the ordered chapter list for a grade/subject.
+
+    Prefers syllabus.py, but falls back to CHAPTER_NAME_OVERRIDES for
+    grade/subject pairs where syllabus.py only has a placeholder entry
+    (e.g. Grade 10, which currently just has "Uploaded Book Content").
+    """
+    override_key = (grade, subject)
+    if override_key in CHAPTER_NAME_OVERRIDES:
+        return list(CHAPTER_NAME_OVERRIDES[override_key])
+
     from app.data.syllabus import SYLLABUS  # noqa: PLC0415
     try:
         subjects = SYLLABUS[grade]["CBSE"]
@@ -449,6 +627,7 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             content_language_name=content_language_name,
             content_language_note=content_language_note,
             worked_example_format_note=worked_example_format_note,
+            subject_guidance=_get_subject_guidance(subject),
             h_what_you_will_learn=headings["what_you_will_learn"],
             h_simple_explanation=headings["simple_explanation"],
             h_step_by_step_breakdown=headings["step_by_step_breakdown"],
