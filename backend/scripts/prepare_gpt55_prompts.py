@@ -160,12 +160,24 @@ BINDING RULES (do not violate any of these):
    SUBJECT_CLASS = "humanities_or_language", you may use ONLY facts present
    in CHAPTER_PDF_TEXT — no external knowledge, no paraphrasing that
    changes meaning, no invented examples.
-2. NO FABRICATED NUMBERS: Every worked example and quick-check question
-   MUST cite/reuse actual activities, experiments, or end-of-chapter
-   exercise numbers from CHAPTER_PDF_TEXT wherever the chapter has any
-   (e.g. "NCERT Activity 2.2" or "NCERT Q7"). Never invent a numeric
-   scenario (e.g. a fictional cell's exact diameter/timing) that does not
-   appear in the source text.
+2. NO FABRICATED NUMBERS OR PSEUDO-MATH: Every worked example and
+   quick-check question MUST cite/reuse actual activities, experiments,
+   or end-of-chapter exercise numbers from CHAPTER_PDF_TEXT wherever the
+   chapter has any (e.g. "NCERT Activity 2.2" or "NCERT Q7"). Never invent
+   a numeric scenario (e.g. a fictional cell's exact diameter/timing) that
+   does not appear in the source text. If SUBJECT_CLASS =
+   "humanities_or_language", this rule is absolute and total: NEVER
+   invent arithmetic, dates, durations, counts, or any other quantity to
+   "calculate" from a story/poem/chapter — e.g. never invent how many
+   days a character spent doing something and then compute it with a
+   formula. Literature, language, and social-science chapters are
+   evaluated through interpretation, evidence-from-text, and reasoning —
+   NOT numeric problem-solving. A "worked example" for these subjects
+   means: pose a genuine interpretive/analytical question (ideally citing
+   a real NCERT exercise), then show a step-by-step REASONING process
+   (identify textual evidence → interpret its significance → connect to
+   theme/grammar rule/historical concept → state conclusion) — never
+   arithmetic steps, never a "Final answer" derived from a calculation.
 3. CHAPTER BOUNDARY: Only include content that belongs to THIS chapter.
    Do NOT include content that would more naturally belong to an adjacent
    or different chapter (e.g. don't teach periodic table classification
@@ -177,6 +189,17 @@ BINDING RULES (do not violate any of these):
    topic (e.g. one type of numerical calculation) dominate 3+ of the 5
    steps while other major sections of the source text get little or no
    coverage.
+4a. NO REPETITION ACROSS STEPS (critical for humanities/language, where
+   there is no natural numeric progression to force variety): each of the
+   5 steps must cover a DIFFERENT slice of CHAPTER_PDF_TEXT and use
+   DIFFERENT illustrative quotes/examples/exercise citations from each
+   other. Do not restate the same plot summary, the same 2-3 quotations,
+   or the same grammar rule in multiple steps just to fill space — if the
+   chapter's content is genuinely thin for a given step, write a SHORTER
+   step rather than padding it with material already covered in an
+   earlier step. Before finalizing, mentally check: would a student
+   reading all 5 steps back-to-back feel like step 3 is just repeating
+   step 1 in different words? If yes, rewrite step 3 to cover new ground.
 5. NO PLACEHOLDER OR VAGUE TEXT: Every "quick_check" question must have a
    complete, correct, specific Answer and Explanation — never leave a
    question unanswered.
@@ -253,12 +276,7 @@ given — do not translate or reword them):
   (as many bullet points as needed to cover this step's share of the chapter)
 
 ## {h_worked_example}
-Question: <a question that cites a real NCERT activity/example/exercise number>
-
-Solution:
-- Step 1: ...
-- Step 2: ...
-- Final answer: ...
+{worked_example_format_note}
 
 ## {h_common_mistake}
 <one specific, plausible misconception and its correction>
@@ -274,12 +292,13 @@ Explanation: <why this is correct>
 - <bullet 3>
 (3-6 bullets recapping this step's key points)
 
-IMPORTANT: keep the literal English words "Question:", "Solution:",
-"Step 1:"/"Step 2:"/etc., "Final answer:", "Answer:", and "Explanation:"
-exactly as shown above even when {content_language_name} is not
-English — only the surrounding sentence content should be written in
-{content_language_name}. The platform's UI extracts interactive
-question/answer boxes by matching these exact English marker words.
+IMPORTANT: keep the literal English words "Question:", "Answer:", and
+"Explanation:" exactly as shown above (in the Quick check section) even
+when {content_language_name} is not English — only the surrounding
+sentence content should be written in {content_language_name}. The
+platform's UI extracts interactive question/answer boxes by matching
+these exact English marker words. Follow the Worked example section's
+format exactly as specified above for this SUBJECT_CLASS.
 
 IMPORTANT: split the chapter content across the 5 steps so that, combined,
 they cover the WHOLE of CHAPTER_PDF_TEXT roughly proportionally to how
@@ -341,6 +360,42 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
         content_language_name = "English"
         content_language_note = ""
 
+    # The "Worked example" section's internal structure depends entirely
+    # on subject_class — a numeric Question/Solution/Step-1/Step-2/Final-
+    # answer format is appropriate for Science/Maths, but forcing that
+    # same shape onto literature/language/social-science chapters causes
+    # GPT-5.5 to fabricate pseudo-math (e.g. inventing how many days a
+    # story character spent doing something, then "calculating" it) —
+    # confirmed directly from real generated output. Humanities/language
+    # chapters instead get a discursive, evidence-based reasoning format
+    # with no arithmetic at all.
+    if subject_class == "humanities_or_language":
+        worked_example_format_note = (
+            "Question: <a genuine interpretive/analytical question — ideally "
+            "citing a real NCERT exercise number — about the text's meaning, "
+            "a character's motivation, a literary device, a grammar rule, or "
+            "a historical/social concept from CHAPTER_PDF_TEXT>\n\n"
+            "Solution:\n"
+            "- Step 1: <identify the relevant textual evidence — a direct "
+            "quote or specific reference from CHAPTER_PDF_TEXT>\n"
+            "- Step 2: <interpret what that evidence means/shows>\n"
+            "- Final answer: <the reasoned conclusion, in prose — NEVER a "
+            "number derived from invented arithmetic>\n\n"
+            "Do NOT invent any quantity (a count, date, duration, age, "
+            "distance, etc.) to calculate — every worked example for this "
+            "subject must be answered through reasoning and textual evidence, "
+            "not arithmetic."
+        )
+    else:
+        worked_example_format_note = (
+            "Question: <a question that cites a real NCERT activity/example/"
+            "exercise number>\n\n"
+            "Solution:\n"
+            "- Step 1: ...\n"
+            "- Step 2: ...\n"
+            "- Final answer: ..."
+        )
+
     if not pdf_dir.exists():
         print(f"ERROR: PDF source directory not found: {pdf_dir}")
         sys.exit(1)
@@ -393,6 +448,7 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             chapter_pdf_text=pdf_text,
             content_language_name=content_language_name,
             content_language_note=content_language_note,
+            worked_example_format_note=worked_example_format_note,
             h_what_you_will_learn=headings["what_you_will_learn"],
             h_simple_explanation=headings["simple_explanation"],
             h_step_by_step_breakdown=headings["step_by_step_breakdown"],
