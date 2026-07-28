@@ -553,6 +553,27 @@ def run(grade: str, subject: str, output_dir: Path, limit: int | None) -> None:
             "citing a real NCERT exercise number — about the text's meaning, "
             "a character's motivation, a literary device, a grammar rule, or "
             "a historical/social concept from CHAPTER_PDF_TEXT>\n\n"
+            "IF this question cites a specific numbered/labelled extract, "
+            "exercise, or activity from CHAPTER_PDF_TEXT (e.g. 'NCERT "
+            "Critical Reflection I.2(iv)', 'NCERT Q7', 'Exercise 3.2'), you "
+            "MUST immediately follow the Question line with a fenced "
+            "```extract-ref``` JSON block containing the ACTUAL verbatim "
+            "text of that extract/exercise/activity copied from "
+            "CHAPTER_PDF_TEXT, in exactly this shape:\n"
+            "```extract-ref\n"
+            '{"citation": "<the exact citation, e.g. NCERT Critical '
+            'Reflection I.2(iv)>", "extract_text": "<the full verbatim '
+            "text of that numbered extract/exercise/activity, copied "
+            'exactly from CHAPTER_PDF_TEXT — never summarized or '
+            'invented>", "note": "<optional: one short line of context, '
+            'e.g. the chapter/section this extract is from>"}\n'
+            "```\n"
+            "This is MANDATORY whenever you cite a specific numbered "
+            "source reference — a bare citation with nothing for the "
+            "student to refer back to is not acceptable. If the citation "
+            "is a general reference to the whole chapter/story (not a "
+            "specific numbered extract), the extract-ref block is not "
+            "needed.\n\n"
             "Solution:\n"
             "- Step 1: <identify the relevant textual evidence — a direct "
             "quote or specific reference from CHAPTER_PDF_TEXT>\n"

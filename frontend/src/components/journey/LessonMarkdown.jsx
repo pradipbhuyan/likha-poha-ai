@@ -4,16 +4,20 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import StructuredVisualBlock from "../StructuredVisualBlock";
+import ExtractPopupBlock from "../ExtractPopupBlock";
 import { normalizeTutorMarkdown } from "../../utils/markdownCleanup";
 
 /** Shared markdown renderer for Chapter Journey blocks.
- *  Handles visual-json fences (structured visuals), strips mermaid,
- *  and keeps tables scrollable on mobile. */
+ *  Handles visual-json fences (structured visuals), extract-ref fences
+ *  (clickable citation pill -> popup showing the actual source text a
+ *  bare citation like "NCERT Critical Reflection I.2(iv)" refers to),
+ *  strips mermaid, and keeps tables scrollable on mobile. */
 
 function JourneyCode({ className, children }) {
   const language = className || "";
   const raw = String(children).replace(/\n$/, "");
   if (/language-visual-json/.test(language)) return <StructuredVisualBlock raw={raw} />;
+  if (/language-extract-ref/.test(language)) return <ExtractPopupBlock raw={raw} />;
   if (/language-mermaid/.test(language)) return null;
   return <code className={className}>{children}</code>;
 }

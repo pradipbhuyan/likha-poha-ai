@@ -5,6 +5,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import StructuredVisualBlock from "./StructuredVisualBlock";
+import ExtractPopupBlock from "./ExtractPopupBlock";
 import { normalizeTutorMarkdown } from "../utils/markdownCleanup";
 
 /** Fix $$ used inline (mid-sentence) by downgrading to $ $ inline math.
@@ -408,6 +409,7 @@ function LessonMarkdownCode({ className, children, node }) {
   const raw = String(children).replace(/\n$/, "");
 
   if (/language-visual-json/.test(language)) return <StructuredVisualBlock raw={raw} />;
+  if (/language-extract-ref/.test(language)) return <ExtractPopupBlock raw={raw} />;
   if (/language-mermaid/.test(language)) return null;
 
   const isLikelyLessonContent =
