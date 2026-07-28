@@ -101,6 +101,24 @@ const CUET_SUBJECT_ICONS = {
 function embedWatermark(text, username) {
   if (!text || !username) return text;
   try {
+    // Guard: inserting zero-width characters (ZWNJ/ZWSP/ZWJ) INSIDE a
+    // complex-script word (e.g. Devanagari, used by Hindi/Sanskrit/Marathi
+    // content) breaks the browser's text-shaping engine — the invisible
+    // characters wedge themselves between a consonant and its dependent
+    // vowel sign (matra), causing the matra to render as an isolated,
+    // unattached combining mark (visually: a dotted-circle placeholder
+    // followed by the vowel sign) instead of a properly shaped syllable.
+    // This corrupted the ENTIRE rest of the sentence in real Grade 9 Hindi
+    // practice questions (user-reported via screenshot). Since watermarking
+    // exists purely as an anti-piracy/leak-tracing feature and is not
+    // essential for every script, the safest fix is to skip it entirely
+    // for text containing Devanagari (U+0900–U+097F) or other Indic
+    // script ranges, rather than trying to find a "safe" insertion point
+    // (which is unreliable — even a plain space can be inside a
+    // multi-codepoint grapheme cluster in some Indic sequences).
+    const hasComplexScript = /[\u0900-\u0DFF]/.test(text);
+    if (hasComplexScript) return text;
+
     const bits = username.split("").map(c => c.charCodeAt(0).toString(2).padStart(8, "0")).join("");
     const wm = "\u200D" + bits.split("").map(b => b === "1" ? "\u200C" : "\u200B").join("") + "\u200D";
     // Insert watermark after the first sentence (not at start, harder to notice)

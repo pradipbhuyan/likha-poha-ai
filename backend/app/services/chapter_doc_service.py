@@ -468,8 +468,18 @@ def _match_visuals_to_milestone(
     if not visuals:
         return []
 
+    # NOTE: [a-z0-9]+ alone only matches Latin letters/digits — for
+    # Devanagari-script chapters (Hindi, Sanskrit) this returned an
+    # almost-empty haystack (occasional stray digits like page numbers),
+    # making keyword-overlap matching effectively non-functional and
+    # causing most Grade 9 Hindi milestones to get zero textbook images
+    # even though dozens of admin-approved page images existed for the
+    # chapter (user-reported: visuals appeared "removed" from Hindi
+    # lessons). \u0900-\u097F covers the Devanagari block (used by Hindi,
+    # Sanskrit, Marathi, Nepali) so both scripts are now tokenized.
+    _WORD_RE = re.compile(r"[a-z0-9\u0900-\u097F]+")
     haystack_terms = {
-        t for t in re.findall(r"[a-z0-9]+", f"{milestone_title} {milestone_text}".lower())
+        t for t in _WORD_RE.findall(f"{milestone_title} {milestone_text}".lower())
         if len(t) > 2 and t not in _IMAGE_MATCH_STOPWORDS
     }
     if not haystack_terms:
@@ -481,8 +491,7 @@ def _match_visuals_to_milestone(
         if not vid or vid in used_ids:
             continue
         visual_terms = {
-            t for t in re.findall(
-                r"[a-z0-9]+",
+            t for t in _WORD_RE.findall(
                 f"{visual.get('caption', '')} {visual.get('nearby_text', '')}".lower(),
             )
             if len(t) > 2 and t not in _IMAGE_MATCH_STOPWORDS
