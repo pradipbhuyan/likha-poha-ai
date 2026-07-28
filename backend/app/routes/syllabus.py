@@ -29,6 +29,25 @@ def is_uploaded_placeholder(chapter):
     return chapter in UPLOAD_PLACEHOLDER_CHAPTERS
 
 
+def is_exemplar_chapter(chapter):
+    """
+    Return whether a chapter label is an NCERT Exemplar supplementary book
+    entry (e.g. "Exemplar: Matter in Our Surroundings"), rather than a
+    regular textbook chapter.
+
+    Per explicit user instruction: hide ALL Exemplar chapters from every
+    grade/subject's student-facing dropdown. Exemplar content was uploaded
+    to rag_documents as a supplementary problem-book alongside the main
+    NCERT textbook chapters (confirmed: 179 such rows across 11 grade/
+    subject combinations — Grade 8/9/10/11/12 Science, Maths, Physics,
+    Biology), but students should only see the main textbook chapters in
+    the Lessons dropdown. This check is applied everywhere rag_documents
+    rows are turned into dropdown options, so Exemplar chapters never
+    appear for ANY grade or subject, not just the ones already found.
+    """
+    return str(chapter or "").strip().lower().startswith("exemplar:")
+
+
 def roman_to_int(value):
     """Convert small roman numerals used in book-part labels into integers."""
     roman_values = {
@@ -607,7 +626,13 @@ def fetch_rag_chapter_counts():
         subject = document.get("subject")
         chapter = document.get("chapter")
 
-        if not grade or not subject or not chapter or "Olympiad" in subject:
+        if (
+            not grade
+            or not subject
+            or not chapter
+            or "Olympiad" in subject
+            or is_exemplar_chapter(chapter)
+        ):
             continue
 
         mode = normalize_board(document.get("board"))
@@ -728,7 +753,13 @@ def merge_uploaded_rag_chapters(syllabus):
         subject = document.get("subject")
         raw_chapter = document.get("chapter")
 
-        if not grade or not subject or not raw_chapter or "Olympiad" in subject:
+        if (
+            not grade
+            or not subject
+            or not raw_chapter
+            or "Olympiad" in subject
+            or is_exemplar_chapter(raw_chapter)
+        ):
             continue
 
         # Strip non-printable characters (e.g. \x08 backspace from PDF uploads)
