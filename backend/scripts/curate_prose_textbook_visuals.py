@@ -162,28 +162,32 @@ def extract_verbatim_caption(page_text: str) -> str:
 
 
 def crop_and_reupload(pdf_path: str, page_number: int, rect, storage_path: str, dry_run: bool) -> None:
-    import fitz  # PyMuPDF
+    """Re-render this page as a FULL-PAGE screenshot — no cropping at all.
 
-    if dry_run:
-        return
-    doc = fitz.open(pdf_path)
-    try:
-        page = doc.load_page(page_number - 1)
-        pad = 20
-        clip = fitz.Rect(
-            max(0, rect.x0 - pad), max(0, rect.y0 - pad),
-            min(page.rect.width, rect.x1 + pad), min(page.rect.height, rect.y1 + pad),
-        )
-        matrix = fitz.Matrix(2.2, 2.2)
-        pixmap = page.get_pixmap(matrix=matrix, clip=clip, alpha=False)
-        image_bytes = pixmap.tobytes("jpeg")
-        admin_client.storage.from_("rag-visuals").upload(
-            path=storage_path,
-            file=image_bytes,
-            file_options={"content-type": "image/jpeg", "upsert": "true"},
-        )
-    finally:
-        doc.close()
+    History: this originally cropped tightly to the image bbox + 20pt
+    padding on all four sides, which routinely cut off surrounding
+    paragraph text (confirmed via screenshot: a sentence's final line was
+    shown with no context, because the paragraph actually started well
+    above the crop's tiny 24pt top padding). A second attempt widened the
+    padding but any FIXED padding amount is unreliable — a page's real
+    text/caption content can start anywhere above the image, and there is
+    no way to detect "how far up is safe to cut" without risking clipping
+    someone's sentence, as happened here.
+
+    Per explicit user instruction: "prefer to show entire page wherever
+    context suits it. Only do vertical cropping where no text or context
+    is cut in the process." For this prose-anthology book (unlike NCERT
+    diagram-labelled figures, which have a clear, boundable caption to
+    anchor a safe crop), there is no reliable way to guarantee a partial
+    crop never clips text — so the safe default is the full, uncropped
+    page. This function is now a no-op (the original full-page screenshot
+    from the backfill step, rendered by _render_pdf_page_to_jpeg in
+    rag_visual_service.py, already exists at `storage_path` and needs no
+    re-upload) — kept as a named function (rather than removing the call
+    site) so a future, genuinely safe crop heuristic can be reintroduced
+    here without touching the caller.
+    """
+    return
 
 
 def curate_document(document_id: str, pdf_path: str, dry_run: bool, force: bool) -> None:
