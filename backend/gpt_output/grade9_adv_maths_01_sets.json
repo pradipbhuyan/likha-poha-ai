@@ -1,0 +1,197 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Mathematics",
+    "chapter": "Advanced - Sets",
+    "central_question": "How can collections be described precisely, related through subsets and operations, and counted using set notation and Venn diagrams?",
+    "in_scope_units": [
+      "1.1 Introduction",
+      "1.2 Set and the definition of a well-defined collection",
+      "1.3 Representation of a Set: roster form and set-builder form",
+      "Membership notation using ∈ and ∉",
+      "Georg Cantor and the development of set theory",
+      "1.4 Finite and Infinite Sets",
+      "Order and repetition of elements in a set",
+      "1.5 Empty or Null Set",
+      "1.6 Equality of Sets",
+      "Exercise 1.1",
+      "1.7 Subset and proper subset",
+      "1.8 Cardinality of a Set",
+      "1.9 Power Set",
+      "1.10 Universal Set",
+      "Exercise 1.2",
+      "1.11 Venn Diagram",
+      "1.12 Set Operations",
+      "1.12.1 Union of Two Sets",
+      "1.12.2 Intersection of Two Sets",
+      "1.12.3 Disjoint Sets",
+      "1.12.4 Difference of Sets",
+      "1.13 Complement of a Set and De Morgan's Laws",
+      "1.14 Application of Sets",
+      "1.14.1 Cardinal relations for two finite sets",
+      "1.14.2 Cardinal relation for three finite sets"
+    ],
+    "banned_topics": [
+      "Logarithms and exponential equations from the next chapter",
+      "Probability formulas not developed in this chapter",
+      "Relations, functions, Cartesian products, and mappings",
+      "Advanced axiomatic set theory, transfinite cardinals, and formal paradoxes"
+    ],
+    "must_include_keywords": [
+      "well-defined collection",
+      "element",
+      "member",
+      "roster form",
+      "set-builder form",
+      "belongs to",
+      "does not belong to",
+      "finite set",
+      "infinite set",
+      "empty set",
+      "null set",
+      "equality of sets",
+      "distinct elements",
+      "subset",
+      "proper subset",
+      "cardinality",
+      "power set",
+      "universal set",
+      "Venn diagram",
+      "union",
+      "intersection",
+      "disjoint sets",
+      "difference of sets",
+      "complement",
+      "De Morgan's laws",
+      "inclusion-exclusion principle",
+      "n(A ∪ B)",
+      "n(A ∩ B)",
+      "only in A",
+      "neither in A nor B",
+      "exactly one set",
+      "three-set formula"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A collection such as 'the three best students' is automatically a set.",
+        "correction": "A set must be well-defined, so membership must be decidable without personal opinion; the word 'best' is subjective unless a precise rule is supplied."
+      },
+      {
+        "claim": "Changing the order of elements changes the set.",
+        "correction": "Order does not matter in a set, so {1, 2, 3}, {1, 3, 2}, and {3, 2, 1} are equal."
+      },
+      {
+        "claim": "Repeated entries increase the number of elements in a set.",
+        "correction": "A set contains distinct elements only; the letters of BANANA form {B, A, N}, whose cardinality is 3."
+      },
+      {
+        "claim": "The empty set ∅ and the set {∅} are the same.",
+        "correction": "∅ has no elements, whereas {∅} has one element, namely the empty set."
+      },
+      {
+        "claim": "The symbols ∈ and ⊆ mean the same thing.",
+        "correction": "x ∈ A means x is an element of A, while X ⊆ A means every element of set X belongs to A."
+      },
+      {
+        "claim": "A set is never a subset of itself.",
+        "correction": "Every set is a subset of itself; a proper subset must be a subset that is not equal to the original set."
+      },
+      {
+        "claim": "An empty set is not a subset of a non-empty set.",
+        "correction": "The empty set is a subset of every set because it contains no element that can violate the subset condition."
+      },
+      {
+        "claim": "If n(A) = n, then the power set contains n² elements.",
+        "correction": "A set with n elements has 2^n subsets, so n[P(A)] = 2^n."
+      },
+      {
+        "claim": "A − B and B − A are always equal.",
+        "correction": "Set difference is directional: A − B contains elements in A but not in B, while B − A contains elements in B but not in A."
+      },
+      {
+        "claim": "The complement A′ can be found without knowing the universal set.",
+        "correction": "A′ is defined relative to a universal set U and equals U − A."
+      },
+      {
+        "claim": "n(A ∪ B) always equals n(A) + n(B).",
+        "correction": "Elements in A ∩ B are counted twice in n(A) + n(B), so n(A ∪ B) = n(A) + n(B) − n(A ∩ B)."
+      },
+      {
+        "claim": "For three sets, subtracting all pairwise intersections is the final step.",
+        "correction": "The triple intersection is then added back once: n(A ∪ B ∪ C) = n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(C∩A)+n(A∩B∩C)."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Example 1 to write whole numbers and an arithmetic progression in roster form.",
+      "Use Examples 5-8 and Exercise 1.1 to compare roster form, set-builder form, finite and infinite sets, membership, and empty sets.",
+      "Use Example 9 to distinguish subset, equality, proper subset, and the role of the empty set.",
+      "Use Examples 10-11 and Exercise 1.2 to build power sets and verify that n[P(A)] = 2^n.",
+      "Use Examples 12-18 to practise union, intersection, disjointness, difference, complement, and De Morgan's law.",
+      "Use Example 20 to solve a two-set problem involving badminton, table tennis, and students in neither set.",
+      "Use Example 21 to calculate both the intersection and the number in exactly one of two sets.",
+      "Use Example 22 to reason about maximum and minimum overlap.",
+      "Use Example 23 to organise a three-set Venn diagram from pairwise and triple-intersection data."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter includes Exercise 1.1 and Exercise 1.2, followed by worked application Examples 20-23; these sections provide the chapter's structured practice questions."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Sets\n\n## What you will learn\nYou will learn what makes a collection a mathematical set and how to represent sets in roster and set-builder forms. You will also classify sets as finite, infinite, empty, or equal and use the symbols ∈ and ∉ correctly.\n\n## Simple explanation\nA set is a well-defined collection of objects. The description must make it possible to decide clearly whether a particular object belongs to the collection. Sets are usually named by capital letters, and their elements are written inside braces.\n\n## Step-by-step breakdown\n- **Well-defined collection**: A collection is a set only when membership is unambiguous. “Students participating in a quiz” can be checked, but “the three best students” depends on opinion unless a precise rule is given.\n- **Elements and membership**: If V = {a, e, i, o, u}, then e ∈ V and c ∉ V.\n- **Roster form**: List distinct elements inside braces, separated by commas. Example 1 gives A = {0, 1, 2, 3, 4, 5} for whole numbers not exceeding 5.\n- **Set-builder form**: Describe the common property of the elements, such as V = {x | x is a vowel in the English alphabet}.\n- **Limits of roster form**: Some infinite sets cannot be listed completely. Example 5 writes the real numbers between 2 and 5 as {x : x ∈ R and 2 < x < 5}.\n- **Finite set**: A set is finite when its distinct elements can be counted and the count is a non-negative integer.\n- **Infinite set**: A set is infinite when it has endlessly many elements, such as the set of prime numbers.\n- **Order does not matter**: {1, 2, 3} = {3, 1, 2}.\n- **Repetition does not matter**: The set of letters in BANANA is {B, A, N}, not a six-element list.\n- **Empty set**: A set with no elements is written ∅ or {}. Example 8 shows that numbers that are both rational and irrational form an empty set.\n- **Equality of sets**: A = B when A and B contain exactly the same distinct elements, even if they are written in different orders or with repetitions.\n\n## Worked example\nQuestion: Solve Exercise 1.1, Question 3(c): write the set of letters of the word “SWEET” in roster form.\n\nSolution:\n- Step 1: List the letters as they appear: S, W, E, E, T.\n- Step 2: Remove repeated entries because a set contains distinct elements only.\n- Step 3: The remaining elements are S, W, E, and T.\n- Final answer: {S, W, E, T}.\n\n## Common mistake\nDo not treat braces as an ordinary list in which repetition changes the answer. A set records membership, so writing E twice does not create a second element.\n\n## Quick check question\nQuestion: In Example 6, which symbol completes 4 … {1, 2, 5, 7, 11}?\nAnswer: 4 ∉ {1, 2, 5, 7, 11}.\nExplanation: The number 4 is not one of the listed elements, so it does not belong to the set.\n\n## Summary\n- A set is a well-defined collection.\n- Roster form lists elements; set-builder form states their common property.\n- The symbols ∈ and ∉ describe membership.\n- Finite and infinite sets differ by whether their elements can be completely counted.\n- Order and repetition do not change a set.\n- The empty set has no elements, and equal sets have exactly the same elements.",
+    "Core explanation": "# Core Explanation: Advanced - Sets\n\n## What you will learn\nYou will learn how one set can be contained in another, how to count elements, and how to construct a power set. You will also distinguish an element from a subset and understand why a universal set is needed.\n\n## Simple explanation\nA subset relation compares two sets. Cardinality counts the distinct elements of a set, while the power set collects every possible subset. A universal set fixes the complete collection under discussion.\n\n## Step-by-step breakdown\n- **Subset**: A ⊆ B means every element of A is also an element of B.\n- **Not a subset**: A ⊈ B when at least one element of A is missing from B.\n- **Proper subset**: A ⊂ B when A ⊆ B but A ≠ B.\n- **Equality and mutual inclusion**: If A = B, then A ⊆ B and B ⊆ A.\n- **Empty-set rule**: ∅ is a subset of every set.\n- **Element versus subset**: In {2}, the number 2 is an element, but {2} is a set. Thus 2 ∈ {2}, while {2} ⊆ {2}.\n- **Cardinality**: n(A) is the number of distinct elements of A. For A = {1, 2, 3, …, 9}, n(A) = 9.\n- **Power set**: P(A) is the set of all subsets of A, including ∅ and A itself.\n- **Number of subsets**: If n(A) = n, then n[P(A)] = 2^n. The number of proper subsets is 2^n − 1 because the original set itself is excluded.\n- **Power set of ∅**: P(∅) = {∅}; this power set has one element.\n- **Power set of {∅}**: Since {∅} has one element, its subsets are ∅ and {∅}, so P({∅}) = {∅, {∅}}.\n- **Universal set**: U contains all objects currently under discussion. Complements and Venn diagrams depend on this chosen universe.\n\n## Worked example\nQuestion: Using Example 10, find the power set of A = {0, 1, 2} and verify its cardinality.\n\nSolution:\n- Step 1: List the subset with no elements: ∅.\n- Step 2: List all one-element subsets: {0}, {1}, {2}.\n- Step 3: List all two-element subsets: {0, 1}, {0, 2}, {1, 2}.\n- Step 4: Include the whole set: {0, 1, 2}.\n- Step 5: Therefore P(A) = {∅, {0}, {1}, {2}, {0, 1}, {0, 2}, {1, 2}, {0, 1, 2}}.\n- Step 6: Since n(A) = 3, the formula gives n[P(A)] = 2^3 = 8, matching the eight listed subsets.\n- Final answer: P(A) has 8 elements.\n\n## Common mistake\nDo not confuse ∅ with {∅}. The first has cardinality 0, but the second has cardinality 1 because it contains the empty set as an element.\n\n## Quick check question\nQuestion: Exercise 1.2, Question 2(iii) asks whether {2} ∈ {{2}} is true or false. What is the answer?\nAnswer: True.\nExplanation: The outer set has exactly one element, and that element is the set {2}.\n\n## Summary\n- A subset contains no element outside the larger set.\n- A proper subset is unequal to the larger set.\n- The empty set is a subset of every set.\n- Cardinality counts distinct elements.\n- A power set contains every subset and has 2^n elements when the original set has n elements.\n- The universal set provides the reference collection for later operations.",
+    "Worked examples": "# Worked Examples: Advanced - Sets\n\n## What you will learn\nYou will learn to interpret Venn diagrams and perform union, intersection, disjointness, difference, and complement operations. You will also verify De Morgan's laws by comparing the resulting sets.\n\n## Simple explanation\nSet operations build new sets from existing ones. A Venn diagram shows the universal set as a rectangle and the sets as circles, making shared and unshared regions easy to identify.\n\n## Step-by-step breakdown\n- **Venn diagram**: The rectangle represents U, and circles represent sets. Overlap shows common elements.\n- **Union**: A ∪ B contains every element in A or B or both: A ∪ B = {x : x ∈ A or x ∈ B}.\n- **Intersection**: A ∩ B contains only elements common to both: A ∩ B = {x : x ∈ A and x ∈ B}.\n- **Disjoint sets**: A and B are disjoint when A ∩ B = ∅.\n- **Difference**: A − B contains elements in A that are not in B: A − B = {x : x ∈ A and x ∉ B}.\n- **Complement**: A′ = U − A, so the universal set must be known.\n- **First De Morgan law**: (A ∩ B)′ = A′ ∪ B′.\n- **Second De Morgan law**: (A ∪ B)′ = A′ ∩ B′.\n- **Visual reading**: “Not in the union” means outside both circles, while “not in the intersection” means every region except their overlap.\n\n## Worked example\nQuestion: Using Example 18, let U = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {1, 2, 7}, and B = {1, 6, 8, 9}. Find (A ∪ B)′ and A′ ∩ B′.\n\nSolution:\n- Step 1: Form the union: A ∪ B = {1, 2, 6, 7, 8, 9}.\n- Step 2: Take its complement in U: (A ∪ B)′ = U − (A ∪ B) = {3, 4, 5}.\n- Step 3: Find A′: A′ = U − A = {3, 4, 5, 6, 8, 9}.\n- Step 4: Find B′: B′ = U − B = {2, 3, 4, 5, 7}.\n- Step 5: Intersect the complements: A′ ∩ B′ = {3, 4, 5}.\n- Final answer: (A ∪ B)′ = A′ ∩ B′ = {3, 4, 5}, verifying De Morgan's law.\n\n## Common mistake\nDo not treat difference as commutative. For example, if A = {a, b, p, q} and B = {b, q}, then A − B = {a, p}, but B − A = ∅.\n\n## Quick check question\nQuestion: Example 15(iv) asks for the intersection of the natural numbers greater than 4 and less than 10 with the factors of 12. What is the answer?\nAnswer: {6}.\nExplanation: The first set is {5, 6, 7, 8, 9}; the positive factors of 12 are {1, 2, 3, 4, 6, 12}; their only common element is 6.\n\n## Summary\n- Union combines all elements without repetition.\n- Intersection keeps only common elements.\n- Disjoint sets have empty intersection.\n- Difference is directional.\n- A complement is taken relative to U.\n- De Morgan's laws connect complements with union and intersection.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Sets\n\n## What you will learn\nYou will use cardinality formulas to solve two-set survey problems. You will identify “both,” “only,” “either,” and “neither” correctly and reason about maximum and minimum overlap.\n\n## Simple explanation\nWhen two groups overlap, adding their sizes counts the shared members twice. Inclusion-exclusion corrects this by subtracting the intersection once.\n\n## Step-by-step breakdown\n- **Two-set inclusion-exclusion**: n(A ∪ B) = n(A) + n(B) − n(A ∩ B).\n- **Only in A**: n(A − B) = n(A) − n(A ∩ B).\n- **Neither set**: n((A ∪ B)′) = n(U) − n(A ∪ B).\n- **Exactly one set**: n[(A − B) ∪ (B − A)] = n(A) + n(B) − 2n(A ∩ B).\n- **Minimum intersection**: Since n(A ∪ B) ≤ n(U), n(A ∩ B) ≥ n(A) + n(B) − n(U).\n- **Maximum intersection**: The overlap cannot exceed the size of the smaller set.\n- **Maximum neither**: Make the union as small as possible, which happens when the smaller set is contained in the larger set.\n- **Venn-diagram strategy**: Place the intersection first, then calculate the “only” regions, and finally place the neither region outside the circles.\n\n## Worked example\nQuestion: Solve Example 20. In a class of 40 students, 22 play badminton, 11 play both badminton and table tennis, and 16 play neither. How many play table tennis but not badminton?\n\nSolution:\n- Step 1: Let B be badminton and T be table tennis. Then n(U) = 40, n(B) = 22, n(B ∩ T) = 11, and n((B ∪ T)′) = 16.\n- Step 2: Find the union: n(B ∪ T) = n(U) − n((B ∪ T)′) = 40 − 16 = 24.\n- Step 3: Apply inclusion-exclusion: n(B ∪ T) = n(B) + n(T) − n(B ∩ T).\n- Step 4: Substitute: 24 = 22 + n(T) − 11.\n- Step 5: Simplify: 24 = 11 + n(T), so n(T) = 13.\n- Step 6: Table tennis only = n(T) − n(B ∩ T) = 13 − 11 = 2.\n- Final answer: 2 students play table tennis but not badminton.\n\n## Common mistake\nWhen a question gives “neither,” do not insert that number into either circle. It belongs outside both circles but inside the universal rectangle.\n\n## Quick check question\nQuestion: In Example 21, 92 students can teach a language, 46 can teach mathematics, and all 120 can teach at least one. How many can teach both?\nAnswer: 18 students.\nExplanation: n(L ∩ M) = n(L) + n(M) − n(L ∪ M) = 92 + 46 − 120 = 18.\n\n## Summary\n- Inclusion-exclusion removes double counting.\n- “Only” means subtract the intersection.\n- “Neither” is the complement of the union.\n- “Exactly one” excludes the shared region from both sets.\n- Maximum and minimum overlap follow from containment and the size of U.\n- Venn diagrams help translate wording into regions.",
+    "Revision and recap": "# Revision and Recap: Advanced - Sets\n\n## What you will learn\nYou will consolidate the entire chapter and extend inclusion-exclusion to three sets. You will use Example 23 to organise pairwise overlaps, the triple overlap, exactly-one regions, and the region outside all three sets.\n\n## Simple explanation\nWith three sets, each element in a pairwise intersection may also belong to the third set. The triple intersection is therefore subtracted three times with the pairwise terms and must be added back once.\n\n## Step-by-step breakdown\n- **Three-set formula**: n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − [n(A ∩ B) + n(B ∩ C) + n(C ∩ A)] + n(A ∩ B ∩ C).\n- **Pairwise-only region**: n(only A and B) = n(A ∩ B) − n(A ∩ B ∩ C), and similarly for the other pairs.\n- **Exactly one set**: Subtract all regions involving the other sets from each set total before adding the three one-set-only regions.\n- **None of the sets**: n(neither A nor B nor C) = n(U) − n(A ∪ B ∪ C).\n- **Example 23 data conversion**: 35% of 1000 gives n(A) = 350, 30% gives n(B) = 300, and 15% gives n(A ∩ C) = 150.\n- **Example 23 pairwise-only values**: A∩B only = 200−100 = 100; B∩C only = 150−100 = 50; A∩C only = 150−100 = 50.\n- **Set-language recap**: Check whether the problem asks for an element, subset, union, intersection, difference, complement, exactly one, at least one, or none.\n- **Verification habit**: Add all disjoint Venn regions and confirm that the total does not exceed n(U).\n\n## Worked example\nQuestion: Complete Example 23 using the supplied data: n(U)=1000, n(A)=350, n(B)=300, n(C)=250, n(A∩B)=200, n(B∩C)=150, n(A∩C)=150, and n(A∩B∩C)=100. Find the percentage in exactly one set and the number in none of the sets.\n\nSolution:\n- Step 1: Find pairwise-only regions: AB only = 200−100 = 100; BC only = 150−100 = 50; AC only = 150−100 = 50.\n- Step 2: Find A only: 350−100−50−100 = 100.\n- Step 3: Find B only: 300−100−50−100 = 50.\n- Step 4: Find C only: 250−50−50−100 = 50.\n- Step 5: Exactly one = 100+50+50 = 200.\n- Step 6: Percentage in exactly one = (200/1000)×100 = 20%.\n- Step 7: Find the union using inclusion-exclusion: n(A∪B∪C)=350+300+250−200−150−150+100=500.\n- Step 8: None = 1000−500 = 500.\n- Final answer: 20% rated exactly one type, and 500 consumers rated none of the three.\n\n## Common mistake\nPairwise intersections in a three-set problem normally include the triple intersection. Subtract the triple intersection before calling a region “only A and B.”\n\n## Quick check question\nQuestion: In Example 22, 70 of 100 students prefer Physics and 60 prefer Chemistry. What is the minimum possible number who prefer both?\nAnswer: 30 students.\nExplanation: n(P ∩ C) ≥ n(P)+n(C)−n(U)=70+60−100=30; otherwise the union would exceed 100.\n\n## Summary\n- Set notation gives precise language for collections and their relationships.\n- Subsets, cardinality, power sets, and universal sets support later operations.\n- Venn diagrams represent union, intersection, difference, complement, and disjointness.\n- Two-set inclusion-exclusion corrects double counting once.\n- Three-set inclusion-exclusion subtracts pairwise overlaps and adds back the triple overlap.\n- Always check that all disjoint regions add to the universal total."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Database searches use set ideas: an OR condition behaves like union, an AND condition behaves like intersection, and a NOT condition behaves like complement.",
+      "Computer graphics and geographic information systems use set operations to combine, overlap, or subtract regions on maps and digital shapes.",
+      "In probability, events are sets of outcomes, so union, intersection, complement, and disjointness become the language of chance.",
+      "The inclusion-exclusion principle extends to four or more sets, although the alternating pattern of additions and subtractions becomes longer.",
+      "Georg Cantor's work showed that infinite sets can have different sizes, an idea studied later in higher mathematics."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Roster and set-builder notation",
+        "search_description": "set roster form and set builder form educational comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The same set shown once by listing its elements and once by describing their common property."
+      },
+      {
+        "topic": "Subset relationship",
+        "search_description": "subset proper subset universal set Venn diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A smaller circle entirely inside a larger circle within the universal rectangle."
+      },
+      {
+        "topic": "Power set tree",
+        "search_description": "power set of three element set subset lattice diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "All eight subsets of a three-element set arranged by subset size."
+      },
+      {
+        "topic": "Basic set operations",
+        "search_description": "Venn diagrams union intersection difference complement four panels",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Four Venn diagrams shading union, intersection, difference, and complement."
+      },
+      {
+        "topic": "De Morgan's laws",
+        "search_description": "De Morgan laws sets Venn diagram complement union intersection",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Paired Venn diagrams showing that the complement of a union equals the intersection of complements and vice versa."
+      },
+      {
+        "topic": "Two-set survey problem",
+        "search_description": "two set Venn diagram only both neither labelled counts",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A two-circle Venn diagram with regions labelled only A, both, only B, and neither."
+      },
+      {
+        "topic": "Three-set inclusion-exclusion",
+        "search_description": "three set Venn diagram inclusion exclusion labelled regions",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Three overlapping circles showing pairwise-only regions, the triple intersection, and the outside region."
+      }
+    ]
+  }
+}

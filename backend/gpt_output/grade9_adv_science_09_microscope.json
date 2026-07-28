@@ -1,0 +1,196 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Microscope and Microscopy",
+    "central_question": "How do different microscopes form useful images of tiny specimens, and how do magnification, resolution, contrast, preparation, and instrument choice determine what can be observed?",
+    "in_scope_units": [
+      "9.1 What is a Microscope? and the resolution limit of the human eye",
+      "Robert Hooke, cork cells, Antony van Leeuwenhoek, and Activity 9.1",
+      "9.2 Historical journey of microscopes and Activity 9.2 timeline",
+      "9.3 How Does a Microscope Work? Magnification, resolution, and contrast",
+      "9.3.1 Simple, compound, phase-contrast, and fluorescence light microscopes",
+      "9.3.2 Parts of a Compound Microscope and Activity 9.3",
+      "9.3.3 Working and ray diagram of a compound light microscope",
+      "9.4 Microscopy Skills",
+      "9.4.1 Temporary mounts and Activity 9.4 comparing monocot and dicot leaf peels",
+      "9.4.2 Permanent slides and Activity 9.5",
+      "9.4.3 Total magnification, actual size, and field-of-view calculations",
+      "9.5 Types of Microscopes",
+      "9.5.1 Magnification versus resolution and units used in microscopy",
+      "9.5.2 Light compound microscope",
+      "9.5.3 Electron microscopes",
+      "9.5.3.1 Transmission Electron Microscope",
+      "9.5.3.2 Scanning Electron Microscope",
+      "9.5.3.3 Comparison of light microscope, TEM, and SEM",
+      "9.6 New developments and limitations",
+      "9.7 Uses of microscopes",
+      "Snapshots and Check Your Understanding questions 1-15"
+    ],
+    "banned_topics": [
+      "Chromatography and fractional distillation questions carried over from the preceding chapter",
+      "Detailed cell organelle functions beyond their use as microscopy examples",
+      "Advanced derivation of Abbe's diffraction equation",
+      "Clinical diagnosis or treatment advice",
+      "Atomic-force and scanning-tunnelling microscopy, which are not covered in the source chapter"
+    ],
+    "must_include_keywords": [
+      "microscope",
+      "human eye",
+      "near point",
+      "0.1 mm",
+      "resolution",
+      "resolving power",
+      "magnification",
+      "contrast",
+      "Robert Hooke",
+      "Micrographia",
+      "cork cells",
+      "Antony van Leeuwenhoek",
+      "animalcules",
+      "Hans and Zacharias Janssen",
+      "Ernst Abbe",
+      "Ernst Ruska",
+      "Frits Zernike",
+      "simple microscope",
+      "compound microscope",
+      "phase-contrast microscopy",
+      "fluorescence microscopy",
+      "objective lens",
+      "eyepiece",
+      "condenser",
+      "stage",
+      "diaphragm",
+      "coarse adjustment",
+      "fine adjustment",
+      "refraction",
+      "temporary mount",
+      "permanent mount",
+      "fixation",
+      "staining",
+      "dehydration",
+      "Canada balsam",
+      "DPX",
+      "M = m_o × m_e",
+      "field of view",
+      "light microscope",
+      "electron beam",
+      "TEM",
+      "SEM",
+      "vacuum",
+      "digital microscope",
+      "super-resolution microscopy"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Magnification and resolution mean the same thing.",
+        "correction": "Magnification tells how many times larger the image appears; resolution tells the smallest separation at which two points can still be distinguished. A larger blurred image does not contain more resolved detail."
+      },
+      {
+        "claim": "Adding stronger lenses to a school microscope will allow it to reveal arbitrarily small objects.",
+        "correction": "A light microscope is limited to about 0.2 µm resolution by diffraction, so additional magnification beyond useful resolution produces empty magnification."
+      },
+      {
+        "claim": "The objective and eyepiece magnifications should be added.",
+        "correction": "Total magnification is their product: M = m_o × m_e."
+      },
+      {
+        "claim": "The final image in a compound microscope is upright relative to the original specimen.",
+        "correction": "The objective forms a real inverted intermediate image, and the eyepiece magnifies it into a virtual image that remains inverted relative to the original specimen."
+      },
+      {
+        "claim": "A coarse adjustment knob should be used for focusing under high power.",
+        "correction": "Coarse adjustment is for rough focusing at low power; fine adjustment is used for sharp focus at high power to reduce the risk of the objective striking the slide."
+      },
+      {
+        "claim": "A temporary mount can be preserved for years if it is covered carefully.",
+        "correction": "Water dries, cells shrink, and stain may crystallise; long-term storage requires fixation, staining, dehydration, and sealing in a mounting medium such as Canada balsam or DPX."
+      },
+      {
+        "claim": "TEM is best for 3D-like surface views and SEM is best for internal ultrastructure.",
+        "correction": "TEM transmits electrons through ultrathin sections to show internal details in 2D; SEM scans the surface to produce 3D-like surface images."
+      },
+      {
+        "claim": "Electron microscopes can routinely observe living cells.",
+        "correction": "TEM and SEM require vacuum and extensive preparation; these conditions kill cells, so living specimens are observed with suitable light microscopes."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the two-dot observation in Section 9.1 to explain the human-eye resolution limit of about 0.1 mm at 25 cm.",
+      "Use Activity 9.2 to build a timeline including Janssen, Hooke, Leeuwenhoek, Abbe, Ruska, and Zernike.",
+      "Use Activity 9.3 and Fig. 9.4 to identify the parts of a compound microscope and connect each part with its role.",
+      "Use Activities 9.4 and 9.5 to compare temporary and permanent mounts without inventing observations not recorded by the student.",
+      "Use Section 9.4.3 examples to calculate 400X total magnification, 0.05 mm actual cell size, 150X magnification, and 0.2 mm cell size from field of view.",
+      "Use Check Your Understanding Q1 and Q6 for total magnification, cell-size estimation, and inverse field-of-view calculation.",
+      "Use Check Your Understanding Q2, Q8, and Q10 to select phase-contrast, TEM, or SEM according to whether the specimen is living, internal, or a surface.",
+      "Use Check Your Understanding Q3 and Q13 to distinguish magnification from resolution and explain empty magnification."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with 'Check Your Understanding', questions 1-15, covering calculations, instrument selection, slide preparation, resolution, applications, and microscopy care."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Microscope and Microscopy\n\n## What you will learn\nYou will learn why microscopes are needed, what resolution means, and how early observations opened the microscopic world. You will also trace major milestones through Activities 9.1 and 9.2.\n\n## Simple explanation\nA microscope is useful not only because it makes an object look larger, but because it can separate details that the unaided eye merges together. The history of microscopy is therefore a history of improving both magnification and resolution.\n\n## Step-by-step breakdown\n- **Meaning of microscope**: The name combines *micro*, meaning small, with *skopion*, meaning a means of viewing.\n- **Purpose**: Microscopes reveal objects such as onion cells, cheek cells, bacteria, and dust particles that cannot be studied clearly with the naked eye.\n- **Human-eye near point**: The chapter uses about 25 cm as the normal near viewing distance.\n- **Eye resolution**: At that distance, two points about 0.1 mm or 100 µm apart can just be distinguished; closer points appear merged.\n- **Robert Hooke in 1665**: Hooke examined thin cork slices and named the honeycomb-like empty compartments 'cells' in *Micrographia*.\n- **Antony van Leeuwenhoek**: Using powerful simple lenses, he observed living 'animalcules', including bacteria and protozoa.\n- **Janssen microscope**: Hans and Zacharias Janssen are associated with an early compound microscope around 1590.\n- **Resolution theory**: Ernst Abbe linked resolution with wavelength in 1878.\n- **Electron microscopy**: Ernst Ruska developed an early electron microscope using short-wavelength electrons, greatly improving resolving power.\n- **Phase contrast**: Frits Zernike was recognised for phase-contrast microscopy, which improved observation of transparent living specimens.\n- **Activity 9.1**: The imagined journey inside a leaf encourages students to predict structures before observing them.\n- **Activity 9.2**: The timeline strip connects each invention with a visual symbol such as cork cells, bacteria, or an electron beam.\n\n## Worked example\nQuestion: Activity 9.2 asks for at least five microscopy milestones. Construct a scientifically ordered five-event timeline from the chapter.\n\nSolution:\n- Step 1: Select dated events from the chapter: 1590 Janssen microscope, 1665 Hooke's cork cells, 1670s Leeuwenhoek's animalcules, 1878 Abbe's resolution theory, and 1938 Ruska's electron microscope.\n- Step 2: Place them from earliest to latest and add a symbol for each.\n- Final answer: 1590 - Janssen compound microscope; 1665 - Hooke names cells; 1670s - Leeuwenhoek observes microorganisms; 1878 - Abbe links wavelength and resolution; 1938 - Ruska develops the electron microscope.\n\n## Common mistake\nSeeing an object as larger is not enough to reveal new details. The instrument must also have sufficient resolution to distinguish nearby structures.\n\n## Quick check question\nQuestion: According to Section 9.1, what is the approximate resolution limit of the human eye at a viewing distance of 25 cm?\nAnswer: About 0.1 mm, which is 100 µm.\nExplanation: Two points closer than this are likely to appear as one point to the unaided eye.\n\n## Summary\n- Microscopes reveal objects below the eye's useful resolution.\n- Human-eye resolution is about 0.1 mm at 25 cm.\n- Hooke named cork compartments cells.\n- Leeuwenhoek observed living microorganisms.\n- Improvements in wavelength, lenses, and contrast advanced microscopy.",
+    "Core explanation": "# Core Explanation: Advanced - Microscope and Microscopy\n\n## What you will learn\nYou will compare light-microscope types, identify the parts of a compound microscope, and explain how its lenses form an enlarged image. Activity 9.3 and the ray diagram in Fig. 9.5 will guide the explanation.\n\n## Simple explanation\nA light microscope directs visible light through a specimen and uses lenses in stages. The objective creates the first enlarged image, and the eyepiece enlarges that image for the observer.\n\n## Step-by-step breakdown\n- **Simple microscope**: A single lens acts like a magnifying glass.\n- **Compound microscope**: It uses an objective near the specimen and an eyepiece near the observer to achieve greater total magnification.\n- **Phase-contrast microscope**: It enhances contrast in transparent living cells without requiring stains that would kill them.\n- **Fluorescence microscope**: High-intensity light excites specialised dyes so selected structures glow against a dark background.\n- **Light source**: An LED, halogen lamp, or mirror supplies illumination.\n- **Condenser**: It focuses and concentrates light on the specimen and helps control contrast.\n- **Stage and clips**: They support and hold the slide in place.\n- **Objective lens**: It is the primary magnifier and forms a real, enlarged, inverted intermediate image.\n- **Eyepiece**: It magnifies the intermediate image to produce the final virtual image seen by the eye.\n- **Revolving nosepiece**: It holds objectives and permits a change in magnification.\n- **Diaphragm**: It regulates the amount of transmitted light.\n- **Focusing knobs**: Coarse adjustment gives rough focus at low power; fine adjustment sharpens the image, especially at high power.\n- **Safe carrying**: Support the microscope by the arm while also holding the base.\n- **Refraction**: Convex lenses bend light because its speed changes between media.\n- **Compound image sequence**: The objective forms a real inverted image; the eyepiece magnifies this into a virtual image that remains inverted relative to the specimen.\n\n## Worked example\nQuestion: Activity 9.3 asks students to examine a compound microscope. Which parts should be adjusted to improve an initially dim and slightly blurred image under low power?\n\nSolution:\n- Step 1: Use the diaphragm and condenser or light control to provide suitable illumination and contrast.\n- Step 2: Use the coarse adjustment for rough low-power focus, then the fine adjustment for final sharpness.\n- Final answer: Adjust illumination with the diaphragm and condenser, focus first with the coarse knob at low power, and sharpen with the fine knob.\n\n## Common mistake\nDo not use the coarse adjustment aggressively under high power. The objective is close to the slide, so use fine adjustment to prevent damage and obtain precise focus.\n\n## Quick check question\nQuestion: In Fig. 9.4 and Activity 9.3, which part holds several objective lenses and lets the observer switch between them?\nAnswer: The revolving nosepiece.\nExplanation: Rotating the nosepiece brings a selected objective into the optical path.\n\n## Summary\n- Light microscopes use visible light and glass lenses.\n- Phase contrast improves visibility of living transparent cells.\n- Fluorescence highlights selected stained structures.\n- The objective forms the real intermediate image.\n- The eyepiece produces the final magnified virtual image.\n- Condenser, diaphragm, and focus knobs control image quality.",
+    "Worked examples": "# Worked Examples: Advanced - Microscope and Microscopy\n\n## What you will learn\nYou will learn how temporary and permanent slides are prepared for different purposes. You will also calculate total magnification, actual specimen size, and approximate size from field of view.\n\n## Simple explanation\nGood microscopy depends on the specimen as much as on the instrument. A fresh temporary mount is useful for short-term or living observations, while a permanent mount is processed so its structure can be stored and viewed repeatedly.\n\n## Step-by-step breakdown\n- **Activity 9.4 temporary mount**: Prepare peels from upper and lower epidermis of selected monocot and dicot leaves, observe them, draw labelled diagrams, and record features.\n- **Observation categories**: The chapter asks students to compare epidermal-cell shape and pattern, guard-cell shape, stomatal distribution, and other visible features.\n- **Temporary-mount limitation**: Water dries, cells shrink and die, bubbles may appear, stain may crystallise, and shapes become distorted.\n- **Permanent-mount sequence**: Fix the specimen, stain it, dehydrate it, and seal it under a coverslip in Canada balsam or DPX.\n- **Purpose of fixation**: It kills the specimen while preserving structure.\n- **Purpose of staining**: It increases contrast of selected structures.\n- **Purpose of dehydration**: It removes water before sealing in a resin-like mounting medium.\n- **Activity 9.5 comparison**: Compare temporary and permanent monocot and dicot leaf peels for clarity while checking whether anatomical differences remain consistent.\n- **Total magnification**: M = m_o × m_e, where m_o is objective magnification and m_e is eyepiece magnification.\n- **Actual size**: Actual size = image size ÷ total magnification.\n- **Field method**: Approximate cell size = field diameter ÷ number of cells fitting across it.\n\n## Worked example\nQuestion: Section 9.4.3 asks: if a cell measures 5 mm in a 100X image, what is its actual size?\n\nSolution:\n- Step 1: Use actual size = image size ÷ magnification.\n- Step 2: Actual size = 5 mm ÷ 100 = 0.05 mm, which is 50 µm.\n- Final answer: The actual cell size is 0.05 mm or 50 µm.\n\n## Common mistake\nDo not multiply image size by magnification when finding actual size. A magnified image is larger than the object, so divide by total magnification.\n\n## Quick check question\nQuestion: Section 9.4.3 asks: if a 15X eyepiece is used with a 10X objective, what is the total magnification?\nAnswer: 150X.\nExplanation: Total magnification is the product, 15 × 10 = 150.\n\n## Summary\n- Temporary mounts are best for short-term or fresh observations.\n- Permanent mounts require fixation, staining, dehydration, and sealing.\n- Canada balsam or DPX protects the prepared specimen.\n- Total magnification is objective multiplied by eyepiece.\n- Actual size is image size divided by magnification.\n- Field diameter can estimate cell size.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Microscope and Microscopy\n\n## What you will learn\nYou will distinguish magnification from resolution and select light microscopy, TEM, or SEM for a stated purpose. You will compare their illumination, preparation, image type, and ability to observe living specimens.\n\n## Simple explanation\nA useful microscope must make an object both large enough and sharp enough. Light microscopes can observe living cells, while electron microscopes provide finer detail but require vacuum and non-living prepared specimens.\n\n## Step-by-step breakdown\n- **Magnification**: The factor by which the image is enlarged compared with the actual specimen.\n- **Resolution**: The smallest distance at which two points can still be seen separately.\n- **Resolving power**: The reciprocal idea of resolution; a smaller resolution value means greater resolving power.\n- **Human eye**: Approximate resolution is 0.1 mm.\n- **Light microscope**: Approximate resolution is 0.2 µm and magnification is commonly up to about 1000X to 1500X in the chapter.\n- **Electron wavelength**: Electron beams have much shorter wavelength than visible light, allowing higher resolution.\n- **Electron optics**: Magnetic lenses focus electrons in a vacuum.\n- **TEM method**: Electrons pass through an ultrathin section about 50-90 nm thick.\n- **TEM output**: It shows internal structures such as mitochondria, ribosomes, and viruses in a 2D image, with resolution around 0.1 nm.\n- **SEM method**: A focused beam scans the coated specimen surface and detected electrons form the image.\n- **SEM output**: It produces a 3D-like surface view, useful for pollen grains, insect legs, and microchips.\n- **Living cells**: Light and phase-contrast microscopes can observe living cells; TEM and SEM cannot because vacuum and preparation kill them.\n- **Preparation contrast**: TEM uses heavy-metal stains; SEM uses a conductive surface coating.\n\n## Worked example\nQuestion: Check Your Understanding Q2 asks which microscope should be used for (a) live protozoa in pond water and (b) the 3D surface of a pollen grain.\n\nSolution:\n- Step 1: Live transparent protozoa require an instrument that works without vacuum and improves contrast without killing the cells.\n- Step 2: A pollen-grain surface requires surface scanning and a 3D-like image.\n- Final answer: Use a phase-contrast light microscope for live protozoa and an SEM for the 3D-like surface of a pollen grain.\n\n## Common mistake\nA 400X blurred image is not automatically better than a sharp 100X image. If the microscope cannot resolve extra detail, the extra enlargement is empty magnification.\n\n## Quick check question\nQuestion: Check Your Understanding Q8 asks how TEM and SEM differ in image and best use.\nAnswer: TEM produces a 2D image of internal ultrastructure from an ultrathin section; SEM produces a 3D-like image of the specimen surface.\nExplanation: TEM transmits electrons through the specimen, whereas SEM scans electrons across its surface.\n\n## Summary\n- Magnification controls size; resolution controls detail.\n- Shorter electron wavelength gives better resolution.\n- TEM reveals internal 2D detail.\n- SEM reveals 3D-like surface detail.\n- Electron microscopes require vacuum and dead prepared samples.\n- Phase contrast is suitable for living transparent cells.",
+    "Revision and recap": "# Revision and Recap: Advanced - Microscope and Microscopy\n\n## What you will learn\nYou will integrate microscope choice, care, limitations, new developments, and real-world applications. You will solve field-of-view and resolution questions and explain why no single microscope is best for every task.\n\n## Simple explanation\nMicroscopy is a set of decisions: prepare the right specimen, choose a suitable instrument, use useful magnification, and recognise the limits of the method. Better technology can extend those limits, but it also introduces cost and preparation challenges.\n\n## Step-by-step breakdown\n- **Field of view**: When magnification increases, the visible field becomes smaller; the chapter uses an inverse relationship for prediction.\n- **Check Your Understanding Q6**: Increasing from 40X to 400X is a tenfold magnification increase, so a 4 mm field becomes 0.4 mm.\n- **Air bubbles**: Bubbles obscure cells, distort the visible field, and may be mistaken for structures; lower the coverslip at an angle and avoid excess mounting liquid.\n- **Microscope care**: Carry with two hands, begin focusing at low power, and clean optical surfaces with proper lens material; avoid forcing controls or allowing an objective to strike the slide.\n- **Light-microscope limit**: Structures below about 0.2 µm cannot be resolved because of light diffraction.\n- **Electron-microscope limits**: High cost, vacuum, chemical processing, metal staining or coating, and careful preparation restrict their use in school laboratories.\n- **Digital microscopes**: They display real-time images on a screen so observations can be shared.\n- **Super-resolution microscopy**: It can reveal detail below the ordinary light-microscope limit using specialised methods.\n- **Hospitals**: Microscopes help examine blood, sputum, and tissue biopsies, including malaria parasites.\n- **Science and environment**: They are used to study stomata, tissues, algae, protozoa, and pollution indicators.\n- **Industry and forensics**: They inspect metals, plastics, electronic chips, fibres, hair, glass, and blood stains.\n- **Instrument-selection principle**: The specimen size, whether it must remain alive, and whether internal or surface detail is required determine the best microscope.\n\n## Worked example\nQuestion: Check Your Understanding Q1 gives a 10X eyepiece, 40X objective, a 0.4 mm field of view, and four cells across the field. Find total magnification and approximate cell size.\n\nSolution:\n- Step 1: Total magnification = 10 × 40 = 400X.\n- Step 2: Approximate cell size = 0.4 mm ÷ 4 = 0.1 mm = 100 µm.\n- Final answer: The microscope is at 400X, and each cell is approximately 0.1 mm or 100 µm wide.\n\n## Common mistake\nDo not choose the most powerful microscope automatically. An electron microscope cannot show living motion, while a light or phase-contrast microscope may answer that question better.\n\n## Quick check question\nQuestion: Check Your Understanding Q10 asks whether electron microscopes can be relied on for studying living cells.\nAnswer: No, not for observing living cells in their natural living state.\nExplanation: Electron microscopes require vacuum and extensive preparation, including dehydration and staining or coating, which kills the cells.\n\n## Summary\n- Field of view decreases as magnification increases.\n- Careful mounting and focusing prevent artefacts and damage.\n- Light microscopy is limited by diffraction.\n- Electron microscopy gives higher resolution but cannot show living cells.\n- Digital and super-resolution methods extend microscopy capabilities.\n- Microscopes support medicine, research, industry, forensics, and environmental study."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Confocal microscopy uses focused illumination and optical sectioning to build clearer images from different depths in a fluorescent specimen.",
+      "Super-resolution light microscopy uses specialised methods to localise fluorescent signals more precisely than an ordinary light microscope can resolve.",
+      "Cryo-electron microscopy rapidly freezes specimens so biological structures can be studied in a near-native state without the usual heavy staining, although the specimens are not alive during imaging.",
+      "Digital image analysis can measure cell size, count objects, and compare brightness, but accurate conclusions still depend on calibration and good specimen preparation.",
+      "Microscope images may contain artefacts caused by preparation, staining, focus, or detector processing, so scientists compare controls and repeat observations."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Hooke cork cells",
+        "search_description": "Robert Hooke Micrographia cork cells original drawing public domain",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Robert Hooke's historical drawing of honeycomb-like cork compartments."
+      },
+      {
+        "topic": "Microscopy timeline",
+        "search_description": "history of microscope Janssen Hooke Leeuwenhoek Ruska timeline",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A timeline showing major microscope developments from early compound lenses to electron microscopy."
+      },
+      {
+        "topic": "Compound microscope parts",
+        "search_description": "compound light microscope labelled eyepiece objective condenser stage diaphragm focus knobs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled compound microscope showing its optical, focusing, and support parts."
+      },
+      {
+        "topic": "Compound microscope ray diagram",
+        "search_description": "compound microscope ray diagram objective intermediate image eyepiece final virtual image",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A ray diagram showing the objective forming an inverted intermediate image and the eyepiece magnifying it."
+      },
+      {
+        "topic": "Temporary and permanent slides",
+        "search_description": "temporary mount permanent microscope slide preparation fixation staining dehydration diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A comparison of a fresh temporary wet mount and a fixed stained permanent slide."
+      },
+      {
+        "topic": "TEM versus SEM",
+        "search_description": "TEM versus SEM internal structure surface image comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A comparison showing electrons transmitted through an ultrathin TEM sample and scanning an SEM surface."
+      },
+      {
+        "topic": "Phase contrast living cells",
+        "search_description": "phase contrast microscopy living cells image open license",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Transparent living cells made visible with enhanced phase contrast."
+      },
+      {
+        "topic": "Fluorescence microscopy",
+        "search_description": "fluorescence microscopy labelled cells dark background open license",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Fluorescently labelled cellular structures glowing against a dark background."
+      }
+    ]
+  }
+}

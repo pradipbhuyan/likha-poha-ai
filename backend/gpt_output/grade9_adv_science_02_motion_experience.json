@@ -1,0 +1,146 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Understanding Motion through Experience",
+    "central_question": "How can motion be observed, measured, described relative to a reference frame, represented with vectors, and predicted using equations of uniformly accelerated motion?",
+    "in_scope_units": [
+      "Reflective questions connecting everyday experiences with motion",
+      "2.1 What is Motion? and Activity 2.1 measuring distance, time, and speed",
+      "2.2 Frame of Reference and Activity 2.2 showing that motion is relative",
+      "2.3 Scalars and Vectors and Activity 2.3 comparing distance with displacement",
+      "2.4 Vector Addition by graphical triangle and parallelogram methods",
+      "Activity 2.4 graphical addition of eastward and northward displacements",
+      "Practice Question using Sita's route from house to bus stop, traffic signal, and school",
+      "2.5 Equations of Motion for constant acceleration",
+      "Activity 2.5 observing accelerated motion with a toy car",
+      "Derivation and use of the distance travelled in the nth second",
+      "2.6 Reflect and Discuss",
+      "2.7 Project-Based Learning for measuring speed",
+      "Check Your Understanding questions 1-11"
+    ],
+    "banned_topics": [
+      "Detailed derivation of projectile range and the optimum launch angle",
+      "Newton's three laws and force analysis beyond the brief reference-frame connection",
+      "Pseudo-force calculations, which belong to the next chapter",
+      "Circular motion, gravitation, and torque"
+    ],
+    "must_include_keywords": [
+      "motion",
+      "position",
+      "time",
+      "reference point",
+      "frame of reference",
+      "inertial frame",
+      "non-inertial frame",
+      "relative motion",
+      "distance",
+      "displacement",
+      "speed",
+      "velocity",
+      "acceleration",
+      "scalar",
+      "vector",
+      "magnitude",
+      "direction",
+      "resultant",
+      "triangle method",
+      "parallelogram method",
+      "graph paper",
+      "Activity 2.1",
+      "Activity 2.2",
+      "Activity 2.3",
+      "Activity 2.4",
+      "Activity 2.5",
+      "initial velocity",
+      "final velocity",
+      "constant acceleration",
+      "V = u + at",
+      "S = ut + 1/2 at²",
+      "v² = u² + 2as",
+      "nth second",
+      "toy car",
+      "project-based learning"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "An object is either absolutely at rest or absolutely in motion.",
+        "correction": "The state of motion must be stated relative to a reference point or frame; Activity 2.2 shows that two students moving together can be at rest relative to each other while moving relative to the classroom."
+      },
+      {
+        "claim": "Distance and displacement are always equal.",
+        "correction": "Distance is the total path length, while displacement is the directed change from start to finish; in Activity 2.3, returning from B to A makes displacement zero although distance is non-zero."
+      },
+      {
+        "claim": "Speed and velocity are interchangeable because both describe how fast an object moves.",
+        "correction": "Speed is a scalar with magnitude only, whereas velocity is a vector with both magnitude and direction."
+      },
+      {
+        "claim": "The formula for the nth second gives the total displacement after n seconds.",
+        "correction": "The chapter explicitly states that s_n = u + (a/2)(2n-1) gives displacement during the nth one-second interval, not cumulative displacement."
+      },
+      {
+        "claim": "The ordinary equations of motion can be used for any changing motion.",
+        "correction": "The equations V = u + at, S = ut + 1/2 at², and v² = u² + 2as apply when acceleration is constant."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 2.1 to compare walking and running over the same 5 m distance and reason from distance and time to speed.",
+      "Use Activity 2.2 to explain why two students walking together appear at rest relative to each other.",
+      "Use Activity 2.3 to compare distance and displacement for A to B and A to B to A.",
+      "Use Activity 2.4 and its 4-unit east plus 3-unit north construction to identify a resultant displacement graphically.",
+      "Use the Practice Question on Sita's route to calculate path distances and total displacement.",
+      "Use Activity 2.5 to connect increasing spacing at equal time intervals with acceleration.",
+      "Use Check Your Understanding questions 10 and 11 to apply the fourth equation of motion to the 6th and 5th seconds."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Check Your Understanding', questions 1-11, after '2.6 Reflect and Discuss' and '2.7 Project-Based Learning'."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Understanding Motion through Experience\n\n## What you will learn\nYou will learn how motion is defined using change of position with time and why a reference point is essential. You will also connect distance and time measurements with speed through Activity 2.1 and understand relative motion through Activity 2.2.\n\n## Simple explanation\nMotion is not described by looking at an object alone. We compare its position with a chosen reference point and observe whether that position changes with time. The same object may therefore be moving for one observer and at rest for another.\n\n## Step-by-step breakdown\n- **Meaning of motion**: An object is in motion when its position changes with time relative to a reference point.\n- **Kinds of observed motion**: The chapter identifies slow or fast, straight or curved, and uniform or non-uniform motion.\n- **Measuring motion in Activity 2.1**: A student walks and then runs between two points 5 m apart while another student records the time. For the same distance, the motion taking less time is faster.\n- **Speed as a measurable description**: Activity 2.1 links the observation of motion with measurable distance and time.\n- **Need for a frame of reference**: Without a specified reference point, the statements 'moving' and 'at rest' are incomplete.\n- **Inertial frame**: A frame at rest or moving with constant velocity is called an inertial frame.\n- **Non-inertial frame**: A frame that accelerates is called non-inertial; the chapter notes that special corrections are needed in such frames.\n- **Relative motion in Activity 2.2**: Two students walking in the same direction with the same speed appear at rest relative to each other but are moving relative to the classroom.\n\n## Worked example\nQuestion: In Activity 2.2, why do two students walking in the same direction with the same speed appear at rest to each other but moving to an observer in the classroom?\n\nSolution:\n- Step 1: Relative to each other, the separation between the two students does not change because their speeds and directions are the same.\n- Step 2: Relative to the classroom, both students change position with time.\n- Final answer: They are at rest in the frame attached to each other, but they are in motion in the classroom frame. Motion depends on the chosen reference frame.\n\n## Common mistake\nA common mistake is to say that an object is simply 'moving' without naming a reference point. The correct statement must identify the frame relative to which the position changes.\n\n## Quick check question\nQuestion: According to Activity 2.1, if walking and running cover the same 5 m distance, which motion is faster?\nAnswer: The motion that takes less time is faster; normally the running trial is faster.\nExplanation: For the same distance, a smaller time means a greater speed.\n\n## Summary\n- Motion is change of position with time relative to a reference point.\n- Distance and time can be measured to compare speeds.\n- Motion can be slow or fast, straight or curved, uniform or non-uniform.\n- Inertial frames are at rest or move with constant velocity.\n- Activity 2.2 demonstrates that motion is relative.",
+    "Core explanation": "# Core Explanation: Advanced - Understanding Motion through Experience\n\n## What you will learn\nYou will distinguish scalars from vectors and distance from displacement. You will use Activity 2.3 to see why direction changes the description of motion.\n\n## Simple explanation\nSome physical quantities need only a numerical size, while others also need a direction. This difference is essential when we compare the total path travelled with the straight, directed change from starting point to ending point.\n\n## Step-by-step breakdown\n- **Scalar quantities**: Scalars have magnitude only. The chapter lists distance, time, mass, speed, and work.\n- **Vector quantities**: Vectors have magnitude and direction. The chapter lists displacement, velocity, and force.\n- **Distance**: Distance tells the total path length covered and is a scalar.\n- **Displacement**: Displacement tells the directed change from initial position to final position and is a vector.\n- **Activity 2.3 first journey**: Walking from A to B along a 5 m line gives a distance of 5 m and a displacement of 5 m from A toward B.\n- **Activity 2.3 return journey**: Walking from A to B and back to A increases the distance, but the final position equals the starting position, so displacement becomes zero.\n- **Why direction matters**: Two motions can have the same distance but different displacement if their final positions or directions differ.\n- **Speed and velocity**: Speed is scalar, whereas velocity includes direction and is therefore vector.\n\n## Worked example\nQuestion: Using Activity 2.3, compare the distance and displacement when a student walks from A to B and then returns to A.\n\nSolution:\n- Step 1: The student travels from A to B and then covers another path from B back to A, so the total distance is the sum of both path lengths.\n- Step 2: The final position is the same as the initial position A, so the directed change in position is zero.\n- Final answer: The distance is non-zero, but the displacement is zero because the student returns to the starting point.\n\n## Common mistake\nIt is incorrect to say that zero displacement means no motion occurred. Activity 2.3 shows that a student can travel a non-zero distance and still have zero displacement after returning to the start.\n\n## Quick check question\nQuestion: In Activity 2.3, is displacement a scalar or a vector, and why?\nAnswer: Displacement is a vector because it has both magnitude and direction from the starting point to the final point.\nExplanation: Its value cannot be fully described without stating the direction of the change in position.\n\n## Summary\n- Scalars have magnitude only.\n- Vectors have magnitude and direction.\n- Distance is total path length and is scalar.\n- Displacement is directed change in position and is vector.\n- A round trip can have non-zero distance but zero displacement.",
+    "Worked examples": "# Worked Examples: Advanced - Understanding Motion through Experience\n\n## What you will learn\nYou will add displacement vectors graphically using the triangle method. You will also analyse the route in the chapter's Practice Question and separate path distance from resultant displacement.\n\n## Simple explanation\nVector addition combines successive directed movements into one resultant. The resultant joins the starting point of the first vector to the ending point of the last vector.\n\n## Step-by-step breakdown\n- **Resultant vector**: When two or more vectors act successively, their single combined effect is called the resultant.\n- **Triangle method**: Draw the second vector from the head of the first; then join the tail of the first to the head of the second.\n- **Activity 2.4 construction**: Draw 4 units east, then 3 units north from the first vector's head.\n- **Direction in a diagram**: East and north must be shown by arrow direction, not only by line length.\n- **Magnitude of the Activity 2.4 resultant**: The east and north vectors form perpendicular sides of a right triangle, so the straight resultant is 5 units.\n- **Sita's path from A to B**: From (1,1) to (3,1), the walking distance is 2 km.\n- **Sita's bus path B to C to D**: B to C is 4 km and C to D is 1 km, so the bus path is 5 km.\n- **Sita's total displacement**: From A(1,1) to D(4,5), the coordinate changes are 3 km east and 4 km north, giving a 5 km resultant toward the north-east.\n\n## Worked example\nQuestion: Solve the Practice Question based on points A(1,1), B(3,1), C(3,5), and D(4,5): find Sita's walking distance, bus distance, and total displacement.\n\nSolution:\n- Step 1: A to B changes x from 1 to 3 while y stays 1, so walking distance = 2 km.\n- Step 2: B to C changes y from 1 to 5, giving 4 km, and C to D changes x from 3 to 4, giving 1 km; bus distance = 5 km.\n- Step 3: From A to D, the net changes are 3 km east and 4 km north. The resultant magnitude is √(3² + 4²) = 5 km.\n- Final answer: Walking distance = 2 km; bus distance = 5 km; total displacement = 5 km toward the north-east.\n\n## Common mistake\nDo not add all path segments when asked for displacement. Distance follows the actual route, while displacement joins the initial and final points directly.\n\n## Quick check question\nQuestion: In Activity 2.4, what does the line joining the tail of the 4-unit east vector to the head of the 3-unit north vector represent?\nAnswer: It represents the resultant displacement.\nExplanation: The line directly connects the initial position to the final position after both vector movements.\n\n## Summary\n- Vectors are added head-to-tail in the triangle method.\n- The resultant joins the first tail to the final head.\n- Activity 2.4 combines 4 units east and 3 units north.\n- Path distance and displacement must be calculated differently.\n- The Sita route gives 2 km walking, 5 km by bus, and 5 km resultant displacement.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Understanding Motion through Experience\n\n## What you will learn\nYou will use the equations of motion for constant acceleration and understand the derivation of displacement in the nth second. You will connect the equations with the increasing spacing observed in Activity 2.5.\n\n## Simple explanation\nWhen acceleration remains constant, velocity changes by equal amounts in equal times. The standard equations describe cumulative motion, while the fourth equation gives the displacement during one specific second.\n\n## Step-by-step breakdown\n- **First equation**: v = u + at relates initial velocity, final velocity, acceleration, and time.\n- **Second equation**: s = ut + 1/2 at² gives displacement after time t.\n- **Third equation**: v² = u² + 2as relates velocity and displacement without time.\n- **Symbols**: u is initial velocity, v is final velocity, a is acceleration, t is time, and s is displacement.\n- **Condition of use**: These equations apply when acceleration is constant.\n- **Activity 2.5 observation**: A toy car's positions are marked every 1 second; increasing successive distances show that its velocity is increasing.\n- **nth-second idea**: Displacement in the nth second equals cumulative displacement in n seconds minus cumulative displacement in (n-1) seconds.\n- **Fourth equation**: s_n = u + (a/2)(2n-1), where n is a positive integer.\n- **Meaning of s_n**: It is displacement during the nth one-second interval, not total displacement after n seconds.\n\n## Worked example\nQuestion: Check Your Understanding Q10: A body starts from rest and accelerates at 4 m/s². Find the distance travelled in the 6th second.\n\nSolution:\n- Step 1: From rest means u = 0, with a = 4 m/s² and n = 6.\n- Step 2: Use s_n = u + (a/2)(2n-1) = 0 + (4/2)(12-1).\n- Step 3: s_6 = 2 × 11 = 22 m.\n- Final answer: The body travels 22 m during the 6th second.\n\n## Common mistake\nDo not substitute t = 6 into s = ut + 1/2 at² when the question asks for distance in the 6th second. That calculation gives total displacement in 6 seconds, not the displacement only between 5 s and 6 s.\n\n## Quick check question\nQuestion: Check Your Understanding Q11 asks for the distance covered in the 5th second by a car with u = 8 m/s and a = 2 m/s². What is the answer?\nAnswer: 17 m.\nExplanation: s_5 = u + (a/2)(2n-1) = 8 + (2/2)(10-1) = 8 + 9 = 17 m.\n\n## Summary\n- The three standard equations describe constant-acceleration motion.\n- Activity 2.5 links increasing interval distances with acceleration.\n- The nth-second formula is derived by subtraction of cumulative displacements.\n- s_n = u + (a/2)(2n-1).\n- The nth-second result is not cumulative displacement.",
+    "Revision and recap": "# Revision and Recap: Advanced - Understanding Motion through Experience\n\n## What you will learn\nYou will connect the chapter's experiments into one method for studying motion: choose a frame, measure quantities, classify them correctly, represent directions, and apply suitable equations. You will also plan the project described in Section 2.7.\n\n## Simple explanation\nA scientific study of motion begins with observation but becomes reliable only when the reference frame, measurements, direction, and assumptions are clearly stated.\n\n## Step-by-step breakdown\n- **Reference before description**: State the observer or reference point before deciding whether an object is at rest or moving.\n- **Measurement before comparison**: Activity 2.1 uses measured distance and time to compare walking and running.\n- **Classify the quantity**: Distance, time, mass, and speed are scalars; displacement, velocity, force, and acceleration are vectors in the chapter's classification task.\n- **Track the path and endpoint separately**: Activity 2.3 prevents confusion between distance and displacement.\n- **Represent successive directions graphically**: Activity 2.4 uses head-to-tail vector addition.\n- **Choose equations only when acceleration is constant**: The equations in Section 2.5 require constant acceleration.\n- **Interpret equal-time observations**: In Activity 2.5, greater distances in successive one-second intervals indicate increasing velocity.\n- **Project-Based Learning**: Section 2.7 asks students to measure the speed of a bicycle or walking student and present method, observations, calculations, and conclusions.\n- **Experimental plan**: Mark a known distance, measure travel time, repeat trials, calculate speed, and state possible timing or measurement limitations.\n\n## Worked example\nQuestion: For the Project-Based Learning task in Section 2.7, how should a student design a simple experiment to measure the speed of a walking student using the chapter's methods?\n\nSolution:\n- Step 1: Mark a known distance with measuring tape, following the measurement approach of Activity 2.1.\n- Step 2: Measure the travel time with a stopwatch and repeat the trial for reliability.\n- Step 3: Calculate speed from measured distance and time, then present the observations and conclusion.\n- Final answer: A valid project identifies a fixed path, records distance and time, calculates speed, repeats observations, and explains the result with a stated reference frame.\n\n## Common mistake\nA graph or calculation does not replace a clear reference frame and direction. A scientifically complete description must say what was measured, relative to what, and whether the quantity is scalar or vector.\n\n## Quick check question\nQuestion: Check Your Understanding Q9 asks for the resultant of two opposite vectors of equal magnitude. What is the resultant?\nAnswer: The resultant is zero.\nExplanation: Equal vectors in opposite directions cancel because their magnitudes are equal and their directions are opposite.\n\n## Summary\n- Motion is always described relative to a frame.\n- Measurements of distance and time make comparisons objective.\n- Scalars and vectors must not be confused.\n- Graphical addition gives a resultant displacement.\n- Constant-acceleration equations and the nth-second formula have specific conditions.\n- A good project reports method, observations, calculations, and conclusions."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Global navigation systems estimate motion by repeatedly determining position with respect to satellite-based reference frames and then calculating changes with time.",
+      "Motion sensors in phones combine accelerometers and gyroscopes to detect changes in linear motion and orientation; their readings still depend on the device's chosen coordinate axes.",
+      "In sports analysis, high-speed video can provide position data at equal time intervals, allowing velocity and acceleration to be estimated from successive frames.",
+      "Vector methods used here also support navigation: east-west and north-south components can be combined to find a direct route and direction.",
+      "The equations of uniformly accelerated motion are idealised models; real vehicles may have acceleration that changes with time, requiring more detailed graphs or numerical analysis."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Relative motion on a train",
+        "search_description": "relative motion passengers inside moving train reference frame diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Passengers inside a moving train shown at rest relative to one another while the train moves relative to the ground."
+      },
+      {
+        "topic": "Distance and displacement",
+        "search_description": "distance versus displacement path and straight line educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A curved travel path compared with a straight arrow from starting point to final point."
+      },
+      {
+        "topic": "Vector addition",
+        "search_description": "triangle law vector addition 3 4 5 east north resultant diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A 4-unit east vector followed by a 3-unit north vector with a 5-unit diagonal resultant."
+      },
+      {
+        "topic": "Motion graph simulation",
+        "search_description": "moving man position velocity acceleration interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive motion display connecting position, velocity, acceleration, and time graphs."
+      },
+      {
+        "topic": "Toy car acceleration experiment",
+        "search_description": "toy car equal time interval position markers acceleration classroom experiment",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A toy car path marked at equal time intervals with increasing gaps between successive positions."
+      }
+    ]
+  }
+}

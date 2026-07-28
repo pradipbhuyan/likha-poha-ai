@@ -127,7 +127,60 @@ def load_and_validate(input_path: Path) -> dict:
     return data
 
 
-def write_manifest(manifest: dict, dry_run: bool) -> Path:
+def resolve_suggested_images(supplementary_enrichment: dict | None, dry_run: bool) -> dict | None:
+    """
+    For each entry in supplementary_enrichment["suggested_web_images"],
+    attempt to resolve a real, freely-licensed image from Wikimedia
+    Commons using its search_description, and fill in
+    resolved_image_url/thumb_url/source_page_url/license/attribution.
+
+    Runs only at ingestion time (never at student-serving time) so a
+    slow/unavailable Commons API never affects page load. If resolution
+    fails for a given image, that entry is left with empty resolved
+    fields and the frontend falls back to showing the plain-text search
+    suggestion, so ingestion never fails because of this step.
+    """
+    if not supplementary_enrichment:
+        return supplementary_enrichment
+
+    images = supplementary_enrichment.get("suggested_web_images") or []
+    if not images:
+        return supplementary_enrichment
+
+    print(f"  Resolving {len(images)} suggested image(s) via Wikimedia Commons...")
+    if dry_run:
+        print("    -> [DRY RUN] Would attempt Commons resolution for each suggested image.")
+        return supplementary_enrichment
+
+    try:
+        from app.services.commons_image_service import resolve_commons_image  # noqa: PLC0415
+    except Exception as e:
+        print(f"    [skip] Could not import commons_image_service: {e}")
+        return supplementary_enrichment
+
+    resolved_count = 0
+    for img in images:
+        search = img.get("search_description") or img.get("topic") or ""
+        topic = img.get("topic") or ""
+        if not search:
+            continue
+        result = resolve_commons_image(search, topic=topic)
+        if result:
+            img["resolved_image_url"] = result.get("full_url", "")
+            img["thumb_url"] = result.get("thumb_url", "")
+            img["source_page_url"] = result.get("source_page_url", "")
+            img["license"] = result.get("license", "")
+            img["attribution"] = result.get("attribution", "")
+            resolved_count += 1
+            print(f"    -> resolved: {img.get('topic', search)[:50]!r}")
+        else:
+            print(f"    -> [no match] {img.get('topic', search)[:50]!r}")
+
+    print(f"    Resolved {resolved_count}/{len(images)} images from Wikimedia Commons.")
+    return supplementary_enrichment
+
+
+def write_manifest(manifest: dict, dry_run: bool, supplementary_enrichment: dict | None = None) -> Path:
     grade_slug = _slugify(manifest["grade"])
     subject_slug = _slugify(manifest["subject"])
     chapter_slug = _slugify(manifest["chapter"])
@@ -139,14 +192,32 @@ def write_manifest(manifest: dict, dry_run: bool) -> Path:
     enriched.setdefault("manifest_version", "1.0")
     enriched.setdefault("manifest_status", "gpt55_generated")
 
+    # If GPT-5.5 provided a "supplementary_enrichment" object (extra
+    # research notes + suggested free/open-licence web images, see
+    # scripts/prepare_gpt55_prompts_advanced.py), persist it inside the
+    # manifest file under its own key so it stays clearly separate from
+    # the strictly-grounded manifest/lesson fields but is still saved
+    # somewhere durable for the frontend/admin tooling to read later.
+    if supplementary_enrichment:
+        enriched["supplementary_enrichment"] = supplementary_enrichment
+
     print(f"  Manifest target: {out_path}")
     if dry_run:
         print("    -> [DRY RUN] Would write manifest.")
+        if supplementary_enrichment:
+            n_notes = len(supplementary_enrichment.get("beyond_the_textbook", []))
+            n_images = len(supplementary_enrichment.get("suggested_web_images", []))
+            print(f"    -> [DRY RUN] Would include supplementary_enrichment "
+                  f"({n_notes} notes, {n_images} suggested images).")
         return out_path
 
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(enriched, indent=2, ensure_ascii=False), encoding="utf-8")
     print("    -> Manifest written.")
+    if supplementary_enrichment:
+        n_notes = len(supplementary_enrichment.get("beyond_the_textbook", []))
+        n_images = len(supplementary_enrichment.get("suggested_web_images", []))
+        print(f"    -> Included supplementary_enrichment ({n_notes} notes, {n_images} suggested images).")
     return out_path
 
 
@@ -395,10 +466,14 @@ def main() -> None:
 
     manifest = data["manifest"]
     lessons = data["lessons"]
+    supplementary_enrichment = data.get("supplementary_enrichment")
 
     print(f"  Chapter: {manifest['grade']} / {manifest['subject']} / {manifest['chapter']}\n")
 
-    write_manifest(manifest, dry_run=args.dry_run)
+    supplementary_enrichment = resolve_suggested_images(supplementary_enrichment, dry_run=args.dry_run)
+    print()
+
+    write_manifest(manifest, dry_run=args.dry_run, supplementary_enrichment=supplementary_enrichment)
     print()
     seed_lessons(manifest, lessons, dry_run=args.dry_run, force=args.force)
     print()

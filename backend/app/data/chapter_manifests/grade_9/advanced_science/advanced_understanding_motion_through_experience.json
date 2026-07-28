@@ -1,0 +1,164 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Understanding Motion through Experience",
+  "central_question": "How can motion be observed, measured, described relative to a reference frame, represented with vectors, and predicted using equations of uniformly accelerated motion?",
+  "in_scope_units": [
+    "Reflective questions connecting everyday experiences with motion",
+    "2.1 What is Motion? and Activity 2.1 measuring distance, time, and speed",
+    "2.2 Frame of Reference and Activity 2.2 showing that motion is relative",
+    "2.3 Scalars and Vectors and Activity 2.3 comparing distance with displacement",
+    "2.4 Vector Addition by graphical triangle and parallelogram methods",
+    "Activity 2.4 graphical addition of eastward and northward displacements",
+    "Practice Question using Sita's route from house to bus stop, traffic signal, and school",
+    "2.5 Equations of Motion for constant acceleration",
+    "Activity 2.5 observing accelerated motion with a toy car",
+    "Derivation and use of the distance travelled in the nth second",
+    "2.6 Reflect and Discuss",
+    "2.7 Project-Based Learning for measuring speed",
+    "Check Your Understanding questions 1-11"
+  ],
+  "banned_topics": [
+    "Detailed derivation of projectile range and the optimum launch angle",
+    "Newton's three laws and force analysis beyond the brief reference-frame connection",
+    "Pseudo-force calculations, which belong to the next chapter",
+    "Circular motion, gravitation, and torque"
+  ],
+  "must_include_keywords": [
+    "motion",
+    "position",
+    "time",
+    "reference point",
+    "frame of reference",
+    "inertial frame",
+    "non-inertial frame",
+    "relative motion",
+    "distance",
+    "displacement",
+    "speed",
+    "velocity",
+    "acceleration",
+    "scalar",
+    "vector",
+    "magnitude",
+    "direction",
+    "resultant",
+    "triangle method",
+    "parallelogram method",
+    "graph paper",
+    "Activity 2.1",
+    "Activity 2.2",
+    "Activity 2.3",
+    "Activity 2.4",
+    "Activity 2.5",
+    "initial velocity",
+    "final velocity",
+    "constant acceleration",
+    "V = u + at",
+    "S = ut + 1/2 at²",
+    "v² = u² + 2as",
+    "nth second",
+    "toy car",
+    "project-based learning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "An object is either absolutely at rest or absolutely in motion.",
+      "correction": "The state of motion must be stated relative to a reference point or frame; Activity 2.2 shows that two students moving together can be at rest relative to each other while moving relative to the classroom."
+    },
+    {
+      "claim": "Distance and displacement are always equal.",
+      "correction": "Distance is the total path length, while displacement is the directed change from start to finish; in Activity 2.3, returning from B to A makes displacement zero although distance is non-zero."
+    },
+    {
+      "claim": "Speed and velocity are interchangeable because both describe how fast an object moves.",
+      "correction": "Speed is a scalar with magnitude only, whereas velocity is a vector with both magnitude and direction."
+    },
+    {
+      "claim": "The formula for the nth second gives the total displacement after n seconds.",
+      "correction": "The chapter explicitly states that s_n = u + (a/2)(2n-1) gives displacement during the nth one-second interval, not cumulative displacement."
+    },
+    {
+      "claim": "The ordinary equations of motion can be used for any changing motion.",
+      "correction": "The equations V = u + at, S = ut + 1/2 at², and v² = u² + 2as apply when acceleration is constant."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 2.1 to compare walking and running over the same 5 m distance and reason from distance and time to speed.",
+    "Use Activity 2.2 to explain why two students walking together appear at rest relative to each other.",
+    "Use Activity 2.3 to compare distance and displacement for A to B and A to B to A.",
+    "Use Activity 2.4 and its 4-unit east plus 3-unit north construction to identify a resultant displacement graphically.",
+    "Use the Practice Question on Sita's route to calculate path distances and total displacement.",
+    "Use Activity 2.5 to connect increasing spacing at equal time intervals with acceleration.",
+    "Use Check Your Understanding questions 10 and 11 to apply the fourth equation of motion to the 6th and 5th seconds."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with the section 'Check Your Understanding', questions 1-11, after '2.6 Reflect and Discuss' and '2.7 Project-Based Learning'.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Global navigation systems estimate motion by repeatedly determining position with respect to satellite-based reference frames and then calculating changes with time.",
+      "Motion sensors in phones combine accelerometers and gyroscopes to detect changes in linear motion and orientation; their readings still depend on the device's chosen coordinate axes.",
+      "In sports analysis, high-speed video can provide position data at equal time intervals, allowing velocity and acceleration to be estimated from successive frames.",
+      "Vector methods used here also support navigation: east-west and north-south components can be combined to find a direct route and direction.",
+      "The equations of uniformly accelerated motion are idealised models; real vehicles may have acceleration that changes with time, requiring more detailed graphs or numerical analysis."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Relative motion on a train",
+        "search_description": "relative motion passengers inside moving train reference frame diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Passengers inside a moving train shown at rest relative to one another while the train moves relative to the ground.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Motion_Blur_and_Relative_Velocity_in_a_Moving_Train.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Motion_Blur_and_Relative_Velocity_in_a_Moving_Train.jpg/960px-Motion_Blur_and_Relative_Velocity_in_a_Moving_Train.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Motion_Blur_and_Relative_Velocity_in_a_Moving_Train.jpg",
+        "license": "CC BY 4.0",
+        "attribution": "WarmaFiesta"
+      },
+      {
+        "topic": "Distance and displacement",
+        "search_description": "distance versus displacement path and straight line educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A curved travel path compared with a straight arrow from starting point to final point.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Distancedisplacement.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Distancedisplacement.svg/960px-Distancedisplacement.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Distancedisplacement.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "User:Stannered"
+      },
+      {
+        "topic": "Vector addition",
+        "search_description": "triangle law vector addition 3 4 5 east north resultant diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A 4-unit east vector followed by a 3-unit north vector with a 5-unit diagonal resultant.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Triangle-law-of-sines.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Triangle-law-of-sines.svg/960px-Triangle-law-of-sines.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Triangle-law-of-sines.svg",
+        "license": "CC0",
+        "attribution": "MartinThoma"
+      },
+      {
+        "topic": "Motion graph simulation",
+        "search_description": "moving man position velocity acceleration interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive motion display connecting position, velocity, acceleration, and time graphs.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Man_Moving_2_04.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Man_Moving_2_04.jpg/960px-Man_Moving_2_04.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Man_Moving_2_04.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Daniel Capilla"
+      },
+      {
+        "topic": "Toy car acceleration experiment",
+        "search_description": "toy car equal time interval position markers acceleration classroom experiment",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A toy car path marked at equal time intervals with increasing gaps between successive positions.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ferrari_250_GTO%2C_CMC-Model_1-18_%28vorn_links_2017-03-23%29.JPG",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Ferrari_250_GTO%2C_CMC-Model_1-18_%28vorn_links_2017-03-23%29.JPG/960px-Ferrari_250_GTO%2C_CMC-Model_1-18_%28vorn_links_2017-03-23%29.JPG",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Ferrari_250_GTO,_CMC-Model_1-18_(vorn_links_2017-03-23).JPG",
+        "license": "CC BY-SA 2.0 de",
+        "attribution": "Lothar Spurzem"
+      }
+    ]
+  }
+}

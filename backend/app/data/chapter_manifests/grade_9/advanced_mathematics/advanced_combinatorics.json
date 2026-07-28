@@ -1,0 +1,178 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Combinatorics",
+  "central_question": "How can we count arrangements and selections accurately without listing every possibility?",
+  "in_scope_units": [
+    "5.1 Introduction: The Mathematics of Possibilities",
+    "Historical Note: The Evolution of Combinatorics",
+    "5.2 The Fundamental Principle of Counting (FPC)",
+    "The Rule of Multiplication (the AND rule)",
+    "The Rule of Addition (the OR rule)",
+    "5.2.1 Visualizing the Principle: The Tree Diagram",
+    "EXERCISE 5.1",
+    "5.3 Factorials",
+    "Exercise 5.2",
+    "5.4 Permutations: When Order Matters",
+    "5.4.1 The Permutation Formula",
+    "Exercise 5.3",
+    "5.5 Combinations: When Order Does NOT Matter",
+    "5.5.1 The Combination Formula"
+  ],
+  "banned_topics": [
+    "Coordinate geometry, slope, intercepts, and equations of straight lines from the preceding chapter",
+    "Probability calculations beyond the counting foundations stated in this chapter",
+    "Circular permutations and arrangements of repeated identical objects",
+    "Binomial theorem and Pascal's triangle proofs",
+    "Conditional probability and probability distributions"
+  ],
+  "must_include_keywords": [
+    "combinatorics",
+    "counting",
+    "arrangement",
+    "selection",
+    "Fundamental Principle of Counting",
+    "Rule of Multiplication",
+    "AND rule",
+    "Rule of Addition",
+    "OR rule",
+    "mutually exclusive",
+    "disjoint choices",
+    "independent choices",
+    "tree diagram",
+    "factorial",
+    "0! = 1",
+    "n!",
+    "permutation",
+    "order matters",
+    "nPr",
+    "repetition allowed",
+    "repetition not allowed",
+    "combination",
+    "order does not matter",
+    "nCr",
+    "distinct objects",
+    "block method",
+    "committee",
+    "roles",
+    "passwords",
+    "digit arrangements",
+    "nCr = nC(n-r)",
+    "Pascal identity"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Use addition whenever a problem contains several choices.",
+      "correction": "Add only for distinct, non-overlapping alternatives joined by OR; multiply when all stages must occur together and are joined by AND."
+    },
+    {
+      "claim": "3! + 4! equals 7!.",
+      "correction": "Factorials do not distribute over addition: 3! + 4! = 6 + 24 = 30, whereas 7! = 5040, as verified in Example 8."
+    },
+    {
+      "claim": "Permutation and combination formulas can be used interchangeably.",
+      "correction": "Use nPr when different orders count as different outcomes, and nCr when only the selected group matters."
+    },
+    {
+      "claim": "If repetition is not allowed, every position always has the same number of choices.",
+      "correction": "After an object or digit is used, the number of available choices decreases, as in Example 5 where the two positions have 5 and then 4 choices."
+    },
+    {
+      "claim": "When several specified objects must stay together, arranging the outside blocks is enough.",
+      "correction": "The block must also be arranged internally; Example 18 multiplies 5! arrangements of the five units by 3! internal arrangements of the Science books."
+    },
+    {
+      "claim": "0! should be 0 because it contains the number zero.",
+      "correction": "The chapter takes 0! = 1, which keeps factorial and permutation formulas consistent at boundary cases such as nPn = n!/0! = n!."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the class-representative AND-rule problem in Example 1 and contrast it with the mutually exclusive club choice in Example 4.",
+    "Use Example 5 to show how available choices decrease when repetition is forbidden.",
+    "Develop factorial notation through Examples 6, 7, and 8 before solving factorial equations such as Example 9 or Example 10.",
+    "Introduce ordered arrangements with Example 13, then move to ranked roles in Examples 14 and 15.",
+    "Apply the block method through Example 18 before comparing it with ordinary permutations.",
+    "Introduce unordered selection with Example 19 and finish with the two-group team selection in Example 21.",
+    "Use Exercise 5.3, Question 6 as a mixed revision problem involving total arrangements, a block, and complementary counting."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter practice is organised as EXERCISE 5.1, Exercise 5.2, and Exercise 5.3, covering counting rules, factorials, and permutations; combination practice is represented by Examples 19-21 in the supplied extract.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Computer programs often explore possible routes, schedules, or game moves using tree-like branching; combinatorics helps estimate how quickly the number of possibilities grows.",
+      "Password strength depends strongly on both length and the number of allowed characters because each additional position multiplies the number of possible strings.",
+      "In experimental design, combinations are used to choose groups of treatments or samples when the order of selection is irrelevant.",
+      "Permutation methods appear in scheduling because changing the order of tasks can change waiting time even when the same tasks are completed.",
+      "Network design uses selections of pairs when deciding which points might be connected by links, while route order problems use permutations."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Counting tree diagram",
+        "search_description": "branching tree diagram two shirts three trousers counting outcomes",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A tree diagram branching from two shirt choices to three trouser choices, giving six outfits.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Closed_Cayley_Tree_with_Branching_Ratio_%3D_4.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Closed_Cayley_Tree_with_Branching_Ratio_%3D_4.jpg/960px-Closed_Cayley_Tree_with_Branching_Ratio_%3D_4.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Closed_Cayley_Tree_with_Branching_Ratio_=_4.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Peter F. Barth"
+      },
+      {
+        "topic": "Permutation of three letters",
+        "search_description": "permutations of A B C arrangement diagram six orders",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The six ordered arrangements of the letters A, B, and C.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Animal_cell_cycle-en.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Animal_cell_cycle-en.svg/960px-Animal_cell_cycle-en.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Animal_cell_cycle-en.svg",
+        "license": "CC0",
+        "attribution": "Kelvinsong"
+      },
+      {
+        "topic": "Combination versus permutation",
+        "search_description": "permutation combination order matters comparison diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A comparison showing ordered pairs AB and BA as different permutations but one combination.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gedore_No._7_combination_wrenches_6%E2%80%9319_mm.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Gedore_No._7_combination_wrenches_6%E2%80%9319_mm.jpg/960px-Gedore_No._7_combination_wrenches_6%E2%80%9319_mm.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Gedore_No._7_combination_wrenches_6–19_mm.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Lucasbosch"
+      },
+      {
+        "topic": "Factorial arrangement",
+        "search_description": "four distinct books shelf factorial arrangements educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Four labelled books being placed into four shelf positions to illustrate 4 factorial arrangements.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Wound-healing-phases-Schematic-diagram-elucidating-the-four-distinct-stages-of-normal.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Wound-healing-phases-Schematic-diagram-elucidating-the-four-distinct-stages-of-normal.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Wound-healing-phases-Schematic-diagram-elucidating-the-four-distinct-stages-of-normal.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "2441050indupranavpasupula"
+      },
+      {
+        "topic": "Block method",
+        "search_description": "permutation block method objects together arrangement diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Three objects grouped as one block among other distinct objects in a row.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Hamburg%2C_Speicherstadt%2C_Block_P_--_2016_--_3330-6.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Hamburg%2C_Speicherstadt%2C_Block_P_--_2016_--_3330-6.jpg/960px-Hamburg%2C_Speicherstadt%2C_Block_P_--_2016_--_3330-6.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Hamburg,_Speicherstadt,_Block_P_--_2016_--_3330-6.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Dietmar Rabich"
+      },
+      {
+        "topic": "Historical combinatorics",
+        "search_description": "Pingala Chanda Shastra manuscript poetic meter combinatorics",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A historical manuscript or educational illustration connected with Pingala and poetic metre patterns.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Computer-translation_Briefing_for_Gerald_Ford.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Computer-translation_Briefing_for_Gerald_Ford.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Computer-translation_Briefing_for_Gerald_Ford.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Eldon Lytle"
+      }
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 
 from app.services.auth_service import admin_client as supabase  # uses service_role to bypass RLS
+from app.services.supabase_retry import call_with_retry
 
 
 XP_REWARDS = {
@@ -36,8 +37,8 @@ def get_student_profile(username: str):
     New students get a default profile row so dashboard/profile views can render
     without a separate onboarding step.
     """
-    response = (
-        supabase
+    response = call_with_retry(
+        lambda: supabase
         .table("student_profiles")
         .select("*")
         .eq("username", username)

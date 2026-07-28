@@ -1,0 +1,207 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Engineering Life: Miracles in Biotechnology",
+    "central_question": "How can living organisms, their cells, and their genes be used responsibly to make useful foods, medicines, crops, industrial products, and environmental solutions?",
+    "in_scope_units": [
+      "10.1 Introduction to Biotechnology",
+      "Blue, Green, and Red Biotechnology",
+      "Activity 10.1: Observe Fermentation at Home",
+      "10.2 Traditional vs Modern Biotechnology",
+      "Activity 10.2: Traditional Biotechnology around you and preparation of probiotic kanji",
+      "10.3 Microbes as Tools in Biotechnology",
+      "Activity 10.3: Fermentation at home using sugar and yeast",
+      "10.4 Applications of Biotechnology in Daily Life",
+      "10.4.1 Crop production and agriculture",
+      "10.4.1.1 Pest-resistant crops using Bt",
+      "10.4.1.2 Improving nutritional quality through Golden Rice",
+      "10.4.2 Medicine and Health Care: production of human insulin using bacteria",
+      "10.4.3 Food processing",
+      "10.4.4 Bio-Enzymes in household cleaning",
+      "10.4.5 Environmental protection through bioremediation and biofuels",
+      "10.5 Bioreactors: Powering Large-Scale Biotechnology Applications",
+      "10.5.1 Parts of a fermenter",
+      "10.5.2 Fermentation Process",
+      "10.5.3 Growth of Microorganisms in a Fermenter",
+      "Continuous culture and maintenance of a productive steady state",
+      "Activity 5.4 as labelled in the source: Growth Simulation",
+      "10.6 Ethical Issues in Biotechnology",
+      "10.6.1 Safety: ecological imbalance, gene flow, non-target effects, and resistant pests",
+      "10.6.2 Equity: patents, biopiracy, and access to biotechnology",
+      "Think and Discuss: beneficence, non-maleficence, autonomy, and justice",
+      "Check Your Understanding"
+    ],
+    "banned_topics": [
+      "Detailed atomic structure, chemical bonding, or microscopy from other chapters",
+      "Advanced molecular genetics beyond the gene-transfer steps given in this chapter",
+      "Detailed CRISPR gene-editing mechanisms",
+      "Human cloning, designer babies, and gene therapy mechanisms beyond their brief appearance in the ethics figure",
+      "Laboratory procedures for engineering harmful microorganisms",
+      "Detailed medical treatment advice for diabetes or vitamin deficiency"
+    ],
+    "must_include_keywords": [
+      "biotechnology",
+      "microorganisms",
+      "fermentation",
+      "traditional biotechnology",
+      "modern biotechnology",
+      "genetic engineering",
+      "recombinant DNA",
+      "Blue Biotechnology",
+      "Green Biotechnology",
+      "Red Biotechnology",
+      "curd",
+      "kanji",
+      "yeast",
+      "bacteria",
+      "fungi",
+      "gene",
+      "DNA",
+      "Bt cotton",
+      "Bacillus thuringiensis",
+      "transgenic plant",
+      "Golden Rice",
+      "beta-carotene",
+      "human insulin",
+      "restriction enzyme",
+      "plasmid",
+      "sticky ends",
+      "DNA ligase",
+      "transformation",
+      "E. coli",
+      "bio-enzyme",
+      "bioremediation",
+      "biofuel",
+      "fermenter",
+      "bioreactor",
+      "inoculum",
+      "stirrer",
+      "sparger",
+      "cooling jacket",
+      "pH sensor",
+      "sterilization"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "Traditional biotechnology and modern biotechnology both require deliberate gene transfer.",
+        "correction": "Traditional biotechnology relies mainly on natural microbial processes such as curd formation and bread making, whereas modern biotechnology can deliberately modify genetic material and transfer selected genes."
+      },
+      {
+        "claim": "All bacteria always double every 20 minutes.",
+        "correction": "The chapter uses 20 minutes to show that bacteria can multiply rapidly; actual doubling time depends on the species and growth conditions."
+      },
+      {
+        "claim": "Golden Rice already contains ready-made vitamin A.",
+        "correction": "Golden Rice is engineered to produce beta-carotene, which is a precursor that the human body can convert into vitamin A."
+      },
+      {
+        "claim": "A bacterial plasmid is DNA located outside the bacterial cell.",
+        "correction": "A plasmid is small extra-chromosomal DNA located inside a bacterial cell; it is separate from the main bacterial chromosome."
+      },
+      {
+        "claim": "Restriction enzymes join the insulin gene to the plasmid.",
+        "correction": "Restriction enzymes cut DNA at selected sites, while DNA ligase joins the insulin gene and the opened plasmid."
+      },
+      {
+        "claim": "Once bacteria receive an insulin gene, the material is immediately ready for injection.",
+        "correction": "Engineered bacteria produce the insulin protein, but the product must still be extracted and purified before medical use."
+      },
+      {
+        "claim": "Bioremediation microbes destroy heavy metals in the same way that they break down oil.",
+        "correction": "Microbes can degrade many organic pollutants such as hydrocarbons and pesticides, but elements such as heavy metals cannot be destroyed; biological processes may transform, immobilize, concentrate, or help remove them."
+      },
+      {
+        "claim": "During the stationary phase, microbial growth completely stops.",
+        "correction": "New cells may still form, but approximately an equal number die because nutrients decrease and wastes accumulate."
+      },
+      {
+        "claim": "A fermenter is simply a large open container for microbial growth.",
+        "correction": "A fermenter is a controlled and sterilized vessel with systems for mixing, aeration, temperature control, pH monitoring, nutrient supply, and product recovery."
+      },
+      {
+        "claim": "Every genetically modified crop is automatically beneficial and risk-free.",
+        "correction": "The chapter presents benefits such as pest resistance and improved nutrition, but also requires consideration of gene flow, non-target effects, resistance, fairness, and biosafety."
+      }
+    ],
+    "recommended_example_progression": [
+      "Begin with Activity 10.1 to connect warm milk, starter curd, microbial action, and curd formation.",
+      "Use Activity 10.2 to compare traditional fermentation in household foods and kanji with deliberate gene modification in modern biotechnology.",
+      "Use Activity 10.3 to interpret froth and odour as evidence that yeast is breaking down sugar and producing carbon dioxide and ethanol.",
+      "Use Section 10.4.1.1 and Check Your Understanding Q9 to evaluate both the pest-control benefit and ecological concerns of Bt crops.",
+      "Use Section 10.4.1.2 to trace the problem-process-result sequence for Golden Rice and beta-carotene production.",
+      "Use Check Your Understanding Q8 to explain the ordered steps of producing insulin with restriction enzymes, a plasmid, DNA ligase, transformation, and a fermenter.",
+      "Use the fermenter diagram and Check Your Understanding Q5 to connect the stirrer, sparger, cooling jacket, and pH sensors with controlled microbial growth.",
+      "Use Activity 5.4, as labelled in the source, and Check Your Understanding Q6 to identify lag, log, stationary, and decline phases from numerical growth data.",
+      "End with Check Your Understanding Q9 and the Think and Discuss section to balance benefits with safety, autonomy, justice, and fairness."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The chapter ends with a 'Check Your Understanding' section containing descriptive, data-based, multiple-choice, and assertion-reason questions on biotechnology, fermenters, microbial growth, applications, and ethics."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Engineering Life: Miracles in Biotechnology\n\n## What you will learn\nYou will learn what biotechnology means and how people have used living organisms for centuries to make useful products. You will distinguish Blue, Green, and Red Biotechnology and compare traditional fermentation with modern genetic engineering.\n\n## Simple explanation\nBiotechnology is the careful use of living organisms, microbes, or their cellular parts to make substances that benefit people. It includes familiar processes such as turning milk into curd as well as modern methods that transfer selected genes to produce medicines or improved crops.\n\n## Step-by-step breakdown\n- **Meaning of biotechnology**: The chapter defines biotechnology as the judicious use of living organisms, such as microbes, or their cellular components to produce useful substances.\n- **Traditional examples**: Curd, bread, cheese, fermented beverages, and kanji depend on natural microbial activity.\n- **Industrial development**: Microbes are also used to produce antibiotics, enzymes, vitamins, biofuels, and other useful products.\n- **Modern biotechnology**: Genetic modification, genetic engineering, and recombinant DNA technology deliberately alter genetic material or transfer a selected gene.\n- **Blue Biotechnology**: It applies biotechnology to marine and freshwater organisms for areas such as seafood production, water-related health, and drug discovery.\n- **Green Biotechnology**: It focuses on agriculture, improved nutrition, productivity, disease resistance, and environmentally preferable products.\n- **Red Biotechnology**: It applies biotechnology to medicine and pharmaceutical products such as insulin, enzymes, antibiotics, and vaccines.\n- **Activity 10.1 observation**: Warm milk mixed with a spoonful of curd and kept overnight in a warm place changes into curd.\n- **Activity 10.1 reasoning**: Microorganisms in the starter curd multiply and carry out biochemical changes in the milk.\n- **Traditional versus modern**: Traditional biotechnology uses natural microbial processes with limited direct control over genes, while modern biotechnology uses molecular techniques to modify organisms more deliberately.\n- **Activity 10.2 evidence**: Changes in aroma, colour, and bubbles during kanji preparation indicate ongoing microbial fermentation.\n\n## Worked example\nQuestion: Using Activity 10.1, explain why milk turns into curd after a spoonful of curd is added and the bowl is kept overnight in a warm place.\n\nSolution:\n- Step 1: The spoonful of curd provides microorganisms that can grow in milk.\n- Step 2: Warm conditions support their activity, allowing them to carry out the changes that convert milk into curd.\n- Final answer: Milk turns into curd because microorganisms from the starter curd act on the warm milk during the overnight incubation.\n\n## Common mistake\nBiotechnology does not always mean genetic engineering. Curd formation, bread making, and traditional fermentation are biotechnology even though no gene is deliberately transferred.\n\n## Quick check question\nQuestion: In the Quick Check after Section 10.2, which example completes the modern-biotechnology statement, \"Production of ______ using bacteria\"?\nAnswer: Insulin.\nExplanation: The chapter gives production of human insulin using genetically modified bacteria as an example of modern biotechnology.\n\n## Summary\n- Biotechnology uses organisms or cellular components for human benefit.\n- Traditional biotechnology includes fermentation and selective breeding.\n- Modern biotechnology can deliberately modify or transfer genes.\n- Blue, Green, and Red Biotechnology cover aquatic, agricultural, and medical applications.\n- Activity 10.1 shows microbial conversion of milk into curd.\n- Activity 10.2 connects household fermentation with observable changes in kanji.",
+    "Core explanation": "# Core Explanation: Advanced - Engineering Life: Miracles in Biotechnology\n\n## What you will learn\nYou will learn why microbes are useful biotechnology tools and how fermentation can be observed directly. You will then study two agricultural applications: pest-resistant Bt crops and nutritionally improved Golden Rice.\n\n## Simple explanation\nMicrobes are useful because they can grow rapidly in a small space, use simple nutrients, copy their DNA, and be manipulated for useful purposes. Scientists can also transfer selected genes into crops so that the plants produce a useful trait.\n\n## Step-by-step breakdown\n- **Useful microbial groups**: Bacteria, yeast, and fungi are widely used in biotechnology.\n- **Rapid growth**: The chapter notes that bacteria can multiply quickly under suitable conditions.\n- **Simple requirements**: Many microbes grow using basic nutrients such as sugars and nitrogen sources.\n- **Small space requirement**: Very large microbial populations can be grown in compact vessels.\n- **Manipulable DNA**: Microbial DNA can be altered and replicated, making microbes suitable for modern biotechnology.\n- **Activity 10.3 setup**: Two teaspoons of sugar are mixed with warm water and one teaspoon of dry yeast, then covered for 15 minutes.\n- **Activity 10.3 observation**: Froth forms and a pungent odour appears.\n- **Activity 10.3 explanation**: Yeast breaks down sugar; carbon dioxide contributes to frothing and ethanol contributes to the characteristic smell.\n- **Gene and protein**: The chapter describes a gene as a segment of DNA that codes for a specific protein.\n- **Bt source**: Bacillus thuringiensis is a soil bacterium that produces a protein toxic to certain susceptible insect larvae.\n- **Bt process**: The gene coding for the Bt protein is identified, isolated, and inserted into crops such as cotton or corn.\n- **Bt result**: The transgenic plant produces the protective protein in its tissues, reducing damage by target pests and potentially reducing chemical pesticide use.\n- **Golden Rice problem**: Ordinary rice supplies energy but does not naturally provide beta-carotene in the grain.\n- **Golden Rice process**: Selected genes allow rice grains to produce beta-carotene.\n- **Golden Rice result**: The grains become golden-yellow, and the beta-carotene can be converted by the body into vitamin A.\n\n## Worked example\nQuestion: In Activity 10.3, why do froth and a pungent odour appear after yeast is added to warm sugar solution?\n\nSolution:\n- Step 1: Yeast uses the sugar as a nutrient and carries out fermentation.\n- Step 2: Carbon dioxide contributes to the bubbles and froth, while ethanol contributes to the odour described in the activity.\n- Final answer: The observations are evidence that yeast is actively fermenting the sugar and producing carbon dioxide and ethanol.\n\n## Common mistake\nGolden Rice should not be described as rice containing manufactured vitamin A. It contains beta-carotene, which is a precursor that the human body can convert into vitamin A.\n\n## Quick check question\nQuestion: Check Your Understanding Q12 asks which microorganism is commonly used in bread making. What is the correct option?\nAnswer: Option c) Yeast.\nExplanation: Yeast ferments sugars and releases carbon dioxide, which helps dough rise.\n\n## Summary\n- Microbes grow quickly, require little space, and can be cultivated using simple nutrients.\n- Activity 10.3 demonstrates yeast fermentation.\n- Bt crops receive a bacterial gene for protection against selected insect pests.\n- Golden Rice is engineered to produce beta-carotene.\n- Genetic modification changes a selected trait by introducing useful genetic instructions.\n- Agricultural benefits must still be evaluated together with biosafety concerns.",
+    "Worked examples": "# Worked Examples: Advanced - Engineering Life: Miracles in Biotechnology\n\n## What you will learn\nYou will follow the scientific steps used to produce human insulin with bacteria. You will also connect biotechnology with fermented foods, cleaning enzymes, bioremediation, and renewable fuels.\n\n## Simple explanation\nModern biotechnology can give a microorganism a new genetic instruction. In insulin production, a human gene is joined to a bacterial plasmid, introduced into bacteria, expressed during growth, and followed by extraction and purification of the product.\n\n## Step-by-step breakdown\n- **DNA isolation**: The human gene carrying the instruction for insulin production is identified and isolated.\n- **Restriction enzymes**: These enzymes act as molecular cutting tools and create compatible ends in the insulin gene and bacterial plasmid.\n- **Plasmid preparation**: A plasmid is a small circular, extra-chromosomal DNA molecule inside a bacterium.\n- **Sticky ends**: Matching ends help the cut insulin gene fit into the opened plasmid.\n- **DNA ligase**: Ligase joins the DNA pieces, creating a recombinant plasmid.\n- **Transformation**: The recombinant plasmid is introduced into a bacterium such as E. coli.\n- **Gene expression**: The transformed bacterium reads the inserted genetic instruction and produces the insulin protein.\n- **Mass production**: Engineered bacteria are grown in a fermenter so that many cells carry and express the gene.\n- **Product recovery**: Insulin is extracted and purified before it is prepared for safe medical use.\n- **Food processing**: Selected Lactobacillus and yeast cultures help produce yoghurt, cheese, buttermilk, idli, dosa, dhokla, and probiotic foods.\n- **Bio-enzymes**: Proteases, amylases, and lipases in cleaning products break down protein, starch, grease, and fat-based stains.\n- **Bioremediation**: Microbes can break down many organic pollutants, including hydrocarbons and some pesticides; they may also transform or help remove other contaminants.\n- **Biofuels**: Biological processes can convert biomass into fuels such as ethanol, biogas, and other renewable-energy products.\n\n## Worked example\nQuestion: Check Your Understanding Q8 asks how modern biotechnology enables bacteria to produce insulin and why traditional biotechnology cannot do the same task.\n\nSolution:\n- Step 1: Restriction enzymes cut the selected human insulin gene and open a bacterial plasmid; DNA ligase joins them to form recombinant DNA.\n- Step 2: The recombinant plasmid is introduced into bacteria, which are grown in a fermenter so that the insulin protein can be produced, extracted, and purified.\n- Final answer: Modern biotechnology works because it deliberately transfers and expresses a specific human gene in bacteria. Traditional fermentation uses natural microbial activity and does not provide this controlled gene-transfer step.\n\n## Common mistake\nRestriction enzymes are not the \"glue\" in recombinant DNA production. They cut DNA, while DNA ligase joins the insulin gene to the plasmid.\n\n## Quick check question\nQuestion: Check Your Understanding Q14 asks what genetic engineering mainly involves. What is the correct option?\nAnswer: Option b) Transfer of genes between organisms.\nExplanation: The chapter describes modern genetic engineering as the deliberate cutting, joining, and transfer of selected genetic material.\n\n## Summary\n- Recombinant insulin production uses a human gene and a bacterial plasmid.\n- Restriction enzymes cut DNA and ligase joins it.\n- Transformation introduces recombinant DNA into bacteria.\n- Fermenters support large-scale production.\n- Food microbes and bio-enzymes improve everyday products.\n- Environmental biotechnology includes bioremediation and renewable-fuel production.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Engineering Life: Miracles in Biotechnology\n\n## What you will learn\nYou will understand how a fermenter maintains controlled microbial growth at industrial scale. You will analyse the microbial growth curve and explain how continuous culture can extend the most productive phase.\n\n## Simple explanation\nA fermenter is not merely a large container. It is a sterilized system that supplies nutrients, mixing, oxygen when required, suitable temperature, and controlled pH so that a chosen microorganism can produce a useful substance reliably.\n\n## Step-by-step breakdown\n- **Fermenter or bioreactor**: A large glass or steel vessel used to grow microorganisms and manufacture a desired product.\n- **Inoculum**: A small pure culture of bacteria or yeast added to the nutrient medium.\n- **Sterilization**: The medium and equipment are sterilized to prevent unwanted organisms from competing with the production culture or contaminating the product.\n- **Stirrer or impeller**: It mixes the broth so cells receive nutrients and, where needed, oxygen.\n- **Sparger**: It introduces air into fermenters that support aerobic microbial respiration.\n- **Cooling jacket**: It removes excess heat produced during growth and keeps temperature within a suitable range.\n- **pH sensors**: They detect changes in acidity or alkalinity so corrective substances can be added.\n- **Fermentation sequence**: Prepare medium, sterilize, prepare inoculum, grow cells under controlled conditions, extract and purify the product, and treat wastes.\n- **Lag phase**: Newly added cells adapt to the medium and show relatively little population increase.\n- **Log phase**: Cells divide rapidly, and the chapter associates this phase with high productivity.\n- **Stationary phase**: Nutrients decline and wastes accumulate; cell formation and cell death become approximately balanced.\n- **Decline phase**: Toxic waste and nutrient shortage cause the living population to fall.\n- **Continuous culture**: Fresh nutrients are added while an equal volume of spent broth is removed.\n- **Steady state**: Controlled nutrient supply, waste removal, pH, and temperature help maintain a productive population for longer.\n\n## Worked example\nQuestion: Using the data in Activity 5.4 as labelled in the source - 0 h: 10, 2 h: 12, 4 h: 25, 6 h: 60, 8 h: 120, 10 h: 125, 12 h: 123, 14 h: 90 - identify the main growth phases and the period of fastest increase.\n\nSolution:\n- Step 1: From 0 to 2 hours, the population changes only from 10 to 12, indicating the lag or adaptation phase. From 2 to 8 hours, the increase becomes progressively rapid, indicating the log phase.\n- Step 2: Values remain close from 8 to 12 hours, indicating a stationary region, and then fall to 90 at 14 hours, indicating decline.\n- Final answer: Lag phase is approximately 0-2 h, log phase approximately 2-8 h, stationary phase approximately 8-12 h, and decline phase after 12 h. The largest listed increase occurs from 6 to 8 h, when the population rises from 60 to 120.\n\n## Common mistake\nThe stationary phase does not mean that every cell stops dividing. It means the total population remains nearly constant because new-cell formation is balanced by cell death.\n\n## Quick check question\nQuestion: Check Your Understanding Q5 asks for the function of the stirrer and the importance of oxygen supply in some fermenters. What is the answer?\nAnswer: The stirrer mixes the broth so cells receive nutrients and oxygen evenly; the sparger supplies oxygen needed by aerobic microorganisms for respiration.\nExplanation: Uniform mixing and suitable aeration help the selected culture grow and produce the desired product efficiently.\n\n## Summary\n- Fermenters provide controlled, sterile growth conditions.\n- The impeller mixes, the sparger aerates, the cooling jacket controls heat, and sensors monitor pH.\n- Industrial fermentation includes product recovery and waste treatment.\n- Microbial growth passes through lag, log, stationary, and decline phases.\n- The log phase shows the most rapid growth.\n- Continuous culture replaces nutrients and removes waste to maintain productivity.",
+    "Revision and recap": "# Revision and Recap: Advanced - Engineering Life: Miracles in Biotechnology\n\n## What you will learn\nYou will revise the chapter by balancing biotechnology's benefits with its possible risks and fairness concerns. You will use the four ethical principles in the Think and Discuss section to evaluate decisions rather than treating every biotechnology as automatically good or bad.\n\n## Simple explanation\nBiotechnology can improve food, medicine, industry, and environmental management, but new biological products can also affect ecosystems and society. Responsible decisions consider scientific evidence, safety, freedom of choice, fair access, and who receives the benefits or carries the risks.\n\n## Step-by-step breakdown\n- **Benefit to agriculture**: Bt crops may reduce damage from selected pests, while biofortified crops can improve nutritional quality.\n- **Benefit to medicine**: Recombinant DNA technology enables bacteria to produce human proteins such as insulin.\n- **Benefit to food and industry**: Fermentation and microbial enzymes improve food production and cleaning processes.\n- **Environmental benefit**: Microbes can help treat some pollutants and support production of renewable fuels.\n- **Gene flow concern**: A transferred crop gene may move to related wild plants through cross-pollination.\n- **Non-target concern**: A pest-control method should be evaluated for possible effects on beneficial organisms.\n- **Evolutionary pressure**: Repeated exposure can favour resistant pests, so resistance management is important.\n- **Patent and seed access**: Ownership of seeds or processes may affect whether farmers can afford and reuse them.\n- **Biopiracy**: Biological resources or traditional knowledge should not be commercially used without proper permission and fair benefit-sharing.\n- **Health access**: Expensive biotechnology products can create unequal access if benefits do not reach all sections of society.\n- **Beneficence**: Ask whether the biotechnology produces meaningful benefit.\n- **Non-maleficence**: Ask how harm to people, organisms, or ecosystems can be prevented.\n- **Autonomy**: Respect informed choice and transparent information.\n- **Justice and fairness**: Consider whether risks, costs, and benefits are shared fairly.\n- **Responsible conclusion**: A sound evaluation compares benefits with evidence-based risks and includes biosafety, monitoring, and fairness.\n\n## Worked example\nQuestion: Check Your Understanding Q9 asks for an evaluation of the advantages and ethical concerns of genetically modified crops.\n\nSolution:\n- Step 1: State possible advantages from the chapter, such as insect resistance, reduced crop loss, lower need for some chemical pesticides, improved productivity, or improved nutritional quality.\n- Step 2: State concerns such as gene flow, harm to non-target organisms, development of resistant pests, patent control, farmer access, and fairness.\n- Final answer: GM crops can provide useful agricultural and nutritional traits, but they should be assessed with biosafety testing, resistance management, ecological monitoring, transparent choice, and fair access.\n\n## Common mistake\nEthical evaluation is not the same as rejecting all biotechnology. It requires examining both benefits and possible harms, then deciding what safeguards and fair-use conditions are needed.\n\n## Quick check question\nQuestion: In the final assertion-reason item, \"Modern biotechnology allows production of insulin using bacteria\" because \"modern biotechnology involves genetic modification techniques.\" Which option is correct?\nAnswer: Option a) Both the assertion and reason are true, and the reason correctly explains the assertion.\nExplanation: Bacteria can produce human insulin after receiving recombinant DNA carrying the human insulin gene, which is a genetic-modification process.\n\n## Summary\n- Biotechnology benefits food, medicine, industry, and environmental protection.\n- New traits can create ecological and social concerns.\n- Gene flow, non-target effects, and resistance require biosafety measures.\n- Patents, biopiracy, and unequal access raise questions of justice.\n- Beneficence, non-maleficence, autonomy, and fairness guide ethical evaluation.\n- Responsible biotechnology combines innovation with monitoring, safety, and equitable access."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Precision fermentation uses carefully selected or engineered microorganisms to produce specific proteins, enzymes, flavours, or other molecules under controlled conditions.",
+      "Wastewater-treatment plants use communities of microorganisms in aerated tanks to break down organic waste before water is released or treated further.",
+      "Biosensors can combine a biological component, such as an enzyme, with an electronic detector to measure substances such as glucose or environmental pollutants.",
+      "Microbial enzymes are used in many industries because they can often work under moderate conditions, reducing the need for high temperatures or harsh chemicals.",
+      "Modern crop biotechnology is usually combined with field testing, regulatory review, refuge strategies, and monitoring to reduce ecological and resistance risks.",
+      "Synthetic biology extends genetic engineering by designing biological systems from standardized genetic parts, but its applications require careful biosafety and ethical review."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Traditional and modern biotechnology",
+        "search_description": "traditional fermentation and modern genetic engineering comparison educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Curd, bread, and fermented food shown beside a laboratory gene-transfer process."
+      },
+      {
+        "topic": "Yeast fermentation",
+        "search_description": "yeast sugar fermentation carbon dioxide bubbles ethanol classroom experiment",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A warm sugar-and-yeast mixture producing bubbles and froth."
+      },
+      {
+        "topic": "Bt crop mechanism",
+        "search_description": "Bacillus thuringiensis Bt crop insect larva mechanism educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A Bt crop producing a protective protein that affects a susceptible feeding insect larva."
+      },
+      {
+        "topic": "Golden Rice",
+        "search_description": "Golden Rice beta carotene normal rice comparison",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Ordinary white rice grains compared with golden-yellow beta-carotene-enriched rice."
+      },
+      {
+        "topic": "Recombinant insulin production",
+        "search_description": "recombinant human insulin production plasmid restriction enzyme ligase bacteria diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "The insulin gene being inserted into a plasmid and transferred into bacteria for protein production."
+      },
+      {
+        "topic": "Fermenter parts",
+        "search_description": "stirred tank bioreactor impeller sparger cooling jacket pH sensor labelled diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A labelled fermenter showing the impeller, air sparger, cooling jacket, sensors, inlets, and product outlet."
+      },
+      {
+        "topic": "Microbial growth curve",
+        "search_description": "microbial growth curve lag log stationary death phases labelled",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A graph of microbial population over time labelled with lag, log, stationary, and decline phases."
+      },
+      {
+        "topic": "Bioremediation",
+        "search_description": "microbial bioremediation oil contaminated soil water educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Microorganisms helping remove or transform pollutants in contaminated soil or water."
+      }
+    ]
+  }
+}

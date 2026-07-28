@@ -1,0 +1,160 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Mathematics",
+  "chapter": "Advanced - Relations and Functions",
+  "central_question": "How can ordered pairs, Cartesian products, relations, functions, and graphs be used to describe precise mathematical associations between quantities?",
+  "in_scope_units": [
+    "3.1 Introduction",
+    "3.2 Ordered Pairs",
+    "3.3 Cartesian Product of Sets",
+    "3.4 Relations",
+    "3.5 Functions",
+    "3.6 Some Functions and their Graphs"
+  ],
+  "banned_topics": [
+    "Logarithmic equations and logarithm laws from Chapter 2",
+    "Slope, intercepts, reflections, and equations of straight lines from Coordinate Geometry",
+    "Trigonometric functions and calculus",
+    "Composition and inverse of functions, which are not developed in the supplied chapter text"
+  ],
+  "must_include_keywords": [
+    "association",
+    "ordered pair",
+    "first element",
+    "second element",
+    "abscissa",
+    "ordinate",
+    "Cartesian product",
+    "A × B",
+    "non-commutative",
+    "cardinality",
+    "subset",
+    "relation",
+    "roster form",
+    "domain",
+    "range",
+    "codomain",
+    "pre-image",
+    "image",
+    "arrow diagram",
+    "function",
+    "unique image",
+    "identity relation",
+    "universal relation",
+    "empty relation",
+    "identity function",
+    "constant function",
+    "quadratic function",
+    "cubic function",
+    "modulus function",
+    "reciprocal function",
+    "square root function",
+    "greatest integer function",
+    "projection on the x-axis",
+    "projection on the y-axis"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The ordered pairs (a, b) and (b, a) are always equal because they contain the same two entries.",
+      "correction": "Order matters in an ordered pair: (a, b) = (b, a) only when a = b."
+    },
+    {
+      "claim": "A × B and B × A are the same set.",
+      "correction": "Cartesian product is generally not commutative; reversing the sets reverses the positions of the components in each ordered pair."
+    },
+    {
+      "claim": "The range of a relation is always equal to its codomain.",
+      "correction": "The range contains only the second elements that actually occur, while the codomain is the entire target set; therefore range ⊆ codomain."
+    },
+    {
+      "claim": "A relation is a function as long as no output is repeated.",
+      "correction": "Outputs may repeat. A relation from A to B is a function when every element of A has exactly one image in B."
+    },
+    {
+      "claim": "The reciprocal function f(x) = 1/x is defined for every real number.",
+      "correction": "Its domain excludes 0 because division by zero is undefined; its range also excludes 0."
+    },
+    {
+      "claim": "For the greatest integer function, [−1.2] = −1 because −1 is closer to −1.2.",
+      "correction": "[x] is the greatest integer less than or equal to x, so [−1.2] = −2."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with equality of components in ordered pairs using Example 1.",
+    "Build Cartesian products and show that order matters using Example 2, then verify cardinality with Example 4.",
+    "Construct a relation and distinguish domain, range, and codomain using Example 7 or Example 9.",
+    "Count possible relations as subsets of A × B using Example 10.",
+    "Test the two function conditions with the arrow diagrams in Example 13 and the roster relations in Example 16.",
+    "Evaluate a function and form its range using Example 17.",
+    "Finish with identity, universal, and empty relations using Example 19, followed by the standard graphs in Section 3.6."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter provides practice in EXERCISE 3.1, EXERCISE 3.2, and EXERCISE 3.3, followed by the graph-based work in Section 3.6.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Computer programs often represent data associations as ordered pairs or key–value pairs; the order and role of each component still matter.",
+      "A database table can be viewed as a relation in a broader mathematical sense, with rows connecting values from several sets, although database relations use additional rules beyond this chapter.",
+      "Functions are used in computer graphics to map input coordinates to output coordinates, colours, or brightness values.",
+      "Many-to-one functions appear in data grouping: several inputs may share one category while each input still receives only one category under the chosen rule.",
+      "The greatest integer function appears whenever a continuous quantity is grouped into complete units, such as counting fully completed intervals."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Ordered pairs and Cartesian product",
+        "search_description": "Cartesian product of two finite sets ordered pairs arrow diagram educational",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two finite sets with all possible ordered pair connections illustrating A cross B.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Cartesian_Product_qtl1.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cartesian_Product_qtl1.svg/960px-Cartesian_Product_qtl1.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Cartesian_Product_qtl1.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Quartl"
+      },
+      {
+        "topic": "Relation arrow diagram",
+        "search_description": "relation domain range codomain arrow diagram mathematics",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "An arrow diagram showing a relation with labelled domain, range, and codomain.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Arrow_diagram_example.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Arrow_diagram_example.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Arrow_diagram_example.jpg",
+        "license": "BSD",
+        "attribution": "Dysprosia at English Wikibooks"
+      },
+      {
+        "topic": "Function versus non-function",
+        "search_description": "function mapping diagram exactly one output non function two outputs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Side-by-side mapping diagrams comparing a function with relations that fail the unique-image rule.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/America_noviter_delineata.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/America_noviter_delineata.jpg/960px-America_noviter_delineata.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:America_noviter_delineata.jpg",
+        "license": "Public domain",
+        "attribution": "Jodocus Hondius I"
+      },
+      {
+        "topic": "Standard function graphs",
+        "search_description": "identity quadratic cubic absolute value reciprocal square root functions graphs",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Coordinate graphs of identity, quadratic, cubic, modulus, reciprocal, and square-root functions.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Graphs_of_the_inverse_hyperbolic_functions.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Graphs_of_the_inverse_hyperbolic_functions.png/960px-Graphs_of_the_inverse_hyperbolic_functions.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Graphs_of_the_inverse_hyperbolic_functions.png",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Jacob Rus"
+      },
+      {
+        "topic": "Greatest integer function",
+        "search_description": "floor function graph open closed endpoints",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Step graph of the greatest integer or floor function with open and closed endpoints.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Floor_function.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Floor_function.svg/960px-Floor_function.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Floor_function.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "No machine-readable author provided. Omegatron (talk · contribs) assumed (based on copyright claims)."
+      }
+    ]
+  }
+}

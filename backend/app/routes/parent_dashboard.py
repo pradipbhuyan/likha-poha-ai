@@ -33,6 +33,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.services.auth_service import require_parent, get_current_user, create_auth_user, invite_parent_by_email, admin_client
+from app.services.supabase_retry import call_with_retry
 from app.services.parent_dashboard_service import (
     get_children,
     get_child_by_id,
@@ -359,9 +360,14 @@ router_parent = APIRouter()
 
 
 def _safe_query(fn):
-    """Execute a Supabase query; return (data_list, error_str) — never crash."""
+    """Execute a Supabase query; return (data_list, error_str) — never crash.
+
+    Wrapped with call_with_retry so transient HTTP/2 connection drops
+    (Render free tier occasionally terminates the connection pool
+    mid-request — see supabase_retry.py) are retried instead of
+    immediately surfacing as a query failure / empty result."""
     try:
-        r = fn()
+        r = call_with_retry(fn)
         return (r.data or [], None)
     except Exception as exc:
         _log.warning("parent_dashboard query failed: %s", exc)

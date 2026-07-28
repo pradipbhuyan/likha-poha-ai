@@ -1,0 +1,162 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - Work and Energy",
+    "central_question": "How do conservative and non-conservative forces transfer energy, and how is work stored as elastic potential energy in a spring?",
+    "in_scope_units": [
+      "5.1 Conservative and Non-Conservative Forces",
+      "Everyday observations involving gravity, elastic force, and friction",
+      "Path independence and zero work over a closed path for conservative forces",
+      "Relation W = -ΔU for conservative forces",
+      "Path dependence and energy dissipation by friction and drag",
+      "Quick Check questions 1-5 on conservative and non-conservative forces",
+      "5.2 Potential Energy of a Spring",
+      "Activity 5.2 measuring force and extension for different springs",
+      "Hooke's law and the elastic limit",
+      "Spring constant, stiffness, and restoring-force direction",
+      "Force-extension graph and sample values for k = 100 N/m",
+      "Average-force derivation for spring work",
+      "Elastic potential energy U = 1/2 kx²",
+      "Example using k = 30 N/m and F = 100 N",
+      "Force-extension graph example from 2 cm to 6 cm",
+      "Maximum-speed calculation for a 0.5 kg body released from 6 cm extension with no energy loss"
+    ],
+    "banned_topics": [
+      "Power and commercial units of electrical energy",
+      "Detailed gravitational potential-energy derivations",
+      "Collisions and momentum conservation",
+      "Simple harmonic motion period formulas",
+      "Thermodynamic heat-transfer calculations"
+    ],
+    "must_include_keywords": [
+      "work",
+      "energy",
+      "conservative force",
+      "non-conservative force",
+      "path independence",
+      "closed path",
+      "potential energy",
+      "W = -ΔU",
+      "gravitational force",
+      "spring force",
+      "friction",
+      "drag",
+      "kinetic energy",
+      "heat",
+      "lubrication",
+      "Activity 5.2",
+      "spring",
+      "extension",
+      "applied force",
+      "elastic limit",
+      "Hooke's law",
+      "F = kx",
+      "F = -kx",
+      "restoring force",
+      "spring constant",
+      "stiff spring",
+      "soft spring",
+      "N m⁻¹",
+      "force-extension graph",
+      "straight line through origin",
+      "average force",
+      "area under graph",
+      "elastic potential energy",
+      "U = 1/2 kx²",
+      "conservation of energy",
+      "maximum speed"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A conservative force does the same work only when an object moves along a straight path.",
+        "correction": "For a conservative force, work depends only on initial and final positions, not on the path shape; work over any closed path is zero."
+      },
+      {
+        "claim": "Friction destroys energy.",
+        "correction": "Friction converts organised mechanical energy, such as kinetic energy, into heat and other less recoverable forms; total energy is not destroyed."
+      },
+      {
+        "claim": "The spring equation is always F = kx with no sign.",
+        "correction": "F = kx gives the magnitude of applied force needed for extension x, while the spring's restoring force is F = -kx because it acts opposite to displacement."
+      },
+      {
+        "claim": "Hooke's law remains valid for any extension.",
+        "correction": "The chapter states that force is proportional to extension only while the elastic limit is not exceeded."
+      },
+      {
+        "claim": "Work done in stretching a spring is kx² because the final force is kx.",
+        "correction": "The force rises linearly from 0 to kx, so the average force is kx/2 and the work is 1/2 kx²."
+      },
+      {
+        "claim": "The work from 2 cm to 6 cm equals 1/2 k(0.04)² because the extension changes by 4 cm.",
+        "correction": "Spring energy depends on the square of the absolute extension, so the required work is 1/2 k(x₂²-x₁²)."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use the opening ball, rubber-band, and sliding-book observations to classify gravity and spring force as conservative and friction as non-conservative.",
+      "Use Quick Check 2 and 3 to explain path independence for gravity and path dependence for friction.",
+      "Use Activity 5.2 to relate added weight to spring extension and compare spring stiffness.",
+      "Use the sample k = 100 N/m table to interpret the straight-line force-extension graph and its slope.",
+      "Use the derivation in Section 5.2 to obtain average force kx/2 and U = 1/2 kx².",
+      "Use the example F = 100 N and k = 30 N/m to calculate extension.",
+      "Use the force-extension graph example to calculate work from 2 cm to 6 cm.",
+      "Use part (b) of the graph example to convert spring potential energy at 6 cm into maximum kinetic energy of the 0.5 kg body."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied text contains a 'Quick Check' of five questions in Section 5.1 and worked examples in Section 5.2; no separate end-of-chapter exercise section is present in the provided pages."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - Work and Energy\n\n## What you will learn\nYou will distinguish conservative forces from non-conservative forces and connect each type with energy transfer. You will use the chapter's opening examples of a ball, rubber band, and sliding book.\n\n## Simple explanation\nSome forces transfer energy in a way that depends only on the starting and ending positions. Other forces, such as friction, depend on the path and convert useful mechanical energy into heat, making that energy difficult to recover completely.\n\n## Step-by-step breakdown\n- **Conservative force**: Its work does not depend on the path between two positions.\n- **Closed-path property**: The work done by a conservative force around a closed path is zero.\n- **Energy relation**: For a conservative force, W = -ΔU = U_initial - U_final.\n- **Gravity example**: The ball returns because gravitational force acts downward and is conservative.\n- **Spring example**: A stretched rubber band or spring tends to regain its original shape because elastic force is restoring and conservative within its elastic behaviour.\n- **Non-conservative force**: Its work depends on the path taken.\n- **Friction example**: A sliding book stops because friction converts kinetic energy into heat.\n- **Drag**: The chapter includes drag as another non-conservative force.\n- **Lubrication**: Machines require lubrication to reduce frictional energy loss and wear.\n\n## Worked example\nQuestion: Quick Check 3 in Section 5.1 asks why friction is called a non-conservative force. Explain using the sliding-book example.\n\nSolution:\n- Step 1: The work done by friction depends on how far the book slides, so it depends on the path length.\n- Step 2: Friction converts the book's kinetic energy into heat, and that mechanical energy is not fully recoverable as the book's motion.\n- Final answer: Friction is non-conservative because its work depends on the path and it dissipates mechanical energy into heat.\n\n## Common mistake\nFriction does not destroy energy. It changes mechanical energy into heat and other dispersed forms that are less available for useful mechanical work.\n\n## Quick check question\nQuestion: Quick Check 2 asks why gravitational force is conservative. What is the answer?\nAnswer: Gravitational work between two positions depends only on the initial and final positions, not on the path, and its work over a closed path is zero.\nExplanation: This path-independent behaviour allows gravitational potential energy to be defined.\n\n## Summary\n- Conservative work is path independent.\n- Closed-path work is zero for a conservative force.\n- W = -ΔU for conservative forces.\n- Gravity and spring force are conservative examples.\n- Friction and drag are non-conservative.\n- Friction converts mechanical energy into heat.",
+    "Core explanation": "# Core Explanation: Advanced - Work and Energy\n\n## What you will learn\nYou will investigate the relation between force and extension through Activity 5.2. You will understand Hooke's law, spring constant, elastic limit, and the restoring direction of spring force.\n\n## Simple explanation\nA spring stretches more when a larger force is applied, but only within a range where it can return to its original shape. Different springs stretch by different amounts under the same load because their spring constants differ.\n\n## Step-by-step breakdown\n- **Activity 5.2 setup**: Suspend a spring, record its initial length, add known weights, and measure the extension each time.\n- **Observation**: Increasing the applied weight increases extension.\n- **Different springs**: Springs of different material or thickness may show different extensions for the same force.\n- **Hooke's-law magnitude**: Within the elastic limit, F = kx, so applied force is directly proportional to extension.\n- **Restoring-force form**: The spring's own force is F = -kx; the negative sign shows that it acts opposite to elongation or compression.\n- **Spring constant**: k depends on the nature of the spring and has unit N m⁻¹.\n- **Stiffness**: A large k means a stiff spring; a small k means a soft spring.\n- **Elastic limit**: Proportionality is not guaranteed after the elastic limit is exceeded.\n- **Force-extension graph**: Put extension on the x-axis and force on the y-axis.\n- **Graph shape**: For Hooke's-law behaviour, the graph is a straight line through the origin and its slope is k.\n\n## Worked example\nQuestion: Use the example in Section 5.2: a spring has k = 30 N m⁻¹ and an applied force of 100 N. Calculate its extension under the stated Hooke's-law assumption.\n\nSolution:\n- Step 1: Use the magnitude relation F = kx.\n- Step 2: x = F/k = 100/30 m.\n- Final answer: x ≈ 3.33 m under the ideal Hooke's-law assumption used in the example.\n\n## Common mistake\nThe negative sign in F = -kx does not mean that extension is negative. It indicates that the spring's restoring force points opposite to the displacement.\n\n## Quick check question\nQuestion: In Activity 5.2, which spring is stiffer if two springs carry the same force but one shows less extension?\nAnswer: The spring with less extension is stiffer and has the larger spring constant.\nExplanation: From k = F/x, the same force divided by a smaller extension gives a larger k.\n\n## Summary\n- Activity 5.2 measures force and extension.\n- Hooke's law applies within the elastic limit.\n- Applied-force magnitude is F = kx.\n- Restoring force is F = -kx.\n- k measures stiffness and has unit N m⁻¹.\n- A Hooke's-law graph is linear through the origin.",
+    "Worked examples": "# Worked Examples: Advanced - Work and Energy\n\n## What you will learn\nYou will derive the work done in gradually stretching a spring and connect it with area under the force-extension graph. You will obtain the elastic potential-energy formula U = 1/2 kx².\n\n## Simple explanation\nThe force needed to stretch a spring is not constant. It begins at zero and rises linearly to kx, so the correct work is based on the average force or, equivalently, the triangular area under the force-extension graph.\n\n## Step-by-step breakdown\n- **Initial force**: At zero extension, the required applied force is zero.\n- **Final force**: At extension x, the required applied force is kx.\n- **Average force**: For a linear increase, F_average = (0+kx)/2 = kx/2.\n- **Work calculation**: W = average force × extension.\n- **Spring work**: W = (kx/2)x = 1/2 kx².\n- **Energy storage**: The work done in stretching is stored as elastic potential energy.\n- **Potential-energy formula**: U = 1/2 kx².\n- **Graph interpretation**: The area under the straight F-x graph from 0 to x is a triangle with area 1/2 × x × kx.\n- **Sample table**: For k = 100 N/m, force and extension increase proportionally, producing a straight line through the origin.\n\n## Worked example\nQuestion: Based on the derivation in Section 5.2, why is the work done in stretching a spring to extension x equal to 1/2 kx² rather than kx²?\n\nSolution:\n- Step 1: The force is not kx during the whole stretch; it rises from 0 to kx.\n- Step 2: Its average value is kx/2, so W = (kx/2) × x.\n- Final answer: W = 1/2 kx² because the force increases linearly, and the work is the triangular area under the force-extension graph.\n\n## Common mistake\nUsing final force × extension gives kx² and overestimates the work by a factor of two. The force varies, so its average value must be used.\n\n## Quick check question\nQuestion: For the sample spring with k = 100 N/m, what elastic potential energy is stored at x = 0.20 m?\nAnswer: 2 J.\nExplanation: U = 1/2 kx² = 1/2 × 100 × (0.20)² = 2 J; the values come from the chapter's sample table and graph range.\n\n## Summary\n- Spring force rises linearly with extension.\n- Average force is kx/2.\n- Work equals area under the F-x graph.\n- The area is triangular from 0 to x.\n- Elastic potential energy is U = 1/2 kx².",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - Work and Energy\n\n## What you will learn\nYou will calculate work between two non-zero spring extensions using the chapter's force-extension graph example. You will avoid treating the change in extension as though the spring started from its natural length.\n\n## Simple explanation\nThe spring already stores energy at the initial extension. Therefore, the additional work needed to move from x₁ to x₂ is the difference between the two stored energies, not simply 1/2 k(x₂-x₁)².\n\n## Step-by-step breakdown\n- **Given graph**: The example uses a spring constant k = 100 N m⁻¹.\n- **Initial extension**: x₁ = 2 cm = 0.02 m.\n- **Final extension**: x₂ = 6 cm = 0.06 m.\n- **Initial energy**: U₁ = 1/2 kx₁².\n- **Final energy**: U₂ = 1/2 kx₂².\n- **Additional work**: W = U₂-U₁ = 1/2 k(x₂²-x₁²).\n- **Graph meaning**: This is the area under the F-x line between 0.02 m and 0.06 m, which is a trapezium.\n- **Numerical result**: W = 1/2 × 100 × (0.06²-0.02²) = 0.16 J.\n\n## Worked example\nQuestion: Use part (a) of the force-extension graph Example: determine the work done in stretching the k = 100 N m⁻¹ spring from 2 cm to 6 cm.\n\nSolution:\n- Step 1: Convert extensions: x₁ = 0.02 m and x₂ = 0.06 m.\n- Step 2: W = 1/2 k(x₂²-x₁²) = 50(0.0036-0.0004).\n- Step 3: W = 50 × 0.0032 = 0.16 J.\n- Final answer: The work done is 0.16 J.\n\n## Common mistake\nDo not use x = 0.04 m in U = 1/2 kx². That would ignore the energy already stored at 2 cm and would not equal the area under the graph from 2 cm to 6 cm.\n\n## Quick check question\nQuestion: In the same graph example, what force acts at an extension of 6 cm?\nAnswer: 6 N.\nExplanation: F = kx = 100 × 0.06 = 6 N, which agrees with the straight-line graph.\n\n## Summary\n- Work between two extensions is an energy difference.\n- Use W = 1/2 k(x₂²-x₁²).\n- Convert centimetres to metres before substitution.\n- The graph area from x₁ to x₂ is a trapezium.\n- The chapter's result is 0.16 J.",
+    "Revision and recap": "# Revision and Recap: Advanced - Work and Energy\n\n## What you will learn\nYou will connect conservative-force ideas with spring-energy calculations and solve the graph example's maximum-speed part. You will also review the limits and assumptions used throughout the chapter.\n\n## Simple explanation\nA spring stores energy when stretched. If friction and other losses are absent, this elastic potential energy can become kinetic energy when the spring is released. This is an application of energy conservation for a conservative spring force.\n\n## Step-by-step breakdown\n- **Conservative spring force**: Within the model, energy stored during stretching can be recovered during release.\n- **Energy at 6 cm**: For k = 100 N/m and x = 0.06 m, U = 1/2 × 100 × 0.06² = 0.18 J.\n- **No-loss assumption**: The example states that energy loss is absent, so maximum kinetic energy equals the initial spring potential energy.\n- **Kinetic energy**: K = 1/2 mv² for the attached 0.5 kg body.\n- **Energy equation**: 1/2 kx² = 1/2 mv².\n- **Maximum speed**: v = x√(k/m) = 0.06√(100/0.5) ≈ 0.849 m/s.\n- **Why maximum**: Speed is greatest when the spring passes through its natural length, where spring potential energy is minimum in this ideal model.\n- **Role of friction**: With friction or drag, some mechanical energy would become heat and the actual speed would be smaller.\n- **Model boundary**: Hooke's law and U = 1/2 kx² apply only while the spring remains within its elastic limit.\n\n## Worked example\nQuestion: Use part (b) of the force-extension graph Example: a 0.5 kg body is released from 6 cm extension on a spring with k = 100 N m⁻¹. Assuming no energy loss, find its maximum speed.\n\nSolution:\n- Step 1: Initial spring energy U = 1/2 kx² = 1/2 × 100 × 0.06² = 0.18 J.\n- Step 2: Set 1/2 mv² = 0.18, so 0.25v² = 0.18 and v² = 0.72.\n- Final answer: v = √0.72 ≈ 0.85 m/s.\n\n## Common mistake\nDo not use only the 0.16 J work from 2 cm to 6 cm for part (b). The body is released from 6 cm relative to the natural length, so its total stored spring energy is 0.18 J.\n\n## Quick check question\nQuestion: Quick Check 4 in Section 5.1 asks what happens to energy when a non-conservative force acts. What is the answer?\nAnswer: Mechanical energy is converted into other forms such as heat, so it is not fully recoverable as mechanical energy.\nExplanation: The sliding-book example shows friction changing kinetic energy into heat.\n\n## Summary\n- Conservative forces allow potential energy to be defined.\n- Friction converts mechanical energy into heat.\n- Hooke's law is valid within the elastic limit.\n- Spring energy is U = 1/2 kx².\n- Graph area gives spring work.\n- The graph example gives a maximum speed of about 0.85 m/s."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Vehicle suspension springs store and release elastic energy while dampers convert some motion energy into heat so that oscillations die away safely.",
+      "Spring scales measure force because, within their calibrated elastic range, extension is proportional to applied force.",
+      "Regenerative systems attempt to recover part of a vehicle's kinetic energy instead of dissipating all of it as heat during braking, although real conversion is never perfectly efficient.",
+      "Force-extension curves for real materials may stop being straight beyond the proportional or elastic range, so the simple Hooke's-law energy formula no longer describes the full behaviour.",
+      "The area-under-a-graph idea is widely used in physics: when force varies with displacement, the area under a force-displacement graph represents work."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Conservative versus frictional motion",
+        "search_description": "conservative force path independence friction energy dissipation diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two paths between the same points contrasted with a frictional path that converts mechanical energy to heat."
+      },
+      {
+        "topic": "Spring stretching apparatus",
+        "search_description": "Hooke law spring stand slotted masses ruler experiment",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A vertical spring on a stand with hanging masses and a ruler used to measure extension."
+      },
+      {
+        "topic": "Force-extension graph",
+        "search_description": "Hooke law force extension straight line graph area triangle elastic potential energy",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A straight force-extension graph through the origin with the triangular work area shaded."
+      },
+      {
+        "topic": "Spring energy simulation",
+        "search_description": "spring Hooke law energy interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive spring showing force, extension, kinetic energy, and elastic potential energy."
+      },
+      {
+        "topic": "Friction converts energy to heat",
+        "search_description": "sliding block friction kinetic energy heat diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A sliding block slowing on a rough surface with arrows indicating friction and thermal energy."
+      },
+      {
+        "topic": "Elastic potential to kinetic energy",
+        "search_description": "mass spring energy conversion maximum speed equilibrium diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A mass attached to a spring moving from maximum extension toward equilibrium as elastic energy becomes kinetic energy."
+      }
+    ]
+  }
+}

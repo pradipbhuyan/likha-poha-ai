@@ -152,6 +152,41 @@ class ExamQABlock(BaseModel):
         return v
 
 
+class SuggestedImage(BaseModel):
+    """One free/open-licence image suggestion. GPT-5.5 authors the
+    topic/search_description/suggested_source/alt_text fields (see
+    scripts/prepare_gpt55_prompts_advanced.py); the ingestion pipeline
+    (scripts/ingest_gpt55_chapter_output.py) then attempts to resolve an
+    actual Wikimedia Commons image for that search description and fills
+    in resolved_image_url/thumb_url/source_page_url/license/attribution.
+    If resolution fails or hasn't run, those fields stay empty and the
+    frontend falls back to showing the search suggestion as plain text."""
+    topic: str = ""
+    search_description: str = ""
+    suggested_source: str = ""
+    alt_text: str = ""
+    resolved_image_url: str = ""
+    thumb_url: str = ""
+    source_page_url: str = ""
+    license: str = ""
+    attribution: str = ""
+
+
+class ExploreMoreBlock(BaseModel):
+    """Optional chapter-level "beyond the textbook" enrichment section —
+    real-world context notes plus free/open-licence image search
+    suggestions. Populated from a chapter manifest's
+    "supplementary_enrichment" object (see
+    scripts/ingest_gpt55_chapter_output.py) when present; kept entirely
+    separate from the strictly textbook-grounded milestones/recap so a
+    reader always knows which claims are textbook-grounded vs. wider
+    context. Rendered as a final section, after Wrap-up / Board
+    questions, by both the Journey and Study renderers."""
+    type: Literal["explore_more"] = "explore_more"
+    beyond_the_textbook: list[str] = []
+    suggested_web_images: list[SuggestedImage] = []
+
+
 Block = Annotated[
     Union[
         HookBlock,
@@ -189,6 +224,11 @@ class ChapterDoc(BaseModel):
     # Board-style questions (Grades 9-12) — rendered as a final section by the
     # Study renderer; Journey (5-8) ignores this list.
     exam: list[ExamQABlock] = []
+    # Optional "beyond the textbook" enrichment section, sourced from a
+    # chapter manifest's supplementary_enrichment object when present
+    # (currently authored for Grade 9 Advanced Maths/Science chapters).
+    # Both Journey and Study renderers show this if populated.
+    explore_more: ExploreMoreBlock | None = None
 
     @field_validator("milestones")
     @classmethod

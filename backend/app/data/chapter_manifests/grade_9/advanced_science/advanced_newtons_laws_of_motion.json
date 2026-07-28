@@ -1,0 +1,206 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - Newton's Laws of Motion",
+  "central_question": "How do reference frames, gravitational effects, circular motion, air resistance, changing gravity, and torque extend the application of Newtonian mechanics to accelerating and rotating situations?",
+  "in_scope_units": [
+    "3.1 Limitations of Newton's Laws in Accelerating Frames",
+    "Activity 3.1 observations in an accelerating bus and turning vehicle",
+    "Pseudo force definition, direction, formula, and frame dependence",
+    "Quick Check on inertial frames and pseudo-force calculation",
+    "3.2 Gravitation and orbital motion",
+    "Centripetal force, tangential inertia, and Activity 3.2 with a ring or bob",
+    "Effect of cross-sectional area and air resistance on equal-mass falling objects",
+    "Falling in air compared with falling in a vacuum",
+    "Variation of acceleration due to gravity with altitude",
+    "Worked example for g at 800 km above Earth",
+    "Variation of acceleration due to gravity with depth using the uniform-density model and shell theorem",
+    "Worked example for depth at which g becomes one-tenth of surface value",
+    "Quick Check on variation of g",
+    "3.3 Turning Forces: moment of force or torque",
+    "Activity 3.3 using a door, hinge, handle, and lever arm",
+    "Torque formula, angle dependence, SI unit, and Check Your Understanding questions 1-7"
+  ],
+  "banned_topics": [
+    "Detailed projectile motion and equations of uniformly accelerated motion from the previous chapter",
+    "Fluid pressure and buoyancy",
+    "Work-energy theorem and rotational kinetic energy",
+    "General relativity or spacetime curvature",
+    "Detailed planetary data not supplied in the chapter"
+  ],
+  "must_include_keywords": [
+    "Newton's First Law",
+    "inertia",
+    "inertial frame",
+    "non-inertial frame",
+    "accelerating frame",
+    "pseudo force",
+    "fictitious force",
+    "F_pseudo = -m a_frame",
+    "Activity 3.1",
+    "gravitation",
+    "orbital motion",
+    "centripetal force",
+    "tangential velocity",
+    "Activity 3.2",
+    "air resistance",
+    "air drag",
+    "cross-sectional area",
+    "vacuum",
+    "F = mg",
+    "acceleration due to gravity",
+    "altitude",
+    "depth",
+    "Earth's radius",
+    "uniform density",
+    "shell theorem",
+    "g_h = g[R/(R+h)]²",
+    "g_d = g(1-d/R)",
+    "Earth's centre",
+    "Activity 3.3",
+    "moment of force",
+    "torque",
+    "pivot",
+    "lever arm",
+    "τ = Fd sin θ",
+    "newton-metre",
+    "perpendicular force",
+    "door handle",
+    "spanner"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A real backward force pushes a passenger when a bus accelerates forward.",
+      "correction": "From the road's inertial frame, no backward force exists; the passenger's body tends to remain at rest due to inertia. A backward pseudo force is introduced only in the accelerating bus frame."
+    },
+    {
+      "claim": "Pseudo force is a real interaction force with a Newton's third-law reaction partner.",
+      "correction": "The chapter states that pseudo force has no physical source and no reaction pair; it appears only when describing motion from an accelerating frame."
+    },
+    {
+      "claim": "Centrifugal force is a real outward force acting on an orbiting body in an inertial frame.",
+      "correction": "In an inertial frame, gravity or tension supplies the inward centripetal force, while inertia gives the tendency to continue tangentially. A centrifugal force is used only as a pseudo force in a rotating non-inertial frame."
+    },
+    {
+      "claim": "Objects of equal mass but different shapes always fall together in air.",
+      "correction": "In air, the larger cross-sectional area usually produces greater drag, so the smaller-area object can fall faster; in a vacuum, both fall together."
+    },
+    {
+      "claim": "Gravity becomes zero as soon as an astronaut is above Earth's surface.",
+      "correction": "Gravity decreases with altitude but does not become zero merely because an astronaut is in orbit; apparent weightlessness is associated with continuous free fall."
+    },
+    {
+      "claim": "The altitude formula uses h alone as the distance from Earth's centre.",
+      "correction": "The correct distance from Earth's centre is R+h, so g_h = GM/(R+h)² = g[R/(R+h)]². The printed intermediate denominator '(h)²' is inconsistent with the chapter's own stated distance and numerical example."
+    },
+    {
+      "claim": "At depth d, g_d = g(d/R).",
+      "correction": "Under the chapter's uniform-density model, g_d = g(R-d)/R = g(1-d/R), which gives g at the surface when d=0 and zero at the centre when d=R."
+    },
+    {
+      "claim": "Torque depends only on the applied force.",
+      "correction": "Torque depends on force, distance from the pivot, and angle: τ = Fd sin θ."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 3.1 to compare the road observer and bus observer and explain why pseudo force is frame-dependent.",
+    "Use Quick Check 3 in Section 3.1 to calculate pseudo force for a 60 kg person in a lift accelerating at 4.5 m/s².",
+    "Use Activity 3.2 to connect tension, tangential tendency, and circular motion.",
+    "Use the equal-mass falling-object cases to compare air and vacuum.",
+    "Use the chapter example with R = 6400 km, h = 800 km, and g = 9.8 m/s² to calculate g at altitude.",
+    "Use the depth example to derive d = 9R/10 when g_d = g/10.",
+    "Use Activity 3.3 and Check Your Understanding Q7 to calculate torque at 90°, 60°, and 30°."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter includes Quick Check sets in Sections 3.1 and 3.2 and ends with 'Check Your Understanding', questions 1-7, under Section 3.3 Turning Forces.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Rotating weather systems are often analysed in Earth's rotating frame, where apparent Coriolis effects are introduced because that frame is non-inertial.",
+      "Orbiting astronauts feel weightless because the spacecraft and astronauts are falling together around Earth, not because Earth's gravity has disappeared.",
+      "Vacuum-drop demonstrations show that objects with very different shapes can fall together when air drag is removed.",
+      "Engineers use torque specifications when tightening bolts so that joints are secure without damaging components.",
+      "Spacecraft orbital changes are achieved by changing velocity; even a carefully directed small velocity change can alter the size or shape of an orbit.",
+      "The uniform-density Earth model gives a simple linear depth relation for g, while the real Earth has layers of different density, so precise values require a more detailed model."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Passenger in accelerating bus",
+        "search_description": "accelerating bus passenger inertia inertial non inertial frame diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A passenger leaning backward as a bus accelerates forward, shown from road and bus reference frames.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Bus_on_the_Cambridgeshire_Guided_Busway%2C_in_Swavesey%2C_Cambridgeshire%2C_England.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Bus_on_the_Cambridgeshire_Guided_Busway%2C_in_Swavesey%2C_Cambridgeshire%2C_England.jpg/960px-Bus_on_the_Cambridgeshire_Guided_Busway%2C_in_Swavesey%2C_Cambridgeshire%2C_England.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Bus_on_the_Cambridgeshire_Guided_Busway,_in_Swavesey,_Cambridgeshire,_England.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Alan Murray-Rust"
+      },
+      {
+        "topic": "Circular motion with string",
+        "search_description": "centripetal force ball on string tangential velocity diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A bob moving in a circle with inward tension and a tangent showing its inertial direction.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Centripetal_force.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Centripetal_force.svg/960px-Centripetal_force.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Centripetal_force.svg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "en:User:Cburnett"
+      },
+      {
+        "topic": "Orbit and tangential velocity",
+        "search_description": "Earth orbit Sun gravitational centripetal force tangential velocity diagram",
+        "suggested_source": "NASA public image gallery",
+        "alt_text": "Earth following a curved orbit around the Sun with inward gravity and tangential velocity arrows.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/Orbit_Earth.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Orbit_Earth.svg/960px-Orbit_Earth.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Orbit_Earth.svg",
+        "license": "CC0",
+        "attribution": "Klaus-Dieter Keller"
+      },
+      {
+        "topic": "Air resistance comparison",
+        "search_description": "falling objects same mass different cross sectional area air resistance diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two equal-mass objects with different areas falling through air with different drag forces.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Derelict_and_falling_down%21_-_geograph.org.uk_-_1262355.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Derelict_and_falling_down%21_-_geograph.org.uk_-_1262355.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Derelict_and_falling_down!_-_geograph.org.uk_-_1262355.jpg",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Dave Croker"
+      },
+      {
+        "topic": "Gravity with altitude and depth",
+        "search_description": "acceleration due to gravity variation altitude depth Earth graph",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A graph showing maximum gravitational acceleration at Earth's surface and decreasing values above and toward the centre.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Acceleration-due-to-Gravity-on-Earth.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Acceleration-due-to-Gravity-on-Earth.png/960px-Acceleration-due-to-Gravity-on-Earth.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Acceleration-due-to-Gravity-on-Earth.png",
+        "license": "Public domain",
+        "attribution": "HighTemplar"
+      },
+      {
+        "topic": "Door torque",
+        "search_description": "door hinge handle torque force angle lever arm diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A door with hinge pivot, handle lever arm, and perpendicular applied force producing torque.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/DonkervoortD8GT270.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/DonkervoortD8GT270.jpg/960px-DonkervoortD8GT270.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:DonkervoortD8GT270.jpg",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Donkervoort Automobielen B.V. - Photographer Arno Lingerak"
+      },
+      {
+        "topic": "Torque simulation",
+        "search_description": "torque balance lever arm interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive balance showing how force and distance from a pivot affect rotational equilibrium.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Linear_motor_torque_curve.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Linear_motor_torque_curve.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Linear_motor_torque_curve.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Embrittled"
+      }
+    ]
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "grade": "Grade 9",
+  "subject": "Advanced Science",
+  "chapter": "Advanced - The Geometry of Power: Advanced Simple Machines",
+  "central_question": "How do the geometry of wheels, axles, gears, strings, and pulleys redistribute force so that machines can multiply force, change speed, and control motion?",
+  "in_scope_units": [
+    "4.1 Introduction to mechanical advantage through trucks, cranes, and bicycles",
+    "Activity 4.1 reflection on force multiplication and speed increase",
+    "4.2 Wheel and Axle – The Steering Mastery",
+    "Activity 4.2 comparing the radii of a steering wheel and steering axle",
+    "Mechanical advantage of an ideal wheel-and-axle system",
+    "Worked steering example using 1200 N load, 30 cm wheel radius, and 3 cm axle radius",
+    "Machine efficiency and frictional losses",
+    "Quick Check on a mechanical-watch gear train",
+    "4.3 Tension",
+    "Activity 4.3 observations with hanging bobs and a pulley",
+    "Direction, SI unit, and equilibrium conditions for tension",
+    "Unequal masses connected over a pulley and their common acceleration",
+    "Examples of tension for a stationary hanging mass and an upward-accelerating mass",
+    "Check Your Understanding questions 1-5 on pulley systems"
+  ],
+  "banned_topics": [
+    "Detailed classifications of levers and inclined planes",
+    "Work-energy theorem beyond the chapter's short efficiency note",
+    "Rotational inertia and angular momentum",
+    "Hydraulic machines",
+    "Compound pulley mechanical-advantage formulas not given in the source"
+  ],
+  "must_include_keywords": [
+    "mechanical advantage",
+    "input force",
+    "output force",
+    "force multiplication",
+    "speed increase",
+    "Activity 4.1",
+    "wheel and axle",
+    "steering wheel",
+    "steering column",
+    "radius of wheel",
+    "radius of axle",
+    "torque",
+    "M.A. = radius of wheel / radius of axle",
+    "load",
+    "effort",
+    "ideal machine",
+    "friction",
+    "efficiency",
+    "useful output work",
+    "input work",
+    "gear train",
+    "Activity 4.2",
+    "Activity 4.3",
+    "tension",
+    "string",
+    "rope",
+    "cable",
+    "weight",
+    "equilibrium",
+    "balanced forces",
+    "unbalanced forces",
+    "pulley",
+    "Newton",
+    "Newton's First Law",
+    "Newton's Second Law",
+    "common acceleration",
+    "frictionless pulley"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A machine creates extra force or free energy.",
+      "correction": "The chapter explains that machines redistribute force or speed. In real machines some input work is lost to friction, so efficiency is below 100%."
+    },
+    {
+      "claim": "Mechanical advantage of a wheel and axle is the axle radius divided by the wheel radius.",
+      "correction": "For the arrangement used in this chapter, M.A. = radius of wheel / radius of axle. A larger wheel and smaller axle give greater ideal mechanical advantage."
+    },
+    {
+      "claim": "The steering example proves that only 120 N of work is needed instead of 1200 N of work.",
+      "correction": "The example compares forces, not total work. In an ideal machine the smaller effort acts through a greater distance so that input and output work are equal."
+    },
+    {
+      "claim": "Tension always equals the weight of an attached object.",
+      "correction": "Tension equals weight only when the hanging object has zero acceleration. For upward acceleration, T = m(g+a); for downward acceleration, T = m(g-a)."
+    },
+    {
+      "claim": "In a two-mass pulley, each mass can have a different acceleration.",
+      "correction": "For the ideal single string used in the chapter, both connected masses have the same acceleration magnitude because the string constrains their motion."
+    },
+    {
+      "claim": "Equal masses on the two sides of a pulley must move because gravity acts on both.",
+      "correction": "Equal weights produce balanced forces, so the system remains at rest or continues at constant speed; there is no net driving force."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Activity 4.1 to distinguish force multiplication from the creation of energy.",
+    "Use Activity 4.2 to explain why a large steering wheel and small axle increase torque and ideal mechanical advantage.",
+    "Use the steering-system Example to calculate M.A. = 10 and effort = 120 N.",
+    "Use the Quick Check gear-train data to combine two 60:1 ratios and convert the resulting hour-gear size to metres.",
+    "Use Activity 4.3 to compare string stretch for lighter and heavier bobs and identify the direction of tension.",
+    "Complete the 'Let us Calculate' pulley setup for 0.55 kg and 0.50 kg to find common acceleration and tension.",
+    "Use Examples 1 and 2 in Section 4.3 to compare stationary and upward-accelerating tension.",
+    "Use Check Your Understanding Q5 to solve the 2 kg and 6 kg frictionless-pulley system."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends with 'Check Your Understanding', questions 1-5, following the tension examples in Section 4.3.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated",
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Power steering systems add hydraulic or electric assistance, but the steering wheel and column still use the geometric advantage of applying force at a larger radius.",
+      "Bicycle gear systems let riders choose between greater wheel torque for climbing and greater wheel speed for travelling quickly on level roads.",
+      "Cranes often combine several pulleys so that the load is supported by multiple rope segments, reducing the effort force while increasing the rope distance pulled.",
+      "Engineers use bearings and lubrication to reduce friction, improving efficiency and limiting wear in wheels, axles, and pulleys.",
+      "Real ropes have mass and can stretch, while classroom pulley problems usually idealise the rope as massless and inextensible so that tension is uniform and connected objects share one acceleration magnitude."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Wheel and axle steering",
+        "search_description": "wheel and axle steering wheel radius axle radius mechanical advantage diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A large steering wheel connected to a smaller central axle with both radii labelled.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Ackermann_steering_linkage.png",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Ackermann_steering_linkage.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Ackermann_steering_linkage.png",
+        "license": "CC BY-SA 3.0",
+        "attribution": "KVDP"
+      },
+      {
+        "topic": "Mechanical advantage trade-off",
+        "search_description": "ideal machine force distance trade off mechanical advantage educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A diagram showing smaller input force acting through a larger distance to move a larger load force.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Woman_sewing_a_face_mask_with_a_Singer_machine_09.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Woman_sewing_a_face_mask_with_a_Singer_machine_09.jpg/960px-Woman_sewing_a_face_mask_with_a_Singer_machine_09.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Woman_sewing_a_face_mask_with_a_Singer_machine_09.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Tadeáš Bednarz"
+      },
+      {
+        "topic": "Watch gear train",
+        "search_description": "mechanical watch gear train seconds minutes hours diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A sequence of meshing gears that drives the seconds, minute, and hour hands at different speeds.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Jesen%C3%ADk_train_station_2025.01.jpg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jesen%C3%ADk_train_station_2025.01.jpg/960px-Jesen%C3%ADk_train_station_2025.01.jpg",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Jeseník_train_station_2025.01.jpg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Pudelek"
+      },
+      {
+        "topic": "Tension free-body diagram",
+        "search_description": "hanging mass tension weight free body diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A hanging block with upward tension and downward weight arrows.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Surface_tension_diagram_USGS.gif",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Surface_tension_diagram_USGS.gif",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Surface_tension_diagram_USGS.gif",
+        "license": "Public domain",
+        "attribution": "USGS Water Science School"
+      },
+      {
+        "topic": "Atwood machine",
+        "search_description": "Atwood machine two unequal masses pulley free body diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two unequal masses connected over a pulley with acceleration, tension, and weight directions marked.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Atwood-machine.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Atwood-machine.svg/960px-Atwood-machine.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Atwood-machine.svg",
+        "license": "CC BY-SA 4.0",
+        "attribution": "MikeRun"
+      },
+      {
+        "topic": "Pulley simulation",
+        "search_description": "masses and pulleys force acceleration interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive pulley setup for changing masses and observing acceleration and tension.",
+        "resolved_image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Four_pulleys_FH.svg",
+        "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Four_pulleys_FH.svg/960px-Four_pulleys_FH.svg.png",
+        "source_page_url": "https://commons.wikimedia.org/wiki/File:Four_pulleys_FH.svg",
+        "license": "CC BY 2.5",
+        "attribution": "Four_pulleys.svg: User:Prolineserver, User:Tomia. (minor edits by Stanisław Skowron, scale adjusted by User:Atropos235)\nderivative work: StromBer"
+      }
+    ]
+  }
+}

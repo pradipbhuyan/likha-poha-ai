@@ -1,0 +1,161 @@
+{
+  "manifest": {
+    "grade": "Grade 9",
+    "subject": "Advanced Science",
+    "chapter": "Advanced - The Geometry of Power: Advanced Simple Machines",
+    "central_question": "How do the geometry of wheels, axles, gears, strings, and pulleys redistribute force so that machines can multiply force, change speed, and control motion?",
+    "in_scope_units": [
+      "4.1 Introduction to mechanical advantage through trucks, cranes, and bicycles",
+      "Activity 4.1 reflection on force multiplication and speed increase",
+      "4.2 Wheel and Axle – The Steering Mastery",
+      "Activity 4.2 comparing the radii of a steering wheel and steering axle",
+      "Mechanical advantage of an ideal wheel-and-axle system",
+      "Worked steering example using 1200 N load, 30 cm wheel radius, and 3 cm axle radius",
+      "Machine efficiency and frictional losses",
+      "Quick Check on a mechanical-watch gear train",
+      "4.3 Tension",
+      "Activity 4.3 observations with hanging bobs and a pulley",
+      "Direction, SI unit, and equilibrium conditions for tension",
+      "Unequal masses connected over a pulley and their common acceleration",
+      "Examples of tension for a stationary hanging mass and an upward-accelerating mass",
+      "Check Your Understanding questions 1-5 on pulley systems"
+    ],
+    "banned_topics": [
+      "Detailed classifications of levers and inclined planes",
+      "Work-energy theorem beyond the chapter's short efficiency note",
+      "Rotational inertia and angular momentum",
+      "Hydraulic machines",
+      "Compound pulley mechanical-advantage formulas not given in the source"
+    ],
+    "must_include_keywords": [
+      "mechanical advantage",
+      "input force",
+      "output force",
+      "force multiplication",
+      "speed increase",
+      "Activity 4.1",
+      "wheel and axle",
+      "steering wheel",
+      "steering column",
+      "radius of wheel",
+      "radius of axle",
+      "torque",
+      "M.A. = radius of wheel / radius of axle",
+      "load",
+      "effort",
+      "ideal machine",
+      "friction",
+      "efficiency",
+      "useful output work",
+      "input work",
+      "gear train",
+      "Activity 4.2",
+      "Activity 4.3",
+      "tension",
+      "string",
+      "rope",
+      "cable",
+      "weight",
+      "equilibrium",
+      "balanced forces",
+      "unbalanced forces",
+      "pulley",
+      "Newton",
+      "Newton's First Law",
+      "Newton's Second Law",
+      "common acceleration",
+      "frictionless pulley"
+    ],
+    "known_pitfalls": [
+      {
+        "claim": "A machine creates extra force or free energy.",
+        "correction": "The chapter explains that machines redistribute force or speed. In real machines some input work is lost to friction, so efficiency is below 100%."
+      },
+      {
+        "claim": "Mechanical advantage of a wheel and axle is the axle radius divided by the wheel radius.",
+        "correction": "For the arrangement used in this chapter, M.A. = radius of wheel / radius of axle. A larger wheel and smaller axle give greater ideal mechanical advantage."
+      },
+      {
+        "claim": "The steering example proves that only 120 N of work is needed instead of 1200 N of work.",
+        "correction": "The example compares forces, not total work. In an ideal machine the smaller effort acts through a greater distance so that input and output work are equal."
+      },
+      {
+        "claim": "Tension always equals the weight of an attached object.",
+        "correction": "Tension equals weight only when the hanging object has zero acceleration. For upward acceleration, T = m(g+a); for downward acceleration, T = m(g-a)."
+      },
+      {
+        "claim": "In a two-mass pulley, each mass can have a different acceleration.",
+        "correction": "For the ideal single string used in the chapter, both connected masses have the same acceleration magnitude because the string constrains their motion."
+      },
+      {
+        "claim": "Equal masses on the two sides of a pulley must move because gravity acts on both.",
+        "correction": "Equal weights produce balanced forces, so the system remains at rest or continues at constant speed; there is no net driving force."
+      }
+    ],
+    "recommended_example_progression": [
+      "Use Activity 4.1 to distinguish force multiplication from the creation of energy.",
+      "Use Activity 4.2 to explain why a large steering wheel and small axle increase torque and ideal mechanical advantage.",
+      "Use the steering-system Example to calculate M.A. = 10 and effort = 120 N.",
+      "Use the Quick Check gear-train data to combine two 60:1 ratios and convert the resulting hour-gear size to metres.",
+      "Use Activity 4.3 to compare string stretch for lighter and heavier bobs and identify the direction of tension.",
+      "Complete the 'Let us Calculate' pulley setup for 0.55 kg and 0.50 kg to find common acceleration and tension.",
+      "Use Examples 1 and 2 in Section 4.3 to compare stationary and upward-accelerating tension.",
+      "Use Check Your Understanding Q5 to solve the 2 kg and 6 kg frictionless-pulley system."
+    ],
+    "ncert_end_of_chapter_exercises_reference": "The supplied chapter ends with 'Check Your Understanding', questions 1-5, following the tension examples in Section 4.3."
+  },
+  "lessons": {
+    "Concept introduction": "# Concept Introduction: Advanced - The Geometry of Power: Advanced Simple Machines\n\n## What you will learn\nYou will learn what mechanical advantage means and why machines can make a task feel easier without creating free energy. You will use Activity 4.1 to connect trucks, cranes, and bicycles with force multiplication and speed change.\n\n## Simple explanation\nMachines change how force and motion are distributed. A smaller input force may act through a larger distance to produce a larger output force, or a machine may trade force for speed. The machine does not create energy; it changes the way effort is applied.\n\n## Step-by-step breakdown\n- **Mechanical advantage**: Mechanical advantage describes how much a machine multiplies input force to produce output force.\n- **Input and output**: The user applies an effort or input force, while the machine acts against a load or resistance force.\n- **Activity 4.1 truck**: A driver can turn a massive vehicle because the steering system increases the turning effect of the applied force.\n- **Activity 4.1 crane**: A crane uses integrated wheel, axle, and pulley arrangements to control and multiply force while lifting a heavy load.\n- **Activity 4.1 bicycle**: A bicycle can use gearing to trade force for speed; greater speed is not obtained without a corresponding change in force or distance moved.\n- **No free energy**: A machine does not create extra work. In an ideal machine, input work equals useful output work.\n- **Real-machine losses**: Friction converts some input work into heat, so the useful output is smaller than the total input.\n- **Efficiency**: η = (useful output work / total input work) × 100%, and a real machine has η < 100%.\n\n## Worked example\nQuestion: Based on Activity 4.1, does a crane create extra force when it lifts a heavy concrete beam smoothly?\n\nSolution:\n- Step 1: Activity 4.1 states that machines help multiply force or increase speed.\n- Step 2: The chapter's efficiency note explains that real machines lose some input work to friction rather than creating additional energy.\n- Final answer: The crane does not create energy or free force. Its mechanical system redistributes the applied force and motion so that a smaller input can control a larger load.\n\n## Common mistake\nMechanical advantage is not the same as energy gain. A force can be multiplied only by a corresponding trade-off in distance, speed, or time, with additional losses in a real machine.\n\n## Quick check question\nQuestion: According to the efficiency note after the steering example, can a real machine have 100% efficiency?\nAnswer: No. The chapter states that a real machine always has efficiency below 100%.\nExplanation: Some input work is lost to friction within the machine, so useful output work is less than total input work.\n\n## Summary\n- Mechanical advantage describes force multiplication.\n- Machines may also increase speed by trading force for motion.\n- Machines do not create energy.\n- Ideal machines conserve work.\n- Friction makes real-machine efficiency less than 100%.",
+    "Core explanation": "# Core Explanation: Advanced - The Geometry of Power: Advanced Simple Machines\n\n## What you will learn\nYou will understand how a wheel and axle uses geometry to increase turning effect. You will calculate the ideal mechanical advantage of the truck steering system in Activity 4.2 and the worked example.\n\n## Simple explanation\nA wheel and axle rotate together, but the effort is applied farther from the centre at the rim of the large wheel. Because turning effect increases with distance from the axis, a large wheel connected to a small axle lets a modest effort control a larger resistance.\n\n## Step-by-step breakdown\n- **Wheel-and-axle structure**: The machine has a large wheel and a smaller axle fixed at the centre; both rotate together.\n- **Activity 4.2 geometry**: The steering wheel is intentionally much larger than the steering column so that the driver's force acts at a larger radius.\n- **Turning effect**: Applying effort at the wheel rim produces a larger torque than applying the same effort close to the axis.\n- **Mechanical-advantage formula**: M.A. = radius of wheel / radius of axle.\n- **Effect of radius ratio**: Increasing wheel radius or decreasing axle radius increases ideal mechanical advantage.\n- **Load-effort relation**: For the ideal treatment used in the chapter, M.A. = load / effort, so effort = load / M.A.\n- **Steering example data**: Wheel radius = 30 cm, axle radius = 3 cm, and resistance load = 1200 N.\n- **Interpretation**: The driver supplies less force at the wheel rim, but the rim moves through a greater distance than the axle surface.\n\n## Worked example\nQuestion: Use the steering-system Example in Section 4.2 to calculate the ideal mechanical advantage and the effort needed to overcome a 1200 N resistance when the wheel radius is 30 cm and axle radius is 3 cm.\n\nSolution:\n- Step 1: M.A. = 30 cm / 3 cm = 10.\n- Step 2: Effort = load / M.A. = 1200 N / 10 = 120 N.\n- Final answer: The ideal mechanical advantage is 10, and the driver must apply 120 N at the steering-wheel rim.\n\n## Common mistake\nDo not reverse the radius ratio. Using axle radius divided by wheel radius would give 0.1 and would contradict the force-multiplying function described in Activity 4.2.\n\n## Quick check question\nQuestion: In Activity 4.2, what would happen to ideal mechanical advantage if the wheel and axle had equal radii?\nAnswer: The ideal mechanical advantage would be 1.\nExplanation: M.A. = radius of wheel / radius of axle; equal radii give a ratio of 1, so there is no force multiplication.\n\n## Summary\n- A wheel and axle rotate together.\n- The large wheel gives a greater lever radius.\n- M.A. = wheel radius / axle radius.\n- The chapter's steering system has M.A. = 10.\n- The ideal effort required is 120 N for a 1200 N load.",
+    "Worked examples": "# Worked Examples: Advanced - The Geometry of Power: Advanced Simple Machines\n\n## What you will learn\nYou will analyse the watch gear train in the chapter's Quick Check and connect successive gear ratios. You will also relate gear speed to the choice of the hand directly driven by the motor.\n\n## Simple explanation\nIn a gear train, the output rotation of one gear becomes the input to the next. Successive ratios multiply, so two reduction stages can create a much larger total ratio than either stage alone.\n\n## Step-by-step breakdown\n- **Gear train**: A sequence of gears transmits motion from one stage to another.\n- **Given ratios**: The seconds-to-minutes ratio is 60:1, and the minutes-to-hours ratio is also 60:1.\n- **Combined ratio**: The overall seconds-to-hours ratio is 60 × 60 = 3600:1.\n- **Given seconds gear**: The chapter gives a seconds gear size of 2 mm.\n- **Hour-gear size**: 2 mm × 3600 = 7200 mm = 7.2 m in the simplified numerical model.\n- **Fastest hand**: The seconds hand turns fastest, the minute hand more slowly, and the hour hand slowest.\n- **Direct drive**: Connecting the motor to the fastest stage allows later gears to reduce the speed successively for the minute and hour hands.\n- **Model limitation**: The very large calculated size reflects the simplified ratio-and-size assumption in the Quick Check rather than a practical watch design.\n\n## Worked example\nQuestion: Use the Section 4.2 Quick Check: if the seconds gear is 2 mm and the seconds-to-minutes and minutes-to-hours ratios are each 60:1, how large would the hour gear be in metres?\n\nSolution:\n- Step 1: Combine the two ratios: 60 × 60 = 3600.\n- Step 2: Hour-gear size = 2 mm × 3600 = 7200 mm.\n- Step 3: Convert to metres: 7200 mm ÷ 1000 = 7.2 m.\n- Final answer: Under the Quick Check's simplified assumption, the hour gear would be 7.2 m.\n\n## Common mistake\nDo not add successive gear ratios. Ratios in a gear train multiply because the output of one stage becomes the input of the next.\n\n## Quick check question\nQuestion: In the watch Quick Check, which hand's gear should be directly connected to the motor, and why?\nAnswer: The seconds-hand gear should be directly connected to the motor.\nExplanation: It must rotate fastest; the following 60:1 stages reduce its rotation rate for the minute and hour hands.\n\n## Summary\n- Gear trains transmit motion through successive stages.\n- Successive gear ratios multiply.\n- Two 60:1 stages give 3600:1 overall.\n- The simplified hour-gear result is 7.2 m.\n- The seconds stage should be driven directly because it rotates fastest.",
+    "Exam-style problems": "# Exam-Style Problems: Advanced - The Geometry of Power: Advanced Simple Machines\n\n## What you will learn\nYou will understand tension as a pulling force in a stretched string and use Newton's laws to analyse equilibrium and acceleration. Activity 4.3 and the two unequal-mass pulley calculation will guide the reasoning.\n\n## Simple explanation\nTension acts along a taut string and pulls away from the object at each end. When upward tension balances downward weight, an object has no acceleration. When connected masses are unequal, their weights do not balance and the system accelerates toward the heavier side.\n\n## Step-by-step breakdown\n- **Activity 4.3 stretch observation**: A heavier bob stretches the thread more, showing that a greater pulling force acts in the thread.\n- **Definition of tension**: Tension is the pulling or stretch force transmitted through a string, thread, rope, or cable.\n- **Direction**: Tension acts along the string and pulls away from the attached object.\n- **SI unit**: The SI unit of tension is the newton.\n- **Equilibrium**: If upward tension equals downward weight, the net force is zero, so the object remains at rest or moves with constant speed.\n- **Equal pulley masses**: Equal weights on both sides produce balanced forces and no acceleration.\n- **Unequal pulley masses**: The heavier mass moves downward and the lighter mass upward with the same acceleration magnitude.\n- **0.55 kg equation**: 0.55g - T = 0.55a.\n- **0.50 kg equation**: T - 0.50g = 0.50a.\n- **Combined equation**: (0.55-0.50)g = (0.55+0.50)a.\n\n## Worked example\nQuestion: Complete the 'Let us Calculate' setup in Section 4.3 for masses 0.55 kg and 0.50 kg using g = 9.8 m/s². Find the acceleration and tension.\n\nSolution:\n- Step 1: Add the equations: 0.05g = 1.05a, so a = 0.05 × 9.8 / 1.05 ≈ 0.467 m/s².\n- Step 2: Use T - 0.50g = 0.50a, so T = 0.50(9.8 + 0.467) ≈ 5.13 N.\n- Final answer: The 0.55 kg mass moves downward and the 0.50 kg mass upward with acceleration about 0.467 m/s²; the string tension is about 5.13 N.\n\n## Common mistake\nTension is not automatically equal to either weight in an accelerating pulley system. It must be found from the net-force equation for one of the masses.\n\n## Quick check question\nQuestion: Example 2 in Section 4.3 lifts a 4 kg mass upward at 2 m/s². What is the tension?\nAnswer: 47.2 N.\nExplanation: T - mg = ma, so T = m(g+a) = 4(9.8+2) = 47.2 N.\n\n## Summary\n- Tension is a pulling force along a taut string.\n- Balanced tension and weight produce equilibrium.\n- Unequal masses accelerate toward the heavier side.\n- Connected masses share the same acceleration magnitude.\n- The 0.55 kg and 0.50 kg system has a ≈ 0.467 m/s² and T ≈ 5.13 N.",
+    "Revision and recap": "# Revision and Recap: Advanced - The Geometry of Power: Advanced Simple Machines\n\n## What you will learn\nYou will combine the chapter's ideas about mechanical advantage, efficiency, tension, and pulley motion. You will also solve the final frictionless-pulley question using a systematic force approach.\n\n## Simple explanation\nThe chapter has two connected themes: machine geometry changes the relationship between effort and load, while strings and pulleys distribute tension and connect the motion of different masses. Both require careful identification of forces and constraints.\n\n## Step-by-step breakdown\n- **Mechanical-advantage checklist**: Identify wheel radius, axle radius, load, and effort before calculating.\n- **Efficiency checklist**: Distinguish ideal mechanical advantage from real performance affected by friction.\n- **Tension checklist**: Draw weight downward and tension upward on each hanging mass.\n- **Motion direction**: Compare masses first; in an ideal pulley, the heavier side moves downward.\n- **Common acceleration**: Use the same acceleration magnitude for masses connected by one inextensible string.\n- **System acceleration**: For two masses m₁ and m₂, the net driving force is their weight difference and the total inertia is m₁+m₂.\n- **Check Your Understanding Q2**: An 8 kg stationary mass has T = mg = 78.4 N.\n- **Check Your Understanding Q4**: A 6 kg stationary mass has T = mg = 58.8 N.\n- **Check Your Understanding Q3 diagram**: With 20 kg and 10 kg, the 20 kg side moves downward and the net downward driving force is (20-10)g = 98 N.\n\n## Worked example\nQuestion: Check Your Understanding Q5: two masses of 2 kg and 6 kg are connected over a frictionless pulley. Find their acceleration and the tension, using g = 9.8 m/s².\n\nSolution:\n- Step 1: The 6 kg mass moves downward. The driving force is (6-2)g = 39.2 N and total mass is 8 kg, so a = 39.2/8 = 4.9 m/s².\n- Step 2: For the 2 kg mass moving upward, T - 2g = 2a, so T = 2(9.8+4.9) = 29.4 N.\n- Final answer: Acceleration = 4.9 m/s², with the 6 kg mass downward; tension = 29.4 N.\n\n## Common mistake\nDo not use the heavier mass alone in the denominator when finding system acceleration. Both masses accelerate, so their total mass contributes to the inertia of the system.\n\n## Quick check question\nQuestion: Example 1 in Section 4.3 suspends a 5 kg object stationary from a rope. What is the tension?\nAnswer: 49 N.\nExplanation: The object is in equilibrium, so T = mg = 5 × 9.8 = 49 N.\n\n## Summary\n- Wheel-and-axle geometry controls ideal mechanical advantage.\n- Real machines lose useful work to friction.\n- Tension acts along a string and is measured in newtons.\n- Equal pulley masses balance; unequal masses accelerate.\n- Force diagrams and Newton's laws determine acceleration and tension.\n- For 2 kg and 6 kg, a = 4.9 m/s² and T = 29.4 N."
+  },
+  "supplementary_enrichment": {
+    "beyond_the_textbook": [
+      "Power steering systems add hydraulic or electric assistance, but the steering wheel and column still use the geometric advantage of applying force at a larger radius.",
+      "Bicycle gear systems let riders choose between greater wheel torque for climbing and greater wheel speed for travelling quickly on level roads.",
+      "Cranes often combine several pulleys so that the load is supported by multiple rope segments, reducing the effort force while increasing the rope distance pulled.",
+      "Engineers use bearings and lubrication to reduce friction, improving efficiency and limiting wear in wheels, axles, and pulleys.",
+      "Real ropes have mass and can stretch, while classroom pulley problems usually idealise the rope as massless and inextensible so that tension is uniform and connected objects share one acceleration magnitude."
+    ],
+    "suggested_web_images": [
+      {
+        "topic": "Wheel and axle steering",
+        "search_description": "wheel and axle steering wheel radius axle radius mechanical advantage diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A large steering wheel connected to a smaller central axle with both radii labelled."
+      },
+      {
+        "topic": "Mechanical advantage trade-off",
+        "search_description": "ideal machine force distance trade off mechanical advantage educational diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A diagram showing smaller input force acting through a larger distance to move a larger load force."
+      },
+      {
+        "topic": "Watch gear train",
+        "search_description": "mechanical watch gear train seconds minutes hours diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A sequence of meshing gears that drives the seconds, minute, and hour hands at different speeds."
+      },
+      {
+        "topic": "Tension free-body diagram",
+        "search_description": "hanging mass tension weight free body diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "A hanging block with upward tension and downward weight arrows."
+      },
+      {
+        "topic": "Atwood machine",
+        "search_description": "Atwood machine two unequal masses pulley free body diagram",
+        "suggested_source": "Wikimedia Commons",
+        "alt_text": "Two unequal masses connected over a pulley with acceleration, tension, and weight directions marked."
+      },
+      {
+        "topic": "Pulley simulation",
+        "search_description": "masses and pulleys force acceleration interactive simulation",
+        "suggested_source": "PhET Interactive Simulations (University of Colorado Boulder)",
+        "alt_text": "An interactive pulley setup for changing masses and observing acceleration and tension."
+      }
+    ]
+  }
+}
