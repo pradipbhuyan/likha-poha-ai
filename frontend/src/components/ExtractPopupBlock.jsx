@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -96,7 +97,7 @@ function ExtractPopupBlock({ raw }) {
         <span style={{ opacity: 0.7, fontWeight: 500 }}>· view text</span>
       </button>
 
-      {open && (
+      {open && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -104,7 +105,20 @@ function ExtractPopupBlock({ raw }) {
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.45)",
+            // Solid enough to fully hide whatever is behind it in BOTH
+            // themes — a semi-transparent rgba(0,0,0,.45) scrim let the
+            // underlying scanned-textbook-page image and lesson text show
+            // through in dark mode (reported via screenshot: the popup's
+            // own text overlapped with a bleed-through page image behind
+            // it, making both unreadable). Rendered via a portal straight
+            // into document.body (see createPortal below) so this fixed
+            // overlay is always positioned relative to the real viewport —
+            // any ancestor with backdrop-filter/filter/transform (the app
+            // shell's topbar and cards use backdrop-filter: blur(...) in
+            // several places) breaks position:fixed for descendants that
+            // aren't portaled out, which was the root cause of the
+            // mispositioned/overlapping modal in the screenshot.
+            background: "rgba(2,6,23,0.72)",
             zIndex: 2100,
             display: "flex",
             alignItems: "center",
@@ -114,14 +128,15 @@ function ExtractPopupBlock({ raw }) {
         >
           <div
             style={{
-              background: "var(--panel,#fff)",
+              background: "var(--panel, #fff)",
+              border: "1px solid var(--border, #e2e8f0)",
               borderRadius: 14,
               padding: "22px 26px",
               width: "100%",
               maxWidth: 560,
               maxHeight: "80vh",
               overflowY: "auto",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.25)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
             }}
           >
             <div
@@ -189,7 +204,8 @@ function ExtractPopupBlock({ raw }) {
               Close
             </button>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
