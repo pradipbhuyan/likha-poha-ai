@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 4: A Question of Trust",
+  "central_question": "How does Horace Danby’s confidence and selective dishonesty allow a clever thief to exploit his trust and turn his careful plan against him?",
+  "in_scope_units": [
+    "Read and Find Out: Horace Danby’s respectable life, love of rare books, and yearly robberies",
+    "His detailed preparation for robbing Shotover Grange, including the safe, alarm, key, dog, and hay fever",
+    "Read and Find Out: the young woman’s appearance, authority, and claim to be the lady of the house",
+    "The conversation in which she studies Horace’s fear of prison and persuades him to open the safe",
+    "The fingerprints, arrest, real owner, prison library, and rejection of “honour among thieves”",
+    "Glossary vocabulary connected with hay fever",
+    "Think about it: clues, deception, Horace’s mixed character, and failure of planning",
+    "Talk about it: punishment, intentions, honesty, and whether ends justify means",
+    "Suggested reading connected with crime and unexpected reversals"
+  ],
+  "banned_topics": [
+    "The Midnight Visitor",
+    "Footprints without Feet"
+  ],
+  "must_include_keywords": [
+    "Horace Danby",
+    "Shotover Grange",
+    "rare books",
+    "locks",
+    "safe",
+    "hay fever",
+    "fingerprints",
+    "gloves",
+    "Sherry",
+    "painting",
+    "burglar alarm",
+    "young lady in red",
+    "owner’s wife",
+    "telephone",
+    "police",
+    "prison",
+    "jewels",
+    "cigarette lighter",
+    "numbers to the safe",
+    "deception",
+    "real culprit",
+    "meticulous planner",
+    "selective honesty",
+    "trust",
+    "honour among thieves",
+    "irony",
+    "third-person narration",
+    "twist ending"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The young woman in red is the owner’s wife.",
+      "correction": "She is another thief who pretends to be the lady of the house and tricks Horace into opening the safe."
+    },
+    {
+      "claim": "Horace steals only once.",
+      "correction": "He robs one safe every year to finance his collection of rare and expensive books."
+    },
+    {
+      "claim": "Horace leaves no fingerprints.",
+      "correction": "He removes his gloves to light the woman’s cigarette and later opens the safe without them, leaving fingerprints all over the room."
+    },
+    {
+      "claim": "Horace is innocent of the Shotover Grange robbery.",
+      "correction": "He does not keep the jewels, but he illegally enters the house and opens the safe; his own actions make the theft possible."
+    },
+    {
+      "claim": "The story supports the saying “honour among thieves.”",
+      "correction": "The woman deceives another thief, and Horace becomes angry whenever the saying is mentioned."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions on Horace’s collection and motive for yearly theft.",
+    "Use the second Read and Find Out set to identify the speaker and the real culprit.",
+    "Use Think about it 2 to analyse the subtle methods by which the woman impersonates the owner.",
+    "Use Think about it 3 to explain why Horace is respectable but not completely honest.",
+    "Use Think about it 4 and Talk about it 2 to evaluate the failure of planning and the claim that good intentions justify wrong actions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–4 and Talk about it questions 1–2, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

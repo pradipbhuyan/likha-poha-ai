@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 2: Nelson Mandela: Long Walk to Freedom",
+  "central_question": "How does Mandela’s account show that true freedom requires the defeat of apartheid, courage over fear, and dignity for both the oppressed and the oppressor?",
+  "in_scope_units": [
+    "Before You Read: apartheid, democratic elections, and the historic inauguration",
+    "The inauguration at the Union Buildings and Mandela’s pledge to the new republic",
+    "The military display, two national anthems, and symbols of democratic change",
+    "Mandela’s sense of history and tribute to African patriots",
+    "Courage, resilience, love, and the glimmer of humanity",
+    "Twin obligations to family and country",
+    "The development of Mandela’s understanding of freedom",
+    "Freedom as indivisible and the shared loss of humanity under oppression",
+    "Thinking about the Text and oral comprehension",
+    "Thinking about Language: noun formation, the definite article with names, and idiomatic expressions",
+    "Speaking and Writing: liberty, contrasts, coordinated clauses, and expressing an opinion"
+  ],
+  "banned_topics": [
+    "A Tiger in the Zoo"
+  ],
+  "must_include_keywords": [
+    "apartheid",
+    "Nelson Mandela",
+    "African National Congress",
+    "inauguration",
+    "Union Buildings",
+    "Pretoria",
+    "rainbow gathering",
+    "white supremacy",
+    "non-racial government",
+    "political emancipation",
+    "human dignity",
+    "military loyalty",
+    "two national anthems",
+    "African patriots",
+    "Oliver Tambo",
+    "Walter Sisulu",
+    "courage",
+    "resilience",
+    "glimmer of humanity",
+    "twin obligations",
+    "transitory freedoms",
+    "basic and honourable freedoms",
+    "hunger for freedom",
+    "freedom is indivisible",
+    "oppressor",
+    "oppressed",
+    "prejudice",
+    "noun formation",
+    "definite article with names",
+    "idiomatic expressions",
+    "contrasts"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mandela describes courage as the absence of fear.",
+      "correction": "He says courage is the triumph over fear; the brave person feels fear but conquers it."
+    },
+    {
+      "claim": "The inauguration celebrates Mandela alone.",
+      "correction": "Mandela presents it as a common victory for justice, peace, human dignity, and all who sacrificed against apartheid."
+    },
+    {
+      "claim": "Only the oppressed lose freedom under apartheid.",
+      "correction": "Mandela says both the oppressed and the oppressor are robbed of their humanity."
+    },
+    {
+      "claim": "Mandela always understood freedom as a national struggle.",
+      "correction": "His idea develops from childhood freedom, to personal freedoms, and finally to the freedom and dignity of all his people."
+    },
+    {
+      "claim": "The two anthems show that old divisions continue unchanged.",
+      "correction": "Their joint performance symbolises reconciliation and the coming together of groups that had once despised one another’s anthem."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the first Oral Comprehension Check to interpret the ‘extraordinary human disaster’ and ‘glorious human achievement’ in Mandela’s speech.",
+    "Use the second Oral Comprehension Check to explain the military salute, the two anthems, and Mandela’s definition of courage.",
+    "Use the third Oral Comprehension Check to trace twin obligations and the changing meaning of freedom.",
+    "Use Thinking about the Text, Questions 2–5, to analyse sacrifice, oppression, character, and the hunger for freedom.",
+    "Use Thinking about Language and Writing I–III to practise noun forms, special uses of ‘the’, idioms, and balanced contrasts."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter concludes with Thinking about the Text, Thinking about Language I–III, Speaking, and Writing I–III on contrasts and opinion writing.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 4: From the Diary of Anne Frank",
+  "central_question": "How does Anne’s diary voice reveal her need for a true confidante, her lively intelligence, and her ability to respond to loneliness and authority with honesty and humour?",
+  "in_scope_units": [
+    "Before You Read: Anne Frank’s life, diary, and historical background",
+    "Activity: distinguishing a diary, journal, log, and memoir",
+    "Anne’s reason for writing and her decision to call the diary Kitty",
+    "Anne’s brief family and school background",
+    "The dated diary entry about promotion anxiety and Mr Keesing",
+    "The three chatterbox assignments and the humorous poem",
+    "Thinking about the Text and Anne’s characterisation",
+    "Thinking about Language: compound words, phrasal verbs, idioms, and dictionary use",
+    "Contracted forms and conversational effect",
+    "Diary-writing task, listening summary, and lesson recap"
+  ],
+  "banned_topics": [
+    "Amanda!"
+  ],
+  "must_include_keywords": [
+    "Anne Frank",
+    "Kitty",
+    "diary",
+    "journal",
+    "log",
+    "memoir",
+    "Paper has more patience than people",
+    "confide",
+    "true friend",
+    "Otto Frank",
+    "Margot",
+    "Mrs Kuperus",
+    "Grandma",
+    "20 June 1942",
+    "Mr Keesing",
+    "chatterbox",
+    "A Chatterbox",
+    "An Incorrigible Chatterbox",
+    "Quack, Quack, Quack, Said Mistress Chatterbox",
+    "Sanne",
+    "humour",
+    "ingenuity",
+    "first-person voice",
+    "compound words",
+    "phrasal verbs",
+    "idioms",
+    "contracted forms",
+    "diary language",
+    "subjectless sentences",
+    "sentence fragments",
+    "Samuel Pepys"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Anne has no family or acquaintances, so she is literally alone.",
+      "correction": "She has loving parents, a sister, relatives, and many people she calls friends, but she lacks one true friend in whom she can confide."
+    },
+    {
+      "claim": "Kitty is a school friend who receives Anne’s letters.",
+      "correction": "Kitty is the name Anne gives her diary so that she can treat it as an imagined close friend."
+    },
+    {
+      "claim": "Mr Keesing remains harsh and never appreciates Anne’s humour.",
+      "correction": "He laughs at her arguments, enjoys the final poem, reads it to other classes, and stops assigning extra homework."
+    },
+    {
+      "claim": "Anne’s diary only records facts and dates.",
+      "correction": "She deliberately writes thoughts, feelings, judgements, memories, and humour, treating the diary as a confidante."
+    },
+    {
+      "claim": "Contracted forms are errors that should be removed from all writing.",
+      "correction": "They are appropriate in conversational forms such as diaries, plays, and novels, though not usually in formal writing."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Before You Read, Activity 1–2, to distinguish diary, journal, log, and memoir entries.",
+    "Use the first Oral Comprehension Check to explain why Anne writes and why she trusts paper.",
+    "Use the second Oral Comprehension Check to analyse the purpose of her brief life sketch and her love for Grandma.",
+    "Use the third Oral Comprehension Check and Thinking about the Text, Questions 4–7, to assess Anne and Mr Keesing.",
+    "Use Thinking about Language I–V and the diary-writing task to practise compounds, phrasal verbs, idioms, contractions, and diary style."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Thinking about the Text, Thinking about Language I–V, a diary-writing task, and a listening summary based on Samuel Pepys.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

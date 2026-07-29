@@ -1,0 +1,82 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 3: The Midnight Visitor",
+  "central_question": "How does Ausable use presence of mind and believable improvisation to defeat an armed rival who underestimates him?",
+  "in_scope_units": [
+    "Read and Find Out: Fowler’s expectations of a secret agent and Ausable’s unimpressive appearance",
+    "The important report, Max’s armed entrance, and Fowler’s first authentic thrill",
+    "Read and Find Out: the contrast between Max’s real passkey and Ausable’s invented balcony",
+    "Ausable’s detailed balcony story and his use of the unexpected knock as an invented police arrival",
+    "Max’s escape attempt, Henry’s arrival, and the final revelation that no balcony exists",
+    "Glossary vocabulary connected with spying, appearance, speech, and sound",
+    "Think about it: stereotype versus reality, the convincing lie, and the timing of Ausable’s plan",
+    "Talk about it: presence of mind and mental preparedness in danger",
+    "Suggested reading connected with suspense and surprise"
+  ],
+  "banned_topics": [
+    "A Question of Trust",
+    "Footprints without Feet"
+  ],
+  "must_include_keywords": [
+    "Ausable",
+    "Fowler",
+    "Max",
+    "Henry",
+    "secret agent",
+    "espionage",
+    "French hotel",
+    "sixth floor",
+    "American accent",
+    "important report",
+    "missiles",
+    "automatic pistol",
+    "passkey",
+    "balcony",
+    "single window",
+    "management",
+    "knock at the door",
+    "police",
+    "waiter",
+    "drink",
+    "presence of mind",
+    "improvisation",
+    "suspense",
+    "irony",
+    "stereotype",
+    "third-person narration",
+    "twist ending"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ausable defeats Max by shooting or physically overpowering him.",
+      "correction": "Ausable remains calm and invents the balcony and police stories, causing Max to jump through the window."
+    },
+    {
+      "claim": "Max enters through the balcony.",
+      "correction": "Max says he entered with a passkey; the balcony is Ausable’s invention."
+    },
+    {
+      "claim": "The police actually knock at the door.",
+      "correction": "The caller is Henry, a waiter bringing the drink Ausable ordered."
+    },
+    {
+      "claim": "Ausable had planned Henry’s knock as part of a trap from the beginning.",
+      "correction": "Henry was expected with drinks; Ausable takes advantage of the knock and improvises the police story."
+    },
+    {
+      "claim": "Ausable fits Fowler’s romantic image of a spy.",
+      "correction": "He is fat, wheezy, carelessly dressed, and outwardly ordinary, but mentally quick and effective."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions comparing Ausable with fictional secret agents and identifying Fowler’s first thrill.",
+    "Use the second Read and Find Out questions to distinguish how Max really enters from Ausable’s balcony claim.",
+    "Use Think about it 2 to analyse why the balcony description sounds convincing.",
+    "Use Think about it 3 to evaluate when Ausable forms his plan and how he adapts to events.",
+    "Use Talk about it 1 to connect Ausable’s actions with the definition of presence of mind."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–3 and Talk about it questions 1–2, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

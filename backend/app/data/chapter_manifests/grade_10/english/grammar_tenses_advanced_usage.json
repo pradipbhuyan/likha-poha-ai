@@ -1,0 +1,62 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Tenses (Advanced Usage)",
+  "central_question": "How can a student choose and combine tense forms accurately when events occur at different times or appear in future time clauses and reported conditionals?",
+  "in_scope_units": [
+    "Mixed-tense sentences that describe two related events occurring at different times",
+    "Future time clauses with when, while, as soon as, until, before, and after",
+    "Backshift in reported conditional sentences",
+    "Simple present for definite future schedules and arrangements"
+  ],
+  "banned_topics": [
+    "Complete rules of active and passive voice",
+    "Determiners and articles",
+    "Subject-verb concord rules unrelated to tense choice"
+  ],
+  "must_include_keywords": [
+    "mixed tense",
+    "future perfect",
+    "simple present",
+    "time clause",
+    "main clause",
+    "when",
+    "while",
+    "as soon as",
+    "until",
+    "before",
+    "after",
+    "reported speech",
+    "backshift",
+    "conditional sentence",
+    "would",
+    "schedule",
+    "definite future arrangement",
+    "past perfect",
+    "sequence of events"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A future time clause must use will because it refers to the future.",
+      "correction": "After when, while, as soon as, until, before, and after, use the simple present for future meaning; keep will in the main clause."
+    },
+    {
+      "claim": "Both events in a sentence must always use the same tense.",
+      "correction": "Related events may correctly use different tenses when their time relationship is different, such as simple present in a time clause with future perfect in the main clause."
+    },
+    {
+      "claim": "In reported conditionals, only the main clause changes tense.",
+      "correction": "When the reporting verb creates a past-time frame, both the if-clause and the main clause shift consistently, for example study/will becomes studied/would."
+    }
+  ],
+  "recommended_example_progression": [
+    "Fill in a blank using future perfect with a simple-present time clause",
+    "Correct the use of will inside a future time clause",
+    "Rewrite a direct conditional statement in reported speech",
+    "Complete a timetable sentence using the simple present",
+    "Correct a mixed-tense sequencing error using the past perfect"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice uses gap filling, sentence completion, dialogue reporting, and error correction in mixed-tense contexts.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

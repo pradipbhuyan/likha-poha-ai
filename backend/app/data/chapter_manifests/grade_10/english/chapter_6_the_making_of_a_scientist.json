@@ -1,0 +1,87 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 6: The Making of a Scientist",
+  "central_question": "How do curiosity, disciplined experimentation, supportive guidance, and the desire to do one’s best shape Richard Ebright into a scientist?",
+  "in_scope_units": [
+    "Read and Find Out: Ebright’s early collecting, bright mind, and his mother’s support",
+    "The Travels of Monarch X, Dr Frederick Urquhart, butterfly tagging, and raising monarchs through the life cycle",
+    "The chart and list of butterflies collected around Reading, Pennsylvania",
+    "Read and Find Out: the science-fair loss and Ebright’s discovery that real science requires experiments",
+    "Projects on monarch disease, viceroy mimicry, and bird feeding",
+    "Research on the gold spots of the monarch pupa, insect hormone, wing cells, and chemical structure",
+    "The theory of how cells read DNA and collaboration with James R. Wong",
+    "Ebright’s wider interests, Richard A. Weiherer’s influence, and the qualities of a scientist",
+    "Glossary, Think about it, Talk about it, and Suggested reading"
+  ],
+  "banned_topics": [
+    "Footprints without Feet",
+    "The Necklace"
+  ],
+  "must_include_keywords": [
+    "Richard H. Ebright",
+    "butterflies",
+    "Reading Pennsylvania",
+    "mother",
+    "curiosity",
+    "The Travels of Monarch X",
+    "monarch migration",
+    "Dr Frederick A. Urquhart",
+    "tagging",
+    "egg",
+    "caterpillar",
+    "pupa",
+    "adult butterfly",
+    "science fair",
+    "real experiment",
+    "frog tissues",
+    "viral disease",
+    "beetle",
+    "viceroy",
+    "starling",
+    "gold spots",
+    "insect hormone",
+    "wing cells",
+    "X-ray photos",
+    "DNA",
+    "James R. Wong",
+    "Harvard",
+    "Richard A. Weiherer",
+    "competitive spirit",
+    "first-rate mind",
+    "will to win for the right reasons",
+    "biographical narration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Ebright’s first science-fair display wins a prize.",
+      "correction": "His seventh-grade display of frog tissues wins nothing and teaches him that real science involves experiments, not only a neat display."
+    },
+    {
+      "claim": "The Travels of Monarch X merely helps him identify butterflies.",
+      "correction": "The book introduces monarch migration research and connects him with Dr Urquhart, opening the world of scientific investigation."
+    },
+    {
+      "claim": "Every Ebright experiment produces clear positive results.",
+      "correction": "His beetle-and-caterpillar experiment gives no real results, but the attempt still represents genuine experimental work and wins at the fair."
+    },
+    {
+      "claim": "Ebright works only on butterflies throughout his career.",
+      "correction": "Butterfly research leads to insect hormones, cell development, DNA, and a theory about how cells read genetic instructions."
+    },
+    {
+      "claim": "His success is explained by intelligence alone.",
+      "correction": "The chapter stresses curiosity, hard work, competitive effort for the right reasons, supportive adults, observation, and experimentation."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions on the turning-point book and Ebright’s mother.",
+    "Use the second Read and Find Out set to trace the lesson from failure, the sequence of experiments, and the qualities of a scientist.",
+    "Use Think about it 1 to distinguish reading about a subject from observing, thinking, and experimenting.",
+    "Use Think about it 2 to connect the chapter’s account of cells and DNA with Ebright’s research pathway.",
+    "Use Talk about it 1–2 to extend the chapter’s emphasis on questions as the beginning of inquiry."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–2 and Talk about it questions 1–2, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

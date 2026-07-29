@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 1: A Letter to God",
+  "central_question": "How does the story use Lencho’s unquestioning faith and the postmaster’s kindness to explore belief, human goodness, and irony?",
+  "in_scope_units": [
+    "Before You Read and the money-order activity introducing faith, letters, and postal communication",
+    "The arrival of rain, the hailstorm, and the destruction of Lencho’s cornfield",
+    "Lencho’s complete faith in God and his first letter asking for help",
+    "The postmaster’s charitable response and the collection of money",
+    "Lencho’s second letter and the situational irony of his accusation against the postal employees",
+    "Thinking about the Text: characterisation, faith, irony, and conflicts",
+    "Thinking about Language: storm vocabulary and the different uses of the word hope",
+    "Relative clauses, including non-defining clauses and hidden relative elements",
+    "Using negatives for emphasis",
+    "Metaphors drawn from the story",
+    "Speaking, listening, poster writing, and the chapter recap"
+  ],
+  "banned_topics": [
+    "Dust of Snow",
+    "Fire and Ice"
+  ],
+  "must_include_keywords": [
+    "Lencho",
+    "postmaster",
+    "postman",
+    "faith",
+    "God",
+    "hundred pesos",
+    "seventy pesos",
+    "hailstorm",
+    "cornfield",
+    "new coins",
+    "frozen pearls",
+    "locusts",
+    "act of charity",
+    "irony",
+    "naive",
+    "unquestioning",
+    "human versus nature",
+    "human versus human",
+    "money order",
+    "hope",
+    "non-defining relative clause",
+    "who",
+    "whom",
+    "whose",
+    "which",
+    "negatives for emphasis",
+    "metaphor",
+    "ox of a man",
+    "huge mountains of clouds"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Lencho receives the full hundred pesos that he asks God to send.",
+      "correction": "The postmaster cannot collect the full amount; Lencho receives seventy pesos and becomes angry because he believes God could not have made a mistake."
+    },
+    {
+      "claim": "The post office employees steal part of Lencho’s money.",
+      "correction": "The employees actually contribute money to help Lencho; his accusation creates the central situational irony."
+    },
+    {
+      "claim": "Lencho’s faith disappears after the hailstorm.",
+      "correction": "The destruction strengthens his dependence on God; he writes directly to God for help and never doubts that God has replied."
+    },
+    {
+      "claim": "The story is narrated by Lencho in the first person.",
+      "correction": "It is told by a third-person narrator who reports Lencho’s actions, feelings, and the postmaster’s response."
+    },
+    {
+      "claim": "The comparison of raindrops to coins means Lencho values money more than farming.",
+      "correction": "The comparison shows that rain promised a rich harvest and therefore future prosperity for the farmer."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use the first Oral Comprehension Check to trace how welcome rain changes into destructive hail.",
+    "Use the second Oral Comprehension Check to explain Lencho’s faith and the postmaster’s decision to answer the letter.",
+    "Use Thinking about the Text, Question 4, to analyse the irony in Lencho’s accusation.",
+    "Use Thinking about Language, Section III, to join sentences with who, whom, whose, and which.",
+    "Use Thinking about Language, Sections IV and V, to identify emphatic negatives and metaphors from the story."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s end work appears under Thinking about the Text, Thinking about Language I–V, Speaking, Listening, and the poster-writing task.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

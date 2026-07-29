@@ -1,0 +1,88 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 8: Bholi",
+  "central_question": "How do education and a teacher’s compassionate encouragement transform a neglected, fearful girl into Sulekha, a confident woman who defends her dignity?",
+  "in_scope_units": [
+    "Read and Find Out: Sulekha’s childhood injuries, smallpox, stammer, neglect, and Ramlal’s anxiety about marriage",
+    "The opening of a girls’ school and the family’s discriminatory reasons for sending Bholi",
+    "Read and Find Out: Bholi’s fear, her first school day, and the contrast between home and her teacher",
+    "The teacher’s patient encouragement, the picture book, and the promise of learning, respect, and fluent speech",
+    "Read and Find Out: Bishamber’s proposal, the unequal match, and the family’s acceptance",
+    "The wedding demand for dowry, Bholi’s rejection of Bishamber, and her clear public voice",
+    "The return from “Bholi” to “Sulekha,” her decision to teach, and the teacher’s satisfaction",
+    "Glossary, Think about it, Talk about it, the Beti Bachao Beti Padhao poster task, and Suggested reading"
+  ],
+  "banned_topics": [
+    "The Necklace",
+    "The Book That Saved the Earth"
+  ],
+  "must_include_keywords": [
+    "Sulekha",
+    "Bholi",
+    "simpleton",
+    "Ramlal",
+    "Numberdar",
+    "smallpox",
+    "pock-marks",
+    "stammer",
+    "neglect",
+    "girls’ school",
+    "Tehsildar",
+    "Lakshmi",
+    "headmistress",
+    "teacher",
+    "soft and soothing voice",
+    "picture book",
+    "new hope",
+    "education",
+    "respect",
+    "Bishamber Nath",
+    "unequal match",
+    "dowry",
+    "five thousand rupees",
+    "turban",
+    "izzat",
+    "cold contempt",
+    "garland",
+    "sacred fire",
+    "clear loud voice",
+    "self-respect",
+    "teacher’s masterpiece",
+    "gender discrimination",
+    "Beti Bachao Beti Padhao",
+    "third-person narration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Bholi is sent to school because her parents value girls’ education.",
+      "correction": "Ramlal feels pressured by the Tehsildar, and his wife chooses Bholi because she thinks the girl is unlikely to marry and can be left to the teachers."
+    },
+    {
+      "claim": "Bholi rejects all marriage because she dislikes Bishamber’s age or limp.",
+      "correction": "She initially accepts the unequal match for family honour but rejects him when he humiliates her father and demands money after seeing her pock-marks."
+    },
+    {
+      "claim": "The teacher cures Bholi’s speech instantly.",
+      "correction": "The teacher begins a long process through kindness, daily attendance, books, practice, confidence, and education."
+    },
+    {
+      "claim": "Bholi is weak because she agrees to the proposal.",
+      "correction": "Her initial willingness reflects sacrifice for family honour; her final refusal shows mature judgement and self-respect."
+    },
+    {
+      "claim": "The final use of “Sulekha” is accidental.",
+      "correction": "The return to her real name marks the recovery of identity, intelligence, dignity, and agency hidden by the label “Bholi.”"
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions on Ramlal’s worry and the unusual reason Bholi is sent to school.",
+    "Use the second Read and Find Out set to compare Bholi’s first-day fear with the teacher’s treatment.",
+    "Use the third Read and Find Out set to explain why the proposal is accepted and why the wedding stops.",
+    "Use Think about it 2–4 to analyse the teacher’s role, the unequal match, and the significance of the name Sulekha.",
+    "Use Think about it 5 and Talk about it 1–2 to connect education with equal rights, social change, and the poster task."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–5, including a Beti Bachao Beti Padhao poster task, and Talk about it questions 1–3, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

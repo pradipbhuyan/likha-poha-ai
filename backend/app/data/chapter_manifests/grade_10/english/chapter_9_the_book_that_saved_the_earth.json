@@ -1,0 +1,91 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 9: The Book That Saved the Earth",
+  "central_question": "How do Think-Tank’s arrogance and repeated misreading of books turn harmless nursery rhymes into imagined threats that stop the Martian invasion of Earth?",
+  "in_scope_units": [
+    "Characters and Scene 1: the Historian, the twenty-fifth-century museum, the Era of the Book, and the failed Martian invasion of 2040",
+    "Mars Space Control: Think-Tank’s vanity, Noodle’s careful obedience, and the plan to invade Earth",
+    "Scene 2: the Martian crew in Centerville Public Library and their failure to identify books",
+    "Think-Tank’s guesses that books are hats, sandwiches, sound devices, and finally eye-communication devices",
+    "Noodle’s indirect corrections and the use of intelligence vitamins to decipher Mother Goose",
+    "The misinterpretation of “Mistress Mary,” “Hey Diddle Diddle,” and “Humpty Dumpty” as military threats",
+    "The cancelled invasion, evacuation of Mars, flight to Alpha Centauri, and the Historian’s account of later friendship under Noodle",
+    "Glossary, Think about it, Talk about it, and Suggested reading",
+    "Exclusion of the page 68 answers to questions from the preceding chapter, which are not part of this play"
+  ],
+  "banned_topics": [
+    "DNA fingerprinting",
+    "Honeybee navigation",
+    "Scientific explanation of raindrops",
+    "The Making of a Scientist"
+  ],
+  "must_include_keywords": [
+    "Historian",
+    "Think-Tank",
+    "Noodle",
+    "Captain Omega",
+    "Lieutenant Iota",
+    "Sergeant Oop",
+    "Mother Goose",
+    "Era of the Book",
+    "Martian invasion",
+    "2040",
+    "twenty-fifth century",
+    "Museum of Ancient History",
+    "historiscope",
+    "Mars Space Control",
+    "Centerville Public Library",
+    "books",
+    "sandwiches",
+    "communication device",
+    "eye communication",
+    "intelligence vitamins",
+    "nursery rhymes",
+    "Mistress Mary",
+    "Hey Diddle Diddle",
+    "Humpty Dumpty",
+    "balloon brain",
+    "Alpha Centauri",
+    "Marsopolis",
+    "satire",
+    "dramatic irony",
+    "stage directions",
+    "misinterpretation",
+    "arrogance",
+    "tact",
+    "books as companions"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mother Goose contains a real plan to attack Mars.",
+      "correction": "It contains nursery rhymes; Think-Tank’s ignorance and fear turn innocent images into imagined military information."
+    },
+    {
+      "claim": "Think-Tank correctly identifies books as communication devices from the beginning.",
+      "correction": "He first treats them as sandwiches and orders Oop to eat one, then calls them sound communication before Noodle guides him towards reading."
+    },
+    {
+      "claim": "Noodle openly tells Think-Tank that he is wrong.",
+      "correction": "He uses respectful, indirect suggestions so that Think-Tank can present each correction as his own idea."
+    },
+    {
+      "claim": "The Martians conquer Earth and later become friendly.",
+      "correction": "The invasion is cancelled; Think-Tank evacuates Mars, and peaceful contact develops centuries later after Noodle replaces him."
+    },
+    {
+      "claim": "The scientific answers printed after the play belong to Chapter 9.",
+      "correction": "The DNA, honeybee, and rain answers refer back to questions on page 38 from the previous chapter and are outside this play."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with Scene 1 Read and Find Out questions on the Era of the Book and the attempted invasion.",
+    "Use Scene 2 Read and Find Out to trace Think-Tank’s changing guesses about books.",
+    "Use Think about it 1–2 to analyse how Noodle corrects Think-Tank without offending him.",
+    "Use Talk about it 1 to compare the three nursery rhymes with Think-Tank’s false military interpretations.",
+    "Use Think about it 3–4 to discuss whether electronic media can replace books and why books are called companions."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The play ends with Think about it questions 1–4 and Talk about it questions 1–2, followed by Suggested reading; the later answers on page 68 belong to questions from the preceding chapter.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 1: A Triumph of Surgery",
+  "central_question": "How does sensible care, rather than indulgence or surgery, restore Tricki to health and expose the danger of misplaced affection?",
+  "in_scope_units": [
+    "Read and Find Out: Tricki’s unhealthy appearance, Mrs Pumphrey’s overfeeding, and Mr Herriot’s warning about diet and exercise",
+    "Tricki’s collapse, hospitalisation, and the exaggerated preparations made by Mrs Pumphrey’s household",
+    "Read and Find Out: treatment at the surgery through rest, water, ordinary food, exercise, and companionship",
+    "Tricki’s recovery, Mrs Pumphrey’s rich gifts, and the narrator’s comic temptation to keep him",
+    "Tricki’s energetic reunion with Mrs Pumphrey and the ironic title “A Triumph of Surgery”",
+    "Glossary vocabulary connected with illness, recovery, movement, and behaviour",
+    "Think about it: the narrator’s character, Tricki’s return home, and the story’s realism",
+    "Talk about it: harmful indulgence, parental parallels, and responsible intervention",
+    "Suggested reading connected with animal stories"
+  ],
+  "banned_topics": [
+    "The Thief’s Story",
+    "The Midnight Visitor"
+  ],
+  "must_include_keywords": [
+    "Tricki",
+    "Mrs Pumphrey",
+    "Mr Herriot",
+    "veterinary surgeon",
+    "pampered",
+    "overfed",
+    "greed",
+    "malnutrition",
+    "cream cakes",
+    "chocolates",
+    "exercise",
+    "strict diet",
+    "hospitalised",
+    "surgery",
+    "warm loose box",
+    "water",
+    "Joe the greyhound",
+    "Tristan",
+    "scrimmages",
+    "convalescing",
+    "fresh eggs",
+    "wine",
+    "brandy",
+    "lithe",
+    "hard-muscled",
+    "irony",
+    "first-person narration",
+    "common sense",
+    "tact",
+    "indulgence",
+    "recovery"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mr Herriot cures Tricki through an operation.",
+      "correction": "No operation is performed; Tricki recovers through controlled food, water, exercise, rest, and the company of other dogs."
+    },
+    {
+      "claim": "Tricki is ill because Mrs Pumphrey does not feed him enough.",
+      "correction": "He is ill because she overfeeds and pampers him while he gets too little exercise."
+    },
+    {
+      "claim": "The eggs, wine, and brandy are given to Tricki during treatment.",
+      "correction": "Mrs Pumphrey sends them for Tricki, but the narrator and his household consume them; Tricki receives no medicinal treatment."
+    },
+    {
+      "claim": "The title is a literal description of successful surgery.",
+      "correction": "The title is ironic because Mrs Pumphrey calls the recovery a triumph of surgery although no surgical procedure occurs."
+    },
+    {
+      "claim": "The narrator is cruel when he removes Tricki from home.",
+      "correction": "He acts firmly to save Tricki and treats him with practical care and affection."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions on Mrs Pumphrey’s worry, her attempts to help, and the identity of “I”.",
+    "Use Think about it 1 to analyse whether the veterinary surgeon is tactful and full of common sense.",
+    "Use the second Read and Find Out set to explain the narrator’s treatment and the temptation to keep Tricki.",
+    "Use Think about it 2 to infer whether Tricki is happy to return home and what may happen next.",
+    "Use Talk about it 1 and 4 to evaluate harmful indulgence and responsible action."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–3 and Talk about it questions 1–4, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

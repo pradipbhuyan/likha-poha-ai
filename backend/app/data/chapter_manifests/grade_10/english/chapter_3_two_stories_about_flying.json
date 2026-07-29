@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 3: Two Stories about Flying",
+  "central_question": "How do the two stories show individuals moving through fear and danger when circumstances force them to act or trust?",
+  "in_scope_units": [
+    "Before You Read: two different problems connected with flight",
+    "His First Flight: the young seagull’s fear and isolation on the ledge",
+    "The family’s training, threats, and the mother’s use of food",
+    "The seagull’s plunge, discovery of flight, landing, and celebration",
+    "Thinking about the Text, speaking, and writing tasks for His First Flight",
+    "The Black Aeroplane: the narrator’s night flight and decision to enter the storm",
+    "Instrument failure, appearance of the black aeroplane, and the rescue",
+    "The unexplained disappearance and open ending",
+    "Thinking about the Text for The Black Aeroplane",
+    "Thinking about Language: meanings of black, expressions with fly, and near-synonyms for flight",
+    "Writing and the chapter recap"
+  ],
+  "banned_topics": [
+    "How to Tell Wild Animals",
+    "The Ball Poem"
+  ],
+  "must_include_keywords": [
+    "young seagull",
+    "ledge",
+    "fear",
+    "first flight",
+    "hunger",
+    "mother seagull",
+    "piece of fish",
+    "plunge",
+    "soaring",
+    "banking",
+    "curveting",
+    "dog-fish",
+    "family encouragement",
+    "Dakota DS 088",
+    "Paris Control",
+    "storm clouds",
+    "black mountains",
+    "compass",
+    "radio",
+    "fuel tank",
+    "black aeroplane",
+    "runway",
+    "radar",
+    "mystery",
+    "suspense",
+    "first-person narrator",
+    "black in context",
+    "fly a flag",
+    "fly into a rage",
+    "fly high",
+    "fly the coop",
+    "swoop",
+    "glide",
+    "hover",
+    "soar"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The young seagull cannot fly because his wings are too weak.",
+      "correction": "His wings are capable of flight; fear makes him believe they will not support him."
+    },
+    {
+      "claim": "The mother accidentally drops the fish and the seagull falls.",
+      "correction": "She deliberately stops just beyond his reach, and hunger makes him dive toward the fish."
+    },
+    {
+      "claim": "The pilot enters the storm because Paris Control orders him to do so.",
+      "correction": "He chooses the risk himself because he wants to reach home and breakfast rather than return to Paris."
+    },
+    {
+      "claim": "The control centre confirms the identity of the black aeroplane.",
+      "correction": "The woman says no other aeroplane was flying and only the narrator’s Dakota appeared on radar."
+    },
+    {
+      "claim": "The chapter gives a definite supernatural explanation for the black aeroplane.",
+      "correction": "The ending remains unresolved and invites different interpretations supported by evidence."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use His First Flight, Thinking about the Text, Question 2, to explain how hunger overcomes fear.",
+    "Use His First Flight, Question 3, to analyse the parents’ mixture of threat, cajoling, and encouragement.",
+    "Use The Black Aeroplane, Thinking about the Text, Questions 1–2, to evaluate the pilot’s risky decision and experience in the storm.",
+    "Use The Black Aeroplane, Question 5, to construct a reasoned interpretation of the mysterious helper.",
+    "Use Thinking about Language I–III to analyse contextual meanings of black and expressions and synonyms connected with fly."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Each story is followed by Thinking about the Text, while the chapter also includes speaking, writing, and Thinking about Language I–III.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

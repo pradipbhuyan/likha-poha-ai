@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 9: The Proposal",
+  "central_question": "How does Chekhov use petty quarrels, exaggerated behaviour, and comic contradiction to expose marriage as an economic arrangement among proud and argumentative landowners?",
+  "in_scope_units": [
+    "Before You Read activity on meanings of proposal and the article on Russian wedding customs",
+    "Introduction to The Proposal as a one-act farce about wealthy families, estates, and a marriage that makes economic sense",
+    "Characters and opening scene: Lomov’s formal arrival, Chubukov’s suspicion, and the marriage request",
+    "Lomov’s private reasons for marriage and his interrupted attempt to propose to Natalya",
+    "The Oxen Meadows quarrel, escalation into family insults, and Lomov’s departure",
+    "Natalya’s discovery of the proposal and Chubukov’s effort to bring Lomov back",
+    "The argument over Guess and Squeezer, Lomov’s collapse, the rushed engagement, and the quarrelling conclusion",
+    "Thinking about the Text: sincerity, Natalya’s consent, insults, accusations, and character adjectives",
+    "Thinking about Language: Russian-sounding expressions, pronunciation, idioms, and reported speech",
+    "Speaking and dramatic work: anger management, script writing, qualities in a marriage partner, and romantic-comedy parallels",
+    "What You Can Do and Homophones: playwright identification and words with similar spelling or pronunciation but different meanings"
+  ],
+  "banned_topics": [
+    "The Constitution of India page that follows the chapter material",
+    "External Russian history or marriage law not provided in the chapter",
+    "Detailed biography of Anton Chekhov beyond the statements in the chapter"
+  ],
+  "must_include_keywords": [
+    "Anton Chekhov",
+    "one-act play",
+    "farce",
+    "marriage proposal",
+    "Russian wedding",
+    "wealthy families",
+    "economic sense",
+    "Ivan Vassilevitch Lomov",
+    "Stepan Stepanovitch Chubukov",
+    "Natalya Stepanovna",
+    "landowner",
+    "dress-jacket",
+    "white gloves",
+    "aside",
+    "palpitations",
+    "lovesick cat",
+    "Oxen Meadows",
+    "Burnt Marsh",
+    "principle",
+    "documents",
+    "landgrabber",
+    "pettifogger",
+    "Guess",
+    "Squeezer",
+    "overshot",
+    "pedigree",
+    "hunter",
+    "hysterics",
+    "champagne",
+    "stage directions",
+    "comic contradiction",
+    "reported speech",
+    "reporting clause",
+    "reported clause",
+    "anger management",
+    "marriage partner",
+    "homophones"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Chubukov first understands that Lomov has come to propose.",
+      "correction": "His aside says he suspects Lomov has come to borrow money and decides not to give him any."
+    },
+    {
+      "claim": "Lomov proposes because he is deeply in love with Natalya.",
+      "correction": "He lists practical reasons: his age, need for a quiet regular life, and Natalya’s qualities as a housekeeper, appearance, and education."
+    },
+    {
+      "claim": "Natalya knows about the proposal before the Oxen Meadows quarrel.",
+      "correction": "She learns only after Lomov has been driven out and immediately demands that he be brought back."
+    },
+    {
+      "claim": "The quarrel over Oxen Meadows is settled through evidence.",
+      "correction": "It escalates into insults and remains unresolved; Natalya temporarily says the Meadows are Lomov’s only to restart the proposal."
+    },
+    {
+      "claim": "The dog dispute ends when experts agree that one dog is better.",
+      "correction": "The argument grows more abusive, Lomov collapses, and even after the engagement Natalya and Lomov continue shouting “worse” and “better.”"
+    },
+    {
+      "claim": "The ending presents calm family bliss.",
+      "correction": "Chubukov calls it “a way to start your family bliss” while the newly engaged couple are still quarrelling, creating irony."
+    },
+    {
+      "claim": "Reported speech preserves every tense, pronoun, and time word unchanged.",
+      "correction": "The language section shows changes in reporting verbs, tense, pronouns, place and time expressions, and sentence order."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Thinking about the Text 1 to judge Chubukov’s sincerity from his aside and later insults.",
+    "Use Thinking about the Text 2 to evaluate the claim that Natalya is like a “lovesick cat.”",
+    "Use Thinking about the Text 3 to collect insults and build evidence-based character descriptions.",
+    "Use Thinking about Language II, Direct/Reported Speech Sets 1–5, to identify structural changes.",
+    "Use the Anger Management and marriage-partner speaking tasks to connect the farce’s quarrels with behaviour and values."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s exercises are under Thinking about the Text (Questions 1–3), Thinking about Language (Sections I–III, including reported speech), Speaking and group activities, What You Can Do, and the Homophones box.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

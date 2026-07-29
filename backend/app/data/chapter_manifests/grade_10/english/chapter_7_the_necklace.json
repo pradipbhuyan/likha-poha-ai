@@ -1,0 +1,86 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 7: The Necklace",
+  "central_question": "How do Matilda Loisel’s dissatisfaction, pride, and failure to speak honestly turn one evening of borrowed glamour into years of hardship and a final ironic revelation?",
+  "in_scope_units": [
+    "Read and Find Out: Matilda’s dissatisfaction with her modest life and her husband’s contrasting contentment and generosity",
+    "The invitation, the dress bought with four hundred francs, and Matilda’s continuing anxiety about jewellery",
+    "Read and Find Out: borrowing Mme Forestier’s necklace and Matilda’s triumph at the ball",
+    "The loss of the necklace, the search, the false explanation about the clasp, and the costly replacement",
+    "The Loisels’ ten years of labour and Matilda’s physical and social transformation",
+    "The meeting on the Champs-Elysees and the revelation that the original necklace was imitation jewellery",
+    "Glossary vocabulary related to distress, debt, money, and changed appearance",
+    "Think about it and Talk about it: cause, honesty, contentment, language, and alternative choices",
+    "Suggested reading connected with desire, sacrifice, and surprise endings"
+  ],
+  "banned_topics": [
+    "Bholi",
+    "The Book That Saved the Earth"
+  ],
+  "must_include_keywords": [
+    "Matilda Loisel",
+    "M. Loisel",
+    "Mme Forestier",
+    "dissatisfaction",
+    "luxury",
+    "poverty",
+    "invitation",
+    "Minister’s ball",
+    "four hundred francs",
+    "dress",
+    "natural flowers",
+    "diamond necklace",
+    "admiration",
+    "modest wraps",
+    "lost necklace",
+    "police",
+    "cab offices",
+    "advertisement",
+    "replacement",
+    "thirty-six thousand francs",
+    "usurers",
+    "debt",
+    "attic",
+    "ten years",
+    "Champs-Elysees",
+    "false necklace",
+    "irony",
+    "pride",
+    "honesty",
+    "contentment",
+    "third-person narration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mme Forestier deliberately lends Matilda a false necklace to deceive her.",
+      "correction": "There is no evidence of deliberate deception; Matilda chooses it, loses it, and never tells Mme Forestier before buying a replacement."
+    },
+    {
+      "claim": "M. Loisel causes the family’s ruin by obtaining the invitation.",
+      "correction": "The invitation creates the occasion, but Matilda’s dissatisfaction, the loss, and the decision to hide the truth and replace the necklace create the debt."
+    },
+    {
+      "claim": "The borrowed necklace is worth thirty-six thousand francs.",
+      "correction": "The replacement costs thirty-six thousand francs; the original imitation necklace is worth no more than five hundred francs."
+    },
+    {
+      "claim": "Matilda refuses to work after the loss.",
+      "correction": "She accepts the hard life fully, performs heavy household labour, bargains for necessities, and helps repay the debt."
+    },
+    {
+      "claim": "The ending is only about bad luck.",
+      "correction": "Chance matters, but pride, fear of confession, dissatisfaction, and secrecy shape the consequences and create the irony."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions comparing Mme Loisel with her husband.",
+    "Use the second Read and Find Out set to explain the jewellery problem and the borrowed necklace.",
+    "Use the third Read and Find Out set to trace the search and replacement decisions.",
+    "Use Think about it 1–3 to analyse how the necklace changes their lives, the cause of Matilda’s ruin, and the possible effect of confession.",
+    "Use Talk about it 2–3 to evaluate honesty and contentment as central themes."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–4 and Talk about it prompts 1–3, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

@@ -1,0 +1,83 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 2: The Thief's Story",
+  "central_question": "How do Anil’s trust, kindness, and offer of education awaken Hari Singh’s conscience and begin his moral transformation?",
+  "in_scope_units": [
+    "Read and Find Out: Hari Singh’s identity, experience as a thief, and first approach to Anil",
+    "Life with Anil: food, shelter, cooking, shopping, and the promise of education",
+    "Anil’s irregular income and the trust that makes stealing emotionally difficult",
+    "Read and Find Out: the theft, the station, Hari’s reflections on different victims, and the loss of trust",
+    "Hari’s return, the wet notes, Anil’s silent forgiveness, and the promise to write sentences",
+    "Glossary vocabulary describing praise, behaviour, appearance, and expression",
+    "Think about it: education, reform, trust, and Anil’s response",
+    "Talk about it: realism, setting, language, poverty, and circumstances behind crime",
+    "Suggested reading connected with crime and moral choice"
+  ],
+  "banned_topics": [
+    "A Triumph of Surgery",
+    "The Midnight Visitor"
+  ],
+  "must_include_keywords": [
+    "Hari Singh",
+    "Anil",
+    "first-person narrator",
+    "thief",
+    "flattery",
+    "appealing smile",
+    "wrestling match",
+    "false name",
+    "Jumna Sweet Shop",
+    "balcony",
+    "cooking",
+    "education",
+    "whole sentences",
+    "shopping profit",
+    "trust",
+    "key to the door",
+    "six hundred rupees",
+    "Lucknow Express",
+    "deserted platform",
+    "loss of trust",
+    "maidan",
+    "rain",
+    "wet note",
+    "forgiveness",
+    "reform",
+    "conscience",
+    "irony",
+    "open ending"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Hari Singh is the boy’s real name.",
+      "correction": "He admits that “Hari Singh” is a false name and that he takes a new name every month."
+    },
+    {
+      "claim": "Anil never realises that the money was stolen.",
+      "correction": "The wet fifty-rupee note and his silent behaviour show that he knows Hari stole and returned the money."
+    },
+    {
+      "claim": "Hari returns only because he is afraid of the police.",
+      "correction": "He returns mainly because he values Anil’s trust and the chance to become educated and respected."
+    },
+    {
+      "claim": "Anil pays Hari a regular salary from the beginning.",
+      "correction": "At first he offers food and shelter; Hari also makes a small dishonest profit on shopping, and regular payment is promised only at the end."
+    },
+    {
+      "claim": "Anil punishes Hari after the theft.",
+      "correction": "He neither exposes nor hands him to the police; instead, he offers a wet note and resumes the lesson in writing sentences."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out set on the narrator, his skill as a thief, and what he receives from Anil.",
+    "Use the second Read and Find Out set to analyse Hari’s expectations about victims and whether Anil knows about the theft.",
+    "Use Think about it 1 to trace Hari’s changing response to education and explain his return.",
+    "Use Think about it 2 to compare Anil with employers who might call the police.",
+    "Use Talk about it 2–4 to discuss Anil as a struggling writer, Hari’s circumstances, and clues to the setting."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–2 and Talk about it questions 1–4, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

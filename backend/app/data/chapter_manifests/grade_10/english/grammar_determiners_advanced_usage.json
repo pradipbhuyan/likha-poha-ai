@@ -1,0 +1,64 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Determiners (Advanced Usage)",
+  "central_question": "How can a student choose determiners and articles that express the intended quantity, definiteness, negation, and general meaning accurately?",
+  "in_scope_units": [
+    "Positive and negative quantity with a few/few and a little/little",
+    "Use of the with superlatives, ordinal numbers, and unique nouns",
+    "Equivalent negative patterns with no and not any",
+    "Zero article with general plural and abstract or uncountable nouns"
+  ],
+  "banned_topics": [
+    "Verb tense formation",
+    "Reported speech",
+    "Voice transformation"
+  ],
+  "must_include_keywords": [
+    "determiner",
+    "a few",
+    "few",
+    "a little",
+    "little",
+    "positive sense",
+    "negative sense",
+    "countable noun",
+    "uncountable noun",
+    "the",
+    "superlative",
+    "ordinal number",
+    "unique noun",
+    "no",
+    "not any",
+    "negative verb",
+    "zero article",
+    "abstract noun",
+    "general plural noun",
+    "honesty",
+    "dogs"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Few and a few have the same meaning.",
+      "correction": "A few has a positive sense meaning some, while few has a negative sense meaning almost none or not enough."
+    },
+    {
+      "claim": "Little can be used with plural countable nouns such as friends.",
+      "correction": "Use few/a few with plural countable nouns and little/a little with uncountable nouns."
+    },
+    {
+      "claim": "Abstract nouns always require the article the.",
+      "correction": "General abstract nouns often take the zero article, as in 'Honesty is important.'"
+    }
+  ],
+  "recommended_example_progression": [
+    "Choose between a few and few from intended meaning",
+    "Choose between a little and little with an uncountable noun",
+    "Insert the before a superlative, ordinal, or unique noun",
+    "Transform no into not any without changing meaning",
+    "Remove an unnecessary article before a general abstract noun"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, omission, editing, and sentence rewriting with suitable determiners.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

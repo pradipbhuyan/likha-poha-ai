@@ -1,0 +1,84 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 5: Footprints without Feet",
+  "central_question": "What happens when Griffin’s brilliant scientific discovery is controlled by anger, selfishness, and contempt for law rather than responsibility?",
+  "in_scope_units": [
+    "Read and Find Out: muddy footprints, invisibility, Griffin’s experiments, arson, and homelessness",
+    "Griffin’s theft and escape from the London store and his disguise from the theatrical shop in Drury Lane",
+    "Read and Find Out: Griffin’s arrival at Iping, Mrs Hall’s judgement, and his claim of an injured face",
+    "The invisible burglary at the clergyman’s study and the apparently haunted furniture at the inn",
+    "Suspicion, Mrs Hall’s confrontation, Griffin’s revelation, Mr Jaffers’s attempted arrest, and Griffin’s escape",
+    "Think about it: Griffin as a lawless person and as a scientist",
+    "Talk about it: advantages and dangers of invisibility and questions raised by science fiction",
+    "Suggested reading connected with invisibility and speculative science"
+  ],
+  "banned_topics": [
+    "The Making of a Scientist",
+    "The Necklace"
+  ],
+  "must_include_keywords": [
+    "Griffin",
+    "invisible man",
+    "muddy footprints",
+    "transparent",
+    "rare drugs",
+    "solid as glass",
+    "lawless",
+    "landlord",
+    "arson",
+    "homeless wanderer",
+    "London store",
+    "warm clothes",
+    "theatrical company",
+    "Drury Lane",
+    "bandages",
+    "dark glasses",
+    "false nose",
+    "Mrs Hall",
+    "Iping",
+    "clergyman",
+    "housekeeping money",
+    "haunted furniture",
+    "witchcraft",
+    "Mr Jaffers",
+    "constable",
+    "headless man",
+    "invisibility",
+    "science fiction",
+    "misuse of science",
+    "third-person narration"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Griffin becomes physically insubstantial.",
+      "correction": "His body becomes transparent but remains solid, compared in the text to transparent and solid glass."
+    },
+    {
+      "claim": "The furniture at the inn is truly haunted.",
+      "correction": "Invisible Griffin moves the hat and chair to frighten Mrs Hall and her husband."
+    },
+    {
+      "claim": "Griffin uses invisibility mainly for scientific research.",
+      "correction": "After the discovery he repeatedly uses it for revenge, theft, assault, and escape."
+    },
+    {
+      "claim": "Mrs Hall knows from the beginning that Griffin is invisible.",
+      "correction": "She believes his face was injured and later thinks spirits or witchcraft explain the strange events."
+    },
+    {
+      "claim": "Mr Jaffers gives up because Griffin has no visible head.",
+      "correction": "He follows the warrant and tries to arrest Griffin with or without a head, but Griffin becomes fully invisible and knocks him unconscious."
+    }
+  ],
+  "recommended_example_progression": [
+    "Begin with the first Read and Find Out questions on how the invisible man becomes visible and why he is wandering.",
+    "Use the second Read and Find Out set to explain Mrs Hall’s judgement, the study burglary, and events at the inn.",
+    "Use Think about it 1 to collect evidence that Griffin is lawless.",
+    "Use Think about it 2 to distinguish scientific brilliance from moral responsibility.",
+    "Use Talk about it 1 and 3 to evaluate invisibility as power and the chapter’s science-fiction question."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Think about it questions 1–2 and Talk about it questions 1–3, followed by Suggested reading.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

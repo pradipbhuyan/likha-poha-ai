@@ -1,0 +1,66 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Reported Speech (All Sentence Types)",
+  "central_question": "How can a student convert mixed direct speech into consistent reported speech while preserving sentence type, meaning, pronouns, tense, and modal force?",
+  "in_scope_units": [
+    "Mixed-dialogue conversion across speakers and sentence types",
+    "Reporting questions that also function as polite requests",
+    "Reporting conditional sentences with consistent backshift",
+    "Reporting modals of deduction without unnecessary change"
+  ],
+  "banned_topics": [
+    "Independent essay writing",
+    "Active and passive voice rules unrelated to reporting",
+    "Determiner choice"
+  ],
+  "must_include_keywords": [
+    "reported speech",
+    "direct speech",
+    "reporting verb",
+    "backshift",
+    "pronoun change",
+    "time change",
+    "place change",
+    "statement",
+    "question",
+    "command",
+    "request",
+    "exclamation",
+    "mixed dialogue",
+    "if",
+    "whether",
+    "to-infinitive",
+    "conditional sentence",
+    "would",
+    "modal of deduction",
+    "must",
+    "might",
+    "could",
+    "consistent tense frame"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Each sentence in a reported passage can use a different tense pattern without regard to the reporting verb.",
+      "correction": "Once a past reporting frame is established, tense and pronoun changes must remain consistent throughout the passage unless meaning clearly requires otherwise."
+    },
+    {
+      "claim": "A command is reported like an ordinary statement.",
+      "correction": "An imperative is normally reported with an appropriate reporting verb followed by object + to-infinitive or not to-infinitive."
+    },
+    {
+      "claim": "Every must changes to had to in reported speech.",
+      "correction": "Must expressing pure deduction usually remains must; only must expressing obligation normally changes to had to."
+    }
+  ],
+  "recommended_example_progression": [
+    "Convert a statement and request from a short dialogue",
+    "Report a polite question-request using asked to or asked if",
+    "Backshift both clauses of a conditional sentence",
+    "Keep must unchanged when it expresses deduction",
+    "Convert a mixed passage containing a statement, command, and exclamation"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice presents dialogue completion, mixed-sentence reporting, paragraph conversion, and error correction.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

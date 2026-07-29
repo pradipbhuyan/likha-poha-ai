@@ -1,0 +1,67 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Clauses and Sentence Transformation",
+  "central_question": "How can a student change the grammatical form of a sentence while preserving its original meaning and logical relationship?",
+  "in_scope_units": [
+    "Combining simple sentences into complex sentences using clauses",
+    "Combining simple sentences into compound sentences using coordinating conjunctions",
+    "Reducing a complex sentence to a simple sentence with a phrase",
+    "Transforming degrees of comparison without changing meaning",
+    "Transforming assertive sentences into interrogative or exclamatory forms"
+  ],
+  "banned_topics": [
+    "Reported speech conversion",
+    "Active and passive voice",
+    "Tense backshift"
+  ],
+  "must_include_keywords": [
+    "clause",
+    "simple sentence",
+    "complex sentence",
+    "compound sentence",
+    "adverb clause",
+    "reason",
+    "coordinating conjunction",
+    "and",
+    "but",
+    "or",
+    "so",
+    "yet",
+    "phrase",
+    "in spite of",
+    "degree of comparison",
+    "positive degree",
+    "comparative degree",
+    "superlative degree",
+    "any other",
+    "assertive sentence",
+    "interrogative sentence",
+    "exclamatory sentence",
+    "same meaning"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any conjunction can be used when combining sentences.",
+      "correction": "The conjunction or clause marker must preserve the original logical relationship, such as reason, contrast, choice, or result."
+    },
+    {
+      "claim": "A clause can be reduced to any phrase as long as the sentence is shorter.",
+      "correction": "The reduced phrase must preserve the same subject relationship and logical meaning as the original clause."
+    },
+    {
+      "claim": "Ravi is taller than any boy in the class is the exact comparative form of the superlative.",
+      "correction": "The standard form is 'Ravi is taller than any other boy in the class.'"
+    }
+  ],
+  "recommended_example_progression": [
+    "Combine two simple sentences using an adverb clause of reason",
+    "Combine two simple sentences with a coordinating conjunction",
+    "Reduce a contrast clause to an in spite of phrase",
+    "Transform positive degree into comparative and superlative",
+    "Transform an assertive sentence into an exclamatory sentence"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes sentence combining, rewriting without changing meaning, degree transformation, and assertive-interrogative-exclamatory conversion.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

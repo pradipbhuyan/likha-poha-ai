@@ -1,0 +1,65 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Modals (Advanced Usage)",
+  "central_question": "How can a student use perfect modal forms to express past deduction, possibility, regret, unnecessary action, obligation, and reported meaning accurately?",
+  "in_scope_units": [
+    "Past deduction and probability with must have, might have, could have, and can't have",
+    "Regret or criticism with should have and ought to have",
+    "Unnecessary completed action with needn't have",
+    "Modal changes in reported speech"
+  ],
+  "banned_topics": [
+    "Complete tense system unrelated to modal meaning",
+    "Active and passive voice transformations",
+    "Determiners and articles"
+  ],
+  "must_include_keywords": [
+    "modal verb",
+    "past participle",
+    "must have",
+    "might have",
+    "could have",
+    "can't have",
+    "deduction",
+    "probability",
+    "certainty",
+    "possibility",
+    "should have",
+    "ought to have",
+    "regret",
+    "criticism",
+    "needn't have",
+    "unnecessary action",
+    "reported speech",
+    "would",
+    "could",
+    "might",
+    "had to",
+    "past obligation"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Must have and had to both express past obligation.",
+      "correction": "Must have + past participle expresses deduction about the past, while had to expresses past obligation."
+    },
+    {
+      "claim": "After should have, the simple past form is used.",
+      "correction": "Perfect modals take have + past participle, so the correct form is should have gone, not should have went."
+    },
+    {
+      "claim": "Needn't have means the action was not done.",
+      "correction": "Needn't have + past participle means the action was actually done but was unnecessary."
+    }
+  ],
+  "recommended_example_progression": [
+    "Choose must have, might have, or can't have from evidence",
+    "Correct a should have + past participle error",
+    "Rewrite an unnecessary completed action using needn't have",
+    "Convert modal verbs in reported speech",
+    "Distinguish deduction from past obligation"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, contextual modal choice, reported-speech transformation, and error correction.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

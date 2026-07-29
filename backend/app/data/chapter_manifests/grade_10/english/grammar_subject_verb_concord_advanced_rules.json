@@ -1,0 +1,62 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Subject-Verb Concord (Advanced Rules)",
+  "central_question": "How can a student choose a verb that agrees with the true grammatical number and meaning of an advanced subject expression?",
+  "in_scope_units": [
+    "Plural-looking subjects that are singular in meaning",
+    "Agreement with a number of and the number of",
+    "Agreement with fractions and percentages followed by of",
+    "Agreement inside relative pronoun clauses"
+  ],
+  "banned_topics": [
+    "Tense sequencing",
+    "Reported speech",
+    "Active and passive voice"
+  ],
+  "must_include_keywords": [
+    "subject-verb concord",
+    "singular verb",
+    "plural verb",
+    "singular in meaning",
+    "news",
+    "mathematics",
+    "physics",
+    "athletics",
+    "a number of",
+    "the number of",
+    "fraction",
+    "percentage",
+    "of-phrase",
+    "relative pronoun",
+    "relative clause",
+    "antecedent",
+    "who",
+    "students",
+    "agreement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Any noun ending in -s must take a plural verb.",
+      "correction": "Subjects such as news, mathematics, physics, and athletics are singular in meaning and take singular verbs."
+    },
+    {
+      "claim": "A number of and the number of take the same verb.",
+      "correction": "A number of + plural noun takes a plural verb, while the number of + plural noun takes a singular verb."
+    },
+    {
+      "claim": "A percentage always takes a singular verb.",
+      "correction": "With fractions and percentages, the verb agrees with the noun that follows of."
+    }
+  ],
+  "recommended_example_progression": [
+    "Correct a plural-looking singular subject",
+    "Choose verbs after a number of and the number of",
+    "Complete fraction and percentage sentences",
+    "Correct agreement in a relative clause",
+    "Solve a mixed concord error-correction item"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes gap filling, editing, sentence correction, and verb-choice questions in context.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

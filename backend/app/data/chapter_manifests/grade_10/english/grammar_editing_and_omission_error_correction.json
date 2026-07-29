@@ -1,0 +1,72 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Editing and Omission (Error Correction)",
+  "central_question": "How can a student identify one wrong or missing word per line and present the exact correction in the standard CBSE editing or omission format?",
+  "in_scope_units": [
+    "Editing passages with one incorrect grammatical word per line",
+    "Omission passages with one missing word at a marked position",
+    "Standard incorrect-word or caret-based answer format",
+    "Common omitted categories: articles, prepositions, auxiliaries, and conjunctions"
+  ],
+  "banned_topics": [
+    "Full paragraph rewriting as the primary answer format",
+    "Literary interpretation",
+    "Creative writing"
+  ],
+  "must_include_keywords": [
+    "editing",
+    "omission",
+    "incorrect word",
+    "correct word",
+    "missing word",
+    "caret",
+    "one error per line",
+    "tense",
+    "article",
+    "preposition",
+    "subject-verb agreement",
+    "degree of comparison",
+    "modal",
+    "auxiliary verb",
+    "conjunction",
+    "a",
+    "an",
+    "the",
+    "in",
+    "on",
+    "at",
+    "to",
+    "is",
+    "am",
+    "are",
+    "and",
+    "but",
+    "because",
+    "CBSE answer format"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Editing and omission are the same question type.",
+      "correction": "Editing replaces a wrong word; omission inserts a missing word at a specific position."
+    },
+    {
+      "claim": "A full corrected paragraph is the required answer.",
+      "correction": "The standard CBSE response records the incorrect or missing word and the correction, usually one entry per line."
+    },
+    {
+      "claim": "The position of a missing word does not matter.",
+      "correction": "In omission, the caret position is essential because it shows exactly where the missing word must be inserted."
+    }
+  ],
+  "recommended_example_progression": [
+    "Replace one wrong tense form in an editing line",
+    "Replace a wrong article or preposition",
+    "Insert a missing preposition at a caret",
+    "Insert a missing auxiliary or conjunction",
+    "Complete a mixed mini-passage using the standard CBSE answer format"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice gives a short passage with one error or omission per line and expects a word-level answer in a table or correction format.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

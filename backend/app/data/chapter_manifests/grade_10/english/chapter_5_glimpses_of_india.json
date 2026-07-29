@@ -1,0 +1,94 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 5: Glimpses of India",
+  "central_question": "How do three contrasting accounts of Goa, Coorg, and Assam reveal India’s cultural traditions, landscapes, livelihoods, and regional diversity?",
+  "in_scope_units": [
+    "Before You Read activity on images, travel, colonial influences, tea, and coffee",
+    "A Baker from Goa: Portuguese influence and the continuing pader tradition",
+    "The baker’s rounds, children’s memories, bread varieties, dress, accounts, and prosperity",
+    "Comprehension, tone, descriptive writing, comparison of texts, and craft-based discussion",
+    "Coorg: location, climate, rainforests, coffee, and landscape",
+    "Kodavu origins, dress, hospitality, martial tradition, and the Coorg Regiment",
+    "The Kaveri, wildlife, adventure sports, Brahmagiri, Nisargadhama, Bylakuppe, and travel fact file",
+    "Coorg comprehension, phrase work, and collocations",
+    "Tea from Assam: train journey, tea landscape, legends, history, and the Dhekiabari estate",
+    "Word building, -ing and -ed adjectives, role play, and advertisement writing",
+    "Chapter recap on India’s regional variety"
+  ],
+  "banned_topics": [
+    "The Trees"
+  ],
+  "must_include_keywords": [
+    "Goa",
+    "Portuguese",
+    "pader",
+    "bamboo staff",
+    "jhang jhang",
+    "bread-bangles",
+    "bol",
+    "bolinhas",
+    "kabai",
+    "nostalgia",
+    "Coorg",
+    "Kodagu",
+    "coffee plantations",
+    "evergreen rainforests",
+    "Kodavus",
+    "kuppia",
+    "Kaveri",
+    "Coorg Regiment",
+    "General Cariappa",
+    "hospitality",
+    "rafting",
+    "rappelling",
+    "Brahmagiri hills",
+    "Nisargadhama",
+    "Bylakuppe",
+    "collocations",
+    "Assam",
+    "Pranjol",
+    "Rajvir",
+    "tea country",
+    "Chinese legend",
+    "Bodhidharma",
+    "Dhekiabari Tea Estate",
+    "second flush",
+    "tea pluckers",
+    "word building",
+    "-ing adjectives",
+    "-ed adjectives"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Goan bakers disappeared when Portuguese rule ended.",
+      "correction": "The makers and their family profession continue; the traditional bakers are still known as paders."
+    },
+    {
+      "claim": "Children ran to the baker mainly to buy ordinary loaves for the household.",
+      "correction": "The household servant bought the loaves, while the children eagerly wanted bread-bangles and special sweet bread."
+    },
+    {
+      "claim": "The chapter states with certainty that Kodavus are of Greek origin.",
+      "correction": "It presents Greek and Arabic descent as possibilities supported by stories and cultural resemblance, not as certain fact."
+    },
+    {
+      "claim": "Coorg is described only as a quiet coffee-growing region.",
+      "correction": "It is also presented through martial traditions, wildlife, hospitality, adventure sports, and cultural diversity."
+    },
+    {
+      "claim": "The text identifies one proven discoverer of tea.",
+      "correction": "Rajvir says no one really knows who discovered tea and recounts Chinese and Indian legends."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use A Baker from Goa, Oral Comprehension Checks and Thinking about the Text, Questions 1–3, to establish tradition, importance, and tone.",
+    "Use the A Baker from Goa writing comparison to distinguish a personal pen-portrait from an impersonal factual account.",
+    "Use Coorg, Thinking about the Text, Questions 1–4, to organise details on people, crops, sports, animals, and travel.",
+    "Use the Coorg collocation exercise to connect descriptive vocabulary with natural word partnerships.",
+    "Use Tea from Assam and its language tasks to analyse legends, plantation imagery, word building, and -ing/-ed adjectives."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The three sections include their own comprehension and language tasks, followed by writing, group discussion, role play, advertisement work, and What We Have Done.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

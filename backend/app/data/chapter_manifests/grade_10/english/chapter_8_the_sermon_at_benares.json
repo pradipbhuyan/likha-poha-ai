@@ -1,0 +1,99 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 8: The Sermon at Benares",
+  "central_question": "How does the Buddha guide Kisa Gotami from private grief toward the understanding that death is universal and peace requires release from lamentation and selfish attachment?",
+  "in_scope_units": [
+    "Before You Read activities on the meaning of sermon and key vocabulary",
+    "Biographical introduction: Siddhartha Gautama’s protected youth, encounter with suffering, search for enlightenment, and first sermon at Benares",
+    "Kisa Gotami’s grief, her search for medicine, and the Buddha’s mustard-seed task",
+    "Kisa Gotami’s discovery that every household has experienced death and her reflection on the city lights",
+    "The Buddha’s sermon on mortality, grief, lamentation, composure, and peace of mind",
+    "Thinking about the Text: Kisa’s two searches, changed understanding, and “selfishness” in grief",
+    "Thinking about Language: old-fashioned expressions and the use of semicolons and dashes to combine clauses",
+    "Speaking: comparison of the sermon with A Guide to Coping with the Death of a Loved One and Good Grief",
+    "Writing: teaching difficult ideas, helping in difficult times, and thinking of oneself among billions",
+    "What You Can Do: the Joy and Sorrow extract and Tagore’s lines on grief and thankfulness"
+  ],
+  "banned_topics": [
+    "The poem “For Anne Gregory,” which begins after this chapter",
+    "Additional Buddhist doctrines or historical details not included in the supplied text",
+    "Medical or psychological advice presented as a substitute for the chapter’s texts"
+  ],
+  "must_include_keywords": [
+    "sermon",
+    "Siddhartha Gautama",
+    "Gautama Buddha",
+    "enlightenment",
+    "Bodhi Tree",
+    "Benares",
+    "River Ganges",
+    "Sakyamuni",
+    "Kisa Gotami",
+    "only son",
+    "mustard-seed",
+    "house to house",
+    "death is common to all",
+    "valley of desolation",
+    "mortals",
+    "ripe fruits",
+    "earthen vessels",
+    "death and decay",
+    "lamentation",
+    "composed",
+    "peace of mind",
+    "selfishness in grief",
+    "old-fashioned style",
+    "semicolon",
+    "dash",
+    "grief",
+    "sadness",
+    "anger",
+    "guilt and self-reproach",
+    "anxiety",
+    "loneliness",
+    "fatigue",
+    "disbelief",
+    "Good Grief",
+    "solace",
+    "what we do for one another",
+    "Joy and Sorrow",
+    "thankfulness"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "The Buddha intended the mustard seed to work as medicine.",
+      "correction": "He asked for seed from a house untouched by death so that Kisa would discover through experience that death is common to all."
+    },
+    {
+      "claim": "Kisa failed because nobody was willing to give her mustard seed.",
+      "correction": "People readily offered seed, but no household could satisfy the condition that no child, husband, parent, or friend had died there."
+    },
+    {
+      "claim": "The sermon says that grief is shameful and should never be felt.",
+      "correction": "It recognises suffering but teaches that endless weeping and lamentation cannot save the dead or bring peace."
+    },
+    {
+      "claim": "Kisa’s “selfishness” means she deliberately harmed others.",
+      "correction": "She realises that her grief had made her see her loss as uniquely unbearable before recognising the universal experience of death."
+    },
+    {
+      "claim": "Buddha delivered this sermon before seeking enlightenment.",
+      "correction": "The text says he became enlightened under the peepal tree, became known as the Buddha, and then preached his first sermon at Benares."
+    },
+    {
+      "claim": "The two modern grief texts say everyone must mourn in the same fixed stages.",
+      "correction": "The guide describes many common feelings, while Good Grief explicitly says there is no set form and no single “right” way to express grief."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Thinking about the Text 1 and 2 to compare Kisa’s first and second journeys from house to house.",
+    "Use Thinking about the Text 3 and 4 to explain how the Buddha changes her understanding through experience.",
+    "Use Thinking about the Text 5 to examine the phrase “selfish in her grief.”",
+    "Use Thinking about Language I to rephrase the old-fashioned expressions in current English.",
+    "Use Thinking about Language II and the Speaking texts to compare rhythm, punctuation, and different approaches to grief."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s work appears under Thinking about the Text (Questions 1–5), Thinking about Language (Sections I–II), Speaking with two modern grief texts, Writing, and What You Can Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

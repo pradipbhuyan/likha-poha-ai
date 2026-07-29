@@ -1,0 +1,92 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 6: Mijbil the Otter",
+  "central_question": "How does Maxwell’s close observation of Mijbil reveal the intelligence, playfulness, affection, and special needs of an unusual animal companion?",
+  "in_scope_units": [
+    "Before You Read activities on responsible pet ownership and the special arrangements needed for an otter moving from Iraq to London",
+    "Section I: Maxwell’s decision to keep an otter, his stay in Basra, and the unexpected arrival of the animal",
+    "Section II: Mijbil’s appearance, scientific naming, growing trust, delight in water, and inventive play",
+    "Section III: the difficult arrangements for transporting Mijbil and the comic confusion inside the aircraft",
+    "Section IV: Mijbil’s games and compulsive habits in London and the Londoners’ comic guesses about his identity",
+    "Thinking about the Text: characterisation of Mij, facts about otters, Maxwell’s viewpoint, and close observation of animal behaviour",
+    "Thinking about Language: would and used to, noun modifiers, and quantity expressions for uncountable nouns",
+    "Speaking and Writing: expressing feelings through gestures and writing an observed description of a loved person or animal",
+    "What You Can Do: reflection on wildlife laws, animal transport, and the ethics of keeping wild animals as pets"
+  ],
+  "banned_topics": [
+    "The poem “Fog” by Carl Sandburg, which begins after the prose chapter",
+    "Detailed external zoology or conservation facts not stated in the chapter",
+    "Invented present-day airline or wildlife laws"
+  ],
+  "must_include_keywords": [
+    "Gavin Maxwell",
+    "Camusfearna",
+    "Basra",
+    "Tigris marshes",
+    "Consulate-General",
+    "Mijbil",
+    "Maxwell’s otter",
+    "Lutrogale perspicillata maxwelli",
+    "aloof and indifferent",
+    "apathy",
+    "thraldom",
+    "otter fixation",
+    "mud armour",
+    "water",
+    "chromium taps",
+    "rubber ball",
+    "marbles",
+    "body-belt",
+    "airline box",
+    "air hostess",
+    "nuzzle",
+    "ping-pong ball",
+    "suitcase game",
+    "compulsive habits",
+    "Mustellines",
+    "barrage of conjectural questions",
+    "would",
+    "used to",
+    "noun modifiers",
+    "a cloud of dust",
+    "responsible pet ownership",
+    "wild animals as pets"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Mijbil was hostile when he first came out of the sack.",
+      "correction": "For the first twenty-four hours he was “neither hostile nor friendly”; he was “aloof and indifferent.”"
+    },
+    {
+      "claim": "Maxwell bought Mijbil directly from a pet shop in Basra.",
+      "correction": "Maxwell’s friend arranged for two Arabs to bring the otter in a sack with a note saying, “Here is your otter...”"
+    },
+    {
+      "claim": "Mijbil was an already well-known species.",
+      "correction": "The text says his race was previously unknown to science and was later named Lutrogale perspicillata maxwelli, or Maxwell’s otter."
+    },
+    {
+      "claim": "The air hostess was angry and forced Mij to remain in the box.",
+      "correction": "She kindly suggested that Maxwell might prefer to keep the pet on his knee, which is why he calls her “the very queen of her kind.”"
+    },
+    {
+      "claim": "The Londoners immediately recognised Mij as an otter.",
+      "correction": "They guessed many animals, including a baby seal, squirrel, walrus, hippo, beaver, bear cub, leopard, and brontosaur."
+    },
+    {
+      "claim": "Would and used to can always be used in exactly the same way.",
+      "correction": "Both can describe repeated past actions, but the chapter says only used to is used for past states or situations with verbs such as be, have, and believe."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Before You Read Activity 1 to identify the responsibilities involved in keeping a pet.",
+    "Use Oral Comprehension Check I.6 to trace Mijbil’s delight in water and his attempt to operate the tap.",
+    "Use Oral Comprehension Check III.4 to explain why Maxwell admires the air hostess.",
+    "Use Thinking about the Text 1 to build a character sketch of Mij from his actions.",
+    "Use Thinking about Language I and II to distinguish would from used to and to classify noun modifiers."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter’s exercises appear under Oral Comprehension Check, Thinking about the Text (Questions 1–5), Thinking about Language (Sections I–III), Speaking, Writing, and What You Can Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

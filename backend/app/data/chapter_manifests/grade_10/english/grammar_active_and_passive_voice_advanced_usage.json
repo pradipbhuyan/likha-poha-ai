@@ -1,0 +1,65 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Grammar: Active and Passive Voice (Advanced Usage)",
+  "central_question": "How can a student transform advanced active structures into accurate passive forms while preserving tense, objects, command force, infinitives, and reporting meaning?",
+  "in_scope_units": [
+    "Past modal passive with modal + have been + past participle",
+    "Passive sentences with two objects",
+    "Passive imperative with Let + object + be + past participle",
+    "Passive of make followed by an infinitive",
+    "Formal passive structures with reporting verbs"
+  ],
+  "banned_topics": [
+    "Reported-speech backshift unrelated to passive reporting structures",
+    "Determiners",
+    "Degrees of comparison"
+  ],
+  "must_include_keywords": [
+    "active voice",
+    "passive voice",
+    "modal",
+    "have been",
+    "past participle",
+    "direct object",
+    "indirect object",
+    "two objects",
+    "by-phrase",
+    "to",
+    "imperative",
+    "Let",
+    "be",
+    "make",
+    "made to",
+    "infinitive",
+    "reporting verb",
+    "It is said that",
+    "is said to be",
+    "is said to have",
+    "formal statement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "A past modal passive uses modal + been + past participle.",
+      "correction": "The complete structure is modal + have been + past participle."
+    },
+    {
+      "claim": "The passive of 'They made him work' is 'He was made work'.",
+      "correction": "Make changes to be made to in the passive: 'He was made to work.'"
+    },
+    {
+      "claim": "The passive imperative of 'Close the door' is simply 'The door is closed'.",
+      "correction": "The passive command is 'Let the door be closed.'"
+    }
+  ],
+  "recommended_example_progression": [
+    "Change a past modal sentence into passive voice",
+    "Form two passives from a sentence with two objects",
+    "Change an imperative into a passive imperative",
+    "Transform make + object + infinitive into be made to",
+    "Rewrite a reporting statement with It is said that and subject + is said to"
+  ],
+  "ncert_end_of_chapter_exercises_reference": "Typical CBSE practice includes active-passive transformation, gap filling, error correction, and formal reporting-verb rewrites.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

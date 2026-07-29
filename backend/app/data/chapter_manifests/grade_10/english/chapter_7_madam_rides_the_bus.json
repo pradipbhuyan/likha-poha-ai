@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 10",
+  "subject": "English",
+  "chapter": "Chapter 7: Madam Rides the Bus",
+  "central_question": "How does Valli’s first independent bus ride turn childhood curiosity into a deeper awareness of freedom, responsibility, and death?",
+  "in_scope_units": [
+    "Before You Read activities on bus-travel vocabulary and scenes viewed from a moving bus",
+    "Section I: Valli’s curiosity, growing desire, collection of journey details, and secret planning",
+    "Section II: boarding the bus, the conductor’s teasing title “madam,” Valli’s pride, and her view of the countryside",
+    "Section III: Valli’s careful saving, the outward journey, the running cow, the town, and her refusal to leave the bus or accept a drink",
+    "Section IV: the return journey, discovery of the dead cow, Valli’s changed mood, and the final conversation at home",
+    "Thinking about the Text: desire, planning, character, enjoyment, loss, and the child’s point of view",
+    "Speaking: mimicking conversations and noticing how dialogue reveals personality",
+    "Writing: independent planning, memorable journeys, and traffic and road safety",
+    "What You Can Do: ticket collage, pocket-money discussion, and reflection on discouraging experiences"
+  ],
+  "banned_topics": [
+    "The poem “The Tale of Custard the Dragon,” which follows the prose chapter",
+    "Invented calculations or routes not stated in Valli’s journey",
+    "External biography of Vallikkannan not provided in the chapter"
+  ],
+  "must_include_keywords": [
+    "Valliammai",
+    "Valli",
+    "eight years old",
+    "curiosity",
+    "front doorway",
+    "unending joy",
+    "overwhelming desire",
+    "wistfully",
+    "discreet questions",
+    "thirty paise",
+    "forty-five minutes",
+    "conductor",
+    "madam",
+    "slack time",
+    "canvas blind",
+    "canal",
+    "green fields",
+    "haughtily",
+    "mimicking",
+    "repulsive",
+    "curtly",
+    "thriftily",
+    "resolutely stifled",
+    "merry-go-round",
+    "young cow",
+    "railroad crossing",
+    "thoroughfare",
+    "merchandise",
+    "cold drink",
+    "dead cow",
+    "haunted",
+    "life and death",
+    "child’s point of view",
+    "dialogue",
+    "independence",
+    "road safety"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Valli went to town to shop and visit the sights.",
+      "correction": "She wanted the bus ride itself and stayed in her seat for the return journey because she was afraid to go about the town alone."
+    },
+    {
+      "claim": "The conductor called Valli “madam” because he thought she was an adult.",
+      "correction": "He jokingly called her “madam” because she acted independent and insisted that she was not a child."
+    },
+    {
+      "claim": "Valli’s mother helped her plan and pay for the journey.",
+      "correction": "Valli secretly gathered information, saved the fare herself, and travelled while her mother was napping."
+    },
+    {
+      "claim": "Valli accepted the conductor’s offer of a free cold drink.",
+      "correction": "She firmly refused even when he offered to pay, showing self-control and independence."
+    },
+    {
+      "claim": "The cow scene is only comic.",
+      "correction": "The living cow makes Valli laugh on the outward journey, but the same cow’s death on the return journey introduces sadness and the mystery of life and death."
+    },
+    {
+      "claim": "The story is narrated by Valli in the first person.",
+      "correction": "It uses a third-person narrator who stays close to Valli’s feelings and presents the sights largely from her child’s point of view."
+    }
+  ],
+  "recommended_example_progression": [
+    "Use Oral Comprehension Check I.3 to reconstruct the details Valli collected and explain how she planned.",
+    "Use Oral Comprehension Check II.1 to analyse why the conductor calls her “madam.”",
+    "Use Oral Comprehension Check III.4 to infer what her refusal of the drink shows about her.",
+    "Use Thinking about the Text 6 and 7 to explain the dead-cow episode and Valli’s final agreement with her mother.",
+    "Use Thinking about the Text 8 to identify evidence of an eight-year-old point of view."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The exercises appear under four Oral Comprehension Checks, Thinking about the Text (Questions 1–8), Speaking, Writing (three topics), and What You Can Do.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
