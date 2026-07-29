@@ -371,24 +371,88 @@ def _sections_to_blocks(sections: list[dict], is_first_step: bool) -> tuple[list
     return blocks, recap_candidate
 
 
+_CHAPTER_SOURCE_PREFIX_RE = re.compile(
+    r"^\s*(?:Text Book|Supplementary Reader|Grammar|Workbook|Reader|"
+    r"History|Geography|Political Science|Economics)\s*[-:]\s*",
+    re.IGNORECASE,
+)
+_CHAPTER_PART_PREFIX_RE = re.compile(r"^\s*part\s*\d+\s*[-:]\s*", re.IGNORECASE)
+
+
+def _strip_display_prefixes(chapter: str) -> str:
+    """Strip display-only 'Part N - ' / 'Text Book - ' style prefixes that
+    the student-facing dropdown adds (see app/routes/syllabus.py's
+    create_part_display_label/create_source_display_label) but which are
+    NOT part of the actual chapter key used in lesson_cache/rag_documents/
+    rag_visual_assets for most GPT-5.5-authored chapters. Confirmed live:
+    Grade 10 English's dropdown sends "Text Book - Chapter 1: A Letter to
+    God" while the July 2026 GPT-5.5 content + backfilled textbook images
+    are stored under the bare "Chapter 1: A Letter to God" key — without
+    this fallback, the exact-match lookup below silently found only an
+    older, stale, English-Text-Book-prefixed lesson_cache row from July 5
+    with zero images, even though correct fresh content existed."""
+    result = (chapter or "").strip()
+    for _ in range(3):
+        stripped = _CHAPTER_SOURCE_PREFIX_RE.sub("", _CHAPTER_PART_PREFIX_RE.sub("", result)).strip()
+        if stripped == result:
+            break
+        result = stripped
+    return result
+
+
 def _fetch_step_rows(db, grade, subject, chapter, mode) -> dict[str, str]:
-    """Return {step_title: lesson_content} for all active cached steps."""
-    try:
-        result = (
-            db.table("lesson_cache")
-            .select("step_title, lesson_content, source_type, created_at")
-            .eq("grade", grade)
-            .eq("subject", subject)
-            .eq("chapter", chapter)
-            .eq("mode", mode)
-            .eq("status", "active")
-            .order("created_at", desc=True)
-            .execute()
-        )
-    except Exception:
-        return {}
+    """Return {step_title: lesson_content} for all active cached steps.
+
+    Tries BOTH the display-prefix-stripped ("bare") chapter key and the
+    exact chapter string as sent by the dropdown, then keeps whichever
+    result set has the most recently-created row. This handles a
+    confirmed-live scenario where BOTH keys have real data for the same
+    chapter — e.g. Grade 10 English "A Letter to God" has old (2026-07-05)
+    rows stored under the prefixed "Text Book - Chapter 1: A Letter to
+    God" key AND fresh GPT-5.5 rows (2026-07-28) stored under the bare
+    "Chapter 1: A Letter to God" key. A simple "exact match first, bare
+    key only as a fallback-on-empty" strategy silently keeps serving the
+    stale prefixed-key rows forever, since they're never empty. Preferring
+    whichever key has the newest content ensures the latest ingested
+    version always wins regardless of which key it happens to be under.
+    """
+    def _query(chapter_value: str):
+        try:
+            result = (
+                db.table("lesson_cache")
+                .select("step_title, lesson_content, source_type, created_at")
+                .eq("grade", grade)
+                .eq("subject", subject)
+                .eq("chapter", chapter_value)
+                .eq("mode", mode)
+                .eq("status", "active")
+                .order("created_at", desc=True)
+                .execute()
+            )
+            return result.data or []
+        except Exception:
+            return []
+
+    def _latest_created_at(rows: list[dict]) -> str:
+        values = [r.get("created_at") or "" for r in rows]
+        return max(values) if values else ""
+
+    bare = _strip_display_prefixes(chapter)
+    candidates = list(dict.fromkeys([bare, chapter])) if bare and bare != chapter else [chapter]
+
+    data: list[dict] = []
+    best_created_at = ""
+    for candidate in candidates:
+        candidate_data = _query(candidate)
+        if not candidate_data:
+            continue
+        candidate_latest = _latest_created_at(candidate_data)
+        if not data or candidate_latest > best_created_at:
+            data = candidate_data
+            best_created_at = candidate_latest
+
     rows: dict[str, str] = {}
-    for row in result.data or []:
+    for row in data:
         title = row.get("step_title") or ""
         content = row.get("lesson_content") or ""
         if row.get("source_type") == "NO_CONTENT" or not content.strip():
@@ -424,6 +488,17 @@ def _fetch_approved_visuals(board, grade, subject, chapter) -> list[dict]:
         )
         if exact:
             return exact
+        # Retry with the display-prefix stripped (see _strip_display_prefixes
+        # docstring) — a dropdown-decorated chapter string like "Text Book -
+        # Chapter 1: A Letter to God" won't exact-match rag_visual_assets rows
+        # stored under the bare "Chapter 1: A Letter to God" key.
+        bare = _strip_display_prefixes(chapter)
+        if bare and bare != chapter:
+            exact = list_active_visual_assets_for_context(
+                board=board, grade=grade, subject=subject, chapter=bare, limit=25,
+            )
+            if exact:
+                return exact
     except Exception:
         pass
 
@@ -432,21 +507,26 @@ def _fetch_approved_visuals(board, grade, subject, chapter) -> list[dict]:
     try:
         from app.services.grade_db_router import get_content_db  # noqa: PLC0415
         db = get_content_db(grade)
-        result = (
-            db.table("rag_visual_assets")
-            .select(
-                "id,document_id,board,grade,subject,chapter,title,page_number,"
-                "asset_url,caption,nearby_text,status"
+        for candidate in dict.fromkeys([chapter, _strip_display_prefixes(chapter)]):
+            if not candidate:
+                continue
+            result = (
+                db.table("rag_visual_assets")
+                .select(
+                    "id,document_id,board,grade,subject,chapter,title,page_number,"
+                    "asset_url,caption,nearby_text,status"
+                )
+                .eq("status", "active")
+                .eq("grade", grade)
+                .eq("subject", subject)
+                .ilike("chapter", f"%{candidate}")
+                .order("page_number")
+                .limit(25)
+                .execute()
             )
-            .eq("status", "active")
-            .eq("grade", grade)
-            .eq("subject", subject)
-            .ilike("chapter", f"%{chapter}")
-            .order("page_number")
-            .limit(25)
-            .execute()
-        )
-        return result.data or []
+            if result.data:
+                return result.data
+        return []
     except Exception:
         return []
 
