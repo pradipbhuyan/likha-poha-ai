@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 3: The Making of a Global World",
+  "central_question": "How did long-distance trade, migration, technology, colonialism, war and international institutions create an increasingly interconnected but unequal global economy?",
+  "in_scope_units": [
+    "The Pre-modern World: early trade, travel, migration, ideas and disease across regions",
+    "Silk Routes Link the World: trade and cultural exchange across Asia, Europe and northern Africa",
+    "Food Travels: crops, food habits and the movement of plants between continents",
+    "Conquest, Disease and Trade: European expansion, American silver, smallpox and the shift of world trade toward Europe",
+    "The Nineteenth Century (1815-1914): the linked flows of trade, labour and capital",
+    "A World Economy Takes Shape: Corn Laws, food imports, migration, settlement and global agriculture",
+    "Role of Technology: railways, steamships, telegraph and refrigerated shipping",
+    "Late nineteenth-century Colonialism: imperial conquest, the partition of Africa and loss of livelihoods",
+    "Rinderpest: cattle plague, African livelihoods and colonial labour control",
+    "Indentured Labour Migration from India: recruitment, coercion, plantation life and cultural fusion",
+    "Indian Entrepreneurs Abroad: bankers, traders and financing export agriculture",
+    "Indian Trade, Colonialism and the Global System: textile decline, raw material exports, trade surplus and home charges",
+    "The Inter-war Economy: the First World War, post-war crisis and mass production",
+    "The Great Depression and India: causes, global transmission and unequal effects",
+    "Rebuilding a World Economy: the post-war settlement, Bretton Woods, decolonisation, G-77 and the later phase of globalisation"
+  ],
+  "banned_topics": [
+    "A complete modern account of twenty-first-century digital globalisation",
+    "Detailed military history of the First and Second World Wars beyond their economic effects in this chapter",
+    "The full history of Indian nationalism, which belongs to Nationalism in India",
+    "The detailed history of factory production in Britain and India, which belongs to The Age of Industrialisation"
+  ],
+  "must_include_keywords": [
+    "globalisation",
+    "silk routes",
+    "spaghetti",
+    "potato",
+    "Americas",
+    "smallpox",
+    "El Dorado",
+    "Corn Laws",
+    "trade",
+    "labour",
+    "capital",
+    "global agricultural economy",
+    "railways",
+    "steamships",
+    "refrigerated ships",
+    "colonialism",
+    "Berlin Conference",
+    "rinderpest",
+    "indentured labour",
+    "Hosay",
+    "Chutney music",
+    "Shikaripuri Shroffs",
+    "Nattukottai Chettiars",
+    "trade surplus",
+    "home charges",
+    "First World War",
+    "Henry Ford",
+    "assembly line",
+    "mass production",
+    "Great Depression",
+    "jute producers",
+    "Bretton Woods",
+    "IMF",
+    "World Bank",
+    "fixed exchange rates",
+    "decolonisation",
+    "G-77",
+    "NIEO",
+    "MNCs",
+    "floating exchange rates"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Globalisation began only in the late twentieth century.",
+      "correction": "The chapter traces long histories of trade, migration, capital, cultural exchange and disease from the pre-modern world onward."
+    },
+    {
+      "claim": "European conquest of the Americas depended only on superior weapons.",
+      "correction": "Smallpox and other germs, against which indigenous populations lacked immunity, were a decisive force in conquest."
+    },
+    {
+      "claim": "The nineteenth-century global economy benefited all participants equally.",
+      "correction": "It combined growth, migration and technology with slavery, indenture, colonial conquest, loss of livelihoods and forced labour."
+    },
+    {
+      "claim": "The Great Depression was caused by one event alone.",
+      "correction": "The chapter identifies interacting causes, including agricultural overproduction, falling prices, dependence on US loans, withdrawal of lending, bank failures and protectionist tariffs."
+    },
+    {
+      "claim": "The IMF and World Bank were initially designed mainly for newly independent developing countries.",
+      "correction": "They were created for post-war stability and reconstruction in the industrial world and shifted greater attention to developing countries only later."
+    }
+  ],
+  "recommended_example_progression": [
+    "Explain the pre-modern transfer of disease using Write in brief Q2.",
+    "Analyse the three economic flows using Discuss Q7.",
+    "Explain rinderpest and indentured labour using Write in brief Q3(b) and Discuss Q6.",
+    "Explain the causes and Indian effects of the Great Depression using Discuss Q8 and Write in brief Q3(d).",
+    "Explain Bretton Woods and G-77 using Write in brief Q5 and Discuss Q9."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Write in brief questions 1-5, Discuss questions 6-9, and a project on gold and diamond mining in nineteenth-century South Africa.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

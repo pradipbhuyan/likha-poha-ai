@@ -1,0 +1,106 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 5: Print Culture and the Modern World",
+  "central_question": "How did changing print technologies create new readers, debates, identities and political conflicts in East Asia, Europe and India?",
+  "in_scope_units": [
+    "Introduction: the pervasive presence of print and its role in shaping the modern world",
+    "The First Printed Books: hand printing, woodblocks and the expanding uses of print in China",
+    "Print in Japan: Buddhist printing, urban books and ukiyo visual culture",
+    "Print Comes to Europe: paper, manuscripts, Marco Polo, woodblocks and rising demand for books",
+    "Gutenberg and the Printing Press: movable metal type, the Bible and the print revolution",
+    "The Print Revolution and Its Impact: changing relationships to knowledge and authority",
+    "A New Reading Public: cheaper books, oral culture, literacy and the mixed hearing-reading public",
+    "Religious Debates and the Fear of Print: Luther, Protestant Reformation and anxiety over uncontrolled ideas",
+    "Print and Dissent: Menocchio, the Inquisition and the Index of Prohibited Books",
+    "The Reading Mania: literacy, chapbooks, periodicals, science and Enlightenment thought",
+    "Print Culture and the French Revolution: dialogue, criticism, caricature and the limits of direct influence",
+    "The Nineteenth Century: children, women, workers and new printing innovations",
+    "India and the World of Print: manuscripts, missionaries, Hickey and early newspapers",
+    "Religious Reform and Public Debates: vernacular print, reform, orthodoxy and pan-Indian communication",
+    "New Forms of Publication: novels, visual culture, cartoons and mass-circulated images",
+    "Women and Print: education, autobiographies, journals, resistance and anxiety over changing roles",
+    "Print and the Poor People: cheap books, libraries, caste protest and worker writing",
+    "Print and Censorship: colonial regulation, the Vernacular Press Act and nationalist resistance"
+  ],
+  "banned_topics": [
+    "The technical history of modern digital publishing and social media beyond the optional project",
+    "The complete political history of the French Revolution beyond print culture’s role",
+    "The full history of Indian nationalism outside the role of print and censorship",
+    "The history of industrial factory production, which belongs to The Age of Industrialisation"
+  ],
+  "must_include_keywords": [
+    "woodblock printing",
+    "calligraphy",
+    "China",
+    "Diamond Sutra",
+    "Japan",
+    "ukiyo",
+    "Marco Polo",
+    "vellum",
+    "Johann Gutenberg",
+    "movable type",
+    "printing press",
+    "print revolution",
+    "reading public",
+    "oral culture",
+    "ballads",
+    "Martin Luther",
+    "Protestant Reformation",
+    "Menocchio",
+    "Inquisition",
+    "Index of Prohibited Books",
+    "chapbooks",
+    "Bibliothèque Bleue",
+    "Enlightenment",
+    "French Revolution",
+    "children",
+    "women",
+    "workers",
+    "Richard M. Hoe",
+    "manuscripts",
+    "Goa",
+    "Bengal Gazette",
+    "Rammohun Roy",
+    "Sambad Kaumudi",
+    "Deoband Seminary",
+    "Ramcharitmanas",
+    "Raja Ravi Varma",
+    "Rashsundari Debi",
+    "Gulamgiri",
+    "Vernacular Press Act",
+    "Kesari"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Gutenberg invented printing itself.",
+      "correction": "Hand printing and woodblock traditions already existed in East Asia; Gutenberg developed the first-known European movable-type press described in the chapter."
+    },
+    {
+      "claim": "Printed books immediately replaced manuscripts and oral culture.",
+      "correction": "Early printed books imitated manuscripts, hand decoration continued, and printed ballads and stories were often read aloud to non-literate audiences."
+    },
+    {
+      "claim": "Print automatically made every reader adopt the same ideas.",
+      "correction": "Readers encountered competing texts, accepted some ideas, rejected others and interpreted print in their own ways."
+    },
+    {
+      "claim": "Print benefited women and poor people without resistance or limits.",
+      "correction": "Print expanded access and self-expression, but conservative opposition, low literacy, poverty and social control continued to restrict readers."
+    },
+    {
+      "claim": "Colonial censorship ended nationalist print.",
+      "correction": "The Vernacular Press Act and other laws enabled warnings, seizure and confiscation, but nationalist newspapers continued to grow and resistance intensified."
+    }
+  ],
+  "recommended_example_progression": [
+    "Explain Gutenberg and the printing press using Write in brief Q2(a).",
+    "Explain the fear and praise of print using Write in brief Q1(b), Q1(c) and Discuss Q2.",
+    "Analyse print and the French Revolution using the labelled Discuss question in section 4.2.",
+    "Explain print for women, poor people and reformers using Write in brief Q3.",
+    "Explain nationalism and censorship using Discuss Q4 and Write in brief Q2(c)."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Write in brief questions 1-3, Discuss questions 1-4, and a project on changes in print technology during the last one hundred years.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

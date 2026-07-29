@@ -79,6 +79,41 @@ ROW_TO_PAGE = {
     "37ca9b49-c7e1-4b87-974b-0f2099cd4045": (335, 28),
     "a14108e9-d099-41a8-be73-969559e7c6d1": (335, 28),
     "20b380b9-9aef-4266-89ab-3029aaeebe46": (335, 28),
+    # Grade 10 Social Science (History), Chapter 2: Nationalism in
+    # India -- Discuss Q1/Q2/Q4 and Write in brief Q2/Q4 are all
+    # printed together on the single end-of-chapter exercise page.
+    "4182cd5d-59e9-49d4-b807-7785ad7f371e": (336, 22),
+    "55775a77-041a-4753-87d4-d99273a13fea": (336, 22),
+    "77a85a61-a0a8-4e45-af95-b988a1f4c4fc": (336, 22),
+    "f681596f-40d9-45ff-98e3-c66dc6929fc7": (336, 22),
+    "62a961ac-4af9-45d1-8567-e0119f475f59": (336, 22),
+    # Grade 10 Social Science (History), Chapter 3: The Making of a
+    # Global World -- Write in brief Q2 and Discuss Q6-Q9 are all on
+    # the final page of the chapter.
+    "f4dca433-8b11-4954-acdc-275c0d80fba7": (337, 28),
+    "eeaef657-519a-498a-b2bf-c0ae88f3c2e8": (337, 28),
+    "df4c9634-7f61-40fd-bf29-b6d31a96f7ae": (337, 28),
+    "e895c9ac-f3be-4194-83c8-1cd20ef8e723": (337, 28),
+    "1aa7a03b-e4fe-480f-8a81-eee17771ca1d": (337, 28),
+    # Grade 10 Social Science (History), Chapter 4: The Age of
+    # Industrialisation -- Write in brief Q1/Q3 and Discuss Q2/Q4 are
+    # on the end-of-chapter exercise page; the advertisements/labels
+    # activity citation maps to the Market for Goods page just before it.
+    "95965d1f-4f74-4356-b473-c8a326322fa2": (338, 24),
+    "972a0214-100d-4ef2-81bd-a91b82c33f8a": (338, 23),
+    "c3ee69ea-31b0-40c6-bf9b-b1f91901a350": (338, 24),
+    "cb7d6404-f60c-44e7-a1a7-7aa20eeb149e": (338, 24),
+    "11b2377d-686a-45a2-8032-7e3d6dd383c8": (338, 24),
+    # Grade 10 Social Science (History), Chapter 5: Print Culture and
+    # the Modern World -- Write in brief Q2/Q3 and Discuss Q3/Q4 are on
+    # the end-of-chapter exercise page; the "Discuss question in
+    # section 4.2" also maps to the same page (it is the chapter's only
+    # Discuss block).
+    "514d4d46-db1f-4597-8151-0621dffa5498": (339, 26),
+    "6baaffbf-35ea-4caa-b428-6a7831e395d4": (339, 26),
+    "2e02bbe9-3bad-4a5b-b0cb-9952abfbc06c": (339, 26),
+    "b648ab60-0713-42da-b027-4de135282a8a": (339, 26),
+    "11212e3f-443e-4481-8ebc-b60e2b8e167b": (339, 26),
 }
 
 
@@ -182,6 +217,10 @@ def run(dry_run: bool) -> None:
             ("Grade 9", "English", "Chapter 1: How I Taught My Grandmother to Read"),
             ("Grade 9", "English", "Chapter 3: Winds of Change"),
             ("Grade 10", "Social Science", "Chapter 1: The Rise of Nationalism in Europe"),
+            ("Grade 10", "Social Science", "Chapter 2: Nationalism in India"),
+            ("Grade 10", "Social Science", "Chapter 3: The Making of a Global World"),
+            ("Grade 10", "Social Science", "Chapter 4: The Age of Industrialisation"),
+            ("Grade 10", "Social Science", "Chapter 5: Print Culture and the Modern World"),
         ]
         for grade, subject, chapter in affected_chapters:
             try:

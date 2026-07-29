@@ -1,0 +1,101 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 4: The Age of Industrialisation",
+  "central_question": "How did industrialisation develop through factories, hand labour, colonial control, small-scale production and market-making rather than through machines alone?",
+  "in_scope_units": [
+    "Introduction: popular images of progress and the need to question a simple machine-centred history",
+    "Before the Industrial Revolution: proto-industrial production linking towns and countryside",
+    "The Coming Up of the Factory: cotton inventions, Richard Arkwright and production under one roof",
+    "The Pace of Industrial Change: the slow and uneven spread of machinery and the survival of traditional industries",
+    "Hand Labour and Steam Power: labour abundance, seasonality, specialised products and limited mechanisation",
+    "Life of the Workers: migration, unemployment, insecure work, poor relief and resistance to the Spinning Jenny",
+    "Industrialisation in the Colonies: India’s textile trade and the shift from old ports to colonial ports",
+    "What Happened to Weavers?: Company monopoly, gomasthas, advances, coercion and weaver resistance",
+    "Manchester Comes to India: imported cloth, collapsing markets and raw cotton shortages",
+    "Factories Come Up: early mills, entrepreneurs, capital and labour recruitment in India",
+    "The Peculiarities of Industrial Growth: export industries, swadeshi, wartime expansion and import substitution",
+    "Small-scale Industries Predominate: handloom survival, fly shuttles and specialised production",
+    "Market for Goods: labels, calendars, religious images, royal figures and swadeshi advertising",
+    "Conclusion: factories and machines grew, but hand production remained integral to industrialisation"
+  ],
+  "banned_topics": [
+    "The detailed history of print technology and censorship, which belongs to Print Culture and the Modern World",
+    "The complete history of global trade institutions after the Second World War",
+    "The political history of Indian nationalism except the swadeshi and wartime market effects stated in this chapter",
+    "Modern industrial policy after Indian independence"
+  ],
+  "must_include_keywords": [
+    "industrialisation",
+    "proto-industrialisation",
+    "trade guilds",
+    "merchants",
+    "peasants",
+    "artisans",
+    "Richard Arkwright",
+    "cotton mill",
+    "steam engine",
+    "James Watt",
+    "hand labour",
+    "seasonal work",
+    "Spinning Jenny",
+    "James Hargreaves",
+    "Indian textiles",
+    "Surat",
+    "Hoogly",
+    "Bombay",
+    "Calcutta",
+    "East India Company",
+    "gomastha",
+    "advances",
+    "Manchester goods",
+    "American Civil War",
+    "Dwarkanath Tagore",
+    "Jamsetjee Tata",
+    "European Managing Agencies",
+    "jobber",
+    "swadeshi",
+    "First World War",
+    "small-scale industries",
+    "handloom",
+    "fly shuttle",
+    "labels",
+    "calendars",
+    "advertisements",
+    "consumer culture",
+    "Made in Manchester",
+    "nationalist message"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Industrialisation began only when factories appeared.",
+      "correction": "Large-scale production for international markets existed earlier through proto-industrial networks of merchants, peasants and artisans."
+    },
+    {
+      "claim": "Machines quickly replaced hand labour in nineteenth-century Britain.",
+      "correction": "Technology spread slowly, labour was abundant and cheap, many products required skill, and traditional sectors remained important."
+    },
+    {
+      "claim": "East India Company advances gave weavers freedom and bargaining power.",
+      "correction": "Advances tied weavers to the Company, prevented sales to other buyers and enabled coercive control through gomasthas."
+    },
+    {
+      "claim": "Indian factory growth destroyed handloom production completely.",
+      "correction": "Handloom production survived and expanded in the twentieth century through specialised goods, stable elite demand and technologies such as the fly shuttle."
+    },
+    {
+      "claim": "Advertisements merely informed buyers about products.",
+      "correction": "Manufacturers used labels, gods, royal figures, calendars and nationalist messages to create familiarity, trust, desire and new consumer needs."
+    }
+  ],
+  "recommended_example_progression": [
+    "Define proto-industrialisation using Write in brief Q3.",
+    "Explain worker opposition to the Spinning Jenny using Write in brief Q1(a).",
+    "Explain Company control over weavers using Discuss Q2.",
+    "Explain wartime growth using Discuss Q4.",
+    "Evaluate advertisements and labels using the concluding Market for Goods section and the chapter activities."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Write in brief questions 1-3, Discuss questions 1-4, and a project on the history, technology, labour and marketing of a regional industry.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}

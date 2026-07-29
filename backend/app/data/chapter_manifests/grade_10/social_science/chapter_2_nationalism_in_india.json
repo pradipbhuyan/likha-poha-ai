@@ -1,0 +1,103 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 2: Nationalism in India",
+  "central_question": "How did diverse Indian groups join anti-colonial mass movements, understand swaraj in different ways, and develop a shared yet contested sense of national belonging?",
+  "in_scope_units": [
+    "Introduction: anti-colonial struggle, varied experiences of colonialism and the challenge of forging national unity",
+    "The First World War, Khilafat and Non-Cooperation: wartime hardship and the expansion of the national movement",
+    "The Idea of Satyagraha: truth, non-violence and Gandhi’s early movements in Champaran, Ahmedabad and Kheda",
+    "The Rowlatt Act: nationwide protest, Jallianwala Bagh, repression and the Khilafat alliance",
+    "Why Non-cooperation?: Gandhi’s staged programme, Congress debate and adoption at Nagpur",
+    "Differing Strands within the Movement: varied meanings of swaraj among social groups",
+    "The Movement in the Towns: middle-class participation, boycott, khadi and the limits of alternative institutions",
+    "Rebellion in the Countryside: Awadh peasants, the Oudh Kisan Sabha and the Gudem guerrilla movement",
+    "Swaraj in the Plantations: Assam workers, the Inland Emigration Act and the desire for freedom of movement",
+    "Towards Civil Disobedience: withdrawal of Non-Cooperation, council politics, the Simon Commission and Purna Swaraj",
+    "The Salt March and the Civil Disobedience Movement: salt as a unifying symbol, law-breaking, repression and the Gandhi-Irwin Pact",
+    "How Participants saw the Movement: rich and poor peasants, business groups, workers and women",
+    "The Limits of Civil Disobedience: dalit political demands, the Poona Pact and Muslim concerns over representation",
+    "The Sense of Collective Belonging: Bharat Mata, folklore, flags, history and the limits of cultural symbolism",
+    "Conclusion and Quit India Movement: unity, internal conflict and the later mass call for British withdrawal"
+  ],
+  "banned_topics": [
+    "The unification of Germany and Italy, which belongs to The Rise of Nationalism in Europe",
+    "The detailed history of global trade and the Great Depression outside its direct effect on Indian nationalism",
+    "The full constitutional history of independent India after 1947",
+    "The anti-colonial movement in Indo-China except as the optional project comparison"
+  ],
+  "must_include_keywords": [
+    "anti-colonial movement",
+    "First World War",
+    "forced recruitment",
+    "satyagraha",
+    "Champaran",
+    "Ahmedabad",
+    "Kheda",
+    "Rowlatt Act",
+    "Jallianwala Bagh",
+    "Khilafat Committee",
+    "Muhammad Ali",
+    "Shaukat Ali",
+    "Non-Cooperation Movement",
+    "boycott",
+    "khadi",
+    "Baba Ramchandra",
+    "Oudh Kisan Sabha",
+    "begar",
+    "Alluri Sitaram Raju",
+    "Inland Emigration Act",
+    "Chauri Chaura",
+    "Swaraj Party",
+    "Simon Commission",
+    "Purna Swaraj",
+    "Salt March",
+    "Dandi",
+    "Civil Disobedience Movement",
+    "Gandhi-Irwin Pact",
+    "Patidars",
+    "Jats",
+    "FICCI",
+    "women",
+    "Depressed Classes Association",
+    "B.R. Ambedkar",
+    "Poona Pact",
+    "separate electorates",
+    "Bharat Mata",
+    "Vande Mataram",
+    "Swaraj flag",
+    "Quit India Movement"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "All participants understood swaraj in exactly the same way.",
+      "correction": "Different groups connected swaraj to their own needs: peasants sought relief from rents and revenue, tribals defended forest rights, plantation workers wanted freedom of movement, and business groups wanted fewer colonial restrictions."
+    },
+    {
+      "claim": "Satyagraha meant passive acceptance of injustice.",
+      "correction": "Gandhi described satyagraha as active resistance based on truth, non-violence and persuasion rather than physical force or vengeance."
+    },
+    {
+      "claim": "The Civil Disobedience Movement was identical to Non-Cooperation.",
+      "correction": "Non-Cooperation focused on withdrawing cooperation from colonial institutions, whereas Civil Disobedience also asked people to break colonial laws, including the salt law."
+    },
+    {
+      "claim": "The Congress fully supported every demand of poor peasants, workers and dalit organisations.",
+      "correction": "The Congress often avoided demands that could alienate landlords or industrialists, and dalit leaders pursued separate political safeguards that produced conflict with Gandhi."
+    },
+    {
+      "claim": "Cultural symbols automatically united every community.",
+      "correction": "Bharat Mata, flags, folklore and heroic histories helped create belonging, but symbols drawn mainly from Hindu traditions could make other communities feel excluded."
+    }
+  ],
+  "recommended_example_progression": [
+    "Interpret satyagraha as active resistance using the labelled Activity beside Source A.",
+    "Explain participation and varied hopes using Discuss Q1 on the Non-Cooperation Movement.",
+    "Analyse the effectiveness of salt as a symbol using Discuss Q2.",
+    "Explain disagreement over separate electorates using Discuss Q4.",
+    "Compare Bharat Mata and Germania using Write in brief Q4."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with Write in brief questions 1-4, Discuss questions 1-4, and a project comparing India with the anti-colonial movement in Indo-China.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
