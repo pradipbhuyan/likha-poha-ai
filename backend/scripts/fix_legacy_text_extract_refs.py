@@ -69,6 +69,16 @@ ROW_TO_PAGE = {
     "049789f6-06b5-4e34-8a67-80e8a44d2875": (374, 10),
     # Grade 9 English, Chapter 3: Winds of Change -- "Critical Reflection" page.
     "11bb4209-4b6d-4ecf-ad75-ccc8982a1361": (376, 6),
+    # Grade 10 Social Science (History), Chapter 1: The Rise of
+    # Nationalism in Europe -- opening Activity citation is on the page
+    # printing Fig. 1 (Sorrieu's print) and its caption; the four
+    # "Discuss" questions are all printed together on the single
+    # end-of-chapter Discuss page.
+    "5539ad4a-5e1b-4f00-848c-e1274179f97e": (335, 3),
+    "faca36db-6fe7-46ef-9fe9-4c6641f8a06f": (335, 28),
+    "37ca9b49-c7e1-4b87-974b-0f2099cd4045": (335, 28),
+    "a14108e9-d099-41a8-be73-969559e7c6d1": (335, 28),
+    "20b380b9-9aef-4266-89ab-3029aaeebe46": (335, 28),
 }
 
 
@@ -171,6 +181,7 @@ def run(dry_run: bool) -> None:
             ("Grade 9", "Hindi", "अध्याय 8: पद"),
             ("Grade 9", "English", "Chapter 1: How I Taught My Grandmother to Read"),
             ("Grade 9", "English", "Chapter 3: Winds of Change"),
+            ("Grade 10", "Social Science", "Chapter 1: The Rise of Nationalism in Europe"),
         ]
         for grade, subject, chapter in affected_chapters:
             try:

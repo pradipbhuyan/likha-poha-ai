@@ -1,0 +1,96 @@
+{
+  "grade": "Grade 10",
+  "subject": "Social Science",
+  "chapter": "Chapter 1: The Rise of Nationalism in Europe",
+  "central_question": "How did political revolutions, economic change, culture, war and imperial rivalry transform Europe from dynastic empires into nation-states during the nineteenth century?",
+  "in_scope_units": [
+    "Frédéric Sorrieu’s utopian vision and the meaning of a modern nation-state",
+    "The French Revolution, collective identity and the spread of nationalism through Napoleonic reforms",
+    "The social foundations of nationalism: aristocracy, peasantry, industrialisation and the new middle classes",
+    "Liberal nationalism, economic freedom and the Zollverein",
+    "Conservatism after 1815, the Congress of Vienna and revolutionary secret societies",
+    "The revolutions of 1830 and 1848, Greek independence, Romanticism, folklore and language",
+    "Economic hardship, popular revolt, the Frankfurt Parliament and women in liberal movements",
+    "The unification of Germany and Italy and the distinct formation of Great Britain",
+    "National allegories such as Marianne and Germania",
+    "Nationalism, imperialism and the Balkan tensions that contributed to the First World War"
+  ],
+  "banned_topics": [
+    "The Indian national movement and Gandhian mass movements",
+    "Detailed causes and events of the First World War beyond the chapter’s link to Balkan nationalism",
+    "Twentieth-century fascism, Nazism and the Second World War",
+    "Modern European Union institutions"
+  ],
+  "must_include_keywords": [
+    "Frédéric Sorrieu",
+    "nation-state",
+    "absolutism",
+    "French Revolution",
+    "la patrie",
+    "le citoyen",
+    "tricolour",
+    "Napoleonic Code",
+    "serfdom",
+    "Habsburg Empire",
+    "liberalism",
+    "suffrage",
+    "Zollverein",
+    "conservatism",
+    "Congress of Vienna",
+    "Duke Metternich",
+    "Giuseppe Mazzini",
+    "Young Italy",
+    "Young Europe",
+    "Greek war of independence",
+    "Romanticism",
+    "Johann Gottfried Herder",
+    "Volksgeist",
+    "Frankfurt Parliament",
+    "women’s political rights",
+    "Junkers",
+    "Otto von Bismarck",
+    "Count Camillo de Cavour",
+    "Giuseppe Garibaldi",
+    "Victor Emmanuel II",
+    "Act of Union 1707",
+    "Marianne",
+    "Germania",
+    "allegory",
+    "Balkans",
+    "Ottoman Empire",
+    "imperialism"
+  ],
+  "known_pitfalls": [
+    {
+      "claim": "Nationalism in Europe developed everywhere through democratic revolutions led by ordinary people.",
+      "correction": "The chapter shows several paths: revolutionary liberalism, conservative state power, military unification, cultural mobilisation and the gradual domination of one nation over others."
+    },
+    {
+      "claim": "Liberalism in the nineteenth century automatically meant universal voting rights.",
+      "correction": "Liberalism supported individual freedom, equality before law and representative government, but political rights were often restricted to property-owning men; women and non-propertied men were excluded."
+    },
+    {
+      "claim": "Napoleon only spread repression and made no progressive administrative changes.",
+      "correction": "Napoleon destroyed democracy in France, but the Civil Code abolished privileges based on birth, established equality before law, protected property and ended several feudal restrictions in territories under French control."
+    },
+    {
+      "claim": "Germany and Italy were unified by the same method and the same leaders.",
+      "correction": "Germany was unified under Prussian leadership through Bismarck, the army and bureaucracy; Italian unification involved Mazzini’s republican ideas, Cavour’s diplomacy, Garibaldi’s volunteers and Victor Emmanuel II."
+    },
+    {
+      "claim": "Marianne and Germania were real political leaders.",
+      "correction": "They were female allegories used to give a visible human form to the abstract idea of the French and German nations."
+    }
+  ],
+  "recommended_example_progression": [
+    "Interpret Sorrieu’s print using the opening NCERT Activity: “In what way do you think this print (Fig. 1) depicts a utopian vision?”",
+    "Analyse the French Revolution’s identity-building measures using Write in brief Q2.",
+    "Explain liberal political, social and economic ideas using Discuss Q1.",
+    "Compare nation-building in Germany and Italy using Discuss Q3 and Write in brief Q4.",
+    "Interpret Marianne and Germania using Write in brief Q3 and the Germania symbol chart in Box 3.",
+    "Explain Balkan tensions using Discuss Q5."
+  ],
+  "ncert_end_of_chapter_exercises_reference": "The chapter ends with “Write in brief” questions 1–5, “Discuss” questions 1–5, and a project on nationalist symbols outside Europe.",
+  "manifest_version": "1.0",
+  "manifest_status": "gpt55_generated"
+}
