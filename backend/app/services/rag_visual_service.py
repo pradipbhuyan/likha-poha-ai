@@ -13,6 +13,12 @@ MAX_VISUAL_PAGES_PER_BACKFILL = 80
 RAG_VISUAL_ENABLED_CONTEXTS = {
     ("CBSE", "Grade 9"),
     ("CBSE", "Grade 10"),
+    # Grade 5 added 2026-07-29 per direct user request — user reported no
+    # textbook images appearing for the newly-ingested Grade 5 English
+    # chapters and asked for this specifically, understanding the
+    # Supabase Storage cost implication of enabling image storage for an
+    # additional grade band.
+    ("CBSE", "Grade 5"),
 }
 VISUAL_REQUEST_TERMS = {
     "diagram",
