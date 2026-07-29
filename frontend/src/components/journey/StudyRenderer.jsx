@@ -268,6 +268,51 @@ function StudyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           onAnswer={onAnswer}
         />
       );
+    case "freetext_qa":
+      // Open-ended Question/Answer/Explanation triple that doesn't fit
+      // StudyQuickCheck's lettered-options format. Rendered with clearly
+      // separated Question / Answer / Explanation lines instead of one
+      // run-on paragraph — fixes the reported glued-together text
+      // (2026-07-29), same fix as JourneyRenderer's "freetext_qa" case.
+      return (
+        <div style={{ margin: "16px 0" }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6, fontWeight: 800,
+            fontSize: ".7rem", letterSpacing: ".1em", textTransform: "uppercase",
+            color: "#3b82f6", marginBottom: 8,
+          }}>
+            Quick check question
+          </div>
+          <div style={{ fontSize: ".92rem", fontWeight: 700, lineHeight: 1.55, marginBottom: 10 }}>
+            <LessonMarkdown unwrapParagraph>{`Question: ${block.question}`}</LessonMarkdown>
+          </div>
+          <div style={{
+            borderLeft: "3px solid #16a34a", background: "rgba(34,197,94,.07)",
+            borderRadius: "0 8px 8px 0", padding: "10px 14px",
+            marginBottom: block.explanation ? 8 : 0,
+          }}>
+            <div style={{ fontSize: ".7rem", fontWeight: 800, letterSpacing: ".08em", color: "#15803d", marginBottom: 4 }}>
+              ANSWER
+            </div>
+            <div style={{ fontSize: ".9rem", fontWeight: 600, lineHeight: 1.55 }}>
+              <LessonMarkdown unwrapParagraph>{block.answer}</LessonMarkdown>
+            </div>
+          </div>
+          {block.explanation && (
+            <div style={{
+              borderLeft: "3px solid var(--border, #d1d5db)", background: "var(--panel-muted, #f8fafc)",
+              borderRadius: "0 8px 8px 0", padding: "10px 14px",
+            }}>
+              <div style={{ fontSize: ".7rem", fontWeight: 800, letterSpacing: ".08em", color: "var(--muted, #6b7280)", marginBottom: 4 }}>
+                EXPLANATION
+              </div>
+              <div style={{ fontSize: ".86rem", lineHeight: 1.55, color: "var(--muted, #6b7280)" }}>
+                <LessonMarkdown unwrapParagraph>{block.explanation}</LessonMarkdown>
+              </div>
+            </div>
+          )}
+        </div>
+      );
     case "watchout":
       return (
         <div style={{

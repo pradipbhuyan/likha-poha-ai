@@ -67,6 +67,26 @@ class QuickCheckBlock(BaseModel):
         return v
 
 
+class FreeTextQABlock(BaseModel):
+    """A free-text Question/Answer/Explanation triple that does NOT fit the
+    strict MCQ/True-False QuickCheckBlock shape (e.g. a "Quick check
+    question" or "What you will learn" quiz written as open-ended prose
+    rather than lettered options — very common for Grade 4/5 storybook
+    chapters and humanities/language subjects generally). Kept as three
+    SEPARATE string fields (never concatenated into one body_md) so the
+    renderer can always show Question / Answer / Explanation on clearly
+    separated lines, instead of the parser's fallback of dumping the whole
+    unparsed "Question: ... Answer: ... Explanation: ..." line into a
+    single ConceptBlock.body_md, where markdown collapses the three onto
+    one run-on paragraph with no visual separation (confirmed live: Grade 5
+    English "Papa's Spectacles" Quick check question rendered as one
+    unbroken sentence)."""
+    type: Literal["freetext_qa"] = "freetext_qa"
+    question: str
+    answer: str
+    explanation: str = ""
+
+
 class WatchoutBlock(BaseModel):
     """Common mistake / misconception warning."""
     type: Literal["watchout"] = "watchout"
@@ -193,6 +213,7 @@ Block = Annotated[
         ConceptBlock,
         ExampleBlock,
         QuickCheckBlock,
+        FreeTextQABlock,
         WatchoutBlock,
         VocabBlock,
         StudentsAskBlock,

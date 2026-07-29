@@ -230,6 +230,44 @@ function JourneyBlock({ block, blockKey, savedAnswer, onAnswer }) {
           onAnswer={onAnswer}
         />
       );
+    case "freetext_qa":
+      // Open-ended Question/Answer/Explanation triple that doesn't fit the
+      // lettered-options QuickCheckCard (e.g. a storybook riddle or an
+      // interpretive "what happens next" question). Rendered as three
+      // clearly separated lines/blocks instead of one run-on paragraph —
+      // fixes the reported "Question: ... Answer: ... Explanation: ..."
+      // glued-together text (2026-07-29).
+      return (
+        <CardShell type="concept" title="Quick check question">
+          <div style={{ fontSize: ".95rem", fontWeight: 700, lineHeight: 1.5, marginBottom: 10 }}>
+            <LessonMarkdown unwrapParagraph>{`Question: ${block.question}`}</LessonMarkdown>
+          </div>
+          <div style={{
+            background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.25)",
+            borderRadius: 10, padding: "10px 13px", marginBottom: block.explanation ? 8 : 0,
+          }}>
+            <div style={{ fontSize: ".78rem", fontWeight: 800, letterSpacing: ".03em", color: "#15803d", marginBottom: 4 }}>
+              ANSWER
+            </div>
+            <div style={{ fontSize: ".92rem", fontWeight: 600, lineHeight: 1.5, color: "var(--text, #111827)" }}>
+              <LessonMarkdown unwrapParagraph>{block.answer}</LessonMarkdown>
+            </div>
+          </div>
+          {block.explanation && (
+            <div style={{
+              background: "var(--panel-muted, #f8fafc)", border: "1px solid var(--border, #e5e7eb)",
+              borderRadius: 10, padding: "10px 13px",
+            }}>
+              <div style={{ fontSize: ".78rem", fontWeight: 800, letterSpacing: ".03em", color: "var(--muted, #6b7280)", marginBottom: 4 }}>
+                EXPLANATION
+              </div>
+              <div style={{ fontSize: ".88rem", lineHeight: 1.55, color: "var(--muted, #6b7280)" }}>
+                <LessonMarkdown unwrapParagraph>{block.explanation}</LessonMarkdown>
+              </div>
+            </div>
+          )}
+        </CardShell>
+      );
     case "watchout":
       return (
         <CardShell type="watchout">

@@ -27,6 +27,7 @@ from app.models.lesson_blocks import (
     ConceptBlock,
     ExampleBlock,
     ExploreMoreBlock,
+    FreeTextQABlock,
     HookBlock,
     KeyTerm,
     Milestone,
@@ -237,6 +238,45 @@ def parse_mcq(text: str) -> QuickCheckBlock | None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Free-text Q&A parsing — "Question: ... Answer: ... Explanation: ..." that
+# does NOT follow the lettered-options MCQ format (parse_mcq() above).
+# ─────────────────────────────────────────────────────────────────────────────
+
+_FREETEXT_QA_RE = re.compile(
+    r"question\s*:\s*(?P<question>.+?)\s*"
+    r"answer\s*:\s*(?P<answer>.+?)\s*"
+    r"(?:explanation\s*:\s*(?P<explanation>.+))?$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def parse_freetext_qa(text: str) -> FreeTextQABlock | None:
+    """Parse a "Question: ... Answer: ... Explanation: ..." triple that does
+    NOT have lettered A)/B)/C)/D) options (i.e. parse_mcq() already failed
+    on it). This is the common shape for open-ended Quick check questions
+    in storybook/poem chapters and other humanities/language content —
+    confirmed live for every Grade 5 English chapter's "Quick check
+    question" section. Returns None if the text doesn't contain a
+    recognisable Question:/Answer: pair at all, in which case the caller
+    falls back to a plain ConceptBlock (unchanged prior behaviour)."""
+    if not text:
+        return None
+    work = re.sub(r"^#{1,3}\s*", "", text.strip(), flags=re.MULTILINE)
+    m = _FREETEXT_QA_RE.search(work)
+    if not m:
+        return None
+    question = (m.group("question") or "").strip().replace("**", "")
+    answer = (m.group("answer") or "").strip().replace("**", "")
+    explanation = (m.group("explanation") or "").strip().replace("**", "")
+    if not question or not answer:
+        return None
+    try:
+        return FreeTextQABlock(question=question, answer=answer, explanation=explanation)
+    except ValidationError:
+        return None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Vocab parsing — "**word** — meaning" lines from the New Words section
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -370,8 +410,13 @@ def _sections_to_blocks(sections: list[dict], is_first_step: bool) -> tuple[list
             return [WatchoutBlock(body_md=content)]
         if kind == "check":
             mcq = parse_mcq(content)
+            if mcq:
+                return [mcq]
+            freetext_qa = parse_freetext_qa(content)
+            if freetext_qa:
+                return [freetext_qa]
             # Unparseable check → keep the content visible as a concept
-            return [mcq] if mcq else [ConceptBlock(title=title, body_md=content)]
+            return [ConceptBlock(title=title, body_md=content)]
         if kind == "example":
             example = parse_example(content)
             return [example] if example else [ConceptBlock(title=title, body_md=content)]
